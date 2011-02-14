@@ -25,15 +25,27 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
-
+/**
+ * An IStaticContentProvider for EMF references.
+ * 
+ * @author Camille Letavernier
+ */
 public class EcoreReferenceContentProvider implements IStaticContentProvider {
 
 	private EObject eObject;
 
 	private EStructuralFeature feature;
 
-	protected AdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+	private AdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param feature
+	 *        The feature representing the reference for which we want to retrieve possible values
+	 * @param eObject
+	 */
 	public EcoreReferenceContentProvider(EStructuralFeature feature, EObject eObject) {
 		this.feature = feature;
 		this.eObject = eObject;

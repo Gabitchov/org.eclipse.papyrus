@@ -67,7 +67,7 @@ public class BooleanRadio extends AbstractValueEditor {
 	public BooleanRadio(Composite parent, int style, String label) {
 		super(parent, label);
 
-		setLayout(new GridLayout(3, false));
+		((GridLayout)getLayout()).numColumns = 3;
 
 		//trueRadio = new Button(this, SWT.RADIO);
 		//trueRadio.setText("true");

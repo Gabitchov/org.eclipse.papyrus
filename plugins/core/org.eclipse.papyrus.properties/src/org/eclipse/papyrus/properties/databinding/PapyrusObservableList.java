@@ -41,11 +41,33 @@ public class PapyrusObservableList extends EObjectObservableList {
 
 	private EditingDomain domain;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param eObject
+	 *        The EObject to edit
+	 * @param eStructuralFeature
+	 *        The structural feature to edit
+	 * @param domain
+	 *        The editing domain on which the commands will be executed
+	 */
 	public PapyrusObservableList(EObject eObject, EStructuralFeature eStructuralFeature, EditingDomain domain) {
 		super(eObject, eStructuralFeature);
 		this.domain = domain;
 	}
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param realm
+	 * @param eObject
+	 *        The EObject to edit
+	 * @param eStructuralFeature
+	 *        The structural feature to edit
+	 * @param domain
+	 *        The editing domain on which the commands will be executed
+	 */
 	public PapyrusObservableList(Realm realm, EObject eObject, EStructuralFeature eStructuralFeature, EditingDomain domain) {
 		super(realm, eObject, eStructuralFeature);
 		this.domain = domain;

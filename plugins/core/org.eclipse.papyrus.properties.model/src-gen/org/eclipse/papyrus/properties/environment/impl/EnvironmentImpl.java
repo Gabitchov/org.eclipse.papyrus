@@ -28,7 +28,9 @@ import org.eclipse.papyrus.properties.environment.ConstraintType;
 import org.eclipse.papyrus.properties.environment.Environment;
 import org.eclipse.papyrus.properties.environment.EnvironmentPackage;
 import org.eclipse.papyrus.properties.environment.LayoutType;
+import org.eclipse.papyrus.properties.environment.MiscClass;
 import org.eclipse.papyrus.properties.environment.ModelElementFactoryDescriptor;
+import org.eclipse.papyrus.properties.environment.Namespace;
 import org.eclipse.papyrus.properties.environment.PropertyEditorType;
 import org.eclipse.papyrus.properties.environment.StandardWidgetType;
 
@@ -45,6 +47,8 @@ import org.eclipse.papyrus.properties.environment.StandardWidgetType;
  *   <li>{@link org.eclipse.papyrus.properties.environment.impl.EnvironmentImpl#getPropertyEditorTypes <em>Property Editor Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.environment.impl.EnvironmentImpl#getCompositeWidgetTypes <em>Composite Widget Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.environment.impl.EnvironmentImpl#getLayoutTypes <em>Layout Types</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.environment.impl.EnvironmentImpl#getNamespaces <em>Namespaces</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.environment.impl.EnvironmentImpl#getMiscClasses <em>Misc Classes</em>}</li>
  * </ul>
  * </p>
  *
@@ -110,6 +114,26 @@ public class EnvironmentImpl extends EObjectImpl implements Environment {
 	 * @ordered
 	 */
 	protected EList<LayoutType> layoutTypes;
+
+	/**
+	 * The cached value of the '{@link #getNamespaces() <em>Namespaces</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNamespaces()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Namespace> namespaces;
+
+	/**
+	 * The cached value of the '{@link #getMiscClasses() <em>Misc Classes</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMiscClasses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<MiscClass> miscClasses;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -207,6 +231,30 @@ public class EnvironmentImpl extends EObjectImpl implements Environment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Namespace> getNamespaces() {
+		if (namespaces == null) {
+			namespaces = new EObjectContainmentEList<Namespace>(Namespace.class, this, EnvironmentPackage.ENVIRONMENT__NAMESPACES);
+		}
+		return namespaces;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<MiscClass> getMiscClasses() {
+		if (miscClasses == null) {
+			miscClasses = new EObjectContainmentEList<MiscClass>(MiscClass.class, this, EnvironmentPackage.ENVIRONMENT__MISC_CLASSES);
+		}
+		return miscClasses;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -222,6 +270,10 @@ public class EnvironmentImpl extends EObjectImpl implements Environment {
 				return ((InternalEList<?>)getCompositeWidgetTypes()).basicRemove(otherEnd, msgs);
 			case EnvironmentPackage.ENVIRONMENT__LAYOUT_TYPES:
 				return ((InternalEList<?>)getLayoutTypes()).basicRemove(otherEnd, msgs);
+			case EnvironmentPackage.ENVIRONMENT__NAMESPACES:
+				return ((InternalEList<?>)getNamespaces()).basicRemove(otherEnd, msgs);
+			case EnvironmentPackage.ENVIRONMENT__MISC_CLASSES:
+				return ((InternalEList<?>)getMiscClasses()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -246,6 +298,10 @@ public class EnvironmentImpl extends EObjectImpl implements Environment {
 				return getCompositeWidgetTypes();
 			case EnvironmentPackage.ENVIRONMENT__LAYOUT_TYPES:
 				return getLayoutTypes();
+			case EnvironmentPackage.ENVIRONMENT__NAMESPACES:
+				return getNamespaces();
+			case EnvironmentPackage.ENVIRONMENT__MISC_CLASSES:
+				return getMiscClasses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -283,6 +339,14 @@ public class EnvironmentImpl extends EObjectImpl implements Environment {
 				getLayoutTypes().clear();
 				getLayoutTypes().addAll((Collection<? extends LayoutType>)newValue);
 				return;
+			case EnvironmentPackage.ENVIRONMENT__NAMESPACES:
+				getNamespaces().clear();
+				getNamespaces().addAll((Collection<? extends Namespace>)newValue);
+				return;
+			case EnvironmentPackage.ENVIRONMENT__MISC_CLASSES:
+				getMiscClasses().clear();
+				getMiscClasses().addAll((Collection<? extends MiscClass>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -313,6 +377,12 @@ public class EnvironmentImpl extends EObjectImpl implements Environment {
 			case EnvironmentPackage.ENVIRONMENT__LAYOUT_TYPES:
 				getLayoutTypes().clear();
 				return;
+			case EnvironmentPackage.ENVIRONMENT__NAMESPACES:
+				getNamespaces().clear();
+				return;
+			case EnvironmentPackage.ENVIRONMENT__MISC_CLASSES:
+				getMiscClasses().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -337,6 +407,10 @@ public class EnvironmentImpl extends EObjectImpl implements Environment {
 				return compositeWidgetTypes != null && !compositeWidgetTypes.isEmpty();
 			case EnvironmentPackage.ENVIRONMENT__LAYOUT_TYPES:
 				return layoutTypes != null && !layoutTypes.isEmpty();
+			case EnvironmentPackage.ENVIRONMENT__NAMESPACES:
+				return namespaces != null && !namespaces.isEmpty();
+			case EnvironmentPackage.ENVIRONMENT__MISC_CLASSES:
+				return miscClasses != null && !miscClasses.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

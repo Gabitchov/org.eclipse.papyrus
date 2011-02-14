@@ -88,6 +88,8 @@ public class EnvironmentItemProvider
 			childrenFeatures.add(EnvironmentPackage.Literals.ENVIRONMENT__PROPERTY_EDITOR_TYPES);
 			childrenFeatures.add(EnvironmentPackage.Literals.ENVIRONMENT__COMPOSITE_WIDGET_TYPES);
 			childrenFeatures.add(EnvironmentPackage.Literals.ENVIRONMENT__LAYOUT_TYPES);
+			childrenFeatures.add(EnvironmentPackage.Literals.ENVIRONMENT__NAMESPACES);
+			childrenFeatures.add(EnvironmentPackage.Literals.ENVIRONMENT__MISC_CLASSES);
 		}
 		return childrenFeatures;
 	}
@@ -145,6 +147,8 @@ public class EnvironmentItemProvider
 			case EnvironmentPackage.ENVIRONMENT__PROPERTY_EDITOR_TYPES:
 			case EnvironmentPackage.ENVIRONMENT__COMPOSITE_WIDGET_TYPES:
 			case EnvironmentPackage.ENVIRONMENT__LAYOUT_TYPES:
+			case EnvironmentPackage.ENVIRONMENT__NAMESPACES:
+			case EnvironmentPackage.ENVIRONMENT__MISC_CLASSES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -191,6 +195,16 @@ public class EnvironmentItemProvider
 			(createChildParameter
 				(EnvironmentPackage.Literals.ENVIRONMENT__LAYOUT_TYPES,
 				 EnvironmentFactory.eINSTANCE.createLayoutType()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(EnvironmentPackage.Literals.ENVIRONMENT__NAMESPACES,
+				 EnvironmentFactory.eINSTANCE.createNamespace()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(EnvironmentPackage.Literals.ENVIRONMENT__MISC_CLASSES,
+				 EnvironmentFactory.eINSTANCE.createMiscClass()));
 	}
 
 	/**

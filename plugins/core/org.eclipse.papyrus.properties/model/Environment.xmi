@@ -6,23 +6,31 @@
   <constraintTypes label="EMF Query" constraintClass="org.eclipse.papyrus.properties.constraints.EMFQueryConstraint"/>
   <widgetTypes label="Label" widgetClass="Label"/>
   <widgetTypes label="Text" widgetClass="Text"/>
-  <propertyEditorTypes label="StringEditor" widgetClass="ppe:StringEditor"/>
-  <propertyEditorTypes label="BooleanCombo" widgetClass="ppe:BooleanCombo" type="Boolean"/>
-  <propertyEditorTypes label="BooleanCheckbox" widgetClass="ppe:BooleanCheckbox" type="Boolean"/>
-  <propertyEditorTypes label="BooleanRadio" widgetClass="ppe:BooleanRadio" type="Boolean"/>
-  <propertyEditorTypes label="IntegerEditor" widgetClass="ppe:IntegerEditor" type="Integer"/>
-  <propertyEditorTypes label="EnumCombo" widgetClass="ppe:EnumCombo" type="Enumeration"/>
-  <propertyEditorTypes label="EnumRadio" widgetClass="ppe:EnumRadio"/>
-  <propertyEditorTypes label="ReferenceCombo" widgetClass="ppe:ReferenceCombo" type="Reference"/>
-  <propertyEditorTypes label="MultiReference" widgetClass="ppe:MultiReference" type="Reference" multiplicity="-1"/>
-  <propertyEditorTypes label="MultiString" widgetClass="ppe:MultiString" multiplicity="-1"/>
-  <propertyEditorTypes label="MultiInteger" widgetClass="ppe:MultiInteger" type="Integer" multiplicity="-1"/>
-  <propertyEditorTypes label="ViewEditor" widgetClass="ppe:ViewEditor" type="Reference" multiplicity="-1"/>
-  <propertyEditorTypes label="ReferenceDialog" widgetClass="ppe:ReferenceDialog" type="Reference"/>
+  <propertyEditorTypes label="StringEditor" widgetClass="StringEditor" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="BooleanCombo" widgetClass="BooleanCombo" namespace="//@namespaces.3" type="Boolean"/>
+  <propertyEditorTypes label="BooleanCheckbox" widgetClass="BooleanCheckbox" namespace="//@namespaces.3" type="Boolean"/>
+  <propertyEditorTypes label="BooleanRadio" widgetClass="BooleanRadio" namespace="//@namespaces.3" type="Boolean"/>
+  <propertyEditorTypes label="IntegerEditor" widgetClass="IntegerEditor" namespace="//@namespaces.3" type="Integer"/>
+  <propertyEditorTypes label="EnumCombo" widgetClass="EnumCombo" namespace="//@namespaces.3" type="Enumeration"/>
+  <propertyEditorTypes label="EnumRadio" widgetClass="EnumRadio" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="ReferenceCombo" widgetClass="ReferenceCombo" namespace="//@namespaces.3" type="Reference"/>
+  <propertyEditorTypes label="MultiReference" widgetClass="MultiReference" namespace="//@namespaces.3" type="Reference" multiplicity="-1"/>
+  <propertyEditorTypes label="MultiString" widgetClass="MultiString" namespace="//@namespaces.3" multiplicity="-1"/>
+  <propertyEditorTypes label="MultiInteger" widgetClass="MultiInteger" namespace="//@namespaces.3" type="Integer" multiplicity="-1"/>
+  <propertyEditorTypes label="ViewEditor" widgetClass="ViewEditor" namespace="//@namespaces.3" type="Reference" multiplicity="-1"/>
+  <propertyEditorTypes label="ReferenceDialog" widgetClass="ReferenceDialog" namespace="//@namespaces.3" type="Reference"/>
   <compositeWidgetTypes label="Composite" widgetClass="Composite"/>
   <compositeWidgetTypes label="Group" widgetClass="Group"/>
   <layoutTypes label="GridLayout" widgetClass="GridLayout"/>
   <layoutTypes label="FillLayout" widgetClass="FillLayout"/>
   <layoutTypes label="RowLayout" widgetClass="RowLayout"/>
-  <layoutTypes label="PropertiesLayout" widgetClass="ppel:PropertiesLayout"/>
+  <layoutTypes label="PropertiesLayout" widgetClass="PropertiesLayout" namespace="//@namespaces.4"/>
+  <namespaces prefix="" name="" value="http://www.eclipse.org/xwt/presentation"/>
+  <namespaces name="x" value="http://www.eclipse.org/xwt"/>
+  <namespaces prefix="clr-namespace" name="j" value="java.lang"/>
+  <namespaces prefix="clr-namespace" name="ppe" value="org.eclipse.papyrus.properties.widgets"/>
+  <namespaces prefix="clr-namespace" name="ppel" value="org.eclipse.papyrus.properties.widgets.layout"/>
+  <namespaces prefix="clr-namespace" name="ppec" value="org.eclipse.papyrus.properties.creation"/>
+  <miscClasses label="EMF object factory" class="EcorePropertyEditorFactory" namespace="//@namespaces.5"/>
+  <miscClasses label="Property view Edition factory" class="PropertyEditorFactory" namespace="//@namespaces.5"/>
 </environment:Environment>

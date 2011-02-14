@@ -55,8 +55,6 @@ public class CompactMultipleReferenceEditor extends CompactMultipleValueEditor {
 	 *        The widget in which this editor is created
 	 * @param style
 	 *        The style for this editor's control
-	 * @param selector
-	 *        The element selector to be used in the selection dialog
 	 * @param ordered
 	 *        True if the multivalued property is ordered
 	 * @param unique

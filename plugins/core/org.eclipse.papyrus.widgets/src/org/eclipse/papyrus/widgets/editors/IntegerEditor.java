@@ -32,14 +32,26 @@ public class IntegerEditor extends StringEditor {
 	private IConverter targetToModelConverter;
 
 	/**
-	 * {@inheritDoc}
+	 * Constructs an editor for Integer values. The widget is a Text field.
+	 * 
+	 * @param parent
+	 *        The Composite in which this editor is created
+	 * @param style
+	 *        The Text's style
 	 */
 	public IntegerEditor(Composite parent, int style) {
 		this(parent, style, null);
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Constructs an editor for Integer values. The widget is a Text field.
+	 * 
+	 * @param parent
+	 *        The Composite in which this editor is created
+	 * @param style
+	 *        The Text's style
+	 * @param label
+	 *        The editor's label
 	 */
 	public IntegerEditor(Composite parent, int style, String label) {
 		super(parent, style, label);

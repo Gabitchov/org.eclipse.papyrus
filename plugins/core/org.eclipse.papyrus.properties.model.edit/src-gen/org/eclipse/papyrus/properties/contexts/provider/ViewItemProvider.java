@@ -63,9 +63,9 @@ public class ViewItemProvider
 
 			addNamePropertyDescriptor(object);
 			addSectionsPropertyDescriptor(object);
-			addDatacontextsPropertyDescriptor(object);
 			addElementMultiplicityPropertyDescriptor(object);
 			addAutomaticContextPropertyDescriptor(object);
+			addDatacontextsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -115,28 +115,6 @@ public class ViewItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Datacontexts feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDatacontextsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_View_datacontexts_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_View_datacontexts_feature", "_UI_View_type"),
-				 ContextsPackage.Literals.VIEW__DATACONTEXTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Element Multiplicity feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -176,6 +154,28 @@ public class ViewItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Datacontexts feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDatacontextsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_View_datacontexts_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_View_datacontexts_feature", "_UI_View_type"),
+				 ContextsPackage.Literals.VIEW__DATACONTEXTS,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

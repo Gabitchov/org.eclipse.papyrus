@@ -23,10 +23,20 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.properties.Activator;
+import org.eclipse.papyrus.properties.uml.messages.Messages;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 
-
+/**
+ * An ObservableValue for manipulating the UML Multiplicity property.
+ * Multiplicity is a simple, virtual property, aggregating both lowerBound and upperBound,
+ * and presenting them as an Enumeration with 4 values : 1, 0-1, 0-*, 1-*
+ * 
+ * The values are edited with commands executed on the given editing domain.
+ * These commands will probably only work in a Papyrus context.
+ * 
+ * @author Camille Letavernier
+ */
 public class MultiplicityObservableValue extends AbstractObservableValue {
 
 	private IObservableValue lowerBound, upperBound;
@@ -37,6 +47,14 @@ public class MultiplicityObservableValue extends AbstractObservableValue {
 
 	private EditingDomain domain;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param eObject
+	 *        The EObject which the multiplicity is being edited
+	 * @param domain
+	 *        The Editing Domain on which the commands will be executed
+	 */
 	public MultiplicityObservableValue(EObject eObject, EditingDomain domain) {
 
 		this.eObject = eObject;
@@ -97,7 +115,7 @@ public class MultiplicityObservableValue extends AbstractObservableValue {
 		try {
 			Command lowerSetCommand = getSetCommand(lowerFeature, lower);
 			Command upperSetCommand = getSetCommand(upperFeature, upper);
-			CompoundCommand command = new CompoundCommand("Set multiplicity");
+			CompoundCommand command = new CompoundCommand(Messages.MultiplicityObservableValue_setMultiplicityCommand);
 			command.append(lowerSetCommand);
 			command.append(upperSetCommand);
 			domain.getCommandStack().execute(command);

@@ -235,7 +235,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 
 		setResult(new LinkedList<Object>(allElements));
 
-		super.getShell().setImage(Activator.getImage("/icons/papyrus.png")); //$NON-NLS-1$
+		super.getShell().setImage(Activator.getDefault().getImage("/icons/papyrus.png")); //$NON-NLS-1$
 
 		updateControls();
 	}
@@ -272,22 +272,22 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		buttonsSection.setLayout(new GridLayout(1, true));
 
 		add = new Button(buttonsSection, SWT.PUSH);
-		add.setImage(Activator.getImage("/icons/arrow_right.gif")); //$NON-NLS-1$
+		add.setImage(Activator.getDefault().getImage("/icons/arrow_right.gif")); //$NON-NLS-1$
 		add.addSelectionListener(this);
 		add.setToolTipText(Messages.MultipleValueSelectorDialog_AddSelectedElements);
 
 		remove = new Button(buttonsSection, SWT.PUSH);
-		remove.setImage(Activator.getImage("/icons/arrow_left.gif")); //$NON-NLS-1$
+		remove.setImage(Activator.getDefault().getImage("/icons/arrow_left.gif")); //$NON-NLS-1$
 		remove.addSelectionListener(this);
 		remove.setToolTipText(Messages.MultipleValueEditor_RemoveSelectedElements);
 
 		addAll = new Button(buttonsSection, SWT.PUSH);
-		addAll.setImage(Activator.getImage("/icons/arrow_double.gif")); //$NON-NLS-1$
+		addAll.setImage(Activator.getDefault().getImage("/icons/arrow_double.gif")); //$NON-NLS-1$
 		addAll.addSelectionListener(this);
 		addAll.setToolTipText(Messages.MultipleValueSelectorDialog_AddAllElements);
 
 		removeAll = new Button(buttonsSection, SWT.PUSH);
-		removeAll.setImage(Activator.getImage("/icons/arrow_left_double.gif")); //$NON-NLS-1$
+		removeAll.setImage(Activator.getDefault().getImage("/icons/arrow_left_double.gif")); //$NON-NLS-1$
 		removeAll.addSelectionListener(this);
 		removeAll.setToolTipText(Messages.MultipleValueSelectorDialog_RemoveAllElements);
 	}
@@ -325,22 +325,22 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		rightButtonsSection.setLayout(new GridLayout(1, true));
 
 		up = new Button(rightButtonsSection, SWT.PUSH);
-		up.setImage(Activator.getImage("/icons/Up_12x12.gif")); //$NON-NLS-1$
+		up.setImage(Activator.getDefault().getImage("/icons/Up_12x12.gif")); //$NON-NLS-1$
 		up.addSelectionListener(this);
 		up.setToolTipText(Messages.MultipleValueEditor_MoveSelectedElementsUp);
 
 		down = new Button(rightButtonsSection, SWT.PUSH);
-		down.setImage(Activator.getImage("/icons/Down_12x12.gif")); //$NON-NLS-1$
+		down.setImage(Activator.getDefault().getImage("/icons/Down_12x12.gif")); //$NON-NLS-1$
 		down.addSelectionListener(this);
 		down.setToolTipText(Messages.MultipleValueEditor_MoveSelectedElementsDown);
 
 		create = new Button(rightButtonsSection, SWT.PUSH);
-		create.setImage(Activator.getImage("/icons/add_12x12.gif")); //$NON-NLS-1$
+		create.setImage(Activator.getDefault().getImage("/icons/add_12x12.gif")); //$NON-NLS-1$
 		create.addSelectionListener(this);
 		create.setToolTipText(Messages.MultipleValueSelectorDialog_CreateNewElement);
 
 		delete = new Button(rightButtonsSection, SWT.PUSH);
-		delete.setImage(Activator.getImage("/icons/delete_12x12.gif")); //$NON-NLS-1$
+		delete.setImage(Activator.getDefault().getImage("/icons/delete_12x12.gif")); //$NON-NLS-1$
 		delete.addSelectionListener(this);
 		delete.setToolTipText(Messages.MultipleValueSelectorDialog_DeleteNewElement);
 		delete.setEnabled(false);

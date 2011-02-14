@@ -24,7 +24,9 @@ import org.eclipse.papyrus.properties.environment.Environment;
 import org.eclipse.papyrus.properties.environment.EnvironmentFactory;
 import org.eclipse.papyrus.properties.environment.EnvironmentPackage;
 import org.eclipse.papyrus.properties.environment.LayoutType;
+import org.eclipse.papyrus.properties.environment.MiscClass;
 import org.eclipse.papyrus.properties.environment.ModelElementFactoryDescriptor;
+import org.eclipse.papyrus.properties.environment.Namespace;
 import org.eclipse.papyrus.properties.environment.PropertyEditorType;
 import org.eclipse.papyrus.properties.environment.StandardWidgetType;
 import org.eclipse.papyrus.properties.environment.Type;
@@ -96,6 +98,20 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 * @generated
 	 */
 	private EClass standardWidgetTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass namespaceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass miscClassEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -241,6 +257,24 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getEnvironment_Namespaces() {
+		return (EReference)environmentEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEnvironment_MiscClasses() {
+		return (EReference)environmentEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPropertyEditorType() {
 		return propertyEditorTypeEClass;
 	}
@@ -288,6 +322,15 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 */
 	public EAttribute getWidgetType_WidgetClass() {
 		return (EAttribute)widgetTypeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getWidgetType_Namespace() {
+		return (EReference)widgetTypeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -376,6 +419,78 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getNamespace() {
+		return namespaceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNamespace_Prefix() {
+		return (EAttribute)namespaceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNamespace_Name() {
+		return (EAttribute)namespaceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNamespace_Value() {
+		return (EAttribute)namespaceEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMiscClass() {
+		return miscClassEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMiscClass_Label() {
+		return (EAttribute)miscClassEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMiscClass_Class() {
+		return (EAttribute)miscClassEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMiscClass_Namespace() {
+		return (EReference)miscClassEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getType() {
 		return typeEEnum;
 	}
@@ -415,6 +530,8 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 		createEReference(environmentEClass, ENVIRONMENT__PROPERTY_EDITOR_TYPES);
 		createEReference(environmentEClass, ENVIRONMENT__COMPOSITE_WIDGET_TYPES);
 		createEReference(environmentEClass, ENVIRONMENT__LAYOUT_TYPES);
+		createEReference(environmentEClass, ENVIRONMENT__NAMESPACES);
+		createEReference(environmentEClass, ENVIRONMENT__MISC_CLASSES);
 
 		propertyEditorTypeEClass = createEClass(PROPERTY_EDITOR_TYPE);
 		createEAttribute(propertyEditorTypeEClass, PROPERTY_EDITOR_TYPE__TYPE);
@@ -423,6 +540,7 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 		widgetTypeEClass = createEClass(WIDGET_TYPE);
 		createEAttribute(widgetTypeEClass, WIDGET_TYPE__LABEL);
 		createEAttribute(widgetTypeEClass, WIDGET_TYPE__WIDGET_CLASS);
+		createEReference(widgetTypeEClass, WIDGET_TYPE__NAMESPACE);
 
 		compositeWidgetTypeEClass = createEClass(COMPOSITE_WIDGET_TYPE);
 
@@ -437,6 +555,16 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 		createEAttribute(modelElementFactoryDescriptorEClass, MODEL_ELEMENT_FACTORY_DESCRIPTOR__FACTORY_CLASS);
 
 		standardWidgetTypeEClass = createEClass(STANDARD_WIDGET_TYPE);
+
+		namespaceEClass = createEClass(NAMESPACE);
+		createEAttribute(namespaceEClass, NAMESPACE__PREFIX);
+		createEAttribute(namespaceEClass, NAMESPACE__NAME);
+		createEAttribute(namespaceEClass, NAMESPACE__VALUE);
+
+		miscClassEClass = createEClass(MISC_CLASS);
+		createEAttribute(miscClassEClass, MISC_CLASS__LABEL);
+		createEAttribute(miscClassEClass, MISC_CLASS__CLASS);
+		createEReference(miscClassEClass, MISC_CLASS__NAMESPACE);
 
 		// Create enums
 		typeEEnum = createEEnum(TYPE);
@@ -483,6 +611,8 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 		initEReference(getEnvironment_PropertyEditorTypes(), this.getPropertyEditorType(), null, "propertyEditorTypes", null, 0, -1, Environment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEnvironment_CompositeWidgetTypes(), this.getCompositeWidgetType(), null, "compositeWidgetTypes", null, 0, -1, Environment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEnvironment_LayoutTypes(), this.getLayoutType(), null, "layoutTypes", null, 0, -1, Environment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEnvironment_Namespaces(), this.getNamespace(), null, "namespaces", null, 0, -1, Environment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEnvironment_MiscClasses(), this.getMiscClass(), null, "miscClasses", null, 0, -1, Environment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(propertyEditorTypeEClass, PropertyEditorType.class, "PropertyEditorType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPropertyEditorType_Type(), this.getType(), "type", null, 1, 1, PropertyEditorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -491,6 +621,7 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 		initEClass(widgetTypeEClass, WidgetType.class, "WidgetType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getWidgetType_Label(), ecorePackage.getEString(), "label", null, 1, 1, WidgetType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWidgetType_WidgetClass(), ecorePackage.getEString(), "widgetClass", null, 1, 1, WidgetType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWidgetType_Namespace(), this.getNamespace(), null, "namespace", null, 0, 1, WidgetType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeWidgetTypeEClass, CompositeWidgetType.class, "CompositeWidgetType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -505,6 +636,16 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 		initEAttribute(getModelElementFactoryDescriptor_FactoryClass(), ecorePackage.getEString(), "factoryClass", null, 1, 1, ModelElementFactoryDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(standardWidgetTypeEClass, StandardWidgetType.class, "StandardWidgetType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(namespaceEClass, Namespace.class, "Namespace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNamespace_Prefix(), ecorePackage.getEString(), "prefix", null, 0, 1, Namespace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNamespace_Name(), ecorePackage.getEString(), "name", null, 0, 1, Namespace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNamespace_Value(), ecorePackage.getEString(), "value", null, 1, 1, Namespace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(miscClassEClass, MiscClass.class, "MiscClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMiscClass_Label(), ecorePackage.getEString(), "label", null, 0, 1, MiscClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMiscClass_Class(), ecorePackage.getEString(), "class", null, 1, 1, MiscClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMiscClass_Namespace(), this.getNamespace(), null, "namespace", null, 0, 1, MiscClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(typeEEnum, Type.class, "Type");

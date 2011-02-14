@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.properties.environment.WidgetType#getLabel <em>Label</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.environment.WidgetType#getWidgetClass <em>Widget Class</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.environment.WidgetType#getNamespace <em>Namespace</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,5 +78,31 @@ public interface WidgetType extends EObject {
 	 * @generated
 	 */
 	void setWidgetClass(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Namespace</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Namespace</em>' reference.
+	 * @see #setNamespace(Namespace)
+	 * @see org.eclipse.papyrus.properties.environment.EnvironmentPackage#getWidgetType_Namespace()
+	 * @model
+	 * @generated
+	 */
+	Namespace getNamespace();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.properties.environment.WidgetType#getNamespace <em>Namespace</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Namespace</em>' reference.
+	 * @see #getNamespace()
+	 * @generated
+	 */
+	void setNamespace(Namespace value);
 
 } // WidgetType

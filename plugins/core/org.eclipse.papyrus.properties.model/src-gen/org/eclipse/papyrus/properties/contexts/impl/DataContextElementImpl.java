@@ -10,20 +10,15 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.papyrus.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.contexts.DataContextPackage;
@@ -46,6 +41,7 @@ import org.eclipse.papyrus.properties.contexts.Property;
  * @generated
  */
 public class DataContextElementImpl extends EObjectImpl implements DataContextElement {
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -345,6 +341,36 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 		result.append(name);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if(object == null)
+			return false;
+
+		if(object == this)
+			return true;
+
+		if(object.getClass() == getClass()) {
+			DataContextElement element = (DataContextElement)object;
+			if(!getName().equals(element.getName())) {
+				return false;
+			}
+
+			if(getPackage() == null) {
+				if(element.getPackage() != null) {
+					return false;
+				}
+			} else {
+				if(!getPackage().equals(element.getPackage())) {
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		return false;
 	}
 
 } //DataContextElementImpl

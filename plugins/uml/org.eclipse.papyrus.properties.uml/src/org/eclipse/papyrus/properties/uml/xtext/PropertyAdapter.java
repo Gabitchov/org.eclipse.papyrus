@@ -34,8 +34,10 @@ public class PropertyAdapter implements IXtextAdapter {
 		}
 		PropertyRule source = (PropertyRule)xtextObject;
 
-		target.setName(source.getName());
-		target.setVisibility(getVisibility(source));
+
+		//TODO
+
+
 		return target;
 	}
 
@@ -59,10 +61,8 @@ public class PropertyAdapter implements IXtextAdapter {
 		return config.getTextToEdit(modelObject); //Cannot retrieve the property type's label
 	}
 
-	public Injector getInjector() {
-		//return (new UmlPropertyStandaloneSetup()).createInjectorAndDoEMFRegistration();
-		//return Guice.createInjector(new UmlPropertyRuntimeModule());
-		return UmlPropertyActivator.getInstance().getInjector("org.eclipse.papyrus.property.editor.xtext.UmlProperty"); //$NON-NLS-1$
+	public Injector getInjector(EObject sourceModelObject) {
+		return UmlPropertyActivator.getInstance().getInjector((Property)sourceModelObject);
 	}
 
 }

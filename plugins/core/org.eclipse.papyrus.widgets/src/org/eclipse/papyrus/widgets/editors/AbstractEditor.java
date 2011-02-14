@@ -14,12 +14,16 @@ package org.eclipse.papyrus.widgets.editors;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.core.databinding.Binding;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
@@ -45,6 +49,11 @@ public abstract class AbstractEditor extends Composite {
 	protected Set<ICommitListener> commitListeners = new HashSet<ICommitListener>();
 
 	/**
+	 * The binding between the model object and the widget
+	 */
+	protected Binding binding;
+
+	/**
 	 * The factory for creating all the editors with a common style
 	 */
 	public static TabbedPropertySheetWidgetFactory factory = new TabbedPropertySheetWidgetFactory();
@@ -60,7 +69,7 @@ public abstract class AbstractEditor extends Composite {
 	 * @param parent
 	 *        The composite in which this editor should be created
 	 */
-	public AbstractEditor(Composite parent) {
+	protected AbstractEditor(Composite parent) {
 		this(parent, SWT.NONE, null);
 	}
 
@@ -73,7 +82,7 @@ public abstract class AbstractEditor extends Composite {
 	 * @param style
 	 *        The style of this editor's main composite
 	 */
-	public AbstractEditor(Composite parent, int style) {
+	protected AbstractEditor(Composite parent, int style) {
 		this(parent, style, null);
 	}
 
@@ -87,7 +96,7 @@ public abstract class AbstractEditor extends Composite {
 	 *        The label that will be displayed for this editor, or null
 	 *        if no label should be displayed
 	 */
-	public AbstractEditor(Composite parent, String label) {
+	protected AbstractEditor(Composite parent, String label) {
 		this(parent, SWT.NONE, label);
 	}
 
@@ -103,11 +112,9 @@ public abstract class AbstractEditor extends Composite {
 	 *        The label that will be displayed for this editor, or null
 	 *        if no label should be displayed
 	 */
-	public AbstractEditor(Composite parent, int style, String label) {
+	protected AbstractEditor(Composite parent, int style, String label) {
 		super(parent, style);
 		GridLayout layout = new GridLayout(2, false);
-		layout.marginHeight = 0;
-		layout.marginWidth = 0;
 		setLayout(layout);
 		if(label != null) {
 			createLabel(label);
@@ -238,4 +245,26 @@ public abstract class AbstractEditor extends Composite {
 	 *         True if the editor is read-only
 	 */
 	public abstract boolean isReadOnly();
+
+	protected void setCommitOnFocusLost(Control control) {
+		control.addFocusListener(new FocusListener() {
+
+			public void focusGained(FocusEvent e) {
+				// Nothing
+			}
+
+			public void focusLost(FocusEvent e) {
+				commit();
+			}
+
+		});
+	}
+
+	/**
+	 * Forces the refresh of the widget's value
+	 */
+	public void refreshValue() {
+		if(binding != null)
+			binding.updateModelToTarget();
+	}
 }

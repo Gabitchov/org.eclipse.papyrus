@@ -24,8 +24,15 @@ import org.eclipse.papyrus.properties.contexts.View;
  */
 public abstract class AbstractConstraint implements Constraint {
 
+	/**
+	 * The descriptor used to instantiate this constraint.
+	 * Contains some attributes for this constraint
+	 */
 	protected ConstraintDescriptor descriptor;
 
+	/**
+	 * The display unit (Section or View) associated to this constraint
+	 */
 	protected DisplayUnit display;
 
 	public void setConstraintDescriptor(ConstraintDescriptor descriptor) {
@@ -47,7 +54,7 @@ public abstract class AbstractConstraint implements Constraint {
 	 * the same constraint for a multiple element (One or more)
 	 */
 	public boolean overrides(Constraint constraint) {
-		if(equals(constraint)) {
+		if(equivalent(constraint)) {
 			if(getView().getElementMultiplicity() == 1) {
 				if(constraint.getView().getElementMultiplicity() != 1) {
 					return true;
@@ -60,6 +67,18 @@ public abstract class AbstractConstraint implements Constraint {
 
 		return false;
 	}
+
+	/**
+	 * Tests if two constraints are equivalent.
+	 * Two constraints are equivalent if they have the same parameters.
+	 * Two equivalent constraints may have different Display units, with
+	 * different multiplicities.
+	 * 
+	 * @param constraint
+	 * @return
+	 *         True if this object is equivalent to the given constraint
+	 */
+	protected abstract boolean equivalent(Constraint constraint);
 
 	public ConstraintDescriptor getDescriptor() {
 		return descriptor;

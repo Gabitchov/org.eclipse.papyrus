@@ -59,6 +59,8 @@ public class BooleanCheckbox extends AbstractValueEditor {
 		//checkbox = new Button(this, SWT.CHECK | style);
 
 		setWidgetObservable(WidgetProperties.selection().observe(checkbox), true);
+
+		setCommitOnFocusLost(checkbox);
 	}
 
 	/**

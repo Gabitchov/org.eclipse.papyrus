@@ -20,7 +20,7 @@ package org.eclipse.papyrus.widgets.selectors;
 public class IntegerSelector extends StringSelector {
 
 	/**
-	 * {@inheritDoc}
+	 * Constructs a Selector for Integer values
 	 */
 	public IntegerSelector() {
 		super();
@@ -36,7 +36,7 @@ public class IntegerSelector extends StringSelector {
 			result = new Integer[]{ Integer.parseInt(text.getText()) };
 			text.setText(""); //$NON-NLS-1$
 		} catch (NumberFormatException ex) {
-			result = new Integer[]{};
+			result = new Integer[0];
 		}
 		return result;
 	}

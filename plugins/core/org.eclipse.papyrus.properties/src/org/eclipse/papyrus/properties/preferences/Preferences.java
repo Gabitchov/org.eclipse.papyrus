@@ -17,6 +17,7 @@ import java.util.Map.Entry;
 
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.papyrus.properties.contexts.Context;
+import org.eclipse.papyrus.properties.messages.Messages;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -30,7 +31,12 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
-
+/**
+ * The PreferencePage for the Papyrus Property View. Offers an UI to enable or disable
+ * property view contexts.
+ * 
+ * @author Camille Letavernier
+ */
 public class Preferences extends PreferencePage implements IWorkbenchPreferencePage {
 
 	public void init(IWorkbench workbench) {
@@ -44,7 +50,7 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 		self.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		Label label = new Label(self, SWT.NONE);
-		label.setText("Contexts : ");
+		label.setText(Messages.Preferences_Contexts);
 
 		final ConfigurationManager configurationManager = ConfigurationManager.instance;
 
@@ -99,7 +105,7 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 	}
 
 	private String getLabel(Context context) {
-		return context.getName() + " (" + (ConfigurationManager.instance.isPlugin(context) ? "plugin" : "custom") + ")"; //$NON-NLS-1$ //$NON-NLS-4$
+		return context.getName() + " (" + (ConfigurationManager.instance.isPlugin(context) ? Messages.Preferences_Plugin : Messages.Preferences_Custom) + ")"; //$NON-NLS-1$ //$NON-NLS-4$
 	}
 
 	private final ContextState contextState = new ContextState();

@@ -56,7 +56,6 @@ mapping EClass::toDataContextElement() : element : DataContextElement, viewSingl
 	element.properties := self.eStructuralFeatures->map toProperty(); 
 	element.supertypes := self.eSuperTypes->map toDataContextElement().element; 
 
-	viewSingle.constraints := null;
 	viewSingle.name := 'Single '+self.name;
 	viewSingle.automaticContext := true;
 	viewSingle.datacontexts := element;
@@ -64,7 +63,6 @@ mapping EClass::toDataContextElement() : element : DataContextElement, viewSingl
 	viewSingle.constraints := self.map toConstraint(viewSingle);
 	viewSingle.context := self.getContext();
 	
-	viewMultiple.constraints := null;
 	viewMultiple.name := 'Multiple '+self.name;
 	viewMultiple.automaticContext := true;
 	viewMultiple.datacontexts := element;

@@ -17,10 +17,30 @@ import org.eclipse.papyrus.properties.contexts.Section;
 import org.eclipse.papyrus.properties.contexts.View;
 import org.eclipse.papyrus.properties.ui.PropertyEditor;
 
-
+/**
+ * An interface for defining Layout generators.
+ * Layout generators are responsible for building a List of sections from a list
+ * of Property editors.
+ * 
+ * @author Camille Letavernier
+ */
 public interface ILayoutGenerator {
 
+	/**
+	 * Return a list of Sections from a list of property editors.
+	 * Each section should be placed in the parent's resourceSet
+	 * 
+	 * @param editors
+	 *        The list of editors to layout
+	 * @param parent
+	 *        The view owning the resulting list of sections
+	 * @return
+	 *         The list of sections owning the input editors
+	 */
 	public List<Section> layoutElements(List<PropertyEditor> editors, View parent);
 
+	/**
+	 * @return the name of the Layout generator
+	 */
 	public String getName();
 }

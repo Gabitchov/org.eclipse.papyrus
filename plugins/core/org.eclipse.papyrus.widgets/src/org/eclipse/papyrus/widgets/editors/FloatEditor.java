@@ -27,7 +27,13 @@ public class FloatEditor extends StringEditor {
 	private IConverter targetToModelConverter;
 
 	/**
-	 * {@inheritDoc}
+	 * 
+	 * Constructs an Editor for a Float value. The widget is a Text field.
+	 * 
+	 * @param parent
+	 *        The Composite in which the editor is created
+	 * @param style
+	 *        The Text's style
 	 */
 	public FloatEditor(Composite parent, int style) {
 		super(parent, style);

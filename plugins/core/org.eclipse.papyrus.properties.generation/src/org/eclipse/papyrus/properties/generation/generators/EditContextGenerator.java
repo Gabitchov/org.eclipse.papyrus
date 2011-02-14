@@ -11,14 +11,25 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.generation.generators;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.contexts.Property;
+import org.eclipse.papyrus.properties.contexts.View;
+import org.eclipse.papyrus.properties.generation.messages.Messages;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Listener;
 
-
+/**
+ * Incubation
+ * 
+ * An implementation of IGenerator used to re-generate a Context from an existing one
+ * 
+ * @author Camille Letavernier
+ */
 public class EditContextGenerator implements IGenerator {
 
 	public Context generate(URI targetURI) {
@@ -32,7 +43,7 @@ public class EditContextGenerator implements IGenerator {
 	}
 
 	public String getDescription() {
-		return "Generates a new context from an existing one";
+		return Messages.EditContextGenerator_generateNewContext;
 	}
 
 	public boolean isReady() {
@@ -41,7 +52,7 @@ public class EditContextGenerator implements IGenerator {
 	}
 
 	public String getName() {
-		return "Import existing context";
+		return Messages.EditContextGenerator_importExistingContext;
 	}
 
 	public boolean isSelectedSingle(Property property) {
@@ -66,7 +77,11 @@ public class EditContextGenerator implements IGenerator {
 
 	public void addListener(Listener listener) {
 		// TODO Auto-generated method stub
+	}
 
+	public List<DataContextElement> getContextElementsFor(Collection<Context> contexts, View view) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
 	}
 
 }

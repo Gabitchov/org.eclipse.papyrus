@@ -11,22 +11,44 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.xwt;
 
+import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.contexts.Section;
 import org.eclipse.papyrus.properties.contexts.Tab;
 import org.eclipse.papyrus.properties.contexts.View;
 import org.eclipse.papyrus.properties.runtime.DisplayEngine;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.views.properties.tabbed.AbstractTabDescriptor;
 
+/**
+ * A Tab descriptor implementation for the TabbedPropertyView.
+ * The property view is described by XWT files.
+ * 
+ * @author Camille Letavernier
+ */
 public class XWTTabDescriptor extends AbstractTabDescriptor {
 
 	private Tab tab;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param tab
+	 *        The Tab model object containing the Metadata for the tab
+	 */
 	public XWTTabDescriptor(Tab tab) {
 		this.tab = tab;
 	}
 
+	/**
+	 * Adds a section to this tab
+	 * 
+	 * @param section
+	 *        The Section model object
+	 * @param view
+	 *        The View model object to which the section belongs
+	 * @param display
+	 *        The display engine that will be used to display the section
+	 */
 	@SuppressWarnings("unchecked")
 	public void addSection(Section section, View view, DisplayEngine display) {
 		super.getSectionDescriptors().add(new XWTSectionDescriptor(section, view, display));
@@ -46,10 +68,18 @@ public class XWTTabDescriptor extends AbstractTabDescriptor {
 
 	@Override
 	public Image getImage() {
-		if(tab.getImage() == null || tab.getImage().equals("")) //$NON-NLS-1$
+		String imagePath = tab.getImage();
+
+		if(imagePath == null || imagePath.trim().equals("")) //$NON-NLS-1$
 			return null;
 
-		return new Image(Display.getDefault(), tab.getImage());
+		if(imagePath.startsWith("/")) {
+			imagePath = imagePath.substring(1, imagePath.length());
+			String pluginId = imagePath.substring(0, imagePath.indexOf("/"));
+			String filePath = imagePath.substring(imagePath.indexOf("/"), imagePath.length());
+			return Activator.getDefault().getImage(pluginId, filePath);
+		}
+		return null;
 	}
 
 	@Override

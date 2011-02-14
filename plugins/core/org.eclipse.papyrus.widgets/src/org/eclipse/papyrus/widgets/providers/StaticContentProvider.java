@@ -20,7 +20,7 @@ import org.eclipse.jface.viewers.Viewer;
  * @author Camille Letavernier
  * 
  */
-public class StaticContentProvider implements IStaticContentProvider {
+public class StaticContentProvider extends AbstractStaticContentProvider {
 
 	/**
 	 * The elements for this content provider
@@ -59,13 +59,7 @@ public class StaticContentProvider implements IStaticContentProvider {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void dispose() {
-		//Nothing
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
+	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		this.viewer = viewer;
 	}

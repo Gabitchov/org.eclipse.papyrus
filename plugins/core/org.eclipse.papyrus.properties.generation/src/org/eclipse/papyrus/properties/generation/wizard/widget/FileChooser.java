@@ -19,6 +19,7 @@ import java.util.Set;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.properties.generation.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -30,6 +31,11 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
+/**
+ * A Widget for selecting or creating a file in the workspace
+ * 
+ * @author Camille Letavernier
+ */
 public class FileChooser extends Composite implements SelectionListener, Listener {
 
 	private Text text;
@@ -44,6 +50,15 @@ public class FileChooser extends Composite implements SelectionListener, Listene
 
 	private boolean newFile;
 
+	/**
+	 * Constructs a new FileChooser in the given Composite
+	 * 
+	 * @param parent
+	 *        The composite in which the FileChooser is created
+	 * @param newFile
+	 *        True if the fileChooser allows the user to create a new file,
+	 *        false if he should select an existing one
+	 */
 	public FileChooser(Composite parent, boolean newFile) {
 		super(parent, SWT.NONE);
 		setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -55,20 +70,15 @@ public class FileChooser extends Composite implements SelectionListener, Listene
 		text.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		text.addListener(SWT.FocusOut, this);
 		browse = new Button(this, SWT.PUSH);
-		browse.setText("Browse workspace...");
+		browse.setText(Messages.FileChooser_browseWorkspace);
 		browse.addSelectionListener(this);
 		filters = new LinkedList<ViewerFilter>();
 		this.newFile = newFile;
 	}
 
-	public void setText(String text) {
-		browse.setText(text);
-	}
-
-	public String getText() {
-		return browse.getText();
-	}
-
+	/**
+	 * @return the selected file path
+	 */
 	public String getFilePath() {
 		String path = text.getText();
 		if(path.trim().equals("")) { //$NON-NLS-1$
@@ -77,6 +87,12 @@ public class FileChooser extends Composite implements SelectionListener, Listene
 		return path.trim();
 	}
 
+	/**
+	 * Sets the file extensions that this FileChooser accepts
+	 * Files that don't match one of these extensions will be hidden
+	 * 
+	 * @param extensions
+	 */
 	public void setFilterExtensions(String[] extensions) {
 		filters.clear();
 		ExtensionFilter filter = new ExtensionFilter(extensions);
@@ -87,6 +103,12 @@ public class FileChooser extends Composite implements SelectionListener, Listene
 		notifyChange();
 	}
 
+	/**
+	 * Add a listener to this widget. The listener will be notified when the user
+	 * choose a new file
+	 * 
+	 * @param listener
+	 */
 	public void addListener(Listener listener) {
 		listeners.add(listener);
 	}

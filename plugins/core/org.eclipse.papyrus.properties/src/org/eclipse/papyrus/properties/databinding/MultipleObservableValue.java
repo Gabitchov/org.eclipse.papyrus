@@ -24,25 +24,62 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
  * 
  * It is especially used when displaying a Property View for multiple elements,
  * when we want to edit the same property for all of them.
+ * 
+ * All sub-elements will be edited at the same time, with the same value.
  */
 public class MultipleObservableValue extends AbstractObservableValue {
 
+	/**
+	 * 
+	 * Constructs an instance of MultipleObservableValue with a single sub-element
+	 * 
+	 * @param observable
+	 * 
+	 */
 	public MultipleObservableValue(IObservableValue observable) {
 		observableValues.add(observable);
 	}
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 */
 	public MultipleObservableValue() {
 
 	}
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param defaultGetValue
+	 *        When the different sub-elements don't have the same value, the defaultGetValue is returned
+	 */
 	public MultipleObservableValue(Object defaultGetValue) {
 		this(null, defaultGetValue);
 	}
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param values
+	 *        The collection of sub-elements for this MultipleObservableValue
+	 */
 	public MultipleObservableValue(Collection<IObservableValue> values) {
 		this(values, null);
 	}
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param values
+	 *        The collection of sub-elements for this MultipleObservableValue
+	 * @param defaultGetValue
+	 *        When the different sub-elements don't have the same value, the defaultGetValue is returned
+	 * 
+	 */
 	public MultipleObservableValue(Collection<IObservableValue> values, Object defaultGetValue) {
 		if(values != null) {
 			observableValues.addAll(values);
@@ -98,6 +135,12 @@ public class MultipleObservableValue extends AbstractObservableValue {
 		}
 	}
 
+	/**
+	 * Adds an observableValue to the list of sub-elements
+	 * 
+	 * @param observableValue
+	 *        The observableValue to add
+	 */
 	public void addObservable(IObservableValue observableValue) {
 		observableValues.add(observableValue);
 	}

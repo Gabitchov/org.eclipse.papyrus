@@ -22,9 +22,10 @@ import org.osgi.framework.BundleContext;
 /** The activator class controls the plug-in life cycle */
 public class Activator extends AbstractUIPlugin {
 
+	/** the plug-in's logger */
 	public static LogHelper log;
 
-	// The plug-in ID
+	/** The plug-in ID */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.properties.generation"; //$NON-NLS-1$
 
 	// The shared instance
@@ -55,12 +56,34 @@ public class Activator extends AbstractUIPlugin {
 		return Activator.plugin;
 	}
 
+	/**
+	 * Returns the image at the given path from this plugin
+	 * 
+	 * @param path
+	 *        the path of the image to be displayed
+	 * @return The Image at the given location, or null if it couldn't be found
+	 */
 	public Image getImage(String path) {
+		return getImage(PLUGIN_ID, path);
+	}
+
+	/**
+	 * Returns the image from the given image descriptor
+	 * 
+	 * @param pluginId
+	 *        The plugin in which the image is located
+	 * @param path
+	 *        The path to the image from the plugin
+	 * @return
+	 *         The Image at the given location, or null if it couldn't be found
+	 */
+	public Image getImage(String pluginId, String path) {
 		final ImageRegistry registry = getImageRegistry();
-		Image image = registry.get(path);
+		String key = pluginId + "/" + path;
+		Image image = registry.get(key);
 		if(image == null) {
-			registry.put(path, AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID, path));
-			image = registry.get(path);
+			registry.put(key, AbstractUIPlugin.imageDescriptorFromPlugin(pluginId, path));
+			image = registry.get(key);
 		}
 		return image;
 	}

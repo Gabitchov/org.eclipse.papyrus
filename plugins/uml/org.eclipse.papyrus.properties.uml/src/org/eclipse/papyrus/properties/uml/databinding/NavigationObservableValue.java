@@ -28,13 +28,28 @@ import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
+/**
+ * An ObservableValue for manipulating the UML Navigable property.
+ * The navigable property is a virtual property, represented as a Boolean.
+ * This boolean is basically the result of the following query :
+ * self.association.navigableOwnedEnd->contains(self)
+ * 
+ * @author Camille Letavernier
+ */
 public class NavigationObservableValue extends AbstractObservableValue {
 
 	private Property memberEnd;
 
 	private EditingDomain domain;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param source
+	 *        The EObject (Property) which the navigability is being edited
+	 * @param domain
+	 *        The Editing Domain on which the commands will be executed
+	 */
 	public NavigationObservableValue(EObject source, EditingDomain domain) {
 		memberEnd = (Property)source;
 		this.domain = domain;

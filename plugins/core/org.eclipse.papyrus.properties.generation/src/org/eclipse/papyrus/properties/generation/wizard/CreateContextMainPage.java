@@ -13,6 +13,7 @@ package org.eclipse.papyrus.properties.generation.wizard;
 
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.papyrus.properties.generation.generators.IGenerator;
+import org.eclipse.papyrus.properties.generation.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.graphics.Color;
@@ -23,8 +24,8 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
 /**
- * Selects the method of generation (e.g. from Ecore Metamodel
- * or from Profile model)
+ * A WizardPage for selecting the method of generation (e.g. from Ecore
+ * Metamodel or from Profile model)
  * 
  * @author Camille Letavernier
  * 
@@ -33,8 +34,11 @@ public class CreateContextMainPage extends AbstractCreateContextPage implements 
 
 	private CCombo combo;
 
+	/**
+	 * Constructor
+	 */
 	public CreateContextMainPage() {
-		super("Create context");
+		super(Messages.CreateContextMainPage_title);
 	}
 
 	public void createControl(Composite parent) {
@@ -52,7 +56,7 @@ public class CreateContextMainPage extends AbstractCreateContextPage implements 
 		combo.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
 		setControl(root);
-		setDescription("Generate a new Property View context from a Metamodel");
+		setDescription(Messages.CreateContextMainPage_description);
 	}
 
 	@Override

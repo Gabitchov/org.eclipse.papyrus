@@ -8,6 +8,7 @@ package org.eclipse.papyrus.properties.ui.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -15,6 +16,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.papyrus.properties.contexts.Property;
 
+import org.eclipse.papyrus.properties.contexts.UnknownProperty;
 import org.eclipse.papyrus.properties.environment.PropertyEditorType;
 
 import org.eclipse.papyrus.properties.ui.PropertyEditor;
@@ -30,6 +32,7 @@ import org.eclipse.papyrus.properties.ui.UiPackage;
  *   <li>{@link org.eclipse.papyrus.properties.ui.impl.PropertyEditorImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.ui.impl.PropertyEditorImpl#isReadOnly <em>Read Only</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.ui.impl.PropertyEditorImpl#getWidgetType <em>Widget Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.ui.impl.PropertyEditorImpl#getUnresolvedProperty <em>Unresolved Property</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,6 +78,16 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * @ordered
 	 */
 	protected PropertyEditorType widgetType;
+
+	/**
+	 * The cached value of the '{@link #getUnresolvedProperty() <em>Unresolved Property</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUnresolvedProperty()
+	 * @generated
+	 * @ordered
+	 */
+	protected UnknownProperty unresolvedProperty;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -197,6 +210,63 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public UnknownProperty getUnresolvedProperty() {
+		return unresolvedProperty;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetUnresolvedProperty(UnknownProperty newUnresolvedProperty, NotificationChain msgs) {
+		UnknownProperty oldUnresolvedProperty = unresolvedProperty;
+		unresolvedProperty = newUnresolvedProperty;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY, oldUnresolvedProperty, newUnresolvedProperty);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUnresolvedProperty(UnknownProperty newUnresolvedProperty) {
+		if (newUnresolvedProperty != unresolvedProperty) {
+			NotificationChain msgs = null;
+			if (unresolvedProperty != null)
+				msgs = ((InternalEObject)unresolvedProperty).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY, null, msgs);
+			if (newUnresolvedProperty != null)
+				msgs = ((InternalEObject)newUnresolvedProperty).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY, null, msgs);
+			msgs = basicSetUnresolvedProperty(newUnresolvedProperty, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY, newUnresolvedProperty, newUnresolvedProperty));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY:
+				return basicSetUnresolvedProperty(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -208,6 +278,8 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 			case UiPackage.PROPERTY_EDITOR__WIDGET_TYPE:
 				if (resolve) return getWidgetType();
 				return basicGetWidgetType();
+			case UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY:
+				return getUnresolvedProperty();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -228,6 +300,9 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 				return;
 			case UiPackage.PROPERTY_EDITOR__WIDGET_TYPE:
 				setWidgetType((PropertyEditorType)newValue);
+				return;
+			case UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY:
+				setUnresolvedProperty((UnknownProperty)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -250,6 +325,9 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 			case UiPackage.PROPERTY_EDITOR__WIDGET_TYPE:
 				setWidgetType((PropertyEditorType)null);
 				return;
+			case UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY:
+				setUnresolvedProperty((UnknownProperty)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -268,6 +346,8 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 				return readOnly != READ_ONLY_EDEFAULT;
 			case UiPackage.PROPERTY_EDITOR__WIDGET_TYPE:
 				return widgetType != null;
+			case UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY:
+				return unresolvedProperty != null;
 		}
 		return super.eIsSet(featureID);
 	}

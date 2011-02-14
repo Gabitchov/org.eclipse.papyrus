@@ -31,61 +31,72 @@ import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptorProvider;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 
+/**
+ * An implementation of ITabDescriptorProvider, which displays the Property view
+ * from XWT files.
+ * 
+ * @author Camille Letavernier
+ */
 public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 
-	public XWTTabDescriptorProvider() {
-	}
+	private ITabDescriptor[] cachedResult;
+
+	private ISelection previousSelection;
 
 	public ITabDescriptor[] getTabDescriptors(final IWorkbenchPart part, final ISelection selection) {
-		ConstraintEngine constraintEngine = ConfigurationManager.instance.constraintEngine;
+		if(selection != this.previousSelection) {
+			this.previousSelection = selection;
 
-		constraintEngine.setSelection(selection);
-		List<ITabDescriptor> descriptors = new LinkedList<ITabDescriptor>();
+			ConstraintEngine constraintEngine = ConfigurationManager.instance.constraintEngine;
 
-		if(constraintEngine.match()) {
-			Set<View> views = constraintEngine.getViews();
+			List<ITabDescriptor> descriptors = new LinkedList<ITabDescriptor>();
 
-			descriptors.addAll(ConfigurationManager.instance.display.getTabDescriptors(views));
-		}
+			Set<View> views = constraintEngine.getViews(selection);
+			if(!views.isEmpty()) {
+				descriptors.addAll(ConfigurationManager.instance.display.getTabDescriptors(views));
+			}
 
 
-		// get all tab descriptors for the registered extension points
-		TabbedPropertyRegistry registry = TabbedPropertyRegistryFactory.getInstance().createRegistry((ITabbedPropertySheetPageContributor)part);
+			// get all tab descriptors for the registered extension points
+			TabbedPropertyRegistry registry = TabbedPropertyRegistryFactory.getInstance().createRegistry((ITabbedPropertySheetPageContributor)part);
 
-		// invoke dynamically on the tab registry, as method is private
-		// problem of implementation of tabbed properties tabbed registry. Either contribution using extension points, either a tabprovider
-		// both contribution can not exist together, the only solution is to make a workaround.
-		try {
-			Method method = TabbedPropertyRegistry.class.getDeclaredMethod("getAllTabDescriptors"); //$NON-NLS-1$
-			method.setAccessible(true);
-			ITabDescriptor[] registeredTabDesriptors;
+			// invoke dynamically on the tab registry, as method is private
+			// problem of implementation of tabbed properties tabbed registry. Either contribution using extension points, either a tabprovider
+			// both contribution can not exist together, the only solution is to make a workaround.
+			try {
+				Method method = TabbedPropertyRegistry.class.getDeclaredMethod("getAllTabDescriptors"); //$NON-NLS-1$
+				method.setAccessible(true);
+				ITabDescriptor[] registeredTabDesriptors;
 
-			registeredTabDesriptors = (ITabDescriptor[])method.invoke(registry);
+				registeredTabDesriptors = (ITabDescriptor[])method.invoke(registry);
 
-			if(registeredTabDesriptors != null) {
-				for(ITabDescriptor descriptor : registeredTabDesriptors) {
-					if(descriptor.getSectionDescriptors().size() > 0) {
-						descriptors.add(descriptor);
+				if(registeredTabDesriptors != null) {
+					for(ITabDescriptor descriptor : registeredTabDesriptors) {
+						if(descriptor.getSectionDescriptors().size() > 0) {
+							descriptors.add(descriptor);
+						}
 					}
 				}
+			} catch (IllegalArgumentException e) {
+				Activator.log.error(e);
+			} catch (IllegalAccessException e) {
+				Activator.log.error(e);
+			} catch (InvocationTargetException e) {
+				Activator.log.error(e);
+			} catch (SecurityException e) {
+				Activator.log.error(e);
+			} catch (NoSuchMethodException e) {
+				Activator.log.error(e);
 			}
-		} catch (IllegalArgumentException e) {
-			Activator.log.error(e);
-		} catch (IllegalAccessException e) {
-			Activator.log.error(e);
-		} catch (InvocationTargetException e) {
-			Activator.log.error(e);
-		} catch (SecurityException e) {
-			Activator.log.error(e);
-		} catch (NoSuchMethodException e) {
-			Activator.log.error(e);
-		}
-		
-		orderTabDescriptors(descriptors);
 
-		return descriptors.toArray(new ITabDescriptor[descriptors.size()]);
+			orderTabDescriptors(descriptors);
+
+			cachedResult = descriptors.toArray(new ITabDescriptor[descriptors.size()]);
+		}
+
+		return cachedResult;
 	}
-	
+
 	/**
 	 * Order the tab descriptors in the given list, given the afterTab comparator
 	 * 

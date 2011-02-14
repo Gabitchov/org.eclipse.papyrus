@@ -76,6 +76,8 @@ public class ReferenceCombo extends AbstractValueEditor {
 		control.setLayoutData(getDefaultLayoutData());
 		control.setEditable(false);
 		viewer = new ComboViewer(control);
+
+		setCommitOnFocusLost(control);
 	}
 
 	/**
@@ -119,6 +121,7 @@ public class ReferenceCombo extends AbstractValueEditor {
 	 * Retrieves the ComboViewer associated to this Editor
 	 * 
 	 * @return
+	 *         The ComboViewer associated to this editor
 	 */
 	public ComboViewer getViewer() {
 		return viewer;

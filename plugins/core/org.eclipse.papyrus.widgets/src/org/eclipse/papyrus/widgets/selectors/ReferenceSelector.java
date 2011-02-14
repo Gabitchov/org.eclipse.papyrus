@@ -77,7 +77,7 @@ public class ReferenceSelector implements IElementSelector {
 	 * Returns all the elements that are currently displayed, i.e. matching
 	 * the filter
 	 * 
-	 * @see org.eclipse.papyrus.widgets.IElementSelector#getAllElements()
+	 * {@link IElementSelector#getAllElements()}
 	 * 
 	 * @return all elements matching the filter
 	 */

@@ -46,31 +46,19 @@ public abstract class AbstractListEditor extends AbstractEditor {
 	 */
 	protected IObservableList widgetObservable;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public AbstractListEditor(Composite parent) {
+	protected AbstractListEditor(Composite parent) {
 		super(parent);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public AbstractListEditor(Composite parent, int style, String label) {
+	protected AbstractListEditor(Composite parent, int style, String label) {
 		super(parent, style, label);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public AbstractListEditor(Composite parent, int style) {
+	protected AbstractListEditor(Composite parent, int style) {
 		super(parent, style);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public AbstractListEditor(Composite parent, String label) {
+	protected AbstractListEditor(Composite parent, String label) {
 		super(parent, label);
 	}
 
@@ -141,6 +129,8 @@ public abstract class AbstractListEditor extends AbstractEditor {
 	 * Binds the Widget Observable to the Model observable property,
 	 * using the specified converters or Update strategies when available
 	 * 
+	 * When overriding this method, you should also override {@link #refreshValue()}
+	 * 
 	 * @see org.eclipse.papyrus.widgets.AbstractEditor#doBinding()
 	 */
 	@Override
@@ -149,6 +139,6 @@ public abstract class AbstractListEditor extends AbstractEditor {
 		if(modelProperty == null || widgetObservable == null)
 			return;
 
-		getBindingContext().bindList(widgetObservable, modelProperty, targetToModelStrategy, modelToTargetStrategy);
+		binding = getBindingContext().bindList(widgetObservable, modelProperty, targetToModelStrategy, modelToTargetStrategy);
 	}
 }

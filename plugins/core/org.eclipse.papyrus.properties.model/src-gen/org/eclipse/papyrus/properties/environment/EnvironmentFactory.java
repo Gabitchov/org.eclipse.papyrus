@@ -89,6 +89,24 @@ public interface EnvironmentFactory extends EFactory {
 	StandardWidgetType createStandardWidgetType();
 
 	/**
+	 * Returns a new object of class '<em>Namespace</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Namespace</em>'.
+	 * @generated
+	 */
+	Namespace createNamespace();
+
+	/**
+	 * Returns a new object of class '<em>Misc Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Misc Class</em>'.
+	 * @generated
+	 */
+	MiscClass createMiscClass();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

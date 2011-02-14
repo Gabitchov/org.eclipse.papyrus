@@ -13,8 +13,22 @@ package org.eclipse.papyrus.properties.util;
 
 import org.eclipse.papyrus.properties.Activator;
 
+/**
+ * A Helper class for Class Loading.
+ * 
+ * @author Camille Letavernier
+ */
 public class ClassLoader {
 
+	/**
+	 * Loads the class matching the given className. Exceptions are caught and sent
+	 * to the Logger.
+	 * 
+	 * @param className
+	 *        The qualified name of the Class to load.
+	 * @return
+	 *         The loaded Class
+	 */
 	public Class<?> loadClass(String className) {
 		try {
 			Class<?> clazz = Class.forName(className);
@@ -30,10 +44,28 @@ public class ClassLoader {
 		return null;
 	}
 
+	/**
+	 * Returns a new Instance of the given class
+	 * 
+	 * @param className
+	 *        The qualified name of the Class to instantiate
+	 * @return
+	 *         A new instance of the given class, or null if the class couldn't be
+	 *         instantiated
+	 */
 	public Object newInstance(String className) {
 		return newInstance(loadClass(className));
 	}
 
+	/**
+	 * Returns a new Instance of the given class
+	 * 
+	 * @param theClass
+	 *        The Class to instantiate
+	 * @return
+	 *         A new instance of the given class, or null if the class couldn't be
+	 *         instantiated
+	 */
 	public <T extends Object> T newInstance(Class<T> theClass) {
 		if(theClass == null)
 			return null;

@@ -11,24 +11,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.uml.modelelement;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.properties.modelelement.ModelElementFactory;
-import org.eclipse.papyrus.properties.runtime.DataSource;
 import org.eclipse.papyrus.properties.uml.Activator;
 import org.eclipse.papyrus.properties.util.EMFHelper;
 
-
+/**
+ * A Factory for building ModelElements for specific UML properties
+ * (Virtual properties, such as Multiplicity or Navigability)
+ * 
+ * @author Camille Letavernier
+ */
 public class UMLEditorFactory implements ModelElementFactory {
 
 	public ModelElement createFromSource(Object sourceElement, DataContextElement context) {
@@ -41,25 +38,6 @@ public class UMLEditorFactory implements ModelElementFactory {
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(source);
 
 		return new MemberEndModelElement(source, domain);
-	}
-
-	public List<ModelElement> createFromDataSource(ModelElement currentElement, DataSource source, String propertyPath, DataContextElement context) {
-		List<ModelElement> result = new LinkedList<ModelElement>();
-		EMFModelElement element = (EMFModelElement)currentElement;
-		EStructuralFeature feature = element.getFeature(propertyPath);
-
-		if(feature instanceof EReference) {
-			Object newSource = element.getSource().eGet(feature);
-			if(newSource instanceof EList<?>) {
-				for(Object sourceElement : (EList<?>)newSource) {
-					result.add(createFromSource(sourceElement, context));
-				}
-			} else {
-				result.add(createFromSource(newSource, context));
-			}
-		}
-
-		return result;
 	}
 
 }

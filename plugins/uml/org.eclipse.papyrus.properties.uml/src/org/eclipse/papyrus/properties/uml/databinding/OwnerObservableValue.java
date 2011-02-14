@@ -30,13 +30,33 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
+/**
+ * An ObservableValue for manipulating the UML Owner property.
+ * The owner property is a virtual property, represented as an enumeration,
+ * which can have two values : Association (Owned by Association) or Classifier
+ * (Owned by Classifier)
+ * 
+ * This value can be determined by the following query :
+ * if self.association.ownedEnd->contains(self) then 'Association' else 'Classifier' endif
+ * 
+ * This value doesn't make sense for n-ary associations, when n > 2.
+ * 
+ * @author Camille Letavernier
+ */
 public class OwnerObservableValue extends AbstractObservableValue {
 
 	private Property memberEnd;
 
 	private EditingDomain domain;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param source
+	 *        The EObject (Property) which the ownership is being edited
+	 * @param domain
+	 *        The Editing Domain on which the commands will be executed
+	 */
 	public OwnerObservableValue(EObject source, EditingDomain domain) {
 		this.memberEnd = (Property)source;
 		this.domain = domain;

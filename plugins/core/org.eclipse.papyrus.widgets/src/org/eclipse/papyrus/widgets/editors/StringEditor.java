@@ -15,18 +15,20 @@ import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * A Property Editor representing a single-line String value
+ * A Property Editor representing a single-line or multi-line String value
  * as a Text.
  * This editor's content is validated when the focus is lost,
  * or when the Carriage Return is pressed.
  * 
- * @author Camille Letavernier
+ * @see SWT#MULTI
  * 
+ * @author Camille Letavernier
  */
 public class StringEditor extends AbstractValueEditor implements KeyListener {
 
@@ -62,8 +64,17 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 	public StringEditor(Composite parent, int style, String label) {
 		super(parent, label);
 
+		GridData data = getDefaultLayoutData();
+		if((style & SWT.MULTI) != 0) {
+			data.heightHint = 55;
+			style = style | SWT.V_SCROLL;
+			if(label != null) {
+				super.label.setLayoutData(getLabelLayoutData());
+			}
+		}
+
 		text = factory.createText(this, null, style);
-		text.setLayoutData(getDefaultLayoutData());
+		text.setLayoutData(data);
 		//text = new Text(this, style);
 
 		//We listen on Carriage Return only if the editor isn't multiline
@@ -71,6 +82,16 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 			text.addKeyListener(this);
 
 		setWidgetObservable(WidgetProperties.text(SWT.FocusOut).observe(text), true);
+
+		setCommitOnFocusLost(text);
+	}
+
+	@Override
+	protected GridData getLabelLayoutData() {
+		GridData result = super.getLabelLayoutData();
+		if((text.getStyle() & SWT.MULTI) != 0)
+			result.verticalAlignment = SWT.BEGINNING;
+		return result;
 	}
 
 	/**

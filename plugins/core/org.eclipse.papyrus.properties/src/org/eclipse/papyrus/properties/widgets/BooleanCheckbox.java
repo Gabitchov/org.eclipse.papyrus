@@ -13,8 +13,23 @@ package org.eclipse.papyrus.properties.widgets;
 
 import org.eclipse.swt.widgets.Composite;
 
+/**
+ * A PropertyEditor for editing booleans through a CheckBox
+ * 
+ * @see org.eclipse.papyrus.widgets.editors.BooleanCheckbox
+ * 
+ * @author Camille Letavernier
+ */
 public class BooleanCheckbox extends AbstractPropertyEditor {
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 */
 	public BooleanCheckbox(Composite parent, int style) {
 		super(new org.eclipse.papyrus.widgets.editors.BooleanCheckbox(parent, style));
 	}

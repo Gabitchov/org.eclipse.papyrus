@@ -15,6 +15,14 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.ExpandBar;
 
+/**
+ * Incubation
+ * 
+ * An adaptation of ExpandItem which is easier to use with XWT.
+ * Not stable yet.
+ * 
+ * @author Camille Letavernier
+ */
 public class ExpandItem extends org.eclipse.swt.widgets.ExpandItem {
 
 	public ExpandItem(ExpandBar parent, int style) {

@@ -16,16 +16,32 @@ import org.eclipse.papyrus.properties.constraints.CompositeConstraint;
 import org.eclipse.papyrus.properties.constraints.Constraint;
 import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
 
+/**
+ * A Singleton class for creating {@link Constraint}s from a {@link ConstraintDescriptor}
+ * 
+ * @author Camille Letavernier
+ */
 public class ConstraintFactory {
 
 	private ConstraintFactory() {
 
 	}
 
+	/**
+	 * @return the singleton instance
+	 */
 	public static ConstraintFactory getInstance() {
 		return instance;
 	}
 
+	/**
+	 * Creates a new Constraint from the given ConstraintDescriptor
+	 * 
+	 * @param model
+	 *        The ConstraintDescriptor describing the Constraint
+	 * @return
+	 *         The new constraint instance
+	 */
 	public Constraint createFromModel(ConstraintDescriptor model) {
 		Constraint constraint = null;
 		if(model.getConstraints().isEmpty()) {

@@ -14,11 +14,28 @@ package org.eclipse.papyrus.properties.widgets;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.widgets.Composite;
 
-
+/**
+ * A PropertyEditor for editing references through a Dialog
+ * 
+ * @see org.eclipse.papyrus.widgets.editors.ReferenceDialog
+ * 
+ * @author Camille Letavernier
+ */
 public class ReferenceDialog extends AbstractPropertyEditor {
 
+	/**
+	 * The ReferenceDialog widget
+	 */
 	protected org.eclipse.papyrus.widgets.editors.ReferenceDialog editor;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 */
 	public ReferenceDialog(Composite parent, int style) {
 		editor = new org.eclipse.papyrus.widgets.editors.ReferenceDialog(parent, style);
 		setEditor(editor);

@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.properties.contexts.Context#getViews <em>Views</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.Context#getTabs <em>Tabs</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.Context#getDataContexts <em>Data Contexts</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.Context#getDependencies <em>Dependencies</em>}</li>
  * </ul>
  * </p>
  *
@@ -105,5 +106,21 @@ public interface Context extends EObject {
 	 * @generated
 	 */
 	EList<DataContextRoot> getDataContexts();
+
+	/**
+	 * Returns the value of the '<em><b>Dependencies</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.properties.contexts.Context}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Dependencies</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dependencies</em>' reference list.
+	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getContext_Dependencies()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	EList<Context> getDependencies();
 
 } // Context

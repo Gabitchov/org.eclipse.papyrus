@@ -48,31 +48,19 @@ public abstract class AbstractValueEditor extends AbstractEditor {
 	 */
 	protected UpdateValueStrategy modelToTargetStrategy;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public AbstractValueEditor(Composite parent) {
+	protected AbstractValueEditor(Composite parent) {
 		super(parent);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public AbstractValueEditor(Composite parent, int style, String label) {
+	protected AbstractValueEditor(Composite parent, int style, String label) {
 		super(parent, style, label);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public AbstractValueEditor(Composite parent, int style) {
+	protected AbstractValueEditor(Composite parent, int style) {
 		super(parent, style);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public AbstractValueEditor(Composite parent, String label) {
+	protected AbstractValueEditor(Composite parent, String label) {
 		super(parent, label);
 	}
 
@@ -155,15 +143,16 @@ public abstract class AbstractValueEditor extends AbstractEditor {
 	 * Binds the Widget Observable to the Model observable property,
 	 * using the specified converters or Update strategies when available
 	 * 
+	 * When overriding this method, you should also override {@link #refreshValue()}
+	 * 
 	 * @see org.eclipse.papyrus.widgets.AbstractEditor#doBinding()
 	 */
 	@Override
 	protected void doBinding() {
-
 		if(modelProperty == null || widgetObservable == null)
 			return;
 
-		getBindingContext().bindValue(widgetObservable, modelProperty, targetToModelStrategy, modelToTargetStrategy);
+		binding = getBindingContext().bindValue(widgetObservable, modelProperty, targetToModelStrategy, modelToTargetStrategy);
 	}
 
 	/**

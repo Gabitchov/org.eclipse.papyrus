@@ -8,19 +8,14 @@ package org.eclipse.papyrus.properties.contexts.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import org.eclipse.papyrus.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.contexts.Property;
-
 import org.eclipse.papyrus.properties.environment.Type;
 
 /**
@@ -41,6 +36,7 @@ import org.eclipse.papyrus.properties.environment.Type;
  * @generated
  */
 public class PropertyImpl extends EObjectImpl implements Property {
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -427,6 +423,37 @@ public class PropertyImpl extends EObjectImpl implements Property {
 		result.append(multiplicity);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if(object == null)
+			return false;
+
+		if(object == this)
+			return true;
+
+		if(object instanceof Property) {
+			Property property = (Property)object;
+			if(!getName().equals(property.getName())) {
+				return false;
+			}
+
+			if(getMultiplicity() != property.getMultiplicity()) {
+				return false;
+			}
+
+			if(!getType().equals(property.getType())) {
+				return false;
+			}
+			if(!getContextElement().equals(property.getContextElement())) {
+				return false;
+			}
+
+			return true;
+		}
+
+		return false;
 	}
 
 } //PropertyImpl

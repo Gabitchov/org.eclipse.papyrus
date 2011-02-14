@@ -36,10 +36,10 @@ import org.eclipse.papyrus.properties.contexts.View;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ViewImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ViewImpl#getSections <em>Sections</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ViewImpl#getDatacontexts <em>Datacontexts</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ViewImpl#getElementMultiplicity <em>Element Multiplicity</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ViewImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ViewImpl#isAutomaticContext <em>Automatic Context</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ViewImpl#getDatacontexts <em>Datacontexts</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,16 +75,6 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 	 * @ordered
 	 */
 	protected EList<Section> sections;
-
-	/**
-	 * The cached value of the '{@link #getDatacontexts() <em>Datacontexts</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDatacontexts()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<DataContextElement> datacontexts;
 
 	/**
 	 * The default value of the '{@link #getElementMultiplicity() <em>Element Multiplicity</em>}' attribute.
@@ -125,6 +115,16 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 	 * @ordered
 	 */
 	protected boolean automaticContext = AUTOMATIC_CONTEXT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getDatacontexts() <em>Datacontexts</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDatacontexts()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<DataContextElement> datacontexts;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -176,18 +176,6 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 			sections = new EObjectResolvingEList<Section>(Section.class, this, ContextsPackage.VIEW__SECTIONS);
 		}
 		return sections;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DataContextElement> getDatacontexts() {
-		if (datacontexts == null) {
-			datacontexts = new EObjectResolvingEList<DataContextElement>(DataContextElement.class, this, ContextsPackage.VIEW__DATACONTEXTS);
-		}
-		return datacontexts;
 	}
 
 	/**
@@ -278,6 +266,18 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<DataContextElement> getDatacontexts() {
+		if (datacontexts == null) {
+			datacontexts = new EObjectResolvingEList<DataContextElement>(DataContextElement.class, this, ContextsPackage.VIEW__DATACONTEXTS);
+		}
+		return datacontexts;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -329,14 +329,14 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 				return getName();
 			case ContextsPackage.VIEW__SECTIONS:
 				return getSections();
-			case ContextsPackage.VIEW__DATACONTEXTS:
-				return getDatacontexts();
 			case ContextsPackage.VIEW__ELEMENT_MULTIPLICITY:
 				return getElementMultiplicity();
 			case ContextsPackage.VIEW__CONTEXT:
 				return getContext();
 			case ContextsPackage.VIEW__AUTOMATIC_CONTEXT:
 				return isAutomaticContext();
+			case ContextsPackage.VIEW__DATACONTEXTS:
+				return getDatacontexts();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -357,10 +357,6 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 				getSections().clear();
 				getSections().addAll((Collection<? extends Section>)newValue);
 				return;
-			case ContextsPackage.VIEW__DATACONTEXTS:
-				getDatacontexts().clear();
-				getDatacontexts().addAll((Collection<? extends DataContextElement>)newValue);
-				return;
 			case ContextsPackage.VIEW__ELEMENT_MULTIPLICITY:
 				setElementMultiplicity((Integer)newValue);
 				return;
@@ -369,6 +365,10 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 				return;
 			case ContextsPackage.VIEW__AUTOMATIC_CONTEXT:
 				setAutomaticContext((Boolean)newValue);
+				return;
+			case ContextsPackage.VIEW__DATACONTEXTS:
+				getDatacontexts().clear();
+				getDatacontexts().addAll((Collection<? extends DataContextElement>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -388,9 +388,6 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 			case ContextsPackage.VIEW__SECTIONS:
 				getSections().clear();
 				return;
-			case ContextsPackage.VIEW__DATACONTEXTS:
-				getDatacontexts().clear();
-				return;
 			case ContextsPackage.VIEW__ELEMENT_MULTIPLICITY:
 				setElementMultiplicity(ELEMENT_MULTIPLICITY_EDEFAULT);
 				return;
@@ -399,6 +396,9 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 				return;
 			case ContextsPackage.VIEW__AUTOMATIC_CONTEXT:
 				setAutomaticContext(AUTOMATIC_CONTEXT_EDEFAULT);
+				return;
+			case ContextsPackage.VIEW__DATACONTEXTS:
+				getDatacontexts().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -416,14 +416,14 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ContextsPackage.VIEW__SECTIONS:
 				return sections != null && !sections.isEmpty();
-			case ContextsPackage.VIEW__DATACONTEXTS:
-				return datacontexts != null && !datacontexts.isEmpty();
 			case ContextsPackage.VIEW__ELEMENT_MULTIPLICITY:
 				return elementMultiplicity != ELEMENT_MULTIPLICITY_EDEFAULT;
 			case ContextsPackage.VIEW__CONTEXT:
 				return getContext() != null;
 			case ContextsPackage.VIEW__AUTOMATIC_CONTEXT:
 				return automaticContext != AUTOMATIC_CONTEXT_EDEFAULT;
+			case ContextsPackage.VIEW__DATACONTEXTS:
+				return datacontexts != null && !datacontexts.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

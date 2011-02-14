@@ -22,8 +22,14 @@ import java.util.List;
  */
 public class CompositeConstraint extends AbstractConstraint {
 
-	public void addConstraint(Constraint constraint) {
-		constraints.add(constraint);
+	/**
+	 * Adds a sub-constraint to this constraint
+	 * 
+	 * @param subConstraint
+	 *        The sub-constraint to be added
+	 */
+	public void addConstraint(Constraint subConstraint) {
+		constraints.add(subConstraint);
 	}
 
 	/**
@@ -53,5 +59,10 @@ public class CompositeConstraint extends AbstractConstraint {
 	}
 
 	private List<Constraint> constraints = new LinkedList<Constraint>();
+
+	@Override
+	protected boolean equivalent(Constraint constraint) {
+		return false;
+	}
 
 }

@@ -33,7 +33,7 @@
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
             source="pathmap://PPEResources/"
-            target="platform:/plugin/org.eclipse.papyrus.properties/Model/">
+            target="platform:/plugin/org.eclipse.papyrus.properties/model/">
       </mapping>
    </extension>
    <extension

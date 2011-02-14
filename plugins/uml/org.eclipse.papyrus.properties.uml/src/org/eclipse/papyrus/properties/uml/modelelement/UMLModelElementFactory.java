@@ -15,12 +15,17 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.modelelement.EMFModelElementFactory;
 import org.eclipse.papyrus.properties.modelelement.ModelElement;
-import org.eclipse.papyrus.properties.util.UMLUtil;
+import org.eclipse.papyrus.properties.uml.util.UMLUtil;
 
+/**
+ * A Factory for building ModelElements manipulating UML Objects.
+ * 
+ * @author Camille Letavernier
+ */
 public class UMLModelElementFactory extends EMFModelElementFactory {
 
 	@Override
-	public ModelElement createFromSource(Object source, DataContextElement context) {		
+	public ModelElement createFromSource(Object source, DataContextElement context) {
 		EObject umlSource = UMLUtil.resolveUMLElement(source);
 		return super.createFromSource(umlSource, context);
 	}

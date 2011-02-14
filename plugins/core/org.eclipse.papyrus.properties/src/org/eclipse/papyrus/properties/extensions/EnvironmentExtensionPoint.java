@@ -19,10 +19,21 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
 
+/**
+ * Handles the extension point org.eclipse.papyrus.properties.environment
+ * Registers the given Environment models to the Property View framework
+ * 
+ * @author Camille Letavernier
+ */
 public class EnvironmentExtensionPoint {
 
 	private final String EXTENSION_ID = "org.eclipse.papyrus.properties.environment"; //$NON-NLS-1$
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 */
 	public EnvironmentExtensionPoint() {
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
 

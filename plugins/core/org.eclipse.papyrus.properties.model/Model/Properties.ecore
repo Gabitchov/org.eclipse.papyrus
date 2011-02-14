@@ -18,6 +18,10 @@
           upperBound="-1" eType="#//environment/CompositeWidgetType" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="layoutTypes" upperBound="-1"
           eType="#//environment/LayoutType" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="namespaces" upperBound="-1"
+          eType="#//environment/Namespace" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="miscClasses" upperBound="-1"
+          eType="#//environment/MiscClass" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PropertyEditorType" eSuperTypes="#//environment/WidgetType">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
@@ -30,6 +34,7 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="widgetClass" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" eType="#//environment/Namespace"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CompositeWidgetType" eSuperTypes="#//environment/WidgetType"/>
     <eClassifiers xsi:type="ecore:EClass" name="LayoutType" eSuperTypes="#//environment/WidgetType"/>
@@ -53,6 +58,18 @@
       <eLiterals name="Enumeration" value="4"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="StandardWidgetType" eSuperTypes="#//environment/WidgetType"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Namespace">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MiscClass">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="class" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" eType="#//environment/Namespace"/>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="contexts" nsURI="http://www.eclipse.org/papyrus/properties/contexts"
       nsPrefix="contexts">
@@ -65,6 +82,8 @@
           eType="#//contexts/Tab" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="dataContexts" upperBound="-1"
           eType="#//contexts/DataContextRoot" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" ordered="false"
+          upperBound="-1" eType="#//contexts/Context"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DisplayUnit" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
@@ -75,8 +94,6 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sections" upperBound="-1"
           eType="#//contexts/Section"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="datacontexts" upperBound="-1"
-          eType="#//contexts/DataContextElement"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="elementMultiplicity"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="1"/>
@@ -84,6 +101,8 @@
           eType="#//contexts/Context" eOpposite="#//contexts/Context/views"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="automaticContext" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="datacontexts" upperBound="-1"
+          eType="#//contexts/DataContextElement"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Tab">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" lowerBound="1"
@@ -125,8 +144,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
           eType="#//environment/Type"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="contextElement" lowerBound="1"
-          eType="#//contexts/DataContextElement" eOpposite="#//contexts/DataContextElement/properties"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="contextElement" eType="#//contexts/DataContextElement"
+          eOpposite="#//contexts/DataContextElement/properties"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicity" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
     </eClassifiers>
@@ -187,6 +206,8 @@
           defaultValueLiteral="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="widgetType" lowerBound="1"
           eType="#//environment/PropertyEditorType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="unresolvedProperty" eType="#//contexts/UnknownProperty"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CompositeWidget" eSuperTypes="#//ui/Widget">
       <eStructuralFeatures xsi:type="ecore:EReference" name="layout" lowerBound="1"

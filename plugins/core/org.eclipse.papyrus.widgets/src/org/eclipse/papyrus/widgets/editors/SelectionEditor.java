@@ -242,22 +242,22 @@ public class SelectionEditor extends Composite implements SelectionListener {
 		buttonSection.setLayout(new GridLayout(1, true));
 
 		add = new Button(buttonSection, SWT.PUSH);
-		add.setImage(Activator.getImage("/icons/arrow_right.gif")); //$NON-NLS-1$
+		add.setImage(Activator.getDefault().getImage("/icons/arrow_right.gif")); //$NON-NLS-1$
 		add.addSelectionListener(this);
 		add.setToolTipText(Messages.MultipleValueSelectorDialog_AddSelectedElements);
 
 		remove = new Button(buttonSection, SWT.PUSH);
-		remove.setImage(Activator.getImage("/icons/arrow_left.gif")); //$NON-NLS-1$
+		remove.setImage(Activator.getDefault().getImage("/icons/arrow_left.gif")); //$NON-NLS-1$
 		remove.addSelectionListener(this);
 		remove.setToolTipText(Messages.MultipleValueEditor_RemoveSelectedElements);
 
 		addAll = new Button(buttonSection, SWT.PUSH);
-		addAll.setImage(Activator.getImage("/icons/arrow_double.gif")); //$NON-NLS-1$
+		addAll.setImage(Activator.getDefault().getImage("/icons/arrow_double.gif")); //$NON-NLS-1$
 		addAll.addSelectionListener(this);
 		addAll.setToolTipText(Messages.MultipleValueSelectorDialog_AddAllElements);
 
 		removeAll = new Button(buttonSection, SWT.PUSH);
-		removeAll.setImage(Activator.getImage("/icons/arrow_left_double.gif")); //$NON-NLS-1$
+		removeAll.setImage(Activator.getDefault().getImage("/icons/arrow_left_double.gif")); //$NON-NLS-1$
 		removeAll.addSelectionListener(this);
 		removeAll.setToolTipText(Messages.MultipleValueSelectorDialog_RemoveAllElements);
 	}
@@ -300,12 +300,12 @@ public class SelectionEditor extends Composite implements SelectionListener {
 		rightButtonsSection.setLayout(new GridLayout(1, true));
 
 		up = new Button(rightButtonsSection, SWT.PUSH);
-		up.setImage(Activator.getImage("/icons/Up_12x12.gif")); //$NON-NLS-1$
+		up.setImage(Activator.getDefault().getImage("/icons/Up_12x12.gif")); //$NON-NLS-1$
 		up.addSelectionListener(this);
 		up.setToolTipText(Messages.MultipleValueEditor_MoveSelectedElementsUp);
 
 		down = new Button(rightButtonsSection, SWT.PUSH);
-		down.setImage(Activator.getImage("/icons/Down_12x12.gif")); //$NON-NLS-1$
+		down.setImage(Activator.getDefault().getImage("/icons/Down_12x12.gif")); //$NON-NLS-1$
 		down.addSelectionListener(this);
 		down.setToolTipText(Messages.MultipleValueEditor_MoveSelectedElementsDown);
 	}
@@ -471,7 +471,6 @@ public class SelectionEditor extends Composite implements SelectionListener {
 	public void widgetDefaultSelected(SelectionEvent e) {
 		//Nothing to do
 	}
-
 
 	public void setAdditionalButton(boolean withAdditionalButton, String messageButton, SelectionListener listener) {
 		this.withAdditionalButton = withAdditionalButton;

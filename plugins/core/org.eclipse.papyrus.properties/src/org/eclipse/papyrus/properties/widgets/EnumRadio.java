@@ -13,10 +13,30 @@ package org.eclipse.papyrus.properties.widgets;
 
 import org.eclipse.swt.widgets.Composite;
 
+/**
+ * A PropertyEditor for editing booleans with radio buttons.
+ * This Editor should only be used with Enums which have only
+ * a small amount of values.
+ * 
+ * @see org.eclipse.papyrus.widgets.editors.EnumCombo
+ * 
+ * @author Camille Letavernier
+ */
 public class EnumRadio extends AbstractPropertyEditor {
 
+	/**
+	 * The EnumCombo widget
+	 */
 	protected org.eclipse.papyrus.widgets.editors.EnumCombo enumCombo;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 */
 	public EnumRadio(Composite parent, int style) {
 		super(new org.eclipse.papyrus.widgets.editors.EnumCombo(parent, style));
 		enumCombo = (org.eclipse.papyrus.widgets.editors.EnumCombo)valueEditor;

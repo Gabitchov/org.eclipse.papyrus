@@ -237,6 +237,52 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.properties.environment.Namespace} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NamespaceItemProvider namespaceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.properties.environment.Namespace}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNamespaceAdapter() {
+		if (namespaceItemProvider == null) {
+			namespaceItemProvider = new NamespaceItemProvider(this);
+		}
+
+		return namespaceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.properties.environment.MiscClass} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MiscClassItemProvider miscClassItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.properties.environment.MiscClass}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMiscClassAdapter() {
+		if (miscClassItemProvider == null) {
+			miscClassItemProvider = new MiscClassItemProvider(this);
+		}
+
+		return miscClassItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -342,6 +388,8 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 		if (constraintTypeItemProvider != null) constraintTypeItemProvider.dispose();
 		if (modelElementFactoryDescriptorItemProvider != null) modelElementFactoryDescriptorItemProvider.dispose();
 		if (standardWidgetTypeItemProvider != null) standardWidgetTypeItemProvider.dispose();
+		if (namespaceItemProvider != null) namespaceItemProvider.dispose();
+		if (miscClassItemProvider != null) miscClassItemProvider.dispose();
 	}
 
 }

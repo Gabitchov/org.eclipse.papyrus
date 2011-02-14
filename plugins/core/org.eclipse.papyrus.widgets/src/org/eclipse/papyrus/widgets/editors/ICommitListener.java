@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.widgets.editors;
 
+import org.eclipse.core.databinding.observable.IObservable;
 
 /**
  * An interface for listening "Commit" events on Editors

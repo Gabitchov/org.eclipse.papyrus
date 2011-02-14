@@ -125,7 +125,7 @@ public interface Property extends EObject {
 	 * @see #setContextElement(DataContextElement)
 	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getProperty_ContextElement()
 	 * @see org.eclipse.papyrus.properties.contexts.DataContextElement#getProperties
-	 * @model opposite="properties" required="true" transient="false"
+	 * @model opposite="properties" transient="false"
 	 * @generated
 	 */
 	DataContextElement getContextElement();

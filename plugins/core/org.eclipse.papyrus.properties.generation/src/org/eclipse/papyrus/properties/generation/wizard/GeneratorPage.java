@@ -14,6 +14,7 @@ package org.eclipse.papyrus.properties.generation.wizard;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.properties.generation.generators.IGenerator;
 import org.eclipse.papyrus.properties.generation.layout.ILayoutGenerator;
+import org.eclipse.papyrus.properties.generation.messages.Messages;
 import org.eclipse.papyrus.properties.generation.wizard.widget.FileChooser;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
@@ -27,7 +28,12 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 
-
+/**
+ * A WizardPage to display the selected generator's options, as well as the context's
+ * target file. The options depend on the selected generator.
+ * 
+ * @author Camille Letavernier
+ */
 public class GeneratorPage extends AbstractCreateContextPage implements Listener {
 
 	private IGenerator generator;
@@ -36,10 +42,19 @@ public class GeneratorPage extends AbstractCreateContextPage implements Listener
 
 	private FileChooser targetFileChooser;
 
+	/**
+	 * Constructor.
+	 */
 	public GeneratorPage() {
-		super("Generator page");
+		super(Messages.GeneratorPage_title);
 	}
 
+	/**
+	 * Sets the IGenerator for this wizard, and displays its controls in the
+	 * page.
+	 * 
+	 * @param generator
+	 */
 	public void setGenerator(IGenerator generator) {
 		cleanGeneratorControl();
 		generator.addListener(this);
@@ -54,10 +69,6 @@ public class GeneratorPage extends AbstractCreateContextPage implements Listener
 	@Override
 	public boolean isPageComplete() {
 		return targetFileChooser.getFilePath() != null && (generator != null && generator.isReady());
-	}
-
-	public IGenerator getGenerator() {
-		return generator;
 	}
 
 	private void cleanGeneratorControl() {
@@ -77,7 +88,7 @@ public class GeneratorPage extends AbstractCreateContextPage implements Listener
 
 
 		Label layoutGeneratorLabel = new Label(root, SWT.NONE);
-		layoutGeneratorLabel.setText("Layout generator : ");
+		layoutGeneratorLabel.setText(Messages.GeneratorPage_layoutGenerator);
 		GridData data = new GridData();
 		data.widthHint = 100;
 		layoutGeneratorLabel.setLayoutData(data);
@@ -92,7 +103,7 @@ public class GeneratorPage extends AbstractCreateContextPage implements Listener
 		layoutGeneratorCombo.select(0);
 
 		Label targetLabel = new Label(root, SWT.NONE);
-		targetLabel.setText("Target :");
+		targetLabel.setText(Messages.GeneratorPage_target);
 		data = new GridData();
 		data.widthHint = 100;
 		targetLabel.setLayoutData(data);

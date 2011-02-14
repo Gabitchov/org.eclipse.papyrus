@@ -25,6 +25,7 @@ import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.contexts.Property;
 import org.eclipse.papyrus.properties.generation.Activator;
+import org.eclipse.papyrus.properties.generation.messages.Messages;
 import org.eclipse.papyrus.properties.generation.wizard.widget.FileChooser;
 import org.eclipse.papyrus.properties.root.PropertiesRoot;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
@@ -36,10 +37,15 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 
-
+/**
+ * An IGenerator for building Contexts from a UML Profile
+ * 
+ * @author Camille Letavernier
+ */
 public class ProfileGenerator extends AbstractQVTGenerator {
 
 	private FileChooser sourceFileChooser;
@@ -53,7 +59,7 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 		root.setLayout(layout);
 
 		Label sourceLabel = new Label(root, SWT.NONE);
-		sourceLabel.setText("Source :");
+		sourceLabel.setText(Messages.ProfileGenerator_source);
 		GridData data = new GridData();
 		data.widthHint = 100;
 		sourceLabel.setLayoutData(data);
@@ -64,7 +70,7 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 	}
 
 	public String getDescription() {
-		return "Generate a new Property View context from a UML Profile\nChose the UML Profile corresponding to your metamodel";
+		return Messages.ProfileGenerator_description;
 	}
 
 	public boolean isReady() {
@@ -72,7 +78,7 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 	}
 
 	public String getName() {
-		return "Create from UML Profile";
+		return Messages.ProfileGenerator_name;
 	}
 
 	@Override
@@ -107,27 +113,39 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 		return URI.createPlatformPluginURI("org.eclipse.papyrus.properties.generation/transforms/profile2datacontext.qvto", true); //$NON-NLS-1$
 	}
 
-	protected Stereotype findStereotype(List<String> path, Profile profile) {
-		NamedElement element = profile.getOwnedMember(path.get(0));
+	/**
+	 * Retrieve the Stereotype corresponding to the given path, in the given Package
+	 * 
+	 * @param path
+	 *        The list of package and subpackages names, and the stereotype name, i.e.
+	 *        the list of segments in the stereotype's qualified name
+	 *        e.g. : SysML::Blocks::Block : ["SysML", "Blocks", "Block"]
+	 * @param profilePackage
+	 *        The root Package in which the stereotype should be retrieved
+	 * @return
+	 *         The corresponding Stereotype, or null if it couldn't be retrieved
+	 */
+	protected Stereotype findStereotype(List<String> path, Package profilePackage) {
+		NamedElement element = profilePackage.getOwnedMember(path.get(0));
 		path.remove(0);
 		if(path.size() == 0) {
 			if(element instanceof Stereotype) {
 				return (Stereotype)element;
 			}
 		} else {
-			if(element instanceof Profile) {
-				return findStereotype(path, (Profile)element);
+			if(element instanceof Package) {
+				return findStereotype(path, (Package)element);
 			}
 		}
 		return null;
 	}
 
-	protected List<String> getPath(Property property) {
+	private List<String> getPath(Property property) {
 		List<String> result = getPath(property.getContextElement());
 		return result;
 	}
 
-	protected List<String> getPath(DataContextElement element) {
+	private List<String> getPath(DataContextElement element) {
 		List<String> result;
 		if(element.getPackage() == null) {
 			result = new LinkedList<String>();
@@ -139,10 +157,18 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 		return result;
 	}
 
+	/**
+	 * Retrieve the UML Property corresponding to the given Property view context Property
+	 * 
+	 * @param property
+	 * @return
+	 */
 	protected org.eclipse.uml2.uml.Property getAttribute(Property property) {
 		List<String> path = getPath(property);
 		path.remove(0); //The first path element corresponds to this.umlProfile
 		Stereotype stereotype = findStereotype(path, umlProfile);
+		if(stereotype == null)
+			return null;
 
 		org.eclipse.uml2.uml.Property attribute = stereotype.getOwnedAttribute(property.getName(), null);
 		return attribute;
@@ -150,6 +176,11 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 
 	public boolean isSelectedSingle(Property property) {
 		org.eclipse.uml2.uml.Property attribute = getAttribute(property);
+		if(attribute == null) {
+			Activator.log.warn("Cannot find the Property corresponding to " + getPath(property)); //$NON-NLS-1$
+			return false;
+		}
+
 		if(attribute.isDerived()) {
 			return false;
 		}
@@ -189,5 +220,4 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 	public boolean isSelectedMultiple(Property property, DataContextElement element) {
 		return isSelectedMultiple(property);
 	}
-
 }

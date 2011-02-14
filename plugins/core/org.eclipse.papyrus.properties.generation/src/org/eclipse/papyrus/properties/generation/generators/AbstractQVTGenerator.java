@@ -20,7 +20,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -34,13 +33,23 @@ import org.eclipse.papyrus.properties.generation.Activator;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
-
+/**
+ * An Abstract generator based on QVTO transformations.
+ * Subclasses should specify the .qvto file and ModelExtents, as well as the
+ * SWT widgets allowing the user to chose the input models.
+ * 
+ * @author Camille Letavernier
+ */
 public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 
+	/**
+	 * The Context created by the transformation.
+	 */
 	protected Context generatedContext;
 
-	protected EPackage sourcePackage;
-
+	/**
+	 * The output ModelExtent
+	 */
 	protected ModelExtent out;
 
 	private Set<Listener> listeners = new HashSet<Listener>();
@@ -69,7 +78,7 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 			Resource contextResource = resourceSet.createResource(targetURI);
 			contextResource.getContents().addAll(outObjects);
 
-			return generatedContext = (Context)outObjects.get(0);
+			return generatedContext = getContext(outObjects);
 		} else {
 			IStatus status = BasicDiagnostic.toIStatus(result);
 			Activator.getDefault().getLog().log(status);
@@ -77,8 +86,15 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 		return generatedContext = null;
 	}
 
+	/**
+	 * @return the list of in/out/inout ModelExtents (including the OutContextExtent)
+	 *         Implementors should ensure they add the outContextExtent to the list.
+	 */
 	abstract protected List<ModelExtent> getModelExtents();
 
+	/**
+	 * @return the ModelExtent containing the generated context
+	 */
 	protected ModelExtent getOutContextExtent() {
 		if(out == null) {
 			out = new BasicModelExtent();
@@ -87,8 +103,21 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 		return out;
 	}
 
+	/**
+	 * @return the URI of the QVTO transformation file.
+	 */
 	abstract protected URI getTransformationURI();
 
+	/**
+	 * Loads the EObject from the given URI.
+	 * 
+	 * @param uri
+	 *        The URI from which the EObject is loaded
+	 * @return
+	 *         The loaded EObject, or null if an error occured
+	 * @throws IOException
+	 *         If the URI isn't a valid EObject
+	 */
 	protected EObject loadEMFModel(URI uri) throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		try {
@@ -113,5 +142,21 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 		for(Listener listener : listeners) {
 			listener.handleEvent(event);
 		}
+	}
+
+	/**
+	 * Return the generated Context from a list of EObjects
+	 * 
+	 * @param outObjects
+	 *        The list of EObjects from which the context will be retrieved
+	 * @return
+	 *         The main generated context
+	 */
+	protected Context getContext(List<EObject> outObjects) {
+		Object objectResult = outObjects.get(0);
+		if(!(objectResult instanceof Context)) {
+			return null;
+		}
+		return (Context)objectResult;
 	}
 }

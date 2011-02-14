@@ -11,30 +11,35 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.widgets;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
 
+import org.eclipse.core.databinding.observable.IObservable;
+import org.eclipse.core.databinding.observable.list.IObservableList;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.contexts.Section;
 import org.eclipse.papyrus.properties.contexts.View;
-import org.eclipse.papyrus.properties.modelelement.DataSourceFactory;
-import org.eclipse.papyrus.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.properties.runtime.DataSource;
 import org.eclipse.papyrus.properties.runtime.DefaultDisplayEngine;
 import org.eclipse.papyrus.properties.runtime.DisplayEngine;
+import org.eclipse.papyrus.properties.widgets.layout.PropertiesLayout;
+import org.eclipse.papyrus.properties.xwt.XWTSection;
 import org.eclipse.papyrus.widgets.editors.AbstractEditor;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
 /**
- * Warning : the view's sections will be displayed in the
- * tab of the caller (The sections' tabs will be ignored)
- * e.g. if you call the "Association" (UML) view from the
- * SysML tab, the association will be displayed in the SysML
- * tab, although its usual tab is UML
+ * An Editor for displaying a whole property {@link View} on a sub-object.
+ * If the property is a list, there will be one view per element in the list.
+ * 
+ * The view's tabs will be ignored : the sections are embedded in the caller's
+ * tab.
  */
 public class ViewEditor extends AbstractPropertyEditor {
 
@@ -42,9 +47,22 @@ public class ViewEditor extends AbstractPropertyEditor {
 
 	private Composite self;
 
+	private Collection<XWTSection> sections;
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 */
 	public ViewEditor(Composite parent, int style) {
 		self = new Composite(parent, SWT.NONE);
-		self.setLayout(new GridLayout(1, false));
+		PropertiesLayout layout = new PropertiesLayout(1, false);
+		layout.horizontalSpacing = 0;
+		layout.marginWidth = 0;
+		self.setLayout(layout);
 	}
 
 	@Override
@@ -54,19 +72,41 @@ public class ViewEditor extends AbstractPropertyEditor {
 		}
 	}
 
+	/**
+	 * Sets the number of columns for this editor. If the property is a list,
+	 * there will be one view per element in the list : these views will be
+	 * distributed in the given number of columns.
+	 * 
+	 * @param numColumns
+	 */
 	public void setNumColumns(int numColumns) {
-		((GridLayout)self.getLayout()).numColumns = numColumns;
+		((PropertiesLayout)self.getLayout()).numColumns = numColumns;
 	}
 
+	/**
+	 * @return the number of columns for this editor.
+	 */
 	public int getNumColumns() {
-		return ((GridLayout)self.getLayout()).numColumns;
+		return ((PropertiesLayout)self.getLayout()).numColumns;
 	}
 
+	/**
+	 * Sets the view for this editor. The view is represented by its viewPath, which is
+	 * of form ContextName:ViewName
+	 * e.g. : UML:Class
+	 * The Context should be registered in the ConfigurationManager
+	 * 
+	 * @param viewPath
+	 *        The path of the view used to display the given property
+	 */
 	public void setView(String viewPath) {
 		this.viewPath = viewPath;
 		checkInput();
 	}
 
+	/**
+	 * @return the qualified name of the view associated to this editor
+	 */
 	public String getView() {
 		return viewPath;
 	}
@@ -84,25 +124,63 @@ public class ViewEditor extends AbstractPropertyEditor {
 	}
 
 	private void display() {
-		ModelElement element = input.getModelElement(propertyPath);
 		View view = resolveView();
+
 		if(view == null) {
 			Activator.log.warn("Unabled to resolve view : " + viewPath); //$NON-NLS-1$
 			return;
 		}
-		List<DataSource> sources = DataSourceFactory.instance.createSubDataSource(element, view, input, getLocalPropertyPath());
+
+		IObservable observable = input.getObservable(propertyPath);
+		if(observable == null)
+			return;
 
 		DisplayEngine display = new DefaultDisplayEngine(true);
 
-		for(DataSource source : sources) {
-			for(Section section : view.getSections()) {
-				display.createSection(self, section, source);
+		sections = new LinkedList<XWTSection>();
+
+		if(observable instanceof IObservableValue) {
+			IObservableValue observableValue = (IObservableValue)observable;
+			Object value = observableValue.getValue();
+			display(display, value, view);
+		} else if(observable instanceof IObservableList) {
+			IObservableList observableList = (IObservableList)observable;
+			for(Object value : observableList) {
+				display(display, value, view);
 			}
 		}
 
 		updateControls();
 	}
 
+	/**
+	 * Displays the given view in the display engine, with the given object.
+	 * 
+	 * @param display
+	 *        The Display engine used to display the view. It should allow duplication,
+	 *        as for list properties, the same section will be displayed for each element
+	 *        in the list.
+	 * @param data
+	 *        The raw object for which we are displaying the view.
+	 * @param view
+	 *        The view to display
+	 */
+	protected void display(DisplayEngine display, Object data, View view) {
+		for(Section section : view.getSections()) {
+			XWTSection xwtSection = new XWTSection(section, view, display);
+			sections.add(xwtSection);
+
+			ISelection selection = new StructuredSelection(Collections.singletonList(data));
+
+			xwtSection.createControls(new Composite(self, SWT.NONE), null);
+			xwtSection.setInput(null, selection);
+			xwtSection.refresh();
+		}
+	}
+
+	/**
+	 * Updates the displayed widgets to mark them as readOnly if needed.
+	 */
 	protected void updateControls() {
 		for(Control container : self.getChildren()) {
 			if(container instanceof Composite) {

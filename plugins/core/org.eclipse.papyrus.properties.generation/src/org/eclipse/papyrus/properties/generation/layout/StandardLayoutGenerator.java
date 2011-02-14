@@ -11,11 +11,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.generation.layout;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import org.eclipse.emf.common.util.URI;
@@ -26,15 +28,27 @@ import org.eclipse.papyrus.properties.contexts.Section;
 import org.eclipse.papyrus.properties.contexts.View;
 import org.eclipse.papyrus.properties.environment.CompositeWidgetType;
 import org.eclipse.papyrus.properties.environment.LayoutType;
+import org.eclipse.papyrus.properties.environment.Namespace;
 import org.eclipse.papyrus.properties.environment.Type;
+import org.eclipse.papyrus.properties.generation.Activator;
+import org.eclipse.papyrus.properties.generation.messages.Messages;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.properties.ui.CompositeWidget;
 import org.eclipse.papyrus.properties.ui.Layout;
 import org.eclipse.papyrus.properties.ui.PropertyEditor;
 import org.eclipse.papyrus.properties.ui.UiFactory;
 import org.eclipse.papyrus.properties.ui.ValueAttribute;
+import org.eclipse.papyrus.properties.util.Util;
 
-
+/**
+ * Default implementation for ILayoutGenerator
+ * PropertyEditors are grouped by their property type (Strings, booleans, ...)
+ * Boolean and integer sections have two columns, while the other ones have only one columns
+ * 
+ * All multiple value editors are displayed after all the single value editors.
+ * 
+ * @author Camille Letavernier
+ */
 public class StandardLayoutGenerator implements ILayoutGenerator {
 
 	private TreeMap<Category, List<PropertyEditor>> editorsByCategory = new TreeMap<Category, List<PropertyEditor>>();
@@ -43,9 +57,16 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 
 		editorsByCategory.clear();
 
+		Set<Namespace> namespaces = new HashSet<Namespace>(ConfigurationManager.instance.getBaseNamespaces());
+
 		for(PropertyEditor editor : editors) {
 			Category category = new Category(editor.getProperty());
 			getByCategory(category).add(editor);
+			if(editor.getWidgetType() == null) {
+				Activator.log.warn("Editor for property " + editor.getProperty().getName() + " doesn't have a WidgetType"); //$NON-NLS-1$ //$NON-NLS-2$
+			} else {
+				namespaces.add(editor.getWidgetType().getNamespace());
+			}
 		}
 
 		ConfigurationManager configManager = ConfigurationManager.instance;
@@ -59,14 +80,16 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 		Resource resource = parent.eResource().getResourceSet().createResource(compositeURI);
 
 		CompositeWidgetType compositeType = configManager.getDefaultCompositeType();
+		namespaces.add(compositeType.getNamespace());
 		LayoutType propertiesLayoutType = configManager.getDefaultLayoutType();
+		namespaces.add(propertiesLayoutType.getNamespace());
 
 		CompositeWidget sectionRoot = UiFactory.eINSTANCE.createCompositeWidget();
 		sectionRoot.setWidgetType(compositeType);
 		Layout layout = UiFactory.eINSTANCE.createLayout();
 		layout.setLayoutType(propertiesLayoutType);
 		sectionRoot.setLayout(layout);
-		sectionRoot.getAttributes().addAll(createNamespaces());
+		sectionRoot.getAttributes().addAll(createNamespaces(namespaces));
 
 		section.setWidget(sectionRoot);
 
@@ -86,31 +109,24 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 			layout.getAttributes().add(numColumns);
 			layout.setLayoutType(propertiesLayoutType);
 			container.getWidgets().addAll(categorizedEditors);
-
 			sectionRoot.getWidgets().add(container);
 		}
 
 		return Collections.singletonList(section);
 	}
 
-	private List<ValueAttribute> createNamespaces() {
-		List<ValueAttribute> namespaces = new LinkedList<ValueAttribute>();
-		for(Map.Entry<String, String> entry : getNamespaces().entrySet()) {
-			ValueAttribute attribute = UiFactory.eINSTANCE.createValueAttribute();
-			attribute.setName(entry.getKey());
-			attribute.setValue(entry.getValue());
-			namespaces.add(attribute);
-		}
-		return namespaces;
-	}
+	private List<ValueAttribute> createNamespaces(Collection<Namespace> namespaces) {
+		List<ValueAttribute> xmlNamespaces = new LinkedList<ValueAttribute>();
+		for(Namespace namespace : namespaces) {
+			if(namespace == null)
+				continue;
 
-	private Map<String, String> getNamespaces() {
-		Map<String, String> namespaces = new HashMap<String, String>();
-		namespaces.put("xmlns", "http://www.eclipse.org/xwt/presentation"); //$NON-NLS-1$ //$NON-NLS-2$
-		namespaces.put("xmlns:x", "http://www.eclipse.org/xwt"); //$NON-NLS-1$ //$NON-NLS-2$
-		namespaces.put("xmlns:ppe", "clr-namespace:org.eclipse.papyrus.properties.widgets"); //$NON-NLS-1$ //$NON-NLS-2$
-		namespaces.put("xmlns:ppel", "clr-namespace:org.eclipse.papyrus.properties.widgets.layout"); //$NON-NLS-1$ //$NON-NLS-2$
-		return namespaces;
+			ValueAttribute attribute = UiFactory.eINSTANCE.createValueAttribute();
+			attribute.setName(Util.getQualifiedName(namespace));
+			attribute.setValue(Util.getPrefixedValue(namespace));
+			xmlNamespaces.add(attribute);
+		}
+		return xmlNamespaces;
 	}
 
 	private List<PropertyEditor> getByCategory(Category category) {
@@ -191,9 +207,12 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 		}
 	}
 
+	/**
+	 * The order in which the types are displayed
+	 */
 	public static Type[] orderedTypes = new Type[]{ Type.STRING, Type.BOOLEAN, Type.INTEGER, Type.ENUMERATION, Type.REFERENCE };
 
 	public String getName() {
-		return "Standard layout generator";
+		return Messages.StandardLayoutGenerator_name;
 	}
 }

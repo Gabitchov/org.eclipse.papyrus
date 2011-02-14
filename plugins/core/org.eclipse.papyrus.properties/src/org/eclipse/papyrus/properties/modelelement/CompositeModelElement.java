@@ -20,6 +20,16 @@ import org.eclipse.papyrus.properties.databinding.MultipleObservableValue;
 import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
+/**
+ * A ModelElement to handle MultiSelection property views.
+ * It is composed of standard ModelElement. The result of method
+ * calls are an aggregation of the results of the same method calls
+ * on each sub-element, when this makes sense (i.e. for booleans)
+ * When an aggregation is not possible, the result of the same method
+ * call on the first element is returned (e.g. for Content and Label providers)
+ * 
+ * @author Camille Letavernier
+ */
 public class CompositeModelElement implements ModelElement {
 
 	public IObservableValue getObservable(String propertyPath) {
@@ -30,15 +40,15 @@ public class CompositeModelElement implements ModelElement {
 		return observableValue;
 	}
 
-	public String getLabel(String propertyPath) {
-		return null;
-	}
-
+	/**
+	 * Adds a sub-model element to this CompositeModelElement
+	 * 
+	 * @param element
+	 *        The sub-model element to be added
+	 */
 	public void addModelElement(ModelElement element) {
 		elements.add(element);
 	}
-
-	private List<ModelElement> elements = new LinkedList<ModelElement>();
 
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		if(elements.isEmpty())
@@ -58,29 +68,49 @@ public class CompositeModelElement implements ModelElement {
 		if(elements.isEmpty())
 			return false;
 
-		return elements.get(0).isOrdered(propertyPath);
+		for(ModelElement element : elements) {
+			if(element.isOrdered(propertyPath))
+				return true;
+		}
+
+		return false;
 	}
 
 	public boolean isUnique(String propertyPath) {
 		if(elements.isEmpty())
 			return false;
 
-		return elements.get(0).isUnique(propertyPath);
+		for(ModelElement element : elements) {
+			if(!element.isUnique(propertyPath))
+				return false;
+		}
+
+		return true;
 	}
 
 	public boolean isMandatory(String propertyPath) {
 		if(elements.isEmpty())
 			return false;
 
-		return elements.get(0).isMandatory(propertyPath);
+		for(ModelElement element : elements) {
+			if(!element.isMandatory(propertyPath))
+				return false;
+		}
+
+		return true;
 	}
 
 	public boolean isEditable(String propertyPath) {
-		boolean editable = !elements.isEmpty();
+		if(elements.isEmpty())
+			return false;
+
 		for(ModelElement element : elements) {
 			if(!element.isEditable(propertyPath))
 				return false;
 		}
-		return editable;
+
+		return true;
 	}
+
+	private List<ModelElement> elements = new LinkedList<ModelElement>();
 }

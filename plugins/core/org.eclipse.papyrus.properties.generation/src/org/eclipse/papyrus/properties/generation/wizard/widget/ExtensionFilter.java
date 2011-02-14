@@ -21,11 +21,23 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
-
+/**
+ * A filter for file extensions
+ * 
+ * @author Camille Letavernier
+ */
 public class ExtensionFilter extends ViewerFilter {
 
 	private Set<String> extensions;
 
+	/**
+	 * 
+	 * Constructs a ViewerFilter that will only accept filenames with one of the
+	 * given extensions
+	 * 
+	 * @param extensions
+	 *        The authorized extensions
+	 */
 	public ExtensionFilter(String[] extensions) {
 		this.extensions = new HashSet<String>(Arrays.asList(extensions));
 	}

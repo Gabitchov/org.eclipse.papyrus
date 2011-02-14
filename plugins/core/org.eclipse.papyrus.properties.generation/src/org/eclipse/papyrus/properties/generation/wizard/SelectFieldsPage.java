@@ -32,6 +32,7 @@ import org.eclipse.papyrus.properties.generation.fieldselection.FieldSelectionFa
 import org.eclipse.papyrus.properties.generation.fieldselection.FieldSelectionPackage;
 import org.eclipse.papyrus.properties.generation.fieldselection.PropertyDefinition;
 import org.eclipse.papyrus.properties.generation.generators.IGenerator;
+import org.eclipse.papyrus.properties.generation.messages.Messages;
 import org.eclipse.papyrus.properties.generation.wizard.widget.TernaryButton;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -42,6 +43,15 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
+/**
+ * A WizardPage to choose the fields that will be displayed in the Property view.
+ * For each property, the choice can be either "True", "False" or "Default".
+ * The visibility of properties marked as Default is decided by the Generator.
+ * When the context is regenerated, the visibility of properties marked as default
+ * may change (If the generator is changed)
+ * 
+ * @author Camille Letavernier
+ */
 public class SelectFieldsPage extends AbstractCreateContextPage {
 
 	private URI targetURI;
@@ -54,8 +64,11 @@ public class SelectFieldsPage extends AbstractCreateContextPage {
 
 	private FieldSelection fieldSelection;
 
+	/**
+	 * Constructor.
+	 */
 	protected SelectFieldsPage() {
-		super("Select fields");
+		super(Messages.SelectFieldsPage_title);
 	}
 
 	public void createControl(Composite parent) {
@@ -65,9 +78,15 @@ public class SelectFieldsPage extends AbstractCreateContextPage {
 		setControl(root);
 		setPageComplete(false);
 
-		setDescription("Select the fields you want to be displayed in the Property view");
+		setDescription(Messages.SelectFieldsPage_selectFields);
 	}
 
+	/**
+	 * Sets the generated partial context
+	 * 
+	 * @param context
+	 *        The partially generated context
+	 */
 	public void setContext(Context context) {
 		if(context == null) {
 			Activator.log.warn("Generated context is null"); //$NON-NLS-1$
@@ -81,7 +100,7 @@ public class SelectFieldsPage extends AbstractCreateContextPage {
 		getWizard().setContext(context);
 
 		Label label = new Label(root, SWT.NONE);
-		label.setText("Available fields :");
+		label.setText(Messages.SelectFieldsPage_availableFields);
 
 		ScrolledComposite scrollableFields = new ScrolledComposite(root, SWT.V_SCROLL | SWT.H_SCROLL);
 		scrollableFields.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -101,10 +120,10 @@ public class SelectFieldsPage extends AbstractCreateContextPage {
 		selectionMultiple.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false));
 		descriptionLabel.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false));
 
-		fieldLabel.setText("Field");
-		selectionSingle.setText("Display single");
-		selectionMultiple.setText("Display multiple");
-		descriptionLabel.setText("Description");
+		fieldLabel.setText(Messages.SelectFieldsPage_field);
+		selectionSingle.setText(Messages.SelectFieldsPage_displaySingle);
+		selectionMultiple.setText(Messages.SelectFieldsPage_displayMultiple);
+		descriptionLabel.setText(Messages.SelectFieldsPage_description);
 
 		for(DataContextRoot dataContextRoot : context.getDataContexts()) {
 			displayFields(dataContextRoot);
@@ -211,7 +230,7 @@ public class SelectFieldsPage extends AbstractCreateContextPage {
 				Label description = new Label(fields, SWT.WRAP);
 				String propertyDescription = "";// property.getTooltipText(); //$NON-NLS-1$
 				if(propertyDescription == null || propertyDescription.trim().equals("")) { //$NON-NLS-1$
-					propertyDescription = "N/A";
+					propertyDescription = Messages.SelectFieldsPage_descriptionNotAvailable;
 					description.setAlignment(SWT.CENTER);
 				}
 				description.setText(propertyDescription);
@@ -237,9 +256,15 @@ public class SelectFieldsPage extends AbstractCreateContextPage {
 	}
 
 	private IGenerator getGenerator() {
-		return getWizard().generatorPage.getGenerator();
+		return getWizard().generator;
 	}
 
+	/**
+	 * Sets the URI of the generated context
+	 * 
+	 * @param uri
+	 *        The URI of the generated context
+	 */
 	public void setTargetURI(URI uri) {
 		this.targetURI = uri;
 	}
@@ -249,10 +274,13 @@ public class SelectFieldsPage extends AbstractCreateContextPage {
 		super.setPageComplete(true);
 		super.setVisible(visible);
 		if(context == null && visible) {
-			setContext(getWizard().generatorPage.getGenerator().generate(targetURI));
+			setContext(getWizard().generator.generate(targetURI));
 		}
 	}
 
+	/**
+	 * @return the result of the user's field selection
+	 */
 	public FieldSelection getFieldSelection() {
 		return fieldSelection;
 	}

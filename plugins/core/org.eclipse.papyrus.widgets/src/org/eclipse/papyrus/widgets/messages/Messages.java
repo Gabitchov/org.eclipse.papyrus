@@ -24,6 +24,7 @@ public class Messages extends NLS {
 	/** The Multiple value editor_ add elements. */
 	public static String MultipleValueEditor_AddElements;
 
+	/** The Multiple value editor_ edit selected value */
 	public static String MultipleValueEditor_EditSelectedValue;
 
 	/** The Multiple value editor_ move selected elements down. */
@@ -41,19 +42,25 @@ public class Messages extends NLS {
 	/** The Multiple value selector dialog_ add selected elements. */
 	public static String MultipleValueSelectorDialog_AddSelectedElements;
 
+	/** The Multiple value selector dialog_ create new element */
 	public static String MultipleValueSelectorDialog_CreateNewElement;
 
+	/** The Multiple value selector dialog_ delete new element */
 	public static String MultipleValueSelectorDialog_DeleteNewElement;
 
 	/** The Multiple value selector dialog_ remove all elements. */
 	public static String MultipleValueSelectorDialog_RemoveAllElements;
 
+	/** The Reference dialog_ edit value */
 	public static String ReferenceDialog_EditValue;
 
+	/** The Reference dialog_ select value */
 	public static String ReferenceDialog_SelectValue;
 
+	/** The Reference dialog_ unset */
 	public static String ReferenceDialog_Unset;
 
+	/** The Reference dialog_ edit unset value */
 	public static String ReferenceDialog_UnsetValue;
 	static {
 		// initialize resource bundle

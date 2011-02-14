@@ -30,6 +30,7 @@ import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.contexts.Property;
+import org.eclipse.papyrus.properties.generation.messages.Messages;
 import org.eclipse.papyrus.properties.generation.wizard.widget.FileChooser;
 import org.eclipse.papyrus.properties.root.PropertiesRoot;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
@@ -39,7 +40,11 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-
+/**
+ * An IGenerator to create Property view contexts from an Ecore metamodel
+ * 
+ * @author Camille Letavernier
+ */
 public class EcoreGenerator extends AbstractQVTGenerator {
 
 	private FileChooser sourceFileChooser;
@@ -53,7 +58,7 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 		root.setLayout(layout);
 
 		Label sourceLabel = new Label(root, SWT.NONE);
-		sourceLabel.setText("Source :");
+		sourceLabel.setText(Messages.EcoreGenerator_source);
 		GridData data = new GridData();
 		data.widthHint = 100;
 		sourceLabel.setLayoutData(data);
@@ -64,7 +69,7 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 	}
 
 	public String getDescription() {
-		return "Generate a new Property View context from an Ecore Metamodel\nChose the Ecore file corresponding to your metamodel";
+		return Messages.EcoreGenerator_ecoreGeneratorDescription;
 	}
 
 	public boolean isReady() {
@@ -72,7 +77,7 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 	}
 
 	public String getName() {
-		return "Create from Ecore Metamodel";
+		return Messages.EcoreGenerator_ecoreGeneratorName;
 	}
 
 	public boolean isSelectedSingle(Property property) {
@@ -94,6 +99,13 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 		return true;
 	}
 
+	/**
+	 * Retrieve the EStructuralFeature corresponding to the given property
+	 * 
+	 * @param property
+	 * @return
+	 *         The EStructuralFeature corresponding to the given property
+	 */
 	protected EStructuralFeature getFeature(Property property) {
 		List<String> path = getPath(property);
 		path.remove(0); //Root = EPackage
@@ -113,6 +125,17 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 		return eClass.getEStructuralFeature(property.getName());
 	}
 
+	/**
+	 * Retrieve the Classifier corresponding to the given path, in the given EPackage
+	 * 
+	 * @param path
+	 *        The list of package and subpackages names, and the classifier name, i.e.
+	 *        the list of segments in the classifier's qualified name
+	 * @param source
+	 *        The root EPackage in which the classifier should be retrieved
+	 * @return
+	 *         The corresponding EClassifier, or null if it couldn't be retrieved
+	 */
 	protected EClassifier findClassifier(List<String> path, EPackage source) {
 		String qualifier = path.get(0);
 		EClassifier classifier = source.getEClassifier(qualifier);
@@ -128,6 +151,17 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 		}
 	}
 
+	/**
+	 * Retrieve the subpackage corresponding to the given packageName, in the given
+	 * package
+	 * 
+	 * @param currentPackage
+	 *        The EPackage in which the subpackage should be found
+	 * @param packageName
+	 *        The name of the EPackage to find
+	 * @return
+	 *         The corresponding EPackage, or null if it couldn't be found
+	 */
 	protected EPackage findSubPackage(EPackage currentPackage, String packageName) {
 		for(EPackage pack : currentPackage.getESubpackages()) {
 			if(pack.getName().equals(packageName))
@@ -136,12 +170,12 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 		return null;
 	}
 
-	protected List<String> getPath(Property property) {
+	private List<String> getPath(Property property) {
 		List<String> result = getPath(property.getContextElement());
 		return result;
 	}
 
-	protected List<String> getPath(DataContextElement element) {
+	private List<String> getPath(DataContextElement element) {
 		List<String> result;
 		if(element.getPackage() == null) {
 			result = new LinkedList<String>();
@@ -206,5 +240,4 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 			return null;
 		}
 	}
-
 }

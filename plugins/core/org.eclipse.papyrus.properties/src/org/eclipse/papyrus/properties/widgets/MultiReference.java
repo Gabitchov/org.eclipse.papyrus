@@ -19,13 +19,33 @@ import org.eclipse.papyrus.widgets.editors.MultipleReferenceEditor;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.widgets.Composite;
 
-
+/**
+ * A PropertyEditor for editing multiple references in a List
+ * 
+ * @see org.eclipse.papyrus.widgets.editors.BooleanCheckbox
+ * 
+ * @author Camille Letavernier
+ */
 public class MultiReference extends AbstractPropertyEditor {
 
+	/**
+	 * The MultipleReferenceEditor widget
+	 */
 	protected MultipleReferenceEditor editor;
 
+	/**
+	 * The ReferenceValueFactory allowing creation and direct editing of values
+	 */
 	protected ReferenceValueFactory factory;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 */
 	public MultiReference(Composite parent, int style) {
 		editor = new MultipleReferenceEditor(parent, style);
 		factory = new PropertyEditorFactory();
@@ -38,11 +58,6 @@ public class MultiReference extends AbstractPropertyEditor {
 		IStaticContentProvider contentProvider = input.getContentProvider(propertyPath);
 		ILabelProvider labelProvider = input.getLabelProvider(propertyPath);
 
-		//		ModelElement element = input.getModelElement(propertyPath);
-		//		EClass eClass = (EClass)((EMFModelElement)element).getFeature(getLocalPropertyPath()).getEType();
-		//
-		//		editor.setFactory(new EcorePropertyEditorFactory(eClass));
-
 		if(getInputObservableList() instanceof ICommitListener) {
 			editor.addCommitListener((ICommitListener)getInputObservableList());
 		}
@@ -54,11 +69,20 @@ public class MultiReference extends AbstractPropertyEditor {
 		super.doBinding();
 	}
 
+	/**
+	 * Sets the {@link ReferenceValueFactory} for this Editor. The factory
+	 * allows creation and direct edition of objects.
+	 * 
+	 * @param factory
+	 */
 	public void setFactory(ReferenceValueFactory factory) {
 		this.factory = factory;
 		editor.setFactory(factory);
 	}
 
+	/**
+	 * @return the {@link ReferenceValueFactory} used by this editor
+	 */
 	public ReferenceValueFactory getFactory() {
 		return factory;
 	}

@@ -22,9 +22,9 @@ import org.eclipse.papyrus.properties.constraints.Constraint;
 import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
 import org.eclipse.papyrus.properties.contexts.Section;
 import org.eclipse.papyrus.properties.contexts.View;
+import org.eclipse.papyrus.properties.modelelement.DataSource;
 import org.eclipse.papyrus.properties.modelelement.DataSourceFactory;
 import org.eclipse.papyrus.properties.runtime.ConstraintFactory;
-import org.eclipse.papyrus.properties.runtime.DataSource;
 import org.eclipse.papyrus.properties.runtime.DisplayEngine;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -34,6 +34,13 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.views.properties.tabbed.AbstractPropertySection;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
+/**
+ * An Implementation of ISection for the TabbedPropertyView framework.
+ * The XWTSection uses an XWT File to display the SWT Controls, and
+ * a DataSource for DataBinding
+ * 
+ * @author Camille Letavernier
+ */
 public class XWTSection extends AbstractPropertySection implements IChangeListener {
 
 	private Section section;
@@ -46,6 +53,16 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 
 	private DisplayEngine display;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param section
+	 *        The Section object containing the Metadata for the XWTSection
+	 * @param view
+	 *        The view this section belongs to
+	 * @param display
+	 *        The display engine that will generate the SWT Controls
+	 */
 	public XWTSection(Section section, View view, DisplayEngine display) {
 		this.section = section;
 		this.view = view;
@@ -97,6 +114,14 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 		}
 	}
 
+	/**
+	 * Displays the section
+	 * 
+	 * @param refresh
+	 *        If true, and the section has already been displayed, the controls will be
+	 *        regenerated. If false, the section will only be displayed if it hasn't been
+	 *        displayed yet, or if the display engine allows duplication of sections
+	 */
 	public void display(boolean refresh) {
 		if(self.isDisposed()) {
 			Activator.log.debug("Error : widget is disposed"); //$NON-NLS-1$
@@ -117,7 +142,7 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 	}
 
 	private void hide() {
-		display.hideSection(self);
+		display.removeSection(self);
 	}
 
 	@Override
@@ -125,7 +150,18 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 		display(false);
 	}
 
+	/**
+	 * Tests if this section is applied. A section is applied if it doesn't have
+	 * any constraint, or if at least one of its constraints match the current selection
+	 * 
+	 * @return
+	 *         True if the section should be displayed
+	 */
 	protected boolean isApplied() {
+		if(section.getConstraints().isEmpty()) {
+			return true;
+		}
+
 		ISelection selection = getSelection();
 
 		if(selection instanceof IStructuredSelection) {
@@ -134,14 +170,14 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 				Object element = it.next();
 				for(ConstraintDescriptor constraintDescriptor : section.getConstraints()) {
 					Constraint constraint = ConstraintFactory.getInstance().createFromModel(constraintDescriptor);
-					if(!constraint.match(element)) {
-						return false;
+					if(constraint.match(element)) {
+						return true;
 					}
 				}
 			}
 		}
 
-		return true;
+		return false;
 	}
 
 	@Override

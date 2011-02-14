@@ -32,12 +32,17 @@ import org.eclipse.swt.widgets.Label;
 
 /**
  * A Property Editor representing a multivalued property as a label with the
- * selected values. If the list of values is too long, it gets truncated.
+ * selected values. If the list of values is too long, it is truncated.
  * The values can be edited via a selection dialog.
  * This widget is useful when there is not much vertical space available,
  * and a MultipleValueEditor can not be used.
  */
 public class CompactMultipleValueEditor extends AbstractListEditor implements IChangeListener, DisposeListener, SelectionListener {
+
+	/**
+	 * The default value separator in the value label
+	 */
+	protected static final String DEFAULT_VALUE_SEPARATOR = ", "; //$NON-NLS-1$
 
 	/**
 	 * The label for displayed the selected values
@@ -78,9 +83,11 @@ public class CompactMultipleValueEditor extends AbstractListEditor implements IC
 	 *        The widget in which this editor is created
 	 * @param style
 	 *        The style for this editor's control
+	 * @param selector
+	 *        The IElementSelector for this editor's selection dialog
 	 */
 	public CompactMultipleValueEditor(Composite parent, int style, IElementSelector selector) {
-		this(parent, style, selector, false, false, ", ", null);
+		this(parent, style, selector, false, false, DEFAULT_VALUE_SEPARATOR, null);
 	}
 
 	/**
@@ -99,7 +106,7 @@ public class CompactMultipleValueEditor extends AbstractListEditor implements IC
 	 *        True if the multivalued property needs unique values
 	 */
 	public CompactMultipleValueEditor(Composite parent, int style, IElementSelector selector, boolean ordered, boolean unique) {
-		this(parent, style, selector, ordered, unique, ", ", null); //$NON-NLS-1$
+		this(parent, style, selector, ordered, unique, DEFAULT_VALUE_SEPARATOR, null); //$NON-NLS-1$
 	}
 
 	/**
@@ -124,7 +131,7 @@ public class CompactMultipleValueEditor extends AbstractListEditor implements IC
 	public CompactMultipleValueEditor(Composite parent, int style, IElementSelector selector, boolean ordered, boolean unique, String separator, String label) {
 		super(parent, label);
 
-		setLayout(new GridLayout(3, false));
+		((GridLayout)getLayout()).numColumns = 3;
 
 		valueLabel = factory.createLabel(this, null, style);
 		valueLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));

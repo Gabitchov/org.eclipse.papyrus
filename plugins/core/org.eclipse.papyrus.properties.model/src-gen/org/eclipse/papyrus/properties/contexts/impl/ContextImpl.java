@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.papyrus.properties.contexts.Context;
@@ -40,6 +41,7 @@ import org.eclipse.papyrus.properties.contexts.View;
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ContextImpl#getViews <em>Views</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ContextImpl#getTabs <em>Tabs</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ContextImpl#getDataContexts <em>Data Contexts</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ContextImpl#getDependencies <em>Dependencies</em>}</li>
  * </ul>
  * </p>
  *
@@ -95,6 +97,16 @@ public class ContextImpl extends EObjectImpl implements Context {
 	 * @ordered
 	 */
 	protected EList<DataContextRoot> dataContexts;
+
+	/**
+	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDependencies()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Context> dependencies;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -177,6 +189,18 @@ public class ContextImpl extends EObjectImpl implements Context {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Context> getDependencies() {
+		if (dependencies == null) {
+			dependencies = new EObjectResolvingEList<Context>(Context.class, this, ContextsPackage.CONTEXT__DEPENDENCIES);
+		}
+		return dependencies;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -221,6 +245,8 @@ public class ContextImpl extends EObjectImpl implements Context {
 				return getTabs();
 			case ContextsPackage.CONTEXT__DATA_CONTEXTS:
 				return getDataContexts();
+			case ContextsPackage.CONTEXT__DEPENDENCIES:
+				return getDependencies();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -249,6 +275,10 @@ public class ContextImpl extends EObjectImpl implements Context {
 				getDataContexts().clear();
 				getDataContexts().addAll((Collection<? extends DataContextRoot>)newValue);
 				return;
+			case ContextsPackage.CONTEXT__DEPENDENCIES:
+				getDependencies().clear();
+				getDependencies().addAll((Collection<? extends Context>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -273,6 +303,9 @@ public class ContextImpl extends EObjectImpl implements Context {
 			case ContextsPackage.CONTEXT__DATA_CONTEXTS:
 				getDataContexts().clear();
 				return;
+			case ContextsPackage.CONTEXT__DEPENDENCIES:
+				getDependencies().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -293,6 +326,8 @@ public class ContextImpl extends EObjectImpl implements Context {
 				return tabs != null && !tabs.isEmpty();
 			case ContextsPackage.CONTEXT__DATA_CONTEXTS:
 				return dataContexts != null && !dataContexts.isEmpty();
+			case ContextsPackage.CONTEXT__DEPENDENCIES:
+				return dependencies != null && !dependencies.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -24,13 +24,26 @@ import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.widgets.providers.StaticContentProvider;
 import org.eclipse.uml2.uml.Property;
 
-
+/**
+ * A Model Element for manipulating MemberEnd properties
+ * 
+ * @author Camille Letavernier
+ */
 public class MemberEndModelElement implements ModelElement {
 
 	private EObject source;
 
 	private EditingDomain domain;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param source
+	 *        The EObject being edited
+	 * @param domain
+	 *        The Editing domain on which the commands will be executed
+	 */
 	public MemberEndModelElement(EObject source, EditingDomain domain) {
 		this.source = source;
 		this.domain = domain;
@@ -45,10 +58,6 @@ public class MemberEndModelElement implements ModelElement {
 			return new NavigationObservableValue(source, domain);
 		}
 		Activator.log.warn("The property " + propertyPath + " doesn't exist"); //$NON-NLS-1$ //$NON-NLS-2$
-		return null;
-	}
-
-	public String getLabel(String propertyPath) {
 		return null;
 	}
 

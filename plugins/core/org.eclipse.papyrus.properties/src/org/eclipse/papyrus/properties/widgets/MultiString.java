@@ -14,11 +14,28 @@ package org.eclipse.papyrus.properties.widgets;
 import org.eclipse.papyrus.widgets.editors.MultipleStringEditor;
 import org.eclipse.swt.widgets.Composite;
 
-
+/**
+ * A PropertyEditor for editing multiple strings in a list
+ * 
+ * @see org.eclipse.papyrus.widgets.editors.MultipleStringEditor
+ * 
+ * @author Camille Letavernier
+ */
 public class MultiString extends AbstractPropertyEditor {
 
+	/**
+	 * The MultipleStringEditor widget
+	 */
 	protected MultipleStringEditor editor;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 */
 	public MultiString(Composite parent, int style) {
 		editor = new MultipleStringEditor(parent, style);
 		super.setEditor(editor);

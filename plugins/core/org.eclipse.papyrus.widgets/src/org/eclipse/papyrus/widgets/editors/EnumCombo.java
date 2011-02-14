@@ -23,14 +23,28 @@ import org.eclipse.swt.widgets.Composite;
 public class EnumCombo extends ReferenceCombo {
 
 	/**
-	 * {@inheritDoc}
+	 * 
+	 * Constructs an editor for an Enumeration. The widget is a CCombo.
+	 * 
+	 * @param parent
+	 *        The composite is which this editor is created
+	 * @param style
+	 *        The CCombo's style
 	 */
 	public EnumCombo(Composite parent, int style) {
 		super(parent, style);
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * 
+	 * Constructs an editor for an Enumeration. The widget is a CCombo.
+	 * 
+	 * @param parent
+	 *        The composite is which this editor is created
+	 * @param style
+	 *        The CCombo's style
+	 * @param label
+	 *        The editor's label
 	 */
 	public EnumCombo(Composite parent, int style, String label) {
 		super(parent, style, label);

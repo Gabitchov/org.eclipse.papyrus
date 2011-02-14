@@ -66,6 +66,7 @@ public class WidgetTypeItemProvider
 
 			addLabelPropertyDescriptor(object);
 			addWidgetClassPropertyDescriptor(object);
+			addNamespacePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -110,6 +111,28 @@ public class WidgetTypeItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Namespace feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamespacePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_WidgetType_namespace_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_namespace_feature", "_UI_WidgetType_type"),
+				 EnvironmentPackage.Literals.WIDGET_TYPE__NAMESPACE,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

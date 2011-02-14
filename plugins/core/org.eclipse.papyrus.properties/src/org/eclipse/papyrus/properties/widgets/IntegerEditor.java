@@ -13,8 +13,23 @@ package org.eclipse.papyrus.properties.widgets;
 
 import org.eclipse.swt.widgets.Composite;
 
+/**
+ * A PropertyEditor for editing integers through a Text field
+ * 
+ * @see org.eclipse.papyrus.widgets.editors.IntegerEditor
+ * 
+ * @author Camille Letavernier
+ */
 public class IntegerEditor extends AbstractPropertyEditor {
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 */
 	public IntegerEditor(Composite parent, int style) {
 		super(new org.eclipse.papyrus.widgets.editors.IntegerEditor(parent, style));
 	}

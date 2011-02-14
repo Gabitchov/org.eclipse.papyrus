@@ -19,11 +19,23 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
-
+/**
+ * An IStaticContentProvider for EMF enumerators.
+ * 
+ * @author Camille Letavernier
+ */
 public class EcoreEnumeratorContentProvider implements IStaticContentProvider {
 
+	/**
+	 * The feature representing the Enumerator for this ContentProvider
+	 */
 	protected EStructuralFeature feature;
 
+	/**
+	 * Constructs an EcoreEnumerator for the given Structural Feature
+	 * 
+	 * @param feature
+	 */
 	public EcoreEnumeratorContentProvider(EStructuralFeature feature) {
 		this.feature = feature;
 	}

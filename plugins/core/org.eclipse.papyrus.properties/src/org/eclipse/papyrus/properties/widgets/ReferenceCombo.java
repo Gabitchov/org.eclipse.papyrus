@@ -15,12 +15,28 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.widgets.Composite;
 
+/**
+ * A PropertyEditor for editing references through a ComboBox
+ * 
+ * @see org.eclipse.papyrus.widgets.editors.ReferenceCombo
+ * 
+ * @author Camille Letavernier
+ */
 public class ReferenceCombo extends AbstractPropertyEditor {
 
+	/**
+	 * The ReferenceCombo widget
+	 */
 	protected org.eclipse.papyrus.widgets.editors.ReferenceCombo combo;
 
-	protected IStaticContentProvider provider;
-
+	/**
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 */
 	public ReferenceCombo(Composite parent, int style) {
 		combo = new org.eclipse.papyrus.widgets.editors.ReferenceCombo(parent, style);
 		super.setEditor(combo);

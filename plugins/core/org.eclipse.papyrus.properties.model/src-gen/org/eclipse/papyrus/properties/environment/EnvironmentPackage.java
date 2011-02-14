@@ -125,13 +125,31 @@ public interface EnvironmentPackage extends EPackage {
 	int ENVIRONMENT__LAYOUT_TYPES = 5;
 
 	/**
+	 * The feature id for the '<em><b>Namespaces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENVIRONMENT__NAMESPACES = 6;
+
+	/**
+	 * The feature id for the '<em><b>Misc Classes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENVIRONMENT__MISC_CLASSES = 7;
+
+	/**
 	 * The number of structural features of the '<em>Environment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT_FEATURE_COUNT = 6;
+	int ENVIRONMENT_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.properties.environment.impl.WidgetTypeImpl <em>Widget Type</em>}' class.
@@ -162,13 +180,22 @@ public interface EnvironmentPackage extends EPackage {
 	int WIDGET_TYPE__WIDGET_CLASS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TYPE__NAMESPACE = 2;
+
+	/**
 	 * The number of structural features of the '<em>Widget Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WIDGET_TYPE_FEATURE_COUNT = 2;
+	int WIDGET_TYPE_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.properties.environment.impl.PropertyEditorTypeImpl <em>Property Editor Type</em>}' class.
@@ -197,6 +224,15 @@ public interface EnvironmentPackage extends EPackage {
 	 * @ordered
 	 */
 	int PROPERTY_EDITOR_TYPE__WIDGET_CLASS = WIDGET_TYPE__WIDGET_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_EDITOR_TYPE__NAMESPACE = WIDGET_TYPE__NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -254,6 +290,15 @@ public interface EnvironmentPackage extends EPackage {
 	int COMPOSITE_WIDGET_TYPE__WIDGET_CLASS = WIDGET_TYPE__WIDGET_CLASS;
 
 	/**
+	 * The feature id for the '<em><b>Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_WIDGET_TYPE__NAMESPACE = WIDGET_TYPE__NAMESPACE;
+
+	/**
 	 * The number of structural features of the '<em>Composite Widget Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -289,6 +334,15 @@ public interface EnvironmentPackage extends EPackage {
 	 * @ordered
 	 */
 	int LAYOUT_TYPE__WIDGET_CLASS = WIDGET_TYPE__WIDGET_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_TYPE__NAMESPACE = WIDGET_TYPE__NAMESPACE;
 
 	/**
 	 * The number of structural features of the '<em>Layout Type</em>' class.
@@ -402,6 +456,15 @@ public interface EnvironmentPackage extends EPackage {
 	int STANDARD_WIDGET_TYPE__WIDGET_CLASS = WIDGET_TYPE__WIDGET_CLASS;
 
 	/**
+	 * The feature id for the '<em><b>Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STANDARD_WIDGET_TYPE__NAMESPACE = WIDGET_TYPE__NAMESPACE;
+
+	/**
 	 * The number of structural features of the '<em>Standard Widget Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -411,6 +474,98 @@ public interface EnvironmentPackage extends EPackage {
 	int STANDARD_WIDGET_TYPE_FEATURE_COUNT = WIDGET_TYPE_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.properties.environment.impl.NamespaceImpl <em>Namespace</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.properties.environment.impl.NamespaceImpl
+	 * @see org.eclipse.papyrus.properties.environment.impl.EnvironmentPackageImpl#getNamespace()
+	 * @generated
+	 */
+	int NAMESPACE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Prefix</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE__PREFIX = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE__NAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE__VALUE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Namespace</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.properties.environment.impl.MiscClassImpl <em>Misc Class</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.properties.environment.impl.MiscClassImpl
+	 * @see org.eclipse.papyrus.properties.environment.impl.EnvironmentPackageImpl#getMiscClass()
+	 * @generated
+	 */
+	int MISC_CLASS = 9;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MISC_CLASS__LABEL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MISC_CLASS__CLASS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MISC_CLASS__NAMESPACE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Misc Class</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MISC_CLASS_FEATURE_COUNT = 3;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.properties.environment.Type <em>Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -418,7 +573,7 @@ public interface EnvironmentPackage extends EPackage {
 	 * @see org.eclipse.papyrus.properties.environment.impl.EnvironmentPackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 8;
+	int TYPE = 10;
 
 
 	/**
@@ -498,6 +653,28 @@ public interface EnvironmentPackage extends EPackage {
 	EReference getEnvironment_LayoutTypes();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.properties.environment.Environment#getNamespaces <em>Namespaces</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Namespaces</em>'.
+	 * @see org.eclipse.papyrus.properties.environment.Environment#getNamespaces()
+	 * @see #getEnvironment()
+	 * @generated
+	 */
+	EReference getEnvironment_Namespaces();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.properties.environment.Environment#getMiscClasses <em>Misc Classes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Misc Classes</em>'.
+	 * @see org.eclipse.papyrus.properties.environment.Environment#getMiscClasses()
+	 * @see #getEnvironment()
+	 * @generated
+	 */
+	EReference getEnvironment_MiscClasses();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.properties.environment.PropertyEditorType <em>Property Editor Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -560,6 +737,17 @@ public interface EnvironmentPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getWidgetType_WidgetClass();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.properties.environment.WidgetType#getNamespace <em>Namespace</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Namespace</em>'.
+	 * @see org.eclipse.papyrus.properties.environment.WidgetType#getNamespace()
+	 * @see #getWidgetType()
+	 * @generated
+	 */
+	EReference getWidgetType_Namespace();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.properties.environment.CompositeWidgetType <em>Composite Widget Type</em>}'.
@@ -656,6 +844,92 @@ public interface EnvironmentPackage extends EPackage {
 	EClass getStandardWidgetType();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.properties.environment.Namespace <em>Namespace</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Namespace</em>'.
+	 * @see org.eclipse.papyrus.properties.environment.Namespace
+	 * @generated
+	 */
+	EClass getNamespace();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.properties.environment.Namespace#getPrefix <em>Prefix</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Prefix</em>'.
+	 * @see org.eclipse.papyrus.properties.environment.Namespace#getPrefix()
+	 * @see #getNamespace()
+	 * @generated
+	 */
+	EAttribute getNamespace_Prefix();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.properties.environment.Namespace#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.papyrus.properties.environment.Namespace#getName()
+	 * @see #getNamespace()
+	 * @generated
+	 */
+	EAttribute getNamespace_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.properties.environment.Namespace#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see org.eclipse.papyrus.properties.environment.Namespace#getValue()
+	 * @see #getNamespace()
+	 * @generated
+	 */
+	EAttribute getNamespace_Value();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.properties.environment.MiscClass <em>Misc Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Misc Class</em>'.
+	 * @see org.eclipse.papyrus.properties.environment.MiscClass
+	 * @generated
+	 */
+	EClass getMiscClass();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.properties.environment.MiscClass#getLabel <em>Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Label</em>'.
+	 * @see org.eclipse.papyrus.properties.environment.MiscClass#getLabel()
+	 * @see #getMiscClass()
+	 * @generated
+	 */
+	EAttribute getMiscClass_Label();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.properties.environment.MiscClass#getClass_ <em>Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Class</em>'.
+	 * @see org.eclipse.papyrus.properties.environment.MiscClass#getClass_()
+	 * @see #getMiscClass()
+	 * @generated
+	 */
+	EAttribute getMiscClass_Class();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.properties.environment.MiscClass#getNamespace <em>Namespace</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Namespace</em>'.
+	 * @see org.eclipse.papyrus.properties.environment.MiscClass#getNamespace()
+	 * @see #getMiscClass()
+	 * @generated
+	 */
+	EReference getMiscClass_Namespace();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.properties.environment.Type <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -746,6 +1020,22 @@ public interface EnvironmentPackage extends EPackage {
 		EReference ENVIRONMENT__LAYOUT_TYPES = eINSTANCE.getEnvironment_LayoutTypes();
 
 		/**
+		 * The meta object literal for the '<em><b>Namespaces</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENVIRONMENT__NAMESPACES = eINSTANCE.getEnvironment_Namespaces();
+
+		/**
+		 * The meta object literal for the '<em><b>Misc Classes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENVIRONMENT__MISC_CLASSES = eINSTANCE.getEnvironment_MiscClasses();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.properties.environment.impl.PropertyEditorTypeImpl <em>Property Editor Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -796,6 +1086,14 @@ public interface EnvironmentPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute WIDGET_TYPE__WIDGET_CLASS = eINSTANCE.getWidgetType_WidgetClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Namespace</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WIDGET_TYPE__NAMESPACE = eINSTANCE.getWidgetType_Namespace();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.properties.environment.impl.CompositeWidgetTypeImpl <em>Composite Widget Type</em>}' class.
@@ -878,6 +1176,74 @@ public interface EnvironmentPackage extends EPackage {
 		 * @generated
 		 */
 		EClass STANDARD_WIDGET_TYPE = eINSTANCE.getStandardWidgetType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.properties.environment.impl.NamespaceImpl <em>Namespace</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.properties.environment.impl.NamespaceImpl
+		 * @see org.eclipse.papyrus.properties.environment.impl.EnvironmentPackageImpl#getNamespace()
+		 * @generated
+		 */
+		EClass NAMESPACE = eINSTANCE.getNamespace();
+
+		/**
+		 * The meta object literal for the '<em><b>Prefix</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAMESPACE__PREFIX = eINSTANCE.getNamespace_Prefix();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAMESPACE__NAME = eINSTANCE.getNamespace_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAMESPACE__VALUE = eINSTANCE.getNamespace_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.properties.environment.impl.MiscClassImpl <em>Misc Class</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.properties.environment.impl.MiscClassImpl
+		 * @see org.eclipse.papyrus.properties.environment.impl.EnvironmentPackageImpl#getMiscClass()
+		 * @generated
+		 */
+		EClass MISC_CLASS = eINSTANCE.getMiscClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MISC_CLASS__LABEL = eINSTANCE.getMiscClass_Label();
+
+		/**
+		 * The meta object literal for the '<em><b>Class</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MISC_CLASS__CLASS = eINSTANCE.getMiscClass_Class();
+
+		/**
+		 * The meta object literal for the '<em><b>Namespace</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MISC_CLASS__NAMESPACE = eINSTANCE.getMiscClass_Namespace();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.properties.environment.Type <em>Type</em>}' enum.

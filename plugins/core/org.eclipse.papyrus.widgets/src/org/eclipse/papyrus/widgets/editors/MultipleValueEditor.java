@@ -129,8 +129,6 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 *        This editor's list style
 	 * @param selector
 	 *        The element selector for this editor's dialog
-	 * @param label
-	 *        This editor's label, or null if no label should be displayed
 	 * @param ordered
 	 *        Specify if the observed collection is ordered. If true, Up and Down controls are displayed.
 	 * @param unique
@@ -276,27 +274,27 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 */
 	protected void createListControls() {
 		up = new Button(controlsSection, SWT.PUSH);
-		up.setImage(Activator.getImage("/icons/Up_12x12.gif")); //$NON-NLS-1$
+		up.setImage(Activator.getDefault().getImage("/icons/Up_12x12.gif")); //$NON-NLS-1$
 		up.addSelectionListener(this);
 		up.setToolTipText(Messages.MultipleValueEditor_MoveSelectedElementsUp);
 
 		down = new Button(controlsSection, SWT.PUSH);
-		down.setImage(Activator.getImage("/icons/Down_12x12.gif")); //$NON-NLS-1$
+		down.setImage(Activator.getDefault().getImage("/icons/Down_12x12.gif")); //$NON-NLS-1$
 		down.addSelectionListener(this);
 		down.setToolTipText(Messages.MultipleValueEditor_MoveSelectedElementsDown);
 
 		add = new Button(controlsSection, SWT.PUSH);
-		add.setImage(Activator.getImage("/icons/Add_12x12.gif")); //$NON-NLS-1$
+		add.setImage(Activator.getDefault().getImage("/icons/Add_12x12.gif")); //$NON-NLS-1$
 		add.addSelectionListener(this);
 		add.setToolTipText(Messages.MultipleValueEditor_AddElements);
 
 		remove = new Button(controlsSection, SWT.PUSH);
-		remove.setImage(Activator.getImage("/icons/Delete_12x12.gif")); //$NON-NLS-1$
+		remove.setImage(Activator.getDefault().getImage("/icons/Delete_12x12.gif")); //$NON-NLS-1$
 		remove.addSelectionListener(this);
 		remove.setToolTipText(Messages.MultipleValueEditor_RemoveSelectedElements);
 
 		edit = new Button(controlsSection, SWT.PUSH);
-		edit.setImage(Activator.getImage("/icons/Edit_12x12.gif")); //$NON-NLS-1$
+		edit.setImage(Activator.getDefault().getImage("/icons/Edit_12x12.gif")); //$NON-NLS-1$
 		edit.addSelectionListener(this);
 		edit.setToolTipText(Messages.MultipleValueEditor_EditSelectedValue);
 	}

@@ -35,10 +35,33 @@ public class PapyrusObservableValue extends EObjectObservableValue {
 
 	private EditingDomain domain;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param eObject
+	 *        The EObject to edit
+	 * @param eStructuralFeature
+	 *        The structural feature to edit
+	 * @param domain
+	 *        The editing domain on which the commands will be executed
+	 */
 	public PapyrusObservableValue(EObject eObject, EStructuralFeature eStructuralFeature, EditingDomain domain) {
 		this(Realm.getDefault(), eObject, eStructuralFeature, domain);
 	}
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param realm
+	 * @param eObject
+	 *        The EObject to edit
+	 * @param eStructuralFeature
+	 *        The structural feature to edit
+	 * @param domain
+	 *        The editing domain on which the commands will be executed
+	 */
 	public PapyrusObservableValue(Realm realm, EObject eObject, EStructuralFeature eStructuralFeature, EditingDomain domain) {
 		super(realm, eObject, eStructuralFeature);
 		this.domain = domain;

@@ -56,18 +56,15 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 		IStructuredSelection selection = new StructuredSelection(source);
 
 		ConstraintEngine constraintEngine = ConfigurationManager.instance.constraintEngine;
-		constraintEngine.setSelection(selection);
-		if(constraintEngine.match()) {
-			Set<View> views = constraintEngine.getViews();
-			if(!views.isEmpty()) {
-				EditionDialog dialog = new EditionDialog(widget.getShell());
-				dialog.setViews(views);
-				dialog.setInput(source);
+		Set<View> views = constraintEngine.getViews(selection);
+		if(!views.isEmpty()) {
+			EditionDialog dialog = new EditionDialog(widget.getShell());
+			dialog.setViews(views);
+			dialog.setInput(source);
 
-				int result = dialog.open();
-				if(result != Window.OK) {
-					return null;
-				}
+			int result = dialog.open();
+			if(result != Window.OK) {
+				return null;
 			}
 		}
 
@@ -104,16 +101,14 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 		IStructuredSelection selection = new StructuredSelection(source);
 
 		ConstraintEngine constraintEngine = ConfigurationManager.instance.constraintEngine;
-		constraintEngine.setSelection(selection);
-		if(constraintEngine.match()) {
-			Set<View> views = constraintEngine.getViews();
-			if(!views.isEmpty()) {
-				EditionDialog dialog = new EditionDialog(widget.getShell());
-				dialog.setViews(views);
-				dialog.setInput(source);
 
-				dialog.open();
-			}
+		Set<View> views = constraintEngine.getViews(selection);
+		if(!views.isEmpty()) {
+			EditionDialog dialog = new EditionDialog(widget.getShell());
+			dialog.setViews(views);
+			dialog.setInput(source);
+
+			dialog.open();
 		}
 	}
 

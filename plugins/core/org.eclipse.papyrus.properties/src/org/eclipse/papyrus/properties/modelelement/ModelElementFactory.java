@@ -11,14 +11,32 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.modelelement;
 
-import java.util.List;
-
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.properties.runtime.DataSource;
 
+/**
+ * An interface representing ModelElementFactories.
+ * ModelElementFactories are meant to be instantiated reflectively, thus should
+ * always provide a 0-arg constructor.
+ * 
+ * @author Camille Letavernier
+ */
 public interface ModelElementFactory {
 
+	/**
+	 * Creates a new ModelElement for given Object and DataContextElement
+	 * 
+	 * @param sourceElement
+	 *        The Object for which we need to build a ModelElement. Note that this element
+	 *        comes directly from the Eclipse selection, and may need to be adapted to get
+	 *        the actual semantic object (e.g. sourceElement may be a GMF EditPart, and needs
+	 *        to be adapted to retrieve the EObject). The factory is responsible for resolving
+	 *        the semantic object in such a case.
+	 * @param context
+	 *        The DataContextElement containing the properties that the Property View framework
+	 *        is susceptible to ask for.
+	 * @return
+	 *         The ModelElement corresponding to the sourceElement
+	 */
 	public ModelElement createFromSource(Object sourceElement, DataContextElement context);
 
-	public List<ModelElement> createFromDataSource(ModelElement currentElement, DataSource source, String propertyPath, DataContextElement context);
 }

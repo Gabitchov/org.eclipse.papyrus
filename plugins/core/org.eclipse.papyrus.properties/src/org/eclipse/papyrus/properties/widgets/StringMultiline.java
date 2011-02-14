@@ -14,8 +14,23 @@ package org.eclipse.papyrus.properties.widgets;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
+/**
+ * A PropertyEditor for editing multiline strings through a Text field
+ * 
+ * @see org.eclipse.papyrus.widgets.editors.StringEditor
+ * 
+ * @author Camille Letavernier
+ */
 public class StringMultiline extends AbstractPropertyEditor {
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 */
 	public StringMultiline(Composite parent, int style) {
 		super(new org.eclipse.papyrus.widgets.editors.StringEditor(parent, style | SWT.MULTI));
 	}

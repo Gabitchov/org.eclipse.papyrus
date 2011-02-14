@@ -12,8 +12,10 @@
 package org.eclipse.papyrus.properties;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.log.LogHelper;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -23,12 +25,17 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
+	/**
+	 * The plug-in ID
+	 */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.properties"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
 
+	/**
+	 * Log
+	 */
 	public static LogHelper log;
 
 	/**
@@ -50,6 +57,9 @@ public class Activator extends AbstractUIPlugin {
 		ConfigurationManager.init();
 	}
 
+	/**
+	 * @return The IPath representing the plugin's preferences folder location
+	 */
 	public IPath getPreferencesPath() {
 		return getStateLocation();
 	}
@@ -72,5 +82,36 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static Activator getDefault() {
 		return plugin;
+	}
+
+	/**
+	 * Returns the image at the given path from this plugin
+	 * 
+	 * @param path
+	 *        the path of the image to be displayed
+	 * @return The Image at the given location, or null if it couldn't be found
+	 */
+	public Image getImage(String path) {
+		return getImage(PLUGIN_ID, path);
+	}
+
+	/**
+	 * Returns the image from the given image descriptor
+	 * 
+	 * @param pluginId
+	 *        The plugin in which the image is located
+	 * @param path
+	 *        The path to the image from the plugin
+	 * @return
+	 *         The Image at the given location, or null if it couldn't be found
+	 */
+	public Image getImage(String pluginId, String path) {
+		final ImageRegistry registry = getImageRegistry();
+		Image image = registry.get(path);
+		if(image == null) {
+			registry.put(pluginId + "/" + path, AbstractUIPlugin.imageDescriptorFromPlugin(pluginId, path));
+			image = registry.get(path);
+		}
+		return image;
 	}
 }

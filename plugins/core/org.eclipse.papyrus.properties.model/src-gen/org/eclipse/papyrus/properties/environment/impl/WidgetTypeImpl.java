@@ -10,10 +10,12 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.papyrus.properties.environment.EnvironmentPackage;
+import org.eclipse.papyrus.properties.environment.Namespace;
 import org.eclipse.papyrus.properties.environment.WidgetType;
 
 /**
@@ -25,6 +27,7 @@ import org.eclipse.papyrus.properties.environment.WidgetType;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.properties.environment.impl.WidgetTypeImpl#getLabel <em>Label</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.environment.impl.WidgetTypeImpl#getWidgetClass <em>Widget Class</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.environment.impl.WidgetTypeImpl#getNamespace <em>Namespace</em>}</li>
  * </ul>
  * </p>
  *
@@ -70,6 +73,16 @@ public abstract class WidgetTypeImpl extends EObjectImpl implements WidgetType {
 	 * @ordered
 	 */
 	protected String widgetClass = WIDGET_CLASS_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getNamespace() <em>Namespace</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNamespace()
+	 * @generated
+	 * @ordered
+	 */
+	protected Namespace namespace;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -137,6 +150,44 @@ public abstract class WidgetTypeImpl extends EObjectImpl implements WidgetType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Namespace getNamespace() {
+		if (namespace != null && namespace.eIsProxy()) {
+			InternalEObject oldNamespace = (InternalEObject)namespace;
+			namespace = (Namespace)eResolveProxy(oldNamespace);
+			if (namespace != oldNamespace) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EnvironmentPackage.WIDGET_TYPE__NAMESPACE, oldNamespace, namespace));
+			}
+		}
+		return namespace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Namespace basicGetNamespace() {
+		return namespace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNamespace(Namespace newNamespace) {
+		Namespace oldNamespace = namespace;
+		namespace = newNamespace;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EnvironmentPackage.WIDGET_TYPE__NAMESPACE, oldNamespace, namespace));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -144,6 +195,9 @@ public abstract class WidgetTypeImpl extends EObjectImpl implements WidgetType {
 				return getLabel();
 			case EnvironmentPackage.WIDGET_TYPE__WIDGET_CLASS:
 				return getWidgetClass();
+			case EnvironmentPackage.WIDGET_TYPE__NAMESPACE:
+				if (resolve) return getNamespace();
+				return basicGetNamespace();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -161,6 +215,9 @@ public abstract class WidgetTypeImpl extends EObjectImpl implements WidgetType {
 				return;
 			case EnvironmentPackage.WIDGET_TYPE__WIDGET_CLASS:
 				setWidgetClass((String)newValue);
+				return;
+			case EnvironmentPackage.WIDGET_TYPE__NAMESPACE:
+				setNamespace((Namespace)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -180,6 +237,9 @@ public abstract class WidgetTypeImpl extends EObjectImpl implements WidgetType {
 			case EnvironmentPackage.WIDGET_TYPE__WIDGET_CLASS:
 				setWidgetClass(WIDGET_CLASS_EDEFAULT);
 				return;
+			case EnvironmentPackage.WIDGET_TYPE__NAMESPACE:
+				setNamespace((Namespace)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -196,6 +256,8 @@ public abstract class WidgetTypeImpl extends EObjectImpl implements WidgetType {
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
 			case EnvironmentPackage.WIDGET_TYPE__WIDGET_CLASS:
 				return WIDGET_CLASS_EDEFAULT == null ? widgetClass != null : !WIDGET_CLASS_EDEFAULT.equals(widgetClass);
+			case EnvironmentPackage.WIDGET_TYPE__NAMESPACE:
+				return namespace != null;
 		}
 		return super.eIsSet(featureID);
 	}

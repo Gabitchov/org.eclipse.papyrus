@@ -30,6 +30,7 @@ import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.contexts.Section;
 import org.eclipse.papyrus.properties.contexts.Tab;
 import org.eclipse.papyrus.properties.contexts.View;
+import org.eclipse.papyrus.properties.modelelement.DataSource;
 import org.eclipse.papyrus.properties.xwt.XWTTabDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -38,6 +39,11 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 
+/**
+ * A default implementation for {@link DisplayEngine}
+ * 
+ * @author Camille Letavernier
+ */
 public class DefaultDisplayEngine implements DisplayEngine {
 
 	private ILoadingContext loadingContext = new DefaultLoadingContext(getClass().getClassLoader());
@@ -48,10 +54,22 @@ public class DefaultDisplayEngine implements DisplayEngine {
 
 	private boolean allowDuplicate;
 
+	/**
+	 * Constructs a new DisplayEnginet that doesn't allow the duplication of sections
+	 */
 	public DefaultDisplayEngine() {
 		this(false);
 	}
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param allowDuplicate
+	 *        If false, two calls of {@link #createSection(Composite, Section, DataSource)} with the same
+	 *        section will display the section only once : only the first call is taken into account
+	 *        The main property view doesn't allow duplication, to avoid redundancy when two views link to
+	 *        the same section.
+	 */
 	public DefaultDisplayEngine(boolean allowDuplicate) {
 		this.allowDuplicate = allowDuplicate;
 	}
@@ -92,7 +110,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 		return new LinkedList<ITabDescriptor>(result.values());
 	}
 
-	public void dispose() {
+	private void dispose() {
 		for(Control control : controls) {
 			control.dispose();
 		}
@@ -124,10 +142,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 			control.dispose();
 		}
 
-		Control control = createSection(parent, section, loadXWTFile(section), source);
-
-		if(control != null)
-			controls.add(control);
+		createSection(parent, section, loadXWTFile(section), source);
 	}
 
 	public Control createSection(Composite parent, Section section, URL sectionFile, DataSource source) {
@@ -149,14 +164,13 @@ public class DefaultDisplayEngine implements DisplayEngine {
 				control.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 				controls.add(control);
 			}
-			layout(parent);
 		} catch (Exception ex) {
-			Activator.log.error(ex);
+			Activator.log.error("Error while loading " + section.getSectionFile(), ex); //$NON-NLS-1$
 			dispose();
 			Label label = new Label(parent, SWT.NONE);
 			label.setText("An error occured in the property view. The file " + section.getSectionFile() + " could not be loaded"); //$NON-NLS-1$ //$NON-NLS-2$
-			layout(parent);
 		}
+		layout(parent);
 
 		XWT.setLoadingContext(xwtContext);
 
@@ -189,7 +203,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 		parent.layout(true);
 	}
 
-	public void hideSection(Composite parent) {
+	public void removeSection(Composite parent) {
 		for(Control control : parent.getChildren()) {
 			control.dispose();
 		}

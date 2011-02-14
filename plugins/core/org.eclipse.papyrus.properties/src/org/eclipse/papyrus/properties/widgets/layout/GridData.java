@@ -50,7 +50,7 @@ import org.eclipse.swt.widgets.Control;
  * <code>GridData</code> object is created for it.
  * </p>
  * 
- * @see GridLayout
+ * @see PropertiesLayout
  * @see Control#setLayoutData
  * @see <a href="http://www.eclipse.org/swt/">Sample code and further information</a>
  * @see org.eclipse.swt.layout.GridData

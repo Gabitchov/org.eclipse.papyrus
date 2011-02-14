@@ -26,6 +26,8 @@ import org.eclipse.papyrus.properties.contexts.Context;
  *   <li>{@link org.eclipse.papyrus.properties.environment.Environment#getPropertyEditorTypes <em>Property Editor Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.environment.Environment#getCompositeWidgetTypes <em>Composite Widget Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.environment.Environment#getLayoutTypes <em>Layout Types</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.environment.Environment#getNamespaces <em>Namespaces</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.environment.Environment#getMiscClasses <em>Misc Classes</em>}</li>
  * </ul>
  * </p>
  *
@@ -129,5 +131,37 @@ public interface Environment extends EObject {
 	 * @generated
 	 */
 	EList<LayoutType> getLayoutTypes();
+
+	/**
+	 * Returns the value of the '<em><b>Namespaces</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.properties.environment.Namespace}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Namespaces</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Namespaces</em>' containment reference list.
+	 * @see org.eclipse.papyrus.properties.environment.EnvironmentPackage#getEnvironment_Namespaces()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Namespace> getNamespaces();
+
+	/**
+	 * Returns the value of the '<em><b>Misc Classes</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.properties.environment.MiscClass}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Misc Classes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Misc Classes</em>' containment reference list.
+	 * @see org.eclipse.papyrus.properties.environment.EnvironmentPackage#getEnvironment_MiscClasses()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<MiscClass> getMiscClasses();
 
 } // Environment

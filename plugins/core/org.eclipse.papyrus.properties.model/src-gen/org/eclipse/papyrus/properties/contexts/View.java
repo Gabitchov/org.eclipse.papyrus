@@ -18,10 +18,10 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.View#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.View#getSections <em>Sections</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.View#getDatacontexts <em>Datacontexts</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.View#getElementMultiplicity <em>Element Multiplicity</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.View#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.View#isAutomaticContext <em>Automatic Context</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.View#getDatacontexts <em>Datacontexts</em>}</li>
  * </ul>
  * </p>
  *
@@ -71,22 +71,6 @@ public interface View extends DisplayUnit {
 	 * @generated
 	 */
 	EList<Section> getSections();
-
-	/**
-	 * Returns the value of the '<em><b>Datacontexts</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.properties.contexts.DataContextElement}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Datacontexts</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Datacontexts</em>' reference list.
-	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getView_Datacontexts()
-	 * @model
-	 * @generated
-	 */
-	EList<DataContextElement> getDatacontexts();
 
 	/**
 	 * Returns the value of the '<em><b>Element Multiplicity</b></em>' attribute.
@@ -168,5 +152,21 @@ public interface View extends DisplayUnit {
 	 * @generated
 	 */
 	void setAutomaticContext(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Datacontexts</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.properties.contexts.DataContextElement}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Datacontexts</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Datacontexts</em>' reference list.
+	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getView_Datacontexts()
+	 * @model
+	 * @generated
+	 */
+	EList<DataContextElement> getDatacontexts();
 
 } // View

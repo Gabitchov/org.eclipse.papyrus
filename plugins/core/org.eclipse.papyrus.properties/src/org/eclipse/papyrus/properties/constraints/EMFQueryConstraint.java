@@ -81,4 +81,13 @@ public class EMFQueryConstraint extends AbstractConstraint {
 		return false;
 	}
 
+	@Override
+	protected boolean equivalent(Constraint constraint) {
+		if(constraint != null && constraint instanceof EMFQueryConstraint) {
+			EMFQueryConstraint other = (EMFQueryConstraint)constraint;
+			return other.query.equals(query);
+		}
+		return false;
+	}
+
 }

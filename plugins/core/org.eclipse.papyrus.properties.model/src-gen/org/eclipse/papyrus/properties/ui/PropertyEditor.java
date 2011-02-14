@@ -8,6 +8,7 @@ package org.eclipse.papyrus.properties.ui;
 
 import org.eclipse.papyrus.properties.contexts.Property;
 
+import org.eclipse.papyrus.properties.contexts.UnknownProperty;
 import org.eclipse.papyrus.properties.environment.PropertyEditorType;
 
 /**
@@ -21,6 +22,7 @@ import org.eclipse.papyrus.properties.environment.PropertyEditorType;
  *   <li>{@link org.eclipse.papyrus.properties.ui.PropertyEditor#getProperty <em>Property</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.ui.PropertyEditor#isReadOnly <em>Read Only</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.ui.PropertyEditor#getWidgetType <em>Widget Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.ui.PropertyEditor#getUnresolvedProperty <em>Unresolved Property</em>}</li>
  * </ul>
  * </p>
  *
@@ -107,5 +109,31 @@ public interface PropertyEditor extends Widget {
 	 * @generated
 	 */
 	void setWidgetType(PropertyEditorType value);
+
+	/**
+	 * Returns the value of the '<em><b>Unresolved Property</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Unresolved Property</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Unresolved Property</em>' containment reference.
+	 * @see #setUnresolvedProperty(UnknownProperty)
+	 * @see org.eclipse.papyrus.properties.ui.UiPackage#getPropertyEditor_UnresolvedProperty()
+	 * @model containment="true"
+	 * @generated
+	 */
+	UnknownProperty getUnresolvedProperty();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.properties.ui.PropertyEditor#getUnresolvedProperty <em>Unresolved Property</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Unresolved Property</em>' containment reference.
+	 * @see #getUnresolvedProperty()
+	 * @generated
+	 */
+	void setUnresolvedProperty(UnknownProperty value);
 
 } // PropertyEditor

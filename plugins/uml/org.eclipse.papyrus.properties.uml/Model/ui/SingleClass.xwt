@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns="http://www.eclipse.org/xwt/presentation"
+<Composite xmlns:creation="clr-namespace:org.eclipse.papyrus.properties.creation"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
-	xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
-	xmlns:j="clr-namespace:java.lang" xmlns:x="http://www.eclipse.org/xwt"
-	xmlns:xtext="clr-namespace:org.eclipse.papyrus.widgets.xtext.creation"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns:xtext="clr-namespace:org.eclipse.papyrus.widgets.xtext.creation"
 	xmlns:umlXtext="clr-namespace:org.eclipse.papyrus.properties.uml.xtext"
-	xmlns:creation="clr-namespace:org.eclipse.papyrus.properties.creation">
+	xmlns:j="clr-namespace:java.lang">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
@@ -14,6 +13,7 @@
 			<ppel:PropertiesLayout></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:StringEditor input="{Binding}" property="UML:NamedElement:name"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}" property="UML:NamedElement:qualifiedName" forceRefresh="true" readOnly="true"></ppe:StringEditor>
 	</Composite>
 	<Composite>
 		<Composite.layout>
@@ -36,20 +36,19 @@
 		</Composite.layout>
 		<ppe:MultiReference input="{Binding}" property="UML:Classifier:useCase"></ppe:MultiReference>
 	</Composite>
-	
 	<Composite>
 		<Composite.layout>
 			<ppel:PropertiesLayout></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:MultiReference input="{Binding}" property="UML:StructuredClassifier:ownedAttribute">
-			<ppe:MultiReference.factory>
-				<!--xtext:XtextValueFactory>
+		<ppe:MultiReference input="{Binding}"
+			property="UML:StructuredClassifier:ownedAttribute">
+			<!-- ppe:MultiReference.factory>
+				<xtext:XtextValueFactory>
 					<xtext:XtextValueFactory.adapter>
-						<umlXtext:PropertyAdapter />
+						<umlXtext:PropertyAdapter></umlXtext:PropertyAdapter>
 					</xtext:XtextValueFactory.adapter>
-				</xtext:XtextValueFactory-->
-				<creation:EcorePropertyEditorFactory nsUri="http://www.eclipse.org/uml2/3.0.0/UML" className="Property" />
-			</ppe:MultiReference.factory>
+				</xtext:XtextValueFactory>
+			</ppe:MultiReference.factory-->
 		</ppe:MultiReference>
 	</Composite>
 </Composite>

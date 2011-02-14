@@ -11,7 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.uml;
 
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.papyrus.log.LogHelper;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -22,12 +21,13 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
+	/** The plug-in ID */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.properties"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
 
+	/** The plug-in's logger */
 	public static LogHelper log;
 
 	/**
@@ -47,10 +47,6 @@ public class Activator extends AbstractUIPlugin {
 		plugin = this;
 		log = new LogHelper(plugin);
 		ConfigurationManager.init();
-	}
-
-	public IPath getPreferencesPath() {
-		return getStateLocation();
 	}
 
 	/*

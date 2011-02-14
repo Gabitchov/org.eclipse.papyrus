@@ -99,11 +99,11 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 		currentValueLabel.setLayoutData(getDefaultLayoutData());
 
 		dialog = new ElementListSelectionDialog(parent.getShell(), labelProvider);
-		dialog.setImage(Activator.getImage("/icons/papyrus.png")); //$NON-NLS-1$
+		dialog.setImage(Activator.getDefault().getImage("/icons/papyrus.png")); //$NON-NLS-1$
 		dialog.setTitle(Messages.ReferenceDialog_SelectValue);
 
 		openDialogButton = factory.createButton(this, null, SWT.PUSH);
-		openDialogButton.setImage(Activator.getImage("/icons/Add_12x12.gif")); //$NON-NLS-1$
+		openDialogButton.setImage(Activator.getDefault().getImage("/icons/Add_12x12.gif")); //$NON-NLS-1$
 		openDialogButton.setToolTipText(Messages.ReferenceDialog_EditValue);
 		openDialogButton.addSelectionListener(new SelectionListener() {
 
@@ -123,7 +123,7 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 		});
 
 		unsetButton = factory.createButton(this, null, SWT.PUSH);
-		unsetButton.setImage(Activator.getImage("/icons/Delete_12x12.gif")); //$NON-NLS-1$
+		unsetButton.setImage(Activator.getDefault().getImage("/icons/Delete_12x12.gif")); //$NON-NLS-1$
 		unsetButton.setToolTipText(Messages.ReferenceDialog_UnsetValue);
 		unsetButton.addSelectionListener(new SelectionListener() {
 
@@ -250,6 +250,11 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 		//we don't do a real databinding here
 		getParent().addDisposeListener(this);
 		modelProperty.addChangeListener(this);
+		handleChange(null);
+	}
+
+	@Override
+	public void refreshValue() {
 		handleChange(null);
 	}
 

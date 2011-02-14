@@ -16,16 +16,20 @@ import org.eclipse.papyrus.properties.constraints.Constraint;
 import org.eclipse.papyrus.properties.contexts.ConfigProperty;
 import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
 import org.eclipse.papyrus.properties.contexts.ValueProperty;
+import org.eclipse.papyrus.properties.uml.util.UMLUtil;
 import org.eclipse.papyrus.properties.util.EMFHelper;
-import org.eclipse.papyrus.properties.util.UMLUtil;
 import org.eclipse.uml2.uml.Element;
 
+/**
+ * A Constraint to test if the given object is an instance of the given
+ * UML Metaclass. This constraint can recognize UML Objects hidden behind
+ * a GMF Edit Part or, in general, any IAdaptable.
+ * 
+ * @author Camille Letavernier
+ */
 public class UmlInstanceOfConstraint extends AbstractConstraint {
 
 	private String umlClassName;
-
-	public UmlInstanceOfConstraint() {
-	}
 
 	@Override
 	public void setConstraintDescriptor(ConstraintDescriptor descriptor) {
@@ -42,7 +46,7 @@ public class UmlInstanceOfConstraint extends AbstractConstraint {
 	public boolean match(Object selection) {
 		Element umlSemantic = UMLUtil.resolveUMLElement(selection);
 		if(umlSemantic != null) {
-			return EMFHelper.isSubclass(umlSemantic, umlClassName, UMLUtil.getUMLMetamodel());
+			return EMFHelper.isInstance(umlSemantic, umlClassName, UMLUtil.getUMLMetamodel());
 		}
 
 		return false;
@@ -70,22 +74,14 @@ public class UmlInstanceOfConstraint extends AbstractConstraint {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((umlClassName == null) ? 0 : umlClassName.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if(this == obj)
+	protected boolean equivalent(Constraint constraint) {
+		if(this == constraint)
 			return true;
-		if(obj == null)
+		if(constraint == null)
 			return false;
-		if(!(obj instanceof UmlInstanceOfConstraint))
+		if(!(constraint instanceof UmlInstanceOfConstraint))
 			return false;
-		UmlInstanceOfConstraint other = (UmlInstanceOfConstraint)obj;
+		UmlInstanceOfConstraint other = (UmlInstanceOfConstraint)constraint;
 		if(umlClassName == null) {
 			if(other.umlClassName != null)
 				return false;

@@ -7,12 +7,9 @@
 package org.eclipse.papyrus.properties.environment.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.papyrus.properties.environment.ConstraintType;
 import org.eclipse.papyrus.properties.environment.EnvironmentPackage;
 
@@ -31,6 +28,7 @@ import org.eclipse.papyrus.properties.environment.EnvironmentPackage;
  * @generated
  */
 public class ConstraintTypeImpl extends EObjectImpl implements ConstraintType {
+
 	/**
 	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -216,6 +214,30 @@ public class ConstraintTypeImpl extends EObjectImpl implements ConstraintType {
 		result.append(constraintClass);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if(object == null)
+			return false;
+
+		if(this == object)
+			return true;
+
+		if(object.getClass() == getClass()) {
+			ConstraintType constraint = (ConstraintType)object;
+			if(!getConstraintClass().equals(constraint.getConstraintClass())) {
+				return false;
+			}
+
+			if(!getLabel().equals(constraint.getLabel())) {
+				return false;
+			}
+
+			return true;
+		}
+
+		return false;
 	}
 
 } //ConstraintTypeImpl

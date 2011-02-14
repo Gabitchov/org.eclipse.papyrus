@@ -13,8 +13,25 @@ package org.eclipse.papyrus.properties.widgets;
 
 import org.eclipse.swt.widgets.Composite;
 
+/**
+ * A PropertyEditor for editing booleans with two Radio buttons
+ * 
+ * @see org.eclipse.papyrus.widgets.editors.BooleanRadio
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class BooleanRadio extends AbstractPropertyEditor {
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 */
 	public BooleanRadio(Composite parent, int style) {
 		super(new org.eclipse.papyrus.widgets.editors.BooleanRadio(parent, style));
 	}

@@ -12,12 +12,19 @@
 package org.eclipse.papyrus.properties.generation.wizard;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.properties.contexts.Context;
@@ -33,6 +40,7 @@ import org.eclipse.papyrus.properties.generation.fieldselection.FieldSelection;
 import org.eclipse.papyrus.properties.generation.fieldselection.PropertyDefinition;
 import org.eclipse.papyrus.properties.generation.generators.IGenerator;
 import org.eclipse.papyrus.properties.generation.layout.ILayoutGenerator;
+import org.eclipse.papyrus.properties.generation.messages.Messages;
 import org.eclipse.papyrus.properties.generation.wizard.widget.TernaryButton;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.properties.ui.PropertyEditor;
@@ -41,25 +49,44 @@ import org.eclipse.papyrus.properties.ui.ValueAttribute;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
-
+/**
+ * A Wizard for generating Property view contexts
+ * 
+ * @author Camille Letavernier
+ */
 public class CreateContextWizard extends Wizard implements INewWizard {
 
-	protected CreateContextMainPage mainPage;
+	CreateContextMainPage mainPage;
 
-	protected GeneratorPage generatorPage;
+	GeneratorPage generatorPage;
 
 	//protected LayoutPage layout;
 
-	protected SelectFieldsPage selectFieldsPage;
+	SelectFieldsPage selectFieldsPage;
 
+	/**
+	 * All available context generators
+	 */
 	protected static List<IGenerator> contextGenerators = new LinkedList<IGenerator>();
 
+	/**
+	 * All available layout generators
+	 */
 	protected static List<ILayoutGenerator> layoutGenerators = new LinkedList<ILayoutGenerator>();
 
+	/**
+	 * The generated context
+	 */
 	protected Context context;
 
+	/**
+	 * The IGenerator used to generate the context
+	 */
 	protected IGenerator generator;
 
+	/**
+	 * The ILayoutGenerator used to layout the context's sections
+	 */
 	protected ILayoutGenerator layoutGenerator;
 
 	@Override
@@ -78,9 +105,25 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 
 		FieldSelection fieldSelection = selectFieldsPage.getFieldSelection();
 
-		layoutGenerator = layoutGenerators.get(0);
+		URI contextURI = context.eResource().getURI();
+		Resource selectionResource = context.eResource().getResourceSet().createResource(URI.createURI(context.getName() + "FieldSelection.xmi").resolve(contextURI)); //$NON-NLS-1$
+		selectionResource.getContents().add(fieldSelection);
+		try {
+			selectionResource.save(null);
+		} catch (IOException ex) {
+			Activator.log.error("Couldn't persist the field selection model", ex); //$NON-NLS-1$
+		}
+
+		layoutGenerator = layoutGenerators.get(0); //TODO : Use the layoutGenerator combo
+
+
+
 		for(View view : context.getViews()) {
+			if(view.getConstraints().size() == 0) //TODO : Problem with external resource references
+				continue;
+
 			List<PropertyEditor> editors = new LinkedList<PropertyEditor>();
+
 			for(DataContextElement element : getAllContextElements(view.getDatacontexts())) {
 				for(Property property : element.getProperties()) {
 					if(isSelected(fieldSelection, property, view.getElementMultiplicity() != 1)) {
@@ -102,22 +145,45 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 			context.getViews().add(view);
 		}
 
-		try {
-			context.eResource().save(Collections.EMPTY_MAP);
-			//TODO : Add a progress bar here
-			for(Tab tab : context.getTabs()) {
-				for(Section section : tab.getSections()) {
-					section.getWidget().eResource().save(Collections.EMPTY_MAP);
-				}
-			}
-			return true;
-		} catch (IOException ex) {
-			Activator.log.error(ex);
-			return false;
+		int i = 1;
+		for(Tab tab : context.getTabs()) {
+			i += tab.getSections().size();
 		}
+		final int numberOfSections = i;
+		Job job = new Job(Messages.CreateContextWizard_propertyViewGenerationJobName + context.getName()) {
+
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				try {
+					monitor.beginTask(getName(), numberOfSections);
+
+					context.eResource().save(Collections.EMPTY_MAP);
+					monitor.worked(1);
+					for(Tab tab : context.getTabs()) {
+						for(Section section : tab.getSections()) {
+							if(monitor.isCanceled()) {
+								return Status.CANCEL_STATUS;
+							}
+							section.getWidget().eResource().save(Collections.EMPTY_MAP);
+							monitor.worked(1);
+						}
+					}
+					monitor.done();
+				} catch (IOException ex) {
+					Activator.log.error(ex);
+					return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.CreateContextWizard_propertyViewGenerationError + context.getName(), ex);
+				}
+				return Status.OK_STATUS;
+			}
+		};
+		job.setPriority(Job.INTERACTIVE);
+		job.setUser(true);
+		job.schedule();
+
+		return true;
 	}
 
-	public boolean isSelected(FieldSelection fieldSelection, Property property, boolean multiple) {
+	private boolean isSelected(FieldSelection fieldSelection, Property property, boolean multiple) {
 		PropertyDefinition definition = getPropertyDefinition(fieldSelection, property);
 		if(definition == null) {
 			return false;
@@ -135,7 +201,7 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 		return false;
 	}
 
-	public PropertyDefinition getPropertyDefinition(FieldSelection fieldSelection, Property property) {
+	PropertyDefinition getPropertyDefinition(FieldSelection fieldSelection, Property property) {
 		List<String> propertyPath = getPropertyPath(property.getContextElement());
 		if(propertyPath.isEmpty()) {
 			return null;
@@ -166,7 +232,7 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 		return null;
 	}
 
-	public ContextElement findByName(ContextElement source, String name) {
+	ContextElement findByName(ContextElement source, String name) {
 		for(ContextElement element : source.getElements()) {
 			if(element.getName().equals(name))
 				return element;
@@ -174,7 +240,7 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 		return null;
 	}
 
-	public List<String> getPropertyPath(DataContextElement element) {
+	List<String> getPropertyPath(DataContextElement element) {
 		List<String> result;
 		if(element.getPackage() == null) {
 			result = new LinkedList<String>();
@@ -185,7 +251,7 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 		return result;
 	}
 
-	public Set<DataContextElement> getAllContextElements(List<DataContextElement> source) {
+	private Set<DataContextElement> getAllContextElements(Collection<DataContextElement> source) {
 		Set<DataContextElement> result = new HashSet<DataContextElement>();
 		for(DataContextElement element : source) {
 			getAllContextElements(element, result);
@@ -193,7 +259,7 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 		return result;
 	}
 
-	public void getAllContextElements(DataContextElement source, Set<DataContextElement> result) {
+	private void getAllContextElements(DataContextElement source, Set<DataContextElement> result) {
 		if(result.contains(source))
 			return;
 
@@ -209,23 +275,35 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 		addPage(selectFieldsPage = new SelectFieldsPage());
 		//addPage(layout = new LayoutPage());
 
-		setWindowTitle("New Property view Context");
+		setWindowTitle(Messages.CreateContextWizard_pageTitle);
 
 	}
 
-	public void setGenerator(IGenerator generator) {
+	void setGenerator(IGenerator generator) {
 		this.generator = generator;
 		generatorPage.setGenerator(generator);
 	}
 
-	public void setContext(Context context) {
+	void setContext(Context context) {
 		this.context = context;
 	}
 
+	/**
+	 * Registers a new context Generator for the CreateContextWizard
+	 * 
+	 * @param generator
+	 *        The IGenerator to register
+	 */
 	public static void addGenerator(IGenerator generator) {
 		contextGenerators.add(generator);
 	}
 
+	/**
+	 * Registers a new Layout Generator for the CreateContextWizard
+	 * 
+	 * @param generator
+	 *        The ILayoutGenerator to register
+	 */
 	public static void addLayoutGenerator(ILayoutGenerator generator) {
 		layoutGenerators.add(generator);
 	}

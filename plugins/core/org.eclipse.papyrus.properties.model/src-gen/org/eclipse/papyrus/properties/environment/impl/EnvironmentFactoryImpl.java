@@ -68,6 +68,8 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 			case EnvironmentPackage.CONSTRAINT_TYPE: return createConstraintType();
 			case EnvironmentPackage.MODEL_ELEMENT_FACTORY_DESCRIPTOR: return createModelElementFactoryDescriptor();
 			case EnvironmentPackage.STANDARD_WIDGET_TYPE: return createStandardWidgetType();
+			case EnvironmentPackage.NAMESPACE: return createNamespace();
+			case EnvironmentPackage.MISC_CLASS: return createMiscClass();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -171,6 +173,26 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	public StandardWidgetType createStandardWidgetType() {
 		StandardWidgetTypeImpl standardWidgetType = new StandardWidgetTypeImpl();
 		return standardWidgetType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Namespace createNamespace() {
+		NamespaceImpl namespace = new NamespaceImpl();
+		return namespace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MiscClass createMiscClass() {
+		MiscClassImpl miscClass = new MiscClassImpl();
+		return miscClass;
 	}
 
 	/**

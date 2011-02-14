@@ -11,76 +11,93 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.modelelement;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.contexts.DataContextRoot;
 import org.eclipse.papyrus.properties.contexts.View;
 import org.eclipse.papyrus.properties.environment.ModelElementFactoryDescriptor;
-import org.eclipse.papyrus.properties.runtime.DataSource;
 import org.eclipse.papyrus.properties.util.ClassLoader;
+import org.eclipse.papyrus.properties.util.Util;
 import org.eclipse.papyrus.widgets.Activator;
 
+/**
+ * A Factory to build and populate DataSource with the right ModelElements
+ * 
+ * @author Camille Letavernier
+ */
 public class DataSourceFactory {
 
-	private DataSourceFactory() {
+	/**
+	 * Singleton instance for DataSourceFactory
+	 */
+	public static DataSourceFactory instance = new DataSourceFactory();
 
-	}
-
-	//DataContextElement : Class, Block
-	//QualifiedName : UML:Class, SysML:Blocks:Block
-	//RootPackage : UML, SysML
+	/**
+	 * Creates a new DataSource from a selection and a view.
+	 * 
+	 * @param selection
+	 *        The selection of Objects
+	 * @param view
+	 *        The view to display
+	 * @return
+	 *         The DataSource that can be passed to the DisplayEngine to display the view
+	 */
 	public DataSource createDataSourceFromSelection(IStructuredSelection selection, View view) {
-
-		SelectionEntry selectionEntry = new SelectionEntry(selection, view);
-
-		if(!sources.containsKey(selectionEntry)) {
-
-			Collection<DataContextElement> rootContextElements = view.getDatacontexts();
-
-			DataSource source = new DataSource(view);
-
-			Set<DataContextElement> contextElements = getAllContextElements(rootContextElements);
-			for(DataContextElement contextElement : contextElements) {
-				String key = getQualifiedName(contextElement);
-				ModelElement modelElement = createModelElement(contextElement, selection);
-				if(modelElement == null) {
-					Activator.log.warn("Cannot find a matching ModelElement for " + key); //$NON-NLS-1$
-				} else {
-					source.addModelElement(key, modelElement);
-				}
-			}
-
-			sources.put(selectionEntry, source);
-		}
-
-		return sources.get(selectionEntry);
+		return new DataSource(view, selection);
+		//		SelectionEntry selectionEntry = new SelectionEntry(selection, view);
+		//
+		//		if(!sources.containsKey(selectionEntry)) {
+		//
+		//			//			Collection<DataContextElement> rootContextElements = view.getDatacontexts();
+		//
+		//			DataSource source = new DataSource(view, selection);
+		//
+		//			//			Set<DataContextElement> contextElements = getAllContextElements(rootContextElements);
+		//			//			for(DataContextElement contextElement : contextElements) {
+		//			//				String key = getQualifiedName(contextElement);
+		//			//				ModelElement modelElement = createModelElement(contextElement, selection);
+		//			//				if(modelElement == null) {
+		//			//					Activator.log.warn("Cannot find a matching ModelElement for " + key); //$NON-NLS-1$
+		//			//				} else {
+		//			//					source.addModelElement(key, modelElement);
+		//			//				}
+		//			//			}
+		//
+		//			sources.put(selectionEntry, source);
+		//		}
+		//
+		//		return sources.get(selectionEntry);
 	}
 
-	protected Set<DataContextElement> getAllContextElements(Collection<DataContextElement> source) {
-		Set<DataContextElement> result = new HashSet<DataContextElement>();
-		getAllContextElements(source, result);
-		return result;
+	/**
+	 * Returns the ModelElement corresponding the the given propertyPath and DataSource
+	 * 
+	 * @param source
+	 *        The DataSource used to retrieved informations such as the View and the Selection
+	 * @param propertyPath
+	 *        The path describing the property for which we want a ModelElement
+	 * @return
+	 *         The matching modelElement
+	 */
+	public ModelElement getModelElementFromPropertyPath(DataSource source, String propertyPath) {
+		ModelElement modelElement = findModelElement(source, propertyPath);
+		return modelElement;
 	}
 
-	public void getAllContextElements(Collection<DataContextElement> source, Set<DataContextElement> result) {
-		for(DataContextElement element : source) {
-			if(!result.contains(element)) {
-				result.add(element);
-				getAllContextElements(element.getSupertypes(), result);
-			}
-		}
-	}
-
-	protected ModelElement createModelElement(DataContextElement contextElement, IStructuredSelection selection) {
+	/**
+	 * Creates a ModelElement from the given DataContextElement and Selection.
+	 * 
+	 * @param contextElement
+	 *        The contextElement for which we are creating a ModelElement
+	 * @param selection
+	 *        The list of objects currently selected
+	 * @return
+	 *         The model element corresponding to the given contextElement and selection
+	 */
+	private ModelElement createModelElement(DataContextElement contextElement, IStructuredSelection selection) {
 		if(selection.size() == 1) { //Single Selection
 			ModelElement modelElement = createFromSource(selection.getFirstElement(), contextElement);
 			return modelElement;
@@ -98,41 +115,17 @@ public class DataSourceFactory {
 		}
 	}
 
-	public List<DataSource> createSubDataSource(ModelElement currentElement, View view, DataSource source, String propertyPath) {
-		List<DataSource> sourceResult = new LinkedList<DataSource>();
-		for(DataContextElement context : getAllContextElements(view.getDatacontexts())) {
-			if(view.getElementMultiplicity() == 1) { //Single selection
-				List<ModelElement> elements = createFromDataSource(currentElement, source, propertyPath, context);
-				int i = 0;
-				for(ModelElement element : elements) {
-					getDataSource(sourceResult, i, view).addModelElement(getQualifiedName(context), element);
-					i++;
-				}
-			} else { //Multiple selection
-				//Does it even make sense ?
-				throw new UnsupportedOperationException();
-			}
-		}
-		return sourceResult;
-	}
-
-	public DataSource getDataSource(List<DataSource> source, int index, View view) {
-		while(source.size() <= index) {
-			source.add(new DataSource(view));
-		}
-		return source.get(index);
-	}
-
-	public List<ModelElement> createFromDataSource(ModelElement currentElement, DataSource source, String propertyPath, DataContextElement context) {
-		ModelElementFactory factory = getFactory(context);
-
-		if(factory == null)
-			return new LinkedList<ModelElement>();
-
-		return factory.createFromDataSource(currentElement, source, propertyPath, context);
-	}
-
-	public ModelElementFactory getFactory(DataContextElement context) {
+	/**
+	 * Retrieves the ModelElementFactory for the given DataContextElement.
+	 * The ModelElementFactory is declared by the DataContextRoot owning the given
+	 * DataContextElement
+	 * 
+	 * @param context
+	 *        The DataContextElement for which we want to retrieve the ModelElementFactory
+	 * @return
+	 *         The ModelElementFactory corresponding to the given DataContextElement
+	 */
+	private ModelElementFactory getFactory(DataContextElement context) {
 		ClassLoader loader = new ClassLoader();
 		DataContextRoot rootPackage = getRootPackage(context);
 		ModelElementFactoryDescriptor factoryDescriptor = rootPackage.getModelElementFactory();
@@ -148,7 +141,7 @@ public class DataSourceFactory {
 		return factory;
 	}
 
-	public ModelElement createFromSource(Object source, DataContextElement context) {
+	private ModelElement createFromSource(Object source, DataContextElement context) {
 		ModelElementFactory factory = getFactory(context);
 
 		if(factory == null)
@@ -157,55 +150,66 @@ public class DataSourceFactory {
 		return factory.createFromSource(source, context);
 	}
 
-	public DataContextRoot getRootPackage(DataContextElement context) {
+	private DataContextRoot getRootPackage(DataContextElement context) {
 		if(context.getPackage() == null)
 			return (DataContextRoot)context;
 		return getRootPackage(context.getPackage());
 	}
 
-	public String getQualifiedName(DataContextElement context) {
+	private String getQualifiedName(DataContextElement context) {
 		if(context.getPackage() == null)
 			return context.getName();
 		return getQualifiedName(context.getPackage()) + ":" + context.getName(); //$NON-NLS-1$
 	}
 
-	public String getRootPackageName(DataContextElement context) {
-		return getRootPackage(context).getName();
+	private ModelElement findModelElement(DataSource source, String propertyPath) {
+		String key = propertyPath.substring(0, propertyPath.lastIndexOf(":")); //$NON-NLS-1$
+		for(Context context : Util.getDependencies(source.getView().getContext())) {
+			DataContextElement element = Util.getContextElementByQualifiedName(key, context.getDataContexts());
+			if(element != null) {
+				ModelElement modelElement = DataSourceFactory.instance.createModelElement(element, source.getSelection());
+				return modelElement;
+			}
+		}
+		return null;
 	}
 
-	public void addFactory(String contextID, ModelElementFactory factory) {
-		modelElementFactories.put(contextID, factory);
+	/**
+	 * Singleton Constructor.
+	 */
+	private DataSourceFactory() {
+
 	}
 
-	public static DataSourceFactory instance = new DataSourceFactory();
+	//	private String getRootPackageName(DataContextElement context) {
+	//		return getRootPackage(context).getName();
+	//	}
 
-	private Map<SelectionEntry, DataSource> sources = new HashMap<SelectionEntry, DataSource>();
-
-	private class SelectionEntry {
-
-		private IStructuredSelection selection;
-
-		private View view;
-
-		public SelectionEntry(IStructuredSelection selection, View view) {
-			this.selection = selection;
-			this.view = view;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if(!(obj instanceof SelectionEntry))
-				return false;
-
-			SelectionEntry other = (SelectionEntry)obj;
-			return other.view.equals(view) && selection.equals(other.selection);
-		}
-
-		@Override
-		public int hashCode() {
-			return selection.hashCode() + view.hashCode();
-		}
-	}
-
-	private Map<String, ModelElementFactory> modelElementFactories = new HashMap<String, ModelElementFactory>();
+	//	private class SelectionEntry {
+	//
+	//		private IStructuredSelection selection;
+	//
+	//		private View view;
+	//
+	//		public SelectionEntry(IStructuredSelection selection, View view) {
+	//			this.selection = selection;
+	//			this.view = view;
+	//		}
+	//
+	//		@Override
+	//		public boolean equals(Object obj) {
+	//			if(!(obj instanceof SelectionEntry))
+	//				return false;
+	//
+	//			SelectionEntry other = (SelectionEntry)obj;
+	//			return other.view.equals(view) && selection.equals(other.selection);
+	//		}
+	//
+	//		@Override
+	//		public int hashCode() {
+	//			return selection.hashCode() + view.hashCode();
+	//		}
+	//	}
+	//
+	//	//private Map<SelectionEntry, DataSource> sources = new HashMap<SelectionEntry, DataSource>();
 }

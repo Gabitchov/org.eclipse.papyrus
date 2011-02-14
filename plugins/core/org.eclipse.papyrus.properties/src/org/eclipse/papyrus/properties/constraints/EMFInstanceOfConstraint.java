@@ -77,7 +77,7 @@ public class EMFInstanceOfConstraint extends AbstractConstraint {
 		EObject selectedItem = EMFHelper.getEObject(selection);
 
 		if(selectedItem != null) {
-			return EMFHelper.isSubclass(selectedItem, className, metamodel);
+			return EMFHelper.isInstance(selectedItem, className, metamodel);
 		}
 		return false;
 	}
@@ -88,23 +88,14 @@ public class EMFInstanceOfConstraint extends AbstractConstraint {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((className == null) ? 0 : className.hashCode());
-		result = prime * result + ((nsUri == null) ? 0 : nsUri.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if(this == obj)
+	protected boolean equivalent(Constraint constraint) {
+		if(this == constraint)
 			return true;
-		if(obj == null)
+		if(constraint == null)
 			return false;
-		if(!(obj instanceof EMFInstanceOfConstraint))
+		if(!(constraint instanceof EMFInstanceOfConstraint))
 			return false;
-		EMFInstanceOfConstraint other = (EMFInstanceOfConstraint)obj;
+		EMFInstanceOfConstraint other = (EMFInstanceOfConstraint)constraint;
 		if(className == null) {
 			if(other.className != null)
 				return false;

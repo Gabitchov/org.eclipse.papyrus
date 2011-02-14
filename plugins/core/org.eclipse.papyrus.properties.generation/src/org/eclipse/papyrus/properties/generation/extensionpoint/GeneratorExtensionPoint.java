@@ -17,11 +17,19 @@ import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.generation.generators.IGenerator;
 import org.eclipse.papyrus.properties.generation.wizard.CreateContextWizard;
 
-
+/**
+ * Handles the extension point org.eclipse.papyrus.properties.generation.generator
+ * Registers the given Generator to the Property view generation wizard
+ * 
+ * @author Camille Letavernier
+ */
 public class GeneratorExtensionPoint {
 
 	private final String EXTENSION_ID = "org.eclipse.papyrus.properties.generation.generator"; //$NON-NLS-1$
 
+	/**
+	 * Constructor.
+	 */
 	public GeneratorExtensionPoint() {
 
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);

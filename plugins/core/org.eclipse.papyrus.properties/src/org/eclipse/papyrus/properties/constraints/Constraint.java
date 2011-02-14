@@ -23,13 +23,50 @@ import org.eclipse.papyrus.properties.contexts.View;
  */
 public interface Constraint {
 
+	/**
+	 * Sets the Constraint Descriptor for this constraint.
+	 * The constraint descriptor may contain some parameters to configure this
+	 * constraint
+	 * 
+	 * @param descriptor
+	 *        The constraint descriptor to be associated to this constraint
+	 */
 	public void setConstraintDescriptor(ConstraintDescriptor descriptor);
 
+	/**
+	 * Tests if this constraint matches the given object
+	 * 
+	 * @param selection
+	 *        The object to be tested against this constraint
+	 * @return
+	 *         True if this constraint matches the given object
+	 */
 	public boolean match(Object selection);
 
+	/**
+	 * Returns the view associated to this constraint, or null if the constraint is associated to another
+	 * kind of display unit (e.g. a section)
+	 * 
+	 * @return
+	 *         The view associated to this constraint
+	 */
 	public View getView();
 
+	/**
+	 * Tests if this constraint should override the given constraint. If true,
+	 * the other constraint's display unit won't be displayed. A constraint should
+	 * never override itself, and you should ensure that there are no loops in the
+	 * constraint overriding graph. If such a loops occurs, nothing will be displayed
+	 * 
+	 * @param constraint
+	 *        The tested constraint
+	 * @return
+	 *         True if this constraint overrides the given constraint
+	 */
 	public boolean overrides(Constraint constraint);
 
+	/**
+	 * @return the constraint descriptor associated to this constraint
+	 */
 	public ConstraintDescriptor getDescriptor();
 }

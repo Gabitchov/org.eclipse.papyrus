@@ -25,66 +25,65 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.properties.Activator;
-import org.eclipse.papyrus.properties.databinding.CommitableObservableList;
+import org.eclipse.papyrus.properties.databinding.EMFObservableList;
 import org.eclipse.papyrus.properties.databinding.EMFObservableValue;
 import org.eclipse.papyrus.properties.providers.EMFObjectLabelProvider;
 import org.eclipse.papyrus.properties.providers.EcoreEnumeratorContentProvider;
 import org.eclipse.papyrus.properties.providers.EcoreReferenceContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
+/**
+ * A ModelElement to manipulate EMF objects.
+ * This ModelElement uses EMFProperties to retrieve Observables when there
+ * is no Editing Domain, and {@link EMFObservableValue} / {@link EMFObservableList} when
+ * an Editing domain is available
+ * 
+ * @author Camille Letavernier
+ */
 public class EMFModelElement implements ModelElement {
 
+	/**
+	 * The EObject manipulated by this ModelElement
+	 */
 	protected EObject source;
 
+	/**
+	 * The Editing Domain of the EObject for this ModelElement
+	 */
 	protected EditingDomain domain;
 
-	protected ILabelProvider labelProvider;
-
-	//	private static ILabelProvider initLabelProvider() {
-	//		final ILabelProvider provider = DisplayUtils.getLabelProvider();
-	//		if(provider != null) {
-	//			return provider;
-	//		}
-	//
-	//		AdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-	//
-	//		Activator.log.warn("Impossible to find the label provider from the service registry"); //$NON-NLS-1$
-	//		// adapter factory used by EMF objects
-	//		return new AdapterFactoryLabelProvider(factory) {
-	//
-	//			/**
-	//			 * This implements {@link ILabelProvider}.getText by forwarding it
-	//			 * to an object that implements {@link IItemLabelProvider#getText
-	//			 * IItemLabelProvider.getText}
-	//			 */
-	//			@Override
-	//			public String getText(Object object) {
-	//				// Get the adapter from the factory.
-	//				//
-	//				IItemLabelProvider itemLabelProvider = (IItemLabelProvider)adapterFactory.adapt(object, IItemLabelProvider.class);
-	//				if(object instanceof EObject) {
-	//					if(((EObject)object).eIsProxy()) {
-	//						return "Proxy - " + object; //$NON-NLS-1$
-	//					}
-	//				}
-	//				return itemLabelProvider != null ? itemLabelProvider.getText(object) : object == null ? "" : object.toString(); //$NON-NLS-1$
-	//			}
-	//		};
-	//	}
-
+	/**
+	 * 
+	 * Constructs a new EMFModelElement for the given EObject
+	 * 
+	 * @param source
+	 */
 	public EMFModelElement(EObject source) {
 		this.source = source;
 	}
 
+	/**
+	 * 
+	 * Constructs a new EMFModelElement for the given EObject and Editing Domain
+	 * 
+	 * @param source
+	 * @param domain
+	 */
 	public EMFModelElement(EObject source, EditingDomain domain) {
 		this.source = source;
 		this.domain = domain;
 	}
 
+	/**
+	 * @return the EditingDomain for this ModelElement
+	 */
 	public EditingDomain getDomain() {
 		return domain;
 	}
 
+	/**
+	 * @return the EObject for this ModelElement
+	 */
 	public EObject getSource() {
 		return source;
 	}
@@ -92,8 +91,11 @@ public class EMFModelElement implements ModelElement {
 	public IObservable getObservable(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature == null)
+			return null;
+
 		if(feature.getUpperBound() != 1) {
-			IObservableList list = domain == null ? EMFProperties.list(featurePath).observe(source) : new CommitableObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
+			IObservableList list = domain == null ? EMFProperties.list(featurePath).observe(source) : new EMFObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
 			return list;
 		}
 
@@ -117,20 +119,39 @@ public class EMFModelElement implements ModelElement {
 		return currentSource;
 	}
 
-	public String getLabel(String propertyPath) {
-		return null;
-	}
-
+	/**
+	 * Returns the feature represented by the given FeaturePath
+	 * 
+	 * @param featurePath
+	 * @return
+	 *         The last feature obtained by navigating the feature path
+	 */
 	public EStructuralFeature getFeature(FeaturePath featurePath) {
 		EStructuralFeature[] features = featurePath.getFeaturePath();
 		return features[features.length - 1];
 	}
 
+	/**
+	 * Returns the feature represented by the given propertyPath.
+	 * 
+	 * @param propertyPath
+	 *        The property path may contain one or more dots to navigate the properties (e.g. : feature1.feature2.feature3)
+	 * @return
+	 *         The last feature obtained by resolving the full property path
+	 */
 	public EStructuralFeature getFeature(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		return getFeature(featurePath);
 	}
 
+	/**
+	 * Returns the featurePath corresponding to the given propertyPath
+	 * 
+	 * @param propertyPath
+	 *        The property path may contain one or more dots to navigate the properties (e.g. : feature1.feature2.feature3)
+	 * @return
+	 *         The featurePath corresponding to the given propertyPath
+	 */
 	public FeaturePath getFeaturePath(String propertyPath) {
 		String[] featureNames = propertyPath.split("\\."); //$NON-NLS-1$
 		EStructuralFeature[] features = new EStructuralFeature[featureNames.length];
@@ -176,23 +197,30 @@ public class EMFModelElement implements ModelElement {
 	}
 
 	public boolean isOrdered(String propertyPath) {
-
 		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature == null)
+			return true;
 		return feature.isOrdered();
 	}
 
 	public boolean isUnique(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature == null)
+			return false;
 		return feature.isUnique();
 	}
 
 	public boolean isMandatory(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature == null)
+			return false;
 		return feature.isRequired();
 	}
 
 	public boolean isEditable(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature == null)
+			return false;
 		return !feature.isDerived() && feature.isChangeable();
 	}
 }
