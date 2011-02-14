@@ -44,7 +44,7 @@ public class OperationRule implements INavigationRule {
 		}
 
 		UMLRuleHelper.addBehaviorCreatedNavigableElements(nextPossibleElements, currentNavElement, feature, new IModelLinker() {
-			
+
 			public void linkToModel(EObject toLink) {
 				// TODO ask for container ?
 				org.eclipse.uml2.uml.Class owner = op.getClass_();

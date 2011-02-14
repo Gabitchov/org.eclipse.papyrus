@@ -18,8 +18,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * This class represents an element that already exists in the navigated model.
+ * 
  * @author mvelten
- *
+ * 
  */
 public class ExistingNavigableElement extends NavigableElement {
 

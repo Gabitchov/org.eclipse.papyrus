@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * from an other element throught a feature using defined navigation rules.
  * 
  * @author mvelten
- *
+ * 
  */
 public abstract class NavigableElement implements Comparable<NavigableElement> {
 
@@ -38,7 +38,7 @@ public abstract class NavigableElement implements Comparable<NavigableElement> {
 
 	public NavigableElement(EObject element, NavigableElement previousNavigableElement, EStructuralFeature feature) {
 		this(element, feature);
-		if (previousNavigableElement != null) {
+		if(previousNavigableElement != null) {
 			this.depth = previousNavigableElement.getDepth() + 1;
 		}
 	}

@@ -41,7 +41,7 @@ public class StateRule implements INavigationRule {
 			nextPossibleElements.add(new ExistingNavigableElement(state.getDoActivity(), UMLPackage.Literals.STATE__DO_ACTIVITY));
 		} else {
 			UMLRuleHelper.addBehaviorCreatedNavigableElements(nextPossibleElements, currentNavElement, UMLPackage.Literals.STATE__DO_ACTIVITY, new IModelLinker() {
-				
+
 				public void linkToModel(EObject toLink) {
 					state.setDoActivity((Behavior)toLink);
 				}
@@ -52,7 +52,7 @@ public class StateRule implements INavigationRule {
 			nextPossibleElements.add(new ExistingNavigableElement(state.getEntry(), UMLPackage.Literals.STATE__ENTRY));
 		} else {
 			UMLRuleHelper.addBehaviorCreatedNavigableElements(nextPossibleElements, currentNavElement, UMLPackage.Literals.STATE__ENTRY, new IModelLinker() {
-				
+
 				public void linkToModel(EObject toLink) {
 					state.setEntry((Behavior)toLink);
 				}
@@ -63,7 +63,7 @@ public class StateRule implements INavigationRule {
 			nextPossibleElements.add(new ExistingNavigableElement(state.getExit(), UMLPackage.Literals.STATE__EXIT));
 		} else {
 			UMLRuleHelper.addBehaviorCreatedNavigableElements(nextPossibleElements, currentNavElement, UMLPackage.Literals.STATE__EXIT, new IModelLinker() {
-				
+
 				public void linkToModel(EObject toLink) {
 					state.setExit((Behavior)toLink);
 				}

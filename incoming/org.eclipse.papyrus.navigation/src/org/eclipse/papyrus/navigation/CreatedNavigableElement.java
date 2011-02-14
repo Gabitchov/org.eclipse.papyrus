@@ -21,8 +21,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * This element is not currently linked to the model, but it can be
  * by using linkToModel if the user decides to navigate to it,
  * to create a diagram on it for example.
+ * 
  * @author mvelten
- *
+ * 
  */
 public class CreatedNavigableElement extends NavigableElement {
 
@@ -43,7 +44,7 @@ public class CreatedNavigableElement extends NavigableElement {
 	public CreatedNavigableElement(EObject element, NavigableElement previousNavigableElement, EStructuralFeature feature, IModelLinker modelLinker, IBaseNameSetter baseNameSetter) {
 		super(element, previousNavigableElement, feature);
 		this.previousNavigableElement = previousNavigableElement;
-		this.modelLinker  = modelLinker;
+		this.modelLinker = modelLinker;
 		this.baseNameSetter = baseNameSetter;
 	}
 
@@ -52,13 +53,13 @@ public class CreatedNavigableElement extends NavigableElement {
 	}
 
 	public void linkToModel() {
-		if (modelLinker != null) {
+		if(modelLinker != null) {
 			modelLinker.linkToModel(getElement());
 		}
 	}
 
 	public void setBaseName(String base) {
-		if (baseNameSetter != null) {
+		if(baseNameSetter != null) {
 			baseNameSetter.setBaseName(base, getElement());
 		}
 	}

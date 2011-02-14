@@ -19,9 +19,11 @@ import org.eclipse.emf.ecore.EObject;
  * This interface allows to set the base name of an element.
  * The base can then be used to derive a more useful name,
  * containing the name of the element type for example.
+ * 
  * @author mvelten
- *
+ * 
  */
 public interface IBaseNameSetter {
+
 	public void setBaseName(String base, EObject toName);
 }

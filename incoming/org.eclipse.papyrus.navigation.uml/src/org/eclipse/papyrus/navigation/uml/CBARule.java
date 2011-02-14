@@ -47,7 +47,7 @@ public class CBARule implements INavigationRule {
 			nextPossibleElements.add(new ExistingNavigableElement(cba.getBehavior(), feature));
 		} else {
 			UMLRuleHelper.addBehaviorCreatedNavigableElements(nextPossibleElements, currentNavElement, feature, new IModelLinker() {
-				
+
 				public void linkToModel(EObject toLink) {
 					// TODO ask for container ?
 					org.eclipse.uml2.uml.Package owner = cba.getActivity().getNearestPackage();

@@ -46,7 +46,7 @@ public class TransitionRule implements INavigationRule {
 			nextPossibleElements.add(new ExistingNavigableElement(transition.getEffect(), feature));
 		} else {
 			UMLRuleHelper.addBehaviorCreatedNavigableElements(nextPossibleElements, currentNavElement, feature, new IModelLinker() {
-				
+
 				public void linkToModel(EObject toLink) {
 					transition.setEffect((Behavior)toLink);
 				}
