@@ -17,9 +17,11 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * This interface is used to link an element to the original model.
+ * 
  * @author mvelten
- *
+ * 
  */
 public interface IModelLinker {
+
 	public void linkToModel(EObject toLink);
 }

@@ -56,8 +56,7 @@ public class PackageRule implements INavigationRule {
 			public void linkToModel(EObject toLink) {
 				pack.getPackagedElements().add((PackageableElement)toLink);
 			}
-		}
-		, UMLBaseNameSetter.instance));
+		}, UMLBaseNameSetter.instance));
 
 		// provide the possibility to create behavior in package as structural element : 
 		// this allows to easily share behavior between elements using a package as library

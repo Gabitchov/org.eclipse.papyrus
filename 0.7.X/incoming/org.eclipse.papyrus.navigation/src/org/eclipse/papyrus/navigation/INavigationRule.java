@@ -19,13 +19,15 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * This interface defines a navigation rule.
+ * 
  * @author mvelten
- *
+ * 
  */
 public interface INavigationRule {
 
 	/**
 	 * Tests if an element is supported by this rule.
+	 * 
 	 * @param element
 	 * @return
 	 */
@@ -33,6 +35,7 @@ public interface INavigationRule {
 
 	/**
 	 * Retrieve a list of the next possible navigation possibilities.
+	 * 
 	 * @param currentNavElement
 	 * @return a list of navigable elements
 	 */

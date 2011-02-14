@@ -8,3 +8,4 @@ Require-Bundle: org.eclipse.papyrus.navigation;bundle-version="0.7.3",
  org.eclipse.uml2.uml,
  org.eclipse.papyrus.umlutils
 Bundle-Vendor: %providerName
+Bundle-Localization: plugin

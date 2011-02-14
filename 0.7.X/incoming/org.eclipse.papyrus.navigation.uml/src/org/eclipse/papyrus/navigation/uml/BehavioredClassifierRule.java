@@ -48,7 +48,7 @@ public class BehavioredClassifierRule implements INavigationRule {
 		}
 
 		UMLRuleHelper.addBehaviorCreatedNavigableElements(nextPossibleElements, currentNavElement, classifierBehaviorFeature, new IModelLinker() {
-			
+
 			public void linkToModel(EObject toLink) {
 				behavioredClassifier.setClassifierBehavior((Behavior)toLink);
 			}
@@ -57,13 +57,13 @@ public class BehavioredClassifierRule implements INavigationRule {
 		EStructuralFeature ownedBehaviorFeature = UMLPackage.Literals.BEHAVIORED_CLASSIFIER__OWNED_BEHAVIOR;
 
 		for(Behavior ownedBehavior : behavioredClassifier.getOwnedBehaviors()) {
-			if (ownedBehavior != null && !ownedBehavior.equals(classifierBehavior)) {
-				nextPossibleElements.add(new ExistingNavigableElement(ownedBehavior, ownedBehaviorFeature));	
+			if(ownedBehavior != null && !ownedBehavior.equals(classifierBehavior)) {
+				nextPossibleElements.add(new ExistingNavigableElement(ownedBehavior, ownedBehaviorFeature));
 			}
 		}
 
 		UMLRuleHelper.addBehaviorCreatedNavigableElements(nextPossibleElements, currentNavElement, ownedBehaviorFeature, new IModelLinker() {
-			
+
 			public void linkToModel(EObject toLink) {
 				behavioredClassifier.getOwnedBehaviors().add((Behavior)toLink);
 			}
