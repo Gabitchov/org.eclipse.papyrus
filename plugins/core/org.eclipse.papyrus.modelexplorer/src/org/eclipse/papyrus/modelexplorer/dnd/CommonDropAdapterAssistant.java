@@ -34,6 +34,10 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.util.LocalSelectionTransfer;
@@ -42,6 +46,9 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.modelexplorer.handler.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.TransferData;
@@ -59,7 +66,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	@Override
 	public IStatus handleDrop(CommonDropAdapter dropAdapter,
-		DropTargetEvent dropTargetEvent, Object dropTarget) {
+			DropTargetEvent dropTargetEvent, Object dropTarget) {
 		Object targetElement = (Object) dropTarget;
 		execute(getDrop(targetElement));
 		return null;
@@ -74,61 +81,18 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	 * @param the EREFERENCE for the role of the child element, can be null
 	 * @return the list of commands to to the drop
 	 */
-	@SuppressWarnings("unchecked")
 	protected List<Command> getDropIntoCommand(TransactionalEditingDomain domain,EObject targetOwner, EObject childElement,EReference eref){
 		ArrayList<Command> commandList= new ArrayList<Command>();
-		
-		//try to crete a command on for this reference
-		if(eref!=null){
-			ArrayList<EObject> tmp=new ArrayList<EObject>();
-			tmp.add(childElement);
-			if(targetOwner.eGet(eref) instanceof Collection<?>){
-				tmp.addAll((Collection<EObject>)targetOwner.eGet(eref));}
-			//to allow the undo, the creation of the remove command has to be explicit
-			Command emfCommand= RemoveCommand.create(domain, childElement);
-			emfCommand=emfCommand.chain(SetCommand.create(domain, targetOwner, eref, tmp));
-			commandList.add(emfCommand);
+		MoveRequest moveRequest= new MoveRequest(targetOwner, childElement);
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetOwner);
+		if(provider != null) {
+			// Retrieve delete command from the Element Edit service
+			ICommand command = provider.getEditCommand(moveRequest);
 
-		}
-
-		else{
-			//ref is null
-			ArrayList<EStructuralFeature> possibleEFeatures= new ArrayList<EStructuralFeature>();
-			EList<EStructuralFeature> featureList=targetOwner.eClass().getEAllStructuralFeatures();
-			
-			//look for all possible feature betwen the owner and the child element
-			Iterator<EStructuralFeature> iterator= featureList.iterator();
-			while (iterator.hasNext()) {
-				EStructuralFeature eStructuralFeature = (EStructuralFeature) iterator.next();
-
-				if( eStructuralFeature instanceof EReference){
-					EReference ref= (EReference)eStructuralFeature;
-
-					if( ref.isContainment()){
-
-						if( isSubClass(ref.getEType(),childElement.eClass() )){
-							possibleEFeatures.add(eStructuralFeature);
-						}
-
-					}
-				}
+			if(command != null) {
+				commandList.add( new GMFtoEMFCommandWrapper(command));
 			}
-			//for each feature create a  set command 
-			Iterator<EStructuralFeature> iteratorFeature= possibleEFeatures.iterator();
-			while (iteratorFeature.hasNext()) {
-				EStructuralFeature eStructuralFeature = (EStructuralFeature) iteratorFeature
-				.next();
-				ArrayList<EObject> tmp=new ArrayList<EObject>();
-				tmp.add(childElement);
-				if(targetOwner.eGet(eStructuralFeature) instanceof Collection<?>){
-					tmp.addAll((Collection<EObject>)targetOwner.eGet(eStructuralFeature));
-				}
-				//to allow the undo, the creation of the remove command has to be explicit
-				Command emfCommand= RemoveCommand.create(domain, childElement);
-				emfCommand=emfCommand.chain( SetCommand.create(domain, targetOwner, eStructuralFeature, tmp));
-				commandList.add(emfCommand);
 
-			}
 		}
 		return commandList;
 	}
@@ -144,12 +108,16 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		ArrayList<Command> commandList= new ArrayList<Command>();
 		EReference eref= NotationPackage.eINSTANCE.getView_Element();
 		if(eref!=null){
-			ArrayList<EObject> tmp=new ArrayList<EObject>();
-			tmp.add(childElement);
-			if(targetOwner.eGet(eref) instanceof Collection<?>){
-				tmp.addAll((Collection<EObject>)targetOwner.eGet(eref));}
+			SetRequest setRequest= new SetRequest(childElement, eref, targetOwner);
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(childElement);
+			if(provider != null) {
+				// Retrieve delete command from the Element Edit service
+				ICommand command = provider.getEditCommand(setRequest);
 
-			commandList.add( SetCommand.create(domain, childElement, eref, targetOwner));
+				if(command != null) {
+					commandList.add( new GMFtoEMFCommandWrapper(command));
+				}
+			}
 		}
 
 
@@ -168,7 +136,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		ArrayList<Command> commandList= new ArrayList<Command>();
 		ArrayList<EStructuralFeature> possibleEFeatures= new ArrayList<EStructuralFeature>();
 		EList<EStructuralFeature> featureList=targetOwner.eClass().getEAllStructuralFeatures();
-		
+
 		//find the feature between childreen and owner
 		Iterator<EStructuralFeature> iterator= featureList.iterator();
 		while (iterator.hasNext()) {
@@ -186,7 +154,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 				}
 			}
 		}
-		
+
 		//create the command
 		Iterator<EStructuralFeature> iteratorFeature= possibleEFeatures.iterator();
 		while (iteratorFeature.hasNext()) {
@@ -213,8 +181,17 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 			}
 			else{tmp.add(newElement);
 			}
-			commandList.add( SetCommand.create(domain, targetOwner, eStructuralFeature, tmp));
 
+			SetRequest setRequest= new SetRequest(targetOwner, eStructuralFeature, tmp);
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetOwner);
+			if(provider != null) {
+				// Retrieve delete command from the Element Edit service
+				ICommand command = provider.getEditCommand(setRequest);
+
+				if(command != null) {
+					commandList.add( new GMFtoEMFCommandWrapper(command));
+				}
+			}
 		}
 		return commandList;
 	}
@@ -305,7 +282,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	@Override
 	public IStatus validateDrop(Object target, int operation,
-		TransferData transferType) {
+			TransferData transferType) {
 		List<Command> commandList=getDrop(target);
 		//List<Command> commandList=getDropCommand(target);
 		if(canDrop(commandList)){
