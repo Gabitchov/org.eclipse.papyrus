@@ -9,7 +9,6 @@ import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffPackage;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
-import org.eclipse.emf.compare.util.AdapterUtils;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.StyledString;
@@ -242,8 +241,8 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 
 	@Override
 	public StyledString caseAttributeChangeLeftTarget(AttributeChangeLeftTarget object) {
-		final String attributeLabel = AdapterUtils.getItemProviderText(object.getAttribute());
-		final String elementLabel = AdapterUtils.getItemProviderText(object.getRightElement());
+		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
+		final String elementLabel = getLabelProvider().getText(object.getRightElement());
 
 		if(object.isRemote()) {
 			return formatStyledString("{0} has been remotely removed from attribute {1} in {2}", attributeValueToString(object.getLeftTarget()), attributeLabel, elementLabel);
@@ -253,8 +252,8 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 
 	@Override
 	public StyledString caseAttributeChangeRightTarget(AttributeChangeRightTarget object) {
-		final String attributeLabel = AdapterUtils.getItemProviderText(object.getAttribute());
-		final String elementLabel = AdapterUtils.getItemProviderText(object.getLeftElement());
+		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
+		final String elementLabel = getLabelProvider().getText(object.getLeftElement());
 
 		if(object.isRemote()) {
 			return formatStyledString("{0} has been remotely added to attribute {1} in {2}", attributeValueToString(object.getRightTarget()), attributeLabel, elementLabel);
@@ -264,8 +263,8 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 
 	@Override
 	public StyledString caseUpdateAttribute(UpdateAttribute object) {
-		final String attributeLabel = AdapterUtils.getItemProviderText(object.getAttribute());
-		final String elementLabel = AdapterUtils.getItemProviderText(object.getLeftElement());
+		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
+		final String elementLabel = getLabelProvider().getText(object.getLeftElement());
 		final Object leftValue = object.getLeftElement().eGet(object.getAttribute());
 		final Object rightValue = object.getRightElement().eGet(object.getAttribute());
 
