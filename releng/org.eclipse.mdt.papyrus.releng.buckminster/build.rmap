@@ -12,7 +12,7 @@
       <rm:versionConverter type="branch">
         <rm:transform fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X" toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.3"/>
       </rm:versionConverter>
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/releng/{1}?moduleAfterTag&amp;moduleAfterBranch">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/releng/{1}?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
