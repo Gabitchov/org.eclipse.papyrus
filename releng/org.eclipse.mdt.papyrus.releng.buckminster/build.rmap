@@ -19,7 +19,7 @@
 				<bc:propertyRef key="svn.repository"/>
 				<bc:propertyRef key="buckminster.component"/>
 			</rm:uri>
-			<versionConverter type="branch" versionType="OSGi>
+			<versionConverter type="branch" versionType="OSGi">
 				<transform
 					fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X"
 					toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.0" />
@@ -30,7 +30,7 @@
 				<bc:propertyRef key="svn.repository"/>
 				<bc:propertyRef key="buckminster.component"/>
 			</rm:uri>
-			<versionConverter type="branch" versionType="OSGi>
+			<versionConverter type="branch" versionType="OSGi">
 				<transform
 					fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X"
 					toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.0" />
