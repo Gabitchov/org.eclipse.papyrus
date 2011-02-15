@@ -20,12 +20,22 @@
 				<bc:propertyRef key="svn.repository"/>
 				<bc:propertyRef key="buckminster.component"/>
 			</rm:uri>
+			<versionConverter type="branch" versionType="OSGi>
+				<transform
+					fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X"
+					toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.0" />
+			</versionConverter>
 		</rm:provider>
 		<rm:provider componentTypes="eclipse.feature" readerType="svn">
 			<rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/releng/{1}-feature">
 				<bc:propertyRef key="svn.repository"/>
 				<bc:propertyRef key="buckminster.component"/>
 			</rm:uri>
+			<versionConverter type="branch" versionType="OSGi>
+				<transform
+					fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X"
+					toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.0" />
+			</versionConverter>
 		</rm:provider>
 	</rm:searchPath>
 
