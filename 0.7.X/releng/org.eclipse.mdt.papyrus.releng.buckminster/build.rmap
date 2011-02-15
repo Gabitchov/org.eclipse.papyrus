@@ -29,126 +29,84 @@
   </rm:searchPath>
   <rm:searchPath name="sources">
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-    <rm:versionConverter type="branch" versionType="OSGi">
-        <rm:transform fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X" toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.3"/>
-      </rm:versionConverter>
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/{1}?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-    <rm:versionConverter type="branch" versionType="OSGi">
-        <rm:transform fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X" toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.3"/>
-      </rm:versionConverter>
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer/{1}?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-    <rm:versionConverter type="branch" versionType="OSGi">
-        <rm:transform fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X" toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.3"/>
-      </rm:versionConverter>
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/others/{1}?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-    <rm:versionConverter type="branch" versionType="OSGi">
-        <rm:transform fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X" toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.3"/>
-      </rm:versionConverter>
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/profile-tool/{1}?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-    <rm:versionConverter type="branch" versionType="OSGi">
-        <rm:transform fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X" toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.3"/>
-      </rm:versionConverter>
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml/{1}?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-    <rm:versionConverter type="branch" versionType="OSGi">
-        <rm:transform fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X" toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.3"/>
-      </rm:versionConverter>
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/{1}?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-    <rm:versionConverter type="branch" versionType="OSGi">
-        <rm:transform fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X" toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.3"/>
-      </rm:versionConverter>
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/extraplugins/autolayout/{1}?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-    <rm:versionConverter type="branch" versionType="OSGi">
-        <rm:transform fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X" toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.3"/>
-      </rm:versionConverter>
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/core/{1}?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-    <rm:versionConverter type="branch" versionType="OSGi">
-        <rm:transform fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X" toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.3"/>
-      </rm:versionConverter>
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/developer/{1}?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-    <rm:versionConverter type="branch" versionType="OSGi">
-        <rm:transform fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X" toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.3"/>
-      </rm:versionConverter>
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/others/{1}?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-    <rm:versionConverter type="branch" versionType="OSGi">
-        <rm:transform fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X" toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.3"/>
-      </rm:versionConverter>
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/profile-tool/{1}?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-    <rm:versionConverter type="branch" versionType="OSGi">
-        <rm:transform fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X" toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.3"/>
-      </rm:versionConverter>
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/sysml/{1}?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-    <rm:versionConverter type="branch" versionType="OSGi">
-        <rm:transform fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X" toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.3"/>
-      </rm:versionConverter>
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/uml/{1}?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature" readerType="svn">
-    <rm:versionConverter type="branch" versionType="OSGi">
-        <rm:transform fromPattern="^(\d)+\.(\d)+\..*$" fromReplacement="$1\.$2\.X" toPattern="^(\d)+\.(\d)+\.X$" toReplacement="$1\.$2\.3"/>
-      </rm:versionConverter>
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/features/{1}-feature?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
