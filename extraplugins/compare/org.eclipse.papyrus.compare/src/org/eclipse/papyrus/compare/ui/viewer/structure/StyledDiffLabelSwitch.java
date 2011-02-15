@@ -77,8 +77,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		if(UMLCompareUtils.isStereotypeApplication(element)) {
 			elementLabel = UMLUtil.getStereotype(element).getName();
 		}
+		styledString.append("Stereotype <<", StyledString.DECORATIONS_STYLER);
 		styledString.append(elementLabel);
-		styledString.append(" stereotype has been removed", StyledString.DECORATIONS_STYLER);
+		styledString.append(">> has been removed", StyledString.DECORATIONS_STYLER);
 		return styledString;
 	}
 
