@@ -123,6 +123,9 @@ public class PasteElementCommand extends AbstractCommand {
 	 */
 	@Override
 	public boolean canExecute() {
+		if( command==null){
+			return false;
+		}
 		return command.canExecute();
 	}
 	/**

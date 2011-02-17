@@ -737,52 +737,6 @@
       </activeWhen>
    </handler>
    <handler
-         class="org.eclipse.papyrus.modelexplorer.handler.PasteHandler"
-         commandId="org.eclipse.ui.edit.paste">
-      <activeWhen>
-         <and>
-            <with
-                  variable="activePart">
-               <instanceof
-                     value="org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView">
-               </instanceof>
-            </with>
-            <with
-                  variable="selection">
-                  <!-- We add this test in order to refresh the Paste action in the menu edit -->
-               <test
-                     forcePluginActivation="true"
-                     property="org.eclipse.papyrus.modelexplorer.tester.isEObject"
-                     value="true">
-               </test>
-            </with>
-         </and>
-      </activeWhen>
-   </handler>
-   <handler
-         class="org.eclipse.papyrus.modelexplorer.handler.CopyHandler"
-         commandId="org.eclipse.ui.edit.copy">
-      <activeWhen>
-         <and>
-            <with
-                  variable="activePart">
-               <instanceof
-                     value="org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView">
-               </instanceof>
-            </with>
-            <with
-                  variable="selection">
-                  <!-- We add this test in order to refresh the Copy action in the menu edit -->
-               <test
-                     forcePluginActivation="true"
-                     property="org.eclipse.papyrus.modelexplorer.tester.isEObject"
-                     value="true">
-               </test>
-            </with>
-         </and>
-      </activeWhen>
-   </handler>
-   <handler
          class="org.eclipse.papyrus.modelexplorer.handler.UndoHandler"
          commandId="org.eclipse.ui.edit.undo">
       <activeWhen>

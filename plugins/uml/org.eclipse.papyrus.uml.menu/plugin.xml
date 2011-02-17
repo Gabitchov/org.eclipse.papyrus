@@ -80,4 +80,10 @@
        </activeWhen>
     </handler>
 </extension>
+<extension
+      point="org.eclipse.ui.startup">
+   <startup
+         class="org.eclipse.papyrus.uml.menu.Activator">
+   </startup>
+</extension>
 </plugin>
