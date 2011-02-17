@@ -2893,41 +2893,6 @@
 	<startup class="org.eclipse.papyrus.modelexplorer.Activator"/>
 </extension>
 <extension
-      point="org.eclipse.ui.handlers">
-   <handler
-         class="org.eclipse.papyrus.uml.modelexplorer.handler.RenameNamedElementHandler"
-         commandId="org.eclipse.ui.edit.rename">
-      <activeWhen>
-         <or>
-            <with
-                  variable="selection">
-               <and>
-                  <count
-                        value="1">
-                  </count>
-                  <iterate>
-                     <adapt
-                           type="org.eclipse.uml2.uml.NamedElement">
-                     </adapt>
-                  </iterate>
-                  <!-- we add this test in order to avoid handler conflict for 'org.eclipse.ui.edit.rename':-->
-                  <test
-                        forcePluginActivation="true"
-                        property="org.eclipse.papyrus.modelexplorer.tester.isTable"
-                        value="false">
-                  </test>
-                  <test
-                        forcePluginActivation="true"
-                        property="org.eclipse.papyrus.modelexplorer.tester.isDiagram"
-                        value="false">
-                  </test>
-               </and>
-            </with>
-         </or>
-      </activeWhen>
-   </handler>
-</extension>
-<extension
       point="org.eclipse.core.runtime.adapters">
    <factory
          adaptableType="org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem"
