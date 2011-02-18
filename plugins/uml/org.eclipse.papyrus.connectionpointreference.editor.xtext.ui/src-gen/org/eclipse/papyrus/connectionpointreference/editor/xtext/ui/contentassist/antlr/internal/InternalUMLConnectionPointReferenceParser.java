@@ -27,6 +27,9 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
     };
     public static final int RULE_ID=4;
     public static final int RULE_STRING=6;
+    public static final int T__12=12;
+    public static final int T__11=11;
+    public static final int T__13=13;
     public static final int RULE_ANY_OTHER=10;
     public static final int RULE_INT=5;
     public static final int RULE_WS=9;
@@ -34,12 +37,20 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
     public static final int EOF=-1;
     public static final int RULE_ML_COMMENT=7;
 
+    // delegates
+    // delegators
+
+
         public InternalUMLConnectionPointReferenceParser(TokenStream input) {
-            super(input);
+            this(input, new RecognizerSharedState());
+        }
+        public InternalUMLConnectionPointReferenceParser(TokenStream input, RecognizerSharedState state) {
+            super(input, state);
+             
         }
         
 
-    public String[] getTokenNames() { return tokenNames; }
+    public String[] getTokenNames() { return InternalUMLConnectionPointReferenceParser.tokenNames; }
     public String getGrammarFileName() { return "../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g"; }
 
 
@@ -63,7 +74,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
 
 
 
-    // $ANTLR start entryRuleConnectionPointReferenceRule
+    // $ANTLR start "entryRuleConnectionPointReferenceRule"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:61:1: entryRuleConnectionPointReferenceRule : ruleConnectionPointReferenceRule EOF ;
     public final void entryRuleConnectionPointReferenceRule() throws RecognitionException {
         try {
@@ -73,7 +84,8 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
              before(grammarAccess.getConnectionPointReferenceRuleRule()); 
             pushFollow(FOLLOW_ruleConnectionPointReferenceRule_in_entryRuleConnectionPointReferenceRule61);
             ruleConnectionPointReferenceRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getConnectionPointReferenceRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleConnectionPointReferenceRule68); 
@@ -89,10 +101,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end entryRuleConnectionPointReferenceRule
+    // $ANTLR end "entryRuleConnectionPointReferenceRule"
 
 
-    // $ANTLR start ruleConnectionPointReferenceRule
+    // $ANTLR start "ruleConnectionPointReferenceRule"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:70:1: ruleConnectionPointReferenceRule : ( ( rule__ConnectionPointReferenceRule__Alternatives )? ) ;
     public final void ruleConnectionPointReferenceRule() throws RecognitionException {
 
@@ -119,7 +131,8 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
                     {
                     pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Alternatives_in_ruleConnectionPointReferenceRule94);
                     rule__ConnectionPointReferenceRule__Alternatives();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -146,10 +159,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end ruleConnectionPointReferenceRule
+    // $ANTLR end "ruleConnectionPointReferenceRule"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Alternatives
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Alternatives"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:89:1: rule__ConnectionPointReferenceRule__Alternatives : ( ( ( rule__ConnectionPointReferenceRule__Group_0__0 ) ) | ( ( rule__ConnectionPointReferenceRule__Group_1__0 ) ) );
     public final void rule__ConnectionPointReferenceRule__Alternatives() throws RecognitionException {
 
@@ -168,7 +181,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("89:1: rule__ConnectionPointReferenceRule__Alternatives : ( ( ( rule__ConnectionPointReferenceRule__Group_0__0 ) ) | ( ( rule__ConnectionPointReferenceRule__Group_1__0 ) ) );", 2, 0, input);
+                    new NoViableAltException("", 2, 0, input);
 
                 throw nvae;
             }
@@ -185,7 +198,8 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
                     {
                     pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_0__0_in_rule__ConnectionPointReferenceRule__Alternatives131);
                     rule__ConnectionPointReferenceRule__Group_0__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -209,7 +223,8 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
                     {
                     pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_1__0_in_rule__ConnectionPointReferenceRule__Alternatives149);
                     rule__ConnectionPointReferenceRule__Group_1__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -235,10 +250,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Alternatives
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Alternatives"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_0__0
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_0__0"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:113:1: rule__ConnectionPointReferenceRule__Group_0__0 : rule__ConnectionPointReferenceRule__Group_0__0__Impl rule__ConnectionPointReferenceRule__Group_0__1 ;
     public final void rule__ConnectionPointReferenceRule__Group_0__0() throws RecognitionException {
 
@@ -250,11 +265,13 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             {
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_0__0__Impl_in_rule__ConnectionPointReferenceRule__Group_0__0180);
             rule__ConnectionPointReferenceRule__Group_0__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_0__1_in_rule__ConnectionPointReferenceRule__Group_0__0183);
             rule__ConnectionPointReferenceRule__Group_0__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -271,10 +288,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_0__0
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_0__0"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_0__0__Impl
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_0__0__Impl"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:125:1: rule__ConnectionPointReferenceRule__Group_0__0__Impl : ( 'entry' ) ;
     public final void rule__ConnectionPointReferenceRule__Group_0__0__Impl() throws RecognitionException {
 
@@ -308,10 +325,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_0__0__Impl
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_0__0__Impl"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_0__1
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_0__1"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:144:1: rule__ConnectionPointReferenceRule__Group_0__1 : rule__ConnectionPointReferenceRule__Group_0__1__Impl rule__ConnectionPointReferenceRule__Group_0__2 ;
     public final void rule__ConnectionPointReferenceRule__Group_0__1() throws RecognitionException {
 
@@ -323,11 +340,13 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             {
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_0__1__Impl_in_rule__ConnectionPointReferenceRule__Group_0__1242);
             rule__ConnectionPointReferenceRule__Group_0__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_0__2_in_rule__ConnectionPointReferenceRule__Group_0__1245);
             rule__ConnectionPointReferenceRule__Group_0__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -344,10 +363,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_0__1
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_0__1"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_0__1__Impl
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_0__1__Impl"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:156:1: rule__ConnectionPointReferenceRule__Group_0__1__Impl : ( ( rule__ConnectionPointReferenceRule__EntryAssignment_0_1 ) ) ;
     public final void rule__ConnectionPointReferenceRule__Group_0__1__Impl() throws RecognitionException {
 
@@ -366,7 +385,8 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             {
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__EntryAssignment_0_1_in_rule__ConnectionPointReferenceRule__Group_0__1__Impl272);
             rule__ConnectionPointReferenceRule__EntryAssignment_0_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -390,10 +410,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_0__1__Impl
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_0__1__Impl"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_0__2
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_0__2"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:173:1: rule__ConnectionPointReferenceRule__Group_0__2 : rule__ConnectionPointReferenceRule__Group_0__2__Impl ;
     public final void rule__ConnectionPointReferenceRule__Group_0__2() throws RecognitionException {
 
@@ -405,7 +425,8 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             {
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_0__2__Impl_in_rule__ConnectionPointReferenceRule__Group_0__2302);
             rule__ConnectionPointReferenceRule__Group_0__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -422,10 +443,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_0__2
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_0__2"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_0__2__Impl
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_0__2__Impl"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:184:1: rule__ConnectionPointReferenceRule__Group_0__2__Impl : ( ( rule__ConnectionPointReferenceRule__Group_0_2__0 )* ) ;
     public final void rule__ConnectionPointReferenceRule__Group_0__2__Impl() throws RecognitionException {
 
@@ -456,7 +477,8 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             	    {
             	    pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_0_2__0_in_rule__ConnectionPointReferenceRule__Group_0__2__Impl329);
             	    rule__ConnectionPointReferenceRule__Group_0_2__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -486,10 +508,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_0__2__Impl
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_0__2__Impl"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_0_2__0
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_0_2__0"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:207:1: rule__ConnectionPointReferenceRule__Group_0_2__0 : rule__ConnectionPointReferenceRule__Group_0_2__0__Impl rule__ConnectionPointReferenceRule__Group_0_2__1 ;
     public final void rule__ConnectionPointReferenceRule__Group_0_2__0() throws RecognitionException {
 
@@ -501,11 +523,13 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             {
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_0_2__0__Impl_in_rule__ConnectionPointReferenceRule__Group_0_2__0366);
             rule__ConnectionPointReferenceRule__Group_0_2__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_0_2__1_in_rule__ConnectionPointReferenceRule__Group_0_2__0369);
             rule__ConnectionPointReferenceRule__Group_0_2__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -522,10 +546,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_0_2__0
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_0_2__0"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_0_2__0__Impl
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_0_2__0__Impl"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:219:1: rule__ConnectionPointReferenceRule__Group_0_2__0__Impl : ( ',' ) ;
     public final void rule__ConnectionPointReferenceRule__Group_0_2__0__Impl() throws RecognitionException {
 
@@ -559,10 +583,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_0_2__0__Impl
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_0_2__0__Impl"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_0_2__1
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_0_2__1"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:238:1: rule__ConnectionPointReferenceRule__Group_0_2__1 : rule__ConnectionPointReferenceRule__Group_0_2__1__Impl ;
     public final void rule__ConnectionPointReferenceRule__Group_0_2__1() throws RecognitionException {
 
@@ -574,7 +598,8 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             {
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_0_2__1__Impl_in_rule__ConnectionPointReferenceRule__Group_0_2__1428);
             rule__ConnectionPointReferenceRule__Group_0_2__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -591,10 +616,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_0_2__1
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_0_2__1"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_0_2__1__Impl
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_0_2__1__Impl"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:249:1: rule__ConnectionPointReferenceRule__Group_0_2__1__Impl : ( ( rule__ConnectionPointReferenceRule__EntryAssignment_0_2_1 ) ) ;
     public final void rule__ConnectionPointReferenceRule__Group_0_2__1__Impl() throws RecognitionException {
 
@@ -613,7 +638,8 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             {
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__EntryAssignment_0_2_1_in_rule__ConnectionPointReferenceRule__Group_0_2__1__Impl455);
             rule__ConnectionPointReferenceRule__EntryAssignment_0_2_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -637,10 +663,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_0_2__1__Impl
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_0_2__1__Impl"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_1__0
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_1__0"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:270:1: rule__ConnectionPointReferenceRule__Group_1__0 : rule__ConnectionPointReferenceRule__Group_1__0__Impl rule__ConnectionPointReferenceRule__Group_1__1 ;
     public final void rule__ConnectionPointReferenceRule__Group_1__0() throws RecognitionException {
 
@@ -652,11 +678,13 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             {
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_1__0__Impl_in_rule__ConnectionPointReferenceRule__Group_1__0489);
             rule__ConnectionPointReferenceRule__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_1__1_in_rule__ConnectionPointReferenceRule__Group_1__0492);
             rule__ConnectionPointReferenceRule__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -673,10 +701,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_1__0
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_1__0"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_1__0__Impl
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_1__0__Impl"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:282:1: rule__ConnectionPointReferenceRule__Group_1__0__Impl : ( 'exit' ) ;
     public final void rule__ConnectionPointReferenceRule__Group_1__0__Impl() throws RecognitionException {
 
@@ -710,10 +738,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_1__0__Impl
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_1__1
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_1__1"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:301:1: rule__ConnectionPointReferenceRule__Group_1__1 : rule__ConnectionPointReferenceRule__Group_1__1__Impl rule__ConnectionPointReferenceRule__Group_1__2 ;
     public final void rule__ConnectionPointReferenceRule__Group_1__1() throws RecognitionException {
 
@@ -725,11 +753,13 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             {
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_1__1__Impl_in_rule__ConnectionPointReferenceRule__Group_1__1551);
             rule__ConnectionPointReferenceRule__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_1__2_in_rule__ConnectionPointReferenceRule__Group_1__1554);
             rule__ConnectionPointReferenceRule__Group_1__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -746,10 +776,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_1__1
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_1__1"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_1__1__Impl
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_1__1__Impl"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:313:1: rule__ConnectionPointReferenceRule__Group_1__1__Impl : ( ( rule__ConnectionPointReferenceRule__ExitAssignment_1_1 ) ) ;
     public final void rule__ConnectionPointReferenceRule__Group_1__1__Impl() throws RecognitionException {
 
@@ -768,7 +798,8 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             {
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__ExitAssignment_1_1_in_rule__ConnectionPointReferenceRule__Group_1__1__Impl581);
             rule__ConnectionPointReferenceRule__ExitAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -792,10 +823,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_1__1__Impl
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_1__2
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_1__2"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:330:1: rule__ConnectionPointReferenceRule__Group_1__2 : rule__ConnectionPointReferenceRule__Group_1__2__Impl ;
     public final void rule__ConnectionPointReferenceRule__Group_1__2() throws RecognitionException {
 
@@ -807,7 +838,8 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             {
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_1__2__Impl_in_rule__ConnectionPointReferenceRule__Group_1__2611);
             rule__ConnectionPointReferenceRule__Group_1__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -824,10 +856,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_1__2
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_1__2"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_1__2__Impl
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_1__2__Impl"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:341:1: rule__ConnectionPointReferenceRule__Group_1__2__Impl : ( ( rule__ConnectionPointReferenceRule__Group_1_2__0 )* ) ;
     public final void rule__ConnectionPointReferenceRule__Group_1__2__Impl() throws RecognitionException {
 
@@ -858,7 +890,8 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             	    {
             	    pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_1_2__0_in_rule__ConnectionPointReferenceRule__Group_1__2__Impl638);
             	    rule__ConnectionPointReferenceRule__Group_1_2__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -888,10 +921,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_1__2__Impl
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_1__2__Impl"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_1_2__0
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_1_2__0"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:364:1: rule__ConnectionPointReferenceRule__Group_1_2__0 : rule__ConnectionPointReferenceRule__Group_1_2__0__Impl rule__ConnectionPointReferenceRule__Group_1_2__1 ;
     public final void rule__ConnectionPointReferenceRule__Group_1_2__0() throws RecognitionException {
 
@@ -903,11 +936,13 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             {
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_1_2__0__Impl_in_rule__ConnectionPointReferenceRule__Group_1_2__0675);
             rule__ConnectionPointReferenceRule__Group_1_2__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_1_2__1_in_rule__ConnectionPointReferenceRule__Group_1_2__0678);
             rule__ConnectionPointReferenceRule__Group_1_2__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -924,10 +959,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_1_2__0
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_1_2__0"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_1_2__0__Impl
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_1_2__0__Impl"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:376:1: rule__ConnectionPointReferenceRule__Group_1_2__0__Impl : ( ',' ) ;
     public final void rule__ConnectionPointReferenceRule__Group_1_2__0__Impl() throws RecognitionException {
 
@@ -961,10 +996,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_1_2__0__Impl
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_1_2__0__Impl"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_1_2__1
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_1_2__1"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:395:1: rule__ConnectionPointReferenceRule__Group_1_2__1 : rule__ConnectionPointReferenceRule__Group_1_2__1__Impl ;
     public final void rule__ConnectionPointReferenceRule__Group_1_2__1() throws RecognitionException {
 
@@ -976,7 +1011,8 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             {
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__Group_1_2__1__Impl_in_rule__ConnectionPointReferenceRule__Group_1_2__1737);
             rule__ConnectionPointReferenceRule__Group_1_2__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -993,10 +1029,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_1_2__1
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_1_2__1"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__Group_1_2__1__Impl
+    // $ANTLR start "rule__ConnectionPointReferenceRule__Group_1_2__1__Impl"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:406:1: rule__ConnectionPointReferenceRule__Group_1_2__1__Impl : ( ( rule__ConnectionPointReferenceRule__ExitAssignment_1_2_1 ) ) ;
     public final void rule__ConnectionPointReferenceRule__Group_1_2__1__Impl() throws RecognitionException {
 
@@ -1015,7 +1051,8 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             {
             pushFollow(FOLLOW_rule__ConnectionPointReferenceRule__ExitAssignment_1_2_1_in_rule__ConnectionPointReferenceRule__Group_1_2__1__Impl764);
             rule__ConnectionPointReferenceRule__ExitAssignment_1_2_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1039,10 +1076,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__Group_1_2__1__Impl
+    // $ANTLR end "rule__ConnectionPointReferenceRule__Group_1_2__1__Impl"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__EntryAssignment_0_1
+    // $ANTLR start "rule__ConnectionPointReferenceRule__EntryAssignment_0_1"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:428:1: rule__ConnectionPointReferenceRule__EntryAssignment_0_1 : ( ( RULE_ID ) ) ;
     public final void rule__ConnectionPointReferenceRule__EntryAssignment_0_1() throws RecognitionException {
 
@@ -1084,10 +1121,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__EntryAssignment_0_1
+    // $ANTLR end "rule__ConnectionPointReferenceRule__EntryAssignment_0_1"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__EntryAssignment_0_2_1
+    // $ANTLR start "rule__ConnectionPointReferenceRule__EntryAssignment_0_2_1"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:447:1: rule__ConnectionPointReferenceRule__EntryAssignment_0_2_1 : ( ( RULE_ID ) ) ;
     public final void rule__ConnectionPointReferenceRule__EntryAssignment_0_2_1() throws RecognitionException {
 
@@ -1129,10 +1166,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__EntryAssignment_0_2_1
+    // $ANTLR end "rule__ConnectionPointReferenceRule__EntryAssignment_0_2_1"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__ExitAssignment_1_1
+    // $ANTLR start "rule__ConnectionPointReferenceRule__ExitAssignment_1_1"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:466:1: rule__ConnectionPointReferenceRule__ExitAssignment_1_1 : ( ( RULE_ID ) ) ;
     public final void rule__ConnectionPointReferenceRule__ExitAssignment_1_1() throws RecognitionException {
 
@@ -1174,10 +1211,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__ExitAssignment_1_1
+    // $ANTLR end "rule__ConnectionPointReferenceRule__ExitAssignment_1_1"
 
 
-    // $ANTLR start rule__ConnectionPointReferenceRule__ExitAssignment_1_2_1
+    // $ANTLR start "rule__ConnectionPointReferenceRule__ExitAssignment_1_2_1"
     // ../org.eclipse.papyrus.connectionpointreference.editor.xtext.ui/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:485:1: rule__ConnectionPointReferenceRule__ExitAssignment_1_2_1 : ( ( RULE_ID ) ) ;
     public final void rule__ConnectionPointReferenceRule__ExitAssignment_1_2_1() throws RecognitionException {
 
@@ -1219,7 +1256,9 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
         }
         return ;
     }
-    // $ANTLR end rule__ConnectionPointReferenceRule__ExitAssignment_1_2_1
+    // $ANTLR end "rule__ConnectionPointReferenceRule__ExitAssignment_1_2_1"
+
+    // Delegated rules
 
 
  
@@ -1232,7 +1271,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_0__0__Impl_in_rule__ConnectionPointReferenceRule__Group_0__0180 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_0__1_in_rule__ConnectionPointReferenceRule__Group_0__0183 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_11_in_rule__ConnectionPointReferenceRule__Group_0__0__Impl211 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_0__1__Impl_in_rule__ConnectionPointReferenceRule__Group_0__1242 = new BitSet(new long[]{0x0000000000001002L});
+    public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_0__1__Impl_in_rule__ConnectionPointReferenceRule__Group_0__1242 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_0__2_in_rule__ConnectionPointReferenceRule__Group_0__1245 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__EntryAssignment_0_1_in_rule__ConnectionPointReferenceRule__Group_0__1__Impl272 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_0__2__Impl_in_rule__ConnectionPointReferenceRule__Group_0__2302 = new BitSet(new long[]{0x0000000000000002L});
@@ -1245,7 +1284,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_1__0__Impl_in_rule__ConnectionPointReferenceRule__Group_1__0489 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_1__1_in_rule__ConnectionPointReferenceRule__Group_1__0492 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_13_in_rule__ConnectionPointReferenceRule__Group_1__0__Impl520 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_1__1__Impl_in_rule__ConnectionPointReferenceRule__Group_1__1551 = new BitSet(new long[]{0x0000000000001002L});
+    public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_1__1__Impl_in_rule__ConnectionPointReferenceRule__Group_1__1551 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_1__2_in_rule__ConnectionPointReferenceRule__Group_1__1554 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__ExitAssignment_1_1_in_rule__ConnectionPointReferenceRule__Group_1__1__Impl581 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_1__2__Impl_in_rule__ConnectionPointReferenceRule__Group_1__2611 = new BitSet(new long[]{0x0000000000000002L});

@@ -26,20 +26,39 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Activity'", "'StateMachine'", "'OpaqueBehavior'", "','", "'after'", "'at'", "'when'", "'['", "']'", "'/'", "'all'"
     };
     public static final int RULE_ID=4;
-    public static final int RULE_STRING=5;
     public static final int RULE_ANY_OTHER=10;
+    public static final int T__21=21;
+    public static final int T__20=20;
+    public static final int EOF=-1;
+    public static final int RULE_SL_COMMENT=8;
+    public static final int RULE_ML_COMMENT=7;
+    public static final int T__19=19;
+    public static final int RULE_STRING=5;
+    public static final int T__16=16;
+    public static final int T__15=15;
+    public static final int T__18=18;
+    public static final int T__17=17;
+    public static final int T__12=12;
+    public static final int T__11=11;
+    public static final int T__14=14;
+    public static final int T__13=13;
     public static final int RULE_INT=6;
     public static final int RULE_WS=9;
-    public static final int RULE_SL_COMMENT=8;
-    public static final int EOF=-1;
-    public static final int RULE_ML_COMMENT=7;
+
+    // delegates
+    // delegators
+
 
         public InternalUmlTransitionParser(TokenStream input) {
-            super(input);
+            this(input, new RecognizerSharedState());
+        }
+        public InternalUmlTransitionParser(TokenStream input, RecognizerSharedState state) {
+            super(input, state);
+             
         }
         
 
-    public String[] getTokenNames() { return tokenNames; }
+    public String[] getTokenNames() { return InternalUmlTransitionParser.tokenNames; }
     public String getGrammarFileName() { return "../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g"; }
 
 
@@ -63,7 +82,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
 
 
 
-    // $ANTLR start entryRuleTransitionRule
+    // $ANTLR start "entryRuleTransitionRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:61:1: entryRuleTransitionRule : ruleTransitionRule EOF ;
     public final void entryRuleTransitionRule() throws RecognitionException {
         try {
@@ -73,7 +92,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
              before(grammarAccess.getTransitionRuleRule()); 
             pushFollow(FOLLOW_ruleTransitionRule_in_entryRuleTransitionRule61);
             ruleTransitionRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getTransitionRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleTransitionRule68); 
@@ -89,10 +109,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end entryRuleTransitionRule
+    // $ANTLR end "entryRuleTransitionRule"
 
 
-    // $ANTLR start ruleTransitionRule
+    // $ANTLR start "ruleTransitionRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:70:1: ruleTransitionRule : ( ( rule__TransitionRule__Group__0 ) ) ;
     public final void ruleTransitionRule() throws RecognitionException {
 
@@ -111,7 +131,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__TransitionRule__Group__0_in_ruleTransitionRule94);
             rule__TransitionRule__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -135,10 +156,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end ruleTransitionRule
+    // $ANTLR end "ruleTransitionRule"
 
 
-    // $ANTLR start entryRuleEventRule
+    // $ANTLR start "entryRuleEventRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:89:1: entryRuleEventRule : ruleEventRule EOF ;
     public final void entryRuleEventRule() throws RecognitionException {
         try {
@@ -148,7 +169,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
              before(grammarAccess.getEventRuleRule()); 
             pushFollow(FOLLOW_ruleEventRule_in_entryRuleEventRule121);
             ruleEventRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getEventRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleEventRule128); 
@@ -164,10 +186,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end entryRuleEventRule
+    // $ANTLR end "entryRuleEventRule"
 
 
-    // $ANTLR start ruleEventRule
+    // $ANTLR start "ruleEventRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:98:1: ruleEventRule : ( ( rule__EventRule__Alternatives ) ) ;
     public final void ruleEventRule() throws RecognitionException {
 
@@ -186,7 +208,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__EventRule__Alternatives_in_ruleEventRule154);
             rule__EventRule__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -210,10 +233,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end ruleEventRule
+    // $ANTLR end "ruleEventRule"
 
 
-    // $ANTLR start entryRuleCallOrSignalEventRule
+    // $ANTLR start "entryRuleCallOrSignalEventRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:117:1: entryRuleCallOrSignalEventRule : ruleCallOrSignalEventRule EOF ;
     public final void entryRuleCallOrSignalEventRule() throws RecognitionException {
         try {
@@ -223,7 +246,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
              before(grammarAccess.getCallOrSignalEventRuleRule()); 
             pushFollow(FOLLOW_ruleCallOrSignalEventRule_in_entryRuleCallOrSignalEventRule181);
             ruleCallOrSignalEventRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getCallOrSignalEventRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleCallOrSignalEventRule188); 
@@ -239,10 +263,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end entryRuleCallOrSignalEventRule
+    // $ANTLR end "entryRuleCallOrSignalEventRule"
 
 
-    // $ANTLR start ruleCallOrSignalEventRule
+    // $ANTLR start "ruleCallOrSignalEventRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:126:1: ruleCallOrSignalEventRule : ( ( rule__CallOrSignalEventRule__OperationOrSignalAssignment ) ) ;
     public final void ruleCallOrSignalEventRule() throws RecognitionException {
 
@@ -261,7 +285,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__CallOrSignalEventRule__OperationOrSignalAssignment_in_ruleCallOrSignalEventRule214);
             rule__CallOrSignalEventRule__OperationOrSignalAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -285,10 +310,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end ruleCallOrSignalEventRule
+    // $ANTLR end "ruleCallOrSignalEventRule"
 
 
-    // $ANTLR start entryRuleAnyReceiveEventRule
+    // $ANTLR start "entryRuleAnyReceiveEventRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:145:1: entryRuleAnyReceiveEventRule : ruleAnyReceiveEventRule EOF ;
     public final void entryRuleAnyReceiveEventRule() throws RecognitionException {
         try {
@@ -298,7 +323,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
              before(grammarAccess.getAnyReceiveEventRuleRule()); 
             pushFollow(FOLLOW_ruleAnyReceiveEventRule_in_entryRuleAnyReceiveEventRule241);
             ruleAnyReceiveEventRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getAnyReceiveEventRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleAnyReceiveEventRule248); 
@@ -314,10 +340,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end entryRuleAnyReceiveEventRule
+    // $ANTLR end "entryRuleAnyReceiveEventRule"
 
 
-    // $ANTLR start ruleAnyReceiveEventRule
+    // $ANTLR start "ruleAnyReceiveEventRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:154:1: ruleAnyReceiveEventRule : ( ( rule__AnyReceiveEventRule__IsAReceiveEventAssignment ) ) ;
     public final void ruleAnyReceiveEventRule() throws RecognitionException {
 
@@ -336,7 +362,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__AnyReceiveEventRule__IsAReceiveEventAssignment_in_ruleAnyReceiveEventRule274);
             rule__AnyReceiveEventRule__IsAReceiveEventAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -360,10 +387,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end ruleAnyReceiveEventRule
+    // $ANTLR end "ruleAnyReceiveEventRule"
 
 
-    // $ANTLR start entryRuleTimeEventRule
+    // $ANTLR start "entryRuleTimeEventRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:173:1: entryRuleTimeEventRule : ruleTimeEventRule EOF ;
     public final void entryRuleTimeEventRule() throws RecognitionException {
         try {
@@ -373,7 +400,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
              before(grammarAccess.getTimeEventRuleRule()); 
             pushFollow(FOLLOW_ruleTimeEventRule_in_entryRuleTimeEventRule301);
             ruleTimeEventRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getTimeEventRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleTimeEventRule308); 
@@ -389,10 +417,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end entryRuleTimeEventRule
+    // $ANTLR end "entryRuleTimeEventRule"
 
 
-    // $ANTLR start ruleTimeEventRule
+    // $ANTLR start "ruleTimeEventRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:182:1: ruleTimeEventRule : ( ( rule__TimeEventRule__Alternatives ) ) ;
     public final void ruleTimeEventRule() throws RecognitionException {
 
@@ -411,7 +439,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__TimeEventRule__Alternatives_in_ruleTimeEventRule334);
             rule__TimeEventRule__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -435,10 +464,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end ruleTimeEventRule
+    // $ANTLR end "ruleTimeEventRule"
 
 
-    // $ANTLR start entryRuleRelativeTimeEventRule
+    // $ANTLR start "entryRuleRelativeTimeEventRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:201:1: entryRuleRelativeTimeEventRule : ruleRelativeTimeEventRule EOF ;
     public final void entryRuleRelativeTimeEventRule() throws RecognitionException {
         try {
@@ -448,7 +477,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
              before(grammarAccess.getRelativeTimeEventRuleRule()); 
             pushFollow(FOLLOW_ruleRelativeTimeEventRule_in_entryRuleRelativeTimeEventRule361);
             ruleRelativeTimeEventRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getRelativeTimeEventRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleRelativeTimeEventRule368); 
@@ -464,10 +494,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end entryRuleRelativeTimeEventRule
+    // $ANTLR end "entryRuleRelativeTimeEventRule"
 
 
-    // $ANTLR start ruleRelativeTimeEventRule
+    // $ANTLR start "ruleRelativeTimeEventRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:210:1: ruleRelativeTimeEventRule : ( ( rule__RelativeTimeEventRule__Group__0 ) ) ;
     public final void ruleRelativeTimeEventRule() throws RecognitionException {
 
@@ -486,7 +516,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__RelativeTimeEventRule__Group__0_in_ruleRelativeTimeEventRule394);
             rule__RelativeTimeEventRule__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -510,10 +541,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end ruleRelativeTimeEventRule
+    // $ANTLR end "ruleRelativeTimeEventRule"
 
 
-    // $ANTLR start entryRuleAbsoluteTimeEventRule
+    // $ANTLR start "entryRuleAbsoluteTimeEventRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:229:1: entryRuleAbsoluteTimeEventRule : ruleAbsoluteTimeEventRule EOF ;
     public final void entryRuleAbsoluteTimeEventRule() throws RecognitionException {
         try {
@@ -523,7 +554,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
              before(grammarAccess.getAbsoluteTimeEventRuleRule()); 
             pushFollow(FOLLOW_ruleAbsoluteTimeEventRule_in_entryRuleAbsoluteTimeEventRule421);
             ruleAbsoluteTimeEventRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getAbsoluteTimeEventRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleAbsoluteTimeEventRule428); 
@@ -539,10 +571,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end entryRuleAbsoluteTimeEventRule
+    // $ANTLR end "entryRuleAbsoluteTimeEventRule"
 
 
-    // $ANTLR start ruleAbsoluteTimeEventRule
+    // $ANTLR start "ruleAbsoluteTimeEventRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:238:1: ruleAbsoluteTimeEventRule : ( ( rule__AbsoluteTimeEventRule__Group__0 ) ) ;
     public final void ruleAbsoluteTimeEventRule() throws RecognitionException {
 
@@ -561,7 +593,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__AbsoluteTimeEventRule__Group__0_in_ruleAbsoluteTimeEventRule454);
             rule__AbsoluteTimeEventRule__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -585,10 +618,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end ruleAbsoluteTimeEventRule
+    // $ANTLR end "ruleAbsoluteTimeEventRule"
 
 
-    // $ANTLR start entryRuleChangeEventRule
+    // $ANTLR start "entryRuleChangeEventRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:257:1: entryRuleChangeEventRule : ruleChangeEventRule EOF ;
     public final void entryRuleChangeEventRule() throws RecognitionException {
         try {
@@ -598,7 +631,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
              before(grammarAccess.getChangeEventRuleRule()); 
             pushFollow(FOLLOW_ruleChangeEventRule_in_entryRuleChangeEventRule481);
             ruleChangeEventRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getChangeEventRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleChangeEventRule488); 
@@ -614,10 +648,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end entryRuleChangeEventRule
+    // $ANTLR end "entryRuleChangeEventRule"
 
 
-    // $ANTLR start ruleChangeEventRule
+    // $ANTLR start "ruleChangeEventRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:266:1: ruleChangeEventRule : ( ( rule__ChangeEventRule__Group__0 ) ) ;
     public final void ruleChangeEventRule() throws RecognitionException {
 
@@ -636,7 +670,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__ChangeEventRule__Group__0_in_ruleChangeEventRule514);
             rule__ChangeEventRule__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -660,10 +695,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end ruleChangeEventRule
+    // $ANTLR end "ruleChangeEventRule"
 
 
-    // $ANTLR start entryRuleGuardRule
+    // $ANTLR start "entryRuleGuardRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:285:1: entryRuleGuardRule : ruleGuardRule EOF ;
     public final void entryRuleGuardRule() throws RecognitionException {
         try {
@@ -673,7 +708,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
              before(grammarAccess.getGuardRuleRule()); 
             pushFollow(FOLLOW_ruleGuardRule_in_entryRuleGuardRule541);
             ruleGuardRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getGuardRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleGuardRule548); 
@@ -689,10 +725,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end entryRuleGuardRule
+    // $ANTLR end "entryRuleGuardRule"
 
 
-    // $ANTLR start ruleGuardRule
+    // $ANTLR start "ruleGuardRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:294:1: ruleGuardRule : ( ( rule__GuardRule__Group__0 ) ) ;
     public final void ruleGuardRule() throws RecognitionException {
 
@@ -711,7 +747,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__GuardRule__Group__0_in_ruleGuardRule574);
             rule__GuardRule__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -735,10 +772,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end ruleGuardRule
+    // $ANTLR end "ruleGuardRule"
 
 
-    // $ANTLR start entryRuleEffectRule
+    // $ANTLR start "entryRuleEffectRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:313:1: entryRuleEffectRule : ruleEffectRule EOF ;
     public final void entryRuleEffectRule() throws RecognitionException {
         try {
@@ -748,7 +785,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
              before(grammarAccess.getEffectRuleRule()); 
             pushFollow(FOLLOW_ruleEffectRule_in_entryRuleEffectRule601);
             ruleEffectRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getEffectRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleEffectRule608); 
@@ -764,10 +802,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end entryRuleEffectRule
+    // $ANTLR end "entryRuleEffectRule"
 
 
-    // $ANTLR start ruleEffectRule
+    // $ANTLR start "ruleEffectRule"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:322:1: ruleEffectRule : ( ( rule__EffectRule__Group__0 ) ) ;
     public final void ruleEffectRule() throws RecognitionException {
 
@@ -786,7 +824,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__EffectRule__Group__0_in_ruleEffectRule634);
             rule__EffectRule__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -810,10 +849,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end ruleEffectRule
+    // $ANTLR end "ruleEffectRule"
 
 
-    // $ANTLR start ruleBehaviorKind
+    // $ANTLR start "ruleBehaviorKind"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:342:1: ruleBehaviorKind : ( ( rule__BehaviorKind__Alternatives ) ) ;
     public final void ruleBehaviorKind() throws RecognitionException {
 
@@ -832,7 +871,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__BehaviorKind__Alternatives_in_ruleBehaviorKind671);
             rule__BehaviorKind__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -856,10 +896,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end ruleBehaviorKind
+    // $ANTLR end "ruleBehaviorKind"
 
 
-    // $ANTLR start rule__EventRule__Alternatives
+    // $ANTLR start "rule__EventRule__Alternatives"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:360:1: rule__EventRule__Alternatives : ( ( ruleCallOrSignalEventRule ) | ( ruleAnyReceiveEventRule ) | ( ruleTimeEventRule ) | ( ruleChangeEventRule ) );
     public final void rule__EventRule__Alternatives() throws RecognitionException {
 
@@ -892,7 +932,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("360:1: rule__EventRule__Alternatives : ( ( ruleCallOrSignalEventRule ) | ( ruleAnyReceiveEventRule ) | ( ruleTimeEventRule ) | ( ruleChangeEventRule ) );", 1, 0, input);
+                    new NoViableAltException("", 1, 0, input);
 
                 throw nvae;
             }
@@ -907,7 +947,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
                      before(grammarAccess.getEventRuleAccess().getCallOrSignalEventRuleParserRuleCall_0()); 
                     pushFollow(FOLLOW_ruleCallOrSignalEventRule_in_rule__EventRule__Alternatives706);
                     ruleCallOrSignalEventRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getEventRuleAccess().getCallOrSignalEventRuleParserRuleCall_0()); 
 
@@ -925,7 +966,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
                      before(grammarAccess.getEventRuleAccess().getAnyReceiveEventRuleParserRuleCall_1()); 
                     pushFollow(FOLLOW_ruleAnyReceiveEventRule_in_rule__EventRule__Alternatives723);
                     ruleAnyReceiveEventRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getEventRuleAccess().getAnyReceiveEventRuleParserRuleCall_1()); 
 
@@ -943,7 +985,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
                      before(grammarAccess.getEventRuleAccess().getTimeEventRuleParserRuleCall_2()); 
                     pushFollow(FOLLOW_ruleTimeEventRule_in_rule__EventRule__Alternatives740);
                     ruleTimeEventRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getEventRuleAccess().getTimeEventRuleParserRuleCall_2()); 
 
@@ -961,7 +1004,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
                      before(grammarAccess.getEventRuleAccess().getChangeEventRuleParserRuleCall_3()); 
                     pushFollow(FOLLOW_ruleChangeEventRule_in_rule__EventRule__Alternatives757);
                     ruleChangeEventRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getEventRuleAccess().getChangeEventRuleParserRuleCall_3()); 
 
@@ -984,10 +1028,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__EventRule__Alternatives
+    // $ANTLR end "rule__EventRule__Alternatives"
 
 
-    // $ANTLR start rule__TimeEventRule__Alternatives
+    // $ANTLR start "rule__TimeEventRule__Alternatives"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:394:1: rule__TimeEventRule__Alternatives : ( ( ruleRelativeTimeEventRule ) | ( ruleAbsoluteTimeEventRule ) );
     public final void rule__TimeEventRule__Alternatives() throws RecognitionException {
 
@@ -1006,7 +1050,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("394:1: rule__TimeEventRule__Alternatives : ( ( ruleRelativeTimeEventRule ) | ( ruleAbsoluteTimeEventRule ) );", 2, 0, input);
+                    new NoViableAltException("", 2, 0, input);
 
                 throw nvae;
             }
@@ -1020,7 +1064,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
                      before(grammarAccess.getTimeEventRuleAccess().getRelativeTimeEventRuleParserRuleCall_0()); 
                     pushFollow(FOLLOW_ruleRelativeTimeEventRule_in_rule__TimeEventRule__Alternatives789);
                     ruleRelativeTimeEventRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getTimeEventRuleAccess().getRelativeTimeEventRuleParserRuleCall_0()); 
 
@@ -1038,7 +1083,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
                      before(grammarAccess.getTimeEventRuleAccess().getAbsoluteTimeEventRuleParserRuleCall_1()); 
                     pushFollow(FOLLOW_ruleAbsoluteTimeEventRule_in_rule__TimeEventRule__Alternatives806);
                     ruleAbsoluteTimeEventRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getTimeEventRuleAccess().getAbsoluteTimeEventRuleParserRuleCall_1()); 
 
@@ -1061,10 +1107,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TimeEventRule__Alternatives
+    // $ANTLR end "rule__TimeEventRule__Alternatives"
 
 
-    // $ANTLR start rule__BehaviorKind__Alternatives
+    // $ANTLR start "rule__BehaviorKind__Alternatives"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:416:1: rule__BehaviorKind__Alternatives : ( ( ( 'Activity' ) ) | ( ( 'StateMachine' ) ) | ( ( 'OpaqueBehavior' ) ) );
     public final void rule__BehaviorKind__Alternatives() throws RecognitionException {
 
@@ -1091,7 +1137,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("416:1: rule__BehaviorKind__Alternatives : ( ( ( 'Activity' ) ) | ( ( 'StateMachine' ) ) | ( ( 'OpaqueBehavior' ) ) );", 3, 0, input);
+                    new NoViableAltException("", 3, 0, input);
 
                 throw nvae;
             }
@@ -1174,10 +1220,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__BehaviorKind__Alternatives
+    // $ANTLR end "rule__BehaviorKind__Alternatives"
 
 
-    // $ANTLR start rule__TransitionRule__Group__0
+    // $ANTLR start "rule__TransitionRule__Group__0"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:449:1: rule__TransitionRule__Group__0 : rule__TransitionRule__Group__0__Impl rule__TransitionRule__Group__1 ;
     public final void rule__TransitionRule__Group__0() throws RecognitionException {
 
@@ -1189,11 +1235,13 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__TransitionRule__Group__0__Impl_in_rule__TransitionRule__Group__0914);
             rule__TransitionRule__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__TransitionRule__Group__1_in_rule__TransitionRule__Group__0917);
             rule__TransitionRule__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1210,10 +1258,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TransitionRule__Group__0
+    // $ANTLR end "rule__TransitionRule__Group__0"
 
 
-    // $ANTLR start rule__TransitionRule__Group__0__Impl
+    // $ANTLR start "rule__TransitionRule__Group__0__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:461:1: rule__TransitionRule__Group__0__Impl : ( ( rule__TransitionRule__Group_0__0 )? ) ;
     public final void rule__TransitionRule__Group__0__Impl() throws RecognitionException {
 
@@ -1240,7 +1288,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
                     {
                     pushFollow(FOLLOW_rule__TransitionRule__Group_0__0_in_rule__TransitionRule__Group__0__Impl944);
                     rule__TransitionRule__Group_0__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -1267,10 +1316,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TransitionRule__Group__0__Impl
+    // $ANTLR end "rule__TransitionRule__Group__0__Impl"
 
 
-    // $ANTLR start rule__TransitionRule__Group__1
+    // $ANTLR start "rule__TransitionRule__Group__1"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:478:1: rule__TransitionRule__Group__1 : rule__TransitionRule__Group__1__Impl rule__TransitionRule__Group__2 ;
     public final void rule__TransitionRule__Group__1() throws RecognitionException {
 
@@ -1282,11 +1331,13 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__TransitionRule__Group__1__Impl_in_rule__TransitionRule__Group__1975);
             rule__TransitionRule__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__TransitionRule__Group__2_in_rule__TransitionRule__Group__1978);
             rule__TransitionRule__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1303,10 +1354,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TransitionRule__Group__1
+    // $ANTLR end "rule__TransitionRule__Group__1"
 
 
-    // $ANTLR start rule__TransitionRule__Group__1__Impl
+    // $ANTLR start "rule__TransitionRule__Group__1__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:490:1: rule__TransitionRule__Group__1__Impl : ( ( rule__TransitionRule__GuardAssignment_1 )? ) ;
     public final void rule__TransitionRule__Group__1__Impl() throws RecognitionException {
 
@@ -1333,7 +1384,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
                     {
                     pushFollow(FOLLOW_rule__TransitionRule__GuardAssignment_1_in_rule__TransitionRule__Group__1__Impl1005);
                     rule__TransitionRule__GuardAssignment_1();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -1360,10 +1412,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TransitionRule__Group__1__Impl
+    // $ANTLR end "rule__TransitionRule__Group__1__Impl"
 
 
-    // $ANTLR start rule__TransitionRule__Group__2
+    // $ANTLR start "rule__TransitionRule__Group__2"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:507:1: rule__TransitionRule__Group__2 : rule__TransitionRule__Group__2__Impl ;
     public final void rule__TransitionRule__Group__2() throws RecognitionException {
 
@@ -1375,7 +1427,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__TransitionRule__Group__2__Impl_in_rule__TransitionRule__Group__21036);
             rule__TransitionRule__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1392,10 +1445,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TransitionRule__Group__2
+    // $ANTLR end "rule__TransitionRule__Group__2"
 
 
-    // $ANTLR start rule__TransitionRule__Group__2__Impl
+    // $ANTLR start "rule__TransitionRule__Group__2__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:518:1: rule__TransitionRule__Group__2__Impl : ( ( rule__TransitionRule__EffectAssignment_2 )? ) ;
     public final void rule__TransitionRule__Group__2__Impl() throws RecognitionException {
 
@@ -1422,7 +1475,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
                     {
                     pushFollow(FOLLOW_rule__TransitionRule__EffectAssignment_2_in_rule__TransitionRule__Group__2__Impl1063);
                     rule__TransitionRule__EffectAssignment_2();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -1449,10 +1503,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TransitionRule__Group__2__Impl
+    // $ANTLR end "rule__TransitionRule__Group__2__Impl"
 
 
-    // $ANTLR start rule__TransitionRule__Group_0__0
+    // $ANTLR start "rule__TransitionRule__Group_0__0"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:541:1: rule__TransitionRule__Group_0__0 : rule__TransitionRule__Group_0__0__Impl rule__TransitionRule__Group_0__1 ;
     public final void rule__TransitionRule__Group_0__0() throws RecognitionException {
 
@@ -1464,11 +1518,13 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__TransitionRule__Group_0__0__Impl_in_rule__TransitionRule__Group_0__01100);
             rule__TransitionRule__Group_0__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__TransitionRule__Group_0__1_in_rule__TransitionRule__Group_0__01103);
             rule__TransitionRule__Group_0__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1485,10 +1541,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TransitionRule__Group_0__0
+    // $ANTLR end "rule__TransitionRule__Group_0__0"
 
 
-    // $ANTLR start rule__TransitionRule__Group_0__0__Impl
+    // $ANTLR start "rule__TransitionRule__Group_0__0__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:553:1: rule__TransitionRule__Group_0__0__Impl : ( ( rule__TransitionRule__TriggersAssignment_0_0 ) ) ;
     public final void rule__TransitionRule__Group_0__0__Impl() throws RecognitionException {
 
@@ -1507,7 +1563,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__TransitionRule__TriggersAssignment_0_0_in_rule__TransitionRule__Group_0__0__Impl1130);
             rule__TransitionRule__TriggersAssignment_0_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1531,10 +1588,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TransitionRule__Group_0__0__Impl
+    // $ANTLR end "rule__TransitionRule__Group_0__0__Impl"
 
 
-    // $ANTLR start rule__TransitionRule__Group_0__1
+    // $ANTLR start "rule__TransitionRule__Group_0__1"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:570:1: rule__TransitionRule__Group_0__1 : rule__TransitionRule__Group_0__1__Impl ;
     public final void rule__TransitionRule__Group_0__1() throws RecognitionException {
 
@@ -1546,7 +1603,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__TransitionRule__Group_0__1__Impl_in_rule__TransitionRule__Group_0__11160);
             rule__TransitionRule__Group_0__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1563,10 +1621,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TransitionRule__Group_0__1
+    // $ANTLR end "rule__TransitionRule__Group_0__1"
 
 
-    // $ANTLR start rule__TransitionRule__Group_0__1__Impl
+    // $ANTLR start "rule__TransitionRule__Group_0__1__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:581:1: rule__TransitionRule__Group_0__1__Impl : ( ( rule__TransitionRule__Group_0_1__0 )* ) ;
     public final void rule__TransitionRule__Group_0__1__Impl() throws RecognitionException {
 
@@ -1597,7 +1655,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             	    {
             	    pushFollow(FOLLOW_rule__TransitionRule__Group_0_1__0_in_rule__TransitionRule__Group_0__1__Impl1187);
             	    rule__TransitionRule__Group_0_1__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -1627,10 +1686,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TransitionRule__Group_0__1__Impl
+    // $ANTLR end "rule__TransitionRule__Group_0__1__Impl"
 
 
-    // $ANTLR start rule__TransitionRule__Group_0_1__0
+    // $ANTLR start "rule__TransitionRule__Group_0_1__0"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:602:1: rule__TransitionRule__Group_0_1__0 : rule__TransitionRule__Group_0_1__0__Impl rule__TransitionRule__Group_0_1__1 ;
     public final void rule__TransitionRule__Group_0_1__0() throws RecognitionException {
 
@@ -1642,11 +1701,13 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__TransitionRule__Group_0_1__0__Impl_in_rule__TransitionRule__Group_0_1__01222);
             rule__TransitionRule__Group_0_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__TransitionRule__Group_0_1__1_in_rule__TransitionRule__Group_0_1__01225);
             rule__TransitionRule__Group_0_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1663,10 +1724,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TransitionRule__Group_0_1__0
+    // $ANTLR end "rule__TransitionRule__Group_0_1__0"
 
 
-    // $ANTLR start rule__TransitionRule__Group_0_1__0__Impl
+    // $ANTLR start "rule__TransitionRule__Group_0_1__0__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:614:1: rule__TransitionRule__Group_0_1__0__Impl : ( ',' ) ;
     public final void rule__TransitionRule__Group_0_1__0__Impl() throws RecognitionException {
 
@@ -1700,10 +1761,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TransitionRule__Group_0_1__0__Impl
+    // $ANTLR end "rule__TransitionRule__Group_0_1__0__Impl"
 
 
-    // $ANTLR start rule__TransitionRule__Group_0_1__1
+    // $ANTLR start "rule__TransitionRule__Group_0_1__1"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:633:1: rule__TransitionRule__Group_0_1__1 : rule__TransitionRule__Group_0_1__1__Impl ;
     public final void rule__TransitionRule__Group_0_1__1() throws RecognitionException {
 
@@ -1715,7 +1776,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__TransitionRule__Group_0_1__1__Impl_in_rule__TransitionRule__Group_0_1__11284);
             rule__TransitionRule__Group_0_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1732,10 +1794,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TransitionRule__Group_0_1__1
+    // $ANTLR end "rule__TransitionRule__Group_0_1__1"
 
 
-    // $ANTLR start rule__TransitionRule__Group_0_1__1__Impl
+    // $ANTLR start "rule__TransitionRule__Group_0_1__1__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:644:1: rule__TransitionRule__Group_0_1__1__Impl : ( ( rule__TransitionRule__TriggersAssignment_0_1_1 ) ) ;
     public final void rule__TransitionRule__Group_0_1__1__Impl() throws RecognitionException {
 
@@ -1754,7 +1816,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__TransitionRule__TriggersAssignment_0_1_1_in_rule__TransitionRule__Group_0_1__1__Impl1311);
             rule__TransitionRule__TriggersAssignment_0_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1778,10 +1841,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TransitionRule__Group_0_1__1__Impl
+    // $ANTLR end "rule__TransitionRule__Group_0_1__1__Impl"
 
 
-    // $ANTLR start rule__RelativeTimeEventRule__Group__0
+    // $ANTLR start "rule__RelativeTimeEventRule__Group__0"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:665:1: rule__RelativeTimeEventRule__Group__0 : rule__RelativeTimeEventRule__Group__0__Impl rule__RelativeTimeEventRule__Group__1 ;
     public final void rule__RelativeTimeEventRule__Group__0() throws RecognitionException {
 
@@ -1793,11 +1856,13 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__RelativeTimeEventRule__Group__0__Impl_in_rule__RelativeTimeEventRule__Group__01345);
             rule__RelativeTimeEventRule__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__RelativeTimeEventRule__Group__1_in_rule__RelativeTimeEventRule__Group__01348);
             rule__RelativeTimeEventRule__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1814,10 +1879,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__RelativeTimeEventRule__Group__0
+    // $ANTLR end "rule__RelativeTimeEventRule__Group__0"
 
 
-    // $ANTLR start rule__RelativeTimeEventRule__Group__0__Impl
+    // $ANTLR start "rule__RelativeTimeEventRule__Group__0__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:677:1: rule__RelativeTimeEventRule__Group__0__Impl : ( 'after' ) ;
     public final void rule__RelativeTimeEventRule__Group__0__Impl() throws RecognitionException {
 
@@ -1851,10 +1916,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__RelativeTimeEventRule__Group__0__Impl
+    // $ANTLR end "rule__RelativeTimeEventRule__Group__0__Impl"
 
 
-    // $ANTLR start rule__RelativeTimeEventRule__Group__1
+    // $ANTLR start "rule__RelativeTimeEventRule__Group__1"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:696:1: rule__RelativeTimeEventRule__Group__1 : rule__RelativeTimeEventRule__Group__1__Impl ;
     public final void rule__RelativeTimeEventRule__Group__1() throws RecognitionException {
 
@@ -1866,7 +1931,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__RelativeTimeEventRule__Group__1__Impl_in_rule__RelativeTimeEventRule__Group__11407);
             rule__RelativeTimeEventRule__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1883,10 +1949,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__RelativeTimeEventRule__Group__1
+    // $ANTLR end "rule__RelativeTimeEventRule__Group__1"
 
 
-    // $ANTLR start rule__RelativeTimeEventRule__Group__1__Impl
+    // $ANTLR start "rule__RelativeTimeEventRule__Group__1__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:707:1: rule__RelativeTimeEventRule__Group__1__Impl : ( ( rule__RelativeTimeEventRule__ExprAssignment_1 ) ) ;
     public final void rule__RelativeTimeEventRule__Group__1__Impl() throws RecognitionException {
 
@@ -1905,7 +1971,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__RelativeTimeEventRule__ExprAssignment_1_in_rule__RelativeTimeEventRule__Group__1__Impl1434);
             rule__RelativeTimeEventRule__ExprAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1929,10 +1996,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__RelativeTimeEventRule__Group__1__Impl
+    // $ANTLR end "rule__RelativeTimeEventRule__Group__1__Impl"
 
 
-    // $ANTLR start rule__AbsoluteTimeEventRule__Group__0
+    // $ANTLR start "rule__AbsoluteTimeEventRule__Group__0"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:728:1: rule__AbsoluteTimeEventRule__Group__0 : rule__AbsoluteTimeEventRule__Group__0__Impl rule__AbsoluteTimeEventRule__Group__1 ;
     public final void rule__AbsoluteTimeEventRule__Group__0() throws RecognitionException {
 
@@ -1944,11 +2011,13 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__AbsoluteTimeEventRule__Group__0__Impl_in_rule__AbsoluteTimeEventRule__Group__01468);
             rule__AbsoluteTimeEventRule__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__AbsoluteTimeEventRule__Group__1_in_rule__AbsoluteTimeEventRule__Group__01471);
             rule__AbsoluteTimeEventRule__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1965,10 +2034,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__AbsoluteTimeEventRule__Group__0
+    // $ANTLR end "rule__AbsoluteTimeEventRule__Group__0"
 
 
-    // $ANTLR start rule__AbsoluteTimeEventRule__Group__0__Impl
+    // $ANTLR start "rule__AbsoluteTimeEventRule__Group__0__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:740:1: rule__AbsoluteTimeEventRule__Group__0__Impl : ( 'at' ) ;
     public final void rule__AbsoluteTimeEventRule__Group__0__Impl() throws RecognitionException {
 
@@ -2002,10 +2071,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__AbsoluteTimeEventRule__Group__0__Impl
+    // $ANTLR end "rule__AbsoluteTimeEventRule__Group__0__Impl"
 
 
-    // $ANTLR start rule__AbsoluteTimeEventRule__Group__1
+    // $ANTLR start "rule__AbsoluteTimeEventRule__Group__1"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:759:1: rule__AbsoluteTimeEventRule__Group__1 : rule__AbsoluteTimeEventRule__Group__1__Impl ;
     public final void rule__AbsoluteTimeEventRule__Group__1() throws RecognitionException {
 
@@ -2017,7 +2086,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__AbsoluteTimeEventRule__Group__1__Impl_in_rule__AbsoluteTimeEventRule__Group__11530);
             rule__AbsoluteTimeEventRule__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2034,10 +2104,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__AbsoluteTimeEventRule__Group__1
+    // $ANTLR end "rule__AbsoluteTimeEventRule__Group__1"
 
 
-    // $ANTLR start rule__AbsoluteTimeEventRule__Group__1__Impl
+    // $ANTLR start "rule__AbsoluteTimeEventRule__Group__1__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:770:1: rule__AbsoluteTimeEventRule__Group__1__Impl : ( ( rule__AbsoluteTimeEventRule__ExprAssignment_1 ) ) ;
     public final void rule__AbsoluteTimeEventRule__Group__1__Impl() throws RecognitionException {
 
@@ -2056,7 +2126,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__AbsoluteTimeEventRule__ExprAssignment_1_in_rule__AbsoluteTimeEventRule__Group__1__Impl1557);
             rule__AbsoluteTimeEventRule__ExprAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2080,10 +2151,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__AbsoluteTimeEventRule__Group__1__Impl
+    // $ANTLR end "rule__AbsoluteTimeEventRule__Group__1__Impl"
 
 
-    // $ANTLR start rule__ChangeEventRule__Group__0
+    // $ANTLR start "rule__ChangeEventRule__Group__0"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:791:1: rule__ChangeEventRule__Group__0 : rule__ChangeEventRule__Group__0__Impl rule__ChangeEventRule__Group__1 ;
     public final void rule__ChangeEventRule__Group__0() throws RecognitionException {
 
@@ -2095,11 +2166,13 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__ChangeEventRule__Group__0__Impl_in_rule__ChangeEventRule__Group__01591);
             rule__ChangeEventRule__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ChangeEventRule__Group__1_in_rule__ChangeEventRule__Group__01594);
             rule__ChangeEventRule__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2116,10 +2189,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__ChangeEventRule__Group__0
+    // $ANTLR end "rule__ChangeEventRule__Group__0"
 
 
-    // $ANTLR start rule__ChangeEventRule__Group__0__Impl
+    // $ANTLR start "rule__ChangeEventRule__Group__0__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:803:1: rule__ChangeEventRule__Group__0__Impl : ( 'when' ) ;
     public final void rule__ChangeEventRule__Group__0__Impl() throws RecognitionException {
 
@@ -2153,10 +2226,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__ChangeEventRule__Group__0__Impl
+    // $ANTLR end "rule__ChangeEventRule__Group__0__Impl"
 
 
-    // $ANTLR start rule__ChangeEventRule__Group__1
+    // $ANTLR start "rule__ChangeEventRule__Group__1"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:822:1: rule__ChangeEventRule__Group__1 : rule__ChangeEventRule__Group__1__Impl ;
     public final void rule__ChangeEventRule__Group__1() throws RecognitionException {
 
@@ -2168,7 +2241,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__ChangeEventRule__Group__1__Impl_in_rule__ChangeEventRule__Group__11653);
             rule__ChangeEventRule__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2185,10 +2259,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__ChangeEventRule__Group__1
+    // $ANTLR end "rule__ChangeEventRule__Group__1"
 
 
-    // $ANTLR start rule__ChangeEventRule__Group__1__Impl
+    // $ANTLR start "rule__ChangeEventRule__Group__1__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:833:1: rule__ChangeEventRule__Group__1__Impl : ( ( rule__ChangeEventRule__ExpAssignment_1 ) ) ;
     public final void rule__ChangeEventRule__Group__1__Impl() throws RecognitionException {
 
@@ -2207,7 +2281,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__ChangeEventRule__ExpAssignment_1_in_rule__ChangeEventRule__Group__1__Impl1680);
             rule__ChangeEventRule__ExpAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2231,10 +2306,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__ChangeEventRule__Group__1__Impl
+    // $ANTLR end "rule__ChangeEventRule__Group__1__Impl"
 
 
-    // $ANTLR start rule__GuardRule__Group__0
+    // $ANTLR start "rule__GuardRule__Group__0"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:854:1: rule__GuardRule__Group__0 : rule__GuardRule__Group__0__Impl rule__GuardRule__Group__1 ;
     public final void rule__GuardRule__Group__0() throws RecognitionException {
 
@@ -2246,11 +2321,13 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__GuardRule__Group__0__Impl_in_rule__GuardRule__Group__01714);
             rule__GuardRule__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__GuardRule__Group__1_in_rule__GuardRule__Group__01717);
             rule__GuardRule__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2267,10 +2344,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__GuardRule__Group__0
+    // $ANTLR end "rule__GuardRule__Group__0"
 
 
-    // $ANTLR start rule__GuardRule__Group__0__Impl
+    // $ANTLR start "rule__GuardRule__Group__0__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:866:1: rule__GuardRule__Group__0__Impl : ( '[' ) ;
     public final void rule__GuardRule__Group__0__Impl() throws RecognitionException {
 
@@ -2304,10 +2381,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__GuardRule__Group__0__Impl
+    // $ANTLR end "rule__GuardRule__Group__0__Impl"
 
 
-    // $ANTLR start rule__GuardRule__Group__1
+    // $ANTLR start "rule__GuardRule__Group__1"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:885:1: rule__GuardRule__Group__1 : rule__GuardRule__Group__1__Impl rule__GuardRule__Group__2 ;
     public final void rule__GuardRule__Group__1() throws RecognitionException {
 
@@ -2319,11 +2396,13 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__GuardRule__Group__1__Impl_in_rule__GuardRule__Group__11776);
             rule__GuardRule__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__GuardRule__Group__2_in_rule__GuardRule__Group__11779);
             rule__GuardRule__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2340,10 +2419,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__GuardRule__Group__1
+    // $ANTLR end "rule__GuardRule__Group__1"
 
 
-    // $ANTLR start rule__GuardRule__Group__1__Impl
+    // $ANTLR start "rule__GuardRule__Group__1__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:897:1: rule__GuardRule__Group__1__Impl : ( ( rule__GuardRule__ConstraintAssignment_1 ) ) ;
     public final void rule__GuardRule__Group__1__Impl() throws RecognitionException {
 
@@ -2362,7 +2441,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__GuardRule__ConstraintAssignment_1_in_rule__GuardRule__Group__1__Impl1806);
             rule__GuardRule__ConstraintAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2386,10 +2466,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__GuardRule__Group__1__Impl
+    // $ANTLR end "rule__GuardRule__Group__1__Impl"
 
 
-    // $ANTLR start rule__GuardRule__Group__2
+    // $ANTLR start "rule__GuardRule__Group__2"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:914:1: rule__GuardRule__Group__2 : rule__GuardRule__Group__2__Impl ;
     public final void rule__GuardRule__Group__2() throws RecognitionException {
 
@@ -2401,7 +2481,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__GuardRule__Group__2__Impl_in_rule__GuardRule__Group__21836);
             rule__GuardRule__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2418,10 +2499,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__GuardRule__Group__2
+    // $ANTLR end "rule__GuardRule__Group__2"
 
 
-    // $ANTLR start rule__GuardRule__Group__2__Impl
+    // $ANTLR start "rule__GuardRule__Group__2__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:925:1: rule__GuardRule__Group__2__Impl : ( ']' ) ;
     public final void rule__GuardRule__Group__2__Impl() throws RecognitionException {
 
@@ -2455,10 +2536,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__GuardRule__Group__2__Impl
+    // $ANTLR end "rule__GuardRule__Group__2__Impl"
 
 
-    // $ANTLR start rule__EffectRule__Group__0
+    // $ANTLR start "rule__EffectRule__Group__0"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:950:1: rule__EffectRule__Group__0 : rule__EffectRule__Group__0__Impl rule__EffectRule__Group__1 ;
     public final void rule__EffectRule__Group__0() throws RecognitionException {
 
@@ -2470,11 +2551,13 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__EffectRule__Group__0__Impl_in_rule__EffectRule__Group__01901);
             rule__EffectRule__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__EffectRule__Group__1_in_rule__EffectRule__Group__01904);
             rule__EffectRule__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2491,10 +2574,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__EffectRule__Group__0
+    // $ANTLR end "rule__EffectRule__Group__0"
 
 
-    // $ANTLR start rule__EffectRule__Group__0__Impl
+    // $ANTLR start "rule__EffectRule__Group__0__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:962:1: rule__EffectRule__Group__0__Impl : ( '/' ) ;
     public final void rule__EffectRule__Group__0__Impl() throws RecognitionException {
 
@@ -2528,10 +2611,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__EffectRule__Group__0__Impl
+    // $ANTLR end "rule__EffectRule__Group__0__Impl"
 
 
-    // $ANTLR start rule__EffectRule__Group__1
+    // $ANTLR start "rule__EffectRule__Group__1"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:981:1: rule__EffectRule__Group__1 : rule__EffectRule__Group__1__Impl rule__EffectRule__Group__2 ;
     public final void rule__EffectRule__Group__1() throws RecognitionException {
 
@@ -2543,11 +2626,13 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__EffectRule__Group__1__Impl_in_rule__EffectRule__Group__11963);
             rule__EffectRule__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__EffectRule__Group__2_in_rule__EffectRule__Group__11966);
             rule__EffectRule__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2564,10 +2649,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__EffectRule__Group__1
+    // $ANTLR end "rule__EffectRule__Group__1"
 
 
-    // $ANTLR start rule__EffectRule__Group__1__Impl
+    // $ANTLR start "rule__EffectRule__Group__1__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:993:1: rule__EffectRule__Group__1__Impl : ( ( rule__EffectRule__KindAssignment_1 ) ) ;
     public final void rule__EffectRule__Group__1__Impl() throws RecognitionException {
 
@@ -2586,7 +2671,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__EffectRule__KindAssignment_1_in_rule__EffectRule__Group__1__Impl1993);
             rule__EffectRule__KindAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2610,10 +2696,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__EffectRule__Group__1__Impl
+    // $ANTLR end "rule__EffectRule__Group__1__Impl"
 
 
-    // $ANTLR start rule__EffectRule__Group__2
+    // $ANTLR start "rule__EffectRule__Group__2"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:1010:1: rule__EffectRule__Group__2 : rule__EffectRule__Group__2__Impl ;
     public final void rule__EffectRule__Group__2() throws RecognitionException {
 
@@ -2625,7 +2711,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__EffectRule__Group__2__Impl_in_rule__EffectRule__Group__22023);
             rule__EffectRule__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2642,10 +2729,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__EffectRule__Group__2
+    // $ANTLR end "rule__EffectRule__Group__2"
 
 
-    // $ANTLR start rule__EffectRule__Group__2__Impl
+    // $ANTLR start "rule__EffectRule__Group__2__Impl"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:1021:1: rule__EffectRule__Group__2__Impl : ( ( rule__EffectRule__BehaviorNameAssignment_2 ) ) ;
     public final void rule__EffectRule__Group__2__Impl() throws RecognitionException {
 
@@ -2664,7 +2751,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             {
             pushFollow(FOLLOW_rule__EffectRule__BehaviorNameAssignment_2_in_rule__EffectRule__Group__2__Impl2050);
             rule__EffectRule__BehaviorNameAssignment_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2688,10 +2776,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__EffectRule__Group__2__Impl
+    // $ANTLR end "rule__EffectRule__Group__2__Impl"
 
 
-    // $ANTLR start rule__TransitionRule__TriggersAssignment_0_0
+    // $ANTLR start "rule__TransitionRule__TriggersAssignment_0_0"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:1045:1: rule__TransitionRule__TriggersAssignment_0_0 : ( ruleEventRule ) ;
     public final void rule__TransitionRule__TriggersAssignment_0_0() throws RecognitionException {
 
@@ -2707,7 +2795,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
              before(grammarAccess.getTransitionRuleAccess().getTriggersEventRuleParserRuleCall_0_0_0()); 
             pushFollow(FOLLOW_ruleEventRule_in_rule__TransitionRule__TriggersAssignment_0_02091);
             ruleEventRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getTransitionRuleAccess().getTriggersEventRuleParserRuleCall_0_0_0()); 
 
@@ -2728,10 +2817,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TransitionRule__TriggersAssignment_0_0
+    // $ANTLR end "rule__TransitionRule__TriggersAssignment_0_0"
 
 
-    // $ANTLR start rule__TransitionRule__TriggersAssignment_0_1_1
+    // $ANTLR start "rule__TransitionRule__TriggersAssignment_0_1_1"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:1060:1: rule__TransitionRule__TriggersAssignment_0_1_1 : ( ruleEventRule ) ;
     public final void rule__TransitionRule__TriggersAssignment_0_1_1() throws RecognitionException {
 
@@ -2747,7 +2836,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
              before(grammarAccess.getTransitionRuleAccess().getTriggersEventRuleParserRuleCall_0_1_1_0()); 
             pushFollow(FOLLOW_ruleEventRule_in_rule__TransitionRule__TriggersAssignment_0_1_12122);
             ruleEventRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getTransitionRuleAccess().getTriggersEventRuleParserRuleCall_0_1_1_0()); 
 
@@ -2768,10 +2858,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TransitionRule__TriggersAssignment_0_1_1
+    // $ANTLR end "rule__TransitionRule__TriggersAssignment_0_1_1"
 
 
-    // $ANTLR start rule__TransitionRule__GuardAssignment_1
+    // $ANTLR start "rule__TransitionRule__GuardAssignment_1"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:1075:1: rule__TransitionRule__GuardAssignment_1 : ( ruleGuardRule ) ;
     public final void rule__TransitionRule__GuardAssignment_1() throws RecognitionException {
 
@@ -2787,7 +2877,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
              before(grammarAccess.getTransitionRuleAccess().getGuardGuardRuleParserRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleGuardRule_in_rule__TransitionRule__GuardAssignment_12153);
             ruleGuardRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getTransitionRuleAccess().getGuardGuardRuleParserRuleCall_1_0()); 
 
@@ -2808,10 +2899,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TransitionRule__GuardAssignment_1
+    // $ANTLR end "rule__TransitionRule__GuardAssignment_1"
 
 
-    // $ANTLR start rule__TransitionRule__EffectAssignment_2
+    // $ANTLR start "rule__TransitionRule__EffectAssignment_2"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:1090:1: rule__TransitionRule__EffectAssignment_2 : ( ruleEffectRule ) ;
     public final void rule__TransitionRule__EffectAssignment_2() throws RecognitionException {
 
@@ -2827,7 +2918,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
              before(grammarAccess.getTransitionRuleAccess().getEffectEffectRuleParserRuleCall_2_0()); 
             pushFollow(FOLLOW_ruleEffectRule_in_rule__TransitionRule__EffectAssignment_22184);
             ruleEffectRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getTransitionRuleAccess().getEffectEffectRuleParserRuleCall_2_0()); 
 
@@ -2848,10 +2940,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__TransitionRule__EffectAssignment_2
+    // $ANTLR end "rule__TransitionRule__EffectAssignment_2"
 
 
-    // $ANTLR start rule__CallOrSignalEventRule__OperationOrSignalAssignment
+    // $ANTLR start "rule__CallOrSignalEventRule__OperationOrSignalAssignment"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:1105:1: rule__CallOrSignalEventRule__OperationOrSignalAssignment : ( ( RULE_ID ) ) ;
     public final void rule__CallOrSignalEventRule__OperationOrSignalAssignment() throws RecognitionException {
 
@@ -2893,10 +2985,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__CallOrSignalEventRule__OperationOrSignalAssignment
+    // $ANTLR end "rule__CallOrSignalEventRule__OperationOrSignalAssignment"
 
 
-    // $ANTLR start rule__AnyReceiveEventRule__IsAReceiveEventAssignment
+    // $ANTLR start "rule__AnyReceiveEventRule__IsAReceiveEventAssignment"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:1124:1: rule__AnyReceiveEventRule__IsAReceiveEventAssignment : ( ( 'all' ) ) ;
     public final void rule__AnyReceiveEventRule__IsAReceiveEventAssignment() throws RecognitionException {
 
@@ -2938,10 +3030,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__AnyReceiveEventRule__IsAReceiveEventAssignment
+    // $ANTLR end "rule__AnyReceiveEventRule__IsAReceiveEventAssignment"
 
 
-    // $ANTLR start rule__RelativeTimeEventRule__ExprAssignment_1
+    // $ANTLR start "rule__RelativeTimeEventRule__ExprAssignment_1"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:1147:1: rule__RelativeTimeEventRule__ExprAssignment_1 : ( RULE_STRING ) ;
     public final void rule__RelativeTimeEventRule__ExprAssignment_1() throws RecognitionException {
 
@@ -2975,10 +3067,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__RelativeTimeEventRule__ExprAssignment_1
+    // $ANTLR end "rule__RelativeTimeEventRule__ExprAssignment_1"
 
 
-    // $ANTLR start rule__AbsoluteTimeEventRule__ExprAssignment_1
+    // $ANTLR start "rule__AbsoluteTimeEventRule__ExprAssignment_1"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:1162:1: rule__AbsoluteTimeEventRule__ExprAssignment_1 : ( RULE_STRING ) ;
     public final void rule__AbsoluteTimeEventRule__ExprAssignment_1() throws RecognitionException {
 
@@ -3012,10 +3104,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__AbsoluteTimeEventRule__ExprAssignment_1
+    // $ANTLR end "rule__AbsoluteTimeEventRule__ExprAssignment_1"
 
 
-    // $ANTLR start rule__ChangeEventRule__ExpAssignment_1
+    // $ANTLR start "rule__ChangeEventRule__ExpAssignment_1"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:1177:1: rule__ChangeEventRule__ExpAssignment_1 : ( RULE_STRING ) ;
     public final void rule__ChangeEventRule__ExpAssignment_1() throws RecognitionException {
 
@@ -3049,10 +3141,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__ChangeEventRule__ExpAssignment_1
+    // $ANTLR end "rule__ChangeEventRule__ExpAssignment_1"
 
 
-    // $ANTLR start rule__GuardRule__ConstraintAssignment_1
+    // $ANTLR start "rule__GuardRule__ConstraintAssignment_1"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:1192:1: rule__GuardRule__ConstraintAssignment_1 : ( RULE_STRING ) ;
     public final void rule__GuardRule__ConstraintAssignment_1() throws RecognitionException {
 
@@ -3086,10 +3178,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__GuardRule__ConstraintAssignment_1
+    // $ANTLR end "rule__GuardRule__ConstraintAssignment_1"
 
 
-    // $ANTLR start rule__EffectRule__KindAssignment_1
+    // $ANTLR start "rule__EffectRule__KindAssignment_1"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:1207:1: rule__EffectRule__KindAssignment_1 : ( ruleBehaviorKind ) ;
     public final void rule__EffectRule__KindAssignment_1() throws RecognitionException {
 
@@ -3105,7 +3197,8 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
              before(grammarAccess.getEffectRuleAccess().getKindBehaviorKindEnumRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleBehaviorKind_in_rule__EffectRule__KindAssignment_12422);
             ruleBehaviorKind();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getEffectRuleAccess().getKindBehaviorKindEnumRuleCall_1_0()); 
 
@@ -3126,10 +3219,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__EffectRule__KindAssignment_1
+    // $ANTLR end "rule__EffectRule__KindAssignment_1"
 
 
-    // $ANTLR start rule__EffectRule__BehaviorNameAssignment_2
+    // $ANTLR start "rule__EffectRule__BehaviorNameAssignment_2"
     // ../org.eclipse.papyrus.transition.editor.xtext.ui/src-gen/org/eclipse/papyrus/transition/editor/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:1222:1: rule__EffectRule__BehaviorNameAssignment_2 : ( RULE_ID ) ;
     public final void rule__EffectRule__BehaviorNameAssignment_2() throws RecognitionException {
 
@@ -3163,7 +3256,9 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end rule__EffectRule__BehaviorNameAssignment_2
+    // $ANTLR end "rule__EffectRule__BehaviorNameAssignment_2"
+
+    // Delegated rules
 
 
  
@@ -3208,15 +3303,15 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
     public static final BitSet FOLLOW_11_in_rule__BehaviorKind__Alternatives839 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_12_in_rule__BehaviorKind__Alternatives860 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_13_in_rule__BehaviorKind__Alternatives881 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TransitionRule__Group__0__Impl_in_rule__TransitionRule__Group__0914 = new BitSet(new long[]{0x0000000000140002L});
+    public static final BitSet FOLLOW_rule__TransitionRule__Group__0__Impl_in_rule__TransitionRule__Group__0914 = new BitSet(new long[]{0x0000000000140000L});
     public static final BitSet FOLLOW_rule__TransitionRule__Group__1_in_rule__TransitionRule__Group__0917 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TransitionRule__Group_0__0_in_rule__TransitionRule__Group__0__Impl944 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TransitionRule__Group__1__Impl_in_rule__TransitionRule__Group__1975 = new BitSet(new long[]{0x0000000000100002L});
+    public static final BitSet FOLLOW_rule__TransitionRule__Group__1__Impl_in_rule__TransitionRule__Group__1975 = new BitSet(new long[]{0x0000000000140000L});
     public static final BitSet FOLLOW_rule__TransitionRule__Group__2_in_rule__TransitionRule__Group__1978 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TransitionRule__GuardAssignment_1_in_rule__TransitionRule__Group__1__Impl1005 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TransitionRule__Group__2__Impl_in_rule__TransitionRule__Group__21036 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TransitionRule__EffectAssignment_2_in_rule__TransitionRule__Group__2__Impl1063 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TransitionRule__Group_0__0__Impl_in_rule__TransitionRule__Group_0__01100 = new BitSet(new long[]{0x0000000000004002L});
+    public static final BitSet FOLLOW_rule__TransitionRule__Group_0__0__Impl_in_rule__TransitionRule__Group_0__01100 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_rule__TransitionRule__Group_0__1_in_rule__TransitionRule__Group_0__01103 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TransitionRule__TriggersAssignment_0_0_in_rule__TransitionRule__Group_0__0__Impl1130 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TransitionRule__Group_0__1__Impl_in_rule__TransitionRule__Group_0__11160 = new BitSet(new long[]{0x0000000000000002L});

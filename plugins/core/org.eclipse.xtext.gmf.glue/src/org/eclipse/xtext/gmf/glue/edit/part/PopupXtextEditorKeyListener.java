@@ -14,6 +14,7 @@ import org.eclipse.jface.text.contentassist.ContentAssistant;
 import org.eclipse.jface.text.contentassist.ICompletionListener;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.contentassist.IContentAssistant;
+import org.eclipse.jface.text.source.ContentAssistantFacade;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.VerifyKeyListener;
 import org.eclipse.swt.events.KeyAdapter;
@@ -37,9 +38,18 @@ public class PopupXtextEditorKeyListener extends KeyAdapter implements VerifyKey
 	 * @param popupXtextEditorHelper 
 	 * @param contentAssistant 
 	 */
-	public PopupXtextEditorKeyListener(PopupXtextEditorHelper popupXtextEditorHelper, IContentAssistant contentAssistant) {
+	public PopupXtextEditorKeyListener(PopupXtextEditorHelper popupXtextEditorHelper, ContentAssistantFacade contentAssistant) {
 		this.popupXtextEditorHelper = popupXtextEditorHelper;
-		this.contentAssistant = contentAssistant instanceof ContentAssistant ? (ContentAssistant) contentAssistant : null;
+		try {
+			Field f = ContentAssistantFacade.class.getDeclaredField("fContentAssistant") ;
+			f.setAccessible(true) ;
+			this.contentAssistant = (ContentAssistant) f.get(contentAssistant) ;
+			System.out.println() ;
+		}
+		catch (Exception exception) {
+			System.out.println(exception) ;
+			this.contentAssistant = null ;
+		}
 		isIgnoreNextESC = false;
 		
 	}
@@ -61,6 +71,7 @@ public class PopupXtextEditorKeyListener extends KeyAdapter implements VerifyKey
 		if ((e.stateMask & SWT.CTRL) != 0 && (keyCode == ' ')) {
 			this.contentAssistant.setRepeatedInvocationMode(true) ;
 			this.contentAssistant.showPossibleCompletions() ;
+			
 			this.isIgnoreNextESC = true ;
 			contentAssistant.addCompletionListener(new ICompletionListener() {
 				

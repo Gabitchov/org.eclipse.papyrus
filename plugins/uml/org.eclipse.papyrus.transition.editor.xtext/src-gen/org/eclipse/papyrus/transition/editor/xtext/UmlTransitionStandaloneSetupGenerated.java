@@ -39,6 +39,5 @@ public class UmlTransitionStandaloneSetupGenerated implements ISetup {
 
 
 
-
 	}
 }

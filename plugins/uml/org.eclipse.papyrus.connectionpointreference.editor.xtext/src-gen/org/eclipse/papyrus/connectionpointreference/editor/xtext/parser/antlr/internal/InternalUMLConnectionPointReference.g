@@ -19,18 +19,15 @@ import org.eclipse.xtext.parser.antlr.Lexer;
 @parser::header {
 package org.eclipse.papyrus.connectionpointreference.editor.xtext.parser.antlr.internal; 
 
-import java.io.InputStream;
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.parser.*;
 import org.eclipse.xtext.parser.impl.*;
-import org.eclipse.xtext.parsetree.*;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.parser.antlr.AntlrDatatypeRuleToken;
-import org.eclipse.xtext.conversion.ValueConverterException;
 import org.eclipse.papyrus.connectionpointreference.editor.xtext.services.UMLConnectionPointReferenceGrammarAccess;
 
 }
@@ -39,17 +36,10 @@ import org.eclipse.papyrus.connectionpointreference.editor.xtext.services.UMLCon
 
  	private UMLConnectionPointReferenceGrammarAccess grammarAccess;
  	
-    public InternalUMLConnectionPointReferenceParser(TokenStream input, IAstFactory factory, UMLConnectionPointReferenceGrammarAccess grammarAccess) {
+    public InternalUMLConnectionPointReferenceParser(TokenStream input, UMLConnectionPointReferenceGrammarAccess grammarAccess) {
         this(input);
-        this.factory = factory;
-        registerRules(grammarAccess.getGrammar());
         this.grammarAccess = grammarAccess;
-    }
-    
-    @Override
-    protected InputStream getTokenFile() {
-    	ClassLoader classLoader = getClass().getClassLoader();
-    	return classLoader.getResourceAsStream("org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.tokens");
+        registerRules(grammarAccess.getGrammar());
     }
     
     @Override
@@ -76,7 +66,7 @@ import org.eclipse.papyrus.connectionpointreference.editor.xtext.services.UMLCon
 // Entry rule entryRuleConnectionPointReferenceRule
 entryRuleConnectionPointReferenceRule returns [EObject current=null] 
 	:
-	{ currentNode = createCompositeNode(grammarAccess.getConnectionPointReferenceRuleRule(), currentNode); }
+	{ newCompositeNode(grammarAccess.getConnectionPointReferenceRuleRule()); }
 	 iv_ruleConnectionPointReferenceRule=ruleConnectionPointReferenceRule 
 	 { $current=$iv_ruleConnectionPointReferenceRule.current; } 
 	 EOF 
@@ -84,81 +74,75 @@ entryRuleConnectionPointReferenceRule returns [EObject current=null]
 
 // Rule ConnectionPointReferenceRule
 ruleConnectionPointReferenceRule returns [EObject current=null] 
-    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    @init { enterRule(); 
     }
-    @after { resetLookahead(); 
-    	lastConsumedNode = currentNode;
-    }:
-((	'entry' 
+    @after { leaveRule(); }:
+((	otherlv_0='entry' 
     {
-        createLeafNode(grammarAccess.getConnectionPointReferenceRuleAccess().getEntryKeyword_0_0(), null); 
+    	newLeafNode(otherlv_0, grammarAccess.getConnectionPointReferenceRuleAccess().getEntryKeyword_0_0());
     }
 (
 (
 		{
 			if ($current==null) {
-	            $current = factory.create(grammarAccess.getConnectionPointReferenceRuleRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            $current = createModelElement(grammarAccess.getConnectionPointReferenceRuleRule());
 	        }
         }
-	RULE_ID
+	otherlv_1=RULE_ID
 	{
-		createLeafNode(grammarAccess.getConnectionPointReferenceRuleAccess().getEntryPseudostateCrossReference_0_1_0(), "entry"); 
+		newLeafNode(otherlv_1, grammarAccess.getConnectionPointReferenceRuleAccess().getEntryPseudostateCrossReference_0_1_0()); 
 	}
 
 )
-)(	',' 
+)(	otherlv_2=',' 
     {
-        createLeafNode(grammarAccess.getConnectionPointReferenceRuleAccess().getCommaKeyword_0_2_0(), null); 
+    	newLeafNode(otherlv_2, grammarAccess.getConnectionPointReferenceRuleAccess().getCommaKeyword_0_2_0());
     }
 (
 (
 		{
 			if ($current==null) {
-	            $current = factory.create(grammarAccess.getConnectionPointReferenceRuleRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            $current = createModelElement(grammarAccess.getConnectionPointReferenceRuleRule());
 	        }
         }
-	RULE_ID
+	otherlv_3=RULE_ID
 	{
-		createLeafNode(grammarAccess.getConnectionPointReferenceRuleAccess().getEntryPseudostateCrossReference_0_2_1_0(), "entry"); 
+		newLeafNode(otherlv_3, grammarAccess.getConnectionPointReferenceRuleAccess().getEntryPseudostateCrossReference_0_2_1_0()); 
 	}
 
 )
 ))*)
-    |(	'exit' 
+    |(	otherlv_4='exit' 
     {
-        createLeafNode(grammarAccess.getConnectionPointReferenceRuleAccess().getExitKeyword_1_0(), null); 
+    	newLeafNode(otherlv_4, grammarAccess.getConnectionPointReferenceRuleAccess().getExitKeyword_1_0());
     }
 (
 (
 		{
 			if ($current==null) {
-	            $current = factory.create(grammarAccess.getConnectionPointReferenceRuleRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            $current = createModelElement(grammarAccess.getConnectionPointReferenceRuleRule());
 	        }
         }
-	RULE_ID
+	otherlv_5=RULE_ID
 	{
-		createLeafNode(grammarAccess.getConnectionPointReferenceRuleAccess().getExitPseudostateCrossReference_1_1_0(), "exit"); 
+		newLeafNode(otherlv_5, grammarAccess.getConnectionPointReferenceRuleAccess().getExitPseudostateCrossReference_1_1_0()); 
 	}
 
 )
-)(	',' 
+)(	otherlv_6=',' 
     {
-        createLeafNode(grammarAccess.getConnectionPointReferenceRuleAccess().getCommaKeyword_1_2_0(), null); 
+    	newLeafNode(otherlv_6, grammarAccess.getConnectionPointReferenceRuleAccess().getCommaKeyword_1_2_0());
     }
 (
 (
 		{
 			if ($current==null) {
-	            $current = factory.create(grammarAccess.getConnectionPointReferenceRuleRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            $current = createModelElement(grammarAccess.getConnectionPointReferenceRuleRule());
 	        }
         }
-	RULE_ID
+	otherlv_7=RULE_ID
 	{
-		createLeafNode(grammarAccess.getConnectionPointReferenceRuleAccess().getExitPseudostateCrossReference_1_2_1_0(), "exit"); 
+		newLeafNode(otherlv_7, grammarAccess.getConnectionPointReferenceRuleAccess().getExitPseudostateCrossReference_1_2_1_0()); 
 	}
 
 )
@@ -173,7 +157,7 @@ RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
 RULE_INT : ('0'..'9')+;
 
-RULE_STRING : ('"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"'|'\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'');
+RULE_STRING : ('"' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'"')))* '"'|'\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'');
 
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 

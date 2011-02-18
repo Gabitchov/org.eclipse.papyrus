@@ -6,14 +6,14 @@
     modelPluginID="org.eclipse.papyrus.collaborationuse.editor.xtext" forceOverwrite="true"
     modelName="UmlCollaborationUse" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.collaborationuse.editor.xtext.edit"
-    editorPluginID="org.eclipse.papyrus.collaborationuse.editor.xtext.editor" usedGenPackages="../../../../../../../../org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UMLCommon.genmodel#//umlCommon">
+    editorPluginID="org.eclipse.papyrus.collaborationuse.editor.xtext.editor" usedGenPackages="platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UMLCommon.genmodel#//umlCommon">
   <genPackages prefix="UmlCollaborationUse" basePackage="org.eclipse.papyrus.collaborationuse.editor.xtext"
-      resource="XML" disposableProviderFactory="true" ecorePackage="UmlCollaborationUse.ecore#/">
-    <genClasses ecoreClass="UmlCollaborationUse.ecore#//CollaborationUseRule">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlCollaborationUse.ecore#//CollaborationUseRule/visibility"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlCollaborationUse.ecore#//CollaborationUseRule/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlCollaborationUse.ecore#//CollaborationUseRule/type"/>
+      resource="XML" disposableProviderFactory="true" ecorePackage="platform:/resource/org.eclipse.papyrus.collaborationuse.editor.xtext/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse.ecore#/">
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.collaborationuse.editor.xtext/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse.ecore#//CollaborationUseRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.collaborationuse.editor.xtext/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse.ecore#//CollaborationUseRule/visibility"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.collaborationuse.editor.xtext/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse.ecore#//CollaborationUseRule/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.collaborationuse.editor.xtext/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse.ecore#//CollaborationUseRule/type"/>
     </genClasses>
-    <genClasses ecoreClass="UmlCollaborationUse.ecore#//TypeRule"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.collaborationuse.editor.xtext/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse.ecore#//TypeRule"/>
   </genPackages>
 </genmodel:GenModel>

@@ -17,21 +17,21 @@ import com.google.inject.Inject;
  */
 public class PartialContentAssistContextFactory extends ParserBasedContentAssistContextFactory {
 
-	/**
-	 * @param partialContentAssistParser 
-	 *
-	 */
-	@Inject
-	public void setPartialParser(IPartialContentAssistParser partialContentAssistParser) {
-		super.setParser(partialContentAssistParser);
-	}
-
-	/**
-	 * @param rule 
-	 *
-	 */
-	public void initializeFor(AbstractRule rule) {
-		((IPartialContentAssistParser) getParser()).initializeFor(rule);
-	}
+//	/**
+//	 * @param partialContentAssistParser 
+//	 *
+//	 */
+//	@Inject
+//	public void setPartialParser(IPartialContentAssistParser partialContentAssistParser) {
+//		super.setParser(partialContentAssistParser);
+//	}
+//
+//	/**
+//	 * @param rule 
+//	 *
+//	 */
+//	public void initializeFor(AbstractRule rule) {
+//		((IPartialContentAssistParser) getParser()).initializeFor(rule);
+//	}
 	
 }

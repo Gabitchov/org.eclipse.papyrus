@@ -14,7 +14,7 @@ import com.google.inject.name.Names;
 /**
  * Manual modifications go to {org.eclipse.papyrus.parameter.editor.xtext.UmlParameterRuntimeModule}
  */
-@SuppressWarnings("all")
+ @SuppressWarnings("all")
 public abstract class AbstractUmlParameterRuntimeModule extends DefaultRuntimeModule {
 
 	protected Properties properties = null;
@@ -24,16 +24,16 @@ public abstract class AbstractUmlParameterRuntimeModule extends DefaultRuntimeMo
 		properties = tryBindProperties(binder, "org/eclipse/papyrus/parameter/editor/xtext/UmlParameter.properties");
 		super.configure(binder);
 	}
-
+	
 	public void configureLanguageName(Binder binder) {
 		binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME)).toInstance("org.eclipse.papyrus.parameter.editor.xtext.UmlParameter");
 	}
-
+	
 	public void configureFileExtensions(Binder binder) {
-		if(properties == null || properties.getProperty(Constants.FILE_EXTENSIONS) == null)
+		if (properties == null || properties.getProperty(Constants.FILE_EXTENSIONS) == null)
 			binder.bind(String.class).annotatedWith(Names.named(Constants.FILE_EXTENSIONS)).toInstance("umlparameter");
 	}
-
+	
 	// contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
 	public Class<? extends org.eclipse.xtext.IGrammarAccess> bindIGrammarAccess() {
 		return org.eclipse.papyrus.parameter.editor.xtext.services.UmlParameterGrammarAccess.class;
@@ -45,7 +45,7 @@ public abstract class AbstractUmlParameterRuntimeModule extends DefaultRuntimeMo
 	}
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment
-	public Class<? extends org.eclipse.xtext.parser.antlr.IAntlrParser> bindIAntlrParser() {
+	public Class<? extends org.eclipse.xtext.parser.IParser> bindIParser() {
 		return org.eclipse.papyrus.parameter.editor.xtext.parser.antlr.UmlParameterParser.class;
 	}
 
@@ -80,8 +80,7 @@ public abstract class AbstractUmlParameterRuntimeModule extends DefaultRuntimeMo
 	}
 
 	// contributed by org.eclipse.xtext.generator.validation.JavaValidatorFragment
-	@org.eclipse.xtext.service.SingletonBinding(eager = true)
-	public Class<? extends org.eclipse.papyrus.parameter.editor.xtext.validation.UmlParameterJavaValidator> bindUmlParameterJavaValidator() {
+	@org.eclipse.xtext.service.SingletonBinding(eager=true)	public Class<? extends org.eclipse.papyrus.parameter.editor.xtext.validation.UmlParameterJavaValidator> bindUmlParameterJavaValidator() {
 		return org.eclipse.papyrus.parameter.editor.xtext.validation.UmlParameterJavaValidator.class;
 	}
 
@@ -92,12 +91,17 @@ public abstract class AbstractUmlParameterRuntimeModule extends DefaultRuntimeMo
 
 	// contributed by org.eclipse.xtext.generator.scoping.AbstractScopingFragment
 	public void configureIScopeProviderDelegate(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.scoping.IScopeProvider.class).annotatedWith(com.google.inject.name.Names.named("org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider.delegate")).to(org.eclipse.xtext.scoping.impl.SimpleLocalScopeProvider.class);
+		binder.bind(org.eclipse.xtext.scoping.IScopeProvider.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider.NAMED_DELEGATE)).to(org.eclipse.xtext.scoping.impl.SimpleLocalScopeProvider.class);
 	}
 
 	// contributed by org.eclipse.xtext.generator.scoping.AbstractScopingFragment
 	public Class<? extends org.eclipse.xtext.scoping.IGlobalScopeProvider> bindIGlobalScopeProvider() {
 		return org.eclipse.xtext.scoping.impl.ImportUriGlobalScopeProvider.class;
+	}
+
+	// contributed by org.eclipse.xtext.generator.scoping.AbstractScopingFragment
+	public void configureIgnoreCaseLinking(com.google.inject.Binder binder) {
+		binder.bindConstant().annotatedWith(org.eclipse.xtext.scoping.IgnoreCaseLinking.class).to(false);
 	}
 
 	// contributed by org.eclipse.xtext.generator.exporting.SimpleNamesFragment
@@ -122,7 +126,7 @@ public abstract class AbstractUmlParameterRuntimeModule extends DefaultRuntimeMo
 
 	// contributed by org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
 	public void configureIResourceDescriptionsBuilderScope(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.resource.IResourceDescriptions.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.scoping.impl.AbstractGlobalScopeProvider.NAMED_BUILDER_SCOPE)).to(org.eclipse.xtext.resource.impl.ResourceSetBasedResourceDescriptions.class);
+		binder.bind(org.eclipse.xtext.resource.IResourceDescriptions.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider.NAMED_BUILDER_SCOPE)).to(org.eclipse.xtext.resource.impl.ResourceSetBasedResourceDescriptions.class);
 	}
 
 	// contributed by org.eclipse.xtext.generator.formatting.FormatterFragment

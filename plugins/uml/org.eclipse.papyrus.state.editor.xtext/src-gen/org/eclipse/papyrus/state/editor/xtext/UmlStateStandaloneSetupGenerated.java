@@ -39,6 +39,5 @@ public class UmlStateStandaloneSetupGenerated implements ISetup {
 
 
 
-
 	}
 }

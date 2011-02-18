@@ -26,21 +26,50 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_UNLIMITEDLITERAL", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'<Undefined>'", "'+'", "'-'", "'#'", "'~'", "'readOnly'", "'union'", "'ordered'", "'unique'", "':'", "'::'", "'['", "']'", "'..'", "'{'", "'}'", "','", "'redefines'", "'subsets'", "'='", "'/'"
     };
     public static final int RULE_ID=4;
-    public static final int RULE_STRING=6;
     public static final int RULE_UNLIMITEDLITERAL=5;
+    public static final int T__29=29;
+    public static final int T__28=28;
+    public static final int T__27=27;
+    public static final int T__26=26;
+    public static final int T__25=25;
+    public static final int T__24=24;
+    public static final int T__23=23;
+    public static final int T__22=22;
     public static final int RULE_ANY_OTHER=11;
-    public static final int RULE_INT=7;
-    public static final int RULE_WS=10;
+    public static final int T__21=21;
+    public static final int T__20=20;
     public static final int RULE_SL_COMMENT=9;
     public static final int EOF=-1;
     public static final int RULE_ML_COMMENT=8;
+    public static final int T__30=30;
+    public static final int T__19=19;
+    public static final int T__31=31;
+    public static final int RULE_STRING=6;
+    public static final int T__32=32;
+    public static final int T__16=16;
+    public static final int T__15=15;
+    public static final int T__18=18;
+    public static final int T__17=17;
+    public static final int T__12=12;
+    public static final int T__14=14;
+    public static final int T__13=13;
+    public static final int RULE_INT=7;
+    public static final int RULE_WS=10;
+
+    // delegates
+    // delegators
+
 
         public InternalUmlPropertyParser(TokenStream input) {
-            super(input);
+            this(input, new RecognizerSharedState());
+        }
+        public InternalUmlPropertyParser(TokenStream input, RecognizerSharedState state) {
+            super(input, state);
+             
         }
         
 
-    public String[] getTokenNames() { return tokenNames; }
+    public String[] getTokenNames() { return InternalUmlPropertyParser.tokenNames; }
     public String getGrammarFileName() { return "../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g"; }
 
 
@@ -64,7 +93,7 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
 
 
 
-    // $ANTLR start entryRulePropertyRule
+    // $ANTLR start "entryRulePropertyRule"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:61:1: entryRulePropertyRule : rulePropertyRule EOF ;
     public final void entryRulePropertyRule() throws RecognitionException {
         try {
@@ -74,7 +103,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getPropertyRuleRule()); 
             pushFollow(FOLLOW_rulePropertyRule_in_entryRulePropertyRule61);
             rulePropertyRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getPropertyRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRulePropertyRule68); 
@@ -90,10 +120,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end entryRulePropertyRule
+    // $ANTLR end "entryRulePropertyRule"
 
 
-    // $ANTLR start rulePropertyRule
+    // $ANTLR start "rulePropertyRule"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:70:1: rulePropertyRule : ( ( rule__PropertyRule__Group__0 ) ) ;
     public final void rulePropertyRule() throws RecognitionException {
 
@@ -112,7 +142,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__PropertyRule__Group__0_in_rulePropertyRule94);
             rule__PropertyRule__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -136,10 +167,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rulePropertyRule
+    // $ANTLR end "rulePropertyRule"
 
 
-    // $ANTLR start entryRuleTypeRule
+    // $ANTLR start "entryRuleTypeRule"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:89:1: entryRuleTypeRule : ruleTypeRule EOF ;
     public final void entryRuleTypeRule() throws RecognitionException {
         try {
@@ -149,7 +180,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getTypeRuleRule()); 
             pushFollow(FOLLOW_ruleTypeRule_in_entryRuleTypeRule121);
             ruleTypeRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getTypeRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleTypeRule128); 
@@ -165,10 +197,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end entryRuleTypeRule
+    // $ANTLR end "entryRuleTypeRule"
 
 
-    // $ANTLR start ruleTypeRule
+    // $ANTLR start "ruleTypeRule"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:98:1: ruleTypeRule : ( ( rule__TypeRule__Group__0 ) ) ;
     public final void ruleTypeRule() throws RecognitionException {
 
@@ -187,7 +219,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__TypeRule__Group__0_in_ruleTypeRule154);
             rule__TypeRule__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -211,10 +244,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end ruleTypeRule
+    // $ANTLR end "ruleTypeRule"
 
 
-    // $ANTLR start entryRuleQualifiedName
+    // $ANTLR start "entryRuleQualifiedName"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:117:1: entryRuleQualifiedName : ruleQualifiedName EOF ;
     public final void entryRuleQualifiedName() throws RecognitionException {
         try {
@@ -224,7 +257,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getQualifiedNameRule()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName181);
             ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getQualifiedNameRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName188); 
@@ -240,10 +274,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end entryRuleQualifiedName
+    // $ANTLR end "entryRuleQualifiedName"
 
 
-    // $ANTLR start ruleQualifiedName
+    // $ANTLR start "ruleQualifiedName"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:126:1: ruleQualifiedName : ( ( rule__QualifiedName__Group__0 ) ) ;
     public final void ruleQualifiedName() throws RecognitionException {
 
@@ -262,7 +296,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__0_in_ruleQualifiedName214);
             rule__QualifiedName__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -286,10 +321,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end ruleQualifiedName
+    // $ANTLR end "ruleQualifiedName"
 
 
-    // $ANTLR start entryRuleMultiplicityRule
+    // $ANTLR start "entryRuleMultiplicityRule"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:145:1: entryRuleMultiplicityRule : ruleMultiplicityRule EOF ;
     public final void entryRuleMultiplicityRule() throws RecognitionException {
         try {
@@ -299,7 +334,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getMultiplicityRuleRule()); 
             pushFollow(FOLLOW_ruleMultiplicityRule_in_entryRuleMultiplicityRule241);
             ruleMultiplicityRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMultiplicityRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleMultiplicityRule248); 
@@ -315,10 +351,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end entryRuleMultiplicityRule
+    // $ANTLR end "entryRuleMultiplicityRule"
 
 
-    // $ANTLR start ruleMultiplicityRule
+    // $ANTLR start "ruleMultiplicityRule"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:154:1: ruleMultiplicityRule : ( ( rule__MultiplicityRule__Group__0 ) ) ;
     public final void ruleMultiplicityRule() throws RecognitionException {
 
@@ -337,7 +373,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__MultiplicityRule__Group__0_in_ruleMultiplicityRule274);
             rule__MultiplicityRule__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -361,10 +398,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end ruleMultiplicityRule
+    // $ANTLR end "ruleMultiplicityRule"
 
 
-    // $ANTLR start entryRuleBoundSpecification
+    // $ANTLR start "entryRuleBoundSpecification"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:173:1: entryRuleBoundSpecification : ruleBoundSpecification EOF ;
     public final void entryRuleBoundSpecification() throws RecognitionException {
         try {
@@ -374,7 +411,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getBoundSpecificationRule()); 
             pushFollow(FOLLOW_ruleBoundSpecification_in_entryRuleBoundSpecification301);
             ruleBoundSpecification();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getBoundSpecificationRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleBoundSpecification308); 
@@ -390,10 +428,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end entryRuleBoundSpecification
+    // $ANTLR end "entryRuleBoundSpecification"
 
 
-    // $ANTLR start ruleBoundSpecification
+    // $ANTLR start "ruleBoundSpecification"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:182:1: ruleBoundSpecification : ( ( rule__BoundSpecification__ValueAssignment ) ) ;
     public final void ruleBoundSpecification() throws RecognitionException {
 
@@ -412,7 +450,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__BoundSpecification__ValueAssignment_in_ruleBoundSpecification334);
             rule__BoundSpecification__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -436,10 +475,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end ruleBoundSpecification
+    // $ANTLR end "ruleBoundSpecification"
 
 
-    // $ANTLR start entryRuleModifiersRule
+    // $ANTLR start "entryRuleModifiersRule"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:201:1: entryRuleModifiersRule : ruleModifiersRule EOF ;
     public final void entryRuleModifiersRule() throws RecognitionException {
         try {
@@ -449,7 +488,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getModifiersRuleRule()); 
             pushFollow(FOLLOW_ruleModifiersRule_in_entryRuleModifiersRule361);
             ruleModifiersRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getModifiersRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleModifiersRule368); 
@@ -465,10 +505,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end entryRuleModifiersRule
+    // $ANTLR end "entryRuleModifiersRule"
 
 
-    // $ANTLR start ruleModifiersRule
+    // $ANTLR start "ruleModifiersRule"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:210:1: ruleModifiersRule : ( ( rule__ModifiersRule__Group__0 ) ) ;
     public final void ruleModifiersRule() throws RecognitionException {
 
@@ -487,7 +527,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__ModifiersRule__Group__0_in_ruleModifiersRule394);
             rule__ModifiersRule__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -511,10 +552,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end ruleModifiersRule
+    // $ANTLR end "ruleModifiersRule"
 
 
-    // $ANTLR start entryRuleModifierSpecification
+    // $ANTLR start "entryRuleModifierSpecification"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:229:1: entryRuleModifierSpecification : ruleModifierSpecification EOF ;
     public final void entryRuleModifierSpecification() throws RecognitionException {
         try {
@@ -524,7 +565,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getModifierSpecificationRule()); 
             pushFollow(FOLLOW_ruleModifierSpecification_in_entryRuleModifierSpecification421);
             ruleModifierSpecification();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getModifierSpecificationRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleModifierSpecification428); 
@@ -540,10 +582,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end entryRuleModifierSpecification
+    // $ANTLR end "entryRuleModifierSpecification"
 
 
-    // $ANTLR start ruleModifierSpecification
+    // $ANTLR start "ruleModifierSpecification"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:238:1: ruleModifierSpecification : ( ( rule__ModifierSpecification__Alternatives ) ) ;
     public final void ruleModifierSpecification() throws RecognitionException {
 
@@ -562,7 +604,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__ModifierSpecification__Alternatives_in_ruleModifierSpecification454);
             rule__ModifierSpecification__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -586,10 +629,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end ruleModifierSpecification
+    // $ANTLR end "ruleModifierSpecification"
 
 
-    // $ANTLR start entryRuleRedefinesRule
+    // $ANTLR start "entryRuleRedefinesRule"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:257:1: entryRuleRedefinesRule : ruleRedefinesRule EOF ;
     public final void entryRuleRedefinesRule() throws RecognitionException {
         try {
@@ -599,7 +642,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getRedefinesRuleRule()); 
             pushFollow(FOLLOW_ruleRedefinesRule_in_entryRuleRedefinesRule481);
             ruleRedefinesRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getRedefinesRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleRedefinesRule488); 
@@ -615,10 +659,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end entryRuleRedefinesRule
+    // $ANTLR end "entryRuleRedefinesRule"
 
 
-    // $ANTLR start ruleRedefinesRule
+    // $ANTLR start "ruleRedefinesRule"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:266:1: ruleRedefinesRule : ( ( rule__RedefinesRule__Group__0 ) ) ;
     public final void ruleRedefinesRule() throws RecognitionException {
 
@@ -637,7 +681,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__RedefinesRule__Group__0_in_ruleRedefinesRule514);
             rule__RedefinesRule__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -661,10 +706,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end ruleRedefinesRule
+    // $ANTLR end "ruleRedefinesRule"
 
 
-    // $ANTLR start entryRuleSubsetsRule
+    // $ANTLR start "entryRuleSubsetsRule"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:285:1: entryRuleSubsetsRule : ruleSubsetsRule EOF ;
     public final void entryRuleSubsetsRule() throws RecognitionException {
         try {
@@ -674,7 +719,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getSubsetsRuleRule()); 
             pushFollow(FOLLOW_ruleSubsetsRule_in_entryRuleSubsetsRule541);
             ruleSubsetsRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getSubsetsRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleSubsetsRule548); 
@@ -690,10 +736,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end entryRuleSubsetsRule
+    // $ANTLR end "entryRuleSubsetsRule"
 
 
-    // $ANTLR start ruleSubsetsRule
+    // $ANTLR start "ruleSubsetsRule"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:294:1: ruleSubsetsRule : ( ( rule__SubsetsRule__Group__0 ) ) ;
     public final void ruleSubsetsRule() throws RecognitionException {
 
@@ -712,7 +758,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__SubsetsRule__Group__0_in_ruleSubsetsRule574);
             rule__SubsetsRule__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -736,10 +783,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end ruleSubsetsRule
+    // $ANTLR end "ruleSubsetsRule"
 
 
-    // $ANTLR start entryRuleDefaultValueRule
+    // $ANTLR start "entryRuleDefaultValueRule"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:313:1: entryRuleDefaultValueRule : ruleDefaultValueRule EOF ;
     public final void entryRuleDefaultValueRule() throws RecognitionException {
         try {
@@ -749,7 +796,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getDefaultValueRuleRule()); 
             pushFollow(FOLLOW_ruleDefaultValueRule_in_entryRuleDefaultValueRule601);
             ruleDefaultValueRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDefaultValueRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleDefaultValueRule608); 
@@ -765,10 +813,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end entryRuleDefaultValueRule
+    // $ANTLR end "entryRuleDefaultValueRule"
 
 
-    // $ANTLR start ruleDefaultValueRule
+    // $ANTLR start "ruleDefaultValueRule"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:322:1: ruleDefaultValueRule : ( ( rule__DefaultValueRule__Group__0 ) ) ;
     public final void ruleDefaultValueRule() throws RecognitionException {
 
@@ -787,7 +835,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__DefaultValueRule__Group__0_in_ruleDefaultValueRule634);
             rule__DefaultValueRule__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -811,10 +860,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end ruleDefaultValueRule
+    // $ANTLR end "ruleDefaultValueRule"
 
 
-    // $ANTLR start ruleVisibilityKind
+    // $ANTLR start "ruleVisibilityKind"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:342:1: ruleVisibilityKind : ( ( rule__VisibilityKind__Alternatives ) ) ;
     public final void ruleVisibilityKind() throws RecognitionException {
 
@@ -833,7 +882,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__VisibilityKind__Alternatives_in_ruleVisibilityKind671);
             rule__VisibilityKind__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -857,10 +907,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end ruleVisibilityKind
+    // $ANTLR end "ruleVisibilityKind"
 
 
-    // $ANTLR start ruleModifierKind
+    // $ANTLR start "ruleModifierKind"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:361:1: ruleModifierKind : ( ( rule__ModifierKind__Alternatives ) ) ;
     public final void ruleModifierKind() throws RecognitionException {
 
@@ -879,7 +929,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__ModifierKind__Alternatives_in_ruleModifierKind707);
             rule__ModifierKind__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -903,10 +954,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end ruleModifierKind
+    // $ANTLR end "ruleModifierKind"
 
 
-    // $ANTLR start rule__PropertyRule__Alternatives_4
+    // $ANTLR start "rule__PropertyRule__Alternatives_4"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:379:1: rule__PropertyRule__Alternatives_4 : ( ( ( rule__PropertyRule__TypeAssignment_4_0 ) ) | ( '<Undefined>' ) );
     public final void rule__PropertyRule__Alternatives_4() throws RecognitionException {
 
@@ -925,7 +976,7 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("379:1: rule__PropertyRule__Alternatives_4 : ( ( ( rule__PropertyRule__TypeAssignment_4_0 ) ) | ( '<Undefined>' ) );", 1, 0, input);
+                    new NoViableAltException("", 1, 0, input);
 
                 throw nvae;
             }
@@ -942,7 +993,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
                     {
                     pushFollow(FOLLOW_rule__PropertyRule__TypeAssignment_4_0_in_rule__PropertyRule__Alternatives_4742);
                     rule__PropertyRule__TypeAssignment_4_0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -983,10 +1035,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__Alternatives_4
+    // $ANTLR end "rule__PropertyRule__Alternatives_4"
 
 
-    // $ANTLR start rule__ModifierSpecification__Alternatives
+    // $ANTLR start "rule__ModifierSpecification__Alternatives"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:403:1: rule__ModifierSpecification__Alternatives : ( ( ( rule__ModifierSpecification__ValueAssignment_0 ) ) | ( ( rule__ModifierSpecification__RedefinesAssignment_1 ) ) | ( ( rule__ModifierSpecification__SubsetsAssignment_2 ) ) );
     public final void rule__ModifierSpecification__Alternatives() throws RecognitionException {
 
@@ -1016,7 +1068,7 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("403:1: rule__ModifierSpecification__Alternatives : ( ( ( rule__ModifierSpecification__ValueAssignment_0 ) ) | ( ( rule__ModifierSpecification__RedefinesAssignment_1 ) ) | ( ( rule__ModifierSpecification__SubsetsAssignment_2 ) ) );", 2, 0, input);
+                    new NoViableAltException("", 2, 0, input);
 
                 throw nvae;
             }
@@ -1034,7 +1086,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
                     {
                     pushFollow(FOLLOW_rule__ModifierSpecification__ValueAssignment_0_in_rule__ModifierSpecification__Alternatives795);
                     rule__ModifierSpecification__ValueAssignment_0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -1058,7 +1111,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
                     {
                     pushFollow(FOLLOW_rule__ModifierSpecification__RedefinesAssignment_1_in_rule__ModifierSpecification__Alternatives813);
                     rule__ModifierSpecification__RedefinesAssignment_1();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -1082,7 +1136,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
                     {
                     pushFollow(FOLLOW_rule__ModifierSpecification__SubsetsAssignment_2_in_rule__ModifierSpecification__Alternatives831);
                     rule__ModifierSpecification__SubsetsAssignment_2();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -1108,10 +1163,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifierSpecification__Alternatives
+    // $ANTLR end "rule__ModifierSpecification__Alternatives"
 
 
-    // $ANTLR start rule__VisibilityKind__Alternatives
+    // $ANTLR start "rule__VisibilityKind__Alternatives"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:431:1: rule__VisibilityKind__Alternatives : ( ( ( '+' ) ) | ( ( '-' ) ) | ( ( '#' ) ) | ( ( '~' ) ) );
     public final void rule__VisibilityKind__Alternatives() throws RecognitionException {
 
@@ -1143,7 +1198,7 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("431:1: rule__VisibilityKind__Alternatives : ( ( ( '+' ) ) | ( ( '-' ) ) | ( ( '#' ) ) | ( ( '~' ) ) );", 3, 0, input);
+                    new NoViableAltException("", 3, 0, input);
 
                 throw nvae;
             }
@@ -1247,10 +1302,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__VisibilityKind__Alternatives
+    // $ANTLR end "rule__VisibilityKind__Alternatives"
 
 
-    // $ANTLR start rule__ModifierKind__Alternatives
+    // $ANTLR start "rule__ModifierKind__Alternatives"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:469:1: rule__ModifierKind__Alternatives : ( ( ( 'readOnly' ) ) | ( ( 'union' ) ) | ( ( 'ordered' ) ) | ( ( 'unique' ) ) );
     public final void rule__ModifierKind__Alternatives() throws RecognitionException {
 
@@ -1282,7 +1337,7 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("469:1: rule__ModifierKind__Alternatives : ( ( ( 'readOnly' ) ) | ( ( 'union' ) ) | ( ( 'ordered' ) ) | ( ( 'unique' ) ) );", 4, 0, input);
+                    new NoViableAltException("", 4, 0, input);
 
                 throw nvae;
             }
@@ -1386,10 +1441,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifierKind__Alternatives
+    // $ANTLR end "rule__ModifierKind__Alternatives"
 
 
-    // $ANTLR start rule__PropertyRule__Group__0
+    // $ANTLR start "rule__PropertyRule__Group__0"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:509:1: rule__PropertyRule__Group__0 : rule__PropertyRule__Group__0__Impl rule__PropertyRule__Group__1 ;
     public final void rule__PropertyRule__Group__0() throws RecognitionException {
 
@@ -1401,11 +1456,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__PropertyRule__Group__0__Impl_in_rule__PropertyRule__Group__01060);
             rule__PropertyRule__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__PropertyRule__Group__1_in_rule__PropertyRule__Group__01063);
             rule__PropertyRule__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1422,10 +1479,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__Group__0
+    // $ANTLR end "rule__PropertyRule__Group__0"
 
 
-    // $ANTLR start rule__PropertyRule__Group__0__Impl
+    // $ANTLR start "rule__PropertyRule__Group__0__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:521:1: rule__PropertyRule__Group__0__Impl : ( ( rule__PropertyRule__VisibilityAssignment_0 ) ) ;
     public final void rule__PropertyRule__Group__0__Impl() throws RecognitionException {
 
@@ -1444,7 +1501,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__PropertyRule__VisibilityAssignment_0_in_rule__PropertyRule__Group__0__Impl1090);
             rule__PropertyRule__VisibilityAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1468,10 +1526,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__Group__0__Impl
+    // $ANTLR end "rule__PropertyRule__Group__0__Impl"
 
 
-    // $ANTLR start rule__PropertyRule__Group__1
+    // $ANTLR start "rule__PropertyRule__Group__1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:538:1: rule__PropertyRule__Group__1 : rule__PropertyRule__Group__1__Impl rule__PropertyRule__Group__2 ;
     public final void rule__PropertyRule__Group__1() throws RecognitionException {
 
@@ -1483,11 +1541,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__PropertyRule__Group__1__Impl_in_rule__PropertyRule__Group__11120);
             rule__PropertyRule__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__PropertyRule__Group__2_in_rule__PropertyRule__Group__11123);
             rule__PropertyRule__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1504,10 +1564,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__Group__1
+    // $ANTLR end "rule__PropertyRule__Group__1"
 
 
-    // $ANTLR start rule__PropertyRule__Group__1__Impl
+    // $ANTLR start "rule__PropertyRule__Group__1__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:550:1: rule__PropertyRule__Group__1__Impl : ( ( rule__PropertyRule__IsDerivedAssignment_1 )? ) ;
     public final void rule__PropertyRule__Group__1__Impl() throws RecognitionException {
 
@@ -1534,7 +1594,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
                     {
                     pushFollow(FOLLOW_rule__PropertyRule__IsDerivedAssignment_1_in_rule__PropertyRule__Group__1__Impl1150);
                     rule__PropertyRule__IsDerivedAssignment_1();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -1561,10 +1622,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__Group__1__Impl
+    // $ANTLR end "rule__PropertyRule__Group__1__Impl"
 
 
-    // $ANTLR start rule__PropertyRule__Group__2
+    // $ANTLR start "rule__PropertyRule__Group__2"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:567:1: rule__PropertyRule__Group__2 : rule__PropertyRule__Group__2__Impl rule__PropertyRule__Group__3 ;
     public final void rule__PropertyRule__Group__2() throws RecognitionException {
 
@@ -1576,11 +1637,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__PropertyRule__Group__2__Impl_in_rule__PropertyRule__Group__21181);
             rule__PropertyRule__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__PropertyRule__Group__3_in_rule__PropertyRule__Group__21184);
             rule__PropertyRule__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1597,10 +1660,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__Group__2
+    // $ANTLR end "rule__PropertyRule__Group__2"
 
 
-    // $ANTLR start rule__PropertyRule__Group__2__Impl
+    // $ANTLR start "rule__PropertyRule__Group__2__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:579:1: rule__PropertyRule__Group__2__Impl : ( ( rule__PropertyRule__NameAssignment_2 ) ) ;
     public final void rule__PropertyRule__Group__2__Impl() throws RecognitionException {
 
@@ -1619,7 +1682,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__PropertyRule__NameAssignment_2_in_rule__PropertyRule__Group__2__Impl1211);
             rule__PropertyRule__NameAssignment_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1643,10 +1707,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__Group__2__Impl
+    // $ANTLR end "rule__PropertyRule__Group__2__Impl"
 
 
-    // $ANTLR start rule__PropertyRule__Group__3
+    // $ANTLR start "rule__PropertyRule__Group__3"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:596:1: rule__PropertyRule__Group__3 : rule__PropertyRule__Group__3__Impl rule__PropertyRule__Group__4 ;
     public final void rule__PropertyRule__Group__3() throws RecognitionException {
 
@@ -1658,11 +1722,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__PropertyRule__Group__3__Impl_in_rule__PropertyRule__Group__31241);
             rule__PropertyRule__Group__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__PropertyRule__Group__4_in_rule__PropertyRule__Group__31244);
             rule__PropertyRule__Group__4();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1679,10 +1745,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__Group__3
+    // $ANTLR end "rule__PropertyRule__Group__3"
 
 
-    // $ANTLR start rule__PropertyRule__Group__3__Impl
+    // $ANTLR start "rule__PropertyRule__Group__3__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:608:1: rule__PropertyRule__Group__3__Impl : ( ':' ) ;
     public final void rule__PropertyRule__Group__3__Impl() throws RecognitionException {
 
@@ -1716,10 +1782,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__Group__3__Impl
+    // $ANTLR end "rule__PropertyRule__Group__3__Impl"
 
 
-    // $ANTLR start rule__PropertyRule__Group__4
+    // $ANTLR start "rule__PropertyRule__Group__4"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:627:1: rule__PropertyRule__Group__4 : rule__PropertyRule__Group__4__Impl rule__PropertyRule__Group__5 ;
     public final void rule__PropertyRule__Group__4() throws RecognitionException {
 
@@ -1731,11 +1797,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__PropertyRule__Group__4__Impl_in_rule__PropertyRule__Group__41303);
             rule__PropertyRule__Group__4__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__PropertyRule__Group__5_in_rule__PropertyRule__Group__41306);
             rule__PropertyRule__Group__5();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1752,10 +1820,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__Group__4
+    // $ANTLR end "rule__PropertyRule__Group__4"
 
 
-    // $ANTLR start rule__PropertyRule__Group__4__Impl
+    // $ANTLR start "rule__PropertyRule__Group__4__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:639:1: rule__PropertyRule__Group__4__Impl : ( ( rule__PropertyRule__Alternatives_4 ) ) ;
     public final void rule__PropertyRule__Group__4__Impl() throws RecognitionException {
 
@@ -1774,7 +1842,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__PropertyRule__Alternatives_4_in_rule__PropertyRule__Group__4__Impl1333);
             rule__PropertyRule__Alternatives_4();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1798,10 +1867,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__Group__4__Impl
+    // $ANTLR end "rule__PropertyRule__Group__4__Impl"
 
 
-    // $ANTLR start rule__PropertyRule__Group__5
+    // $ANTLR start "rule__PropertyRule__Group__5"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:656:1: rule__PropertyRule__Group__5 : rule__PropertyRule__Group__5__Impl rule__PropertyRule__Group__6 ;
     public final void rule__PropertyRule__Group__5() throws RecognitionException {
 
@@ -1813,11 +1882,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__PropertyRule__Group__5__Impl_in_rule__PropertyRule__Group__51363);
             rule__PropertyRule__Group__5__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__PropertyRule__Group__6_in_rule__PropertyRule__Group__51366);
             rule__PropertyRule__Group__6();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1834,10 +1905,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__Group__5
+    // $ANTLR end "rule__PropertyRule__Group__5"
 
 
-    // $ANTLR start rule__PropertyRule__Group__5__Impl
+    // $ANTLR start "rule__PropertyRule__Group__5__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:668:1: rule__PropertyRule__Group__5__Impl : ( ( rule__PropertyRule__MultiplicityAssignment_5 )? ) ;
     public final void rule__PropertyRule__Group__5__Impl() throws RecognitionException {
 
@@ -1864,7 +1935,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
                     {
                     pushFollow(FOLLOW_rule__PropertyRule__MultiplicityAssignment_5_in_rule__PropertyRule__Group__5__Impl1393);
                     rule__PropertyRule__MultiplicityAssignment_5();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -1891,10 +1963,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__Group__5__Impl
+    // $ANTLR end "rule__PropertyRule__Group__5__Impl"
 
 
-    // $ANTLR start rule__PropertyRule__Group__6
+    // $ANTLR start "rule__PropertyRule__Group__6"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:685:1: rule__PropertyRule__Group__6 : rule__PropertyRule__Group__6__Impl rule__PropertyRule__Group__7 ;
     public final void rule__PropertyRule__Group__6() throws RecognitionException {
 
@@ -1906,11 +1978,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__PropertyRule__Group__6__Impl_in_rule__PropertyRule__Group__61424);
             rule__PropertyRule__Group__6__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__PropertyRule__Group__7_in_rule__PropertyRule__Group__61427);
             rule__PropertyRule__Group__7();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1927,10 +2001,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__Group__6
+    // $ANTLR end "rule__PropertyRule__Group__6"
 
 
-    // $ANTLR start rule__PropertyRule__Group__6__Impl
+    // $ANTLR start "rule__PropertyRule__Group__6__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:697:1: rule__PropertyRule__Group__6__Impl : ( ( rule__PropertyRule__ModifiersAssignment_6 )? ) ;
     public final void rule__PropertyRule__Group__6__Impl() throws RecognitionException {
 
@@ -1957,7 +2031,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
                     {
                     pushFollow(FOLLOW_rule__PropertyRule__ModifiersAssignment_6_in_rule__PropertyRule__Group__6__Impl1454);
                     rule__PropertyRule__ModifiersAssignment_6();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -1984,10 +2059,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__Group__6__Impl
+    // $ANTLR end "rule__PropertyRule__Group__6__Impl"
 
 
-    // $ANTLR start rule__PropertyRule__Group__7
+    // $ANTLR start "rule__PropertyRule__Group__7"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:714:1: rule__PropertyRule__Group__7 : rule__PropertyRule__Group__7__Impl ;
     public final void rule__PropertyRule__Group__7() throws RecognitionException {
 
@@ -1999,7 +2074,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__PropertyRule__Group__7__Impl_in_rule__PropertyRule__Group__71485);
             rule__PropertyRule__Group__7__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2016,10 +2092,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__Group__7
+    // $ANTLR end "rule__PropertyRule__Group__7"
 
 
-    // $ANTLR start rule__PropertyRule__Group__7__Impl
+    // $ANTLR start "rule__PropertyRule__Group__7__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:725:1: rule__PropertyRule__Group__7__Impl : ( ( rule__PropertyRule__DefaultAssignment_7 )? ) ;
     public final void rule__PropertyRule__Group__7__Impl() throws RecognitionException {
 
@@ -2046,7 +2122,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
                     {
                     pushFollow(FOLLOW_rule__PropertyRule__DefaultAssignment_7_in_rule__PropertyRule__Group__7__Impl1512);
                     rule__PropertyRule__DefaultAssignment_7();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -2073,10 +2150,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__Group__7__Impl
+    // $ANTLR end "rule__PropertyRule__Group__7__Impl"
 
 
-    // $ANTLR start rule__TypeRule__Group__0
+    // $ANTLR start "rule__TypeRule__Group__0"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:758:1: rule__TypeRule__Group__0 : rule__TypeRule__Group__0__Impl rule__TypeRule__Group__1 ;
     public final void rule__TypeRule__Group__0() throws RecognitionException {
 
@@ -2088,11 +2165,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__TypeRule__Group__0__Impl_in_rule__TypeRule__Group__01559);
             rule__TypeRule__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__TypeRule__Group__1_in_rule__TypeRule__Group__01562);
             rule__TypeRule__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2109,10 +2188,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__TypeRule__Group__0
+    // $ANTLR end "rule__TypeRule__Group__0"
 
 
-    // $ANTLR start rule__TypeRule__Group__0__Impl
+    // $ANTLR start "rule__TypeRule__Group__0__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:770:1: rule__TypeRule__Group__0__Impl : ( ( rule__TypeRule__PathAssignment_0 )? ) ;
     public final void rule__TypeRule__Group__0__Impl() throws RecognitionException {
 
@@ -2143,7 +2222,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
                     {
                     pushFollow(FOLLOW_rule__TypeRule__PathAssignment_0_in_rule__TypeRule__Group__0__Impl1589);
                     rule__TypeRule__PathAssignment_0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -2170,10 +2250,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__TypeRule__Group__0__Impl
+    // $ANTLR end "rule__TypeRule__Group__0__Impl"
 
 
-    // $ANTLR start rule__TypeRule__Group__1
+    // $ANTLR start "rule__TypeRule__Group__1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:787:1: rule__TypeRule__Group__1 : rule__TypeRule__Group__1__Impl ;
     public final void rule__TypeRule__Group__1() throws RecognitionException {
 
@@ -2185,7 +2265,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__TypeRule__Group__1__Impl_in_rule__TypeRule__Group__11620);
             rule__TypeRule__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2202,10 +2283,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__TypeRule__Group__1
+    // $ANTLR end "rule__TypeRule__Group__1"
 
 
-    // $ANTLR start rule__TypeRule__Group__1__Impl
+    // $ANTLR start "rule__TypeRule__Group__1__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:798:1: rule__TypeRule__Group__1__Impl : ( ( rule__TypeRule__TypeAssignment_1 ) ) ;
     public final void rule__TypeRule__Group__1__Impl() throws RecognitionException {
 
@@ -2224,7 +2305,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__TypeRule__TypeAssignment_1_in_rule__TypeRule__Group__1__Impl1647);
             rule__TypeRule__TypeAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2248,10 +2330,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__TypeRule__Group__1__Impl
+    // $ANTLR end "rule__TypeRule__Group__1__Impl"
 
 
-    // $ANTLR start rule__QualifiedName__Group__0
+    // $ANTLR start "rule__QualifiedName__Group__0"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:819:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
     public final void rule__QualifiedName__Group__0() throws RecognitionException {
 
@@ -2263,11 +2345,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__01681);
             rule__QualifiedName__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__01684);
             rule__QualifiedName__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2284,10 +2368,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__0
+    // $ANTLR end "rule__QualifiedName__Group__0"
 
 
-    // $ANTLR start rule__QualifiedName__Group__0__Impl
+    // $ANTLR start "rule__QualifiedName__Group__0__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:831:1: rule__QualifiedName__Group__0__Impl : ( ( rule__QualifiedName__PathAssignment_0 ) ) ;
     public final void rule__QualifiedName__Group__0__Impl() throws RecognitionException {
 
@@ -2306,7 +2390,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__QualifiedName__PathAssignment_0_in_rule__QualifiedName__Group__0__Impl1711);
             rule__QualifiedName__PathAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2330,10 +2415,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__0__Impl
+    // $ANTLR end "rule__QualifiedName__Group__0__Impl"
 
 
-    // $ANTLR start rule__QualifiedName__Group__1
+    // $ANTLR start "rule__QualifiedName__Group__1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:848:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl rule__QualifiedName__Group__2 ;
     public final void rule__QualifiedName__Group__1() throws RecognitionException {
 
@@ -2345,11 +2430,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__11741);
             rule__QualifiedName__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__QualifiedName__Group__2_in_rule__QualifiedName__Group__11744);
             rule__QualifiedName__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2366,10 +2453,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__1
+    // $ANTLR end "rule__QualifiedName__Group__1"
 
 
-    // $ANTLR start rule__QualifiedName__Group__1__Impl
+    // $ANTLR start "rule__QualifiedName__Group__1__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:860:1: rule__QualifiedName__Group__1__Impl : ( '::' ) ;
     public final void rule__QualifiedName__Group__1__Impl() throws RecognitionException {
 
@@ -2403,10 +2490,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__1__Impl
+    // $ANTLR end "rule__QualifiedName__Group__1__Impl"
 
 
-    // $ANTLR start rule__QualifiedName__Group__2
+    // $ANTLR start "rule__QualifiedName__Group__2"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:879:1: rule__QualifiedName__Group__2 : rule__QualifiedName__Group__2__Impl ;
     public final void rule__QualifiedName__Group__2() throws RecognitionException {
 
@@ -2418,7 +2505,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__2__Impl_in_rule__QualifiedName__Group__21803);
             rule__QualifiedName__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2435,10 +2523,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__2
+    // $ANTLR end "rule__QualifiedName__Group__2"
 
 
-    // $ANTLR start rule__QualifiedName__Group__2__Impl
+    // $ANTLR start "rule__QualifiedName__Group__2__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:890:1: rule__QualifiedName__Group__2__Impl : ( ( rule__QualifiedName__RemainingAssignment_2 )? ) ;
     public final void rule__QualifiedName__Group__2__Impl() throws RecognitionException {
 
@@ -2469,7 +2557,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
                     {
                     pushFollow(FOLLOW_rule__QualifiedName__RemainingAssignment_2_in_rule__QualifiedName__Group__2__Impl1830);
                     rule__QualifiedName__RemainingAssignment_2();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -2496,10 +2585,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__2__Impl
+    // $ANTLR end "rule__QualifiedName__Group__2__Impl"
 
 
-    // $ANTLR start rule__MultiplicityRule__Group__0
+    // $ANTLR start "rule__MultiplicityRule__Group__0"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:913:1: rule__MultiplicityRule__Group__0 : rule__MultiplicityRule__Group__0__Impl rule__MultiplicityRule__Group__1 ;
     public final void rule__MultiplicityRule__Group__0() throws RecognitionException {
 
@@ -2511,11 +2600,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__MultiplicityRule__Group__0__Impl_in_rule__MultiplicityRule__Group__01867);
             rule__MultiplicityRule__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__MultiplicityRule__Group__1_in_rule__MultiplicityRule__Group__01870);
             rule__MultiplicityRule__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2532,10 +2623,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicityRule__Group__0
+    // $ANTLR end "rule__MultiplicityRule__Group__0"
 
 
-    // $ANTLR start rule__MultiplicityRule__Group__0__Impl
+    // $ANTLR start "rule__MultiplicityRule__Group__0__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:925:1: rule__MultiplicityRule__Group__0__Impl : ( '[' ) ;
     public final void rule__MultiplicityRule__Group__0__Impl() throws RecognitionException {
 
@@ -2569,10 +2660,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicityRule__Group__0__Impl
+    // $ANTLR end "rule__MultiplicityRule__Group__0__Impl"
 
 
-    // $ANTLR start rule__MultiplicityRule__Group__1
+    // $ANTLR start "rule__MultiplicityRule__Group__1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:944:1: rule__MultiplicityRule__Group__1 : rule__MultiplicityRule__Group__1__Impl rule__MultiplicityRule__Group__2 ;
     public final void rule__MultiplicityRule__Group__1() throws RecognitionException {
 
@@ -2584,11 +2675,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__MultiplicityRule__Group__1__Impl_in_rule__MultiplicityRule__Group__11929);
             rule__MultiplicityRule__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__MultiplicityRule__Group__2_in_rule__MultiplicityRule__Group__11932);
             rule__MultiplicityRule__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2605,10 +2698,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicityRule__Group__1
+    // $ANTLR end "rule__MultiplicityRule__Group__1"
 
 
-    // $ANTLR start rule__MultiplicityRule__Group__1__Impl
+    // $ANTLR start "rule__MultiplicityRule__Group__1__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:956:1: rule__MultiplicityRule__Group__1__Impl : ( ( rule__MultiplicityRule__BoundsAssignment_1 ) ) ;
     public final void rule__MultiplicityRule__Group__1__Impl() throws RecognitionException {
 
@@ -2627,7 +2720,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__MultiplicityRule__BoundsAssignment_1_in_rule__MultiplicityRule__Group__1__Impl1959);
             rule__MultiplicityRule__BoundsAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2651,10 +2745,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicityRule__Group__1__Impl
+    // $ANTLR end "rule__MultiplicityRule__Group__1__Impl"
 
 
-    // $ANTLR start rule__MultiplicityRule__Group__2
+    // $ANTLR start "rule__MultiplicityRule__Group__2"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:973:1: rule__MultiplicityRule__Group__2 : rule__MultiplicityRule__Group__2__Impl rule__MultiplicityRule__Group__3 ;
     public final void rule__MultiplicityRule__Group__2() throws RecognitionException {
 
@@ -2666,11 +2760,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__MultiplicityRule__Group__2__Impl_in_rule__MultiplicityRule__Group__21989);
             rule__MultiplicityRule__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__MultiplicityRule__Group__3_in_rule__MultiplicityRule__Group__21992);
             rule__MultiplicityRule__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2687,10 +2783,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicityRule__Group__2
+    // $ANTLR end "rule__MultiplicityRule__Group__2"
 
 
-    // $ANTLR start rule__MultiplicityRule__Group__2__Impl
+    // $ANTLR start "rule__MultiplicityRule__Group__2__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:985:1: rule__MultiplicityRule__Group__2__Impl : ( ( rule__MultiplicityRule__Group_2__0 )? ) ;
     public final void rule__MultiplicityRule__Group__2__Impl() throws RecognitionException {
 
@@ -2717,7 +2813,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
                     {
                     pushFollow(FOLLOW_rule__MultiplicityRule__Group_2__0_in_rule__MultiplicityRule__Group__2__Impl2019);
                     rule__MultiplicityRule__Group_2__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -2744,10 +2841,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicityRule__Group__2__Impl
+    // $ANTLR end "rule__MultiplicityRule__Group__2__Impl"
 
 
-    // $ANTLR start rule__MultiplicityRule__Group__3
+    // $ANTLR start "rule__MultiplicityRule__Group__3"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1002:1: rule__MultiplicityRule__Group__3 : rule__MultiplicityRule__Group__3__Impl ;
     public final void rule__MultiplicityRule__Group__3() throws RecognitionException {
 
@@ -2759,7 +2856,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__MultiplicityRule__Group__3__Impl_in_rule__MultiplicityRule__Group__32050);
             rule__MultiplicityRule__Group__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2776,10 +2874,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicityRule__Group__3
+    // $ANTLR end "rule__MultiplicityRule__Group__3"
 
 
-    // $ANTLR start rule__MultiplicityRule__Group__3__Impl
+    // $ANTLR start "rule__MultiplicityRule__Group__3__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1013:1: rule__MultiplicityRule__Group__3__Impl : ( ']' ) ;
     public final void rule__MultiplicityRule__Group__3__Impl() throws RecognitionException {
 
@@ -2813,10 +2911,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicityRule__Group__3__Impl
+    // $ANTLR end "rule__MultiplicityRule__Group__3__Impl"
 
 
-    // $ANTLR start rule__MultiplicityRule__Group_2__0
+    // $ANTLR start "rule__MultiplicityRule__Group_2__0"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1040:1: rule__MultiplicityRule__Group_2__0 : rule__MultiplicityRule__Group_2__0__Impl rule__MultiplicityRule__Group_2__1 ;
     public final void rule__MultiplicityRule__Group_2__0() throws RecognitionException {
 
@@ -2828,11 +2926,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__MultiplicityRule__Group_2__0__Impl_in_rule__MultiplicityRule__Group_2__02117);
             rule__MultiplicityRule__Group_2__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__MultiplicityRule__Group_2__1_in_rule__MultiplicityRule__Group_2__02120);
             rule__MultiplicityRule__Group_2__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2849,10 +2949,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicityRule__Group_2__0
+    // $ANTLR end "rule__MultiplicityRule__Group_2__0"
 
 
-    // $ANTLR start rule__MultiplicityRule__Group_2__0__Impl
+    // $ANTLR start "rule__MultiplicityRule__Group_2__0__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1052:1: rule__MultiplicityRule__Group_2__0__Impl : ( '..' ) ;
     public final void rule__MultiplicityRule__Group_2__0__Impl() throws RecognitionException {
 
@@ -2886,10 +2986,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicityRule__Group_2__0__Impl
+    // $ANTLR end "rule__MultiplicityRule__Group_2__0__Impl"
 
 
-    // $ANTLR start rule__MultiplicityRule__Group_2__1
+    // $ANTLR start "rule__MultiplicityRule__Group_2__1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1071:1: rule__MultiplicityRule__Group_2__1 : rule__MultiplicityRule__Group_2__1__Impl ;
     public final void rule__MultiplicityRule__Group_2__1() throws RecognitionException {
 
@@ -2901,7 +3001,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__MultiplicityRule__Group_2__1__Impl_in_rule__MultiplicityRule__Group_2__12179);
             rule__MultiplicityRule__Group_2__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2918,10 +3019,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicityRule__Group_2__1
+    // $ANTLR end "rule__MultiplicityRule__Group_2__1"
 
 
-    // $ANTLR start rule__MultiplicityRule__Group_2__1__Impl
+    // $ANTLR start "rule__MultiplicityRule__Group_2__1__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1082:1: rule__MultiplicityRule__Group_2__1__Impl : ( ( rule__MultiplicityRule__BoundsAssignment_2_1 ) ) ;
     public final void rule__MultiplicityRule__Group_2__1__Impl() throws RecognitionException {
 
@@ -2940,7 +3041,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__MultiplicityRule__BoundsAssignment_2_1_in_rule__MultiplicityRule__Group_2__1__Impl2206);
             rule__MultiplicityRule__BoundsAssignment_2_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2964,10 +3066,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicityRule__Group_2__1__Impl
+    // $ANTLR end "rule__MultiplicityRule__Group_2__1__Impl"
 
 
-    // $ANTLR start rule__ModifiersRule__Group__0
+    // $ANTLR start "rule__ModifiersRule__Group__0"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1103:1: rule__ModifiersRule__Group__0 : rule__ModifiersRule__Group__0__Impl rule__ModifiersRule__Group__1 ;
     public final void rule__ModifiersRule__Group__0() throws RecognitionException {
 
@@ -2979,11 +3081,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__ModifiersRule__Group__0__Impl_in_rule__ModifiersRule__Group__02240);
             rule__ModifiersRule__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ModifiersRule__Group__1_in_rule__ModifiersRule__Group__02243);
             rule__ModifiersRule__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3000,10 +3104,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifiersRule__Group__0
+    // $ANTLR end "rule__ModifiersRule__Group__0"
 
 
-    // $ANTLR start rule__ModifiersRule__Group__0__Impl
+    // $ANTLR start "rule__ModifiersRule__Group__0__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1115:1: rule__ModifiersRule__Group__0__Impl : ( '{' ) ;
     public final void rule__ModifiersRule__Group__0__Impl() throws RecognitionException {
 
@@ -3037,10 +3141,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifiersRule__Group__0__Impl
+    // $ANTLR end "rule__ModifiersRule__Group__0__Impl"
 
 
-    // $ANTLR start rule__ModifiersRule__Group__1
+    // $ANTLR start "rule__ModifiersRule__Group__1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1134:1: rule__ModifiersRule__Group__1 : rule__ModifiersRule__Group__1__Impl rule__ModifiersRule__Group__2 ;
     public final void rule__ModifiersRule__Group__1() throws RecognitionException {
 
@@ -3052,11 +3156,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__ModifiersRule__Group__1__Impl_in_rule__ModifiersRule__Group__12302);
             rule__ModifiersRule__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ModifiersRule__Group__2_in_rule__ModifiersRule__Group__12305);
             rule__ModifiersRule__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3073,10 +3179,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifiersRule__Group__1
+    // $ANTLR end "rule__ModifiersRule__Group__1"
 
 
-    // $ANTLR start rule__ModifiersRule__Group__1__Impl
+    // $ANTLR start "rule__ModifiersRule__Group__1__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1146:1: rule__ModifiersRule__Group__1__Impl : ( ( rule__ModifiersRule__ValuesAssignment_1 ) ) ;
     public final void rule__ModifiersRule__Group__1__Impl() throws RecognitionException {
 
@@ -3095,7 +3201,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__ModifiersRule__ValuesAssignment_1_in_rule__ModifiersRule__Group__1__Impl2332);
             rule__ModifiersRule__ValuesAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3119,10 +3226,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifiersRule__Group__1__Impl
+    // $ANTLR end "rule__ModifiersRule__Group__1__Impl"
 
 
-    // $ANTLR start rule__ModifiersRule__Group__2
+    // $ANTLR start "rule__ModifiersRule__Group__2"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1163:1: rule__ModifiersRule__Group__2 : rule__ModifiersRule__Group__2__Impl rule__ModifiersRule__Group__3 ;
     public final void rule__ModifiersRule__Group__2() throws RecognitionException {
 
@@ -3134,11 +3241,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__ModifiersRule__Group__2__Impl_in_rule__ModifiersRule__Group__22362);
             rule__ModifiersRule__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ModifiersRule__Group__3_in_rule__ModifiersRule__Group__22365);
             rule__ModifiersRule__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3155,10 +3264,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifiersRule__Group__2
+    // $ANTLR end "rule__ModifiersRule__Group__2"
 
 
-    // $ANTLR start rule__ModifiersRule__Group__2__Impl
+    // $ANTLR start "rule__ModifiersRule__Group__2__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1175:1: rule__ModifiersRule__Group__2__Impl : ( ( rule__ModifiersRule__Group_2__0 )* ) ;
     public final void rule__ModifiersRule__Group__2__Impl() throws RecognitionException {
 
@@ -3189,7 +3298,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             	    {
             	    pushFollow(FOLLOW_rule__ModifiersRule__Group_2__0_in_rule__ModifiersRule__Group__2__Impl2392);
             	    rule__ModifiersRule__Group_2__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -3219,10 +3329,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifiersRule__Group__2__Impl
+    // $ANTLR end "rule__ModifiersRule__Group__2__Impl"
 
 
-    // $ANTLR start rule__ModifiersRule__Group__3
+    // $ANTLR start "rule__ModifiersRule__Group__3"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1192:1: rule__ModifiersRule__Group__3 : rule__ModifiersRule__Group__3__Impl ;
     public final void rule__ModifiersRule__Group__3() throws RecognitionException {
 
@@ -3234,7 +3344,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__ModifiersRule__Group__3__Impl_in_rule__ModifiersRule__Group__32423);
             rule__ModifiersRule__Group__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3251,10 +3362,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifiersRule__Group__3
+    // $ANTLR end "rule__ModifiersRule__Group__3"
 
 
-    // $ANTLR start rule__ModifiersRule__Group__3__Impl
+    // $ANTLR start "rule__ModifiersRule__Group__3__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1203:1: rule__ModifiersRule__Group__3__Impl : ( '}' ) ;
     public final void rule__ModifiersRule__Group__3__Impl() throws RecognitionException {
 
@@ -3288,10 +3399,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifiersRule__Group__3__Impl
+    // $ANTLR end "rule__ModifiersRule__Group__3__Impl"
 
 
-    // $ANTLR start rule__ModifiersRule__Group_2__0
+    // $ANTLR start "rule__ModifiersRule__Group_2__0"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1230:1: rule__ModifiersRule__Group_2__0 : rule__ModifiersRule__Group_2__0__Impl rule__ModifiersRule__Group_2__1 ;
     public final void rule__ModifiersRule__Group_2__0() throws RecognitionException {
 
@@ -3303,11 +3414,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__ModifiersRule__Group_2__0__Impl_in_rule__ModifiersRule__Group_2__02490);
             rule__ModifiersRule__Group_2__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ModifiersRule__Group_2__1_in_rule__ModifiersRule__Group_2__02493);
             rule__ModifiersRule__Group_2__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3324,10 +3437,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifiersRule__Group_2__0
+    // $ANTLR end "rule__ModifiersRule__Group_2__0"
 
 
-    // $ANTLR start rule__ModifiersRule__Group_2__0__Impl
+    // $ANTLR start "rule__ModifiersRule__Group_2__0__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1242:1: rule__ModifiersRule__Group_2__0__Impl : ( ',' ) ;
     public final void rule__ModifiersRule__Group_2__0__Impl() throws RecognitionException {
 
@@ -3361,10 +3474,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifiersRule__Group_2__0__Impl
+    // $ANTLR end "rule__ModifiersRule__Group_2__0__Impl"
 
 
-    // $ANTLR start rule__ModifiersRule__Group_2__1
+    // $ANTLR start "rule__ModifiersRule__Group_2__1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1261:1: rule__ModifiersRule__Group_2__1 : rule__ModifiersRule__Group_2__1__Impl ;
     public final void rule__ModifiersRule__Group_2__1() throws RecognitionException {
 
@@ -3376,7 +3489,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__ModifiersRule__Group_2__1__Impl_in_rule__ModifiersRule__Group_2__12552);
             rule__ModifiersRule__Group_2__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3393,10 +3507,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifiersRule__Group_2__1
+    // $ANTLR end "rule__ModifiersRule__Group_2__1"
 
 
-    // $ANTLR start rule__ModifiersRule__Group_2__1__Impl
+    // $ANTLR start "rule__ModifiersRule__Group_2__1__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1272:1: rule__ModifiersRule__Group_2__1__Impl : ( ( rule__ModifiersRule__ValuesAssignment_2_1 ) ) ;
     public final void rule__ModifiersRule__Group_2__1__Impl() throws RecognitionException {
 
@@ -3415,7 +3529,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__ModifiersRule__ValuesAssignment_2_1_in_rule__ModifiersRule__Group_2__1__Impl2579);
             rule__ModifiersRule__ValuesAssignment_2_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3439,10 +3554,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifiersRule__Group_2__1__Impl
+    // $ANTLR end "rule__ModifiersRule__Group_2__1__Impl"
 
 
-    // $ANTLR start rule__RedefinesRule__Group__0
+    // $ANTLR start "rule__RedefinesRule__Group__0"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1293:1: rule__RedefinesRule__Group__0 : rule__RedefinesRule__Group__0__Impl rule__RedefinesRule__Group__1 ;
     public final void rule__RedefinesRule__Group__0() throws RecognitionException {
 
@@ -3454,11 +3569,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__RedefinesRule__Group__0__Impl_in_rule__RedefinesRule__Group__02613);
             rule__RedefinesRule__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__RedefinesRule__Group__1_in_rule__RedefinesRule__Group__02616);
             rule__RedefinesRule__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3475,10 +3592,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__RedefinesRule__Group__0
+    // $ANTLR end "rule__RedefinesRule__Group__0"
 
 
-    // $ANTLR start rule__RedefinesRule__Group__0__Impl
+    // $ANTLR start "rule__RedefinesRule__Group__0__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1305:1: rule__RedefinesRule__Group__0__Impl : ( 'redefines' ) ;
     public final void rule__RedefinesRule__Group__0__Impl() throws RecognitionException {
 
@@ -3512,10 +3629,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__RedefinesRule__Group__0__Impl
+    // $ANTLR end "rule__RedefinesRule__Group__0__Impl"
 
 
-    // $ANTLR start rule__RedefinesRule__Group__1
+    // $ANTLR start "rule__RedefinesRule__Group__1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1324:1: rule__RedefinesRule__Group__1 : rule__RedefinesRule__Group__1__Impl ;
     public final void rule__RedefinesRule__Group__1() throws RecognitionException {
 
@@ -3527,7 +3644,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__RedefinesRule__Group__1__Impl_in_rule__RedefinesRule__Group__12675);
             rule__RedefinesRule__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3544,10 +3662,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__RedefinesRule__Group__1
+    // $ANTLR end "rule__RedefinesRule__Group__1"
 
 
-    // $ANTLR start rule__RedefinesRule__Group__1__Impl
+    // $ANTLR start "rule__RedefinesRule__Group__1__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1335:1: rule__RedefinesRule__Group__1__Impl : ( ( rule__RedefinesRule__PropertyAssignment_1 ) ) ;
     public final void rule__RedefinesRule__Group__1__Impl() throws RecognitionException {
 
@@ -3566,7 +3684,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__RedefinesRule__PropertyAssignment_1_in_rule__RedefinesRule__Group__1__Impl2702);
             rule__RedefinesRule__PropertyAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3590,10 +3709,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__RedefinesRule__Group__1__Impl
+    // $ANTLR end "rule__RedefinesRule__Group__1__Impl"
 
 
-    // $ANTLR start rule__SubsetsRule__Group__0
+    // $ANTLR start "rule__SubsetsRule__Group__0"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1356:1: rule__SubsetsRule__Group__0 : rule__SubsetsRule__Group__0__Impl rule__SubsetsRule__Group__1 ;
     public final void rule__SubsetsRule__Group__0() throws RecognitionException {
 
@@ -3605,11 +3724,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__SubsetsRule__Group__0__Impl_in_rule__SubsetsRule__Group__02736);
             rule__SubsetsRule__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__SubsetsRule__Group__1_in_rule__SubsetsRule__Group__02739);
             rule__SubsetsRule__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3626,10 +3747,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__SubsetsRule__Group__0
+    // $ANTLR end "rule__SubsetsRule__Group__0"
 
 
-    // $ANTLR start rule__SubsetsRule__Group__0__Impl
+    // $ANTLR start "rule__SubsetsRule__Group__0__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1368:1: rule__SubsetsRule__Group__0__Impl : ( 'subsets' ) ;
     public final void rule__SubsetsRule__Group__0__Impl() throws RecognitionException {
 
@@ -3663,10 +3784,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__SubsetsRule__Group__0__Impl
+    // $ANTLR end "rule__SubsetsRule__Group__0__Impl"
 
 
-    // $ANTLR start rule__SubsetsRule__Group__1
+    // $ANTLR start "rule__SubsetsRule__Group__1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1387:1: rule__SubsetsRule__Group__1 : rule__SubsetsRule__Group__1__Impl ;
     public final void rule__SubsetsRule__Group__1() throws RecognitionException {
 
@@ -3678,7 +3799,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__SubsetsRule__Group__1__Impl_in_rule__SubsetsRule__Group__12798);
             rule__SubsetsRule__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3695,10 +3817,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__SubsetsRule__Group__1
+    // $ANTLR end "rule__SubsetsRule__Group__1"
 
 
-    // $ANTLR start rule__SubsetsRule__Group__1__Impl
+    // $ANTLR start "rule__SubsetsRule__Group__1__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1398:1: rule__SubsetsRule__Group__1__Impl : ( ( rule__SubsetsRule__PropertyAssignment_1 ) ) ;
     public final void rule__SubsetsRule__Group__1__Impl() throws RecognitionException {
 
@@ -3717,7 +3839,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__SubsetsRule__PropertyAssignment_1_in_rule__SubsetsRule__Group__1__Impl2825);
             rule__SubsetsRule__PropertyAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3741,10 +3864,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__SubsetsRule__Group__1__Impl
+    // $ANTLR end "rule__SubsetsRule__Group__1__Impl"
 
 
-    // $ANTLR start rule__DefaultValueRule__Group__0
+    // $ANTLR start "rule__DefaultValueRule__Group__0"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1419:1: rule__DefaultValueRule__Group__0 : rule__DefaultValueRule__Group__0__Impl rule__DefaultValueRule__Group__1 ;
     public final void rule__DefaultValueRule__Group__0() throws RecognitionException {
 
@@ -3756,11 +3879,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__DefaultValueRule__Group__0__Impl_in_rule__DefaultValueRule__Group__02859);
             rule__DefaultValueRule__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DefaultValueRule__Group__1_in_rule__DefaultValueRule__Group__02862);
             rule__DefaultValueRule__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3777,10 +3902,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__DefaultValueRule__Group__0
+    // $ANTLR end "rule__DefaultValueRule__Group__0"
 
 
-    // $ANTLR start rule__DefaultValueRule__Group__0__Impl
+    // $ANTLR start "rule__DefaultValueRule__Group__0__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1431:1: rule__DefaultValueRule__Group__0__Impl : ( '=' ) ;
     public final void rule__DefaultValueRule__Group__0__Impl() throws RecognitionException {
 
@@ -3814,10 +3939,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__DefaultValueRule__Group__0__Impl
+    // $ANTLR end "rule__DefaultValueRule__Group__0__Impl"
 
 
-    // $ANTLR start rule__DefaultValueRule__Group__1
+    // $ANTLR start "rule__DefaultValueRule__Group__1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1450:1: rule__DefaultValueRule__Group__1 : rule__DefaultValueRule__Group__1__Impl ;
     public final void rule__DefaultValueRule__Group__1() throws RecognitionException {
 
@@ -3829,7 +3954,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__DefaultValueRule__Group__1__Impl_in_rule__DefaultValueRule__Group__12921);
             rule__DefaultValueRule__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3846,10 +3972,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__DefaultValueRule__Group__1
+    // $ANTLR end "rule__DefaultValueRule__Group__1"
 
 
-    // $ANTLR start rule__DefaultValueRule__Group__1__Impl
+    // $ANTLR start "rule__DefaultValueRule__Group__1__Impl"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1461:1: rule__DefaultValueRule__Group__1__Impl : ( ( rule__DefaultValueRule__DefaultAssignment_1 ) ) ;
     public final void rule__DefaultValueRule__Group__1__Impl() throws RecognitionException {
 
@@ -3868,7 +3994,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
             {
             pushFollow(FOLLOW_rule__DefaultValueRule__DefaultAssignment_1_in_rule__DefaultValueRule__Group__1__Impl2948);
             rule__DefaultValueRule__DefaultAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3892,10 +4019,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__DefaultValueRule__Group__1__Impl
+    // $ANTLR end "rule__DefaultValueRule__Group__1__Impl"
 
 
-    // $ANTLR start rule__PropertyRule__VisibilityAssignment_0
+    // $ANTLR start "rule__PropertyRule__VisibilityAssignment_0"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1483:1: rule__PropertyRule__VisibilityAssignment_0 : ( ruleVisibilityKind ) ;
     public final void rule__PropertyRule__VisibilityAssignment_0() throws RecognitionException {
 
@@ -3911,7 +4038,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getPropertyRuleAccess().getVisibilityVisibilityKindEnumRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleVisibilityKind_in_rule__PropertyRule__VisibilityAssignment_02987);
             ruleVisibilityKind();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getPropertyRuleAccess().getVisibilityVisibilityKindEnumRuleCall_0_0()); 
 
@@ -3932,10 +4060,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__VisibilityAssignment_0
+    // $ANTLR end "rule__PropertyRule__VisibilityAssignment_0"
 
 
-    // $ANTLR start rule__PropertyRule__IsDerivedAssignment_1
+    // $ANTLR start "rule__PropertyRule__IsDerivedAssignment_1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1498:1: rule__PropertyRule__IsDerivedAssignment_1 : ( ( '/' ) ) ;
     public final void rule__PropertyRule__IsDerivedAssignment_1() throws RecognitionException {
 
@@ -3977,10 +4105,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__IsDerivedAssignment_1
+    // $ANTLR end "rule__PropertyRule__IsDerivedAssignment_1"
 
 
-    // $ANTLR start rule__PropertyRule__NameAssignment_2
+    // $ANTLR start "rule__PropertyRule__NameAssignment_2"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1521:1: rule__PropertyRule__NameAssignment_2 : ( RULE_ID ) ;
     public final void rule__PropertyRule__NameAssignment_2() throws RecognitionException {
 
@@ -4014,10 +4142,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__NameAssignment_2
+    // $ANTLR end "rule__PropertyRule__NameAssignment_2"
 
 
-    // $ANTLR start rule__PropertyRule__TypeAssignment_4_0
+    // $ANTLR start "rule__PropertyRule__TypeAssignment_4_0"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1536:1: rule__PropertyRule__TypeAssignment_4_0 : ( ruleTypeRule ) ;
     public final void rule__PropertyRule__TypeAssignment_4_0() throws RecognitionException {
 
@@ -4033,7 +4161,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getPropertyRuleAccess().getTypeTypeRuleParserRuleCall_4_0_0()); 
             pushFollow(FOLLOW_ruleTypeRule_in_rule__PropertyRule__TypeAssignment_4_03093);
             ruleTypeRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getPropertyRuleAccess().getTypeTypeRuleParserRuleCall_4_0_0()); 
 
@@ -4054,10 +4183,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__TypeAssignment_4_0
+    // $ANTLR end "rule__PropertyRule__TypeAssignment_4_0"
 
 
-    // $ANTLR start rule__PropertyRule__MultiplicityAssignment_5
+    // $ANTLR start "rule__PropertyRule__MultiplicityAssignment_5"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1551:1: rule__PropertyRule__MultiplicityAssignment_5 : ( ruleMultiplicityRule ) ;
     public final void rule__PropertyRule__MultiplicityAssignment_5() throws RecognitionException {
 
@@ -4073,7 +4202,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getPropertyRuleAccess().getMultiplicityMultiplicityRuleParserRuleCall_5_0()); 
             pushFollow(FOLLOW_ruleMultiplicityRule_in_rule__PropertyRule__MultiplicityAssignment_53124);
             ruleMultiplicityRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getPropertyRuleAccess().getMultiplicityMultiplicityRuleParserRuleCall_5_0()); 
 
@@ -4094,10 +4224,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__MultiplicityAssignment_5
+    // $ANTLR end "rule__PropertyRule__MultiplicityAssignment_5"
 
 
-    // $ANTLR start rule__PropertyRule__ModifiersAssignment_6
+    // $ANTLR start "rule__PropertyRule__ModifiersAssignment_6"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1566:1: rule__PropertyRule__ModifiersAssignment_6 : ( ruleModifiersRule ) ;
     public final void rule__PropertyRule__ModifiersAssignment_6() throws RecognitionException {
 
@@ -4113,7 +4243,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getPropertyRuleAccess().getModifiersModifiersRuleParserRuleCall_6_0()); 
             pushFollow(FOLLOW_ruleModifiersRule_in_rule__PropertyRule__ModifiersAssignment_63155);
             ruleModifiersRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getPropertyRuleAccess().getModifiersModifiersRuleParserRuleCall_6_0()); 
 
@@ -4134,10 +4265,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__ModifiersAssignment_6
+    // $ANTLR end "rule__PropertyRule__ModifiersAssignment_6"
 
 
-    // $ANTLR start rule__PropertyRule__DefaultAssignment_7
+    // $ANTLR start "rule__PropertyRule__DefaultAssignment_7"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1581:1: rule__PropertyRule__DefaultAssignment_7 : ( ruleDefaultValueRule ) ;
     public final void rule__PropertyRule__DefaultAssignment_7() throws RecognitionException {
 
@@ -4153,7 +4284,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getPropertyRuleAccess().getDefaultDefaultValueRuleParserRuleCall_7_0()); 
             pushFollow(FOLLOW_ruleDefaultValueRule_in_rule__PropertyRule__DefaultAssignment_73186);
             ruleDefaultValueRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getPropertyRuleAccess().getDefaultDefaultValueRuleParserRuleCall_7_0()); 
 
@@ -4174,10 +4306,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__PropertyRule__DefaultAssignment_7
+    // $ANTLR end "rule__PropertyRule__DefaultAssignment_7"
 
 
-    // $ANTLR start rule__TypeRule__PathAssignment_0
+    // $ANTLR start "rule__TypeRule__PathAssignment_0"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1596:1: rule__TypeRule__PathAssignment_0 : ( ruleQualifiedName ) ;
     public final void rule__TypeRule__PathAssignment_0() throws RecognitionException {
 
@@ -4193,7 +4325,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getTypeRuleAccess().getPathQualifiedNameParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__TypeRule__PathAssignment_03217);
             ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getTypeRuleAccess().getPathQualifiedNameParserRuleCall_0_0()); 
 
@@ -4214,10 +4347,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__TypeRule__PathAssignment_0
+    // $ANTLR end "rule__TypeRule__PathAssignment_0"
 
 
-    // $ANTLR start rule__TypeRule__TypeAssignment_1
+    // $ANTLR start "rule__TypeRule__TypeAssignment_1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1611:1: rule__TypeRule__TypeAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__TypeRule__TypeAssignment_1() throws RecognitionException {
 
@@ -4259,10 +4392,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__TypeRule__TypeAssignment_1
+    // $ANTLR end "rule__TypeRule__TypeAssignment_1"
 
 
-    // $ANTLR start rule__QualifiedName__PathAssignment_0
+    // $ANTLR start "rule__QualifiedName__PathAssignment_0"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1630:1: rule__QualifiedName__PathAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__QualifiedName__PathAssignment_0() throws RecognitionException {
 
@@ -4304,10 +4437,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__PathAssignment_0
+    // $ANTLR end "rule__QualifiedName__PathAssignment_0"
 
 
-    // $ANTLR start rule__QualifiedName__RemainingAssignment_2
+    // $ANTLR start "rule__QualifiedName__RemainingAssignment_2"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1649:1: rule__QualifiedName__RemainingAssignment_2 : ( ruleQualifiedName ) ;
     public final void rule__QualifiedName__RemainingAssignment_2() throws RecognitionException {
 
@@ -4323,7 +4456,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getQualifiedNameAccess().getRemainingQualifiedNameParserRuleCall_2_0()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__QualifiedName__RemainingAssignment_23326);
             ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getQualifiedNameAccess().getRemainingQualifiedNameParserRuleCall_2_0()); 
 
@@ -4344,10 +4478,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__RemainingAssignment_2
+    // $ANTLR end "rule__QualifiedName__RemainingAssignment_2"
 
 
-    // $ANTLR start rule__MultiplicityRule__BoundsAssignment_1
+    // $ANTLR start "rule__MultiplicityRule__BoundsAssignment_1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1664:1: rule__MultiplicityRule__BoundsAssignment_1 : ( ruleBoundSpecification ) ;
     public final void rule__MultiplicityRule__BoundsAssignment_1() throws RecognitionException {
 
@@ -4363,7 +4497,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getMultiplicityRuleAccess().getBoundsBoundSpecificationParserRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleBoundSpecification_in_rule__MultiplicityRule__BoundsAssignment_13357);
             ruleBoundSpecification();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMultiplicityRuleAccess().getBoundsBoundSpecificationParserRuleCall_1_0()); 
 
@@ -4384,10 +4519,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicityRule__BoundsAssignment_1
+    // $ANTLR end "rule__MultiplicityRule__BoundsAssignment_1"
 
 
-    // $ANTLR start rule__MultiplicityRule__BoundsAssignment_2_1
+    // $ANTLR start "rule__MultiplicityRule__BoundsAssignment_2_1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1679:1: rule__MultiplicityRule__BoundsAssignment_2_1 : ( ruleBoundSpecification ) ;
     public final void rule__MultiplicityRule__BoundsAssignment_2_1() throws RecognitionException {
 
@@ -4403,7 +4538,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getMultiplicityRuleAccess().getBoundsBoundSpecificationParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_ruleBoundSpecification_in_rule__MultiplicityRule__BoundsAssignment_2_13388);
             ruleBoundSpecification();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMultiplicityRuleAccess().getBoundsBoundSpecificationParserRuleCall_2_1_0()); 
 
@@ -4424,10 +4560,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicityRule__BoundsAssignment_2_1
+    // $ANTLR end "rule__MultiplicityRule__BoundsAssignment_2_1"
 
 
-    // $ANTLR start rule__BoundSpecification__ValueAssignment
+    // $ANTLR start "rule__BoundSpecification__ValueAssignment"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1694:1: rule__BoundSpecification__ValueAssignment : ( RULE_UNLIMITEDLITERAL ) ;
     public final void rule__BoundSpecification__ValueAssignment() throws RecognitionException {
 
@@ -4461,10 +4597,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__BoundSpecification__ValueAssignment
+    // $ANTLR end "rule__BoundSpecification__ValueAssignment"
 
 
-    // $ANTLR start rule__ModifiersRule__ValuesAssignment_1
+    // $ANTLR start "rule__ModifiersRule__ValuesAssignment_1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1709:1: rule__ModifiersRule__ValuesAssignment_1 : ( ruleModifierSpecification ) ;
     public final void rule__ModifiersRule__ValuesAssignment_1() throws RecognitionException {
 
@@ -4480,7 +4616,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getModifiersRuleAccess().getValuesModifierSpecificationParserRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleModifierSpecification_in_rule__ModifiersRule__ValuesAssignment_13450);
             ruleModifierSpecification();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getModifiersRuleAccess().getValuesModifierSpecificationParserRuleCall_1_0()); 
 
@@ -4501,10 +4638,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifiersRule__ValuesAssignment_1
+    // $ANTLR end "rule__ModifiersRule__ValuesAssignment_1"
 
 
-    // $ANTLR start rule__ModifiersRule__ValuesAssignment_2_1
+    // $ANTLR start "rule__ModifiersRule__ValuesAssignment_2_1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1724:1: rule__ModifiersRule__ValuesAssignment_2_1 : ( ruleModifierSpecification ) ;
     public final void rule__ModifiersRule__ValuesAssignment_2_1() throws RecognitionException {
 
@@ -4520,7 +4657,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getModifiersRuleAccess().getValuesModifierSpecificationParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_ruleModifierSpecification_in_rule__ModifiersRule__ValuesAssignment_2_13481);
             ruleModifierSpecification();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getModifiersRuleAccess().getValuesModifierSpecificationParserRuleCall_2_1_0()); 
 
@@ -4541,10 +4679,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifiersRule__ValuesAssignment_2_1
+    // $ANTLR end "rule__ModifiersRule__ValuesAssignment_2_1"
 
 
-    // $ANTLR start rule__ModifierSpecification__ValueAssignment_0
+    // $ANTLR start "rule__ModifierSpecification__ValueAssignment_0"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1739:1: rule__ModifierSpecification__ValueAssignment_0 : ( ruleModifierKind ) ;
     public final void rule__ModifierSpecification__ValueAssignment_0() throws RecognitionException {
 
@@ -4560,7 +4698,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getModifierSpecificationAccess().getValueModifierKindEnumRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleModifierKind_in_rule__ModifierSpecification__ValueAssignment_03512);
             ruleModifierKind();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getModifierSpecificationAccess().getValueModifierKindEnumRuleCall_0_0()); 
 
@@ -4581,10 +4720,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifierSpecification__ValueAssignment_0
+    // $ANTLR end "rule__ModifierSpecification__ValueAssignment_0"
 
 
-    // $ANTLR start rule__ModifierSpecification__RedefinesAssignment_1
+    // $ANTLR start "rule__ModifierSpecification__RedefinesAssignment_1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1754:1: rule__ModifierSpecification__RedefinesAssignment_1 : ( ruleRedefinesRule ) ;
     public final void rule__ModifierSpecification__RedefinesAssignment_1() throws RecognitionException {
 
@@ -4600,7 +4739,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getModifierSpecificationAccess().getRedefinesRedefinesRuleParserRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleRedefinesRule_in_rule__ModifierSpecification__RedefinesAssignment_13543);
             ruleRedefinesRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getModifierSpecificationAccess().getRedefinesRedefinesRuleParserRuleCall_1_0()); 
 
@@ -4621,10 +4761,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifierSpecification__RedefinesAssignment_1
+    // $ANTLR end "rule__ModifierSpecification__RedefinesAssignment_1"
 
 
-    // $ANTLR start rule__ModifierSpecification__SubsetsAssignment_2
+    // $ANTLR start "rule__ModifierSpecification__SubsetsAssignment_2"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1769:1: rule__ModifierSpecification__SubsetsAssignment_2 : ( ruleSubsetsRule ) ;
     public final void rule__ModifierSpecification__SubsetsAssignment_2() throws RecognitionException {
 
@@ -4640,7 +4780,8 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
              before(grammarAccess.getModifierSpecificationAccess().getSubsetsSubsetsRuleParserRuleCall_2_0()); 
             pushFollow(FOLLOW_ruleSubsetsRule_in_rule__ModifierSpecification__SubsetsAssignment_23574);
             ruleSubsetsRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getModifierSpecificationAccess().getSubsetsSubsetsRuleParserRuleCall_2_0()); 
 
@@ -4661,10 +4802,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__ModifierSpecification__SubsetsAssignment_2
+    // $ANTLR end "rule__ModifierSpecification__SubsetsAssignment_2"
 
 
-    // $ANTLR start rule__RedefinesRule__PropertyAssignment_1
+    // $ANTLR start "rule__RedefinesRule__PropertyAssignment_1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1784:1: rule__RedefinesRule__PropertyAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__RedefinesRule__PropertyAssignment_1() throws RecognitionException {
 
@@ -4706,10 +4847,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__RedefinesRule__PropertyAssignment_1
+    // $ANTLR end "rule__RedefinesRule__PropertyAssignment_1"
 
 
-    // $ANTLR start rule__SubsetsRule__PropertyAssignment_1
+    // $ANTLR start "rule__SubsetsRule__PropertyAssignment_1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1803:1: rule__SubsetsRule__PropertyAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__SubsetsRule__PropertyAssignment_1() throws RecognitionException {
 
@@ -4751,10 +4892,10 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__SubsetsRule__PropertyAssignment_1
+    // $ANTLR end "rule__SubsetsRule__PropertyAssignment_1"
 
 
-    // $ANTLR start rule__DefaultValueRule__DefaultAssignment_1
+    // $ANTLR start "rule__DefaultValueRule__DefaultAssignment_1"
     // ../org.eclipse.papyrus.property.editor.xtext.ui/src-gen/org/eclipse/papyrus/property/editor/xtext/ui/contentassist/antlr/internal/InternalUmlProperty.g:1822:1: rule__DefaultValueRule__DefaultAssignment_1 : ( RULE_STRING ) ;
     public final void rule__DefaultValueRule__DefaultAssignment_1() throws RecognitionException {
 
@@ -4788,7 +4929,9 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end rule__DefaultValueRule__DefaultAssignment_1
+    // $ANTLR end "rule__DefaultValueRule__DefaultAssignment_1"
+
+    // Delegated rules
 
 
  
@@ -4841,7 +4984,7 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
     public static final BitSet FOLLOW_rule__PropertyRule__Group__0__Impl_in_rule__PropertyRule__Group__01060 = new BitSet(new long[]{0x0000000100000010L});
     public static final BitSet FOLLOW_rule__PropertyRule__Group__1_in_rule__PropertyRule__Group__01063 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PropertyRule__VisibilityAssignment_0_in_rule__PropertyRule__Group__0__Impl1090 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyRule__Group__1__Impl_in_rule__PropertyRule__Group__11120 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__PropertyRule__Group__1__Impl_in_rule__PropertyRule__Group__11120 = new BitSet(new long[]{0x0000000100000010L});
     public static final BitSet FOLLOW_rule__PropertyRule__Group__2_in_rule__PropertyRule__Group__11123 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PropertyRule__IsDerivedAssignment_1_in_rule__PropertyRule__Group__1__Impl1150 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PropertyRule__Group__2__Impl_in_rule__PropertyRule__Group__21181 = new BitSet(new long[]{0x0000000000200000L});
@@ -4850,13 +4993,13 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
     public static final BitSet FOLLOW_rule__PropertyRule__Group__3__Impl_in_rule__PropertyRule__Group__31241 = new BitSet(new long[]{0x0000000000001010L});
     public static final BitSet FOLLOW_rule__PropertyRule__Group__4_in_rule__PropertyRule__Group__31244 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_21_in_rule__PropertyRule__Group__3__Impl1272 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyRule__Group__4__Impl_in_rule__PropertyRule__Group__41303 = new BitSet(new long[]{0x0000000084800002L});
+    public static final BitSet FOLLOW_rule__PropertyRule__Group__4__Impl_in_rule__PropertyRule__Group__41303 = new BitSet(new long[]{0x0000000084800000L});
     public static final BitSet FOLLOW_rule__PropertyRule__Group__5_in_rule__PropertyRule__Group__41306 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PropertyRule__Alternatives_4_in_rule__PropertyRule__Group__4__Impl1333 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyRule__Group__5__Impl_in_rule__PropertyRule__Group__51363 = new BitSet(new long[]{0x0000000084000002L});
+    public static final BitSet FOLLOW_rule__PropertyRule__Group__5__Impl_in_rule__PropertyRule__Group__51363 = new BitSet(new long[]{0x0000000084800000L});
     public static final BitSet FOLLOW_rule__PropertyRule__Group__6_in_rule__PropertyRule__Group__51366 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PropertyRule__MultiplicityAssignment_5_in_rule__PropertyRule__Group__5__Impl1393 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyRule__Group__6__Impl_in_rule__PropertyRule__Group__61424 = new BitSet(new long[]{0x0000000080000002L});
+    public static final BitSet FOLLOW_rule__PropertyRule__Group__6__Impl_in_rule__PropertyRule__Group__61424 = new BitSet(new long[]{0x0000000084800000L});
     public static final BitSet FOLLOW_rule__PropertyRule__Group__7_in_rule__PropertyRule__Group__61427 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PropertyRule__ModifiersAssignment_6_in_rule__PropertyRule__Group__6__Impl1454 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PropertyRule__Group__7__Impl_in_rule__PropertyRule__Group__71485 = new BitSet(new long[]{0x0000000000000002L});
@@ -4869,7 +5012,7 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
     public static final BitSet FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__01681 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__01684 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__PathAssignment_0_in_rule__QualifiedName__Group__0__Impl1711 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__11741 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__11741 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__2_in_rule__QualifiedName__Group__11744 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_22_in_rule__QualifiedName__Group__1__Impl1772 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__2__Impl_in_rule__QualifiedName__Group__21803 = new BitSet(new long[]{0x0000000000000002L});
@@ -4880,7 +5023,7 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
     public static final BitSet FOLLOW_rule__MultiplicityRule__Group__1__Impl_in_rule__MultiplicityRule__Group__11929 = new BitSet(new long[]{0x0000000003000000L});
     public static final BitSet FOLLOW_rule__MultiplicityRule__Group__2_in_rule__MultiplicityRule__Group__11932 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MultiplicityRule__BoundsAssignment_1_in_rule__MultiplicityRule__Group__1__Impl1959 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MultiplicityRule__Group__2__Impl_in_rule__MultiplicityRule__Group__21989 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_rule__MultiplicityRule__Group__2__Impl_in_rule__MultiplicityRule__Group__21989 = new BitSet(new long[]{0x0000000003000000L});
     public static final BitSet FOLLOW_rule__MultiplicityRule__Group__3_in_rule__MultiplicityRule__Group__21992 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MultiplicityRule__Group_2__0_in_rule__MultiplicityRule__Group__2__Impl2019 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MultiplicityRule__Group__3__Impl_in_rule__MultiplicityRule__Group__32050 = new BitSet(new long[]{0x0000000000000002L});
@@ -4896,7 +5039,7 @@ public class InternalUmlPropertyParser extends AbstractInternalContentAssistPars
     public static final BitSet FOLLOW_rule__ModifiersRule__Group__1__Impl_in_rule__ModifiersRule__Group__12302 = new BitSet(new long[]{0x0000000018000000L});
     public static final BitSet FOLLOW_rule__ModifiersRule__Group__2_in_rule__ModifiersRule__Group__12305 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ModifiersRule__ValuesAssignment_1_in_rule__ModifiersRule__Group__1__Impl2332 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModifiersRule__Group__2__Impl_in_rule__ModifiersRule__Group__22362 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_rule__ModifiersRule__Group__2__Impl_in_rule__ModifiersRule__Group__22362 = new BitSet(new long[]{0x0000000018000000L});
     public static final BitSet FOLLOW_rule__ModifiersRule__Group__3_in_rule__ModifiersRule__Group__22365 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ModifiersRule__Group_2__0_in_rule__ModifiersRule__Group__2__Impl2392 = new BitSet(new long[]{0x0000000010000002L});
     public static final BitSet FOLLOW_rule__ModifiersRule__Group__3__Impl_in_rule__ModifiersRule__Group__32423 = new BitSet(new long[]{0x0000000000000002L});

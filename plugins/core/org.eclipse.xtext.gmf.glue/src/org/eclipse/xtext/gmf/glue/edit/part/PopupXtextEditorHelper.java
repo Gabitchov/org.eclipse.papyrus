@@ -296,7 +296,7 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 		final StyledText xtextTextWidget = sourceViewerHandle.getViewer().getTextWidget();
 		keyListener = 
 			new PopupXtextEditorKeyListener
-						(this, sourceViewerHandle.getViewer().getContentAssistant());
+						(this, sourceViewerHandle.getViewer().getContentAssistantFacade());
 		//keyListener.installUndoRedoSupport(sourceViewerHandle.getViewer()) ;
 		xtextTextWidget.addVerifyKeyListener(keyListener);
 		xtextTextWidget.addKeyListener(keyListener);
@@ -342,7 +342,7 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 		return (xtextDocument.readOnly(new IUnitOfWork<Boolean, XtextResource>() {
 			public Boolean exec(XtextResource state) throws Exception {
 				IParseResult parseResult = state.getParseResult();
-				return !state.getErrors().isEmpty() || parseResult == null || !parseResult.getParseErrors().isEmpty();
+				return !state.getErrors().isEmpty() || parseResult == null || parseResult.hasSyntaxErrors();
 			}
 		}));
 	}

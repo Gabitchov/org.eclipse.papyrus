@@ -5,10 +5,10 @@
     nsURI="http://www.eclipse.org/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse"
     nsPrefix="umlCollaborationUse">
   <eClassifiers xsi:type="ecore:EClass" name="CollaborationUseRule">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="ecore:EEnum ../../../../../../../../org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//VisibilityKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="ecore:EEnum platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//VisibilityKind"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeRule"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.collaborationuse.editor.xtext/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse.ecore#//TypeRule"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeRule" eSuperTypes="../../../../../../../../org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//TypeRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeRule" eSuperTypes="platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//TypeRule"/>
 </ecore:EPackage>

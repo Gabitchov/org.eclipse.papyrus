@@ -58,7 +58,7 @@ public class UmlCommonJavaValidator extends AbstractUmlCommonJavaValidator {
 				lowerValue = rule.getBounds().get(0).getValue().equals("*") ? -1 : Integer.valueOf(rule.getBounds().get(0).getValue()); //$NON-NLS-1$
 				upperValue = rule.getBounds().get(1).getValue().equals("*") ? -1 : Integer.valueOf(rule.getBounds().get(1).getValue()); //$NON-NLS-1$
 				if((lowerValue == -1 && upperValue != -1) || (lowerValue > upperValue && upperValue != -1)) {
-					error(errorMessage, rule, UmlCommonPackage.BOUND_SPECIFICATION__VALUE);
+					error(errorMessage, UmlCommonPackage.eINSTANCE.getBoundSpecification_Value());
 					valid_MultiplicityRule = false;
 				} else {
 					valid_MultiplicityRule = true;

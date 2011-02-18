@@ -18,12 +18,15 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.xtext.gmf.glue.Activator;
 import org.eclipse.xtext.gmf.glue.editingdomain.UpdateXtextResourceTextCommand;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.parser.IParseResult;
-import org.eclipse.xtext.parser.antlr.IAntlrParser;
-import org.eclipse.xtext.parsetree.CompositeNode;
-import org.eclipse.xtext.parsetree.NodeAdapter;
-import org.eclipse.xtext.parsetree.NodeUtil;
-import org.eclipse.xtext.parsetree.SyntaxError;
+
+//import org.eclipse.xtext.parser.antlr.IAntlrParser;
+//import org.eclipse.xtext.parsetree.CompositeNode;
+//import org.eclipse.xtext.parsetree.NodeAdapter;
+//import org.eclipse.xtext.parsetree.NodeUtil;
+//import org.eclipse.xtext.parsetree.SyntaxError;
+
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.contentassist.XtextContentAssistProcessor;
 import org.eclipse.xtext.util.StringInputStream;
@@ -42,7 +45,7 @@ public class AntlrParserWrapper implements IParser {
 	private XtextContentAssistProcessor xtextContentAssistProcessor;
 
 	@Inject
-	private IAntlrParser xtextParser;
+	private org.eclipse.xtext.parser.IParser xtextParser;
 
 	private final String parserRuleName;
 
@@ -66,32 +69,33 @@ public class AntlrParserWrapper implements IParser {
 	}
 
 	public String getEditString(IAdaptable element, int flags) {
-		EObject semanticElement = (EObject) element.getAdapter(EObject.class);
-		if (semanticElement != null) {
-			NodeAdapter nodeAdapter = NodeUtil.getNodeAdapter(semanticElement);
-			if (nodeAdapter != null) {
-				return nodeAdapter.getParserNode().serialize().trim();
-			}
-		}
+//		EObject semanticElement = (EObject) element.getAdapter(EObject.class);
+//		if (semanticElement != null) {
+//			NodeAdapter nodeAdapter = NodeUtil.getNodeAdapter(semanticElement);
+//			if (nodeAdapter != null) {
+//				return nodeAdapter.getParserNode().serialize().trim();
+//			}
+//		}
 		return "invalid";
 	}
 
 	public ICommand getParseCommand(IAdaptable element, final String newString, int flags) {
-		EObject semanticElement = (EObject) element.getAdapter(EObject.class);
-		if (semanticElement != null) {
-			IParseResult parseResult = xtextParser.parse(parserRuleName, new StringInputStream(newString));
-			if (isValidParseResult(parseResult, semanticElement)) {
-				NodeAdapter nodeAdapter = NodeUtil.getNodeAdapter(semanticElement);
-				if (nodeAdapter != null) {
-					final CompositeNode parserNode = nodeAdapter.getParserNode();
-					final XtextResource semanticResource = (XtextResource) semanticElement.eResource();
-					ICommand reparseCommand = UpdateXtextResourceTextCommand.createUpdateCommand(semanticResource,
-							parserNode.getOffset(), parserNode.getLength(), newString);
-					return reparseCommand;
-				}
-			}
-		}
-		return UnexecutableCommand.INSTANCE;
+//		EObject semanticElement = (EObject) element.getAdapter(EObject.class);
+//		if (semanticElement != null) {
+//			IParseResult parseResult = xtextParser.parse(parserRuleName, new StringInputStream(newString));
+//			if (isValidParseResult(parseResult, semanticElement)) {
+//				NodeAdapter nodeAdapter = NodeUtil.getNodeAdapter(semanticElement);
+//				if (nodeAdapter != null) {
+//					final ICompositeNode parserNode = nodeAdapter.getParserNode();
+//					final XtextResource semanticResource = (XtextResource) semanticElement.eResource();
+//					ICommand reparseCommand = UpdateXtextResourceTextCommand.createUpdateCommand(semanticResource,
+//							parserNode.getOffset(), parserNode.getLength(), newString);
+//					return reparseCommand;
+//				}
+//			}
+//		}
+//		return UnexecutableCommand.INSTANCE;
+		return null ;
 	}
 
 	public String getPrintString(IAdaptable element, int flags) {
@@ -103,25 +107,27 @@ public class AntlrParserWrapper implements IParser {
 	}
 
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
-		try {
-			IParseResult parseResult = xtextParser.parse(parserRuleName, new StringInputStream(editString));
-			if (isValidParseResult(parseResult, (EObject) element.getAdapter(EObject.class))) {
-				return new ParserEditStatus(IStatus.OK, Activator.PLUGIN_ID, IParserEditStatus.EDITABLE, "OK", null);
-			} else {
-				SyntaxError syntaxError = parseResult.getParseErrors().get(0);
-				return new ParserEditStatus(IStatus.INFO, Activator.PLUGIN_ID, IParserEditStatus.UNEDITABLE,
-						syntaxError.getMessage(), null);
-			}
-		} catch (Exception exc) {
-			return new ParserEditStatus(IStatus.INFO, Activator.PLUGIN_ID, IParserEditStatus.UNEDITABLE, exc
-					.getMessage(), exc);
-		}
+//		try {
+//			IParseResult parseResult = xtextParser.parse(parserRuleName, new StringInputStream(editString));
+//			if (isValidParseResult(parseResult, (EObject) element.getAdapter(EObject.class))) {
+//				return new ParserEditStatus(IStatus.OK, Activator.PLUGIN_ID, IParserEditStatus.EDITABLE, "OK", null);
+//			} else {
+//				SyntaxError syntaxError = parseResult.getParseErrors().get(0);
+//				return new ParserEditStatus(IStatus.INFO, Activator.PLUGIN_ID, IParserEditStatus.UNEDITABLE,
+//						syntaxError.getMessage(), null);
+//			}
+//		} catch (Exception exc) {
+//			return new ParserEditStatus(IStatus.INFO, Activator.PLUGIN_ID, IParserEditStatus.UNEDITABLE, exc
+//					.getMessage(), exc);
+//		}
+		return null ;
 	}
 
 	private boolean isValidParseResult(IParseResult parseResult, EObject semanticElement) {
-		EObject rootASTElement = parseResult.getRootASTElement();
-		return parseResult.getParseErrors().isEmpty() && rootASTElement != null && semanticElement != null
-				&& semanticElement.eClass() == rootASTElement.eClass();
+//		EObject rootASTElement = parseResult.getRootASTElement();
+//		return parseResult.getParseErrors().isEmpty() && rootASTElement != null && semanticElement != null
+//				&& semanticElement.eClass() == rootASTElement.eClass();
+		return false ;
 	}
 
 }

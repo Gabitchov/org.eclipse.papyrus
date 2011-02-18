@@ -62,7 +62,13 @@ Workflow {
 			}
 				
 			// the following fragment tries to use the Antlr Generator fragment which can be installed via update manager from http://download.itemis.com/updates/
-			fragment = AntlrDelegatingFragment {}
+			//fragment = AntlrDelegatingFragment {}
+			// The antlr parser generator fragment.
+			fragment = parser.antlr.XtextAntlrGeneratorFragment {
+			//  options = {
+			//		backtrack = true
+			//	}
+			}
 			
 			/*
 			If you don't want to use the Antlr fragment for some reason, remove the antlr fragment and uncomment the packrat parser fragment below.
@@ -99,8 +105,7 @@ Workflow {
 			fragment = labeling.LabelProviderFragment {}
 
 			// outline API 
-			fragment = outline.TransformerFragment {}
-			fragment = outline.OutlineNodeAdapterFactoryFragment {}
+			fragment = outline.OutlineTreeProviderFragment {}
 			fragment = outline.QuickOutlineFragment {}
 
 			// java-based API for content assistance 
@@ -109,10 +114,12 @@ Workflow {
 			// the following fragment tries to use the Antlr based content assist 
 			//     fragment which can be downloaded from http://www.itemis.com 
 			//     and will be ignored if it's not available. 
-			fragment = DelegatingGeneratorFragment { 
-				delegate = "de.itemis.xtext.antlr.XtextAntlrUiGeneratorFragment"
-				message="You are generating without ANTLR. It is highly recommended to download and use the plugin \'de.itemis.xtext.antlr\' \n\t using the update site http://download.itemis.com/updates/."
-			}
+			//fragment = DelegatingGeneratorFragment { 
+			//	delegate = "de.itemis.xtext.antlr.XtextAntlrUiGeneratorFragment"
+			//	message="You are generating without ANTLR. It is highly recommended to download and use the plugin \'de.itemis.xtext.antlr\' \n\t using the update site http://download.itemis.com/updates/."
+			//}
+			
+			fragment = parser.antlr.XtextAntlrUiGeneratorFragment {}
 
 			fragment = builder.BuilderIntegrationFragment {}
 

@@ -23,9 +23,9 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.xtext.gmf.glue.Activator;
-import org.eclipse.xtext.parsetree.CompositeNode;
-import org.eclipse.xtext.parsetree.NodeAdapter;
-import org.eclipse.xtext.parsetree.NodeUtil;
+//import org.eclipse.xtext.parsetree.CompositeNode;
+//import org.eclipse.xtext.parsetree.NodeAdapter;
+//import org.eclipse.xtext.parsetree.NodeUtil;
 import org.eclipse.xtext.parsetree.reconstr.Serializer;
 import org.eclipse.xtext.resource.XtextResource;
 
@@ -104,38 +104,38 @@ public class XtextNodeModelReconciler extends AdapterImpl implements Transaction
 
 	public void historyNotification(OperationHistoryEvent event) {
 		int eventType = event.getEventType();
-		switch (eventType) {
-			case OperationHistoryEvent.DONE:
-			case OperationHistoryEvent.UNDONE:
-			case OperationHistoryEvent.REDONE:
-				changeAggregator.endRecording();
-				ICommand updateXtextResourceTextCommand = null;
-				for (EObject modificationRoot : changeAggregator.getModificationRoots()) {
-					XtextResource xtextResource = (XtextResource) modificationRoot.eResource();
-					NodeAdapter nodeAdapter = NodeUtil.getNodeAdapter(modificationRoot);
-					CompositeNode parserNode = nodeAdapter.getParserNode();
-					Serializer serializer = xtextResource.getSerializer();
-					String newText = serializer.serialize(modificationRoot);
-					ICommand newCommand = UpdateXtextResourceTextCommand.createUpdateCommand(xtextResource, parserNode
-							.getOffset(), parserNode.getLength(), newText);
-					if (updateXtextResourceTextCommand == null) {
-						updateXtextResourceTextCommand = newCommand;
-					} else {
-						updateXtextResourceTextCommand.compose(newCommand);
-					}
-				}
-				try {
-					if (updateXtextResourceTextCommand != null) {
-						updateXtextResourceTextCommand.execute(null, null);
-					}
-				} catch (ExecutionException exc) {
-					Activator.logError(exc);
-				}
-				changeAggregator.beginRecording();
-				break;
-			default:
-				// ignore
-		}
+//		switch (eventType) {
+//			case OperationHistoryEvent.DONE:
+//			case OperationHistoryEvent.UNDONE:
+//			case OperationHistoryEvent.REDONE:
+//				changeAggregator.endRecording();
+//				ICommand updateXtextResourceTextCommand = null;
+//				for (EObject modificationRoot : changeAggregator.getModificationRoots()) {
+//					XtextResource xtextResource = (XtextResource) modificationRoot.eResource();
+//					NodeAdapter nodeAdapter = NodeUtil.getNodeAdapter(modificationRoot);
+//					CompositeNode parserNode = nodeAdapter.getParserNode();
+//					Serializer serializer = xtextResource.getSerializer();
+//					String newText = serializer.serialize(modificationRoot);
+//					ICommand newCommand = UpdateXtextResourceTextCommand.createUpdateCommand(xtextResource, parserNode
+//							.getOffset(), parserNode.getLength(), newText);
+//					if (updateXtextResourceTextCommand == null) {
+//						updateXtextResourceTextCommand = newCommand;
+//					} else {
+//						updateXtextResourceTextCommand.compose(newCommand);
+//					}
+//				}
+//				try {
+//					if (updateXtextResourceTextCommand != null) {
+//						updateXtextResourceTextCommand.execute(null, null);
+//					}
+//				} catch (ExecutionException exc) {
+//					Activator.logError(exc);
+//				}
+//				changeAggregator.beginRecording();
+//				break;
+//			default:
+//				// ignore
+//		}
 
 	}
 }

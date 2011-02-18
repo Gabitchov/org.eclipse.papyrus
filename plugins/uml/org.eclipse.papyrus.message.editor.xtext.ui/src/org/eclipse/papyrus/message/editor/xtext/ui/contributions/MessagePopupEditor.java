@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.validation.internal.util.Log;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.core.utils.EditorUtils;
@@ -29,7 +30,6 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.log.LogHelper;
 import org.eclipse.papyrus.message.editor.xtext.ui.internal.UmlMessageActivator;
 import org.eclipse.papyrus.message.editor.xtext.umlMessage.MessageRule;
-import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
@@ -173,7 +173,8 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 				try {
 					OperationHistoryFactory.getOperationHistory().execute(updateCommand, new NullProgressMonitor(), null);
 				} catch (ExecutionException e) {
-					((LogHelper)Activator.log).error(e);
+					//org.eclipse.papyrus.properties.runtime.Activator.log.error(e) ;
+					//((LogHelper)Activator.log).error(e);
 				}
 
 			}

@@ -39,6 +39,5 @@ public class UmlPropertyStandaloneSetupGenerated implements ISetup {
 
 
 
-
 	}
 }

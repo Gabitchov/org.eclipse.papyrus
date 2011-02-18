@@ -80,7 +80,8 @@ public class UmlPropertyJavaValidator extends AbstractUmlPropertyJavaValidator {
 				upperValue = rule.getBounds().get(1).getValue().equals("*") ? -1 : Integer.valueOf(rule.getBounds().get(1).getValue()) ;
 				if ((lowerValue == -1 && upperValue != -1) ||
 					(lowerValue > upperValue && upperValue != -1)) {
-					error(errorMessage, rule, UmlPropertyPackage.BOUND_SPECIFICATION__VALUE) ;
+					error(errorMessage, UmlPropertyPackage.eINSTANCE.getBoundSpecification_Value()) ;
+					//error(errorMessage, rule, UmlPropertyPackage.BOUND_SPECIFICATION__VALUE) ;
 					valid_MultiplicityRule = false ;
 				}
 				else {
@@ -118,7 +119,8 @@ public class UmlPropertyJavaValidator extends AbstractUmlPropertyJavaValidator {
 
 			valid_RedefinesRule = typeOfRedefiningProperty.conformsTo(redefinedProperty.getType()) ;
 			if (! valid_RedefinesRule) {
-				error(typeErrorMessage, rule, UmlPropertyPackage.REDEFINES_RULE__PROPERTY) ;
+				error(typeErrorMessage, UmlPropertyPackage.eINSTANCE.getRedefinesRule_Property()) ;
+				//error(typeErrorMessage, rule, UmlPropertyPackage.REDEFINES_RULE__PROPERTY) ;
 				return ;
 			}
 
@@ -149,14 +151,16 @@ public class UmlPropertyJavaValidator extends AbstractUmlPropertyJavaValidator {
 			}
 
 			if (! valid_RedefinesRule) {
-				error(multiplicityErrorMessage, rule, UmlPropertyPackage.REDEFINES_RULE__PROPERTY) ;
+				error(multiplicityErrorMessage, UmlPropertyPackage.eINSTANCE.getRedefinesRule_Property()) ;
+				//error(multiplicityErrorMessage, rule, UmlPropertyPackage.REDEFINES_RULE__PROPERTY) ;
 				return ;
 			}
 			
 			if (redefinedProperty.isDerived() && !isRedefiningPropertyDerived)
 				valid_RedefinesRule = false ;
 			if (! valid_RedefinesRule) {
-				error(isDerivedErrorMessage, rule, UmlPropertyPackage.REDEFINES_RULE__PROPERTY) ;
+				error(multiplicityErrorMessage, UmlPropertyPackage.eINSTANCE.getRedefinesRule_Property()) ;
+				//error(isDerivedErrorMessage, rule, UmlPropertyPackage.REDEFINES_RULE__PROPERTY) ;
 				return ;
 			}
 
@@ -189,7 +193,8 @@ public class UmlPropertyJavaValidator extends AbstractUmlPropertyJavaValidator {
 
 			valid_SubsetsRule = typeOfSubsettingProperty.conformsTo(subsettedProperty.getType()) ;
 			if (! valid_SubsetsRule) {
-				error(typeErrorMessage, rule, UmlPropertyPackage.SUBSETS_RULE__PROPERTY) ;
+				error(multiplicityErrorMessage, UmlPropertyPackage.eINSTANCE.getSubsetsRule_Property()) ;
+				//error(typeErrorMessage, rule, UmlPropertyPackage.SUBSETS_RULE__PROPERTY) ;
 				return ;
 			}
 
@@ -220,7 +225,8 @@ public class UmlPropertyJavaValidator extends AbstractUmlPropertyJavaValidator {
 			}
 
 			if (! valid_SubsetsRule) {
-				error(multiplicityErrorMessage, rule, UmlPropertyPackage.SUBSETS_RULE__PROPERTY) ;
+				error(multiplicityErrorMessage, UmlPropertyPackage.eINSTANCE.getSubsetsRule_Property()) ;
+				//error(multiplicityErrorMessage, rule, UmlPropertyPackage.SUBSETS_RULE__PROPERTY) ;
 				return ;
 			}
 			

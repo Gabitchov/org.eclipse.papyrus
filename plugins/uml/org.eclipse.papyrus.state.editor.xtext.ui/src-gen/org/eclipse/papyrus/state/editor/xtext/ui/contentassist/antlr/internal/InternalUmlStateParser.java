@@ -27,6 +27,14 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
     };
     public static final int RULE_ID=4;
     public static final int RULE_STRING=6;
+    public static final int T__16=16;
+    public static final int T__15=15;
+    public static final int T__18=18;
+    public static final int T__17=17;
+    public static final int T__12=12;
+    public static final int T__11=11;
+    public static final int T__14=14;
+    public static final int T__13=13;
     public static final int RULE_ANY_OTHER=10;
     public static final int RULE_INT=5;
     public static final int RULE_WS=9;
@@ -34,12 +42,20 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
     public static final int EOF=-1;
     public static final int RULE_ML_COMMENT=7;
 
+    // delegates
+    // delegators
+
+
         public InternalUmlStateParser(TokenStream input) {
-            super(input);
+            this(input, new RecognizerSharedState());
+        }
+        public InternalUmlStateParser(TokenStream input, RecognizerSharedState state) {
+            super(input, state);
+             
         }
         
 
-    public String[] getTokenNames() { return tokenNames; }
+    public String[] getTokenNames() { return InternalUmlStateParser.tokenNames; }
     public String getGrammarFileName() { return "../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g"; }
 
 
@@ -63,7 +79,7 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
 
 
 
-    // $ANTLR start entryRuleStateRule
+    // $ANTLR start "entryRuleStateRule"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:61:1: entryRuleStateRule : ruleStateRule EOF ;
     public final void entryRuleStateRule() throws RecognitionException {
         try {
@@ -73,7 +89,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
              before(grammarAccess.getStateRuleRule()); 
             pushFollow(FOLLOW_ruleStateRule_in_entryRuleStateRule61);
             ruleStateRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getStateRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleStateRule68); 
@@ -89,10 +106,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end entryRuleStateRule
+    // $ANTLR end "entryRuleStateRule"
 
 
-    // $ANTLR start ruleStateRule
+    // $ANTLR start "ruleStateRule"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:70:1: ruleStateRule : ( ( rule__StateRule__Group__0 ) ) ;
     public final void ruleStateRule() throws RecognitionException {
 
@@ -111,7 +128,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__StateRule__Group__0_in_ruleStateRule94);
             rule__StateRule__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -135,10 +153,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end ruleStateRule
+    // $ANTLR end "ruleStateRule"
 
 
-    // $ANTLR start entryRuleSubmachineRule
+    // $ANTLR start "entryRuleSubmachineRule"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:89:1: entryRuleSubmachineRule : ruleSubmachineRule EOF ;
     public final void entryRuleSubmachineRule() throws RecognitionException {
         try {
@@ -148,7 +166,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
              before(grammarAccess.getSubmachineRuleRule()); 
             pushFollow(FOLLOW_ruleSubmachineRule_in_entryRuleSubmachineRule121);
             ruleSubmachineRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getSubmachineRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleSubmachineRule128); 
@@ -164,10 +183,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end entryRuleSubmachineRule
+    // $ANTLR end "entryRuleSubmachineRule"
 
 
-    // $ANTLR start ruleSubmachineRule
+    // $ANTLR start "ruleSubmachineRule"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:98:1: ruleSubmachineRule : ( ( rule__SubmachineRule__Group__0 ) ) ;
     public final void ruleSubmachineRule() throws RecognitionException {
 
@@ -186,7 +205,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__SubmachineRule__Group__0_in_ruleSubmachineRule154);
             rule__SubmachineRule__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -210,10 +230,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end ruleSubmachineRule
+    // $ANTLR end "ruleSubmachineRule"
 
 
-    // $ANTLR start entryRuleQualifiedName
+    // $ANTLR start "entryRuleQualifiedName"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:117:1: entryRuleQualifiedName : ruleQualifiedName EOF ;
     public final void entryRuleQualifiedName() throws RecognitionException {
         try {
@@ -223,7 +243,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
              before(grammarAccess.getQualifiedNameRule()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName181);
             ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getQualifiedNameRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName188); 
@@ -239,10 +260,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end entryRuleQualifiedName
+    // $ANTLR end "entryRuleQualifiedName"
 
 
-    // $ANTLR start ruleQualifiedName
+    // $ANTLR start "ruleQualifiedName"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:126:1: ruleQualifiedName : ( ( rule__QualifiedName__Group__0 ) ) ;
     public final void ruleQualifiedName() throws RecognitionException {
 
@@ -261,7 +282,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__0_in_ruleQualifiedName214);
             rule__QualifiedName__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -285,10 +307,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end ruleQualifiedName
+    // $ANTLR end "ruleQualifiedName"
 
 
-    // $ANTLR start entryRuleEntryRule
+    // $ANTLR start "entryRuleEntryRule"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:145:1: entryRuleEntryRule : ruleEntryRule EOF ;
     public final void entryRuleEntryRule() throws RecognitionException {
         try {
@@ -298,7 +320,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
              before(grammarAccess.getEntryRuleRule()); 
             pushFollow(FOLLOW_ruleEntryRule_in_entryRuleEntryRule241);
             ruleEntryRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getEntryRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleEntryRule248); 
@@ -314,10 +337,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end entryRuleEntryRule
+    // $ANTLR end "entryRuleEntryRule"
 
 
-    // $ANTLR start ruleEntryRule
+    // $ANTLR start "ruleEntryRule"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:154:1: ruleEntryRule : ( ( rule__EntryRule__Group__0 ) ) ;
     public final void ruleEntryRule() throws RecognitionException {
 
@@ -336,7 +359,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__EntryRule__Group__0_in_ruleEntryRule274);
             rule__EntryRule__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -360,10 +384,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end ruleEntryRule
+    // $ANTLR end "ruleEntryRule"
 
 
-    // $ANTLR start entryRuleDoRule
+    // $ANTLR start "entryRuleDoRule"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:173:1: entryRuleDoRule : ruleDoRule EOF ;
     public final void entryRuleDoRule() throws RecognitionException {
         try {
@@ -373,7 +397,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
              before(grammarAccess.getDoRuleRule()); 
             pushFollow(FOLLOW_ruleDoRule_in_entryRuleDoRule301);
             ruleDoRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDoRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleDoRule308); 
@@ -389,10 +414,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end entryRuleDoRule
+    // $ANTLR end "entryRuleDoRule"
 
 
-    // $ANTLR start ruleDoRule
+    // $ANTLR start "ruleDoRule"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:182:1: ruleDoRule : ( ( rule__DoRule__Group__0 ) ) ;
     public final void ruleDoRule() throws RecognitionException {
 
@@ -411,7 +436,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__DoRule__Group__0_in_ruleDoRule334);
             rule__DoRule__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -435,10 +461,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end ruleDoRule
+    // $ANTLR end "ruleDoRule"
 
 
-    // $ANTLR start entryRuleExitRule
+    // $ANTLR start "entryRuleExitRule"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:201:1: entryRuleExitRule : ruleExitRule EOF ;
     public final void entryRuleExitRule() throws RecognitionException {
         try {
@@ -448,7 +474,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
              before(grammarAccess.getExitRuleRule()); 
             pushFollow(FOLLOW_ruleExitRule_in_entryRuleExitRule361);
             ruleExitRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getExitRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleExitRule368); 
@@ -464,10 +491,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end entryRuleExitRule
+    // $ANTLR end "entryRuleExitRule"
 
 
-    // $ANTLR start ruleExitRule
+    // $ANTLR start "ruleExitRule"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:210:1: ruleExitRule : ( ( rule__ExitRule__Group__0 ) ) ;
     public final void ruleExitRule() throws RecognitionException {
 
@@ -486,7 +513,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__ExitRule__Group__0_in_ruleExitRule394);
             rule__ExitRule__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -510,10 +538,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end ruleExitRule
+    // $ANTLR end "ruleExitRule"
 
 
-    // $ANTLR start ruleBehaviorKind
+    // $ANTLR start "ruleBehaviorKind"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:230:1: ruleBehaviorKind : ( ( rule__BehaviorKind__Alternatives ) ) ;
     public final void ruleBehaviorKind() throws RecognitionException {
 
@@ -532,7 +560,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__BehaviorKind__Alternatives_in_ruleBehaviorKind431);
             rule__BehaviorKind__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -556,10 +585,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end ruleBehaviorKind
+    // $ANTLR end "ruleBehaviorKind"
 
 
-    // $ANTLR start rule__BehaviorKind__Alternatives
+    // $ANTLR start "rule__BehaviorKind__Alternatives"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:248:1: rule__BehaviorKind__Alternatives : ( ( ( 'Activity' ) ) | ( ( 'StateMachine' ) ) | ( ( 'OpaqueBehavior' ) ) );
     public final void rule__BehaviorKind__Alternatives() throws RecognitionException {
 
@@ -586,7 +615,7 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("248:1: rule__BehaviorKind__Alternatives : ( ( ( 'Activity' ) ) | ( ( 'StateMachine' ) ) | ( ( 'OpaqueBehavior' ) ) );", 1, 0, input);
+                    new NoViableAltException("", 1, 0, input);
 
                 throw nvae;
             }
@@ -669,10 +698,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__BehaviorKind__Alternatives
+    // $ANTLR end "rule__BehaviorKind__Alternatives"
 
 
-    // $ANTLR start rule__StateRule__Group__0
+    // $ANTLR start "rule__StateRule__Group__0"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:281:1: rule__StateRule__Group__0 : rule__StateRule__Group__0__Impl rule__StateRule__Group__1 ;
     public final void rule__StateRule__Group__0() throws RecognitionException {
 
@@ -684,11 +713,13 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__StateRule__Group__0__Impl_in_rule__StateRule__Group__0542);
             rule__StateRule__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__StateRule__Group__1_in_rule__StateRule__Group__0545);
             rule__StateRule__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -705,10 +736,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__Group__0
+    // $ANTLR end "rule__StateRule__Group__0"
 
 
-    // $ANTLR start rule__StateRule__Group__0__Impl
+    // $ANTLR start "rule__StateRule__Group__0__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:293:1: rule__StateRule__Group__0__Impl : ( ( rule__StateRule__NameAssignment_0 ) ) ;
     public final void rule__StateRule__Group__0__Impl() throws RecognitionException {
 
@@ -727,7 +758,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__StateRule__NameAssignment_0_in_rule__StateRule__Group__0__Impl572);
             rule__StateRule__NameAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -751,10 +783,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__Group__0__Impl
+    // $ANTLR end "rule__StateRule__Group__0__Impl"
 
 
-    // $ANTLR start rule__StateRule__Group__1
+    // $ANTLR start "rule__StateRule__Group__1"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:310:1: rule__StateRule__Group__1 : rule__StateRule__Group__1__Impl rule__StateRule__Group__2 ;
     public final void rule__StateRule__Group__1() throws RecognitionException {
 
@@ -766,11 +798,13 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__StateRule__Group__1__Impl_in_rule__StateRule__Group__1602);
             rule__StateRule__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__StateRule__Group__2_in_rule__StateRule__Group__1605);
             rule__StateRule__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -787,10 +821,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__Group__1
+    // $ANTLR end "rule__StateRule__Group__1"
 
 
-    // $ANTLR start rule__StateRule__Group__1__Impl
+    // $ANTLR start "rule__StateRule__Group__1__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:322:1: rule__StateRule__Group__1__Impl : ( ( rule__StateRule__Group_1__0 )? ) ;
     public final void rule__StateRule__Group__1__Impl() throws RecognitionException {
 
@@ -817,7 +851,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
                     {
                     pushFollow(FOLLOW_rule__StateRule__Group_1__0_in_rule__StateRule__Group__1__Impl632);
                     rule__StateRule__Group_1__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -844,10 +879,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__Group__1__Impl
+    // $ANTLR end "rule__StateRule__Group__1__Impl"
 
 
-    // $ANTLR start rule__StateRule__Group__2
+    // $ANTLR start "rule__StateRule__Group__2"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:339:1: rule__StateRule__Group__2 : rule__StateRule__Group__2__Impl ;
     public final void rule__StateRule__Group__2() throws RecognitionException {
 
@@ -859,7 +894,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__StateRule__Group__2__Impl_in_rule__StateRule__Group__2663);
             rule__StateRule__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -876,10 +912,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__Group__2
+    // $ANTLR end "rule__StateRule__Group__2"
 
 
-    // $ANTLR start rule__StateRule__Group__2__Impl
+    // $ANTLR start "rule__StateRule__Group__2__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:350:1: rule__StateRule__Group__2__Impl : ( ( rule__StateRule__UnorderedGroup_2 ) ) ;
     public final void rule__StateRule__Group__2__Impl() throws RecognitionException {
 
@@ -898,7 +934,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__StateRule__UnorderedGroup_2_in_rule__StateRule__Group__2__Impl690);
             rule__StateRule__UnorderedGroup_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -922,10 +959,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__Group__2__Impl
+    // $ANTLR end "rule__StateRule__Group__2__Impl"
 
 
-    // $ANTLR start rule__StateRule__Group_1__0
+    // $ANTLR start "rule__StateRule__Group_1__0"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:373:1: rule__StateRule__Group_1__0 : rule__StateRule__Group_1__0__Impl rule__StateRule__Group_1__1 ;
     public final void rule__StateRule__Group_1__0() throws RecognitionException {
 
@@ -937,11 +974,13 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__StateRule__Group_1__0__Impl_in_rule__StateRule__Group_1__0726);
             rule__StateRule__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__StateRule__Group_1__1_in_rule__StateRule__Group_1__0729);
             rule__StateRule__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -958,10 +997,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__Group_1__0
+    // $ANTLR end "rule__StateRule__Group_1__0"
 
 
-    // $ANTLR start rule__StateRule__Group_1__0__Impl
+    // $ANTLR start "rule__StateRule__Group_1__0__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:385:1: rule__StateRule__Group_1__0__Impl : ( ':' ) ;
     public final void rule__StateRule__Group_1__0__Impl() throws RecognitionException {
 
@@ -995,10 +1034,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__Group_1__0__Impl
+    // $ANTLR end "rule__StateRule__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__StateRule__Group_1__1
+    // $ANTLR start "rule__StateRule__Group_1__1"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:404:1: rule__StateRule__Group_1__1 : rule__StateRule__Group_1__1__Impl ;
     public final void rule__StateRule__Group_1__1() throws RecognitionException {
 
@@ -1010,7 +1049,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__StateRule__Group_1__1__Impl_in_rule__StateRule__Group_1__1788);
             rule__StateRule__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1027,10 +1067,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__Group_1__1
+    // $ANTLR end "rule__StateRule__Group_1__1"
 
 
-    // $ANTLR start rule__StateRule__Group_1__1__Impl
+    // $ANTLR start "rule__StateRule__Group_1__1__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:415:1: rule__StateRule__Group_1__1__Impl : ( ( rule__StateRule__SubmachineAssignment_1_1 ) ) ;
     public final void rule__StateRule__Group_1__1__Impl() throws RecognitionException {
 
@@ -1049,7 +1089,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__StateRule__SubmachineAssignment_1_1_in_rule__StateRule__Group_1__1__Impl815);
             rule__StateRule__SubmachineAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1073,10 +1114,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__Group_1__1__Impl
+    // $ANTLR end "rule__StateRule__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__SubmachineRule__Group__0
+    // $ANTLR start "rule__SubmachineRule__Group__0"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:436:1: rule__SubmachineRule__Group__0 : rule__SubmachineRule__Group__0__Impl rule__SubmachineRule__Group__1 ;
     public final void rule__SubmachineRule__Group__0() throws RecognitionException {
 
@@ -1088,11 +1129,13 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__SubmachineRule__Group__0__Impl_in_rule__SubmachineRule__Group__0849);
             rule__SubmachineRule__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__SubmachineRule__Group__1_in_rule__SubmachineRule__Group__0852);
             rule__SubmachineRule__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1109,10 +1152,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__SubmachineRule__Group__0
+    // $ANTLR end "rule__SubmachineRule__Group__0"
 
 
-    // $ANTLR start rule__SubmachineRule__Group__0__Impl
+    // $ANTLR start "rule__SubmachineRule__Group__0__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:448:1: rule__SubmachineRule__Group__0__Impl : ( ( rule__SubmachineRule__PathAssignment_0 )? ) ;
     public final void rule__SubmachineRule__Group__0__Impl() throws RecognitionException {
 
@@ -1143,7 +1186,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
                     {
                     pushFollow(FOLLOW_rule__SubmachineRule__PathAssignment_0_in_rule__SubmachineRule__Group__0__Impl879);
                     rule__SubmachineRule__PathAssignment_0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -1170,10 +1214,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__SubmachineRule__Group__0__Impl
+    // $ANTLR end "rule__SubmachineRule__Group__0__Impl"
 
 
-    // $ANTLR start rule__SubmachineRule__Group__1
+    // $ANTLR start "rule__SubmachineRule__Group__1"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:465:1: rule__SubmachineRule__Group__1 : rule__SubmachineRule__Group__1__Impl ;
     public final void rule__SubmachineRule__Group__1() throws RecognitionException {
 
@@ -1185,7 +1229,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__SubmachineRule__Group__1__Impl_in_rule__SubmachineRule__Group__1910);
             rule__SubmachineRule__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1202,10 +1247,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__SubmachineRule__Group__1
+    // $ANTLR end "rule__SubmachineRule__Group__1"
 
 
-    // $ANTLR start rule__SubmachineRule__Group__1__Impl
+    // $ANTLR start "rule__SubmachineRule__Group__1__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:476:1: rule__SubmachineRule__Group__1__Impl : ( ( rule__SubmachineRule__SubmachineAssignment_1 ) ) ;
     public final void rule__SubmachineRule__Group__1__Impl() throws RecognitionException {
 
@@ -1224,7 +1269,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__SubmachineRule__SubmachineAssignment_1_in_rule__SubmachineRule__Group__1__Impl937);
             rule__SubmachineRule__SubmachineAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1248,10 +1294,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__SubmachineRule__Group__1__Impl
+    // $ANTLR end "rule__SubmachineRule__Group__1__Impl"
 
 
-    // $ANTLR start rule__QualifiedName__Group__0
+    // $ANTLR start "rule__QualifiedName__Group__0"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:497:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
     public final void rule__QualifiedName__Group__0() throws RecognitionException {
 
@@ -1263,11 +1309,13 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__0971);
             rule__QualifiedName__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__0974);
             rule__QualifiedName__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1284,10 +1332,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__0
+    // $ANTLR end "rule__QualifiedName__Group__0"
 
 
-    // $ANTLR start rule__QualifiedName__Group__0__Impl
+    // $ANTLR start "rule__QualifiedName__Group__0__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:509:1: rule__QualifiedName__Group__0__Impl : ( ( rule__QualifiedName__PathAssignment_0 ) ) ;
     public final void rule__QualifiedName__Group__0__Impl() throws RecognitionException {
 
@@ -1306,7 +1354,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__QualifiedName__PathAssignment_0_in_rule__QualifiedName__Group__0__Impl1001);
             rule__QualifiedName__PathAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1330,10 +1379,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__0__Impl
+    // $ANTLR end "rule__QualifiedName__Group__0__Impl"
 
 
-    // $ANTLR start rule__QualifiedName__Group__1
+    // $ANTLR start "rule__QualifiedName__Group__1"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:526:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl rule__QualifiedName__Group__2 ;
     public final void rule__QualifiedName__Group__1() throws RecognitionException {
 
@@ -1345,11 +1394,13 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__11031);
             rule__QualifiedName__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__QualifiedName__Group__2_in_rule__QualifiedName__Group__11034);
             rule__QualifiedName__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1366,10 +1417,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__1
+    // $ANTLR end "rule__QualifiedName__Group__1"
 
 
-    // $ANTLR start rule__QualifiedName__Group__1__Impl
+    // $ANTLR start "rule__QualifiedName__Group__1__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:538:1: rule__QualifiedName__Group__1__Impl : ( '::' ) ;
     public final void rule__QualifiedName__Group__1__Impl() throws RecognitionException {
 
@@ -1403,10 +1454,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__1__Impl
+    // $ANTLR end "rule__QualifiedName__Group__1__Impl"
 
 
-    // $ANTLR start rule__QualifiedName__Group__2
+    // $ANTLR start "rule__QualifiedName__Group__2"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:557:1: rule__QualifiedName__Group__2 : rule__QualifiedName__Group__2__Impl ;
     public final void rule__QualifiedName__Group__2() throws RecognitionException {
 
@@ -1418,7 +1469,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__2__Impl_in_rule__QualifiedName__Group__21093);
             rule__QualifiedName__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1435,10 +1487,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__2
+    // $ANTLR end "rule__QualifiedName__Group__2"
 
 
-    // $ANTLR start rule__QualifiedName__Group__2__Impl
+    // $ANTLR start "rule__QualifiedName__Group__2__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:568:1: rule__QualifiedName__Group__2__Impl : ( ( rule__QualifiedName__RemainingAssignment_2 )? ) ;
     public final void rule__QualifiedName__Group__2__Impl() throws RecognitionException {
 
@@ -1469,7 +1521,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
                     {
                     pushFollow(FOLLOW_rule__QualifiedName__RemainingAssignment_2_in_rule__QualifiedName__Group__2__Impl1120);
                     rule__QualifiedName__RemainingAssignment_2();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -1496,10 +1549,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__2__Impl
+    // $ANTLR end "rule__QualifiedName__Group__2__Impl"
 
 
-    // $ANTLR start rule__EntryRule__Group__0
+    // $ANTLR start "rule__EntryRule__Group__0"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:591:1: rule__EntryRule__Group__0 : rule__EntryRule__Group__0__Impl rule__EntryRule__Group__1 ;
     public final void rule__EntryRule__Group__0() throws RecognitionException {
 
@@ -1511,11 +1564,13 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__EntryRule__Group__0__Impl_in_rule__EntryRule__Group__01157);
             rule__EntryRule__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__EntryRule__Group__1_in_rule__EntryRule__Group__01160);
             rule__EntryRule__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1532,10 +1587,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__EntryRule__Group__0
+    // $ANTLR end "rule__EntryRule__Group__0"
 
 
-    // $ANTLR start rule__EntryRule__Group__0__Impl
+    // $ANTLR start "rule__EntryRule__Group__0__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:603:1: rule__EntryRule__Group__0__Impl : ( 'entry' ) ;
     public final void rule__EntryRule__Group__0__Impl() throws RecognitionException {
 
@@ -1569,10 +1624,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__EntryRule__Group__0__Impl
+    // $ANTLR end "rule__EntryRule__Group__0__Impl"
 
 
-    // $ANTLR start rule__EntryRule__Group__1
+    // $ANTLR start "rule__EntryRule__Group__1"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:622:1: rule__EntryRule__Group__1 : rule__EntryRule__Group__1__Impl rule__EntryRule__Group__2 ;
     public final void rule__EntryRule__Group__1() throws RecognitionException {
 
@@ -1584,11 +1639,13 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__EntryRule__Group__1__Impl_in_rule__EntryRule__Group__11219);
             rule__EntryRule__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__EntryRule__Group__2_in_rule__EntryRule__Group__11222);
             rule__EntryRule__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1605,10 +1662,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__EntryRule__Group__1
+    // $ANTLR end "rule__EntryRule__Group__1"
 
 
-    // $ANTLR start rule__EntryRule__Group__1__Impl
+    // $ANTLR start "rule__EntryRule__Group__1__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:634:1: rule__EntryRule__Group__1__Impl : ( ( rule__EntryRule__KindAssignment_1 ) ) ;
     public final void rule__EntryRule__Group__1__Impl() throws RecognitionException {
 
@@ -1627,7 +1684,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__EntryRule__KindAssignment_1_in_rule__EntryRule__Group__1__Impl1249);
             rule__EntryRule__KindAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1651,10 +1709,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__EntryRule__Group__1__Impl
+    // $ANTLR end "rule__EntryRule__Group__1__Impl"
 
 
-    // $ANTLR start rule__EntryRule__Group__2
+    // $ANTLR start "rule__EntryRule__Group__2"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:651:1: rule__EntryRule__Group__2 : rule__EntryRule__Group__2__Impl ;
     public final void rule__EntryRule__Group__2() throws RecognitionException {
 
@@ -1666,7 +1724,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__EntryRule__Group__2__Impl_in_rule__EntryRule__Group__21279);
             rule__EntryRule__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1683,10 +1742,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__EntryRule__Group__2
+    // $ANTLR end "rule__EntryRule__Group__2"
 
 
-    // $ANTLR start rule__EntryRule__Group__2__Impl
+    // $ANTLR start "rule__EntryRule__Group__2__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:662:1: rule__EntryRule__Group__2__Impl : ( ( rule__EntryRule__BehaviorNameAssignment_2 ) ) ;
     public final void rule__EntryRule__Group__2__Impl() throws RecognitionException {
 
@@ -1705,7 +1764,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__EntryRule__BehaviorNameAssignment_2_in_rule__EntryRule__Group__2__Impl1306);
             rule__EntryRule__BehaviorNameAssignment_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1729,10 +1789,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__EntryRule__Group__2__Impl
+    // $ANTLR end "rule__EntryRule__Group__2__Impl"
 
 
-    // $ANTLR start rule__DoRule__Group__0
+    // $ANTLR start "rule__DoRule__Group__0"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:685:1: rule__DoRule__Group__0 : rule__DoRule__Group__0__Impl rule__DoRule__Group__1 ;
     public final void rule__DoRule__Group__0() throws RecognitionException {
 
@@ -1744,11 +1804,13 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__DoRule__Group__0__Impl_in_rule__DoRule__Group__01342);
             rule__DoRule__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DoRule__Group__1_in_rule__DoRule__Group__01345);
             rule__DoRule__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1765,10 +1827,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__DoRule__Group__0
+    // $ANTLR end "rule__DoRule__Group__0"
 
 
-    // $ANTLR start rule__DoRule__Group__0__Impl
+    // $ANTLR start "rule__DoRule__Group__0__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:697:1: rule__DoRule__Group__0__Impl : ( 'do' ) ;
     public final void rule__DoRule__Group__0__Impl() throws RecognitionException {
 
@@ -1802,10 +1864,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__DoRule__Group__0__Impl
+    // $ANTLR end "rule__DoRule__Group__0__Impl"
 
 
-    // $ANTLR start rule__DoRule__Group__1
+    // $ANTLR start "rule__DoRule__Group__1"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:716:1: rule__DoRule__Group__1 : rule__DoRule__Group__1__Impl rule__DoRule__Group__2 ;
     public final void rule__DoRule__Group__1() throws RecognitionException {
 
@@ -1817,11 +1879,13 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__DoRule__Group__1__Impl_in_rule__DoRule__Group__11404);
             rule__DoRule__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DoRule__Group__2_in_rule__DoRule__Group__11407);
             rule__DoRule__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1838,10 +1902,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__DoRule__Group__1
+    // $ANTLR end "rule__DoRule__Group__1"
 
 
-    // $ANTLR start rule__DoRule__Group__1__Impl
+    // $ANTLR start "rule__DoRule__Group__1__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:728:1: rule__DoRule__Group__1__Impl : ( ( rule__DoRule__KindAssignment_1 ) ) ;
     public final void rule__DoRule__Group__1__Impl() throws RecognitionException {
 
@@ -1860,7 +1924,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__DoRule__KindAssignment_1_in_rule__DoRule__Group__1__Impl1434);
             rule__DoRule__KindAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1884,10 +1949,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__DoRule__Group__1__Impl
+    // $ANTLR end "rule__DoRule__Group__1__Impl"
 
 
-    // $ANTLR start rule__DoRule__Group__2
+    // $ANTLR start "rule__DoRule__Group__2"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:745:1: rule__DoRule__Group__2 : rule__DoRule__Group__2__Impl ;
     public final void rule__DoRule__Group__2() throws RecognitionException {
 
@@ -1899,7 +1964,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__DoRule__Group__2__Impl_in_rule__DoRule__Group__21464);
             rule__DoRule__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1916,10 +1982,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__DoRule__Group__2
+    // $ANTLR end "rule__DoRule__Group__2"
 
 
-    // $ANTLR start rule__DoRule__Group__2__Impl
+    // $ANTLR start "rule__DoRule__Group__2__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:756:1: rule__DoRule__Group__2__Impl : ( ( rule__DoRule__BehaviorNameAssignment_2 ) ) ;
     public final void rule__DoRule__Group__2__Impl() throws RecognitionException {
 
@@ -1938,7 +2004,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__DoRule__BehaviorNameAssignment_2_in_rule__DoRule__Group__2__Impl1491);
             rule__DoRule__BehaviorNameAssignment_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1962,10 +2029,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__DoRule__Group__2__Impl
+    // $ANTLR end "rule__DoRule__Group__2__Impl"
 
 
-    // $ANTLR start rule__ExitRule__Group__0
+    // $ANTLR start "rule__ExitRule__Group__0"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:779:1: rule__ExitRule__Group__0 : rule__ExitRule__Group__0__Impl rule__ExitRule__Group__1 ;
     public final void rule__ExitRule__Group__0() throws RecognitionException {
 
@@ -1977,11 +2044,13 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__ExitRule__Group__0__Impl_in_rule__ExitRule__Group__01527);
             rule__ExitRule__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ExitRule__Group__1_in_rule__ExitRule__Group__01530);
             rule__ExitRule__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1998,10 +2067,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__ExitRule__Group__0
+    // $ANTLR end "rule__ExitRule__Group__0"
 
 
-    // $ANTLR start rule__ExitRule__Group__0__Impl
+    // $ANTLR start "rule__ExitRule__Group__0__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:791:1: rule__ExitRule__Group__0__Impl : ( 'exit' ) ;
     public final void rule__ExitRule__Group__0__Impl() throws RecognitionException {
 
@@ -2035,10 +2104,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__ExitRule__Group__0__Impl
+    // $ANTLR end "rule__ExitRule__Group__0__Impl"
 
 
-    // $ANTLR start rule__ExitRule__Group__1
+    // $ANTLR start "rule__ExitRule__Group__1"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:810:1: rule__ExitRule__Group__1 : rule__ExitRule__Group__1__Impl rule__ExitRule__Group__2 ;
     public final void rule__ExitRule__Group__1() throws RecognitionException {
 
@@ -2050,11 +2119,13 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__ExitRule__Group__1__Impl_in_rule__ExitRule__Group__11589);
             rule__ExitRule__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ExitRule__Group__2_in_rule__ExitRule__Group__11592);
             rule__ExitRule__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2071,10 +2142,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__ExitRule__Group__1
+    // $ANTLR end "rule__ExitRule__Group__1"
 
 
-    // $ANTLR start rule__ExitRule__Group__1__Impl
+    // $ANTLR start "rule__ExitRule__Group__1__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:822:1: rule__ExitRule__Group__1__Impl : ( ( rule__ExitRule__KindAssignment_1 ) ) ;
     public final void rule__ExitRule__Group__1__Impl() throws RecognitionException {
 
@@ -2093,7 +2164,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__ExitRule__KindAssignment_1_in_rule__ExitRule__Group__1__Impl1619);
             rule__ExitRule__KindAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2117,10 +2189,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__ExitRule__Group__1__Impl
+    // $ANTLR end "rule__ExitRule__Group__1__Impl"
 
 
-    // $ANTLR start rule__ExitRule__Group__2
+    // $ANTLR start "rule__ExitRule__Group__2"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:839:1: rule__ExitRule__Group__2 : rule__ExitRule__Group__2__Impl ;
     public final void rule__ExitRule__Group__2() throws RecognitionException {
 
@@ -2132,7 +2204,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__ExitRule__Group__2__Impl_in_rule__ExitRule__Group__21649);
             rule__ExitRule__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2149,10 +2222,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__ExitRule__Group__2
+    // $ANTLR end "rule__ExitRule__Group__2"
 
 
-    // $ANTLR start rule__ExitRule__Group__2__Impl
+    // $ANTLR start "rule__ExitRule__Group__2__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:850:1: rule__ExitRule__Group__2__Impl : ( ( rule__ExitRule__BehaviorNameAssignment_2 ) ) ;
     public final void rule__ExitRule__Group__2__Impl() throws RecognitionException {
 
@@ -2171,7 +2244,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__ExitRule__BehaviorNameAssignment_2_in_rule__ExitRule__Group__2__Impl1676);
             rule__ExitRule__BehaviorNameAssignment_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2195,10 +2269,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__ExitRule__Group__2__Impl
+    // $ANTLR end "rule__ExitRule__Group__2__Impl"
 
 
-    // $ANTLR start rule__StateRule__UnorderedGroup_2
+    // $ANTLR start "rule__StateRule__UnorderedGroup_2"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:874:1: rule__StateRule__UnorderedGroup_2 : ( rule__StateRule__UnorderedGroup_2__0 )? ;
     public final void rule__StateRule__UnorderedGroup_2() throws RecognitionException {
 
@@ -2228,7 +2302,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
                     {
                     pushFollow(FOLLOW_rule__StateRule__UnorderedGroup_2__0_in_rule__StateRule__UnorderedGroup_21713);
                     rule__StateRule__UnorderedGroup_2__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -2252,10 +2327,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__UnorderedGroup_2
+    // $ANTLR end "rule__StateRule__UnorderedGroup_2"
 
 
-    // $ANTLR start rule__StateRule__UnorderedGroup_2__Impl
+    // $ANTLR start "rule__StateRule__UnorderedGroup_2__Impl"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:890:1: rule__StateRule__UnorderedGroup_2__Impl : ( ({...}? => ( ( ( rule__StateRule__EntryAssignment_2_0 ) ) ) ) | ({...}? => ( ( ( rule__StateRule__DoAssignment_2_1 ) ) ) ) | ({...}? => ( ( ( rule__StateRule__ExitAssignment_2_2 ) ) ) ) ) ;
     public final void rule__StateRule__UnorderedGroup_2__Impl() throws RecognitionException {
 
@@ -2281,7 +2356,7 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("896:3: ( ({...}? => ( ( ( rule__StateRule__EntryAssignment_2_0 ) ) ) ) | ({...}? => ( ( ( rule__StateRule__DoAssignment_2_1 ) ) ) ) | ({...}? => ( ( ( rule__StateRule__ExitAssignment_2_2 ) ) ) ) )", 6, 0, input);
+                    new NoViableAltException("", 6, 0, input);
 
                 throw nvae;
             }
@@ -2313,7 +2388,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
                     {
                     pushFollow(FOLLOW_rule__StateRule__EntryAssignment_2_0_in_rule__StateRule__UnorderedGroup_2__Impl1800);
                     rule__StateRule__EntryAssignment_2_0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -2358,7 +2434,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
                     {
                     pushFollow(FOLLOW_rule__StateRule__DoAssignment_2_1_in_rule__StateRule__UnorderedGroup_2__Impl1891);
                     rule__StateRule__DoAssignment_2_1();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -2403,7 +2480,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
                     {
                     pushFollow(FOLLOW_rule__StateRule__ExitAssignment_2_2_in_rule__StateRule__UnorderedGroup_2__Impl1982);
                     rule__StateRule__ExitAssignment_2_2();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -2441,10 +2519,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__UnorderedGroup_2__Impl
+    // $ANTLR end "rule__StateRule__UnorderedGroup_2__Impl"
 
 
-    // $ANTLR start rule__StateRule__UnorderedGroup_2__0
+    // $ANTLR start "rule__StateRule__UnorderedGroup_2__0"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:958:1: rule__StateRule__UnorderedGroup_2__0 : rule__StateRule__UnorderedGroup_2__Impl ( rule__StateRule__UnorderedGroup_2__1 )? ;
     public final void rule__StateRule__UnorderedGroup_2__0() throws RecognitionException {
 
@@ -2456,7 +2534,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__StateRule__UnorderedGroup_2__Impl_in_rule__StateRule__UnorderedGroup_2__02041);
             rule__StateRule__UnorderedGroup_2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:964:2: ( rule__StateRule__UnorderedGroup_2__1 )?
             int alt7=2;
@@ -2477,7 +2556,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
                     {
                     pushFollow(FOLLOW_rule__StateRule__UnorderedGroup_2__1_in_rule__StateRule__UnorderedGroup_2__02044);
                     rule__StateRule__UnorderedGroup_2__1();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -2500,10 +2580,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__UnorderedGroup_2__0
+    // $ANTLR end "rule__StateRule__UnorderedGroup_2__0"
 
 
-    // $ANTLR start rule__StateRule__UnorderedGroup_2__1
+    // $ANTLR start "rule__StateRule__UnorderedGroup_2__1"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:971:1: rule__StateRule__UnorderedGroup_2__1 : rule__StateRule__UnorderedGroup_2__Impl ( rule__StateRule__UnorderedGroup_2__2 )? ;
     public final void rule__StateRule__UnorderedGroup_2__1() throws RecognitionException {
 
@@ -2515,7 +2595,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__StateRule__UnorderedGroup_2__Impl_in_rule__StateRule__UnorderedGroup_2__12069);
             rule__StateRule__UnorderedGroup_2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:977:2: ( rule__StateRule__UnorderedGroup_2__2 )?
             int alt8=2;
@@ -2536,7 +2617,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
                     {
                     pushFollow(FOLLOW_rule__StateRule__UnorderedGroup_2__2_in_rule__StateRule__UnorderedGroup_2__12072);
                     rule__StateRule__UnorderedGroup_2__2();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -2559,10 +2641,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__UnorderedGroup_2__1
+    // $ANTLR end "rule__StateRule__UnorderedGroup_2__1"
 
 
-    // $ANTLR start rule__StateRule__UnorderedGroup_2__2
+    // $ANTLR start "rule__StateRule__UnorderedGroup_2__2"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:984:1: rule__StateRule__UnorderedGroup_2__2 : rule__StateRule__UnorderedGroup_2__Impl ;
     public final void rule__StateRule__UnorderedGroup_2__2() throws RecognitionException {
 
@@ -2574,7 +2656,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
             {
             pushFollow(FOLLOW_rule__StateRule__UnorderedGroup_2__Impl_in_rule__StateRule__UnorderedGroup_2__22097);
             rule__StateRule__UnorderedGroup_2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2591,10 +2674,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__UnorderedGroup_2__2
+    // $ANTLR end "rule__StateRule__UnorderedGroup_2__2"
 
 
-    // $ANTLR start rule__StateRule__NameAssignment_0
+    // $ANTLR start "rule__StateRule__NameAssignment_0"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1002:1: rule__StateRule__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__StateRule__NameAssignment_0() throws RecognitionException {
 
@@ -2628,10 +2711,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__NameAssignment_0
+    // $ANTLR end "rule__StateRule__NameAssignment_0"
 
 
-    // $ANTLR start rule__StateRule__SubmachineAssignment_1_1
+    // $ANTLR start "rule__StateRule__SubmachineAssignment_1_1"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1017:1: rule__StateRule__SubmachineAssignment_1_1 : ( ruleSubmachineRule ) ;
     public final void rule__StateRule__SubmachineAssignment_1_1() throws RecognitionException {
 
@@ -2647,7 +2730,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
              before(grammarAccess.getStateRuleAccess().getSubmachineSubmachineRuleParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleSubmachineRule_in_rule__StateRule__SubmachineAssignment_1_12162);
             ruleSubmachineRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getStateRuleAccess().getSubmachineSubmachineRuleParserRuleCall_1_1_0()); 
 
@@ -2668,10 +2752,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__SubmachineAssignment_1_1
+    // $ANTLR end "rule__StateRule__SubmachineAssignment_1_1"
 
 
-    // $ANTLR start rule__StateRule__EntryAssignment_2_0
+    // $ANTLR start "rule__StateRule__EntryAssignment_2_0"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1032:1: rule__StateRule__EntryAssignment_2_0 : ( ruleEntryRule ) ;
     public final void rule__StateRule__EntryAssignment_2_0() throws RecognitionException {
 
@@ -2687,7 +2771,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
              before(grammarAccess.getStateRuleAccess().getEntryEntryRuleParserRuleCall_2_0_0()); 
             pushFollow(FOLLOW_ruleEntryRule_in_rule__StateRule__EntryAssignment_2_02193);
             ruleEntryRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getStateRuleAccess().getEntryEntryRuleParserRuleCall_2_0_0()); 
 
@@ -2708,10 +2793,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__EntryAssignment_2_0
+    // $ANTLR end "rule__StateRule__EntryAssignment_2_0"
 
 
-    // $ANTLR start rule__StateRule__DoAssignment_2_1
+    // $ANTLR start "rule__StateRule__DoAssignment_2_1"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1047:1: rule__StateRule__DoAssignment_2_1 : ( ruleDoRule ) ;
     public final void rule__StateRule__DoAssignment_2_1() throws RecognitionException {
 
@@ -2727,7 +2812,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
              before(grammarAccess.getStateRuleAccess().getDoDoRuleParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_ruleDoRule_in_rule__StateRule__DoAssignment_2_12224);
             ruleDoRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getStateRuleAccess().getDoDoRuleParserRuleCall_2_1_0()); 
 
@@ -2748,10 +2834,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__DoAssignment_2_1
+    // $ANTLR end "rule__StateRule__DoAssignment_2_1"
 
 
-    // $ANTLR start rule__StateRule__ExitAssignment_2_2
+    // $ANTLR start "rule__StateRule__ExitAssignment_2_2"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1062:1: rule__StateRule__ExitAssignment_2_2 : ( ruleExitRule ) ;
     public final void rule__StateRule__ExitAssignment_2_2() throws RecognitionException {
 
@@ -2767,7 +2853,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
              before(grammarAccess.getStateRuleAccess().getExitExitRuleParserRuleCall_2_2_0()); 
             pushFollow(FOLLOW_ruleExitRule_in_rule__StateRule__ExitAssignment_2_22255);
             ruleExitRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getStateRuleAccess().getExitExitRuleParserRuleCall_2_2_0()); 
 
@@ -2788,10 +2875,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__StateRule__ExitAssignment_2_2
+    // $ANTLR end "rule__StateRule__ExitAssignment_2_2"
 
 
-    // $ANTLR start rule__SubmachineRule__PathAssignment_0
+    // $ANTLR start "rule__SubmachineRule__PathAssignment_0"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1077:1: rule__SubmachineRule__PathAssignment_0 : ( ruleQualifiedName ) ;
     public final void rule__SubmachineRule__PathAssignment_0() throws RecognitionException {
 
@@ -2807,7 +2894,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
              before(grammarAccess.getSubmachineRuleAccess().getPathQualifiedNameParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__SubmachineRule__PathAssignment_02286);
             ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getSubmachineRuleAccess().getPathQualifiedNameParserRuleCall_0_0()); 
 
@@ -2828,10 +2916,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__SubmachineRule__PathAssignment_0
+    // $ANTLR end "rule__SubmachineRule__PathAssignment_0"
 
 
-    // $ANTLR start rule__SubmachineRule__SubmachineAssignment_1
+    // $ANTLR start "rule__SubmachineRule__SubmachineAssignment_1"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1092:1: rule__SubmachineRule__SubmachineAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__SubmachineRule__SubmachineAssignment_1() throws RecognitionException {
 
@@ -2873,10 +2961,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__SubmachineRule__SubmachineAssignment_1
+    // $ANTLR end "rule__SubmachineRule__SubmachineAssignment_1"
 
 
-    // $ANTLR start rule__QualifiedName__PathAssignment_0
+    // $ANTLR start "rule__QualifiedName__PathAssignment_0"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1111:1: rule__QualifiedName__PathAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__QualifiedName__PathAssignment_0() throws RecognitionException {
 
@@ -2918,10 +3006,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__PathAssignment_0
+    // $ANTLR end "rule__QualifiedName__PathAssignment_0"
 
 
-    // $ANTLR start rule__QualifiedName__RemainingAssignment_2
+    // $ANTLR start "rule__QualifiedName__RemainingAssignment_2"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1130:1: rule__QualifiedName__RemainingAssignment_2 : ( ruleQualifiedName ) ;
     public final void rule__QualifiedName__RemainingAssignment_2() throws RecognitionException {
 
@@ -2937,7 +3025,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
              before(grammarAccess.getQualifiedNameAccess().getRemainingQualifiedNameParserRuleCall_2_0()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__QualifiedName__RemainingAssignment_22395);
             ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getQualifiedNameAccess().getRemainingQualifiedNameParserRuleCall_2_0()); 
 
@@ -2958,10 +3047,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__RemainingAssignment_2
+    // $ANTLR end "rule__QualifiedName__RemainingAssignment_2"
 
 
-    // $ANTLR start rule__EntryRule__KindAssignment_1
+    // $ANTLR start "rule__EntryRule__KindAssignment_1"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1145:1: rule__EntryRule__KindAssignment_1 : ( ruleBehaviorKind ) ;
     public final void rule__EntryRule__KindAssignment_1() throws RecognitionException {
 
@@ -2977,7 +3066,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
              before(grammarAccess.getEntryRuleAccess().getKindBehaviorKindEnumRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleBehaviorKind_in_rule__EntryRule__KindAssignment_12426);
             ruleBehaviorKind();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getEntryRuleAccess().getKindBehaviorKindEnumRuleCall_1_0()); 
 
@@ -2998,10 +3088,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__EntryRule__KindAssignment_1
+    // $ANTLR end "rule__EntryRule__KindAssignment_1"
 
 
-    // $ANTLR start rule__EntryRule__BehaviorNameAssignment_2
+    // $ANTLR start "rule__EntryRule__BehaviorNameAssignment_2"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1160:1: rule__EntryRule__BehaviorNameAssignment_2 : ( RULE_ID ) ;
     public final void rule__EntryRule__BehaviorNameAssignment_2() throws RecognitionException {
 
@@ -3035,10 +3125,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__EntryRule__BehaviorNameAssignment_2
+    // $ANTLR end "rule__EntryRule__BehaviorNameAssignment_2"
 
 
-    // $ANTLR start rule__DoRule__KindAssignment_1
+    // $ANTLR start "rule__DoRule__KindAssignment_1"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1175:1: rule__DoRule__KindAssignment_1 : ( ruleBehaviorKind ) ;
     public final void rule__DoRule__KindAssignment_1() throws RecognitionException {
 
@@ -3054,7 +3144,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
              before(grammarAccess.getDoRuleAccess().getKindBehaviorKindEnumRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleBehaviorKind_in_rule__DoRule__KindAssignment_12488);
             ruleBehaviorKind();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDoRuleAccess().getKindBehaviorKindEnumRuleCall_1_0()); 
 
@@ -3075,10 +3166,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__DoRule__KindAssignment_1
+    // $ANTLR end "rule__DoRule__KindAssignment_1"
 
 
-    // $ANTLR start rule__DoRule__BehaviorNameAssignment_2
+    // $ANTLR start "rule__DoRule__BehaviorNameAssignment_2"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1190:1: rule__DoRule__BehaviorNameAssignment_2 : ( RULE_ID ) ;
     public final void rule__DoRule__BehaviorNameAssignment_2() throws RecognitionException {
 
@@ -3112,10 +3203,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__DoRule__BehaviorNameAssignment_2
+    // $ANTLR end "rule__DoRule__BehaviorNameAssignment_2"
 
 
-    // $ANTLR start rule__ExitRule__KindAssignment_1
+    // $ANTLR start "rule__ExitRule__KindAssignment_1"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1205:1: rule__ExitRule__KindAssignment_1 : ( ruleBehaviorKind ) ;
     public final void rule__ExitRule__KindAssignment_1() throws RecognitionException {
 
@@ -3131,7 +3222,8 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
              before(grammarAccess.getExitRuleAccess().getKindBehaviorKindEnumRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleBehaviorKind_in_rule__ExitRule__KindAssignment_12550);
             ruleBehaviorKind();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getExitRuleAccess().getKindBehaviorKindEnumRuleCall_1_0()); 
 
@@ -3152,10 +3244,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__ExitRule__KindAssignment_1
+    // $ANTLR end "rule__ExitRule__KindAssignment_1"
 
 
-    // $ANTLR start rule__ExitRule__BehaviorNameAssignment_2
+    // $ANTLR start "rule__ExitRule__BehaviorNameAssignment_2"
     // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1220:1: rule__ExitRule__BehaviorNameAssignment_2 : ( RULE_ID ) ;
     public final void rule__ExitRule__BehaviorNameAssignment_2() throws RecognitionException {
 
@@ -3189,7 +3281,9 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end rule__ExitRule__BehaviorNameAssignment_2
+    // $ANTLR end "rule__ExitRule__BehaviorNameAssignment_2"
+
+    // Delegated rules
 
 
  
@@ -3216,10 +3310,10 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
     public static final BitSet FOLLOW_11_in_rule__BehaviorKind__Alternatives467 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_12_in_rule__BehaviorKind__Alternatives488 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_13_in_rule__BehaviorKind__Alternatives509 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StateRule__Group__0__Impl_in_rule__StateRule__Group__0542 = new BitSet(new long[]{0x0000000000074002L});
+    public static final BitSet FOLLOW_rule__StateRule__Group__0__Impl_in_rule__StateRule__Group__0542 = new BitSet(new long[]{0x0000000000074000L});
     public static final BitSet FOLLOW_rule__StateRule__Group__1_in_rule__StateRule__Group__0545 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__StateRule__NameAssignment_0_in_rule__StateRule__Group__0__Impl572 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StateRule__Group__1__Impl_in_rule__StateRule__Group__1602 = new BitSet(new long[]{0x0000000000070002L});
+    public static final BitSet FOLLOW_rule__StateRule__Group__1__Impl_in_rule__StateRule__Group__1602 = new BitSet(new long[]{0x0000000000074000L});
     public static final BitSet FOLLOW_rule__StateRule__Group__2_in_rule__StateRule__Group__1605 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__StateRule__Group_1__0_in_rule__StateRule__Group__1__Impl632 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__StateRule__Group__2__Impl_in_rule__StateRule__Group__2663 = new BitSet(new long[]{0x0000000000000002L});
@@ -3237,7 +3331,7 @@ public class InternalUmlStateParser extends AbstractInternalContentAssistParser 
     public static final BitSet FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__0971 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__0974 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__PathAssignment_0_in_rule__QualifiedName__Group__0__Impl1001 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__11031 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__11031 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__2_in_rule__QualifiedName__Group__11034 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_15_in_rule__QualifiedName__Group__1__Impl1062 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__2__Impl_in_rule__QualifiedName__Group__21093 = new BitSet(new long[]{0x0000000000000002L});

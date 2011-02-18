@@ -4,24 +4,25 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="umlParameter"
     nsURI="http://www.eclipse.org/papyrus/parameter/editor/xtext/UmlParameter" nsPrefix="umlParameter">
   <eClassifiers xsi:type="ecore:EClass" name="ParameterRule">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="ecore:EEnum ../../../../../../../../org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//VisibilityKind"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="ecore:EEnum ../../../../../../../../org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//Direction"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="ecore:EEnum platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//VisibilityKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="ecore:EEnum platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//Direction"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass ../../../../../../../../org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//TypeRule"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//TypeRule"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="multiplicity" eType="ecore:EClass ../../../../../../../../org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//MultiplicityRule"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="multiplicity" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//MultiplicityRule"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" eType="#//ModifiersRule"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.parameter.editor.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/UmlParameter.ecore#//ModifiersRule"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="effect" eType="#//EffectRule"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="effect" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.parameter.editor.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/UmlParameter.ecore#//EffectRule"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModifiersRule">
     <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
-        eType="#//ModifierSpecification" containment="true"/>
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.parameter.editor.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/UmlParameter.ecore#//ModifierSpecification"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModifierSpecification">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//ModifierKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EEnum platform:/resource/org.eclipse.papyrus.parameter.editor.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/UmlParameter.ecore#//ModifierKind"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ModifierKind">
     <eLiterals name="EXCEPTION" literal="exception"/>
@@ -36,6 +37,6 @@
     <eLiterals name="DELETE" value="3" literal="delete"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EffectRule">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="effectKind" eType="#//EffectKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="effectKind" eType="ecore:EEnum platform:/resource/org.eclipse.papyrus.parameter.editor.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/UmlParameter.ecore#//EffectKind"/>
   </eClassifiers>
 </ecore:EPackage>

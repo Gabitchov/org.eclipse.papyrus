@@ -97,12 +97,12 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 		String newName = "" + stateRule.getName() ;
 		
 		if (alreadyUsedNames.contains("" + newName))
-			warning("Name " + newName + " is already used by another State in this Region", UmlStatePackage.STATE_RULE__NAME) ;
+			warning("Name " + newName + " is already used by another State in this Region", UmlStatePackage.eINSTANCE.getStateRule_Name()) ;
 		
 		
 		// Check if ConnectionPointReference exist when one delete the submachine reference: not allowed!
 		if((stateRule.getSubmachine() == null) && !editedState.getConnections().isEmpty()){
-			error(getErrorMessageForSubmachineState(), stateRule, UmlStatePackage.STATE_RULE) ;
+			error(getErrorMessageForSubmachineState(), UmlStatePackage.eINSTANCE.getStateRule_Submachine()) ;
 			valid_StateName = false ;
 		}
 		else {
@@ -123,7 +123,7 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 					)
 					+ " "
 					+ editedState.getDoActivity().getName()
-					+ " will be deleted", UmlStatePackage.STATE_RULE__NAME) ;
+					+ " will be deleted", UmlStatePackage.eINSTANCE.getStateRule_Name()) ;
 		}
 		
 		if (deletionOfExit) {
@@ -132,7 +132,7 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 					)
 					+ " "
 					+ editedState.getExit().getName()
-					+ " will be deleted", UmlStatePackage.STATE_RULE__NAME) ;
+					+ " will be deleted", UmlStatePackage.eINSTANCE.getStateRule_Name()) ;
 		}
 		
 		if (deletionOfEntry) {
@@ -141,7 +141,7 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 					)
 					+ " "
 					+ editedState.getEntry().getName()
-					+ " will be deleted", UmlStatePackage.STATE_RULE__NAME) ;
+					+ " will be deleted", UmlStatePackage.eINSTANCE.getStateRule_Name()) ;
 		}
 	}
 	
@@ -179,7 +179,7 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 						+ getBehaviorKindAsString(oldDoKind)
 						+ " "
 						+ doRule.getBehaviorName()
-						+ " will be lost", UmlStatePackage.DO_RULE__KIND) ;
+						+ " will be lost", UmlStatePackage.eINSTANCE.getDoRule_Kind()) ;
 			}
 		}
 	}
@@ -218,7 +218,7 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 						+ getBehaviorKindAsString(oldDoKind)
 						+ " "
 						+ entryRule.getBehaviorName()
-						+ " will be lost", UmlStatePackage.ENTRY_RULE__KIND) ;
+						+ " will be lost", UmlStatePackage.eINSTANCE.getEntryRule_Kind()) ;
 			}
 		}
 	}
@@ -257,7 +257,7 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 						+ getBehaviorKindAsString(oldDoKind)
 						+ " "
 						+ exitRule.getBehaviorName()
-						+ " will be lost", UmlStatePackage.EXIT_RULE__KIND) ;
+						+ " will be lost", UmlStatePackage.eINSTANCE.getExitRule_Kind()) ;
 			}
 		}
 	}
@@ -268,14 +268,14 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 			return ;
 		org.eclipse.uml2.uml.State contextState = (org.eclipse.uml2.uml.State)contextElement ;
 		if (contextState.isOrthogonal()) {
-			error(getErrorMessageForOrthogonalState(), rule, UmlStatePackage.SUBMACHINE_RULE__SUBMACHINE) ;
+			error(getErrorMessageForOrthogonalState(), UmlStatePackage.eINSTANCE.getSubmachineRule_Submachine()) ;
 			valid_SubMachineRule = false ;
 		}
 		else {
 			valid_SubMachineRule = true ;
 		}
 		if (contextState.isComposite()) {
-			error(getErrorMessageForCompositeState(), rule, UmlStatePackage.SUBMACHINE_RULE__SUBMACHINE) ;
+			error(getErrorMessageForCompositeState(), UmlStatePackage.eINSTANCE.getSubmachineRule_Submachine()) ;
 			valid_SubMachineRule = false ;
 		}
 		else {
