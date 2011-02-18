@@ -253,6 +253,7 @@
 	<!-- Bindings declaration -->
 	<binding context="org.eclipse.papyrus.service.edit.TypeContext">
 	
+		<elementType ref="org.eclipse.papyrus.sysml.Allocate" />
 		<elementType ref="org.eclipse.papyrus.sysml.Block" />
 		<elementType ref="org.eclipse.papyrus.sysml.Conform" />
 		<elementType ref="org.eclipse.papyrus.sysml.ConstraintBlock" />
