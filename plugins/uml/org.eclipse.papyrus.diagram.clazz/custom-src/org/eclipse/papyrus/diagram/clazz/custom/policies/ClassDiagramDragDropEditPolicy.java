@@ -237,6 +237,12 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 	 */
 	protected Command dropAssociation(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
 		Collection endtypes = ClassLinkMappingHelper.getInstance().getSource(semanticLink);
+		if(endtypes.size() == 1) {
+			Element source = (Element)endtypes.toArray()[0];
+			Element target = (Element)endtypes.toArray()[0];
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4001, dropRequest.getLocation(), semanticLink));
+		}
+		
 		if(endtypes.size() == 2) {
 			Element source = (Element)endtypes.toArray()[0];
 			Element target = (Element)endtypes.toArray()[1];
