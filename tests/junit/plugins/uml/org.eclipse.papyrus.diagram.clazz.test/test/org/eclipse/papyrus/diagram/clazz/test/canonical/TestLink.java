@@ -398,7 +398,7 @@ public class TestLink extends AbstractPapyrusTestCase {
 	 * @param type the type
 	 * @param containerType the container type
 	 */
-	public void testToManageLink(IElementType sourceType,IElementType targetType, IElementType linkType, IElementType containerType) {
+	public void testToManageLink(IElementType sourceType,IElementType targetType, IElementType linkType, IElementType containerType, boolean allowedOntheSame) {
 		installEnvironment(sourceType, targetType);
 		testToCreateALink(linkType);
 		testDestroy(linkType);
@@ -408,6 +408,72 @@ public class TestLink extends AbstractPapyrusTestCase {
 		testSourceReconnectAMultiLink(linkType);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		testTargetReconnectAMultiLink(linkType);
+		testToCreateAlinkOnTheSame(linkType,allowedOntheSame);
+		testToDropAlinkOnTheSame(linkType,allowedOntheSame);
+		
+	}
+	
+	/**
+	 * test the drop of a link where the source and the target are the same objects
+	 * @param linkType
+	 * @param allowed
+	 */
+	protected void testToDropAlinkOnTheSame(IElementType linkType, boolean allowed) {
+		//DROP
+		if(allowed){
+		assertTrue(DROP +INITIALIZATION_TEST,getDiagramEditPart().getChildren().size()==4);
+		assertTrue(DROP +INITIALIZATION_TEST,getRootSemanticModel().getOwnedElements().size()==6);
+		assertTrue(CREATION +INITIALIZATION_TEST,((Diagram)getRootView()).getEdges().size()==2);
+		
+		DropObjectsRequest dropObjectsRequest= new DropObjectsRequest();
+		ArrayList<Element> list = new ArrayList<Element>();
+		list.add(getRootSemanticModel().getOwnedElements().get(5));
+		dropObjectsRequest.setObjects(list);
+		dropObjectsRequest.setLocation(new Point(20,20));
+		Command command= getDiagramEditPart().getCommand(dropObjectsRequest);
+		assertNotNull(DROP+COMMAND_NULL,command);
+		assertTrue(DROP +TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
+		assertTrue(DROP+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
+		assertTrue(DROP +TEST_THE_EXECUTION,getDiagramEditPart().getChildren().size()==4);
+		assertTrue(DROP +TEST_THE_EXECUTION,getRootSemanticModel().getOwnedElements().size()==6);
+		assertTrue(DROP +TEST_THE_EXECUTION,((Diagram)getRootView()).getEdges().size()==3);
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
+		assertTrue(DROP +TEST_THE_UNDO,getDiagramEditPart().getChildren().size()==4);
+		assertTrue(DROP +TEST_THE_UNDO,getRootSemanticModel().getOwnedElements().size()==6);
+		assertTrue(DROP +TEST_THE_UNDO,((Diagram)getRootView()).getEdges().size()==2);
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
+		assertTrue(DROP +TEST_THE_REDO,getDiagramEditPart().getChildren().size()==4);
+		assertTrue(DROP +TEST_THE_REDO,getRootSemanticModel().getOwnedElements().size()==6);
+		assertTrue(DROP +TEST_THE_REDO,((Diagram)getRootView()).getEdges().size()==3);
+		}
+		
+	}
+	
+	/**
+	 * test the creation of a link where the source and the target are the same objects
+	 * @param linkType
+	 * @param allowed
+	 */
+	protected void testToCreateAlinkOnTheSame(IElementType linkType, boolean allowed) {
+		assertTrue(CREATION +INITIALIZATION_TEST,getDiagramEditPart().getChildren().size()==4);
+		assertTrue(CREATION +INITIALIZATION_TEST,getRootSemanticModel().getOwnedElements().size()==5);
+		
+		Command command = target.getCommand(createConnectionViewRequest(linkType, source, source));   
+		assertNotNull(CREATION+COMMAND_NULL,command);
+		assertTrue(CONTAINER_CREATION+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==allowed);
+		if(allowed){
+		diagramEditor.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+		assertTrue(CREATION +INITIALIZATION_TEST,((Diagram)getRootView()).getEdges().size()==2);
+		assertTrue(CREATION +INITIALIZATION_TEST,getRootSemanticModel().getOwnedElements().size()==6);
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
+		assertTrue(CREATION+TEST_THE_UNDO,getRootView().getChildren().size()==4);
+		assertTrue(CREATION+TEST_THE_UNDO,getRootSemanticModel().getOwnedElements().size()==5);
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
+		assertTrue(CREATION +TEST_THE_REDO,((Diagram)getRootView()).getEdges().size()==2);
+		assertTrue(CREATION +TEST_THE_REDO,getRootSemanticModel().getOwnedElements().size()==6);
+		}
+		
 		
 	}
 	

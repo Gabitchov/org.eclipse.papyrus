@@ -29,7 +29,7 @@ public class TestClassDiagramLinkOwnedBySource extends TestLinkOwnedBySource {
 	 */
 	@Test
 	public void testToManageGeneralization() {
-		testToManageLink(UMLElementTypes.Class_2008,UMLElementTypes.Class_2008,UMLElementTypes.Generalization_4002,UMLElementTypes.Package_2007);
+		testToManageLink(UMLElementTypes.Class_2008,UMLElementTypes.Class_2008,UMLElementTypes.Generalization_4002,UMLElementTypes.Package_2007,true);
 	}
 	
 	/**
@@ -37,7 +37,7 @@ public class TestClassDiagramLinkOwnedBySource extends TestLinkOwnedBySource {
 	 */
 	@Test
 	public void testToManageInterfaceRealization() {
-		testToManageLink(UMLElementTypes.Class_2008,UMLElementTypes.Interface_2004,UMLElementTypes.InterfaceRealization_4003,UMLElementTypes.Package_2007);
+		testToManageLink(UMLElementTypes.Class_2008,UMLElementTypes.Interface_2004,UMLElementTypes.InterfaceRealization_4003,UMLElementTypes.Package_2007,true);
 	}
 	
 	/**
@@ -45,7 +45,7 @@ public class TestClassDiagramLinkOwnedBySource extends TestLinkOwnedBySource {
 	 */
 	@Test
 	public void testToManageSubstitution() {
-		testToManageLink(UMLElementTypes.Class_2008,UMLElementTypes.Class_2008,UMLElementTypes.Substitution_4004,UMLElementTypes.Package_2007);
+		testToManageLink(UMLElementTypes.Class_2008,UMLElementTypes.Class_2008,UMLElementTypes.Substitution_4004,UMLElementTypes.Package_2007,true);
 	}
 	
 	/**
@@ -53,14 +53,14 @@ public class TestClassDiagramLinkOwnedBySource extends TestLinkOwnedBySource {
 	 */
 	@Test
 	public void testToManageElementImport() {
-		testToManageLink(UMLElementTypes.Class_2008,UMLElementTypes.Class_2008,UMLElementTypes.ElementImport_4009,UMLElementTypes.Package_2007);
+		testToManageLink(UMLElementTypes.Class_2008,UMLElementTypes.Class_2008,UMLElementTypes.ElementImport_4009,UMLElementTypes.Package_2007,true);
 	}
 	/**
 	 * Test to manage ElementImport.
 	 */
 	@Test
 	public void testToManagePackageImport() {
-		testToManageLink(UMLElementTypes.Package_2007,UMLElementTypes.Package_2007,UMLElementTypes.PackageImport_4010,UMLElementTypes.Package_2007);
+		testToManageLink(UMLElementTypes.Package_2007,UMLElementTypes.Package_2007,UMLElementTypes.PackageImport_4010,UMLElementTypes.Package_2007,true);
 	}
 	
 	

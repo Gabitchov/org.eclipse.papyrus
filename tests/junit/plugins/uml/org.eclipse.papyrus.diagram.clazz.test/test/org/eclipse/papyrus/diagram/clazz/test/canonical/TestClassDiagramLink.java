@@ -28,7 +28,7 @@ public class TestClassDiagramLink extends TestLink {
 	 */
 	@Test
 	public void testToManageDependency() {
-		testToManageLink(UMLElementTypes.Component_2002,UMLElementTypes.Component_2002,UMLElementTypes.Dependency_4008,UMLElementTypes.Package_2007);
+		testToManageLink(UMLElementTypes.Component_2002,UMLElementTypes.Component_2002,UMLElementTypes.Dependency_4008,UMLElementTypes.Package_2007,true);
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public class TestClassDiagramLink extends TestLink {
 	 */
 	@Test
 	public void testToManageAssociation() {
-		testToManageLink(UMLElementTypes.Class_2008,UMLElementTypes.Class_2008,UMLElementTypes.Association_4001,UMLElementTypes.Package_2007);
+		testToManageLink(UMLElementTypes.Class_2008,UMLElementTypes.Class_2008,UMLElementTypes.Association_4001,UMLElementTypes.Package_2007,true);
 	}
 	//test generatlization
 	//test interfaceRealization
@@ -46,7 +46,7 @@ public class TestClassDiagramLink extends TestLink {
 	 */
 	@Test
 	public void testToManageRealization() {
-		testToManageLink(UMLElementTypes.Class_2008,UMLElementTypes.Class_2008,UMLElementTypes.Realization_4005,UMLElementTypes.Package_2007);
+		testToManageLink(UMLElementTypes.Class_2008,UMLElementTypes.Class_2008,UMLElementTypes.Realization_4005,UMLElementTypes.Package_2007,true);
 	}
 	
 	/**
@@ -54,7 +54,7 @@ public class TestClassDiagramLink extends TestLink {
 	 */
 	@Test
 	public void testToManageAbstraction() {
-		testToManageLink(UMLElementTypes.Class_2008,UMLElementTypes.Class_2008,UMLElementTypes.Abstraction_4006,UMLElementTypes.Package_2007);
+		testToManageLink(UMLElementTypes.Class_2008,UMLElementTypes.Class_2008,UMLElementTypes.Abstraction_4006,UMLElementTypes.Package_2007,true);
 	}
 	
 	/**
@@ -62,14 +62,13 @@ public class TestClassDiagramLink extends TestLink {
 	 */
 	@Test
 	public void testToManageUsage() {
-		testToManageLink(UMLElementTypes.Class_2008,UMLElementTypes.Class_2008,UMLElementTypes.Usage_4007,UMLElementTypes.Package_2007);
+		testToManageLink(UMLElementTypes.Class_2008,UMLElementTypes.Class_2008,UMLElementTypes.Usage_4007,UMLElementTypes.Package_2007,true);
 	}
 	//test Element import
 	//testPackageImport
 	//test comment link
 	//test constraintLink
 	//test template binding
-	//test containment link
 	//test instancespecificationLink
 	
 }
