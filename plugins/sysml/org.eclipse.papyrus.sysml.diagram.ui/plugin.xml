@@ -26,6 +26,6 @@
    </wizard>
 </extension>
 
-<extension-point id="templates" name="UML2 Model Templates" schema="schema/templates.exsd"/>
+<!--<extension-point id="templates" name="UML2 Model Templates" schema="schema/templates.exsd"/>-->
 
 </plugin>
