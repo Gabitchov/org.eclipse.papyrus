@@ -66,8 +66,11 @@ public class ConfigurationService {
 	protected void constructAConfiguation(IConfigurationElement iConfigurationElement) {
 		try {
 			String configName = (String)iConfigurationElement.getAttribute(PERPSECTIVE_ID);
-			Configuration configuration = new Configuration(configName);
-			IConfigurationElement[] actionSetList = iConfigurationElement.getChildren();
+			if(!configurationMap.containsKey(configName) || configurationMap.get(configName) == null) {
+				configurationMap.put(configName, new Configuration(configName));
+			}
+			Configuration configuration = configurationMap.get(configName);
+
 			IConfigurationElement[] element = iConfigurationElement.getChildren(ACTION_SET);
 			for(int i = 0; i < element.length; i++) {
 				configuration.addActionSet(element[i].getAttribute(ACTION_SET_ID));
@@ -93,7 +96,6 @@ public class ConfigurationService {
 			for(int i = 0; i < element.length; i++) {
 				configuration.addCommandID(element[i].getAttribute(COMMANDID));
 			}
-			configurationMap.put(configName, configuration);
 		} catch (Exception e) {
 			Activator.log.error("- " + iConfigurationElement + " can not be loaded ", e);
 		}
