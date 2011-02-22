@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tableconfiguration:TableConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" xmlns:tableconfiguration="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableconfiguration">
+  <canBePresentedInTheTable xsi:type="query:JavaModelQuery" href="emffacet:/query/requirements#IsRequirement"/>
+  <instantiationMethod name="CreateRequirement" description="Create a new Requirement">
+    <instantiationQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/requirements#CreateRequirement"/>
+  </instantiationMethod>
+</tableconfiguration:TableConfiguration>

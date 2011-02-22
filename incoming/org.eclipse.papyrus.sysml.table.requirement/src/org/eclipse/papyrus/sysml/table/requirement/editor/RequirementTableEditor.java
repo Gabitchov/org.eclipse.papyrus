@@ -1,0 +1,43 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
+package org.eclipse.papyrus.sysml.table.requirement.editor;
+
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.table.common.editor.AbstractNattableEditor;
+
+
+/**
+ * 
+ * The requirement table editor
+ * 
+ */
+public class RequirementTableEditor extends AbstractNattableEditor {
+
+
+	/** the type of the editor */
+	public static final String EDITOR_TYPE = "PapyrusRequirementTable"; //$NON-NLS-1$
+
+	public static final String DEFAULT_NAME = "RequirementTable"; //$NON-NLS-1$
+
+	/**
+	 * @param servicesRegistry
+	 * @param rawModel2
+	 * 
+	 */
+	public RequirementTableEditor(ServicesRegistry servicesRegistry, TableInstance rawModel) {
+		super(servicesRegistry, rawModel);
+	}
+
+}
