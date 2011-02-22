@@ -54,7 +54,7 @@ public class RenameDiagramHandler extends AbstractCommandHandler {
 			final String currentName = diag.getName();
 			if(currentName != null) {
 
-				AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "RenameCommand", null) { //$NON-NLS-1$
+				AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "RenameDiagramCommand", null) { //$NON-NLS-1$
 
 					@Override
 					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
