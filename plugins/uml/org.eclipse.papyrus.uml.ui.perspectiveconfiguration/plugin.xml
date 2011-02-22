@@ -53,6 +53,18 @@
          <preferencePage
                preferencepageID="org.eclipse.emf.validation.ui.rootPage">
          </preferencePage>
+         <menu
+               menuID="org.eclipse.papyrus.table.menu">
+         </menu>
+         <menu
+               menuID="org.eclipse.papyrus.table.ui.menu.tables">
+         </menu>
+         <toolbar
+               toolbarID="org.eclipse.papyrus.table.ui.toolbar">
+         </toolbar>
+         <toolbar
+               toolbarID="org.eclipse.papyrus.table.toolbar">
+         </toolbar>
       </configuration>
    </extension>
 
