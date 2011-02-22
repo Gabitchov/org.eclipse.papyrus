@@ -58,8 +58,8 @@ public class EditTableHandler extends AbstractHandler {
 			INatTableWidgetProvider natTableWidgetPart = (INatTableWidgetProvider)activePart.getAdapter(INatTableWidgetProvider.class);
 			if(natTableWidgetPart != null) {
 
-				if(activePart instanceof IEditingDomainProvider) {
-					IEditingDomainProvider editingDomainProvider = (IEditingDomainProvider)activePart;
+				if(natTableWidgetPart instanceof IEditingDomainProvider) {
+					IEditingDomainProvider editingDomainProvider = (IEditingDomainProvider)natTableWidgetPart;
 					EditingDomain editingDomain = editingDomainProvider.getEditingDomain();
 					TableInstance tableInstance = natTableWidgetPart.getNatTableWidget().getTableInstance();
 					String currentDescription = tableInstance.getDescription();
@@ -75,5 +75,4 @@ public class EditTableHandler extends AbstractHandler {
 		}
 		return null;
 	}
-
 }
