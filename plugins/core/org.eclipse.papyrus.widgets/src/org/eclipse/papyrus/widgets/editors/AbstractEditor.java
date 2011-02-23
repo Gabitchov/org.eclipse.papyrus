@@ -54,6 +54,11 @@ public abstract class AbstractEditor extends Composite {
 	protected Binding binding;
 
 	/**
+	 * The toolTipText associated to this editor
+	 */
+	protected String toolTipText;
+
+	/**
 	 * The factory for creating all the editors with a common style
 	 */
 	public static TabbedPropertySheetWidgetFactory factory = new TabbedPropertySheetWidgetFactory();
@@ -130,6 +135,9 @@ public abstract class AbstractEditor extends Composite {
 	protected void createLabel(String text) {
 		label = factory.createLabel(this, text);
 		label.setLayoutData(getLabelLayoutData());
+		if(toolTipText != null) {
+			label.setToolTipText(toolTipText);
+		}
 	}
 
 	/**
@@ -267,8 +275,10 @@ public abstract class AbstractEditor extends Composite {
 			binding.updateModelToTarget();
 	}
 
-	public void setLabelToolTipText(String text) {
-		label.setToolTipText(text);
+	protected void setLabelToolTipText(String text) {
+		toolTipText = text;
+		if(label != null)
+			label.setToolTipText(text);
 	}
 
 	@Override
