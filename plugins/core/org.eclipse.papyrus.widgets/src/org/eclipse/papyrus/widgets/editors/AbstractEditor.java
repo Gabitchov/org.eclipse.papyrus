@@ -139,7 +139,6 @@ public abstract class AbstractEditor extends Composite {
 		GridData data = new GridData();
 		data.widthHint = 120;
 		data.verticalAlignment = SWT.CENTER;
-
 		return data;
 	}
 
@@ -267,4 +266,11 @@ public abstract class AbstractEditor extends Composite {
 		if(binding != null)
 			binding.updateModelToTarget();
 	}
+
+	public void setLabelToolTipText(String text) {
+		label.setToolTipText(text);
+	}
+
+	@Override
+	public abstract void setToolTipText(String text);
 }

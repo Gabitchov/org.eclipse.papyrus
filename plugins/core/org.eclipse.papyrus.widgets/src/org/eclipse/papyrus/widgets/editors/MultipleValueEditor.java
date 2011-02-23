@@ -159,6 +159,8 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 
 		this.selector = selector;
 		dialog = new MultipleValueSelectorDialog(parent.getShell(), selector, label, unique);
+		if(label != null)
+			dialog.setTitle(label);
 
 		setLabelProvider(new LabelProvider());
 
@@ -498,5 +500,12 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 			setLayout(new GridLayout(2, false));
 		}
 		super.setLabel(label);
+		dialog.setTitle(label);
+	}
+
+	@Override
+	public void setToolTipText(String text) {
+		list.setToolTipText(text);
+		super.setLabelToolTipText(text);
 	}
 }

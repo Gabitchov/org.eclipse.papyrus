@@ -31,10 +31,4 @@ public interface ICommitListener {
 	 *        The editor that sent the commit event
 	 */
 	public void commit(AbstractEditor editor);
-
-	/**
-	 * Indicates that the implementer should apply the list of operations
-	 * received since the last commit
-	 */
-	public void commit();
 }

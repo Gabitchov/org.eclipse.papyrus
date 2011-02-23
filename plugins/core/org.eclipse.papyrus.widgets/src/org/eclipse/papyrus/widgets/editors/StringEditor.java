@@ -65,6 +65,9 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 		super(parent, label);
 
 		GridData data = getDefaultLayoutData();
+		text = factory.createText(this, null, style);
+		text.setLayoutData(data);
+
 		if((style & SWT.MULTI) != 0) {
 			data.heightHint = 55;
 			style = style | SWT.V_SCROLL;
@@ -72,10 +75,6 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 				super.label.setLayoutData(getLabelLayoutData());
 			}
 		}
-
-		text = factory.createText(this, null, style);
-		text.setLayoutData(data);
-		//text = new Text(this, style);
 
 		//We listen on Carriage Return only if the editor isn't multiline
 		if((style & SWT.MULTI) == 0)
@@ -89,8 +88,10 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 	@Override
 	protected GridData getLabelLayoutData() {
 		GridData result = super.getLabelLayoutData();
-		if((text.getStyle() & SWT.MULTI) != 0)
-			result.verticalAlignment = SWT.BEGINNING;
+		if(text != null) {
+			if((text.getStyle() & SWT.MULTI) != 0)
+				result.verticalAlignment = SWT.BEGINNING;
+		}
 		return result;
 	}
 
@@ -140,5 +141,11 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 	@Override
 	public boolean isReadOnly() {
 		return !text.isEnabled();
+	}
+
+	@Override
+	public void setToolTipText(String tooltip) {
+		text.setToolTipText(tooltip);
+		super.setLabelToolTipText(tooltip);
 	}
 }

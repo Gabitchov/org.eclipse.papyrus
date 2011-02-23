@@ -100,10 +100,9 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 
 		dialog = new ElementListSelectionDialog(parent.getShell(), labelProvider);
 		dialog.setImage(Activator.getDefault().getImage("/icons/papyrus.png")); //$NON-NLS-1$
-		dialog.setTitle(Messages.ReferenceDialog_SelectValue);
 
 		openDialogButton = factory.createButton(this, null, SWT.PUSH);
-		openDialogButton.setImage(Activator.getDefault().getImage("/icons/Add_12x12.gif")); //$NON-NLS-1$
+		openDialogButton.setImage(Activator.getDefault().getImage("/icons/browse_12x12.gif")); //$NON-NLS-1$
 		openDialogButton.setToolTipText(Messages.ReferenceDialog_EditValue);
 		openDialogButton.addSelectionListener(new SelectionListener() {
 
@@ -206,6 +205,7 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	@Override
 	public void setLabel(String label) {
 		super.setLabel(label);
+		dialog.setTitle(label);
 	}
 
 	/**
@@ -281,6 +281,12 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 
 	public void widgetDisposed(DisposeEvent e) {
 		dispose();
+	}
+
+	@Override
+	public void setToolTipText(String text) {
+		super.setLabelToolTipText(text);
+		currentValueLabel.setToolTipText(text);
 	}
 
 }

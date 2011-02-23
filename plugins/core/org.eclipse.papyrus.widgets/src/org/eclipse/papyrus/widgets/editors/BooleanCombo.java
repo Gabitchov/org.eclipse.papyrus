@@ -108,4 +108,10 @@ public class BooleanCombo extends AbstractValueEditor {
 		return !viewer.getCCombo().isEnabled();
 	}
 
+	@Override
+	public void setToolTipText(String text) {
+		viewer.getCCombo().setToolTipText(text);
+		super.setLabelToolTipText(text);
+	}
+
 }

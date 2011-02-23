@@ -123,4 +123,11 @@ public class BooleanRadio extends AbstractValueEditor {
 	public boolean isReadOnly() {
 		return !trueRadio.isEnabled() || !falseRadio.isEnabled();
 	}
+
+	@Override
+	public void setToolTipText(String text) {
+		trueRadio.setToolTipText(text);
+		falseRadio.setToolTipText(text);
+		super.setLabelToolTipText(text);
+	}
 }

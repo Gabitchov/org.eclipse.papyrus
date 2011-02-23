@@ -40,9 +40,9 @@ public class ReferenceCombo extends AbstractValueEditor {
 	private ComboViewer viewer;
 
 	/**
-	 * The displayed control
+	 * The combo used to select the reference
 	 */
-	private CCombo control;
+	private CCombo combo;
 
 	/**
 	 * 
@@ -71,13 +71,13 @@ public class ReferenceCombo extends AbstractValueEditor {
 	public ReferenceCombo(Composite parent, int style, String label) {
 		super(parent, label);
 
-		control = factory.createCCombo(this, style | SWT.BORDER);
-		control.setBackground(new Color(control.getDisplay(), 255, 255, 255));
-		control.setLayoutData(getDefaultLayoutData());
-		control.setEditable(false);
-		viewer = new ComboViewer(control);
+		combo = factory.createCCombo(this, style | SWT.BORDER);
+		combo.setBackground(new Color(combo.getDisplay(), 255, 255, 255));
+		combo.setLayoutData(getDefaultLayoutData());
+		combo.setEditable(false);
+		viewer = new ComboViewer(combo);
 
-		setCommitOnFocusLost(control);
+		setCommitOnFocusLost(combo);
 	}
 
 	/**
@@ -148,11 +148,17 @@ public class ReferenceCombo extends AbstractValueEditor {
 
 	@Override
 	public void setReadOnly(boolean readOnly) {
-		control.setEnabled(!readOnly);
+		combo.setEnabled(!readOnly);
 	}
 
 	@Override
 	public boolean isReadOnly() {
-		return !control.isEnabled();
+		return !combo.isEnabled();
+	}
+
+	@Override
+	public void setToolTipText(String text) {
+		combo.setToolTipText(text);
+		super.setLabelToolTipText(text);
 	}
 }

@@ -88,4 +88,10 @@ public class BooleanCheckbox extends AbstractValueEditor {
 	public boolean isReadOnly() {
 		return !checkbox.isEnabled();
 	}
+
+	@Override
+	public void setToolTipText(String text) {
+		checkbox.setToolTipText(text);
+		super.setLabelToolTipText(text);
+	}
 }

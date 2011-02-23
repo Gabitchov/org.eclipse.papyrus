@@ -261,4 +261,10 @@ public class CompactMultipleValueEditor extends AbstractListEditor implements IC
 	public boolean isReadOnly() {
 		return !valueLabel.isEnabled() || !edit.isEnabled();
 	}
+
+	@Override
+	public void setToolTipText(String text) {
+		valueLabel.setToolTipText(text);
+		super.setLabelToolTipText(text);
+	}
 }
