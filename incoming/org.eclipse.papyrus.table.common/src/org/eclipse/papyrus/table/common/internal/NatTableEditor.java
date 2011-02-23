@@ -24,11 +24,17 @@ package org.eclipse.papyrus.table.common.internal;
 import java.util.EventObject;
 import java.util.HashMap;
 
+import org.eclipse.core.databinding.conversion.IConverter;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.observable.value.IValueChangeListener;
+import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -41,17 +47,22 @@ import org.eclipse.emf.facet.widgets.nattable.api.INatTableWidgetFactory;
 import org.eclipse.emf.facet.widgets.nattable.api.INatTableWidgetProvider;
 import org.eclipse.emf.facet.widgets.nattable.api.IWorkbenchPartProvider;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
+import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
+import org.eclipse.papyrus.properties.databinding.PapyrusObservableValue;
+import org.eclipse.papyrus.widgets.editors.StringEditor;
+import org.eclipse.papyrus.widgets.editors.StringLabel;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IWorkbenchActionConstants;
@@ -59,6 +70,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Comes from org.eclipse.emf.facet.widget.nattable.workbench.
@@ -145,22 +157,99 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		}
 	}
 
+
+	/**
+	 * 
+	 * @see org.eclipse.ui.part.WorkbenchPart#createPartControl(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @param parent
+	 */
 	@Override
 	public void createPartControl(final Composite parent) {
 		this.menuMgr = new MenuManager("#PopUp", NatTableEditor.ID); //$NON-NLS-1$
 		this.menuMgr.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
 		this.menuMgr.setRemoveAllWhenShown(true);
 
+		final TableInstance table = tableEditorInput.getTableInstance();
+		EClass tableEClass = table.eClass();
+
 		final Composite editorComposite = new Composite(parent, SWT.NONE);
-		final GridLayout gridLayout = new GridLayout(1, false);
-		gridLayout.marginHeight = 0;
-		gridLayout.marginWidth = 2;
-		editorComposite.setLayout(gridLayout);
+		final GridLayout editorGridLayout = new GridLayout(1, false);
+		editorGridLayout.marginHeight = 0;
+		editorGridLayout.marginWidth = 0;
+		editorComposite.setLayout(editorGridLayout);
 
-		final Label label = new Label(editorComposite, SWT.NONE);
-		label.setText(this.tableEditorInput.getDescription());
+		//we display the context of the table
+		final StringLabel contextLabel = new StringLabel(editorComposite, SWT.NONE);
+		contextLabel.setLabel("Table Context :");
+		contextLabel.setToolTipText("This context will be the parent of the created elements. This field can not be modify.");
 
-		this.natTableWidget = INatTableWidgetFactory.INSTANCE.createNatTableWidget(editorComposite, this, this.tableEditorInput.getTableInstance(), this.menuMgr);
+		EStructuralFeature contextFeature = tableEClass.getEStructuralFeature(TableinstancePackage.TABLE_INSTANCE__CONTEXT);
+		final IObservableValue contextObservable = new PapyrusObservableValue(table, contextFeature, getEditingDomain());
+		contextObservable.addValueChangeListener(new IValueChangeListener() {
+
+			/**
+			 * 
+			 * @see org.eclipse.core.databinding.observable.value.IValueChangeListener#handleValueChange(org.eclipse.core.databinding.observable.value.ValueChangeEvent)
+			 * 
+			 * @param event
+			 */
+			public void handleValueChange(ValueChangeEvent event) {
+				//TODO : not verified
+				//Change the displayed icon for the StringLabel
+				EditorLabelProvider provider = new EditorLabelProvider();
+				Image im = provider.getImage(table.getContext());
+				contextLabel.getValueLabel().setImage(im);
+			}
+		});
+
+		/*
+		 * we should set the converted before the observable!
+		 */
+		contextLabel.setConverters(null, new ContextLabelConverter());
+		EditorLabelProvider provider = new EditorLabelProvider();
+		contextLabel.getValueLabel().setImage(provider.getImage(table.getContext()));
+		contextLabel.setModelObservable(contextObservable);
+
+		//set the layout for contextLabel
+		GridData contextGridData = new GridData();
+		contextGridData.grabExcessHorizontalSpace = true;
+		contextGridData.horizontalAlignment = SWT.FILL;
+		contextLabel.setLayoutData(contextGridData);
+
+
+		//we display the description of the table
+
+		final StringEditor descriptionEditor = new StringEditor(editorComposite, SWT.MULTI);
+		descriptionEditor.setLabel("Table Description :");
+		descriptionEditor.setToolTipText("The table description");
+		EStructuralFeature myFeature = tableEClass.getEStructuralFeature(TableinstancePackage.TABLE_INSTANCE__DESCRIPTION);
+		PapyrusObservableValue observable = new PapyrusObservableValue(table, myFeature, getEditingDomain());
+		descriptionEditor.setModelObservable(observable);
+
+		//set the layout for the description editor
+		GridData descriptionGridData = new GridData();
+		descriptionGridData.grabExcessHorizontalSpace = true;
+		descriptionGridData.horizontalAlignment = SWT.FILL;
+		descriptionEditor.setLayoutData(descriptionGridData);
+
+
+		// the composite owning the table
+		final Composite tableComposite = new Composite(editorComposite, SWT.NONE);
+		GridLayout tableCompositeGridLayout = new GridLayout(1, true);
+		tableComposite.setLayout(tableCompositeGridLayout);
+
+		final GridData compositeTableGridLayout = new GridData();
+		compositeTableGridLayout.grabExcessHorizontalSpace = true;
+		compositeTableGridLayout.grabExcessVerticalSpace = true;
+		compositeTableGridLayout.horizontalAlignment = SWT.FILL;
+		compositeTableGridLayout.verticalAlignment = SWT.FILL;
+		tableComposite.setLayoutData(compositeTableGridLayout);
+
+		// the nattable widget itself
+		this.natTableWidget = INatTableWidgetFactory.INSTANCE.createNatTableWidget(tableComposite, this, this.tableEditorInput.getTableInstance(), this.menuMgr);
+
+
 		final GridData tableGridData = new GridData();
 		tableGridData.grabExcessHorizontalSpace = true;
 		tableGridData.grabExcessVerticalSpace = true;
@@ -243,5 +332,48 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 
 	public IWorkbenchPart getPart() {
 		return this;
+	}
+
+	/**
+	 * This ocnverter is used by the LabelEditor (used to display the context)
+	 * 
+	 * 
+	 * 
+	 */
+	private class ContextLabelConverter implements IConverter {
+
+		/**
+		 * 
+		 * @see org.eclipse.core.databinding.conversion.IConverter#getToType()
+		 * 
+		 * @return
+		 */
+		public Object getToType() {
+			return String.class;
+		}
+
+		/**
+		 * 
+		 * @see org.eclipse.core.databinding.conversion.IConverter#getFromType()
+		 * 
+		 * @return
+		 */
+		public Object getFromType() {
+			return Object.class;
+		}
+
+		/**
+		 * 
+		 * @see org.eclipse.core.databinding.conversion.IConverter#convert(java.lang.Object)
+		 * 
+		 * @param fromObject
+		 * @return
+		 */
+		public Object convert(Object fromObject) {
+			if(fromObject instanceof EObject) {
+				return UMLUtil.getQualifiedText((EObject)fromObject);
+			}
+			return "";
+		}
 	}
 }

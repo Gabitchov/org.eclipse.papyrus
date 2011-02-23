@@ -10,12 +10,6 @@
       </command>
       <command
             categoryId="org.eclipse.emf.facet.widgets.nattable.command.category"
-            description="Edit Table Description"
-            id="org.eclipse.papyrus.edit"
-            name="Edit Table Description">
-      </command>
-      <command
-            categoryId="org.eclipse.emf.facet.widgets.nattable.command.category"
             defaultHandler="org.eclipse.papyrus.table.menu.handler.CommonColumnHandler"
             description="Show only the common columns"
             id="org.eclipse.emf.facet.widget.nattable.common.columns.command"
@@ -93,21 +87,6 @@
                id="org.eclipse.papyrus.table.menu"
                label="&amp;Table"
                tooltip="The table Menu">
-            <command
-                  commandId="org.eclipse.papyrus.edit"
-                  icon="icons/rename.gif"
-                  id="org.eclipse.papyrus.table.menu.edit.description"
-                  label="Edit &amp;Description"
-                  style="push"
-                  tooltip="Edit the table description">
-               <visibleWhen
-                     checkEnabled="true">
-               </visibleWhen>
-            </command>
-            <separator
-                  name="org.eclipse.papyrus.table.menu.separator0"
-                  visible="true">
-            </separator>
             <command
                   commandId="org.eclipse.emf.facet.widgets.nattable.loadCustomizationCommand"
                   icon="platform:/plugin/org.eclipse.emf.facet.widgets.nattable.workbench/icons/uiCustom.gif"
