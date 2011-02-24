@@ -48,8 +48,6 @@ public class SelectDiagramCategoryPage extends WizardPage {
 
 	/** The diagram category. */
 	private String mySelectedDiagramCategoryId;
-	
-	private SettingsHelper mySettingsHelper;
 
 	/** The Constant PAGE_ID. */
 	public static final String PAGE_ID = "SelectDiagramCategory";
@@ -75,7 +73,8 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	@Override
 	public void setWizard(IWizard newWizard) {
 		super.setWizard(newWizard);
-		setSettingsHelper(new SettingsHelper(getDialogSettings()));
+		SettingsHelper settingsHelper = new SettingsHelper(getDialogSettings());
+		setDiagramCategory(settingsHelper.getDefaultDiagramCategory());
 	}
 
 	/**
@@ -105,18 +104,8 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		return mySelectedDiagramCategoryId;
 	}
 
-	/**
-	 * Sets the settings helper.
-	 *
-	 * @param helper the new settings helper
-	 */
-	protected void setSettingsHelper(SettingsHelper helper) {
-		mySettingsHelper = helper;
-		initSelectedCategory();
-	}
-
-	private void initSelectedCategory() {
-		mySelectedDiagramCategoryId = mySettingsHelper.getDefaultDiagramCategory();
+	protected final void setDiagramCategory(String category) {
+		mySelectedDiagramCategoryId = category;
 	}
 
 	/**
@@ -126,7 +115,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 */
 	private boolean validatePage() {
 		String newCategory = getDiagramCategory();
-		if (newCategory == null) {
+		if(newCategory == null) {
 			setErrorMessage("Please select at least one category");
 			return false;
 		}
@@ -136,14 +125,18 @@ public class SelectDiagramCategoryPage extends WizardPage {
 			return false;
 		}
 		IStatus status = ((CreateModelWizard)getWizard()).diagramCategoryChanged(getDiagramCategory());
-		switch (status.getSeverity()) {
-			case Status.ERROR: setErrorMessage(status.getMessage()); return false;
-			case Status.WARNING: setMessage(status.getMessage(), IMessageProvider.WARNING);
-			case Status.INFO: setMessage(status.getMessage(), IMessageProvider.INFORMATION);
+		switch(status.getSeverity()) {
+		case Status.ERROR:
+			setErrorMessage(status.getMessage());
+			return false;
+		case Status.WARNING:
+			setMessage(status.getMessage(), IMessageProvider.WARNING);
+		case Status.INFO:
+			setMessage(status.getMessage(), IMessageProvider.INFORMATION);
 		}
 		return true;
 	}
-	
+
 	private Map<String, DiagramCategoryDescriptor> getDiagramCategoryMap() {
 		return DiagramCategoryRegistry.getInstance().getDiagramCategoryMap();
 	}
@@ -164,7 +157,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 					button.setSelection(false);
 				}
 				((Button)e.widget).setSelection(true);
-				mySelectedDiagramCategoryId = (String)((Button)e.widget).getData();
+				setDiagramCategory((String)((Button)e.widget).getData());
 				setPageComplete(validatePage());
 			}
 
@@ -176,8 +169,26 @@ public class SelectDiagramCategoryPage extends WizardPage {
 			Button button = createCategoryButton(diagramCategoryDescriptor, group);
 			button.addSelectionListener(listener);
 			myDiagramKindButtons.add(button);
-			if(mySelectedDiagramCategoryId != null && mySelectedDiagramCategoryId.equals(button.getData())) {
-				button.setSelection(true);
+		}
+		checkDiagramCategoryButtons();
+	}
+
+
+	protected void checkDiagramCategoryButtons() {
+		if(mySelectedDiagramCategoryId != null) {
+			checkButtonsFor(mySelectedDiagramCategoryId);
+		}
+	}
+	
+	protected void checkButtonsFor(String... diagramCategories) {
+		for(Button button : myDiagramKindButtons) {
+			button.setSelection(false);
+		}
+		for(Button button : myDiagramKindButtons) {
+			for(String diagramCategory : diagramCategories) {
+				if(diagramCategory.equals(button.getData())) {
+					button.setSelection(true);
+				}
 			}
 		}
 	}
