@@ -134,18 +134,26 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 * 
 	 * @return true, if successful
 	 */
-	private boolean validatePage() {
-		String newCategory = getDiagramCategory();
-		if(newCategory == null) {
+	protected boolean validatePage() {
+		setMessage(null);
+		setErrorMessage(null);
+		
+		if(getDiagramCategories().length == 0) {
 			setErrorMessage("Please select at least one category");
 			return false;
 		}
-		DiagramCategoryDescriptor selected = getDiagramCategoryMap().get(newCategory);
-		if(selected == null) {
-			setErrorMessage("Could not find DiagramCategory for " + newCategory);
+		String newCategory = getDiagramCategory();
+		if (!validateCategoryExists(newCategory)) {
 			return false;
 		}
-		IStatus status = ((CreateModelWizard)getWizard()).diagramCategoryChanged(getDiagramCategory());
+		if (!validateFileExtension(newCategory)) {
+			return false;
+		}
+		return true;
+	}
+	
+	protected boolean validateFileExtension(String newCategory) {
+		IStatus status = ((CreateModelWizard)getWizard()).diagramCategoryChanged(newCategory);
 		switch(status.getSeverity()) {
 		case Status.ERROR:
 			setErrorMessage(status.getMessage());
@@ -156,13 +164,18 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		case Status.INFO:
 			setMessage(status.getMessage(), IMessageProvider.INFORMATION);
 			break;
-		case Status.OK:
-			setMessage(null);
 		}
-		setErrorMessage(null);
 		return true;
 	}
-
+	protected boolean validateCategoryExists(String newCategory) {
+		DiagramCategoryDescriptor selected = getDiagramCategoryMap().get(newCategory);
+		if(selected == null) {
+			setErrorMessage("Could not find DiagramCategory for " + newCategory);
+			return false;
+		}
+		return true;
+	}
+	
 	private Map<String, DiagramCategoryDescriptor> getDiagramCategoryMap() {
 		return DiagramCategoryRegistry.getInstance().getDiagramCategoryMap();
 	}
