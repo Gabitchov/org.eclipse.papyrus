@@ -25,5 +25,6 @@ Export-Package: org.eclipse.papyrus.table.common,
  org.eclipse.papyrus.table.common.editor,
  org.eclipse.papyrus.table.common.factory,
  org.eclipse.papyrus.table.common.handlers,
+ org.eclipse.papyrus.table.common.messages,
  org.eclipse.papyrus.table.common.modelresource
 Bundle-Localization: plugin

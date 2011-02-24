@@ -57,7 +57,7 @@ public class TableEditorInput implements IEditorInput {
 	}
 
 	public String getName() {
-		return "Model Table";
+		return "Model Table"; //$NON-NLS-1$
 	}
 
 	public IPersistableElement getPersistable() {
@@ -65,7 +65,7 @@ public class TableEditorInput implements IEditorInput {
 	}
 
 	public String getToolTipText() {
-		return "Model Table";
+		return "Model Table"; //$NON-NLS-1$
 	}
 
 	public Object getAdapter(@SuppressWarnings("rawtypes") final Class adapter) {

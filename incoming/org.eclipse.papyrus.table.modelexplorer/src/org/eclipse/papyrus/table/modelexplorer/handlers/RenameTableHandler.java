@@ -29,6 +29,8 @@ import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.modelexplorer.handler.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.table.common.editor.AbstractNattableEditor;
+import org.eclipse.papyrus.table.modelexplorer.messages.Messages;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -56,7 +58,7 @@ public class RenameTableHandler extends AbstractTableModelExplorerHandler {
 
 			final Object param = table.getParameter();
 			if(param instanceof Map<?, ?>) {
-				final String currentName = (String)((Map<?, ?>)param).get("NAME");
+				final String currentName = (String)((Map<?, ?>)param).get(AbstractNattableEditor.NAME_KEY); //$NON-NLS-1$
 
 				if(currentName != null) {
 
@@ -64,11 +66,11 @@ public class RenameTableHandler extends AbstractTableModelExplorerHandler {
 
 						@Override
 						protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-							InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Rename an existing table", "New name", currentName, null);
+							InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.RenameTableHandler_RenameAnExistingTable_Title, Messages.RenameTableHandler_NewNameMessage, currentName, null);
 							if(dialog.open() == Window.OK) {
 								final String name = dialog.getValue();
 								if(name != null && name.length() > 0) {
-									((Map<String, Object>)param).put("NAME", name);
+									((Map<String, Object>)param).put(AbstractNattableEditor.NAME_KEY, name); //$NON-NLS-1$
 									IPageMngr mngr = getPageManager();
 								}
 								return CommandResult.newOKCommandResult();

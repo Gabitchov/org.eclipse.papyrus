@@ -54,6 +54,7 @@ import org.eclipse.papyrus.resource.NotFoundException;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.table.common.dialog.TwoInputDialog;
 import org.eclipse.papyrus.table.common.editor.AbstractNattableEditor;
+import org.eclipse.papyrus.table.common.messages.Messages;
 import org.eclipse.papyrus.table.common.modelresource.NattableModel;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
@@ -109,7 +110,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 			return getTableContext() != null;
 		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
-			Activator.getDefault().logError("Context for table is null", e);
+			Activator.getDefault().logError("Context for table is null", e); //$NON-NLS-1$
 		}
 		return false;
 	}
@@ -142,7 +143,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 		//default Value
 		name = defaultName;
 		description = defaultDescription;
-		TwoInputDialog dialog = new TwoInputDialog(Display.getCurrent().getActiveShell(), "Enter a new Table Name and a new Table Description", "The new table name:", "The new table description:", defaultName, defaultDescription, null);
+		TwoInputDialog dialog = new TwoInputDialog(Display.getCurrent().getActiveShell(), Messages.AbstractCreateNattableEditorCommand_CreateNewTableDialogTitle, Messages.AbstractCreateNattableEditorCommand_CreateNewTableDialog_TableNameMessage, Messages.AbstractCreateNattableEditorCommand_CreateNewTableDialog_TableDescriptionMessage, defaultName, defaultDescription, null);
 		if(dialog.open() == Dialog.OK) {
 			//get the name and the description for the table
 			this.name = dialog.getValue();

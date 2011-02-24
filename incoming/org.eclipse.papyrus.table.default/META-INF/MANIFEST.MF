@@ -16,7 +16,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.core,
  org.eclipse.e4.ui.model.workbench;bundle-version="0.9.1",
  org.eclipse.ui.navigator,
- org.eclipse.papyrus.table.common;bundle-version="0.8.0"
+ org.eclipse.papyrus.table.common;bundle-version="0.8.0",
+ org.eclipse.papyrus.diagram.composite;bundle-version="0.8.0",
+ org.eclipse.papyrus.diagram.common;bundle-version="0.8.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName

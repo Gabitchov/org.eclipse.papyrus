@@ -11,17 +11,19 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.table.menu.messages;
+package org.eclipse.papyrus.table.modelexplorer.messages;
 
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
 
-	private static final String BUNDLE_NAME = "org.eclipse.papyrus.table.menu.messages.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.table.modelexplorer.messages.messages"; //$NON-NLS-1$
 
-	public static String EditTableHandler_EditDescription_Message;
+	public static String DuplicateTableHandler_CopyOf;
 
-	public static String EditTableHandler_EditDescription_Title;
+	public static String RenameTableHandler_NewNameMessage;
+
+	public static String RenameTableHandler_RenameAnExistingTable_Title;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

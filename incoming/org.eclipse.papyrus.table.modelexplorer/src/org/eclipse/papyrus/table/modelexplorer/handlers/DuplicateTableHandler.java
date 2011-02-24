@@ -28,6 +28,8 @@ import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstan
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.table.common.editor.AbstractNattableEditor;
+import org.eclipse.papyrus.table.modelexplorer.messages.Messages;
 
 /**
  * This handler provides the duplicate action for the tables
@@ -43,6 +45,7 @@ public class DuplicateTableHandler extends AbstractTableModelExplorerHandler {
 	 * 
 	 * @return
 	 */
+	@Override
 	protected Command getCommand() {
 		TransactionalEditingDomain editingDomain = getEditingDomain();
 		final IPageMngr pageManager = getPageManager();
@@ -60,9 +63,9 @@ public class DuplicateTableHandler extends AbstractTableModelExplorerHandler {
 				Object param = newTable.getParameter();
 				if(param instanceof Map<?, ?>) {
 					Map<String, Object> paramCopy = new HashMap((Map<?, ?>)param);
-					String copyName = (String)((Map)param).get("NAME");
-					copyName = new String("Copy of" + copyName);
-					paramCopy.put("NAME", copyName);
+					String copyName = (String)((Map)param).get(AbstractNattableEditor.NAME_KEY); //$NON-NLS-1$
+					copyName = new String(Messages.DuplicateTableHandler_CopyOf + copyName);
+					paramCopy.put(AbstractNattableEditor.NAME_KEY, copyName); //$NON-NLS-1$
 					newTable.setParameter(paramCopy);
 				}
 
@@ -89,6 +92,7 @@ public class DuplicateTableHandler extends AbstractTableModelExplorerHandler {
 		return UnexecutableCommand.INSTANCE;
 	}
 
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		// TODO Auto-generated method stub
 		return null;

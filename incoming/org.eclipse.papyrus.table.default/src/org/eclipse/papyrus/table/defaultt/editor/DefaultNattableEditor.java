@@ -26,6 +26,7 @@ import org.eclipse.papyrus.table.common.editor.AbstractNattableEditor;
 public class DefaultNattableEditor extends AbstractNattableEditor {
 
 
+
 	/** the type of the editor */
 	public static final String EDITOR_TYPE = "PapyrusDefaultTable"; //$NON-NLS-1$
 
@@ -39,6 +40,9 @@ public class DefaultNattableEditor extends AbstractNattableEditor {
 	 */
 	public DefaultNattableEditor(ServicesRegistry servicesRegistry, TableInstance rawModel) {
 		super(servicesRegistry, rawModel);
+
 	}
+
+
 
 }

@@ -37,22 +37,6 @@
             class="org.eclipse.papyrus.table.menu.handler.AddToCurrentTableHandler"
             commandId="org.eclipse.papyrus.table.menu.add.in.table">
       </handler>
-      <handler
-            class="org.eclipse.papyrus.table.menu.handler.EditTableHandler"
-            commandId="org.eclipse.papyrus.edit">
-         <activeWhen>
-            <and>
-               <with
-                     variable="selection">
-                  <test
-                        forcePluginActivation="true"
-                        property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
-                        value="true">
-                  </test>
-               </with>
-            </and>
-         </activeWhen>
-      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -99,7 +83,7 @@
                         variable="selection">
                      <test
                            forcePluginActivation="true"
-                           property="org.eclipse.emf.facet.widgets.nattable.workbench.tableSelectionTester.isTable"
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
                            value="true">
                      </test>
                   </with>
@@ -117,7 +101,7 @@
                         variable="selection">
                      <test
                            forcePluginActivation="true"
-                           property="org.eclipse.emf.facet.widgets.nattable.workbench.tableSelectionTester.isTable"
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
                            value="true">
                      </test>
                   </with>
@@ -135,7 +119,7 @@
                         variable="selection">
                      <test
                            forcePluginActivation="true"
-                           property="org.eclipse.emf.facet.widgets.nattable.workbench.tableSelectionTester.isTable"
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
                            value="true">
                      </test>
                   </with>
@@ -153,7 +137,7 @@
                         variable="selection">
                      <test
                            forcePluginActivation="true"
-                           property="org.eclipse.emf.facet.widgets.nattable.workbench.tableSelectionTester.isTable"
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
                            value="true">
                      </test>
                   </with>
@@ -172,15 +156,11 @@
                         variable="selection">
                      <test
                            forcePluginActivation="true"
-                           property="org.eclipse.emf.facet.widgets.nattable.workbench.tableSelectionTester.isTable"
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
                            value="true">
                      </test>
                   </with>
                </visibleWhen>
-            </command>
-            <command
-                  commandId="org.eclipse.papyrus.table.menu.sort.name.command"
-                  style="push">
             </command>
             <separator
                   name="org.eclipse.papyrus.table.menu.separator"
@@ -246,19 +226,21 @@
             allPopups="false"
             locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
          <toolbar
-               id="org.eclipse.papyrus.table.toolbar">
+               id="org.eclipse.papyrus.table.toolbar"
+               label="Papyrus Table Toolbar">
                <command
-                  commandId="org.eclipse.emf.facet.widgets.nattable.createNewElementCommand"
-                  icon="IMG_OBJ_ADD"
-                  style="pulldown"
-                  tooltip="%create.new.element">
+                     commandId="org.eclipse.emf.facet.widgets.nattable.createNewElementCommand"
+                     icon="IMG_OBJ_ADD"
+                     id="org.eclipse.papyrus.table.toolbar.create.new.element"
+                     style="pulldown"
+                     tooltip="%create.new.element">
                <visibleWhen
                      checkEnabled="false">
                   <with
                         variable="selection">
                      <test
                            forcePluginActivation="true"
-                           property="org.eclipse.emf.facet.widgets.nattable.workbench.tableSelectionTester.isTable"
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
                            value="true">
                      </test>
                   </with>
@@ -267,6 +249,7 @@
             <command
                   commandId="org.eclipse.emf.facet.widgets.nattable.exportCommand"
                   icon="platform:/plugin/org.eclipse.emf.facet.widgets.nattable.workbench/icons/export.gif"
+                  id="org.eclipse.papyrus.table.toolbar.export.xmi"
                   style="push"
                   tooltip="Export as XMI File">
                <visibleWhen
@@ -275,7 +258,7 @@
                         variable="selection">
                      <test
                            forcePluginActivation="true"
-                           property="org.eclipse.emf.facet.widgets.nattable.workbench.tableSelectionTester.isTable"
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
                            value="true">
                      </test>
                   </with>
@@ -284,6 +267,7 @@
             <command
                   commandId="org.eclipse.emf.facet.widgets.nattable.loadCustomizationCommand"
                   icon="platform:/plugin/org.eclipse.emf.facet.widgets.nattable.workbench/icons/uiCustom.gif"
+                  id="org.eclipse.papyrus.table.toolbar.load.customization"
                   style="push"
                   tooltip="Load a Customization">
                <visibleWhen
@@ -292,7 +276,7 @@
                         variable="selection">
                      <test
                            forcePluginActivation="true"
-                           property="org.eclipse.emf.facet.widgets.nattable.workbench.tableSelectionTester.isTable"
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
                            value="true">
                      </test>
                   </with>
@@ -301,6 +285,7 @@
             <command
                   commandId="org.eclipse.emf.facet.widgets.nattable.loadFacetCommand"
                   icon="platform:/plugin/org.eclipse.emf.facet.widgets.nattable.workbench/icons/facet.gif"
+                  id="org.eclipse.papyrus.table.toolbar.load.facet"
                   style="push"
                   tooltip="Load an EMF Facet">
                <visibleWhen
@@ -309,7 +294,7 @@
                         variable="selection">
                      <test
                            forcePluginActivation="true"
-                           property="org.eclipse.emf.facet.widgets.nattable.workbench.tableSelectionTester.isTable"
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
                            value="true">
                      </test>
                   </with>
@@ -318,6 +303,7 @@
             <command
                   commandId="org.eclipse.emf.facet.widgets.nattable.hideColumnCommand"
                   icon="icons/select_column_to_hide_2.png"
+                  id="org.eclipse.papyrus.table.toolbar.hide.column"
                   style="push"
                   tooltip="Select Columns To Hide">
                <visibleWhen
@@ -326,7 +312,7 @@
                         variable="selection">
                      <test
                            forcePluginActivation="true"
-                           property="org.eclipse.emf.facet.widgets.nattable.workbench.tableSelectionTester.isTable"
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
                            value="true">
                      </test>
                   </with>
@@ -335,6 +321,7 @@
             <command
                   commandId="org.eclipse.emf.facet.widgets.nattable.sortColumnByTypeCommand"
                   icon="platform:/plugin/org.eclipse.emf.facet.widgets.nattable.workbench/icons/sort_links_by_type.gif"
+                  id="org.eclipse.papyrus.table.toolbar.sort.column.by.type"
                   style="push"
                   tooltip="Sort Columns By Type">
                <visibleWhen
@@ -343,7 +330,7 @@
                         variable="selection">
                      <test
                            forcePluginActivation="true"
-                           property="org.eclipse.emf.facet.widgets.nattable.workbench.tableSelectionTester.isTable"
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
                            value="true">
                      </test>
                   </with>
@@ -408,6 +395,136 @@
                </visibleWhen>
             </command>
          </toolbar>
+      </menuContribution>
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.ui.popup.any">
+         <command
+               commandId="org.eclipse.emf.facet.widgets.nattable.removeLineCommand"
+               icon="platform:/plugin/org.eclipse.emf.facet.widgets.nattable.workbench/icons/remove_line.gif"
+               id="delete.line"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <with
+                        variable="activePart">
+                     <instanceof
+                           value="org.eclipse.ui.IEditorPart">
+                     </instanceof>
+                  </with>
+                  <with
+                        variable="selection">
+                     <test
+                           forcePluginActivation="true"
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
+                           value="true">
+                     </test>
+                  </with>
+               </and>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.emf.facet.widgets.nattable.addQueryColumnCommand"
+               icon="platform:/plugin/org.eclipse.emf.facet.widgets.nattable.workbench/icons/query.png"
+               id="add.query.column"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <with
+                        variable="activePart">
+                     <instanceof
+                           value="org.eclipse.ui.IEditorPart">
+                     </instanceof>
+                  </with>
+                  <with
+                        variable="selection">
+                     <test
+                           forcePluginActivation="true"
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
+                           value="true">
+                     </test>
+                  </with>
+               </and>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.ui.edit.delete"
+               disabledIcon="IMG_ETOOL_DELETE_DISABLED"
+               icon="IMG_ETOOL_DELETE"
+               id="delete.element"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <with
+                        variable="activePart">
+                     <instanceof
+                           value="org.eclipse.ui.IEditorPart">
+                     </instanceof>
+                  </with>
+                  <with
+                        variable="selection">
+                     <test
+                           forcePluginActivation="true"
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
+                           value="true">
+                     </test>
+                  </with>
+               </and>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.ui.edit.copy"
+               disabledIcon="IMG_TOOL_COPY_DISABLED"
+               icon="IMG_TOOL_COPY"
+               id="copy.element"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <with
+                        variable="activePart">
+                     <instanceof
+                           value="org.eclipse.ui.IEditorPart">
+                     </instanceof>
+                  </with>
+                  <with
+                        variable="selection">
+                     <test
+                           forcePluginActivation="true"
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
+                           value="true">
+                     </test>
+                  </with>
+               </and>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.ui.edit.selectAll"
+               id="select.all"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <with
+                        variable="activePart">
+                     <instanceof
+                           value="org.eclipse.ui.IEditorPart">
+                     </instanceof>
+                  </with>
+                  <with
+                        variable="selection">
+                     <test
+                           forcePluginActivation="true"
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
+                           value="true">
+                     </test>
+                  </with>
+               </and>
+            </visibleWhen>
+         </command>
       </menuContribution>
    </extension>
    <extension

@@ -55,6 +55,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.properties.databinding.PapyrusObservableValue;
+import org.eclipse.papyrus.table.common.messages.Messages;
 import org.eclipse.papyrus.widgets.editors.StringEditor;
 import org.eclipse.papyrus.widgets.editors.StringLabel;
 import org.eclipse.swt.SWT;
@@ -181,8 +182,8 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 
 		//we display the context of the table
 		final StringLabel contextLabel = new StringLabel(editorComposite, SWT.NONE);
-		contextLabel.setLabel("Table Context :");
-		contextLabel.setToolTipText("This context will be the parent of the created elements. This field can not be modify.");
+		contextLabel.setLabel(Messages.NatTableEditor_TableContextLabel);
+		contextLabel.setToolTipText(Messages.NatTableEditor_TableContextTollTip);
 
 		EStructuralFeature contextFeature = tableEClass.getEStructuralFeature(TableinstancePackage.TABLE_INSTANCE__CONTEXT);
 		final IObservableValue contextObservable = new PapyrusObservableValue(table, contextFeature, getEditingDomain());
@@ -221,8 +222,8 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		//we display the description of the table
 
 		final StringEditor descriptionEditor = new StringEditor(editorComposite, SWT.MULTI);
-		descriptionEditor.setLabel("Table Description :");
-		descriptionEditor.setToolTipText("The table description");
+		descriptionEditor.setLabel(Messages.NatTableEditor_TaleDescriptionLabel);
+		descriptionEditor.setToolTipText(Messages.NatTableEditor_TableDescriptionToolTip);
 		EStructuralFeature myFeature = tableEClass.getEStructuralFeature(TableinstancePackage.TABLE_INSTANCE__DESCRIPTION);
 		PapyrusObservableValue observable = new PapyrusObservableValue(table, myFeature, getEditingDomain());
 		descriptionEditor.setModelObservable(observable);
@@ -373,7 +374,7 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 			if(fromObject instanceof EObject) {
 				return UMLUtil.getQualifiedText((EObject)fromObject);
 			}
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 	}
 }
