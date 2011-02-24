@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.wizards.pages;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +50,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	final private List<Button> myDiagramKindButtons = new ArrayList<Button>();
 
 	/** The diagram category. */
-	private List<String> mySelectedDiagramCategoryIds = new LinkedList<String>();
+	private final List<String> mySelectedDiagramCategoryIds = new LinkedList<String>();
 
 	/** The Constant PAGE_ID. */
 	public static final String PAGE_ID = "SelectDiagramCategory";
@@ -85,7 +87,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	public void setWizard(IWizard newWizard) {
 		super.setWizard(newWizard);
 		SettingsHelper settingsHelper = new SettingsHelper(getDialogSettings());
-		setDefaultDiagramCategory(settingsHelper.getDefaultDiagramCategory());
+		setDefaultDiagramCategories(Collections.singletonList(settingsHelper.getDefaultDiagramCategory()));
 	}
 
 	/**
@@ -118,8 +120,12 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		return null;
 	}
 
-	protected final void setDefaultDiagramCategory(String category) {
-		mySelectedDiagramCategoryIds.add(category);
+	public String[] getDiagramCategories() {
+		return mySelectedDiagramCategoryIds.toArray(new String[mySelectedDiagramCategoryIds.size()]);
+	}
+	
+	protected final void setDefaultDiagramCategories(Collection<String> categories) {
+		mySelectedDiagramCategoryIds.addAll(categories);
 	}
 
 
