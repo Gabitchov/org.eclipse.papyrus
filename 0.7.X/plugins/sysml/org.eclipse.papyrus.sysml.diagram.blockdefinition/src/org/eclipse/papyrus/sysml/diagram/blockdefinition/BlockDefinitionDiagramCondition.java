@@ -29,7 +29,7 @@ public class BlockDefinitionDiagramCondition extends PerspectiveContextDependenc
 		if(super.create(selectedElement)) {
 			if(selectedElement instanceof org.eclipse.uml2.uml.Package) {
 				org.eclipse.uml2.uml.Package pack = (org.eclipse.uml2.uml.Package)selectedElement;
-				if(pack.getAppliedProfile(SysmlResource.BLOCKS_ID) != null) {
+				if(pack.getAppliedProfile(SysmlResource.BLOCKS_ID, true) != null) {
 					return true;
 				}
 			}
