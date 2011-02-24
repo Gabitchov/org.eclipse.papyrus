@@ -137,17 +137,18 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	protected boolean validatePage() {
 		setMessage(null);
 		setErrorMessage(null);
-		
-		if(getDiagramCategories().length == 0) {
+		String[] categories = getDiagramCategories();
+		if(categories == null || categories.length == 0) {
 			setErrorMessage("Please select at least one category");
 			return false;
 		}
-		String newCategory = getDiagramCategory();
-		if (!validateCategoryExists(newCategory)) {
-			return false;
-		}
-		if (!validateFileExtension(newCategory)) {
-			return false;
+		for (String newCategory: categories) {
+			if (!validateCategoryExists(newCategory)) {
+				return false;
+			}
+			if (!validateFileExtension(newCategory)) {
+				return false;
+			}
 		}
 		return true;
 	}
