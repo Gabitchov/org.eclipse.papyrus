@@ -94,13 +94,13 @@ public class AcceptEventActionCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT set appropriate parents
+	 * @generated NOT set appropriate parents type
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		AcceptEventAction newElement = UMLFactory.eINSTANCE.createAcceptEventAction();
 
-		// set appropriate parents
+		// set appropriate parents type
 		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
 			return CommandResult.newCancelledCommandResult();
 		}

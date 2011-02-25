@@ -10,7 +10,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.diagram.ui.properties,
  org.eclipse.papyrus.diagram.common,
- org.eclipse.papyrus.ui.toolbox
+ org.eclipse.papyrus.ui.toolbox,
+ org.eclipse.papyrus.preferences
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.diagram.common.groups.commands,

@@ -62,4 +62,11 @@ public class Messages extends NLS {
 	 * Message to run the action in ChooseContainingGroupCreator
 	 */
 	public static String ChooseContainingGroupCreator_Run;
+
+	/**
+	 * Message displayed when the user is asked to choose between graphical parent
+	 */
+	public static String ChooseParentNotificationCommand_ChooseGraphicalParent;
+
+
 }
