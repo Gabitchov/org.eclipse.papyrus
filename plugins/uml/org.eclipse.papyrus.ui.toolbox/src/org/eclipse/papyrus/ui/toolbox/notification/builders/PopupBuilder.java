@@ -63,6 +63,7 @@ public class PopupBuilder implements IBuilder {
 		}
 		PopupNotification result = new PopupNotification(popup);
 		// assign the open result to the result of the run
+		popup.setINotification(result);
 		result.setResult(popup.open());
 		return result;
 	}

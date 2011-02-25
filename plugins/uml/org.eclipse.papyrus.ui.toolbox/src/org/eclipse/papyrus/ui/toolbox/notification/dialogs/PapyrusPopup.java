@@ -20,6 +20,7 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.core.utils.PapyrusImageUtils;
 import org.eclipse.papyrus.ui.toolbox.notification.ICompositeCreator;
+import org.eclipse.papyrus.ui.toolbox.notification.INotification;
 import org.eclipse.papyrus.ui.toolbox.notification.NotificationRunnable;
 import org.eclipse.papyrus.ui.toolbox.notification.PapyrusToolkit;
 import org.eclipse.papyrus.ui.toolbox.notification.builders.IContext;
@@ -93,7 +94,16 @@ public abstract class PapyrusPopup extends Dialog {
 		c.setLayoutData(new GridData(GridData.FILL_BOTH));
 	}
 
-
+	/**
+	 * Sets the used notification for recovering when needed (e.g. for removal)
+	 * 
+	 * @param notification
+	 *        the used notification
+	 */
+	public void setINotification(INotification notification) {
+		context.put(IContext.NOTIFICATION_OBJECT, notification);
+	}
+	
 	/**
 	 * Creates a section
 	 * override this method to avoid section creation

@@ -16,6 +16,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import org.eclipse.papyrus.ui.toolbox.notification.ICallBack;
+import org.eclipse.papyrus.ui.toolbox.notification.INotification;
 import org.eclipse.papyrus.ui.toolbox.notification.NotificationRunnable;
 import org.eclipse.papyrus.ui.toolbox.notification.builders.IContext;
 import org.eclipse.swt.SWT;
@@ -58,6 +59,16 @@ public abstract class AbstractInsideComposite extends Composite {
 		this.toolkit = toolkit;
 		this.runnables = collection;
 		createContents();
+	}
+	
+	/**
+	 * Sets the used notification for recovering when needed (e.g. for removal)
+	 * 
+	 * @param notification
+	 *        the used notification
+	 */
+	public void setINotification(INotification notification) {
+		context.put(IContext.NOTIFICATION_OBJECT, notification);
 	}
 
 	private void createContents() {
