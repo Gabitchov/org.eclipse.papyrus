@@ -86,11 +86,10 @@ public class ActivityPartitionCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT check that there is a correct model container.
+	 * @generated
 	 */
 	public boolean canExecute() {
-		//check that there is a correct model container
-		return CreateCommandUtil.canCreatePartition(getRequest(), getElementToEdit());
+		return true;
 	}
 
 	/**

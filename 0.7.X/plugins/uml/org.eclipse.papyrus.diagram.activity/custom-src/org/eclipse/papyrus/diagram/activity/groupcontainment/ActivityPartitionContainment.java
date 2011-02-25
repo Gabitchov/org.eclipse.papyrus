@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart;
-import org.eclipse.papyrus.diagram.common.groups.groupcontainment.IContainerNodeDescriptor;
+import org.eclipse.papyrus.diagram.common.groups.groupcontainment.AbstractContainerNodeDescriptor;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @author vhemery
  */
-public class ActivityPartitionContainment implements IContainerNodeDescriptor {
+public class ActivityPartitionContainment extends AbstractContainerNodeDescriptor {
 
 	/**
 	 * Get the eclass of the model eobject represented by the node

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2011 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -11,8 +11,10 @@
  *   Atos Origin - Initial API and implementation
  *
  *****************************************************************************/
+
 package org.eclipse.papyrus.diagram.common.groups.groupcontainment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -23,19 +25,20 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
- * This interface describes the required methods to register to the org.eclipse.papyrus.diagram.common.groups.groupcontainment extension point.
+ * This abstract class describes the required methods to register to the org.eclipse.papyrus.diagram.common.groups.groupcontainment extension point.
  * These methods allow to recover necessary information on the container node for a given type.
  * 
- * @author vhemery
+ * @author adaussy
  */
-public interface IContainerNodeDescriptor {
+
+public abstract class AbstractContainerNodeDescriptor {
 
 	/**
 	 * Get the eclass of the model eobject represented by the node
 	 * 
 	 * @return model object eclass
 	 */
-	public EClass getContainerEClass();
+	public abstract EClass getContainerEClass();
 
 	/**
 	 * Get the area in which contained children are located.
@@ -44,7 +47,11 @@ public interface IContainerNodeDescriptor {
 	 *        the part containing children, and representing an element of the getContainerEClass() eclass
 	 * @return the rectangle in which nodes are considered as children of this part (absolute coordinates)
 	 */
-	public Rectangle getContentArea(IGraphicalEditPart containerPart);
+	public Rectangle getContentArea(IGraphicalEditPart containerPart) {
+		Rectangle bounds = containerPart.getContentPane().getBounds().getCopy();
+		containerPart.getContentPane().translateToAbsolute(bounds);
+		return bounds;
+	}
 
 	/**
 	 * Get the list of references linking the container to children element.
@@ -52,7 +59,7 @@ public interface IContainerNodeDescriptor {
 	 * 
 	 * @return the references to contained elements
 	 */
-	public List<EReference> getChildrenReferences();
+	public abstract List<EReference> getChildrenReferences();
 
 	/**
 	 * Get the edit part which is registered to the group framework (compartment) from a view of the corresponding node.
@@ -63,6 +70,55 @@ public interface IContainerNodeDescriptor {
 	 *        the diagram edit part (used to recover parts from views)
 	 * @return the compartment edit part which is registered to the group framework
 	 */
-	public IGraphicalEditPart getPartFromView(View nodeView, DiagramEditPart diagramPart);
+	public abstract IGraphicalEditPart getPartFromView(View nodeView, DiagramEditPart diagramPart);
+
+	/**
+	 * Give you the right be a graphical parent of child.
+	 * 
+	 * @param childType
+	 *        EClass of the child you want to test
+	 * @return
+	 */
+	public boolean canIBeGraphicalParentOf(EClass childType) {
+		for(EReference reference : this.getChildrenReferences()) {
+			if(reference.getEReferenceType().isSuperTypeOf(childType)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Give you the right to be a model parent of child
+	 * 
+	 * @param childType
+	 *        EClass of the child you want to test
+	 * @return
+	 */
+	public boolean canIBeModelParentOf(EClass childType) {
+		for(EReference reference : this.getChildrenReferences()) {
+			if(reference.getEReferenceType().isSuperTypeOf(childType) && reference.isContainment()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Give the reference object which can reference the child.
+	 * 
+	 * @param childType
+	 *        EClass of the child you want to test
+	 * @return null if no reference is found
+	 */
+	public List<EReference> getReferenceFor(EClass childType) {
+		List<EReference> result = new ArrayList<EReference>();
+		for(EReference reference : this.getChildrenReferences()) {
+			if(reference.getEReferenceType().isSuperTypeOf(childType) && !reference.isContainment()) {
+				result.add(reference);
+			}
+		}
+		return result;
+	}
 
 }

@@ -74,8 +74,9 @@ public class GroupManagementListener extends ResourceSetListenerImpl {
 	@Override
 	public Command transactionAboutToCommit(ResourceSetChangeEvent event) throws RollbackException {
 		CompoundCommand globalCmd = new CompoundCommand();
-		handleMovedContainedParts(globalCmd, event);
-		handleMovedGroup(globalCmd, event);
+		// FIXME temporarily disabled
+		//handleMovedContainedParts(globalCmd, event);
+		//handleMovedGroup(globalCmd, event);
 		if(!globalCmd.isEmpty() && globalCmd.canExecute()) {
 			return globalCmd;
 		} else {
@@ -252,6 +253,7 @@ public class GroupManagementListener extends ResourceSetListenerImpl {
 
 
 		//(B) Then open a common notification.
+		//FIXME if(!movedPartsAndParents.isEmpty()) tested twice
 		if(!movedPartsAndParents.isEmpty()) {
 			// complete with merging old notifications
 			PendingGroupNotificationsManager man = PendingGroupNotificationsManager.getInstanceForDiagram(diagramPart);

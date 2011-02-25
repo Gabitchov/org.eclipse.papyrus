@@ -20,7 +20,22 @@ package org.eclipse.papyrus.diagram.common.groups.utils;
  */
 public class GroupRequestConstants {
 
-	/** The constant to recover the model element which will contain the created element */
-	public static final String MODEL_CONTAINER = "GROUP_MODEL_CONTAINER";
+	/**
+	 * The constant to recover the list of all available elements which can contain (from a model point of view) the created element.
+	 * Used as Parameter key in semantic requests.
+	 */
+	public static final String MODEL_CONTAINERS = "GROUP_MODEL_CONTAINERS";
+
+	/**
+	 * The constant to recover the list of all available elements which can graphically contain the created element.
+	 * Used as key for graphical request extended data
+	 */
+	public static final String GRAPHICAL_CONTAINERS = "GROUP_GRAPHICAL_CONTAINERS";
+
+	/**
+	 * Used to notify the user that the notification to choose the parent failed
+	 */
+	public static final String CHOOSE_PARENT_ERROR_NOTIFICATION = "The notification failed to run because no list of avaiable parent was set up";
+
 
 }
