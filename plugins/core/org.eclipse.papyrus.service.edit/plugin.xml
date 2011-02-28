@@ -47,11 +47,13 @@
 
 <!-- Declaration of the IElementEditServiceProvider (Papyrus wrapper to the Extensible type framework) -->
 <extension point="org.eclipse.papyrus.core.service">
-	<service
+
+	<serviceFactory
 		id="org.eclipse.papyrus.service.edit.service.IElementEditServiceProvider"
-		classname="org.eclipse.papyrus.service.edit.internal.ElementEditServiceProviderFactory"
+		classname="org.eclipse.papyrus.service.edit.internal.ElementEditServiceProviderFactory" 
 		priority="1" startKind="startup">
-	</service>
+ 	</serviceFactory>
+
 </extension>
    
    
