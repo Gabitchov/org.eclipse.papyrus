@@ -109,12 +109,14 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	}
 
 	/**
+	 * 
 	 * Gets the diagram category.
 	 * 
 	 * @return the diagram category
+     * @deprecated Use getDiagramCategories() instead.
 	 */
 	public String getDiagramCategory() {
-		if (!mySelectedDiagramCategoryIds.isEmpty()) {
+		if(!mySelectedDiagramCategoryIds.isEmpty()) {
 			return mySelectedDiagramCategoryIds.get(0);
 		}
 		return null;
@@ -123,7 +125,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	public String[] getDiagramCategories() {
 		return mySelectedDiagramCategoryIds.toArray(new String[mySelectedDiagramCategoryIds.size()]);
 	}
-	
+
 	protected final void setDefaultDiagramCategories(Collection<String> categories) {
 		mySelectedDiagramCategoryIds.addAll(categories);
 	}
@@ -142,19 +144,19 @@ public class SelectDiagramCategoryPage extends WizardPage {
 			setErrorMessage("Please select at least one category");
 			return false;
 		}
-		for (String newCategory: categories) {
-			if (!validateCategoryExists(newCategory)) {
-				return false;
-			}
-			if (!validateFileExtension(newCategory)) {
+		for(String newCategory : categories) {
+			if(!validateCategoryExists(newCategory)) {
 				return false;
 			}
 		}
+		if(!validateFileExtension(categories)) {
+			return false;
+		}
 		return true;
 	}
-	
-	protected boolean validateFileExtension(String newCategory) {
-		IStatus status = ((CreateModelWizard)getWizard()).diagramCategoryChanged(newCategory);
+
+	protected boolean validateFileExtension(String... categories) {
+		IStatus status = ((CreateModelWizard)getWizard()).diagramCategoryChanged(categories);
 		switch(status.getSeverity()) {
 		case Status.ERROR:
 			setErrorMessage(status.getMessage());
@@ -168,6 +170,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		}
 		return true;
 	}
+
 	protected boolean validateCategoryExists(String newCategory) {
 		DiagramCategoryDescriptor selected = getDiagramCategoryMap().get(newCategory);
 		if(selected == null) {
@@ -176,7 +179,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		}
 		return true;
 	}
-	
+
 	private Map<String, DiagramCategoryDescriptor> getDiagramCategoryMap() {
 		return DiagramCategoryRegistry.getInstance().getDiagramCategoryMap();
 	}
@@ -191,11 +194,11 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		Group group = createGroup(composite, "Diagram Language:");
 
 		SelectionListener listener = new SelectionListener() {
-			
+
 			private SelectionEvent prevEvent;
 
 			public void widgetSelected(SelectionEvent e) {
-				if (e == prevEvent) {
+				if(e == prevEvent) {
 					return;
 				}
 				Button selected = ((Button)e.widget);
@@ -217,7 +220,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	}
 
 	protected void diagramCategorySelected(String category, boolean checked) {
-		if (checked) {
+		if(checked) {
 			mySelectedDiagramCategoryIds.add(category);
 		} else {
 			mySelectedDiagramCategoryIds.remove(category);
@@ -227,7 +230,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	protected void checkDiagramCategoryButtons() {
 		checkButtonsFor(mySelectedDiagramCategoryIds.toArray(new String[mySelectedDiagramCategoryIds.size()]));
 	}
-	
+
 	protected void checkButtonsFor(String... diagramCategories) {
 		for(Button button : myDiagramKindButtons) {
 			button.setSelection(false);

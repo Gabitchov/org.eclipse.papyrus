@@ -240,7 +240,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 			settingsHelper.saveDefaultTemplates(category, Collections.<String> emptyList());
 		}
 		settingsHelper.saveRememberCurrentSelection(selectDiagramKindPage.isRememberCurrentSelection());
-	}
+	} 	
 
 	private void saveDefaultDiagramKinds(SettingsHelper settingsHelper, String category) {
 		String[] selected = selectDiagramKindPage.getSelectedDiagramKinds();
@@ -319,10 +319,13 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		return DiagramCategoryRegistry.getInstance().getDiagramCategoryMap();
 	}
 
-	public IStatus diagramCategoryChanged(String newCategory) {
+	public IStatus diagramCategoryChanged(String... newCategories) {
 		if(newModelFilePage != null) {
-			//316943 -  [Wizard] Wrong suffix for file name when creating a profile model
-			return newModelFilePage.diagramExtensionChanged(getDiagramFileExtension(newCategory));
+			String firstCategory = newCategories.length>0 ? newCategories[0] : null;
+			if (newCategories.length>0) {
+				//316943 -  [Wizard] Wrong suffix for file name when creating a profile model
+				return newModelFilePage.diagramExtensionChanged(getDiagramFileExtension(firstCategory));
+			}
 		}
 		return Status.OK_STATUS;
 	}

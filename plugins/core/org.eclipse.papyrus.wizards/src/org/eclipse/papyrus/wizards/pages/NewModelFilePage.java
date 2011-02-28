@@ -44,7 +44,11 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	 *        the selection
 	 */
 	public NewModelFilePage(IStructuredSelection selection) {
-		super(PAGE_ID, selection);
+		this(PAGE_ID, selection);
+	}
+
+	public NewModelFilePage(String pageId, IStructuredSelection selection) {
+		super(pageId, selection);
 		setTitle("Create a new Papyrus model");
 		setDescription("Create a new empty Papyrus model");
 		setFileExtension(DEFAULT_DIAGRAM_EXTENSION);

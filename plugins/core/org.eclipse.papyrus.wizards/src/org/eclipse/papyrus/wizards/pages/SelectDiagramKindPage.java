@@ -52,6 +52,9 @@ import org.eclipse.swt.widgets.Text;
  * @author Tatiana Fesenko
  */
 public class SelectDiagramKindPage extends WizardPage {
+	
+	/** The Constant PAGE_ID. */
+	public static final String PAGE_ID = "SelectDiagramKind";
 
 	/**
 	 * The diagram name text field
@@ -88,7 +91,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * 
 	 */
 	public SelectDiagramKindPage(boolean allowTemplates, CategoryProvider categoryProvider, ICreationCommandRegistry creationCommandRegistry) {
-		super("Select kind of diagram");
+		super(PAGE_ID);
 		setTitle("Initialization information");
 		setDescription("Select name and kind of the diagram");
 		this.allowTemplates = allowTemplates;
