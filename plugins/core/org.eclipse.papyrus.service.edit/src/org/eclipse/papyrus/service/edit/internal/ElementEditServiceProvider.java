@@ -98,9 +98,12 @@ public class ElementEditServiceProvider implements IElementEditServiceProvider {
 		if(objectToEdit instanceof EClass) {
 			elementType = ElementTypeRegistry.getInstance().getElementType((EClass)objectToEdit, sharedClientContext);
 		}
-		
+
 		if(objectToEdit instanceof IElementType) {
-			elementType = (IElementType) objectToEdit;
+			// Make sure the IElementType is in Papyrus shared context
+			if(sharedClientContext.includes((IElementType)objectToEdit)) {
+				elementType = (IElementType) objectToEdit;
+			}
 		}
 
 		if(elementType == null) {
@@ -132,5 +135,22 @@ public class ElementEditServiceProvider implements IElementEditServiceProvider {
 		}
 
 		return services;
+	}
+	
+	/**
+	 * <pre>
+	 * Tests if the id 
+	 * @param id the element type id to look for in the shared client context
+	 * @return true if the element type is bound to the shared client context
+	 * </pre>
+	 */
+	public boolean isKnownElementType(String id) {
+		boolean isKnown = false;
+		
+		if (ElementTypeRegistry.getInstance().getType(id) != null) {
+			isKnown = sharedClientContext.includes(ElementTypeRegistry.getInstance().getType(id));
+		}
+		
+		return isKnown;
 	}
 }

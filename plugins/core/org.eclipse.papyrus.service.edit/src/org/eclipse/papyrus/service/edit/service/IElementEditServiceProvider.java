@@ -59,5 +59,14 @@ public interface IElementEditServiceProvider {
 	 * </pre>
 	 */
 	public List<IElementEditService> getContainedTypeEditServices(EObject owner, EReference containmentReference) throws ServiceException;
+	
+	/**
+	 * <pre>
+	 * Tests if the id 
+	 * @param id the element type id to look for in the shared client context
+	 * @return true if the element type is bound to the shared client context
+	 * </pre>
+	 */
+	public boolean isKnownElementType(String id);
 
 }
