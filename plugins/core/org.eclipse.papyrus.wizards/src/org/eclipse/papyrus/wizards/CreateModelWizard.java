@@ -78,8 +78,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	/** Current workbench */
 	private IWorkbench workbench;
 
-	private DiResourceSet diResourceSet;
-
 	/**
 	 * Instantiates a new creates the model wizard.
 	 */
@@ -128,24 +126,30 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		diResourceSet = new DiResourceSet();
+		DiResourceSet diResourceSet = new DiResourceSet();
 		final IFile newFile = createNewModelFile();
-		if(newFile == null) {
-			return false;
-		}
-		createPapyrusModels(newFile);
-
-		initDomainModel(newFile);
-
-		initDiagramModel();
-
-		openDiagram(newFile);
+		
+		createAndOpenPapyrusModel(diResourceSet, newFile);
 
 		saveDiagramCategorySettings();
 		saveDiagramKindSettings();
 		return true;
 	}
+	
+	protected boolean createAndOpenPapyrusModel(DiResourceSet diResourceSet, IFile newFile) {
+		if(newFile == null) {
+			return false;
+		}
+		createPapyrusModels(diResourceSet, newFile);
 
+		initDomainModel(diResourceSet, newFile);
+
+		initDiagramModel(diResourceSet);
+
+		openDiagram(newFile);
+		
+		return true;
+	}
 
 	protected String getDiagramCategoryId() {
 		if(selectDiagramCategoryPage != null) {
@@ -190,31 +194,31 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		return newModelFilePage.createNewFile();
 	}
 
-	protected void initDomainModel(final IFile newFile) {
+	protected void initDomainModel(DiResourceSet diResourceSet, final IFile newFile) {
 		boolean isToInitFromTemplate = selectDiagramKindPage.getTemplatePath() != null;
 		if(isToInitFromTemplate) {
-			initDomainModelFromTemplate();
+			initDomainModelFromTemplate(diResourceSet);
 		} else {
-			createEmptyDomainModel();
+			createEmptyDomainModel(diResourceSet);
 		}
 	}
 
-	protected void initDomainModelFromTemplate() {
-		getCommandStack().execute(new InitFromTemplateCommand(getResourseSet().getTransactionalEditingDomain(), getResourseSet().getModelResource(), selectDiagramKindPage.getTemplatePluginId(), selectDiagramKindPage.getTemplatePath()));
+	protected void initDomainModelFromTemplate(DiResourceSet diResourceSet) {
+		getCommandStack(diResourceSet).execute(new InitFromTemplateCommand(diResourceSet.getTransactionalEditingDomain(), diResourceSet.getModelResource(), selectDiagramKindPage.getTemplatePluginId(), selectDiagramKindPage.getTemplatePath()));
 	}
 
-	protected void createEmptyDomainModel() {
+	protected void createEmptyDomainModel(DiResourceSet diResourceSet) {
 		try {
 			IModelCreationCommand creationCommand = getDiagramCategoryMap().get(getDiagramCategoryId()).getCommand();
-			creationCommand.createModel(getResourseSet());
+			creationCommand.createModel(diResourceSet);
 		} catch (BackboneException e) {
 			log.error(e);
 		}
 	}
 
-	protected void createPapyrusModels(IFile newFile) {
-		RecordingCommand command = new NewPapyrusModelCommand(getResourseSet(), newFile);
-		getCommandStack().execute(command);
+	protected void createPapyrusModels(DiResourceSet diResourceSet, IFile newFile) {
+		RecordingCommand command = new NewPapyrusModelCommand(diResourceSet, newFile);
+		getCommandStack(diResourceSet).execute(command);
 	}
 
 	protected void saveDiagramCategorySettings() {
@@ -255,8 +259,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		settingsHelper.saveDefaultTemplates(category, Collections.singletonList(path));
 	}
 
-
-
 	protected void openDiagram(final IFile newFile) {
 		IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
 		if(page != null) {
@@ -269,50 +271,45 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 
-	protected void initDiagramModel() {
-		initDiagrams();
-		saveDiagram();
+	protected void initDiagramModel(DiResourceSet diResourceSet) {
+		initDiagrams(diResourceSet);
+		saveDiagram(diResourceSet);
 	}
 
-	private void saveDiagram() {
+	private void saveDiagram(DiResourceSet diResourceSet) {
 		try {
-			getResourseSet().save(new NullProgressMonitor());
+			diResourceSet.save(new NullProgressMonitor());
 		} catch (IOException e) {
 			log.error(e);
 			//			return false;
 		}
 	}
 
-	protected void initDiagrams() {
-		initDiagrams(null);
+	protected void initDiagrams(DiResourceSet diResourceSet) {
+		initDiagrams(diResourceSet, null);
 	}
 
-	protected void initDiagrams(EObject root) {
+	protected void initDiagrams(DiResourceSet resourceSet, EObject root) {
 		String diagramName = selectDiagramKindPage.getDiagramName();
 		List<ICreationCommand> creationCommands = selectDiagramKindPage.getCreationCommands();
-		DiResourceSet resourceSet = getResourseSet();
 		if(!creationCommands.isEmpty()) {
 			for(int i = 0; i < creationCommands.size(); i++) {
 				creationCommands.get(i).createDiagram(resourceSet, root, diagramName);
 			}
 		} else {
-			createEmptyDiagramEditor();
+			createEmptyDiagramEditor(resourceSet);
 		}
 	}
 
-	private void createEmptyDiagramEditor() {
+	private void createEmptyDiagramEditor(DiResourceSet diResourceSet) {
 		// Create an empty editor (no diagrams opened)
 		// Geting an IPageMngr is enough to initialize the
 		// SashSystem.
-		EditorUtils.getTransactionalIPageMngr(getResourseSet().getDiResource(), getResourseSet().getTransactionalEditingDomain());
+		EditorUtils.getTransactionalIPageMngr(diResourceSet.getDiResource(), diResourceSet.getTransactionalEditingDomain());
 	}
 
-	protected final DiResourceSet getResourseSet() {
-		return diResourceSet;
-	}
-
-	protected final CommandStack getCommandStack() {
-		return getResourseSet().getTransactionalEditingDomain().getCommandStack();
+	protected final CommandStack getCommandStack(DiResourceSet diResourceSet) {
+		return diResourceSet.getTransactionalEditingDomain().getCommandStack();
 	}
 
 	protected final Map<String, DiagramCategoryDescriptor> getDiagramCategoryMap() {

@@ -17,6 +17,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.resource.uml.UmlModel;
 import org.eclipse.papyrus.wizards.category.PapyrusModelFromExistingDomainModelCommand;
 import org.eclipse.papyrus.wizards.pages.NewModelFilePage;
@@ -123,12 +124,12 @@ public class InitModelWizard extends CreateModelWizard {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void createPapyrusModels(IFile newFile) {
+	protected void createPapyrusModels(DiResourceSet diResourceSet, IFile newFile) {
 		if(isCreateFromExistingDomainModel()) {
-		RecordingCommand command = new PapyrusModelFromExistingDomainModelCommand(getResourseSet(), newFile, getRoot());
-		getCommandStack().execute(command);
+		RecordingCommand command = new PapyrusModelFromExistingDomainModelCommand(diResourceSet, newFile, getRoot());
+		getCommandStack(diResourceSet).execute(command);
 		} else {
-			super.createPapyrusModels(newFile);
+			super.createPapyrusModels(diResourceSet, newFile);
 		}
 	}
 
@@ -136,11 +137,11 @@ public class InitModelWizard extends CreateModelWizard {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void initDomainModel(final IFile newFile) {
+	protected void initDomainModel(DiResourceSet diResourceSet, final IFile newFile) {
 		if(isCreateFromExistingDomainModel()) {
 			// do nothing
 		} else {
-			super.initDomainModel(newFile);
+			super.initDomainModel(diResourceSet, newFile);
 		}
 	}
 
@@ -148,8 +149,8 @@ public class InitModelWizard extends CreateModelWizard {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void initDiagrams() {
-		initDiagrams(getRoot());
+	protected void initDiagrams(DiResourceSet diResourceSet) {
+		initDiagrams(diResourceSet, getRoot());
 	}
 
 	protected boolean isCreateFromExistingDomainModel() {

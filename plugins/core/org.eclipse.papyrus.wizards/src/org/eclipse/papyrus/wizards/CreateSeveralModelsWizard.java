@@ -61,13 +61,18 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 		}
 		for(String newCategory : newCategories) {
 			if(!myCategory2modelFilePageMap.containsKey(newCategory)) {
-				NewModelFilePage newPage = new NewModelFilePage(createModelFilePageId(newCategory), mySelection);
-				newPage.setWizard(this);
-				newPage.setDescription(newCategory);
+				NewModelFilePage newPage = createNewModelFilePage(mySelection, newCategory);
 				myCategory2modelFilePageMap.put(newCategory, newPage);
 			}
 		}
 		return Status.OK_STATUS;
+	}
+	
+	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection, String categoryId) {
+		NewModelFilePage newPage =  new NewModelFilePage(createModelFilePageId(categoryId), selection);
+		newPage.setWizard(this);
+		newPage.setDescription("Create a new model for " + categoryId + " category");
+		return newPage;
 	}
 
 	@Override
@@ -95,7 +100,7 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 	
 	@Override
 	public IWizardPage getPreviousPage(IWizardPage page) {
-		// TODO Auto-generated method stub
+		// TODO allow navigation between pages
 		return super.getPreviousPage(page);
 	}
 	
@@ -109,19 +114,12 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 	 */
 	@Override
 	public boolean performFinish() {
-//		setResourseSet(new DiResourceSet());
-//		final IFile newFile = createNewModelFile();
-//		if(newFile == null) {
-//			return false;
-//		}
-//		createPapyrusModels(newFile);
-//
-//		initDomainModel(newFile);
-//
-//		initDiagramModel();
-//
-//		openDiagram(newFile);
-//
+		for (NewModelFilePage newModelFilePage : myCategory2modelFilePageMap.values()) {
+			final IFile newFile = newModelFilePage.createNewFile();
+			DiResourceSet diResourceSet = new DiResourceSet();
+			createAndOpenPapyrusModel(diResourceSet, newFile);
+		}
+
 //		saveDiagramCategorySettings();
 //		saveDiagramKindSettings();
 		return true;
