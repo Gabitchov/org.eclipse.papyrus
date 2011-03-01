@@ -5,6 +5,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.activity.edit.commands.AcceptEventActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityCreateCommandCN;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityFinalNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityParameterNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityPartitionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallBehaviorActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallOperationActionCreateCommand;
@@ -31,7 +32,6 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.ReadSelfActionCreateCo
 import org.eclipse.papyrus.diagram.activity.edit.commands.SendObjectActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SendSignalActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SequenceNodeCreateCommand;
-import org.eclipse.papyrus.diagram.activity.edit.commands.ShapeNamedElementCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.StructuredActivityNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.TimeConstraintAsLocalPostcondCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.TimeConstraintAsLocalPrecondCreateCommand;
@@ -153,8 +153,8 @@ public class ActivityCNContentCompartmentItemSemanticEditPolicy extends UMLBaseI
 		if(UMLElementTypes.Activity_3083 == req.getElementType()) {
 			return getGEFWrapper(new ActivityCreateCommandCN(req));
 		}
-		if(UMLElementTypes.NamedElement_3079 == req.getElementType()) {
-			return getGEFWrapper(new ShapeNamedElementCreateCommand(req));
+		if(UMLElementTypes.ActivityParameterNode_3059 == req.getElementType()) {
+			return getGEFWrapper(new ActivityParameterNodeCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

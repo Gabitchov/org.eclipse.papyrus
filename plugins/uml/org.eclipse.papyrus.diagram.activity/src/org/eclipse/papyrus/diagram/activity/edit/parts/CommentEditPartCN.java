@@ -154,6 +154,7 @@ AbstractCommentEditPart {
 			return true;
 		}
 
+
 		return false;
 	}
 
@@ -577,9 +578,9 @@ AbstractCommentEditPart {
 			types.add(UMLElementTypes.InterruptibleActivityRegion_3068);
 			types.add(UMLElementTypes.Comment_3080);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.Activity_3083);
-			types.add(UMLElementTypes.NamedElement_3079);
+			types.add(UMLElementTypes.NamedElement_3085);
 		}
 		return types;
 	}

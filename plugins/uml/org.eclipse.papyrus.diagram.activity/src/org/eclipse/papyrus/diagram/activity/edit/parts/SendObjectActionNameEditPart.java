@@ -708,6 +708,7 @@ public class SendObjectActionNameEditPart extends CompartmentEditPart implements
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

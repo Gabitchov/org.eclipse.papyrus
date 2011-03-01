@@ -708,6 +708,7 @@ public class ValueSpecificationActionNameEditPart extends CompartmentEditPart im
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

@@ -149,6 +149,7 @@ ShapeNodeEditPart {
 			return true;
 		}
 
+
 		if(childEditPart instanceof ActivityPartitionActivityPartitionContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getActivityPartitionCompartment();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -381,9 +382,13 @@ ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
+
 			fPartitionLabel = new CenteredWrappedLabel();
 
+
+
 			fPartitionLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
+
 
 			GridData constraintFPartitionLabel = new GridData();
 			constraintFPartitionLabel.verticalAlignment = GridData.CENTER;
@@ -395,9 +400,13 @@ ShapeNodeEditPart {
 			constraintFPartitionLabel.grabExcessVerticalSpace = false;
 			this.add(fPartitionLabel, constraintFPartitionLabel);
 
+
+
+
 			fActivityPartitionCompartment = new RectangleFigure();
 			fActivityPartitionCompartment.setFill(false);
 			fActivityPartitionCompartment.setOutline(false);
+
 
 			GridData constraintFActivityPartitionCompartment = new GridData();
 			constraintFActivityPartitionCompartment.verticalAlignment = GridData.FILL;
@@ -408,6 +417,8 @@ ShapeNodeEditPart {
 			constraintFActivityPartitionCompartment.grabExcessHorizontalSpace = true;
 			constraintFActivityPartitionCompartment.grabExcessVerticalSpace = true;
 			this.add(fActivityPartitionCompartment, constraintFActivityPartitionCompartment);
+
+
 
 		}
 

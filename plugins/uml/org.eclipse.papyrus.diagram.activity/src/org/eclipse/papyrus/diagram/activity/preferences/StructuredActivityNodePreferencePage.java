@@ -27,9 +27,7 @@ public class StructuredActivityNodePreferencePage extends AbstractPapyrusNodePre
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "StructuredActivityNodeContentCompartment"
-
-	};
+	public static final String compartments[] = { "StructuredActivityNodeContentCompartment" };
 
 	/**
 	 * @generated
@@ -44,7 +42,7 @@ public class StructuredActivityNodePreferencePage extends AbstractPapyrusNodePre
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**

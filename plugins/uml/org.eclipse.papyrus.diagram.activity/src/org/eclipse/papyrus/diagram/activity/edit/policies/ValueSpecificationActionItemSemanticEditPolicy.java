@@ -114,6 +114,7 @@ public class ValueSpecificationActionItemSemanticEditPolicy extends UMLBaseItemS
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case OutputPinInValSpecActEditPart.VISUAL_ID:
 
+
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {

@@ -786,6 +786,7 @@ implements ITextAwareEditPart {
 		 */
 		public LinkAndCornerBentWithTextFigure() {
 
+
 			this.setBackgroundColor(THIS_BACK);
 			createContents();
 		}

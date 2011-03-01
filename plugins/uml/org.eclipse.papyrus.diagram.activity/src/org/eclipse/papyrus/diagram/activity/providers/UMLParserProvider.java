@@ -819,16 +819,16 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private ConstraintParser constraintSpecification_5136Parser;
+	private ConstraintParser constraintLabel_5136Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getConstraintSpecification_5136Parser() {
-		if(constraintSpecification_5136Parser == null) {
-			constraintSpecification_5136Parser = new ConstraintParser();
+	private IParser getConstraintLabel_5136Parser() {
+		if(constraintLabel_5136Parser == null) {
+			constraintLabel_5136Parser = new ConstraintParser();
 		}
-		return constraintSpecification_5136Parser;
+		return constraintLabel_5136Parser;
 	}
 
 	/**
@@ -851,16 +851,16 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private ConstraintParser constraintSpecification_5137Parser;
+	private ConstraintParser constraintLabel_5137Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getConstraintSpecification_5137Parser() {
-		if(constraintSpecification_5137Parser == null) {
-			constraintSpecification_5137Parser = new ConstraintParser();
+	private IParser getConstraintLabel_5137Parser() {
+		if(constraintLabel_5137Parser == null) {
+			constraintLabel_5137Parser = new ConstraintParser();
 		}
-		return constraintSpecification_5137Parser;
+		return constraintLabel_5137Parser;
 	}
 
 	/**
@@ -1639,31 +1639,31 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private PinParser outputPinLabel_5140Parser;
+	private PinParser outputPinLabel_5144Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getOutputPinLabel_5140Parser() {
-		if(outputPinLabel_5140Parser == null) {
-			outputPinLabel_5140Parser = new PinParser();
+	private IParser getOutputPinLabel_5144Parser() {
+		if(outputPinLabel_5144Parser == null) {
+			outputPinLabel_5144Parser = new PinParser();
 		}
-		return outputPinLabel_5140Parser;
+		return outputPinLabel_5144Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser outputPinLabel_5141Parser;
+	private AppliedStereotypeParser outputPinLabel_5145Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getOutputPinLabel_5141Parser() {
-		if(outputPinLabel_5141Parser == null) {
-			outputPinLabel_5141Parser = new AppliedStereotypeParser();
+	private IParser getOutputPinLabel_5145Parser() {
+		if(outputPinLabel_5145Parser == null) {
+			outputPinLabel_5145Parser = new AppliedStereotypeParser();
 		}
-		return outputPinLabel_5141Parser;
+		return outputPinLabel_5145Parser;
 	}
 
 	/**
@@ -1855,16 +1855,16 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private ConstraintParser intervalConstraintSpecification_5134Parser;
+	private ConstraintParser intervalConstraintLabel_5134Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getIntervalConstraintSpecification_5134Parser() {
-		if(intervalConstraintSpecification_5134Parser == null) {
-			intervalConstraintSpecification_5134Parser = new ConstraintParser();
+	private IParser getIntervalConstraintLabel_5134Parser() {
+		if(intervalConstraintLabel_5134Parser == null) {
+			intervalConstraintLabel_5134Parser = new ConstraintParser();
 		}
-		return intervalConstraintSpecification_5134Parser;
+		return intervalConstraintLabel_5134Parser;
 	}
 
 	/**
@@ -1887,16 +1887,16 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private ConstraintParser intervalConstraintSpecification_5135Parser;
+	private ConstraintParser intervalConstraintLabel_5135Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getIntervalConstraintSpecification_5135Parser() {
-		if(intervalConstraintSpecification_5135Parser == null) {
-			intervalConstraintSpecification_5135Parser = new ConstraintParser();
+	private IParser getIntervalConstraintLabel_5135Parser() {
+		if(intervalConstraintLabel_5135Parser == null) {
+			intervalConstraintLabel_5135Parser = new ConstraintParser();
 		}
-		return intervalConstraintSpecification_5135Parser;
+		return intervalConstraintLabel_5135Parser;
 	}
 
 	/**
@@ -1919,16 +1919,16 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private ConstraintParser durationConstraintSpecification_5130Parser;
+	private ConstraintParser durationConstraintLabel_5130Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDurationConstraintSpecification_5130Parser() {
-		if(durationConstraintSpecification_5130Parser == null) {
-			durationConstraintSpecification_5130Parser = new ConstraintParser();
+	private IParser getDurationConstraintLabel_5130Parser() {
+		if(durationConstraintLabel_5130Parser == null) {
+			durationConstraintLabel_5130Parser = new ConstraintParser();
 		}
-		return durationConstraintSpecification_5130Parser;
+		return durationConstraintLabel_5130Parser;
 	}
 
 	/**
@@ -1951,16 +1951,16 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private ConstraintParser durationConstraintSpecification_5131Parser;
+	private ConstraintParser durationConstraintLabel_5131Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDurationConstraintSpecification_5131Parser() {
-		if(durationConstraintSpecification_5131Parser == null) {
-			durationConstraintSpecification_5131Parser = new ConstraintParser();
+	private IParser getDurationConstraintLabel_5131Parser() {
+		if(durationConstraintLabel_5131Parser == null) {
+			durationConstraintLabel_5131Parser = new ConstraintParser();
 		}
-		return durationConstraintSpecification_5131Parser;
+		return durationConstraintLabel_5131Parser;
 	}
 
 	/**
@@ -1983,16 +1983,16 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private ConstraintParser timeConstraintSpecification_5132Parser;
+	private ConstraintParser timeConstraintLabel_5132Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getTimeConstraintSpecification_5132Parser() {
-		if(timeConstraintSpecification_5132Parser == null) {
-			timeConstraintSpecification_5132Parser = new ConstraintParser();
+	private IParser getTimeConstraintLabel_5132Parser() {
+		if(timeConstraintLabel_5132Parser == null) {
+			timeConstraintLabel_5132Parser = new ConstraintParser();
 		}
-		return timeConstraintSpecification_5132Parser;
+		return timeConstraintLabel_5132Parser;
 	}
 
 	/**
@@ -2015,16 +2015,16 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private ConstraintParser timeConstraintSpecification_5133Parser;
+	private ConstraintParser timeConstraintLabel_5133Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getTimeConstraintSpecification_5133Parser() {
-		if(timeConstraintSpecification_5133Parser == null) {
-			timeConstraintSpecification_5133Parser = new ConstraintParser();
+	private IParser getTimeConstraintLabel_5133Parser() {
+		if(timeConstraintLabel_5133Parser == null) {
+			timeConstraintLabel_5133Parser = new ConstraintParser();
 		}
-		return timeConstraintSpecification_5133Parser;
+		return timeConstraintLabel_5133Parser;
 	}
 
 	/**
@@ -2317,35 +2317,35 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		case DurationConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 			return getDurationConstraintName_5038Parser();
 		case DurationConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
-			return getDurationConstraintSpecification_5130Parser();
+			return getDurationConstraintLabel_5130Parser();
 		case DurationConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 			return getDurationConstraintName_5039Parser();
 		case DurationConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
-			return getDurationConstraintSpecification_5131Parser();
+			return getDurationConstraintLabel_5131Parser();
 		case TimeConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 			return getTimeConstraintName_5040Parser();
 		case TimeConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
-			return getTimeConstraintSpecification_5132Parser();
+			return getTimeConstraintLabel_5132Parser();
 		case TimeConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 			return getTimeConstraintName_5041Parser();
 		case TimeConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
-			return getTimeConstraintSpecification_5133Parser();
+			return getTimeConstraintLabel_5133Parser();
 		case IntervalConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 			return getIntervalConstraintName_5036Parser();
 		case IntervalConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
-			return getIntervalConstraintSpecification_5134Parser();
+			return getIntervalConstraintLabel_5134Parser();
 		case IntervalConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 			return getIntervalConstraintName_5037Parser();
 		case IntervalConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
-			return getIntervalConstraintSpecification_5135Parser();
+			return getIntervalConstraintLabel_5135Parser();
 		case ConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 			return getConstraintName_5007Parser();
 		case ConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
-			return getConstraintSpecification_5136Parser();
+			return getConstraintLabel_5136Parser();
 		case ConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 			return getConstraintName_5008Parser();
 		case ConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
-			return getConstraintSpecification_5137Parser();
+			return getConstraintLabel_5137Parser();
 		case DecisionInputEditPart.VISUAL_ID:
 			return getDecisionNodeLabel_5043Parser();
 		case DecisionNodeAppliedStereotypeEditPart.VISUAL_ID:
@@ -2465,9 +2465,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		case ReadSelfActionNameEditPart.VISUAL_ID:
 			return getReadSelfActionName_5139Parser();
 		case OutputPinInReadSelfActionLabelEditPart.VISUAL_ID:
-			return getOutputPinLabel_5140Parser();
+			return getOutputPinLabel_5144Parser();
 		case OutputPinInReadSelfActionAppliedStereotypeEditPart.VISUAL_ID:
-			return getOutputPinLabel_5141Parser();
+			return getOutputPinLabel_5145Parser();
 		case ActivityNameEditPartCN.VISUAL_ID:
 			return getActivityName_5142Parser();
 		case ActivityIsSingleExecutionCNEditPart.VISUAL_ID:

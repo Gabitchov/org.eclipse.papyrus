@@ -77,7 +77,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5140;
+	public static final int VISUAL_ID = 5144;
 
 	/**
 	 * @generated
@@ -348,7 +348,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.OutputPin_3082, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInReadSelfActionLabelEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.OutputPin_3084, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInReadSelfActionLabelEditPart.VISUAL_ID));
 		}
 		return parser;
 	}

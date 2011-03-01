@@ -707,6 +707,9 @@ public class ExceptionHandlerTypeEditPart extends LabelEditPart implements IText
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

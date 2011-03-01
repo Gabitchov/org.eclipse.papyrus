@@ -953,7 +953,7 @@ public class ActivityDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ReadSelfActionOutputPinEditPart.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getOutputPin_3082ContainedLinks(view));
+				result.addAll(UMLDiagramUpdater.getOutputPin_3084ContainedLinks(view));
 			}
 			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);
@@ -973,7 +973,7 @@ public class ActivityDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ShapeNamedElementEditPart.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getNamedElement_3079ContainedLinks(view));
+				result.addAll(UMLDiagramUpdater.getNamedElement_3085ContainedLinks(view));
 			}
 			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);

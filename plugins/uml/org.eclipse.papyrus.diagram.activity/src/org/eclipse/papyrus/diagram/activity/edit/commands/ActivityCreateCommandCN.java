@@ -62,6 +62,7 @@ public class ActivityCreateCommandCN extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -77,7 +78,10 @@ public class ActivityCreateCommandCN extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -86,10 +90,13 @@ public class ActivityCreateCommandCN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		Activity newElement = UMLFactory.eINSTANCE.createActivity();
 
 		BehavioredClassifier owner = (BehavioredClassifier)getElementToEdit();
 		owner.getOwnedBehaviors().add(newElement);
+
 
 		ElementInitializers.getInstance().init_Activity_3083(newElement);
 

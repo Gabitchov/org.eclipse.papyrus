@@ -34,6 +34,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPartCN;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
@@ -60,7 +61,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ShapeNamedElementEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
@@ -92,7 +92,6 @@ public class ActivityCNContentCompartmentCanonicalEditPolicy extends CanonicalEd
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Group());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getBehavioredClassifier_OwnedBehavior());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedElement());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -157,7 +156,7 @@ public class ActivityCNContentCompartmentCanonicalEditPolicy extends CanonicalEd
 		case CommentEditPartCN.VISUAL_ID:
 		case ReadSelfActionEditPart.VISUAL_ID:
 		case ActivityEditPartCN.VISUAL_ID:
-		case ShapeNamedElementEditPart.VISUAL_ID:
+		case ActivityParameterNodeEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;

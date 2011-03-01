@@ -20,7 +20,7 @@ Procedure to merge a new gmfgen files where modifications are made.
 	- changes subsequent to modifications in the tooling files,
 	- alteration of the order of usage in implementations of labelParsers,
 	- addition of notationViewFactoryClassName attribute
-		which not generated the first time.
+		which are not generated the first time.
 8. If some other changes in gmfgen file have been erased, do not merge them.
 	This means these should have been done in the tooling files,
 	rather than directly in the gmfgen file.

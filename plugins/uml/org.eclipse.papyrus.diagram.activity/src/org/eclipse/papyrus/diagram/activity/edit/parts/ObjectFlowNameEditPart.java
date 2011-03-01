@@ -743,6 +743,9 @@ public class ObjectFlowNameEditPart extends LabelEditPart implements ITextAwareE
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

@@ -706,6 +706,7 @@ public class ParameterNodeNameEditPart extends CompartmentEditPart implements IT
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 
