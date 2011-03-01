@@ -719,6 +719,7 @@ public class DurationConstraintAsLocalPrecondBodyEditPart extends CompartmentEdi
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

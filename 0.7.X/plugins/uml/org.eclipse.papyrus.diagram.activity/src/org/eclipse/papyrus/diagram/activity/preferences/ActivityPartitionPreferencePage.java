@@ -27,9 +27,7 @@ public class ActivityPartitionPreferencePage extends AbstractPapyrusNodePreferen
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "ActivityPartitionContentCompartment"
-
-	};
+	public static final String compartments[] = { "ActivityPartitionContentCompartment" };
 
 	/**
 	 * @generated
@@ -44,7 +42,7 @@ public class ActivityPartitionPreferencePage extends AbstractPapyrusNodePreferen
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**

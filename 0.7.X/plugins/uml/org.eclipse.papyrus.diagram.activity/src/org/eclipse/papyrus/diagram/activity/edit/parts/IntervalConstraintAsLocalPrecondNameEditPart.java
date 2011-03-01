@@ -708,6 +708,7 @@ public class IntervalConstraintAsLocalPrecondNameEditPart extends CompartmentEdi
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

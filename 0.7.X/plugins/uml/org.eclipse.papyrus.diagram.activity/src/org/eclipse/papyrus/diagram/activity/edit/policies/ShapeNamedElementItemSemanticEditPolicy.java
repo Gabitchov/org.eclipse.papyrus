@@ -39,7 +39,7 @@ public class ShapeNamedElementItemSemanticEditPolicy extends UMLBaseItemSemantic
 	 * @generated
 	 */
 	public ShapeNamedElementItemSemanticEditPolicy() {
-		super(UMLElementTypes.NamedElement_3079);
+		super(UMLElementTypes.NamedElement_3085);
 	}
 
 	/**

@@ -709,6 +709,7 @@ public class AcceptEventActionLabelEditPart extends CompartmentEditPart implemen
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

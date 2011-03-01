@@ -719,6 +719,7 @@ public class CommentBodyLabelEditPart extends CompartmentEditPart implements ITe
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

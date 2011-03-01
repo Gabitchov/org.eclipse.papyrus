@@ -708,6 +708,7 @@ public class ConstraintAsLocalPrecondNameEditPart extends CompartmentEditPart im
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

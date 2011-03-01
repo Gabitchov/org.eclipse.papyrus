@@ -719,6 +719,7 @@ public class IntervalConstraintAsLocalPostcondBodyEditPart extends CompartmentEd
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

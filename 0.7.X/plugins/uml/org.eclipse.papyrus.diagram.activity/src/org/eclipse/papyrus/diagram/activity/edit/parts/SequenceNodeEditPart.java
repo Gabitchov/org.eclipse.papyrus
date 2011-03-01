@@ -149,6 +149,7 @@ ShapeNodeEditPart {
 			return true;
 		}
 
+
 		if(childEditPart instanceof SequenceNodeStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -868,7 +869,7 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -923,7 +924,7 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.ValuePin_3015);
 			types.add(UMLElementTypes.ActionInputPin_3016);
@@ -958,7 +959,7 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.OutputPin_3077);
 			types.add(UMLElementTypes.ExpansionNode_3074);
 			types.add(UMLElementTypes.ExpansionNode_3075);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		}
 		return types;
 	}
@@ -1033,7 +1034,7 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1088,7 +1089,7 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
 			types.add(UMLElementTypes.Comment_3080);
 		}
@@ -1135,9 +1136,13 @@ ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
+
 			fKeyword = new CenteredWrappedLabel();
 
+
+
 			fKeyword.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
+
 
 			GridData constraintFKeyword = new GridData();
 			constraintFKeyword.verticalAlignment = GridData.CENTER;
@@ -1149,9 +1154,13 @@ ShapeNodeEditPart {
 			constraintFKeyword.grabExcessVerticalSpace = false;
 			this.add(fKeyword, constraintFKeyword);
 
+
+
+
 			fStructuredActivityNodeCompartment = new RectangleFigure();
 			fStructuredActivityNodeCompartment.setFill(false);
 			fStructuredActivityNodeCompartment.setOutline(false);
+
 
 			GridData constraintFStructuredActivityNodeCompartment = new GridData();
 			constraintFStructuredActivityNodeCompartment.verticalAlignment = GridData.FILL;
@@ -1162,6 +1171,8 @@ ShapeNodeEditPart {
 			constraintFStructuredActivityNodeCompartment.grabExcessHorizontalSpace = true;
 			constraintFStructuredActivityNodeCompartment.grabExcessVerticalSpace = true;
 			this.add(fStructuredActivityNodeCompartment, constraintFStructuredActivityNodeCompartment);
+
+
 
 		}
 

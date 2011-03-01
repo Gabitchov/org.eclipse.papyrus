@@ -65,9 +65,11 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ShapeNamedElementEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
@@ -94,9 +96,10 @@ public class LoopNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy
 		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Node());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Group());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedElement());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPostcondition());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Group());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -134,14 +137,6 @@ public class LoopNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy
 		case OpaqueActionEditPart.VISUAL_ID:
 		case CallBehaviorActionEditPart.VISUAL_ID:
 		case CallOperationActionEditPart.VISUAL_ID:
-		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
-		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
-		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
-		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
-		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
-		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
-		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
-		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 		case DecisionNodeEditPart.VISUAL_ID:
 		case MergeNodeEditPart.VISUAL_ID:
 		case ForkNodeEditPart.VISUAL_ID:
@@ -156,6 +151,16 @@ public class LoopNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy
 		case LoopNodeEditPart.VISUAL_ID:
 		case SequenceNodeEditPart.VISUAL_ID:
 		case StructuredActivityNodeEditPart.VISUAL_ID:
+		case ReadSelfActionEditPart.VISUAL_ID:
+		case ShapeNamedElementEditPart.VISUAL_ID:
+		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;

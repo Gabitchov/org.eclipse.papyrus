@@ -169,6 +169,7 @@ public class OpaqueActionItemSemanticEditPolicy extends UMLBaseItemSemanticEditP
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case ValuePinInOpaqueActEditPart.VISUAL_ID:
 
+
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -203,6 +204,7 @@ public class OpaqueActionItemSemanticEditPolicy extends UMLBaseItemSemanticEditP
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case ActionInputPinInOpaqueActEditPart.VISUAL_ID:
+
 
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
@@ -239,6 +241,7 @@ public class OpaqueActionItemSemanticEditPolicy extends UMLBaseItemSemanticEditP
 				break;
 			case InputPinInOpaqueActEditPart.VISUAL_ID:
 
+
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -273,6 +276,7 @@ public class OpaqueActionItemSemanticEditPolicy extends UMLBaseItemSemanticEditP
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case OutputPinInOpaqueActEditPart.VISUAL_ID:
+
 
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();

@@ -165,6 +165,7 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
+
 		return false;
 	}
 
@@ -214,6 +215,7 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+
 
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
@@ -699,7 +701,7 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -754,7 +756,7 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		}
 		return types;
 	}
@@ -830,7 +832,7 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -885,7 +887,7 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.OpaqueAction_3007);
 			types.add(UMLElementTypes.CallBehaviorAction_3008);

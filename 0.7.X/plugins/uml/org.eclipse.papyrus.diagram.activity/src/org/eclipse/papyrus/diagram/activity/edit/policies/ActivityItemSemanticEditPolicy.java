@@ -36,6 +36,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityParameterNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CommentLinkCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CommentLinkReorientCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ShapeNamedElementCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
@@ -79,6 +80,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ShapeNamedElementEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
@@ -105,6 +107,9 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.ActivityParameterNode_3059 == req.getElementType()) {
 			return getGEFWrapper(new ActivityParameterNodeCreateCommand(req));
+		}
+		if(UMLElementTypes.NamedElement_3085 == req.getElementType()) {
+			return getGEFWrapper(new ShapeNamedElementCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}
@@ -143,6 +148,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case ActivityParameterNodeEditPart.VISUAL_ID:
 
+
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -176,11 +182,31 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
+			case ShapeNamedElementEditPart.VISUAL_ID:
+
+
+				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
+					Edge incomingLink = (Edge)it.next();
+					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+					case CommentLinkEditPart.VISUAL_ID:
+						DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+						cmd.add(new DestroyReferenceCommand(destroyRefReq));
+						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+						break;
+					}
+				}
+
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
+				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
+				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
+				break;
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case ParameterEditPart.VISUAL_ID:
+
+
 
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
@@ -195,6 +221,8 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case ConstraintInActivityAsPrecondEditPart.VISUAL_ID:
 
+
+
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
@@ -208,6 +236,8 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
 
+
+
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
@@ -220,6 +250,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case InitialNodeEditPart.VISUAL_ID:
+
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -255,6 +286,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						break;
 					case ActivityFinalNodeEditPart.VISUAL_ID:
 
+
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -289,6 +321,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						break;
 					case FlowFinalNodeEditPart.VISUAL_ID:
 
+
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -322,6 +355,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case OpaqueActionEditPart.VISUAL_ID:
+
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -364,6 +398,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						break;
 					case CallBehaviorActionEditPart.VISUAL_ID:
 
+
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -404,6 +439,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case CallOperationActionEditPart.VISUAL_ID:
+
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -446,6 +482,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						break;
 					case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
 
+
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -464,6 +501,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -484,6 +522,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						break;
 					case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
 
+
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -502,6 +541,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
+
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -522,6 +562,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						break;
 					case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
 
+
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -540,6 +581,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
+
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -560,6 +602,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						break;
 					case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
 
+
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -579,6 +622,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						break;
 					case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 
+
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -597,6 +641,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case DecisionNodeEditPart.VISUAL_ID:
+
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -632,6 +677,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						break;
 					case MergeNodeEditPart.VISUAL_ID:
 
+
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -665,6 +711,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ForkNodeEditPart.VISUAL_ID:
+
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -700,6 +747,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						break;
 					case JoinNodeEditPart.VISUAL_ID:
 
+
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -733,6 +781,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case DataStoreNodeEditPart.VISUAL_ID:
+
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -768,6 +817,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case SendObjectActionEditPart.VISUAL_ID:
+
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -810,6 +860,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						break;
 					case SendSignalActionEditPart.VISUAL_ID:
 
+
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -850,6 +901,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case AcceptEventActionEditPart.VISUAL_ID:
+
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -892,6 +944,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						break;
 					case ValueSpecificationActionEditPart.VISUAL_ID:
 
+
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -932,6 +985,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ConditionalNodeEditPart.VISUAL_ID:
+
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -974,6 +1028,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						break;
 					case ExpansionRegionEditPart.VISUAL_ID:
 
+
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -1014,6 +1069,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case LoopNodeEditPart.VISUAL_ID:
+
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -1056,6 +1112,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						break;
 					case SequenceNodeEditPart.VISUAL_ID:
 
+
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -1096,6 +1153,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case StructuredActivityNodeEditPart.VISUAL_ID:
+
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -1138,6 +1196,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						break;
 					case ActivityPartitionEditPart.VISUAL_ID:
 
+
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -1155,6 +1214,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						break;
 					case InterruptibleActivityRegionEditPart.VISUAL_ID:
 
+
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -1171,6 +1231,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case CommentEditPartCN.VISUAL_ID:
+
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -1198,6 +1259,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ReadSelfActionEditPart.VISUAL_ID:
+
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -1239,6 +1301,7 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ActivityEditPartCN.VISUAL_ID:
+
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();

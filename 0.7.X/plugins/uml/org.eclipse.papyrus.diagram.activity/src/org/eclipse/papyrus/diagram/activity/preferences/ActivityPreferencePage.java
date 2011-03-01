@@ -27,9 +27,7 @@ public class ActivityPreferencePage extends AbstractPapyrusNodePreferencePage {
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "ActivityFigureParameterCompartment", "ActivityFigurePreconditionCompartment", "ActivityFigurePostCondtionCompartment", "ActivityFigureContentCompartment"
-
-	};
+	public static final String compartments[] = { "ActivityFigureParameterCompartment", "ActivityFigurePreconditionCompartment", "ActivityFigurePostCondtionCompartment", "ActivityFigureContentCompartment" };
 
 	/**
 	 * @generated
@@ -44,7 +42,7 @@ public class ActivityPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**

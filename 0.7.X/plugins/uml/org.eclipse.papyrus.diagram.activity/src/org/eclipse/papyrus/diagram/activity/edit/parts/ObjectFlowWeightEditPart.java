@@ -707,6 +707,9 @@ public class ObjectFlowWeightEditPart extends LabelEditPart implements ITextAwar
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

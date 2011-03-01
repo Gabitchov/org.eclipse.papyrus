@@ -104,6 +104,7 @@ AbstractBorderedShapeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExpansionRegionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
+
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.ExpansionRegionCanonicalEditPolicy());
 
@@ -170,12 +171,17 @@ AbstractBorderedShapeEditPart {
 			return true;
 		}
 
+
 		if(childEditPart instanceof ExpansionRegionStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((ExpansionRegionStructuredActivityNodeContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
+
+
+
+
 
 		//Papyrus Gencode :Affixed Expansion Node locator for Activity
 		if(childEditPart instanceof ExpansionNodeAsInEditPart) {
@@ -184,12 +190,19 @@ AbstractBorderedShapeEditPart {
 			return true;
 		}
 
+
+
+
+
 		//Papyrus Gencode :Affixed Expansion Node locator for Activity
 		if(childEditPart instanceof ExpansionNodeAsOutEditPart) {
 			IBorderItemLocator locator = new ExpansionNodePositionLocator(getMainFigure(), PositionConstants.SOUTH);
 			getBorderedFigure().getBorderItemContainer().add(((ExpansionNodeAsOutEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
+
+
+
 
 		return false;
 	}
@@ -914,7 +927,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -969,7 +982,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.ValuePin_3015);
 			types.add(UMLElementTypes.ActionInputPin_3016);
@@ -1004,7 +1017,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.OutputPin_3077);
 			types.add(UMLElementTypes.ExpansionNode_3074);
 			types.add(UMLElementTypes.ExpansionNode_3075);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		}
 		return types;
 	}
@@ -1079,7 +1092,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1134,7 +1147,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
 			types.add(UMLElementTypes.Comment_3080);
 		}
@@ -1181,9 +1194,13 @@ AbstractBorderedShapeEditPart {
 		 */
 		private void createContents() {
 
+
 			fKeyword = new CenteredWrappedLabel();
 
+
+
 			fKeyword.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
+
 
 			GridData constraintFKeyword = new GridData();
 			constraintFKeyword.verticalAlignment = GridData.CENTER;
@@ -1195,9 +1212,13 @@ AbstractBorderedShapeEditPart {
 			constraintFKeyword.grabExcessVerticalSpace = false;
 			this.add(fKeyword, constraintFKeyword);
 
+
+
+
 			fStructuredActivityNodeCompartment = new RectangleFigure();
 			fStructuredActivityNodeCompartment.setFill(false);
 			fStructuredActivityNodeCompartment.setOutline(false);
+
 
 			GridData constraintFStructuredActivityNodeCompartment = new GridData();
 			constraintFStructuredActivityNodeCompartment.verticalAlignment = GridData.FILL;
@@ -1208,6 +1229,8 @@ AbstractBorderedShapeEditPart {
 			constraintFStructuredActivityNodeCompartment.grabExcessHorizontalSpace = true;
 			constraintFStructuredActivityNodeCompartment.grabExcessVerticalSpace = true;
 			this.add(fStructuredActivityNodeCompartment, constraintFStructuredActivityNodeCompartment);
+
+
 
 		}
 
