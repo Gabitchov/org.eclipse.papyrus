@@ -6297,7 +6297,7 @@
           canonicalEditPolicyClassName="ShapeNamedElementCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ShapeNamedElementGraphicalNodeEditPolicy"
           createCommandClassName="ShapeNamedElementCreateCommand"
-          containers="/0/@diagram/@childNodes.68 /0/@diagram/@topLevelNodes.0 /0/@diagram/@compartments.4 /0/@diagram/@compartments.5 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10">
+          containers="/0/@diagram/@compartments.4 /0/@diagram/@compartments.5 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
