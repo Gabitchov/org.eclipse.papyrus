@@ -149,7 +149,7 @@
                      </test>
                      <test
                            forcePluginActivation="true"
-                           property="org.eclipse.papyrus.modelexplorer.tester.isTable"
+                           property="org.eclipse.papyrus.table.modelexplorer.tester.isTable"
                            value="true">
                      </test>
                   </and>

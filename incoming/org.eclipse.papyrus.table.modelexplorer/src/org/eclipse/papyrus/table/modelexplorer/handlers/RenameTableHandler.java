@@ -28,7 +28,6 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.modelexplorer.handler.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.table.common.editor.AbstractNattableEditor;
 import org.eclipse.papyrus.table.modelexplorer.messages.Messages;
 import org.eclipse.swt.widgets.Display;
@@ -71,7 +70,8 @@ public class RenameTableHandler extends AbstractTableModelExplorerHandler {
 								final String name = dialog.getValue();
 								if(name != null && name.length() > 0) {
 									((Map<String, Object>)param).put(AbstractNattableEditor.NAME_KEY, name); //$NON-NLS-1$
-									IPageMngr mngr = getPageManager();
+									//									IPageMngr mngr = getPageManager();
+									table.setParameter(param);
 								}
 								return CommandResult.newOKCommandResult();
 							} else {

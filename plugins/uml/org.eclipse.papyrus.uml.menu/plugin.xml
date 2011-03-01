@@ -64,15 +64,16 @@
                             type="org.eclipse.uml2.uml.NamedElement">
                       </adapt>
                    </iterate>
-                   <test
-                         forcePluginActivation="true"
-                         property="org.eclipse.papyrus.modelexplorer.tester.isTable"
-                         value="false">
-                   </test>
+                   <!-- we add these test to force the refresh of the Menu + to avoid handlers conflit   -->
                    <test
                          forcePluginActivation="true"
                          property="org.eclipse.papyrus.modelexplorer.tester.isDiagram"
                          value="false">
+                   </test>
+                    <test
+                         forcePluginActivation="true"
+                         property="org.eclipse.papyrus.uml.menu.tester.isNamedElement"
+                         value="true">
                    </test>
                 </and>
              </with>
@@ -85,5 +86,15 @@
    <startup
          class="org.eclipse.papyrus.uml.menu.Activator">
    </startup>
+</extension>
+<extension
+      point="org.eclipse.core.expressions.propertyTesters">
+   <propertyTester
+         class="org.eclipse.papyrus.uml.menu.handler.tester.UMLPropertyTester"
+         id="org.eclipse.papyrus.uml.menu.tester"
+         namespace="org.eclipse.papyrus.uml.menu.tester"
+         properties="isNamedElement"
+         type="org.eclipse.jface.viewers.IStructuredSelection">
+   </propertyTester>
 </extension>
 </plugin>
