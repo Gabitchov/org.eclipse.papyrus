@@ -4673,10 +4673,6 @@ public class UMLVisualIDRegistry {
 
 		viewInfo = new BaseViewInfo(3085, ViewInfo.Node, "NamedElement");
 
-		root.addNode(3083, viewInfo);
-
-		root.addNode(2001, viewInfo);
-
 		root.addNode(7008, viewInfo);
 
 		root.addNode(7009, viewInfo);
@@ -4690,6 +4686,10 @@ public class UMLVisualIDRegistry {
 		root.addNode(7006, viewInfo);
 
 		root.addNode(7007, viewInfo);
+
+		root.addNode(3083, viewInfo);
+
+		root.addNode(2001, viewInfo);
 
 		return root;
 	}
