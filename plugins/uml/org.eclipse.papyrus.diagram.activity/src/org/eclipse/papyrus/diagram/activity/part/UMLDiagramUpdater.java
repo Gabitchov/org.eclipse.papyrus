@@ -254,14 +254,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getOwnedElements().iterator(); it.hasNext();) {
-			Element childElement = (Element)it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == ShapeNamedElementEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
 		return result;
 	}
 
@@ -545,14 +537,6 @@ public class UMLDiagramUpdater {
 			ActivityNode childElement = (ActivityNode)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == ActivityParameterNodeEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		for(Iterator<?> it = modelElement.getOwnedElements().iterator(); it.hasNext();) {
-			Element childElement = (Element)it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == ShapeNamedElementEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
