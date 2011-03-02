@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query:ModelQuerySet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" name="Contexts" description="">
+  <associatedMetamodels href="http://www.eclipse.org/papyrus/properties/contexts#/"/>
+  <associatedMetamodels href="http://www.eclipse.org/papyrus/properties/ui#/"/>
+  <queries xsi:type="query:OCLModelQuery" name="Tab label" description="Tab label" lowerBound="1" query="if label.oclIsUndefined() or label = '' then '&lt;&lt;Unnamed>>' else label endif">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/contexts#//Tab"/>
+  </queries>
+  <queries xsi:type="query:OCLModelQuery" name="View label" description="View label" lowerBound="1" query="if name = null or name = '' then '&lt;&lt;Unnamed>>' else name endif">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/contexts#//View"/>
+  </queries>
+  <queries xsi:type="query:OCLModelQuery" name="Context label" description="Context label" lowerBound="1" query="if name = null or name = '' then '&lt;&lt;Unnamed>>' else name endif">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/contexts#//Context"/>
+  </queries>
+  <queries xsi:type="query:OCLModelQuery" name="Section label" description="Section label" lowerBound="1" query="if name = null or name = '' then '&lt;&lt;Unnamed>>' else name.concat(if tab.oclIsUndefined() then ' [&lt;&lt;Undefined>>]' else ' ['.concat(tab.label).concat(']') endif) endif">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/contexts#//Section"/>
+  </queries>
+  <queries xsi:type="query:OCLModelQuery" name="Property editor label" description="Returns the PropertyEditor label" lowerBound="1" query="if property.oclIsUndefined() then '&lt;&lt;Undefined>>' else if property.label.oclIsUndefined() or property.label = '' then property.name else _property.label endif endif">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/ui#//PropertyEditor"/>
+  </queries>
+  <queries xsi:type="query:OCLModelQuery" name="Composite label" lowerBound="1" query="if widgetType = null then '&lt;&lt;Undefined>>' else widgetType.label endif">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/ui#//CompositeWidget"/>
+  </queries>
+  <queries xsi:type="query:OCLModelQuery" name="Layout label" description="Layout label" lowerBound="1" query="if layoutType = null then '&lt;&lt;Undefined>>' else layoutType.label endif">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/ui#//Layout"/>
+  </queries>
+  <queries xsi:type="query:OCLModelQuery" name="Attribute label" lowerBound="1" query="if name = null or name = '' then '&lt;&lt;Undefined>>' else name endif">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/ui#//WidgetAttribute"/>
+  </queries>
+</query:ModelQuerySet>
