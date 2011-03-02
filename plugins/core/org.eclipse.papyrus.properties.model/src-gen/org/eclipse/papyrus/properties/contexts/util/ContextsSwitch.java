@@ -84,16 +84,16 @@ public class ContextsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ContextsPackage.TAB: {
+				Tab tab = (Tab)theEObject;
+				T result = caseTab(tab);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ContextsPackage.VIEW: {
 				View view = (View)theEObject;
 				T result = caseView(view);
 				if (result == null) result = caseDisplayUnit(view);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ContextsPackage.TAB: {
-				Tab tab = (Tab)theEObject;
-				T result = caseTab(tab);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

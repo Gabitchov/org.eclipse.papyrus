@@ -52,7 +52,7 @@ public class CommitableObservableList extends ObservableList implements ICommitL
 		this.feature = feature;
 	}
 
-	public void commit() {
+	public void commit(AbstractEditor editor) {
 
 		CompoundCommand compoundCommand = new CompoundCommand() {
 
@@ -111,10 +111,6 @@ public class CommitableObservableList extends ObservableList implements ICommitL
 		wrappedList.clear();
 		wrappedList.addAll(concreteList);
 		fireListChange(null);
-	}
-
-	public void commit(AbstractEditor editor) {
-		commit();
 	}
 
 	@Override

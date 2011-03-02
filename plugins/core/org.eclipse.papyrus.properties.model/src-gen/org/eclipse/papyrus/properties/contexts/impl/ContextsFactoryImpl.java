@@ -61,8 +61,8 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ContextsPackage.CONTEXT: return createContext();
-			case ContextsPackage.VIEW: return createView();
 			case ContextsPackage.TAB: return createTab();
+			case ContextsPackage.VIEW: return createView();
 			case ContextsPackage.SECTION: return createSection();
 			case ContextsPackage.DATA_CONTEXT_ELEMENT: return createDataContextElement();
 			case ContextsPackage.PROPERTY: return createProperty();

@@ -59,7 +59,7 @@ public class ViewEditor extends AbstractPropertyEditor {
 	 */
 	public ViewEditor(Composite parent, int style) {
 		self = new Composite(parent, SWT.NONE);
-		PropertiesLayout layout = new PropertiesLayout(1, false);
+		PropertiesLayout layout = new PropertiesLayout(1, true);
 		layout.horizontalSpacing = 0;
 		layout.marginWidth = 0;
 		self.setLayout(layout);

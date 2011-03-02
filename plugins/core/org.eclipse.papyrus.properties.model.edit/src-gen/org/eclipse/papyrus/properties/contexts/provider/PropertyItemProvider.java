@@ -70,6 +70,7 @@ public class PropertyItemProvider
 			addLabelPropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
 			addMultiplicityPropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -163,6 +164,28 @@ public class PropertyItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Property_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Property_description_feature", "_UI_Property_type"),
+				 ContextsPackage.Literals.PROPERTY__DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Property.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -203,6 +226,7 @@ public class PropertyItemProvider
 			case ContextsPackage.PROPERTY__LABEL:
 			case ContextsPackage.PROPERTY__TYPE:
 			case ContextsPackage.PROPERTY__MULTIPLICITY:
+			case ContextsPackage.PROPERTY__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

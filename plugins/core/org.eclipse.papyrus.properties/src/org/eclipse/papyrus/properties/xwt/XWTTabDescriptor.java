@@ -55,7 +55,8 @@ public class XWTTabDescriptor extends AbstractTabDescriptor {
 	}
 
 	public String getCategory() {
-		return tab.getCategory();
+		String category = tab.getCategory();
+		return category == null ? "" : category;
 	}
 
 	public String getId() {
@@ -73,13 +74,7 @@ public class XWTTabDescriptor extends AbstractTabDescriptor {
 		if(imagePath == null || imagePath.trim().equals("")) //$NON-NLS-1$
 			return null;
 
-		if(imagePath.startsWith("/")) {
-			imagePath = imagePath.substring(1, imagePath.length());
-			String pluginId = imagePath.substring(0, imagePath.indexOf("/"));
-			String filePath = imagePath.substring(imagePath.indexOf("/"), imagePath.length());
-			return Activator.getDefault().getImage(pluginId, filePath);
-		}
-		return null;
+		return Activator.getDefault().getImageFromPlugin(imagePath);
 	}
 
 	@Override

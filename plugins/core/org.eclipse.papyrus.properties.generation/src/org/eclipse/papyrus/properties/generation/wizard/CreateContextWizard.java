@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.properties.generation.wizard;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -20,11 +21,9 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.properties.contexts.Context;
@@ -116,8 +115,6 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 
 		layoutGenerator = layoutGenerators.get(0); //TODO : Use the layoutGenerator combo
 
-
-
 		for(View view : context.getViews()) {
 			if(view.getConstraints().size() == 0) //TODO : Problem with external resource references
 				continue;
@@ -150,35 +147,71 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 			i += tab.getSections().size();
 		}
 		final int numberOfSections = i;
-		Job job = new Job(Messages.CreateContextWizard_propertyViewGenerationJobName + context.getName()) {
+		try {
+			setNeedsProgressMonitor(true);
+			getContainer().run(true, true, new IRunnableWithProgress() {
 
-			@Override
-			protected IStatus run(IProgressMonitor monitor) {
-				try {
-					monitor.beginTask(getName(), numberOfSections);
-
-					context.eResource().save(Collections.EMPTY_MAP);
+				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+					monitor.beginTask(Messages.CreateContextWizard_propertyViewGenerationJobName + context.getName(), numberOfSections + 1);
 					monitor.worked(1);
-					for(Tab tab : context.getTabs()) {
-						for(Section section : tab.getSections()) {
-							if(monitor.isCanceled()) {
-								return Status.CANCEL_STATUS;
+
+					try {
+						context.eResource().save(Collections.EMPTY_MAP);
+
+						monitor.worked(1);
+						for(Tab tab : context.getTabs()) {
+							for(Section section : tab.getSections()) {
+								if(monitor.isCanceled()) {
+									return;
+								}
+								section.getWidget().eResource().save(Collections.EMPTY_MAP);
+								monitor.worked(1);
 							}
-							section.getWidget().eResource().save(Collections.EMPTY_MAP);
-							monitor.worked(1);
 						}
+					} catch (IOException ex) {
+						Activator.log.error(ex);
+						return;
 					}
 					monitor.done();
-				} catch (IOException ex) {
-					Activator.log.error(ex);
-					return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.CreateContextWizard_propertyViewGenerationError + context.getName(), ex);
 				}
-				return Status.OK_STATUS;
-			}
-		};
-		job.setPriority(Job.INTERACTIVE);
-		job.setUser(true);
-		job.schedule();
+
+			});
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//		Job job = new Job(Messages.CreateContextWizard_propertyViewGenerationJobName + context.getName()) {
+		//
+		//			@Override
+		//			protected IStatus run(IProgressMonitor monitor) {
+		//				monitor.beginTask(getName(), numberOfSections);
+		//
+		//				try {
+		//					context.eResource().save(Collections.EMPTY_MAP);
+		//
+		//					monitor.worked(1);
+		//					for(Tab tab : context.getTabs()) {
+		//						for(Section section : tab.getSections()) {
+		//							if(monitor.isCanceled()) {
+		//								return Status.CANCEL_STATUS;
+		//							}
+		//							section.getWidget().eResource().save(Collections.EMPTY_MAP);
+		//							monitor.worked(1);
+		//						}
+		//					}
+		//				} catch (IOException ex) {
+		//					Activator.log.error(ex);
+		//					return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.CreateContextWizard_propertyViewGenerationError + context.getName(), ex);
+		//				}
+		//				return Status.OK_STATUS;
+		//			}
+		//		};
+		//		job.setPriority(Job.INTERACTIVE);
+		//		job.setUser(true);
+		//		job.schedule();
 
 		return true;
 	}

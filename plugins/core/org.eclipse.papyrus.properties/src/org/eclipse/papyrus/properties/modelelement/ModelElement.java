@@ -13,6 +13,7 @@ package org.eclipse.papyrus.properties.modelelement;
 
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
 /**
@@ -38,7 +39,9 @@ public interface ModelElement {
 	public IObservable getObservable(String propertyPath);
 
 	/**
-	 * Returns an IStaticContentProvider for the given propertyPath.
+	 * Returns an IStaticContentProvider for the given propertyPath. The
+	 * returned value should not be null. If there is no content provider,
+	 * used {@link EmptyContentProvider#instance}
 	 * 
 	 * @param propertyPath
 	 *        The name of the property for which we want a Content provider
@@ -90,4 +93,17 @@ public interface ModelElement {
 	 * @return
 	 */
 	public boolean isEditable(String propertyPath);
+
+	/**
+	 * Returns true if the given property should be refresh each time a change
+	 * occurs in the property view. May help when the IObservable doesn't
+	 * catch some change events (For example, for some Ecore derived
+	 * properties).
+	 * 
+	 * @param localPropertyPath
+	 * @return
+	 */
+	public boolean forceRefresh(String localPropertyPath);
+
+	public void setDataSource(DataSource source);
 }

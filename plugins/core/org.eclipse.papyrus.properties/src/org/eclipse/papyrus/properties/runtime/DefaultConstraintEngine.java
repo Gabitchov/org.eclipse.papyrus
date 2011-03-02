@@ -103,6 +103,7 @@ public class DefaultConstraintEngine implements ConstraintEngine {
 			}
 		}
 
+		//Activator.log.debug("Filtered Constraints : " + matchedConstraints); //$NON-NLS-1$
 		resolveConstraintConflicts(matchedConstraints);
 		Activator.log.debug("Filtered Constraints : " + matchedConstraints); //$NON-NLS-1$
 

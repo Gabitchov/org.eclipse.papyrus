@@ -21,8 +21,6 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
-import javax.naming.ConfigurationException;
-
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -33,6 +31,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.contexts.Context;
+import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.contexts.Property;
 import org.eclipse.papyrus.properties.environment.CompositeWidgetType;
 import org.eclipse.papyrus.properties.environment.Environment;
@@ -50,6 +49,7 @@ import org.eclipse.papyrus.properties.root.RootFactory;
 import org.eclipse.papyrus.properties.runtime.preferences.ContextDescriptor;
 import org.eclipse.papyrus.properties.runtime.preferences.Preferences;
 import org.eclipse.papyrus.properties.runtime.preferences.PreferencesFactory;
+import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.papyrus.properties.util.Util;
 
 /**
@@ -119,19 +119,8 @@ public class ConfigurationManager {
 		loadCustomContexts();
 	}
 
-	private EObject loadEMFModel(URI uri) throws IOException {
-		try {
-			Resource resource = resourceSet.getResource(uri, true);
-			if(resource != null) {
-				if(!resource.getContents().isEmpty()) {
-					return resource.getContents().get(0);
-				}
-			}
-		} catch (Exception ex) {
-			throw new IOException(ex.toString());
-		}
-
-		return null;
+	private EObject loadEMFModel(URI sourceURI) throws IOException {
+		return EMFHelper.loadEMFModel(resourceSet, sourceURI);
 	}
 
 	private Preferences loadPreferences() {
@@ -254,6 +243,21 @@ public class ConfigurationManager {
 	}
 
 	/**
+	 * Adds a context via its URI. The URI should represent a valid Context model.
+	 * The model is loaded in the ConfigurationManager's resourceSet.
+	 * 
+	 * @param uri
+	 *        The context's URI
+	 * @throws IOException
+	 *         If the model behind this URI is not a valid Context
+	 */
+	public void addContext(URI uri) throws IOException {
+		Context context = (Context)loadEMFModel(uri);
+		if(context != null)
+			addContext(context, isApplied(context));
+	}
+
+	/**
 	 * Programmatically register a new context to this ConfigurationManager.
 	 * Most of the time, new contexts should be registered through {@link ContextExtensionPoint}.
 	 * However, you can still call this method when creating a Context at runtime, programmatically
@@ -268,13 +272,11 @@ public class ConfigurationManager {
 	 * @see ConfigurationManager#addContext(URI)
 	 */
 	public void addContext(Context context, boolean apply) {
-		if(getContext(context.getName()) != null) {
-			Activator.log.warn("A context with the same name is already registered : " + context.getName()); //$NON-NLS-1$
-		}
-
 		contexts.put(context.eResource().getURI(), context);
 		if(apply) {
 			enableContext(context);
+		} else {
+			disableContext(context);
 		}
 	}
 
@@ -294,9 +296,7 @@ public class ConfigurationManager {
 	 * @see #enableContext(Context)
 	 */
 	public void disableContext(Context context) {
-		if(!enabledContexts.remove(context)) {
-			return;
-		}
+		boolean update = enabledContexts.remove(context);
 
 		//Update the preferences
 		ContextDescriptor descriptor = findDescriptor(context);
@@ -305,8 +305,10 @@ public class ConfigurationManager {
 			savePreferences();
 		}
 
-		//Update the Engine
-		constraintEngine.contextChanged();
+		if(update) {
+			//Update the Engine
+			constraintEngine.contextChanged();
+		}
 	}
 
 	/**
@@ -349,22 +351,7 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * Adds a context via its URI. The URI should represent a valid Context model.
-	 * The model is loaded in the ConfigurationManager's resourceSet.
-	 * 
-	 * @param uri
-	 *        The context's URI
-	 * @throws IOException
-	 *         If the model behind this URI is not a valid Context
-	 */
-	public void addContext(URI uri) throws IOException {
-		Context context = (Context)loadEMFModel(uri);
-		if(context != null)
-			addContext(context, isApplied(context));
-	}
-
-	/**
-	 * Loads a Context from the given URI. The model is loaded in the {@link ConfigurationException}'s resourceSet
+	 * Loads a Context from the given URI. The model is loaded in the {@link ConfigurationManager}'s resourceSet
 	 * 
 	 * @param uri
 	 *        The URI from which the Context is loaded
@@ -576,5 +563,34 @@ public class ConfigurationManager {
 	 */
 	public static void init() {
 		instance.start();
+	}
+
+	public Property getProperty(String propertyPath, Context context) {
+		String elementName = propertyPath.substring(0, propertyPath.lastIndexOf(":"));
+		String propertyName = propertyPath.substring(propertyPath.lastIndexOf(":") + 1, propertyPath.length());
+		Set<DataContextElement> elements = new HashSet<DataContextElement>();
+
+		Collection<Context> allContexts;
+
+		if(context == null) {
+			allContexts = getContexts();
+		} else {
+			allContexts = Util.getDependencies(context);
+		}
+
+		for(Context ctx : allContexts) {
+			elements.addAll(ctx.getDataContexts());
+		}
+
+		DataContextElement element = Util.getContextElementByQualifiedName(elementName, elements);
+		if(element != null) {
+			for(Property property : element.getProperties()) {
+				if(property.getName().equals(propertyName)) {
+					return property;
+				}
+			}
+		}
+
+		return null;
 	}
 }

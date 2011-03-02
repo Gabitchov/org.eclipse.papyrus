@@ -64,24 +64,14 @@
         disposableProviderFactory="true" ecorePackage="Properties.ecore#//contexts">
       <genClasses ecoreClass="Properties.ecore#//contexts/Context">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Context/name"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/Context/views"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/Context/tabs"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/Context/dataContexts"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference Properties.ecore#//contexts/Context/dependencies"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/Context/tabs"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/Context/views"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/Context/dataContexts"/>
       </genClasses>
       <genClasses image="false" ecoreClass="Properties.ecore#//contexts/DisplayUnit">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/DisplayUnit/constraints"/>
-      </genClasses>
-      <genClasses ecoreClass="Properties.ecore#//contexts/View">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/View/name"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference Properties.ecore#//contexts/View/sections"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/View/elementMultiplicity"/>
-        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Properties.ecore#//contexts/View/context"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/View/automaticContext"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference Properties.ecore#//contexts/View/datacontexts"/>
       </genClasses>
       <genClasses ecoreClass="Properties.ecore#//contexts/Tab">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Tab/label"/>
@@ -92,6 +82,16 @@
             ecoreFeature="ecore:EReference Properties.ecore#//contexts/Tab/afterTab"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/Tab/sections"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Tab/indented"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//contexts/View">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/View/name"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference Properties.ecore#//contexts/View/sections"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/View/elementMultiplicity"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Properties.ecore#//contexts/View/context"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/View/automaticContext"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference Properties.ecore#//contexts/View/datacontexts"/>
       </genClasses>
       <genClasses ecoreClass="Properties.ecore#//contexts/Section">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Section/name"/>
@@ -114,6 +114,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Property/type"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Properties.ecore#//contexts/Property/contextElement"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Property/multiplicity"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Property/description"/>
       </genClasses>
       <genClasses ecoreClass="Properties.ecore#//contexts/UnknownProperty"/>
       <genClasses ecoreClass="Properties.ecore#//contexts/DataContextPackage">
@@ -163,6 +164,7 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference Properties.ecore#//ui/PropertyEditor/widgetType"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//ui/PropertyEditor/unresolvedProperty"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//ui/PropertyEditor/contentProviderClass"/>
       </genClasses>
       <genClasses ecoreClass="Properties.ecore#//ui/CompositeWidget">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//ui/CompositeWidget/layout"/>

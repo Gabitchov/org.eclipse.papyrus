@@ -451,8 +451,8 @@ public class ContextsItemProviderAdapterFactory extends ContextsAdapterFactory i
 	 */
 	public void dispose() {
 		if (contextItemProvider != null) contextItemProvider.dispose();
-		if (viewItemProvider != null) viewItemProvider.dispose();
 		if (tabItemProvider != null) tabItemProvider.dispose();
+		if (viewItemProvider != null) viewItemProvider.dispose();
 		if (sectionItemProvider != null) sectionItemProvider.dispose();
 		if (dataContextElementItemProvider != null) dataContextElementItemProvider.dispose();
 		if (propertyItemProvider != null) propertyItemProvider.dispose();

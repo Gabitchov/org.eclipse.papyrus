@@ -14,8 +14,7 @@ package org.eclipse.papyrus.properties.uml.modelelement;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.properties.modelelement.ModelElement;
+import org.eclipse.papyrus.properties.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.properties.uml.Activator;
 import org.eclipse.papyrus.properties.uml.databinding.MultiplicityObservableValue;
 import org.eclipse.papyrus.properties.uml.databinding.NavigationObservableValue;
@@ -29,7 +28,7 @@ import org.eclipse.uml2.uml.Property;
  * 
  * @author Camille Letavernier
  */
-public class MemberEndModelElement implements ModelElement {
+public class MemberEndModelElement extends AbstractModelElement {
 
 	private EObject source;
 
@@ -61,6 +60,7 @@ public class MemberEndModelElement implements ModelElement {
 		return null;
 	}
 
+	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		if(propertyPath.equals("multiplicity")) { //$NON-NLS-1$
 			return new StaticContentProvider(new String[]{ "0..*", "1..*", "0..1", "1" }); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
@@ -69,27 +69,16 @@ public class MemberEndModelElement implements ModelElement {
 		}
 	}
 
-	public ILabelProvider getLabelProvider(String propertyPath) {
-		return null; //Default provider
-	}
-
-	public boolean isOrdered(String propertyPath) {
-		return false;
-	}
-
-	public boolean isUnique(String propertyPath) {
-		return false;
-	}
-
+	@Override
 	public boolean isMandatory(String propertyPath) {
 		return true;
 	}
 
+	@Override
 	public boolean isEditable(String propertyPath) {
 		if(propertyPath.equals("owner")) { //$NON-NLS-1$
 			return ((Property)source).getAssociation().getMemberEnds().size() <= 2;
 		}
 		return true;
 	}
-
 }

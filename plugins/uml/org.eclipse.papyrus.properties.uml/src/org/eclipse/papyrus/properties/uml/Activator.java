@@ -12,7 +12,6 @@
 package org.eclipse.papyrus.properties.uml;
 
 import org.eclipse.papyrus.log.LogHelper;
-import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -46,7 +45,6 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(plugin);
-		ConfigurationManager.init();
 	}
 
 	/*

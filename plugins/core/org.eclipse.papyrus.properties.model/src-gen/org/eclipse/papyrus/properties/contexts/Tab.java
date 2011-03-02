@@ -96,7 +96,7 @@ public interface Tab extends EObject {
 	 * @return the value of the '<em>Category</em>' attribute.
 	 * @see #setCategory(String)
 	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getTab_Category()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	String getCategory();

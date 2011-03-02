@@ -33,6 +33,7 @@ import org.eclipse.papyrus.properties.ui.UiPackage;
  *   <li>{@link org.eclipse.papyrus.properties.ui.impl.PropertyEditorImpl#isReadOnly <em>Read Only</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.ui.impl.PropertyEditorImpl#getWidgetType <em>Widget Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.ui.impl.PropertyEditorImpl#getUnresolvedProperty <em>Unresolved Property</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.ui.impl.PropertyEditorImpl#getContentProviderClass <em>Content Provider Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -88,6 +89,26 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * @ordered
 	 */
 	protected UnknownProperty unresolvedProperty;
+
+	/**
+	 * The default value of the '{@link #getContentProviderClass() <em>Content Provider Class</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContentProviderClass()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CONTENT_PROVIDER_CLASS_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getContentProviderClass() <em>Content Provider Class</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContentProviderClass()
+	 * @generated
+	 * @ordered
+	 */
+	protected String contentProviderClass = CONTENT_PROVIDER_CLASS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -253,6 +274,27 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getContentProviderClass() {
+		return contentProviderClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContentProviderClass(String newContentProviderClass) {
+		String oldContentProviderClass = contentProviderClass;
+		contentProviderClass = newContentProviderClass;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.PROPERTY_EDITOR__CONTENT_PROVIDER_CLASS, oldContentProviderClass, contentProviderClass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -280,6 +322,8 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 				return basicGetWidgetType();
 			case UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY:
 				return getUnresolvedProperty();
+			case UiPackage.PROPERTY_EDITOR__CONTENT_PROVIDER_CLASS:
+				return getContentProviderClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -303,6 +347,9 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 				return;
 			case UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY:
 				setUnresolvedProperty((UnknownProperty)newValue);
+				return;
+			case UiPackage.PROPERTY_EDITOR__CONTENT_PROVIDER_CLASS:
+				setContentProviderClass((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -328,6 +375,9 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 			case UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY:
 				setUnresolvedProperty((UnknownProperty)null);
 				return;
+			case UiPackage.PROPERTY_EDITOR__CONTENT_PROVIDER_CLASS:
+				setContentProviderClass(CONTENT_PROVIDER_CLASS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -348,6 +398,8 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 				return widgetType != null;
 			case UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY:
 				return unresolvedProperty != null;
+			case UiPackage.PROPERTY_EDITOR__CONTENT_PROVIDER_CLASS:
+				return CONTENT_PROVIDER_CLASS_EDEFAULT == null ? contentProviderClass != null : !CONTENT_PROVIDER_CLASS_EDEFAULT.equals(contentProviderClass);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -364,6 +416,8 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (readOnly: ");
 		result.append(readOnly);
+		result.append(", contentProviderClass: ");
+		result.append(contentProviderClass);
 		result.append(')');
 		return result.toString();
 	}

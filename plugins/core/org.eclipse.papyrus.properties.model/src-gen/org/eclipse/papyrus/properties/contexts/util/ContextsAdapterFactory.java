@@ -80,12 +80,12 @@ public class ContextsAdapterFactory extends AdapterFactoryImpl {
 				return createDisplayUnitAdapter();
 			}
 			@Override
-			public Adapter caseView(View object) {
-				return createViewAdapter();
-			}
-			@Override
 			public Adapter caseTab(Tab object) {
 				return createTabAdapter();
+			}
+			@Override
+			public Adapter caseView(View object) {
+				return createViewAdapter();
 			}
 			@Override
 			public Adapter caseSection(Section object) {

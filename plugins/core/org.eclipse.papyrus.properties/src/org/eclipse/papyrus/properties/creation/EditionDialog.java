@@ -59,8 +59,9 @@ public class EditionDialog extends SelectionDialog {
 
 	@Override
 	public void create() {
+		setTitle("Create a new Element");
 		super.create();
-		getShell().setImage(Activator.getDefault().getImage("/icons/papyrus.png")); //$NON-NLS-1$
+		getShell().setImage(Activator.getDefault().getImage("org.eclipse.papyrus.widgets", "/icons/papyrus.png")); //$NON-NLS-1$
 		getShell().addDisposeListener(new DisposeListener() {
 
 			public void widgetDisposed(DisposeEvent e) {
@@ -68,6 +69,7 @@ public class EditionDialog extends SelectionDialog {
 			}
 
 		});
+
 		display();
 
 		//The values are data-binded, thus are edited in real time. It is not possible to cancel (However, Ctrl+Z should work)
@@ -107,6 +109,11 @@ public class EditionDialog extends SelectionDialog {
 		getShell().setSize(600, 400);
 
 		for(View view : views) {
+
+			//			if(getShell().getText() == null || getShell().getText().equals("")) {
+			//				getShell().setText(view.getName());
+			//			}
+
 			for(Section section : view.getSections()) {
 				XWTSection xwtSection = new XWTSection(section, view, display);
 				sections.add(xwtSection);

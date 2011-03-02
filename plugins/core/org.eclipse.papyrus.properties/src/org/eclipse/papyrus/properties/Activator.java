@@ -107,11 +107,32 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public Image getImage(String pluginId, String path) {
 		final ImageRegistry registry = getImageRegistry();
-		Image image = registry.get(path);
+		String key = pluginId + "/" + path;
+		Image image = registry.get(key);
 		if(image == null) {
-			registry.put(pluginId + "/" + path, AbstractUIPlugin.imageDescriptorFromPlugin(pluginId, path));
-			image = registry.get(path);
+			registry.put(key, AbstractUIPlugin.imageDescriptorFromPlugin(pluginId, path));
+			image = registry.get(key);
 		}
 		return image;
+	}
+
+	/**
+	 * Returns the image from the given path
+	 * 
+	 * @param imagePath
+	 *        The path of the image, in the form /<plug-in ID>/<path to the image>
+	 * @return
+	 *         The Image at the given location, or null if none was found
+	 */
+	public Image getImageFromPlugin(String imagePath) {
+		if(imagePath.startsWith("/")) {
+			String pluginId, path;
+			imagePath = imagePath.substring(1, imagePath.length());
+			pluginId = imagePath.substring(0, imagePath.indexOf("/"));
+			path = imagePath.substring(imagePath.indexOf("/"), imagePath.length());
+			return getImage(pluginId, path);
+		} else {
+			return getImage(imagePath);
+		}
 	}
 }

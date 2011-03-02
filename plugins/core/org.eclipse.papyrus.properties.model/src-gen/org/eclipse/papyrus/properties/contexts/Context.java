@@ -19,10 +19,10 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.Context#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.Context#getViews <em>Views</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.Context#getTabs <em>Tabs</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.Context#getDataContexts <em>Data Contexts</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.Context#getDependencies <em>Dependencies</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.Context#getTabs <em>Tabs</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.Context#getViews <em>Views</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.Context#getDataContexts <em>Data Contexts</em>}</li>
  * </ul>
  * </p>
  *

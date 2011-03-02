@@ -28,14 +28,16 @@ import org.eclipse.uml2.uml.Stereotype;
  */
 public class HasStereotypeConstraint extends AbstractConstraint {
 
-	private String stereotypeName;
+	protected String stereotypeName;
+
+	protected Element umlElement;
 
 	public boolean match(Object selection) {
-		Element umlElement = UMLUtil.resolveUMLElement(selection);
+		umlElement = UMLUtil.resolveUMLElement(selection);
 		if(umlElement == null)
 			return false;
 
-		Stereotype stereotype = umlElement.getAppliedStereotype(stereotypeName);
+		Stereotype stereotype = UMLUtil.getAppliedStereotype(umlElement, stereotypeName, false);
 		return stereotype != null;
 	}
 
@@ -48,6 +50,24 @@ public class HasStereotypeConstraint extends AbstractConstraint {
 				stereotypeName = ((ValueProperty)property).getValue();
 			}
 		}
+	}
+
+	@Override
+	public boolean overrides(Constraint constraint) {
+		boolean overrides = false;
+
+		if(constraint instanceof HasStereotypeConstraint) {
+			HasStereotypeConstraint stereotypeConstraint = (HasStereotypeConstraint)constraint;
+			if(!stereotypeName.equals(stereotypeConstraint.stereotypeName)) {
+				Stereotype thisStereotype = umlElement.getApplicableStereotype(stereotypeName);
+				Stereotype otherStereotype = umlElement.getApplicableStereotype(stereotypeConstraint.stereotypeName);
+				if(UMLUtil.getAllSuperStereotypes(thisStereotype).contains(otherStereotype)) {
+					overrides = true;
+				}
+			}
+		}
+
+		return overrides || super.overrides(constraint);
 	}
 
 	@Override

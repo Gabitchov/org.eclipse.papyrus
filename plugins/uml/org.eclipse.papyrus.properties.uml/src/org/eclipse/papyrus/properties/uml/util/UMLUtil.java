@@ -11,6 +11,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.uml.util;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -19,7 +23,9 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.properties.util.EMFHelper;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * A Helper class for UML
@@ -103,6 +109,58 @@ public class UMLUtil {
 	 */
 	public static EPackage getUMLMetamodel() {
 		return umlMetamodel;
+	}
+
+	/**
+	 * Search the given stereotype (By name) on the given UML Element.
+	 * If the search is not strict, the name may be the qualified name of a
+	 * sub-stereotype of an applied stereotype
+	 * 
+	 * @param umlElement
+	 *        The UML Element on which the stereotype is applied
+	 * @param stereotypeName
+	 *        The qualified name of the stereotype
+	 * @param strict
+	 *        If set to true, only a stereotype matching the exact qualified name
+	 *        will be returned. Otherwise, any subtype of the given stereotype may be
+	 *        returned. Note that if more than one stereotype is a substype of the
+	 *        given stereotype, the first matching stereotype is returned.
+	 * @return
+	 *         The first matching stereotype, or null if none was found
+	 */
+	public static Stereotype getAppliedStereotype(Element umlElement, String stereotypeName, boolean strict) {
+		Stereotype stereotype = umlElement.getAppliedStereotype(stereotypeName);
+		if(strict || stereotype != null)
+			return stereotype;
+
+		stereotype = umlElement.getApplicableStereotype(stereotypeName);
+		if(stereotype == null) {
+			return null;
+		}
+
+		for(Stereotype appliedStereotype : umlElement.getAppliedStereotypes()) {
+			if(getAllSuperStereotypes(appliedStereotype).contains(stereotype)) {
+				return appliedStereotype;
+			}
+		}
+
+		return null;
+	}
+
+	public static Collection<Stereotype> getAllSuperStereotypes(Stereotype stereotype) {
+		Set<Stereotype> result = new HashSet<Stereotype>();
+		if(stereotype != null)
+			getAllSuperStereotypes(stereotype, result);
+		return result;
+	}
+
+	private static void getAllSuperStereotypes(Stereotype stereotype, Set<Stereotype> result) {
+		result.add(stereotype);
+		for(Classifier superClassifier : stereotype.getGenerals()) {
+			if(superClassifier instanceof Stereotype && !result.contains(superClassifier)) {
+				getAllSuperStereotypes((Stereotype)superClassifier, result);
+			}
+		}
 	}
 
 	private static EPackage umlMetamodel = EPackage.Registry.INSTANCE.getEPackage("http://www.eclipse.org/uml2/3.0.0/UML"); //$NON-NLS-1$

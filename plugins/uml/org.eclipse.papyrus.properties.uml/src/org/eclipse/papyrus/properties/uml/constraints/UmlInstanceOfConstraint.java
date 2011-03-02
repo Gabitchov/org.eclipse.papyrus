@@ -89,4 +89,8 @@ public class UmlInstanceOfConstraint extends AbstractConstraint {
 			return false;
 		return true;
 	}
+
+	public String getClassName() {
+		return umlClassName;
+	}
 }

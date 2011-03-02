@@ -122,4 +122,9 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 	public Collection<Object> validateObjects(Collection<Object> objectsToValidate) {
 		return objectsToValidate;
 	}
+
+	@Override
+	public String getCreationDialogTitle() {
+		return "Create a new " + className;
+	}
 }

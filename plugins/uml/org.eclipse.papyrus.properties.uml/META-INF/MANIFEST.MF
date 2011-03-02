@@ -19,3 +19,7 @@ Require-Bundle: org.eclipse.core.runtime,
  com.google.inject;bundle-version="2.0.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %Bundle-Vendor
+Export-Package: org.eclipse.papyrus.properties.uml.constraints,
+ org.eclipse.papyrus.properties.uml.modelelement,
+ org.eclipse.papyrus.properties.uml.util
+Bundle-ActivationPolicy: lazy

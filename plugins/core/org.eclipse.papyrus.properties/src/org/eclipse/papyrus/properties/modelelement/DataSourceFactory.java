@@ -11,7 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.modelelement;
 
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.properties.contexts.Context;
@@ -46,30 +48,14 @@ public class DataSourceFactory {
 	 *         The DataSource that can be passed to the DisplayEngine to display the view
 	 */
 	public DataSource createDataSourceFromSelection(IStructuredSelection selection, View view) {
-		return new DataSource(view, selection);
-		//		SelectionEntry selectionEntry = new SelectionEntry(selection, view);
-		//
-		//		if(!sources.containsKey(selectionEntry)) {
-		//
-		//			//			Collection<DataContextElement> rootContextElements = view.getDatacontexts();
-		//
-		//			DataSource source = new DataSource(view, selection);
-		//
-		//			//			Set<DataContextElement> contextElements = getAllContextElements(rootContextElements);
-		//			//			for(DataContextElement contextElement : contextElements) {
-		//			//				String key = getQualifiedName(contextElement);
-		//			//				ModelElement modelElement = createModelElement(contextElement, selection);
-		//			//				if(modelElement == null) {
-		//			//					Activator.log.warn("Cannot find a matching ModelElement for " + key); //$NON-NLS-1$
-		//			//				} else {
-		//			//					source.addModelElement(key, modelElement);
-		//			//				}
-		//			//			}
-		//
-		//			sources.put(selectionEntry, source);
-		//		}
-		//
-		//		return sources.get(selectionEntry);
+		SelectionEntry selectionEntry = new SelectionEntry(selection, view);
+
+		if(!sources.containsKey(selectionEntry)) {
+			DataSource source = new DataSource(view, selection);
+			sources.put(selectionEntry, source);
+		}
+
+		return sources.get(selectionEntry);
 	}
 
 	/**
@@ -168,6 +154,9 @@ public class DataSourceFactory {
 			DataContextElement element = Util.getContextElementByQualifiedName(key, context.getDataContexts());
 			if(element != null) {
 				ModelElement modelElement = DataSourceFactory.instance.createModelElement(element, source.getSelection());
+				if(modelElement != null) {
+					modelElement.setDataSource(source);
+				}
 				return modelElement;
 			}
 		}
@@ -185,31 +174,31 @@ public class DataSourceFactory {
 	//		return getRootPackage(context).getName();
 	//	}
 
-	//	private class SelectionEntry {
-	//
-	//		private IStructuredSelection selection;
-	//
-	//		private View view;
-	//
-	//		public SelectionEntry(IStructuredSelection selection, View view) {
-	//			this.selection = selection;
-	//			this.view = view;
-	//		}
-	//
-	//		@Override
-	//		public boolean equals(Object obj) {
-	//			if(!(obj instanceof SelectionEntry))
-	//				return false;
-	//
-	//			SelectionEntry other = (SelectionEntry)obj;
-	//			return other.view.equals(view) && selection.equals(other.selection);
-	//		}
-	//
-	//		@Override
-	//		public int hashCode() {
-	//			return selection.hashCode() + view.hashCode();
-	//		}
-	//	}
-	//
-	//	//private Map<SelectionEntry, DataSource> sources = new HashMap<SelectionEntry, DataSource>();
+	private class SelectionEntry {
+
+		private IStructuredSelection selection;
+
+		private View view;
+
+		public SelectionEntry(IStructuredSelection selection, View view) {
+			this.selection = selection;
+			this.view = view;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if(!(obj instanceof SelectionEntry))
+				return false;
+
+			SelectionEntry other = (SelectionEntry)obj;
+			return other.view.equals(view) && selection.equals(other.selection);
+		}
+
+		@Override
+		public int hashCode() {
+			return selection.hashCode() + view.hashCode();
+		}
+	}
+
+	private Map<SelectionEntry, DataSource> sources = new HashMap<SelectionEntry, DataSource>();
 }

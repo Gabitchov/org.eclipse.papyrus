@@ -56,10 +56,6 @@ public class EMFQueryConstraint extends AbstractConstraint {
 	}
 
 	public boolean match(Object selection) {
-		//return true;
-
-		//@TODO : instantiate & evaluate a MoDisco query from a String (OCL) OR define the MoDisco query in the Properties model
-
 		if(query == null) {
 			return false;
 		}

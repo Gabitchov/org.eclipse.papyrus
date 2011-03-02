@@ -160,6 +160,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 
 		try {
 			control = (Control)XWT.load(parent, sectionFile, source);
+
 			if(control != null) {
 				control.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 				controls.add(control);
@@ -181,7 +182,8 @@ public class DefaultDisplayEngine implements DisplayEngine {
 		EObject tab = section.eContainer();
 		Context context = (Context)tab.eContainer();
 		if(context.eResource() == null) {
-			Activator.log.warn("No resource for Context : " + context); //$NON-NLS-1$
+			context = ConfigurationManager.instance.getContext(context.getName());
+			Activator.log.warn("No resource for Context : " + context + " ; refreshing the model"); //$NON-NLS-1$
 		}
 
 		URI sectionURI = URI.createURI(section.getSectionFile());

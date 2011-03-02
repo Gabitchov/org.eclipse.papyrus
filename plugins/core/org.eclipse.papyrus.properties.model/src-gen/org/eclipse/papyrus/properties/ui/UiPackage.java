@@ -227,13 +227,22 @@ public interface UiPackage extends EPackage {
 	int PROPERTY_EDITOR__UNRESOLVED_PROPERTY = WIDGET_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Content Provider Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_EDITOR__CONTENT_PROVIDER_CLASS = WIDGET_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Property Editor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_EDITOR_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 4;
+	int PROPERTY_EDITOR_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.properties.ui.impl.CompositeWidgetImpl <em>Composite Widget</em>}' class.
@@ -584,6 +593,17 @@ public interface UiPackage extends EPackage {
 	EReference getPropertyEditor_UnresolvedProperty();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.properties.ui.PropertyEditor#getContentProviderClass <em>Content Provider Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Content Provider Class</em>'.
+	 * @see org.eclipse.papyrus.properties.ui.PropertyEditor#getContentProviderClass()
+	 * @see #getPropertyEditor()
+	 * @generated
+	 */
+	EAttribute getPropertyEditor_ContentProviderClass();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.properties.ui.CompositeWidget <em>Composite Widget</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -850,6 +870,14 @@ public interface UiPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROPERTY_EDITOR__UNRESOLVED_PROPERTY = eINSTANCE.getPropertyEditor_UnresolvedProperty();
+
+		/**
+		 * The meta object literal for the '<em><b>Content Provider Class</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY_EDITOR__CONTENT_PROVIDER_CLASS = eINSTANCE.getPropertyEditor_ContentProviderClass();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.properties.ui.impl.CompositeWidgetImpl <em>Composite Widget</em>}' class.

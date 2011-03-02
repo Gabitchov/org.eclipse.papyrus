@@ -23,6 +23,7 @@ import org.eclipse.papyrus.properties.environment.PropertyEditorType;
  *   <li>{@link org.eclipse.papyrus.properties.ui.PropertyEditor#isReadOnly <em>Read Only</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.ui.PropertyEditor#getWidgetType <em>Widget Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.ui.PropertyEditor#getUnresolvedProperty <em>Unresolved Property</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.ui.PropertyEditor#getContentProviderClass <em>Content Provider Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -135,5 +136,31 @@ public interface PropertyEditor extends Widget {
 	 * @generated
 	 */
 	void setUnresolvedProperty(UnknownProperty value);
+
+	/**
+	 * Returns the value of the '<em><b>Content Provider Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Content Provider Class</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Content Provider Class</em>' attribute.
+	 * @see #setContentProviderClass(String)
+	 * @see org.eclipse.papyrus.properties.ui.UiPackage#getPropertyEditor_ContentProviderClass()
+	 * @model
+	 * @generated
+	 */
+	String getContentProviderClass();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.properties.ui.PropertyEditor#getContentProviderClass <em>Content Provider Class</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Content Provider Class</em>' attribute.
+	 * @see #getContentProviderClass()
+	 * @generated
+	 */
+	void setContentProviderClass(String value);
 
 } // PropertyEditor

@@ -1,7 +1,7 @@
 modeltype Ecore uses "http://www.eclipse.org/emf/2002/Ecore";
 modeltype PropertyContext uses "http://www.eclipse.org/papyrus/properties/contexts";
 modeltype PropertyEnvironment uses "http://www.eclipse.org/papyrus/properties/environment";
-modeltype PRoot uses "http://www.eclipse.org/papryus/properties/root";
+modeltype PRoot uses "http://www.eclipse.org/papyrus/properties/root";
 
 transformation ecore2datacontext(in ecore : Ecore, in pRoot : PRoot, out context : PropertyContext);
 
@@ -54,7 +54,7 @@ abstract mapping EClassifier::toDataContextElement() : element : DataContextElem
 
 mapping EClass::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View  inherits EClassifier::toDataContextElement{
 	element.properties := self.eStructuralFeatures->map toProperty(); 
-	element.supertypes := self.eSuperTypes->map toDataContextElement().element; 
+	element.supertypes := self.eSuperTypes->select(e | not e.oclIsKindOf(Ecore::EModelElement))->map toDataContextElement().element; 
 
 	viewSingle.name := 'Single '+self.name;
 	viewSingle.automaticContext := true;

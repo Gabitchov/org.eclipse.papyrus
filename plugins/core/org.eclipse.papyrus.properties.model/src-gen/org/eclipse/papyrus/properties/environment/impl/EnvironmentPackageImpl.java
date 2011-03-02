@@ -20,6 +20,7 @@ import org.eclipse.papyrus.properties.contexts.impl.ContextsPackageImpl;
 
 import org.eclipse.papyrus.properties.environment.CompositeWidgetType;
 import org.eclipse.papyrus.properties.environment.ConstraintType;
+import org.eclipse.papyrus.properties.environment.ContentProviderType;
 import org.eclipse.papyrus.properties.environment.Environment;
 import org.eclipse.papyrus.properties.environment.EnvironmentFactory;
 import org.eclipse.papyrus.properties.environment.EnvironmentPackage;

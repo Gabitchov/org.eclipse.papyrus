@@ -11,15 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.generation.wizard;
 
-import java.io.IOException;
-import java.util.Collections;
-
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.databinding.EMFProperties;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.contexts.DataContextPackage;
@@ -142,17 +136,6 @@ public class SelectFieldsPage extends AbstractCreateContextPage {
 		for(DataContextRoot dataContextRoot : context.getDataContexts()) {
 			ContextElement definition = createContextPackage(dataContextRoot);
 			selection.getContextElements().add(definition);
-		}
-
-
-		ResourceSet resourceSet = new ResourceSetImpl();
-		URI uri = URI.createPlatformResourceURI("test.xwt/fields.xmi", true); //$NON-NLS-1$
-		Resource resource = resourceSet.createResource(uri);
-		resource.getContents().add(selection);
-		try {
-			resource.save(Collections.EMPTY_MAP);
-		} catch (IOException ex) {
-			Activator.log.error(ex);
 		}
 
 		return selection;

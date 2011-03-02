@@ -29,7 +29,23 @@ import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
 /**
- * In case of Multi-selection, do we need to use several data sources?
+ * A DataSource is an object encapsulating one or more {@link ModelElement}s.
+ * It contains methods to resolve property paths, and forward the methods to
+ * the right ModelElement.
+ * 
+ * For example, a UML class stereotyped with the SysML::Blocks::Block will have
+ * two ModelElements : one for UML, and one for the Block stereotype.
+ * 
+ * It will be able to resolve paths such as UML:Class:name or
+ * SysML:Blocks:Block:isEncapsulated
+ * 
+ * The methods such as isUnique, isEditable or getContentProvider will be
+ * delegated to the resolved ModelElement, with a truncated property path.
+ * 
+ * For example, a call to DataSource#isEditable("UML:Class:name") will be
+ * forwarded to UMLModelElement#isEditable("name")
+ * 
+ * @author Camille Letavernier
  */
 public class DataSource implements IChangeListener {
 
@@ -57,9 +73,7 @@ public class DataSource implements IChangeListener {
 	}
 
 	private ModelElement getModelElement(String propertyPath) {
-		//Known modelElement : UML:Class
-		//Key : UML:Class:isAbstract (Unknown property)
-		//Key : UML:Classifier:isAbstract (Unknown modelElement)
+		//ConfigurationManager.instance.getProperty(propertyPath)
 		String key = propertyPath.substring(0, propertyPath.lastIndexOf(":")); //$NON-NLS-1$
 		ModelElement element = elements.get(key);
 		if(element == null) { //Try to resolve the modelElements on-the-fly
@@ -104,7 +118,7 @@ public class DataSource implements IChangeListener {
 
 	@Override
 	public String toString() {
-		return "[DataSource] " + elements.toString(); //$NON-NLS-1$
+		return "[DataSource] " + super.toString(); //$NON-NLS-1$
 	}
 
 	/**
@@ -231,5 +245,12 @@ public class DataSource implements IChangeListener {
 		if(element == null)
 			return false;
 		return element.isEditable(getLocalPropertyPath(propertyPath));
+	}
+
+	public boolean forceRefresh(String propertyPath) {
+		ModelElement element = getModelElement(propertyPath);
+		if(element == null)
+			return false;
+		return element.forceRefresh(getLocalPropertyPath(propertyPath));
 	}
 }

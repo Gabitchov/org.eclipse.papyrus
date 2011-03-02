@@ -137,4 +137,15 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 	public boolean canCreateObject() {
 		return false;
 	}
+
+	/**
+	 * @return
+	 *         The title of the dialog used to edit the newly created instance
+	 * 
+	 * @see #canCreateObject()
+	 * @see #createObject()
+	 */
+	public String getCreationDialogTitle() {
+		return "Create a new element";
+	}
 }

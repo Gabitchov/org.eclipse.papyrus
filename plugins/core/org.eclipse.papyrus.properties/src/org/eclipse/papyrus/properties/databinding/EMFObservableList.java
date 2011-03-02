@@ -92,7 +92,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 	 * @see org.eclipse.papyrus.widgets.editors.ICommitListener#commit()
 	 * 
 	 */
-	public void commit() {
+	public void commit(AbstractEditor editor) {
 
 		CompoundCommand compoundCommand = new CompoundCommand() {
 
@@ -154,10 +154,6 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 		wrappedList.clear();
 		wrappedList.addAll(concreteList);
 		fireListChange(null);
-	}
-
-	public void commit(AbstractEditor editor) {
-		commit();
 	}
 
 	@Override

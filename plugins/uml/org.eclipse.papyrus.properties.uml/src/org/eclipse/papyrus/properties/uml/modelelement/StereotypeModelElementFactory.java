@@ -19,11 +19,28 @@ import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.properties.modelelement.ModelElementFactory;
 import org.eclipse.papyrus.properties.uml.Activator;
+import org.eclipse.papyrus.properties.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * A Factory for building {@link StereotypeModelElement}s
+ * 
+ * Problem : There may be conflicts when more than one stereotype is applied, when
+ * retrieving properties of a common sub-stereotype. There is currently no way to
+ * distinguish the two stereotypes, as it is the name of the subtype that is used
+ * in such a case.
+ * For example, if B inherits A and C inherits A, and A has a property "name", the
+ * propertyPath in the XWT File will be : A:name
+ * If the UML Element has both stereotypes B and C, we don't know if A:name corresponds
+ * to B:name or C:name
+ * 
+ * TODO : enable the framework to handle B:name and C:name (Currently not possible,
+ * as "name" is not directly a property of B nor C)
+ * 
+ * Moreover, the framework doesn't handle multiple application of a given stereotype.
+ * However, Papyrus doesn't support this case in general, so the problem is not specific
+ * to this ModelElement.
  * 
  * @author Camille Letavernier
  */
@@ -35,13 +52,10 @@ public class StereotypeModelElementFactory implements ModelElementFactory {
 			IAdaptable adaptable = (IAdaptable)source;
 			Element umlElement = (Element)adaptable.getAdapter(EObject.class);
 
-			Stereotype stereotype = umlElement.getAppliedStereotype(getQualifiedName(context));
+			Stereotype stereotype = UMLUtil.getAppliedStereotype(umlElement, getQualifiedName(context), false);
 			EObject stereotypeApplication = umlElement.getStereotypeApplication(stereotype);
 
 			if(stereotypeApplication == null) {
-				//Looking for SysML::Blocks::Block properties on SysML::Blocks::ConstraintBlock
-				//Inherited properties aren't working well
-				//TODO : Correct bug
 				Activator.log.warn("Stereotype " + getQualifiedName(context) + " is not applied on " + umlElement); //$NON-NLS-1$ //$NON-NLS-2$
 			} else {
 				EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(stereotypeApplication);

@@ -30,7 +30,7 @@ import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
  * 
  * @author Camille Letavernier
  */
-public class CompositeModelElement implements ModelElement {
+public class CompositeModelElement extends AbstractModelElement {
 
 	public IObservableValue getObservable(String propertyPath) {
 		MultipleObservableValue observableValue = new MultipleObservableValue();
@@ -50,6 +50,7 @@ public class CompositeModelElement implements ModelElement {
 		elements.add(element);
 	}
 
+	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		if(elements.isEmpty())
 			return EmptyContentProvider.instance;
@@ -57,6 +58,7 @@ public class CompositeModelElement implements ModelElement {
 		return elements.get(0).getContentProvider(propertyPath);
 	}
 
+	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
 		if(elements.isEmpty())
 			return null;
@@ -64,6 +66,7 @@ public class CompositeModelElement implements ModelElement {
 		return elements.get(0).getLabelProvider(propertyPath);
 	}
 
+	@Override
 	public boolean isOrdered(String propertyPath) {
 		if(elements.isEmpty())
 			return false;
@@ -76,6 +79,7 @@ public class CompositeModelElement implements ModelElement {
 		return false;
 	}
 
+	@Override
 	public boolean isUnique(String propertyPath) {
 		if(elements.isEmpty())
 			return false;
@@ -88,6 +92,7 @@ public class CompositeModelElement implements ModelElement {
 		return true;
 	}
 
+	@Override
 	public boolean isMandatory(String propertyPath) {
 		if(elements.isEmpty())
 			return false;
@@ -100,6 +105,7 @@ public class CompositeModelElement implements ModelElement {
 		return true;
 	}
 
+	@Override
 	public boolean isEditable(String propertyPath) {
 		if(elements.isEmpty())
 			return false;
@@ -113,4 +119,17 @@ public class CompositeModelElement implements ModelElement {
 	}
 
 	private List<ModelElement> elements = new LinkedList<ModelElement>();
+
+	@Override
+	public boolean forceRefresh(String propertyPath) {
+		if(elements.isEmpty())
+			return false;
+
+		for(ModelElement element : elements) {
+			if(element.forceRefresh(propertyPath))
+				return true;
+		}
+
+		return false;
+	}
 }

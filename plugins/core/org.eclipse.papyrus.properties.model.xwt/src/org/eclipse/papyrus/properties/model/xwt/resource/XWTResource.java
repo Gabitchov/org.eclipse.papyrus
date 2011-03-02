@@ -198,6 +198,7 @@ public class XWTResource extends ResourceImpl {
 
 		ExecutionContextImpl context = new ExecutionContextImpl();
 		context.setConfigProperty("keepModeling", true); //$NON-NLS-1$
+		context.setLog(getLogger());
 
 		ExecutionDiagnostic result = executor.execute(context, inWidget, outXML);
 

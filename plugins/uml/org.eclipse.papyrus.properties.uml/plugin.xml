@@ -7,35 +7,25 @@
             contributorId="TreeOutlinePage"
             labelProvider="org.eclipse.papyrus.properties.providers.EMFObjectLabelProvider"
             tabDescriptorProvider="org.eclipse.papyrus.properties.xwt.XWTTabDescriptorProvider">
-         <propertyCategory
-               category="org.eclipse.papyrus">
-         </propertyCategory>
       </propertyContributor>
-   </extension>
-   <extension
-         point="org.eclipse.gmf.runtime.emf.core.Pathmaps">
-      <pathmap
-            name="UMLContext"
-            path="Model">
-      </pathmap>
    </extension>
    <extension
          point="org.eclipse.papyrus.properties.environment">
       <environment
-            environmentModel="Model/Environment.xmi">
+            environmentModel="Model/UML/Environment.xmi">
       </environment>
    </extension>
    <extension
          point="org.eclipse.papyrus.properties.context">
       <context
-            contextModel="Model/UML.ctx">
+            contextModel="Model/UML/UML.ctx">
       </context>
    </extension>
       <extension
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
             source="pathmap://UML_CONTEXT/"
-            target="platform:/plugin/org.eclipse.papyrus.properties.uml/Model/">
+            target="platform:/plugin/org.eclipse.papyrus.properties.uml/Model/UML/">
       </mapping>
    </extension>
 

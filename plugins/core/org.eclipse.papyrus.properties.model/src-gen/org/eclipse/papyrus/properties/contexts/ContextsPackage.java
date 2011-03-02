@@ -79,13 +79,13 @@ public interface ContextsPackage extends EPackage {
 	int CONTEXT__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Views</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT__VIEWS = 1;
+	int CONTEXT__DEPENDENCIES = 1;
 
 	/**
 	 * The feature id for the '<em><b>Tabs</b></em>' containment reference list.
@@ -97,22 +97,22 @@ public interface ContextsPackage extends EPackage {
 	int CONTEXT__TABS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Views</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT__VIEWS = 3;
+
+	/**
 	 * The feature id for the '<em><b>Data Contexts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT__DATA_CONTEXTS = 3;
-
-	/**
-	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTEXT__DEPENDENCIES = 4;
+	int CONTEXT__DATA_CONTEXTS = 4;
 
 	/**
 	 * The number of structural features of the '<em>Context</em>' class.
@@ -159,79 +159,7 @@ public interface ContextsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.properties.contexts.impl.ContextsPackageImpl#getView()
 	 * @generated
 	 */
-	int VIEW = 2;
-
-	/**
-	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW__CONSTRAINTS = DISPLAY_UNIT__CONSTRAINTS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW__NAME = DISPLAY_UNIT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Sections</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW__SECTIONS = DISPLAY_UNIT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Element Multiplicity</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW__ELEMENT_MULTIPLICITY = DISPLAY_UNIT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Context</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW__CONTEXT = DISPLAY_UNIT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Automatic Context</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW__AUTOMATIC_CONTEXT = DISPLAY_UNIT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Datacontexts</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW__DATACONTEXTS = DISPLAY_UNIT_FEATURE_COUNT + 5;
-
-	/**
-	 * The number of structural features of the '<em>View</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_FEATURE_COUNT = DISPLAY_UNIT_FEATURE_COUNT + 6;
+	int VIEW = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.properties.contexts.impl.TabImpl <em>Tab</em>}' class.
@@ -241,7 +169,7 @@ public interface ContextsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.properties.contexts.impl.ContextsPackageImpl#getTab()
 	 * @generated
 	 */
-	int TAB = 3;
+	int TAB = 2;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -314,6 +242,78 @@ public interface ContextsPackage extends EPackage {
 	 * @ordered
 	 */
 	int TAB_FEATURE_COUNT = 7;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__CONSTRAINTS = DISPLAY_UNIT__CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__NAME = DISPLAY_UNIT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Sections</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__SECTIONS = DISPLAY_UNIT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Element Multiplicity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__ELEMENT_MULTIPLICITY = DISPLAY_UNIT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__CONTEXT = DISPLAY_UNIT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Automatic Context</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__AUTOMATIC_CONTEXT = DISPLAY_UNIT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Datacontexts</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__DATACONTEXTS = DISPLAY_UNIT_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of structural features of the '<em>View</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_FEATURE_COUNT = DISPLAY_UNIT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.properties.contexts.impl.SectionImpl <em>Section</em>}' class.
@@ -490,13 +490,22 @@ public interface ContextsPackage extends EPackage {
 	int PROPERTY__MULTIPLICITY = 4;
 
 	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__DESCRIPTION = 5;
+
+	/**
 	 * The number of structural features of the '<em>Property</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_FEATURE_COUNT = 5;
+	int PROPERTY_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.properties.contexts.impl.UnknownPropertyImpl <em>Unknown Property</em>}' class.
@@ -552,6 +561,15 @@ public interface ContextsPackage extends EPackage {
 	 * @ordered
 	 */
 	int UNKNOWN_PROPERTY__MULTIPLICITY = PROPERTY__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNKNOWN_PROPERTY__DESCRIPTION = PROPERTY__DESCRIPTION;
 
 	/**
 	 * The number of structural features of the '<em>Unknown Property</em>' class.
@@ -1307,6 +1325,17 @@ public interface ContextsPackage extends EPackage {
 	EAttribute getProperty_Multiplicity();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.properties.contexts.Property#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.eclipse.papyrus.properties.contexts.Property#getDescription()
+	 * @see #getProperty()
+	 * @generated
+	 */
+	EAttribute getProperty_Description();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.properties.contexts.UnknownProperty <em>Unknown Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1855,6 +1884,14 @@ public interface ContextsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROPERTY__MULTIPLICITY = eINSTANCE.getProperty_Multiplicity();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY__DESCRIPTION = eINSTANCE.getProperty_Description();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.properties.contexts.impl.UnknownPropertyImpl <em>Unknown Property</em>}' class.

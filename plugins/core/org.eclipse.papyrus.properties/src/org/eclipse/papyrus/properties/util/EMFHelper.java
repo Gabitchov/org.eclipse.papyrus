@@ -11,13 +11,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.util;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.papyrus.properties.Activator;
 
 /**
@@ -162,6 +167,38 @@ public class EMFHelper {
 			return ePackage.getName();
 		}
 		return getQualifiedName(ePackage.getESuperPackage(), separator) + separator + ePackage.getName();
+	}
+
+
+	/**
+	 * Loads and returns the first EObject at the given URI.
+	 * The EObject is loaded in the given resourceSet.
+	 * 
+	 * @param resourceSet
+	 *        The ResourceSet in which the model will be loaded
+	 * @param uri
+	 *        The URI describing the location of the model to load
+	 * @return
+	 *         The first EObject located at the given URI
+	 * @throws IOException
+	 * 
+	 */
+	public static EObject loadEMFModel(ResourceSet resourceSet, URI uri) throws IOException {
+		if(resourceSet == null) {
+			resourceSet = new ResourceSetImpl();
+		}
+		try {
+			Resource resource = resourceSet.getResource(uri, true);
+			if(resource != null) {
+				if(!resource.getContents().isEmpty()) {
+					return resource.getContents().get(0);
+				}
+			}
+		} catch (Exception ex) {
+			throw new IOException(ex.toString(), ex);
+		}
+
+		return null;
 	}
 
 

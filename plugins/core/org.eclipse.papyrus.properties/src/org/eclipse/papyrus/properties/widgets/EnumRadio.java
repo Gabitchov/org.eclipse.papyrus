@@ -18,16 +18,18 @@ import org.eclipse.swt.widgets.Composite;
  * This Editor should only be used with Enums which have only
  * a small amount of values.
  * 
- * @see org.eclipse.papyrus.widgets.editors.EnumCombo
+ * @see org.eclipse.papyrus.widgets.editors.EnumRadio
  * 
  * @author Camille Letavernier
  */
 public class EnumRadio extends AbstractPropertyEditor {
 
 	/**
-	 * The EnumCombo widget
+	 * The EnumRadio widget
 	 */
-	protected org.eclipse.papyrus.widgets.editors.EnumCombo enumCombo;
+	protected org.eclipse.papyrus.widgets.editors.EnumRadio enumRadio;
+
+	private int numColumns = -1;
 
 	/**
 	 * Constructor.
@@ -38,13 +40,22 @@ public class EnumRadio extends AbstractPropertyEditor {
 	 *        The style for the widget
 	 */
 	public EnumRadio(Composite parent, int style) {
-		super(new org.eclipse.papyrus.widgets.editors.EnumCombo(parent, style));
-		enumCombo = (org.eclipse.papyrus.widgets.editors.EnumCombo)valueEditor;
+		super(new org.eclipse.papyrus.widgets.editors.EnumRadio(parent, style));
+		enumRadio = (org.eclipse.papyrus.widgets.editors.EnumRadio)valueEditor;
+	}
+
+	public void setNumColumns(int numColumns) {
+		this.numColumns = numColumns;
+		enumRadio.setNumColumns(numColumns);
+	}
+
+	public int getNumColumns() {
+		return numColumns;
 	}
 
 	@Override
 	protected void doBinding() {
-		enumCombo.setProviders(input.getContentProvider(propertyPath), null);
+		enumRadio.setProviders(input.getContentProvider(propertyPath), null);
 
 		super.doBinding();
 	}

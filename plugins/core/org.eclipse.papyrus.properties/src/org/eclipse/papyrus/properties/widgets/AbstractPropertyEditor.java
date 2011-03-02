@@ -15,7 +15,10 @@ import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.papyrus.properties.contexts.Context;
+import org.eclipse.papyrus.properties.contexts.Property;
 import org.eclipse.papyrus.properties.modelelement.DataSource;
+import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.properties.util.Util;
 import org.eclipse.papyrus.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.widgets.editors.AbstractListEditor;
@@ -68,13 +71,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 */
 	protected IObservableValue observableValue;
 
-	/**
-	 * Indicates if the PropertyEditor should listen on any modification on the Datasource
-	 * It may be useful to force the refresh on Observable that don't listen on the model,
-	 * such as some derived values (Which are not necessarily refreshed on model change)
-	 * Default value is false
-	 */
-	protected boolean forceRefresh = false;
+	public static int descriptionMaxCharPerLine = 200;
 
 	/**
 	 * Constructor.
@@ -165,47 +162,12 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 		}
 
 		AbstractEditor editor = getEditor();
-		editor.setReadOnly(isReadOnly);
+		if(editor != null)
+			editor.setReadOnly(isReadOnly);
 
-		updateRefreshListener();
-	}
-
-	/**
-	 * Updates the refreshListener
-	 * If forceRefresh is true, adds a change listener on the current input.
-	 * Otherwise, the listener is removed.
-	 * If the input Datasource is null, then nothing is done
-	 */
-	protected void updateRefreshListener() {
-		if(input == null)
-			return;
-
-		if(forceRefresh) {
+		if(input.forceRefresh(propertyPath)) {
 			input.addChangeListener(this);
-		} else {
-			input.removeChangeListener(this);
 		}
-	}
-
-	/**
-	 * Indicates if the PropertyEditor should listen on any modification on the Datasource
-	 * It may be useful to force the refresh on Observable that don't listen on the model,
-	 * such as some derived values (Which are not necessarily refreshed on model change)
-	 */
-	public boolean getForceRefresh() {
-		return forceRefresh;
-	}
-
-	/**
-	 * Indicates whether this editor should listen on any modification on the Datasource, and
-	 * refresh the widget's value on each change.
-	 * 
-	 * @param forceRefresh
-	 *        True if this editor should listen on any change on the Datasource, false otherwise
-	 */
-	public void setForceRefresh(boolean forceRefresh) {
-		this.forceRefresh = forceRefresh;
-		updateRefreshListener();
 	}
 
 	public void handleChange(ChangeEvent event) {
@@ -225,6 +187,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	public void setProperty(String path) {
 		propertyPath = path;
 		updateLabel();
+		updateDescription();
 		checkInput();
 	}
 
@@ -232,7 +195,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 * Updates the label for this PropertyEditor.
 	 */
 	public void updateLabel() {
-		String label = getPropertyName();
+		String label = getLabel();
 		if(input != null && input.isMandatory(propertyPath)) {
 			label += " *"; //$NON-NLS-1$
 		}
@@ -271,10 +234,49 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	/**
 	 * @return the formatted property name for this Property Editor
 	 */
-	protected String getPropertyName() {
-		if(getLocalPropertyPath() == null)
-			return ""; //$NON-NLS-1$
-		return Util.getLabel(getLocalPropertyPath());
+	protected String getLabel() {
+		Property property = getModelProperty();
+		if(property == null || property.getLabel() == null || property.getLabel().trim().equals(""))
+			return Util.getLabel(getLocalPropertyPath());
+
+		return property.getLabel();
+	}
+
+	/**
+	 * Updates the description for this PropertyEditor.
+	 * The description is the widget's ToolTipText
+	 */
+	protected void updateDescription() {
+		String description = "";
+		Property property = getModelProperty();
+		if(property != null)
+			description = property.getDescription();
+
+		if(description == null || description.trim().equals("")) {
+			return;
+		}
+
+		description = Util.resizeString(description, descriptionMaxCharPerLine);
+
+		if(valueEditor != null) {
+			valueEditor.setToolTipText(description);
+		} else if(listEditor != null) {
+			listEditor.setToolTipText(description);
+		}
+	}
+
+	protected Property getModelProperty() {
+		if(propertyPath == null)
+			return null;
+		Context context = getContext();
+		return ConfigurationManager.instance.getProperty(propertyPath, context);
+	}
+
+	private Context getContext() {
+		if(input == null)
+			return null;
+		else
+			return input.getView().getContext();
 	}
 
 	/**

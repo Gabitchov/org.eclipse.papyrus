@@ -16,6 +16,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
@@ -201,5 +203,47 @@ public class Util {
 				getAllContextElements(element.getSupertypes(), result);
 			}
 		}
+	}
+
+	/**
+	 * A util method to make big strings fit in a restricted amount of space,
+	 * such as a tooltip. The method will add new lines in the string at
+	 * a regular interval.
+	 * 
+	 * @param string
+	 *        The string to split
+	 * @param descriptionMaxCharPerLine
+	 *        The maximum number of characters per line in the resulting string
+	 * @return
+	 *         The split string
+	 */
+	public static String resizeString(String string, int maxCharPerLine) {
+		if(string == null || string.trim().length() <= maxCharPerLine) {
+			return string.trim();
+		}
+
+		String[] stringChunks = string.split("\n|\r|\r\n|\n\r");
+
+		List<String> chunks = new LinkedList<String>();
+
+		for(String chunk : stringChunks) {
+			chunk = chunk.trim();
+			if(chunk.length() > maxCharPerLine) {
+				Matcher matcher = Pattern.compile("(.{0," + maxCharPerLine + "}\\b\\p{Punct}?)").matcher(chunk);
+				while(matcher.find()) {
+					String group = matcher.group(1);
+					chunks.add(group);
+				}
+			} else {
+				chunks.add(chunk);
+			}
+		}
+
+		String result = "";
+		for(String chunk : chunks) {
+			result += chunk.trim() + "\n";
+		}
+
+		return result.trim();
 	}
 }

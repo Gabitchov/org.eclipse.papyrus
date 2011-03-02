@@ -131,8 +131,8 @@ public class ContextItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ContextsPackage.Literals.CONTEXT__VIEWS);
 			childrenFeatures.add(ContextsPackage.Literals.CONTEXT__TABS);
+			childrenFeatures.add(ContextsPackage.Literals.CONTEXT__VIEWS);
 			childrenFeatures.add(ContextsPackage.Literals.CONTEXT__DATA_CONTEXTS);
 		}
 		return childrenFeatures;
@@ -191,8 +191,8 @@ public class ContextItemProvider
 			case ContextsPackage.CONTEXT__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ContextsPackage.CONTEXT__VIEWS:
 			case ContextsPackage.CONTEXT__TABS:
+			case ContextsPackage.CONTEXT__VIEWS:
 			case ContextsPackage.CONTEXT__DATA_CONTEXTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -213,13 +213,13 @@ public class ContextItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ContextsPackage.Literals.CONTEXT__VIEWS,
-				 ContextsFactory.eINSTANCE.createView()));
+				(ContextsPackage.Literals.CONTEXT__TABS,
+				 ContextsFactory.eINSTANCE.createTab()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ContextsPackage.Literals.CONTEXT__TABS,
-				 ContextsFactory.eINSTANCE.createTab()));
+				(ContextsPackage.Literals.CONTEXT__VIEWS,
+				 ContextsFactory.eINSTANCE.createView()));
 
 		newChildDescriptors.add
 			(createChildParameter

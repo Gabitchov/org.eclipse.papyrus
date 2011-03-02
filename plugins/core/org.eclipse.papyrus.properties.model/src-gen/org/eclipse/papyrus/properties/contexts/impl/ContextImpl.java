@@ -38,10 +38,10 @@ import org.eclipse.papyrus.properties.contexts.View;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ContextImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ContextImpl#getViews <em>Views</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ContextImpl#getTabs <em>Tabs</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ContextImpl#getDataContexts <em>Data Contexts</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ContextImpl#getDependencies <em>Dependencies</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ContextImpl#getTabs <em>Tabs</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ContextImpl#getViews <em>Views</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ContextImpl#getDataContexts <em>Data Contexts</em>}</li>
  * </ul>
  * </p>
  *
@@ -69,14 +69,14 @@ public class ContextImpl extends EObjectImpl implements Context {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getViews() <em>Views</em>}' containment reference list.
+	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getViews()
+	 * @see #getDependencies()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<View> views;
+	protected EList<Context> dependencies;
 
 	/**
 	 * The cached value of the '{@link #getTabs() <em>Tabs</em>}' containment reference list.
@@ -89,6 +89,16 @@ public class ContextImpl extends EObjectImpl implements Context {
 	protected EList<Tab> tabs;
 
 	/**
+	 * The cached value of the '{@link #getViews() <em>Views</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getViews()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<View> views;
+
+	/**
 	 * The cached value of the '{@link #getDataContexts() <em>Data Contexts</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -97,16 +107,6 @@ public class ContextImpl extends EObjectImpl implements Context {
 	 * @ordered
 	 */
 	protected EList<DataContextRoot> dataContexts;
-
-	/**
-	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDependencies()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Context> dependencies;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -219,10 +219,10 @@ public class ContextImpl extends EObjectImpl implements Context {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ContextsPackage.CONTEXT__VIEWS:
-				return ((InternalEList<?>)getViews()).basicRemove(otherEnd, msgs);
 			case ContextsPackage.CONTEXT__TABS:
 				return ((InternalEList<?>)getTabs()).basicRemove(otherEnd, msgs);
+			case ContextsPackage.CONTEXT__VIEWS:
+				return ((InternalEList<?>)getViews()).basicRemove(otherEnd, msgs);
 			case ContextsPackage.CONTEXT__DATA_CONTEXTS:
 				return ((InternalEList<?>)getDataContexts()).basicRemove(otherEnd, msgs);
 		}
@@ -239,14 +239,14 @@ public class ContextImpl extends EObjectImpl implements Context {
 		switch (featureID) {
 			case ContextsPackage.CONTEXT__NAME:
 				return getName();
-			case ContextsPackage.CONTEXT__VIEWS:
-				return getViews();
-			case ContextsPackage.CONTEXT__TABS:
-				return getTabs();
-			case ContextsPackage.CONTEXT__DATA_CONTEXTS:
-				return getDataContexts();
 			case ContextsPackage.CONTEXT__DEPENDENCIES:
 				return getDependencies();
+			case ContextsPackage.CONTEXT__TABS:
+				return getTabs();
+			case ContextsPackage.CONTEXT__VIEWS:
+				return getViews();
+			case ContextsPackage.CONTEXT__DATA_CONTEXTS:
+				return getDataContexts();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -263,21 +263,21 @@ public class ContextImpl extends EObjectImpl implements Context {
 			case ContextsPackage.CONTEXT__NAME:
 				setName((String)newValue);
 				return;
-			case ContextsPackage.CONTEXT__VIEWS:
-				getViews().clear();
-				getViews().addAll((Collection<? extends View>)newValue);
+			case ContextsPackage.CONTEXT__DEPENDENCIES:
+				getDependencies().clear();
+				getDependencies().addAll((Collection<? extends Context>)newValue);
 				return;
 			case ContextsPackage.CONTEXT__TABS:
 				getTabs().clear();
 				getTabs().addAll((Collection<? extends Tab>)newValue);
 				return;
+			case ContextsPackage.CONTEXT__VIEWS:
+				getViews().clear();
+				getViews().addAll((Collection<? extends View>)newValue);
+				return;
 			case ContextsPackage.CONTEXT__DATA_CONTEXTS:
 				getDataContexts().clear();
 				getDataContexts().addAll((Collection<? extends DataContextRoot>)newValue);
-				return;
-			case ContextsPackage.CONTEXT__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection<? extends Context>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -294,17 +294,17 @@ public class ContextImpl extends EObjectImpl implements Context {
 			case ContextsPackage.CONTEXT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ContextsPackage.CONTEXT__VIEWS:
-				getViews().clear();
+			case ContextsPackage.CONTEXT__DEPENDENCIES:
+				getDependencies().clear();
 				return;
 			case ContextsPackage.CONTEXT__TABS:
 				getTabs().clear();
 				return;
+			case ContextsPackage.CONTEXT__VIEWS:
+				getViews().clear();
+				return;
 			case ContextsPackage.CONTEXT__DATA_CONTEXTS:
 				getDataContexts().clear();
-				return;
-			case ContextsPackage.CONTEXT__DEPENDENCIES:
-				getDependencies().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -320,14 +320,14 @@ public class ContextImpl extends EObjectImpl implements Context {
 		switch (featureID) {
 			case ContextsPackage.CONTEXT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ContextsPackage.CONTEXT__VIEWS:
-				return views != null && !views.isEmpty();
-			case ContextsPackage.CONTEXT__TABS:
-				return tabs != null && !tabs.isEmpty();
-			case ContextsPackage.CONTEXT__DATA_CONTEXTS:
-				return dataContexts != null && !dataContexts.isEmpty();
 			case ContextsPackage.CONTEXT__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
+			case ContextsPackage.CONTEXT__TABS:
+				return tabs != null && !tabs.isEmpty();
+			case ContextsPackage.CONTEXT__VIEWS:
+				return views != null && !views.isEmpty();
+			case ContextsPackage.CONTEXT__DATA_CONTEXTS:
+				return dataContexts != null && !dataContexts.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

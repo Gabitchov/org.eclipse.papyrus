@@ -30,6 +30,7 @@ import org.eclipse.papyrus.properties.databinding.EMFObservableValue;
 import org.eclipse.papyrus.properties.providers.EMFObjectLabelProvider;
 import org.eclipse.papyrus.properties.providers.EcoreEnumeratorContentProvider;
 import org.eclipse.papyrus.properties.providers.EcoreReferenceContentProvider;
+import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
 /**
@@ -40,7 +41,7 @@ import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
  * 
  * @author Camille Letavernier
  */
-public class EMFModelElement implements ModelElement {
+public class EMFModelElement extends AbstractModelElement {
 
 	/**
 	 * The EObject manipulated by this ModelElement
@@ -179,6 +180,7 @@ public class EMFModelElement implements ModelElement {
 		return FeaturePath.fromList(features);
 	}
 
+	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(featurePath);
@@ -189,13 +191,15 @@ public class EMFModelElement implements ModelElement {
 			return new EcoreReferenceContentProvider(feature, getSource(featurePath));
 		}
 
-		return null;
+		return EmptyContentProvider.instance;
 	}
 
+	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
 		return new EMFObjectLabelProvider();
 	}
 
+	@Override
 	public boolean isOrdered(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
 		if(feature == null)
@@ -203,6 +207,7 @@ public class EMFModelElement implements ModelElement {
 		return feature.isOrdered();
 	}
 
+	@Override
 	public boolean isUnique(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
 		if(feature == null)
@@ -210,6 +215,7 @@ public class EMFModelElement implements ModelElement {
 		return feature.isUnique();
 	}
 
+	@Override
 	public boolean isMandatory(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
 		if(feature == null)
@@ -217,10 +223,19 @@ public class EMFModelElement implements ModelElement {
 		return feature.isRequired();
 	}
 
+	@Override
 	public boolean isEditable(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
 		if(feature == null)
 			return false;
-		return !feature.isDerived() && feature.isChangeable();
+		return feature.isChangeable();
+	}
+
+	@Override
+	public boolean forceRefresh(String propertyPath) {
+		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature == null)
+			return false;
+		return feature.isDerived();
 	}
 }

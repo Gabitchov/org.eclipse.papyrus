@@ -62,6 +62,10 @@ public class Messages extends NLS {
 
 	/** The Reference dialog_ edit unset value */
 	public static String ReferenceDialog_UnsetValue;
+
+	/** the Enum radio_ no value */
+	public static String EnumRadio_NoValue;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

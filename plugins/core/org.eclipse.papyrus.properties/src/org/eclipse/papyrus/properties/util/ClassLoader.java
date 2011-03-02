@@ -27,11 +27,11 @@ public class ClassLoader {
 	 * @param className
 	 *        The qualified name of the Class to load.
 	 * @return
-	 *         The loaded Class
+	 *         The loaded Class, or null if an error occured
 	 */
 	public Class<?> loadClass(String className) {
 		try {
-			Class<?> clazz = Class.forName(className);
+			Class<?> clazz = Activator.getDefault().getBundle().loadClass(className);
 			return clazz;
 		} catch (ClassNotFoundException ex) {
 			Activator.log.error("Cannot load class " + className, ex); //$NON-NLS-1$

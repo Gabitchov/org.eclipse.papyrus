@@ -50,7 +50,7 @@
       <package
             class="org.eclipse.papyrus.properties.root.RootPackage"
             genModel="Model/PropertiesRoot.genmodel"
-            uri="http://www.eclipse.org/papryus/properties/root">
+            uri="http://www.eclipse.org/papyrus/properties/root">
       </package>
    </extension>
    <extension

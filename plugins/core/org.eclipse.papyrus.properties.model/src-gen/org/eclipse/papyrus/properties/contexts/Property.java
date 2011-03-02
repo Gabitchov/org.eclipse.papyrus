@@ -23,6 +23,7 @@ import org.eclipse.papyrus.properties.environment.Type;
  *   <li>{@link org.eclipse.papyrus.properties.contexts.Property#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.Property#getContextElement <em>Context Element</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.Property#getMultiplicity <em>Multiplicity</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.Property#getDescription <em>Description</em>}</li>
  * </ul>
  * </p>
  *
@@ -166,5 +167,31 @@ public interface Property extends EObject {
 	 * @generated
 	 */
 	void setMultiplicity(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getProperty_Description()
+	 * @model
+	 * @generated
+	 */
+	String getDescription();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.properties.contexts.Property#getDescription <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
+	 * @generated
+	 */
+	void setDescription(String value);
 
 } // Property
