@@ -51,7 +51,7 @@ public class CTemplateBindingCreateCommand extends org.eclipse.papyrus.diagram.c
 		if(target != null && false == target instanceof TemplateableElement) {
 			return false;
 		}
-		if(target != null && target instanceof TemplateableElement&& ((TemplateableElement)target).getOwnedTemplateSignature()!=null) {
+		if(target != null && target instanceof TemplateableElement&& ((TemplateableElement)target).getOwnedTemplateSignature()==null) {
 			return false;
 		}
 		if(getSource() == null) {
