@@ -21,7 +21,6 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.papyrus.compare.UMLCompareUtils;
-import org.eclipse.papyrus.compare.ui.PapyrusLabelProvider;
 import org.eclipse.papyrus.compare.ui.viewer.content.ElementContentMergeContentProvider.RootObject;
 import org.eclipse.papyrus.compare.ui.viewer.content.part.diff.UMLModelContentMergeDiffTab;
 import org.eclipse.papyrus.compare.ui.viewer.content.part.property.UMLPropertyContentProvider;
@@ -59,7 +58,15 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 
 		return result;
 	}
-
+	
+	public int getSelectedTab() {
+		return tabFolder.getSelectionIndex();
+	}
+	
+	public boolean isPropertyTab(int index) {
+		final IModelContentMergeViewerTab currentTab = tabs.get(index);
+		return (currentTab == properties);
+	}
 
 	@Override
 	protected IModelContentMergeViewerTab createModelContentMergeViewerTab(Composite parent) {
