@@ -15,11 +15,9 @@ package org.eclipse.papyrus.diagram.activity.edit.policies;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
@@ -35,7 +33,6 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ShapeNamedElementEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.activity.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
@@ -49,18 +46,8 @@ public class ActivityCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	private Set<EStructuralFeature> myFeaturesToSynchronize;
-
-	/**
-	 * @generated
-	 */
-	protected Set getFeaturesToSynchronize() {
-		if(myFeaturesToSynchronize == null) {
-			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Node());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedElement());
-		}
-		return myFeaturesToSynchronize;
+	protected EStructuralFeature getFeatureToSynchronize() {
+		return UMLPackage.eINSTANCE.getActivity_Node();
 	}
 
 	/**
@@ -88,8 +75,7 @@ public class ActivityCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		return visualID == ActivityParameterNodeEditPart.VISUAL_ID || visualID == ShapeNamedElementEditPart.VISUAL_ID;
+		return ActivityParameterNodeEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
 	}
 
 	/**

@@ -23,7 +23,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityParameterNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CommentLinkCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CommentLinkReorientCommand;
-import org.eclipse.papyrus.diagram.activity.edit.commands.ShapeNamedElementCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
@@ -67,7 +66,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ShapeNamedElementEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
@@ -94,9 +92,6 @@ public class ActivityItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.ActivityParameterNode_3059 == req.getElementType()) {
 			return getGEFWrapper(new ActivityParameterNodeCreateCommand(req));
-		}
-		if(UMLElementTypes.NamedElement_3085 == req.getElementType()) {
-			return getGEFWrapper(new ShapeNamedElementCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}
@@ -165,24 +160,6 @@ public class ActivityItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 						break;
 					}
 				}
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
-				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
-				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
-				break;
-			case ShapeNamedElementEditPart.VISUAL_ID:
-
-
-				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
-					Edge incomingLink = (Edge)it.next();
-					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
-					case CommentLinkEditPart.VISUAL_ID:
-						DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
-						cmd.add(new DestroyReferenceCommand(destroyRefReq));
-						cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
-						break;
-					}
-				}
-
 				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
 				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));

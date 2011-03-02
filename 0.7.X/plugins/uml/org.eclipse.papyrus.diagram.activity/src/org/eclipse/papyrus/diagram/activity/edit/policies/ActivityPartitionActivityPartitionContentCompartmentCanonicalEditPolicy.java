@@ -70,7 +70,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ShapeNamedElementEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
@@ -98,7 +97,6 @@ public class ActivityPartitionActivityPartitionContentCompartmentCanonicalEditPo
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Node());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Group());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedElement());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPostcondition());
 		}
@@ -153,7 +151,6 @@ public class ActivityPartitionActivityPartitionContentCompartmentCanonicalEditPo
 		case SequenceNodeEditPart.VISUAL_ID:
 		case StructuredActivityNodeEditPart.VISUAL_ID:
 		case ReadSelfActionEditPart.VISUAL_ID:
-		case ShapeNamedElementEditPart.VISUAL_ID:
 		case ActivityPartitionEditPart.VISUAL_ID:
 		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
 		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
