@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?>
+
+<plugin>
+<extension point="org.eclipse.ui.navigator.navigatorContent">
+      <navigatorContent
+         activeByDefault="false"
+         contentProvider="org.eclipse.papyrus.diagramdev.modelexplorer.DiagramContentProvider"
+         icon="icon/Actor.gif"
+         id="org.eclipse.papyrus.modelexplorer.NotationNavigatorContent"
+         labelProvider="org.eclipse.papyrus.diagramdev.modelexplorer.DiagramLabelProvider"
+         name="Notation Model Contents"
+         priority="lower">
+         <triggerPoints>
+            <or>
+               <instanceof value="org.eclipse.emf.ecore.EObject">
+               </instanceof>
+               <adapt type="org.eclipse.emf.ecore.EObject">
+               </adapt>
+               <instanceof value="java.lang.Object">
+               </instanceof>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <or>
+               <instanceof value="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
+               </instanceof>
+               <instanceof value="org.eclipse.gmf.runtime.notation.Diagram">
+               </instanceof>
+            </or>
+         </possibleChildren>
+         <actionProvider class="org.eclipse.papyrus.modelexplorer.actionprovider.GenericTransformActionProvider" id="org.eclipse.papyrus.modelexplorer.actionprovider.GenericTransformActionProvider">
+            <enablement>
+               <or>
+                  <adapt type="org.eclipse.emf.ecore.EObject">
+                  </adapt>
+               </or>
+            </enablement>
+         </actionProvider>
+         <actionProvider class="org.eclipse.papyrus.modelexplorer.actionprovider.EditingDomainActionProvider" id="org.eclipse.papyrus.modelexplorer.actionprovider.EditingDomainActionProvider">
+            <enablement>
+               <and>
+                  <not>
+                     <instanceof value="org.eclipse.gmf.runtime.notation.Diagram">
+                     </instanceof>
+                  </not>
+                  <adapt type="org.eclipse.emf.ecore.EObject">
+                  </adapt>
+               </and>
+            </enablement>
+         </actionProvider>
+         <dropAssistant class="org.eclipse.papyrus.modelexplorer.dnd.CommonDropAdapterAssistant" id="org.eclipse.papyrus.modelexplorer.dnd.CommonDropAdapterAssistant">
+            <possibleDropTargets>
+               <or>
+                  <instanceof value="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
+                  </instanceof>
+                  <instanceof value="org.eclipse.gmf.runtime.notation.Diagram">
+                  </instanceof>
+               </or>
+            </possibleDropTargets>
+         </dropAssistant>
+      </navigatorContent>
+   </extension>
+  
+    <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization file="resource/notation.uiCustom"/>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.query.registration">
+      <modelqueryset file="resource/Notation.querySet"/>
+   </extension>
+</plugin>
