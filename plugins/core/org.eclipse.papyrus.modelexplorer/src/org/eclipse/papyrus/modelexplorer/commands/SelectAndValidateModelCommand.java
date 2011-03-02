@@ -20,13 +20,16 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.preference.PreferenceDialog;
 import org.eclipse.papyrus.validation.AbstractValidateCommand;
+import org.eclipse.ui.dialogs.PreferencesUtil;
 
 
-public class ValidateSubtreeCommand extends AbstractValidateCommand {
-	
-	public ValidateSubtreeCommand (EObject selectedElement) {
-		super ("Validate subtree", TransactionUtil.getEditingDomain (selectedElement), selectedElement);
+public class SelectAndValidateModelCommand extends AbstractValidateCommand {
+
+	public SelectAndValidateModelCommand(EObject selectedElement) {
+		super("Validate subtree", TransactionUtil.getEditingDomain(selectedElement), selectedElement);
 	}
 
 	/**
@@ -35,7 +38,23 @@ public class ValidateSubtreeCommand extends AbstractValidateCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		runValidation (selectedElement);
+		String idRootPage = "org.eclipse.emf.validation.ui.rootPage";
+		String idConstraints = "org.eclipse.emf.validation.constraintsPrefs";
+		String filter[] = {
+			idRootPage,
+			idConstraints
+		};
+		PreferenceDialog dialog = PreferencesUtil.createPreferenceDialogOn(null, idConstraints, filter, null);
+		int result = dialog.open();
+
+		if(result == IDialogConstants.OK_ID) {
+			EObject selectedObject = selectedElement;
+			// replace selection by model instead of current selection
+			while(selectedObject.eContainer() != null) {
+				selectedObject = selectedObject.eContainer();
+			}
+			runValidation(selectedObject);
+		}
 		return null;
-	}		
+	}
 }

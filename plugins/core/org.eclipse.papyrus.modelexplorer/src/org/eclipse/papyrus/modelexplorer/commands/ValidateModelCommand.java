@@ -20,14 +20,16 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.papyrus.validation.AbstractValidateCommand;
+
 
 
 public class ValidateModelCommand extends AbstractValidateCommand {
-	
-	public ValidateModelCommand (EObject selectedElement) {
-		super ("Validate model", TransactionUtil.getEditingDomain (selectedElement), selectedElement);
+
+	public ValidateModelCommand(EObject selectedElement) {
+		super("Validate model", TransactionUtil.getEditingDomain(selectedElement), selectedElement);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -35,11 +37,11 @@ public class ValidateModelCommand extends AbstractValidateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		EObject selectedObject = selectedElement;
 		// replace selection by model instead of current selection
-		while (selectedObject.eContainer() != null) {
-			selectedObject = selectedObject.eContainer ();
+		while(selectedObject.eContainer() != null) {
+			selectedObject = selectedObject.eContainer();
 		}
-		runValidation (selectedObject);
+		runValidation(selectedObject);
 
 		return null;
-	}		
+	}
 }

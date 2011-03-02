@@ -29,6 +29,9 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.validation.preferences.PreferencePage;
+import org.eclipse.papyrus.validation.preferences.PreferencePage.MarkChildren;
 
 public class ValidationTool {
 
@@ -161,10 +164,12 @@ public class ValidationTool {
 	 */
 	public int getSeverity() {
 		IMarker markers[] = getMarkers();
+		MarkChildren markChildren = PreferencePage.getHierarchicalMarkers();
 		int severity = 0;
 		if (markers != null) {
 			for (IMarker marker : markers) {
 				EObject eObjectOfMarker = eObjectOfMarker(marker);
+				boolean first = true;
 				while (eObjectOfMarker != null) {
 					if (eObjectOfMarker == getEObject()) {
 						try {
@@ -178,6 +183,12 @@ public class ValidationTool {
 					}
 					// navigate to parents, since parent folder is contaminated as well
 					eObjectOfMarker = eObjectOfMarker.eContainer();
+					if (markChildren != MarkChildren.ALL) {
+						if ((!first) || (markChildren == MarkChildren.NO)) {
+							break;
+						}
+					}
+					first = false;
 				}
 			}
 		}
@@ -190,8 +201,9 @@ public class ValidationTool {
 	 */
 	public String getMarkerMessages() {
 		IMarker markers[] = getMarkers();
+		MarkChildren markChildren = PreferencePage.getHierarchicalMarkers();
 		if (markers != null) {
-			boolean examineChilds = true;
+			boolean examineChilds = (markChildren != MarkChildren.NO);
 			String message = "";
 			for (IMarker marker : markers) {
 				EObject eObjectOfMarker = eObjectOfMarker(marker);
@@ -208,6 +220,7 @@ public class ValidationTool {
 				}
 				if (examineChilds && (eObjectOfMarker != null)) {
 					eObjectOfMarker = eObjectOfMarker.eContainer();
+					boolean first = true;
 					while (eObjectOfMarker != null) {
 						if (eObjectOfMarker == getEObject ()) {
 							if (message.length() > 0) {
@@ -219,6 +232,10 @@ public class ValidationTool {
 						}
 						// navigate to parents, since parent folder is contaminated as well
 						eObjectOfMarker = eObjectOfMarker.eContainer();
+						if ((!first) && (markChildren == MarkChildren.DIRECT)) {
+							break;
+						}
+						first = false;
 					}
 				}
 			}

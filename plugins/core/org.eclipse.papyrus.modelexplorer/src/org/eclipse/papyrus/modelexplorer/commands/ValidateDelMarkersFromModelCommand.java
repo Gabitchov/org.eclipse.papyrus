@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.papyrus.validation.AbstractValidateCommand;
 
 
 public class ValidateDelMarkersFromModelCommand extends AbstractValidateCommand {
