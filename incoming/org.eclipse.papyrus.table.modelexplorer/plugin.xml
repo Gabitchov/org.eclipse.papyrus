@@ -168,5 +168,13 @@
             type="org.eclipse.jface.viewers.IStructuredSelection">
       </propertyTester>
    </extension>
+   <!--We add a drag assistant in order support drag and drop between Model Explorer and Table  -->
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <dragAssistant
+            class="org.eclipse.papyrus.table.modelexplorer.dnd.CustomDragAdapterAssistant"
+            viewerId="org.eclipse.papyrus.modelexplorer.modelexplorer">
+      </dragAssistant>
+   </extension>
 
 </plugin>

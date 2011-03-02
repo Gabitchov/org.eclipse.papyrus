@@ -40,7 +40,7 @@ import org.eclipse.ui.PlatformUI;
  * This action allows to add selected elements in the model explorer in the last opened table
  * 
  * 
- * @deprecated : the drop action should be provided by the model explorer
+ * @deprecated : the drag&drop replaces this action
  */
 @Deprecated
 public class AddToCurrentTableAction {

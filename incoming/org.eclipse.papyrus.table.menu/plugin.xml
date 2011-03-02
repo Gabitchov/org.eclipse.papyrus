@@ -38,6 +38,8 @@
             commandId="org.eclipse.papyrus.table.menu.add.in.table">
       </handler>
    </extension>
+   <!-- We remove this action, between, now we have the Drag&Drop -->
+   <!--
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
@@ -61,6 +63,7 @@
          </command>
       </menuContribution>
    </extension>
+   -->
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution

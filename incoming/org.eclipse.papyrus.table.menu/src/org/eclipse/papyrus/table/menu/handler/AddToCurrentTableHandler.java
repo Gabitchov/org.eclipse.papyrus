@@ -31,7 +31,7 @@ import org.eclipse.ui.PlatformUI;
  * 
  * This handler is used to add element in a open table
  * 
- * @deprecated : a drop action provided by the Model Explorer should replace this action
+ * @deprecated : a drop action provided by the Model Explorer replaces this action
  */
 @Deprecated
 public class AddToCurrentTableHandler extends org.eclipse.papyrus.diagram.menu.actions.handlers.AbstractGraphicalCommandHandler {
