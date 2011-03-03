@@ -42,8 +42,10 @@ import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.validation.
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
 import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
@@ -139,23 +141,34 @@ public class StereotypeApplicationPopupEditorConfigurationContribution extends P
 				for (Property p : stereotype.getAllAttributes()) {
 					if (! (p.getName().startsWith("base_") || p.isDerived())) {
 						Object value = stereotypedElement.getValue(stereotype, p.getName()) ;
-						if (value instanceof EnumerationLiteral)
-							if (p.getType() instanceof Stereotype || p.getType() instanceof org.eclipse.uml2.uml.Class)
+						if (value instanceof EnumerationLiteral) {
+							if (p.getType() instanceof Stereotype || p.getType() instanceof org.eclipse.uml2.uml.Class) {
 								value = VSLProposalUtils.getNameLabel((NamedElement)value) ;
-							else
+							}
+							else {
 								value = ((NamedElement)value).getName() ;
-						else if (value instanceof NamedElement)
+							}
+						}
+						else if (value instanceof NamedElement) {
 							value = VSLProposalUtils.getNameLabel((NamedElement)value);
+						}
 						else if (value instanceof EObject) {
 							Element stereoElement = UMLUtil.getBaseElement((EObject)value);
-							if(stereoElement!=null && stereoElement instanceof NamedElement)
+							if(stereoElement!=null && stereoElement instanceof NamedElement) {
 								value = VSLProposalUtils.getNameLabel(((NamedElement)stereoElement));
+							}
 							else {
 								// TODO ... Compute a label in case of Element without Name
 								value = "/* The referenced element is not a named element. You should edit this stereotype with the property view */" ;
 							}
-
 						}
+						else if (value instanceof String) {
+							if ((p.getType() instanceof PrimitiveType) && (p.getType().getName().equals("String"))) {
+								// quote strings
+								value = "\"" + value + "\"";
+							}
+						}
+						
 						if (value != null && value instanceof List) {
 							List listOfValues = (List) value ;
 							if (! listOfValues.isEmpty()) {
@@ -258,19 +271,26 @@ public class StereotypeApplicationPopupEditorConfigurationContribution extends P
 				stereotypedElement.applyStereotype(stereotype) ;
 				for (TagSpecificationRule tag : sApp.getTagSpecification()) {
 					Property property = tag.getProperty() ;
+					Type type = property.getType() ;
 					ExpressionValueRule value = tag.getValue() ; 
 					Object valueRepresentation = null ;
 
 					// TODO shouldStoreObjectsAndNotStrings is not enough. Should have a specific boolean for the case of stereotype applications
 					boolean shouldStoreObjectsAndNotStrings = 
-						(property.getType() instanceof Stereotype ||
-								property.getType() instanceof org.eclipse.uml2.uml.Class) ;  
+						(type instanceof Stereotype || type instanceof org.eclipse.uml2.uml.Class) ;  
 					boolean propertyIsACollection = 
 						VSLJavaValidator.isACollection(((ExpressionValueRule) value).getExpression()) != null;
 
 					if (! propertyIsACollection) {
 						if (! shouldStoreObjectsAndNotStrings) {
 							valueRepresentation = VSLSerializationUtil.printExpression(((ExpressionValueRule)value).getExpression()) ;
+							if ((type instanceof PrimitiveType) && (type.getName().equals("String")) && (valueRepresentation instanceof String)) {
+								// unquote Strings, remove 1st and last character
+								String stringValue = (String) valueRepresentation;
+								if (stringValue.length() >= 2) {
+									valueRepresentation = stringValue.substring(1, stringValue.length()-2);
+								}
+							}
 						}
 						else {
 							NameOrChoiceOrBehaviorCall nameRule = VSLSerializationUtil.extractNameReference(((ExpressionValueRule)value).getExpression()) ;
