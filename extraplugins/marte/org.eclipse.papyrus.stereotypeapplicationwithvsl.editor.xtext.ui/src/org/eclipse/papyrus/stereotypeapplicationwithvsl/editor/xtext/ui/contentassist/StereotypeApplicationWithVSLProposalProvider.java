@@ -48,7 +48,8 @@ public class StereotypeApplicationWithVSLProposalProvider extends AbstractStereo
 		for (EObject o : visibleProperties) {
 			NamedElement namedElement = (NamedElement) o ;
 			if (namedElement.getName().toLowerCase().contains(context.getPrefix().toLowerCase())) {
-				String completionString = context.getPrefix() + namedElement.getName().substring(context.getPrefix().length()) + " = ";
+				String completionString =
+					context.getPrefix() + namedElement.getName().substring(context.getPrefix().length()) + " = ";
 				String displayString = namedElement.getName() ;
 				if (namedElement instanceof TypedElement) {
 					TypedElement typedElement = (TypedElement) namedElement ;
