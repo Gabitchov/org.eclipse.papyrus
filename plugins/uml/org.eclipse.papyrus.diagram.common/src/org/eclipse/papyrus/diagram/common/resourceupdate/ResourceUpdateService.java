@@ -34,12 +34,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.lifecycleevents.DoSaveEvent;
-import org.eclipse.papyrus.core.lifecycleevents.ILifeCycleEventsProvider;
-import org.eclipse.papyrus.core.lifecycleevents.ISaveEventListener;
 import org.eclipse.papyrus.core.services.IService;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.swt.widgets.Display;
@@ -68,32 +66,6 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 
 		modelSet = servicesRegistry.getService(ModelSet.class);
 		editor = servicesRegistry.getService(IMultiDiagramEditor.class);
-		// register lifecycle events related to "save": a reload should not be
-		// proposed if the resource change was caused by a save of *this* editor,
-		// hence the listener is temporary deactivated.
-		ILifeCycleEventsProvider lifeCycleEvents = servicesRegistry.getService(ILifeCycleEventsProvider.class);
-		lifeCycleEvents.addDoSaveListener(new ISaveEventListener() {
-
-			public void doSave(DoSaveEvent event) {
-				deactivate();
-			}
-
-			public void doSaveAs(DoSaveEvent event) {
-				// isActive = false;
-				deactivate();
-			}
-		});
-		lifeCycleEvents.addPostDoSaveListener(new ISaveEventListener() {
-
-			public void doSave(DoSaveEvent event) {
-				activate();
-			}
-
-			public void doSaveAs(DoSaveEvent event) {
-				isActive = true;
-				activate();
-			}
-		});
 	}
 
 	/**
@@ -126,7 +98,7 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 	 */
 	public boolean visit(IResourceDelta delta) {
 		if(!isActive) {
-			// don't follow resource changes, once inactive (either due to save or due to a pending user dialog) 
+			// don't follow resource changes, once inactive (due to a pending user dialog) 
 			return false;
 		}
 		IResource changedResource = delta.getResource();
@@ -156,15 +128,27 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 			// model-aware representation of the resource
 			if(normalizedURI.path().endsWith(changedResourcePath)) {
 				if(changedResourcePathWOExt.equals(modelSet.getFilenameWithoutExtension())) {
-					// model itself has changed. Ask user
-					resourceOfMainModelChanged = true;
-					break;
+					// model itself has changed.
+					// check before, if it is not the model of the active Papyrus editor (which may perform a save/saveAs operation)
+					IMultiDiagramEditor editor = EditorUtils.getMultiDiagramEditor();
+					if(editor != null) {
+						try {
+							ModelSet modelSetOfActiveEditor = editor.getServicesRegistry().getService(ModelSet.class);
+							if(!changedResourcePathWOExt.equals(modelSetOfActiveEditor.getFilenameWithoutExtension())) {
+								// if !equal: resource opened by a non-active editor has changed
+								// => change is not the result of save/saveAs operation => ask user 
+								resourceOfMainModelChanged = true;
+								break;
+							}
+						} catch (ServiceException e) {
+						}
+					}
 				}
 				// changed resource does not belong to the model, it might however belong to a referenced
-				// model. Since the referenced model is not editable, it can be unloaded without asking
-				// the user (it will be reloaded on demand)
+				// model. Since the referenced model is not editable (TODO: might change? see bug 317430),
+				// it can be unloaded without asking the user (it will be reloaded on demand)
 
-				if(resource.isLoaded()) {
+				else if(resource.isLoaded()) {
 					EList<EObject> contents = resource.getContents();
 					if((contents.size() > 0) && (contents.get(0) instanceof Profile)) {
 						// don't touch profiles
@@ -244,7 +228,7 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 	private ModelSet modelSet;
 
 	// private ILifeCycleEventsProvider lifeCycleEvents;
-	
+
 	private void activate() {
 		// ... add service to the workspace
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(this, IResourceChangeEvent.POST_CHANGE);
