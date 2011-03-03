@@ -147,7 +147,7 @@ public class CreateInReferencingGroupEditPolicy extends CreationEditPolicy {
 		semanticCommand.compose(setUpReferences);
 		//ChooseParentNotificationCommand
 		CompositeCommand choiceCommand = null;
-		if(graphicalParents != null && modelParents != null) {
+		if(graphicalParents != null && modelParents != null && (modelParents.size() > 1 || graphicalParents.size() > 1)) {
 			String chooseCommandLabel = "Print choice notifications";//$NON-NLS-1$
 			choiceCommand = new CompositeCommand(chooseCommandLabel);
 			if(graphicalParents.size() > 1) {
