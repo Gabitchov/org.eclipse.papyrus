@@ -92,7 +92,7 @@ public class PapyrusControlAction extends ControlAction {
 			// check if action is disabled by an extension
 			enableControl &= cond.enableControl(eObject);
 		}
-		return enableControl && getEditingDomain().isControllable(eObject) && !AdapterFactoryEditingDomain.isControlled(eObject) && getDiagram(eObject);
+		return enableControl && getEditingDomain().isControllable(eObject) && !AdapterFactoryEditingDomain.isControlled(eObject);
 	}
 
 	/**
@@ -159,6 +159,11 @@ public class PapyrusControlAction extends ControlAction {
 			}
 			if(!enableControl) {
 				NotificationBuilder.createAsyncPopup("You must perform control action from the resource:\n" + eObject.eResource().getURI().trimFileExtension().toString() + " for this element").setType(Type.INFO).run();
+				return;
+			}
+			
+			if (!getDiagram(eObject)) {
+				NotificationBuilder.createAsyncPopup("The selected package must contain a diagram to perform control action").setType(Type.INFO).run();
 				return;
 			}
 
