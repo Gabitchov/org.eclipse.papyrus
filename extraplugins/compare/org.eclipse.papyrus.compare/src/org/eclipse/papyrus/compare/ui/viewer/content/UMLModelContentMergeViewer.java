@@ -100,6 +100,10 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 	private boolean isPropertyTab(int index) {
 		return myLeftPart.isPropertyTab(index);
 	}
+	
+	public boolean isShowAllProperties() {
+		return myShowAllProperties.isChecked();
+	}
 
 	/**
 	 * Bug 338414 - [UML Compare] Filter only changes properties in the Merge Property Viewer

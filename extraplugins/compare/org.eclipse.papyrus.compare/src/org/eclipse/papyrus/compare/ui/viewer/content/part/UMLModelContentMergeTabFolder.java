@@ -13,22 +13,33 @@
  *****************************************************************************/
 package org.eclipse.papyrus.compare.ui.viewer.content.part;
 
+import java.util.List;
+
+import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
+import org.eclipse.emf.compare.match.metamodel.Match2Elements;
+import org.eclipse.emf.compare.match.metamodel.impl.Match2ElementsImpl;
+import org.eclipse.emf.compare.ui.util.EMFCompareConstants;
+import org.eclipse.emf.compare.ui.util.EMFCompareEObjectUtils;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
 import org.eclipse.emf.compare.ui.viewer.content.part.IModelContentMergeViewerTab;
 import org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder;
 import org.eclipse.emf.compare.ui.viewer.content.part.property.ModelContentMergePropertyTab;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.papyrus.compare.ui.viewer.content.ElementContentMergeContentProvider.RootObject;
+import org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewer;
 import org.eclipse.papyrus.compare.ui.viewer.content.part.diff.UMLModelContentMergeDiffTab;
+import org.eclipse.papyrus.compare.ui.viewer.content.part.property.UMLModelContentMergePropertyTab;
 import org.eclipse.papyrus.compare.ui.viewer.content.part.property.UMLPropertyContentProvider;
 import org.eclipse.swt.widgets.Composite;
 
 
 public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
-
+	
 
 	public UMLModelContentMergeTabFolder(ModelContentMergeViewer viewer, Composite composite, int side) {
 		super(viewer, composite, side);
@@ -42,6 +53,22 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 		return diffTab;
 
 	}
+	
+	@Override
+	protected IModelContentMergeViewerTab createModelContentMergeViewerTab(Composite parent) {
+		ModelContentMergePropertyTab propertyTab = new ModelContentMergePropertyTab(parent, partSide, this);
+		propertyTab.setContentProvider(new UMLPropertyContentProvider());
+		return new UMLModelContentMergePropertyTab(propertyTab, parentViewer);
+	}
+	
+	
+	protected EObject findMatchFromElement(EObject element) {
+		EObject result = super.findMatchFromElement(element);
+		if (result instanceof Match2Elements) {
+			
+		}
+		return result;
+	};
 
 	protected IContentProvider createDiffTabContentProvider() {
 		ComposedAdapterFactory adapterFactory = new UMLAdapterFactory();
@@ -65,14 +92,8 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 	
 	public boolean isPropertyTab(int index) {
 		final IModelContentMergeViewerTab currentTab = tabs.get(index);
-		return (currentTab == properties);
+		return (currentTab == getPropertyPart());
 	}
-
-	@Override
-	protected IModelContentMergeViewerTab createModelContentMergeViewerTab(Composite parent) {
-		ModelContentMergePropertyTab propertyTab = new ModelContentMergePropertyTab(parent, partSide, this);
-		propertyTab.setContentProvider(new UMLPropertyContentProvider());
-		return propertyTab;
-	}
+	
 
 }
