@@ -253,6 +253,15 @@
       </constraints>
       <widget href="ui/GridLayout.xwt#/"/>
     </sections>
+    <sections name="Label" sectionFile="ui/Label.xwt">
+      <constraints name="isSWTLabel">
+        <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.2"/>
+        <properties xsi:type="contexts:ReferenceProperty" name="query">
+          <value href="custom.querySet#isLabel"/>
+        </properties>
+      </constraints>
+      <widget href="ui/Label.xwt#/"/>
+    </sections>
   </tabs>
   <views name="Single Environment" sections="//@tabs.0/@sections.0" automaticContext="true">
     <constraints name="isSingleEnvironment">
@@ -604,7 +613,7 @@
       <properties xsi:type="contexts:ValueProperty" name="className" value="Widget"/>
     </constraints>
   </views>
-  <views name="Single StandardWidget" sections="//@tabs.0/@sections.50" automaticContext="true">
+  <views name="Single StandardWidget" sections="//@tabs.0/@sections.50 //@tabs.0/@sections.72" automaticContext="true">
     <constraints name="isSingleStandardWidget">
       <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="StandardWidget"/>
@@ -866,6 +875,9 @@
       </elements>
       <elements name="Text">
         <properties name="text" description="The text to display"/>
+      </elements>
+      <elements name="Label">
+        <properties name="text" label="Text" description="The text to display"/>
       </elements>
     </elements>
     <modelElementFactory href="pathmap://PPECustom/CustomizationEnvironment.xmi#//@modelElementFactories.0"/>

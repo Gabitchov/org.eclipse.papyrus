@@ -18,9 +18,11 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -352,14 +354,55 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 	}
 
 	private Collection<Tab> getTabs(View view) {
-		Set<Tab> tabs = new LinkedHashSet<Tab>();
+
+		List<Tab> tabs = new LinkedList<Tab>();
+
 		for(Section section : view.getSections()) {
 			Tab tab = section.getTab();
-			if(tab != null)
+			if(tab != null && !tabs.contains(tab)) {
 				tabs.add(tab);
+			}
 		}
 
+		Collections.sort(tabs, new Comparator<Tab>() {
+
+			public int compare(Tab tab1, Tab tab2) {
+				Tab afterTab1 = tab1.getAfterTab();
+				Tab afterTab2 = tab2.getAfterTab();
+
+				if(isAfter(tab1, afterTab2, new HashSet<Tab>())) {
+					return -1;
+				}
+
+				if(isAfter(tab2, afterTab1, new HashSet<Tab>())) {
+					return 1;
+				}
+
+				return 0;
+			}
+
+		});
+
 		return tabs;
+	}
+
+	private boolean isAfter(Tab tab1, Tab tab2, Set<Tab> checkedTabs) {
+		if(checkedTabs.contains(tab2)) {
+			Activator.log.warn("Loop in the afterTabs");
+			return false;
+		}
+
+		checkedTabs.add(tab2);
+
+		if(tab2 == null) {
+			return false;
+		}
+
+		if(tab1.equals(tab2)) {
+			return true;
+		}
+
+		return isAfter(tab1, tab2.getAfterTab(), checkedTabs);
 	}
 
 	/**

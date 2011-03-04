@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.properties.contexts.Section;
+import org.eclipse.papyrus.properties.customization.providers.ContextLabelProvider;
 import org.eclipse.papyrus.properties.customization.providers.DependencyContentProvider;
 import org.eclipse.papyrus.properties.customization.providers.EnvironmentContentProvider;
 import org.eclipse.papyrus.properties.customization.providers.PropertyContentProvider;
@@ -104,7 +105,7 @@ public class CustomizationModelElement extends AbstractModelElement {
 
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
-		return delegate.getLabelProvider(propertyPath);
+		return new ContextLabelProvider();
 	}
 
 	@Override

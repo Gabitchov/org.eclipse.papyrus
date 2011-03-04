@@ -34,4 +34,12 @@
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <scope href="http://www.eclipse.org/papyrus/properties/ui#//WidgetAttribute"/>
   </queries>
+  <queries xsi:type="query:OCLModelQuery" name="Property label" description="Property label" lowerBound="1" query="if label.oclIsUndefined() or label = '' then name else label endif">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/contexts#//Property"/>
+  </queries>
+  <queries xsi:type="query:OCLModelQuery" name="DataContextElement label" description="DataContextElement label" lowerBound="1" query="name">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/contexts#//DataContextElement"/>
+  </queries>
 </query:ModelQuerySet>

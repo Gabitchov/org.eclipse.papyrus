@@ -49,6 +49,14 @@
     <customizedFeatures customizedFeature="metaclassVisible">
       <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
     </customizedFeatures>
+    <customizedFeatures customizedFeature="label">
+      <defaultValue xsi:type="uicustom:DerivedFeatureValue">
+        <valueCalculator xsi:type="query:OCLModelQuery" href="emffacet:/query/Contexts#DataContextElement label"/>
+      </defaultValue>
+    </customizedFeatures>
+    <customizedFeatures customizedFeature="hideMetaclassName">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+    </customizedFeatures>
   </types>
   <types metaclassName="contexts.DataContextPackage">
     <customizedFeatures customizedFeature="metaclassVisible">
@@ -63,6 +71,14 @@
   <types metaclassName="contexts.Property">
     <customizedFeatures customizedFeature="metaclassVisible">
       <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+    </customizedFeatures>
+    <customizedFeatures customizedFeature="label">
+      <defaultValue xsi:type="uicustom:DerivedFeatureValue">
+        <valueCalculator xsi:type="query:OCLModelQuery" href="emffacet:/query/Contexts#Property label"/>
+      </defaultValue>
+    </customizedFeatures>
+    <customizedFeatures customizedFeature="hideMetaclassName">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
     </customizedFeatures>
   </types>
   <types metaclassName="contexts.ReferenceProperty">
