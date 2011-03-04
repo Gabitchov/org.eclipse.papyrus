@@ -26,6 +26,11 @@
                   pattern="org.eclipse.papyrus.modelexplorer.*">
             </contentExtension></includes>
       </viewerContentBinding>
+      <!--We add a drag assistant in order support drag and drop between Model Explorer and Table Editor or other View/editors -->
+      <dragAssistant
+            class="org.eclipse.papyrus.modelexplorer.dnd.EObjectDragAdapterAssistant"
+            viewerId="org.eclipse.papyrus.modelexplorer.modelexplorer">
+      </dragAssistant>
    </extension>
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">

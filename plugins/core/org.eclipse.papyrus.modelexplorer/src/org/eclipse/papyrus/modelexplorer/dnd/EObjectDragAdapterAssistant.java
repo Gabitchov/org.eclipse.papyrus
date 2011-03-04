@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.table.modelexplorer.dnd;
+package org.eclipse.papyrus.modelexplorer.dnd;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -32,7 +32,7 @@ import org.eclipse.ui.navigator.CommonDragAdapterAssistant;
  * 
  * 
  */
-public class CustomDragAdapterAssistant extends CommonDragAdapterAssistant {
+public class EObjectDragAdapterAssistant extends CommonDragAdapterAssistant {
 
 	/**
 	 * 
