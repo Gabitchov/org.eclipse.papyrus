@@ -147,7 +147,7 @@ public class HistoryUtils {
 	}
 
 	/**
-	 * Get all the controled resource in the Model Set with the corresponding url
+	 * Get all the controlled resource in the Model Set with the corresponding url
 	 * 
 	 * @param set
 	 * @param url
@@ -155,7 +155,7 @@ public class HistoryUtils {
 	 */
 	public static List<ControledResource> getControledResourcesForURL(ModelSet set, String url) {
 		if(url == null || set == null) {
-			return Collections.EMPTY_LIST;
+			return Collections.emptyList();
 		}
 		List<ControledResource> result = new LinkedList<ControledResource>();
 		for(Resource r : set.getResources()) {

@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.resourceloading.strategies;
 
 import org.eclipse.emf.common.util.URI;
@@ -21,8 +21,7 @@ import org.eclipse.papyrus.resource.ModelSet;
 public class LoadCurrentResource implements ILoadingStrategy {
 
 	/**
-	 * {@inheritDoc} 
-	 * Only loads additional resources (types, profiles, etc) and the current opened resource
+	 * {@inheritDoc} Only loads additional resources (types, profiles, etc) and the current opened resource
 	 * Controlled resources from the current one are not loaded
 	 */
 	public boolean loadResource(ModelSet modelSet, URI uri) {

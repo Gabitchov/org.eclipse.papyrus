@@ -28,17 +28,27 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.action.ControlAction;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.controlmode.commands.ControlCommand;
 import org.eclipse.papyrus.controlmode.commands.IControlCondition;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.resource.AbstractBaseModel;
+import org.eclipse.papyrus.resource.IModel;
+import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.resource.ModelUtils;
+import org.eclipse.papyrus.resource.notation.NotationModel;
+import org.eclipse.papyrus.resource.uml.UmlModel;
+import org.eclipse.papyrus.ui.toolbox.notification.Type;
+import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
@@ -82,7 +92,32 @@ public class PapyrusControlAction extends ControlAction {
 			// check if action is disabled by an extension
 			enableControl &= cond.enableControl(eObject);
 		}
-		return enableControl && getEditingDomain().isControllable(eObject) && !AdapterFactoryEditingDomain.isControlled(eObject) && !eObject.eContents().isEmpty();
+		return enableControl && getEditingDomain().isControllable(eObject) && !AdapterFactoryEditingDomain.isControlled(eObject) && getDiagram(eObject);
+	}
+
+	/**
+	 * Checks if a specified element gets a diagram
+	 * 
+	 * @param eObject
+	 * @return true if a diagram exists
+	 */
+	private boolean getDiagram(EObject eObject) {
+		Resource modelResource = eObject.eResource();
+		if(modelResource != null) {
+			// only check for diagrams in the relative notation resource (same name as the opened resource)
+			Resource notationResource = modelResource.getResourceSet().getResource(modelResource.getURI().trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION), true);
+			if(notationResource != null) {
+				for(EObject o : notationResource.getContents()) {
+					if(o instanceof Diagram) {
+						EObject element = ((Diagram)o).getElement();
+						if(element != null && (element.equals(eObject) || EcoreUtil.isAncestor(this.eObject, element))) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -102,8 +137,6 @@ public class PapyrusControlAction extends ControlAction {
 			result = domain.isControllable(object);
 			if(result) {
 				eObject = (EObject)object;
-				// active control if selection has children
-				result = !eObject.eContents().isEmpty();
 			} else {
 				eObject = null;
 			}
@@ -116,16 +149,30 @@ public class PapyrusControlAction extends ControlAction {
 	 */
 	@Override
 	public void run() {
-		Resource controlledModel = getControlledResource();
-		if(controlledModel == null) {
-			return;
-		}
-		try {
-			ControlCommand transactionalCommand = new ControlCommand(EditorUtils.getTransactionalEditingDomain(), controlledModel, eObject, "Control", null);
-			OperationHistoryFactory.getOperationHistory().execute(transactionalCommand, new NullProgressMonitor(), null);
-		} catch (ExecutionException e) {
-			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource"));
-			EMFEditUIPlugin.INSTANCE.log(e);
+		// check if object selection is in the current model set. If not, warn the user and disable action
+		ModelSet modelSet = ModelUtils.getModelSet();
+		if(modelSet != null) {
+			IModel umlModel = modelSet.getModel(UmlModel.MODEL_ID);
+			boolean enableControl = false;
+			if(eObject != null && umlModel instanceof AbstractBaseModel) {
+				enableControl = ((AbstractBaseModel)umlModel).getResource().equals(eObject.eResource());
+			}
+			if(!enableControl) {
+				NotificationBuilder.createAsyncPopup("You must perform control action from the resource:\n" + eObject.eResource().getURI().trimFileExtension().toString() + " for this element").setType(Type.INFO).run();
+				return;
+			}
+
+			Resource controlledModel = getControlledResource();
+			if(controlledModel == null) {
+				return;
+			}
+			try {
+				ControlCommand transactionalCommand = new ControlCommand(EditorUtils.getTransactionalEditingDomain(), controlledModel, eObject, "Control", null);
+				OperationHistoryFactory.getOperationHistory().execute(transactionalCommand, new NullProgressMonitor(), null);
+			} catch (ExecutionException e) {
+				MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource"));
+				EMFEditUIPlugin.INSTANCE.log(e);
+			}
 		}
 	}
 

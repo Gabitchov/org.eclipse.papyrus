@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.resourceloading.preferences;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -26,7 +26,7 @@ public class CorePlugin extends AbstractUIPlugin {
 
 	// The shared instance
 	private static CorePlugin plugin;
-	
+
 	/**
 	 * The constructor
 	 */
@@ -35,6 +35,7 @@ public class CorePlugin extends AbstractUIPlugin {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
 	 */
 	public void start(BundleContext context) throws Exception {
@@ -44,6 +45,7 @@ public class CorePlugin extends AbstractUIPlugin {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(BundleContext context) throws Exception {
@@ -53,7 +55,7 @@ public class CorePlugin extends AbstractUIPlugin {
 
 	/**
 	 * Returns the shared instance
-	 *
+	 * 
 	 * @return the shared instance
 	 */
 	public static CorePlugin getDefault() {

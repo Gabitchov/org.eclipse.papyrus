@@ -13,5 +13,40 @@
             controlCondition="org.eclipse.papyrus.controlmode.umlprofiles.commands.UMLProfileControlCondition">
       </enableControlCommand>
    </extension>
+   
+   <extension point="org.eclipse.emf.validation.constraintProviders">
+      <category id="org.eclipse.papyrus.controlmode.umlprofiles/duplicateProfileApplication" mandatory="false" name="duplicateProfileApplication">
+         <![CDATA[Validate that Profile Application is correctly duplicated on controlled Packages]]>
+      </category>
+      <constraintProvider cache="true">
+         <package namespaceUri="http://www.eclipse.org/uml2/3.0.0/UML"/>
+         <constraints categories="org.eclipse.papyrus.controlmode.umlprofiles/duplicateProfileApplication">
+         <constraint id="org.eclipse.papyrus.controlmode.umlprofiles.validation.ProfileApplicationDuplicationChecker"
+            lang="Java"
+            name="ProfileApplicationDuplicationChecker"
+            class="org.eclipse.papyrus.controlmode.umlprofiles.validation.ProfileApplicationDuplicationChecker"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <description><![CDATA[Profile Applications must be duplicated on controlled Packages]]></description>
+            <message><![CDATA[Profile Applications modification did not successfully completed]]></message>
+            <target class="uml.ProfileApplication"/>
+            <target class="uml.Package"/>
+         </constraint>
+         </constraints>
+      </constraintProvider>
+   </extension>
+
+   <extension point="org.eclipse.emf.validation.constraintBindings">
+      <clientContext default="false" id="org.eclipse.papyrus.controlmodeDefaultCtx">
+         <selector class="org.eclipse.papyrus.controlmode.umlprofiles.providers.UMLValidationProvider$DefaultCtx"/>
+      </clientContext>
+      <binding context="org.eclipse.papyrus.controlmodeDefaultCtx">
+         <constraint ref="org.eclipse.papyrus.controlmode.umlprofiles.validation.ProfileApplicationDuplicationChecker"/>
+      </binding>
+   </extension>
+
+   <extension point="org.eclipse.emf.validation.ui.UIRegisteredClientContext">
+      <clientContext id="org.eclipse.papyrus.controlmodeDefaultCtx"/>
+   </extension>
 
 </plugin>

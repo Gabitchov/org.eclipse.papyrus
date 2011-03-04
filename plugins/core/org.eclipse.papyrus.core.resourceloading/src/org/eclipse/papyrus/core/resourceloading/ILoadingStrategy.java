@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.resourceloading;
 
 import org.eclipse.emf.common.util.URI;
@@ -23,18 +23,18 @@ public interface ILoadingStrategy {
 
 	/**
 	 * Check if the resource from the uri need to be loaded according to the strategy.
-	 *
+	 * 
 	 * @param modelSet
 	 * @param uri
 	 * @return true if resource must be loaded, return false otherwise
 	 */
 	boolean loadResource(ModelSet modelSet, URI uri);
-	
+
 	// AR  : additional resources (types, profiles ...)
 	// parents : set of elements containing the current selection
 	// currents : the resource opened
 	// children : the resources bellow the current selection
-	
+
 	// strategy 1: all : AR U parents U currents U children -> done
 	// strategy 2: only one : AR U currents -> done
 	// strategy 3: bellow : AR U children U currents 

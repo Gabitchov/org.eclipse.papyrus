@@ -21,9 +21,9 @@ import org.eclipse.papyrus.resource.uml.UmlUtils;
  * A {@link ModelSet} allowing to load models on demand.
  * Also, this implementation allows to have loading strategies.
  * 
- * TODO extends {@link ModelSet} rather than {@link DiResourceSet}. This can be done once 
+ * TODO extends {@link ModelSet} rather than {@link DiResourceSet}. This can be done once
  * DiResourceSet is not referenced anywhere.
-
+ * 
  * @author cedric dumoulin
  * @author emilien perico
  * 

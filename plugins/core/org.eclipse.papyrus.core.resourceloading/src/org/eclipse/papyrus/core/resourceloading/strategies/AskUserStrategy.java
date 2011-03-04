@@ -50,7 +50,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 	public boolean loadResource(ModelSet modelSet, URI uri) {
 		// pathmap resource are always loaded
 		boolean result = !uri.isPlatform() && !uri.isFile();
-		if (!result) {
+		if(!result) {
 			URI lastInitialURI = SashModelUtils.getInitialURI(modelSet).trimFileExtension();
 			if(!lastInitialURI.equals(initialURI)) {
 				clear();
@@ -75,7 +75,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 						// notification
 					}
 				}
-			}			
+			}
 		}
 		return result;
 	}
@@ -136,8 +136,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 							for(String s : extensions) {
 								try {
 									URI uriToLoad = URI.createURI(uri.toString());
-									if (s != null)
-									{
+									if(s != null) {
 										uriToLoad = uriToLoad.appendFileExtension(s);
 									}
 									if(!alreadyLoaded.contains(uriToLoad)) {

@@ -83,13 +83,11 @@ public class ControlResourceDialog extends ResourceDialog {
 		boolean resourceInSet = resource != null;
 
 		if(resource == currentResource) {
-			MessageDialog.openError(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"),
-					EMFEditUIPlugin.INSTANCE.getString("_WARN_AlreadyInResource"));
+			MessageDialog.openError(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_AlreadyInResource"));
 			return false;
 		}
 		if(domain.isReadOnly(resource)) {
-			MessageDialog.openError(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"),
-					EMFEditUIPlugin.INSTANCE.getString("_WARN_ReadOnlyResource"));
+			MessageDialog.openError(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_ReadOnlyResource"));
 			return false;
 		}
 
@@ -108,8 +106,7 @@ public class ControlResourceDialog extends ResourceDialog {
 		if(!resourceInSet) {
 			resource = resourceSet.createResource(uri);
 			if(resource == null) {
-				MessageDialog.openError(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"),
-						EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource"));
+				MessageDialog.openError(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource"));
 				return false;
 			}
 
@@ -125,13 +122,9 @@ public class ControlResourceDialog extends ResourceDialog {
 
 		boolean result = true;
 		if(resourceBad) {
-			result = MessageDialog.openQuestion(getShell(), EMFEditUIPlugin.INSTANCE
-					.getString("_UI_ExistingResource_label"), EMFEditUIPlugin.INSTANCE
-					.getString("_WARN_ReplaceResource"));
+			result = MessageDialog.openQuestion(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_ExistingResource_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_ReplaceResource"));
 		} else if(resourceExists) {
-			result = MessageDialog
-					.openQuestion(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_ExistingResource_label"),
-					EMFEditUIPlugin.INSTANCE.getString("_WARN_AddToResource"));
+			result = MessageDialog.openQuestion(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_ExistingResource_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_AddToResource"));
 		}
 
 		if(!result && !resourceInSet) {

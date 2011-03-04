@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.resourceloading;
 
 import org.eclipse.emf.common.util.URI;
@@ -23,9 +23,11 @@ public interface ILoadingStrategyExtension {
 
 	/**
 	 * Check if the resource from the uri need to be loaded, no matter which strategy is set.
-	 *
-	 * @param modelSet the model set
-	 * @param uri the uri of the eObject
+	 * 
+	 * @param modelSet
+	 *        the model set
+	 * @param uri
+	 *        the uri of the eObject
 	 * @return true if resource must be loaded irrespective of strategy, return false otherwise
 	 */
 	boolean loadResource(ModelSet modelSet, URI uri);

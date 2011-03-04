@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.controlmode.commands;
 
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -63,4 +63,3 @@ public interface IUncontrolCommand {
 	}
 
 }
-

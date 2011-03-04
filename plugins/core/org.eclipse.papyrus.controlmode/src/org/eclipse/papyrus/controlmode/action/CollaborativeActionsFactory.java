@@ -97,7 +97,7 @@ public class CollaborativeActionsFactory implements IActionHandlerFactory {
 	public void fillActionBars(IActionBars actionBars) {
 		// actionBars.setGlobalActionHandler(actionId, handler);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */

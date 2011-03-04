@@ -17,21 +17,24 @@ import org.eclipse.emf.ecore.EReference;
  * The <b>Package</b> for the model.
  * It contains accessors for the meta objects to represent
  * <ul>
- *   <li>each class,</li>
- *   <li>each feature of each class,</li>
- *   <li>each enum,</li>
- *   <li>and each data type</li>
+ * <li>each class,</li>
+ * <li>each feature of each class,</li>
+ * <li>each enum,</li>
+ * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.controlmode.mm.history.historyFactory
  * @model kind="package"
  * @generated
  */
 public interface historyPackage extends EPackage {
+
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNAME = "history";
@@ -40,6 +43,7 @@ public interface historyPackage extends EPackage {
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/0.7.0/controlmode";
@@ -48,6 +52,7 @@ public interface historyPackage extends EPackage {
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "history";
@@ -56,6 +61,7 @@ public interface historyPackage extends EPackage {
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	historyPackage eINSTANCE = org.eclipse.papyrus.controlmode.mm.history.impl.historyPackageImpl.init();
@@ -64,6 +70,7 @@ public interface historyPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.controlmode.mm.history.impl.ControledResourceImpl <em>Controled Resource</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.controlmode.mm.history.impl.ControledResourceImpl
 	 * @see org.eclipse.papyrus.controlmode.mm.history.impl.historyPackageImpl#getControledResource()
 	 * @generated
@@ -74,6 +81,7 @@ public interface historyPackage extends EPackage {
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -83,6 +91,7 @@ public interface historyPackage extends EPackage {
 	 * The feature id for the '<em><b>Parent</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -92,6 +101,7 @@ public interface historyPackage extends EPackage {
 	 * The feature id for the '<em><b>Resource URL</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -101,6 +111,7 @@ public interface historyPackage extends EPackage {
 	 * The number of structural features of the '<em>Controled Resource</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -110,6 +121,7 @@ public interface historyPackage extends EPackage {
 	 * The meta object id for the '<em>String</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see java.lang.String
 	 * @see org.eclipse.papyrus.controlmode.mm.history.impl.historyPackageImpl#getString()
 	 * @generated
@@ -121,6 +133,7 @@ public interface historyPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.controlmode.mm.history.ControledResource <em>Controled Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Controled Resource</em>'.
 	 * @see org.eclipse.papyrus.controlmode.mm.history.ControledResource
 	 * @generated
@@ -128,9 +141,11 @@ public interface historyPackage extends EPackage {
 	EClass getControledResource();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.controlmode.mm.history.ControledResource#getChildren <em>Children</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.controlmode.mm.history.ControledResource#getChildren
+	 * <em>Children</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference list '<em>Children</em>'.
 	 * @see org.eclipse.papyrus.controlmode.mm.history.ControledResource#getChildren()
 	 * @see #getControledResource()
@@ -139,9 +154,11 @@ public interface historyPackage extends EPackage {
 	EReference getControledResource_Children();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.controlmode.mm.history.ControledResource#getParent <em>Parent</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.controlmode.mm.history.ControledResource#getParent
+	 * <em>Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the container reference '<em>Parent</em>'.
 	 * @see org.eclipse.papyrus.controlmode.mm.history.ControledResource#getParent()
 	 * @see #getControledResource()
@@ -150,9 +167,11 @@ public interface historyPackage extends EPackage {
 	EReference getControledResource_Parent();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.controlmode.mm.history.ControledResource#getResourceURL <em>Resource URL</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.controlmode.mm.history.ControledResource#getResourceURL
+	 * <em>Resource URL</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Resource URL</em>'.
 	 * @see org.eclipse.papyrus.controlmode.mm.history.ControledResource#getResourceURL()
 	 * @see #getControledResource()
@@ -164,6 +183,7 @@ public interface historyPackage extends EPackage {
 	 * Returns the meta object for data type '{@link java.lang.String <em>String</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for data type '<em>String</em>'.
 	 * @see java.lang.String
 	 * @model instanceClass="java.lang.String"
@@ -175,6 +195,7 @@ public interface historyPackage extends EPackage {
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -184,19 +205,23 @@ public interface historyPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
-	 *   <li>each class,</li>
-	 *   <li>each feature of each class,</li>
-	 *   <li>each enum,</li>
-	 *   <li>and each data type</li>
+	 * <li>each class,</li>
+	 * <li>each feature of each class,</li>
+	 * <li>each enum,</li>
+	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	interface Literals {
+
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.controlmode.mm.history.impl.ControledResourceImpl <em>Controled Resource</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.controlmode.mm.history.impl.ControledResourceImpl <em>Controled Resource</em>}'
+		 * class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.controlmode.mm.history.impl.ControledResourceImpl
 		 * @see org.eclipse.papyrus.controlmode.mm.history.impl.historyPackageImpl#getControledResource()
 		 * @generated
@@ -207,6 +232,7 @@ public interface historyPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference CONTROLED_RESOURCE__CHILDREN = eINSTANCE.getControledResource_Children();
@@ -215,6 +241,7 @@ public interface historyPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Parent</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference CONTROLED_RESOURCE__PARENT = eINSTANCE.getControledResource_Parent();
@@ -223,6 +250,7 @@ public interface historyPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Resource URL</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute CONTROLED_RESOURCE__RESOURCE_URL = eINSTANCE.getControledResource_ResourceURL();
@@ -231,6 +259,7 @@ public interface historyPackage extends EPackage {
 		 * The meta object literal for the '<em>String</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see java.lang.String
 		 * @see org.eclipse.papyrus.controlmode.mm.history.impl.historyPackageImpl#getString()
 		 * @generated
