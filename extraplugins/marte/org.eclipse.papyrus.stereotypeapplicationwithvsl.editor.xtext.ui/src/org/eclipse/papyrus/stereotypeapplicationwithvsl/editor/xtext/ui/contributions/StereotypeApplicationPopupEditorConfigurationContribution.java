@@ -288,7 +288,7 @@ public class StereotypeApplicationPopupEditorConfigurationContribution extends P
 								// unquote Strings, remove 1st and last character
 								String stringValue = (String) valueRepresentation;
 								if (stringValue.length() > 2) {
-									valueRepresentation = stringValue.substring(1, stringValue.length()-2);
+									valueRepresentation = stringValue.substring(1, stringValue.length()-1);
 								}
 								else {
 									valueRepresentation = "";
