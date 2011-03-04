@@ -195,7 +195,9 @@ public class EMFHelper {
 				}
 			}
 		} catch (Exception ex) {
-			throw new IOException(ex.toString(), ex);
+			IOException exception = new IOException(ex.toString());
+			exception.initCause(ex);
+			throw exception;
 		}
 
 		return null;
