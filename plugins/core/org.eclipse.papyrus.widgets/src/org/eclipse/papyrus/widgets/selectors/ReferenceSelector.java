@@ -11,33 +11,71 @@
  *****************************************************************************/
 package org.eclipse.papyrus.widgets.selectors;
 
-import java.util.Collection;
-import java.util.LinkedList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.widgets.editors.IElementSelector;
 import org.eclipse.papyrus.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.dialogs.FilteredList;
+import org.eclipse.ui.dialogs.FilteredTree;
+import org.eclipse.ui.dialogs.PatternFilter;
 
 
 /**
- * A Selector for Multiple Refrence values, with a filter
+ * A Selector for Multiple Reference values, with a filter
  * 
  * @author Camille Letavernier
  * 
  */
 public class ReferenceSelector implements IElementSelector {
+
+	//	/**
+	//	 * A Widget to enter a filter as a String, accepting wildcards
+	//	 */
+	//	protected Filter filter;
+
+	/**
+	 * The display tree
+	 */
+	protected FilteredTree fTree;
+
+	/**
+	 * The content provider, returning the available reference values
+	 */
+	protected EncapsulatedContentProvider contentProvider;
+
+	/**
+	 * The content provider, returning the available reference labels
+	 */
+	protected ILabelProvider labelProvider;
+
+	/**
+	 * Indicates if the reference values should be unique
+	 */
+	protected boolean unique;
+
+	/**
+	 * Indicates if this selector should be able to return more than one value
+	 * at a time.
+	 */
+	protected boolean multiSelection;
+
+	/**
+	 * The set of selected elements. If the selector is marked as "unique",
+	 * these elements will be filtered in the Tree.
+	 */
+	protected Set<Object> selectedElements = new HashSet<Object>();
 
 	/**
 	 * 
@@ -49,15 +87,31 @@ public class ReferenceSelector implements IElementSelector {
 	 */
 	public ReferenceSelector(boolean unique) {
 		this.unique = unique;
+		this.multiSelection = true;
+	}
+
+	/**
+	 * 
+	 * Constructor.
+	 * Builds a new ReferenceSelector for a single element
+	 * 
+	 */
+	public ReferenceSelector() {
+		this.unique = false;
+		this.multiSelection = false;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Object[] getSelectedElements() {
-		Object[] selectedElements = fList.getSelection();
-		addSelectedElements(selectedElements);
-		return selectedElements;
+		ISelection selection = fTree.getViewer().getSelection();
+		if(selection instanceof IStructuredSelection) {
+			Object[] selectedElements = ((IStructuredSelection)selection).toArray();
+			addSelectedElements(selectedElements);
+			return selectedElements;
+		}
+		return new Object[0];
 	}
 
 	/**
@@ -67,9 +121,9 @@ public class ReferenceSelector implements IElementSelector {
 	 * @param elements
 	 */
 	private void addSelectedElements(Object[] elements) {
-		if(unique && elements.length > 0) {
-			contentProvider.addFilteredElements(elements);
-			fList.setElements(contentProvider.getElements());
+		if(elements.length > 0) {
+			selectedElements.addAll(Arrays.asList(elements));
+			fTree.getViewer().refresh();
 		}
 	}
 
@@ -89,8 +143,9 @@ public class ReferenceSelector implements IElementSelector {
 			return new Object[0];
 		}
 
-		fList.setSelection(contentProvider.getElements());
-		Object[] allElements = fList.getSelection();
+		fTree.getViewer().refresh();
+		fTree.getViewer().setSelection(new StructuredSelection(contentProvider.getElements()));
+		Object[] allElements = ((IStructuredSelection)fTree.getViewer().getSelection()).toArray();
 		addSelectedElements(allElements);
 		return allElements;
 	}
@@ -102,10 +157,9 @@ public class ReferenceSelector implements IElementSelector {
 	 * @param elements
 	 */
 	public void setSelectedElements(Object[] elements) {
-		if(unique) {
-			contentProvider.setFilteredElements(elements);
-			fList.setElements(contentProvider.getElements());
-		}
+		selectedElements.clear();
+		selectedElements.addAll(Arrays.asList(elements));
+		fTree.getViewer().refresh();
 	}
 
 	public void newObjectCreated(Object newObject) {
@@ -121,7 +175,7 @@ public class ReferenceSelector implements IElementSelector {
 	 * Refreshes this selector's {@link org.eclipse.swt.widgets.List}
 	 */
 	public void refresh() {
-		fList.setElements(contentProvider.getElements());
+		fTree.getViewer().refresh();
 	}
 
 	/**
@@ -132,8 +186,8 @@ public class ReferenceSelector implements IElementSelector {
 	 */
 	public void setLabelProvider(ILabelProvider labelProvider) {
 		this.labelProvider = labelProvider;
-		if(fList != null) {
-			fList.setLabelProvider(labelProvider);
+		if(fTree != null) {
+			fTree.getViewer().setLabelProvider(labelProvider);
 		}
 	}
 
@@ -145,8 +199,9 @@ public class ReferenceSelector implements IElementSelector {
 	 */
 	public void setContentProvider(IStaticContentProvider staticContentProvider) {
 		this.contentProvider = new EncapsulatedContentProvider(staticContentProvider);
-		if(fList != null) {
-			fList.setElements(contentProvider.getElements());
+		if(fTree != null) {
+			fTree.getViewer().setContentProvider(contentProvider);
+			fTree.getViewer().setInput("");
 		}
 	}
 
@@ -157,122 +212,118 @@ public class ReferenceSelector implements IElementSelector {
 		Composite content = new Composite(parent, SWT.BORDER);
 		content.setLayout(new GridLayout(1, true));
 
-		filter = new Filter(content, SWT.BORDER);
-		filter.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		//		filter = new Filter(content, SWT.BORDER);
+		//		filter.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
-		fList = new FilteredList(content, SWT.MULTI | SWT.BORDER, labelProvider, true, true, true);
-		fList.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		final PatternFilter filter = new PatternFilter();
+		filter.setPattern("*");
+
+		fTree = new FilteredTree(content, SWT.MULTI | SWT.BORDER, new PatternFilter(), true);
+
+		//fList = new FilteredList(content, SWT.MULTI | SWT.BORDER, labelProvider, true, true, true);
+		fTree.getViewer().getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		if(contentProvider != null) {
-			fList.setElements(contentProvider.getElements());
+			fTree.getViewer().setContentProvider(contentProvider);
+			fTree.getViewer().setInput("");
 		}
+		if(labelProvider != null) {
+			fTree.getViewer().setLabelProvider(labelProvider);
+		}
+		//
+		//		this.filter.addChangeListener(new Listener() {
+		//
+		//			public void handleEvent(Event event) {
+		//				filter.setPattern(ReferenceSelector.this.filter.getFilter());
+		//			}
+		//		});
 
-		filter.addChangeListener(new Listener() {
+		fTree.getViewer().addFilter(new ViewerFilter() {
 
-			public void handleEvent(Event event) {
-				if(!fList.isDisposed())
-					fList.setFilter(filter.getFilter());
+			@Override
+			public boolean select(Viewer viewer, Object parentElement, Object element) {
+				if(unique) {
+					return !selectedElements.contains(element);
+				} else {
+					return true;
+				}
 			}
 		});
 	}
 
-	/**
-	 * A Widget to enter a filter as a String, accepting wildcards
-	 */
-	protected Filter filter;
-
-	/**
-	 * The display list
-	 */
-	protected FilteredList fList;
-
-	/**
-	 * The content provider, returning the available reference values
-	 */
-	protected EncapsulatedContentProvider contentProvider;
-
-	/**
-	 * The content provider, returning the available reference labels
-	 */
-	protected ILabelProvider labelProvider;
-
-	/**
-	 * Indicates if the reference values should be unique
-	 */
-	protected boolean unique;
-
-	/**
-	 * A Text field to let the user type its own filter
-	 * 
-	 * @author Camille Letavernier
-	 * 
-	 */
-	private class Filter extends Composite implements KeyListener {
-
-		/**
-		 * The text box used to edit the filter
-		 */
-		private Text text;
-
-		/**
-		 * @param parent
-		 *        The composite in which the filter should be created
-		 * @param style
-		 *        The style applied to this filter's text box
-		 */
-		public Filter(Composite parent, int style) {
-			super(parent, SWT.NONE);
-			setLayout(new FillLayout());
-			text = new Text(this, style);
-			text.addKeyListener(this);
-			listeners = new LinkedList<Listener>();
-		}
-
-		/**
-		 * @return this filter as a String
-		 */
-		public String getFilter() {
-			return text.getText();
-		}
-
-		/**
-		 * Adds a listener on this filter. The listener is notified
-		 * each time the filter changes
-		 * 
-		 * @param listener
-		 */
-		public void addChangeListener(Listener listener) {
-			listeners.add(listener);
-		}
-
-		/**
-		 * Removes the specified Listener from this filter
-		 * 
-		 * @param listener
-		 */
-		public void removeChangeListener(Listener listener) {
-			listeners.remove(listener);
-		}
-
-		/**
-		 * Ignored
-		 */
-		public void keyPressed(KeyEvent e) {
-			//Nothing
-		}
-
-		/**
-		 * Handles the filter change event
-		 */
-		public void keyReleased(KeyEvent e) {
-			for(Listener listener : listeners) {
-				listener.handleEvent(null);
-			}
-		}
-
-		/**
-		 * All registered listeners
-		 */
-		private Collection<Listener> listeners;
+	public void setUnique(boolean unique) {
+		this.unique = unique;
 	}
+
+	//	/**
+	//	 * A Text field to let the user type its own filter
+	//	 * 
+	//	 * @author Camille Letavernier
+	//	 * 
+	//	 */
+	//	private class Filter extends Composite implements KeyListener {
+	//
+	//		/**
+	//		 * The text box used to edit the filter
+	//		 */
+	//		private Text text;
+	//
+	//		/**
+	//		 * @param parent
+	//		 *        The composite in which the filter should be created
+	//		 * @param style
+	//		 *        The style applied to this filter's text box
+	//		 */
+	//		public Filter(Composite parent, int style) {
+	//			super(parent, SWT.NONE);
+	//			setLayout(new FillLayout());
+	//			text = new Text(this, style);
+	//			text.addKeyListener(this);
+	//			listeners = new LinkedList<Listener>();
+	//		}
+	//
+	//		/**
+	//		 * @return this filter as a String
+	//		 */
+	//		public String getFilter() {
+	//			return text.getText();
+	//		}
+	//
+	//		/**
+	//		 * Adds a listener on this filter. The listener is notified
+	//		 * each time the filter changes
+	//		 * 
+	//		 * @param listener
+	//		 */
+	//		public void addChangeListener(Listener listener) {
+	//			listeners.add(listener);
+	//		}
+	//
+	//		/**
+	//		 * Ignored
+	//		 */
+	//		public void keyPressed(KeyEvent e) {
+	//			//Nothing
+	//		}
+	//
+	//		/**
+	//		 * Handles the filter change event
+	//		 */
+	//		public void keyReleased(KeyEvent e) {
+	//			for(Listener listener : listeners) {
+	//				listener.handleEvent(null);
+	//			}
+	//		}
+	//
+	//		@Override
+	//		public void dispose() {
+	//			listeners.clear();
+	//			super.dispose();
+	//		}
+	//
+	//		/**
+	//		 * All registered listeners
+	//		 */
+	//		private Collection<Listener> listeners;
+	//	}
 
 }

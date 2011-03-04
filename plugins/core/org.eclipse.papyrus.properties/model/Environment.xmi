@@ -7,6 +7,7 @@
   <widgetTypes label="Label" widgetClass="Label"/>
   <widgetTypes label="Text" widgetClass="Text"/>
   <propertyEditorTypes label="StringEditor" widgetClass="StringEditor" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="StringMultiline" widgetClass="StringMultiline" namespace="//@namespaces.3"/>
   <propertyEditorTypes label="StringLabel (Read-only)" widgetClass="StringLabel" namespace="//@namespaces.3"/>
   <propertyEditorTypes label="BooleanCombo" widgetClass="BooleanCombo" namespace="//@namespaces.3" type="Boolean"/>
   <propertyEditorTypes label="BooleanCheckbox" widgetClass="BooleanCheckbox" namespace="//@namespaces.3" type="Boolean"/>
@@ -17,7 +18,7 @@
   <propertyEditorTypes label="EnumRadio (No preview)" widgetClass="EnumRadio" namespace="//@namespaces.3"/>
   <propertyEditorTypes label="ReferenceCombo" widgetClass="ReferenceCombo" namespace="//@namespaces.3" type="Reference"/>
   <propertyEditorTypes label="ReferenceDialog" widgetClass="ReferenceDialog" namespace="//@namespaces.3" type="Reference"/>
-  <propertyEditorTypes label="ReferenceLabel" widgetClass="ReferenceLabel" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="ReferenceLabel (Read-only)" widgetClass="ReferenceLabel" namespace="//@namespaces.3"/>
   <propertyEditorTypes label="MultiReference" widgetClass="MultiReference" namespace="//@namespaces.3" type="Reference" multiplicity="-1"/>
   <propertyEditorTypes label="MultiString" widgetClass="MultiString" namespace="//@namespaces.3" multiplicity="-1"/>
   <propertyEditorTypes label="MultiInteger" widgetClass="MultiInteger" namespace="//@namespaces.3" type="Integer" multiplicity="-1"/>

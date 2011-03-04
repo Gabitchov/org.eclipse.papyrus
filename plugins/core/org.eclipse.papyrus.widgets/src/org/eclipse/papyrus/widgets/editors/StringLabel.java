@@ -11,18 +11,25 @@
  *****************************************************************************/
 package org.eclipse.papyrus.widgets.editors;
 
-import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 
 /**
  * A Read only widget to display Strings as a CLabel.
+ * May also be used to display an Object with an ILabelProvider
  * 
  * @author Camille Letavernier
  */
-public class StringLabel extends AbstractValueEditor {
+public class StringLabel extends AbstractValueEditor implements IChangeListener {
 
 	private CLabel valueLabel;
+
+	private ILabelProvider labelProvider;
 
 	/**
 	 * Constructor.
@@ -36,7 +43,7 @@ public class StringLabel extends AbstractValueEditor {
 		super(parent, style);
 		valueLabel = factory.createCLabel(this, "", style);
 		valueLabel.setLayoutData(getDefaultLayoutData());
-		setWidgetObservable(WidgetProperties.text().observe(valueLabel));
+		labelProvider = new LabelProvider();
 	}
 
 	/**
@@ -45,6 +52,37 @@ public class StringLabel extends AbstractValueEditor {
 	 */
 	public CLabel getValueLabel() {
 		return valueLabel;
+	}
+
+	/**
+	 * Sets the label provider for this editor. Useful when the value is not a
+	 * String
+	 * 
+	 * @param labelProvider
+	 *        The Label provider used to display the current value
+	 */
+	public void setLabelProvider(ILabelProvider labelProvider) {
+		this.labelProvider = labelProvider;
+		if(binding != null)
+			binding.updateModelToTarget();
+	}
+
+	@Override
+	public void doBinding() {
+		modelProperty.addChangeListener(this);
+		updateLabel();
+	}
+
+	/**
+	 * Updates the CLabel's display
+	 */
+	protected void updateLabel() {
+		if(modelProperty != null) {
+			String text = labelProvider.getText(modelProperty.getValue());
+			Image image = labelProvider.getImage(modelProperty.getValue());
+			valueLabel.setText(text);
+			valueLabel.setImage(image);
+		}
 	}
 
 	@Override
@@ -71,6 +109,17 @@ public class StringLabel extends AbstractValueEditor {
 	public void setToolTipText(String text) {
 		valueLabel.setToolTipText(text);
 		super.setLabelToolTipText(text);
+	}
+
+	public void handleChange(ChangeEvent event) {
+		updateLabel();
+	}
+
+	@Override
+	public void dispose() {
+		if(modelProperty != null)
+			modelProperty.removeChangeListener(this);
+		super.dispose();
 	}
 
 }

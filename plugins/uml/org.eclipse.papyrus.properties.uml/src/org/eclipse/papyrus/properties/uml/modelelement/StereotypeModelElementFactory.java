@@ -38,10 +38,6 @@ import org.eclipse.uml2.uml.Stereotype;
  * TODO : enable the framework to handle B:name and C:name (Currently not possible,
  * as "name" is not directly a property of B nor C)
  * 
- * Moreover, the framework doesn't handle multiple application of a given stereotype.
- * However, Papyrus doesn't support this case in general, so the problem is not specific
- * to this ModelElement.
- * 
  * @author Camille Letavernier
  */
 public class StereotypeModelElementFactory implements ModelElementFactory {

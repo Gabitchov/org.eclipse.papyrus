@@ -11,23 +11,28 @@
  *****************************************************************************/
 package org.eclipse.papyrus.widgets.providers;
 
-import org.eclipse.jface.viewers.IContentProvider;
+import org.eclipse.jface.viewers.ITreeContentProvider;
 
 /**
- * A ContentProvider which returns values that don't depend
- * on an input value
- * 
- * In most cases, you should extend the Abstract implementation {@link AbstractStaticContentProvider}
+ * A Hierarchic content provider. In some cases, we want to be able to display
+ * elements as a Tree, but we are only interested in some specific elements.
+ * The other ones are displayed only to show the hierarchy.
+ * This interface allows the user to specify which elements he is interested
+ * in.
  * 
  * @author Camille Letavernier
  * 
- * @see AbstractStaticContentProvider
- * 
  */
-public interface IStaticContentProvider extends IContentProvider {
+public interface IHierarchicContentProvider extends ITreeContentProvider {
 
 	/**
-	 * @return the elements provided by this class
+	 * Indicates if the given is a valid value. Only valid values can be
+	 * chosen.
+	 * 
+	 * @param element
+	 *        The element to test
+	 * @return
+	 *         True if the element is a valid value
 	 */
-	public Object[] getElements();
+	public boolean isValidValue(Object element);
 }

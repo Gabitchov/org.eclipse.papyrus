@@ -11,24 +11,25 @@
  *****************************************************************************/
 package org.eclipse.papyrus.widgets.providers;
 
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
 /**
  * A ContentProvider to adapt an IStaticContentProvider to an
  * IStructurecContentProvider Useful when you need to use a ContentProvider that
  * doesn't depend on its Input Object to return values in a JFace Viewer.
+ * This content provider also supports temporary elements, which are added
+ * to the list of static elements returned by the encapsulated provider.
  * 
  * @author Camille Letavernier
  * 
  */
-public class EncapsulatedContentProvider implements IStructuredContentProvider {
+public class EncapsulatedContentProvider implements IHierarchicContentProvider {
 
 	/**
 	 * The encapsulated static content provider
@@ -47,16 +48,6 @@ public class EncapsulatedContentProvider implements IStructuredContentProvider {
 	}
 
 	/**
-	 * Sets the objects that should not be returned by this provider
-	 * 
-	 * @param filtered
-	 */
-	public void setFilteredElements(Object[] filtered) {
-		filteredElements.clear();
-		addFilteredElements(filtered);
-	}
-
-	/**
 	 * Returns all elements known by this ContentProvider. This is the union of
 	 * the objects returned by the wrapped StaticContentProvider and the temporary
 	 * elements, which are not known by the wrapped provider.
@@ -71,34 +62,6 @@ public class EncapsulatedContentProvider implements IStructuredContentProvider {
 		}
 		result.addAll(temporaryElements);
 		return result.toArray();
-	}
-
-	/**
-	 * @return
-	 *         all the elements that are not selected (Or all elements if the
-	 *         selector is not marked as Unique)
-	 */
-	private Object[] getAllAvailableElements() {
-		Object[] allElements = getAllElements();
-		List<Object> availableElements = new LinkedList<Object>();
-		for(Object element : allElements) {
-			if(!filteredElements.contains(element)) {
-				availableElements.add(element);
-			}
-		}
-
-		return availableElements.toArray();
-	}
-
-	/**
-	 * Adds elements that should not be returned by this provider
-	 * 
-	 * @param filtered
-	 */
-	public void addFilteredElements(Object[] filtered) {
-		for(Object object : filtered) {
-			filteredElements.add(object);
-		}
 	}
 
 	/**
@@ -129,13 +92,8 @@ public class EncapsulatedContentProvider implements IStructuredContentProvider {
 	 *         all elements from the wrapped ContentProvider
 	 */
 	public Object[] getElements() {
-		return getAllAvailableElements();
+		return getAllElements();
 	}
-
-	/**
-	 * The set of elements that should not be returned by this provider
-	 */
-	private Set<Object> filteredElements = new HashSet<Object>();
 
 	/**
 	 * The set of temporaryElements, which are added from outside this ContentProvider
@@ -157,6 +115,50 @@ public class EncapsulatedContentProvider implements IStructuredContentProvider {
 	 */
 	public void clearTemporaryElements() {
 		temporaryElements.clear();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Object[] getChildren(Object parentElement) {
+		if(encapsulated instanceof ITreeContentProvider) {
+			return ((ITreeContentProvider)encapsulated).getChildren(parentElement);
+		} else {
+			return new Object[0];
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Object getParent(Object element) {
+		if(encapsulated instanceof ITreeContentProvider) {
+			return ((ITreeContentProvider)encapsulated).getParent(element);
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean hasChildren(Object element) {
+		if(encapsulated instanceof ITreeContentProvider) {
+			return ((ITreeContentProvider)encapsulated).hasChildren(element);
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isValidValue(Object element) {
+		if(encapsulated instanceof IHierarchicContentProvider) {
+			return ((IHierarchicContentProvider)encapsulated).isValidValue(element);
+		} else {
+			return true;
+		}
 	}
 
 }

@@ -103,4 +103,10 @@ public class MultipleReferenceEditor extends MultipleValueEditor {
 			super.setLabelProvider(labelProvider);
 		}
 	}
+
+	@Override
+	public void setUnique(boolean unique) {
+		selector.setUnique(unique);
+		super.setUnique(unique);
+	}
 }

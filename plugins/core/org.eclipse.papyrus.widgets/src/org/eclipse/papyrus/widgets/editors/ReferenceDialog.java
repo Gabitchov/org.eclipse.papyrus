@@ -19,8 +19,8 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.widgets.Activator;
 import org.eclipse.papyrus.widgets.messages.Messages;
+import org.eclipse.papyrus.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.widgets.providers.WrappedLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.DisposeEvent;
@@ -31,7 +31,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
 /**
  * An editor representing a single reference as a Label
@@ -61,9 +60,10 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	protected final Button unsetButton;
 
 	/**
-	 * A Mutable labelProvider, as the dialog doesn't allow us to change the label provider
+	 * The label provider used to display the values in both the label and the
+	 * selection dialog
 	 */
-	protected final WrappedLabelProvider labelProvider;
+	protected ILabelProvider labelProvider;
 
 	/**
 	 * The content provider, providing the different possible values for the input object
@@ -73,7 +73,7 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	/**
 	 * The dialog used to select the value
 	 */
-	protected final ElementListSelectionDialog dialog;
+	protected final TreeSelectorDialog dialog;
 
 	/**
 	 * The current value for this editor
@@ -93,13 +93,10 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 
 		((GridLayout)getLayout()).numColumns = 4;
 
-		labelProvider = new WrappedLabelProvider();
-
 		currentValueLabel = factory.createCLabel(this, null, SWT.BORDER | style);
 		currentValueLabel.setLayoutData(getDefaultLayoutData());
 
-		dialog = new ElementListSelectionDialog(parent.getShell(), labelProvider);
-		dialog.setImage(Activator.getDefault().getImage("/icons/papyrus.png")); //$NON-NLS-1$
+		dialog = new TreeSelectorDialog(parent.getShell());
 
 		openDialogButton = factory.createButton(this, null, SWT.PUSH);
 		openDialogButton.setImage(Activator.getDefault().getImage("/icons/browse_12x12.gif")); //$NON-NLS-1$
@@ -107,11 +104,16 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 		openDialogButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
+				dialog.setInitialElementSelections(Collections.singletonList(getValue()));
 				int result = dialog.open();
 				if(result == Window.OK) {
-					Object newValue = dialog.getFirstResult();
+					Object[] newValue = dialog.getResult();
+					if(newValue.length == 0) {
+						modelProperty.setValue(null);
+					} else {
+						modelProperty.setValue(newValue[0]);
+					}
 					updateLabel();
-					modelProperty.setValue(newValue);
 				}
 			}
 
@@ -172,14 +174,11 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	 *        The content provider used to retrieve the possible values for this Reference
 	 */
 	public void setContentProvider(IStaticContentProvider provider) {
-		if(provider == null) {
-			dialog.setElements(new Object[0]);
-			if(getValue() != null)
-				dialog.setInitialElementSelections(Collections.singletonList(getValue()));
-		} else
-			dialog.setElements(provider.getElements());
+		dialog.setContentProvider(new EncapsulatedContentProvider(provider));
+		if(getValue() != null)
+			dialog.setInitialElementSelections(Collections.singletonList(getValue()));
 
-		contentProvider = provider;
+		this.contentProvider = provider;
 	}
 
 	/**
@@ -192,10 +191,8 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	 *        The label provider
 	 */
 	public void setLabelProvider(ILabelProvider provider) {
-		labelProvider.setLabelProvider(provider);
-		if(contentProvider != null) {
-			dialog.setElements(contentProvider.getElements());
-		}
+		dialog.setLabelProvider(provider);
+		this.labelProvider = provider;
 		updateLabel();
 	}
 

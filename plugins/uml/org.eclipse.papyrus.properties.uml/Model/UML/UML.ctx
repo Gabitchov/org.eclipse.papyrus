@@ -1381,6 +1381,9 @@
     <sections name="MemberEnd" sectionFile="ui/MemberEnd.xwt">
       <widget href="ui/MemberEnd.xwt#/"/>
     </sections>
+    <sections name="SingleComment" sectionFile="ui/SingleComment.xwt">
+      <widget href="ui/SingleComment.xwt#/"/>
+    </sections>
   </tabs>
   <views name="SinglePackage" sections="//@tabs.0/@sections.0" automaticContext="true">
     <constraints name="isSinglePackage">
@@ -4135,6 +4138,12 @@
     <constraints name="isMultipleDependency">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="umlClassName" value="Dependency"/>
+    </constraints>
+  </views>
+  <views name="SingleComment" sections="//@tabs.0/@sections.460">
+    <constraints name="isSingleComment">
+      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="umlClassName" value="Comment"/>
     </constraints>
   </views>
   <dataContexts name="UML" label="UML">
