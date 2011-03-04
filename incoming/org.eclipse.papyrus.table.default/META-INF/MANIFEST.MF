@@ -14,7 +14,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.facet.widgets.nattable.instance;bundle-version="0.1.0";visibility:=reexport,
  org.eclipse.core.expressions,
  org.eclipse.papyrus.core,
- org.eclipse.e4.ui.model.workbench;bundle-version="0.9.1",
  org.eclipse.ui.navigator,
  org.eclipse.papyrus.table.common;bundle-version="0.8.0"
 Bundle-ActivationPolicy: lazy
