@@ -287,8 +287,11 @@ public class StereotypeApplicationPopupEditorConfigurationContribution extends P
 							if ((type instanceof PrimitiveType) && (type.getName().equals("String")) && (valueRepresentation instanceof String)) {
 								// unquote Strings, remove 1st and last character
 								String stringValue = (String) valueRepresentation;
-								if (stringValue.length() >= 2) {
+								if (stringValue.length() > 2) {
 									valueRepresentation = stringValue.substring(1, stringValue.length()-2);
+								}
+								else {
+									valueRepresentation = "";
 								}
 							}
 						}
