@@ -116,14 +116,6 @@ public class TaggedValueChangeLeftTargetImpl extends TaggedValueChangeImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public String getText() {
-		return UMLCompareUtils.getInstance().getText(this);
-	}
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */

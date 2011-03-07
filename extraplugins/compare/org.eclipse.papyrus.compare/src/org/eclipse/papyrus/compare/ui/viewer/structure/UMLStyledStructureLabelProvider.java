@@ -13,27 +13,30 @@
  *****************************************************************************/
 package org.eclipse.papyrus.compare.ui.viewer.structure;
 
+import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.StyledCellLabelProvider;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.ViewerCell;
-import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch;
+import org.eclipse.papyrus.compare.ui.PapyrusLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 
 public class UMLStyledStructureLabelProvider extends StyledCellLabelProvider implements ILabelProvider {
 
-	private UMLModelStructureLabelProvider myDelegate;
+	private ILabelProvider myDelegate = new PapyrusLabelProvider();
 
-	private UMLDiffSwitch<StyledString> myDiffLabelSwitch = UMLCompareUtils.getInstance().getDiffLabelSwitch();
+	private UMLDiffSwitch<StyledString> myDiffLabelSwitch = new StyledDiffLabelSwitch(myDelegate);
 
 	public UMLStyledStructureLabelProvider() {
-		myDelegate = new UMLModelStructureLabelProvider();
 	}
 
 	public Image getImage(Object element) {
+		if(element instanceof AbstractDiffExtension) {
+			return (Image)((AbstractDiffExtension)element).getImage();
+		}
 		return myDelegate.getImage(element);
 	}
 

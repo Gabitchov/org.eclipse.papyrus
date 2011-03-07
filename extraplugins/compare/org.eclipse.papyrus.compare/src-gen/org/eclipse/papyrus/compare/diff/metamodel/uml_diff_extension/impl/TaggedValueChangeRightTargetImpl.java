@@ -115,15 +115,6 @@ public class TaggedValueChangeRightTargetImpl extends TaggedValueChangeImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public String getText() {
-		return UMLCompareUtils.getInstance().getText(this);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public Object getImage() {
 		AdapterFactoryLabelProvider adapterProvider = new AdapterFactoryLabelProvider(AdapterUtils.getAdapterFactory());
 		Image labelImage = adapterProvider.getImage(getAttribute());

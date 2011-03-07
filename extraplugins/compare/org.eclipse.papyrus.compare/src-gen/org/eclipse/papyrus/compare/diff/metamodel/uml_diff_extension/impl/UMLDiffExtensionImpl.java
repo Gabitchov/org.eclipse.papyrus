@@ -15,6 +15,7 @@ import org.eclipse.emf.compare.diff.merge.IMerger;
 import org.eclipse.emf.compare.diff.metamodel.impl.AbstractDiffExtensionImpl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.jface.viewers.StyledString;
 
 import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffExtension;
@@ -57,7 +58,11 @@ public abstract class UMLDiffExtensionImpl extends AbstractDiffExtensionImpl imp
 	 */
 	@Override
 	public String getText() {
-		return UMLCompareUtils.getInstance().getText(this);
+		StyledString result = UMLCompareUtils.getInstance().getDiffLabelSwitch().doSwitch(this);
+		if (result != null) {
+			return result.getString();
+		}
+		return "<LABEL NOT FOUND>";
 	}
 
 	/**
