@@ -14,18 +14,14 @@
 package org.eclipse.papyrus.compare.ui.viewer.content.part;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
-import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.match.metamodel.Match2Elements;
 import org.eclipse.emf.compare.match.metamodel.MatchElement;
-import org.eclipse.emf.compare.ui.util.EMFCompareConstants;
-import org.eclipse.emf.compare.ui.util.EMFCompareEObjectUtils;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
 import org.eclipse.emf.compare.ui.viewer.content.part.IModelContentMergeViewerTab;
 import org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder;
@@ -48,10 +44,12 @@ import org.eclipse.swt.widgets.Composite;
 
 
 public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
-	
+
+	protected final UMLModelContentMergeViewer myUMLViewer;
 
 	public UMLModelContentMergeTabFolder(ModelContentMergeViewer viewer, Composite composite, int side) {
 		super(viewer, composite, side);
+		myUMLViewer = (UMLModelContentMergeViewer)viewer;
 	}
 
 	@Override
@@ -62,57 +60,23 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 		return diffTab;
 
 	}
-	
+
 	@Override
 	protected IModelContentMergeViewerTab createModelContentMergeViewerTab(Composite parent) {
 		ModelContentMergePropertyTab propertyTab = new ModelContentMergePropertyTab(parent, partSide, this);
 		propertyTab.setContentProvider(new UMLPropertyContentProvider());
 		return propertyTab;
 	}
-	
-	@Override
-	public void navigateToDiff(List<DiffElement> diffs) {
-		if (((UMLModelContentMergeViewer)parentViewer).isShowAllProperties()) {
-			super.navigateToDiff(diffs);
-		}
-		super.navigateToDiff(diffs);
-//		EObject target = null;
-//		// finds the object which properties should be found and expands the tree if needed
-//		if (partSide == EMFCompareConstants.LEFT) {
-//			target = EMFCompareEObjectUtils.getLeftElement(diffs.get(0));
-//		} else if (partSide == EMFCompareConstants.RIGHT) {
-//			if (diffs.get(0) instanceof DiffGroup
-//					&& EMFCompareEObjectUtils.getLeftElement(diffs.get(0)) != null) {
-//				target = EMFCompareEObjectUtils.getRightElement(findMatchFromElement(EMFCompareEObjectUtils
-//						.getLeftElement(diffs.get(0))));
-//			} else if (!(diffs.get(0) instanceof DiffGroup)) {
-//				target = EMFCompareEObjectUtils.getRightElement(diffs.get(0));
-//			} else
-//				// fall through.
-//				return;
-//		} else {
-//			target = EMFCompareEObjectUtils.getAncestorElement(findMatchFromElement(EMFCompareEObjectUtils
-//					.getLeftElement(diffs.get(0))));
-//		}
-//
-//		// provide input to properties before showing diffs (as properties may be the active tab).
-//		properties.setReflectiveInput(findMatchFromElement(target, diffs.get(0)));
-//
-//		tabs.get(tabFolder.getSelectionIndex()).showItems(diffs);
-//
-//		parentViewer.getConfiguration().setProperty(EMFCompareConstants.PROPERTY_CONTENT_SELECTION,
-//				diffs.get(0));
-//		parentViewer.updateCenter();
-	}
-	
-	protected EObject findMatchFromElement(EObject element, DiffElement diff) {
-		EObject result =  super.findMatchFromElement(element);
-		if (result instanceof Match2Elements) {
-			return new Match2ElementsWithDiff((Match2Elements)result, diff);
+
+
+	protected EObject findMatchFromElement(EObject element) {
+		EObject result = super.findMatchFromElement(element);
+		if(!myUMLViewer.isShowAllProperties()) {
+			return new Match2ElementsWithDiff((Match2Elements)result, myUMLViewer.getCurrentSelection().get(0));
 		}
 		return result;
 	}
-	
+
 	protected IContentProvider createDiffTabContentProvider() {
 		ComposedAdapterFactory adapterFactory = new UMLAdapterFactory();
 		AdapterFactoryContentProvider result = new AdapterFactoryContentProvider(adapterFactory) {
@@ -128,27 +92,27 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 
 		return result;
 	}
-	
+
 	public int getSelectedTab() {
 		return tabFolder.getSelectionIndex();
 	}
-	
+
 	public boolean isPropertyTab(int index) {
 		final IModelContentMergeViewerTab currentTab = tabs.get(index);
 		return (currentTab == getPropertyPart());
 	}
-	
+
 	public static class Match2ElementsWithDiff implements Match2Elements {
-		
+
 		private Match2Elements myDelegate;
-		
+
 		private DiffElement myDiffElement;
-		
+
 		public Match2ElementsWithDiff(Match2Elements delegate, DiffElement diffElement) {
 			myDelegate = delegate;
 			myDiffElement = diffElement;
 		}
-		
+
 		public DiffElement getDiffElement() {
 			return myDiffElement;
 		}
@@ -256,8 +220,8 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 		public void setRightElement(EObject value) {
 			myDelegate.setRightElement(value);
 		}
-		
+
 	}
-	
+
 
 }

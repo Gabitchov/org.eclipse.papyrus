@@ -13,7 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.compare.ui.viewer.content;
 
+import java.util.List;
+
 import org.eclipse.compare.CompareConfiguration;
+import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.ui.ICompareEditorPartListener;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
 import org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder;
@@ -103,6 +106,10 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 	
 	public boolean isShowAllProperties() {
 		return myShowAllProperties.isChecked();
+	}
+	
+	public List<DiffElement> getCurrentSelection() {
+		return currentSelection;
 	}
 
 	/**
