@@ -35,13 +35,15 @@ import org.eclipse.swt.widgets.Composite;
 
 public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 
+	private static final String VIEWER_SETTINGS_GROUP = "viewer";//$NON-NLS-1$
+	
+	private static final String SHOW_ALL_PRORPERTIES_IMAGE_PATH = "/icons/show_all_properties.gif";
+
 	private IAction myShowAllProperties;
 
 	private ICompareEditorPartListener myPropertyTabSelectionListener;
 	
 	private UMLModelContentMergeTabFolder myLeftPart;
-
-	private static final String VIEWER_SETTINGS_GROUP = "viewer";//$NON-NLS-1$
 
 	public UMLModelContentMergeViewer(Composite parent, CompareConfiguration config) {
 		super(parent, config);
@@ -75,12 +77,9 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 		};
 		boolean isEnabled = isPropertyTab(myLeftPart.getSelectedTab());
 		myShowAllProperties.setEnabled(isEnabled);
-		// since default tab is not properties
 		myShowAllProperties.setEnabled(false);
 		myShowAllProperties.setToolTipText("Show All Properties of the Element");
-		myShowAllProperties.setImageDescriptor(ImageDescriptor.createFromImage(Activator.getImage("/icons/show_all_properties.gif")));
-		//			setHoverImageDescriptor(ImageDescriptor.createFromImage(descriptor.getEnabledImage()));
-		//			setDisabledImageDescriptor(ImageDescriptor.createFromImage(descriptor.getDisabledImage()));
+		myShowAllProperties.setImageDescriptor(ImageDescriptor.createFromImage(Activator.getImage(SHOW_ALL_PRORPERTIES_IMAGE_PATH)));
 
 		final ActionContributionItem showAllPropertiesContribution = new ActionContributionItem(myShowAllProperties);
 		showAllPropertiesContribution.setVisible(true);
