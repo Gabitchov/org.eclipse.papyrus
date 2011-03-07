@@ -77,15 +77,15 @@ public class PapyrusLabelProvider extends CustomizableModelLabelProvider {
 				return (AppearanceConfiguration)getApperanceConfigurationMethod.invoke(customizationManager2);
 			}
 		} catch (SecurityException e) {
-			Activator.log.error(e);
+			Activator.logError(e);
 		} catch (NoSuchMethodException e) {
-			Activator.log.error(e);
+			Activator.logError(e);
 		} catch (IllegalArgumentException e) {
-			Activator.log.error(e);
+			Activator.logError(e);
 		} catch (IllegalAccessException e) {
-			Activator.log.error(e);
+			Activator.logError(e);
 		} catch (InvocationTargetException e) {
-			Activator.log.error(e);
+			Activator.logError(e);
 		}
 		return new AppearanceConfiguration(null); // default one.
 	}

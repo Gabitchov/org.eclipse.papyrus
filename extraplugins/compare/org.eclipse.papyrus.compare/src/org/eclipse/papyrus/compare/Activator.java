@@ -13,8 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.compare;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageRegistry;
-import org.eclipse.papyrus.log.LogHelper;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -33,29 +34,28 @@ public class Activator extends AbstractUIPlugin {
 	 * The shared instance.
 	 */
 	private static Activator plugin;
-	
-	/** Logging helper */
-    public static LogHelper log;
-	
+
+
 	/**
 	 * The constructor.
 	 */
 	public Activator() {
 	}
 
-	/**{@inheritDoc}
-	 *
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.core.runtime.Plugin#start(org.osgi.framework.BundleContext)
 	 * @generated
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-		log = new LogHelper(plugin);
 	}
 
-	/**{@inheritDoc}
-	 *
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
 	 * @generated
 	 */
@@ -66,13 +66,13 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Returns the shared instance.
-	 *
+	 * 
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {
 		return plugin;
 	}
-	
+
 	/**
 	 * Returns the image from the given path
 	 * 
@@ -91,5 +91,18 @@ public class Activator extends AbstractUIPlugin {
 
 	}
 
+	public static void logError(Throwable e) {
+		logError("Unexpected error: ", e);
+	}
+
+	public static void logError(String message, Throwable e) {
+		IStatus status = new Status(IStatus.ERROR, PLUGIN_ID, message, e);
+		getDefault().getLog().log(status);
+	}
+
+	public static void logInfo(String message) {
+		IStatus status = new Status(IStatus.INFO, PLUGIN_ID, message);
+		getDefault().getLog().log(status);
+	}
 
 }

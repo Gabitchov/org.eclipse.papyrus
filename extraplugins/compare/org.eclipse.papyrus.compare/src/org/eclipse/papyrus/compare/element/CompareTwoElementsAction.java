@@ -13,8 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.compare.element;
 
-import static org.eclipse.papyrus.compare.Activator.log;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
@@ -42,6 +40,7 @@ import org.eclipse.emf.compare.util.EMFCompareMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.papyrus.compare.Activator;
 import org.eclipse.papyrus.compare.ui.viewer.content.ElementContentMergeContentProvider;
 import org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewer;
 import org.eclipse.papyrus.compare.ui.viewer.structure.UMLStyledStructureLabelProvider;
@@ -56,19 +55,19 @@ public class CompareTwoElementsAction extends TeamAction {
 
 		Object[] selectedElements = getSelection().toArray();
 		if(selectedElements.length != 2) {
-			log.info("Cannot compare elements: 2 elements should be selected, but only " + selectedElements.length + " is selected");
+			Activator.logInfo("Cannot compare elements: 2 elements should be selected, but only " + selectedElements.length + " is selected");
 			return;
 		}
 
 		EObject left = getElementFor(selectedElements[0]);
 		EObject right = getElementFor(selectedElements[1]);
 		if(left == null) {
-			log.info("Cannot compare elements: left element is null");
+			Activator.logInfo("Cannot compare elements: left element is null");
 			return;
 		}
 
 		if(right == null) {
-			log.info("Cannot compare elements: right element is null");
+			Activator.logInfo("Cannot compare elements: right element is null");
 			return;
 		}
 
@@ -125,11 +124,11 @@ public class CompareTwoElementsAction extends TeamAction {
 
 			});
 		} catch (final InterruptedException e) {
-			log.error(e);
+			Activator.logError(e);
 		} catch (final EMFCompareException e) {
-			log.error(e);
+			Activator.logError(e);
 		} catch (final InvocationTargetException e) {
-			e.printStackTrace();
+			Activator.logError(e);
 		}
 		return snapshot;
 	}
