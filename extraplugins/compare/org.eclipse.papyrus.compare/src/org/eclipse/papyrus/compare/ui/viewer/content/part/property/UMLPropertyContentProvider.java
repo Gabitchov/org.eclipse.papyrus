@@ -14,16 +14,19 @@
 package org.eclipse.papyrus.compare.ui.viewer.content.part.property;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
 import org.eclipse.emf.compare.ui.viewer.content.part.property.PropertyContentProvider;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class UMLPropertyContentProvider extends PropertyContentProvider {
-
 
 	@Override
 	public Object[] getElements(Object inputElement) {
@@ -34,11 +37,11 @@ public class UMLPropertyContentProvider extends PropertyContentProvider {
 		return elements;
 	}
 
-	protected Object[] getElementsForDiff(Object[] elements, DiffElement element) {
+	protected Object[] getElementsForDiff(Object[] propertyRows, DiffElement diffElement) {
 		List<Object> result = new ArrayList<Object>();
-		EStructuralFeature feature = getFeature(element);
-		if(feature != null) {
-			List<Object> row = findRowFor(elements, feature);
+		Collection<EStructuralFeature> features = getChangedFeatures(diffElement);
+		for (EStructuralFeature feature : features) {
+			Object row = findPropertyRowFor(propertyRows, feature);
 			if(row != null) {
 				result.add(row);
 			}
@@ -46,25 +49,43 @@ public class UMLPropertyContentProvider extends PropertyContentProvider {
 		return result.toArray(new Object[result.size()]);
 	}
 
-	protected EStructuralFeature getFeature(DiffElement diffElement) {
+	protected Collection<EStructuralFeature> getChangedFeatures(DiffElement diffElement) {
 		if(diffElement instanceof AttributeChange) {
-			return ((AttributeChange)diffElement).getAttribute();
+			EStructuralFeature feature = ((AttributeChange)diffElement).getAttribute();
+			return Collections.singletonList(feature);
 		}
 		if(diffElement instanceof ReferenceChange) {
-			return ((ReferenceChange)diffElement).getReference();
+			EStructuralFeature feature = ((ReferenceChange)diffElement).getReference();
+			return Collections.singletonList(feature);
 		}
-		return null;
+		if(diffElement instanceof DiffGroup) {
+			EList<DiffElement> children = ((DiffGroup)diffElement).getSubDiffElements();
+			List<EStructuralFeature> result = new ArrayList<EStructuralFeature>();
+			for (DiffElement child: children) {
+				result.addAll(getChangedFeatures(child));				
+			}
+			return result;
+		}
+		return Collections.emptyList();
 	}
 
 
-	protected List<Object> findRowFor(Object[] elements, EStructuralFeature feature) {
-		for(Object nextRow : elements) {
-			List<Object> row = (List<Object>)nextRow;
-			if(feature.equals(row.get(0))) {
-				return row;
+	private Object findPropertyRowFor(Object[] propertyRows, EStructuralFeature feature) {
+		for(Object nextRow : propertyRows) {
+			if(isTheSameFeature(feature, getFeatureFromPropertyRow(nextRow))) {
+				return nextRow;
 			}
 		}
 		return null;
+	}
+	
+	private EStructuralFeature getFeatureFromPropertyRow(Object propertyRow) {
+		List<Object> row = (List<Object>)propertyRow;
+		return (EStructuralFeature)row.get(0);
+	}
+
+	private boolean isTheSameFeature(EStructuralFeature feature1, EStructuralFeature feature2) {
+		return feature1.getFeatureID() == feature2.getFeatureID() && feature1.getName().equals(feature2.getName());
 	}
 
 }

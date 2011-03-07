@@ -44,6 +44,11 @@ public class Match2ElementsWithDiff implements Match2Elements {
 	public DiffElement getDiffElement() {
 		return myDiffElement;
 	}
+	
+	@Override
+	public String toString() {
+		return myDelegate.toString() + " " + (myDiffElement == null ? "" : myDiffElement.toString());
+	}
 
 	public double getSimilarity() {
 		return myDelegate.getSimilarity();
