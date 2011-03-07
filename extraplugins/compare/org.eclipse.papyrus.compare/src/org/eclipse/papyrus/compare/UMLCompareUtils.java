@@ -19,7 +19,6 @@ import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffExtension;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch;
 import org.eclipse.papyrus.compare.ui.PapyrusLabelProvider;
-import org.eclipse.papyrus.compare.ui.PapyrusStyledLabelProvider;
 import org.eclipse.papyrus.compare.ui.viewer.structure.StyledDiffLabelSwitch;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
