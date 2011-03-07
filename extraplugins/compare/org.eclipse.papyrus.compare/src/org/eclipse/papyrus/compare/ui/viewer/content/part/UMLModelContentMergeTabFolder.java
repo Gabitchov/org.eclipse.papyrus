@@ -71,6 +71,7 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 
 		return result;
 	}
+
 	protected EObject findMatchFromElement(EObject element) {
 		EObject matchElement = super.findMatchFromElement(element);
 		if(!myUMLViewer.isShowAllProperties() && matchElement instanceof Match2Elements) {

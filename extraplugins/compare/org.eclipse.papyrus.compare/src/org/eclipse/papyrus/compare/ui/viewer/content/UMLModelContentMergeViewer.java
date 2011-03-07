@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.compare.ui.viewer.content;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.compare.CompareConfiguration;
@@ -87,11 +88,7 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 	}
 
 	protected void showAllProperties() {
-		//		if(currentSelection != null) {
-		//			copy(currentSelection, true);
-		//		}
-		//		currentSelection.clear();
-		//		switchCopyState(false);
+		setSelection(new ArrayList<DiffElement>(currentSelection));
 	}
 
 	protected void propertyTabSelected(boolean isActive) {
