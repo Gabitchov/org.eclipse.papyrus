@@ -514,16 +514,6 @@ public class RemoveStereotypeApplicationImpl extends StereotypeChangeImpl implem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @NOT-generated
-	 */
-	@Override
-	public IMerger provideMerger() {
-		return null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

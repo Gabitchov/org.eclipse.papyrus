@@ -596,14 +596,5 @@ public class TaggedValueReferenceChangeImpl extends UMLDiffExtensionImpl impleme
 		return result.toString();
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @NOT-generated
-	 */
-	@Override
-	public Object getImage() {
-		return super.getImage();
-	}
 	
 } //TaggedValueReferenceChangeImpl

@@ -341,15 +341,5 @@ public class CompareTwoElementsDiffModelImpl extends UMLDiffExtensionImpl implem
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @NOT-generated
-	 */
-	@Override
-	public Object getImage() {
-		// TODO Auto-generated method stub
-		return super.getImage();
-	}
 
 } //CompareTwoElementsDiffModelImpl

@@ -106,14 +106,4 @@ public class UpdateTaggedValueImpl extends TaggedValueChangeImpl implements Upda
 		return labelImage;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public IMerger provideMerger() {
-		return null;
-	}
-
-
 } //UpdateTaggedValueImpl
