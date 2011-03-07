@@ -27,7 +27,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.papyrus.diagram.common.groups.core.groupcontainment.GroupContainmentRegistry;
 import org.eclipse.papyrus.diagram.common.groups.core.utils.Utils;
-import org.eclipse.papyrus.diagram.common.groups.groupcontainment.IContainerNodeDescriptor;
+import org.eclipse.papyrus.diagram.common.groups.groupcontainment.AbstractContainerNodeDescriptor;
+
 
 /**
  * Command to move model elements to a referencing group using the EMF action protocol.
@@ -71,7 +72,7 @@ public class MoveElementInGroupCommand extends MoveElementsCommand {
 		EReference feature = (EReference)getElementsToMove().get(element);
 		if(feature == null && groupPart instanceof IGraphicalEditPart) {
 			// find among references registered to the group framework which is the best
-			IContainerNodeDescriptor desc = GroupContainmentRegistry.getContainerDescriptor((IGraphicalEditPart)groupPart);
+			AbstractContainerNodeDescriptor desc = GroupContainmentRegistry.getContainerDescriptor((IGraphicalEditPart)groupPart);
 			feature = Utils.getBestReferenceAmongList(desc.getChildrenReferences(), element);
 		}
 		return feature;

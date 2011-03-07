@@ -71,7 +71,7 @@ AbstractShapeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3079;
+	public static final int VISUAL_ID = 3085;
 
 	/**
 	 * @generated

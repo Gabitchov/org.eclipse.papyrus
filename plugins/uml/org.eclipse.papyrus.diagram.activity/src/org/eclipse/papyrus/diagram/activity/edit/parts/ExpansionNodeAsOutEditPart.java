@@ -614,7 +614,7 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -669,7 +669,7 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		}
 		return types;
 	}
@@ -745,7 +745,7 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -800,7 +800,7 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.OpaqueAction_3007);
 			types.add(UMLElementTypes.CallBehaviorAction_3008);

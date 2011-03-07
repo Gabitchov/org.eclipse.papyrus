@@ -184,7 +184,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case InterruptibleActivityRegionEditPart.VISUAL_ID:
 				case CommentEditPartCN.VISUAL_ID:
 				case ReadSelfActionEditPart.VISUAL_ID:
-				case ActivityEditPartCN.VISUAL_ID:
 				case ShapeNamedElementEditPart.VISUAL_ID:
 				case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
 				case ValuePinInCallBeActEditPart.VISUAL_ID:
@@ -219,6 +218,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case OutputPinInValSpecActEditPart.VISUAL_ID:
 				case ExpansionNodeAsOutEditPart.VISUAL_ID:
 				case ReadSelfActionOutputPinEditPart.VISUAL_ID:
+				case ActivityEditPartCN.VISUAL_ID:
 					if(domainElement == null || visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for domain element
 					}
@@ -412,11 +412,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		case ReadSelfActionEditPart.VISUAL_ID:
 			return createReadSelfAction_3081(domainElement, containerView, index, persisted, preferencesHint);
 		case ReadSelfActionOutputPinEditPart.VISUAL_ID:
-			return createOutputPin_3082(domainElement, containerView, index, persisted, preferencesHint);
+			return createOutputPin_3084(domainElement, containerView, index, persisted, preferencesHint);
 		case ActivityEditPartCN.VISUAL_ID:
 			return createActivity_3083(domainElement, containerView, index, persisted, preferencesHint);
 		case ShapeNamedElementEditPart.VISUAL_ID:
-			return createNamedElement_3079(domainElement, containerView, index, persisted, preferencesHint);
+			return createNamedElement_3085(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -2225,34 +2225,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createNamedElement_3079(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(ShapeNamedElementEditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		// initializeFromPreferences 
-		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "ShapeNamedElement");
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ShapeNamedElement");
-
-		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ShapeNamedElement");
-
-		Node label5129 = createLabel(node, UMLVisualIDRegistry.getType(ShapeNamedElementNameEditPart.VISUAL_ID));
-		label5129.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-
-		Location location5129 = (Location)label5129.getLayoutConstraint();
-		location5129.setX(25);
-		location5129.setY(3);
-
-		return node;
-	}
-
-	/**
-	 * @generated
-	 */
 	public Node createComment_3080(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -2278,6 +2250,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	public Node createReadSelfAction_3081(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ReadSelfActionEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
@@ -2299,8 +2272,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_3082(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_3084(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ReadSelfActionOutputPinEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
@@ -2314,18 +2288,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "OutputPin");
 
-		Node label5140 = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInReadSelfActionLabelEditPart.VISUAL_ID));
-		label5140.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Node label5144 = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInReadSelfActionLabelEditPart.VISUAL_ID));
+		label5144.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 
-		Location location5140 = (Location)label5140.getLayoutConstraint();
-		location5140.setX(0);
-		location5140.setY(5);
-		Node label5141 = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInReadSelfActionAppliedStereotypeEditPart.VISUAL_ID));
-		label5141.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5144 = (Location)label5144.getLayoutConstraint();
+		location5144.setX(0);
+		location5144.setY(5);
+		Node label5145 = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInReadSelfActionAppliedStereotypeEditPart.VISUAL_ID));
+		label5145.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 
-		Location location5141 = (Location)label5141.getLayoutConstraint();
-		location5141.setX(0);
-		location5141.setY(5);
+		Location location5145 = (Location)label5145.getLayoutConstraint();
+		location5145.setX(0);
+		location5145.setY(5);
 
 		return node;
 	}
@@ -2342,20 +2316,48 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "ActivityCN");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Activity");
 
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActivityCN");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Activity");
 
-		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ActivityCN");
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Activity");
 
 		Node label5142 = createLabel(node, UMLVisualIDRegistry.getType(ActivityNameEditPartCN.VISUAL_ID));
 		Node label5143 = createLabel(node, UMLVisualIDRegistry.getType(ActivityIsSingleExecutionCNEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCNContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
 		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCNParametersCompartmentEditPart.VISUAL_ID), false, false, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCNPreConditionsCompartmentEditPart.VISUAL_ID), false, false, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCNPostConditionsCompartmentEditPart.VISUAL_ID), false, false, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCNContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
 
-		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ActivityCN");
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Activity");
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createNamedElement_3085(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(ShapeNamedElementEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "ShapeNamedElement");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ShapeNamedElement");
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ShapeNamedElement");
+
+		Node label5129 = createLabel(node, UMLVisualIDRegistry.getType(ShapeNamedElementNameEditPart.VISUAL_ID));
+		label5129.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5129 = (Location)label5129.getLayoutConstraint();
+		location5129.setX(25);
+		location5129.setY(3);
 
 		return node;
 	}

@@ -359,7 +359,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.NamedElement_3079, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.ShapeNamedElementNameEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.NamedElement_3085, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.ShapeNamedElementNameEditPart.VISUAL_ID));
 		}
 		return parser;
 	}

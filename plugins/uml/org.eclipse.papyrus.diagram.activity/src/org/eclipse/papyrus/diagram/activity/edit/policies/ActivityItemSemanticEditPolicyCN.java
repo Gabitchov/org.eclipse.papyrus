@@ -66,7 +66,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ShapeNamedElementEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
@@ -163,6 +162,45 @@ public class ActivityItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
 				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
+				break;
+			case ActivityCNParametersCompartmentEditPart.VISUAL_ID:
+				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
+					Node cnode = (Node)cit.next();
+					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
+					case ParameterEditPart.VISUAL_ID:
+
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					}
+				}
+				break;
+			case ActivityCNPreConditionsCompartmentEditPart.VISUAL_ID:
+				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
+					Node cnode = (Node)cit.next();
+					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
+					case ConstraintInActivityAsPrecondEditPart.VISUAL_ID:
+
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					}
+				}
+				break;
+			case ActivityCNPostConditionsCompartmentEditPart.VISUAL_ID:
+				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
+					Node cnode = (Node)cit.next();
+					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
+					case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
+
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					}
+				}
 				break;
 			case ActivityCNContentCompartmentEditPart.VISUAL_ID:
 				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
@@ -1204,7 +1242,7 @@ public class ActivityItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
-					case ShapeNamedElementEditPart.VISUAL_ID:
+					case ActivityParameterNodeEditPart.VISUAL_ID:
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -1214,48 +1252,27 @@ public class ActivityItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 								cmd.add(new DestroyReferenceCommand(destroyRefReq));
 								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
 								break;
+							case ObjectFlowEditPart.VISUAL_ID:
+							case ControlFlowEditPart.VISUAL_ID:
+							case ExceptionHandlerEditPart.VISUAL_ID:
+								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(destroyEltReq));
+								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							}
 						}
 
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
-						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
-						break;
-					}
-				}
-				break;
-			case ActivityCNParametersCompartmentEditPart.VISUAL_ID:
-				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
-					Node cnode = (Node)cit.next();
-					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
-					case ParameterEditPart.VISUAL_ID:
-
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
-						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
-						break;
-					}
-				}
-				break;
-			case ActivityCNPreConditionsCompartmentEditPart.VISUAL_ID:
-				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
-					Node cnode = (Node)cit.next();
-					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
-					case ConstraintInActivityAsPrecondEditPart.VISUAL_ID:
-
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
-						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
-						break;
-					}
-				}
-				break;
-			case ActivityCNPostConditionsCompartmentEditPart.VISUAL_ID:
-				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
-					Node cnode = (Node)cit.next();
-					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
-					case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
-
+						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+							Edge outgoingLink = (Edge)it.next();
+							switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
+							case ObjectFlowEditPart.VISUAL_ID:
+							case ControlFlowEditPart.VISUAL_ID:
+								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(destroyEltReq));
+								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
+								break;
+							}
+						}
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));

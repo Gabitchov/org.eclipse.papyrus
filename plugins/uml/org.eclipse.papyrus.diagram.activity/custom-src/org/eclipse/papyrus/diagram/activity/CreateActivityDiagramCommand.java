@@ -50,6 +50,6 @@ public class CreateActivityDiagramCommand extends CreateBehavioredClassifierDiag
 	 */
 	@Override
 	protected String getDefaultDiagramName() {
-		return super.openDiagramNameDialog("NewDiagram"); //$NON-NLS-1$
+		return "ActivityDiagram"; //$NON-NLS-1$
 	}
 }

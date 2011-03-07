@@ -213,7 +213,7 @@ NamedElementEditPart {
 
 		//Papyrus Gencode :Affixed Activity Parameter Node locator for Activity
 		if(childEditPart instanceof ActivityParameterNodeEditPart) {
-			IBorderItemLocator locator = new ParameterNodeLocator(getMainFigure(), PositionConstants.NONE);
+			IBorderItemLocator locator = new ParameterNodeLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((ActivityParameterNodeEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}

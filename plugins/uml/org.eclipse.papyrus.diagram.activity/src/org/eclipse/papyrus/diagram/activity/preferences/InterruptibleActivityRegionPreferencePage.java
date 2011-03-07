@@ -27,9 +27,7 @@ public class InterruptibleActivityRegionPreferencePage extends AbstractPapyrusNo
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "InterruptibleActivityRegionContentCompartment"
-
-	};
+	public static final String compartments[] = { "InterruptibleActivityRegionContentCompartment" };
 
 	/**
 	 * @generated
@@ -44,7 +42,7 @@ public class InterruptibleActivityRegionPreferencePage extends AbstractPapyrusNo
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**

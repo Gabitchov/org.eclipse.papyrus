@@ -398,11 +398,6 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType NamedElement_3079 = getElementType("org.eclipse.papyrus.diagram.activity.NamedElement_3079"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	public static final IElementType Comment_3080 = getElementType("org.eclipse.papyrus.diagram.activity.Comment_3080"); //$NON-NLS-1$
 
 	/**
@@ -413,12 +408,17 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3082 = getElementType("org.eclipse.papyrus.diagram.activity.OutputPin_3082"); //$NON-NLS-1$
+	public static final IElementType OutputPin_3084 = getElementType("org.eclipse.papyrus.diagram.activity.OutputPin_3084"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Activity_3083 = getElementType("org.eclipse.papyrus.diagram.activity.ActivityCN_3083"); //$NON-NLS-1$
+	public static final IElementType Activity_3083 = getElementType("org.eclipse.papyrus.diagram.activity.Activity_3083"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType NamedElement_3085 = getElementType("org.eclipse.papyrus.diagram.activity.NamedElement_3085"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -769,11 +769,11 @@ public class UMLElementTypes {
 
 			elements.put(ReadSelfAction_3081, UMLPackage.eINSTANCE.getReadSelfAction());
 
-			elements.put(OutputPin_3082, UMLPackage.eINSTANCE.getOutputPin());
+			elements.put(OutputPin_3084, UMLPackage.eINSTANCE.getOutputPin());
 
 			elements.put(Activity_3083, UMLPackage.eINSTANCE.getActivity());
 
-			elements.put(NamedElement_3079, UMLPackage.eINSTANCE.getNamedElement());
+			elements.put(NamedElement_3085, UMLPackage.eINSTANCE.getNamedElement());
 
 			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 
@@ -872,9 +872,9 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(InterruptibleActivityRegion_3068);
 			KNOWN_ELEMENT_TYPES.add(Comment_3080);
 			KNOWN_ELEMENT_TYPES.add(ReadSelfAction_3081);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3082);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3084);
 			KNOWN_ELEMENT_TYPES.add(Activity_3083);
-			KNOWN_ELEMENT_TYPES.add(NamedElement_3079);
+			KNOWN_ELEMENT_TYPES.add(NamedElement_3085);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPrecondition_4001);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPostcondition_4002);
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
@@ -1029,11 +1029,11 @@ public class UMLElementTypes {
 		case ReadSelfActionEditPart.VISUAL_ID:
 			return ReadSelfAction_3081;
 		case ReadSelfActionOutputPinEditPart.VISUAL_ID:
-			return OutputPin_3082;
+			return OutputPin_3084;
 		case ActivityEditPartCN.VISUAL_ID:
 			return Activity_3083;
 		case ShapeNamedElementEditPart.VISUAL_ID:
-			return NamedElement_3079;
+			return NamedElement_3085;
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return ActionLocalPrecondition_4001;
 		case ActionLocalPostconditionEditPart.VISUAL_ID:

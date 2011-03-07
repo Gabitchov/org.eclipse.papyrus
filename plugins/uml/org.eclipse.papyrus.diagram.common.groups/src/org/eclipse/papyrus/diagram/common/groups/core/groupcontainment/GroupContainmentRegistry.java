@@ -25,7 +25,8 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.groups.groupcontainment.IContainerNodeDescriptor;
+import org.eclipse.papyrus.diagram.common.groups.groupcontainment.AbstractContainerNodeDescriptor;
+
 
 /**
  * This registry recovers information from the extensions for the GroupContainment point.
@@ -50,13 +51,13 @@ public class GroupContainmentRegistry {
 	private static final String EDIT_PART_TYPE_ATTRIBUTE = "editPartType";
 
 	/** The map of descriptors for model containers, by type of edit part */
-	private static Map<String, IContainerNodeDescriptor> modelContainersDescriptors = new HashMap<String, IContainerNodeDescriptor>();
+	private static Map<String, AbstractContainerNodeDescriptor> modelContainersDescriptors = new HashMap<String, AbstractContainerNodeDescriptor>();
 
 	/** The map of descriptors for graphical containers only, by type of edit part */
-	private static Map<String, IContainerNodeDescriptor> graphicalContainersDescriptors = new HashMap<String, IContainerNodeDescriptor>();
+	private static Map<String, AbstractContainerNodeDescriptor> graphicalContainersDescriptors = new HashMap<String, AbstractContainerNodeDescriptor>();
 
 	/** The map of descriptor allowing to recover the group part from a view, by view type */
-	private static Map<String, IContainerNodeDescriptor> descriptorForViewType = new HashMap<String, IContainerNodeDescriptor>();
+	private static Map<String, AbstractContainerNodeDescriptor> descriptorForViewType = new HashMap<String, AbstractContainerNodeDescriptor>();
 
 	/**
 	 * Initialize the values from the extension point
@@ -79,8 +80,8 @@ public class GroupContainmentRegistry {
 					if(editPartType != null) {
 						try {
 							Object provider = providing.createExecutableExtension(CONTAINER_DESCRIPTOR_ATTRIBUTE);
-							if(provider instanceof IContainerNodeDescriptor) {
-								modelContainersDescriptors.put(editPartType, (IContainerNodeDescriptor)provider);
+							if(provider instanceof AbstractContainerNodeDescriptor) {
+								modelContainersDescriptors.put(editPartType, (AbstractContainerNodeDescriptor)provider);
 							}
 						} catch (CoreException e) {
 							// ignore this extension node
@@ -91,8 +92,8 @@ public class GroupContainmentRegistry {
 					if(editPartType != null) {
 						try {
 							Object provider = providing.createExecutableExtension(CONTAINER_DESCRIPTOR_ATTRIBUTE);
-							if(provider instanceof IContainerNodeDescriptor) {
-								graphicalContainersDescriptors.put(editPartType, (IContainerNodeDescriptor)provider);
+							if(provider instanceof AbstractContainerNodeDescriptor) {
+								graphicalContainersDescriptors.put(editPartType, (AbstractContainerNodeDescriptor)provider);
 							}
 						} catch (CoreException e) {
 							// ignore this extension node
@@ -125,7 +126,7 @@ public class GroupContainmentRegistry {
 	 *        the edit part to get descriptor of
 	 * @return container node descriptor or null if none
 	 */
-	public static IContainerNodeDescriptor getContainerDescriptor(IGraphicalEditPart editPart) {
+	public static AbstractContainerNodeDescriptor getContainerDescriptor(IGraphicalEditPart editPart) {
 		String editPartClassName = editPart.getClass().getCanonicalName();
 		if(modelContainersDescriptors.containsKey(editPartClassName)) {
 			return modelContainersDescriptors.get(editPartClassName);
@@ -161,7 +162,7 @@ public class GroupContainmentRegistry {
 		String viewType = view.getType();
 		if(descriptorForViewType.containsKey(viewType)) {
 			// the appropriate descriptor has already been found for this view type
-			IContainerNodeDescriptor desc = descriptorForViewType.get(viewType);
+			AbstractContainerNodeDescriptor desc = descriptorForViewType.get(viewType);
 			if(desc != null) {
 				return desc.getPartFromView(view, diagramPart);
 			} else {
@@ -169,7 +170,7 @@ public class GroupContainmentRegistry {
 			}
 		} else {
 			// find the the appropriate descriptor for this view type
-			for(IContainerNodeDescriptor desc : modelContainersDescriptors.values()) {
+			for(AbstractContainerNodeDescriptor desc : modelContainersDescriptors.values()) {
 				IGraphicalEditPart res = desc.getPartFromView(view, diagramPart);
 				if(res != null) {
 					// register for further use
@@ -177,7 +178,7 @@ public class GroupContainmentRegistry {
 					return res;
 				}
 			}
-			for(IContainerNodeDescriptor desc : graphicalContainersDescriptors.values()) {
+			for(AbstractContainerNodeDescriptor desc : graphicalContainersDescriptors.values()) {
 				IGraphicalEditPart res = desc.getPartFromView(view, diagramPart);
 				if(res != null) {
 					// register for further use

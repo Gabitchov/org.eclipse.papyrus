@@ -939,7 +939,7 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -994,7 +994,7 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.ValuePin_3015);
 			types.add(UMLElementTypes.ActionInputPin_3016);
@@ -1029,7 +1029,7 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.OutputPin_3077);
 			types.add(UMLElementTypes.ExpansionNode_3074);
 			types.add(UMLElementTypes.ExpansionNode_3075);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		}
 		return types;
 	}
@@ -1104,7 +1104,7 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1159,7 +1159,7 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
-			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.OutputPin_3084);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
 			types.add(UMLElementTypes.Comment_3080);
 		}

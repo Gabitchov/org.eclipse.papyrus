@@ -28,6 +28,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredLayoutCommand;
@@ -65,6 +66,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
@@ -90,13 +92,25 @@ public class ConditionalNodeStructuredActivityNodeContentCompartmentCanonicalEdi
 	/**
 	 * @generated
 	 */
+	protected void refreshOnActivate() {
+		// Need to activate editpart children before invoking the canonical refresh for EditParts to add event listeners
+		List<?> c = getHost().getChildren();
+		for(int i = 0; i < c.size(); i++) {
+			((EditPart)c.get(i)).activate();
+		}
+		super.refreshOnActivate();
+	}
+
+	/**
+	 * @generated
+	 */
 	protected Set getFeaturesToSynchronize() {
 		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Node());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Group());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPostcondition());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Group());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -134,14 +148,6 @@ public class ConditionalNodeStructuredActivityNodeContentCompartmentCanonicalEdi
 		case OpaqueActionEditPart.VISUAL_ID:
 		case CallBehaviorActionEditPart.VISUAL_ID:
 		case CallOperationActionEditPart.VISUAL_ID:
-		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
-		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
-		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
-		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
-		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
-		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
-		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
-		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 		case DecisionNodeEditPart.VISUAL_ID:
 		case MergeNodeEditPart.VISUAL_ID:
 		case ForkNodeEditPart.VISUAL_ID:
@@ -156,6 +162,15 @@ public class ConditionalNodeStructuredActivityNodeContentCompartmentCanonicalEdi
 		case LoopNodeEditPart.VISUAL_ID:
 		case SequenceNodeEditPart.VISUAL_ID:
 		case StructuredActivityNodeEditPart.VISUAL_ID:
+		case ReadSelfActionEditPart.VISUAL_ID:
+		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;

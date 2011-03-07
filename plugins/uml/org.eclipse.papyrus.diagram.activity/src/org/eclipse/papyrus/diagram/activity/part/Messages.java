@@ -811,42 +811,42 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createReadSelfActionCreationTool_title;
+	public static String createActivityPartition17CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createReadSelfActionCreationTool_desc;
+	public static String createActivityPartition17CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createActivityPartition18CreationTool_title;
+	public static String createInterruptibleActivityRegion18CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createActivityPartition18CreationTool_desc;
+	public static String createInterruptibleActivityRegion18CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createInterruptibleActivityRegion19CreationTool_title;
+	public static String createStructuredActivityNode19CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createInterruptibleActivityRegion19CreationTool_desc;
+	public static String createStructuredActivityNode19CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createStructuredActivityNode20CreationTool_title;
+	public static String createReadSelfAction20CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createStructuredActivityNode20CreationTool_desc;
+	public static String createReadSelfAction20CreationTool_desc;
 
 	/**
 	 * @generated
@@ -961,92 +961,92 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionIntervalConstraint32CreationTool_title;
+	public static String createLocalPreconditionIntervalConstraint33CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionIntervalConstraint32CreationTool_desc;
+	public static String createLocalPreconditionIntervalConstraint33CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionDurationConstraint33CreationTool_title;
+	public static String createLocalPreconditionDurationConstraint34CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionDurationConstraint33CreationTool_desc;
+	public static String createLocalPreconditionDurationConstraint34CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionTimeConstraint34CreationTool_title;
+	public static String createLocalPreconditionTimeConstraint35CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionTimeConstraint34CreationTool_desc;
+	public static String createLocalPreconditionTimeConstraint35CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionConstraint35CreationTool_title;
+	public static String createLocalPostconditionConstraint36CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionConstraint35CreationTool_desc;
+	public static String createLocalPostconditionConstraint36CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionIntervalConstraint36CreationTool_title;
+	public static String createLocalPostconditionIntervalConstraint38CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionIntervalConstraint36CreationTool_desc;
+	public static String createLocalPostconditionIntervalConstraint38CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionDurationConstraint37CreationTool_title;
+	public static String createLocalPostconditionDurationConstraint39CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionDurationConstraint37CreationTool_desc;
+	public static String createLocalPostconditionDurationConstraint39CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionTimeConstraint38CreationTool_title;
+	public static String createLocalPostconditionTimeConstraint40CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionTimeConstraint38CreationTool_desc;
+	public static String createLocalPostconditionTimeConstraint40CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createCommentCreationTool_title;
+	public static String createComment41CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createCommentCreationTool_desc;
+	public static String createComment41CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createActivity40CreationTool_title;
+	public static String createActivity42CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createActivity40CreationTool_desc;
+	public static String createActivity42CreationTool_desc;
 
 	/**
 	 * @generated
@@ -1306,12 +1306,37 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_InterruptibleActivityRegion_3068_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_CallOperationAction_3010_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
 	public static String NavigatorGroupName_CallOperationAction_3010_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Activity_2001_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_CommentAnnotatedElement_4006_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_CommentAnnotatedElement_4006_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Activity_3083_incominglinks;
 
 	/**
 	 * @generated
@@ -1342,6 +1367,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_InputPin_3023_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_OutputPin_3084_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_OutputPin_3084_outgoinglinks;
 
 	/**
 	 * @generated
@@ -1536,16 +1571,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_OutputPin_3082_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_OutputPin_3082_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
 	public static String NavigatorGroupName_ValuePin_3054_incominglinks;
 
 	/**
@@ -1632,6 +1657,11 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_StructuredActivityNode_3065_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActivityPartition_3067_incominglinks;
 
 	/**
 	 * @generated
@@ -1786,6 +1816,21 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_ObjectFlow_4003_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Comment_3080_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Comment_3080_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_ControlFlow_4004_target;
 
 	/**
@@ -1796,12 +1841,22 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_ControlFlow_4004_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_ExceptionHandler_4005_target;
 
 	/**
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ExceptionHandler_4005_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ExceptionHandler_4005_incominglinks;
 
 	/**
 	 * @generated

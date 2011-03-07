@@ -37,7 +37,7 @@ public class DecisionNodePreferencePage extends AbstractPapyrusNodePreferencePag
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**

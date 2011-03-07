@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.common.groups.core.utils;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -29,6 +30,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.command.AddCommand;
@@ -39,17 +41,26 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.LayoutConstraint;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.groups.core.groupcontainment.GroupContainmentRegistry;
 import org.eclipse.papyrus.diagram.common.groups.core.ui.ChooseContainedElementsCreator.ChildSelection;
-import org.eclipse.papyrus.diagram.common.groups.groupcontainment.IContainerNodeDescriptor;
+import org.eclipse.papyrus.diagram.common.groups.groupcontainment.AbstractContainerNodeDescriptor;
+import org.eclipse.papyrus.diagram.common.groups.utils.GraphicalAndModelElementComparator;
+import org.eclipse.papyrus.preferences.Activator;
+import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
+
 
 /**
  * This class provides utility methods useful for the group framework.
  * 
- * @author vhemery
+ * @author vhemery and adaussy
  */
 public class Utils {
 
@@ -67,13 +78,18 @@ public class Utils {
 			return Collections.emptyList();
 		}
 		Set<IGraphicalEditPart> groupParts = new HashSet<IGraphicalEditPart>();
+		//For all object in diagram, find edit parts
 		for(Object view : diagramPart.getViewer().getEditPartRegistry().keySet()) {
 			if(view instanceof View) {
 				Object editpart = diagramPart.getViewer().getEditPartRegistry().get(view);
 				if(editpart instanceof IGraphicalEditPart) {
 					IGraphicalEditPart part = (IGraphicalEditPart)editpart;
+					//If this group is handled by the group framework
 					if(GroupContainmentRegistry.isContainerConcerned(part)) {
-						IContainerNodeDescriptor desc = GroupContainmentRegistry.getContainerDescriptor(part);
+						//recover group descriptor of this part
+						AbstractContainerNodeDescriptor desc = GroupContainmentRegistry.getContainerDescriptor(part);
+						//Look if I can get the Eclass from the IdoneContainer
+						//And I look if its contain the element we want it to be compared with
 						if(desc.getContentArea(part).contains(bounds)) {
 							groupParts.add(part);
 						}
@@ -82,6 +98,147 @@ public class Utils {
 			}
 		}
 		return new ArrayList<IGraphicalEditPart>(groupParts);
+	}
+
+	/**
+	 * Find containers which may be chosen as graphical and as model parent of the element which has already been created
+	 * 
+	 * @param graphicalParentsToComplete
+	 *        an empty list that will be filled with edits part of available graphical parents (e.g. new ArrayList())
+	 * @param modelParentsToComplete
+	 *        an empty list that will be filled with edits part of available graphical parents (e.g. new ArrayList())
+	 * @param childPart
+	 *        Edit part of the element we want to find out which may be its containers
+	 * @return true if succeed
+	 */
+	@SuppressWarnings("unchecked")
+	public static boolean createComputedListsOfParents(List<IGraphicalEditPart> graphicalParentsToComplete, List<IGraphicalEditPart> modelParentsToComplete, IGraphicalEditPart childPart) {
+		Collection<View> diagramViews = new ArrayList<View>(childPart.getViewer().getEditPartRegistry().keySet());
+		diagramViews.remove(childPart.getModel());
+		Rectangle bounds = null;
+		EClass childType = null;
+		if(childPart != null) {
+			bounds = childPart.getFigure().getBounds();
+			childType = ((View)childPart.getModel()).eClass();
+		}
+
+		return createComputedListsOfParents(graphicalParentsToComplete, modelParentsToComplete, bounds, childType, diagramViews, childPart);
+	}
+
+	/**
+	 * Find containers which may be chosen as graphical and as model parent of the element to create
+	 * 
+	 * @param graphicalParentsToComplete
+	 *        an empty list that will be filled with edits part of available graphical parents (e.g. new ArrayList())
+	 * @param modelParentsToComplete
+	 *        an empty list that will be filled with edits part of available graphical parents (e.g. new ArrayList())
+	 * @param creationRequest
+	 *        request of creation
+	 * @param anyPart
+	 *        An edit part to get the viewer
+	 * @param child
+	 *        The EClass of the element to create
+	 * @param elementName
+	 *        Name of the element to be created (name used to look for default size FIXME)
+	 * @return true if succeed
+	 */
+	@SuppressWarnings("unchecked")
+	public static boolean createComputedListsOfParents(List<IGraphicalEditPart> graphicalParentsToComplete, List<IGraphicalEditPart> modelParentsToComplete, CreateViewAndElementRequest creationRequest, IGraphicalEditPart anyPart, EClass child, String ElementTypeName) {
+		Collection<View> diagramViews = new ArrayList<View>(anyPart.getViewer().getEditPartRegistry().keySet());
+		Dimension size = creationRequest.getSize();
+		//FIXME : Add a correct default size
+		// If size == null then a default size is used to create the bounds of the new elements
+		if(size == null || size.isEmpty()) {
+			IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+			String prefWidthName = PreferenceConstantHelper.getElementConstant(ElementTypeName, PreferenceConstantHelper.WIDTH);
+			String prefHeightName = PreferenceConstantHelper.getElementConstant(ElementTypeName, PreferenceConstantHelper.HEIGHT);
+			int width = store.getInt(prefWidthName);
+			int height = store.getInt(prefHeightName);
+			size = new Dimension(width, height);
+		}
+		Rectangle bounds = new Rectangle(creationRequest.getLocation(), size);
+		return createComputedListsOfParents(graphicalParentsToComplete, modelParentsToComplete, bounds, child, diagramViews, anyPart);
+	}
+
+	/**
+	 * Find containers which may be chosen as graphical and as model parent of the element to create
+	 * 
+	 * @param graphicalParentsToComplete
+	 *        an empty list that will be filled with edits part of available graphical parents (e.g. new ArrayList())
+	 * @param modelParentsToComplete
+	 *        an empty list that will be filled with edits part of available model parents e.g. new ArrayList())
+	 * @param request
+	 *        createElementRequest of the current request
+	 * @param anyPart
+	 *        an edit part of the diagram to get the viewer
+	 * @return true if successful
+	 */
+	private static boolean createComputedListsOfParents(List<IGraphicalEditPart> graphicalParentsToComplete, List<IGraphicalEditPart> modelParentsToComplete, Rectangle bounds, EClass child, Collection<View> views, IGraphicalEditPart anyPart) {
+		if(views.isEmpty()) {
+			return false;
+		}
+		for(Object view : views) {
+			if(view instanceof View) {
+				Object editpart = anyPart.getViewer().getEditPartRegistry().get(view);
+				if(editpart instanceof IGraphicalEditPart) {
+					IGraphicalEditPart part = (IGraphicalEditPart)editpart;
+					if(GroupContainmentRegistry.isContainerConcerned(part)) {
+						AbstractContainerNodeDescriptor desc = GroupContainmentRegistry.getContainerDescriptor(part);
+						//Check if the current part contains the element
+						if(desc.getContentArea(part).contains(bounds)) {
+							if(child instanceof EClass) {
+								if(desc.canIBeModelParentOf(child)) {
+									// If an edit part can be a model parent then is also a possible graphical parent
+									graphicalParentsToComplete.add(part);
+									modelParentsToComplete.add(part);
+								} else {
+									if(desc.canIBeGraphicalParentOf(child)) {
+										graphicalParentsToComplete.add(part);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		//Try to reduce the number of available parents by removing
+		if(graphicalParentsToComplete.size() > 1)
+			withdrawUselessElements(graphicalParentsToComplete, GraphicalAndModelElementComparator.graphicalAndModel);
+		if(modelParentsToComplete.size() > 1)
+			withdrawUselessElements(modelParentsToComplete, GraphicalAndModelElementComparator.model);
+		//FIXME Sort the two list in order to have the most relevant parent first (lowest surface )
+		return true;
+	}
+
+	private static boolean withdrawUselessElements(List<IGraphicalEditPart> listToModify, int mode) {
+		GraphicalAndModelElementComparator comparator = new GraphicalAndModelElementComparator();
+		//Select the comparator mode
+		if(mode == GraphicalAndModelElementComparator.model || mode == GraphicalAndModelElementComparator.graphicalAndModel) {
+			comparator.setMode(mode);
+		} else {
+			return false;
+		}
+		/**
+		 * Keep in the list only elements which which have no smaller element ( with this comparator)
+		 * 
+		 */
+		for(int element = 0; element < listToModify.size(); element++) {
+			for(int elementToCompare = element + 1; elementToCompare < listToModify.size(); elementToCompare++) {
+				int compare = comparator.compare((IGraphicalEditPart)listToModify.get(element), (IGraphicalEditPart)listToModify.get(elementToCompare));
+				if(compare < 0) {
+					listToModify.remove(element);
+					element--;
+					elementToCompare = listToModify.size();
+
+				} else if(compare > 0) {
+					listToModify.remove(elementToCompare);
+					elementToCompare--;
+				}
+			}
+		}
+		return true;
+
 	}
 
 	/**
@@ -96,7 +253,7 @@ public class Utils {
 	 * @return the list of edit parts that are within the given bounds and which element can be children according to the group framework
 	 */
 	public static List<IGraphicalEditPart> findPossibleChildren(Rectangle contentArea, IGraphicalEditPart groupEditPart, DiagramEditPart diagramPart) {
-		IContainerNodeDescriptor descriptor = GroupContainmentRegistry.getContainerDescriptor(groupEditPart);
+		AbstractContainerNodeDescriptor descriptor = GroupContainmentRegistry.getContainerDescriptor(groupEditPart);
 		if(diagramPart == null || descriptor == null) {
 			return Collections.emptyList();
 		}
@@ -136,7 +293,6 @@ public class Utils {
 
 	// Debug purpose
 	public static void drawRect(IGraphicalEditPart editPart, Rectangle refContentArea) {
-
 		RoundedRectangle rectFeedback = new RoundedRectangle();
 		rectFeedback.setBounds(refContentArea);
 		rectFeedback.setCornerDimensions(new Dimension(0, 0));
@@ -189,7 +345,7 @@ public class Utils {
 	 * @return the command or null
 	 */
 	public static Command getAddReferenceToChildCmd(IGraphicalEditPart newParentpart, IGraphicalEditPart newChildPart) {
-		IContainerNodeDescriptor desc = GroupContainmentRegistry.getContainerDescriptor(newParentpart);
+		AbstractContainerNodeDescriptor desc = GroupContainmentRegistry.getContainerDescriptor(newParentpart);
 		EObject parent = newParentpart.resolveSemanticElement();
 		EObject child = newChildPart.resolveSemanticElement();
 		// get the better child reference to use
@@ -234,7 +390,7 @@ public class Utils {
 	 * @return the command or null
 	 */
 	public static Command getRemoveReferenceToChildCmd(IGraphicalEditPart oldParentpart, IGraphicalEditPart oldChildPart) {
-		IContainerNodeDescriptor desc = GroupContainmentRegistry.getContainerDescriptor(oldParentpart);
+		AbstractContainerNodeDescriptor desc = GroupContainmentRegistry.getContainerDescriptor(oldParentpart);
 		EObject parent = oldParentpart.resolveSemanticElement();
 		EObject child = oldChildPart.resolveSemanticElement();
 		CompoundCommand globalCmd = new CompoundCommand();
@@ -291,5 +447,42 @@ public class Utils {
 			}
 		}
 		return map;
+	}
+
+	/**
+	 * Get the bounds of an edit part
+	 * 
+	 * @param part
+	 *        edit part to find bounds
+	 * @return part's bounds in absolute coordinates
+	 */
+	public static Rectangle getAbsoluteBounds(IGraphicalEditPart part) {
+		// take bounds from figure
+		Rectangle bounds = part.getFigure().getBounds().getCopy();
+
+		if(part.getNotationView() instanceof Node) {
+			// rather update with up to date model bounds
+			Node node = (Node)part.getNotationView();
+			LayoutConstraint cst = node.getLayoutConstraint();
+			if(cst instanceof Bounds) {
+				Bounds b = (Bounds)cst;
+				Point parentLoc = part.getFigure().getParent().getBounds().getLocation();
+				if(b.getX() > 0) {
+					bounds.x = b.getX() + parentLoc.x;
+				}
+				if(b.getY() > 0) {
+					bounds.y = b.getY() + parentLoc.y;
+				}
+				if(b.getHeight() != -1) {
+					bounds.height = b.getHeight();
+				}
+				if(b.getWidth() != -1) {
+					bounds.width = b.getWidth();
+				}
+			}
+		}
+
+		part.getFigure().getParent().translateToAbsolute(bounds);
+		return bounds;
 	}
 }

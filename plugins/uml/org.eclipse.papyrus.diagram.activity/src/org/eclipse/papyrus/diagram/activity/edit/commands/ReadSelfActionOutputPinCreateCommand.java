@@ -95,7 +95,7 @@ public class ReadSelfActionOutputPinCreateCommand extends EditElementCommand {
 		ReadSelfAction owner = (ReadSelfAction)getElementToEdit();
 		owner.setResult(newElement);
 
-		ElementInitializers.getInstance().init_OutputPin_3082(newElement);
+		ElementInitializers.getInstance().init_OutputPin_3084(newElement);
 
 		doConfigure(newElement, monitor, info);
 

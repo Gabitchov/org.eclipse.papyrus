@@ -61,7 +61,7 @@ public class ReadSelfActionItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.OutputPin_3082 == req.getElementType()) {
+		if(UMLElementTypes.OutputPin_3084 == req.getElementType()) {
 			return getGEFWrapper(new ReadSelfActionOutputPinCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
