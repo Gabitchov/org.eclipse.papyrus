@@ -20,17 +20,18 @@ import org.eclipse.jface.viewers.StyledCellLabelProvider;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch;
-import org.eclipse.papyrus.compare.ui.PapyrusLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 
 public class UMLStyledStructureLabelProvider extends StyledCellLabelProvider implements ILabelProvider {
 
-	private ILabelProvider myDelegate = new PapyrusLabelProvider();
+	private final ILabelProvider myDelegate;
 
-	private UMLDiffSwitch<StyledString> myDiffLabelSwitch = new StyledDiffLabelSwitch(myDelegate);
+	private final UMLDiffSwitch<StyledString> myDiffLabelSwitch;
 
-	public UMLStyledStructureLabelProvider() {
+	public UMLStyledStructureLabelProvider(ILabelProvider delegate) {
+		myDelegate = delegate;
+		myDiffLabelSwitch = new StyledDiffLabelSwitch(delegate);
 	}
 
 	public Image getImage(Object element) {
@@ -54,9 +55,9 @@ public class UMLStyledStructureLabelProvider extends StyledCellLabelProvider imp
 
 	private StyledString getStyledText(Object element) {
 		if(element instanceof EObject) {
-			StyledString result = myDiffLabelSwitch.doSwitch((EObject)element);
-			if(result != null) {
-				return result;
+			StyledString diffElementLabel = myDiffLabelSwitch.doSwitch((EObject)element);
+			if(diffElementLabel != null) {
+				return diffElementLabel;
 			}
 		}
 		StyledString styledString = new StyledString();

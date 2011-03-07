@@ -41,6 +41,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.compare.Activator;
+import org.eclipse.papyrus.compare.ui.PapyrusLabelProvider;
 import org.eclipse.papyrus.compare.ui.viewer.content.ElementContentMergeContentProvider;
 import org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewer;
 import org.eclipse.papyrus.compare.ui.viewer.structure.UMLStyledStructureLabelProvider;
@@ -101,7 +102,7 @@ public class CompareTwoElementsAction extends TeamAction {
 			@Override
 			public Control createOutlineContents(Composite parent, int direction) {
 				Control result = super.createOutlineContents(parent, direction);
-				structureMergeViewer.setLabelProvider(new UMLStyledStructureLabelProvider());
+				structureMergeViewer.setLabelProvider(new UMLStyledStructureLabelProvider(new PapyrusLabelProvider()));
 				return result;
 			}
 
