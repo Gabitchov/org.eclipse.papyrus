@@ -11,6 +11,7 @@
  */
 package org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl;
 
+import org.eclipse.emf.compare.diff.merge.IMerger;
 import org.eclipse.emf.compare.diff.metamodel.impl.AbstractDiffExtensionImpl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -49,6 +50,7 @@ public abstract class UMLDiffExtensionImpl extends AbstractDiffExtensionImpl imp
 	}
 	
 	/**
+	 * 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @NOT-generated
@@ -57,6 +59,16 @@ public abstract class UMLDiffExtensionImpl extends AbstractDiffExtensionImpl imp
 	public String getText() {
 		return UMLCompareUtils.getInstance().getText(this);
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public IMerger provideMerger() {
+		return null;
+	}
+
 
 
 } //UMLDiffExtensionImpl

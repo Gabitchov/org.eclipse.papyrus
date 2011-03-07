@@ -13,19 +13,29 @@
  *****************************************************************************/
 package org.eclipse.papyrus.compare.ui.viewer.content.part;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.match.metamodel.Match2Elements;
-import org.eclipse.emf.compare.match.metamodel.impl.Match2ElementsImpl;
+import org.eclipse.emf.compare.match.metamodel.MatchElement;
 import org.eclipse.emf.compare.ui.util.EMFCompareConstants;
 import org.eclipse.emf.compare.ui.util.EMFCompareEObjectUtils;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
 import org.eclipse.emf.compare.ui.viewer.content.part.IModelContentMergeViewerTab;
 import org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder;
 import org.eclipse.emf.compare.ui.viewer.content.part.property.ModelContentMergePropertyTab;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.IContentProvider;
@@ -33,7 +43,6 @@ import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.papyrus.compare.ui.viewer.content.ElementContentMergeContentProvider.RootObject;
 import org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewer;
 import org.eclipse.papyrus.compare.ui.viewer.content.part.diff.UMLModelContentMergeDiffTab;
-import org.eclipse.papyrus.compare.ui.viewer.content.part.property.UMLModelContentMergePropertyTab;
 import org.eclipse.papyrus.compare.ui.viewer.content.part.property.UMLPropertyContentProvider;
 import org.eclipse.swt.widgets.Composite;
 
@@ -58,18 +67,52 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 	protected IModelContentMergeViewerTab createModelContentMergeViewerTab(Composite parent) {
 		ModelContentMergePropertyTab propertyTab = new ModelContentMergePropertyTab(parent, partSide, this);
 		propertyTab.setContentProvider(new UMLPropertyContentProvider());
-		return new UMLModelContentMergePropertyTab(propertyTab, parentViewer);
+		return propertyTab;
 	}
 	
+	@Override
+	public void navigateToDiff(List<DiffElement> diffs) {
+		if (((UMLModelContentMergeViewer)parentViewer).isShowAllProperties()) {
+			super.navigateToDiff(diffs);
+		}
+		super.navigateToDiff(diffs);
+//		EObject target = null;
+//		// finds the object which properties should be found and expands the tree if needed
+//		if (partSide == EMFCompareConstants.LEFT) {
+//			target = EMFCompareEObjectUtils.getLeftElement(diffs.get(0));
+//		} else if (partSide == EMFCompareConstants.RIGHT) {
+//			if (diffs.get(0) instanceof DiffGroup
+//					&& EMFCompareEObjectUtils.getLeftElement(diffs.get(0)) != null) {
+//				target = EMFCompareEObjectUtils.getRightElement(findMatchFromElement(EMFCompareEObjectUtils
+//						.getLeftElement(diffs.get(0))));
+//			} else if (!(diffs.get(0) instanceof DiffGroup)) {
+//				target = EMFCompareEObjectUtils.getRightElement(diffs.get(0));
+//			} else
+//				// fall through.
+//				return;
+//		} else {
+//			target = EMFCompareEObjectUtils.getAncestorElement(findMatchFromElement(EMFCompareEObjectUtils
+//					.getLeftElement(diffs.get(0))));
+//		}
+//
+//		// provide input to properties before showing diffs (as properties may be the active tab).
+//		properties.setReflectiveInput(findMatchFromElement(target, diffs.get(0)));
+//
+//		tabs.get(tabFolder.getSelectionIndex()).showItems(diffs);
+//
+//		parentViewer.getConfiguration().setProperty(EMFCompareConstants.PROPERTY_CONTENT_SELECTION,
+//				diffs.get(0));
+//		parentViewer.updateCenter();
+	}
 	
-	protected EObject findMatchFromElement(EObject element) {
-		EObject result = super.findMatchFromElement(element);
+	protected EObject findMatchFromElement(EObject element, DiffElement diff) {
+		EObject result =  super.findMatchFromElement(element);
 		if (result instanceof Match2Elements) {
-			
+			return new Match2ElementsWithDiff((Match2Elements)result, diff);
 		}
 		return result;
-	};
-
+	}
+	
 	protected IContentProvider createDiffTabContentProvider() {
 		ComposedAdapterFactory adapterFactory = new UMLAdapterFactory();
 		AdapterFactoryContentProvider result = new AdapterFactoryContentProvider(adapterFactory) {
@@ -93,6 +136,127 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 	public boolean isPropertyTab(int index) {
 		final IModelContentMergeViewerTab currentTab = tabs.get(index);
 		return (currentTab == getPropertyPart());
+	}
+	
+	public static class Match2ElementsWithDiff implements Match2Elements {
+		
+		private Match2Elements myDelegate;
+		
+		private DiffElement myDiffElement;
+		
+		public Match2ElementsWithDiff(Match2Elements delegate, DiffElement diffElement) {
+			myDelegate = delegate;
+			myDiffElement = diffElement;
+		}
+		
+		public DiffElement getDiffElement() {
+			return myDiffElement;
+		}
+
+		public double getSimilarity() {
+			return myDelegate.getSimilarity();
+		}
+
+		public EList<MatchElement> getSubMatchElements() {
+			return myDelegate.getSubMatchElements();
+		}
+
+		public void setSimilarity(double value) {
+			myDelegate.setSimilarity(value);
+		}
+
+		public EClass eClass() {
+			return myDelegate.eClass();
+		}
+
+		public Resource eResource() {
+			return myDelegate.eResource();
+		}
+
+		public EObject eContainer() {
+			return myDelegate;
+		}
+
+		public EStructuralFeature eContainingFeature() {
+			return myDelegate.eContainingFeature();
+		}
+
+		public EReference eContainmentFeature() {
+			return myDelegate.eContainmentFeature();
+		}
+
+		public EList<EObject> eContents() {
+			return myDelegate.eContents();
+		}
+
+		public TreeIterator<EObject> eAllContents() {
+			return myDelegate.eAllContents();
+		}
+
+		public boolean eIsProxy() {
+			return myDelegate.eIsProxy();
+		}
+
+		public EList<EObject> eCrossReferences() {
+			return myDelegate.eCrossReferences();
+		}
+
+		public Object eGet(EStructuralFeature feature) {
+			return myDelegate.eGet(feature);
+		}
+
+		public Object eGet(EStructuralFeature feature, boolean resolve) {
+			return myDelegate.eGet(feature, resolve);
+		}
+
+		public void eSet(EStructuralFeature feature, Object newValue) {
+			myDelegate.eSet(feature, newValue);
+		}
+
+		public boolean eIsSet(EStructuralFeature feature) {
+			return myDelegate.eIsSet(feature);
+		}
+
+		public void eUnset(EStructuralFeature feature) {
+			myDelegate.eUnset(feature);
+		}
+
+		public Object eInvoke(EOperation operation, EList<?> arguments) throws InvocationTargetException {
+			return myDelegate.eInvoke(operation, arguments);
+		}
+
+		public EList<Adapter> eAdapters() {
+			return myDelegate.eAdapters();
+		}
+
+		public boolean eDeliver() {
+			return myDelegate.eDeliver();
+		}
+
+		public void eSetDeliver(boolean deliver) {
+			myDelegate.eSetDeliver(deliver);
+		}
+
+		public void eNotify(Notification notification) {
+			myDelegate.eNotify(notification);
+		}
+
+		public EObject getLeftElement() {
+			return myDelegate.getLeftElement();
+		}
+
+		public EObject getRightElement() {
+			return myDelegate.getRightElement();
+		}
+
+		public void setLeftElement(EObject value) {
+			myDelegate.setLeftElement(value);
+		}
+
+		public void setRightElement(EObject value) {
+			myDelegate.setRightElement(value);
+		}
+		
 	}
 	
 
