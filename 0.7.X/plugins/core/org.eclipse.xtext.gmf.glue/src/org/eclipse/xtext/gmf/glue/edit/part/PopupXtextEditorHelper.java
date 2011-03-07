@@ -4,6 +4,8 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Additional modifications: CEA LIST (Arnaud Cuccuru, Ansgar Radermacher)
  *******************************************************************************/
 package org.eclipse.xtext.gmf.glue.edit.part;
 
@@ -30,6 +32,7 @@ import org.eclipse.jface.text.ITextOperationTarget;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.jface.text.templates.TemplateException;
+import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
@@ -37,8 +40,6 @@ import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.FontMetrics;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Point;
@@ -60,13 +61,12 @@ import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
 import org.eclipse.ui.texteditor.IUpdate;
 import org.eclipse.xtext.gmf.glue.Activator;
 import org.eclipse.xtext.gmf.glue.partialEditing.ISyntheticResourceProvider;
+import org.eclipse.xtext.gmf.glue.partialEditing.OperationHistoryListener;
 import org.eclipse.xtext.gmf.glue.partialEditing.PartialModelEditor;
 import org.eclipse.xtext.gmf.glue.partialEditing.SourceViewerHandle;
 import org.eclipse.xtext.gmf.glue.partialEditing.SourceViewerHandleFactory;
-import org.eclipse.xtext.gmf.glue.partialEditing.OperationHistoryListener;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.resource.XtextResource;
-
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 
@@ -81,7 +81,7 @@ import com.google.inject.Injector;
  * call {@link #showEditor()} instead of opening the default {@link TextCellEditor}.
  * 
  * @author koehnlein
- * @author CEA LIST - Some modifications for the integration in Papyrus 
+ * @author CEA LIST (A. Cuccuru, A. Radermacher): Modifications for the integration into Papyrus 
  * Changes:
  * - Added "implements" relationship towards IPopupEditorHelper, 
  * 		related to the DirectEditor extension point of Papyrus
@@ -97,7 +97,6 @@ import com.google.inject.Injector;
  * - Method activateServices and deactivateServices, for managing the key binding of the context diagram
  * 		editor.
  */
-
 public class PopupXtextEditorHelper implements IPopupEditorHelper {
 
 	private IGraphicalEditPart hostEditPart;
@@ -163,9 +162,9 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 		this.xtextInjector = xtextInjector ;
 		this.textToEdit = "" + textToEdit ;
 		this.modelReconciler = modelReconciler ;
-		this.fileExtension = "" + fileExtension ;
+		PopupXtextEditorHelper.fileExtension = "" + fileExtension ;
 		this.semanticValidator = semanticValidator ;
-		this.ignoreFocusLost = false ;
+		ignoreFocusLost = false ;
 	}
 
 	/**
@@ -178,7 +177,7 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 			if (semanticElement == null) {
 				return;
 			}
-			this.context = semanticElement ;
+			context = semanticElement ;
 			Resource semanticResource = semanticElement.eResource();
 
 			semanticElementFragment = semanticResource.getURIFragment(semanticElement);
@@ -227,19 +226,6 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 	}
 
 	/**
-	 * Computes the size of the given label
-	 * @param text the text to compute
-	 * @return the approximate size of the text
-	 */
-	protected int computeLabelSize(Composite parent, String text) {
-		GC gc = new GC (parent);
-        FontMetrics fm = gc.getFontMetrics ();
-        int width = text.length() * fm.getAverageCharWidth ();
-        gc.dispose ();
-        return width;
-	}
-	
-	/**
 	 * This element was originally not documented in the XText/GMF integration example
 	 * 
 	 * Changes performed by CEA LIST:
@@ -262,23 +248,13 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 		
 		initializeActions();
 		installUndoRedoSupport(sourceViewerHandle.getViewer());
-		
 		sourceViewerHandle.getViewer().getTextWidget().addFocusListener(new FocusListener() {
 			
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
-				context = semanticElement ;
-				if (! keyListener.isContentAssistActive()) {
-					if (!ignoreFocusLost)
-						closeEditor(true) ;
-					else
-						closeEditor(false) ;
-				}
+				checkedClose();
 			}
 			
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
-				
 				context = semanticElement ;
 			}
 		}) ;
@@ -287,6 +263,25 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 		sourceViewerHandle.getViewer().showAnnotationsOverview(true) ;
 		sourceViewerHandle.getViewer().getTextWidget().setFocus() ;
 
+	}
+
+	/**
+	 * Perform additional checks before close
+	 * (added by CEA LIST)
+	 */
+	private void checkedClose() {
+		context = semanticElement ;
+		if (! keyListener.isContentAssistActive()) {
+			// additional sanity check: on X11 systems, the focus is already lost during resize.
+			// An unwanted closing can be prevented by verifying if the activeShell still points
+			// to the xtextEditorComposite
+			if (xtextEditorComposite.getDisplay().getActiveShell() != xtextEditorComposite) {
+				if (!ignoreFocusLost)
+					closeEditor(true) ;
+				else
+					closeEditor(false) ;
+			}
+		}
 	}
 	
 	private PopupXtextEditorKeyListener keyListener ;
@@ -315,6 +310,13 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 		int[] numLinesNumColums = StringUtil.getNumLinesNumColumns(editString) ;
 		int numLines = numLinesNumColums[0] ;
 		int numColumns = numLinesNumColums[1];
+		// ninimal sizes
+		if (numLines < 5) {
+			numLines = 5;
+		}
+		if (numColumns < 60) {
+			numColumns = 60;
+		}
 		
 		IFigure figure = hostEditPart.getFigure() ;
 		Rectangle bounds = figure.getBounds().getCopy();
@@ -323,19 +325,24 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 		bounds.x = newCoord.x ;
 		bounds.y = newCoord.y ;
 	
-		Font font = figure.getFont();
-		FontData fontData = font.getFontData()[0];
-		int fontHeightInPixel = fontData.getHeight();
+		// not used, delivers wrong results
+		// FontData fontData = figure.getFont().getFontData()[0];
+		// int fontHeightInPixel = fontData.getHeight();
 		
-		// TODO: this needs some work...
-		int width = computeLabelSize(xtextEditorComposite, editString);
-		width += 60;
-		// int width = hostEditPart.getContentPane().getBounds().width ;
-		int height = fontHeightInPixel * (numLines+4) ;
-				
+		GC gc = new GC (xtextEditorComposite);
+		FontMetrics fm = gc.getFontMetrics ();
+		int width  = numColumns * fm.getAverageCharWidth () + 40;
+		int height = numLines   * fm.getHeight();
+		gc.dispose ();
+        
+		// xtextEditorComposite contains a composite which in turn contains the text widget and an area for markers.
+		// Take difference between client area and size into account. Cannot set size of text widget directly,
+		// since suitable packing is not supported by the layout of the text widget's parent.
+		org.eclipse.swt.graphics.Rectangle clientArea = xtextEditorComposite.getClientArea();
+		// only correct height, since width is estimated anyway.
+		height += xtextEditorComposite.getSize().y - clientArea.height;
 		xtextEditorComposite.setBounds(bounds.x, bounds.y, width, height);
 	}
-
 
 
 	private boolean isDocumentHasErrors(final IXtextDocument xtextDocument) {
