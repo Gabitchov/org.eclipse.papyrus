@@ -74,32 +74,6 @@ public class UpdateTaggedValueImpl extends TaggedValueChangeImpl implements Upda
 	 * 
 	 * @generated NOT
 	 */
-	public String getText() {
-
-		final String attributeLabel = AdapterUtils.getItemProviderText(getAttribute());
-		final String elementLabel = AdapterUtils.getItemProviderText(getLeftElement());
-
-		Object leftTaggedValue = UMLUtil.getBaseElement(getLeftElement()).getValue(UMLUtil.getStereotype(getLeftElement()), getAttribute().getName());
-		Object rightTaggedValue = UMLUtil.getBaseElement(getRightElement()).getValue(UMLUtil.getStereotype(getRightElement()), getAttribute().getName());
-
-		String leftValue = leftTaggedValue != null ? leftTaggedValue.toString() : "null";
-		String rightValue = rightTaggedValue != null ? rightTaggedValue.toString() : "null";
-
-		final String diffLabel;
-		if(isRemote()) {
-			diffLabel = String.format("Tagged value %s : remote = %s, local = %s", elementLabel, leftValue, rightValue);
-		} else {
-			diffLabel = String.format("Tagged value %s: %s -> %s", attributeLabel, rightValue, leftValue);
-		}
-		return diffLabel;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
 	public Object getImage() {
 		AdapterFactoryLabelProvider adapterProvider = new AdapterFactoryLabelProvider(AdapterUtils.getAdapterFactory());
 		Image labelImage = adapterProvider.getImage(getAttribute());

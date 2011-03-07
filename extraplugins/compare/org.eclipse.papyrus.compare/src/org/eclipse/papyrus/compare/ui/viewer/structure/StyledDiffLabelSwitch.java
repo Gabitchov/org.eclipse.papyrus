@@ -9,10 +9,12 @@ import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffPackage;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
+import org.eclipse.emf.compare.util.AdapterUtils;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.papyrus.compare.UMLCompareUtils;
+import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.AddStereotypeApplication;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.CompareTwoElementsDiffModel;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.RemoveStereotypeApplication;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChange;
@@ -68,19 +70,25 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		return formatStyledString("{0} change(s) between elements {1} and {2}", String.valueOf(subchanges), leftName, rightName);
 
 	}
+	
+	@Override
+	public StyledString caseAddStereotypeApplication(AddStereotypeApplication object) {
+		EObject element = object.getRightElement();
+		String elementLabel = getLabelProvider().getText(element);
+		if (UMLCompareUtils.isStereotypeApplication(element)) {
+			elementLabel = getLabelProvider().getText(UMLUtil.getStereotype(element)); 
+		}
+		return formatStyledString("Stereotype {0} has been added", elementLabel);
+}
 
 	@Override
 	public StyledString caseRemoveStereotypeApplication(RemoveStereotypeApplication object) {
-		StyledString styledString = new StyledString();
 		EObject element = object.getLeftElement();
 		String elementLabel = getLabelProvider().getText(element);
-		if(UMLCompareUtils.isStereotypeApplication(element)) {
-			elementLabel = UMLUtil.getStereotype(element).getName();
+		if (UMLCompareUtils.isStereotypeApplication(element)) {
+			elementLabel = getLabelProvider().getText(UMLUtil.getStereotype(element)); 
 		}
-		styledString.append("Stereotype <<", StyledString.DECORATIONS_STYLER);
-		styledString.append(elementLabel);
-		styledString.append(">> has been removed", StyledString.DECORATIONS_STYLER);
-		return styledString;
+		return formatStyledString("Stereotype {0} has been removed", elementLabel);
 	}
 
 	@Override
@@ -192,8 +200,6 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 
 	@Override
 	public StyledString caseUpdateTaggedValue(UpdateTaggedValue object) {
-		StyledString styledString = new StyledString();
-
 		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
 		final String elementLabel = getLabelProvider().getText(object.getLeftElement());
 
@@ -204,21 +210,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		String rightValue = rightTaggedValue != null ? rightTaggedValue.toString() : "null";
 
 		if(object.isRemote()) {
-			styledString.append("Tagged value ", StyledString.DECORATIONS_STYLER);
-			styledString.append(elementLabel);
-			styledString.append(" : remote = ", StyledString.DECORATIONS_STYLER);
-			styledString.append(leftValue);
-			styledString.append(", local = ", StyledString.DECORATIONS_STYLER);
-			styledString.append(rightValue);
-		} else {
-			styledString.append("Tagged value ", StyledString.DECORATIONS_STYLER);
-			styledString.append(attributeLabel);
-			styledString.append(" : ", StyledString.DECORATIONS_STYLER);
-			styledString.append(leftValue);
-			styledString.append(" -> ", StyledString.DECORATIONS_STYLER);
-			styledString.append(rightValue);
-		}
-		return styledString;
+			return formatStyledString("Tagged value {0} : remote = {1}, local = {2}", elementLabel, leftValue, rightValue);
+		}  
+		return	formatStyledString("Tagged value {0}: {1} -> {2}", attributeLabel, rightValue, leftValue);
 	}
 
 	public StyledString caseDiffGroup(DiffGroup object) {

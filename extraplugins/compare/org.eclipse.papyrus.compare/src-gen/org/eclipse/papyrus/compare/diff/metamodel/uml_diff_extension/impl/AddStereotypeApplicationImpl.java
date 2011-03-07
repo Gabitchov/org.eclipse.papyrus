@@ -514,21 +514,6 @@ public class AddStereotypeApplicationImpl extends StereotypeChangeImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @NOT-generated
-	 */
-	@Override
-	public String getText() {
-		EObject element = getRightElement();
-		String elementLabel = AdapterUtils.getItemProviderText(element);
-		if (UMLCompareUtils.isStereotypeApplication(element)) {
-			elementLabel = UMLUtil.getStereotype(element).getName(); 
-		}
-		return String.format("%s stereotype has been added", elementLabel);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
