@@ -23,5 +23,5 @@ import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
  * @model
  * @generated
  */
-public interface TaggedValueChangeRightTarget extends AttributeChangeRightTarget, TaggedValueChange {
+public interface TaggedValueChangeRightTarget extends TaggedValueChange, AttributeChangeRightTarget {
 } // TaggedValueChangeRightTarget

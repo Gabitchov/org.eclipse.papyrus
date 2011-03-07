@@ -344,14 +344,14 @@ public class UMLDiffPackageImpl extends EPackageImpl implements UMLDiffPackage {
 		// Add supertypes to classes
 		umlDiffExtensionEClass.getESuperTypes().add(theDiffPackage.getAbstractDiffExtension());
 		stereotypeChangeEClass.getESuperTypes().add(this.getUMLDiffExtension());
-		taggedValueChangeEClass.getESuperTypes().add(theDiffPackage.getAttributeChange());
 		taggedValueChangeEClass.getESuperTypes().add(this.getUMLDiffExtension());
-		taggedValueChangeLeftTargetEClass.getESuperTypes().add(theDiffPackage.getAttributeChangeLeftTarget());
+		taggedValueChangeEClass.getESuperTypes().add(theDiffPackage.getAttributeChange());
 		taggedValueChangeLeftTargetEClass.getESuperTypes().add(this.getTaggedValueChange());
-		taggedValueChangeRightTargetEClass.getESuperTypes().add(theDiffPackage.getAttributeChangeRightTarget());
+		taggedValueChangeLeftTargetEClass.getESuperTypes().add(theDiffPackage.getAttributeChangeLeftTarget());
 		taggedValueChangeRightTargetEClass.getESuperTypes().add(this.getTaggedValueChange());
-		updateTaggedValueEClass.getESuperTypes().add(theDiffPackage.getUpdateAttribute());
+		taggedValueChangeRightTargetEClass.getESuperTypes().add(theDiffPackage.getAttributeChangeRightTarget());
 		updateTaggedValueEClass.getESuperTypes().add(this.getTaggedValueChange());
+		updateTaggedValueEClass.getESuperTypes().add(theDiffPackage.getUpdateAttribute());
 		addStereotypeApplicationEClass.getESuperTypes().add(this.getStereotypeChange());
 		addStereotypeApplicationEClass.getESuperTypes().add(theDiffPackage.getModelElementChangeRightTarget());
 		removeStereotypeApplicationEClass.getESuperTypes().add(this.getStereotypeChange());

@@ -13,6 +13,7 @@ package org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl;
 
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.compare.diff.merge.IMerger;
@@ -44,42 +45,31 @@ import org.eclipse.swt.graphics.Image;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.TaggedValueChangeRightTargetImpl#getHideElements <em>Hide Elements</em>}</li>
- *   <li>{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.TaggedValueChangeRightTargetImpl#isIsCollapsed <em>Is Collapsed</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.TaggedValueChangeRightTargetImpl#getRightTarget <em>Right Target</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class TaggedValueChangeRightTargetImpl extends AttributeChangeRightTargetImpl implements TaggedValueChangeRightTarget {
+public class TaggedValueChangeRightTargetImpl extends TaggedValueChangeImpl implements TaggedValueChangeRightTarget {
 	/**
-	 * The cached value of the '{@link #getHideElements() <em>Hide Elements</em>}' reference list.
+	 * The default value of the '{@link #getRightTarget() <em>Right Target</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getHideElements()
+	 * @see #getRightTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DiffElement> hideElements;
+	protected static final Object RIGHT_TARGET_EDEFAULT = null;
 	/**
-	 * The default value of the '{@link #isIsCollapsed() <em>Is Collapsed</em>}' attribute.
+	 * The cached value of the '{@link #getRightTarget() <em>Right Target</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsCollapsed()
+	 * @see #getRightTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_COLLAPSED_EDEFAULT = false;
-	/**
-	 * The cached value of the '{@link #isIsCollapsed() <em>Is Collapsed</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsCollapsed()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isCollapsed = IS_COLLAPSED_EDEFAULT;
-
+	protected Object rightTarget = RIGHT_TARGET_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -104,11 +94,8 @@ public class TaggedValueChangeRightTargetImpl extends AttributeChangeRightTarget
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DiffElement> getHideElements() {
-		if (hideElements == null) {
-			hideElements = new EObjectWithInverseResolvingEList.ManyInverse<DiffElement>(DiffElement.class, this, UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__HIDE_ELEMENTS, DiffPackage.DIFF_ELEMENT__IS_HIDDEN_BY);
-		}
-		return hideElements;
+	public Object getRightTarget() {
+		return rightTarget;
 	}
 
 	/**
@@ -116,31 +103,11 @@ public class TaggedValueChangeRightTargetImpl extends AttributeChangeRightTarget
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIsCollapsed() {
-		return isCollapsed;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIsCollapsed(boolean newIsCollapsed) {
-		boolean oldIsCollapsed = isCollapsed;
-		isCollapsed = newIsCollapsed;
+	public void setRightTarget(Object newRightTarget) {
+		Object oldRightTarget = rightTarget;
+		rightTarget = newRightTarget;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__IS_COLLAPSED, oldIsCollapsed, isCollapsed));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void visit(DiffModel diffModel) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__RIGHT_TARGET, oldRightTarget, rightTarget));
 	}
 
 	/**
@@ -177,42 +144,11 @@ public class TaggedValueChangeRightTargetImpl extends AttributeChangeRightTarget
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__HIDE_ELEMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getHideElements()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__HIDE_ELEMENTS:
-				return ((InternalEList<?>)getHideElements()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__HIDE_ELEMENTS:
-				return getHideElements();
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__IS_COLLAPSED:
-				return isIsCollapsed();
+			case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__RIGHT_TARGET:
+				return getRightTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -226,12 +162,8 @@ public class TaggedValueChangeRightTargetImpl extends AttributeChangeRightTarget
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__HIDE_ELEMENTS:
-				getHideElements().clear();
-				getHideElements().addAll((Collection<? extends DiffElement>)newValue);
-				return;
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__IS_COLLAPSED:
-				setIsCollapsed((Boolean)newValue);
+			case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__RIGHT_TARGET:
+				setRightTarget(newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -245,11 +177,8 @@ public class TaggedValueChangeRightTargetImpl extends AttributeChangeRightTarget
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__HIDE_ELEMENTS:
-				getHideElements().clear();
-				return;
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__IS_COLLAPSED:
-				setIsCollapsed(IS_COLLAPSED_EDEFAULT);
+			case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__RIGHT_TARGET:
+				setRightTarget(RIGHT_TARGET_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -263,10 +192,8 @@ public class TaggedValueChangeRightTargetImpl extends AttributeChangeRightTarget
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__HIDE_ELEMENTS:
-				return hideElements != null && !hideElements.isEmpty();
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__IS_COLLAPSED:
-				return isCollapsed != IS_COLLAPSED_EDEFAULT;
+			case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__RIGHT_TARGET:
+				return RIGHT_TARGET_EDEFAULT == null ? rightTarget != null : !RIGHT_TARGET_EDEFAULT.equals(rightTarget);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -278,20 +205,9 @@ public class TaggedValueChangeRightTargetImpl extends AttributeChangeRightTarget
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == AbstractDiffExtension.class) {
+		if (baseClass == AttributeChangeRightTarget.class) {
 			switch (derivedFeatureID) {
-				case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__HIDE_ELEMENTS: return DiffPackage.ABSTRACT_DIFF_EXTENSION__HIDE_ELEMENTS;
-				case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__IS_COLLAPSED: return DiffPackage.ABSTRACT_DIFF_EXTENSION__IS_COLLAPSED;
-				default: return -1;
-			}
-		}
-		if (baseClass == UMLDiffExtension.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == TaggedValueChange.class) {
-			switch (derivedFeatureID) {
+				case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__RIGHT_TARGET: return DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET__RIGHT_TARGET;
 				default: return -1;
 			}
 		}
@@ -305,20 +221,9 @@ public class TaggedValueChangeRightTargetImpl extends AttributeChangeRightTarget
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == AbstractDiffExtension.class) {
+		if (baseClass == AttributeChangeRightTarget.class) {
 			switch (baseFeatureID) {
-				case DiffPackage.ABSTRACT_DIFF_EXTENSION__HIDE_ELEMENTS: return UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__HIDE_ELEMENTS;
-				case DiffPackage.ABSTRACT_DIFF_EXTENSION__IS_COLLAPSED: return UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__IS_COLLAPSED;
-				default: return -1;
-			}
-		}
-		if (baseClass == UMLDiffExtension.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == TaggedValueChange.class) {
-			switch (baseFeatureID) {
+				case DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET__RIGHT_TARGET: return UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__RIGHT_TARGET;
 				default: return -1;
 			}
 		}
@@ -335,8 +240,8 @@ public class TaggedValueChangeRightTargetImpl extends AttributeChangeRightTarget
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (isCollapsed: ");
-		result.append(isCollapsed);
+		result.append(" (rightTarget: ");
+		result.append(rightTarget);
 		result.append(')');
 		return result.toString();
 	}

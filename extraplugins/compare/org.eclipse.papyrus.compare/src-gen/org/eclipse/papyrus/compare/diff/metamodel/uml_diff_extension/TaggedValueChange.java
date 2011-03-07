@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension;
 
-import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
 
 /**
@@ -24,5 +23,5 @@ import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
  * @model abstract="true"
  * @generated
  */
-public interface TaggedValueChange extends AttributeChange, UMLDiffExtension {
+public interface TaggedValueChange extends UMLDiffExtension, AttributeChange {
 } // TaggedValueChange

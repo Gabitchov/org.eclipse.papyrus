@@ -122,46 +122,46 @@ public class UMLDiffSwitch<T> {
 			case UMLDiffPackage.TAGGED_VALUE_CHANGE: {
 				TaggedValueChange taggedValueChange = (TaggedValueChange)theEObject;
 				T result = caseTaggedValueChange(taggedValueChange);
-				if (result == null) result = caseAttributeChange(taggedValueChange);
 				if (result == null) result = caseUMLDiffExtension(taggedValueChange);
-				if (result == null) result = caseDiffElement(taggedValueChange);
+				if (result == null) result = caseAttributeChange(taggedValueChange);
 				if (result == null) result = caseAbstractDiffExtension(taggedValueChange);
+				if (result == null) result = caseDiffElement(taggedValueChange);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET: {
 				TaggedValueChangeLeftTarget taggedValueChangeLeftTarget = (TaggedValueChangeLeftTarget)theEObject;
 				T result = caseTaggedValueChangeLeftTarget(taggedValueChangeLeftTarget);
-				if (result == null) result = caseAttributeChangeLeftTarget(taggedValueChangeLeftTarget);
 				if (result == null) result = caseTaggedValueChange(taggedValueChangeLeftTarget);
-				if (result == null) result = caseAttributeChange(taggedValueChangeLeftTarget);
+				if (result == null) result = caseAttributeChangeLeftTarget(taggedValueChangeLeftTarget);
 				if (result == null) result = caseUMLDiffExtension(taggedValueChangeLeftTarget);
-				if (result == null) result = caseDiffElement(taggedValueChangeLeftTarget);
+				if (result == null) result = caseAttributeChange(taggedValueChangeLeftTarget);
 				if (result == null) result = caseAbstractDiffExtension(taggedValueChangeLeftTarget);
+				if (result == null) result = caseDiffElement(taggedValueChangeLeftTarget);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET: {
 				TaggedValueChangeRightTarget taggedValueChangeRightTarget = (TaggedValueChangeRightTarget)theEObject;
 				T result = caseTaggedValueChangeRightTarget(taggedValueChangeRightTarget);
-				if (result == null) result = caseAttributeChangeRightTarget(taggedValueChangeRightTarget);
 				if (result == null) result = caseTaggedValueChange(taggedValueChangeRightTarget);
-				if (result == null) result = caseAttributeChange(taggedValueChangeRightTarget);
+				if (result == null) result = caseAttributeChangeRightTarget(taggedValueChangeRightTarget);
 				if (result == null) result = caseUMLDiffExtension(taggedValueChangeRightTarget);
-				if (result == null) result = caseDiffElement(taggedValueChangeRightTarget);
+				if (result == null) result = caseAttributeChange(taggedValueChangeRightTarget);
 				if (result == null) result = caseAbstractDiffExtension(taggedValueChangeRightTarget);
+				if (result == null) result = caseDiffElement(taggedValueChangeRightTarget);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case UMLDiffPackage.UPDATE_TAGGED_VALUE: {
 				UpdateTaggedValue updateTaggedValue = (UpdateTaggedValue)theEObject;
 				T result = caseUpdateTaggedValue(updateTaggedValue);
-				if (result == null) result = caseUpdateAttribute(updateTaggedValue);
 				if (result == null) result = caseTaggedValueChange(updateTaggedValue);
-				if (result == null) result = caseAttributeChange(updateTaggedValue);
+				if (result == null) result = caseUpdateAttribute(updateTaggedValue);
 				if (result == null) result = caseUMLDiffExtension(updateTaggedValue);
-				if (result == null) result = caseDiffElement(updateTaggedValue);
+				if (result == null) result = caseAttributeChange(updateTaggedValue);
 				if (result == null) result = caseAbstractDiffExtension(updateTaggedValue);
+				if (result == null) result = caseDiffElement(updateTaggedValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

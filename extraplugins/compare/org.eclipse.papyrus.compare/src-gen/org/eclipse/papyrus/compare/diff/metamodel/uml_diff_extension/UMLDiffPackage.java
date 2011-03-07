@@ -149,85 +149,13 @@ public interface UMLDiffPackage extends EPackage {
 	int TAGGED_VALUE_CHANGE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Sub Diff Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE__SUB_DIFF_ELEMENTS = DiffPackage.ATTRIBUTE_CHANGE__SUB_DIFF_ELEMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Is Hidden By</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE__IS_HIDDEN_BY = DiffPackage.ATTRIBUTE_CHANGE__IS_HIDDEN_BY;
-
-	/**
-	 * The feature id for the '<em><b>Conflicting</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE__CONFLICTING = DiffPackage.ATTRIBUTE_CHANGE__CONFLICTING;
-
-	/**
-	 * The feature id for the '<em><b>Kind</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE__KIND = DiffPackage.ATTRIBUTE_CHANGE__KIND;
-
-	/**
-	 * The feature id for the '<em><b>Remote</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE__REMOTE = DiffPackage.ATTRIBUTE_CHANGE__REMOTE;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE__ATTRIBUTE = DiffPackage.ATTRIBUTE_CHANGE__ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Left Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE__LEFT_ELEMENT = DiffPackage.ATTRIBUTE_CHANGE__LEFT_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Right Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE__RIGHT_ELEMENT = DiffPackage.ATTRIBUTE_CHANGE__RIGHT_ELEMENT;
-
-	/**
 	 * The feature id for the '<em><b>Hide Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TAGGED_VALUE_CHANGE__HIDE_ELEMENTS = DiffPackage.ATTRIBUTE_CHANGE_FEATURE_COUNT + 0;
+	int TAGGED_VALUE_CHANGE__HIDE_ELEMENTS = UML_DIFF_EXTENSION__HIDE_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Is Collapsed</b></em>' attribute.
@@ -236,7 +164,79 @@ public interface UMLDiffPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAGGED_VALUE_CHANGE__IS_COLLAPSED = DiffPackage.ATTRIBUTE_CHANGE_FEATURE_COUNT + 1;
+	int TAGGED_VALUE_CHANGE__IS_COLLAPSED = UML_DIFF_EXTENSION__IS_COLLAPSED;
+
+	/**
+	 * The feature id for the '<em><b>Sub Diff Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE__SUB_DIFF_ELEMENTS = UML_DIFF_EXTENSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Is Hidden By</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE__IS_HIDDEN_BY = UML_DIFF_EXTENSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Conflicting</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE__CONFLICTING = UML_DIFF_EXTENSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE__KIND = UML_DIFF_EXTENSION_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Remote</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE__REMOTE = UML_DIFF_EXTENSION_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE__ATTRIBUTE = UML_DIFF_EXTENSION_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Left Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE__LEFT_ELEMENT = UML_DIFF_EXTENSION_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Right Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE__RIGHT_ELEMENT = UML_DIFF_EXTENSION_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>Tagged Value Change</em>' class.
@@ -245,7 +245,7 @@ public interface UMLDiffPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAGGED_VALUE_CHANGE_FEATURE_COUNT = DiffPackage.ATTRIBUTE_CHANGE_FEATURE_COUNT + 2;
+	int TAGGED_VALUE_CHANGE_FEATURE_COUNT = UML_DIFF_EXTENSION_FEATURE_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.TaggedValueChangeLeftTargetImpl <em>Tagged Value Change Left Target</em>}' class.
@@ -258,94 +258,13 @@ public interface UMLDiffPackage extends EPackage {
 	int TAGGED_VALUE_CHANGE_LEFT_TARGET = 3;
 
 	/**
-	 * The feature id for the '<em><b>Sub Diff Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE_LEFT_TARGET__SUB_DIFF_ELEMENTS = DiffPackage.ATTRIBUTE_CHANGE_LEFT_TARGET__SUB_DIFF_ELEMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Is Hidden By</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE_LEFT_TARGET__IS_HIDDEN_BY = DiffPackage.ATTRIBUTE_CHANGE_LEFT_TARGET__IS_HIDDEN_BY;
-
-	/**
-	 * The feature id for the '<em><b>Conflicting</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE_LEFT_TARGET__CONFLICTING = DiffPackage.ATTRIBUTE_CHANGE_LEFT_TARGET__CONFLICTING;
-
-	/**
-	 * The feature id for the '<em><b>Kind</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE_LEFT_TARGET__KIND = DiffPackage.ATTRIBUTE_CHANGE_LEFT_TARGET__KIND;
-
-	/**
-	 * The feature id for the '<em><b>Remote</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE_LEFT_TARGET__REMOTE = DiffPackage.ATTRIBUTE_CHANGE_LEFT_TARGET__REMOTE;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE_LEFT_TARGET__ATTRIBUTE = DiffPackage.ATTRIBUTE_CHANGE_LEFT_TARGET__ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Left Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE_LEFT_TARGET__LEFT_ELEMENT = DiffPackage.ATTRIBUTE_CHANGE_LEFT_TARGET__LEFT_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Right Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE_LEFT_TARGET__RIGHT_ELEMENT = DiffPackage.ATTRIBUTE_CHANGE_LEFT_TARGET__RIGHT_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Left Target</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE_LEFT_TARGET__LEFT_TARGET = DiffPackage.ATTRIBUTE_CHANGE_LEFT_TARGET__LEFT_TARGET;
-
-	/**
 	 * The feature id for the '<em><b>Hide Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS = DiffPackage.ATTRIBUTE_CHANGE_LEFT_TARGET_FEATURE_COUNT + 0;
+	int TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS = TAGGED_VALUE_CHANGE__HIDE_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Is Collapsed</b></em>' attribute.
@@ -354,7 +273,88 @@ public interface UMLDiffPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAGGED_VALUE_CHANGE_LEFT_TARGET__IS_COLLAPSED = DiffPackage.ATTRIBUTE_CHANGE_LEFT_TARGET_FEATURE_COUNT + 1;
+	int TAGGED_VALUE_CHANGE_LEFT_TARGET__IS_COLLAPSED = TAGGED_VALUE_CHANGE__IS_COLLAPSED;
+
+	/**
+	 * The feature id for the '<em><b>Sub Diff Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_LEFT_TARGET__SUB_DIFF_ELEMENTS = TAGGED_VALUE_CHANGE__SUB_DIFF_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Is Hidden By</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_LEFT_TARGET__IS_HIDDEN_BY = TAGGED_VALUE_CHANGE__IS_HIDDEN_BY;
+
+	/**
+	 * The feature id for the '<em><b>Conflicting</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_LEFT_TARGET__CONFLICTING = TAGGED_VALUE_CHANGE__CONFLICTING;
+
+	/**
+	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_LEFT_TARGET__KIND = TAGGED_VALUE_CHANGE__KIND;
+
+	/**
+	 * The feature id for the '<em><b>Remote</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_LEFT_TARGET__REMOTE = TAGGED_VALUE_CHANGE__REMOTE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_LEFT_TARGET__ATTRIBUTE = TAGGED_VALUE_CHANGE__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Left Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_LEFT_TARGET__LEFT_ELEMENT = TAGGED_VALUE_CHANGE__LEFT_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Right Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_LEFT_TARGET__RIGHT_ELEMENT = TAGGED_VALUE_CHANGE__RIGHT_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Left Target</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_LEFT_TARGET__LEFT_TARGET = TAGGED_VALUE_CHANGE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Tagged Value Change Left Target</em>' class.
@@ -363,7 +363,7 @@ public interface UMLDiffPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAGGED_VALUE_CHANGE_LEFT_TARGET_FEATURE_COUNT = DiffPackage.ATTRIBUTE_CHANGE_LEFT_TARGET_FEATURE_COUNT + 2;
+	int TAGGED_VALUE_CHANGE_LEFT_TARGET_FEATURE_COUNT = TAGGED_VALUE_CHANGE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.TaggedValueChangeRightTargetImpl <em>Tagged Value Change Right Target</em>}' class.
@@ -376,94 +376,13 @@ public interface UMLDiffPackage extends EPackage {
 	int TAGGED_VALUE_CHANGE_RIGHT_TARGET = 4;
 
 	/**
-	 * The feature id for the '<em><b>Sub Diff Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__SUB_DIFF_ELEMENTS = DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET__SUB_DIFF_ELEMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Is Hidden By</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__IS_HIDDEN_BY = DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET__IS_HIDDEN_BY;
-
-	/**
-	 * The feature id for the '<em><b>Conflicting</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__CONFLICTING = DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET__CONFLICTING;
-
-	/**
-	 * The feature id for the '<em><b>Kind</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__KIND = DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET__KIND;
-
-	/**
-	 * The feature id for the '<em><b>Remote</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__REMOTE = DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET__REMOTE;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__ATTRIBUTE = DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET__ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Left Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__LEFT_ELEMENT = DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET__LEFT_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Right Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__RIGHT_ELEMENT = DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET__RIGHT_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Right Target</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__RIGHT_TARGET = DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET__RIGHT_TARGET;
-
-	/**
 	 * The feature id for the '<em><b>Hide Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__HIDE_ELEMENTS = DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET_FEATURE_COUNT + 0;
+	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__HIDE_ELEMENTS = TAGGED_VALUE_CHANGE__HIDE_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Is Collapsed</b></em>' attribute.
@@ -472,7 +391,88 @@ public interface UMLDiffPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__IS_COLLAPSED = DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET_FEATURE_COUNT + 1;
+	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__IS_COLLAPSED = TAGGED_VALUE_CHANGE__IS_COLLAPSED;
+
+	/**
+	 * The feature id for the '<em><b>Sub Diff Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__SUB_DIFF_ELEMENTS = TAGGED_VALUE_CHANGE__SUB_DIFF_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Is Hidden By</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__IS_HIDDEN_BY = TAGGED_VALUE_CHANGE__IS_HIDDEN_BY;
+
+	/**
+	 * The feature id for the '<em><b>Conflicting</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__CONFLICTING = TAGGED_VALUE_CHANGE__CONFLICTING;
+
+	/**
+	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__KIND = TAGGED_VALUE_CHANGE__KIND;
+
+	/**
+	 * The feature id for the '<em><b>Remote</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__REMOTE = TAGGED_VALUE_CHANGE__REMOTE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__ATTRIBUTE = TAGGED_VALUE_CHANGE__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Left Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__LEFT_ELEMENT = TAGGED_VALUE_CHANGE__LEFT_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Right Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__RIGHT_ELEMENT = TAGGED_VALUE_CHANGE__RIGHT_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Right Target</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__RIGHT_TARGET = TAGGED_VALUE_CHANGE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Tagged Value Change Right Target</em>' class.
@@ -481,7 +481,7 @@ public interface UMLDiffPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAGGED_VALUE_CHANGE_RIGHT_TARGET_FEATURE_COUNT = DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET_FEATURE_COUNT + 2;
+	int TAGGED_VALUE_CHANGE_RIGHT_TARGET_FEATURE_COUNT = TAGGED_VALUE_CHANGE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.UpdateTaggedValueImpl <em>Update Tagged Value</em>}' class.
@@ -494,85 +494,13 @@ public interface UMLDiffPackage extends EPackage {
 	int UPDATE_TAGGED_VALUE = 5;
 
 	/**
-	 * The feature id for the '<em><b>Sub Diff Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UPDATE_TAGGED_VALUE__SUB_DIFF_ELEMENTS = DiffPackage.UPDATE_ATTRIBUTE__SUB_DIFF_ELEMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Is Hidden By</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UPDATE_TAGGED_VALUE__IS_HIDDEN_BY = DiffPackage.UPDATE_ATTRIBUTE__IS_HIDDEN_BY;
-
-	/**
-	 * The feature id for the '<em><b>Conflicting</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UPDATE_TAGGED_VALUE__CONFLICTING = DiffPackage.UPDATE_ATTRIBUTE__CONFLICTING;
-
-	/**
-	 * The feature id for the '<em><b>Kind</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UPDATE_TAGGED_VALUE__KIND = DiffPackage.UPDATE_ATTRIBUTE__KIND;
-
-	/**
-	 * The feature id for the '<em><b>Remote</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UPDATE_TAGGED_VALUE__REMOTE = DiffPackage.UPDATE_ATTRIBUTE__REMOTE;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UPDATE_TAGGED_VALUE__ATTRIBUTE = DiffPackage.UPDATE_ATTRIBUTE__ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Left Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UPDATE_TAGGED_VALUE__LEFT_ELEMENT = DiffPackage.UPDATE_ATTRIBUTE__LEFT_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Right Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UPDATE_TAGGED_VALUE__RIGHT_ELEMENT = DiffPackage.UPDATE_ATTRIBUTE__RIGHT_ELEMENT;
-
-	/**
 	 * The feature id for the '<em><b>Hide Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UPDATE_TAGGED_VALUE__HIDE_ELEMENTS = DiffPackage.UPDATE_ATTRIBUTE_FEATURE_COUNT + 0;
+	int UPDATE_TAGGED_VALUE__HIDE_ELEMENTS = TAGGED_VALUE_CHANGE__HIDE_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Is Collapsed</b></em>' attribute.
@@ -581,7 +509,79 @@ public interface UMLDiffPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UPDATE_TAGGED_VALUE__IS_COLLAPSED = DiffPackage.UPDATE_ATTRIBUTE_FEATURE_COUNT + 1;
+	int UPDATE_TAGGED_VALUE__IS_COLLAPSED = TAGGED_VALUE_CHANGE__IS_COLLAPSED;
+
+	/**
+	 * The feature id for the '<em><b>Sub Diff Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_TAGGED_VALUE__SUB_DIFF_ELEMENTS = TAGGED_VALUE_CHANGE__SUB_DIFF_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Is Hidden By</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_TAGGED_VALUE__IS_HIDDEN_BY = TAGGED_VALUE_CHANGE__IS_HIDDEN_BY;
+
+	/**
+	 * The feature id for the '<em><b>Conflicting</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_TAGGED_VALUE__CONFLICTING = TAGGED_VALUE_CHANGE__CONFLICTING;
+
+	/**
+	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_TAGGED_VALUE__KIND = TAGGED_VALUE_CHANGE__KIND;
+
+	/**
+	 * The feature id for the '<em><b>Remote</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_TAGGED_VALUE__REMOTE = TAGGED_VALUE_CHANGE__REMOTE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_TAGGED_VALUE__ATTRIBUTE = TAGGED_VALUE_CHANGE__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Left Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_TAGGED_VALUE__LEFT_ELEMENT = TAGGED_VALUE_CHANGE__LEFT_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Right Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_TAGGED_VALUE__RIGHT_ELEMENT = TAGGED_VALUE_CHANGE__RIGHT_ELEMENT;
 
 	/**
 	 * The number of structural features of the '<em>Update Tagged Value</em>' class.
@@ -590,7 +590,7 @@ public interface UMLDiffPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UPDATE_TAGGED_VALUE_FEATURE_COUNT = DiffPackage.UPDATE_ATTRIBUTE_FEATURE_COUNT + 2;
+	int UPDATE_TAGGED_VALUE_FEATURE_COUNT = TAGGED_VALUE_CHANGE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.AddStereotypeApplicationImpl <em>Add Stereotype Application</em>}' class.
