@@ -53,9 +53,7 @@ public class OpenTextualEditorForStereotypeApplications extends AbstractHandler 
         Shell shell = current.getActiveShell();
 
         if (shell != null) {
-        	updateSelectedEObject() ;
-        	for (EObject toto : selectedEObjects) 
-        		System.out.println (toto);
+        	updateSelectedEObject();
         }
         else {
             // Activator.log.error("impossible to find a shell to open the message dialog", null);
@@ -141,14 +139,10 @@ public class OpenTextualEditorForStereotypeApplications extends AbstractHandler 
 
 	
 	public void selectionChanged(IAction action, ISelection selection) {
-		// TODO Auto-generated method stub
-		System.out.println() ;
 	}
 
 	
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-		// TODO Auto-generated method stub
-		System.out.println() ;
 	}
 
 }
