@@ -26,7 +26,11 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 
-	private ILabelProvider myDomainElementLabelProvider;
+	private final ILabelProvider myDomainElementLabelProvider;
+	
+	public StyledDiffLabelSwitch(ILabelProvider labelProvider) {
+		myDomainElementLabelProvider = labelProvider;
+	}
 
 	@Override
 	public StyledString defaultCase(EObject object) {
@@ -46,13 +50,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		return null;
 	}
 
-	protected ILabelProvider getLabelProvider() {
-		if(myDomainElementLabelProvider == null) {
-			myDomainElementLabelProvider = (ILabelProvider)UMLCompareUtils.getInstance().getPapyrusLabelProvider();
-		}
+	private ILabelProvider getLabelProvider() {
 		return myDomainElementLabelProvider;
 	}
-
 
 	@Override
 	public StyledString caseCompareTwoElementsDiffModel(CompareTwoElementsDiffModel object) {

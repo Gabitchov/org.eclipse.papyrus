@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.compare;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffExtension;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch;
@@ -27,9 +26,7 @@ public class UMLCompareUtils {
 
 	private static UMLCompareUtils ourInstance;
 
-	private IBaseLabelProvider myPapyrusLabelProvider;
-	
-	private UMLDiffSwitch<StyledString> myDiffLabelSwitch = new StyledDiffLabelSwitch();
+	private UMLDiffSwitch<StyledString> myDiffLabelSwitch = new StyledDiffLabelSwitch(new PapyrusLabelProvider());
 	
 	private UMLCompareUtils() {}
 	
@@ -44,11 +41,8 @@ public class UMLCompareUtils {
 		return UMLUtil.getStereotype(eObject) != null;
 	}
 
-	public IBaseLabelProvider getPapyrusLabelProvider() {
-		if (myPapyrusLabelProvider == null) {
-			myPapyrusLabelProvider = new PapyrusLabelProvider();
-		}
-		return myPapyrusLabelProvider;
+	public UMLDiffSwitch<StyledString> getDiffLabelSwitch() {
+		return myDiffLabelSwitch;
 	}
 
 	public String getText(UMLDiffExtension object) {

@@ -18,23 +18,23 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.StyledCellLabelProvider;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.ViewerCell;
-import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffExtension;
+import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch;
 import org.eclipse.swt.graphics.Image;
 
 
 public class UMLStyledStructureLabelProvider extends StyledCellLabelProvider implements ILabelProvider {
 
-	private UMLModelStructureLabelProvider delegate;
+	private UMLModelStructureLabelProvider myDelegate;
 
-	private UMLDiffSwitch<StyledString> diffLabelSwitch = new StyledDiffLabelSwitch();
+	private UMLDiffSwitch<StyledString> myDiffLabelSwitch = UMLCompareUtils.getInstance().getDiffLabelSwitch();
 
 	public UMLStyledStructureLabelProvider() {
-		delegate = new UMLModelStructureLabelProvider();
+		myDelegate = new UMLModelStructureLabelProvider();
 	}
 
 	public Image getImage(Object element) {
-		return delegate.getImage(element);
+		return myDelegate.getImage(element);
 	}
 
 	public String getText(Object element) {
@@ -51,13 +51,13 @@ public class UMLStyledStructureLabelProvider extends StyledCellLabelProvider imp
 
 	private StyledString getStyledText(Object element) {
 		if(element instanceof EObject) {
-			StyledString result = diffLabelSwitch.doSwitch((EObject)element);
+			StyledString result = myDiffLabelSwitch.doSwitch((EObject)element);
 			if(result != null) {
 				return result;
 			}
 		}
 		StyledString styledString = new StyledString();
-		styledString.append(delegate.getText(element));
+		styledString.append(myDelegate.getText(element));
 		return styledString;
 	}
 
