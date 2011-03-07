@@ -72,11 +72,11 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 		return result;
 	}
 	protected EObject findMatchFromElement(EObject element) {
-		EObject result = super.findMatchFromElement(element);
-		if(!myUMLViewer.isShowAllProperties() && element instanceof Match2Elements) {
-			return new Match2ElementsWithDiff((Match2Elements)result, myUMLViewer.getCurrentSelection().get(0));
+		EObject matchElement = super.findMatchFromElement(element);
+		if(!myUMLViewer.isShowAllProperties() && matchElement instanceof Match2Elements) {
+			return new Match2ElementsWithDiff((Match2Elements)matchElement, myUMLViewer.getCurrentSelection().get(0));
 		}
-		return result;
+		return matchElement;
 	}
 
 	public int getSelectedTab() {
