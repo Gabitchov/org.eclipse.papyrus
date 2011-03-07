@@ -14,8 +14,7 @@
 package org.eclipse.papyrus.compare.ui.viewer.content.part.property;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -32,14 +31,14 @@ public class UMLPropertyContentProvider extends PropertyContentProvider {
 	public Object[] getElements(Object inputElement) {
 		Object[] elements = super.getElements(inputElement);
 		if(inputElement instanceof Match2ElementsWithDiff) {
-			return getElementsForDiff(elements, ((Match2ElementsWithDiff)inputElement).getDiffElement());
+			DiffElement diffElement = ((Match2ElementsWithDiff)inputElement).getDiffElement();
+			return findRowsForFeatures(elements, getChangedFeatures(diffElement));
 		}
 		return elements;
 	}
 
-	protected Object[] getElementsForDiff(Object[] propertyRows, DiffElement diffElement) {
+	protected Object[] findRowsForFeatures(Object[] propertyRows, EStructuralFeature[] features) {
 		List<Object> result = new ArrayList<Object>();
-		Collection<EStructuralFeature> features = getChangedFeatures(diffElement);
 		for (EStructuralFeature feature : features) {
 			Object row = findPropertyRowFor(propertyRows, feature);
 			if(row != null) {
@@ -49,24 +48,24 @@ public class UMLPropertyContentProvider extends PropertyContentProvider {
 		return result.toArray(new Object[result.size()]);
 	}
 
-	protected Collection<EStructuralFeature> getChangedFeatures(DiffElement diffElement) {
+	private EStructuralFeature[] getChangedFeatures(DiffElement diffElement) {
 		if(diffElement instanceof AttributeChange) {
 			EStructuralFeature feature = ((AttributeChange)diffElement).getAttribute();
-			return Collections.singletonList(feature);
+			return new EStructuralFeature[]{feature};
 		}
 		if(diffElement instanceof ReferenceChange) {
 			EStructuralFeature feature = ((ReferenceChange)diffElement).getReference();
-			return Collections.singletonList(feature);
+			return new EStructuralFeature[]{feature};
 		}
 		if(diffElement instanceof DiffGroup) {
 			EList<DiffElement> children = ((DiffGroup)diffElement).getSubDiffElements();
 			List<EStructuralFeature> result = new ArrayList<EStructuralFeature>();
 			for (DiffElement child: children) {
-				result.addAll(getChangedFeatures(child));				
+				result.addAll(Arrays.asList(getChangedFeatures(child)));				
 			}
-			return result;
+			return result.toArray(new EStructuralFeature[result.size()]);
 		}
-		return Collections.emptyList();
+			return new EStructuralFeature[0];
 	}
 
 
