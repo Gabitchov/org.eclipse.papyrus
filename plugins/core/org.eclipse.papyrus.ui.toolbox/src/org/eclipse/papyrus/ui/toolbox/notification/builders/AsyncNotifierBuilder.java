@@ -81,8 +81,10 @@ public class AsyncNotifierBuilder implements IBuilder {
 			popup.addAllRunnable(wrapper.getActions());
 		}
 		popup.setTitle(wrapper.getTitle() == null ? "Papyrus" : wrapper.getTitle());
+		AsyncNotification notification = new AsyncNotification(popup);
+		popup.setINotification(notification);
 		popup.open();
-		return new AsyncNotification(popup);
+		return notification;
 	}
 
 	/*

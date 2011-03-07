@@ -21,11 +21,21 @@ import java.util.Map;
 public interface IContext {
 
 	/**
+	 * This constant identifies developper strings to indicate the code location
+	 */
+	public static String STRING_FOR_DEVELOPER = "_please_check_IContext_Constant";
+
+	/**
 	 * This constant allows the user to retrieve the composite created if he filled a ICreationComposite
 	 */
-	public static String COMPOSITE_CREATED = "composite_created";
+	public static String COMPOSITE_CREATED = "composite_created" + STRING_FOR_DEVELOPER;
 
-	/** 
+	/**
+	 * This constant allows the user to retrieve the notification if he needs to close it
+	 */
+	public static String NOTIFICATION_OBJECT = "notification_object" + STRING_FOR_DEVELOPER;
+
+	/**
 	 * This constant determines an action id to the current context
 	 */
 	public static String ACTION_ID = "action_id";
