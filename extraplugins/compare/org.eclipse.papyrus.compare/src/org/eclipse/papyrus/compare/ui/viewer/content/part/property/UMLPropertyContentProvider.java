@@ -14,33 +14,29 @@
 package org.eclipse.papyrus.compare.ui.viewer.content.part.property;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
+import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
 import org.eclipse.emf.compare.ui.viewer.content.part.property.PropertyContentProvider;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.compare.ui.viewer.content.part.UMLModelContentMergeTabFolder.Match2ElementsWithDiff;
-
 
 public class UMLPropertyContentProvider extends PropertyContentProvider {
 
 
 	@Override
 	public Object[] getElements(Object inputElement) {
-		if(inputElement instanceof Match2ElementsWithDiff) {
-			return getElementsForDiff((Match2ElementsWithDiff)inputElement);
-		}
 		Object[] elements = super.getElements(inputElement);
+		if(inputElement instanceof Match2ElementsWithDiff) {
+			return getElementsForDiff(elements, ((Match2ElementsWithDiff)inputElement).getDiffElement());
+		}
 		return elements;
 	}
 
-	protected Object[] getElementsForDiff(Match2ElementsWithDiff element) {
+	protected Object[] getElementsForDiff(Object[] elements, DiffElement element) {
 		List<Object> result = new ArrayList<Object>();
-		Object[] elements = super.getElements(element);
-		EStructuralFeature feature = getFeature(element.getDiffElement());
+		EStructuralFeature feature = getFeature(element);
 		if(feature != null) {
 			List<Object> row = findRowFor(elements, feature);
 			if(row != null) {
