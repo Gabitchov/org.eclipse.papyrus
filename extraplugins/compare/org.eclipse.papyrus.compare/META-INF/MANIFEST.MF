@@ -28,3 +28,4 @@ Require-Bundle: org.eclipse.emf.compare;bundle-version="1.1.0",
 Bundle-Activator: org.eclipse.papyrus.compare.Activator
 Export-Package: org.eclipse.papyrus.compare.diff,
  org.eclipse.papyrus.compare.match
+Bundle-ActivationPolicy: lazy

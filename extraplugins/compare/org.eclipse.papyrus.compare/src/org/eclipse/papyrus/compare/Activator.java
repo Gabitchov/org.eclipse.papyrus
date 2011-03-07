@@ -13,7 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.compare;
 
+import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.log.LogHelper;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -70,5 +72,24 @@ public class Activator extends AbstractUIPlugin {
 	public static Activator getDefault() {
 		return plugin;
 	}
+	
+	/**
+	 * Returns the image from the given path
+	 * 
+	 * @param path
+	 *        the path the image to be displayed
+	 * @return the image found
+	 */
+	public static Image getImage(String path) {
+		final ImageRegistry registry = getDefault().getImageRegistry();
+		Image image = registry.get(path);
+		if(image == null) {
+			registry.put(path, Activator.imageDescriptorFromPlugin(PLUGIN_ID, path));
+			image = registry.get(path);
+		}
+		return image;
+
+	}
+
 
 }

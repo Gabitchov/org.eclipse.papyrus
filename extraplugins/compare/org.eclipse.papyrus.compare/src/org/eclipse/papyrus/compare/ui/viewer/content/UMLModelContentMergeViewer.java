@@ -25,7 +25,9 @@ import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.ToolBarManager;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.papyrus.compare.Activator;
 import org.eclipse.papyrus.compare.ui.viewer.content.part.UMLModelContentMergeTabFolder;
 import org.eclipse.swt.widgets.Composite;
 
@@ -75,7 +77,7 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 		// since default tab is not properties
 		myShowAllProperties.setEnabled(false);
 		myShowAllProperties.setToolTipText("Show All Properties of the Element");
-		//			setImageDescriptor(ImageDescriptor.createFromImage(descriptor.getEnabledImage()));
+		myShowAllProperties.setImageDescriptor(ImageDescriptor.createFromImage(Activator.getImage("/icons/show_all_properties.gif")));
 		//			setHoverImageDescriptor(ImageDescriptor.createFromImage(descriptor.getEnabledImage()));
 		//			setDisabledImageDescriptor(ImageDescriptor.createFromImage(descriptor.getDisabledImage()));
 
