@@ -39,116 +39,105 @@ public class OpenTextualEditorForStereotypeApplications extends AbstractHandler 
 		// TODO Auto-generated constructor stub
 	}
 
-	
-    /**
-     * {@inheritDoc}
-     */
-    public Object execute(ExecutionEvent event)
-    {
-        Display current = Display.getCurrent();
 
-        if(current == null) {
-            current = Display.getDefault();
-        }
-        Shell shell = current.getActiveShell();
+	/**
+	 * {@inheritDoc}
+	 */
+	public Object execute(ExecutionEvent event) {
+		Display current = Display.getCurrent();
 
-        if (shell != null) {
-        	updateSelectedEObject() ;
-        	for (EObject toto : selectedEObjects) 
-        		System.out.println (toto);
-        }
-        else {
-            // Activator.log.error("impossible to find a shell to open the message dialog", null);
-        }
+		if(current == null) {
+			current = Display.getDefault();
+		}
+		Shell shell = current.getActiveShell();
 
-        return null;
-    }
-   
-    /**
-     * Convert each selected elements from the explorator menu, or modeling view
-     * to an EObject and add it to a list
-     *
-     * @return list of EObject
-     */
-    public void updateSelectedEObject()
-    {
-        Vector<EObject> currentSelectedEObjects = new Vector<EObject>();
+		if(shell != null) {
+			updateSelectedEObject();
+		} else {
+			// Activator.log.error("impossible to find a shell to open the message dialog", null);
+		}
 
-        // Retrieve selected elements
-        IStructuredSelection selection = (IStructuredSelection) PlatformUI
-                .getWorkbench().getActiveWorkbenchWindow()
-                .getSelectionService().getSelection();
+		return null;
+	}
 
-        
-        Iterator<?> eltIt = (Iterator<?>) selection.iterator();
+	/**
+	 * Convert each selected elements from the explorator menu, or modeling view
+	 * to an EObject and add it to a list
+	 * 
+	 * @return list of EObject
+	 */
+	public void updateSelectedEObject() {
+		Vector<EObject> currentSelectedEObjects = new Vector<EObject>();
 
-        while (eltIt.hasNext()) {
-            Object currentObject = eltIt.next();
+		// Retrieve selected elements
+		IStructuredSelection selection = (IStructuredSelection)PlatformUI
+				.getWorkbench().getActiveWorkbenchWindow()
+				.getSelectionService().getSelection();
 
-            // If the object is an edit part, try to get semantic bridge
-            if (currentObject instanceof GraphicalEditPart) {
-                GraphicalEditPart editPart = (GraphicalEditPart) currentObject;
-                if (editPart.getModel () instanceof View) {
-                    View view = (View) editPart.getModel ();
-                    if (view.getElement() instanceof Element){
-                        currentObject = (Element) view.getElement();
-                        new StereotypeApplicationPopupEditorConfigurationContribution().createPopupEditorHelper(editPart).showEditor() ;
-                    }
-                }
-            }
 
-            // check whether part of model explorer
-            if (currentObject instanceof IAdaptable) {
-                // modisco ModelElementItem supports IAdaptable (cleaner than cast / dependency with modisco)
-                currentObject = ((IAdaptable) currentObject).getAdapter (EObject.class);
-            }
+		Iterator<?> eltIt = (Iterator<?>)selection.iterator();
 
-            // If element is a UML Element
-            if (currentObject instanceof Element) {
-                currentSelectedEObjects.add((EObject) currentObject);
-            }
-   
-        }
-        selectedEObjects = currentSelectedEObjects;
-    }
-   
-      /**
-     * Convert each selected elements from the explorator menu, or modeling view
-     * to an EObject and add it to a list
-     *
-     * @return list of EObject
-     */
-    public EObject getSelectedEObject()
-    {
-        if (selectedEObjects.size () > 0) {
-            return selectedEObjects.get (0);
-        }
-        return null;
-    }
-   
-    public List<EObject> getSelectedEObjects ()
-    {
-        return selectedEObjects;
-    }
-   
-    private List<EObject> selectedEObjects; 
+		while(eltIt.hasNext()) {
+			Object currentObject = eltIt.next();
 
-	
+			// If the object is an edit part, try to get semantic bridge
+			if(currentObject instanceof GraphicalEditPart) {
+				GraphicalEditPart editPart = (GraphicalEditPart)currentObject;
+				if(editPart.getModel() instanceof View) {
+					View view = (View)editPart.getModel();
+					if(view.getElement() instanceof Element) {
+						currentObject = (Element)view.getElement();
+						new StereotypeApplicationPopupEditorConfigurationContribution().createPopupEditorHelper(editPart).showEditor();
+					}
+				}
+			}
+
+			// check whether part of model explorer
+			if(currentObject instanceof IAdaptable) {
+				// modisco ModelElementItem supports IAdaptable (cleaner than cast / dependency with modisco)
+				currentObject = ((IAdaptable)currentObject).getAdapter(EObject.class);
+			}
+
+			// If element is a UML Element
+			if(currentObject instanceof Element) {
+				currentSelectedEObjects.add((EObject)currentObject);
+			}
+
+		}
+		selectedEObjects = currentSelectedEObjects;
+	}
+
+	/**
+	 * Convert each selected elements from the explorator menu, or modeling view
+	 * to an EObject and add it to a list
+	 * 
+	 * @return list of EObject
+	 */
+	public EObject getSelectedEObject() {
+		if(selectedEObjects.size() > 0) {
+			return selectedEObjects.get(0);
+		}
+		return null;
+	}
+
+	public List<EObject> getSelectedEObjects() {
+		return selectedEObjects;
+	}
+
+	private List<EObject> selectedEObjects;
+
+
 	public void run(IAction action) {
 		// TODO Auto-generated method stub
-		this.execute(null) ;
+		this.execute(null);
 	}
 
-	
+
 	public void selectionChanged(IAction action, ISelection selection) {
-		// TODO Auto-generated method stub
-		System.out.println() ;
 	}
 
-	
+
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-		// TODO Auto-generated method stub
-		System.out.println() ;
 	}
 
 }
