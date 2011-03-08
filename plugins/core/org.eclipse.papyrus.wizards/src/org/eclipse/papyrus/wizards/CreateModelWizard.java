@@ -14,7 +14,6 @@ package org.eclipse.papyrus.wizards;
 import static org.eclipse.papyrus.wizards.Activator.log;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -129,7 +128,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	public boolean performFinish() {
 		DiResourceSet diResourceSet = new DiResourceSet();
 		String[] diagramCategoryIds = getDiagramCategoryIds();
-		if (diagramCategoryIds.length == 0) {
+		if(diagramCategoryIds.length == 0) {
 			return false;
 		}
 		String diagramCategoryId = diagramCategoryIds[0];
@@ -141,7 +140,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		saveDiagramKindSettings();
 		return true;
 	}
-	
+
 	protected boolean createAndOpenPapyrusModel(DiResourceSet diResourceSet, IFile newFile, String diagramCategoryId) {
 		if(newFile == null) {
 			return false;
@@ -153,7 +152,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		initDiagramModel(diResourceSet, diagramCategoryId);
 
 		openDiagram(newFile);
-		
+
 		return true;
 	}
 
@@ -237,19 +236,20 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 			return;
 		}
 		SettingsHelper settingsHelper = new SettingsHelper(settings);
-		String[] categories = getDiagramCategoryIds();
-//		if(selectDiagramKindPage.isRememberCurrentSelection()) {
-//			saveDefaultDiagramKinds(settingsHelper, category);
-//			saveDefaultTemplates(settingsHelper, category);
-//		} else {
-//			settingsHelper.saveDefaultDiagramKinds(category, Collections.<String> emptyList());
-//			settingsHelper.saveDefaultTemplates(category, Collections.<String> emptyList());
-//		}
+		for (String category: getDiagramCategoryIds()) {
+			if(selectDiagramKindPage.isRememberCurrentSelection()) {
+				saveDefaultDiagramKinds(settingsHelper, category);
+				saveDefaultTemplates(settingsHelper, category);
+			} else {
+				settingsHelper.saveDefaultDiagramKinds(category, Collections.<String> emptyList());
+				settingsHelper.saveDefaultTemplates(category, Collections.<String> emptyList());
+			}
+		}
 		settingsHelper.saveRememberCurrentSelection(selectDiagramKindPage.isRememberCurrentSelection());
-	} 	
+	}
 
 	private void saveDefaultDiagramKinds(SettingsHelper settingsHelper, String category) {
-		String[] selected = selectDiagramKindPage.getSelectedDiagramKinds();
+		String[] selected = selectDiagramKindPage.getSelectedDiagramKinds(category);
 		settingsHelper.saveDefaultDiagramKinds(category, Arrays.asList(selected));
 	}
 
@@ -292,16 +292,21 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 	protected void initDiagrams(DiResourceSet resourceSet, EObject root, String categoryId) {
-		List<ICreationCommand> creationCommands = selectDiagramKindPage.getCreationCommands(categoryId);
+		List<ICreationCommand> creationCommands = getDiagramKindsFor(categoryId);
 		String diagramName = selectDiagramKindPage.getDiagramName();
-		if(!creationCommands.isEmpty()) {
+		if(creationCommands.isEmpty()) {
+			createEmptyDiagramEditor(resourceSet);
+		} else {
 			for(int i = 0; i < creationCommands.size(); i++) {
 				creationCommands.get(i).createDiagram(resourceSet, root, diagramName);
 			}
-		} else {
-			createEmptyDiagramEditor(resourceSet);
 		}
 	}
+
+	protected List<ICreationCommand> getDiagramKindsFor(String categoryId) {
+		return selectDiagramKindPage.getCreationCommands(categoryId);
+	}
+
 
 	private void createEmptyDiagramEditor(DiResourceSet diResourceSet) {
 		// Create an empty editor (no diagrams opened)
@@ -320,8 +325,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	public IStatus diagramCategoryChanged(String... newCategories) {
 		if(newModelFilePage != null) {
-			String firstCategory = newCategories.length>0 ? newCategories[0] : null;
-			if (newCategories.length>0) {
+			String firstCategory = newCategories.length > 0 ? newCategories[0] : null;
+			if(newCategories.length > 0) {
 				//316943 -  [Wizard] Wrong suffix for file name when creating a profile model
 				return newModelFilePage.diagramExtensionChanged(getDiagramFileExtension(firstCategory));
 			}

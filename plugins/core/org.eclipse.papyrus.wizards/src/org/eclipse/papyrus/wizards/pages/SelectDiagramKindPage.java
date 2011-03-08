@@ -54,7 +54,7 @@ import org.eclipse.swt.widgets.Text;
  * @author Tatiana Fesenko
  */
 public class SelectDiagramKindPage extends WizardPage {
-	
+
 	/** The Constant PAGE_ID. */
 	public static final String PAGE_ID = "SelectDiagramKind";
 
@@ -69,15 +69,15 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/** The select template composite. */
 	private SelectModelTemplateComposite selectTemplateComposite;
-	
+
 	private Button rememberCurrentSelection;
 
 	private final CategoryProvider myCategoryProvider;
 
 	private final boolean allowTemplates;
-	
+
 	private final ICreationCommandRegistry myCreationCommandRegistry;
-	
+
 	public static final ICreationCommandRegistry DEFAULT_CREATION_COMMAND_REGISTRY = CreationCommandRegistry.getInstance(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 
 	/**
@@ -171,7 +171,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		selectDefaultDiagramTemplates(categories);
 	}
 
-	
+
 	public String getTemplatePath() {
 		return selectTemplateComposite.getTemplatePath();
 	}
@@ -196,7 +196,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	public String getDiagramName() {
 		return nameText.getText();
 	}
-	
+
 	public boolean templatesEnabled() {
 		return allowTemplates;
 	}
@@ -221,17 +221,26 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 
 	public List<ICreationCommand> getCreationCommands(String categoryId) {
-		CreationCommandDescriptor[] selected = getSelectedDiagramKindDescriptors();
+		List<CreationCommandDescriptor> selected = getSelectedCommandDescroptors(categoryId);
 		List<ICreationCommand> commands = new ArrayList<ICreationCommand>();
+		for(CreationCommandDescriptor next : selected) {
+			ICreationCommand command;
+			try {
+				command = next.getCommand();
+				commands.add(command);
+			} catch (Exception e) {
+				log.error(e);
+			}
+		}
+		return commands;
+	}
+
+	protected List<CreationCommandDescriptor> getSelectedCommandDescroptors(String categoryId) {
+		CreationCommandDescriptor[] selected = getSelectedDiagramKindDescriptors();
+		List<CreationCommandDescriptor> commands = new ArrayList<CreationCommandDescriptor>();
 		for(int i = 0; i < selected.length; i++) {
-			if (selected[i].getLanguage().equals(categoryId)) {
-				ICreationCommand command;
-				try {
-					command = (selected[i]).getCommand();
-					commands.add(command);
-				} catch (Exception e) {
-					log.error(e);
-				}
+			if(selected[i].getLanguage().equals(categoryId)) {
+				commands.add(selected[i]);
 			}
 		}
 		return commands;
@@ -293,7 +302,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		diagramKindTableViewer.setContentProvider(new DiagramKindContentProvider(getCreationCommandRegistry()));
 		diagramKindTableViewer.setLabelProvider(createDiagramKindLabelProvider());
 	}
-	
+
 	protected IBaseLabelProvider createDiagramKindLabelProvider() {
 		return new DiagramKindLabelProvider();
 	}
@@ -395,11 +404,11 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * 
 	 * @return the selected diagram kinds
 	 */
-	public String[] getSelectedDiagramKinds() {
-		CreationCommandDescriptor[] descriptors = getSelectedDiagramKindDescriptors();
-		String[] result = new String[descriptors.length];
-		for(int i = 0; i < descriptors.length; i++) {
-			result[i] = descriptors[i].getCommandId();
+	public String[] getSelectedDiagramKinds(String categoryId) {
+		List<CreationCommandDescriptor> descriptors = getSelectedCommandDescroptors(categoryId);
+		String[] result = new String[descriptors.size()];
+		for(int i = 0; i < descriptors.size(); i++) {
+			result[i] = descriptors.get(i).getCommandId();
 		}
 		return result;
 	}
@@ -413,13 +422,13 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	private void selectDefaultDiagramKinds(String[] categories) {
 		Set<String> kinds = new HashSet<String>();
-		for (String category: categories) {
+		for(String category : categories) {
 			kinds.addAll(mySettingsHelper.getDefaultDiagramKinds(category));
 		}
 		CreationCommandDescriptor[] elementsToCheck = findCreationCommandDescriptorsFor(kinds);
 		diagramKindTableViewer.setCheckedElements(elementsToCheck);
 	}
-	
+
 	protected CreationCommandDescriptor[] findCreationCommandDescriptorsFor(Collection<String> kinds) {
 		List<CreationCommandDescriptor> result = new ArrayList<CreationCommandDescriptor>();
 		Collection<CreationCommandDescriptor> availableDescriptors = getCreationCommandRegistry().getCommandDescriptors();
@@ -434,7 +443,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	private void selectDefaultDiagramTemplates(String[] categories) {
 		List<String> defaultTemplates = new ArrayList<String>();
 		List<Object> availableTemplates = new ArrayList<Object>();
-		for (String category: categories) {
+		for(String category : categories) {
 			defaultTemplates.addAll(mySettingsHelper.getDefaultTemplates(category));
 			availableTemplates.addAll(Arrays.asList(selectTemplateComposite.getContentProvider().getElements(category)));
 		}
@@ -446,12 +455,13 @@ public class SelectDiagramKindPage extends WizardPage {
 			}
 		}
 	}
-	
+
 	protected final ICreationCommandRegistry getCreationCommandRegistry() {
 		return myCreationCommandRegistry;
 	}
-	
+
 	public static interface CategoryProvider {
+
 		String[] getCurrentCategories();
 	}
 
