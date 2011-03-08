@@ -14,8 +14,6 @@
 package org.eclipse.papyrus.umlutils;
 
 import java.util.Collection;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.NamedElement;
@@ -77,43 +75,44 @@ public class NamedElementUtil {
 	 * 
 	 * @param newElement
 	 */
-	public static String getDefaultNameWithIncrement(EObject newElement, Collection<EObject> contents) {
-		StringBuffer result = new StringBuffer();
-		String eclassName = newElement.eClass().getName();
-		if(eclassName.length() > 0) {
-			eclassName = eclassName.substring(0, 1).toLowerCase() + eclassName.substring(1, eclassName.length());
+	@SuppressWarnings("rawtypes")
+	public static String getDefaultNameWithIncrement(EObject newElement, Collection contents) {
+		return getDefaultNameWithIncrement("", newElement, contents);
+	}
+
+	@SuppressWarnings("rawtypes")
+	public static String getDefaultNameWithIncrement(String base, EObject newElement, Collection contents) {
+		if (base == null) {
+			base = "";
 		}
-		result.append(eclassName);
-		if(contents != null) {
-			// use a pattern to do one bounded loop
-			Pattern p = Pattern.compile(eclassName + "(\\d)");
-			int max = 0;
-			for(EObject e : contents) {
-				if(e instanceof NamedElement) {
-					String name = ((NamedElement)e).getName();
-					String value = getGroupValue(p, name == null ? "" : name);
-					if(value != null) {
-						try {
-							max = Math.max(Integer.valueOf(value), max);
-						} catch (NumberFormatException ex) {
-							// normally does not happen
-						}
+
+		return getDefaultNameWithIncrementFromBase(base + newElement.eClass().getName(), contents);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public static String getDefaultNameWithIncrementFromBase(String base, Collection contents) {
+		int nextNumber = 0;
+
+		for(Object o : contents) {
+			if(o instanceof NamedElement) {
+				String name = ((NamedElement)o).getName();
+				if(name != null && name.startsWith(base)) {
+					String end = name.substring(base.length());
+					int nextNumberTmp = 0;
+
+					try {
+						nextNumberTmp = Integer.parseInt(end) + 1;
+					} catch (NumberFormatException ex) {
+					}
+
+					if(nextNumberTmp > nextNumber) {
+						nextNumber = nextNumberTmp;
 					}
 				}
 			}
-			result.append(max + 1);
 		}
-		return result.toString();
-	}
 
-	private static String getGroupValue(Pattern p, String name) {
-		Matcher matcher = p.matcher(name);
-		if(matcher.matches()) {
-			if(matcher.groupCount() > 0) {
-				return matcher.group(1);
-			}
-		}
-		return null;
+		return base + nextNumber;
 	}
 
 	/**
