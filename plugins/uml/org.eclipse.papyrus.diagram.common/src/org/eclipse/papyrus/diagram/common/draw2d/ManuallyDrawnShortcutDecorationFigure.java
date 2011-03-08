@@ -15,21 +15,24 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Polygon;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.swt.graphics.Color;
 
 public class ManuallyDrawnShortcutDecorationFigure extends RectangleFigure {
+
+	private RectangleFigure border = null;
 
 	public ManuallyDrawnShortcutDecorationFigure() {
 		setOpaque(true);
 		setOutline(false);
 
-		setSize(16, 16);
-		setPreferredSize(16, 16);
+		setSize(10, 10);
+		setPreferredSize(10, 10);
 
-		RectangleFigure border = new RectangleFigure();
+		border = new RectangleFigure();
 		border.setForegroundColor(ColorConstants.black);
 		border.setBackgroundColor(ColorConstants.white);
 		border.setSize(10, 10);
-		border.setLocation(new Point(2, 2));
+		border.setLocation(new Point(0, 0));
 		this.add(border);
 
 		Polygon arrow = new Polygon();
@@ -38,21 +41,25 @@ public class ManuallyDrawnShortcutDecorationFigure extends RectangleFigure {
 		arrow.setBackgroundColor(ColorConstants.black);
 		arrow.setFill(true);
 
-		arrow.addPoint(new Point(9, 4));
-		arrow.addPoint(new Point(9, 7));
-		arrow.addPoint(new Point(9, 6));
-		arrow.addPoint(new Point(7, 6));
-		arrow.addPoint(new Point(7, 7));
-		arrow.addPoint(new Point(5, 9));
-		arrow.addPoint(new Point(6, 10));
-		arrow.addPoint(new Point(5, 9));
-		arrow.addPoint(new Point(5, 7));
+		arrow.addPoint(new Point(7, 2));
 		arrow.addPoint(new Point(7, 5));
-		arrow.addPoint(new Point(7, 5));
-		arrow.addPoint(new Point(6, 4));
-		arrow.addPoint(new Point(9, 4));
+		arrow.addPoint(new Point(7, 4));
+		arrow.addPoint(new Point(5, 4));
+		arrow.addPoint(new Point(5, 5));
+		arrow.addPoint(new Point(3, 7));
+		arrow.addPoint(new Point(4, 8));
+		arrow.addPoint(new Point(3, 7));
+		arrow.addPoint(new Point(3, 5));
+		arrow.addPoint(new Point(5, 3));
+		arrow.addPoint(new Point(5, 3));
+		arrow.addPoint(new Point(4, 2));
+		arrow.addPoint(new Point(7, 2));
 
 		this.add(arrow);
+	}
+	
+	public void setBackgroundColor(Color backgroundColor) {
+		border.setBackgroundColor(backgroundColor);
 	}
 
 	@Override
