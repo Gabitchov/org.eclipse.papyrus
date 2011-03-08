@@ -55,8 +55,8 @@ public class SettingsHelper {
 	 * 
 	 * @return the default diagram category
 	 */
-	public String getDefaultDiagramCategory() {
-		return mySettings.get(LAST_SELECTED_CATEGORY);
+	public String[] getDefaultDiagramCategories() {
+		return mySettings.getArray(LAST_SELECTED_CATEGORY);
 	}
 
 	/**
