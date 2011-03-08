@@ -67,8 +67,8 @@ public class InitModelWizard extends CreateModelWizard {
 		if(isCreateFromExistingDomainModel()) {
 			return new SelectDiagramKindPage(false, new CategoryProvider() {
 
-				public String getCurrentCategory() {
-					return getDiagramCategoryId();
+				public String[] getCurrentCategories() {
+					return getDiagramCategoryIds();
 				}
 				
 			}, SelectDiagramKindPage.DEFAULT_CREATION_COMMAND_REGISTRY);
@@ -137,11 +137,11 @@ public class InitModelWizard extends CreateModelWizard {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void initDomainModel(DiResourceSet diResourceSet, final IFile newFile) {
+	protected void initDomainModel(DiResourceSet diResourceSet, final IFile newFile, String diagramCategoryId) {
 		if(isCreateFromExistingDomainModel()) {
 			// do nothing
 		} else {
-			super.initDomainModel(diResourceSet, newFile);
+			super.initDomainModel(diResourceSet, newFile, diagramCategoryId);
 		}
 	}
 
@@ -149,8 +149,8 @@ public class InitModelWizard extends CreateModelWizard {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void initDiagrams(DiResourceSet diResourceSet) {
-		initDiagrams(diResourceSet, getRoot());
+	protected void initDiagrams(DiResourceSet diResourceSet, String categoryId) {
+		initDiagrams(diResourceSet, getRoot(), categoryId);
 	}
 
 	protected boolean isCreateFromExistingDomainModel() {

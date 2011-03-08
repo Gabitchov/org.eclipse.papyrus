@@ -231,7 +231,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	}
 
 	protected void checkDiagramCategoryButtons() {
-		checkButtonsFor(getDiagramCategories());
+		checkButtonsFor(mySelectedDiagramCategoryIds.toArray(new String[mySelectedDiagramCategoryIds.size()]));
 	}
 
 	protected void checkButtonsFor(String... diagramCategories) {

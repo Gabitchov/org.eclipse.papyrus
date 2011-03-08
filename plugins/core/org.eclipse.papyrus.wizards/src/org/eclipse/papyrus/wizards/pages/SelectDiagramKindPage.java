@@ -16,7 +16,9 @@ import static org.eclipse.papyrus.wizards.Activator.log;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
@@ -113,17 +115,18 @@ public class SelectDiagramKindPage extends WizardPage {
 		plate.setLayout(gridLayout);
 		setControl(plate);
 
-		String category = getDiagramCategory();
+		String[] categories = getDiagramCategories();
 
 		createNameForm(plate);
 
-		createDiagramKindForm(plate, category);
+		createDiagramKindForm(plate);
+		diagramKindTableViewer.setInput(categories);
 
 		createModelTemplateComposite(plate);
 
 		createRememberCurrentSelectionForm(plate);
 
-		fillInTables(category);
+		fillInTables(categories);
 
 	}
 
@@ -151,21 +154,21 @@ public class SelectDiagramKindPage extends WizardPage {
 	@Override
 	public void setVisible(boolean visible) {
 		super.setVisible(visible);
-		fillInTables(getDiagramCategory());
+		fillInTables(getDiagramCategories());
 		validatePage();
 		if(!allowTemplates) {
 			selectTemplateComposite.disable();
 		}
 	}
 
-	private void fillInTables(String category) {
-		if(category == null) {
+	private void fillInTables(String[] categories) {
+		if(categories == null || categories.length == 0) {
 			return;
 		}
-		diagramKindTableViewer.setInput(category);
-		selectTemplateComposite.setInput(category);
-		selectDefaultDiagramKinds(category);
-		selectDefaultDiagramTemplates(category);
+		diagramKindTableViewer.setInput(categories);
+		selectTemplateComposite.setInput(categories);
+		selectDefaultDiagramKinds(categories);
+		selectDefaultDiagramTemplates(categories);
 	}
 
 	
@@ -182,8 +185,8 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * 
 	 * @return the diagram category
 	 */
-	private String getDiagramCategory() {
-		return myCategoryProvider.getCurrentCategory();
+	private String[] getDiagramCategories() {
+		return myCategoryProvider.getCurrentCategories();
 	}
 
 
@@ -217,6 +220,22 @@ public class SelectDiagramKindPage extends WizardPage {
 		return commands;
 	}
 
+	public List<ICreationCommand> getCreationCommands(String categoryId) {
+		CreationCommandDescriptor[] selected = getSelectedDiagramKindDescriptors();
+		List<ICreationCommand> commands = new ArrayList<ICreationCommand>();
+		for(int i = 0; i < selected.length; i++) {
+			if (selected[i].getLanguage().equals(categoryId)) {
+				ICreationCommand command;
+				try {
+					command = (selected[i]).getCommand();
+					commands.add(command);
+				} catch (Exception e) {
+					log.error(e);
+				}
+			}
+		}
+		return commands;
+	}
 
 	private void createModelTemplateComposite(Composite composite) {
 		Group group = createGroup(composite, "You can load a template:");
@@ -229,7 +248,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * @param composite
 	 *        the composite
 	 */
-	private void createDiagramKindForm(Composite composite, String category) {
+	private void createDiagramKindForm(Composite composite) {
 		Group group = createGroup(composite, "Select a Diagram Kind:");
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		group.setData(data);
@@ -273,7 +292,6 @@ public class SelectDiagramKindPage extends WizardPage {
 		diagramKindTableViewer = new CheckboxTableViewer(diagramKindTable);
 		diagramKindTableViewer.setContentProvider(new DiagramKindContentProvider(getCreationCommandRegistry()));
 		diagramKindTableViewer.setLabelProvider(createDiagramKindLabelProvider());
-		diagramKindTableViewer.setInput(category);
 	}
 	
 	protected IBaseLabelProvider createDiagramKindLabelProvider() {
@@ -393,11 +411,16 @@ public class SelectDiagramKindPage extends WizardPage {
 		return result;
 	}
 
-	private void selectDefaultDiagramKinds(String category) {
-		diagramKindTableViewer.setCheckedElements(findCreationCommandDescriptorsFor(mySettingsHelper.getDefaultDiagramKinds(category)));
+	private void selectDefaultDiagramKinds(String[] categories) {
+		Set<String> kinds = new HashSet<String>();
+		for (String category: categories) {
+			kinds.addAll(mySettingsHelper.getDefaultDiagramKinds(category));
+		}
+		CreationCommandDescriptor[] elementsToCheck = findCreationCommandDescriptorsFor(kinds);
+		diagramKindTableViewer.setCheckedElements(elementsToCheck);
 	}
 	
-	protected CreationCommandDescriptor[] findCreationCommandDescriptorsFor(List<String> kinds) {
+	protected CreationCommandDescriptor[] findCreationCommandDescriptorsFor(Collection<String> kinds) {
 		List<CreationCommandDescriptor> result = new ArrayList<CreationCommandDescriptor>();
 		Collection<CreationCommandDescriptor> availableDescriptors = getCreationCommandRegistry().getCommandDescriptors();
 		for(CreationCommandDescriptor desc : availableDescriptors) {
@@ -408,11 +431,16 @@ public class SelectDiagramKindPage extends WizardPage {
 		return result.toArray(new CreationCommandDescriptor[result.size()]);
 	}
 
-	private void selectDefaultDiagramTemplates(String category) {
-		List<String> templates = mySettingsHelper.getDefaultTemplates(category);
-		for(Object next : selectTemplateComposite.getContentProvider().getElements(category)) {
+	private void selectDefaultDiagramTemplates(String[] categories) {
+		List<String> defaultTemplates = new ArrayList<String>();
+		List<Object> availableTemplates = new ArrayList<Object>();
+		for (String category: categories) {
+			defaultTemplates.addAll(mySettingsHelper.getDefaultTemplates(category));
+			availableTemplates.addAll(Arrays.asList(selectTemplateComposite.getContentProvider().getElements(category)));
+		}
+		for(Object next : availableTemplates) {
 			ModelTemplateDescription desc = (ModelTemplateDescription)next;
-			if(templates.contains(desc.getPath())) {
+			if(defaultTemplates.contains(desc.getPath())) {
 				selectTemplateComposite.selectElement(desc);
 				return;
 			}
@@ -424,7 +452,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 	
 	public static interface CategoryProvider {
-		String getCurrentCategory();
+		String[] getCurrentCategories();
 	}
 
 }

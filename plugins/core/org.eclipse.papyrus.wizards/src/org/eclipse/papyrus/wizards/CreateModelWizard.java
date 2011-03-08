@@ -14,6 +14,7 @@ package org.eclipse.papyrus.wizards;
 import static org.eclipse.papyrus.wizards.Activator.log;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -129,31 +130,39 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		DiResourceSet diResourceSet = new DiResourceSet();
 		final IFile newFile = createNewModelFile();
 		
-		createAndOpenPapyrusModel(diResourceSet, newFile);
+		createAndOpenPapyrusModel(diResourceSet, newFile, getDiagramCategoryId());
 
 		saveDiagramCategorySettings();
 		saveDiagramKindSettings();
 		return true;
 	}
 	
-	protected boolean createAndOpenPapyrusModel(DiResourceSet diResourceSet, IFile newFile) {
+	protected boolean createAndOpenPapyrusModel(DiResourceSet diResourceSet, IFile newFile, String diagramCategoryId) {
 		if(newFile == null) {
 			return false;
 		}
 		createPapyrusModels(diResourceSet, newFile);
 
-		initDomainModel(diResourceSet, newFile);
+		initDomainModel(diResourceSet, newFile, diagramCategoryId);
 
-		initDiagramModel(diResourceSet);
+		initDiagramModel(diResourceSet, diagramCategoryId);
 
 		openDiagram(newFile);
 		
 		return true;
 	}
 
-	protected String getDiagramCategoryId() {
+	protected String[] getDiagramCategoryIds() {
 		if(selectDiagramCategoryPage != null) {
-			return selectDiagramCategoryPage.getDiagramCategory();
+			return selectDiagramCategoryPage.getDiagramCategories();
+		}
+		return null;
+	}
+
+	protected String getDiagramCategoryId() {
+		String[] ids = getDiagramCategoryIds();
+		if (ids != null && ids.length > 0) {
+			return ids[0];
 		}
 		return null;
 	}
@@ -183,8 +192,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	protected SelectDiagramKindPage createSelectDiagramKindPage() {
 		return new SelectDiagramKindPage(new CategoryProvider() {
 
-			public String getCurrentCategory() {
-				return getDiagramCategoryId();
+			public String[] getCurrentCategories() {
+				return getDiagramCategoryIds();
 			}
 
 		});
@@ -194,12 +203,12 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		return newModelFilePage.createNewFile();
 	}
 
-	protected void initDomainModel(DiResourceSet diResourceSet, final IFile newFile) {
+	protected void initDomainModel(DiResourceSet diResourceSet, final IFile newFile, String diagramCategoryId) {
 		boolean isToInitFromTemplate = selectDiagramKindPage.getTemplatePath() != null;
 		if(isToInitFromTemplate) {
 			initDomainModelFromTemplate(diResourceSet);
 		} else {
-			createEmptyDomainModel(diResourceSet);
+			createEmptyDomainModel(diResourceSet, diagramCategoryId);
 		}
 	}
 
@@ -207,9 +216,9 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		getCommandStack(diResourceSet).execute(new InitFromTemplateCommand(diResourceSet.getTransactionalEditingDomain(), diResourceSet.getModelResource(), selectDiagramKindPage.getTemplatePluginId(), selectDiagramKindPage.getTemplatePath()));
 	}
 
-	protected void createEmptyDomainModel(DiResourceSet diResourceSet) {
+	protected void createEmptyDomainModel(DiResourceSet diResourceSet, String diagramCategoryId) {
 		try {
-			IModelCreationCommand creationCommand = getDiagramCategoryMap().get(getDiagramCategoryId()).getCommand();
+			IModelCreationCommand creationCommand = getDiagramCategoryMap().get(diagramCategoryId).getCommand();
 			creationCommand.createModel(diResourceSet);
 		} catch (BackboneException e) {
 			log.error(e);
@@ -271,8 +280,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 
-	protected void initDiagramModel(DiResourceSet diResourceSet) {
-		initDiagrams(diResourceSet);
+	protected void initDiagramModel(DiResourceSet diResourceSet, String categoryId) {
+		initDiagrams(diResourceSet, categoryId);
 		saveDiagram(diResourceSet);
 	}
 
@@ -285,13 +294,13 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		}
 	}
 
-	protected void initDiagrams(DiResourceSet diResourceSet) {
-		initDiagrams(diResourceSet, null);
+	protected void initDiagrams(DiResourceSet diResourceSet, String categoryId) {
+		initDiagrams(diResourceSet, null, categoryId);
 	}
 
-	protected void initDiagrams(DiResourceSet resourceSet, EObject root) {
+	protected void initDiagrams(DiResourceSet resourceSet, EObject root, String categoryId) {
+		List<ICreationCommand> creationCommands = selectDiagramKindPage.getCreationCommands(categoryId);
 		String diagramName = selectDiagramKindPage.getDiagramName();
-		List<ICreationCommand> creationCommands = selectDiagramKindPage.getCreationCommands();
 		if(!creationCommands.isEmpty()) {
 			for(int i = 0; i < creationCommands.size(); i++) {
 				creationCommands.get(i).createDiagram(resourceSet, root, diagramName);

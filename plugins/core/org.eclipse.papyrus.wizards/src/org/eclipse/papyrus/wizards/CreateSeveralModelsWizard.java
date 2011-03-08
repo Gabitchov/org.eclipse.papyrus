@@ -14,8 +14,6 @@
 package org.eclipse.papyrus.wizards;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -117,7 +115,8 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 		for (NewModelFilePage newModelFilePage : myCategory2modelFilePageMap.values()) {
 			final IFile newFile = newModelFilePage.createNewFile();
 			DiResourceSet diResourceSet = new DiResourceSet();
-			createAndOpenPapyrusModel(diResourceSet, newFile);
+			String categoryId = getCategoryForPage(newModelFilePage.getName());
+			createAndOpenPapyrusModel(diResourceSet, newFile, categoryId);
 		}
 
 //		saveDiagramCategorySettings();

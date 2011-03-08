@@ -14,7 +14,10 @@
 package org.eclipse.papyrus.wizards.kind;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
@@ -68,6 +71,16 @@ public class DiagramKindContentProvider implements IStructuredContentProvider {
 	 * @param inputElement
 	 */
 	public Object[] getElements(Object inputElement) {
+		if(inputElement instanceof Object[]) {
+			Set<Object> result = new HashSet<Object>();
+			for (Object next: (Object[])inputElement) {
+				if (next instanceof String) {
+					String diagramCategory = (String)next;
+					result.addAll(Arrays.asList(getCreationCommands(diagramCategory)));
+				}
+			}
+			return result.toArray(new Object[result.size()]);
+		}
 		if(inputElement instanceof String) {
 			String diagramCategory = (String)inputElement;
 			return getCreationCommands(diagramCategory);
