@@ -59,8 +59,8 @@ public class NewSysMLModelWizard extends CreateModelWizard {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected String getDiagramCategoryId() {
-		return CreateSysMLModelCommand.COMMAND_ID;
+	protected String[] getDiagramCategoryIds() {
+		return new String[]{CreateSysMLModelCommand.COMMAND_ID};
 	}
 
 	/**

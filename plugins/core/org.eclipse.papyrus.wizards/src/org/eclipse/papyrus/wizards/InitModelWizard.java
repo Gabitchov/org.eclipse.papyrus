@@ -84,7 +84,7 @@ public class InitModelWizard extends CreateModelWizard {
 		if(!isCreateFromExistingDomainModel()) {
 			return super.createNewModelFilePage(selection);
 		}
-		return new NewDiagramForExistingModelPage(selection, getDiagramFileName(getSelectedFile(selection)) + "." + getDiagramFileExtension(), getDiagramFileExtension());
+		return new NewDiagramForExistingModelPage(selection, getDiagramFileName(getSelectedFile(selection)) + "." + getDiagramFileExtension(null), getDiagramFileExtension(null));
 	}
 
 
@@ -165,13 +165,13 @@ public class InitModelWizard extends CreateModelWizard {
 	}
 	
 	@Override
-	public String getDiagramFileExtension() {
+	protected String getDiagramFileExtension(String diagramCategoryId) {
 		if (isCreateFromExistingDomainModel()) {
 			return NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION;
 		}
-		return super.getDiagramFileExtension();
+		return super.getDiagramFileExtension(diagramCategoryId);
 	}
-
+	
 	/**
 	 * Returns the first file from the given selection
 	 */

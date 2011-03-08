@@ -65,8 +65,8 @@ public class SettingsHelper {
 	 * @param category
 	 *        the category
 	 */
-	public void saveDefaultDiagramCategory(String category) {
-		mySettings.put(LAST_SELECTED_CATEGORY, category);
+	public void saveDefaultDiagramCategory(String[] categories) {
+		mySettings.put(LAST_SELECTED_CATEGORY, categories);
 	}
 
 	/**

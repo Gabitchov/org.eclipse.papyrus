@@ -128,9 +128,10 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	@Override
 	public boolean performFinish() {
 		DiResourceSet diResourceSet = new DiResourceSet();
-		final IFile newFile = createNewModelFile();
-		
-		createAndOpenPapyrusModel(diResourceSet, newFile, getDiagramCategoryId());
+		String diagramCategoryId = getDiagramCategoryIds()[0];
+
+		final IFile newFile = createNewModelFile(diagramCategoryId);
+		createAndOpenPapyrusModel(diResourceSet, newFile, diagramCategoryId);
 
 		saveDiagramCategorySettings();
 		saveDiagramKindSettings();
@@ -159,19 +160,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		return null;
 	}
 
-	protected String getDiagramCategoryId() {
-		String[] ids = getDiagramCategoryIds();
-		if (ids != null && ids.length > 0) {
-			return ids[0];
-		}
-		return null;
-	}
-
-	public String getDiagramFileExtension() {
-		return getDiagramFileExtension(getDiagramCategoryId(), NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION);
-	}
-
-	protected final String getDiagramFileExtension(String diagramCategoryId) {
+	protected String getDiagramFileExtension(String diagramCategoryId) {
 		return getDiagramFileExtension(diagramCategoryId, NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION);
 	}
 
@@ -199,7 +188,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		});
 	}
 
-	protected IFile createNewModelFile() {
+	protected IFile createNewModelFile(String categoryId) {
 		return newModelFilePage.createNewFile();
 	}
 
@@ -234,7 +223,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		IDialogSettings settings = getDialogSettings();
 		if(settings != null) {
 			SettingsHelper settingsHelper = new SettingsHelper(settings);
-			settingsHelper.saveDefaultDiagramCategory(getDiagramCategoryId());
+			settingsHelper.saveDefaultDiagramCategory(getDiagramCategoryIds());
 		}
 	}
 
@@ -244,14 +233,14 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 			return;
 		}
 		SettingsHelper settingsHelper = new SettingsHelper(settings);
-		String category = getDiagramCategoryId();
-		if(selectDiagramKindPage.isRememberCurrentSelection()) {
-			saveDefaultDiagramKinds(settingsHelper, category);
-			saveDefaultTemplates(settingsHelper, category);
-		} else {
-			settingsHelper.saveDefaultDiagramKinds(category, Collections.<String> emptyList());
-			settingsHelper.saveDefaultTemplates(category, Collections.<String> emptyList());
-		}
+		String[] categories = getDiagramCategoryIds();
+//		if(selectDiagramKindPage.isRememberCurrentSelection()) {
+//			saveDefaultDiagramKinds(settingsHelper, category);
+//			saveDefaultTemplates(settingsHelper, category);
+//		} else {
+//			settingsHelper.saveDefaultDiagramKinds(category, Collections.<String> emptyList());
+//			settingsHelper.saveDefaultTemplates(category, Collections.<String> emptyList());
+//		}
 		settingsHelper.saveRememberCurrentSelection(selectDiagramKindPage.isRememberCurrentSelection());
 	} 	
 

@@ -132,8 +132,8 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected IFile createNewModelFile() {
-		IPath newFilePath = myNewProjectPage.getProjectHandle().getFullPath().append(NewModelFilePage.DEFAULT_NAME + "." + getDiagramFileExtension());
+	protected IFile createNewModelFile(String categoryId) {
+		IPath newFilePath = myNewProjectPage.getProjectHandle().getFullPath().append(NewModelFilePage.DEFAULT_NAME + "." + getDiagramFileExtension(categoryId));
 		return ResourcesPlugin.getWorkspace().getRoot().getFile(newFilePath);
 	}
 
