@@ -108,8 +108,8 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		final String elementLabel = getLabelProvider().getText(object.getLeftElement());
 		final Object leftValue = object.getLeftElement().eGet(object.getAttribute());
 		final Object rightValue = object.getRightElement().eGet(object.getAttribute());
-		final String leftValueString = leftValue == null ? "null" : leftValue.toString();
-		final String rightValueString = rightValue == null ? "null" : rightValue.toString();
+		final String leftValueString = attributeValueToString(leftValue);
+		final String rightValueString = attributeValueToString(rightValue);
 
 		if(object.isRemote()) {
 			return StyledMessageFormat.format("Tagged value {0} : remote = {1}, local = {2}", elementLabel, leftValueString, rightValueString);
@@ -123,7 +123,7 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
 		final String elementLabel = getLabelProvider().getText(object.getLeftElement());
 		final Object rightValue = object.getRightElement().eGet(object.getAttribute());
-		final String rightValueString = rightValue == null ? "null" : rightValue.toString();
+		final String rightValueString = attributeValueToString(rightValue);
 
 		if(object.isRemote()) {
 			return StyledMessageFormat.format("Tagged value {0} has been remotely removed: {1}", elementLabel, rightValueString);
@@ -136,7 +136,7 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
 		final String elementLabel = getLabelProvider().getText(object.getLeftElement());
 		final Object leftValue = object.getLeftElement().eGet(object.getAttribute());
-		final String leftValueString = leftValue == null ? "null" : leftValue.toString();
+		final String leftValueString = attributeValueToString(leftValue);
 
 		if(object.isRemote()) {
 			return StyledMessageFormat.format("Tagged value {0} has been remotely added: {1}", elementLabel, leftValueString);
@@ -170,8 +170,8 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		Object leftTaggedValue = UMLUtil.getBaseElement(object.getLeftElement()).getValue(UMLUtil.getStereotype(object.getLeftElement()), object.getAttribute().getName());
 		Object rightTaggedValue = UMLUtil.getBaseElement(object.getRightElement()).getValue(UMLUtil.getStereotype(object.getRightElement()), object.getAttribute().getName());
 
-		String leftValue = leftTaggedValue != null ? leftTaggedValue.toString() : "null";
-		String rightValue = rightTaggedValue != null ? rightTaggedValue.toString() : "null";
+		String leftValue = attributeValueToString(leftTaggedValue);
+		String rightValue = attributeValueToString(rightTaggedValue);
 
 		if(object.isRemote()) {
 			return StyledMessageFormat.format("Tagged value {0} : remote = {1}, local = {2}", elementLabel, leftValue, rightValue);
