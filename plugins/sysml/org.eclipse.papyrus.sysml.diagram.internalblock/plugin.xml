@@ -26,7 +26,7 @@
 
 <extension point="org.eclipse.ui.handlers">
 	<handler
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramCreateCommand"
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.CreateInternalBlockDiagramWithNavigationHandler"
 		commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand">
 		<activeWhen>
 			<with variable="activeEditorId">
