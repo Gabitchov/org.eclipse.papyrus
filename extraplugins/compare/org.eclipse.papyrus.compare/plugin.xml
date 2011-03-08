@@ -41,7 +41,7 @@
             </separator>
          </menu>
          <action
-               class="org.eclipse.papyrus.compare.element.CompareTwoElementsAction"
+               class="org.eclipse.papyrus.compare.ui.action.CompareTwoElementsAction"
                enablesFor="2"
                id="org.eclipse.papyrus.compare.action.CompareTwoElementsAction"
                icon="icons/export_as_html.gif"
