@@ -76,7 +76,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	
 	private final ICreationCommandRegistry myCreationCommandRegistry;
 	
-	public static final ICreationCommandRegistry DEFAULT_CREATION_COMMAND_REGISTRY = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+	public static final ICreationCommandRegistry DEFAULT_CREATION_COMMAND_REGISTRY = CreationCommandRegistry.getInstance(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 
 	/**
 	 * Instantiates a new select diagram kind page.

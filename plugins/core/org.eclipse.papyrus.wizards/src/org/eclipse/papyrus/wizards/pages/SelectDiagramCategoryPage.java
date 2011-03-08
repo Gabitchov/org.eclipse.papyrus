@@ -87,7 +87,10 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	public void setWizard(IWizard newWizard) {
 		super.setWizard(newWizard);
 		SettingsHelper settingsHelper = new SettingsHelper(getDialogSettings());
-		setDefaultDiagramCategories(Collections.singletonList(settingsHelper.getDefaultDiagramCategory()));
+		String defaultDiagramCategory = settingsHelper.getDefaultDiagramCategory();
+		if (defaultDiagramCategory != null) {
+			setDefaultDiagramCategories(Collections.singletonList(defaultDiagramCategory));
+		}
 	}
 
 	/**
@@ -228,7 +231,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	}
 
 	protected void checkDiagramCategoryButtons() {
-		checkButtonsFor(mySelectedDiagramCategoryIds.toArray(new String[mySelectedDiagramCategoryIds.size()]));
+		checkButtonsFor(getDiagramCategories());
 	}
 
 	protected void checkButtonsFor(String... diagramCategories) {
