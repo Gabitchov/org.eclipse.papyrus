@@ -11,7 +11,7 @@
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.compare.element;
+package org.eclipse.papyrus.compare.ui.action;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -41,6 +41,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.compare.Activator;
+import org.eclipse.papyrus.compare.element.ElementContentDiffEngine;
+import org.eclipse.papyrus.compare.element.ElementContentMatchEngine;
 import org.eclipse.papyrus.compare.ui.PapyrusLabelProvider;
 import org.eclipse.papyrus.compare.ui.viewer.content.ElementContentMergeContentProvider;
 import org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewer;
