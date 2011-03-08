@@ -14,15 +14,13 @@
 package org.eclipse.papyrus.wizards.kind;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
 
 /**
@@ -72,18 +70,25 @@ public class DiagramKindContentProvider implements IStructuredContentProvider {
 	 */
 	public Object[] getElements(Object inputElement) {
 		if(inputElement instanceof Object[]) {
-			Set<Object> result = new HashSet<Object>();
+			List<CreationCommandDescriptor> result = new ArrayList<CreationCommandDescriptor>();
 			for (Object next: (Object[])inputElement) {
 				if (next instanceof String) {
 					String diagramCategory = (String)next;
-					result.addAll(Arrays.asList(getCreationCommands(diagramCategory)));
+					result.addAll(getCreationCommands(diagramCategory));
 				}
 			}
+			Collections.sort(result, new Comparator<CreationCommandDescriptor>() {
+
+				public int compare(CreationCommandDescriptor o1, CreationCommandDescriptor o2) {
+					return o1.getLabel().compareTo(o2.getLabel());
+				}
+			});
 			return result.toArray(new Object[result.size()]);
 		}
 		if(inputElement instanceof String) {
 			String diagramCategory = (String)inputElement;
-			return getCreationCommands(diagramCategory);
+			List<CreationCommandDescriptor> result = getCreationCommands(diagramCategory);
+			return result.toArray(new Object[result.size()]);
 		}
 		return null;
 	}
@@ -92,14 +97,14 @@ public class DiagramKindContentProvider implements IStructuredContentProvider {
 	 * @param diagramCategory
 	 * @return
 	 */
-	protected Object[] getCreationCommands(String diagramCategory) {
+	protected List<CreationCommandDescriptor> getCreationCommands(String diagramCategory) {
 		List<CreationCommandDescriptor> result = new ArrayList<CreationCommandDescriptor>();
 		for(CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
 			if(diagramCategory != null && diagramCategory.equals(desc.getLanguage())) {
 				result.add(desc);
 			}
 		}
-		return result.toArray();
+		return result;
 	}
 	
 	/**
