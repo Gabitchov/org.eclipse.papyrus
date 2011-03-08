@@ -27,7 +27,7 @@ public class RequirementDiagramCreateCommand extends AbstractPapyrusGmfCreateDia
 
 	@Override
 	protected String getDefaultDiagramName() {
-		return openDiagramNameDialog(Messages.Diagram_Name);
+		return "ReqDiagram";
 	}
 
 	/**
