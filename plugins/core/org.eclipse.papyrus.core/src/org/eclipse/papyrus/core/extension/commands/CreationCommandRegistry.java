@@ -31,6 +31,24 @@ import org.eclipse.papyrus.core.utils.PapyrusTrace;
  */
 public class CreationCommandRegistry implements ICreationCommandRegistry {
 
+	private static Map<String, CreationCommandRegistry> registriesMap = new HashMap<String, CreationCommandRegistry>();
+
+	/**
+	 * This static method returns an instance of this class for a specified namespace
+	 * @param extensionPointNamespace
+	 * @return
+	 */
+	public static CreationCommandRegistry getInstance(String extensionPointNamespace) {
+		synchronized (registriesMap) {
+			CreationCommandRegistry registry = registriesMap.get(extensionPointNamespace);
+			if (registry == null) {
+				registry = new CreationCommandRegistry(extensionPointNamespace);
+				registriesMap.put(extensionPointNamespace, registry);
+			}
+			return registry;
+		}
+	}
+
 	/** ID of the editor extension (schema filename) */
 	public static final String EDITOR_EXTENSION_ID = "papyrusDiagram";
 
@@ -47,7 +65,7 @@ public class CreationCommandRegistry implements ICreationCommandRegistry {
 	 */
 	private Map<Object, CreationCommandDescriptor> creationCommandDescriptors;
 
-	public CreationCommandRegistry(String extensionPointNamespace) {
+	private CreationCommandRegistry(String extensionPointNamespace) {
 		this.extensionPointNamespace = extensionPointNamespace;
 		initializeCreationCommandDescriptors();
 	}
