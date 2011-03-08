@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 
 	private final ILabelProvider myDomainElementLabelProvider;
-	
+
 	public StyledDiffLabelSwitch(ILabelProvider labelProvider) {
 		myDomainElementLabelProvider = labelProvider;
 	}
@@ -69,31 +69,29 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		return formatStyledString("{0} change(s) between elements {1} and {2}", String.valueOf(subchanges), leftName, rightName);
 
 	}
-	
+
 	@Override
 	public StyledString caseAddStereotypeApplication(AddStereotypeApplication object) {
 		EObject element = object.getRightElement();
 		String elementLabel = getLabelProvider().getText(element);
-		if (UMLCompareUtils.isStereotypeApplication(element)) {
-			elementLabel = getLabelProvider().getText(UMLUtil.getStereotype(element)); 
+		if(UMLCompareUtils.isStereotypeApplication(element)) {
+			elementLabel = getLabelProvider().getText(UMLUtil.getStereotype(element));
 		}
 		return formatStyledString("Stereotype {0} has been added", elementLabel);
-}
+	}
 
 	@Override
 	public StyledString caseRemoveStereotypeApplication(RemoveStereotypeApplication object) {
 		EObject element = object.getLeftElement();
 		String elementLabel = getLabelProvider().getText(element);
-		if (UMLCompareUtils.isStereotypeApplication(element)) {
-			elementLabel = getLabelProvider().getText(UMLUtil.getStereotype(element)); 
+		if(UMLCompareUtils.isStereotypeApplication(element)) {
+			elementLabel = getLabelProvider().getText(UMLUtil.getStereotype(element));
 		}
 		return formatStyledString("Stereotype {0} has been removed", elementLabel);
 	}
 
 	@Override
 	public StyledString caseTaggedValueChange(TaggedValueChange object) {
-		StyledString styledString = new StyledString();
-
 		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
 		final String elementLabel = getLabelProvider().getText(object.getLeftElement());
 		final Object leftValue = object.getLeftElement().eGet(object.getAttribute());
@@ -102,74 +100,40 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		final String rightValueString = rightValue == null ? "null" : rightValue.toString();
 
 		if(object.isRemote()) {
-			styledString.append("Tagged value ", StyledString.DECORATIONS_STYLER);
-			styledString.append(elementLabel);
-			styledString.append(" : remote = ", StyledString.DECORATIONS_STYLER);
-			styledString.append(leftValueString);
-			styledString.append(", local = ", StyledString.DECORATIONS_STYLER);
-			styledString.append(rightValueString);
-		} else {
-			styledString.append("Tagged value ", StyledString.DECORATIONS_STYLER);
-			styledString.append(attributeLabel);
-			styledString.append(" : ", StyledString.DECORATIONS_STYLER);
-			styledString.append(leftValueString);
-			styledString.append(", -> ", StyledString.DECORATIONS_STYLER);
-			styledString.append(rightValueString);
+			return formatStyledString("Tagged value {0} : remote = {1}, local = {2}", elementLabel, leftValueString, rightValueString);
 		}
-		return styledString;
+		return formatStyledString("Tagged value {0} : {1} -> {2}", attributeLabel, leftValueString, rightValueString);
 	}
 
 	@Override
 	public StyledString caseTaggedValueChangeLeftTarget(TaggedValueChangeLeftTarget object) {
-		StyledString styledString = new StyledString();
 
 		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
 		final String elementLabel = getLabelProvider().getText(object.getLeftElement());
-		final Object leftValue = object.getLeftElement().eGet(object.getAttribute());
 		final Object rightValue = object.getRightElement().eGet(object.getAttribute());
 		final String rightValueString = rightValue == null ? "null" : rightValue.toString();
 
 		if(object.isRemote()) {
-			styledString.append("Tagged value ", StyledString.DECORATIONS_STYLER);
-			styledString.append(elementLabel);
-			styledString.append(" has been remotely removed: ", StyledString.DECORATIONS_STYLER);
-			styledString.append(rightValueString);
-		} else {
-			styledString.append("Tagged value ", StyledString.DECORATIONS_STYLER);
-			styledString.append(attributeLabel);
-			styledString.append(" has been added: ", StyledString.DECORATIONS_STYLER);
-			styledString.append(rightValueString);
+			return formatStyledString("Tagged value {0} has been remotely removed: {1}", elementLabel, rightValueString);
 		}
-		return styledString;
+		return formatStyledString("Tagged value {0} has been added: {1}", attributeLabel, rightValueString);
 	}
 
 	@Override
 	public StyledString caseTaggedValueChangeRightTarget(TaggedValueChangeRightTarget object) {
-		StyledString styledString = new StyledString();
 		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
 		final String elementLabel = getLabelProvider().getText(object.getLeftElement());
 		final Object leftValue = object.getLeftElement().eGet(object.getAttribute());
-		final Object rightValue = object.getRightElement().eGet(object.getAttribute());
 		final String leftValueString = leftValue == null ? "null" : leftValue.toString();
-		final String rightValueString = rightValue == null ? "null" : rightValue.toString();
 
 		if(object.isRemote()) {
-			styledString.append("Tagged value ", StyledString.DECORATIONS_STYLER);
-			styledString.append(elementLabel);
-			styledString.append(" has been remotely added: ", StyledString.DECORATIONS_STYLER);
-			styledString.append(leftValueString);
-		} else {
-			styledString.append("Tagged value ", StyledString.DECORATIONS_STYLER);
-			styledString.append(attributeLabel);
-			styledString.append(" has been removed: ", StyledString.DECORATIONS_STYLER);
-			styledString.append(leftValueString);
+			return formatStyledString("Tagged value {0} has been remotely added: {1}", elementLabel, leftValueString);
 		}
-		return styledString;
+		return formatStyledString("Tagged value {0} has been removed: {1}", attributeLabel, leftValueString);
 	}
 
 	@Override
 	public StyledString caseTaggedValueReferenceChange(TaggedValueReferenceChange object) {
-		StyledString styledString = new StyledString();
 		final String referenceLabel = getLabelProvider().getText(object.getReference());
 		final String elementLabel = getLabelProvider().getText(object.getLeftElement());
 
@@ -180,21 +144,10 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		String rightValue = getLabelProvider().getText((EObject)rightTaggedValue);
 
 		if(object.isRemote()) {
-			styledString.append("Tagged value ", StyledString.DECORATIONS_STYLER);
-			styledString.append(elementLabel);
-			styledString.append(" : remote = ", StyledString.DECORATIONS_STYLER);
-			styledString.append(leftValue);
-			styledString.append(", local = ", StyledString.DECORATIONS_STYLER);
-			styledString.append(rightValue);
-		} else {
-			styledString.append("Tagged value ", StyledString.DECORATIONS_STYLER);
-			styledString.append(referenceLabel);
-			styledString.append(" : ", StyledString.DECORATIONS_STYLER);
-			styledString.append(leftValue);
-			styledString.append(" -> ", StyledString.DECORATIONS_STYLER);
-			styledString.append(rightValue);
+			return formatStyledString("Tagged value {0} : remote = {1}, local = {2}", elementLabel, leftValue, rightValue);
 		}
-		return styledString;
+		return formatStyledString("Tagged value {0} : {1} -> {2}", referenceLabel, leftValue, rightValue);
+
 	}
 
 	@Override
@@ -210,22 +163,19 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 
 		if(object.isRemote()) {
 			return formatStyledString("Tagged value {0} : remote = {1}, local = {2}", elementLabel, leftValue, rightValue);
-		}  
-		return	formatStyledString("Tagged value {0}: {1} -> {2}", attributeLabel, rightValue, leftValue);
+		}
+		return formatStyledString("Tagged value {0}: {1} -> {2}", attributeLabel, rightValue, leftValue);
 	}
 
 	public StyledString caseDiffGroup(DiffGroup object) {
-		StyledString styledString = new StyledString();
 		final EObject parent = object.getRightParent();
+		final String parentLabel;
 		if(parent != null) {
-			final String parentLabel = getLabelProvider().getText(parent);
-			styledString = formatStyledString("{0} change(s) in {1}", String.valueOf(object.getSubchanges()), parentLabel);
+			parentLabel = getLabelProvider().getText(parent);
 		} else {
-			styledString.append(String.valueOf(object.getSubchanges()));
-			styledString.append(" change(s) in ", StyledString.DECORATIONS_STYLER);
-			styledString.append("model");
+			parentLabel = "model";
 		}
-		return styledString;
+		return formatStyledString("{0} change(s) in {1}", String.valueOf(object.getSubchanges()), parentLabel);
 	}
 
 	@Override
