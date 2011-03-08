@@ -154,10 +154,12 @@ public class SelectDiagramKindPage extends WizardPage {
 	@Override
 	public void setVisible(boolean visible) {
 		super.setVisible(visible);
-		fillInTables(getDiagramCategories());
-		validatePage();
-		if(!allowTemplates) {
-			selectTemplateComposite.disable();
+		if (visible) {
+			fillInTables(getDiagramCategories());
+			validatePage();
+			if(!allowTemplates) {
+				selectTemplateComposite.disable();
+			}
 		}
 	}
 
@@ -221,7 +223,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 
 	public List<ICreationCommand> getCreationCommands(String categoryId) {
-		List<CreationCommandDescriptor> selected = getSelectedCommandDescroptors(categoryId);
+		List<CreationCommandDescriptor> selected = getSelectedCommandDescriptors(categoryId);
 		List<ICreationCommand> commands = new ArrayList<ICreationCommand>();
 		for(CreationCommandDescriptor next : selected) {
 			ICreationCommand command;
@@ -235,7 +237,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		return commands;
 	}
 
-	protected List<CreationCommandDescriptor> getSelectedCommandDescroptors(String categoryId) {
+	protected List<CreationCommandDescriptor> getSelectedCommandDescriptors(String categoryId) {
 		CreationCommandDescriptor[] selected = getSelectedDiagramKindDescriptors();
 		List<CreationCommandDescriptor> commands = new ArrayList<CreationCommandDescriptor>();
 		for(int i = 0; i < selected.length; i++) {
@@ -281,12 +283,6 @@ public class SelectDiagramKindPage extends WizardPage {
 			 */
 			public void widgetSelected(SelectionEvent e) {
 				if(e.detail == SWT.CHECK) {
-					//					TableItem item = (TableItem)e.item;
-					//					for(TableItem next : diagramKindTable.getItems()) {
-					//						next.setChecked(false);
-					//					}
-					//					item.setChecked(true);
-					//					setDiagramCreationCommand(((CreationCommandDescriptor)item.getData()).getCommandId());
 					validatePage();
 				}
 			}
@@ -405,7 +401,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * @return the selected diagram kinds
 	 */
 	public String[] getSelectedDiagramKinds(String categoryId) {
-		List<CreationCommandDescriptor> descriptors = getSelectedCommandDescroptors(categoryId);
+		List<CreationCommandDescriptor> descriptors = getSelectedCommandDescriptors(categoryId);
 		String[] result = new String[descriptors.size()];
 		for(int i = 0; i < descriptors.size(); i++) {
 			result[i] = descriptors.get(i).getCommandId();
