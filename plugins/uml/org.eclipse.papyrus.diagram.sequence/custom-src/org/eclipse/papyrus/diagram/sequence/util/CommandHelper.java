@@ -265,10 +265,6 @@ public class CommandHelper {
 	 */
 	public static List<NamedElement> getSignature(Element model, Element source, Element target, MessageSort messageSort) {
 
-		if(model == null) {
-			return null;
-		}
-
 		// element where to look for parents
 		Element parentsOwner = target;
 
