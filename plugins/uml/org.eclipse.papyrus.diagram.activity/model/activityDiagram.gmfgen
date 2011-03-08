@@ -1626,10 +1626,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ActivityDiagramChangeStereotypedShapeEditpolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy.NAVIGATION_POLICY"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CallBehaviorAction"/>
@@ -1658,10 +1654,6 @@
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
-          <behaviour
-              xsi:type="gmfgen:CustomBehaviour"
-              key="org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy.NAVIGATION_POLICY"
-              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
         </labels>
