@@ -14,30 +14,18 @@ package org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
-import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.DiffPackage;
-import org.eclipse.emf.compare.util.AdapterUtils;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.jface.viewers.IBaseLabelProvider;
-import org.eclipse.jface.viewers.ILabelProvider;
-
-import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.CompareTwoElementsDiffModel;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPackage;
-import org.eclipse.papyrus.compare.ui.PapyrusLabelProvider;
-import org.eclipse.papyrus.compare.ui.viewer.structure.StyledDiffLabelSwitch;
 
 /**
  * <!-- begin-user-doc -->

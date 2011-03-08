@@ -16,10 +16,9 @@ import org.eclipse.emf.compare.diff.metamodel.impl.AbstractDiffExtensionImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.StyledString;
+import org.eclipse.papyrus.compare.diff.extension.UMLStyledStructureLabelProvider;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffExtension;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPackage;
-import org.eclipse.papyrus.compare.ui.PapyrusLabelProvider;
-import org.eclipse.papyrus.compare.ui.viewer.structure.UMLStyledStructureLabelProvider;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,15 +34,15 @@ public abstract class UMLDiffExtensionImpl extends AbstractDiffExtensionImpl imp
 	/**
 	 * @NOT-generated
 	 */
-	private static ILabelProvider labelProvider= new UMLStyledStructureLabelProvider(new PapyrusLabelProvider()) {
-		public String getText(Object element) {
-			String result = super.getText(element);
-			if (result == null) {
-				return "<LABEL NOT FOUND>";
-			}
-			return result;
-		};
-	};
+//	private static ILabelProvider labelProvider= new UMLStyledStructureLabelProvider(new PapyrusLabelProvider()) {
+//		public String getText(Object element) {
+//			String result = super.getText(element);
+//			if (result == null) {
+//				return "<LABEL NOT FOUND>";
+//			}
+//			return result;
+//		};
+//	};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -72,7 +71,8 @@ public abstract class UMLDiffExtensionImpl extends AbstractDiffExtensionImpl imp
 	 */
 	@Override
 	public String getText() {
-		return labelProvider.getText(this);
+		return "";
+//		return labelProvider.getText(this);
 	}
 
 	/**
