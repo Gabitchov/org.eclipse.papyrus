@@ -128,7 +128,11 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	@Override
 	public boolean performFinish() {
 		DiResourceSet diResourceSet = new DiResourceSet();
-		String diagramCategoryId = getDiagramCategoryIds()[0];
+		String[] diagramCategoryIds = getDiagramCategoryIds();
+		if (diagramCategoryIds.length == 0) {
+			return false;
+		}
+		String diagramCategoryId = diagramCategoryIds[0];
 
 		final IFile newFile = createNewModelFile(diagramCategoryId);
 		createAndOpenPapyrusModel(diResourceSet, newFile, diagramCategoryId);
