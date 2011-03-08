@@ -25,7 +25,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
+            class="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramWithNavigationHandler"
             commandId="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand">
          <activeWhen>
             <or>
