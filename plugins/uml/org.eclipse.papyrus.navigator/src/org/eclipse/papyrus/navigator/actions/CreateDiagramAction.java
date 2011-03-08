@@ -32,8 +32,6 @@ public class CreateDiagramAction extends Action {
 
 	private final CreationCommandDescriptor commandDescriptor;
 
-	private ICreationCommandRegistry creationCommandRegistry;
-
 	/**
 	 * Constructor
 	 * 
@@ -82,10 +80,7 @@ public class CreateDiagramAction extends Action {
 	}
 
 	private ICreationCommandRegistry getCreationCommandRegistry() {
-		if(creationCommandRegistry == null) {
-			this.creationCommandRegistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
-		}
-		return creationCommandRegistry;
+		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 	}
 
 }

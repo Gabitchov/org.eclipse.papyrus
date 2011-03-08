@@ -25,8 +25,6 @@ import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
  */
 public class CreateDiagramActionProvider extends AbstractSubmenuActionProvider {
 
-	ICreationCommandRegistry creationCommandRegistry;
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -47,10 +45,7 @@ public class CreateDiagramActionProvider extends AbstractSubmenuActionProvider {
 	}
 
 	private ICreationCommandRegistry getCreationCommandRegistry() {
-		if(creationCommandRegistry == null) {
-			this.creationCommandRegistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
-		}
-		return creationCommandRegistry;
+		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 	}
 
 }
