@@ -29,7 +29,7 @@ public class CreateClassDiagramCommand extends AbstractPapyrusGmfCreateDiagramCo
 
 	@Override
 	protected String getDefaultDiagramName() {
-		return openDiagramNameDialog("NewDiagram");
+		return "ClassDiagram";
 	}
 
 	/**
