@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.navigation.navigationRule">
+      <navigationRule
+            rule="org.eclipse.papyrus.navigation.uml.BehavioredClassifierRule"></navigationRule>
+      <navigationRule
+            rule="org.eclipse.papyrus.navigation.uml.CBARule">
+      </navigationRule>
+      <navigationRule
+            rule="org.eclipse.papyrus.navigation.uml.OperationRule">
+      </navigationRule>
+      <navigationRule
+            rule="org.eclipse.papyrus.navigation.uml.PackageRule">
+      </navigationRule>
+      <navigationRule
+            rule="org.eclipse.papyrus.navigation.uml.StateRule">
+      </navigationRule>
+      <navigationRule
+            rule="org.eclipse.papyrus.navigation.uml.TransitionRule"></navigationRule>
+   </extension>
+
+</plugin>
