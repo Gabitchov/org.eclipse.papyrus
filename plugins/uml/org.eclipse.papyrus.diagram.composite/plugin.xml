@@ -1656,7 +1656,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.diagram.composite.CreateCompositeDiagramCommand"
+            class="org.eclipse.papyrus.diagram.composite.CreateCompositeDiagramWithNavigationHandler"
             commandId="org.eclipse.papyrus.diagram.composite.createCompositeDiagram">
          <activeWhen>
             <or>
