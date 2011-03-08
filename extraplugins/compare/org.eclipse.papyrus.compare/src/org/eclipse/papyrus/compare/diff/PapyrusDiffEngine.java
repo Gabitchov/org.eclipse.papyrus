@@ -69,7 +69,7 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 
 			Element newVisualParent = UMLUtil.getBaseElement(stereotypeApplication);
 			DiffElement newDiffParent = findOrCreateDiffElementFor(root, newVisualParent);
-			AbstractDiffExtension taggedValueDiff = createDiffExtenstionElementFor(diffElement);
+			AbstractDiffExtension taggedValueDiff = createDiffExtentionElementFor(diffElement);
 
 			newDiffParent.getSubDiffElements().add((DiffElement)taggedValueDiff);
 			hideElement(diffElement, taggedValueDiff);
@@ -132,7 +132,7 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 		return myGetModelElementSwitch.doSwitch(diff);
 	}
 
-	protected AbstractDiffExtension createDiffExtenstionElementFor(DiffElement diffElement) {
+	protected AbstractDiffExtension createDiffExtentionElementFor(DiffElement diffElement) {
 		return myDiffElementBuilder.doSwitch(diffElement);
 	}
 
