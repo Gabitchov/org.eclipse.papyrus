@@ -35,7 +35,7 @@ public class CreateUseCaseDiagramCommand extends AbstractPapyrusGmfCreateDiagram
 
 	@Override
 	protected String getDefaultDiagramName() {
-		return super.openDiagramNameDialog("NewDiagram");
+		return "UseCaseDiagram";
 	}
 
 }
