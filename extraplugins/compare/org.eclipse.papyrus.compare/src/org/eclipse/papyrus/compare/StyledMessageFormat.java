@@ -26,11 +26,11 @@ public class StyledMessageFormat {
 		int currInd = 0;
 		int gap = 0;
 		for(int i = 0; i < args.length; i++) {
-			int nextInd = pattern.indexOf("{", currInd);
+			int nextInd = pattern.indexOf("{", currInd); //$NON-NLS-1$
 			if(nextInd != -1 && args.length > i) {
 				styledString.setStyle(nextInd + gap, args[i].length(), null);
 				currInd = nextInd + 1;
-				gap += args[i].length() - "{}".length() - String.valueOf(i).length();
+				gap += args[i].length() - "{}".length() - String.valueOf(i).length(); //$NON-NLS-1$
 			} else {
 				break;
 			}
