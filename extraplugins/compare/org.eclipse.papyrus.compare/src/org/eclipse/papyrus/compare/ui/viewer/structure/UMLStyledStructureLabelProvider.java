@@ -53,16 +53,20 @@ public class UMLStyledStructureLabelProvider extends StyledCellLabelProvider imp
 		super.update(cell);
 	}
 
-	private StyledString getStyledText(Object element) {
+	public StyledString getStyledText(Object element) {
 		if(element instanceof EObject) {
 			StyledString diffElementLabel = myDiffLabelSwitch.doSwitch((EObject)element);
 			if(diffElementLabel != null) {
 				return diffElementLabel;
 			}
 		}
-		StyledString styledString = new StyledString();
-		styledString.append(myDelegate.getText(element));
-		return styledString;
+		String elementText = myDelegate.getText(element);
+		if (elementText != null) {
+			StyledString styledString = new StyledString();
+			styledString.append(myDelegate.getText(element));
+			return styledString;
+		}
+		return null;
 	}
 
 
