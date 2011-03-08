@@ -37,7 +37,7 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 
 	private static final String VIEWER_SETTINGS_GROUP = "viewer";//$NON-NLS-1$
 	
-	private static final String SHOW_ALL_PRORPERTIES_IMAGE_PATH = "/icons/show_all_properties.gif";
+	private static final String SHOW_ALL_PRORPERTIES_IMAGE_PATH = "/icons/show_all_properties.gif"; //$NON-NLS-1$
 
 	private IAction myShowAllProperties;
 

@@ -47,7 +47,7 @@ public class Match2ElementsWithDiff implements Match2Elements {
 	
 	@Override
 	public String toString() {
-		return myDelegate.toString() + " " + (myDiffElement == null ? "" : myDiffElement.toString());
+		return myDelegate.toString() + " " + (myDiffElement == null ? "" : myDiffElement.toString()); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public double getSimilarity() {

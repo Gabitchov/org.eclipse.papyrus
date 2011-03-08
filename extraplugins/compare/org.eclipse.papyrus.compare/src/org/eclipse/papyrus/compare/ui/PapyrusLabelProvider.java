@@ -71,7 +71,7 @@ public class PapyrusLabelProvider extends CustomizableModelLabelProvider {
 	private AppearanceConfiguration getAppearanceConfiguration(CustomizationManager customizationManager2) {
 		Method getApperanceConfigurationMethod;
 		try {
-			getApperanceConfigurationMethod = CustomizationManager.class.getDeclaredMethod("getAppearanceConfiguration");
+			getApperanceConfigurationMethod = CustomizationManager.class.getDeclaredMethod("getAppearanceConfiguration"); //$NON-NLS-1$
 			if(getApperanceConfigurationMethod != null) {
 				getApperanceConfigurationMethod.setAccessible(true);
 				return (AppearanceConfiguration)getApperanceConfigurationMethod.invoke(customizationManager2);
@@ -96,7 +96,7 @@ public class PapyrusLabelProvider extends CustomizableModelLabelProvider {
 	@Override
 	public String getText(Object element) {
 		if(element == null) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		if(element instanceof EObject) {
 			ITreeElement treeElement = getTreeElement((EObject)element);
