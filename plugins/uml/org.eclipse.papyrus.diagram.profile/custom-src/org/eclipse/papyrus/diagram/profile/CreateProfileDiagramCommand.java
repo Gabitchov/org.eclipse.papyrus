@@ -29,14 +29,14 @@ public class CreateProfileDiagramCommand extends AbstractPapyrusGmfCreateDiagram
 	/**
 	 * Name of the Diagram
 	 */
-	protected static final String PROFILE_DEFAULT_NAME = "NewDiagram"; //$NON-NLS-1$
+	protected static final String PROFILE_DEFAULT_NAME = "ProfileDiagram"; //$NON-NLS-1$
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected String getDefaultDiagramName() {
-		return openDiagramNameDialog(PROFILE_DEFAULT_NAME);
+		return PROFILE_DEFAULT_NAME;
 	}
 
 	/**

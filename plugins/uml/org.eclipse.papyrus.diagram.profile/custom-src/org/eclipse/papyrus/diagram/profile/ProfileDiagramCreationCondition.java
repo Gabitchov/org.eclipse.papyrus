@@ -25,9 +25,7 @@ public class ProfileDiagramCreationCondition extends PerspectiveContextDependenc
 	 */
 	public boolean create(EObject selectedElement) {
 		if(super.create(selectedElement)) {
-			if(selectedElement instanceof Profile) {
-				return true;
-			}
+			return selectedElement instanceof Profile;
 		}
 		return false;
 	}
