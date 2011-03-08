@@ -17,7 +17,7 @@ public class BlockDefinitionDiagramCreateCommand extends AbstractPapyrusGmfCreat
 
 	@Override
 	protected String getDefaultDiagramName() {
-		return openDiagramNameDialog("NewDiagram");
+		return "BDDiagram";
 	}
 
 	/**

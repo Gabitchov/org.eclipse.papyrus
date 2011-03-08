@@ -26,7 +26,7 @@
 
 <extension point="org.eclipse.ui.handlers">
 	<handler
-		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramCreateCommand"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateBlockDefinitionDiagramWithNavigationHandler"
 		commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand">
 		<activeWhen>
 			<with variable="activeEditorId">
