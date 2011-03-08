@@ -19,11 +19,14 @@ import java.util.List;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.resource.ModelException;
 import org.eclipse.papyrus.resource.ModelMultiException;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.ModelsReader;
+import org.eclipse.papyrus.resource.notation.NotationModel;
 import org.eclipse.papyrus.resource.notation.NotationUtils;
 import org.eclipse.papyrus.resource.sasheditor.DiModelUtils;
 import org.eclipse.papyrus.resource.sasheditor.SashModelUtils;
@@ -224,6 +227,57 @@ public class DiResourceSet extends ModelSet {
 	}
 
 	/**
+	 * Retrieve the di resource associated with a given model element.
+	 * 
+	 * @param modelElement
+	 * @return the di resource or null
+	 * @deprecated a model should be modified/created to correctly handle controlled resources
+	 */
+	public Resource getAssociatedDiResource(EObject modelElement) {
+		// return the "base" di since we want the opened tabs in a unique di
+		return getDiResource();
+	}
+
+	/**
+	 * Retrieve the notation resource associated with a given model element.
+	 * 
+	 * @param modelElement
+	 * @return the notation resource or null
+	 * @deprecated a model should be modified/created to correctly handle controlled resources
+	 */
+	public Resource getAssociatedNotationResource(EObject modelElement) {
+		if(modelElement != null) {
+			Resource modelResource = modelElement.eResource();
+			if(modelResource != null && !modelResource.equals(getModelResource())) {
+				// handle controlled resource
+				return getAssociatedResource(modelResource, NotationModel.NOTATION_FILE_EXTENSION);
+			}
+		}
+		return getNotationResource();
+	}
+
+	/**
+	 * Retrieve the model resource associated with a given model element.
+	 * Please refers to {@link ResourceSet#getResource(URI, boolean)}
+	 * for the meaning of loadOnDemand.
+	 * 
+	 * @param modelElement
+	 * @return the model resource or null
+	 * @deprecated a model should be modified/created to correctly handle controlled resources
+	 */
+	public Resource getAssociatedModelResource(EObject modelElement) {
+		if(modelElement != null && modelElement.eResource() != null) {
+			return modelElement.eResource();
+		}
+		return getModelResource();
+	}
+
+	private Resource getAssociatedResource(Resource modelResource, String associatedResourceExtension) {
+		URI trimmedModelURI = modelResource.getURI().trimFileExtension();
+		return getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), true);
+	}
+
+	/**
 	 * Returns the model resource.
 	 * 
 	 * @return the modelResource
@@ -242,11 +296,8 @@ public class DiResourceSet extends ModelSet {
 		List<Resource> additionnalResources = new ArrayList<Resource>();
 		for(Resource resource : getResources()) {
 			// ignore di, notation and domain resources
-			Resource diResource = SashModelUtils.getSashModel(this).getResource();
-			Resource notationResource = NotationUtils.getNotationModel(this).getResource();
-			Resource modelResource = UmlUtils.getUmlModel(this).getResource();
 
-			if(resource != diResource && resource != notationResource && resource != modelResource) {
+			if(resource != getDiResource() && resource != getNotationResource() && resource != getModelResource()) {
 				additionnalResources.add(resource);
 			}
 		}
