@@ -89,18 +89,35 @@
                remove="true">
          </popupPredefinedItem>
          <!-- background is in black, this action is added with correct background after  -->
-       <!--  <popupPredefinedItem
+        <popupPredefinedItem
                id="addNoteAction"
                path="/diagramAddmenu/addDiagramGeneralGroup"
                remove="true">
          </popupPredefinedItem>
-       -->
          <!-- exception when we try to do this action -->
            <popupPredefinedItem
                id="addNoteLinkAction"
                path="/addGroup"
                remove="true">
          </popupPredefinedItem>
+      </popupContribution>
+   </contributionItemProvider>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+   <contributionItemProvider
+         checkPluginLoaded="false"
+         class="org.eclipse.papyrus.diagram.menu.actions.gmf.CustomContributionItemProvider">
+      <Priority
+            name="High">
+      </Priority>
+      <!-- we rewrite this action, because the backgound of the note is black-->
+      <popupContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+         <popupAction
+               id="customAddNoteLinkAction"
+               path="/diagramAddmenu/addDiagramGeneralGroup">
+         </popupAction>
       </popupContribution>
    </contributionItemProvider>
 </extension>
