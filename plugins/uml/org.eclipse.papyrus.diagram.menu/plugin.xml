@@ -88,6 +88,19 @@
                path="/formatMenu/alignMenu/alignVerticalGroup"
                remove="true">
          </popupPredefinedItem>
+         <!-- background is in black, this action is added with correct background after  -->
+       <!--  <popupPredefinedItem
+               id="addNoteAction"
+               path="/diagramAddmenu/addDiagramGeneralGroup"
+               remove="true">
+         </popupPredefinedItem>
+       -->
+         <!-- exception when we try to do this action -->
+           <popupPredefinedItem
+               id="addNoteLinkAction"
+               path="/addGroup"
+               remove="true">
+         </popupPredefinedItem>
       </popupContribution>
    </contributionItemProvider>
 </extension>
@@ -101,6 +114,127 @@
          </Priority>
          <partContribution
                class="org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart">
+                          <partPredefinedItem
+                  id="lineTypeSolidAction"
+                  menubarPath="/diagramMenu/lineTypeMenu/lineTypeGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+             <partPredefinedItem
+                  id="lineTypeDashAction"
+                  menubarPath="/diagramMenu/lineTypeMenu/lineTypeGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+             <partPredefinedItem
+                  id="lineTypeDotAction"
+                  menubarPath="/diagramMenu/lineTypeMenu/lineTypeGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+             <partPredefinedItem
+                  id="lineTypeDashDotAction"
+                  menubarPath="/diagramMenu/lineTypeMenu/lineTypeGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+             <partPredefinedItem
+                  id="lineTypeDashDotDotAction"
+                  menubarPath="/diagramMenu/lineTypeMenu/lineTypeGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+             <partPredefinedItem
+                  id="lineWidthOneAction"
+                  menubarPath="/diagramMenu/lineWidthMenu/lineWidthGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+             <partPredefinedItem
+                  id="lineWidthTwoAction"
+                  menubarPath="/diagramMenu/lineWidthMenu/lineWidthGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+             <partPredefinedItem
+                  id="lineWidthThreeAction"
+                  menubarPath="/diagramMenu/lineWidthMenu/lineWidthGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+             <partPredefinedItem
+                  id="lineWidthFourAction"
+                  menubarPath="/diagramMenu/lineWidthMenu/lineWidthGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+             <partPredefinedItem
+                  id="lineWidthFiveAction"
+                  menubarPath="/diagramMenu/lineWidthMenu/lineWidthGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+            
+            
+            
+             <partPredefinedItem
+                  id="arrowTypeSourceNoneAction"
+                  menubarPath="/diagramMenu/arrowTypeMenu/arrowTypeSourceMenu/arrowTypeSourceGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="arrowTypeSourceSolidAction"
+                  menubarPath="/diagramMenu/arrowTypeMenu/arrowTypeSourceMenu/arrowTypeSourceGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="arrowTypeSourceOpenAction"
+                  menubarPath="/diagramMenu/arrowTypeMenu/arrowTypeSourceMenu/arrowTypeSourceGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+            
+            <partPredefinedItem
+                  id="arrowTypeTargetNoneAction"
+                  menubarPath="/diagramMenu/arrowTypeMenu/arrowTypeTargetMenu/arrowTypeTargetGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="arrowTypeTargetSolidAction"
+                  menubarPath="/diagramMenu/arrowTypeMenu/arrowTypeTargetMenu/arrowTypeTargetGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="arrowTypeTargetOpenAction"
+                  menubarPath="/diagramMenu/arrowTypeMenu/arrowTypeTargetMenu/arrowTypeTargetGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+            
+           
+             <partPredefinedItem
+                  id="textAlignmentLeftAction"
+                  menubarPath="/diagramMenu/textAlignmentMenu/textAlignmentGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="textAlignmentCenterAction"
+                  menubarPath="/diagramMenu/textAlignmentMenu/textAlignmentGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="textAlignmentRightAction"
+                  menubarPath="/diagramMenu/textAlignmentMenu/textAlignmentGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+            
             <partPredefinedItem
                   id="fontDialogAction"
                   menubarPath="/diagramMenu/fontColorLineGroup"
@@ -336,6 +470,105 @@
          </partContribution>
          <popupContribution
                class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupPredefinedItem
+                  id="lineWidthOneAction"
+                  path="/formatMenu/lineWidthMenu/lineWidthGroup"
+                  remove="true">
+            </popupPredefinedItem>   
+            <popupPredefinedItem
+                  id="lineWidthTwoAction"
+                  path="/formatMenu/lineWidthMenu/lineWidthGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="lineWidthThreeAction"
+                  path="/formatMenu/lineWidthMenu/lineWidthGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="lineWidthFourAction"
+                  path="/formatMenu/lineWidthMenu/lineWidthGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="lineWidthFiveAction"
+                  path="/formatMenu/lineWidthMenu/lineWidthGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            
+ 			<popupPredefinedItem
+                  id="lineTypeSolidAction"
+                  path="/formatMenu/lineTypeMenu/lineTypeGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="lineTypeDashAction"
+                  path="/formatMenu/lineTypeMenu/lineTypeGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="lineTypeDotAction"
+                  path="/formatMenu/lineTypeMenu/lineTypeGroup"
+                  remove="true">
+            </popupPredefinedItem>
+             <popupPredefinedItem
+                  id="lineTypeDashDotAction"
+                  path="/formatMenu/lineTypeMenu/lineTypeGroup"
+                  remove="true">
+            </popupPredefinedItem>
+             <popupPredefinedItem
+                  id="lineTypeDashDotDotAction"
+                  path="/formatMenu/lineTypeMenu/lineTypeGroup"
+                  remove="true">
+            </popupPredefinedItem>
+               
+            <popupPredefinedItem
+                  id="arrowTypeSourceNoneAction"
+                  path="/formatMenu/arrowTypeMenu/arrowTypeSourceMenu/arrowTypeSourceGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="arrowTypeSourceSolidAction"
+                  path="/formatMenu/arrowTypeMenu/arrowTypeSourceMenu/arrowTypeSourceGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="arrowTypeSourceOpenAction"
+                  path="/formatMenu/arrowTypeMenu/arrowTypeSourceMenu/arrowTypeSourceGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="arrowTypeTargetNoneAction"
+                  path="/formatMenu/arrowTypeMenu/arrowTypeTargetMenu/arrowTypeTargetGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="arrowTypeTargetSolidAction"
+                  path="/formatMenu/arrowTypeMenu/arrowTypeTargetMenu/arrowTypeTargetGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="arrowTypeTargetOpenAction"
+                  path="/formatMenu/arrowTypeMenu/arrowTypeTargetMenu/arrowTypeTargetGroup"
+                  remove="true">
+            </popupPredefinedItem>
+               
+             <popupPredefinedItem
+                  id="textAlignmentLeftAction"
+                  path="/formatMenu/textAlignmentMenu/textAlignmentGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="textAlignmentCenterAction"
+                  path="/formatMenu/textAlignmentMenu/textAlignmentGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="textAlignmentrightAction"
+                  path="/formatMenu/textAlignmentMenu/textAlignmentGroup"
+                  remove="true">
+            </popupPredefinedItem>   
+               
             <popupPredefinedItem
                   id="fontDialogAction"
                   path="/formatMenu/fontFillLineGroup"
