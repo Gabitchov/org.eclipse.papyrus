@@ -43,8 +43,11 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
+	 * Start.
+	 *
+	 * @param context the context
+	 * @throws Exception the exception
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.core.runtime.Plugin#start(org.osgi.framework.BundleContext)
 	 * @generated
 	 */
@@ -54,8 +57,11 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
+	 * Stop.
+	 *
+	 * @param context the context
+	 * @throws Exception the exception
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
 	 * @generated
 	 */
@@ -74,10 +80,9 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns the image from the given path
-	 * 
-	 * @param path
-	 *        the path the image to be displayed
+	 * Returns the image from the given path.
+	 *
+	 * @param path the path the image to be displayed
 	 * @return the image found
 	 */
 	public static Image getImage(String path) {
@@ -91,15 +96,31 @@ public class Activator extends AbstractUIPlugin {
 
 	}
 
+	/**
+	 * Log error.
+	 *
+	 * @param e the e
+	 */
 	public static void logError(Throwable e) {
 		logError(Messages.Activator_log_error_message, e);
 	}
 
+	/**
+	 * Log error.
+	 *
+	 * @param message the message
+	 * @param e the e
+	 */
 	public static void logError(String message, Throwable e) {
 		IStatus status = new Status(IStatus.ERROR, PLUGIN_ID, message, e);
 		getDefault().getLog().log(status);
 	}
 
+	/**
+	 * Log info.
+	 *
+	 * @param message the message
+	 */
 	public static void logInfo(String message) {
 		IStatus status = new Status(IStatus.INFO, PLUGIN_ID, message);
 		getDefault().getLog().log(status);

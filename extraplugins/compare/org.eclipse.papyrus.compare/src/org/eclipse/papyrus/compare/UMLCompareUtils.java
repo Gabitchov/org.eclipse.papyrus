@@ -17,8 +17,17 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 
+/**
+ * The Class UMLCompareUtils.
+ */
 public class UMLCompareUtils {
 
+	/**
+	 * Checks if is stereotype application.
+	 *
+	 * @param eObject the e object
+	 * @return true, if is stereotype application
+	 */
 	public static boolean isStereotypeApplication(EObject eObject) {
 		return UMLUtil.getStereotype(eObject) != null;
 	}

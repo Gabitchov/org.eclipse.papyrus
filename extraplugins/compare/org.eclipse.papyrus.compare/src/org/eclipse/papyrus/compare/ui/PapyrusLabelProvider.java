@@ -31,25 +31,37 @@ import org.eclipse.papyrus.compare.Activator;
 import org.eclipse.swt.graphics.Image;
 
 
+/**
+ * PapyrusLabelProvider provides the same labels and icons as one can find in the Model Explorer.
+ */
 public class PapyrusLabelProvider extends CustomizableModelLabelProvider {
 
 
+	/** The configuration. */
 	private AppearanceConfiguration configuration;
 
 	/**
 	 * Constructor.
-	 * 
-	 * @param customizationManager
+	 *
+	 * @param customizationManager the customization manager
 	 */
 	public PapyrusLabelProvider(CustomizationManager customizationManager) {
 		super(customizationManager);
 		configuration = getAppearanceConfiguration(customizationManager);
 	}
 
+	/**
+	 * Instantiates a new papyrus label provider.
+	 */
 	public PapyrusLabelProvider() {
 		this(initCustomizationManager());
 	}
 
+	/**
+	 * Inits the customization manager.
+	 *
+	 * @return the customization manager
+	 */
 	private static CustomizationManager initCustomizationManager() {
 		CustomizationManager manager = new CustomizationManager();
 		try {
@@ -68,6 +80,12 @@ public class PapyrusLabelProvider extends CustomizableModelLabelProvider {
 		return manager;
 	}
 
+	/**
+	 * Gets the appearance configuration.
+	 *
+	 * @param customizationManager2 the customization manager2
+	 * @return the appearance configuration
+	 */
 	private AppearanceConfiguration getAppearanceConfiguration(CustomizationManager customizationManager2) {
 		Method getApperanceConfigurationMethod;
 		try {
@@ -91,6 +109,10 @@ public class PapyrusLabelProvider extends CustomizableModelLabelProvider {
 	}
 
 	/**
+	 * Gets the text.
+	 *
+	 * @param element the element
+	 * @return the text
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -105,6 +127,9 @@ public class PapyrusLabelProvider extends CustomizableModelLabelProvider {
 		return super.getText(element);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider#getImage(java.lang.Object)
+	 */
 	@Override
 	public Image getImage(Object element) {
 		if(element == null) {
@@ -119,8 +144,10 @@ public class PapyrusLabelProvider extends CustomizableModelLabelProvider {
 
 
 	/**
-	 * @param eObject
-	 * @return
+	 * Gets the tree element.
+	 *
+	 * @param eObject the e object
+	 * @return the tree element
 	 */
 	private ITreeElement getTreeElement(EObject eObject) {
 		if(eObject == null) {
