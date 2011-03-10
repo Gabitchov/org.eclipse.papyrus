@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.wizards;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +54,8 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 	public IStatus diagramCategoryChanged(String... newCategories) {
 		// clean pages
 		List<String> newCategoriesList = Arrays.asList(newCategories);
-		for(String oldCategory : myCategory2modelFilePageMap.keySet()) {
+		Collection<String> keys = new HashSet<String>(myCategory2modelFilePageMap.keySet());
+		for(String oldCategory : keys) {
 			if(!newCategoriesList.contains(oldCategory)) {
 				myCategory2modelFilePageMap.remove(oldCategory);
 			}
