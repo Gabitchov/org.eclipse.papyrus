@@ -808,7 +808,7 @@
             label="Se&amp;lect"
             tooltip="Select Menu">
          <command
-               commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllCommand"
+               commandId="org.eclipse.ui.edit.selectAll"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectall.gif"
                id="org.eclipse.papyrus.diagram.ui.popupmenu.select.all"
                label="&amp;All"
@@ -1208,7 +1208,7 @@
    <menuContribution
          locationURI="menu:org.eclipse.papyrus.menu.select.toolbar.command">
       <command
-            commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllCommand"
+            commandId="org.eclipse.ui.edit.selectAll"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectall.gif"
             label="Select &amp;All"
             style="push"
@@ -1217,7 +1217,7 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllShapesCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectshapes.gif"
-            label="&amp;Select All &amp;Shapes"
+            label="Select All &amp;Shapes"
             style="push"
             tooltip="Select All Shapes">
       </command>
@@ -1750,7 +1750,7 @@
             label="Se&amp;lect"
             tooltip="Select Menu">
          <command
-               commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllCommand"
+               commandId="org.eclipse.ui.edit.selectAll"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectall.gif"
                label="&amp;All"
                style="push"
@@ -3232,6 +3232,9 @@
          id="org.eclipse.papyrus.diagram.menu.commands.ArrangeSelectionCommand"
          name="Arrange Selection Command">
    </command>
+   <!-- This command is currently not use! We use org.eclipse.ui.edit.selectAll. With this command, we use the GMF action for Select. 
+   So, I think GMF provides an handler for this command, but I don't know where (and it's work fine).
+   -->
    <command
          categoryId="org.eclipse.papyrus.editor.category"
          description="The command to select all elements"

@@ -43,10 +43,20 @@ import org.eclipse.jface.viewers.StructuredSelection;
 public class SelectAction extends AbstractParametricAction {
 
 	/** parameters for the action */
+
+	/**
+	 * the parameter for select all
+	 * This parameter should not be used, because, in the plugin.xml file,
+	 * we use the command org.eclipse.ui.edit.selectAll for this action.
+	 * GMF seems provide an handler for this action, because with this command, we visit the class {@link SelectAllAction}
+	 */
+
 	public static final String SELECT_ALL = "selectAll"; //$NON-NLS-1$
 
+	/** the parameter for select all shapes action */
 	public static final String SELECT_ALL_SHAPES = "selectAllShapes"; //$NON-NLS-1$
 
+	/** the parameter for select all connectors action */
 	public static final String SELECT_ALL_CONNECTORS = "selectAllConnectors"; //$NON-NLS-1$
 
 	/**
