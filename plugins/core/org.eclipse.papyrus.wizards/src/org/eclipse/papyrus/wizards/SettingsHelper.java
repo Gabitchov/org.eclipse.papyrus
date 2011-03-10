@@ -26,17 +26,17 @@ import org.eclipse.jface.dialogs.IDialogSettings;
  */
 public class SettingsHelper {
 
-	private static final String DIAGRAM_KIND_SEPARATOR = ",";
+	private static final String DIAGRAM_KIND_SEPARATOR = ","; //$NON-NLS-1$
 
-	private static final String TEMPLATE_SEPARATOR = ",";
+	private static final String TEMPLATE_SEPARATOR = ","; //$NON-NLS-1$
 
-	private static final String SETTINGS_KEY_REMEMBER_CURRENT_SELECTION = "RememberCurrentSelection";
+	private static final String SETTINGS_KEY_REMEMBER_CURRENT_SELECTION = "RememberCurrentSelection"; //$NON-NLS-1$
 
-	private static final String SETTINGS_KEY_DIAGRAM_KINDS = "DiagramKindsFor_";
+	private static final String SETTINGS_KEY_DIAGRAM_KINDS = "DiagramKindsFor_"; //$NON-NLS-1$
 
-	private static final String SETTINGS_KEY_DIAGRAM_TEMPLATES = "DiagramTemplatesFor_";
+	private static final String SETTINGS_KEY_DIAGRAM_TEMPLATES = "DiagramTemplatesFor_"; //$NON-NLS-1$
 
-	private static final String LAST_SELECTED_CATEGORY = "diagramCategory";
+	private static final String LAST_SELECTED_CATEGORY = "diagramCategory"; //$NON-NLS-1$
 
 	private final IDialogSettings mySettings;
 
@@ -78,7 +78,7 @@ public class SettingsHelper {
 	 */
 	public List<String> getDefaultDiagramKinds(String category) {
 		String csl = mySettings.get(getKeyForDiagramKind(category));
-		if(csl == null || csl == "") {
+		if(csl == null || csl == "") { //$NON-NLS-1$
 			return Collections.emptyList();
 		}
 		List<String> result = new ArrayList<String>();
@@ -98,7 +98,7 @@ public class SettingsHelper {
 	 *        the kinds
 	 */
 	public void saveDefaultDiagramKinds(String category, List<String> kinds) {
-		String value = "";
+		String value = ""; //$NON-NLS-1$
 		for(String kind : kinds) {
 			value += kind;
 			value += DIAGRAM_KIND_SEPARATOR;
@@ -115,7 +115,7 @@ public class SettingsHelper {
 	 */
 	public List<String> getDefaultTemplates(String category) {
 		String csl = mySettings.get(getKeyForTemplate(category));
-		if(csl == null || csl == "") {
+		if(csl == null || csl == "") { //$NON-NLS-1$
 			return Collections.emptyList();
 		}
 		List<String> result = new ArrayList<String>();
@@ -135,7 +135,7 @@ public class SettingsHelper {
 	 *        the templates
 	 */
 	public void saveDefaultTemplates(String category, List<String> templates) {
-		String value = "";
+		String value = ""; //$NON-NLS-1$
 		for(String template : templates) {
 			value += template;
 			value += TEMPLATE_SEPARATOR;

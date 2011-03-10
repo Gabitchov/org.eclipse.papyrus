@@ -58,7 +58,7 @@ public class SelectRootElementPage extends WizardPage {
 	private final Resource myDomainModelResource;
 
 	/** The Constant PAGE_ID. */
-	public static final String PAGE_ID = "SelectRootPage";
+	public static final String PAGE_ID = "SelectRootPage"; //$NON-NLS-1$
 
 	/**
 	 * Constructor
@@ -70,8 +70,8 @@ public class SelectRootElementPage extends WizardPage {
 	 */
 	public SelectRootElementPage(IFile file) {
 		super(PAGE_ID);
-		setTitle("Select the root element");
-		setDescription("Select the root element");
+		setTitle(Messages.SelectRootElementPage_select_root_element_title);
+		setDescription(Messages.SelectRootElementPage_select_root_element_desc);
 
 		myDomainModelResource = getResourceForFile(file);
 

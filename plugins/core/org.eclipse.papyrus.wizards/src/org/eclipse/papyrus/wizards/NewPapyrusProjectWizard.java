@@ -34,7 +34,7 @@ import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 public class NewPapyrusProjectWizard extends CreateModelWizard {
 
 	/** The Constant WIZARD_ID. */
-	public static final String WIZARD_ID = "org.eclipse.papyrus.wizards.1createproject";
+	public static final String WIZARD_ID = "org.eclipse.papyrus.wizards.1createproject"; //$NON-NLS-1$
 
 	/** The new project page. */
 	private WizardNewProjectCreationPage myNewProjectPage;
@@ -48,15 +48,15 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		super.init(workbench, selection);
-		setWindowTitle("New Papyrus Project");
+		setWindowTitle(Messages.NewPapyrusProjectWizard_new_papyrus_project);
 		myNewProjectPage = createNewProjectCreationPage();
 	}
 
 	protected WizardNewProjectCreationPage createNewProjectCreationPage() {
-		WizardNewProjectCreationPage newProjectPage = new WizardNewProjectCreationPage("papyrusNewProjectPage");
+		WizardNewProjectCreationPage newProjectPage = new WizardNewProjectCreationPage("papyrusNewProjectPage"); //$NON-NLS-1$
 		newProjectPage.setInitialProjectName(initialProjectName);
-		newProjectPage.setTitle("Papyrus Project");
-		newProjectPage.setDescription("Create a New Papyrus Project");
+		newProjectPage.setTitle(Messages.NewPapyrusProjectWizard_papyrus_project);
+		newProjectPage.setDescription(Messages.NewPapyrusProjectWizard_papyrus_project_desc);
 		return newProjectPage;
 	}
 
@@ -87,7 +87,7 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 		try {
 			newProjectHandle = createNewProject();
 		} catch (CoreException e) {
-			Activator.log.error("Problems during opening of the project", e);
+			Activator.log.error(Messages.NewPapyrusProjectWizard_exception_on_opening, e);
 			return false;
 		}
 		if (newProjectHandle == null) {
@@ -132,7 +132,7 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 	 */
 	@Override
 	protected IFile createNewModelFile(String categoryId) {
-		IPath newFilePath = myNewProjectPage.getProjectHandle().getFullPath().append(NewModelFilePage.DEFAULT_NAME + "." + getDiagramFileExtension(categoryId));
+		IPath newFilePath = myNewProjectPage.getProjectHandle().getFullPath().append(NewModelFilePage.DEFAULT_NAME + "." + getDiagramFileExtension(categoryId)); //$NON-NLS-1$
 		return ResourcesPlugin.getWorkspace().getRoot().getFile(newFilePath);
 	}
 

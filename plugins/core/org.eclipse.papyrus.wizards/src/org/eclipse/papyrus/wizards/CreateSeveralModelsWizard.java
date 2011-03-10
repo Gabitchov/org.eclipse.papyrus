@@ -149,6 +149,6 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 		return pageId.substring(NEW_MODEL_FILE_PAGE_PREFIX.length());
 	}
 	
-	private static final String NEW_MODEL_FILE_PAGE_PREFIX = NewModelFilePage.PAGE_ID + "_";
+	private static final String NEW_MODEL_FILE_PAGE_PREFIX = NewModelFilePage.PAGE_ID + "_"; //$NON-NLS-1$
 
 }

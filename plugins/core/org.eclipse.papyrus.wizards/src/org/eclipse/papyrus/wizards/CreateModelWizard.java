@@ -62,10 +62,10 @@ import org.eclipse.ui.ide.IDE;
 public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/** The Constant WIZARD_ID. */
-	public static final String WIZARD_ID = "org.eclipse.papyrus.wizards.createmodel";
+	public static final String WIZARD_ID = "org.eclipse.papyrus.wizards.createmodel"; //$NON-NLS-1$
 
 	/** The Constant NEW_MODEL_SETTINGS. */
-	public static final String NEW_MODEL_SETTINGS = "NewModelWizard";
+	public static final String NEW_MODEL_SETTINGS = "NewModelWizard"; //$NON-NLS-1$
 
 	/** New model file page for the file */
 	private NewModelFilePage newModelFilePage;
@@ -84,7 +84,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 */
 	public CreateModelWizard() {
 		super();
-		setWindowTitle("New Papyrus Model");
+		setWindowTitle(Messages.CreateModelWizard_new_papyrus_model_title);
 	}
 
 
@@ -171,7 +171,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	protected String getDiagramFileExtension(String categoryId, String defaultExtension) {
 		DiagramCategoryDescriptor diagramCategory = getDiagramCategoryMap().get(categoryId);
 		String extensionPrefix = diagramCategory != null ? diagramCategory.getExtensionPrefix() : null;
-		return (extensionPrefix != null) ? extensionPrefix + "." + defaultExtension : defaultExtension;
+		return (extensionPrefix != null) ? extensionPrefix + "." + defaultExtension : defaultExtension; //$NON-NLS-1$
 	}
 
 	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {

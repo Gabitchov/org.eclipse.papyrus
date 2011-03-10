@@ -36,27 +36,27 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 public class DiagramCategoryRegistry extends ExtensionUtils {
 
 	/** The Constant CATEGORY_EXTENSION_POINT_NAME. */
-	private static final String CATEGORY_EXTENSION_POINT_NAME = "org.eclipse.papyrus.core.papyrusDiagram";
+	private static final String CATEGORY_EXTENSION_POINT_NAME = "org.eclipse.papyrus.core.papyrusDiagram"; //$NON-NLS-1$
 
 	/** ID of the editor extension (schema filename) */
-	public static final String CATEGORY_ELEMENT_NAME = "diagramCategory";
+	public static final String CATEGORY_ELEMENT_NAME = "diagramCategory"; //$NON-NLS-1$
 
 	/** The Constant CATEGORY_ID. */
-	private static final String CATEGORY_ID = "id";
+	private static final String CATEGORY_ID = "id"; //$NON-NLS-1$
 
 	/** The Constant CATEGORY_LABEL. */
-	private static final String CATEGORY_LABEL = "label";
+	private static final String CATEGORY_LABEL = "label"; //$NON-NLS-1$
 
 	/** The Constant CATEGORY_DESCRIPTION. */
-	private static final String CATEGORY_DESCRIPTION = "description";
+	private static final String CATEGORY_DESCRIPTION = "description"; //$NON-NLS-1$
 
 	/** The Constant CATEGORY_ICON. */
-	private static final String CATEGORY_ICON = "icon";
+	private static final String CATEGORY_ICON = "icon"; //$NON-NLS-1$
 
 	/** The Constant CATEGORY_CLASS. */
-	private static final String CATEGORY_CLASS = "class";
+	private static final String CATEGORY_CLASS = "class"; //$NON-NLS-1$
 
-	private static final String CATEGORY_FILE_EXTENSION_PREFIX = "extensionPrefix";
+	private static final String CATEGORY_FILE_EXTENSION_PREFIX = "extensionPrefix"; //$NON-NLS-1$
 
 	/** The diagram categories. */
 	private static Map<String, DiagramCategoryDescriptor> diagramCategories;
@@ -119,7 +119,7 @@ public class DiagramCategoryRegistry extends ExtensionUtils {
 						diagramCategoryDescriptor = buildCategoryDescriptor(confElement);
 						result.put(diagramCategoryDescriptor.getId(), diagramCategoryDescriptor);
 					} catch (BadClassNameException e) {
-						log.error("Could not find implementation for a diagram category", e);
+						log.error(Messages.DiagramCategoryRegistry_bad_class_name_of_category, e);
 					}
 				}
 			}

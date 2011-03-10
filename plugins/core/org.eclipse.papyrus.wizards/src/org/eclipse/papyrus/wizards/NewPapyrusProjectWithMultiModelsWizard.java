@@ -27,7 +27,7 @@ public class NewPapyrusProjectWithMultiModelsWizard extends NewPapyrusProjectWiz
 	private boolean myDoNotCreateModelForNoDiagrams;
 	
 	/** The Constant WIZARD_ID. */
-	public static final String WIZARD_ID = "org.eclipse.papyrus.wizards.1createproject.several";
+	public static final String WIZARD_ID = "org.eclipse.papyrus.wizards.1createproject.several"; //$NON-NLS-1$
 
 	
 	public NewPapyrusProjectWithMultiModelsWizard() {
@@ -52,7 +52,7 @@ public class NewPapyrusProjectWithMultiModelsWizard extends NewPapyrusProjectWiz
 		try {
 			newProjectHandle = createNewProject();
 		} catch (CoreException e) {
-			Activator.log.error("Problems during opening of the project", e);
+			Activator.log.error(Messages.NewPapyrusProjectWithMultiModelsWizard_exception_on_project_opening, e);
 			return false;
 		}
 		if (newProjectHandle == null) {

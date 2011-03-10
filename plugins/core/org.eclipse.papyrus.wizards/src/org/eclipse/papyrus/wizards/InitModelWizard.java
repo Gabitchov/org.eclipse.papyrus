@@ -47,7 +47,7 @@ public class InitModelWizard extends CreateModelWizard {
 		selectRootElementPage = createSelectRootElementPage(file);
 		if(isCreateFromExistingDomainModel()) {
 			// Init Model not Create a new one
-			setWindowTitle("Init Papyrus Diagram");
+			setWindowTitle(Messages.InitModelWizard_init_papyrus_diagram);
 		}
 	}
 
@@ -84,7 +84,7 @@ public class InitModelWizard extends CreateModelWizard {
 		if(!isCreateFromExistingDomainModel()) {
 			return super.createNewModelFilePage(selection);
 		}
-		return new NewDiagramForExistingModelPage(selection, getDiagramFileName(getSelectedFile(selection)) + "." + getDiagramFileExtension(null), getDiagramFileExtension(null));
+		return new NewDiagramForExistingModelPage(selection, getDiagramFileName(getSelectedFile(selection)) + "." + getDiagramFileExtension(null), getDiagramFileExtension(null)); //$NON-NLS-1$
 	}
 
 
@@ -198,8 +198,8 @@ public class InitModelWizard extends CreateModelWizard {
 			myDiagramFileName = defaultFileName;
 			setFileName(defaultFileName);
 			setFileExtension(diagramExtension);
-			setTitle("Init a new Papyrus model");
-			setDescription("Init a new Papyrus model from the existing domain model");
+			setTitle(Messages.InitModelWizard_init_papyrus_model);
+			setDescription(Messages.InitModelWizard_init_papyrus_model_desc);
 		}
 
 		protected boolean validatePage() {

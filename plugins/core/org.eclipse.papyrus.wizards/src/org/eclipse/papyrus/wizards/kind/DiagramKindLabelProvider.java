@@ -24,7 +24,7 @@ import org.eclipse.swt.graphics.Image;
  */
 public class DiagramKindLabelProvider implements ILabelProvider {
 
-	private static final String UNDEFINED_ELEMENT = "<undefined>";
+	private static final String UNDEFINED_ELEMENT = Messages.DiagramKindLabelProvider_undefined_element;
 
 	public Image getImage(Object element) {
 		// TODO use ImageRegistry to store images
