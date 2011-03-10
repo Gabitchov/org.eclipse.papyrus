@@ -22,6 +22,8 @@ public class Messages extends NLS {
 
 	public static String SelectDiagramCategoryPage_select_one_category;
 
+	public static String SelectDiagramKindPage_default_diagram_name;
+
 	public static String SelectDiagramKindPage_diagram_name_group;
 
 	public static String SelectDiagramKindPage_diagram_name_is_empty;

@@ -337,7 +337,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		nameText = new Text(group, SWT.BORDER);
 		GridData data = new GridData(GridData.FILL_HORIZONTAL);
 		nameText.setLayoutData(data);
-		nameText.setText("NewDiagram");
+		nameText.setText(Messages.SelectDiagramKindPage_default_diagram_name);
 		nameText.addModifyListener(new ModifyListener() {
 
 			public void modifyText(ModifyEvent e) {
