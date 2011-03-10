@@ -31,7 +31,7 @@ import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 /**
  * The Wizard creates a new Project and a several Papyrus Models of different type inside it
  */
-public class NewPapyrusProjectForSeveralCategoriesWizard extends CreateSeveralModelsWizard {
+public class NewPapyrusProjectWithMultiModelsWizard extends CreateSeveralModelsWizard {
 
 	/** The Constant WIZARD_ID. */
 	public static final String WIZARD_ID = "org.eclipse.papyrus.wizards.1createproject.several";
