@@ -38,14 +38,27 @@ import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDif
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 
+/**
+ * Switch to return Styled label for the given  DiffElement.
+ * Usually changed elements and number of chnages are shown in bold.
+ */
 public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 
+	/** The my domain element label provider. */
 	private final ILabelProvider myDomainElementLabelProvider;
 
+	/**
+	 * Instantiates a new styled diff label switch.
+	 *
+	 * @param labelProvider the label provider
+	 */
 	public StyledDiffLabelSwitch(ILabelProvider labelProvider) {
 		myDomainElementLabelProvider = labelProvider;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
+	 */
 	@Override
 	public StyledString defaultCase(EObject object) {
 		int classifierID = object.eClass().getClassifierID();
@@ -64,10 +77,18 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		return null;
 	}
 
+	/**
+	 * Gets the label provider.
+	 *
+	 * @return the label provider
+	 */
 	private ILabelProvider getLabelProvider() {
 		return myDomainElementLabelProvider;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch#caseCompareTwoElementsDiffModel(org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.CompareTwoElementsDiffModel)
+	 */
 	@Override
 	public StyledString caseCompareTwoElementsDiffModel(CompareTwoElementsDiffModel object) {
 		int subchanges = ((DiffGroup)object.getOwnedElements().get(0)).getSubchanges();
@@ -83,6 +104,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch#caseAddStereotypeApplication(org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.AddStereotypeApplication)
+	 */
 	@Override
 	public StyledString caseAddStereotypeApplication(AddStereotypeApplication object) {
 		EObject element = object.getRightElement();
@@ -93,6 +117,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_add_stereotype_application_text, elementLabel);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch#caseRemoveStereotypeApplication(org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.RemoveStereotypeApplication)
+	 */
 	@Override
 	public StyledString caseRemoveStereotypeApplication(RemoveStereotypeApplication object) {
 		EObject element = object.getLeftElement();
@@ -103,6 +130,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_remove_stereotype_application_text, elementLabel);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch#caseTaggedValueChange(org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChange)
+	 */
 	@Override
 	public StyledString caseTaggedValueChange(TaggedValueChange object) {
 		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
@@ -118,6 +148,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_tagged_value_changed_text, attributeLabel, leftValueString, rightValueString);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch#caseTaggedValueChangeLeftTarget(org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeLeftTarget)
+	 */
 	@Override
 	public StyledString caseTaggedValueChangeLeftTarget(TaggedValueChangeLeftTarget object) {
 
@@ -132,6 +165,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_tagged_value_left_target_text, attributeLabel, rightValueString);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch#caseTaggedValueChangeRightTarget(org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeRightTarget)
+	 */
 	@Override
 	public StyledString caseTaggedValueChangeRightTarget(TaggedValueChangeRightTarget object) {
 		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
@@ -145,6 +181,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_tagged_value_right_target_text, attributeLabel, leftValueString);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch#caseTaggedValueReferenceChange(org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueReferenceChange)
+	 */
 	@Override
 	public StyledString caseTaggedValueReferenceChange(TaggedValueReferenceChange object) {
 		final String referenceLabel = getLabelProvider().getText(object.getReference());
@@ -163,6 +202,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch#caseUpdateTaggedValue(org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UpdateTaggedValue)
+	 */
 	@Override
 	public StyledString caseUpdateTaggedValue(UpdateTaggedValue object) {
 		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
@@ -180,6 +222,12 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_update_tagged_value_text, attributeLabel, rightValue, leftValue);
 	}
 
+	/**
+	 * Case diff group.
+	 *
+	 * @param object the object
+	 * @return the styled string
+	 */
 	public StyledString caseDiffGroup(DiffGroup object) {
 		final EObject parent = object.getRightParent();
 		final String parentLabel;
@@ -191,11 +239,17 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_diff_group_text, String.valueOf(object.getSubchanges()), parentLabel);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch#caseAttributeChange(org.eclipse.emf.compare.diff.metamodel.AttributeChange)
+	 */
 	@Override
 	public StyledString caseAttributeChange(AttributeChange object) {
 		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_attribute_change_text, String.valueOf(object.isConflicting()));
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch#caseAttributeChangeLeftTarget(org.eclipse.emf.compare.diff.metamodel.AttributeChangeLeftTarget)
+	 */
 	@Override
 	public StyledString caseAttributeChangeLeftTarget(AttributeChangeLeftTarget object) {
 		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
@@ -207,6 +261,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_attribute_change_left_target_text, attributeValueToString(object.getLeftTarget()), attributeLabel, elementLabel);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch#caseAttributeChangeRightTarget(org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget)
+	 */
 	@Override
 	public StyledString caseAttributeChangeRightTarget(AttributeChangeRightTarget object) {
 		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
@@ -218,6 +275,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_attribute_change_right_target_text, attributeValueToString(object.getRightTarget()), attributeLabel, elementLabel);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch#caseUpdateAttribute(org.eclipse.emf.compare.diff.metamodel.UpdateAttribute)
+	 */
 	@Override
 	public StyledString caseUpdateAttribute(UpdateAttribute object) {
 		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
@@ -235,11 +295,20 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_update_attribute_text, attributeLabel, elementLabel, attributeValueToString(rightValue), attributeValueToString(leftValue));
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch#caseReferenceChange(org.eclipse.emf.compare.diff.metamodel.ReferenceChange)
+	 */
 	@Override
 	public StyledString caseReferenceChange(ReferenceChange object) {
 		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_reference_chnage_text, String.valueOf(object.isConflicting()));
 	}
 
+	/**
+	 * Attribute value to string.
+	 *
+	 * @param attributeValue the attribute value
+	 * @return the string
+	 */
 	private String attributeValueToString(Object attributeValue) {
 		return attributeValue == null ? Messages.StyledDiffLabelSwitch_null_value_text : attributeValue.toString();
 	}

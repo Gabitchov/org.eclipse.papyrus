@@ -23,17 +23,31 @@ import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDif
 import org.eclipse.swt.graphics.Image;
 
 
+/**
+ * LabelProvider that returns Styled label.
+ * Usually changed elements and number of changes are shown in bold.
+ */
 public class UMLStyledStructureLabelProvider extends StyledCellLabelProvider implements ILabelProvider {
 
+	/** The my delegate. */
 	private final ILabelProvider myDelegate;
 
+	/** The my diff label switch. */
 	private final UMLDiffSwitch<StyledString> myDiffLabelSwitch;
 
+	/**
+	 * Instantiates a new uML styled structure label provider.
+	 *
+	 * @param delegate the delegate
+	 */
 	public UMLStyledStructureLabelProvider(ILabelProvider delegate) {
 		myDelegate = delegate;
 		myDiffLabelSwitch = new StyledDiffLabelSwitch(delegate);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.viewers.ILabelProvider#getImage(java.lang.Object)
+	 */
 	public Image getImage(Object element) {
 		if(element instanceof AbstractDiffExtension) {
 			return (Image)((AbstractDiffExtension)element).getImage();
@@ -41,10 +55,16 @@ public class UMLStyledStructureLabelProvider extends StyledCellLabelProvider imp
 		return myDelegate.getImage(element);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
+	 */
 	public String getText(Object element) {
 		return getStyledText(element).getString();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.viewers.StyledCellLabelProvider#update(org.eclipse.jface.viewers.ViewerCell)
+	 */
 	public void update(ViewerCell cell) {
 		StyledString string = getStyledText(cell.getElement());
 		cell.setText(string.getString());
@@ -53,6 +73,12 @@ public class UMLStyledStructureLabelProvider extends StyledCellLabelProvider imp
 		super.update(cell);
 	}
 
+	/**
+	 * Gets the styled text.
+	 *
+	 * @param element the element
+	 * @return the styled text
+	 */
 	public StyledString getStyledText(Object element) {
 		if(element instanceof EObject) {
 			StyledString diffElementLabel = myDiffLabelSwitch.doSwitch((EObject)element);

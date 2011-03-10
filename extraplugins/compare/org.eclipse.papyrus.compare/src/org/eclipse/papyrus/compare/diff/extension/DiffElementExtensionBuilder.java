@@ -35,13 +35,22 @@ import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffFact
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UpdateTaggedValue;
 
 
+/**
+ * The Class DiffElementExtensionBuilder.
+ */
 public class DiffElementExtensionBuilder extends DiffSwitch<AbstractDiffExtension> {
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch#caseDiffElement(org.eclipse.emf.compare.diff.metamodel.DiffElement)
+	 */
 	@Override
 	public AbstractDiffExtension caseDiffElement(DiffElement object) {
 		throw new UnsupportedOperationException();
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch#caseDiffModel(org.eclipse.emf.compare.diff.metamodel.DiffModel)
+	 */
 	@Override
 	public AbstractDiffExtension caseDiffModel(DiffModel object) {
 		CompareTwoElementsDiffModel newElement = UMLDiffFactory.eINSTANCE.createCompareTwoElementsDiffModel();
@@ -52,6 +61,9 @@ public class DiffElementExtensionBuilder extends DiffSwitch<AbstractDiffExtensio
 		return newElement;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch#caseModelElementChangeLeftTarget(org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget)
+	 */
 	@Override
 	public AbstractDiffExtension caseModelElementChangeLeftTarget(ModelElementChangeLeftTarget object) {
 		RemoveStereotypeApplication newElement = UMLDiffFactory.eINSTANCE.createRemoveStereotypeApplication();
@@ -59,6 +71,9 @@ public class DiffElementExtensionBuilder extends DiffSwitch<AbstractDiffExtensio
 		return newElement;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch#caseModelElementChangeRightTarget(org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget)
+	 */
 	@Override
 	public AbstractDiffExtension caseModelElementChangeRightTarget(ModelElementChangeRightTarget object) {
 		AddStereotypeApplication newElement = UMLDiffFactory.eINSTANCE.createAddStereotypeApplication();
@@ -66,6 +81,9 @@ public class DiffElementExtensionBuilder extends DiffSwitch<AbstractDiffExtensio
 		return newElement;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch#caseAttributeChange(org.eclipse.emf.compare.diff.metamodel.AttributeChange)
+	 */
 	@Override
 	public AbstractDiffExtension caseAttributeChange(AttributeChange object) {
 		TaggedValueChange newElement = UMLDiffFactory.eINSTANCE.createUpdateTaggedValue();
@@ -73,6 +91,9 @@ public class DiffElementExtensionBuilder extends DiffSwitch<AbstractDiffExtensio
 		return newElement;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch#caseAttributeChangeLeftTarget(org.eclipse.emf.compare.diff.metamodel.AttributeChangeLeftTarget)
+	 */
 	@Override
 	public AbstractDiffExtension caseAttributeChangeLeftTarget(AttributeChangeLeftTarget object) {
 		TaggedValueChangeLeftTarget newElement = UMLDiffFactory.eINSTANCE.createTaggedValueChangeLeftTarget();
@@ -81,6 +102,9 @@ public class DiffElementExtensionBuilder extends DiffSwitch<AbstractDiffExtensio
 		return newElement;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch#caseAttributeChangeRightTarget(org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget)
+	 */
 	@Override
 	public AbstractDiffExtension caseAttributeChangeRightTarget(AttributeChangeRightTarget object) {
 		TaggedValueChangeRightTarget newElement = UMLDiffFactory.eINSTANCE.createTaggedValueChangeRightTarget();
@@ -89,6 +113,9 @@ public class DiffElementExtensionBuilder extends DiffSwitch<AbstractDiffExtensio
 		return newElement;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch#caseUpdateAttribute(org.eclipse.emf.compare.diff.metamodel.UpdateAttribute)
+	 */
 	@Override
 	public AbstractDiffExtension caseUpdateAttribute(UpdateAttribute object) {
 		UpdateTaggedValue newElement = UMLDiffFactory.eINSTANCE.createUpdateTaggedValue();
@@ -96,6 +123,9 @@ public class DiffElementExtensionBuilder extends DiffSwitch<AbstractDiffExtensio
 		return newElement;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch#caseReferenceChange(org.eclipse.emf.compare.diff.metamodel.ReferenceChange)
+	 */
 	@Override
 	public AbstractDiffExtension caseReferenceChange(ReferenceChange object) {
 		TaggedValueReferenceChange newElement = UMLDiffFactory.eINSTANCE.createTaggedValueReferenceChange();
@@ -107,6 +137,13 @@ public class DiffElementExtensionBuilder extends DiffSwitch<AbstractDiffExtensio
 	}
 
 
+	/**
+	 * Inits the tagged value diff.
+	 *
+	 * @param newElement the new element
+	 * @param attributeChange the attribute change
+	 * @return the tagged value change
+	 */
 	protected TaggedValueChange initTaggedValueDiff(TaggedValueChange newElement, AttributeChange attributeChange) {
 		newElement.setLeftElement(attributeChange.getLeftElement());
 		newElement.setRightElement(attributeChange.getRightElement());
