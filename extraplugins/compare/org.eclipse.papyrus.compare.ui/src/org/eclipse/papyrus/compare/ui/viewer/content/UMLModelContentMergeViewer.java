@@ -106,7 +106,7 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 
 		final ActionContributionItem showAllPropertiesContribution = new ActionContributionItem(myShowAllProperties);
 		showAllPropertiesContribution.setVisible(true);
-		tbm.appendToGroup(VIEWER_SETTINGS_GROUP, showAllPropertiesContribution); //$NON-NLS-1$
+		tbm.appendToGroup(VIEWER_SETTINGS_GROUP, showAllPropertiesContribution);
 	}
 
 	/**
