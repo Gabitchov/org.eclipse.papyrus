@@ -44,6 +44,7 @@ import org.eclipse.papyrus.compare.diff.extension.UMLStyledStructureLabelProvide
 import org.eclipse.papyrus.compare.element.ElementContentDiffEngine;
 import org.eclipse.papyrus.compare.element.ElementContentMatchEngine;
 import org.eclipse.papyrus.compare.ui.Activator;
+import org.eclipse.papyrus.compare.ui.Messages;
 import org.eclipse.papyrus.compare.ui.PapyrusLabelProvider;
 import org.eclipse.papyrus.compare.ui.viewer.content.ElementContentMergeContentProvider;
 import org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewer;
