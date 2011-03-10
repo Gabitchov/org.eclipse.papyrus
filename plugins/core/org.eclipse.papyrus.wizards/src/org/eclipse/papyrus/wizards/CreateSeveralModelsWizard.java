@@ -72,7 +72,7 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection, String categoryId) {
 		NewModelFilePage newPage =  new NewModelFilePage(createModelFilePageId(categoryId), selection);
 		newPage.setWizard(this);
-		newPage.setDescription(Messages.bind("Create a new model for {0} category", categoryId));
+		newPage.setDescription(Messages.bind(Messages.CreateSeveralModelsWizard_new_model_file_page_title, categoryId));
 		return newPage;
 	}
 
@@ -131,7 +131,7 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 	protected IFile createNewModelFile(String category) {
 		NewModelFilePage newModelFilePage = myCategory2modelFilePageMap.get(category);
 		if (newModelFilePage == null) {
-			Activator.log.error(Messages.bind("Cannot initiate NewModelFilePage for {0}", category), new Exception());
+			Activator.log.error(Messages.bind(Messages.CreateSeveralModelsWizard_cannot_initiate_page, category), new Exception());
 			return null;
 		}
 		return newModelFilePage.createNewFile();
