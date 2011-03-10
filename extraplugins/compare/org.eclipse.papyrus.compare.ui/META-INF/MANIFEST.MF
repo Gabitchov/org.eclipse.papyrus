@@ -1,25 +1,21 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: UML Compare UI
-Bundle-SymbolicName: org.eclipse.papyrus.compare.ui
+Bundle-SymbolicName: org.eclipse.papyrus.compare.ui;singleton:=true
 Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.compare.ui.Activator
 Bundle-Vendor: CEA LIST
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
+Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.compare;bundle-version="3.5.200",
- org.eclipse.emf.ecore;bundle-version="2.7.0",
  org.eclipse.papyrus.compare;bundle-version="0.7.1",
  org.eclipse.emf.compare.diff;bundle-version="1.1.1",
  org.eclipse.emf.compare;bundle-version="1.1.1",
  org.eclipse.emf.compare.ui;bundle-version="1.1.1",
  org.eclipse.emf.compare.match;bundle-version="1.1.1",
- org.eclipse.emf.edit;bundle-version="2.7.0",
- org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser.custom;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser.custom.core;bundle-version="0.1.0",
+ org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
  org.eclipse.team.ui;bundle-version="3.5.200",
- org.eclipse.uml2.uml;bundle-version="3.1.100",
  org.eclipse.uml2.uml.edit;bundle-version="3.1.100",
  org.eclipse.emf.edit.ui;bundle-version="2.6.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
