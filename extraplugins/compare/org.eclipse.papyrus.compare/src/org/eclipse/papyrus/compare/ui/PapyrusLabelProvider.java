@@ -34,6 +34,7 @@ import org.eclipse.swt.graphics.Image;
 /**
  * PapyrusLabelProvider provides the same labels and icons as one can find in the Model Explorer.
  */
+// Not placed in the UI plugin because it is used in the subclasses of AbstractDiffExtension, in getText() method 
 public class PapyrusLabelProvider extends CustomizableModelLabelProvider {
 
 
