@@ -19,8 +19,17 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Composite;
 
 
+/**
+ * The Class UMLModelContentMergeViewerCreator.
+ */
 public class UMLModelContentMergeViewerCreator implements IViewerCreator {
+	
 	/**
+	 * Creates the viewer.
+	 *
+	 * @param parent the parent
+	 * @param config the config
+	 * @return the viewer
 	 * {@inheritDoc}
 	 */
 	public Viewer createViewer(Composite parent, CompareConfiguration config) {

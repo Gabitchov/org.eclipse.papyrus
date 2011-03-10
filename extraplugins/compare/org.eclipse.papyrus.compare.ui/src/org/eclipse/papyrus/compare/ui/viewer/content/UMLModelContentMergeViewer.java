@@ -33,27 +33,47 @@ import org.eclipse.papyrus.compare.ui.viewer.content.part.UMLModelContentMergeTa
 import org.eclipse.swt.widgets.Composite;
 
 
+/**
+ * The Class UMLModelContentMergeViewer.
+ */
 public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 
+	/** The Constant VIEWER_SETTINGS_GROUP. */
 	private static final String VIEWER_SETTINGS_GROUP = "viewer";//$NON-NLS-1$
 	
+	/** The Constant SHOW_ALL_PRORPERTIES_IMAGE_PATH. */
 	private static final String SHOW_ALL_PRORPERTIES_IMAGE_PATH = "/icons/show_all_properties.gif"; //$NON-NLS-1$
 
+	/** The my show all properties. */
 	private IAction myShowAllProperties;
 
+	/** The my property tab selection listener. */
 	private ICompareEditorPartListener myPropertyTabSelectionListener;
 	
+	/** The my left part. */
 	private UMLModelContentMergeTabFolder myLeftPart;
 
+	/**
+	 * Instantiates a new uML model content merge viewer.
+	 *
+	 * @param parent the parent
+	 * @param config the config
+	 */
 	public UMLModelContentMergeViewer(Composite parent, CompareConfiguration config) {
 		super(parent, config);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer#createModelContentMergeTabFolder(org.eclipse.swt.widgets.Composite, int)
+	 */
 	@Override
 	protected ModelContentMergeTabFolder createModelContentMergeTabFolder(Composite composite, int side) {
 		return new UMLModelContentMergeTabFolder(this, composite, side);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer#createControls(org.eclipse.swt.widgets.Composite)
+	 */
 	@Override
 	protected void createControls(Composite composite) {
 		super.createControls(composite);
@@ -64,6 +84,9 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 		myLeftPart = (UMLModelContentMergeTabFolder)leftPart;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer#createToolItems(org.eclipse.jface.action.ToolBarManager)
+	 */
 	@Override
 	protected void createToolItems(ToolBarManager tbm) {
 		super.createToolItems(tbm);
@@ -86,10 +109,18 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 		tbm.appendToGroup(VIEWER_SETTINGS_GROUP, showAllPropertiesContribution); //$NON-NLS-1$
 	}
 
+	/**
+	 * Show all properties.
+	 */
 	protected void showAllProperties() {
 		setSelection(new ArrayList<DiffElement>(currentSelection));
 	}
 
+	/**
+	 * Property tab selected.
+	 *
+	 * @param isActive the is active
+	 */
 	protected void propertyTabSelected(boolean isActive) {
 		if(isActive) {
 			myShowAllProperties.setEnabled(true);
@@ -98,31 +129,58 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 		}
 	}
 
+	/**
+	 * Checks if is property tab.
+	 *
+	 * @param index the index
+	 * @return true, if is property tab
+	 */
 	private boolean isPropertyTab(int index) {
 		return myLeftPart.isPropertyTab(index);
 	}
 	
+	/**
+	 * Checks if is show all properties.
+	 *
+	 * @return true, if is show all properties
+	 */
 	public boolean isShowAllProperties() {
 		return myShowAllProperties.isChecked();
 	}
 	
+	/**
+	 * Gets the current selection.
+	 *
+	 * @return the current selection
+	 */
 	public List<DiffElement> getCurrentSelection() {
 		return currentSelection;
 	}
 
 	/**
-	 * Bug 338414 - [UML Compare] Filter only changes properties in the Merge Property Viewer
+	 * Bug 338414 - [UML Compare] Filter only changes properties in the Merge Property Viewer.
+	 *
+	 * @see PropertyTabSelectionEvent
 	 */
 	private class PropertyTabSelectionListener implements ICompareEditorPartListener {
 
+		/* (non-Javadoc)
+		 * @see org.eclipse.emf.compare.ui.ICompareEditorPartListener#selectedTabChanged(int)
+		 */
 		public void selectedTabChanged(int newIndex) {
 			UMLModelContentMergeViewer.this.propertyTabSelected(isPropertyTab(newIndex));
 		}
 
+		/* (non-Javadoc)
+		 * @see org.eclipse.emf.compare.ui.ICompareEditorPartListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
+		 */
 		public void selectionChanged(SelectionChangedEvent event) {
 			// do nothing
 		}
 
+		/* (non-Javadoc)
+		 * @see org.eclipse.emf.compare.ui.ICompareEditorPartListener#updateCenter()
+		 */
 		public void updateCenter() {
 			// do nothing
 		}
