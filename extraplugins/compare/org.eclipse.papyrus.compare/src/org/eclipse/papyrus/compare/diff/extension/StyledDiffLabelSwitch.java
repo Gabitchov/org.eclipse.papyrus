@@ -23,6 +23,7 @@ import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.StyledString;
+import org.eclipse.papyrus.compare.Messages;
 import org.eclipse.papyrus.compare.StyledMessageFormat;
 import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.AddStereotypeApplication;
