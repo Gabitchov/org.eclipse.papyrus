@@ -24,9 +24,20 @@ import org.eclipse.papyrus.wizards.pages.SelectDiagramCategoryPage;
  */
 public class NewPapyrusProjectWithMultiModelsWizard extends NewPapyrusProjectWizard {
 
+	private boolean myDoNotCreateModelForNoDiagrams;
+	
 	/** The Constant WIZARD_ID. */
 	public static final String WIZARD_ID = "org.eclipse.papyrus.wizards.1createproject.several";
 
+	
+	public NewPapyrusProjectWithMultiModelsWizard() {
+		this(false);
+	}
+
+	public NewPapyrusProjectWithMultiModelsWizard(boolean doNotCreateModelForNoDiagrams) {
+		myDoNotCreateModelForNoDiagrams = doNotCreateModelForNoDiagrams;
+	}
+	
 	@Override
 	protected SelectDiagramCategoryPage createSelectDiagramCategoryPage() {
 		return new SelectDiagramCategoryPage(true);
@@ -48,6 +59,10 @@ public class NewPapyrusProjectWithMultiModelsWizard extends NewPapyrusProjectWiz
 			return false;
 		}
 		for (String category: getDiagramCategoryIds()) {
+			if (myDoNotCreateModelForNoDiagrams && getDiagramKindsFor(category).isEmpty()){
+				// don't create model
+				continue;
+			}
 			final IFile newFile = createNewModelFile(category);
 			DiResourceSet diResourceSet = new DiResourceSet();
 			createAndOpenPapyrusModel(diResourceSet, newFile, category);
