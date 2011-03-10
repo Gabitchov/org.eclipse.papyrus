@@ -320,7 +320,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		return diResourceSet.getTransactionalEditingDomain().getCommandStack();
 	}
 
-	protected final Map<String, DiagramCategoryDescriptor> getDiagramCategoryMap() {
+	protected Map<String, DiagramCategoryDescriptor> getDiagramCategoryMap() {
 		return DiagramCategoryRegistry.getInstance().getDiagramCategoryMap();
 	}
 
