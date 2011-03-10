@@ -65,12 +65,12 @@ public class CompareTwoElementsAction extends TeamAction {
 		EObject left = getElementFor(selectedElements[0]);
 		EObject right = getElementFor(selectedElements[1]);
 		if(left == null) {
-			Activator.logInfo("Cannot compare elements: left element is null");
+			Activator.logInfo(Messages.CompareTwoElementsAction_left_element_is_null);
 			return;
 		}
 
 		if(right == null) {
-			Activator.logInfo("Cannot compare elements: right element is null");
+			Activator.logInfo(Messages.CompareTwoElementsAction_right_element_is_null);
 			return;
 		}
 

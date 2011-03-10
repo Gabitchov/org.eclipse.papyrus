@@ -68,7 +68,7 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 	protected void createToolItems(ToolBarManager tbm) {
 		super.createToolItems(tbm);
 		tbm.add(new Separator(VIEWER_SETTINGS_GROUP));
-		myShowAllProperties = new Action("Show All Properties", IAction.AS_CHECK_BOX) {
+		myShowAllProperties = new Action(Messages.UMLModelContentMergeViewer_action_show_all_properties_text, IAction.AS_CHECK_BOX) {
 
 			@Override
 			public void run() {
@@ -78,7 +78,7 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 		boolean isEnabled = isPropertyTab(myLeftPart.getSelectedTab());
 		myShowAllProperties.setEnabled(isEnabled);
 		myShowAllProperties.setEnabled(false);
-		myShowAllProperties.setToolTipText("Show All Properties of the Element");
+		myShowAllProperties.setToolTipText(Messages.UMLModelContentMergeViewer_action_show_all_properties_tooltip);
 		myShowAllProperties.setImageDescriptor(ImageDescriptor.createFromImage(Activator.getImage(SHOW_ALL_PRORPERTIES_IMAGE_PATH)));
 
 		final ActionContributionItem showAllPropertiesContribution = new ActionContributionItem(myShowAllProperties);
