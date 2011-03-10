@@ -13,8 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.compare;
 
-import java.text.MessageFormat;
-
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.StyledString.Styler;
 
@@ -27,7 +25,7 @@ public class StyledMessageFormat {
 
 	public static StyledString format(String pattern, String... args) {
 		StyledString styledString = new StyledString();
-		styledString.append(MessageFormat.format(pattern, (Object[])args), ELEMENT_STYLER);
+		styledString.append(Messages.bind(pattern, (Object[])args), ELEMENT_STYLER);
 		int currInd = 0;
 		int gap = 0;
 		for(int i = 0; i < args.length; i++) {
