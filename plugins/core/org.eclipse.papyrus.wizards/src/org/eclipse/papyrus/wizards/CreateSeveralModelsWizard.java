@@ -119,7 +119,7 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 				Activator.log.error("Cannot initiate NewModelFilePage for " + category, new Exception());
 				continue;
 			}
-			final IFile newFile = newModelFilePage.createNewFile();
+			final IFile newFile = createNewModelFile(category);
 			DiResourceSet diResourceSet = new DiResourceSet();
 			String categoryId = getCategoryForPage(newModelFilePage.getName());
 			createAndOpenPapyrusModel(diResourceSet, newFile, categoryId);
