@@ -159,6 +159,9 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 		combo.addListener(SWT.Selection, this);
 		combo.addListener(SWT.KeyDown, this);
 
+		//the combo is created each time that we change table!
+		combo.setEnabled(getDiagramEditPart() != null);
+
 		refreshCombo();
 		parent.pack();
 	}
@@ -267,7 +270,7 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 	 * refresh the combo status
 	 */
 	public void refreshCombo() {
-		if(combo != null) {
+		if(combo != null && combo.isEnabled()) {
 			ZoomManager zoomManager = getZoomManager();
 			if(getZoomManager() != null) {
 				combo.setItems(getZoomLevelsAsText(zoomManager));
@@ -441,15 +444,15 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 	 */
 	protected void refreshStatusCombo(IWorkbenchPart part) {
 		ZoomManager zoomManager = (ZoomManager)part.getAdapter(ZoomManager.class);
-		if(!combo.isDisposed()) {
+
+		if(combo != null && !combo.isDisposed()) {
 			if(zoomManager == null) {
 				combo.setEnabled(false);
 			} else {
-				combo.setEnabled(true);
+				combo.setEnabled(true && getDiagramEditPart() != null);
 				refreshCombo();
 			}
 		}
-
 	}
 
 	/**

@@ -23,6 +23,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.editparts.ZoomManager;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.actions.ZoomContributionItem;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
@@ -118,6 +119,12 @@ public class ZoomAction extends AbstractParametricAction {//extends Action
 	 *         <code>true</code> if the zoomText is a correct value
 	 */
 	protected boolean isValid(String zoomText) {
+		//we test if we are in a diagram
+		DiagramEditPart diagramEP = getDiagramEditPart();
+		if(diagramEP == null) {
+			return false;
+		}
+
 		if(zoomText.equals(ZoomAction.ZOOM_IN_PARAMETER)) {
 			return true;
 		} else if(zoomText.equals(ZOOM_OUT_PARAMETER)) {
