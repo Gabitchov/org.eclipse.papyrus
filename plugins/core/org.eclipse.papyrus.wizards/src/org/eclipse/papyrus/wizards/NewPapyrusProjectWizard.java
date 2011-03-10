@@ -97,7 +97,7 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 		return super.performFinish();
 	}
 
-	private IProject createNewProject() throws CoreException {
+	protected IProject createNewProject() throws CoreException {
 		// get a project handle
 		final IProject project = myNewProjectPage.getProjectHandle();
 

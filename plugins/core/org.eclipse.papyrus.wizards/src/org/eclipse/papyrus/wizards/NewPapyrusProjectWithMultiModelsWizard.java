@@ -13,70 +13,24 @@
  *****************************************************************************/
 package org.eclipse.papyrus.wizards;
 
-import java.net.URI;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IProjectDescription;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.SubProgressMonitor;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.wizards.pages.NewModelFilePage;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
+import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.wizards.pages.SelectDiagramCategoryPage;
 
 /**
  * The Wizard creates a new Project and a several Papyrus Models of different type inside it
  */
-public class NewPapyrusProjectWithMultiModelsWizard extends CreateSeveralModelsWizard {
+public class NewPapyrusProjectWithMultiModelsWizard extends NewPapyrusProjectWizard {
 
 	/** The Constant WIZARD_ID. */
 	public static final String WIZARD_ID = "org.eclipse.papyrus.wizards.1createproject.several";
 
-	/** The new project page. */
-	private WizardNewProjectCreationPage myNewProjectPage;
-
-	/** The initial project name. */
-	private String initialProjectName;
-
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		super.init(workbench, selection);
-		setWindowTitle("New Papyrus Project");
-		myNewProjectPage = createNewProjectCreationPage();
+	protected SelectDiagramCategoryPage createSelectDiagramCategoryPage() {
+		return new SelectDiagramCategoryPage(true);
 	}
-
-	protected WizardNewProjectCreationPage createNewProjectCreationPage() {
-		WizardNewProjectCreationPage newProjectPage = new WizardNewProjectCreationPage("papyrusNewProjectPage");
-		newProjectPage.setInitialProjectName(initialProjectName);
-		newProjectPage.setTitle("Papyrus Project");
-		newProjectPage.setDescription("Create a New Papyrus Project");
-		return newProjectPage;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void addPages() {
-		addPage(myNewProjectPage);
-		super.addPages();
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
-		return null;
-	}
-	
 
 	/**
 	 * {@inheritDoc}
@@ -94,56 +48,15 @@ public class NewPapyrusProjectWithMultiModelsWizard extends CreateSeveralModelsW
 		if (newProjectHandle == null) {
 			return false;
 		}
-		return super.performFinish();
-	}
-
-	private IProject createNewProject() throws CoreException {
-		// get a project handle
-		final IProject project = myNewProjectPage.getProjectHandle();
-
-		// get a project descriptor
-		URI projectLocationURI = null;
-		if (!myNewProjectPage.useDefaults()) {
-			projectLocationURI = myNewProjectPage.getLocationURI();
+		for (String category: getDiagramCategoryIds()) {
+			final IFile newFile = createNewModelFile(category);
+			DiResourceSet diResourceSet = new DiResourceSet();
+			createAndOpenPapyrusModel(diResourceSet, newFile, category);
 		}
 
-        IProjectDescription projectDescription = null;
-        NullProgressMonitor progressMonitor = new NullProgressMonitor();
-        if (!project.exists())
-        {
-          projectDescription = ResourcesPlugin.getWorkspace().newProjectDescription(project.getName());
-          if (projectLocationURI != null)
-          {
-            projectDescription.setLocationURI(projectLocationURI);
-          }
-          project.create(projectDescription, new SubProgressMonitor(progressMonitor, 1));
-          project.open(new SubProgressMonitor(progressMonitor, 1));
-        }
-        else 
-        {
-          projectDescription = project.getDescription();
-          project.open(new SubProgressMonitor(progressMonitor, 1));
-        }
-
-        return project;
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected IFile createNewModelFile(String categoryId) {
-		IPath newFilePath = myNewProjectPage.getProjectHandle().getFullPath().append(NewModelFilePage.DEFAULT_NAME + "." + getDiagramFileExtension(categoryId));
-		return ResourcesPlugin.getWorkspace().getRoot().getFile(newFilePath);
+		saveDiagramCategorySettings();
+		saveDiagramKindSettings();
+		return true;
 	}
 
-	/**
-	 * Sets the initial project name.
-	 * 
-	 * @param initialProjectName
-	 *        the new initial project name
-	 */
-	public void setInitialProjectName(String initialProjectName) {
-		this.initialProjectName = initialProjectName;
-	}
 }
