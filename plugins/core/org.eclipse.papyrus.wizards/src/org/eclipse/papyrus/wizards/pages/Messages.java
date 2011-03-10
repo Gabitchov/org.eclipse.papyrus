@@ -10,6 +10,10 @@ public class Messages extends NLS {
 
 	public static String NewModelFilePage_default_diagram_name;
 
+	public static String NewModelFilePage_diagram_file_was_renamed;
+
+	public static String NewModelFilePage_new_diagram_category_needs_specific_extension;
+
 	public static String NewModelFilePage_page_desc;
 
 	public static String SelectDiagramCategoryPage_diagram_language_group;

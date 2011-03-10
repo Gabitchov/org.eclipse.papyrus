@@ -74,8 +74,8 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 			setFileName(newFileName);
 			setFileExtension(newExtension);
 
-			String message1 = "The new diagram category requires a specific diagram file extension. ";
-			String message2 = Messages.bind("Thus, the diagram file has been renamed from {0} to {1} ", oldFileName, newFileName);
+			String message1 = Messages.NewModelFilePage_new_diagram_category_needs_specific_extension;
+			String message2 = Messages.bind(Messages.NewModelFilePage_diagram_file_was_renamed, oldFileName, newFileName);
 			String message = message1 + message2;
 			Status resultStatus = new Status(Status.INFO, Activator.PLUGIN_ID, message);
 

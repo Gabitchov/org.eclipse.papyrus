@@ -207,7 +207,7 @@ public class InitModelWizard extends CreateModelWizard {
 				return false;
 			}
 			if(!myDiagramFileName.equals(getFileName())) {
-				setErrorMessage(Messages.bind("Diagram file name should be the same as domain model file name ({0})", myDiagramFileName));
+				setErrorMessage(Messages.bind(Messages.InitModelWizard_diagram_name_is_different_from_domain_model, myDiagramFileName));
 				return false;
 			}
 			return true;

@@ -8,6 +8,8 @@ public class Messages extends NLS {
 
 	public static String CreateModelWizard_new_papyrus_model_title;
 
+	public static String InitModelWizard_diagram_name_is_different_from_domain_model;
+
 	public static String InitModelWizard_init_papyrus_diagram;
 
 	public static String InitModelWizard_init_papyrus_model;
