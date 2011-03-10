@@ -87,8 +87,7 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 		try {
 			newProjectHandle = createNewProject();
 		} catch (CoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Activator.log.error("Problems during opening of the project", e);
 			return false;
 		}
 		if (newProjectHandle == null) {
