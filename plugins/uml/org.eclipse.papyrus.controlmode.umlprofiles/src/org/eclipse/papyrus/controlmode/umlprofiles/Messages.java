@@ -36,6 +36,9 @@ public class Messages extends NLS {
 	/** Error message when trying to delete a duplicated profile application */
 	public static String warning_cannot_delete_duplicated;
 
+	/** Error message when trying to delete a duplicated profile application */
+	public static String warning_cannot_delete_duplicated_alt;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

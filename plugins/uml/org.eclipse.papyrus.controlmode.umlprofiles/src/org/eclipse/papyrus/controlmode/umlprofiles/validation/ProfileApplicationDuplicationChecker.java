@@ -198,14 +198,18 @@ public class ProfileApplicationDuplicationChecker extends AbstractModelConstrain
 		//Forbid direct removal of a duplicated profile application (with eAnnotation)
 		if(ProfileApplicationHelper.isDuplicatedProfileApplication(profileAppl)) {
 			Package parentPack = ProfileApplicationHelper.getParentPackageWithProfile(packageElement, profile, true);
+			// restore stereotype application when it is called from parent intermediate package
+			ProfileApplicationHelper.duplicateProfileApplication(packageElement, profile);
+			String msg;
 			if(parentPack != null) {
-				// restore stereotype application when it is called from parent intermediate package
-				ProfileApplicationHelper.duplicateProfileApplication(packageElement, profile);
-				String msg = NLS.bind(Messages.warning_cannot_delete_duplicated, EMFCoreUtil.getQualifiedName(packageElement, true), EMFCoreUtil.getQualifiedName(parentPack, true));
-				NotificationBuilder notifBuild = NotificationBuilder.createAsyncPopup(msg);
-				notifBuild.run();
-				return true;
+				msg = NLS.bind(Messages.warning_cannot_delete_duplicated, EMFCoreUtil.getQualifiedName(packageElement, true), EMFCoreUtil.getQualifiedName(parentPack, true));
+			} else {
+				// parent package can not be reached as it is in a different maybe not accessible resource (working on controlled resource)
+				msg = NLS.bind(Messages.warning_cannot_delete_duplicated_alt, EMFCoreUtil.getQualifiedName(packageElement, true));
 			}
+			NotificationBuilder notifBuild = NotificationBuilder.createAsyncPopup(msg);
+			notifBuild.run();
+			return true;
 		}
 		//Inspect controlled sub-packages
 		Set<Package> controlledPack = getControlledSubPackages(packageElement);
