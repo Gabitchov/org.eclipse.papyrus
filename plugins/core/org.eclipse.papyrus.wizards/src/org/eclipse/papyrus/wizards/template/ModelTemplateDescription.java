@@ -84,7 +84,7 @@ public class ModelTemplateDescription {
 	 * @return the file name
 	 */
 	public String getFileName() {
-		String[] pathParts = path.split("/");
+		String[] pathParts = path.split("/"); //$NON-NLS-1$
 		return pathParts[pathParts.length - 1];
 	}
 

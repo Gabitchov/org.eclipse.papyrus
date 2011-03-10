@@ -56,7 +56,7 @@ import org.eclipse.swt.widgets.Text;
 public class SelectDiagramKindPage extends WizardPage {
 
 	/** The Constant PAGE_ID. */
-	public static final String PAGE_ID = "SelectDiagramKind";
+	public static final String PAGE_ID = "SelectDiagramKind"; //$NON-NLS-1$
 
 	/**
 	 * The diagram name text field
@@ -94,8 +94,8 @@ public class SelectDiagramKindPage extends WizardPage {
 	 */
 	public SelectDiagramKindPage(boolean allowTemplates, CategoryProvider categoryProvider, ICreationCommandRegistry creationCommandRegistry) {
 		super(PAGE_ID);
-		setTitle("Initialization information");
-		setDescription("Select name and kind of the diagram");
+		setTitle(Messages.SelectDiagramKindPage_page_title);
+		setDescription(Messages.SelectDiagramKindPage_page_desc);
 		this.allowTemplates = allowTemplates;
 		myCategoryProvider = categoryProvider;
 		myCreationCommandRegistry = creationCommandRegistry;
@@ -249,7 +249,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 
 	private void createModelTemplateComposite(Composite composite) {
-		Group group = createGroup(composite, "You can load a template:");
+		Group group = createGroup(composite, Messages.SelectDiagramKindPage_load_template_group);
 		selectTemplateComposite = new SelectModelTemplateComposite(group);
 	}
 
@@ -260,7 +260,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 *        the composite
 	 */
 	private void createDiagramKindForm(Composite composite) {
-		Group group = createGroup(composite, "Select a Diagram Kind:");
+		Group group = createGroup(composite, Messages.SelectDiagramKindPage_select_kind_group);
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		group.setData(data);
 
@@ -332,7 +332,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 *        the composite
 	 */
 	private void createNameForm(Composite composite) {
-		Group group = createGroup(composite, "Diagram Name:");
+		Group group = createGroup(composite, Messages.SelectDiagramKindPage_diagram_name_group);
 
 		nameText = new Text(group, SWT.BORDER);
 		GridData data = new GridData(GridData.FILL_HORIZONTAL);
@@ -356,8 +356,8 @@ public class SelectDiagramKindPage extends WizardPage {
 		plate.setLayoutData(data);
 
 		rememberCurrentSelection = new Button(plate, SWT.CHECK);
-		rememberCurrentSelection.setText("Remember current selection");
-		rememberCurrentSelection.setToolTipText("The current selection will be used when you open the wizard next time");
+		rememberCurrentSelection.setText(Messages.SelectDiagramKindPage_remember_current_selection_text);
+		rememberCurrentSelection.setToolTipText(Messages.SelectDiagramKindPage_remember_current_selection_tooltip);
 
 		rememberCurrentSelection.setSelection(mySettingsHelper.rememberCurrentSelection(getDialogSettings()));
 	}
@@ -369,7 +369,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 */
 	private boolean validatePage() {
 		if(getDiagramName() == null || getDiagramName().length() == 0) {
-			updateStatus("The diagram name should not be empty.");
+			updateStatus(Messages.SelectDiagramKindPage_diagram_name_is_empty);
 			return false;
 		}
 		//		if(getCreationCommands().isEmpty()) {

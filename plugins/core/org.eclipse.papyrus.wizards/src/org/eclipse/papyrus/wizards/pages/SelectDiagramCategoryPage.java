@@ -52,10 +52,10 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	private final List<String> mySelectedDiagramCategoryIds = new LinkedList<String>();
 
 	/** The Constant PAGE_ID. */
-	public static final String PAGE_ID = "SelectDiagramCategory";
+	public static final String PAGE_ID = "SelectDiagramCategory"; //$NON-NLS-1$
 
 	/** The Constant DEFAULT_EXTENSION. */
-	public static final String DEFAULT_EXTENSION = "uml";
+	public static final String DEFAULT_EXTENSION = "uml"; //$NON-NLS-1$
 
 	private final boolean myAllowSeveralCategories;
 
@@ -74,7 +74,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	public SelectDiagramCategoryPage(boolean allowSeveralCategories) {
 		super(PAGE_ID);
 		myAllowSeveralCategories = allowSeveralCategories;
-		setTitle("Select language of the diagram");
+		setTitle(Messages.SelectDiagramCategoryPage_select_language);
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		setErrorMessage(null);
 		String[] categories = getDiagramCategories();
 		if(categories == null || categories.length == 0) {
-			setErrorMessage("Please select at least one category");
+			setErrorMessage(Messages.SelectDiagramCategoryPage_select_one_category);
 			return false;
 		}
 		for(String newCategory : categories) {
@@ -198,7 +198,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 *        the composite
 	 */
 	private void createDiagramCategoryForm(Composite composite) {
-		Group group = createGroup(composite, "Diagram Language:");
+		Group group = createGroup(composite, Messages.SelectDiagramCategoryPage_diagram_language_group);
 
 		SelectionListener listener = new SelectionListener() {
 

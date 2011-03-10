@@ -31,16 +31,16 @@ import org.eclipse.jface.viewers.Viewer;
 public class ModelTemplatesContentProvider implements IStructuredContentProvider {
 
 	/** The Constant EXTENSION_POINT_ID. */
-	private static final String EXTENSION_POINT_ID = "org.eclipse.papyrus.wizards.templates";
+	private static final String EXTENSION_POINT_ID = "org.eclipse.papyrus.wizards.templates"; //$NON-NLS-1$
 
 	/** The Constant ATTRIBUTE_NAME. */
-	private static final String ATTRIBUTE_NAME = "name";
+	private static final String ATTRIBUTE_NAME = "name"; //$NON-NLS-1$
 
 	/** The Constant ATTRIBUTE_FILE. */
-	private static final String ATTRIBUTE_FILE = "file";
+	private static final String ATTRIBUTE_FILE = "file"; //$NON-NLS-1$
 
 	/** The Constant ATTRIBUTE_LANGUAGE. */
-	private static final String ATTRIBUTE_LANGUAGE = "language";
+	private static final String ATTRIBUTE_LANGUAGE = "language"; //$NON-NLS-1$
 	
 	private ModelTemplateDescription[] myTemplateDescriptions;
 

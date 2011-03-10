@@ -29,13 +29,13 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 public class NewModelFilePage extends WizardNewFileCreationPage {
 
 	/** The Constant DEFAULT_NAME. */
-	public static final String DEFAULT_NAME = "model";
+	public static final String DEFAULT_NAME = Messages.NewModelFilePage_default_diagram_name;
 
 	/** The Constant DIAGRAM_EXTENSION. */
-	public static final String DEFAULT_DIAGRAM_EXTENSION = "di";
+	public static final String DEFAULT_DIAGRAM_EXTENSION = "di"; //$NON-NLS-1$
 
 	/** The Constant PAGE_ID. */
-	public static final String PAGE_ID = "NewPapyrusModel";
+	public static final String PAGE_ID = "NewPapyrusModel"; //$NON-NLS-1$
 
 	/**
 	 * Instantiates a new new model file page.
@@ -49,8 +49,8 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 
 	public NewModelFilePage(String pageId, IStructuredSelection selection) {
 		super(pageId, selection);
-		setTitle("Create a new Papyrus model");
-		setDescription("Create a new empty Papyrus model");
+		setTitle(Messages.NewModelFilePage_3);
+		setDescription(Messages.NewModelFilePage_page_desc);
 		setFileExtension(DEFAULT_DIAGRAM_EXTENSION);
 	}
 
@@ -100,7 +100,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	 */
 	protected static String getUniqueFileName(IPath containerFullPath, String fileName, String extension) {
 		if(extension == null) {
-			extension = "";
+			extension = ""; //$NON-NLS-1$
 		}
 
 		if(containerFullPath == null) {
@@ -110,8 +110,8 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 			fileName = DEFAULT_NAME;
 		}
 
-		if(fileName.contains(".")) {
-			fileName = fileName.substring(0, fileName.indexOf("."));
+		if(fileName.contains(".")) { //$NON-NLS-1$
+			fileName = fileName.substring(0, fileName.indexOf(".")); //$NON-NLS-1$
 		}
 
 		IPath filePath = containerFullPath.append(fileName);
