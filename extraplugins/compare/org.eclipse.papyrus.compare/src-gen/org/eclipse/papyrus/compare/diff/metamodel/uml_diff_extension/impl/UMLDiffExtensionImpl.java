@@ -15,10 +15,10 @@ import org.eclipse.emf.compare.diff.merge.IMerger;
 import org.eclipse.emf.compare.diff.metamodel.impl.AbstractDiffExtensionImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.papyrus.compare.diff.extension.UMLStyledStructureLabelProvider;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffExtension;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPackage;
+import org.eclipse.papyrus.compare.ui.PapyrusLabelProvider;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,27 +26,29 @@ import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPack
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class UMLDiffExtensionImpl extends AbstractDiffExtensionImpl implements UMLDiffExtension {
-	
+
 	/**
 	 * @NOT-generated
 	 */
-//	private static ILabelProvider labelProvider= new UMLStyledStructureLabelProvider(new PapyrusLabelProvider()) {
-//		public String getText(Object element) {
-//			String result = super.getText(element);
-//			if (result == null) {
-//				return "<LABEL NOT FOUND>";
-//			}
-//			return result;
-//		};
-//	};
+	private ILabelProvider labelProvider = new UMLStyledStructureLabelProvider(new PapyrusLabelProvider()) {
+			public String getText(Object element) {
+				String result = super.getText(element);
+				if (result == null) {
+					return "<LABEL NOT FOUND>";
+				}
+				return result;
+			};
+		};
+
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected UMLDiffExtensionImpl() {
@@ -56,28 +58,30 @@ public abstract class UMLDiffExtensionImpl extends AbstractDiffExtensionImpl imp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDiffPackage.Literals.UML_DIFF_EXTENSION;
 	}
-	
+
 	/**
 	 * 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @NOT-generated
 	 */
 	@Override
 	public String getText() {
-		return "";
-//		return labelProvider.getText(this);
+		return labelProvider.getText(this);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public IMerger provideMerger() {
