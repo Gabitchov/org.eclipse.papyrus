@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
@@ -126,7 +127,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		DiResourceSet diResourceSet = new DiResourceSet();
+		DiResourceSet diResourceSet = new DiResourceSetExt();
 		String[] diagramCategoryIds = getDiagramCategoryIds();
 		if(diagramCategoryIds.length == 0) {
 			return false;
@@ -332,6 +333,16 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 			}
 		}
 		return Status.OK_STATUS;
+	}
+	
+	// Bug 339504 - [Wizard] NPE when init diagram from an existing model
+	public static class DiResourceSetExt extends DiResourceSet {
+		
+		// open access to protected method to be set in PapyrusModelFromExistingDomainModelCommand
+		@Override
+		public void setFilenameWithoutExtension(IPath filenameWithoutExtension) {
+			super.setFilenameWithoutExtension(filenameWithoutExtension);
+		}
 	}
 
 }

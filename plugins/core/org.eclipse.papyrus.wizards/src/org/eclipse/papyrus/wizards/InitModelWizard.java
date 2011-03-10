@@ -70,7 +70,7 @@ public class InitModelWizard extends CreateModelWizard {
 				public String[] getCurrentCategories() {
 					return getDiagramCategoryIds();
 				}
-				
+
 			}, SelectDiagramKindPage.DEFAULT_CREATION_COMMAND_REGISTRY);
 		};
 		return super.createSelectDiagramKindPage();
@@ -126,8 +126,8 @@ public class InitModelWizard extends CreateModelWizard {
 	@Override
 	protected void createPapyrusModels(DiResourceSet diResourceSet, IFile newFile) {
 		if(isCreateFromExistingDomainModel()) {
-		RecordingCommand command = new PapyrusModelFromExistingDomainModelCommand(diResourceSet, newFile, getRoot());
-		getCommandStack(diResourceSet).execute(command);
+			RecordingCommand command = new PapyrusModelFromExistingDomainModelCommand(diResourceSet, newFile, getRoot());
+			getCommandStack(diResourceSet).execute(command);
 		} else {
 			super.createPapyrusModels(diResourceSet, newFile);
 		}
@@ -163,15 +163,15 @@ public class InitModelWizard extends CreateModelWizard {
 	protected String getDiagramFileName(IFile domainModel) {
 		return domainModel.getLocation().removeFileExtension().lastSegment();
 	}
-	
+
 	@Override
 	protected String getDiagramFileExtension(String diagramCategoryId) {
-		if (isCreateFromExistingDomainModel()) {
+		if(isCreateFromExistingDomainModel()) {
 			return NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION;
 		}
 		return super.getDiagramFileExtension(diagramCategoryId);
 	}
-	
+
 	/**
 	 * Returns the first file from the given selection
 	 */
@@ -183,7 +183,7 @@ public class InitModelWizard extends CreateModelWizard {
 	}
 
 	private EObject getRoot() {
-		if (selectRootElementPage != null) {
+		if(selectRootElementPage != null) {
 			return selectRootElementPage.getModelElement();
 		}
 		return null;

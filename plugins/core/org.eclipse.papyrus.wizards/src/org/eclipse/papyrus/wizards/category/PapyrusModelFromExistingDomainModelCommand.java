@@ -17,11 +17,13 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.resource.IModel;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.notation.NotationModel;
 import org.eclipse.papyrus.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.resource.uml.UmlModel;
+import org.eclipse.papyrus.wizards.CreateModelWizard.DiResourceSetExt;
 
 /**
  * The Class PapyrusModelFromExistingDomainModelCommand.
@@ -45,6 +47,8 @@ public class PapyrusModelFromExistingDomainModelCommand extends RecordingCommand
 		super(diResourceSet.getTransactionalEditingDomain());
 		myDiResourceSet = diResourceSet;
 		myFileNameWithoutExtension = newFile.getFullPath().removeFileExtension();
+		// Bug 339504 - [Wizard] NPE when init diagram from an existing model
+		((DiResourceSetExt)diResourceSet).setFilenameWithoutExtension(myFileNameWithoutExtension);
 		myRoot = root;
 	}
 
