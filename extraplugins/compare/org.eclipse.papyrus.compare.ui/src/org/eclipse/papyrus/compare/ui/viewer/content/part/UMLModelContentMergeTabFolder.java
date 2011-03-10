@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.IContentProvider;
-import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.papyrus.compare.ui.PapyrusLabelProvider;
 import org.eclipse.papyrus.compare.ui.viewer.content.ElementContentMergeContentProvider.RootObject;
 import org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewer;
@@ -32,15 +31,29 @@ import org.eclipse.papyrus.compare.ui.viewer.content.part.property.UMLPropertyCo
 import org.eclipse.swt.widgets.Composite;
 
 
+/**
+ * The Class UMLModelContentMergeTabFolder.
+ */
 public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 
+	/** The my uml viewer. */
 	protected final UMLModelContentMergeViewer myUMLViewer;
 
+	/**
+	 * Instantiates a new uML model content merge tab folder.
+	 *
+	 * @param viewer the viewer
+	 * @param composite the composite
+	 * @param side the side
+	 */
 	public UMLModelContentMergeTabFolder(ModelContentMergeViewer viewer, Composite composite, int side) {
 		super(viewer, composite, side);
 		myUMLViewer = (UMLModelContentMergeViewer)viewer;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder#createModelContentMergeDiffTab(org.eclipse.swt.widgets.Composite)
+	 */
 	@Override
 	protected IModelContentMergeViewerTab createModelContentMergeDiffTab(Composite parent) {
 		UMLModelContentMergeDiffTab diffTab = new UMLModelContentMergeDiffTab(parent, partSide, this);
@@ -50,6 +63,9 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder#createModelContentMergeViewerTab(org.eclipse.swt.widgets.Composite)
+	 */
 	@Override
 	protected IModelContentMergeViewerTab createModelContentMergeViewerTab(Composite parent) {
 		ModelContentMergePropertyTab propertyTab = new ModelContentMergePropertyTab(parent, partSide, this);
@@ -57,6 +73,11 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 		return propertyTab;
 	}
 
+	/**
+	 * Creates the diff tab content provider.
+	 *
+	 * @return the i content provider
+	 */
 	protected IContentProvider createDiffTabContentProvider() {
 		ComposedAdapterFactory adapterFactory = new UMLAdapterFactory();
 		AdapterFactoryContentProvider result = new AdapterFactoryContentProvider(adapterFactory) {
@@ -73,6 +94,9 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder#findMatchFromElement(org.eclipse.emf.ecore.EObject)
+	 */
 	protected EObject findMatchFromElement(EObject element) {
 		EObject matchElement = super.findMatchFromElement(element);
 		if(!myUMLViewer.isShowAllProperties() && matchElement instanceof Match2Elements) {
@@ -81,10 +105,21 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 		return matchElement;
 	}
 
+	/**
+	 * Gets the selected tab.
+	 *
+	 * @return the selected tab
+	 */
 	public int getSelectedTab() {
 		return tabFolder.getSelectionIndex();
 	}
 
+	/**
+	 * Checks if is property tab.
+	 *
+	 * @param index the index
+	 * @return true, if is property tab
+	 */
 	public boolean isPropertyTab(int index) {
 		final IModelContentMergeViewerTab currentTab = tabs.get(index);
 		return (currentTab == getPropertyPart());

@@ -24,8 +24,12 @@ import org.eclipse.uml2.uml.edit.providers.UMLReflectiveItemProviderAdapterFacto
 import org.eclipse.uml2.uml.edit.providers.UMLResourceItemProviderAdapterFactory;
 
 
+/**
+ * A factory for creating UMLAdapter objects.
+ */
 public class UMLAdapterFactory extends ComposedAdapterFactory {
 
+	/** The Constant factories. */
 	private final static List<AdapterFactory> factories = new ArrayList<AdapterFactory>();
 	static {
 		factories.add(new UMLResourceItemProviderAdapterFactory());
@@ -34,6 +38,9 @@ public class UMLAdapterFactory extends ComposedAdapterFactory {
 		factories.add(new UMLReflectiveItemProviderAdapterFactory());
 	}
 
+	/**
+	 * Instantiates a new uML adapter factory.
+	 */
 	public UMLAdapterFactory() {
 		super(factories);
 	}
