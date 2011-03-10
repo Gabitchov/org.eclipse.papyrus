@@ -24,13 +24,31 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 
+/**
+ * The Structure Tab in the Merge Viewer.
+ */
 public class UMLModelContentMergeDiffTab extends ModelContentMergeDiffTab {
 
 
+	/**
+	 * Instantiates a new uML model content merge diff tab.
+	 * 
+	 * @param parentComposite
+	 *        the parent composite
+	 * @param side
+	 *        the side
+	 * @param parentFolder
+	 *        the parent folder
+	 */
 	public UMLModelContentMergeDiffTab(Composite parentComposite, int side, ModelContentMergeTabFolder parentFolder) {
 		super(parentComposite, side, parentFolder);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.emf.compare.ui.viewer.content.part.diff.ModelContentMergeDiffTab#setSelectionToWidget(java.util.List, boolean)
+	 */
 	@Override
 	protected void setSelectionToWidget(List l, boolean reveal) {
 		// tfesenko filter stereotype applications
@@ -46,10 +64,15 @@ public class UMLModelContentMergeDiffTab extends ModelContentMergeDiffTab {
 		super.setSelectionToWidget(result, reveal);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.emf.compare.ui.viewer.content.part.diff.ModelContentMergeDiffTab#setReflectiveInput(java.lang.Object)
+	 */
 	@Override
 	public void setReflectiveInput(Object object) {
 		// tfesenko 336361 - [UML Compare] Compare two elements: show right element as root
-		if (object instanceof EObject) {
+		if(object instanceof EObject) {
 			clearCaches();
 			// tfesenko default implementation sets object.eResource here
 			setInput(object);

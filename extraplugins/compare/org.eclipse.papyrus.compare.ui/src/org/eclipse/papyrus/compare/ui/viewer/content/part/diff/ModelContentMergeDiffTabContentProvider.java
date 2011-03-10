@@ -30,6 +30,9 @@ import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.uml2.uml.Element;
 
 
+/**
+ * ContentProvider for the Structure Tab of the Merge Viewer.
+ */
 public class ModelContentMergeDiffTabContentProvider extends AdapterFactoryContentProvider {
 
 
@@ -44,8 +47,11 @@ public class ModelContentMergeDiffTabContentProvider extends AdapterFactoryConte
 	}
 
 	/**
+	 * Gets the elements.
+	 *
+	 * @param object the object
+	 * @return the elements
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider#getElements(java.lang.Object)
 	 */
 	@SuppressWarnings("unchecked")
@@ -77,6 +83,12 @@ public class ModelContentMergeDiffTabContentProvider extends AdapterFactoryConte
 		return result;
 	}
 
+	/**
+	 * Filter stereotype applications.
+	 *
+	 * @param object the object
+	 * @return the object[]
+	 */
 	private Object[] filterStereotypeApplications(Resource object) {
 		EList<EObject> contents = object.getContents();
 		List<EObject> result = new ArrayList<EObject>();
@@ -90,8 +102,11 @@ public class ModelContentMergeDiffTabContentProvider extends AdapterFactoryConte
 	}
 
 	/**
+	 * Gets the children.
+	 *
+	 * @param object the object
+	 * @return the children
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider#getChildren(java.lang.Object)
 	 */
 	@Override
@@ -106,6 +121,12 @@ public class ModelContentMergeDiffTabContentProvider extends AdapterFactoryConte
 		return result.toArray(new Object[result.size()]);
 	}
 
+	/**
+	 * Gets the stereotype applications.
+	 *
+	 * @param eObject the e object
+	 * @return the stereotype applications
+	 */
 	private List<EObject> getStereotypeApplications(Object eObject) {
 		if(eObject instanceof Element) {
 			return ((Element)eObject).getStereotypeApplications();
@@ -115,8 +136,11 @@ public class ModelContentMergeDiffTabContentProvider extends AdapterFactoryConte
 
 
 	/**
+	 * Checks for children.
+	 *
+	 * @param object the object
+	 * @return true, if successful
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider#hasChildren(java.lang.Object)
 	 */
 	@Override

@@ -26,8 +26,8 @@ import org.eclipse.emf.compare.ui.viewer.content.part.property.PropertyContentPr
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
- * ContentProvider for the Property Tab in the Merge Viewer.
-   Used to filter only changes properties in the Merge Property Viewer (Bug 338414)
+ * ContentProvider for the Property Tab of the Merge Viewer.
+ * Used to filter only changes properties in the Merge Property Viewer (Bug 338414)
  */
 public class UMLPropertyContentProvider extends PropertyContentProvider {
 
