@@ -78,7 +78,7 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		//		String message = "%s change(s) between elements [%s] and [%s]";
 		//		return String.StyledMessageFormat.format(message, subchanges, leftName, rightName);
 
-		return StyledMessageFormat.format("{0} change(s) between elements {1} and {2}", String.valueOf(subchanges), leftName, rightName);
+		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_two_elements_model_text, String.valueOf(subchanges), leftName, rightName);
 
 	}
 
@@ -89,7 +89,7 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		if(UMLCompareUtils.isStereotypeApplication(element)) {
 			elementLabel = getLabelProvider().getText(UMLUtil.getStereotype(element));
 		}
-		return StyledMessageFormat.format("Stereotype {0} has been added", elementLabel);
+		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_add_stereotype_application_text, elementLabel);
 	}
 
 	@Override
@@ -99,7 +99,7 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		if(UMLCompareUtils.isStereotypeApplication(element)) {
 			elementLabel = getLabelProvider().getText(UMLUtil.getStereotype(element));
 		}
-		return StyledMessageFormat.format("Stereotype {0} has been removed", elementLabel);
+		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_remove_stereotype_application_text, elementLabel);
 	}
 
 	@Override
@@ -112,9 +112,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		final String rightValueString = attributeValueToString(rightValue);
 
 		if(object.isRemote()) {
-			return StyledMessageFormat.format("Tagged value {0} : remote = {1}, local = {2}", elementLabel, leftValueString, rightValueString);
+			return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_tagged_value_changed_remote_text, elementLabel, leftValueString, rightValueString);
 		}
-		return StyledMessageFormat.format("Tagged value {0} : {1} -> {2}", attributeLabel, leftValueString, rightValueString);
+		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_tagged_value_changed_text, attributeLabel, leftValueString, rightValueString);
 	}
 
 	@Override
@@ -126,9 +126,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		final String rightValueString = attributeValueToString(rightValue);
 
 		if(object.isRemote()) {
-			return StyledMessageFormat.format("Tagged value {0} has been remotely removed: {1}", elementLabel, rightValueString);
+			return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_tagged_value_left_target_remote_text, elementLabel, rightValueString);
 		}
-		return StyledMessageFormat.format("Tagged value {0} has been added: {1}", attributeLabel, rightValueString);
+		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_tagged_value_left_target_text, attributeLabel, rightValueString);
 	}
 
 	@Override
@@ -139,9 +139,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		final String leftValueString = attributeValueToString(leftValue);
 
 		if(object.isRemote()) {
-			return StyledMessageFormat.format("Tagged value {0} has been remotely added: {1}", elementLabel, leftValueString);
+			return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_tagged_value_right_target_remote_text, elementLabel, leftValueString);
 		}
-		return StyledMessageFormat.format("Tagged value {0} has been removed: {1}", attributeLabel, leftValueString);
+		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_tagged_value_right_target_text, attributeLabel, leftValueString);
 	}
 
 	@Override
@@ -156,9 +156,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		String rightValue = getLabelProvider().getText((EObject)rightTaggedValue);
 
 		if(object.isRemote()) {
-			return StyledMessageFormat.format("Tagged value {0} : remote = {1}, local = {2}", elementLabel, leftValue, rightValue);
+			return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_tagged_value_reference_remote_text, elementLabel, leftValue, rightValue);
 		}
-		return StyledMessageFormat.format("Tagged value {0} : {1} -> {2}", referenceLabel, leftValue, rightValue);
+		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_tagged_value_reference_text, referenceLabel, leftValue, rightValue);
 
 	}
 
@@ -174,9 +174,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		String rightValue = attributeValueToString(rightTaggedValue);
 
 		if(object.isRemote()) {
-			return StyledMessageFormat.format("Tagged value {0} : remote = {1}, local = {2}", elementLabel, leftValue, rightValue);
+			return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_update_tagged_value_remote_text, elementLabel, leftValue, rightValue);
 		}
-		return StyledMessageFormat.format("Tagged value {0}: {1} -> {2}", attributeLabel, rightValue, leftValue);
+		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_update_tagged_value_text, attributeLabel, rightValue, leftValue);
 	}
 
 	public StyledString caseDiffGroup(DiffGroup object) {
@@ -185,14 +185,14 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		if(parent != null) {
 			parentLabel = getLabelProvider().getText(parent);
 		} else {
-			parentLabel = "model";
+			parentLabel = Messages.StyledDiffLabelSwitch_root_text;
 		}
-		return StyledMessageFormat.format("{0} change(s) in {1}", String.valueOf(object.getSubchanges()), parentLabel);
+		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_diff_group_text, String.valueOf(object.getSubchanges()), parentLabel);
 	}
 
 	@Override
 	public StyledString caseAttributeChange(AttributeChange object) {
-		return StyledMessageFormat.format("Attribute Change {0}", String.valueOf(object.isConflicting()));
+		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_attribute_change_text, String.valueOf(object.isConflicting()));
 	}
 
 	@Override
@@ -201,9 +201,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		final String elementLabel = getLabelProvider().getText(object.getRightElement());
 
 		if(object.isRemote()) {
-			return StyledMessageFormat.format("{0} has been remotely removed from attribute {1} in {2}", attributeValueToString(object.getLeftTarget()), attributeLabel, elementLabel);
+			return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_attribute_change_left_target_remote_text, attributeValueToString(object.getLeftTarget()), attributeLabel, elementLabel);
 		}
-		return StyledMessageFormat.format("The value {0} has been added to the attribute {1} in {2}", attributeValueToString(object.getLeftTarget()), attributeLabel, elementLabel);
+		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_attribute_change_left_target_text, attributeValueToString(object.getLeftTarget()), attributeLabel, elementLabel);
 	}
 
 	@Override
@@ -212,9 +212,9 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		final String elementLabel = getLabelProvider().getText(object.getLeftElement());
 
 		if(object.isRemote()) {
-			return StyledMessageFormat.format("{0} has been remotely added to attribute {1} in {2}", attributeValueToString(object.getRightTarget()), attributeLabel, elementLabel);
+			return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_attribute_change_right_target_remote_text, attributeValueToString(object.getRightTarget()), attributeLabel, elementLabel);
 		}
-		return StyledMessageFormat.format("The value {0} has been removed from the attribute {1} in {2}", attributeValueToString(object.getRightTarget()), attributeLabel, elementLabel);
+		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_attribute_change_right_target_text, attributeValueToString(object.getRightTarget()), attributeLabel, elementLabel);
 	}
 
 	@Override
@@ -225,22 +225,22 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		final Object rightValue = object.getRightElement().eGet(object.getAttribute());
 
 		if(object.isRemote()) {
-			return StyledMessageFormat.format("Attribute {0} in {1} has been remotely changed from {2} to {3}", attributeLabel, elementLabel, attributeValueToString(leftValue), attributeValueToString(rightValue));
+			return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_update_attribute_remote_text, attributeLabel, elementLabel, attributeValueToString(leftValue), attributeValueToString(rightValue));
 		}
 
 		if(object.isConflicting()) {
-			return StyledMessageFormat.format("Attribute {0} : remote = {1}, local = {2}", attributeLabel, attributeValueToString(rightValue), attributeValueToString(leftValue));
+			return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_update_attribute_conflicting_text, attributeLabel, attributeValueToString(rightValue), attributeValueToString(leftValue));
 		}
-		return StyledMessageFormat.format("Attribute {0} in {1} has changed from {2} to {3}", attributeLabel, elementLabel, attributeValueToString(rightValue), attributeValueToString(leftValue));
+		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_update_attribute_text, attributeLabel, elementLabel, attributeValueToString(rightValue), attributeValueToString(leftValue));
 	}
 
 	@Override
 	public StyledString caseReferenceChange(ReferenceChange object) {
-		return StyledMessageFormat.format("Reference Change {0}", String.valueOf(object.isConflicting()));
+		return StyledMessageFormat.format(Messages.StyledDiffLabelSwitch_reference_chnage_text, String.valueOf(object.isConflicting()));
 	}
 
 	private String attributeValueToString(Object attributeValue) {
-		return attributeValue == null ? "null" : attributeValue.toString();
+		return attributeValue == null ? Messages.StyledDiffLabelSwitch_null_value_text : attributeValue.toString();
 	}
 
 }

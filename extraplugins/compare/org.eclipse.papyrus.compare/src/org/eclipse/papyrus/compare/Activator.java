@@ -92,7 +92,7 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	public static void logError(Throwable e) {
-		logError("Unexpected error: ", e);
+		logError(Messages.Activator_log_error_message, e);
 	}
 
 	public static void logError(String message, Throwable e) {
