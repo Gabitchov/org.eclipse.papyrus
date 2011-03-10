@@ -114,20 +114,24 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 	public boolean performFinish() {
 		for (String category: getDiagramCategoryIds()) {
 			
-			NewModelFilePage newModelFilePage = myCategory2modelFilePageMap.get(category);
-			if (newModelFilePage == null) {
-				Activator.log.error("Cannot initiate NewModelFilePage for " + category, new Exception());
-				continue;
-			}
 			final IFile newFile = createNewModelFile(category);
 			DiResourceSet diResourceSet = new DiResourceSet();
-			String categoryId = getCategoryForPage(newModelFilePage.getName());
-			createAndOpenPapyrusModel(diResourceSet, newFile, categoryId);
+			createAndOpenPapyrusModel(diResourceSet, newFile, category);
 		}
 
 		saveDiagramCategorySettings();
 		saveDiagramKindSettings();
 		return true;
+	}
+	
+	@Override
+	protected IFile createNewModelFile(String category) {
+		NewModelFilePage newModelFilePage = myCategory2modelFilePageMap.get(category);
+		if (newModelFilePage == null) {
+			Activator.log.error("Cannot initiate NewModelFilePage for " + category, new Exception());
+			return null;
+		}
+		return newModelFilePage.createNewFile();
 	}
 	
 	private static String createModelFilePageId(String categoryId) {
