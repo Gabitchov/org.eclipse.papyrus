@@ -27,6 +27,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.core.extension.BadClassNameException;
 import org.eclipse.papyrus.core.extension.ExtensionUtils;
 import org.eclipse.papyrus.core.extension.commands.IModelCreationCommand;
+import org.eclipse.papyrus.wizards.Messages;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 

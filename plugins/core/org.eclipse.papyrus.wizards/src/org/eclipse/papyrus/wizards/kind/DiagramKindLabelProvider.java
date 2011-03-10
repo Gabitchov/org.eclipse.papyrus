@@ -17,6 +17,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.wizards.Messages;
 import org.eclipse.swt.graphics.Image;
 
 /**

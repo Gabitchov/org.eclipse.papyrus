@@ -28,6 +28,7 @@ import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
+import org.eclipse.papyrus.wizards.Messages;
 import org.eclipse.papyrus.wizards.SettingsHelper;
 import org.eclipse.papyrus.wizards.kind.DiagramKindContentProvider;
 import org.eclipse.papyrus.wizards.kind.DiagramKindLabelProvider;

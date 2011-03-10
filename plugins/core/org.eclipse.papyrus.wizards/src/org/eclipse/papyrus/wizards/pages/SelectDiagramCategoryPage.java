@@ -26,6 +26,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.wizards.CreateModelWizard;
+import org.eclipse.papyrus.wizards.Messages;
 import org.eclipse.papyrus.wizards.SettingsHelper;
 import org.eclipse.papyrus.wizards.category.DiagramCategoryDescriptor;
 import org.eclipse.papyrus.wizards.category.DiagramCategoryRegistry;
