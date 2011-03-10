@@ -16,6 +16,8 @@ public class Messages extends NLS {
 
 	public static String NewModelFilePage_page_desc;
 
+	public static String SelectDiagramCategoryPage_cannot_find_category;
+
 	public static String SelectDiagramCategoryPage_diagram_language_group;
 
 	public static String SelectDiagramCategoryPage_select_language;

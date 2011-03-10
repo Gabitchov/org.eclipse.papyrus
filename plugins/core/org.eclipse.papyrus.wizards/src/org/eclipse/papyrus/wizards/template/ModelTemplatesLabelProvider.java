@@ -15,6 +15,7 @@ package org.eclipse.papyrus.wizards.template;
 
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.papyrus.wizards.kind.Messages;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -41,7 +42,7 @@ public class ModelTemplatesLabelProvider implements ITableLabelProvider {
 	public String getColumnText(Object element, int columnIndex) {
 		if(element instanceof ModelTemplateDescription) {
 			ModelTemplateDescription modelTemplate = (ModelTemplateDescription)element;
-			return modelTemplate.getName() + " (" + modelTemplate.getFileName() + ")";
+			return Messages.bind(org.eclipse.papyrus.wizards.template.Messages.ModelTemplatesLabelProvider_model_template_description_text, modelTemplate.getName(), modelTemplate.getFileName());
 		}
 		return null;
 	}

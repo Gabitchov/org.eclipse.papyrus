@@ -181,7 +181,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	protected boolean validateCategoryExists(String newCategory) {
 		DiagramCategoryDescriptor selected = getDiagramCategoryMap().get(newCategory);
 		if(selected == null) {
-			setErrorMessage(Messages.bind("Could not find DiagramCategory for {0}",newCategory));
+			setErrorMessage(Messages.bind(Messages.SelectDiagramCategoryPage_cannot_find_category,newCategory));
 			return false;
 		}
 		return true;
