@@ -142,6 +142,11 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 							}
 						} catch (ServiceException e) {
 						}
+					} else {
+						// happens, if different window is active, normally not during save
+						resourceOfMainModelChanged = true;
+						break;
+
 					}
 				}
 				// changed resource does not belong to the model, it might however belong to a referenced
