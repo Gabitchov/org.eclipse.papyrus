@@ -40,10 +40,10 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 				return isCreateFromExistingModel;
 			}
 			
-			@Override
-			public String getDiagramFileExtension() {
-				return expectedExtension;
-			}
+//			@Override
+//			public String getDiagramFileExtension() {
+//				return expectedExtension;
+//			}
 			
 			@Override
 			protected String getDiagramFileName(IFile domainModel) {
@@ -92,8 +92,8 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 		};
  
 		initWizardDialog(wizard);
-		String actual = wizard.getDiagramFileExtension();
-		assertEquals(expectedExtension, actual);
+//		String actual = wizard.getDiagramFileExtension();
+//		assertEquals(expectedExtension, actual);
 	}
 
 	
