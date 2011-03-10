@@ -21,9 +21,9 @@ import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.RemoveCommand;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 
 /**
@@ -46,12 +46,12 @@ public class DeleteTableHandler extends AbstractTableModelExplorerHandler {
 		TransactionalEditingDomain editingDomain = getEditingDomain();
 		final IPageMngr pageMngr = getPageManager();
 
-		List<TableInstance> tables = getSelectedTables();
+		List<PapyrusTableInstance> tables = getSelectedTables();
 
 		if(editingDomain != null && pageMngr != null && !tables.isEmpty()) {
 			CompoundCommand command = new CompoundCommand();
 
-			for(final TableInstance table : tables) {
+			for(final PapyrusTableInstance table : tables) {
 				Command sashRemoveComd = new RecordingCommand(editingDomain) {
 
 					@Override

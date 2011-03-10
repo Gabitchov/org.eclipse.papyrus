@@ -19,7 +19,9 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**
@@ -41,6 +43,9 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 
 	/** property to test if the current activePart is the ModelExplorer */
 	public static final String IS_MODEL_EXPLORER = "isModelExplorer"; //$NON-NLS-1$
+
+	/** indicate if the element can be open in a tab */
+	public static final String IS_PAGE = "isPage";//$NON-NLS-1$
 
 	/**
 	 * 
@@ -66,7 +71,57 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 			boolean answer = isModelExplorer((IWorkbenchPart)receiver);
 			return new Boolean(answer).equals(expectedValue);
 		}
+		if(IS_PAGE.equals(property) && receiver instanceof IStructuredSelection) {
+			boolean answer = isPage((IStructuredSelection)receiver);
+			return new Boolean(answer).equals(expectedValue);
+		}
 		return false;
+	}
+
+	/**
+	 * 
+	 * @param selection
+	 *        the current selection
+	 * @return
+	 *         <code>true</code> if all selected elements are pages
+	 */
+	private boolean isPage(IStructuredSelection selection) {
+		IPageMngr pageMngr = getPageManager();
+		if(pageMngr != null) {
+			if(!selection.isEmpty()) {
+				Iterator<?> iter = selection.iterator();
+				while(iter.hasNext()) {
+					Object current = iter.next();
+					if(current instanceof IAdaptable) {
+						EObject eObject = (EObject)((IAdaptable)current).getAdapter(EObject.class);
+						if(!pageMngr.allPages().contains(eObject)) {
+							return false;
+						}
+					} else if(!pageMngr.allPages().contains(current)) {//table of diagram!
+						return false;
+					}
+				}
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the page manager
+	 * 
+	 * @return
+	 *         the page manager
+	 */
+	protected IPageMngr getPageManager() {
+		IPageMngr pageMngr = null;
+		try {
+			pageMngr = org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers.getInstance().getIPageMngr();
+		} catch (ServiceException e) {
+			//we are closing the editor, so the model explorer has nothing to display
+			//			e.printStackTrace();
+		}
+		return pageMngr;
 	}
 
 	/**

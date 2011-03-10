@@ -18,6 +18,7 @@ import java.util.Iterator;
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 
 /**
  * This class provides test called by the plugin.xml in order to know if handlers should be active or not.
@@ -66,7 +67,7 @@ public class TablePropertyTester extends PropertyTester {
 		if(!selection.isEmpty()) {
 			Iterator<?> iter = selection.iterator();
 			while(iter.hasNext()) {
-				if(!(iter.next() instanceof TableInstance)) {
+				if(!(iter.next() instanceof PapyrusTableInstance)) {
 					return false;
 				}
 			}

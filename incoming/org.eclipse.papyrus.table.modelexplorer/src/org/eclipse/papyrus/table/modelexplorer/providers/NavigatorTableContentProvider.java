@@ -19,8 +19,8 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.papyrus.modelexplorer.MoDiscoContentProvider;
+import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 
 /**
  * This class provides a NavigatorContentProvider used to display tables in the Model Explorer
@@ -53,8 +53,8 @@ public class NavigatorTableContentProvider extends MoDiscoContentProvider {
 		if(parentElement instanceof IAdaptable) {
 			EObject eObject = (EObject)((IAdaptable)parentElement).getAdapter(EObject.class);
 			if(eObject != null) {
-				List<TableInstance> tableList = findAllExistingTables(eObject);
-				Iterator<TableInstance> iter = tableList.iterator();
+				List<PapyrusTableInstance> tableList = findAllExistingPapyrusTables(eObject);
+				Iterator<PapyrusTableInstance> iter = tableList.iterator();
 				while(iter.hasNext()) {
 					result.add(iter.next());
 				}
@@ -68,8 +68,8 @@ public class NavigatorTableContentProvider extends MoDiscoContentProvider {
 	 *        the owner of the tables
 	 * @return the list of tables contained by the given owner
 	 */
-	private List<TableInstance> findAllExistingTables(EObject owner) {
-		ArrayList<TableInstance> tables = new ArrayList<TableInstance>();
+	private List<PapyrusTableInstance> findAllExistingPapyrusTables(EObject owner) {
+		ArrayList<PapyrusTableInstance> tables = new ArrayList<PapyrusTableInstance>();
 
 
 
@@ -77,13 +77,13 @@ public class NavigatorTableContentProvider extends MoDiscoContentProvider {
 
 			// Walk on page (Table) references
 			for(Object page : pageMngr.allPages()) {
-				if(!(page instanceof TableInstance)) {
+				if(!(page instanceof PapyrusTableInstance)) {
 					continue;
 				}
 				// We have a Table
-				TableInstance table = (TableInstance)page;
-				if(owner.equals(table.getContext())) {
-					tables.add(table);
+				PapyrusTableInstance papyrusTable = (PapyrusTableInstance)page;
+				if(owner.equals(papyrusTable.getTable().getContext())) {
+					tables.add(papyrusTable);
 				}
 
 			}

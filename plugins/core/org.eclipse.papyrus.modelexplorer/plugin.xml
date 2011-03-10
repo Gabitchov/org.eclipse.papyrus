@@ -606,13 +606,11 @@
          <with
                variable="selection">
             <and>
-               <iterate
-                     ifEmpty="false"
-                     operator="and">
-                  <instanceof
-                        value="org.eclipse.gmf.runtime.notation.Diagram">
-                  </instanceof>
-               </iterate>
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.modelexplorer.tester.isPage"
+                     value="true">
+               </test>
             </and>
          </with>
       </activeWhen>
@@ -637,13 +635,11 @@
          <with
                variable="selection">
             <and>
-               <iterate
-                     ifEmpty="false"
-                     operator="and">
-                  <instanceof
-                        value="org.eclipse.gmf.runtime.notation.Diagram">
-                  </instanceof>
-               </iterate>
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.modelexplorer.tester.isPage"
+                     value="true">
+               </test>
             </and>
          </with>
       </activeWhen>
@@ -680,11 +676,13 @@
       <activeWhen>
          <with
                variable="selection">
-            <iterate>
-               <instanceof
-                     value="org.eclipse.gmf.runtime.notation.Diagram">
-               </instanceof>
-            </iterate>
+            <and>
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.modelexplorer.tester.isPage"
+                     value="true">
+               </test>
+            </and>
          </with>
       </activeWhen>
       <class
@@ -700,11 +698,13 @@
       <activeWhen>
          <with
                variable="selection">
-            <iterate>
-               <instanceof
-                     value="org.eclipse.gmf.runtime.notation.Diagram">
-               </instanceof>
-            </iterate>
+            <and>
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.modelexplorer.tester.isPage"
+                     value="true">
+               </test>
+            </and>
          </with>
       </activeWhen>
       <class
@@ -813,7 +813,7 @@
          class="org.eclipse.papyrus.modelexplorer.provider.PropertyTester"
          id="org.eclipse.papyrus.modelexplorer.tester"
          namespace="org.eclipse.papyrus.modelexplorer.tester"
-         properties="isDiagram, isEObject"
+         properties="isDiagram, isEObject, isPage"
          type="org.eclipse.jface.viewers.IStructuredSelection">
    </propertyTester>
    <propertyTester

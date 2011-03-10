@@ -13,11 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.table.modelexplorer.providers;
 
-import java.util.Map;
-
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.papyrus.modelexplorer.MoDiscoLabelProvider;
-import org.eclipse.papyrus.table.common.editor.AbstractNattableEditor;
+import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -35,7 +32,7 @@ public class NavigatorTableLabelProvider extends MoDiscoLabelProvider {
 	 */
 	@Override
 	public Image getImage(Object element) {
-		if(element instanceof TableInstance) {
+		if(element instanceof PapyrusTableInstance) {
 			return getEditorRegistry().getEditorIcon(element);
 		}
 		return super.getImage(element);
@@ -50,11 +47,8 @@ public class NavigatorTableLabelProvider extends MoDiscoLabelProvider {
 	 */
 	@Override
 	public String getText(Object element) {
-		if(element instanceof TableInstance) {
-			Object param = ((TableInstance)element).getParameter();
-			if(param instanceof Map<?, ?>) {
-				return (String)((Map<?, ?>)param).get(AbstractNattableEditor.NAME_KEY); //$NON-NLS-1$
-			}
+		if(element instanceof PapyrusTableInstance) {
+			return ((PapyrusTableInstance)element).getName();
 		}
 		return super.getText(element);
 	}

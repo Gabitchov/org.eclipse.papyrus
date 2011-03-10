@@ -13,18 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.table.requirement;
 
-import java.util.List;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.resource.NotFoundException;
 import org.eclipse.papyrus.sysml.table.requirement.editor.RequirementTableEditor;
 import org.eclipse.papyrus.table.common.handlers.AbstractCreateNattableEditorCommand;
@@ -61,7 +59,7 @@ public class CreateRequirementTableCommand extends AbstractCreateNattableEditorC
 	 */
 	@Override
 	protected Object createEditorModel(ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
-		TableInstance tableInstance = (TableInstance)super.createEditorModel(serviceRegistry);
+		PapyrusTableInstance papyrusTable = (PapyrusTableInstance)super.createEditorModel(serviceRegistry);
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 
@@ -75,9 +73,9 @@ public class CreateRequirementTableCommand extends AbstractCreateNattableEditorC
 			tableConfiguration = (TableConfiguration)resource.getContents().get(0);
 		}
 
-		tableInstance.setTableConfiguration(tableConfiguration);
+		papyrusTable.getTable().setTableConfiguration(tableConfiguration);
 
-		return tableInstance;
+		return papyrusTable;
 	}
 
 	/**
@@ -88,15 +86,19 @@ public class CreateRequirementTableCommand extends AbstractCreateNattableEditorC
 	 */
 	@Override
 	public boolean isEnabled() {
-		List<EObject> selection = getSelection();
-		if(!selection.isEmpty()) {
-			EObject object = selection.get(0);
-			if(object instanceof Element) {
-				Element el = (Element)object;
-				Package pack = el.getNearestPackage();
-				//we can create an Allocation Table only when the profile is applied
-				return pack.getAppliedProfile("SysML::Requirements", true) != null; //$NON-NLS-1$
-			}
+		EObject object;
+		try {
+			object = getTableContext();
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		if(object instanceof Element) {
+			Element el = (Element)object;
+			Package pack = el.getNearestPackage();
+			//we can create an Allocation Table only when the profile is applied
+			return pack.getAppliedProfile("SysML::Requirements", true) != null; //$NON-NLS-1$
 		}
 		return false;
 	}

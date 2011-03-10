@@ -13,18 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.table.allocation;
 
-import java.util.List;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.resource.NotFoundException;
 import org.eclipse.papyrus.sysml.table.allocation.editor.AllocationTableEditor;
 import org.eclipse.papyrus.table.common.handlers.AbstractCreateNattableEditorCommand;
@@ -61,7 +59,7 @@ public class CreateAllocationTableCommand extends AbstractCreateNattableEditorCo
 	 */
 	@Override
 	protected Object createEditorModel(ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
-		TableInstance tableInstance = (TableInstance)super.createEditorModel(serviceRegistry);
+		PapyrusTableInstance papyrusTable = (PapyrusTableInstance)super.createEditorModel(serviceRegistry);
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 		String symbolicName = org.eclipse.papyrus.sysml.table.allocation.Activator.getDefault().getBundle().getSymbolicName();
@@ -75,8 +73,8 @@ public class CreateAllocationTableCommand extends AbstractCreateNattableEditorCo
 			tableConfiguration = (TableConfiguration)resource.getContents().get(0);
 		}
 
-		tableInstance.setTableConfiguration(tableConfiguration);
-		return tableInstance;
+		papyrusTable.getTable().setTableConfiguration(tableConfiguration);
+		return papyrusTable;
 	}
 
 	/**
@@ -87,15 +85,19 @@ public class CreateAllocationTableCommand extends AbstractCreateNattableEditorCo
 	 */
 	@Override
 	public boolean isEnabled() {
-		List<EObject> selection = getSelection();
-		if(!selection.isEmpty()) {
-			EObject object = selection.get(0);
-			if(object instanceof Element) {
-				Element el = (Element)object;
-				Package pack = el.getNearestPackage();
-				//we can create an Allocation Table only when the profile is applied
-				return pack.getAppliedProfile("SysML::Allocations", true) != null; //$NON-NLS-1$
-			}
+		EObject object;
+		try {
+			object = getTableContext();
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		if(object instanceof Element) {
+			Element el = (Element)object;
+			Package pack = el.getNearestPackage();
+			//we can create an Allocation Table only when the profile is applied
+			return pack.getAppliedProfile("SysML::Allocations", true) != null; //$NON-NLS-1$
 		}
 		return false;
 	}

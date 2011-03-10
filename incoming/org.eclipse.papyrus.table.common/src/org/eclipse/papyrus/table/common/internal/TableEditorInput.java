@@ -13,8 +13,8 @@
 package org.eclipse.papyrus.table.common.internal;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 
@@ -27,20 +27,20 @@ import org.eclipse.ui.IPersistableElement;
 public class TableEditorInput implements IEditorInput {
 
 	/** The input for the Table widget */
-	private final TableInstance tableInstance;
+	private final PapyrusTableInstance tableInstance;
 
 	/** A textual description of what is shown in the editor */
 	private final String description;
 
 	private EditingDomain editingDomain;
 
-	public TableEditorInput(final TableInstance tableInstance, final EditingDomain editingDomain) {
-		this.tableInstance = tableInstance;
-		this.description = tableInstance.getDescription();
+	public TableEditorInput(final PapyrusTableInstance papyrusTable, final EditingDomain editingDomain) {
+		this.tableInstance = papyrusTable;
+		this.description = papyrusTable.getTable().getDescription();
 		this.editingDomain = editingDomain;
 	}
 
-	public TableInstance getTableInstance() {
+	public PapyrusTableInstance getPapyrusTableInstance() {
 		return this.tableInstance;
 	}
 

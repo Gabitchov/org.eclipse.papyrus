@@ -13,8 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.table.defaultt.editor;
 
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.table.common.editor.AbstractNattableEditor;
 
 
@@ -38,7 +38,7 @@ public class DefaultNattableEditor extends AbstractNattableEditor {
 	 * @param rawModel
 	 * 
 	 */
-	public DefaultNattableEditor(ServicesRegistry servicesRegistry, TableInstance rawModel) {
+	public DefaultNattableEditor(ServicesRegistry servicesRegistry, PapyrusTableInstance rawModel) {
 		super(servicesRegistry, rawModel);
 
 	}

@@ -15,10 +15,9 @@
 package org.eclipse.papyrus.table.common.handlers;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -32,6 +31,12 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.facet.infra.query.JavaModelQuery;
+import org.eclipse.emf.facet.infra.query.ModelQuery;
+import org.eclipse.emf.facet.infra.query.ModelQuerySet;
+import org.eclipse.emf.facet.infra.query.core.ModelQuerySetCatalog;
+import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryException;
+import org.eclipse.emf.facet.infra.query.impl.ModelQueryImpl;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstanceFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -47,15 +52,17 @@ import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.ServiceUtils;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstanceFactory;
 import org.eclipse.papyrus.resource.AbstractBaseModel;
 import org.eclipse.papyrus.resource.IModel;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.NotFoundException;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.table.common.dialog.TwoInputDialog;
-import org.eclipse.papyrus.table.common.editor.AbstractNattableEditor;
 import org.eclipse.papyrus.table.common.messages.Messages;
-import org.eclipse.papyrus.table.common.modelresource.NattableModel;
+import org.eclipse.papyrus.table.common.modelresource.EMFFacetNattableModel;
+import org.eclipse.papyrus.table.common.modelresource.PapyrusNattableModel;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
@@ -107,10 +114,13 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	@Override
 	public boolean isEnabled() {
 		try {
-			return getTableContext() != null;
+			if(getTableContext() != null) {
+				return true;
+			}
 		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
 			Activator.getDefault().logError("Context for table is null", e); //$NON-NLS-1$
+
 		}
 		return false;
 	}
@@ -207,25 +217,56 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 *         The model where to save the TableInstance is not found.
 	 */
 	protected Object createEditorModel(ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
+		PapyrusTableInstance papyrusTable = PapyrustableinstanceFactory.eINSTANCE.createPapyrusTableInstance();
+		papyrusTable.setName(name);
+		papyrusTable.setType(editorType);
+		PapyrusNattableModel papyrusModel = (PapyrusNattableModel)ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(PapyrusNattableModel.MODEL_ID);
+		papyrusModel.addPapyrusTableInstance(papyrusTable);
+
 		TableInstance tableInstance = TableinstanceFactory.eINSTANCE.createTableInstance();
 		tableInstance.setDescription(description);
 
 		// Save the model in the associated resource
-		NattableModel model = (NattableModel)ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(NattableModel.MODEL_ID);
+		EMFFacetNattableModel model = (EMFFacetNattableModel)ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(EMFFacetNattableModel.MODEL_ID);
 		model.addTableInstance(tableInstance);
+		papyrusTable.setTable(tableInstance);
 
-		tableInstance.setDescription(description);
 
 		//the name and the type of the table are stored in a hashmap
-		Map<String, Object> param = new HashMap<String, Object>();
-		param.put(AbstractNattableEditor.NAME_KEY, name);
-		param.put(AbstractNattableEditor.TYPE_KEY, this.editorType);
-		tableInstance.setParameter(param);
+		//		Map<String, Object> param = new HashMap<String, Object>();
+		//		param.put(AbstractNattableEditor.NAME_KEY, name);
+		//		param.put(AbstractNattableEditor.TYPE_KEY, this.editorType);
+		//		tableInstance.setParameter(param);
 		//context should not be null, because it is used to display the table in the ModelExplorer!
 		EObject context = getTableContext();
 		Assert.isNotNull(context);
 		tableInstance.setContext(context);
-		return tableInstance;
+
+		//TODO pour test
+		Collection<ModelQuerySet> modelQuerySet = ModelQuerySetCatalog.getSingleton().getAllModelQuerySets();
+		Iterator<ModelQuerySet> iter = modelQuerySet.iterator();
+		if(iter.hasNext()) {
+			ModelQuerySet set = iter.next();
+			Iterator<ModelQuery> iterQ = set.getQueries().iterator();
+			if(iterQ.hasNext()) {
+				ModelQuery query = iterQ.next();
+				int dummy = 0;
+				dummy++;
+				ModelQueryImpl impl = null;
+				try {
+					ModelQuerySetCatalog.getSingleton().getModelQueryImpl(query);
+				} catch (ModelQueryException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if(query instanceof JavaModelQuery) {
+					System.out.println(((JavaModelQuery)query).getImplementationClassName());
+				}
+			}
+		}
+
+
+		return papyrusTable;
 	}
 
 	/**

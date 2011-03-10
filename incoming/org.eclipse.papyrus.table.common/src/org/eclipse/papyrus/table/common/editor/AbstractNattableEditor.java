@@ -13,13 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.table.common.editor;
 
-import java.util.Map;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.ServiceUtils;
+import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.table.common.internal.TableEditorInput;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
@@ -37,20 +35,14 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.table.c
 	protected ServicesRegistry servicesRegistry;
 
 	/** the table instance */
-	protected TableInstance rawModel;
-
-	/** key to get the name of the editor */
-	public static final String NAME_KEY = "NAME"; //$NON-NLS-1$
-
-	/** key to get the type of the editor */
-	public static final String TYPE_KEY = "TYPE"; //$NON-NLS-1$
+	protected PapyrusTableInstance rawModel;
 
 	/**
 	 * @param servicesRegistry
 	 * @param rawModel
 	 * 
 	 */
-	public AbstractNattableEditor(ServicesRegistry servicesRegistry, TableInstance rawModel) {
+	public AbstractNattableEditor(ServicesRegistry servicesRegistry, PapyrusTableInstance rawModel) {
 		this.servicesRegistry = servicesRegistry;
 		this.rawModel = rawModel;
 
@@ -70,10 +62,8 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.table.c
 		setSite(site);
 		setInput(tableEditorInput);
 
-		Object param = rawModel.getParameter();
-		if(param instanceof Map<?, ?>) {
-			setPartName((String)((Map<?, ?>)rawModel.getParameter()).get(NAME_KEY));
-		}
+		setPartName(rawModel.getName());
+
 
 		super.init(site, tableEditorInput);
 	}

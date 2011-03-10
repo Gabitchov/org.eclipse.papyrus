@@ -6,7 +6,11 @@
    <extension
          point="org.eclipse.papyrus.core.model">
       <model
-            classname="org.eclipse.papyrus.table.common.modelresource.NattableModel"
+            classname="org.eclipse.papyrus.table.common.modelresource.EMFFacetNattableModel"
+            description="Model for Papyrus Table editors">
+      </model>
+      <model
+            classname="org.eclipse.papyrus.table.common.modelresource.PapyrusNattableModel"
             description="Model for Papyrus Table editors">
       </model>
    </extension>

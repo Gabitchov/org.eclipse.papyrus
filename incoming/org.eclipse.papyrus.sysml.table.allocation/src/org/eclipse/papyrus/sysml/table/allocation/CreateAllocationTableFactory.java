@@ -13,13 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.table.allocation;
 
-import java.util.Map;
-
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.papyrus.sysml.table.allocation.editor.AllocationTableEditor;
-import org.eclipse.papyrus.table.common.editor.AbstractNattableEditor;
 import org.eclipse.papyrus.table.common.factory.AbstractNattableEditorFactory;
 
+/**
+ * the factory for the AllocationTable
+ * 
+ * 
+ * 
+ */
 public class CreateAllocationTableFactory extends AbstractNattableEditorFactory {
 
 	/**
@@ -32,22 +34,5 @@ public class CreateAllocationTableFactory extends AbstractNattableEditorFactory 
 		super(AllocationTableEditor.class, AllocationTableEditor.EDITOR_TYPE);
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.core.editorsfactory.IEditorFactory#isPageModelFactoryFor(java.lang.Object)
-	 * 
-	 * @param pageIdentifier
-	 * @return
-	 */
-	@Override
-	public boolean isPageModelFactoryFor(Object pageIdentifier) {
-		if(pageIdentifier instanceof TableInstance) {
-			Object parameter = ((TableInstance)pageIdentifier).getParameter();
-			if(parameter instanceof Map<?, ?>) {
-				return getExpectedType().equals(((Map<?, ?>)parameter).get(AbstractNattableEditor.TYPE_KEY));
-			}
-		}
-
-		return false;
-	}
 
 }

@@ -13,8 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.table.requirement.editor;
 
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.table.common.editor.AbstractNattableEditor;
 
 
@@ -29,6 +29,7 @@ public class RequirementTableEditor extends AbstractNattableEditor {
 	/** the type of the editor */
 	public static final String EDITOR_TYPE = "PapyrusRequirementTable"; //$NON-NLS-1$
 
+	/** the default name */
 	public static final String DEFAULT_NAME = "RequirementTable"; //$NON-NLS-1$
 
 	/**
@@ -36,7 +37,7 @@ public class RequirementTableEditor extends AbstractNattableEditor {
 	 * @param rawModel2
 	 * 
 	 */
-	public RequirementTableEditor(ServicesRegistry servicesRegistry, TableInstance rawModel) {
+	public RequirementTableEditor(ServicesRegistry servicesRegistry, PapyrusTableInstance rawModel) {
 		super(servicesRegistry, rawModel);
 	}
 

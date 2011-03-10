@@ -31,6 +31,9 @@ import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -54,6 +57,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
+import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.properties.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.table.common.messages.Messages;
 import org.eclipse.papyrus.widgets.editors.StringEditor;
@@ -139,10 +143,10 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 					ResourceSet rSet = new ResourceSetImpl();
 					resource = rSet.createResource(uri);
 				}
-				TableInstance tableInstance = null;
+				PapyrusTableInstance tableInstance = null;
 				for(EObject eObject : resource.getContents()) {
-					if(eObject instanceof TableInstance) {
-						tableInstance = (TableInstance)eObject;
+					if(eObject instanceof PapyrusTableInstance) {
+						tableInstance = (PapyrusTableInstance)eObject;
 						// One instance of tableInstance per .table file
 						break;
 					}
@@ -171,7 +175,7 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		this.menuMgr.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
 		this.menuMgr.setRemoveAllWhenShown(true);
 
-		final TableInstance table = tableEditorInput.getTableInstance();
+		final TableInstance table = tableEditorInput.getPapyrusTableInstance().getTable();
 		EClass tableEClass = table.eClass();
 
 		final Composite editorComposite = new Composite(parent, SWT.NONE);
@@ -248,7 +252,7 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		tableComposite.setLayoutData(compositeTableGridLayout);
 
 		// the nattable widget itself
-		this.natTableWidget = INatTableWidgetFactory.INSTANCE.createNatTableWidget(tableComposite, this, this.tableEditorInput.getTableInstance(), this.menuMgr);
+		this.natTableWidget = INatTableWidgetFactory.INSTANCE.createNatTableWidget(tableComposite, this, this.tableEditorInput.getPapyrusTableInstance().getTable(), this.menuMgr);
 
 
 		final GridData tableGridData = new GridData();
@@ -260,7 +264,39 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 
 		getSite().setSelectionProvider(this.natTableWidget);
 		getSite().registerContextMenu(this.menuMgr, this.natTableWidget);
+
+
+		//we add a listener on the resource in order to be synchronized with queries
+		Resource res = this.tableEditorInput.getPapyrusTableInstance().getTable().getContext().eResource();
+
+
+		res.setTrackingModification(true);
+		if(!res.eAdapters().contains(this.modelChangeAdapter)) {
+			res.eAdapters().add(this.modelChangeAdapter);
+		}
+
 	}
+
+	@Override
+	public void dispose() {
+		//TODO remove the listener on the context
+		super.dispose();
+	}
+
+	//this code comes from NatTableWidget
+	//we need to listen change on the context when its a table fillied with queries : 
+	private final Adapter modelChangeAdapter = new AdapterImpl() {
+
+		@Override
+		public void notifyChanged(final Notification msg) {
+			//TODO remove the listener!
+			int eventType = msg.getEventType();
+			if(eventType != Notification.REMOVING_ADAPTER && eventType != Notification.RESOLVE) {
+				// redraw table when model changes
+				//				System.out.println("we listen a change on the context");
+			}
+		}
+	};
 
 	@Override
 	public void setFocus() {

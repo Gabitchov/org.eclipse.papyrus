@@ -17,10 +17,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.modelexplorer.handler.AbstractCommandHandler;
+import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.ui.PlatformUI;
 
 
@@ -32,8 +32,8 @@ public abstract class AbstractTableModelExplorerHandler extends AbstractCommandH
 	 * @return
 	 *         the list of selected tables
 	 */
-	protected List<TableInstance> getSelectedTables() {
-		List<TableInstance> tables = new ArrayList<TableInstance>();
+	protected List<PapyrusTableInstance> getSelectedTables() {
+		List<PapyrusTableInstance> tables = new ArrayList<PapyrusTableInstance>();
 		ISelection selection = null;
 
 		// Get current selection
@@ -45,8 +45,8 @@ public abstract class AbstractTableModelExplorerHandler extends AbstractCommandH
 			Iterator<?> iter = structuredSelection.iterator();
 			while(iter.hasNext()) {
 				Object current = iter.next();
-				if(current instanceof TableInstance) {
-					tables.add((TableInstance)current);
+				if(current instanceof PapyrusTableInstance) {
+					tables.add((PapyrusTableInstance)current);
 				}
 			}
 		}

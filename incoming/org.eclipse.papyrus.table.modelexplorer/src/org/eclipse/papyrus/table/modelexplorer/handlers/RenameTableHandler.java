@@ -14,21 +14,18 @@
 package org.eclipse.papyrus.table.modelexplorer.handlers;
 
 import java.util.List;
-import java.util.Map;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.modelexplorer.handler.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.table.common.editor.AbstractNattableEditor;
+import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.table.modelexplorer.messages.Messages;
 import org.eclipse.swt.widgets.Display;
 
@@ -50,39 +47,38 @@ public class RenameTableHandler extends AbstractTableModelExplorerHandler {
 	@Override
 	protected Command getCommand() {
 		TransactionalEditingDomain editingDomain = getEditingDomain();
-		List<TableInstance> tables = getSelectedTables();
+		List<PapyrusTableInstance> tables = getSelectedTables();
 		if(editingDomain != null && tables.size() == 1) {
 
-			final TableInstance table = tables.get(0);
+			final PapyrusTableInstance table = tables.get(0);
+			final String currentName = table.getName();
 
-			final Object param = table.getParameter();
-			if(param instanceof Map<?, ?>) {
-				final String currentName = (String)((Map<?, ?>)param).get(AbstractNattableEditor.NAME_KEY); //$NON-NLS-1$
+			if(currentName != null) {
 
-				if(currentName != null) {
+				AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "RenameTableCommand", null) { //$NON-NLS-1$
 
-					AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "RenameTableCommand", null) { //$NON-NLS-1$
-
-						@Override
-						protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-							InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.RenameTableHandler_RenameAnExistingTable_Title, Messages.RenameTableHandler_NewNameMessage, currentName, null);
-							if(dialog.open() == Window.OK) {
-								final String name = dialog.getValue();
-								if(name != null && name.length() > 0) {
-									((Map<String, Object>)param).put(AbstractNattableEditor.NAME_KEY, name); //$NON-NLS-1$
-									//									IPageMngr mngr = getPageManager();
-									table.setParameter(param);
-								}
-								return CommandResult.newOKCommandResult();
-							} else {
-								return CommandResult.newCancelledCommandResult();
+					@Override
+					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) {
+						InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.RenameTableHandler_RenameAnExistingTable_Title, Messages.RenameTableHandler_NewNameMessage, currentName, null);
+						if(dialog.open() == Window.OK) {
+							final String name = dialog.getValue();
+							if(name != null && name.length() > 0) {
+								table.setName(name);
 							}
+							return CommandResult.newOKCommandResult();
+						} else {
+							return CommandResult.newCancelledCommandResult();
 						}
-					};
-					return new GMFtoEMFCommandWrapper(cmd);
-				}
+					}
+				};
+				return new GMFtoEMFCommandWrapper(cmd);
 			}
+
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
+
+
+
 }

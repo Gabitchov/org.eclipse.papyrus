@@ -17,7 +17,6 @@ package org.eclipse.papyrus.table.common.modelresource;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.resource.AbstractModelWithSharedResource;
 import org.eclipse.papyrus.resource.IModel;
 import org.eclipse.papyrus.resource.ModelSet;
@@ -30,7 +29,7 @@ import org.eclipse.papyrus.resource.ModelSet;
  * @author cedric dumoulin
  * 
  */
-public class NattableModel extends /* AbstractBaseModel */AbstractModelWithSharedResource<TableInstance> implements IModel {
+public class EMFFacetNattableModel extends /* AbstractBaseModel */AbstractModelWithSharedResource<TableInstance> implements IModel {
 
 	/*
 	 * To save in a new file :
@@ -48,7 +47,7 @@ public class NattableModel extends /* AbstractBaseModel */AbstractModelWithShare
 	/**
 	 * Model ID.
 	 */
-	public static final String MODEL_ID = "org.eclipse.papyrus.nattable.resource.NattableModel"; //$NON-NLS-1$
+	public static final String MODEL_ID = "org.eclipse.papyrus.emf.facet.nattable.resource.NattableModel"; //$NON-NLS-1$
 
 
 	/**
@@ -56,7 +55,7 @@ public class NattableModel extends /* AbstractBaseModel */AbstractModelWithShare
 	 * Constructor.
 	 * 
 	 */
-	public NattableModel() {
+	public EMFFacetNattableModel() {
 
 	}
 
@@ -121,8 +120,6 @@ public class NattableModel extends /* AbstractBaseModel */AbstractModelWithShare
 	 */
 	@Override
 	protected boolean isModelRoot(EObject object) {
-		//never used!
-		Activator.log.debug("Warning currently this function returns always false!"); //$NON-NLS-1$
 		return false;
 	}
 

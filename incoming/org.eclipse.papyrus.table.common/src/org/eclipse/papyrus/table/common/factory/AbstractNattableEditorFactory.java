@@ -14,18 +14,16 @@
 package org.eclipse.papyrus.table.common.factory;
 
 import java.lang.reflect.Constructor;
-import java.util.Map;
 
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.diagrameditor.AbstractEditorFactory;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
-import org.eclipse.papyrus.table.common.editor.AbstractNattableEditor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
@@ -72,13 +70,9 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 	 * @return
 	 */
 	public boolean isPageModelFactoryFor(Object pageIdentifier) {
-		if(pageIdentifier instanceof TableInstance) {
-			Object parameter = ((TableInstance)pageIdentifier).getParameter();
-			if(parameter instanceof Map<?, ?>) {
-				return getExpectedType().equals(((Map<?, ?>)parameter).get(AbstractNattableEditor.TYPE_KEY));
-			}
+		if(pageIdentifier instanceof PapyrusTableInstance) {
+			return getExpectedType().equals(((PapyrusTableInstance)pageIdentifier).getType());
 		}
-
 		return false;
 	}
 
@@ -104,14 +98,14 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 		/**
 		 * The raw model stored in the SashProvider.
 		 */
-		private TableInstance rawModel;
+		private PapyrusTableInstance rawModel;
 
 		/**
 		 * 
 		 * Constructor.
 		 */
 		public NattableEditorModel(Object pageIdentifier, ServicesRegistry servicesRegistry) {
-			rawModel = (TableInstance)pageIdentifier;
+			rawModel = (PapyrusTableInstance)pageIdentifier;
 			this.servicesRegistry = servicesRegistry;
 		}
 
@@ -126,7 +120,7 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 		public IEditorPart createIEditorPart() throws PartInitException {
 			try {
 
-				Constructor<?> c = getDiagramClass().getConstructor(ServicesRegistry.class, TableInstance.class);
+				Constructor<?> c = getDiagramClass().getConstructor(ServicesRegistry.class, PapyrusTableInstance.class);
 				IEditorPart newEditor = (IEditorPart)c.newInstance(servicesRegistry, rawModel);
 				//	IEditorPart newEditor = new DefaultNattableEditor(getServiceRegistry(), rawModel);
 				editor = newEditor;
@@ -213,16 +207,7 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 		 * 
 		 */
 		public String getTabTitle() {
-			if(rawModel instanceof TableInstance) {
-				Object param = rawModel.getParameter();
-				if(param instanceof Map<?, ?>) {
-					String name = (String)((Map)param).get(AbstractNattableEditor.NAME_KEY);
-					if(name != null) {
-						return name;
-					}
-				}
-			}
-			return ""; //$NON-NLS-1$
+			return rawModel.getName();
 		}
 	}
 }

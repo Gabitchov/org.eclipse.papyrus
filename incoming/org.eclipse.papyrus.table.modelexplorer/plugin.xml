@@ -16,7 +16,7 @@
          <possibleChildren>
             <or>
                <instanceof
-                     value="org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance">
+                     value="org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance">
                </instanceof>
             </or>
          </possibleChildren>
@@ -40,7 +40,7 @@
       <handler
             class="org.eclipse.papyrus.table.modelexplorer.handlers.DeleteTableHandler"
             commandId="org.eclipse.ui.edit.delete">
-         <activeWhen>
+<activeWhen>
             <and>
                <with
                      variable="selection">
@@ -50,7 +50,7 @@
                      </count>
                      <iterate>
                         <instanceof
-                              value="org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance">
+                              value="org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance">
                         </instanceof>
                      </iterate>
                   </and>
@@ -69,7 +69,7 @@
                      </test>
                      <test
                            forcePluginActivation="true"
-                           property="org.eclipse.papyrus.modelexplorer.tester.isTable"
+                           property="org.eclipse.papyrus.table.modelexplorer.tester.isTable"
                            value="true">
                      </test>
                   </and>
@@ -90,7 +90,7 @@
                      </count>
                      <iterate>
                         <instanceof
-                              value="org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance">
+                              value="org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance">
                         </instanceof>
                      </iterate>
                   </and>
@@ -109,7 +109,7 @@
                      </test>
                      <test
                            forcePluginActivation="true"
-                           property="org.eclipse.papyrus.modelexplorer.tester.isTable"
+                           property="org.eclipse.papyrus.table.modelexplorer.tester.isTable"
                            value="true">
                      </test>
                   </and>
@@ -130,7 +130,7 @@
                      </count>
                      <iterate>
                         <instanceof
-                              value="org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance">
+                              value="org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance">
                         </instanceof>
                      </iterate>
                   </and>

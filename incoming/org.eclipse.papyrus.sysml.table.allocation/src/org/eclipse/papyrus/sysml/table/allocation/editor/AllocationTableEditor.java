@@ -13,8 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.table.allocation.editor;
 
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.table.common.editor.AbstractNattableEditor;
 
 
@@ -36,7 +36,7 @@ public class AllocationTableEditor extends AbstractNattableEditor {
 	 * @param rawModel2
 	 * 
 	 */
-	public AllocationTableEditor(ServicesRegistry servicesRegistry, TableInstance rawModel) {
+	public AllocationTableEditor(ServicesRegistry servicesRegistry, PapyrusTableInstance rawModel) {
 		super(servicesRegistry, rawModel);
 	}
 
