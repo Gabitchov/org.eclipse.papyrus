@@ -187,7 +187,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		return true;
 	}
 
-	private Map<String, DiagramCategoryDescriptor> getDiagramCategoryMap() {
+	protected Map<String, DiagramCategoryDescriptor> getDiagramCategoryMap() {
 		return DiagramCategoryRegistry.getInstance().getDiagramCategoryMap();
 	}
 

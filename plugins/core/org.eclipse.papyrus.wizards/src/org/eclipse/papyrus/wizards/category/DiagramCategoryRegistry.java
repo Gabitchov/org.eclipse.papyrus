@@ -107,7 +107,7 @@ public class DiagramCategoryRegistry extends ExtensionUtils {
 	 * 
 	 * @return the hash map
 	 */
-	private Map<String, DiagramCategoryDescriptor> buildDiagramCategories() {
+	public Map<String, DiagramCategoryDescriptor> buildDiagramCategories() {
 		Map<String, DiagramCategoryDescriptor> result = new HashMap<String, DiagramCategoryDescriptor>();
 
 		IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint(CATEGORY_EXTENSION_POINT_NAME);
@@ -127,7 +127,7 @@ public class DiagramCategoryRegistry extends ExtensionUtils {
 		return result;
 	}
 
-	private DiagramCategoryDescriptor buildCategoryDescriptor(IConfigurationElement confElement) throws BadClassNameException {
+	protected DiagramCategoryDescriptor buildCategoryDescriptor(IConfigurationElement confElement) throws BadClassNameException {
 		Class<IModelCreationCommand> commandClazz = (Class<IModelCreationCommand>)parseClass(confElement, CATEGORY_CLASS, CATEGORY_ELEMENT_NAME);
 		DiagramCategoryDescriptor diagramCategoryDescriptor = new DiagramCategoryDescriptor(confElement.getAttribute(CATEGORY_ID), confElement.getAttribute(CATEGORY_LABEL), commandClazz);
 		diagramCategoryDescriptor.setDescription(confElement.getAttribute(CATEGORY_DESCRIPTION));
