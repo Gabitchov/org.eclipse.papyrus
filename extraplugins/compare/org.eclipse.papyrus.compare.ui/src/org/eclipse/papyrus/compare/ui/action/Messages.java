@@ -8,6 +8,8 @@ public class Messages extends NLS {
 
 	public static String CompareTwoElementsAction_left_element_is_null;
 
+	public static String CompareTwoElementsAction_only_only_element_is_selected;
+
 	public static String CompareTwoElementsAction_right_element_is_null;
 	static {
 		// initialize resource bundle

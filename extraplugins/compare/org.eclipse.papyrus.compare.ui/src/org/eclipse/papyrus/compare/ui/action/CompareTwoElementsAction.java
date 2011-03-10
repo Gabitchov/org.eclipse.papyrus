@@ -58,7 +58,7 @@ public class CompareTwoElementsAction extends TeamAction {
 
 		Object[] selectedElements = getSelection().toArray();
 		if(selectedElements.length != 2) {
-			Activator.logInfo("Cannot compare elements: 2 elements should be selected, but only " + selectedElements.length + " is selected");
+			Activator.logInfo(Messages.bind(Messages.CompareTwoElementsAction_only_only_element_is_selected, selectedElements.length));
 			return;
 		}
 
