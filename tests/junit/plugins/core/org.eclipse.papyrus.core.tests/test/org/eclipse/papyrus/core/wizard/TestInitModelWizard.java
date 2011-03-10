@@ -3,6 +3,7 @@ package org.eclipse.papyrus.core.wizard;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.papyrus.diagram.profile.CreateProfileModelCommand;
+import org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand;
 import org.eclipse.papyrus.wizards.InitModelWizard;
 import org.eclipse.papyrus.wizards.pages.NewModelFilePage;
 import org.eclipse.papyrus.wizards.pages.SelectDiagramCategoryPage;
@@ -84,9 +85,8 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 			}
 			
 			@Override
-			protected String getDiagramCategoryId() {
-				// profile has custom extension
-				return CreateProfileModelCommand.COMMAND_ID; 
+			protected String[] getDiagramCategoryIds() {
+				return new String[]{CreateProfileModelCommand.COMMAND_ID};
 			}
 			
 		};

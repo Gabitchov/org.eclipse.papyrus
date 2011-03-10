@@ -1,11 +1,7 @@
 package org.eclipse.papyrus.core.wizard;
 
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand;
-import org.eclipse.papyrus.sysml.diagram.ui.NewSysMLModelWizard;
 import org.eclipse.papyrus.sysml.diagram.ui.NewSysMLProjectWizard;
-import org.eclipse.papyrus.wizards.NewPapyrusProjectWizard;
-import org.eclipse.papyrus.wizards.pages.NewModelFilePage;
-import org.eclipse.papyrus.wizards.pages.SelectDiagramCategoryPage;
 import org.eclipse.papyrus.wizards.pages.SelectDiagramKindPage;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
@@ -34,14 +30,14 @@ public class TestNewSysMLProjectWizard extends TestNewModelWizardBase {
 		class NewSysMLProjectWizardWithPublicAccess extends NewSysMLProjectWizard {
 			// open access to protected method
 			@Override
-			public String getDiagramCategoryId() {
-				return super.getDiagramCategoryId();
+			public String[] getDiagramCategoryIds() {
+				return new String[]{CreateSysMLModelCommand.COMMAND_ID};
 			}
 		}
 		
 		NewSysMLProjectWizardWithPublicAccess wizard = new NewSysMLProjectWizardWithPublicAccess();
 		initWizardDialog(wizard);
-		String actualCategory = wizard.getDiagramCategoryId();
+		String actualCategory = wizard.getDiagramCategoryIds()[0];
 		assertEquals(CreateSysMLModelCommand.COMMAND_ID, actualCategory);
 	}
 

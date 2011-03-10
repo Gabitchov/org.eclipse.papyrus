@@ -31,14 +31,14 @@ public class TestCreateSysMLModelWizard extends TestNewModelWizardBase {
 		class NewSysMLModelWizardWithPublicAccess extends NewSysMLModelWizard {
 			// open access to protected method
 			@Override
-			public String getDiagramCategoryId() {
-				return super.getDiagramCategoryId();
+			public String[] getDiagramCategoryIds() {
+				return super.getDiagramCategoryIds();
 			}
 		}
 		
 		NewSysMLModelWizardWithPublicAccess wizard = new NewSysMLModelWizardWithPublicAccess();
 		initWizardDialog(wizard);
-		String actualCategory = wizard.getDiagramCategoryId();
+		String actualCategory = wizard.getDiagramCategoryIds()[0];
 		assertEquals(CreateSysMLModelCommand.COMMAND_ID, actualCategory);
 	}
 
@@ -46,8 +46,8 @@ public class TestCreateSysMLModelWizard extends TestNewModelWizardBase {
 		final String expectedExtension = "di";
 		NewSysMLModelWizard wizard = new NewSysMLModelWizard() {
 			@Override
-			protected String getDiagramCategoryId() {
-				return CreateSysMLModelCommand.COMMAND_ID;
+			protected String[] getDiagramCategoryIds() {
+				return new String[]{CreateSysMLModelCommand.COMMAND_ID};
 			}
 			
 		};
