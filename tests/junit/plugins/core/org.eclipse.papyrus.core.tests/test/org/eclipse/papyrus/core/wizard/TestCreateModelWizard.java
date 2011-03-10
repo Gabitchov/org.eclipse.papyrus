@@ -61,8 +61,8 @@ public class TestCreateModelWizard extends TestNewModelWizardBase {
 			}
 
 			@Override
-			protected String getDiagramCategoryId() {
-				return CreateProfileModelCommand.COMMAND_ID;
+			protected String[] getDiagramCategoryIds() {
+				return new String[]{CreateProfileModelCommand.COMMAND_ID};
 			}
 
 		};
@@ -82,8 +82,8 @@ public class TestCreateModelWizard extends TestNewModelWizardBase {
 			}
 
 			@Override
-			protected String getDiagramCategoryId() {
-				return "uml";
+			protected String[] getDiagramCategoryIds() {
+				return new String[]{"uml"};
 			}
 
 		};
