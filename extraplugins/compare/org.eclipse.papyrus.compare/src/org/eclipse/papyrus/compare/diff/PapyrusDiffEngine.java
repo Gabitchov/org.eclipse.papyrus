@@ -33,17 +33,30 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 
+/**
+ * Implementation of DiffEngine for UML Diagrams:
+ * <li>Properly processes changes stereotypes and tagged values,</li> 
+ * <li>doesn't show numerous bulk changes as described in Bug 316819#c1</li>   
+ */
 public class PapyrusDiffEngine extends GenericDiffEngine {
 
+	/** The my diff element builder. */
 	private DiffSwitch<AbstractDiffExtension> myDiffElementBuilder = new DiffElementExtensionBuilder();
 
+	/** The my get model element switch. */
 	private DiffSwitch<EObject> myGetModelElementSwitch = new ModelElementSwitch();
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.diff.engine.GenericDiffEngine#getReferencesChecker()
+	 */
 	@Override
 	protected ReferencesCheck getReferencesChecker() {
 		return new UMLReferenceCheck(matchCrossReferencer);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.diff.engine.GenericDiffEngine#doDiff(org.eclipse.emf.compare.match.metamodel.MatchModel, boolean)
+	 */
 	@Override
 	public DiffModel doDiff(MatchModel match, boolean threeWay) {
 		DiffModel result = super.doDiff(match, threeWay);
@@ -51,6 +64,13 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 	}
 
 
+	/**
+	 * Post process default result of Diff. 
+	 * Processes changes stereotypes and tagged values
+	 *
+	 * @param diffModel the diff model
+	 * @return the diff model
+	 */
 	protected DiffModel postProcess(DiffModel diffModel) {
 		final Iterator<EObject> it = diffModel.eAllContents();
 		while(it.hasNext()) {
@@ -60,6 +80,12 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 		return diffModel;
 	}
 
+	/**
+	 * Visit element.
+	 *
+	 * @param root the root
+	 * @param diffElement the diff element
+	 */
 	protected void visitElement(DiffModel root, DiffElement diffElement) {
 		if(diffElement instanceof DiffGroup) {
 			return;
@@ -76,6 +102,12 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 		}
 	}
 
+	/**
+	 * Hide element.
+	 *
+	 * @param diffElement the diff element
+	 * @param diffExtension the diff extension
+	 */
 	protected void hideElement(DiffElement diffElement, AbstractDiffExtension diffExtension) {
 		if(diffExtension == null) {
 			diffExtension = UMLDiffFactory.eINSTANCE.createAddStereotypeApplication();
@@ -83,6 +115,13 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 		diffExtension.getHideElements().add(diffElement);
 	}
 
+	/**
+	 * Find or create diff element for.
+	 *
+	 * @param root the root
+	 * @param object the object
+	 * @return the diff element
+	 */
 	private DiffElement findOrCreateDiffElementFor(DiffModel root, EObject object) {
 		if(object == null) {
 			if(!root.getOwnedElements().isEmpty()) {
@@ -105,10 +144,23 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 		return diffElementForObject;
 	}
 
+	/**
+	 * Gets the parent.
+	 *
+	 * @param modelElement the model element
+	 * @return the parent
+	 */
 	private EObject getParent(EObject modelElement) {
 		return modelElement.eContainer();
 	}
 
+	/**
+	 * Find diff element for.
+	 *
+	 * @param root the root
+	 * @param modelElement the model element
+	 * @return the diff element
+	 */
 	protected final DiffElement findDiffElementFor(DiffModel root, EObject modelElement) {
 		if(modelElement == null) {
 			return null;
@@ -123,15 +175,34 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 		return null;
 	}
 
+	/**
+	 * Checks if is pertinent diff.
+	 *
+	 * @param diff the diff
+	 * @param modelElement the model element
+	 * @return true, if is pertinent diff
+	 */
 	private boolean isPertinentDiff(DiffElement diff, EObject modelElement) {
 		EObject domainElement = getModelElementFor(diff);
 		return modelElement.equals(domainElement) || modelElement.equals(getMatchedEObject(domainElement));
 	}
 
+	/**
+	 * Gets the model element for.
+	 *
+	 * @param diff the diff
+	 * @return the model element for
+	 */
 	protected EObject getModelElementFor(DiffElement diff) {
 		return myGetModelElementSwitch.doSwitch(diff);
 	}
 
+	/**
+	 * Creates the diff extention element for.
+	 *
+	 * @param diffElement the diff element
+	 * @return the abstract diff extension
+	 */
 	protected AbstractDiffExtension createDiffExtentionElementFor(DiffElement diffElement) {
 		return myDiffElementBuilder.doSwitch(diffElement);
 	}

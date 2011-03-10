@@ -28,12 +28,23 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.CrossReferencer;
 
+/**
+ * Implementation of ReferenceCheck that doesn't show numerous bulk changes as described in Bug 316819#c1   
+ */
 public class UMLReferenceCheck extends ReferencesCheck {
 
+	/**
+	 * Instantiates a new uML reference check.
+	 *
+	 * @param referencer the referencer
+	 */
 	public UMLReferenceCheck(CrossReferencer referencer) {
 		super(referencer);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.diff.engine.check.ReferencesCheck#checkReferenceUpdates(org.eclipse.emf.compare.diff.metamodel.DiffGroup, org.eclipse.emf.compare.match.metamodel.Match2Elements, org.eclipse.emf.ecore.EReference)
+	 */
 	@Override
 	protected void checkReferenceUpdates(DiffGroup root, Match2Elements mapping, EReference reference) throws FactoryException {
 		if(reference.isMany() && isSimilarSingleReference(mapping, reference)) {
@@ -42,6 +53,9 @@ public class UMLReferenceCheck extends ReferencesCheck {
 		super.checkReferenceUpdates(root, mapping, reference);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.diff.engine.check.ReferencesCheck#shouldBeIgnored(org.eclipse.emf.ecore.EReference)
+	 */
 	@Override
 	protected boolean shouldBeIgnored(EReference reference) {
 //		if (isTaggedValue(reference)) {
@@ -50,11 +64,25 @@ public class UMLReferenceCheck extends ReferencesCheck {
 		return super.shouldBeIgnored(reference);
 	}
 	
+	/**
+	 * Checks if is tagged value.
+	 *
+	 * @param reference the reference
+	 * @return true, if is tagged value
+	 */
 	protected boolean isTaggedValue(EReference reference) {
 		// improve condition
 		return reference.isDerived();
 	}
 
+	/**
+	 * Checks if is similar single reference.
+	 *
+	 * @param mapping the mapping
+	 * @param reference the reference
+	 * @return true, if is similar single reference
+	 * @throws FactoryException the factory exception
+	 */
 	private boolean isSimilarSingleReference(Match2Elements mapping, EReference reference) throws FactoryException {
 		final double similarReferenceURIThreshold = 0.8d;
 		final List<Object> leftElementObjReferences = convertFeatureMapList(EFactory.eGetAsList(mapping.getLeftElement(), reference.getName()));
@@ -85,6 +113,13 @@ public class UMLReferenceCheck extends ReferencesCheck {
 		return false;
 	}
 
+	/**
+	 * Compute added references.
+	 *
+	 * @param leftReferences the left references
+	 * @param rightReferences the right references
+	 * @return the list
+	 */
 	private List<EObject> computeAddedReferences(List<EObject> leftReferences, List<EObject> rightReferences) {
 		final List<EObject> deletedReferences = new ArrayList<EObject>();
 		final List<EObject> addedReferences = new ArrayList<EObject>();
@@ -136,6 +171,12 @@ public class UMLReferenceCheck extends ReferencesCheck {
 		return deletedReferences;
 	}
 
+	/**
+	 * Gets the matched references.
+	 *
+	 * @param references the references
+	 * @return the matched references
+	 */
 	private List<EObject> getMatchedReferences(List<EObject> references) {
 		final List<EObject> matchedReferences = new ArrayList<EObject>();
 		final Iterator<EObject> refIterator = references.iterator();

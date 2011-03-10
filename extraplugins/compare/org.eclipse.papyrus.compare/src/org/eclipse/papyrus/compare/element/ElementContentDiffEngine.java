@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.compare.element;
 
-import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
@@ -24,17 +23,32 @@ import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.CompareTwoE
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffFactory;
 
 
+/**
+ /**
+ * The implementation of DiffEngine to compare two arbitrary elements, not nesseserily diagrams 
+ */
 public class ElementContentDiffEngine extends PapyrusDiffEngine {
 
+	/** The my left. */
 	private final EObject myLeft;
 
+	/** The my right. */
 	private final EObject myRight;
 
+	/**
+	 * Instantiates a new element content diff engine.
+	 *
+	 * @param left the left
+	 * @param right the right
+	 */
 	public ElementContentDiffEngine(EObject left, EObject right) {
 		this.myLeft = left;
 		this.myRight = right;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.compare.diff.engine.GenericDiffEngine#addInContainerPackage(org.eclipse.emf.compare.diff.metamodel.DiffGroup, org.eclipse.emf.compare.diff.metamodel.DiffElement, org.eclipse.emf.ecore.EObject)
+	 */
 	@Override
 	protected void addInContainerPackage(DiffGroup root, DiffElement operation, EObject targetParent) {
 //		if(targetParent == myLeft || targetParent == myRight) {
@@ -44,6 +58,9 @@ public class ElementContentDiffEngine extends PapyrusDiffEngine {
 		super.addInContainerPackage(root, operation, targetParent);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.compare.diff.PapyrusDiffEngine#postProcess(org.eclipse.emf.compare.diff.metamodel.DiffModel)
+	 */
 	@Override
 	protected DiffModel postProcess(DiffModel diffModel) {
 		super.postProcess(diffModel);
@@ -53,6 +70,13 @@ public class ElementContentDiffEngine extends PapyrusDiffEngine {
 		return newRootExt;
 	}
 	
+	/**
+	 * Builds the compare two elements diff.
+	 *
+	 * @param object the object
+	 * @param newRott the new rott
+	 * @return the compare two elements diff model
+	 */
 	private CompareTwoElementsDiffModel buildCompareTwoElementsDiff(DiffModel object, DiffElement newRott) {
 			CompareTwoElementsDiffModel newElement = UMLDiffFactory.eINSTANCE.createCompareTwoElementsDiffModel();
 			newElement.getLeftRoots().add(myLeft);
@@ -62,12 +86,14 @@ public class ElementContentDiffEngine extends PapyrusDiffEngine {
 			return newElement;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.compare.diff.PapyrusDiffEngine#visitElement(org.eclipse.emf.compare.diff.metamodel.DiffModel, org.eclipse.emf.compare.diff.metamodel.DiffElement)
+	 */
 	@Override
 	protected void visitElement(DiffModel root, DiffElement diffElement) {
 		super.visitElement(root, diffElement);
 		if (diffElement instanceof MoveModelElement) {
 			// don't show 'element moved for the root elements'
-			//HACK
 			hideElement(diffElement, null);
 		}
 	}
