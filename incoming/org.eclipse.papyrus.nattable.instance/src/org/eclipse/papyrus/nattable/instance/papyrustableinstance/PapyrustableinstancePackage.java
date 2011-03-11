@@ -104,22 +104,22 @@ public interface PapyrustableinstancePackage extends EPackage {
 	int PAPYRUS_TABLE_INSTANCE__IS_SYNCHRONIZED = 2;
 
 	/**
-	 * The feature id for the '<em><b>Filling Java Queries Class Name</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_TABLE_INSTANCE__FILLING_JAVA_QUERIES_CLASS_NAME = 3;
-
-	/**
 	 * The feature id for the '<em><b>Table</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE_INSTANCE__TABLE = 4;
+	int PAPYRUS_TABLE_INSTANCE__TABLE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Filling Queries</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAPYRUS_TABLE_INSTANCE__FILLING_QUERIES = 4;
 
 	/**
 	 * The number of structural features of the '<em>Papyrus Table Instance</em>' class.
@@ -175,17 +175,6 @@ public interface PapyrustableinstancePackage extends EPackage {
 	EAttribute getPapyrusTableInstance_IsSynchronized();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getFillingJavaQueriesClassName <em>Filling Java Queries Class Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Filling Java Queries Class Name</em>'.
-	 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getFillingJavaQueriesClassName()
-	 * @see #getPapyrusTableInstance()
-	 * @generated
-	 */
-	EAttribute getPapyrusTableInstance_FillingJavaQueriesClassName();
-
-	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getTable <em>Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -195,6 +184,17 @@ public interface PapyrustableinstancePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPapyrusTableInstance_Table();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getFillingQueries <em>Filling Queries</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Filling Queries</em>'.
+	 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getFillingQueries()
+	 * @see #getPapyrusTableInstance()
+	 * @generated
+	 */
+	EReference getPapyrusTableInstance_FillingQueries();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -253,20 +253,20 @@ public interface PapyrustableinstancePackage extends EPackage {
 		EAttribute PAPYRUS_TABLE_INSTANCE__IS_SYNCHRONIZED = eINSTANCE.getPapyrusTableInstance_IsSynchronized();
 
 		/**
-		 * The meta object literal for the '<em><b>Filling Java Queries Class Name</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PAPYRUS_TABLE_INSTANCE__FILLING_JAVA_QUERIES_CLASS_NAME = eINSTANCE.getPapyrusTableInstance_FillingJavaQueriesClassName();
-
-		/**
 		 * The meta object literal for the '<em><b>Table</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference PAPYRUS_TABLE_INSTANCE__TABLE = eINSTANCE.getPapyrusTableInstance_Table();
+
+		/**
+		 * The meta object literal for the '<em><b>Filling Queries</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAPYRUS_TABLE_INSTANCE__FILLING_QUERIES = eINSTANCE.getPapyrusTableInstance_FillingQueries();
 
 	}
 

@@ -15,7 +15,6 @@
 package org.eclipse.papyrus.table.common.handlers;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -31,12 +30,9 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.facet.infra.query.JavaModelQuery;
 import org.eclipse.emf.facet.infra.query.ModelQuery;
 import org.eclipse.emf.facet.infra.query.ModelQuerySet;
 import org.eclipse.emf.facet.infra.query.core.ModelQuerySetCatalog;
-import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryException;
-import org.eclipse.emf.facet.infra.query.impl.ModelQueryImpl;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstanceFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -63,6 +59,7 @@ import org.eclipse.papyrus.table.common.dialog.TwoInputDialog;
 import org.eclipse.papyrus.table.common.messages.Messages;
 import org.eclipse.papyrus.table.common.modelresource.EMFFacetNattableModel;
 import org.eclipse.papyrus.table.common.modelresource.PapyrusNattableModel;
+import org.eclipse.papyrus.table.common.util.QueryRepresentation;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
@@ -231,42 +228,42 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 		model.addTableInstance(tableInstance);
 		papyrusTable.setTable(tableInstance);
 
-
-		//the name and the type of the table are stored in a hashmap
-		//		Map<String, Object> param = new HashMap<String, Object>();
-		//		param.put(AbstractNattableEditor.NAME_KEY, name);
-		//		param.put(AbstractNattableEditor.TYPE_KEY, this.editorType);
-		//		tableInstance.setParameter(param);
-		//context should not be null, because it is used to display the table in the ModelExplorer!
 		EObject context = getTableContext();
 		Assert.isNotNull(context);
 		tableInstance.setContext(context);
 
-		//TODO pour test
-		Collection<ModelQuerySet> modelQuerySet = ModelQuerySetCatalog.getSingleton().getAllModelQuerySets();
-		Iterator<ModelQuerySet> iter = modelQuerySet.iterator();
-		if(iter.hasNext()) {
-			ModelQuerySet set = iter.next();
-			Iterator<ModelQuery> iterQ = set.getQueries().iterator();
-			if(iterQ.hasNext()) {
-				ModelQuery query = iterQ.next();
-				int dummy = 0;
-				dummy++;
-				ModelQueryImpl impl = null;
-				try {
-					ModelQuerySetCatalog.getSingleton().getModelQueryImpl(query);
-				} catch (ModelQueryException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				if(query instanceof JavaModelQuery) {
-					System.out.println(((JavaModelQuery)query).getImplementationClassName());
+		setFillingQueries(papyrusTable);
+		setSynchronization(papyrusTable);
+		return papyrusTable;
+	}
+
+	/**
+	 * Set the table synchronization to <code>true</code> if there is filling queries, to <code>false</code> if not
+	 * 
+	 * @param papyrusTable
+	 *        the papyrusTable
+	 */
+	protected void setSynchronization(PapyrusTableInstance papyrusTable) {
+		papyrusTable.setIsSynchronized(papyrusTable.getFillingQueries().size() != 0);
+	}
+
+	/**
+	 * Set the queries used to fill Papyrus
+	 * 
+	 * @param papyrusTable
+	 *        the {@link PapyrusTableInstance} to fill with queries
+	 */
+	protected void setFillingQueries(PapyrusTableInstance papyrusTable) {
+		ModelQuerySetCatalog catalog = ModelQuerySetCatalog.getSingleton();
+		for(QueryRepresentation rep : getQueryRepresentations()) {
+			ModelQuerySet querySet = catalog.getModelQuerySet(rep.getQuerySetName());
+			if(querySet != null) {
+				ModelQuery query = querySet.getQuery(rep.getQueryName());
+				if(query != null) {
+					papyrusTable.getFillingQueries().add(query);
 				}
 			}
 		}
-
-
-		return papyrusTable;
 	}
 
 	/**
@@ -344,5 +341,20 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 		}
 		return rootElement;
 	}
+
+	/**
+	 * This method should be overridden by the user, if he wants provide filling queries
+	 * The list of the queries used to fill the table, identified by their querySet name and query name.
+	 * 
+	 * 
+	 * @return
+	 *         The list of the queries used to fill the table, identified by their querySet name and query name.
+	 * 
+	 */
+	protected List<QueryRepresentation> getQueryRepresentations() {
+		List<QueryRepresentation> list = new ArrayList<QueryRepresentation>();
+		return list;
+	}
+
 
 }

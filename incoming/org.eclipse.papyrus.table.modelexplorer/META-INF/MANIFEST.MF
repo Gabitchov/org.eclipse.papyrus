@@ -4,17 +4,11 @@ Bundle-SymbolicName: org.eclipse.papyrus.table.modelexplorer;singleton:=true
 Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.table.modelexplorer.Activator
 Bundle-Vendor: %pluginProvider
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.ui.navigator,
- org.eclipse.papyrus.sasheditor,
- org.eclipse.papyrus.resource,
- org.eclipse.papyrus.core,
+Require-Bundle: org.eclipse.papyrus.resource,
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser.custom.core,
  org.eclipse.papyrus.modelexplorer;bundle-version="0.8.0",
  org.eclipse.core.expressions,
- org.eclipse.papyrus.table.common;bundle-version="0.8.0",
  org.eclipse.papyrus.nattable.instance;bundle-version="0.8.0",
  org.eclipse.emf.facet.widgets.nattable.instance;bundle-version="0.1.0"
 Bundle-ActivationPolicy: lazy

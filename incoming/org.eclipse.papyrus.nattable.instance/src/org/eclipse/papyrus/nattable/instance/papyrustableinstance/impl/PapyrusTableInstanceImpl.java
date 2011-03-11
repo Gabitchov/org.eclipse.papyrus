@@ -25,6 +25,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.facet.infra.query.ModelQuery;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
@@ -42,8 +44,8 @@ import org.eclipse.papyrus.nattable.instance.papyrustableinstance.Papyrustablein
  *   <li>{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#isIsSynchronized <em>Is Synchronized</em>}</li>
- *   <li>{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#getFillingJavaQueriesClassName <em>Filling Java Queries Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#getTable <em>Table</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#getFillingQueries <em>Filling Queries</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,7 +60,7 @@ public class PapyrusTableInstanceImpl extends EObjectImpl implements PapyrusTabl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final String NAME_EDEFAULT = "no name";
 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -78,7 +80,7 @@ public class PapyrusTableInstanceImpl extends EObjectImpl implements PapyrusTabl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String TYPE_EDEFAULT = null;
+	protected static final String TYPE_EDEFAULT = "PapyrusDefaultTable";
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -111,16 +113,6 @@ public class PapyrusTableInstanceImpl extends EObjectImpl implements PapyrusTabl
 	protected boolean isSynchronized = IS_SYNCHRONIZED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getFillingJavaQueriesClassName() <em>Filling Java Queries Class Name</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFillingJavaQueriesClassName()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> fillingJavaQueriesClassName;
-
-	/**
 	 * The cached value of the '{@link #getTable() <em>Table</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -129,6 +121,16 @@ public class PapyrusTableInstanceImpl extends EObjectImpl implements PapyrusTabl
 	 * @ordered
 	 */
 	protected TableInstance table;
+
+	/**
+	 * The cached value of the '{@link #getFillingQueries() <em>Filling Queries</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFillingQueries()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ModelQuery> fillingQueries;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -217,18 +219,6 @@ public class PapyrusTableInstanceImpl extends EObjectImpl implements PapyrusTabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getFillingJavaQueriesClassName() {
-		if (fillingJavaQueriesClassName == null) {
-			fillingJavaQueriesClassName = new EDataTypeUniqueEList<String>(String.class, this, PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__FILLING_JAVA_QUERIES_CLASS_NAME);
-		}
-		return fillingJavaQueriesClassName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public TableInstance getTable() {
 		if (table != null && table.eIsProxy()) {
 			InternalEObject oldTable = (InternalEObject)table;
@@ -267,6 +257,18 @@ public class PapyrusTableInstanceImpl extends EObjectImpl implements PapyrusTabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ModelQuery> getFillingQueries() {
+		if (fillingQueries == null) {
+			fillingQueries = new EObjectResolvingEList<ModelQuery>(ModelQuery.class, this, PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__FILLING_QUERIES);
+		}
+		return fillingQueries;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -276,11 +278,11 @@ public class PapyrusTableInstanceImpl extends EObjectImpl implements PapyrusTabl
 				return getType();
 			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__IS_SYNCHRONIZED:
 				return isIsSynchronized();
-			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__FILLING_JAVA_QUERIES_CLASS_NAME:
-				return getFillingJavaQueriesClassName();
 			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__TABLE:
 				if (resolve) return getTable();
 				return basicGetTable();
+			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__FILLING_QUERIES:
+				return getFillingQueries();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -303,12 +305,12 @@ public class PapyrusTableInstanceImpl extends EObjectImpl implements PapyrusTabl
 			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__IS_SYNCHRONIZED:
 				setIsSynchronized((Boolean)newValue);
 				return;
-			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__FILLING_JAVA_QUERIES_CLASS_NAME:
-				getFillingJavaQueriesClassName().clear();
-				getFillingJavaQueriesClassName().addAll((Collection<? extends String>)newValue);
-				return;
 			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__TABLE:
 				setTable((TableInstance)newValue);
+				return;
+			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__FILLING_QUERIES:
+				getFillingQueries().clear();
+				getFillingQueries().addAll((Collection<? extends ModelQuery>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -331,11 +333,11 @@ public class PapyrusTableInstanceImpl extends EObjectImpl implements PapyrusTabl
 			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__IS_SYNCHRONIZED:
 				setIsSynchronized(IS_SYNCHRONIZED_EDEFAULT);
 				return;
-			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__FILLING_JAVA_QUERIES_CLASS_NAME:
-				getFillingJavaQueriesClassName().clear();
-				return;
 			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__TABLE:
 				setTable((TableInstance)null);
+				return;
+			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__FILLING_QUERIES:
+				getFillingQueries().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -355,10 +357,10 @@ public class PapyrusTableInstanceImpl extends EObjectImpl implements PapyrusTabl
 				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__IS_SYNCHRONIZED:
 				return isSynchronized != IS_SYNCHRONIZED_EDEFAULT;
-			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__FILLING_JAVA_QUERIES_CLASS_NAME:
-				return fillingJavaQueriesClassName != null && !fillingJavaQueriesClassName.isEmpty();
 			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__TABLE:
 				return table != null;
+			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__FILLING_QUERIES:
+				return fillingQueries != null && !fillingQueries.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -379,8 +381,6 @@ public class PapyrusTableInstanceImpl extends EObjectImpl implements PapyrusTabl
 		result.append(type);
 		result.append(", isSynchronized: ");
 		result.append(isSynchronized);
-		result.append(", fillingJavaQueriesClassName: ");
-		result.append(fillingJavaQueriesClassName);
 		result.append(')');
 		return result.toString();
 	}

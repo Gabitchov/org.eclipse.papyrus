@@ -1,19 +1,15 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.facet.infra.common.core,
+Require-Bundle: org.eclipse.emf.facet.infra.common.core,
  org.eclipse.emf.facet.infra.query.core,
- org.eclipse.papyrus.table.default,
- org.eclipse.papyrus.core,
- org.eclipse.uml2.uml,
- org.eclipse.emf.ecore,
- org.eclipse.papyrus.sysml;bundle-version="0.8.0",
  org.eclipse.papyrus.service.edit;bundle-version="0.8.0",
  org.eclipse.papyrus.sysml.service.types;bundle-version="0.8.0",
  org.eclipse.papyrus.diagram.common;bundle-version="0.8.0",
- org.eclipse.emf.facet.infra.browser.custom,
  org.eclipse.papyrus.table.common,
  org.eclipse.core.expressions,
- org.eclipse.papyrus.nattable.instance;bundle-version="0.8.0"
+ org.eclipse.papyrus.nattable.instance;bundle-version="0.8.0",
+ org.eclipse.emf.facet.widgets.nattable;bundle-version="0.1.0",
+ org.eclipse.emf.facet.widgets.nattable.tableconfiguration;bundle-version="0.1.0",
+ org.eclipse.emf.facet.widgets.nattable.instance;bundle-version="0.1.0"
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,bin
 Bundle-Version: 0.8.0.qualifier

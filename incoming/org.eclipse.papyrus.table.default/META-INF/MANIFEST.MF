@@ -4,19 +4,10 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.table.default;singleton:=true
 Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.table.defaultt.Activator
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.ui.editors,
- org.eclipse.jface.text,
- net.sourceforge.nattable.core;bundle-version="2.1.0";visibility:=reexport,
- org.eclipse.emf.facet.widgets.nattable.tableconfiguration;bundle-version="0.1.0";visibility:=reexport,
- org.eclipse.emf.facet.widgets.nattable;bundle-version="0.1.0";visibility:=reexport,
- org.eclipse.emf.facet.widgets.nattable.instance;bundle-version="0.1.0";visibility:=reexport,
- org.eclipse.core.expressions,
- org.eclipse.papyrus.core,
- org.eclipse.ui.navigator,
+Require-Bundle: org.eclipse.papyrus.core,
  org.eclipse.papyrus.table.common;bundle-version="0.8.0",
- org.eclipse.papyrus.nattable.instance;bundle-version="0.8.0"
+ org.eclipse.papyrus.nattable.instance;bundle-version="0.8.0",
+ org.eclipse.emf.facet.widgets.nattable;bundle-version="0.1.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName

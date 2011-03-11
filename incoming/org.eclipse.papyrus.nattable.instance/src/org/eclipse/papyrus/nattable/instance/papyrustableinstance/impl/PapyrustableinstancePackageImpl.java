@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.eclipse.emf.facet.infra.query.QueryPackage;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
 
 import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
@@ -145,8 +146,8 @@ public class PapyrustableinstancePackageImpl extends EPackageImpl implements Pap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPapyrusTableInstance_FillingJavaQueriesClassName() {
-		return (EAttribute)papyrusTableInstanceEClass.getEStructuralFeatures().get(3);
+	public EReference getPapyrusTableInstance_Table() {
+		return (EReference)papyrusTableInstanceEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -154,7 +155,7 @@ public class PapyrustableinstancePackageImpl extends EPackageImpl implements Pap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPapyrusTableInstance_Table() {
+	public EReference getPapyrusTableInstance_FillingQueries() {
 		return (EReference)papyrusTableInstanceEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -190,8 +191,8 @@ public class PapyrustableinstancePackageImpl extends EPackageImpl implements Pap
 		createEAttribute(papyrusTableInstanceEClass, PAPYRUS_TABLE_INSTANCE__NAME);
 		createEAttribute(papyrusTableInstanceEClass, PAPYRUS_TABLE_INSTANCE__TYPE);
 		createEAttribute(papyrusTableInstanceEClass, PAPYRUS_TABLE_INSTANCE__IS_SYNCHRONIZED);
-		createEAttribute(papyrusTableInstanceEClass, PAPYRUS_TABLE_INSTANCE__FILLING_JAVA_QUERIES_CLASS_NAME);
 		createEReference(papyrusTableInstanceEClass, PAPYRUS_TABLE_INSTANCE__TABLE);
+		createEReference(papyrusTableInstanceEClass, PAPYRUS_TABLE_INSTANCE__FILLING_QUERIES);
 	}
 
 	/**
@@ -219,6 +220,7 @@ public class PapyrustableinstancePackageImpl extends EPackageImpl implements Pap
 
 		// Obtain other dependent packages
 		TableinstancePackage theTableinstancePackage = (TableinstancePackage)EPackage.Registry.INSTANCE.getEPackage(TableinstancePackage.eNS_URI);
+		QueryPackage theQueryPackage = (QueryPackage)EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -228,11 +230,11 @@ public class PapyrustableinstancePackageImpl extends EPackageImpl implements Pap
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(papyrusTableInstanceEClass, PapyrusTableInstance.class, "PapyrusTableInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPapyrusTableInstance_Name(), ecorePackage.getEString(), "name", null, 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPapyrusTableInstance_Type(), ecorePackage.getEString(), "type", null, 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPapyrusTableInstance_IsSynchronized(), ecorePackage.getEBoolean(), "isSynchronized", null, 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPapyrusTableInstance_FillingJavaQueriesClassName(), ecorePackage.getEString(), "fillingJavaQueriesClassName", null, 0, -1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPapyrusTableInstance_Name(), ecorePackage.getEString(), "name", "no name", 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPapyrusTableInstance_Type(), ecorePackage.getEString(), "type", "PapyrusDefaultTable", 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPapyrusTableInstance_IsSynchronized(), ecorePackage.getEBoolean(), "isSynchronized", "false", 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPapyrusTableInstance_Table(), theTableinstancePackage.getTableInstance(), null, "table", null, 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPapyrusTableInstance_FillingQueries(), theQueryPackage.getModelQuery(), null, "fillingQueries", null, 0, -1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
