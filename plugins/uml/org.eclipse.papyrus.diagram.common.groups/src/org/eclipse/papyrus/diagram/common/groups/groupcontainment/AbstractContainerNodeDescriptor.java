@@ -40,6 +40,15 @@ public abstract class AbstractContainerNodeDescriptor {
 	 */
 	public abstract EClass getContainerEClass();
 
+	public List<EClass> getPossibleGraphicalChildren() {
+		List<EReference> refs = this.getChildrenReferences();
+		List<EClass> result = new ArrayList<EClass>(refs.size());
+		for(EReference ref : refs) {
+			result.add(ref.getEReferenceType());
+		}
+		return result;
+	}
+
 	/**
 	 * Get the area in which contained children are located.
 	 * 
@@ -119,6 +128,31 @@ public abstract class AbstractContainerNodeDescriptor {
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * Give the reference object which can contain the child.
+	 * 
+	 * @param childType
+	 *        EClass of the child you want to test
+	 * @return null if no reference is found
+	 */
+	public EReference getContainmentReferenceFor(EClass childType) {
+		EReference usedReference = null;
+		List<EReference> result = new ArrayList<EReference>();
+		for(EReference reference : this.getChildrenReferences()) {
+			if(reference.getEReferenceType().isSuperTypeOf(childType) && reference.isContainment() && !reference.isDerived()) {
+				result.add(reference);
+			}
+		}
+		//Select the best containment relation
+		for(EReference ref : result) {
+			if(usedReference == null || ref.getEReferenceType().getEAllSuperTypes().contains(usedReference.getEReferenceType())) {
+				// the ref feature is more precise than the previously selected one. Use it instead.
+				usedReference = ref;
+			}
+		}
+		return usedReference;
 	}
 
 }

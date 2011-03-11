@@ -36,6 +36,11 @@ public class GroupRequestConstants {
 	 * Used to notify the user that the notification to choose the parent failed
 	 */
 	public static final String CHOOSE_PARENT_ERROR_NOTIFICATION = "The notification failed to run because no list of avaiable parent was set up";
+	
+	/**
+	 * The constant to recover the list of all graphical graphical children after group creation 
+	 */
+	public static final String GRAPHICAL_CHILDREN = "ALL_AUTOMATIC_GRAPHICAL_CHILDREN";
 
 
 }

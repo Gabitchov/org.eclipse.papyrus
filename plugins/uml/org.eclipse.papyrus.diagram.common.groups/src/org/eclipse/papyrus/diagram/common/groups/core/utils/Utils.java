@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RoundedRectangle;
@@ -35,6 +36,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.LayerConstants;
 import org.eclipse.gef.editparts.LayerManager;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
@@ -47,14 +49,12 @@ import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.groups.core.groupcontainment.GroupContainmentRegistry;
 import org.eclipse.papyrus.diagram.common.groups.core.ui.ChooseContainedElementsCreator.ChildSelection;
 import org.eclipse.papyrus.diagram.common.groups.groupcontainment.AbstractContainerNodeDescriptor;
 import org.eclipse.papyrus.diagram.common.groups.utils.GraphicalAndModelElementComparator;
-import org.eclipse.papyrus.preferences.Activator;
-import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.diagram.common.groups.utils.GraphicalAndModelElementComparator.Mode;
 
 
 /**
@@ -126,7 +126,7 @@ public class Utils {
 	}
 
 	/**
-	 * Find containers which may be chosen as graphical and as model parent of the element to create
+	 * Find containers which may be chosen as graphical and as model parent of the element
 	 * 
 	 * @param graphicalParentsToComplete
 	 *        an empty list that will be filled with edits part of available graphical parents (e.g. new ArrayList())
@@ -149,12 +149,13 @@ public class Utils {
 		//FIXME : Add a correct default size
 		// If size == null then a default size is used to create the bounds of the new elements
 		if(size == null || size.isEmpty()) {
-			IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-			String prefWidthName = PreferenceConstantHelper.getElementConstant(ElementTypeName, PreferenceConstantHelper.WIDTH);
-			String prefHeightName = PreferenceConstantHelper.getElementConstant(ElementTypeName, PreferenceConstantHelper.HEIGHT);
-			int width = store.getInt(prefWidthName);
-			int height = store.getInt(prefHeightName);
-			size = new Dimension(width, height);
+			//			IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+			//			String prefWidthName = PreferenceConstantHelper.getElementConstant(ElementTypeName, PreferenceConstantHelper.WIDTH);
+			//			String prefHeightName = PreferenceConstantHelper.getElementConstant(ElementTypeName, PreferenceConstantHelper.HEIGHT);
+			//			int width = store.getInt(prefWidthName);
+			//			int height = store.getInt(prefHeightName);
+			//			size = new Dimension(width, height);
+			size = new Dimension(0, 0);
 		}
 		Rectangle bounds = new Rectangle(creationRequest.getLocation(), size);
 		return createComputedListsOfParents(graphicalParentsToComplete, modelParentsToComplete, bounds, child, diagramViews, anyPart);
@@ -167,8 +168,12 @@ public class Utils {
 	 *        an empty list that will be filled with edits part of available graphical parents (e.g. new ArrayList())
 	 * @param modelParentsToComplete
 	 *        an empty list that will be filled with edits part of available model parents e.g. new ArrayList())
+	 * @param bounds
+	 *        Bounds of the element
 	 * @param request
 	 *        createElementRequest of the current request
+	 * @param views
+	 *        Collection of view to iteration on
 	 * @param anyPart
 	 *        an edit part of the diagram to get the viewer
 	 * @return true if successful
@@ -185,6 +190,7 @@ public class Utils {
 					if(GroupContainmentRegistry.isContainerConcerned(part)) {
 						AbstractContainerNodeDescriptor desc = GroupContainmentRegistry.getContainerDescriptor(part);
 						//Check if the current part contains the element
+						//FIXME replace this piece of code by isItVisualyContained
 						if(desc.getContentArea(part).contains(bounds)) {
 							if(child instanceof EClass) {
 								if(desc.canIBeModelParentOf(child)) {
@@ -204,42 +210,341 @@ public class Utils {
 		}
 		//Try to reduce the number of available parents by removing
 		if(graphicalParentsToComplete.size() > 1)
-			withdrawUselessElements(graphicalParentsToComplete, GraphicalAndModelElementComparator.graphicalAndModel);
+			withdrawUselessAncestorsElements(graphicalParentsToComplete, Mode.GRAPHICAL_AND_MODEL);
 		if(modelParentsToComplete.size() > 1)
-			withdrawUselessElements(modelParentsToComplete, GraphicalAndModelElementComparator.model);
+			withdrawUselessAncestorsElements(modelParentsToComplete, Mode.MODEL);
 		//FIXME Sort the two list in order to have the most relevant parent first (lowest surface )
 		return true;
 	}
 
-	private static boolean withdrawUselessElements(List<IGraphicalEditPart> listToModify, int mode) {
-		GraphicalAndModelElementComparator comparator = new GraphicalAndModelElementComparator();
-		//Select the comparator mode
-		if(mode == GraphicalAndModelElementComparator.model || mode == GraphicalAndModelElementComparator.graphicalAndModel) {
-			comparator.setMode(mode);
-		} else {
-			return false;
+	/**
+	 * This method complete the list childsToComplete to add element which are visually contained in the element in creation "parent" and which can
+	 * be graphical children of this new elements
+	 * 
+	 * @param childsToComplete
+	 *        Empty list which will contain in the newly created element "parent" and which can be graphical children of this new elements
+	 * @param creationRequest
+	 *        request of creation
+	 * @param anyPart
+	 *        An edit part to get the viewer
+	 * @param descriptor
+	 *        Descriptor of the element in creation
+	 * @param ElementTypeName
+	 *        Name of the element to be created (name used to look for default size FIXME)
+	 * @return true if succeed
+	 */
+	public static boolean createComputedListsOfVisualYRelatedElements(List<IGraphicalEditPart> childsToComplete, CreateViewAndElementRequest creationRequest, IGraphicalEditPart anyPart, AbstractContainerNodeDescriptor descriptor, String ElementTypeName) {
+		Collection<View> diagramViews = new ArrayList<View>(anyPart.getViewer().getEditPartRegistry().keySet());
+		Dimension size = creationRequest.getSize();
+		//FIXME : Add a correct default size
+		// If size == null then a default size is used to create the bounds of the new elements
+		if(size == null || size.isEmpty()) {
+			//			IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+			//			String prefWidthName = PreferenceConstantHelper.getElementConstant(ElementTypeName, PreferenceConstantHelper.WIDTH);
+			//			String prefHeightName = PreferenceConstantHelper.getElementConstant(ElementTypeName, PreferenceConstantHelper.HEIGHT);
+			//			int width = store.getInt(prefWidthName);
+			//			int height = store.getInt(prefHeightName);
+			//			size = new Dimension(width, height);
+			size = new Dimension(0, 0);
 		}
-		/**
-		 * Keep in the list only elements which which have no smaller element ( with this comparator)
-		 * 
-		 */
-		for(int element = 0; element < listToModify.size(); element++) {
-			for(int elementToCompare = element + 1; elementToCompare < listToModify.size(); elementToCompare++) {
-				int compare = comparator.compare((IGraphicalEditPart)listToModify.get(element), (IGraphicalEditPart)listToModify.get(elementToCompare));
-				if(compare < 0) {
-					listToModify.remove(element);
-					element--;
-					elementToCompare = listToModify.size();
+		Rectangle bounds = new Rectangle(creationRequest.getLocation(), size);
+		createComputedListsOfVisualyRelatedElements(childsToComplete, bounds, descriptor, diagramViews, anyPart);
+		return true;
+	}
 
-				} else if(compare > 0) {
-					listToModify.remove(elementToCompare);
-					elementToCompare--;
+	/**
+	 * Find containers which may be chosen as graphical and as model parent of the element
+	 * 
+	 * @param childsToComplete
+	 *        Empty list which will contain in the newly created element "parent" and which can be graphical children of this new elements
+	 * @param parentsBounds
+	 *        Bounds of the element
+	 * @param descriptors
+	 *        Descriptor of the element in creation
+	 * @param views
+	 *        Collection of view to iteration on
+	 * @param anyPart
+	 *        an edit part of the diagram to get the viewer
+	 * @return true if succeed
+	 */
+	private static boolean createComputedListsOfVisualyRelatedElements(List<IGraphicalEditPart> childsToComplete, Rectangle parentsBounds, AbstractContainerNodeDescriptor descriptor, Collection<View> views, IGraphicalEditPart anyPart) {
+		/*
+		 * 1 - Compute the EClass(s) which the element can be parent of : listEclass
+		 * 2 - Iterate on views : v
+		 * 2.1 - If v correspond to a main editPart : part
+		 * 2.1.1 - If v correspond to a a EClass which belong to listEclass
+		 * 2.1.1.1 - If part is visually contained is the parent then add to the list
+		 * 3 - Withdraw useless elements
+		 */
+		//Set<AbstractContainerNodeDescriptor> descriptors = GroupContainmentRegistry.getDescriptorsWithContainerEClass(parentEclass);
+		List<EClass> possibleChildrenEClass = new ArrayList<EClass>(descriptor.getPossibleGraphicalChildren());
+		if(!possibleChildrenEClass.isEmpty()) {
+			for(Object view : views) {
+				if(view instanceof View) {
+					View childView = (View)view;
+					EClass childEclass = (childView.getElement().eClass());
+					Object editpart = anyPart.getViewer().getEditPartRegistry().get(childView);
+					if(editpart instanceof IGraphicalEditPart) {
+						IGraphicalEditPart part = (IGraphicalEditPart)editpart;
+						if(isMainEditPart(part)) {
+							for(EClass possibleChild : possibleChildrenEClass) {
+								if(possibleChild.isSuperTypeOf(childEclass)) {
+									if(isItVisualyContained(parentsBounds, part)) {
+										childsToComplete.add(part);
+										break;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			if(childsToComplete.size() > 1)
+				withdrawUselessDescendantElements(childsToComplete, Mode.GRAPHICAL_AND_MODEL);
+		}
+
+		return true;
+	}
+
+	/**
+	 * This methods is used to know if an edit part is contained in a rectangle
+	 * 
+	 * @param parentBounds
+	 *        Rectangle of the parent
+	 * @param child
+	 *        IGraphicalEditPart of the element we want to test
+	 * @return true if the bounds of child are contained in parentsBounds
+	 */
+	private static boolean isItVisualyContained(Rectangle parentBounds, IGraphicalEditPart child) {
+
+		if(child.getParent() instanceof IGraphicalEditPart) {
+			// an edit part is considered the "main" edit part of an element if it is not contained in an edit part of the same element (e.g. not a label nor a compartment)
+			Rectangle bounds = child.getFigure().getBounds().getCopy();
+			child.getFigure().translateToAbsolute(bounds);
+			if(bounds != null) {
+				if(parentBounds.contains(bounds)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Return true if the edit part is the main editPart of a model element (e.g the label is not the main edit part of an activityPartition
+	 * 
+	 * @param part
+	 *        IGraphicalEditPart to test
+	 * @return
+	 */
+	public static boolean isMainEditPart(IGraphicalEditPart part) {
+		EObject currentElement = part.resolveSemanticElement();
+		EditPart parentEditPart = part.getParent();
+		if(parentEditPart instanceof IGraphicalEditPart) {
+			return !currentElement.equals(((IGraphicalEditPart)parentEditPart).resolveSemanticElement());
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * This method remove all elements from the list which have a parent in the (graphical model) or model in the list
+	 * 
+	 * @param listToModify
+	 *        List of elements (IGraphicalEditPart
+	 * @param mode
+	 *        if GraphicalAndModelElementComparator.MODEL then it only take care of model parent if
+	 *        GraphicalAndModelElementComparator.GRAPHICAL_AND_MODEL it take care of graphical and logical relationship
+	 * @return true if succeed
+	 */
+	private static void withdrawUselessAncestorsElements(List<IGraphicalEditPart> listToModify, Mode mode) {
+		if(!listToModify.isEmpty()) {
+
+			GraphicalAndModelElementComparator comparator = new GraphicalAndModelElementComparator(listToModify.get(0));
+			//Select the comparator mode
+
+			comparator.setMode(mode);
+
+			/**
+			 * Keep in the list only elements which which have no smaller element ( with this comparator)
+			 * 
+			 */
+			for(int element = 0; element < listToModify.size(); element++) {
+				for(int elementToCompare = element + 1; elementToCompare < listToModify.size(); elementToCompare++) {
+					int compare = comparator.compare((IGraphicalEditPart)listToModify.get(element), (IGraphicalEditPart)listToModify.get(elementToCompare));
+					if(compare < 0) {
+						listToModify.remove(element);
+						element--;
+						elementToCompare = listToModify.size();
+
+					} else if(compare > 0) {
+						listToModify.remove(elementToCompare);
+						elementToCompare--;
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * This method will withdraw all EObject directly referenced by object which are also referenced by one of its parents (parent by reference and
+	 * parent by containment)
+	 * 
+	 * @param object
+	 */
+	public static void withDrawRedundantElementReferenced(EObject object) {
+		/*
+		 * Algo :
+		 * 1 - Select all references which are Group Framework concerned and which represent a reference to a parent
+		 * 2 - Create a Set directlyReferencedByElement of EObject directly referenced by object
+		 * 3 - Iterate thought parents to see if one of them also point at an element of directlyReferencedByElement
+		 */
+		/*
+		 * 1 - Select all references which are Group Framework concerned and which represent a reference to a parent
+		 */
+		Set<EReference> groupFrameworkReferences = GroupContainmentRegistry.getAllERefencesFromNodeToGroup();
+		HashMap<EObject, EReference> referencingGroupsAndTheirRelation = new HashMap<EObject, EReference>();
+		Set<EObject> elementToVosit = new HashSet<EObject>();
+		for(EReference ref : groupFrameworkReferences) {
+			if(object.eClass().getEAllReferences().contains(ref)) {
+				// list of groups containing the object
+				List<EObject> groups;
+				if(ref.isMany()) {
+					groups = (List<EObject>)object.eGet(ref);
+				} else {
+					groups = Collections.singletonList((EObject)object.eGet(ref));
+				}
+				if(!ref.isContainment()) {
+					/*
+					 * 2 - Create a Set directlyReferencedByElement of EObject directly referenced by object
+					 */
+					for(EObject element : groups) {
+						if(!referencingGroupsAndTheirRelation.containsKey(element) && !ref.isDerived()) {
+							referencingGroupsAndTheirRelation.put(element, ref);
+						}
+					}
+				}
+				for(EObject group : groups) {
+					if(group != null) {
+						elementToVosit.add(group);
+					}
+				}
+			}
+		}
+		Set<EObject> elementAlreadyVisited = new HashSet<EObject>();
+		for(EObject visitingElement : elementToVosit) {
+			withDrawRedundantElementReferenced(object, groupFrameworkReferences, referencingGroupsAndTheirRelation, elementAlreadyVisited, visitingElement);
+		}
+	}
+
+	/**
+	 * This method will withdraw all EObject directly referenced by object which are also referenced by one of its parents (parent by reference and
+	 * parent by containment). This method is called recursively
+	 * 
+	 * @param originalEObject
+	 *        The EObject on which you want to check the reference
+	 * @param groupFrameworkReferences
+	 *        All the EReference which are used on the groupFramework and which represent a relation from a element to its parent
+	 * @param directlyReferencedByElement
+	 *        Set of elements which are directly referenced by the original element
+	 * @param elementAlreadyVisited
+	 *        Set of element already visited. Used to avoid infinite loop
+	 * @param visitingElement
+	 *        The current element which is being visited
+	 */
+	private static void withDrawRedundantElementReferenced(EObject originalEObject, Set<EReference> groupFrameworkReferences, Map<EObject, EReference> directlyReferencedByElement, Set<EObject> elementAlreadyVisited, EObject visitingElement) {
+		if(visitingElement != null) {
+			elementAlreadyVisited.add(visitingElement);
+			for(EReference ref : groupFrameworkReferences) {
+				if(visitingElement != null) {
+					if(visitingElement.eClass().getEAllReferences().contains(ref)) {
+						List<EObject> groups;
+						if(ref.isMany()) {
+							groups = (List<EObject>)visitingElement.eGet(ref);
+						} else {
+							groups = Collections.singletonList((EObject)visitingElement.eGet(ref));
+						}
+						for(EObject currentElementParentGroup : groups) {
+							//If it belong to the directly referenced element then
+							if(directlyReferencedByElement.containsKey(currentElementParentGroup)) {
+								withdrawEObjectFromReference(originalEObject, currentElementParentGroup, directlyReferencedByElement.get(currentElementParentGroup));
+								// parents already handled in the first recursion (as direct parent group)
+							} else if(elementAlreadyVisited.contains(currentElementParentGroup)) {
+								// element already met, avoid infinite loop
+								org.eclipse.papyrus.diagram.common.groups.Activator.getDefault().getLog().log(new Status(Status.WARNING, org.eclipse.papyrus.diagram.common.groups.Activator.PLUGIN_ID, "There is a circle element reference"));
+							} else {
+								//else iterate recursively also on this group's parents
+								withDrawRedundantElementReferenced(originalEObject, groupFrameworkReferences, directlyReferencedByElement, elementAlreadyVisited, currentElementParentGroup);
+								//elementToVosit.add(currentCompareElement);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * This method is used to with an element of a reference
+	 * 
+	 * @param source
+	 *        EObject from which the reference start
+	 * @param destination
+	 *        EObject to which the reference start
+	 * @param ref
+	 *        EReference
+	 */
+	private static void withdrawEObjectFromReference(EObject source, EObject destination, EReference ref) {
+		if(ref != null && source != null && destination != null) {
+			if(ref != null && ref.isMany()) {
+				Collection<EObject> collection = (Collection<EObject>)source.eGet(ref);
+				if(collection.contains(destination)) {
+					collection.remove(destination);
+				}
+			} else if(ref != null && !ref.isMany()) {
+				source.eUnset(ref);
+			}
+		}
+	}
+
+	/**
+	 * This method remove all elements from the list which have a descendant in the (graphical model) or model in the list
+	 * 
+	 * @param listToModify
+	 *        List of elements (IGraphicalEditPart
+	 * @param mode
+	 *        if GraphicalAndModelElementComparator.MODEL then it only take care of model parent if
+	 *        GraphicalAndModelElementComparator.GRAPHICAL_AND_MODEL it take care of graphical and logical relationship
+	 * @return true if succeed
+	 */
+	private static boolean withdrawUselessDescendantElements(List<IGraphicalEditPart> listToModify, Mode mode) {
+
+		if(!listToModify.isEmpty()) {
+
+			GraphicalAndModelElementComparator comparator = new GraphicalAndModelElementComparator(listToModify.get(0));
+			//Select the comparator mode
+			comparator.setMode(mode);
+			for(int element = 0; element < listToModify.size(); element++) {
+				for(int elementToCompare = element + 1; elementToCompare < listToModify.size(); elementToCompare++) {
+					int compare = comparator.compare((IGraphicalEditPart)listToModify.get(element), (IGraphicalEditPart)listToModify.get(elementToCompare));
+					if(compare > 0) {
+						listToModify.remove(element);
+						element--;
+						elementToCompare = listToModify.size();
+
+					} else if(compare < 0) {
+						listToModify.remove(elementToCompare);
+						elementToCompare--;
+					}
 				}
 			}
 		}
 		return true;
-
 	}
+
+
+
+
 
 	/**
 	 * Find the children edit parts which may be contained by the group in the given bounds.
@@ -483,6 +788,52 @@ public class Utils {
 		}
 
 		part.getFigure().getParent().translateToAbsolute(bounds);
+		
 		return bounds;
+	}
+	/**
+	 * This method compute the delta between to IGraphicalEditPart.
+	 * @param oldParent Old IGraphicalEditPart
+	 * @param newParent New IGraphicalEditPart
+	 * @return Return a DDimention between the two bounds (often use to translate point or Rectangle) 
+	 */
+	public static Dimension computeDeltaToChangeParent(IGraphicalEditPart oldParent, IGraphicalEditPart newParent) {
+		Rectangle hostBounds = Utils.getAbsoluteBounds(oldParent);
+		Rectangle parentBounds = Utils.getAbsoluteBounds(newParent);
+		Dimension delta = hostBounds.getLocation().getDifference(parentBounds.getLocation());
+		return delta;
+	}
+	
+	public static Dimension computeDeltaToChangeParent(IGraphicalEditPart oldParent, Rectangle newParent) {
+		Rectangle hostBounds = Utils.getAbsoluteBounds(oldParent);
+		Dimension delta = hostBounds.getLocation().getDifference(newParent.getLocation());
+		return delta;
+	}
+	
+	/**
+	 * Give the reference object which can reference the child for the parent type part
+	 * @param parentType
+	 *        EClass of the parent OBject you want to know the EReference
+	 * @param childType
+	 *        EClass of the child you want to test
+	 * @return null if no reference is found
+	 */
+	public static EReference getContainmentEReference(EClass parentType ,EClass childType) {
+		List<EReference> result = new ArrayList<EReference>();
+		EReference usedReference = null;
+		for(EReference reference : parentType.getEAllContainments()) {
+			if(reference.getEReferenceType().isSuperTypeOf(childType) && !reference.isDerived()) {
+				result.add(reference);
+			}
+		}
+		
+		//Select the best containment relation
+		for(EReference ref : result) {
+			if(usedReference == null || ref.getEReferenceType().getEAllSuperTypes().contains(usedReference.getEReferenceType())) {
+				// the ref feature is more precise than the previously selected one. Use it instead.
+				usedReference = ref;
+			}
+		}
+		return usedReference;
 	}
 }

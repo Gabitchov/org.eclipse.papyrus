@@ -100,14 +100,27 @@ public class GroupNotificationBuilderFactory {
 	}
 
 	/**
-	 * Create a notification builder wich will display all the graphical parents available
-	 * 
-	 * @param elementPartsAndParents
-	 * @return
+	 * Create a simple notification builder from a label
+	 * @param label Title of your notification
+	 * @return a NotificationBuilder
 	 */
-	public static NotificationBuilder getChooseGraphicalParentBuilder(String label) {
+	public static NotificationBuilder getQuestionBuilder(String label) {
 		NotificationBuilder builder = NotificationBuilder.createInformationBuilder();
 		builder.setType(Type.QUESTION);
+		builder.setTemporary(true);
+		builder.setAsynchronous(true);
+		builder.setTitle(label);
+		return builder;
+
+	}
+	/**
+	 * Create a simple warning notification builder from a label
+	 * @param label Title of your notification
+	 * @return a NotificationBuilder
+	 */
+	public static NotificationBuilder getWarningBuilder(String label) {
+		NotificationBuilder builder = NotificationBuilder.createInformationBuilder();
+		builder.setType(Type.WARNING);
 		builder.setTemporary(true);
 		builder.setAsynchronous(true);
 		builder.setTitle(label);

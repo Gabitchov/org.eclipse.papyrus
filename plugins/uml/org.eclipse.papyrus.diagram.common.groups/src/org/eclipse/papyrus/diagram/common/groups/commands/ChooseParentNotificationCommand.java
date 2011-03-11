@@ -33,10 +33,11 @@ import org.eclipse.papyrus.diagram.common.groups.utils.GroupRequestConstants;
 import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
 
 /**
- * Command to print the notification for chosing parent
- * TODO allow graphical or model mode
- * 
- * @author adaussy
+ * Command to display the notification for choosing parent.
+ * This command handle two modes:
+ * 	@see #GRAPHICAL_MODE : Display the notification in order to choose the graphical parent
+ * 	@see #MODEL_MODE : Display the warning in order to choose the model parent and change automatically the graphical parent
+ * @author arthur daussy
  */
 public class ChooseParentNotificationCommand extends AbstractTransactionalCommand {
 
@@ -70,25 +71,13 @@ public class ChooseParentNotificationCommand extends AbstractTransactionalComman
 	 * @param request
 	 *        creation request
 	 */
-	public ChooseParentNotificationCommand(TransactionalEditingDomain domain, String label, List<IGraphicalEditPart> parents, CreateViewAndElementRequest request) {
+	public ChooseParentNotificationCommand(TransactionalEditingDomain domain, String label, List<IGraphicalEditPart> parents, CreateViewAndElementRequest request, Boolean mode) {
 		super(domain, label, null);
-		mode = GRAPHICAL_MODE;
 		this.parents = parents;
 		this.request = request;
+		this.mode = mode;
 	}
 
-	/**
-	 * Constructor created element reassignment.
-	 * 
-	 * @param domain
-	 *        editing domain
-	 * @param label
-	 *        command label
-	 */
-	public ChooseParentNotificationCommand(TransactionalEditingDomain domain, String label) {
-		super(domain, label, null);
-		mode = GRAPHICAL_MODE;
-	}
 
 	/**
 	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
@@ -96,29 +85,52 @@ public class ChooseParentNotificationCommand extends AbstractTransactionalComman
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor arg0, IAdaptable arg1) throws ExecutionException {
 		if(parents != null) {
-			Iterator<? extends CreateViewRequest.ViewDescriptor> descriptors = request.getViewDescriptors().iterator();
-			while(descriptors.hasNext()) {
-				CreateViewRequest.ViewDescriptor descriptor = (CreateViewRequest.ViewDescriptor)descriptors.next();
-				Object view = descriptor.getAdapter(View.class);
-				if(view instanceof View) {
-					View childView = (View)view;
-					if(!parents.isEmpty()) {
-						Object childEditPartAux = parents.get(0).getViewer().getEditPartRegistry().get(childView);
-						if(childEditPartAux instanceof IGraphicalEditPart) {
-							childEditPart = (IGraphicalEditPart)childEditPartAux;
-						}
+			getEditPartFromDescriptor();
+			String label;
+			NotificationBuilder parentNotification = null;
+			if(mode == GRAPHICAL_MODE) {
+				label = new String(Messages.ChooseParentNotificationCommand_ChooseGraphicalParent);
+				parentNotification = GroupNotificationBuilderFactory.getQuestionBuilder(label);
+			} else {
+				label = new String(Messages.ChooseParentNotificationCommand_ChooseGraphicalParent);
+				parentNotification = GroupNotificationBuilderFactory.getWarningBuilder(label);
+
+			}
+			if(parentNotification != null) {
+				ChooseParentICompositeCreator creator = new ChooseParentICompositeCreator(parents, childEditPart, mode);
+				parentNotification.setComposite(creator).addAction(creator).run();
+				return CommandResult.newOKCommandResult();
+			}
+		}
+		return CommandResult.newErrorCommandResult(GroupRequestConstants.CHOOSE_PARENT_ERROR_NOTIFICATION);
+
+
+	}
+
+	/**
+	 * This method is going to get the edit part from the request.
+	 * 1 - Get descriptors
+	 * 2 - Get View (adapter)
+	 * 3 - Get IGraphicalEditPart if it exist
+	 * @return true if it as found the edit part
+	 */
+	private Boolean getEditPartFromDescriptor() {
+		Iterator<? extends CreateViewRequest.ViewDescriptor> descriptors = request.getViewDescriptors().iterator();
+		while(descriptors.hasNext()) {
+			CreateViewRequest.ViewDescriptor descriptor = (CreateViewRequest.ViewDescriptor)descriptors.next();
+			Object view = descriptor.getAdapter(View.class);
+			if(view instanceof View) {
+				View childView = (View)view;
+				if(!parents.isEmpty()) {
+					Object childEditPartAux = parents.get(0).getViewer().getEditPartRegistry().get(childView);
+					if(childEditPartAux instanceof IGraphicalEditPart) {
+						childEditPart = (IGraphicalEditPart)childEditPartAux;
+						return true;
 					}
 				}
 			}
-			String label = new String(Messages.ChooseParentNotificationCommand_ChooseGraphicalParent);
-			NotificationBuilder parentNotification = GroupNotificationBuilderFactory.getChooseGraphicalParentBuilder(label);
-			ChooseParentICompositeCreator creator = new ChooseParentICompositeCreator(parents, childEditPart);
-			parentNotification.setComposite(creator).addAction(creator).run();
-			return CommandResult.newOKCommandResult();
-		} else {
-			return CommandResult.newErrorCommandResult(GroupRequestConstants.CHOOSE_PARENT_ERROR_NOTIFICATION);
 		}
-
+		return false;
 	}
 
 	/**

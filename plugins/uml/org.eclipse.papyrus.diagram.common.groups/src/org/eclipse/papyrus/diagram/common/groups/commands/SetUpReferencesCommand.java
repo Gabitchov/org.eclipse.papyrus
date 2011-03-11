@@ -32,9 +32,10 @@ import org.eclipse.papyrus.diagram.common.groups.groupcontainment.AbstractContai
 import org.eclipse.papyrus.diagram.common.groups.utils.GroupRequestConstants;
 
 /**
- * Command to update referencing groups for a child element
+ * Command to update referencing groups for a child element.
+ * (The child element is not necessary already created, it has just to be available through an adapter at runtime execution)
  * 
- * @author adaussy
+ * @author arthur daussy
  */
 public class SetUpReferencesCommand extends AbstractTransactionalCommand {
 
@@ -43,7 +44,6 @@ public class SetUpReferencesCommand extends AbstractTransactionalCommand {
 
 	/**
 	 * Command constructor
-	 * FIXME Withdraw the parameter CreateElementRequest createElementRequest
 	 * 
 	 * @param domain
 	 *        editing domain
@@ -51,15 +51,22 @@ public class SetUpReferencesCommand extends AbstractTransactionalCommand {
 	 *        command label
 	 * @param adapter
 	 *        adapter to recover created element
-	 * @param createElementRequest
-	 *        the element creation request
 	 */
-	public SetUpReferencesCommand(TransactionalEditingDomain domain, String label, CreateElementRequestAdapter adapter, CreateElementRequest createElementRequest) {
+	public SetUpReferencesCommand(TransactionalEditingDomain domain, String label, CreateElementRequestAdapter adapter) {
 		super(domain, label, null);
 		elementAdapter = adapter;
 	}
 
-
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
+	 *      org.eclipse.core.runtime.IAdaptable)
+	 * 
+	 * @param arg0
+	 * @param arg1
+	 * @return
+	 * @throws ExecutionException
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor arg0, IAdaptable arg1) throws ExecutionException {
@@ -67,7 +74,6 @@ public class SetUpReferencesCommand extends AbstractTransactionalCommand {
 		if(createdElement instanceof EObject) {
 			EObject eObjectCreatedElement = (EObject)createdElement;
 			//Check if the added field are available
-
 			CreateElementRequest createElementRequest = (CreateElementRequest)elementAdapter.getAdapter(CreateElementRequest.class);
 			Object list = createElementRequest.getParameter(GroupRequestConstants.GRAPHICAL_CONTAINERS);
 			if(list instanceof List<?>) {

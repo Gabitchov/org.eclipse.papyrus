@@ -14,7 +14,9 @@
 package org.eclipse.papyrus.diagram.common.groups.core.groupcontainment;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -22,6 +24,8 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
@@ -58,6 +62,7 @@ public class GroupContainmentRegistry {
 
 	/** The map of descriptor allowing to recover the group part from a view, by view type */
 	private static Map<String, AbstractContainerNodeDescriptor> descriptorForViewType = new HashMap<String, AbstractContainerNodeDescriptor>();
+
 
 	/**
 	 * Initialize the values from the extension point
@@ -100,8 +105,51 @@ public class GroupContainmentRegistry {
 						}
 					}
 				}
+
 			}
 		}
+	}
+
+	/**
+	 * Get the AbstractContainerNodeDescriptor from a EClass
+	 * 
+	 * @param containerEClass
+	 * @return Set<AbstractContainerNodeDescriptor> Return all the descriptor wich match the corresponding EClass
+	 */
+	public static Set<AbstractContainerNodeDescriptor> getDescriptorsWithContainerEClass(EClass containerEClass) {
+		Set<AbstractContainerNodeDescriptor> descriptors = new HashSet<AbstractContainerNodeDescriptor>(modelContainersDescriptors.size() + graphicalContainersDescriptors.size());
+		Set<AbstractContainerNodeDescriptor> descriptorsResult = new HashSet<AbstractContainerNodeDescriptor>(modelContainersDescriptors.size() + graphicalContainersDescriptors.size());
+		descriptors.addAll(modelContainersDescriptors.values());
+		descriptors.addAll(graphicalContainersDescriptors.values());
+		// filter descriptors
+		for(AbstractContainerNodeDescriptor descriptor : descriptors) {
+			if(descriptor.getContainerEClass().equals(containerEClass)) {
+				descriptorsResult.add(descriptor);
+			}
+		}
+		return descriptorsResult;
+	}
+
+	/**
+	 * Get all the references which can point to a group
+	 * 
+	 * @return give back a set of ERefences pointing at group
+	 */
+	public static Set<EReference> getAllERefencesFromNodeToGroup() {
+		Set<EReference> referencesResult = new HashSet<EReference>();
+		Set<AbstractContainerNodeDescriptor> descriptors = new HashSet<AbstractContainerNodeDescriptor>(modelContainersDescriptors.size() + graphicalContainersDescriptors.size());
+		descriptors.addAll(modelContainersDescriptors.values());
+		descriptors.addAll(graphicalContainersDescriptors.values());
+		for(AbstractContainerNodeDescriptor descriptor : descriptors) {
+			for(EReference ref : descriptor.getChildrenReferences()) {
+				EReference eoppositeRef = ref.getEOpposite();
+				if(eoppositeRef != null) {
+					referencesResult.add(eoppositeRef);
+				}
+			}
+
+		}
+		return referencesResult;
 	}
 
 	/**
