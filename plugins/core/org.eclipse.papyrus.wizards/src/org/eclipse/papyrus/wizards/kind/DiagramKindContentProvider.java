@@ -24,22 +24,19 @@ import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
 
 /**
- * The Class DiagramCategoryTableContentProvider.
- */
-/**
- * @author tatiana
- *
+ * The ContentProvider for DiagramCategory table.
+ * Returns available diagram kinds for the giben diagram category(ies).
  */
 public class DiagramKindContentProvider implements IStructuredContentProvider {
 
-	/**
-	 * The creation command registry
-	 */
+	/** The creation command registry. */
 	private final ICreationCommandRegistry creationCommandRegistry;
 	
 	
 	/**
-	 * @param creationCommandRegistry
+	 * Instantiates a new diagram kind content provider.
+	 *
+	 * @param creationCommandRegistry the creation command registry
 	 */
 	public DiagramKindContentProvider(ICreationCommandRegistry creationCommandRegistry) {
 		this.creationCommandRegistry = creationCommandRegistry;
@@ -47,26 +44,30 @@ public class DiagramKindContentProvider implements IStructuredContentProvider {
 
 
 	/**
-	 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
+	 * Dispose.
 	 *
+	 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
 	 */
 	public void dispose() {
 	}
 
 	/**
-	 * @see org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+	 * Input changed.
 	 *
-	 * @param viewer
-	 * @param oldInput
-	 * @param newInput
+	 * @param viewer the viewer
+	 * @param oldInput the old input
+	 * @param newInput the new input
+	 * @see org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 	 */
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 	}
 
 	/**
-	 * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
+	 * Gets the elements.
 	 *
-	 * @param inputElement
+	 * @param inputElement the input element
+	 * @return the elements
+	 * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
 	 */
 	public Object[] getElements(Object inputElement) {
 		if(inputElement instanceof Object[]) {
@@ -94,8 +95,10 @@ public class DiagramKindContentProvider implements IStructuredContentProvider {
 	}
 
 	/**
-	 * @param diagramCategory
-	 * @return
+	 * Gets the creation commands.
+	 *
+	 * @param diagramCategory the diagram category
+	 * @return the creation commands
 	 */
 	protected List<CreationCommandDescriptor> getCreationCommands(String diagramCategory) {
 		List<CreationCommandDescriptor> result = new ArrayList<CreationCommandDescriptor>();

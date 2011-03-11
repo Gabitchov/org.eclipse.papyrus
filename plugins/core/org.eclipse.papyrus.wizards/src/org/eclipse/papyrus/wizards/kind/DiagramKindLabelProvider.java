@@ -21,12 +21,17 @@ import org.eclipse.papyrus.wizards.Messages;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * The Class DiagramCategoryLabelProvider.
+ * The LabelProvider for DiagramCategory table.
+ * Returns labels and images for the categories as is specified in its descriptor(e.g. read from plugin.xml).
  */
 public class DiagramKindLabelProvider implements ILabelProvider {
 
+	/** The Constant UNDEFINED_ELEMENT. */
 	private static final String UNDEFINED_ELEMENT = Messages.DiagramKindLabelProvider_undefined_element;
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.viewers.ILabelProvider#getImage(java.lang.Object)
+	 */
 	public Image getImage(Object element) {
 		// TODO use ImageRegistry to store images
 		if(element instanceof CreationCommandDescriptor) {
@@ -39,6 +44,9 @@ public class DiagramKindLabelProvider implements ILabelProvider {
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
+	 */
 	public String getText(Object element) {
 		if(element instanceof CreationCommandDescriptor) {
 			return ((CreationCommandDescriptor)element).getLabel();
@@ -47,18 +55,28 @@ public class DiagramKindLabelProvider implements ILabelProvider {
 	}
 
 	/**
+	 * Adds the listener.
+	 *
+	 * @param listener the listener
 	 * {@inheritDoc}
 	 */
 	public void addListener(ILabelProviderListener listener) {
 	}
 
 	/**
+	 * Dispose.
+	 *
 	 * {@inheritDoc}
 	 */
 	public void dispose() {
 	}
 
 	/**
+	 * Checks if is label property.
+	 *
+	 * @param element the element
+	 * @param property the property
+	 * @return true, if is label property
 	 * {@inheritDoc}
 	 */
 	public boolean isLabelProperty(Object element, String property) {
@@ -66,6 +84,9 @@ public class DiagramKindLabelProvider implements ILabelProvider {
 	}
 
 	/**
+	 * Removes the listener.
+	 *
+	 * @param listener the listener
 	 * {@inheritDoc}
 	 */
 	public void removeListener(ILabelProviderListener listener) {
