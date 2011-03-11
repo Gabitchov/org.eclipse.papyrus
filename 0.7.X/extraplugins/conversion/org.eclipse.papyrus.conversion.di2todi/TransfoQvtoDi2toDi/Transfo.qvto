@@ -14,12 +14,11 @@ modeltype notation uses 'http://www.eclipse.org/gmf/runtime/1.0.2/notation';
 transformation Transfo(in src : di2, out target1 : notation, out target2:di);
 
 main() {
-	src.rootObjects()->forEach (e|e.oclIsTypeOf(di2::Diagram)){
-	e.oclAsType(di2::Diagram).map diagram2diagram();
+	src.rootObjects()->forEach (e|e.oclIsTypeOf(di2::Diagram)) {
+		e.oclAsType(di2::Diagram).map diagram2diagram();
 	};
 	
-	src.rootObjects()![di2::Diagram]->map diagram2SashWindowsMngr();
-	
+	src.rootObjects()![di2::Diagram]->map diagram2SashWindowsMngr();	
 }
 
 
