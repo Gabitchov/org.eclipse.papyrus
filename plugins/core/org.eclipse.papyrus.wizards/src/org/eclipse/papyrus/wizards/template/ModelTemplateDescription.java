@@ -72,6 +72,8 @@ public class ModelTemplateDescription {
 	// }
 
 	/**
+	 * Gets the path.
+	 *
 	 * @return the path
 	 */
 	public String getPath() {

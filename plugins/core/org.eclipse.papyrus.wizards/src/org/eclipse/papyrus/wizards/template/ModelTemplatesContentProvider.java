@@ -42,11 +42,13 @@ public class ModelTemplatesContentProvider implements IStructuredContentProvider
 	/** The Constant ATTRIBUTE_LANGUAGE. */
 	private static final String ATTRIBUTE_LANGUAGE = "language"; //$NON-NLS-1$
 	
+	/** The my template descriptions. */
 	private ModelTemplateDescription[] myTemplateDescriptions;
 
 	/**
-	 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
+	 * Dispose.
 	 *
+	 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
 	 */
 	public void dispose() {
 		// TODO Auto-generated method stub
@@ -91,9 +93,11 @@ public class ModelTemplatesContentProvider implements IStructuredContentProvider
 	}
 
 	/**
-	 * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
+	 * Gets the elements.
 	 *
-	 * @param inputElement
+	 * @param inputElement the input element
+	 * @return the elements
+	 * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
 	 */
 	public Object[] getElements(Object inputElement) {
 		if(inputElement instanceof String) {
@@ -110,11 +114,12 @@ public class ModelTemplatesContentProvider implements IStructuredContentProvider
 	}
 
 	/**
-	 * @see org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+	 * Input changed.
 	 *
-	 * @param viewer
-	 * @param oldInput
-	 * @param newInput
+	 * @param viewer the viewer
+	 * @param oldInput the old input
+	 * @param newInput the new input
+	 * @see org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 	 */
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		if(viewer instanceof TableViewer) {

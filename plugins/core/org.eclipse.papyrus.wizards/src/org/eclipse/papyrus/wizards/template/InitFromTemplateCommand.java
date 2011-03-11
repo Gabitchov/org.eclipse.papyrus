@@ -31,16 +31,20 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
  */
 public class InitFromTemplateCommand extends RecordingCommand {
 
+	/** The my model resource. */
 	private final Resource myModelResource;
 
+	/** The my template path. */
 	private final String myTemplatePath;
 
+	/** The my plugin id. */
 	private final String myPluginId;
 
 	/**
 	 * Instantiates a new inits the from template command.
 	 *
-	 * @param diResourceSet the di resource set
+	 * @param editingDomain the editing domain
+	 * @param modelResource the model resource
 	 * @param pluginId the plugin id
 	 * @param templatePath the template path
 	 */
@@ -52,6 +56,9 @@ public class InitFromTemplateCommand extends RecordingCommand {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
+	 */
 	@Override
 	protected void doExecute() {
 		initializeFromTemplate();
@@ -59,13 +66,7 @@ public class InitFromTemplateCommand extends RecordingCommand {
 
 	/**
 	 * Initialize from template.
-	 * 
-	 * @param resource
-	 *        the resource
-	 * @param rootElementName
-	 *        the root element name
-	 * @param templatePath
-	 *        the template path
+	 *
 	 */
 	private void initializeFromTemplate() {
 		Resource templateResource = loadTemplateResource();
@@ -81,9 +82,7 @@ public class InitFromTemplateCommand extends RecordingCommand {
 
 	/**
 	 * Load template resource.
-	 * 
-	 * @param templatePath
-	 *        the template path
+	 *
 	 * @return the resource
 	 */
 	private Resource loadTemplateResource() {

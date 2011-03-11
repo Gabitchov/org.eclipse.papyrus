@@ -24,20 +24,24 @@ import org.eclipse.swt.graphics.Image;
 public class ModelTemplatesLabelProvider implements ITableLabelProvider {
 
 	/**
+	 * Gets the column image.
+	 *
+	 * @param element the element
+	 * @param columnIndex the column index
+	 * @return the column image
 	 * @see org.eclipse.jface.viewers.ITableLabelProvider#getColumnImage(java.lang.Object, int)
-	 * 
-	 * @param element
-	 * @param columnIndex
 	 */
 	public Image getColumnImage(Object element, int columnIndex) {
 		return null;
 	}
 
 	/**
+	 * Gets the column text.
+	 *
+	 * @param element the element
+	 * @param columnIndex the column index
+	 * @return the column text
 	 * @see org.eclipse.jface.viewers.ITableLabelProvider#getColumnText(java.lang.Object, int)
-	 * 
-	 * @param element
-	 * @param columnIndex
 	 */
 	public String getColumnText(Object element, int columnIndex) {
 		if(element instanceof ModelTemplateDescription) {
@@ -48,27 +52,31 @@ public class ModelTemplatesLabelProvider implements ITableLabelProvider {
 	}
 
 	/**
-	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.jface.viewers.ILabelProviderListener)
+	 * Adds the listener.
 	 *
-	 * @param listener
+	 * @param listener the listener
+	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.jface.viewers.ILabelProviderListener)
 	 */
 	public void addListener(ILabelProviderListener listener) {
 
 	}
 
 	/**
-	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
+	 * Dispose.
 	 *
+	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
 	 */
 	public void dispose() {
 
 	}
 
 	/**
-	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang.Object, java.lang.String)
+	 * Checks if is label property.
 	 *
-	 * @param element
-	 * @param property
+	 * @param element the element
+	 * @param property the property
+	 * @return true, if is label property
+	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang.Object, java.lang.String)
 	 */
 	public boolean isLabelProperty(Object element, String property) {
 
@@ -76,9 +84,10 @@ public class ModelTemplatesLabelProvider implements ITableLabelProvider {
 	}
 
 	/**
-	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse.jface.viewers.ILabelProviderListener)
+	 * Removes the listener.
 	 *
-	 * @param listener
+	 * @param listener the listener
+	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse.jface.viewers.ILabelProviderListener)
 	 */
 	public void removeListener(ILabelProviderListener listener) {
 
