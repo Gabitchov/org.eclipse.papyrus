@@ -58,6 +58,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	/** The Constant DEFAULT_EXTENSION. */
 	public static final String DEFAULT_EXTENSION = "uml"; //$NON-NLS-1$
 
+	/** The my allow several categories. */
 	private final boolean myAllowSeveralCategories;
 
 	/**
@@ -70,7 +71,8 @@ public class SelectDiagramCategoryPage extends WizardPage {
 
 	/**
 	 * Instantiates a new select diagram category page.
-	 * 
+	 *
+	 * @param allowSeveralCategories the allow several categories
 	 */
 	public SelectDiagramCategoryPage(boolean allowSeveralCategories) {
 		super(PAGE_ID);
@@ -79,9 +81,10 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	}
 
 	/**
+	 * Sets the wizard.
+	 *
+	 * @param newWizard the new wizard
 	 * @see org.eclipse.jface.wizard.WizardPage#setWizard(org.eclipse.jface.wizard.IWizard)
-	 * 
-	 * @param newWizard
 	 */
 	@Override
 	public void setWizard(IWizard newWizard) {
@@ -98,9 +101,10 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	}
 
 	/**
+	 * Creates the control.
+	 *
+	 * @param parent the parent
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
-	 * 
-	 * @param parent
 	 */
 	public void createControl(Composite parent) {
 		Composite plate = new Composite(parent, SWT.NONE);
@@ -129,10 +133,20 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		return null;
 	}
 
+	/**
+	 * Gets the diagram categories.
+	 *
+	 * @return the diagram categories
+	 */
 	public String[] getDiagramCategories() {
 		return mySelectedDiagramCategoryIds.toArray(new String[mySelectedDiagramCategoryIds.size()]);
 	}
 
+	/**
+	 * Sets the default diagram categories.
+	 *
+	 * @param categories the new default diagram categories
+	 */
 	protected final void setDefaultDiagramCategories(String[] categories) {
 		mySelectedDiagramCategoryIds.clear();
 		mySelectedDiagramCategoryIds.addAll(Arrays.asList(categories));
@@ -163,6 +177,12 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		return true;
 	}
 
+	/**
+	 * Validate file extension.
+	 *
+	 * @param categories the categories
+	 * @return true, if successful
+	 */
 	protected boolean validateFileExtension(String... categories) {
 		IStatus status = ((CreateModelWizard)getWizard()).diagramCategoryChanged(categories);
 		switch(status.getSeverity()) {
@@ -179,6 +199,12 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		return true;
 	}
 
+	/**
+	 * Validate category exists.
+	 *
+	 * @param newCategory the new category
+	 * @return true, if successful
+	 */
 	protected boolean validateCategoryExists(String newCategory) {
 		DiagramCategoryDescriptor selected = getDiagramCategoryMap().get(newCategory);
 		if(selected == null) {
@@ -188,6 +214,11 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		return true;
 	}
 
+	/**
+	 * Gets the diagram category map.
+	 *
+	 * @return the diagram category map
+	 */
 	protected Map<String, DiagramCategoryDescriptor> getDiagramCategoryMap() {
 		return DiagramCategoryRegistry.getInstance().getDiagramCategoryMap();
 	}
@@ -227,6 +258,12 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		checkDiagramCategoryButtons();
 	}
 
+	/**
+	 * Diagram category selected.
+	 *
+	 * @param category the category
+	 * @param checked the checked
+	 */
 	protected void diagramCategorySelected(String category, boolean checked) {
 		if(checked) {
 			mySelectedDiagramCategoryIds.add(category);
@@ -235,10 +272,18 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		}
 	}
 
+	/**
+	 * Check diagram category buttons.
+	 */
 	protected void checkDiagramCategoryButtons() {
 		checkButtonsFor(mySelectedDiagramCategoryIds.toArray(new String[mySelectedDiagramCategoryIds.size()]));
 	}
 
+	/**
+	 * Check buttons for.
+	 *
+	 * @param diagramCategories the diagram categories
+	 */
 	protected void checkButtonsFor(String... diagramCategories) {
 		for(Button button : myDiagramKindButtons) {
 			button.setSelection(false);
@@ -252,6 +297,13 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		}
 	}
 
+	/**
+	 * Creates the category button.
+	 *
+	 * @param diagramCategoryDescriptor the diagram category descriptor
+	 * @param group the group
+	 * @return the button
+	 */
 	private Button createCategoryButton(DiagramCategoryDescriptor diagramCategoryDescriptor, Group group) {
 		Button button = new Button(group, myAllowSeveralCategories ? SWT.CHECK : SWT.RADIO);
 		button.setText(diagramCategoryDescriptor.getLabel());
@@ -264,6 +316,12 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		return button;
 	}
 
+	/**
+	 * Gets the image.
+	 *
+	 * @param imageDescriptor the image descriptor
+	 * @return the image
+	 */
 	private static Image getImage(ImageDescriptor imageDescriptor) {
 		if(imageDescriptor != null) {
 			return new Image(null, imageDescriptor.getImageData());

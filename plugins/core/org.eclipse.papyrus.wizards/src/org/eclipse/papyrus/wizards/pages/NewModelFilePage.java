@@ -48,6 +48,12 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 		this(PAGE_ID, selection);
 	}
 
+	/**
+	 * Instantiates a new new model file page.
+	 *
+	 * @param pageId the page id
+	 * @param selection the selection
+	 */
 	public NewModelFilePage(String pageId, IStructuredSelection selection) {
 		super(pageId, selection);
 		setTitle(Messages.NewModelFilePage_3);
@@ -56,6 +62,9 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	}
 
 	/**
+	 * Creates the control.
+	 *
+	 * @param parent the parent
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -65,6 +74,12 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 		setPageComplete(validatePage());
 	}
 
+	/**
+	 * Diagram extension changed.
+	 *
+	 * @param newExtension the new extension
+	 * @return the i status
+	 */
 	public IStatus diagramExtensionChanged(String newExtension) {
 		String currentExtension = getFileExtension();
 		if(!currentExtension.equals(newExtension)) {

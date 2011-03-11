@@ -59,31 +59,37 @@ public class SelectDiagramKindPage extends WizardPage {
 	/** The Constant PAGE_ID. */
 	public static final String PAGE_ID = "SelectDiagramKind"; //$NON-NLS-1$
 
-	/**
-	 * The diagram name text field
-	 */
+	/** The diagram name text field. */
 	private Text nameText;
 
+	/** The diagram kind table viewer. */
 	private CheckboxTableViewer diagramKindTableViewer;
 
+	/** The my settings helper. */
 	private SettingsHelper mySettingsHelper;
 
 	/** The select template composite. */
 	private SelectModelTemplateComposite selectTemplateComposite;
 
+	/** The remember current selection. */
 	private Button rememberCurrentSelection;
 
+	/** The my category provider. */
 	private final CategoryProvider myCategoryProvider;
 
+	/** The allow templates. */
 	private final boolean allowTemplates;
 
+	/** The my creation command registry. */
 	private final ICreationCommandRegistry myCreationCommandRegistry;
 
+	/** The Constant DEFAULT_CREATION_COMMAND_REGISTRY. */
 	public static final ICreationCommandRegistry DEFAULT_CREATION_COMMAND_REGISTRY = CreationCommandRegistry.getInstance(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 
 	/**
 	 * Instantiates a new select diagram kind page.
-	 * 
+	 *
+	 * @param categoryProvider the category provider
 	 */
 	public SelectDiagramKindPage(CategoryProvider categoryProvider) {
 		this(true, categoryProvider, DEFAULT_CREATION_COMMAND_REGISTRY);
@@ -91,7 +97,10 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Instantiates a new select diagram kind page.
-	 * 
+	 *
+	 * @param allowTemplates the allow templates
+	 * @param categoryProvider the category provider
+	 * @param creationCommandRegistry the creation command registry
 	 */
 	public SelectDiagramKindPage(boolean allowTemplates, CategoryProvider categoryProvider, ICreationCommandRegistry creationCommandRegistry) {
 		super(PAGE_ID);
@@ -131,6 +140,9 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.wizard.WizardPage#setWizard(org.eclipse.jface.wizard.IWizard)
+	 */
 	@Override
 	public void setWizard(IWizard newWizard) {
 		super.setWizard(newWizard);
@@ -148,9 +160,10 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 
 	/**
+	 * Sets the visible.
+	 *
+	 * @param visible the new visible
 	 * @see org.eclipse.jface.dialogs.DialogPage#setVisible(boolean)
-	 * 
-	 * @param visible
 	 */
 	@Override
 	public void setVisible(boolean visible) {
@@ -164,6 +177,11 @@ public class SelectDiagramKindPage extends WizardPage {
 		}
 	}
 
+	/**
+	 * Fill in tables.
+	 *
+	 * @param categories the categories
+	 */
 	private void fillInTables(String[] categories) {
 		if(categories == null || categories.length == 0) {
 			return;
@@ -175,10 +193,20 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 
 
+	/**
+	 * Gets the template path.
+	 *
+	 * @return the template path
+	 */
 	public String getTemplatePath() {
 		return selectTemplateComposite.getTemplatePath();
 	}
 
+	/**
+	 * Gets the template plugin id.
+	 *
+	 * @return the template plugin id
+	 */
 	public String getTemplatePluginId() {
 		return selectTemplateComposite.getTemplatePluginId();
 	}
@@ -194,17 +222,26 @@ public class SelectDiagramKindPage extends WizardPage {
 
 
 	/**
+	 * Gets the diagram name.
+	 *
 	 * @return the new diagram name
 	 */
 	public String getDiagramName() {
 		return nameText.getText();
 	}
 
+	/**
+	 * Templates enabled.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean templatesEnabled() {
 		return allowTemplates;
 	}
 
 	/**
+	 * Gets the creation commands.
+	 *
 	 * @return the creation command
 	 */
 	public List<ICreationCommand> getCreationCommands() {
@@ -223,6 +260,12 @@ public class SelectDiagramKindPage extends WizardPage {
 		return commands;
 	}
 
+	/**
+	 * Gets the creation commands.
+	 *
+	 * @param categoryId the category id
+	 * @return the creation commands
+	 */
 	public List<ICreationCommand> getCreationCommands(String categoryId) {
 		List<CreationCommandDescriptor> selected = getSelectedCommandDescriptors(categoryId);
 		List<ICreationCommand> commands = new ArrayList<ICreationCommand>();
@@ -238,6 +281,12 @@ public class SelectDiagramKindPage extends WizardPage {
 		return commands;
 	}
 
+	/**
+	 * Gets the selected command descriptors.
+	 *
+	 * @param categoryId the category id
+	 * @return the selected command descriptors
+	 */
 	protected List<CreationCommandDescriptor> getSelectedCommandDescriptors(String categoryId) {
 		CreationCommandDescriptor[] selected = getSelectedDiagramKindDescriptors();
 		List<CreationCommandDescriptor> commands = new ArrayList<CreationCommandDescriptor>();
@@ -249,6 +298,11 @@ public class SelectDiagramKindPage extends WizardPage {
 		return commands;
 	}
 
+	/**
+	 * Creates the model template composite.
+	 *
+	 * @param composite the composite
+	 */
 	private void createModelTemplateComposite(Composite composite) {
 		Group group = createGroup(composite, Messages.SelectDiagramKindPage_load_template_group);
 		selectTemplateComposite = new SelectModelTemplateComposite(group);
@@ -300,6 +354,11 @@ public class SelectDiagramKindPage extends WizardPage {
 		diagramKindTableViewer.setLabelProvider(createDiagramKindLabelProvider());
 	}
 
+	/**
+	 * Creates the diagram kind label provider.
+	 *
+	 * @return the i base label provider
+	 */
 	protected IBaseLabelProvider createDiagramKindLabelProvider() {
 		return new DiagramKindLabelProvider();
 	}
@@ -347,6 +406,11 @@ public class SelectDiagramKindPage extends WizardPage {
 		});
 	}
 
+	/**
+	 * Creates the remember current selection form.
+	 *
+	 * @param composite the composite
+	 */
 	private void createRememberCurrentSelectionForm(Composite composite) {
 		Composite plate = new Composite(composite, SWT.NONE);
 		GridLayout layout = new GridLayout(1, false);
@@ -392,13 +456,19 @@ public class SelectDiagramKindPage extends WizardPage {
 		setPageComplete(message == null);
 	}
 
+	/**
+	 * Checks if is remember current selection.
+	 *
+	 * @return true, if is remember current selection
+	 */
 	public boolean isRememberCurrentSelection() {
 		return rememberCurrentSelection.getSelection();
 	}
 
 	/**
 	 * Gets the selected diagram kinds.
-	 * 
+	 *
+	 * @param categoryId the category id
 	 * @return the selected diagram kinds
 	 */
 	public String[] getSelectedDiagramKinds(String categoryId) {
@@ -410,6 +480,11 @@ public class SelectDiagramKindPage extends WizardPage {
 		return result;
 	}
 
+	/**
+	 * Gets the selected diagram kind descriptors.
+	 *
+	 * @return the selected diagram kind descriptors
+	 */
 	protected CreationCommandDescriptor[] getSelectedDiagramKindDescriptors() {
 		Object[] checked = diagramKindTableViewer.getCheckedElements();
 		// as Object is not a subclass of String we cannot cast Object[] to String[] 
@@ -417,6 +492,11 @@ public class SelectDiagramKindPage extends WizardPage {
 		return result;
 	}
 
+	/**
+	 * Select default diagram kinds.
+	 *
+	 * @param categories the categories
+	 */
 	private void selectDefaultDiagramKinds(String[] categories) {
 		Set<String> kinds = new HashSet<String>();
 		for(String category : categories) {
@@ -426,6 +506,12 @@ public class SelectDiagramKindPage extends WizardPage {
 		diagramKindTableViewer.setCheckedElements(elementsToCheck);
 	}
 
+	/**
+	 * Find creation command descriptors for.
+	 *
+	 * @param kinds the kinds
+	 * @return the creation command descriptor[]
+	 */
 	protected CreationCommandDescriptor[] findCreationCommandDescriptorsFor(Collection<String> kinds) {
 		List<CreationCommandDescriptor> result = new ArrayList<CreationCommandDescriptor>();
 		Collection<CreationCommandDescriptor> availableDescriptors = getCreationCommandRegistry().getCommandDescriptors();
@@ -437,6 +523,11 @@ public class SelectDiagramKindPage extends WizardPage {
 		return result.toArray(new CreationCommandDescriptor[result.size()]);
 	}
 
+	/**
+	 * Select default diagram templates.
+	 *
+	 * @param categories the categories
+	 */
 	private void selectDefaultDiagramTemplates(String[] categories) {
 		List<String> defaultTemplates = new ArrayList<String>();
 		List<Object> availableTemplates = new ArrayList<Object>();
@@ -453,12 +544,25 @@ public class SelectDiagramKindPage extends WizardPage {
 		}
 	}
 
+	/**
+	 * Gets the creation command registry.
+	 *
+	 * @return the creation command registry
+	 */
 	protected final ICreationCommandRegistry getCreationCommandRegistry() {
 		return myCreationCommandRegistry;
 	}
 
+	/**
+	 * The Interface CategoryProvider.
+	 */
 	public static interface CategoryProvider {
 
+		/**
+		 * Gets the current categories.
+		 *
+		 * @return the current categories
+		 */
 		String[] getCurrentCategories();
 	}
 

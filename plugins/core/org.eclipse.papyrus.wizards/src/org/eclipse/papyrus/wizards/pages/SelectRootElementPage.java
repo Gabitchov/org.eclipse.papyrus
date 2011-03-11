@@ -46,28 +46,22 @@ import org.eclipse.swt.widgets.Label;
  */
 public class SelectRootElementPage extends WizardPage {
 
-	/**
-	 * The selected model element
-	 */
+	/** The selected model element. */
 	protected EObject selectedModelElement;
 
-	/**
-	 * TreeViewer use to display the content of the domain model
-	 */
+	/** TreeViewer use to display the content of the domain model. */
 	private TreeViewer modelViewer;
 
+	/** The my domain model resource. */
 	private final Resource myDomainModelResource;
 
 	/** The Constant PAGE_ID. */
 	public static final String PAGE_ID = "SelectRootPage"; //$NON-NLS-1$
 
 	/**
-	 * Constructor
-	 * 
-	 * @param pageName
-	 *        the page name
-	 * @param diagramRoot
-	 *        the root model element use to initialize the TreeViewer
+	 * Constructor.
+	 *
+	 * @param file the file
 	 */
 	public SelectRootElementPage(IFile file) {
 		super(PAGE_ID);
@@ -79,6 +73,8 @@ public class SelectRootElementPage extends WizardPage {
 	}
 
 	/**
+	 * Gets the model element.
+	 *
 	 * @return the selected model element
 	 */
 	public EObject getModelElement() {
@@ -86,9 +82,10 @@ public class SelectRootElementPage extends WizardPage {
 	}
 
 	/**
+	 * Creates the control.
+	 *
+	 * @param parent the parent
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
-	 * 
-	 * @param parent
 	 */
 
 	public void createControl(Composite parent) {
@@ -130,6 +127,12 @@ public class SelectRootElementPage extends WizardPage {
 		setPageComplete(validatePage());
 	}
 
+	/**
+	 * Gets the model root.
+	 *
+	 * @param modelResource the model resource
+	 * @return the model root
+	 */
 	private EObject getModelRoot(Resource modelResource) {
 		if (modelResource == null) {
 			//log
@@ -138,6 +141,12 @@ public class SelectRootElementPage extends WizardPage {
 		return modelResource.getContents().get(0);
 	}
 
+	/**
+	 * Gets the resource for file.
+	 *
+	 * @param file the file
+	 * @return the resource for file
+	 */
 	private Resource getResourceForFile(IFile file) {
 		if (file == null) {
 			// log
