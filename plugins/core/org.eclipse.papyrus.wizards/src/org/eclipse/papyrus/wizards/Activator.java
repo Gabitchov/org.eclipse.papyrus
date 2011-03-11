@@ -15,8 +15,8 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
- * The activator class controls the plug-in life cycle
- * 
+ * The activator class controls the plug-in life cycle.
+ *
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class Activator extends AbstractUIPlugin {
@@ -25,13 +25,14 @@ public class Activator extends AbstractUIPlugin {
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.wizards"; //$NON-NLS-1$
 
 	// The shared instance
+	/** The plugin. */
 	private static Activator plugin;
 	
-	/** Logging helper */
+	/** Logging helper. */
     public static LogHelper log;
 
 	/**
-	 * The constructor
+	 * The constructor.
 	 */
 	public Activator() {
 	}
@@ -58,8 +59,8 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns the shared instance
-	 * 
+	 * Returns the shared instance.
+	 *
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {

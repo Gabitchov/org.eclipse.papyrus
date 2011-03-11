@@ -21,15 +21,16 @@ import org.eclipse.ui.intro.IIntroSite;
 import org.eclipse.ui.intro.config.IIntroAction;
 
 /**
- * The Class NewProjectAction.
+ * The Class NewProjectAction. It is used on the Welcome Page.
  */
 public class NewProjectAction implements IIntroAction {
 
 	/**
-	 * @see org.eclipse.ui.intro.config.IIntroAction#run(org.eclipse.ui.intro.IIntroSite, java.util.Properties)
+	 * Run.
 	 *
-	 * @param site
-	 * @param params
+	 * @param site the site
+	 * @param params the params
+	 * @see org.eclipse.ui.intro.config.IIntroAction#run(org.eclipse.ui.intro.IIntroSite, java.util.Properties)
 	 */
 	public void run(IIntroSite site, Properties params) {
 		IntroPlugin.getDefault().closeIntro();

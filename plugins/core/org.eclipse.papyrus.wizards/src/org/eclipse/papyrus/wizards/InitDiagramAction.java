@@ -27,17 +27,17 @@ import org.eclipse.ui.IWorkbenchPart;
  */
 public abstract class InitDiagramAction implements IObjectActionDelegate {
 
-	/**
-	 * The active part
-	 */
+	/** The active part. */
 	private IWorkbenchPart targetPart;
 
-	/**
-	 * The current selection;
-	 */
+	/** The current selection;. */
 	IStructuredSelection mySelection;
 
 	/**
+	 * Sets the active part.
+	 *
+	 * @param action the action
+	 * @param targetPart the target part
 	 * {@inheritDoc}
 	 */
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
@@ -45,6 +45,10 @@ public abstract class InitDiagramAction implements IObjectActionDelegate {
 	}
 
 	/**
+	 * Selection changed.
+	 *
+	 * @param action the action
+	 * @param selection the selection
 	 * {@inheritDoc}
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
@@ -54,6 +58,8 @@ public abstract class InitDiagramAction implements IObjectActionDelegate {
 	}
 
 	/**
+	 * Gets the shell.
+	 *
 	 * @return the current Shell to display dialog
 	 */
 	private Shell getShell() {
@@ -61,6 +67,9 @@ public abstract class InitDiagramAction implements IObjectActionDelegate {
 	}
 
 	/**
+	 * Run.
+	 *
+	 * @param action the action
 	 * {@inheritDoc}
 	 */
 	public void run(IAction action) {

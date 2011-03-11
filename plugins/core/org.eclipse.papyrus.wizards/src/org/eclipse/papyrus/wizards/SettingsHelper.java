@@ -20,24 +20,30 @@ import java.util.StringTokenizer;
 
 import org.eclipse.jface.dialogs.IDialogSettings;
 
-
 /**
- * The Class SettingsUtils.
+ * The Class SettingsUtils allows the Wizard to remember last selected diagram kinds and categories.
  */
 public class SettingsHelper {
 
+	/** The Constant DIAGRAM_KIND_SEPARATOR. */
 	private static final String DIAGRAM_KIND_SEPARATOR = ","; //$NON-NLS-1$
 
+	/** The Constant TEMPLATE_SEPARATOR. */
 	private static final String TEMPLATE_SEPARATOR = ","; //$NON-NLS-1$
 
+	/** The Constant SETTINGS_KEY_REMEMBER_CURRENT_SELECTION. */
 	private static final String SETTINGS_KEY_REMEMBER_CURRENT_SELECTION = "RememberCurrentSelection"; //$NON-NLS-1$
 
+	/** The Constant SETTINGS_KEY_DIAGRAM_KINDS. */
 	private static final String SETTINGS_KEY_DIAGRAM_KINDS = "DiagramKindsFor_"; //$NON-NLS-1$
 
+	/** The Constant SETTINGS_KEY_DIAGRAM_TEMPLATES. */
 	private static final String SETTINGS_KEY_DIAGRAM_TEMPLATES = "DiagramTemplatesFor_"; //$NON-NLS-1$
 
+	/** The Constant LAST_SELECTED_CATEGORY. */
 	private static final String LAST_SELECTED_CATEGORY = "diagramCategory"; //$NON-NLS-1$
 
+	/** The my settings. */
 	private final IDialogSettings mySettings;
 
 	/**
@@ -61,9 +67,8 @@ public class SettingsHelper {
 
 	/**
 	 * Save default diagram category.
-	 * 
-	 * @param category
-	 *        the category
+	 *
+	 * @param categories the categories
 	 */
 	public void saveDefaultDiagramCategory(String[] categories) {
 		mySettings.put(LAST_SELECTED_CATEGORY, categories);
@@ -164,10 +169,22 @@ public class SettingsHelper {
 		return mySettings.getBoolean(SETTINGS_KEY_REMEMBER_CURRENT_SELECTION);
 	}
 
+	/**
+	 * Gets the key for diagram kind.
+	 *
+	 * @param category the category
+	 * @return the key for diagram kind
+	 */
 	private String getKeyForDiagramKind(String category) {
 		return SETTINGS_KEY_DIAGRAM_KINDS + category;
 	}
 
+	/**
+	 * Gets the key for template.
+	 *
+	 * @param category the category
+	 * @return the key for template
+	 */
 	private String getKeyForTemplate(String category) {
 		return SETTINGS_KEY_DIAGRAM_TEMPLATES + category;
 	}

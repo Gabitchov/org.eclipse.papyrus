@@ -29,7 +29,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 
 /**
- * The Wizard creates a new Project and a Papyrus Model inside it
+ * The Wizard creates a new Project and a Papyrus Model inside it.
  */
 public class NewPapyrusProjectWizard extends CreateModelWizard {
 
@@ -43,6 +43,10 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 	private String initialProjectName;
 
 	/**
+	 * Inits the.
+	 *
+	 * @param workbench the workbench
+	 * @param selection the selection
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -52,6 +56,11 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 		myNewProjectPage = createNewProjectCreationPage();
 	}
 
+	/**
+	 * Creates the new project creation page.
+	 *
+	 * @return the wizard new project creation page
+	 */
 	protected WizardNewProjectCreationPage createNewProjectCreationPage() {
 		WizardNewProjectCreationPage newProjectPage = new WizardNewProjectCreationPage("papyrusNewProjectPage"); //$NON-NLS-1$
 		newProjectPage.setInitialProjectName(initialProjectName);
@@ -61,6 +70,8 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 	}
 
 	/**
+	 * Adds the pages.
+	 *
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -70,6 +81,10 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 	}
 	
 	/**
+	 * Creates the new model file page.
+	 *
+	 * @param selection the selection
+	 * @return the new model file page
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -79,6 +94,9 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 	
 
 	/**
+	 * Perform finish.
+	 *
+	 * @return true, if successful
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -96,6 +114,12 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 		return super.performFinish();
 	}
 
+	/**
+	 * Creates the new project.
+	 *
+	 * @return the i project
+	 * @throws CoreException the core exception
+	 */
 	protected IProject createNewProject() throws CoreException {
 		// get a project handle
 		final IProject project = myNewProjectPage.getProjectHandle();
@@ -128,6 +152,10 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 	}
 	
 	/**
+	 * Creates the new model file.
+	 *
+	 * @param categoryId the category id
+	 * @return the i file
 	 * {@inheritDoc}
 	 */
 	@Override

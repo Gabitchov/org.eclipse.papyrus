@@ -27,16 +27,24 @@ import org.eclipse.papyrus.wizards.pages.SelectRootElementPage;
 import org.eclipse.ui.IWorkbench;
 
 /**
- * The Class InitModelWizard.
+ * 
+ * The New Papyrus Model Wizard. 
+ * If being invoke on the *.uml file - initializes a new Papyrus diagram for the selected domain model.
+ * If is selected is empty or in not uml - creates a new Papyrus Model. 
  */
 public class InitModelWizard extends CreateModelWizard {
 
-	/** Select the root element containing the new diagram */
+	/** Select the root element containing the new diagram. */
 	private SelectRootElementPage selectRootElementPage;
 
+	/** The is init from existing domain model. */
 	private boolean isInitFromExistingDomainModel;
 
 	/**
+	 * Inits the.
+	 *
+	 * @param workbench the workbench
+	 * @param selection the selection
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -51,6 +59,12 @@ public class InitModelWizard extends CreateModelWizard {
 		}
 	}
 
+	/**
+	 * Creates the select root element page.
+	 *
+	 * @param file the file
+	 * @return the select root element page
+	 */
 	protected SelectRootElementPage createSelectRootElementPage(IFile file) {
 		if(!isCreateFromExistingDomainModel()) {
 			// create model - nothing to choose from
@@ -60,6 +74,9 @@ public class InitModelWizard extends CreateModelWizard {
 	}
 
 	/**
+	 * Creates the select diagram kind page.
+	 *
+	 * @return the select diagram kind page
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -77,6 +94,10 @@ public class InitModelWizard extends CreateModelWizard {
 	}
 
 	/**
+	 * Creates the new model file page.
+	 *
+	 * @param selection the selection
+	 * @return the new model file page
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -89,6 +110,8 @@ public class InitModelWizard extends CreateModelWizard {
 
 
 	/**
+	 * Adds the pages.
+	 *
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -121,6 +144,10 @@ public class InitModelWizard extends CreateModelWizard {
 	}
 
 	/**
+	 * Creates the papyrus models.
+	 *
+	 * @param diResourceSet the di resource set
+	 * @param newFile the new file
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -134,6 +161,11 @@ public class InitModelWizard extends CreateModelWizard {
 	}
 
 	/**
+	 * Inits the domain model.
+	 *
+	 * @param diResourceSet the di resource set
+	 * @param newFile the new file
+	 * @param diagramCategoryId the diagram category id
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -146,6 +178,10 @@ public class InitModelWizard extends CreateModelWizard {
 	}
 
 	/**
+	 * Inits the diagrams.
+	 *
+	 * @param diResourceSet the di resource set
+	 * @param categoryId the category id
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -153,17 +189,28 @@ public class InitModelWizard extends CreateModelWizard {
 		initDiagrams(diResourceSet, getRoot(), categoryId);
 	}
 
+	/**
+	 * Checks if is creates the from existing domain model.
+	 *
+	 * @return true, if is creates the from existing domain model
+	 */
 	protected boolean isCreateFromExistingDomainModel() {
 		return isInitFromExistingDomainModel;
 	}
 
 	/**
-	 * Suggests a name of diagram file for the domain model file without extension
+	 * Suggests a name of diagram file for the domain model file without extension.
+	 *
+	 * @param domainModel the domain model
+	 * @return the diagram file name
 	 */
 	protected String getDiagramFileName(IFile domainModel) {
 		return domainModel.getLocation().removeFileExtension().lastSegment();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.wizards.CreateModelWizard#getDiagramFileExtension(java.lang.String)
+	 */
 	@Override
 	protected String getDiagramFileExtension(String diagramCategoryId) {
 		if(isCreateFromExistingDomainModel()) {
@@ -173,7 +220,10 @@ public class InitModelWizard extends CreateModelWizard {
 	}
 
 	/**
-	 * Returns the first file from the given selection
+	 * Returns the first file from the given selection.
+	 *
+	 * @param selection the selection
+	 * @return the selected file
 	 */
 	private static IFile getSelectedFile(IStructuredSelection selection) {
 		if(selection != null && !selection.isEmpty() && selection.getFirstElement() instanceof IFile) {
@@ -182,6 +232,11 @@ public class InitModelWizard extends CreateModelWizard {
 		return null;
 	}
 
+	/**
+	 * Gets the root.
+	 *
+	 * @return the root
+	 */
 	private EObject getRoot() {
 		if(selectRootElementPage != null) {
 			return selectRootElementPage.getModelElement();
@@ -189,10 +244,21 @@ public class InitModelWizard extends CreateModelWizard {
 		return null;
 	}
 
+	/**
+	 * The Class NewDiagramForExistingModelPage.
+	 */
 	protected class NewDiagramForExistingModelPage extends NewModelFilePage {
 
+		/** The my diagram file name. */
 		private String myDiagramFileName;
 
+		/**
+		 * Instantiates a new new diagram for existing model page.
+		 *
+		 * @param selection the selection
+		 * @param defaultFileName the default file name
+		 * @param diagramExtension the diagram extension
+		 */
 		public NewDiagramForExistingModelPage(IStructuredSelection selection, String defaultFileName, String diagramExtension) {
 			super(selection);
 			myDiagramFileName = defaultFileName;
@@ -202,6 +268,9 @@ public class InitModelWizard extends CreateModelWizard {
 			setDescription(Messages.InitModelWizard_init_papyrus_model_desc);
 		}
 
+		/* (non-Javadoc)
+		 * @see org.eclipse.ui.dialogs.WizardNewFileCreationPage#validatePage()
+		 */
 		protected boolean validatePage() {
 			if(!super.validatePage()) {
 				return false;

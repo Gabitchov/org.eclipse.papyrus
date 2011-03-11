@@ -20,30 +20,45 @@ import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.wizards.pages.SelectDiagramCategoryPage;
 
 /**
- * The Wizard creates a new Project and a several Papyrus Models of different type inside it
+ * The Wizard creates a new Project and a several Papyrus Models of different categories inside it.
  */
 public class NewPapyrusProjectWithMultiModelsWizard extends NewPapyrusProjectWizard {
 
+	/** The my do not create model for no diagrams. */
 	private boolean myDoNotCreateModelForNoDiagrams;
 	
 	/** The Constant WIZARD_ID. */
 	public static final String WIZARD_ID = "org.eclipse.papyrus.wizards.1createproject.several"; //$NON-NLS-1$
 
 	
+	/**
+	 * Instantiates a new new papyrus project with multi models wizard.
+	 */
 	public NewPapyrusProjectWithMultiModelsWizard() {
 		this(false);
 	}
 
+	/**
+	 * Instantiates a new new papyrus project with multi models wizard.
+	 *
+	 * @param doNotCreateModelForNoDiagrams the do not create model for no diagrams
+	 */
 	public NewPapyrusProjectWithMultiModelsWizard(boolean doNotCreateModelForNoDiagrams) {
 		myDoNotCreateModelForNoDiagrams = doNotCreateModelForNoDiagrams;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.wizards.CreateModelWizard#createSelectDiagramCategoryPage()
+	 */
 	@Override
 	protected SelectDiagramCategoryPage createSelectDiagramCategoryPage() {
 		return new SelectDiagramCategoryPage(true);
 	}
 
 	/**
+	 * Perform finish.
+	 *
+	 * @return true, if successful
 	 * {@inheritDoc}
 	 */
 	@Override
