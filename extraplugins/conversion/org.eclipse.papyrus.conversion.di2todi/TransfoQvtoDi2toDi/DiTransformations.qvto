@@ -14,12 +14,12 @@ transformation Transfo(in src : di2, out target1 : notation, out target2:di);
 mapping di2::Diagram::diagram2SashWindowsMngr(): di::SashWindowsMngr 
 {
 	--pageRefsclassandOp
-	var pageRefs: Set(di::PageRef):=SetPageRef();
+	var pageRefs: Set(di::PageRef) := setPageRef();
 	--pageList
-	pageList:= SetPageList(pageRefs);
+	pageList := setPageList(pageRefs);
 
 	--sashModel
-	sashModel:=SetsashModel();
+	sashModel := setSashModel();
 }
 
 mapping notation::Diagram::diagram2PageRef(): di::PageRef
@@ -32,60 +32,64 @@ mapping notation::Diagram::diagram2PageRef(): di::PageRef
 ----------------------------------------            Helpers for di                ---------------------------------------
 -------------------------------------------------------------------------------------------------------------------------
 
-helper SetPageList(in pagerefs:Set(di::PageRef)): di::PageList
+helper setPageList(in pagerefs:Set(di::PageRef)): di::PageList
 {
-	var PL:=object di::PageList{
-		availablePage:=pagerefs;
+	var pageList := object di::PageList {
+		availablePage := pagerefs;
 	};
 	
- 	return PL;
+ 	return pageList;
 };
 		
 	
-helper SetPageRef(): Set(di::PageRef)
+helper setPageRef(): Set(di::PageRef)
 {
 	var setPages : Set(di::PageRef) := Set{};
 	var page: di::PageRef;
-	target1.rootObjects()->forEach(diagram|diagram.oclIsTypeOf(notation::Diagram)){
-		page := diagram.oclAsType(notation::Diagram).map diagram2PageRef();
-		setPages+=page;
+	target1.rootObjects()->forEach(diagram|diagram.oclIsTypeOf(notation::Diagram)) {
+		--avoid empty pages for unsupported diagrams (currently deployment diagram)
+		if (diagram.oclAsType(notation::Diagram).type != null) then {
+			page := diagram.oclAsType(notation::Diagram).map diagram2PageRef();
+			setPages += page;
+		} endif;
 	};
  	return setPages;
 };	
 
 	
-helper SetsashModel(): di::SashModel
+helper setSashModel(): di::SashModel
 {
-	var SM:=object di::SashModel{
+	var sm := object di::SashModel{
 		currentSelection:= object di::TabFolder{} ;
-		windows:=SetWindows();
+		windows := setWindows();
 	};
-	return SM;
+	return sm;
 };	
 
-helper SetWindows(): Set(di::Window)
+helper setWindows(): Set(di::Window)
 {
-	var setwindows:Set(di::Window);
-	setwindows += SetWindow();	
+	var setwindows : Set(di::Window);
+	setwindows += setWindow();	
 	return setwindows;
 };	
 	
-helper SetWindow() : di::Window {
+helper setWindow() : di::Window {
 
 	var child := object di::TabFolder {
 	
-	target1.rootObjects()->forEach(diagram|diagram.oclIsTypeOf(notation::Diagram)){
-		var page : di::PageRef=object di::PageRef {
-			emfPageIdentifier:= diagram.oclAsType(ecore::EObject)
-		};
-		children += page;
+		target1.rootObjects()->forEach(diagram|diagram.oclIsTypeOf(notation::Diagram)) {
+			--avoid empty pages for unsupported diagrams (currently deployment diagram)
+			if (diagram.oclAsType(notation::Diagram).type != null) then {
+				var page : di::PageRef = object di::PageRef {
+					emfPageIdentifier:= diagram.oclAsType(ecore::EObject)
+				};
+				children += page;
+			} endif;
 		};
 	};
 	
-	
-	var SetofChild : Set (di::AbstractPanel) := Set{child};
-	var window:=object di::Window {
-		children:=SetofChild;	
+	var window := object di::Window {
+		children := Set { child };
 	};			
 	return window;
 };	
