@@ -85,14 +85,7 @@ public class CreateAllocationTableCommand extends AbstractCreateNattableEditorCo
 	 */
 	@Override
 	public boolean isEnabled() {
-		EObject object;
-		try {
-			object = getTableContext();
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
+		EObject object = getTableContext();
 		if(object instanceof Element) {
 			Element el = (Element)object;
 			Package pack = el.getNearestPackage();

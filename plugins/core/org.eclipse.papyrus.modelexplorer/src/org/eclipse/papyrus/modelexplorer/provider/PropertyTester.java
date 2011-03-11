@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.ui.IWorkbenchPart;
@@ -116,7 +117,12 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 	protected IPageMngr getPageManager() {
 		IPageMngr pageMngr = null;
 		try {
-			pageMngr = org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers.getInstance().getIPageMngr();
+			ServiceUtilsForActionHandlers instance = org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers.getInstance();
+			if(instance != null) {
+				pageMngr = instance.getIPageMngr();
+			}
+		} catch (NullPointerException npe) {
+			//NPE
 		} catch (ServiceException e) {
 			//we are closing the editor, so the model explorer has nothing to display
 			//			e.printStackTrace();

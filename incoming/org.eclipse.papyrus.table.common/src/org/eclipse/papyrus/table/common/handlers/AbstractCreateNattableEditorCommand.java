@@ -110,16 +110,17 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 */
 	@Override
 	public boolean isEnabled() {
-		try {
-			if(getTableContext() != null) {
-				return true;
-			}
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			Activator.getDefault().logError("Context for table is null", e); //$NON-NLS-1$
-
-		}
-		return false;
+		//		try {
+		//			if(getTableContext() != null) {
+		//				return true;
+		//			}
+		//		} catch (ServiceException e) {
+		//			// TODO Auto-generated catch block
+		//			Activator.getDefault().logError("Context for table is null", e); //$NON-NLS-1$
+		//
+		//		}
+		//		return false;
+		return getTableContext() != null;
 	}
 
 	/**
@@ -283,20 +284,28 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 *         the context used to create the table or <code>null</code> if not found
 	 * @throws ServiceException
 	 */
-	protected EObject getTableContext() throws ServiceException {
+	protected EObject getTableContext() {
 		List<EObject> selection = getSelection();
 
 		if(!selection.isEmpty()) {
 			return selection.get(0);
 		}
-		ModelSet modelSet;
+		ModelSet modelSet = null;
 		ServicesRegistry serviceRegistry;
-		serviceRegistry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
-		modelSet = ServiceUtils.getInstance().getModelSet(serviceRegistry);
-		IModel model = modelSet.getModel(org.eclipse.papyrus.resource.uml.UmlModel.MODEL_ID);
+		try {
+			serviceRegistry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
+			modelSet = ServiceUtils.getInstance().getModelSet(serviceRegistry);
+		} catch (NullPointerException npe) {
+			//
+		} catch (ServiceException exception) {
 
-		if(model instanceof AbstractBaseModel) {
-			return getRootElement(((AbstractBaseModel)model).getResource());
+		}
+		if(modelSet != null) {
+			IModel model = modelSet.getModel(org.eclipse.papyrus.resource.uml.UmlModel.MODEL_ID);
+
+			if(model instanceof AbstractBaseModel) {
+				return getRootElement(((AbstractBaseModel)model).getResource());
+			}
 		}
 		return null;
 	}

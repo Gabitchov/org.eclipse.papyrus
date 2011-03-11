@@ -86,14 +86,14 @@ public class CreateRequirementTableCommand extends AbstractCreateNattableEditorC
 	 */
 	@Override
 	public boolean isEnabled() {
-		EObject object;
-		try {
-			object = getTableContext();
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
+		EObject object = getTableContext();
+		//		try {
+		//			object = 
+		//		} catch (ServiceException e) {
+		//			// TODO Auto-generated catch block
+		//			e.printStackTrace();
+		//			return false;
+		//		}
 		if(object instanceof Element) {
 			Element el = (Element)object;
 			Package pack = el.getNearestPackage();
