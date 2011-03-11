@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.activity.edit.policies;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
+import org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy;
 
 /**
  * This XY layout edit policy consults children parts for chosing a minimum size.
@@ -23,7 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
  * @see XYLayoutEditPolicy
  * 
  */
-public class CompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy {
+public class CompartmentXYLayoutEditPolicy extends XYLayoutEditGroupPolicy {
 
 	/**
 	 * Get the minimum size from child edit part rather than imposing a constant one.

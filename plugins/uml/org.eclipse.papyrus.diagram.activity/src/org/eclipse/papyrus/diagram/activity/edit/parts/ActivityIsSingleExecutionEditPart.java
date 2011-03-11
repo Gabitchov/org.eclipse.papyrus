@@ -193,6 +193,7 @@ public class ActivityIsSingleExecutionEditPart extends CompartmentEditPart imple
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -699,6 +700,7 @@ public class ActivityIsSingleExecutionEditPart extends CompartmentEditPart imple
 				}
 			}
 		}
+
 
 		super.handleNotificationEvent(event);
 	}

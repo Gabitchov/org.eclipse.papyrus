@@ -114,6 +114,7 @@ public class AcceptEventActionItemSemanticEditPolicy extends UMLBaseItemSemantic
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
 
+
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {

@@ -209,6 +209,7 @@ public class ControlFlowGuardEditPart extends LabelEditPart implements ITextAwar
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -706,6 +707,9 @@ public class ControlFlowGuardEditPart extends LabelEditPart implements ITextAwar
 				}
 			}
 		}
+
+
+
 
 		super.handleNotificationEvent(event);
 	}

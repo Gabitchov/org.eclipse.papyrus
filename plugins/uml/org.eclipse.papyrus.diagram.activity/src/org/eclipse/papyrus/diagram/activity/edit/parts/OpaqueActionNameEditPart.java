@@ -193,6 +193,7 @@ public class OpaqueActionNameEditPart extends CompartmentEditPart implements ITe
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -707,6 +708,7 @@ public class OpaqueActionNameEditPart extends CompartmentEditPart implements ITe
 				}
 			}
 		}
+
 
 		super.handleNotificationEvent(event);
 	}

@@ -62,6 +62,7 @@ public class ReadSelfActionCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -77,7 +78,10 @@ public class ReadSelfActionCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -86,10 +90,13 @@ public class ReadSelfActionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		ReadSelfAction newElement = UMLFactory.eINSTANCE.createReadSelfAction();
 
 		Activity owner = (Activity)getElementToEdit();
 		owner.getNodes().add(newElement);
+
 
 		ElementInitializers.getInstance().init_ReadSelfAction_3081(newElement);
 

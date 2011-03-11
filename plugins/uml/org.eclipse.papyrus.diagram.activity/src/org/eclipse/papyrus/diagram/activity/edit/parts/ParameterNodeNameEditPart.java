@@ -188,6 +188,7 @@ public class ParameterNodeNameEditPart extends CompartmentEditPart implements IT
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -705,6 +706,7 @@ public class ParameterNodeNameEditPart extends CompartmentEditPart implements IT
 				}
 			}
 		}
+
 
 		super.handleNotificationEvent(event);
 	}

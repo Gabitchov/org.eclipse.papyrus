@@ -201,6 +201,7 @@ public class ConstraintAsLocalPrecondBodyEditPart extends CompartmentEditPart im
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -718,6 +719,7 @@ public class ConstraintAsLocalPrecondBodyEditPart extends CompartmentEditPart im
 				}
 			}
 		}
+
 
 		super.handleNotificationEvent(event);
 	}

@@ -139,6 +139,7 @@ public class SendSignalActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case ActionInputPinInSendSigActEditPart.VISUAL_ID:
 
+
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -173,6 +174,7 @@ public class SendSignalActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case ValuePinInSendSigActEditPart.VISUAL_ID:
+
 
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
@@ -209,6 +211,7 @@ public class SendSignalActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				break;
 			case InputPinInSendSigActEditPart.VISUAL_ID:
 
+
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -243,6 +246,7 @@ public class SendSignalActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case ValuePinInSendSigActAsTargetEditPart.VISUAL_ID:
+
 
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
@@ -279,6 +283,7 @@ public class SendSignalActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				break;
 			case ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID:
 
+
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -313,6 +318,7 @@ public class SendSignalActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case InputPinInSendSigActAsTargetEditPart.VISUAL_ID:
+
 
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();

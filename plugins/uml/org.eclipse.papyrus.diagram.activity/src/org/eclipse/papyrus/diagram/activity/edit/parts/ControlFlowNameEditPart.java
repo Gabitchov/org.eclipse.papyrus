@@ -228,6 +228,7 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -742,6 +743,9 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 				}
 			}
 		}
+
+
+
 
 		super.handleNotificationEvent(event);
 	}

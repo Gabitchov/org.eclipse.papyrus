@@ -229,6 +229,7 @@ implements ITextAwareEditPart {
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -785,6 +786,7 @@ implements ITextAwareEditPart {
 		 * @generated
 		 */
 		public LinkAndCornerBentWithTextFigure() {
+
 
 			this.setBackgroundColor(THIS_BACK);
 			createContents();

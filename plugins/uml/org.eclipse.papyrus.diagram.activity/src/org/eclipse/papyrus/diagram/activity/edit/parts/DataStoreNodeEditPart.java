@@ -167,6 +167,7 @@ NamedElementEditPart {
 			return true;
 		}
 
+
 		return false;
 	}
 

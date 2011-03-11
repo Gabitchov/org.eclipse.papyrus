@@ -62,6 +62,7 @@ public class ReadSelfActionOutputPinCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -81,7 +82,10 @@ public class ReadSelfActionOutputPinCreateCommand extends EditElementCommand {
 			return false;
 		}
 
+
 		return true;
+
+
 
 	}
 
@@ -90,10 +94,13 @@ public class ReadSelfActionOutputPinCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		OutputPin newElement = UMLFactory.eINSTANCE.createOutputPin();
 
 		ReadSelfAction owner = (ReadSelfAction)getElementToEdit();
 		owner.setResult(newElement);
+
 
 		ElementInitializers.getInstance().init_OutputPin_3084(newElement);
 

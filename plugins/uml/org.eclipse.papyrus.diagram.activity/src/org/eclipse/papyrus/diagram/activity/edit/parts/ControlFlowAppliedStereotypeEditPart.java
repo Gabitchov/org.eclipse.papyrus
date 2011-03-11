@@ -220,6 +220,7 @@ public class ControlFlowAppliedStereotypeEditPart extends LabelEditPart implemen
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -709,6 +710,9 @@ public class ControlFlowAppliedStereotypeEditPart extends LabelEditPart implemen
 				}
 			}
 		}
+
+
+
 
 		super.handleNotificationEvent(event);
 	}

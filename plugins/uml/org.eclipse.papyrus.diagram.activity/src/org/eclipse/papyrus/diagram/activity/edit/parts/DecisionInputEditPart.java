@@ -247,6 +247,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -819,6 +820,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		 * @generated
 		 */
 		public LinkAndCornerBentWithTextFigure() {
+
 
 			this.setBackgroundColor(THIS_BACK);
 			createContents();

@@ -88,6 +88,7 @@ NamedElementEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ReadSelfActionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
+
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.ReadSelfActionCanonicalEditPolicy());
 
@@ -164,12 +165,19 @@ NamedElementEditPart {
 			return true;
 		}
 
+
+
+
+
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ReadSelfActionOutputPinEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer().add(((ReadSelfActionOutputPinEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
+
+
+
 
 		return false;
 	}

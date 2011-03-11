@@ -106,6 +106,7 @@ NamedElementEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new SendObjectActionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
+
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.SendObjectActionCanonicalEditPolicy());
 
@@ -191,12 +192,20 @@ NamedElementEditPart {
 			return true;
 		}
 
+
+
+
+
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ValuePinInSendObjActAsReqEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((ValuePinInSendObjActAsReqEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
+
+
+
+
 
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ActionInputPinInSendObjActAsReqEditPart) {
@@ -205,12 +214,20 @@ NamedElementEditPart {
 			return true;
 		}
 
+
+
+
+
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof InputPinInSendObjActAsReqEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((InputPinInSendObjActAsReqEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
+
+
+
+
 
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ValuePinInSendObjActAsTargetEditPart) {
@@ -219,6 +236,10 @@ NamedElementEditPart {
 			return true;
 		}
 
+
+
+
+
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ActionInputPinInSendObjActAsTargetEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
@@ -226,12 +247,19 @@ NamedElementEditPart {
 			return true;
 		}
 
+
+
+
+
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof InputPinInSendObjActAsTargetEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer().add(((InputPinInSendObjActAsTargetEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
+
+
+
 
 		return false;
 	}

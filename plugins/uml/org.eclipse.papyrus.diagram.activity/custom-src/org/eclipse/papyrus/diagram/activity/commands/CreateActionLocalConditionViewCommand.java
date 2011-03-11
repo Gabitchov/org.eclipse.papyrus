@@ -101,7 +101,7 @@ public class CreateActionLocalConditionViewCommand extends Command {
 		} else if(UMLElementTypes.Constraint_3012.equals(conditionType)) {
 			ConstraintAsLocalPostcondCreateCommand cmd = new ConstraintAsLocalPostcondCreateCommand(createElementReq);
 			return new ICommandProxy(cmd);
-		}  else if(UMLElementTypes.IntervalConstraint_3032.equals(conditionType)) {
+		} else if(UMLElementTypes.IntervalConstraint_3032.equals(conditionType)) {
 			IntervalConstraintAsLocalPrecondCreateCommand cmd = new IntervalConstraintAsLocalPrecondCreateCommand(createElementReq);
 			return new ICommandProxy(cmd);
 		} else if(UMLElementTypes.IntervalConstraint_3033.equals(conditionType)) {
@@ -134,7 +134,7 @@ public class CreateActionLocalConditionViewCommand extends Command {
 			return (IHintedType)UMLElementTypes.ActionLocalPrecondition_4001;
 		} else if(UMLElementTypes.Constraint_3012.equals(type)) {
 			return (IHintedType)UMLElementTypes.ActionLocalPostcondition_4002;
-		}  else if(UMLElementTypes.IntervalConstraint_3032.equals(type)) {
+		} else if(UMLElementTypes.IntervalConstraint_3032.equals(type)) {
 			return (IHintedType)UMLElementTypes.ActionLocalPrecondition_4001;
 		} else if(UMLElementTypes.IntervalConstraint_3033.equals(type)) {
 			return (IHintedType)UMLElementTypes.ActionLocalPostcondition_4002;

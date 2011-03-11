@@ -3416,15 +3416,21 @@ public class UMLVisualIDRegistry {
 		}
 		if(UMLPackage.eINSTANCE.getObjectFlow().isSuperTypeOf(domainElement.eClass())
 
+
+
 		) {
 			return ObjectFlowEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getControlFlow().isSuperTypeOf(domainElement.eClass())
 
+
+
 		) {
 			return ControlFlowEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getExceptionHandler().isSuperTypeOf(domainElement.eClass())
+
+
 
 		) {
 			return ExceptionHandlerEditPart.VISUAL_ID;
@@ -3621,6 +3627,938 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
+	private static ViewInfo diagramViewInfo = null;
+
+	/**
+	 * @generated
+	 */
+	public static ViewInfo getDiagramViewInfo() {
+		if(diagramViewInfo == null) {
+			diagramViewInfo = getPackage_1000ViewInfo();
+		}
+		return diagramViewInfo;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected static ViewInfo getPackage_1000ViewInfo() {
+		ViewInfo root = new BaseViewInfo(1000, ViewInfo.Head, "", null, null);
+		ViewInfo viewInfo = null;
+		ViewInfo labelInfo = null;
+
+		viewInfo = new BaseViewInfo(2001, ViewInfo.Node, "Activity");
+		root.addNode(1000, viewInfo);
+
+		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(4002, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(4003, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+
+		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6002, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6005, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6006, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6008, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6010, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+
+		labelInfo = new BaseViewInfo(6003, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6004, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6009, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6011, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		viewInfo = new BaseViewInfo(4005, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+
+		labelInfo = new BaseViewInfo(6012, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3001, ViewInfo.Node, "Parameter");
+
+		root.addNode(7001, viewInfo);
+
+		root.addNode(7014, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "Constraint");
+
+		root.addNode(7002, viewInfo);
+
+		root.addNode(7015, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3003, ViewInfo.Node, "Constraint");
+
+		root.addNode(7003, viewInfo);
+
+		root.addNode(7016, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3004, ViewInfo.Node, "InitialNode");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3005, ViewInfo.Node, "ActivityFinalNode");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3006, ViewInfo.Node, "FlowFinalNode");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3007, ViewInfo.Node, "OpaqueAction");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3015, ViewInfo.Node, "ValuePin");
+
+		root.addNode(3007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3016, ViewInfo.Node, "ActionInputPin");
+
+		root.addNode(3007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3013, ViewInfo.Node, "InputPin");
+
+		root.addNode(3007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3014, ViewInfo.Node, "OutputPin");
+
+		root.addNode(3007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3008, ViewInfo.Node, "CallBehaviorAction");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3017, ViewInfo.Node, "ValuePin");
+
+		root.addNode(3008, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3018, ViewInfo.Node, "ActionInputPin");
+
+		root.addNode(3008, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3019, ViewInfo.Node, "InputPin");
+
+		root.addNode(3008, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3020, ViewInfo.Node, "OutputPin");
+
+		root.addNode(3008, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3010, ViewInfo.Node, "CallOperationAction");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3021, ViewInfo.Node, "ActionInputPin");
+
+		root.addNode(3010, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3022, ViewInfo.Node, "ValuePin");
+
+		root.addNode(3010, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3023, ViewInfo.Node, "InputPin");
+
+		root.addNode(3010, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3024, ViewInfo.Node, "OutputPin");
+
+		root.addNode(3010, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3025, ViewInfo.Node, "ValuePin");
+
+		root.addNode(3010, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3026, ViewInfo.Node, "ActionInputPin");
+
+		root.addNode(3010, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3027, ViewInfo.Node, "InputPin");
+
+		root.addNode(3010, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3034, ViewInfo.Node, "DurationConstraint");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3035, ViewInfo.Node, "DurationConstraint");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3036, ViewInfo.Node, "TimeConstraint");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3037, ViewInfo.Node, "TimeConstraint");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "IntervalConstraint");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3033, ViewInfo.Node, "IntervalConstraint");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3011, ViewInfo.Node, "Constraint");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3012, ViewInfo.Node, "Constraint");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3038, ViewInfo.Node, "DecisionNode");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3039, ViewInfo.Node, "MergeNode");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3040, ViewInfo.Node, "ForkNode");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3041, ViewInfo.Node, "JoinNode");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3078, ViewInfo.Node, "DataStoreNode");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3042, ViewInfo.Node, "SendObjectAction");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3046, ViewInfo.Node, "ValuePin");
+
+		root.addNode(3042, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3047, ViewInfo.Node, "ActionInputPin");
+
+		root.addNode(3042, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3048, ViewInfo.Node, "InputPin");
+
+		root.addNode(3042, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3049, ViewInfo.Node, "ValuePin");
+
+		root.addNode(3042, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3050, ViewInfo.Node, "ActionInputPin");
+
+		root.addNode(3042, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3051, ViewInfo.Node, "InputPin");
+
+		root.addNode(3042, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3052, ViewInfo.Node, "SendSignalAction");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3053, ViewInfo.Node, "ActionInputPin");
+
+		root.addNode(3052, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3054, ViewInfo.Node, "ValuePin");
+
+		root.addNode(3052, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3055, ViewInfo.Node, "InputPin");
+
+		root.addNode(3052, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3060, ViewInfo.Node, "ValuePin");
+
+		root.addNode(3052, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3061, ViewInfo.Node, "ActionInputPin");
+
+		root.addNode(3052, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3062, ViewInfo.Node, "InputPin");
+
+		root.addNode(3052, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3059, ViewInfo.Node, "ActivityParameterNode");
+
+		root.addNode(2001, viewInfo);
+
+		root.addNode(3083, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3063, ViewInfo.Node, "AcceptEventAction");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3064, ViewInfo.Node, "OutputPin");
+
+		root.addNode(3063, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3076, ViewInfo.Node, "ValueSpecificationAction");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3077, ViewInfo.Node, "OutputPin");
+
+		root.addNode(3076, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3069, ViewInfo.Node, "ConditionalNode");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3070, ViewInfo.Node, "ExpansionRegion");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3074, ViewInfo.Node, "ExpansionNode");
+
+		root.addNode(3070, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3075, ViewInfo.Node, "ExpansionNode");
+
+		root.addNode(3070, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3071, ViewInfo.Node, "LoopNode");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3073, ViewInfo.Node, "SequenceNode");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3065, ViewInfo.Node, "StructuredActivityNode");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3067, ViewInfo.Node, "ActivityPartition");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3068, ViewInfo.Node, "InterruptibleActivityRegion");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3080, ViewInfo.Node, "Comment");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3081, ViewInfo.Node, "ReadSelfAction");
+
+		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
+
+		root.addNode(7010, viewInfo);
+
+		root.addNode(7012, viewInfo);
+
+		root.addNode(7005, viewInfo);
+
+		root.addNode(7006, viewInfo);
+
+		root.addNode(7007, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3084, ViewInfo.Node, "OutputPin");
+
+		root.addNode(3081, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3083, ViewInfo.Node, "Activity");
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7004, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3085, ViewInfo.Node, "NamedElement");
+
+		return root;
+	}
+
+	/**
+	 * @generated
+	 */
 	private static boolean isIntervalConstraint_3032(IntervalConstraint domainElement) {
 		Object result = UMLOCLFactory.getExpression(10, UMLPackage.eINSTANCE.getIntervalConstraint(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
@@ -3664,851 +4602,6 @@ public class UMLVisualIDRegistry {
 	private static boolean isTimeConstraint_3037(TimeConstraint domainElement) {
 		Object result = UMLOCLFactory.getExpression(9, UMLPackage.eINSTANCE.getTimeConstraint(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
-	}
-
-	/**
-	 * @generated
-	 */
-	private static ViewInfo diagramViewInfo = null;
-
-	/**
-	 * @generated
-	 */
-	public static ViewInfo getDiagramViewInfo() {
-		if(diagramViewInfo == null) {
-			diagramViewInfo = getPackage_1000ViewInfo();
-		}
-		return diagramViewInfo;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected static ViewInfo getPackage_1000ViewInfo() {
-		ViewInfo root = new BaseViewInfo(1000, ViewInfo.Head, "", null, null);
-		ViewInfo viewInfo = null;
-		ViewInfo labelInfo = null;
-
-		viewInfo = new BaseViewInfo(2001, ViewInfo.Node, "Activity");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4002, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4003, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6002, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6005, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6006, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6008, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6010, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6003, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6004, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6009, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6011, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4005, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6012, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(3001, ViewInfo.Node, "Parameter");
-
-		root.addNode(7001, viewInfo);
-
-		root.addNode(7014, viewInfo);
-
-		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "Constraint");
-
-		root.addNode(7002, viewInfo);
-
-		root.addNode(7015, viewInfo);
-
-		viewInfo = new BaseViewInfo(3003, ViewInfo.Node, "Constraint");
-
-		root.addNode(7003, viewInfo);
-
-		root.addNode(7016, viewInfo);
-
-		viewInfo = new BaseViewInfo(3004, ViewInfo.Node, "InitialNode");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3005, ViewInfo.Node, "ActivityFinalNode");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3006, ViewInfo.Node, "FlowFinalNode");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3007, ViewInfo.Node, "OpaqueAction");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3015, ViewInfo.Node, "ValuePin");
-
-		root.addNode(3007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3016, ViewInfo.Node, "ActionInputPin");
-
-		root.addNode(3007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3013, ViewInfo.Node, "InputPin");
-
-		root.addNode(3007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3014, ViewInfo.Node, "OutputPin");
-
-		root.addNode(3007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3008, ViewInfo.Node, "CallBehaviorAction");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3017, ViewInfo.Node, "ValuePin");
-
-		root.addNode(3008, viewInfo);
-
-		viewInfo = new BaseViewInfo(3018, ViewInfo.Node, "ActionInputPin");
-
-		root.addNode(3008, viewInfo);
-
-		viewInfo = new BaseViewInfo(3019, ViewInfo.Node, "InputPin");
-
-		root.addNode(3008, viewInfo);
-
-		viewInfo = new BaseViewInfo(3020, ViewInfo.Node, "OutputPin");
-
-		root.addNode(3008, viewInfo);
-
-		viewInfo = new BaseViewInfo(3010, ViewInfo.Node, "CallOperationAction");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3021, ViewInfo.Node, "ActionInputPin");
-
-		root.addNode(3010, viewInfo);
-
-		viewInfo = new BaseViewInfo(3022, ViewInfo.Node, "ValuePin");
-
-		root.addNode(3010, viewInfo);
-
-		viewInfo = new BaseViewInfo(3023, ViewInfo.Node, "InputPin");
-
-		root.addNode(3010, viewInfo);
-
-		viewInfo = new BaseViewInfo(3024, ViewInfo.Node, "OutputPin");
-
-		root.addNode(3010, viewInfo);
-
-		viewInfo = new BaseViewInfo(3025, ViewInfo.Node, "ValuePin");
-
-		root.addNode(3010, viewInfo);
-
-		viewInfo = new BaseViewInfo(3026, ViewInfo.Node, "ActionInputPin");
-
-		root.addNode(3010, viewInfo);
-
-		viewInfo = new BaseViewInfo(3027, ViewInfo.Node, "InputPin");
-
-		root.addNode(3010, viewInfo);
-
-		viewInfo = new BaseViewInfo(3034, ViewInfo.Node, "DurationConstraint");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3035, ViewInfo.Node, "DurationConstraint");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3036, ViewInfo.Node, "TimeConstraint");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3037, ViewInfo.Node, "TimeConstraint");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "IntervalConstraint");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3033, ViewInfo.Node, "IntervalConstraint");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3011, ViewInfo.Node, "Constraint");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3012, ViewInfo.Node, "Constraint");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3038, ViewInfo.Node, "DecisionNode");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3039, ViewInfo.Node, "MergeNode");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3040, ViewInfo.Node, "ForkNode");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3041, ViewInfo.Node, "JoinNode");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3078, ViewInfo.Node, "DataStoreNode");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3042, ViewInfo.Node, "SendObjectAction");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3046, ViewInfo.Node, "ValuePin");
-
-		root.addNode(3042, viewInfo);
-
-		viewInfo = new BaseViewInfo(3047, ViewInfo.Node, "ActionInputPin");
-
-		root.addNode(3042, viewInfo);
-
-		viewInfo = new BaseViewInfo(3048, ViewInfo.Node, "InputPin");
-
-		root.addNode(3042, viewInfo);
-
-		viewInfo = new BaseViewInfo(3049, ViewInfo.Node, "ValuePin");
-
-		root.addNode(3042, viewInfo);
-
-		viewInfo = new BaseViewInfo(3050, ViewInfo.Node, "ActionInputPin");
-
-		root.addNode(3042, viewInfo);
-
-		viewInfo = new BaseViewInfo(3051, ViewInfo.Node, "InputPin");
-
-		root.addNode(3042, viewInfo);
-
-		viewInfo = new BaseViewInfo(3052, ViewInfo.Node, "SendSignalAction");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3053, ViewInfo.Node, "ActionInputPin");
-
-		root.addNode(3052, viewInfo);
-
-		viewInfo = new BaseViewInfo(3054, ViewInfo.Node, "ValuePin");
-
-		root.addNode(3052, viewInfo);
-
-		viewInfo = new BaseViewInfo(3055, ViewInfo.Node, "InputPin");
-
-		root.addNode(3052, viewInfo);
-
-		viewInfo = new BaseViewInfo(3060, ViewInfo.Node, "ValuePin");
-
-		root.addNode(3052, viewInfo);
-
-		viewInfo = new BaseViewInfo(3061, ViewInfo.Node, "ActionInputPin");
-
-		root.addNode(3052, viewInfo);
-
-		viewInfo = new BaseViewInfo(3062, ViewInfo.Node, "InputPin");
-
-		root.addNode(3052, viewInfo);
-
-		viewInfo = new BaseViewInfo(3059, ViewInfo.Node, "ActivityParameterNode");
-
-		root.addNode(2001, viewInfo);
-
-		root.addNode(3083, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		viewInfo = new BaseViewInfo(3063, ViewInfo.Node, "AcceptEventAction");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3064, ViewInfo.Node, "OutputPin");
-
-		root.addNode(3063, viewInfo);
-
-		viewInfo = new BaseViewInfo(3076, ViewInfo.Node, "ValueSpecificationAction");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3077, ViewInfo.Node, "OutputPin");
-
-		root.addNode(3076, viewInfo);
-
-		viewInfo = new BaseViewInfo(3069, ViewInfo.Node, "ConditionalNode");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3070, ViewInfo.Node, "ExpansionRegion");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3074, ViewInfo.Node, "ExpansionNode");
-
-		root.addNode(3070, viewInfo);
-
-		viewInfo = new BaseViewInfo(3075, ViewInfo.Node, "ExpansionNode");
-
-		root.addNode(3070, viewInfo);
-
-		viewInfo = new BaseViewInfo(3071, ViewInfo.Node, "LoopNode");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3073, ViewInfo.Node, "SequenceNode");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3065, ViewInfo.Node, "StructuredActivityNode");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3067, ViewInfo.Node, "ActivityPartition");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		viewInfo = new BaseViewInfo(3068, ViewInfo.Node, "InterruptibleActivityRegion");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		viewInfo = new BaseViewInfo(3080, ViewInfo.Node, "Comment");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		viewInfo = new BaseViewInfo(3081, ViewInfo.Node, "ReadSelfAction");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		viewInfo = new BaseViewInfo(3084, ViewInfo.Node, "OutputPin");
-
-		root.addNode(3081, viewInfo);
-
-		viewInfo = new BaseViewInfo(3083, ViewInfo.Node, "Activity");
-
-		root.addNode(7013, viewInfo);
-
-		root.addNode(7004, viewInfo);
-
-		viewInfo = new BaseViewInfo(3085, ViewInfo.Node, "NamedElement");
-
-		return root;
 	}
 
 }

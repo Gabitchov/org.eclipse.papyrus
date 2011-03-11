@@ -194,6 +194,7 @@ public class StructuredActivityNodeKeywordEditPart extends CompartmentEditPart i
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -700,6 +701,7 @@ public class StructuredActivityNodeKeywordEditPart extends CompartmentEditPart i
 				}
 			}
 		}
+
 
 		super.handleNotificationEvent(event);
 	}

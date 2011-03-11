@@ -209,6 +209,7 @@ public class ObjectFlowGuardEditPart extends LabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -706,6 +707,9 @@ public class ObjectFlowGuardEditPart extends LabelEditPart implements ITextAware
 				}
 			}
 		}
+
+
+
 
 		super.handleNotificationEvent(event);
 	}

@@ -18,6 +18,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
@@ -32,7 +33,8 @@ import org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy
 import org.eclipse.papyrus.diagram.activity.edit.policies.SequenceNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
-import org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInReferencingGroupEditPolicy;
+import org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy;
+import org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy;
 
 /**
  * @generated
@@ -83,12 +85,14 @@ extends ShapeCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 
+
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.SequenceNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy());
 
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreateInReferencingGroupEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreateInGroupEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new XYLayoutEditGroupPolicy());
 	}
 
 	/**

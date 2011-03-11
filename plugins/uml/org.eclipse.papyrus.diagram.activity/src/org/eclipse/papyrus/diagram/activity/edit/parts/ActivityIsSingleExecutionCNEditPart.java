@@ -188,6 +188,7 @@ public class ActivityIsSingleExecutionCNEditPart extends CompartmentEditPart imp
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -697,6 +698,7 @@ public class ActivityIsSingleExecutionCNEditPart extends CompartmentEditPart imp
 				}
 			}
 		}
+
 
 		super.handleNotificationEvent(event);
 	}

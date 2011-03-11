@@ -194,6 +194,7 @@ public class LoopNodeKeywordEditPart extends CompartmentEditPart implements ITex
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -700,6 +701,7 @@ public class LoopNodeKeywordEditPart extends CompartmentEditPart implements ITex
 				}
 			}
 		}
+
 
 		super.handleNotificationEvent(event);
 	}

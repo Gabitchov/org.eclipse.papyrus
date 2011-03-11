@@ -220,6 +220,7 @@ public class ObjectFlowAppliedStereotypeEditPart extends LabelEditPart implement
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -709,6 +710,9 @@ public class ObjectFlowAppliedStereotypeEditPart extends LabelEditPart implement
 				}
 			}
 		}
+
+
+
 
 		super.handleNotificationEvent(event);
 	}

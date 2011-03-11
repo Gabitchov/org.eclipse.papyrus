@@ -15,11 +15,11 @@ package org.eclipse.papyrus.diagram.activity.figures;
 import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**
- * this link is used to show a dashed line 
- *
+ * this link is used to show a dashed line
+ * 
  */
 public class LinkFigure extends DashedEdgeFigure {
-	
+
 	public LinkFigure() {
 		super(false);
 	}

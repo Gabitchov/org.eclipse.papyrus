@@ -29,7 +29,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @author vhemery
  */
-public class LoopNodeContainment extends StructuredActivityNodeContainment{
+public class LoopNodeContainment extends StructuredActivityNodeContainment {
 
 	/**
 	 * Get the eclass of the model eobject represented by the node

@@ -76,6 +76,7 @@ public class ExpansionNodeAsInCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -91,7 +92,10 @@ public class ExpansionNodeAsInCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -100,12 +104,15 @@ public class ExpansionNodeAsInCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		ExpansionNode newElement = UMLFactory.eINSTANCE.createExpansionNode();
 
 		StructuredActivityNode owner = (StructuredActivityNode)getElementToEdit();
 		owner.getNodes().add(newElement);
 		ExpansionRegion childHolder = (ExpansionRegion)getElementToEdit();
 		childHolder.getInputElements().add(newElement);
+
 
 		ElementInitializers.getInstance().init_ExpansionNode_3074(newElement);
 

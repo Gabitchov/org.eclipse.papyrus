@@ -215,6 +215,7 @@ public class ConstraintInActivityAsPostcondEditPart extends CompartmentEditPart 
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

@@ -14,13 +14,14 @@
 package org.eclipse.papyrus.diagram.activity.figures;
 
 import org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure;
+
 /**
  * this is a figure with the tag local Postcondition
- *
+ * 
  */
 public class LocalPostconditionConstraintFigure extends ConstraintFigure {
 
-	public LocalPostconditionConstraintFigure(){
+	public LocalPostconditionConstraintFigure() {
 		super("LocalPostCondtion");
 	}
 }

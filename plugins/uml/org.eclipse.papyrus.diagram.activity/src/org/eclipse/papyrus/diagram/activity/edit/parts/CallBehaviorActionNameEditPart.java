@@ -193,6 +193,7 @@ public class CallBehaviorActionNameEditPart extends CompartmentEditPart implemen
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -707,6 +708,7 @@ public class CallBehaviorActionNameEditPart extends CompartmentEditPart implemen
 				}
 			}
 		}
+
 
 		super.handleNotificationEvent(event);
 	}

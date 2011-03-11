@@ -193,6 +193,7 @@ public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -707,6 +708,7 @@ public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements I
 				}
 			}
 		}
+
 
 		super.handleNotificationEvent(event);
 	}

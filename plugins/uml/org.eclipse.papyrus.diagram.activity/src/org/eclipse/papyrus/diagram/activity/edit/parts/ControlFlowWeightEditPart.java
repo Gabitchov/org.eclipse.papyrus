@@ -209,6 +209,7 @@ public class ControlFlowWeightEditPart extends LabelEditPart implements ITextAwa
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -706,6 +707,9 @@ public class ControlFlowWeightEditPart extends LabelEditPart implements ITextAwa
 				}
 			}
 		}
+
+
+
 
 		super.handleNotificationEvent(event);
 	}

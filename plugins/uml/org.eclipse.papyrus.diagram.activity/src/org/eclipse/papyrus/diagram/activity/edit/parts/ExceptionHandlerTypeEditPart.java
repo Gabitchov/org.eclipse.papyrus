@@ -209,6 +209,7 @@ public class ExceptionHandlerTypeEditPart extends LabelEditPart implements IText
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -706,6 +707,9 @@ public class ExceptionHandlerTypeEditPart extends LabelEditPart implements IText
 				}
 			}
 		}
+
+
+
 
 		super.handleNotificationEvent(event);
 	}

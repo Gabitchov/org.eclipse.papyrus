@@ -29,7 +29,6 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
-import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -38,7 +37,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * Specific Parser for the comment, in case they have a html format.
  */
 public class PreConditionConstraintLabelParser implements IParser {
-	private static final String CHEVRON = String.valueOf("\u00AB") +"PreCondition"+ String.valueOf("\u00BB");
+
+	private static final String CHEVRON = String.valueOf("\u00AB") + "PreCondition" + String.valueOf("\u00BB");
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -101,7 +102,7 @@ public class PreConditionConstraintLabelParser implements IParser {
 		}
 
 
-		return CHEVRON+constraint.getName();
+		return CHEVRON + constraint.getName();
 	}
 
 	/**

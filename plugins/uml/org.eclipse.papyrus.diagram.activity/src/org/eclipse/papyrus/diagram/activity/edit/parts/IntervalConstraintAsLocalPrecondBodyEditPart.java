@@ -201,6 +201,7 @@ public class IntervalConstraintAsLocalPrecondBodyEditPart extends CompartmentEdi
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -718,6 +719,7 @@ public class IntervalConstraintAsLocalPrecondBodyEditPart extends CompartmentEdi
 				}
 			}
 		}
+
 
 		super.handleNotificationEvent(event);
 	}

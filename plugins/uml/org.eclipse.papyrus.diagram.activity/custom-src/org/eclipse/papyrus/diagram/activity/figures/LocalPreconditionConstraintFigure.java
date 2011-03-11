@@ -14,13 +14,14 @@
 package org.eclipse.papyrus.diagram.activity.figures;
 
 import org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure;
+
 /**
  * this is a figure with the tag local Precondition
- *
+ * 
  */
 public class LocalPreconditionConstraintFigure extends ConstraintFigure {
 
-	public LocalPreconditionConstraintFigure(){
+	public LocalPreconditionConstraintFigure() {
 		super("LocalPreCondtion");
 	}
 }

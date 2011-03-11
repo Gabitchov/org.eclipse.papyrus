@@ -179,6 +179,7 @@ BorderedBorderItemEditPart {
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
+
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
@@ -888,9 +889,11 @@ BorderedBorderItemEditPart {
 		 */
 		private void createContents() {
 
+
 			fOptionalArrowFigure = new PolylineShape();
 
 			this.add(fOptionalArrowFigure);
+
 
 		}
 

@@ -194,6 +194,7 @@ public class AcceptEventActionLabelEditPart extends CompartmentEditPart implemen
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -708,6 +709,7 @@ public class AcceptEventActionLabelEditPart extends CompartmentEditPart implemen
 				}
 			}
 		}
+
 
 		super.handleNotificationEvent(event);
 	}

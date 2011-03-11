@@ -14,14 +14,10 @@
 package org.eclipse.papyrus.diagram.activity.locator;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.papyrus.diagram.common.locator.PortPositionLocator;
 
 /**
-* locator for parameter nodes
+ * locator for parameter nodes
  */
 public class ParameterNodeLocator extends PortPositionLocator {
 

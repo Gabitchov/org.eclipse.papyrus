@@ -234,6 +234,7 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

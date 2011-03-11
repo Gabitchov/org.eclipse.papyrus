@@ -104,6 +104,7 @@ AbstractBorderedShapeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExpansionRegionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
+
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.ExpansionRegionCanonicalEditPolicy());
 
@@ -170,12 +171,17 @@ AbstractBorderedShapeEditPart {
 			return true;
 		}
 
+
 		if(childEditPart instanceof ExpansionRegionStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((ExpansionRegionStructuredActivityNodeContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
+
+
+
+
 
 		//Papyrus Gencode :Affixed Expansion Node locator for Activity
 		if(childEditPart instanceof ExpansionNodeAsInEditPart) {
@@ -184,12 +190,19 @@ AbstractBorderedShapeEditPart {
 			return true;
 		}
 
+
+
+
+
 		//Papyrus Gencode :Affixed Expansion Node locator for Activity
 		if(childEditPart instanceof ExpansionNodeAsOutEditPart) {
 			IBorderItemLocator locator = new ExpansionNodePositionLocator(getMainFigure(), PositionConstants.SOUTH);
 			getBorderedFigure().getBorderItemContainer().add(((ExpansionNodeAsOutEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
+
+
+
 
 		return false;
 	}
@@ -1181,9 +1194,13 @@ AbstractBorderedShapeEditPart {
 		 */
 		private void createContents() {
 
+
 			fKeyword = new CenteredWrappedLabel();
 
+
+
 			fKeyword.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
+
 
 			GridData constraintFKeyword = new GridData();
 			constraintFKeyword.verticalAlignment = GridData.CENTER;
@@ -1195,9 +1212,13 @@ AbstractBorderedShapeEditPart {
 			constraintFKeyword.grabExcessVerticalSpace = false;
 			this.add(fKeyword, constraintFKeyword);
 
+
+
+
 			fStructuredActivityNodeCompartment = new RectangleFigure();
 			fStructuredActivityNodeCompartment.setFill(false);
 			fStructuredActivityNodeCompartment.setOutline(false);
+
 
 			GridData constraintFStructuredActivityNodeCompartment = new GridData();
 			constraintFStructuredActivityNodeCompartment.verticalAlignment = GridData.FILL;
@@ -1208,6 +1229,8 @@ AbstractBorderedShapeEditPart {
 			constraintFStructuredActivityNodeCompartment.grabExcessHorizontalSpace = true;
 			constraintFStructuredActivityNodeCompartment.grabExcessVerticalSpace = true;
 			this.add(fStructuredActivityNodeCompartment, constraintFStructuredActivityNodeCompartment);
+
+
 
 		}
 

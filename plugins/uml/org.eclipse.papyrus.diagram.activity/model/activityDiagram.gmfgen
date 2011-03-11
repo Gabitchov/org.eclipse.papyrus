@@ -7010,7 +7010,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.CREATION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInReferencingGroupEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
@@ -7019,6 +7019,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy"/>
       </compartments>
       <compartments
           visualID="7009"
@@ -7041,7 +7045,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.CREATION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInReferencingGroupEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
@@ -7050,6 +7054,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy"/>
       </compartments>
       <compartments
           visualID="7010"
@@ -7072,7 +7080,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.CREATION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInReferencingGroupEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
@@ -7081,6 +7089,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy"/>
       </compartments>
       <compartments
           visualID="7012"
@@ -7103,7 +7115,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.CREATION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInReferencingGroupEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
@@ -7112,6 +7124,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy"/>
       </compartments>
       <compartments
           visualID="7005"
@@ -7134,7 +7150,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.CREATION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInReferencingGroupEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
@@ -7143,6 +7159,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy"/>
       </compartments>
       <compartments
           visualID="7006"
@@ -7165,7 +7185,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.CREATION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInReferencingGroupEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
@@ -7174,6 +7194,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy"/>
       </compartments>
       <compartments
           visualID="7007"
@@ -7195,7 +7219,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.CREATION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInReferencingGroupEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
@@ -7204,6 +7228,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy"/>
       </compartments>
       <compartments
           visualID="7014"
