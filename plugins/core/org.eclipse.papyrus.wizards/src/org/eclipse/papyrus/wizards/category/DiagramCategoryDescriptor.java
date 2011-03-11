@@ -23,16 +23,22 @@ import org.eclipse.papyrus.core.extension.commands.IModelCreationCommand;
  */
 public class DiagramCategoryDescriptor {
 
+	/** The my id. */
 	private String myId;
 
+	/** The my label. */
 	private String myLabel;
 
+	/** The my description. */
 	private String myDescription;
 
+	/** The my file extension. */
 	private String myFileExtension;
 
+	/** The my icon. */
 	private ImageDescriptor myIcon;
 	
+	/** The instance. */
 	private IModelCreationCommand instance;
 	
 	/** The my creation command class. */
@@ -68,11 +74,12 @@ public class DiagramCategoryDescriptor {
 	public String getLabel() {
 		return myLabel;
 	}
+	
 	/**
 	 * constructor.
-	 * 
+	 *
 	 * @return the creation command
-	 * @throws BackboneException
+	 * @throws BackboneException the backbone exception
 	 */
 	public IModelCreationCommand getCommand() throws BackboneException {
 		if(instance == null)
@@ -81,6 +88,12 @@ public class DiagramCategoryDescriptor {
 		return instance;
 	}
 
+	/**
+	 * Creates the command.
+	 *
+	 * @return the i model creation command
+	 * @throws BackboneException the backbone exception
+	 */
 	private IModelCreationCommand createCommand() throws BackboneException {
 		try {
 			IModelCreationCommand command = myCreationCommandClass.newInstance();

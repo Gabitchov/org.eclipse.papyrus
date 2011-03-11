@@ -30,16 +30,15 @@ import org.eclipse.papyrus.core.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.wizards.Messages;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-
 /**
- * The Class DiagramCategoryRegistry.
+ * The Class DiagramCategoryRegistry reads available DiagramCategories from plugin descriptors.
  */
 public class DiagramCategoryRegistry extends ExtensionUtils {
 
 	/** The Constant CATEGORY_EXTENSION_POINT_NAME. */
 	private static final String CATEGORY_EXTENSION_POINT_NAME = "org.eclipse.papyrus.core.papyrusDiagram"; //$NON-NLS-1$
 
-	/** ID of the editor extension (schema filename) */
+	/** ID of the editor extension (schema filename). */
 	public static final String CATEGORY_ELEMENT_NAME = "diagramCategory"; //$NON-NLS-1$
 
 	/** The Constant CATEGORY_ID. */
@@ -57,13 +56,18 @@ public class DiagramCategoryRegistry extends ExtensionUtils {
 	/** The Constant CATEGORY_CLASS. */
 	private static final String CATEGORY_CLASS = "class"; //$NON-NLS-1$
 
+	/** The Constant CATEGORY_FILE_EXTENSION_PREFIX. */
 	private static final String CATEGORY_FILE_EXTENSION_PREFIX = "extensionPrefix"; //$NON-NLS-1$
 
 	/** The diagram categories. */
 	private static Map<String, DiagramCategoryDescriptor> diagramCategories;
 
+	/** The our instance. */
 	private static DiagramCategoryRegistry ourInstance;
 
+	/**
+	 * Instantiates a new diagram category registry.
+	 */
 	private DiagramCategoryRegistry() {
 	}
 
@@ -128,6 +132,13 @@ public class DiagramCategoryRegistry extends ExtensionUtils {
 		return result;
 	}
 
+	/**
+	 * Builds the category descriptor.
+	 *
+	 * @param confElement the conf element
+	 * @return the diagram category descriptor
+	 * @throws BadClassNameException the bad class name exception
+	 */
 	protected DiagramCategoryDescriptor buildCategoryDescriptor(IConfigurationElement confElement) throws BadClassNameException {
 		Class<IModelCreationCommand> commandClazz = (Class<IModelCreationCommand>)parseClass(confElement, CATEGORY_CLASS, CATEGORY_ELEMENT_NAME);
 		DiagramCategoryDescriptor diagramCategoryDescriptor = new DiagramCategoryDescriptor(confElement.getAttribute(CATEGORY_ID), confElement.getAttribute(CATEGORY_LABEL), commandClazz);

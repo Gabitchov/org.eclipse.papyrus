@@ -18,12 +18,14 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.papyrus.resource.ModelSet;
 
 /**
- * The Class NewPapyrusModelCommand.
+ * The Command to create a new Papyrus Model.
  */
 public class NewPapyrusModelCommand extends RecordingCommand {
 
+	/** The my model set. */
 	private final ModelSet myModelSet;
 
+	/** The my file. */
 	private final IFile myFile;
 
 	/**
@@ -38,6 +40,9 @@ public class NewPapyrusModelCommand extends RecordingCommand {
 		myFile = newFile;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
+	 */
 	@Override
 	protected void doExecute() {
 		myModelSet.createsModels(myFile);
