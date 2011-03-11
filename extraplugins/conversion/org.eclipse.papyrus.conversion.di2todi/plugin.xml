@@ -49,8 +49,5 @@
   <extension
          point="org.eclipse.help.toc">
       <toc file="toc.xml" primary="true"/>
-      <toc file="doc/tocgettingstarted.xml"/>
-      <toc file="doc/tocsamples.xml"/>
-      <toc file="doc/tocdevguide.xml"/>
    </extension>
 </plugin>
