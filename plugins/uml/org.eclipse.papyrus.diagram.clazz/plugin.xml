@@ -1711,6 +1711,14 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassDashedLinkPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassDashedLinkPreferencePage"
+            name="AssociationClassDashedLink Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.TemplateBindingPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.TemplateBindingPreferencePage"
             name="TemplateBinding Link" />

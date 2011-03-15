@@ -91,6 +91,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		ContainmentCirclePreferencePage.initDefaults(store);
 
+		AssociationClassDashedLinkPreferencePage.initDefaults(store);
+
 		TemplateBindingPreferencePage.initDefaults(store);
 
 		PackageImportPreferencePage.initDefaults(store);
