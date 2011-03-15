@@ -188,30 +188,12 @@ import org.eclipse.papyrus.parsers.texteditor.collaborationuselabel.IContext;
    public void emitErrorMessage(String msg) {
      errorReporter.reportError(msg);
    }
-   
-    /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void recoverFromMismatchedToken(IntStream arg0, RecognitionException arg1, int arg2, BitSet arg3)
-      throws RecognitionException {
-    // do nothing
-  }
 
   /**
    * {@inheritDoc}
    */
   @Override
   public void recover(IntStream arg0, RecognitionException arg1) {
-    // do nothing
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void recoverFromMismatchedSet(IntStream arg0, RecognitionException arg1, BitSet arg2)
-      throws RecognitionException {
     // do nothing
   }
 }

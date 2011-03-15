@@ -360,15 +360,7 @@ import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
    public void emitErrorMessage(String msg) {
      errorReporter.reportError(msg);
    }
-   
-    /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void recoverFromMismatchedToken(IntStream arg0, RecognitionException arg1, int arg2, BitSet arg3)
-      throws RecognitionException {
-      throw arg1;
-  }
+
 
   /**
    * {@inheritDoc}
@@ -379,15 +371,7 @@ import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
     // do nothing
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void recoverFromMismatchedSet(IntStream arg0, RecognitionException arg1, BitSet arg2)
-      throws RecognitionException {
-       throw arg1;
-    // do nothing
-  }
+
 }
 
 label :
@@ -660,14 +644,14 @@ upperMultiplicity
   :
   um=unlimitedNatural 
   {
-    upperMultiplicity = um;
+    upperMultiplicity = um.value;
   }
   ;
   
 unlimitedNatural returns [int value = 0 ]
   :
-  ( STAR      { value = -1; }
-  | in=INTEGER    { value = Integer.parseInt(in.getText()); }
+  ( STAR      { retval.value = -1; }
+  | in=INTEGER    { retval.value = Integer.parseInt(in.getText()); }
   )
   ;
   
@@ -676,7 +660,7 @@ defaultValue
   EQ dv = expression
   {
     // remove spaces at the begining 
-    defaultValue = dv.trim();
+    defaultValue = dv.value.trim();
   }
   ;
   catch [MismatchedTokenException mte] {
@@ -704,13 +688,9 @@ expression returns [String value  = ""]
     }
   )+
   {
-    value = buffer.toString();
+    retval.value = buffer.toString();
   }
   ;
-  catch [MismatchedTokenException mte] {
-      reportError(mte);
-      throw (new RuntimeException("ExpressionRule"));
-   }
      catch [RecognitionException re] {
    reportError(re); 
    throw(re);

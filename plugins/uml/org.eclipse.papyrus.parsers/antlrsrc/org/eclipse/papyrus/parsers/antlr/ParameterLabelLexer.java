@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g 2010-03-04 18:50:07
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g 2011-03-15 16:59:54
 
 package org.eclipse.papyrus.parsers.antlr;
 
@@ -21,198 +21,217 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 public class ParameterLabelLexer extends Lexer {
-    public static final int LT=46;
-    public static final int ISNE=45;
-    public static final int STAR=19;
-    public static final int LSQUARE=15;
-    public static final int POINT=37;
-    public static final int DOUBLE_QUOTE=27;
-    public static final int FOUR_POINTS=40;
-    public static final int DOUBLE_LCURLY=31;
     public static final int DOUBLE_LT=47;
-    public static final int CALLOPERATION=54;
-    public static final int EOF=-1;
-    public static final int LOGICAL_AND=33;
-    public static final int LPAREN=29;
-    public static final int RULE_ASSIGN=41;
-    public static final int INOUT=12;
-    public static final int T62=62;
-    public static final int DOUBLE_PIPE=36;
-    public static final int T63=63;
-    public static final int T64=64;
-    public static final int RANGE_VALUE=16;
-    public static final int LNOT=26;
-    public static final int SINGLE_QUOTE=28;
-    public static final int RPAREN=30;
-    public static final int IN=10;
-    public static final int INCR=52;
     public static final int COMMA=22;
-    public static final int IDENTIFIER=14;
-    public static final int INTEGER_OR_REAL_OR_RANGE=58;
-    public static final int RETURN=13;
-    public static final int TILDE=9;
-    public static final int QUESTION_MARK=25;
-    public static final int DOUBLE_GT=50;
-    public static final int PLUS=6;
-    public static final int PIPE=35;
-    public static final int NL=24;
-    public static final int EQ=20;
-    public static final int T61=61;
-    public static final int T60=60;
-    public static final int INTEGER=17;
-    public static final int GE=51;
+    public static final int ISEQ=44;
+    public static final int MINUS=7;
+    public static final int INCR=52;
     public static final int SHARP=8;
     public static final int DOUBLE_RCURLY=32;
-    public static final int RANGE=38;
-    public static final int UNDERSCORE=56;
-    public static final int LCURLY=21;
-    public static final int MINUS=7;
-    public static final int RSQUARE=18;
-    public static final int Tokens=65;
-    public static final int SEMI=39;
-    public static final int ALPHA=55;
-    public static final int COLON=5;
-    public static final int REAL=57;
-    public static final int WS=4;
-    public static final int DOUBLE_LOGICAL_AND=34;
-    public static final int OUT=11;
-    public static final int RCURLY=23;
     public static final int DECR=53;
-    public static final int T59=59;
     public static final int ARROW=42;
-    public static final int GT=49;
-    public static final int DIV=43;
+    public static final int DOUBLE_GT=50;
+    public static final int OUT=11;
+    public static final int RULE_ASSIGN=41;
+    public static final int TILDE=9;
+    public static final int PIPE=35;
+    public static final int DOUBLE_PIPE=36;
+    public static final int INTEGER=17;
+    public static final int RCURLY=23;
+    public static final int QUESTION_MARK=25;
+    public static final int NL=24;
+    public static final int LCURLY=21;
+    public static final int T__62=62;
     public static final int LE=48;
-    public static final int ISEQ=44;
+    public static final int RPAREN=30;
+    public static final int T__61=61;
+    public static final int LPAREN=29;
+    public static final int T__59=59;
+    public static final int PLUS=6;
+    public static final int SINGLE_QUOTE=28;
+    public static final int REAL=57;
+    public static final int RANGE=38;
+    public static final int LSQUARE=15;
+    public static final int FOUR_POINTS=40;
+    public static final int DOUBLE_LCURLY=31;
+    public static final int POINT=37;
+    public static final int WS=4;
+    public static final int ALPHA=55;
+    public static final int EQ=20;
+    public static final int T__64=64;
+    public static final int LT=46;
+    public static final int DOUBLE_QUOTE=27;
+    public static final int GT=49;
+    public static final int DOUBLE_LOGICAL_AND=34;
+    public static final int RSQUARE=18;
+    public static final int RANGE_VALUE=16;
+    public static final int IN=10;
+    public static final int SEMI=39;
+    public static final int GE=51;
+    public static final int LNOT=26;
+    public static final int T__63=63;
+    public static final int LOGICAL_AND=33;
+    public static final int RETURN=13;
+    public static final int ISNE=45;
+    public static final int EOF=-1;
+    public static final int COLON=5;
+    public static final int INOUT=12;
+    public static final int DIV=43;
+    public static final int INTEGER_OR_REAL_OR_RANGE=58;
+    public static final int STAR=19;
+    public static final int IDENTIFIER=14;
+    public static final int T__60=60;
+    public static final int UNDERSCORE=56;
+    public static final int CALLOPERATION=54;
+
+    // delegates
+    // delegators
+
     public ParameterLabelLexer() {;} 
     public ParameterLabelLexer(CharStream input) {
-        super(input);
-        ruleMemo = new HashMap[65+1];
-     }
-    public String getGrammarFileName() { return "D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g"; }
+        this(input, new RecognizerSharedState());
+    }
+    public ParameterLabelLexer(CharStream input, RecognizerSharedState state) {
+        super(input,state);
 
-    // $ANTLR start T59
-    public final void mT59() throws RecognitionException {
+    }
+    public String getGrammarFileName() { return "D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g"; }
+
+    // $ANTLR start "T__59"
+    public final void mT__59() throws RecognitionException {
         try {
-            int _type = T59;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:21:5: ( '<Undefined>' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:21:7: '<Undefined>'
+            int _type = T__59;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:22:7: ( '<Undefined>' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:22:9: '<Undefined>'
             {
-            match("<Undefined>"); if (failed) return ;
+            match("<Undefined>"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end T59
+    // $ANTLR end "T__59"
 
-    // $ANTLR start T60
-    public final void mT60() throws RecognitionException {
+    // $ANTLR start "T__60"
+    public final void mT__60() throws RecognitionException {
         try {
-            int _type = T60;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:22:5: ( 'ordered' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:22:7: 'ordered'
+            int _type = T__60;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:23:7: ( 'ordered' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:23:9: 'ordered'
             {
-            match("ordered"); if (failed) return ;
+            match("ordered"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end T60
+    // $ANTLR end "T__60"
 
-    // $ANTLR start T61
-    public final void mT61() throws RecognitionException {
+    // $ANTLR start "T__61"
+    public final void mT__61() throws RecognitionException {
         try {
-            int _type = T61;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:23:5: ( 'unique' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:23:7: 'unique'
+            int _type = T__61;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:24:7: ( 'unique' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:24:9: 'unique'
             {
-            match("unique"); if (failed) return ;
+            match("unique"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end T61
+    // $ANTLR end "T__61"
 
-    // $ANTLR start T62
-    public final void mT62() throws RecognitionException {
+    // $ANTLR start "T__62"
+    public final void mT__62() throws RecognitionException {
         try {
-            int _type = T62;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:24:5: ( 'nonunique' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:24:7: 'nonunique'
+            int _type = T__62;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:25:7: ( 'nonunique' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:25:9: 'nonunique'
             {
-            match("nonunique"); if (failed) return ;
+            match("nonunique"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end T62
+    // $ANTLR end "T__62"
 
-    // $ANTLR start T63
-    public final void mT63() throws RecognitionException {
+    // $ANTLR start "T__63"
+    public final void mT__63() throws RecognitionException {
         try {
-            int _type = T63;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:25:5: ( 'exception' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:25:7: 'exception'
+            int _type = T__63;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:26:7: ( 'exception' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:26:9: 'exception'
             {
-            match("exception"); if (failed) return ;
+            match("exception"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end T63
+    // $ANTLR end "T__63"
 
-    // $ANTLR start T64
-    public final void mT64() throws RecognitionException {
+    // $ANTLR start "T__64"
+    public final void mT__64() throws RecognitionException {
         try {
-            int _type = T64;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:26:5: ( 'stream' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:26:7: 'stream'
+            int _type = T__64;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:27:7: ( 'stream' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:27:9: 'stream'
             {
-            match("stream"); if (failed) return ;
+            match("stream"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end T64
+    // $ANTLR end "T__64"
 
-    // $ANTLR start NL
+    // $ANTLR start "NL"
     public final void mNL() throws RecognitionException {
         try {
             int _type = NL;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:641:3: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:641:5: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:621:3: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:621:5: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             {
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:641:5: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:621:5: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             int alt1=4;
             int LA1_0 = input.LA(1);
 
@@ -235,67 +254,69 @@ public class ParameterLabelLexer extends Lexer {
                     alt1=4;}
             }
             else {
-                if (backtracking>0) {failed=true; return ;}
+                if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("641:5: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )", 1, 0, input);
+                    new NoViableAltException("", 1, 0, input);
 
                 throw nvae;
             }
             switch (alt1) {
                 case 1 :
-                    // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:641:7: '\\r' '\\n'
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:621:7: '\\r' '\\n'
                     {
-                    match('\r'); if (failed) return ;
-                    match('\n'); if (failed) return ;
+                    match('\r'); if (state.failed) return ;
+                    match('\n'); if (state.failed) return ;
 
                     }
                     break;
                 case 2 :
-                    // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:642:7: '\\n' '\\r'
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:622:7: '\\n' '\\r'
                     {
-                    match('\n'); if (failed) return ;
-                    match('\r'); if (failed) return ;
+                    match('\n'); if (state.failed) return ;
+                    match('\r'); if (state.failed) return ;
 
                     }
                     break;
                 case 3 :
-                    // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:643:7: '\\r'
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:623:7: '\\r'
                     {
-                    match('\r'); if (failed) return ;
+                    match('\r'); if (state.failed) return ;
 
                     }
                     break;
                 case 4 :
-                    // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:644:7: '\\n'
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:624:7: '\\n'
                     {
-                    match('\n'); if (failed) return ;
+                    match('\n'); if (state.failed) return ;
 
                     }
                     break;
 
             }
 
-            if ( backtracking==0 ) {
-               channel=HIDDEN;
+            if ( state.backtracking==0 ) {
+               _channel=HIDDEN;
             }
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end NL
+    // $ANTLR end "NL"
 
-    // $ANTLR start WS
+    // $ANTLR start "WS"
     public final void mWS() throws RecognitionException {
         try {
             int _type = WS;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:651:3: ( ( ' ' | '\\t' | '\\f' )+ )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:651:6: ( ' ' | '\\t' | '\\f' )+
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:631:3: ( ( ' ' | '\\t' | '\\f' )+ )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:631:6: ( ' ' | '\\t' | '\\f' )+
             {
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:651:6: ( ' ' | '\\t' | '\\f' )+
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:631:6: ( ' ' | '\\t' | '\\f' )+
             int cnt2=0;
             loop2:
             do {
@@ -309,18 +330,17 @@ public class ParameterLabelLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:
+            	    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:
             	    {
             	    if ( input.LA(1)=='\t'||input.LA(1)=='\f'||input.LA(1)==' ' ) {
             	        input.consume();
-            	    failed=false;
+            	    state.failed=false;
             	    }
             	    else {
-            	        if (backtracking>0) {failed=true; return ;}
-            	        MismatchedSetException mse =
-            	            new MismatchedSetException(null,input);
-            	        recover(mse);    throw mse;
-            	    }
+            	        if (state.backtracking>0) {state.failed=true; return ;}
+            	        MismatchedSetException mse = new MismatchedSetException(null,input);
+            	        recover(mse);
+            	        throw mse;}
 
 
             	    }
@@ -328,7 +348,7 @@ public class ParameterLabelLexer extends Lexer {
 
             	default :
             	    if ( cnt2 >= 1 ) break loop2;
-            	    if (backtracking>0) {failed=true; return ;}
+            	    if (state.backtracking>0) {state.failed=true; return ;}
                         EarlyExitException eee =
                             new EarlyExitException(2, input);
                         throw eee;
@@ -339,878 +359,970 @@ public class ParameterLabelLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end WS
+    // $ANTLR end "WS"
 
-    // $ANTLR start QUESTION_MARK
+    // $ANTLR start "QUESTION_MARK"
     public final void mQUESTION_MARK() throws RecognitionException {
         try {
             int _type = QUESTION_MARK;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:655:3: ( '?' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:655:5: '?'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:635:3: ( '?' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:635:5: '?'
             {
-            match('?'); if (failed) return ;
+            match('?'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end QUESTION_MARK
+    // $ANTLR end "QUESTION_MARK"
 
-    // $ANTLR start LNOT
+    // $ANTLR start "LNOT"
     public final void mLNOT() throws RecognitionException {
         try {
             int _type = LNOT;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:659:3: ( '!' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:659:5: '!'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:639:3: ( '!' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:639:5: '!'
             {
-            match('!'); if (failed) return ;
+            match('!'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end LNOT
+    // $ANTLR end "LNOT"
 
-    // $ANTLR start DOUBLE_QUOTE
+    // $ANTLR start "DOUBLE_QUOTE"
     public final void mDOUBLE_QUOTE() throws RecognitionException {
         try {
             int _type = DOUBLE_QUOTE;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:663:3: ( '\\\"' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:663:5: '\\\"'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:643:3: ( '\\\"' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:643:5: '\\\"'
             {
-            match('\"'); if (failed) return ;
+            match('\"'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end DOUBLE_QUOTE
+    // $ANTLR end "DOUBLE_QUOTE"
 
-    // $ANTLR start SINGLE_QUOTE
+    // $ANTLR start "SINGLE_QUOTE"
     public final void mSINGLE_QUOTE() throws RecognitionException {
         try {
             int _type = SINGLE_QUOTE;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:667:3: ( '\\'' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:667:5: '\\''
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:647:3: ( '\\'' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:647:5: '\\''
             {
-            match('\''); if (failed) return ;
+            match('\''); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end SINGLE_QUOTE
+    // $ANTLR end "SINGLE_QUOTE"
 
-    // $ANTLR start LPAREN
+    // $ANTLR start "LPAREN"
     public final void mLPAREN() throws RecognitionException {
         try {
             int _type = LPAREN;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:671:3: ( '(' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:671:5: '('
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:651:3: ( '(' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:651:5: '('
             {
-            match('('); if (failed) return ;
+            match('('); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end LPAREN
+    // $ANTLR end "LPAREN"
 
-    // $ANTLR start RPAREN
+    // $ANTLR start "RPAREN"
     public final void mRPAREN() throws RecognitionException {
         try {
             int _type = RPAREN;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:675:3: ( ')' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:675:5: ')'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:655:3: ( ')' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:655:5: ')'
             {
-            match(')'); if (failed) return ;
+            match(')'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end RPAREN
+    // $ANTLR end "RPAREN"
 
-    // $ANTLR start LSQUARE
+    // $ANTLR start "LSQUARE"
     public final void mLSQUARE() throws RecognitionException {
         try {
             int _type = LSQUARE;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:679:3: ( '[' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:679:5: '['
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:659:3: ( '[' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:659:5: '['
             {
-            match('['); if (failed) return ;
+            match('['); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end LSQUARE
+    // $ANTLR end "LSQUARE"
 
-    // $ANTLR start RSQUARE
+    // $ANTLR start "RSQUARE"
     public final void mRSQUARE() throws RecognitionException {
         try {
             int _type = RSQUARE;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:683:3: ( ']' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:683:5: ']'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:663:3: ( ']' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:663:5: ']'
             {
-            match(']'); if (failed) return ;
+            match(']'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end RSQUARE
+    // $ANTLR end "RSQUARE"
 
-    // $ANTLR start LCURLY
+    // $ANTLR start "LCURLY"
     public final void mLCURLY() throws RecognitionException {
         try {
             int _type = LCURLY;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:687:3: ( '{' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:687:5: '{'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:667:3: ( '{' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:667:5: '{'
             {
-            match('{'); if (failed) return ;
+            match('{'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end LCURLY
+    // $ANTLR end "LCURLY"
 
-    // $ANTLR start DOUBLE_LCURLY
+    // $ANTLR start "DOUBLE_LCURLY"
     public final void mDOUBLE_LCURLY() throws RecognitionException {
         try {
             int _type = DOUBLE_LCURLY;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:691:3: ( '{{' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:691:5: '{{'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:671:3: ( '{{' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:671:5: '{{'
             {
-            match("{{"); if (failed) return ;
+            match("{{"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end DOUBLE_LCURLY
+    // $ANTLR end "DOUBLE_LCURLY"
 
-    // $ANTLR start RCURLY
+    // $ANTLR start "RCURLY"
     public final void mRCURLY() throws RecognitionException {
         try {
             int _type = RCURLY;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:694:3: ( '}' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:694:5: '}'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:674:3: ( '}' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:674:5: '}'
             {
-            match('}'); if (failed) return ;
+            match('}'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end RCURLY
+    // $ANTLR end "RCURLY"
 
-    // $ANTLR start DOUBLE_RCURLY
+    // $ANTLR start "DOUBLE_RCURLY"
     public final void mDOUBLE_RCURLY() throws RecognitionException {
         try {
             int _type = DOUBLE_RCURLY;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:698:3: ( '}}' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:698:5: '}}'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:678:3: ( '}}' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:678:5: '}}'
             {
-            match("}}"); if (failed) return ;
+            match("}}"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end DOUBLE_RCURLY
+    // $ANTLR end "DOUBLE_RCURLY"
 
-    // $ANTLR start LOGICAL_AND
+    // $ANTLR start "LOGICAL_AND"
     public final void mLOGICAL_AND() throws RecognitionException {
         try {
             int _type = LOGICAL_AND;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:702:3: ( '&' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:702:5: '&'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:682:3: ( '&' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:682:5: '&'
             {
-            match('&'); if (failed) return ;
+            match('&'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end LOGICAL_AND
+    // $ANTLR end "LOGICAL_AND"
 
-    // $ANTLR start DOUBLE_LOGICAL_AND
+    // $ANTLR start "DOUBLE_LOGICAL_AND"
     public final void mDOUBLE_LOGICAL_AND() throws RecognitionException {
         try {
             int _type = DOUBLE_LOGICAL_AND;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:706:3: ( '&&' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:706:5: '&&'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:686:3: ( '&&' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:686:5: '&&'
             {
-            match("&&"); if (failed) return ;
+            match("&&"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end DOUBLE_LOGICAL_AND
+    // $ANTLR end "DOUBLE_LOGICAL_AND"
 
-    // $ANTLR start PIPE
+    // $ANTLR start "PIPE"
     public final void mPIPE() throws RecognitionException {
         try {
             int _type = PIPE;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:710:3: ( '|' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:710:5: '|'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:690:3: ( '|' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:690:5: '|'
             {
-            match('|'); if (failed) return ;
+            match('|'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end PIPE
+    // $ANTLR end "PIPE"
 
-    // $ANTLR start DOUBLE_PIPE
+    // $ANTLR start "DOUBLE_PIPE"
     public final void mDOUBLE_PIPE() throws RecognitionException {
         try {
             int _type = DOUBLE_PIPE;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:714:3: ( '||' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:714:5: '||'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:694:3: ( '||' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:694:5: '||'
             {
-            match("||"); if (failed) return ;
+            match("||"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end DOUBLE_PIPE
+    // $ANTLR end "DOUBLE_PIPE"
 
-    // $ANTLR start POINT
+    // $ANTLR start "POINT"
     public final void mPOINT() throws RecognitionException {
         try {
             int _type = POINT;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:718:3: ( '.' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:718:5: '.'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:698:3: ( '.' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:698:5: '.'
             {
-            match('.'); if (failed) return ;
+            match('.'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end POINT
+    // $ANTLR end "POINT"
 
-    // $ANTLR start RANGE
+    // $ANTLR start "RANGE"
     public final void mRANGE() throws RecognitionException {
         try {
             int _type = RANGE;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:722:3: ( '..' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:722:5: '..'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:702:3: ( '..' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:702:5: '..'
             {
-            match(".."); if (failed) return ;
+            match(".."); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end RANGE
+    // $ANTLR end "RANGE"
 
-    // $ANTLR start COMMA
+    // $ANTLR start "COMMA"
     public final void mCOMMA() throws RecognitionException {
         try {
             int _type = COMMA;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:726:3: ( ',' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:726:5: ','
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:706:3: ( ',' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:706:5: ','
             {
-            match(','); if (failed) return ;
+            match(','); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end COMMA
+    // $ANTLR end "COMMA"
 
-    // $ANTLR start SEMI
+    // $ANTLR start "SEMI"
     public final void mSEMI() throws RecognitionException {
         try {
             int _type = SEMI;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:730:3: ( ';' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:730:5: ';'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:710:3: ( ';' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:710:5: ';'
             {
-            match(';'); if (failed) return ;
+            match(';'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end SEMI
+    // $ANTLR end "SEMI"
 
-    // $ANTLR start SHARP
+    // $ANTLR start "SHARP"
     public final void mSHARP() throws RecognitionException {
         try {
             int _type = SHARP;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:734:3: ( '#' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:734:5: '#'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:714:3: ( '#' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:714:5: '#'
             {
-            match('#'); if (failed) return ;
+            match('#'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end SHARP
+    // $ANTLR end "SHARP"
 
-    // $ANTLR start TILDE
+    // $ANTLR start "TILDE"
     public final void mTILDE() throws RecognitionException {
         try {
             int _type = TILDE;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:738:3: ( '~' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:738:5: '~'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:718:3: ( '~' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:718:5: '~'
             {
-            match('~'); if (failed) return ;
+            match('~'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end TILDE
+    // $ANTLR end "TILDE"
 
-    // $ANTLR start COLON
+    // $ANTLR start "COLON"
     public final void mCOLON() throws RecognitionException {
         try {
             int _type = COLON;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:742:3: ( ':' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:742:5: ':'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:722:3: ( ':' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:722:5: ':'
             {
-            match(':'); if (failed) return ;
+            match(':'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end COLON
+    // $ANTLR end "COLON"
 
-    // $ANTLR start FOUR_POINTS
+    // $ANTLR start "FOUR_POINTS"
     public final void mFOUR_POINTS() throws RecognitionException {
         try {
             int _type = FOUR_POINTS;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:746:3: ( '::' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:746:5: '::'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:726:3: ( '::' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:726:5: '::'
             {
-            match("::"); if (failed) return ;
+            match("::"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end FOUR_POINTS
+    // $ANTLR end "FOUR_POINTS"
 
-    // $ANTLR start RULE_ASSIGN
+    // $ANTLR start "RULE_ASSIGN"
     public final void mRULE_ASSIGN() throws RecognitionException {
         try {
             int _type = RULE_ASSIGN;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:750:3: ( '::=' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:750:5: '::='
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:730:3: ( '::=' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:730:5: '::='
             {
-            match("::="); if (failed) return ;
+            match("::="); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end RULE_ASSIGN
+    // $ANTLR end "RULE_ASSIGN"
 
-    // $ANTLR start ARROW
+    // $ANTLR start "ARROW"
     public final void mARROW() throws RecognitionException {
         try {
             int _type = ARROW;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:753:3: ( '->' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:753:5: '->'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:733:3: ( '->' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:733:5: '->'
             {
-            match("->"); if (failed) return ;
+            match("->"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end ARROW
+    // $ANTLR end "ARROW"
 
-    // $ANTLR start STAR
+    // $ANTLR start "STAR"
     public final void mSTAR() throws RecognitionException {
         try {
             int _type = STAR;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:757:3: ( '*' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:757:5: '*'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:737:3: ( '*' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:737:5: '*'
             {
-            match('*'); if (failed) return ;
+            match('*'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end STAR
+    // $ANTLR end "STAR"
 
-    // $ANTLR start DIV
+    // $ANTLR start "DIV"
     public final void mDIV() throws RecognitionException {
         try {
             int _type = DIV;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:761:3: ( '/' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:761:5: '/'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:741:3: ( '/' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:741:5: '/'
             {
-            match('/'); if (failed) return ;
+            match('/'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end DIV
+    // $ANTLR end "DIV"
 
-    // $ANTLR start PLUS
+    // $ANTLR start "PLUS"
     public final void mPLUS() throws RecognitionException {
         try {
             int _type = PLUS;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:765:3: ( '+' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:765:5: '+'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:745:3: ( '+' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:745:5: '+'
             {
-            match('+'); if (failed) return ;
+            match('+'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end PLUS
+    // $ANTLR end "PLUS"
 
-    // $ANTLR start MINUS
+    // $ANTLR start "MINUS"
     public final void mMINUS() throws RecognitionException {
         try {
             int _type = MINUS;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:769:3: ( '-' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:769:5: '-'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:749:3: ( '-' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:749:5: '-'
             {
-            match('-'); if (failed) return ;
+            match('-'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end MINUS
+    // $ANTLR end "MINUS"
 
-    // $ANTLR start EQ
+    // $ANTLR start "EQ"
     public final void mEQ() throws RecognitionException {
         try {
             int _type = EQ;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:773:3: ( '=' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:773:5: '='
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:753:3: ( '=' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:753:5: '='
             {
-            match('='); if (failed) return ;
+            match('='); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end EQ
+    // $ANTLR end "EQ"
 
-    // $ANTLR start ISEQ
+    // $ANTLR start "ISEQ"
     public final void mISEQ() throws RecognitionException {
         try {
             int _type = ISEQ;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:778:3: ( '==' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:778:5: '=='
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:758:3: ( '==' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:758:5: '=='
             {
-            match("=="); if (failed) return ;
+            match("=="); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end ISEQ
+    // $ANTLR end "ISEQ"
 
-    // $ANTLR start ISNE
+    // $ANTLR start "ISNE"
     public final void mISNE() throws RecognitionException {
         try {
             int _type = ISNE;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:782:3: ( '!=' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:782:5: '!='
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:762:3: ( '!=' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:762:5: '!='
             {
-            match("!="); if (failed) return ;
+            match("!="); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end ISNE
+    // $ANTLR end "ISNE"
 
-    // $ANTLR start LT
+    // $ANTLR start "LT"
     public final void mLT() throws RecognitionException {
         try {
             int _type = LT;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:785:4: ( '<' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:785:6: '<'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:765:4: ( '<' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:765:6: '<'
             {
-            match('<'); if (failed) return ;
+            match('<'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end LT
+    // $ANTLR end "LT"
 
-    // $ANTLR start DOUBLE_LT
+    // $ANTLR start "DOUBLE_LT"
     public final void mDOUBLE_LT() throws RecognitionException {
         try {
             int _type = DOUBLE_LT;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:788:3: ( '<<' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:788:5: '<<'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:768:3: ( '<<' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:768:5: '<<'
             {
-            match("<<"); if (failed) return ;
+            match("<<"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end DOUBLE_LT
+    // $ANTLR end "DOUBLE_LT"
 
-    // $ANTLR start LE
+    // $ANTLR start "LE"
     public final void mLE() throws RecognitionException {
         try {
             int _type = LE;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:792:3: ( '<=' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:792:5: '<='
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:772:3: ( '<=' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:772:5: '<='
             {
-            match("<="); if (failed) return ;
+            match("<="); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end LE
+    // $ANTLR end "LE"
 
-    // $ANTLR start GT
+    // $ANTLR start "GT"
     public final void mGT() throws RecognitionException {
         try {
             int _type = GT;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:796:3: ( '>' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:796:5: '>'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:776:3: ( '>' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:776:5: '>'
             {
-            match('>'); if (failed) return ;
+            match('>'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end GT
+    // $ANTLR end "GT"
 
-    // $ANTLR start DOUBLE_GT
+    // $ANTLR start "DOUBLE_GT"
     public final void mDOUBLE_GT() throws RecognitionException {
         try {
             int _type = DOUBLE_GT;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:800:3: ( '>>' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:800:5: '>>'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:780:3: ( '>>' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:780:5: '>>'
             {
-            match(">>"); if (failed) return ;
+            match(">>"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end DOUBLE_GT
+    // $ANTLR end "DOUBLE_GT"
 
-    // $ANTLR start GE
+    // $ANTLR start "GE"
     public final void mGE() throws RecognitionException {
         try {
             int _type = GE;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:804:3: ( '>=' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:804:5: '>='
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:784:3: ( '>=' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:784:5: '>='
             {
-            match(">="); if (failed) return ;
+            match(">="); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end GE
+    // $ANTLR end "GE"
 
-    // $ANTLR start INCR
+    // $ANTLR start "INCR"
     public final void mINCR() throws RecognitionException {
         try {
             int _type = INCR;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:809:3: ( '++' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:809:5: '++'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:789:3: ( '++' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:789:5: '++'
             {
-            match("++"); if (failed) return ;
+            match("++"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end INCR
+    // $ANTLR end "INCR"
 
-    // $ANTLR start DECR
+    // $ANTLR start "DECR"
     public final void mDECR() throws RecognitionException {
         try {
             int _type = DECR;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:813:3: ( '--' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:813:5: '--'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:793:3: ( '--' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:793:5: '--'
             {
-            match("--"); if (failed) return ;
+            match("--"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end DECR
+    // $ANTLR end "DECR"
 
-    // $ANTLR start CALLOPERATION
+    // $ANTLR start "CALLOPERATION"
     public final void mCALLOPERATION() throws RecognitionException {
         try {
             int _type = CALLOPERATION;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:817:3: ( ':=' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:817:5: ':='
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:797:3: ( ':=' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:797:5: ':='
             {
-            match(":="); if (failed) return ;
+            match(":="); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end CALLOPERATION
+    // $ANTLR end "CALLOPERATION"
 
-    // $ANTLR start IN
+    // $ANTLR start "IN"
     public final void mIN() throws RecognitionException {
         try {
             int _type = IN;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:821:3: ( 'in' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:821:5: 'in'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:801:3: ( 'in' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:801:5: 'in'
             {
-            match("in"); if (failed) return ;
+            match("in"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end IN
+    // $ANTLR end "IN"
 
-    // $ANTLR start OUT
+    // $ANTLR start "OUT"
     public final void mOUT() throws RecognitionException {
         try {
             int _type = OUT;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:825:3: ( 'out' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:825:5: 'out'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:805:3: ( 'out' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:805:5: 'out'
             {
-            match("out"); if (failed) return ;
+            match("out"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end OUT
+    // $ANTLR end "OUT"
 
-    // $ANTLR start INOUT
+    // $ANTLR start "INOUT"
     public final void mINOUT() throws RecognitionException {
         try {
             int _type = INOUT;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:829:3: ( 'inout' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:829:5: 'inout'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:809:3: ( 'inout' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:809:5: 'inout'
             {
-            match("inout"); if (failed) return ;
+            match("inout"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end INOUT
+    // $ANTLR end "INOUT"
 
-    // $ANTLR start RETURN
+    // $ANTLR start "RETURN"
     public final void mRETURN() throws RecognitionException {
         try {
             int _type = RETURN;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:833:3: ( 'return' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:833:5: 'return'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:813:3: ( 'return' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:813:5: 'return'
             {
-            match("return"); if (failed) return ;
+            match("return"); if (state.failed) return ;
 
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end RETURN
+    // $ANTLR end "RETURN"
 
-    // $ANTLR start ALPHA
+    // $ANTLR start "ALPHA"
     public final void mALPHA() throws RecognitionException {
         try {
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:838:3: ( 'a' .. 'z' | 'A' .. 'Z' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:818:3: ( 'a' .. 'z' | 'A' .. 'Z' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
-            failed=false;
+            state.failed=false;
             }
             else {
-                if (backtracking>0) {failed=true; return ;}
-                MismatchedSetException mse =
-                    new MismatchedSetException(null,input);
-                recover(mse);    throw mse;
-            }
+                if (state.backtracking>0) {state.failed=true; return ;}
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
 
 
             }
@@ -1219,45 +1331,48 @@ public class ParameterLabelLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end ALPHA
+    // $ANTLR end "ALPHA"
 
-    // $ANTLR start UNDERSCORE
+    // $ANTLR start "UNDERSCORE"
     public final void mUNDERSCORE() throws RecognitionException {
         try {
             int _type = UNDERSCORE;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:844:3: ( '_' )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:844:5: '_'
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:824:3: ( '_' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:824:5: '_'
             {
-            match('_'); if (failed) return ;
+            match('_'); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end UNDERSCORE
+    // $ANTLR end "UNDERSCORE"
 
-    // $ANTLR start RANGE_VALUE
+    // $ANTLR start "RANGE_VALUE"
     public final void mRANGE_VALUE() throws RecognitionException {
         try {
             int _type = RANGE_VALUE;
-            Token c1=null;
-            Token c2=null;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            CommonToken c1=null;
+            CommonToken c2=null;
 
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:848:3: (c1= INTEGER '..' (c2= INTEGER | c2= STAR ) )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:848:5: c1= INTEGER '..' (c2= INTEGER | c2= STAR )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:828:3: (c1= INTEGER '..' (c2= INTEGER | c2= STAR ) )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:828:5: c1= INTEGER '..' (c2= INTEGER | c2= STAR )
             {
-            int c1Start869 = getCharIndex();
-            mINTEGER(); if (failed) return ;
-            c1 = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, c1Start869, getCharIndex()-1);
-            if ( backtracking==0 ) {
+            int c1Start870 = getCharIndex();
+            mINTEGER(); if (state.failed) return ;
+            c1 = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, c1Start870, getCharIndex()-1);
+            if ( state.backtracking==0 ) {
               setText("");
             }
-            match(".."); if (failed) return ;
+            match(".."); if (state.failed) return ;
 
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:849:3: (c2= INTEGER | c2= STAR )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:829:3: (c2= INTEGER | c2= STAR )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -1268,32 +1383,32 @@ public class ParameterLabelLexer extends Lexer {
                 alt3=2;
             }
             else {
-                if (backtracking>0) {failed=true; return ;}
+                if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("849:3: (c2= INTEGER | c2= STAR )", 3, 0, input);
+                    new NoViableAltException("", 3, 0, input);
 
                 throw nvae;
             }
             switch (alt3) {
                 case 1 :
-                    // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:849:5: c2= INTEGER
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:829:5: c2= INTEGER
                     {
-                    int c2Start881 = getCharIndex();
-                    mINTEGER(); if (failed) return ;
-                    c2 = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, c2Start881, getCharIndex()-1);
-                    if ( backtracking==0 ) {
-                       setText(c2.getText());
+                    int c2Start882 = getCharIndex();
+                    mINTEGER(); if (state.failed) return ;
+                    c2 = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, c2Start882, getCharIndex()-1);
+                    if ( state.backtracking==0 ) {
+                       setText((c2!=null?c2.getText():null));
                     }
 
                     }
                     break;
                 case 2 :
-                    // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:850:7: c2= STAR
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:830:7: c2= STAR
                     {
-                    int c2Start894 = getCharIndex();
-                    mSTAR(); if (failed) return ;
-                    c2 = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, c2Start894, getCharIndex()-1);
-                    if ( backtracking==0 ) {
+                    int c2Start895 = getCharIndex();
+                    mSTAR(); if (state.failed) return ;
+                    c2 = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, c2Start895, getCharIndex()-1);
+                    if ( state.backtracking==0 ) {
                        setText("-1");
                     }
 
@@ -1302,66 +1417,69 @@ public class ParameterLabelLexer extends Lexer {
 
             }
 
-            if ( backtracking==0 ) {
+            if ( state.backtracking==0 ) {
                
-                    setText(getText() + ","+ c1.getText()); 
+                    setText(getText() + ","+ (c1!=null?c1.getText():null)); 
                  
             }
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end RANGE_VALUE
+    // $ANTLR end "RANGE_VALUE"
 
-    // $ANTLR start REAL
+    // $ANTLR start "REAL"
     public final void mREAL() throws RecognitionException {
         try {
             int _type = REAL;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:857:3: ( INTEGER '.' INTEGER )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:857:5: INTEGER '.' INTEGER
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:837:3: ( INTEGER '.' INTEGER )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:837:5: INTEGER '.' INTEGER
             {
-            mINTEGER(); if (failed) return ;
-            match('.'); if (failed) return ;
-            mINTEGER(); if (failed) return ;
+            mINTEGER(); if (state.failed) return ;
+            match('.'); if (state.failed) return ;
+            mINTEGER(); if (state.failed) return ;
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end REAL
+    // $ANTLR end "REAL"
 
-    // $ANTLR start INTEGER_OR_REAL_OR_RANGE
+    // $ANTLR start "INTEGER_OR_REAL_OR_RANGE"
     public final void mINTEGER_OR_REAL_OR_RANGE() throws RecognitionException {
         try {
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:862:3: ( ( INTEGER RANGE )=> RANGE_VALUE | ( INTEGER POINT )=> REAL | ( INTEGER )=> INTEGER )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:842:3: ( ( INTEGER RANGE )=> RANGE_VALUE | ( INTEGER POINT )=> REAL | ( INTEGER )=> INTEGER )
             int alt4=3;
             alt4 = dfa4.predict(input);
             switch (alt4) {
                 case 1 :
-                    // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:863:4: ( INTEGER RANGE )=> RANGE_VALUE
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:843:4: ( INTEGER RANGE )=> RANGE_VALUE
                     {
-                    mRANGE_VALUE(); if (failed) return ;
+                    mRANGE_VALUE(); if (state.failed) return ;
 
                     }
                     break;
                 case 2 :
-                    // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:864:6: ( INTEGER POINT )=> REAL
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:844:6: ( INTEGER POINT )=> REAL
                     {
-                    mREAL(); if (failed) return ;
+                    mREAL(); if (state.failed) return ;
 
                     }
                     break;
                 case 3 :
-                    // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:865:6: ( INTEGER )=> INTEGER
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:845:6: ( INTEGER )=> INTEGER
                     {
-                    mINTEGER(); if (failed) return ;
+                    mINTEGER(); if (state.failed) return ;
 
                     }
                     break;
@@ -1371,16 +1489,17 @@ public class ParameterLabelLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end INTEGER_OR_REAL_OR_RANGE
+    // $ANTLR end "INTEGER_OR_REAL_OR_RANGE"
 
-    // $ANTLR start INTEGER
+    // $ANTLR start "INTEGER"
     public final void mINTEGER() throws RecognitionException {
         try {
             int _type = INTEGER;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:869:3: ( ( '0' .. '9' )+ )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:869:5: ( '0' .. '9' )+
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:849:3: ( ( '0' .. '9' )+ )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:849:5: ( '0' .. '9' )+
             {
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:869:5: ( '0' .. '9' )+
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:849:5: ( '0' .. '9' )+
             int cnt5=0;
             loop5:
             do {
@@ -1394,16 +1513,16 @@ public class ParameterLabelLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:869:5: '0' .. '9'
+            	    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:849:5: '0' .. '9'
             	    {
-            	    matchRange('0','9'); if (failed) return ;
+            	    matchRange('0','9'); if (state.failed) return ;
 
             	    }
             	    break;
 
             	default :
             	    if ( cnt5 >= 1 ) break loop5;
-            	    if (backtracking>0) {failed=true; return ;}
+            	    if (state.backtracking>0) {state.failed=true; return ;}
                         EarlyExitException eee =
                             new EarlyExitException(5, input);
                         throw eee;
@@ -1414,21 +1533,23 @@ public class ParameterLabelLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end INTEGER
+    // $ANTLR end "INTEGER"
 
-    // $ANTLR start IDENTIFIER
+    // $ANTLR start "IDENTIFIER"
     public final void mIDENTIFIER() throws RecognitionException {
         try {
             int _type = IDENTIFIER;
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:872:3: ( ( ALPHA | '0' .. '9' | UNDERSCORE )+ )
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:872:5: ( ALPHA | '0' .. '9' | UNDERSCORE )+
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:852:3: ( ( ALPHA | '0' .. '9' | UNDERSCORE )+ )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:852:5: ( ALPHA | '0' .. '9' | UNDERSCORE )+
             {
-            // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:872:5: ( ALPHA | '0' .. '9' | UNDERSCORE )+
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:852:5: ( ALPHA | '0' .. '9' | UNDERSCORE )+
             int cnt6=0;
             loop6:
             do {
@@ -1442,18 +1563,17 @@ public class ParameterLabelLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:
+            	    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
-            	    failed=false;
+            	    state.failed=false;
             	    }
             	    else {
-            	        if (backtracking>0) {failed=true; return ;}
-            	        MismatchedSetException mse =
-            	            new MismatchedSetException(null,input);
-            	        recover(mse);    throw mse;
-            	    }
+            	        if (state.backtracking>0) {state.failed=true; return ;}
+            	        MismatchedSetException mse = new MismatchedSetException(null,input);
+            	        recover(mse);
+            	        throw mse;}
 
 
             	    }
@@ -1461,7 +1581,7 @@ public class ParameterLabelLexer extends Lexer {
 
             	default :
             	    if ( cnt6 >= 1 ) break loop6;
-            	    if (backtracking>0) {failed=true; return ;}
+            	    if (state.backtracking>0) {state.failed=true; return ;}
                         EarlyExitException eee =
                             new EarlyExitException(6, input);
                         throw eee;
@@ -1472,428 +1592,429 @@ public class ParameterLabelLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            state.type = _type;
+            state.channel = _channel;
         }
         finally {
         }
     }
-    // $ANTLR end IDENTIFIER
+    // $ANTLR end "IDENTIFIER"
 
     public void mTokens() throws RecognitionException {
-        // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:8: ( T59 | T60 | T61 | T62 | T63 | T64 | NL | WS | QUESTION_MARK | LNOT | DOUBLE_QUOTE | SINGLE_QUOTE | LPAREN | RPAREN | LSQUARE | RSQUARE | LCURLY | DOUBLE_LCURLY | RCURLY | DOUBLE_RCURLY | LOGICAL_AND | DOUBLE_LOGICAL_AND | PIPE | DOUBLE_PIPE | POINT | RANGE | COMMA | SEMI | SHARP | TILDE | COLON | FOUR_POINTS | RULE_ASSIGN | ARROW | STAR | DIV | PLUS | MINUS | EQ | ISEQ | ISNE | LT | DOUBLE_LT | LE | GT | DOUBLE_GT | GE | INCR | DECR | CALLOPERATION | IN | OUT | INOUT | RETURN | UNDERSCORE | RANGE_VALUE | REAL | INTEGER | IDENTIFIER )
+        // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:8: ( T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | NL | WS | QUESTION_MARK | LNOT | DOUBLE_QUOTE | SINGLE_QUOTE | LPAREN | RPAREN | LSQUARE | RSQUARE | LCURLY | DOUBLE_LCURLY | RCURLY | DOUBLE_RCURLY | LOGICAL_AND | DOUBLE_LOGICAL_AND | PIPE | DOUBLE_PIPE | POINT | RANGE | COMMA | SEMI | SHARP | TILDE | COLON | FOUR_POINTS | RULE_ASSIGN | ARROW | STAR | DIV | PLUS | MINUS | EQ | ISEQ | ISNE | LT | DOUBLE_LT | LE | GT | DOUBLE_GT | GE | INCR | DECR | CALLOPERATION | IN | OUT | INOUT | RETURN | UNDERSCORE | RANGE_VALUE | REAL | INTEGER | IDENTIFIER )
         int alt7=59;
         alt7 = dfa7.predict(input);
         switch (alt7) {
             case 1 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:10: T59
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:10: T__59
                 {
-                mT59(); if (failed) return ;
+                mT__59(); if (state.failed) return ;
 
                 }
                 break;
             case 2 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:14: T60
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:16: T__60
                 {
-                mT60(); if (failed) return ;
+                mT__60(); if (state.failed) return ;
 
                 }
                 break;
             case 3 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:18: T61
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:22: T__61
                 {
-                mT61(); if (failed) return ;
+                mT__61(); if (state.failed) return ;
 
                 }
                 break;
             case 4 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:22: T62
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:28: T__62
                 {
-                mT62(); if (failed) return ;
+                mT__62(); if (state.failed) return ;
 
                 }
                 break;
             case 5 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:26: T63
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:34: T__63
                 {
-                mT63(); if (failed) return ;
+                mT__63(); if (state.failed) return ;
 
                 }
                 break;
             case 6 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:30: T64
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:40: T__64
                 {
-                mT64(); if (failed) return ;
+                mT__64(); if (state.failed) return ;
 
                 }
                 break;
             case 7 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:34: NL
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:46: NL
                 {
-                mNL(); if (failed) return ;
+                mNL(); if (state.failed) return ;
 
                 }
                 break;
             case 8 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:37: WS
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:49: WS
                 {
-                mWS(); if (failed) return ;
+                mWS(); if (state.failed) return ;
 
                 }
                 break;
             case 9 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:40: QUESTION_MARK
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:52: QUESTION_MARK
                 {
-                mQUESTION_MARK(); if (failed) return ;
+                mQUESTION_MARK(); if (state.failed) return ;
 
                 }
                 break;
             case 10 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:54: LNOT
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:66: LNOT
                 {
-                mLNOT(); if (failed) return ;
+                mLNOT(); if (state.failed) return ;
 
                 }
                 break;
             case 11 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:59: DOUBLE_QUOTE
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:71: DOUBLE_QUOTE
                 {
-                mDOUBLE_QUOTE(); if (failed) return ;
+                mDOUBLE_QUOTE(); if (state.failed) return ;
 
                 }
                 break;
             case 12 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:72: SINGLE_QUOTE
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:84: SINGLE_QUOTE
                 {
-                mSINGLE_QUOTE(); if (failed) return ;
+                mSINGLE_QUOTE(); if (state.failed) return ;
 
                 }
                 break;
             case 13 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:85: LPAREN
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:97: LPAREN
                 {
-                mLPAREN(); if (failed) return ;
+                mLPAREN(); if (state.failed) return ;
 
                 }
                 break;
             case 14 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:92: RPAREN
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:104: RPAREN
                 {
-                mRPAREN(); if (failed) return ;
+                mRPAREN(); if (state.failed) return ;
 
                 }
                 break;
             case 15 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:99: LSQUARE
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:111: LSQUARE
                 {
-                mLSQUARE(); if (failed) return ;
+                mLSQUARE(); if (state.failed) return ;
 
                 }
                 break;
             case 16 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:107: RSQUARE
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:119: RSQUARE
                 {
-                mRSQUARE(); if (failed) return ;
+                mRSQUARE(); if (state.failed) return ;
 
                 }
                 break;
             case 17 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:115: LCURLY
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:127: LCURLY
                 {
-                mLCURLY(); if (failed) return ;
+                mLCURLY(); if (state.failed) return ;
 
                 }
                 break;
             case 18 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:122: DOUBLE_LCURLY
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:134: DOUBLE_LCURLY
                 {
-                mDOUBLE_LCURLY(); if (failed) return ;
+                mDOUBLE_LCURLY(); if (state.failed) return ;
 
                 }
                 break;
             case 19 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:136: RCURLY
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:148: RCURLY
                 {
-                mRCURLY(); if (failed) return ;
+                mRCURLY(); if (state.failed) return ;
 
                 }
                 break;
             case 20 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:143: DOUBLE_RCURLY
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:155: DOUBLE_RCURLY
                 {
-                mDOUBLE_RCURLY(); if (failed) return ;
+                mDOUBLE_RCURLY(); if (state.failed) return ;
 
                 }
                 break;
             case 21 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:157: LOGICAL_AND
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:169: LOGICAL_AND
                 {
-                mLOGICAL_AND(); if (failed) return ;
+                mLOGICAL_AND(); if (state.failed) return ;
 
                 }
                 break;
             case 22 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:169: DOUBLE_LOGICAL_AND
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:181: DOUBLE_LOGICAL_AND
                 {
-                mDOUBLE_LOGICAL_AND(); if (failed) return ;
+                mDOUBLE_LOGICAL_AND(); if (state.failed) return ;
 
                 }
                 break;
             case 23 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:188: PIPE
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:200: PIPE
                 {
-                mPIPE(); if (failed) return ;
+                mPIPE(); if (state.failed) return ;
 
                 }
                 break;
             case 24 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:193: DOUBLE_PIPE
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:205: DOUBLE_PIPE
                 {
-                mDOUBLE_PIPE(); if (failed) return ;
+                mDOUBLE_PIPE(); if (state.failed) return ;
 
                 }
                 break;
             case 25 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:205: POINT
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:217: POINT
                 {
-                mPOINT(); if (failed) return ;
+                mPOINT(); if (state.failed) return ;
 
                 }
                 break;
             case 26 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:211: RANGE
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:223: RANGE
                 {
-                mRANGE(); if (failed) return ;
+                mRANGE(); if (state.failed) return ;
 
                 }
                 break;
             case 27 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:217: COMMA
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:229: COMMA
                 {
-                mCOMMA(); if (failed) return ;
+                mCOMMA(); if (state.failed) return ;
 
                 }
                 break;
             case 28 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:223: SEMI
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:235: SEMI
                 {
-                mSEMI(); if (failed) return ;
+                mSEMI(); if (state.failed) return ;
 
                 }
                 break;
             case 29 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:228: SHARP
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:240: SHARP
                 {
-                mSHARP(); if (failed) return ;
+                mSHARP(); if (state.failed) return ;
 
                 }
                 break;
             case 30 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:234: TILDE
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:246: TILDE
                 {
-                mTILDE(); if (failed) return ;
+                mTILDE(); if (state.failed) return ;
 
                 }
                 break;
             case 31 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:240: COLON
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:252: COLON
                 {
-                mCOLON(); if (failed) return ;
+                mCOLON(); if (state.failed) return ;
 
                 }
                 break;
             case 32 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:246: FOUR_POINTS
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:258: FOUR_POINTS
                 {
-                mFOUR_POINTS(); if (failed) return ;
+                mFOUR_POINTS(); if (state.failed) return ;
 
                 }
                 break;
             case 33 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:258: RULE_ASSIGN
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:270: RULE_ASSIGN
                 {
-                mRULE_ASSIGN(); if (failed) return ;
+                mRULE_ASSIGN(); if (state.failed) return ;
 
                 }
                 break;
             case 34 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:270: ARROW
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:282: ARROW
                 {
-                mARROW(); if (failed) return ;
+                mARROW(); if (state.failed) return ;
 
                 }
                 break;
             case 35 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:276: STAR
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:288: STAR
                 {
-                mSTAR(); if (failed) return ;
+                mSTAR(); if (state.failed) return ;
 
                 }
                 break;
             case 36 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:281: DIV
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:293: DIV
                 {
-                mDIV(); if (failed) return ;
+                mDIV(); if (state.failed) return ;
 
                 }
                 break;
             case 37 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:285: PLUS
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:297: PLUS
                 {
-                mPLUS(); if (failed) return ;
+                mPLUS(); if (state.failed) return ;
 
                 }
                 break;
             case 38 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:290: MINUS
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:302: MINUS
                 {
-                mMINUS(); if (failed) return ;
+                mMINUS(); if (state.failed) return ;
 
                 }
                 break;
             case 39 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:296: EQ
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:308: EQ
                 {
-                mEQ(); if (failed) return ;
+                mEQ(); if (state.failed) return ;
 
                 }
                 break;
             case 40 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:299: ISEQ
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:311: ISEQ
                 {
-                mISEQ(); if (failed) return ;
+                mISEQ(); if (state.failed) return ;
 
                 }
                 break;
             case 41 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:304: ISNE
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:316: ISNE
                 {
-                mISNE(); if (failed) return ;
+                mISNE(); if (state.failed) return ;
 
                 }
                 break;
             case 42 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:309: LT
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:321: LT
                 {
-                mLT(); if (failed) return ;
+                mLT(); if (state.failed) return ;
 
                 }
                 break;
             case 43 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:312: DOUBLE_LT
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:324: DOUBLE_LT
                 {
-                mDOUBLE_LT(); if (failed) return ;
+                mDOUBLE_LT(); if (state.failed) return ;
 
                 }
                 break;
             case 44 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:322: LE
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:334: LE
                 {
-                mLE(); if (failed) return ;
+                mLE(); if (state.failed) return ;
 
                 }
                 break;
             case 45 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:325: GT
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:337: GT
                 {
-                mGT(); if (failed) return ;
+                mGT(); if (state.failed) return ;
 
                 }
                 break;
             case 46 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:328: DOUBLE_GT
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:340: DOUBLE_GT
                 {
-                mDOUBLE_GT(); if (failed) return ;
+                mDOUBLE_GT(); if (state.failed) return ;
 
                 }
                 break;
             case 47 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:338: GE
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:350: GE
                 {
-                mGE(); if (failed) return ;
+                mGE(); if (state.failed) return ;
 
                 }
                 break;
             case 48 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:341: INCR
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:353: INCR
                 {
-                mINCR(); if (failed) return ;
+                mINCR(); if (state.failed) return ;
 
                 }
                 break;
             case 49 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:346: DECR
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:358: DECR
                 {
-                mDECR(); if (failed) return ;
+                mDECR(); if (state.failed) return ;
 
                 }
                 break;
             case 50 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:351: CALLOPERATION
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:363: CALLOPERATION
                 {
-                mCALLOPERATION(); if (failed) return ;
+                mCALLOPERATION(); if (state.failed) return ;
 
                 }
                 break;
             case 51 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:365: IN
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:377: IN
                 {
-                mIN(); if (failed) return ;
+                mIN(); if (state.failed) return ;
 
                 }
                 break;
             case 52 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:368: OUT
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:380: OUT
                 {
-                mOUT(); if (failed) return ;
+                mOUT(); if (state.failed) return ;
 
                 }
                 break;
             case 53 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:372: INOUT
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:384: INOUT
                 {
-                mINOUT(); if (failed) return ;
+                mINOUT(); if (state.failed) return ;
 
                 }
                 break;
             case 54 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:378: RETURN
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:390: RETURN
                 {
-                mRETURN(); if (failed) return ;
+                mRETURN(); if (state.failed) return ;
 
                 }
                 break;
             case 55 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:385: UNDERSCORE
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:397: UNDERSCORE
                 {
-                mUNDERSCORE(); if (failed) return ;
+                mUNDERSCORE(); if (state.failed) return ;
 
                 }
                 break;
             case 56 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:396: RANGE_VALUE
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:408: RANGE_VALUE
                 {
-                mRANGE_VALUE(); if (failed) return ;
+                mRANGE_VALUE(); if (state.failed) return ;
 
                 }
                 break;
             case 57 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:408: REAL
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:420: REAL
                 {
-                mREAL(); if (failed) return ;
+                mREAL(); if (state.failed) return ;
 
                 }
                 break;
             case 58 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:413: INTEGER
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:425: INTEGER
                 {
-                mINTEGER(); if (failed) return ;
+                mINTEGER(); if (state.failed) return ;
 
                 }
                 break;
             case 59 :
-                // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:1:421: IDENTIFIER
+                // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:1:433: IDENTIFIER
                 {
-                mIDENTIFIER(); if (failed) return ;
+                mIDENTIFIER(); if (state.failed) return ;
 
                 }
                 break;
@@ -1902,81 +2023,81 @@ public class ParameterLabelLexer extends Lexer {
 
     }
 
-    // $ANTLR start synpred1
-    public final void synpred1_fragment() throws RecognitionException {   
-        // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:863:4: ( INTEGER RANGE )
-        // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:863:5: INTEGER RANGE
+    // $ANTLR start synpred1_ParameterLabel
+    public final void synpred1_ParameterLabel_fragment() throws RecognitionException {   
+        // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:843:4: ( INTEGER RANGE )
+        // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:843:5: INTEGER RANGE
         {
-        mINTEGER(); if (failed) return ;
-        mRANGE(); if (failed) return ;
+        mINTEGER(); if (state.failed) return ;
+        mRANGE(); if (state.failed) return ;
 
         }
     }
-    // $ANTLR end synpred1
+    // $ANTLR end synpred1_ParameterLabel
 
-    // $ANTLR start synpred2
-    public final void synpred2_fragment() throws RecognitionException {   
-        // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:864:6: ( INTEGER POINT )
-        // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:864:7: INTEGER POINT
+    // $ANTLR start synpred2_ParameterLabel
+    public final void synpred2_ParameterLabel_fragment() throws RecognitionException {   
+        // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:844:6: ( INTEGER POINT )
+        // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:844:7: INTEGER POINT
         {
-        mINTEGER(); if (failed) return ;
-        mPOINT(); if (failed) return ;
+        mINTEGER(); if (state.failed) return ;
+        mPOINT(); if (state.failed) return ;
 
         }
     }
-    // $ANTLR end synpred2
+    // $ANTLR end synpred2_ParameterLabel
 
-    // $ANTLR start synpred3
-    public final void synpred3_fragment() throws RecognitionException {   
-        // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:865:6: ( INTEGER )
-        // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:865:7: INTEGER
+    // $ANTLR start synpred3_ParameterLabel
+    public final void synpred3_ParameterLabel_fragment() throws RecognitionException {   
+        // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:845:6: ( INTEGER )
+        // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\ParameterLabel.g:845:7: INTEGER
         {
-        mINTEGER(); if (failed) return ;
+        mINTEGER(); if (state.failed) return ;
 
         }
     }
-    // $ANTLR end synpred3
+    // $ANTLR end synpred3_ParameterLabel
 
-    public final boolean synpred1() {
-        backtracking++;
+    public final boolean synpred3_ParameterLabel() {
+        state.backtracking++;
         int start = input.mark();
         try {
-            synpred1_fragment(); // can never throw exception
+            synpred3_ParameterLabel_fragment(); // can never throw exception
         } catch (RecognitionException re) {
-            //System.err.println("impossible: "+re);
+            System.err.println("impossible: "+re);
         }
-        boolean success = !failed;
+        boolean success = !state.failed;
         input.rewind(start);
-        backtracking--;
-        failed=false;
+        state.backtracking--;
+        state.failed=false;
         return success;
     }
-    public final boolean synpred2() {
-        backtracking++;
+    public final boolean synpred1_ParameterLabel() {
+        state.backtracking++;
         int start = input.mark();
         try {
-            synpred2_fragment(); // can never throw exception
+            synpred1_ParameterLabel_fragment(); // can never throw exception
         } catch (RecognitionException re) {
-            //System.err.println("impossible: "+re);
+            System.err.println("impossible: "+re);
         }
-        boolean success = !failed;
+        boolean success = !state.failed;
         input.rewind(start);
-        backtracking--;
-        failed=false;
+        state.backtracking--;
+        state.failed=false;
         return success;
     }
-    public final boolean synpred3() {
-        backtracking++;
+    public final boolean synpred2_ParameterLabel() {
+        state.backtracking++;
         int start = input.mark();
         try {
-            synpred3_fragment(); // can never throw exception
+            synpred2_ParameterLabel_fragment(); // can never throw exception
         } catch (RecognitionException re) {
-            //System.err.println("impossible: "+re);
+            System.err.println("impossible: "+re);
         }
-        boolean success = !failed;
+        boolean success = !state.failed;
         input.rewind(start);
-        backtracking--;
-        failed=false;
+        state.backtracking--;
+        state.failed=false;
         return success;
     }
 
@@ -1994,7 +2115,7 @@ public class ParameterLabelLexer extends Lexer {
     static final String DFA4_acceptS =
         "\2\uffff\1\3\1\uffff\1\1\1\2";
     static final String DFA4_specialS =
-        "\1\uffff\1\1\1\uffff\1\0\2\uffff}>";
+        "\1\uffff\1\0\1\uffff\1\1\2\uffff}>";
     static final String[] DFA4_transitionS = {
             "\12\1",
             "\1\3\1\uffff\12\1",
@@ -2034,36 +2155,22 @@ public class ParameterLabelLexer extends Lexer {
             this.transition = DFA4_transition;
         }
         public String getDescription() {
-            return "860:1: fragment INTEGER_OR_REAL_OR_RANGE : ( ( INTEGER RANGE )=> RANGE_VALUE | ( INTEGER POINT )=> REAL | ( INTEGER )=> INTEGER );";
+            return "840:1: fragment INTEGER_OR_REAL_OR_RANGE : ( ( INTEGER RANGE )=> RANGE_VALUE | ( INTEGER POINT )=> REAL | ( INTEGER )=> INTEGER );";
         }
-        public int specialStateTransition(int s, IntStream input) throws NoViableAltException {
+        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
+            IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA4_3 = input.LA(1);
-
-                         
-                        int index4_3 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (LA4_3=='.') && (synpred1())) {s = 4;}
-
-                        else if ( ((LA4_3>='0' && LA4_3<='9')) && (synpred2())) {s = 5;}
-
-                         
-                        input.seek(index4_3);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
                         int LA4_1 = input.LA(1);
 
                          
                         int index4_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA4_1=='.') ) {s = 3;}
+                        if ( ((LA4_1>='0' && LA4_1<='9')) ) {s = 1;}
 
-                        else if ( ((LA4_1>='0' && LA4_1<='9')) ) {s = 1;}
+                        else if ( (LA4_1=='.') ) {s = 3;}
 
                         else s = 2;
 
@@ -2071,8 +2178,23 @@ public class ParameterLabelLexer extends Lexer {
                         input.seek(index4_1);
                         if ( s>=0 ) return s;
                         break;
+                    case 1 : 
+                        int LA4_3 = input.LA(1);
+
+                         
+                        int index4_3 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (LA4_3=='.') && (synpred1_ParameterLabel())) {s = 4;}
+
+                        else if ( ((LA4_3>='0' && LA4_3<='9')) && (synpred2_ParameterLabel())) {s = 5;}
+
+                         
+                        input.seek(index4_3);
+                        if ( s>=0 ) return s;
+                        break;
             }
-            if (backtracking>0) {failed=true; return -1;}
+            if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
                 new NoViableAltException(getDescription(), 4, _s, input);
             error(nvae);
@@ -2107,13 +2229,13 @@ public class ParameterLabelLexer extends Lexer {
         "\1\156\1\144\1\172\1\161\1\151\1\172\1\uffff\2\172\1\uffff\1\165"+
         "\1\157\3\uffff\1\145\1\156\2\172\2\uffff";
     static final String DFA7_acceptS =
-        "\7\uffff\1\7\1\10\1\11\1\uffff\1\13\1\14\1\15\1\16\1\17\1\20\5\uffff"+
-        "\1\33\1\34\1\35\1\36\2\uffff\1\43\1\44\7\uffff\1\73\1\1\1\53\1\54"+
-        "\1\52\6\uffff\1\51\1\12\1\22\1\21\1\24\1\23\1\26\1\25\1\30\1\27"+
-        "\1\32\1\31\1\uffff\1\62\1\37\1\42\1\61\1\46\1\60\1\45\1\50\1\47"+
-        "\1\57\1\56\1\55\2\uffff\1\67\1\72\7\uffff\1\41\1\40\1\uffff\1\63"+
-        "\1\uffff\1\70\1\71\1\uffff\1\64\22\uffff\1\65\2\uffff\1\3\2\uffff"+
-        "\1\6\1\66\1\2\4\uffff\1\4\1\5";
+        "\7\uffff\1\7\1\10\1\11\1\uffff\1\13\1\14\1\15\1\16\1\17\1\20\5"+
+        "\uffff\1\33\1\34\1\35\1\36\2\uffff\1\43\1\44\7\uffff\1\73\1\1\1"+
+        "\53\1\54\1\52\6\uffff\1\51\1\12\1\22\1\21\1\24\1\23\1\26\1\25\1"+
+        "\30\1\27\1\32\1\31\1\uffff\1\62\1\37\1\42\1\61\1\46\1\60\1\45\1"+
+        "\50\1\47\1\56\1\57\1\55\2\uffff\1\67\1\72\7\uffff\1\41\1\40\1\uffff"+
+        "\1\63\1\uffff\1\70\1\71\1\uffff\1\64\22\uffff\1\65\2\uffff\1\3\2"+
+        "\uffff\1\6\1\66\1\2\4\uffff\1\4\1\5";
     static final String DFA7_specialS =
         "\176\uffff}>";
     static final String[] DFA7_transitionS = {
@@ -2153,11 +2275,12 @@ public class ParameterLabelLexer extends Lexer {
             "",
             "\1\102",
             "\1\104",
-            "\1\106\1\107",
+            "\1\107\1\106",
             "\1\111",
             "\1\112",
             "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "\1\115\1\uffff\12\44\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
+            "\1\115\1\uffff\12\44\7\uffff\32\45\4\uffff\1\45\1\uffff\32"+
+            "\45",
             "",
             "",
             "",
@@ -2279,7 +2402,7 @@ public class ParameterLabelLexer extends Lexer {
             this.transition = DFA7_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T59 | T60 | T61 | T62 | T63 | T64 | NL | WS | QUESTION_MARK | LNOT | DOUBLE_QUOTE | SINGLE_QUOTE | LPAREN | RPAREN | LSQUARE | RSQUARE | LCURLY | DOUBLE_LCURLY | RCURLY | DOUBLE_RCURLY | LOGICAL_AND | DOUBLE_LOGICAL_AND | PIPE | DOUBLE_PIPE | POINT | RANGE | COMMA | SEMI | SHARP | TILDE | COLON | FOUR_POINTS | RULE_ASSIGN | ARROW | STAR | DIV | PLUS | MINUS | EQ | ISEQ | ISNE | LT | DOUBLE_LT | LE | GT | DOUBLE_GT | GE | INCR | DECR | CALLOPERATION | IN | OUT | INOUT | RETURN | UNDERSCORE | RANGE_VALUE | REAL | INTEGER | IDENTIFIER );";
+            return "1:1: Tokens : ( T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | NL | WS | QUESTION_MARK | LNOT | DOUBLE_QUOTE | SINGLE_QUOTE | LPAREN | RPAREN | LSQUARE | RSQUARE | LCURLY | DOUBLE_LCURLY | RCURLY | DOUBLE_RCURLY | LOGICAL_AND | DOUBLE_LOGICAL_AND | PIPE | DOUBLE_PIPE | POINT | RANGE | COMMA | SEMI | SHARP | TILDE | COLON | FOUR_POINTS | RULE_ASSIGN | ARROW | STAR | DIV | PLUS | MINUS | EQ | ISEQ | ISNE | LT | DOUBLE_LT | LE | GT | DOUBLE_GT | GE | INCR | DECR | CALLOPERATION | IN | OUT | INOUT | RETURN | UNDERSCORE | RANGE_VALUE | REAL | INTEGER | IDENTIFIER );";
         }
     }
  

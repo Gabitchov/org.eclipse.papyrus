@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g 2010-02-04 20:32:17
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g 2011-03-15 17:01:07
 
 package org.eclipse.papyrus.parsers.antlr;
 
@@ -8,7 +8,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Vector;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.parsers.texteditor.collaborationuselabel.IContext;
 import org.eclipse.papyrus.parsers.util.IErrorReporter;
 import org.eclipse.papyrus.parsers.util.NameException;
@@ -29,7 +28,12 @@ import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
 
-public class CollaborationUseLabelParser extends Parser {
+import org.antlr.runtime.debug.*;
+import java.io.IOException;
+
+import org.antlr.runtime.tree.*;
+
+public class CollaborationUseLabelParser extends DebugParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "COLON", "PLUS", "MINUS", "SHARP", "TILDE", "IDENTIFIER", "WS", "NL", "QUESTION_MARK", "LNOT", "DOUBLE_QUOTE", "SINGLE_QUOTE", "LPAREN", "RPAREN", "LSQUARE", "RSQUARE", "LCURLY", "DOUBLE_LCURLY", "RCURLY", "DOUBLE_RCURLY", "LOGICAL_AND", "DOUBLE_LOGICAL_AND", "PIPE", "DOUBLE_PIPE", "POINT", "RANGE", "COMMA", "SEMI", "FOUR_POINTS", "RULE_ASSIGN", "ARROW", "STAR", "DIV", "EQ", "ISEQ", "ISNE", "LT", "DOUBLE_LT", "LE", "GT", "DOUBLE_GT", "GE", "INCR", "DECR", "CALLOPERATION", "ALPHA", "UNDERSCORE", "INTEGER", "RANGE_VALUE", "REAL", "INTEGER_OR_REAL_OR_RANGE", "'<Undefined>'"
     };
@@ -67,11 +71,12 @@ public class CollaborationUseLabelParser extends Parser {
     public static final int ALPHA=49;
     public static final int EQ=37;
     public static final int LT=40;
-    public static final int DOUBLE_QUOTE=14;
     public static final int GT=43;
+    public static final int DOUBLE_QUOTE=14;
     public static final int RSQUARE=19;
     public static final int DOUBLE_LOGICAL_AND=25;
     public static final int RANGE_VALUE=52;
+    public static final int T__55=55;
     public static final int SEMI=31;
     public static final int GE=45;
     public static final int LNOT=13;
@@ -86,15 +91,63 @@ public class CollaborationUseLabelParser extends Parser {
     public static final int UNDERSCORE=50;
     public static final int CALLOPERATION=48;
 
+    // delegates
+    // delegators
+
+    public static final String[] ruleNames = new String[] {
+        "invalidRule", "visibility", "label", "type", "name", "collaboration_use_type"
+    };
+     
+        public int ruleLevel = 0;
+        public int getRuleLevel() { return ruleLevel; }
+        public void incRuleLevel() { ruleLevel++; }
+        public void decRuleLevel() { ruleLevel--; }
         public CollaborationUseLabelParser(TokenStream input) {
-            super(input);
+            this(input, DebugEventSocketProxy.DEFAULT_DEBUGGER_PORT, new RecognizerSharedState());
         }
-        
+        public CollaborationUseLabelParser(TokenStream input, int port, RecognizerSharedState state) {
+            super(input, state);
+            DebugEventSocketProxy proxy =
+                new DebugEventSocketProxy(this,port,adaptor);
+            setDebugListener(proxy);
+            setTokenStream(new DebugTokenStream(input,proxy));
+            try {
+                proxy.handshake();
+            }
+            catch (IOException ioe) {
+                reportError(ioe);
+            }
+            TreeAdaptor adap = new CommonTreeAdaptor();
+            setTreeAdaptor(adap);
+            proxy.setTreeAdaptor(adap);
+        }
+    public CollaborationUseLabelParser(TokenStream input, DebugEventListener dbg) {
+        super(input, dbg);
 
-    public String[] getTokenNames() { return tokenNames; }
-    public String getGrammarFileName() { return "D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g"; }
+         
+        TreeAdaptor adap = new CommonTreeAdaptor();
+        setTreeAdaptor(adap);
 
-    
+    }
+    protected boolean evalPredicate(boolean result, String predicate) {
+        dbg.semanticPredicate(result, predicate);
+        return result;
+    }
+
+    protected DebugTreeAdaptor adaptor;
+    public void setTreeAdaptor(TreeAdaptor adaptor) {
+        this.adaptor = new DebugTreeAdaptor(dbg,adaptor);
+
+    }
+    public TreeAdaptor getTreeAdaptor() {
+        return adaptor;
+    }
+
+
+    public String[] getTokenNames() { return CollaborationUseLabelParser.tokenNames; }
+    public String getGrammarFileName() { return "D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g"; }
+
+
       public CollaborationUseLabelParser(TokenStream lexer, CollaborationUse element, IErrorReporter reporter) {
         this(lexer);
         setCollaborationUse(element);
@@ -114,7 +167,7 @@ public class CollaborationUseLabelParser extends Parser {
       public boolean isValidation() {
         return isValidation;
       }
-    
+
       /**
        * @param isValidation the isValidation to set (true -> do not modify the CollaborationUse)
        */
@@ -135,7 +188,7 @@ public class CollaborationUseLabelParser extends Parser {
       public CollaborationUse getCollaborationUse() {
         return element;
       }
-    
+
       /**
        * @param element the CollaborationUse to set
        */
@@ -145,7 +198,7 @@ public class CollaborationUseLabelParser extends Parser {
       }
           
          /** debug mode */
-        protected final boolean debugMode = Platform.inDebugMode();    
+        protected final boolean debugMode = false;    
           
         /**
          * Debug method (~System.out.println)
@@ -176,7 +229,7 @@ public class CollaborationUseLabelParser extends Parser {
       public int getContext() {
         return context;
       }
-    
+
       /**
        * @param context the context to set
        */
@@ -189,7 +242,7 @@ public class CollaborationUseLabelParser extends Parser {
         VisibilityKind visibility = VisibilityKind.PUBLIC_LITERAL;
         Collaboration type=null;
         
-    
+
       /**
        * Apply values to the CollaborationUse. <BR> 
        * Modifications can not be applied directly. The parser must wait the end, 
@@ -231,7 +284,7 @@ public class CollaborationUseLabelParser extends Parser {
          }
          return super.getErrorMessage(exception, arg1);
        }
-    
+
        /**
         * {@inheritDoc}
         */
@@ -239,16 +292,7 @@ public class CollaborationUseLabelParser extends Parser {
        public void emitErrorMessage(String msg) {
          errorReporter.reportError(msg);
        }
-       
-        /**
-       * {@inheritDoc}
-       */
-      @Override
-      public void recoverFromMismatchedToken(IntStream arg0, RecognitionException arg1, int arg2, BitSet arg3)
-          throws RecognitionException {
-        // do nothing
-      }
-    
+
       /**
        * {@inheritDoc}
        */
@@ -256,69 +300,119 @@ public class CollaborationUseLabelParser extends Parser {
       public void recover(IntStream arg0, RecognitionException arg1) {
         // do nothing
       }
-    
-      /**
-       * {@inheritDoc}
-       */
-      @Override
-      public void recoverFromMismatchedSet(IntStream arg0, RecognitionException arg1, BitSet arg2)
-          throws RecognitionException {
-        // do nothing
-      }
 
 
+    public static class label_return extends ParserRuleReturnScope {
+        Object tree;
+        public Object getTree() { return tree; }
+    };
 
-    // $ANTLR start label
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:219:1: label : ( visibility )? name COLON collaboration_use_type ;
-    public final void label() throws RecognitionException {
+    // $ANTLR start "label"
+    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:201:1: label : ( visibility )? name COLON collaboration_use_type ;
+    public final CollaborationUseLabelParser.label_return label() throws RecognitionException {
+        CollaborationUseLabelParser.label_return retval = new CollaborationUseLabelParser.label_return();
+        retval.start = input.LT(1);
+
+        Object root_0 = null;
+
+        Token COLON3=null;
+        CollaborationUseLabelParser.visibility_return visibility1 = null;
+
+        CollaborationUseLabelParser.name_return name2 = null;
+
+        CollaborationUseLabelParser.collaboration_use_type_return collaboration_use_type4 = null;
+
+
+        Object COLON3_tree=null;
+
+        try { dbg.enterRule(getGrammarFileName(), "label");
+        if ( getRuleLevel()==0 ) {dbg.commence();}
+        incRuleLevel();
+        dbg.location(201, 1);
+
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:219:7: ( ( visibility )? name COLON collaboration_use_type )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:220:3: ( visibility )? name COLON collaboration_use_type
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:201:7: ( ( visibility )? name COLON collaboration_use_type )
+            dbg.enterAlt(1);
+
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:202:3: ( visibility )? name COLON collaboration_use_type
             {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:220:3: ( visibility )?
+            root_0 = (Object)adaptor.nil();
+
+            dbg.location(202,3);
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:202:3: ( visibility )?
             int alt1=2;
+            try { dbg.enterSubRule(1);
+            try { dbg.enterDecision(1);
+
             int LA1_0 = input.LA(1);
 
             if ( ((LA1_0>=PLUS && LA1_0<=TILDE)) ) {
                 alt1=1;
             }
+            } finally {dbg.exitDecision(1);}
+
             switch (alt1) {
                 case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:220:4: visibility
-                    {
-                    pushFollow(FOLLOW_visibility_in_label46);
-                    visibility();
-                    _fsp--;
+                    dbg.enterAlt(1);
 
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:202:4: visibility
+                    {
+                    dbg.location(202,4);
+                    pushFollow(FOLLOW_visibility_in_label46);
+                    visibility1=visibility();
+
+                    state._fsp--;
+
+                    adaptor.addChild(root_0, visibility1.getTree());
+                    dbg.location(202,15);
                     context = IContext.VISIBILITY; 
 
                     }
                     break;
 
             }
+            } finally {dbg.exitSubRule(1);}
 
+            dbg.location(203,3);
             pushFollow(FOLLOW_name_in_label55);
-            name();
-            _fsp--;
+            name2=name();
 
-            match(input,COLON,FOLLOW_COLON_in_label60); 
-            
+            state._fsp--;
+
+            adaptor.addChild(root_0, name2.getTree());
+            dbg.location(204,3);
+            COLON3=(Token)match(input,COLON,FOLLOW_COLON_in_label60); 
+            COLON3_tree = (Object)adaptor.create(COLON3);
+            adaptor.addChild(root_0, COLON3_tree);
+
+            dbg.location(205,3);
+
                 context = IContext.AFTER_COLON;
               
+            dbg.location(208,3);
             pushFollow(FOLLOW_collaboration_use_type_in_label69);
-            collaboration_use_type();
-            _fsp--;
+            collaboration_use_type4=collaboration_use_type();
 
+            state._fsp--;
+
+            adaptor.addChild(root_0, collaboration_use_type4.getTree());
+            dbg.location(208,27);
              context = IContext.COLLABORATION_USE_TYPE; 
-            
+            dbg.location(209,3);
+
                 applyValues();
               
 
             }
 
+            retval.stop = input.LT(-1);
+
+            retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
         }
         catch (MismatchedTokenException mte) {
-            
+
                  reportError(mte);
                   String index = Integer.toString(mte.index);
                   String description = mte.getLocalizedMessage().substring(mte.getLocalizedMessage().indexOf('('),
@@ -329,7 +423,7 @@ public class CollaborationUseLabelParser extends Parser {
                 
         }
         catch (NoViableAltException noViableAltException) {
-            
+
                reportError(noViableAltException);
                   String index = Integer.toString(noViableAltException.index);
                  String description = noViableAltException.grammarDecisionDescription.substring(
@@ -338,33 +432,74 @@ public class CollaborationUseLabelParser extends Parser {
                   String tokenText = noViableAltException.token.getText();
                   String text = Messages.bind(Messages.NoViableAltException, new String[] { index, description, tokenText });
                   throw new RuntimeException(text);
-            
+
                 
         }
         catch (RecognitionException re) {
-            
-            
+
+
                   reportError(re);
                   throw (re);
-            
+
                 
         }
         finally {
         }
-        return ;
+        dbg.location(212, 3);
+
+        }
+        finally {
+            dbg.exitRule(getGrammarFileName(), "label");
+            decRuleLevel();
+            if ( getRuleLevel()==0 ) {dbg.terminate();}
+        }
+
+        return retval;
     }
-    // $ANTLR end label
+    // $ANTLR end "label"
 
+    public static class visibility_return extends ParserRuleReturnScope {
+        Object tree;
+        public Object getTree() { return tree; }
+    };
 
-    // $ANTLR start visibility
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:257:1: visibility : ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) ) ;
-    public final void visibility() throws RecognitionException {
+    // $ANTLR start "visibility"
+    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:239:1: visibility : ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) ) ;
+    public final CollaborationUseLabelParser.visibility_return visibility() throws RecognitionException {
+        CollaborationUseLabelParser.visibility_return retval = new CollaborationUseLabelParser.visibility_return();
+        retval.start = input.LT(1);
+
+        Object root_0 = null;
+
+        Token PLUS5=null;
+        Token MINUS6=null;
+        Token SHARP7=null;
+        Token TILDE8=null;
+
+        Object PLUS5_tree=null;
+        Object MINUS6_tree=null;
+        Object SHARP7_tree=null;
+        Object TILDE8_tree=null;
+
+        try { dbg.enterRule(getGrammarFileName(), "visibility");
+        if ( getRuleLevel()==0 ) {dbg.commence();}
+        incRuleLevel();
+        dbg.location(239, 1);
+
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:258:3: ( ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) ) )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:259:3: ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:240:3: ( ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) ) )
+            dbg.enterAlt(1);
+
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:241:3: ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) )
             {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:259:3: ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) )
+            root_0 = (Object)adaptor.nil();
+
+            dbg.location(241,3);
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:241:3: ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) )
             int alt2=4;
+            try { dbg.enterSubRule(2);
+            try { dbg.enterDecision(2);
+
             switch ( input.LA(1) ) {
             case PLUS:
                 {
@@ -388,19 +523,32 @@ public class CollaborationUseLabelParser extends Parser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("259:3: ( ( PLUS ) | ( MINUS ) | ( SHARP ) | ( TILDE ) )", 2, 0, input);
+                    new NoViableAltException("", 2, 0, input);
 
+                dbg.recognitionException(nvae);
                 throw nvae;
             }
 
+            } finally {dbg.exitDecision(2);}
+
             switch (alt2) {
                 case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:260:5: ( PLUS )
+                    dbg.enterAlt(1);
+
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:242:5: ( PLUS )
                     {
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:260:5: ( PLUS )
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:260:9: PLUS
+                    dbg.location(242,5);
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:242:5: ( PLUS )
+                    dbg.enterAlt(1);
+
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:242:9: PLUS
                     {
-                    match(input,PLUS,FOLLOW_PLUS_in_visibility127); 
+                    dbg.location(242,9);
+                    PLUS5=(Token)match(input,PLUS,FOLLOW_PLUS_in_visibility127); 
+                    PLUS5_tree = (Object)adaptor.create(PLUS5);
+                    adaptor.addChild(root_0, PLUS5_tree);
+
+                    dbg.location(242,15);
                      visibility = VisibilityKind.PUBLIC_LITERAL; 
 
                     }
@@ -409,12 +557,22 @@ public class CollaborationUseLabelParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:261:5: ( MINUS )
+                    dbg.enterAlt(2);
+
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:243:5: ( MINUS )
                     {
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:261:5: ( MINUS )
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:261:9: MINUS
+                    dbg.location(243,5);
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:243:5: ( MINUS )
+                    dbg.enterAlt(1);
+
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:243:9: MINUS
                     {
-                    match(input,MINUS,FOLLOW_MINUS_in_visibility142); 
+                    dbg.location(243,9);
+                    MINUS6=(Token)match(input,MINUS,FOLLOW_MINUS_in_visibility142); 
+                    MINUS6_tree = (Object)adaptor.create(MINUS6);
+                    adaptor.addChild(root_0, MINUS6_tree);
+
+                    dbg.location(243,15);
                      visibility = VisibilityKind.PRIVATE_LITERAL;
 
                     }
@@ -423,12 +581,22 @@ public class CollaborationUseLabelParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:262:5: ( SHARP )
+                    dbg.enterAlt(3);
+
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:244:5: ( SHARP )
                     {
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:262:5: ( SHARP )
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:262:9: SHARP
+                    dbg.location(244,5);
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:244:5: ( SHARP )
+                    dbg.enterAlt(1);
+
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:244:9: SHARP
                     {
-                    match(input,SHARP,FOLLOW_SHARP_in_visibility156); 
+                    dbg.location(244,9);
+                    SHARP7=(Token)match(input,SHARP,FOLLOW_SHARP_in_visibility156); 
+                    SHARP7_tree = (Object)adaptor.create(SHARP7);
+                    adaptor.addChild(root_0, SHARP7_tree);
+
+                    dbg.location(244,15);
                      visibility = VisibilityKind.PROTECTED_LITERAL;
 
                     }
@@ -437,12 +605,22 @@ public class CollaborationUseLabelParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:263:5: ( TILDE )
+                    dbg.enterAlt(4);
+
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:245:5: ( TILDE )
                     {
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:263:5: ( TILDE )
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:263:9: TILDE
+                    dbg.location(245,5);
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:245:5: ( TILDE )
+                    dbg.enterAlt(1);
+
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:245:9: TILDE
                     {
-                    match(input,TILDE,FOLLOW_TILDE_in_visibility170); 
+                    dbg.location(245,9);
+                    TILDE8=(Token)match(input,TILDE,FOLLOW_TILDE_in_visibility170); 
+                    TILDE8_tree = (Object)adaptor.create(TILDE8);
+                    adaptor.addChild(root_0, TILDE8_tree);
+
+                    dbg.location(245,15);
                      visibility = VisibilityKind.PACKAGE_LITERAL;
 
                     }
@@ -452,35 +630,74 @@ public class CollaborationUseLabelParser extends Parser {
                     break;
 
             }
+            } finally {dbg.exitSubRule(2);}
 
 
             }
 
+            retval.stop = input.LT(-1);
+
+            retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
         }
         catch (MismatchedTokenException mte) {
-            
+
                   reportError(mte);
                   throw (new RuntimeException("VisibilityRule"));
                
         }
         finally {
         }
-        return ;
+        dbg.location(247, 3);
+
+        }
+        finally {
+            dbg.exitRule(getGrammarFileName(), "visibility");
+            decRuleLevel();
+            if ( getRuleLevel()==0 ) {dbg.terminate();}
+        }
+
+        return retval;
     }
-    // $ANTLR end visibility
+    // $ANTLR end "visibility"
 
+    public static class name_return extends ParserRuleReturnScope {
+        Object tree;
+        public Object getTree() { return tree; }
+    };
 
-    // $ANTLR start name
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:272:1: name : id= IDENTIFIER ;
-    public final void name() throws RecognitionException {
+    // $ANTLR start "name"
+    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:254:1: name : id= IDENTIFIER ;
+    public final CollaborationUseLabelParser.name_return name() throws RecognitionException {
+        CollaborationUseLabelParser.name_return retval = new CollaborationUseLabelParser.name_return();
+        retval.start = input.LT(1);
+
+        Object root_0 = null;
+
         Token id=null;
 
+        Object id_tree=null;
+
+        try { dbg.enterRule(getGrammarFileName(), "name");
+        if ( getRuleLevel()==0 ) {dbg.commence();}
+        incRuleLevel();
+        dbg.location(254, 1);
+
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:273:3: (id= IDENTIFIER )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:274:3: id= IDENTIFIER
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:255:3: (id= IDENTIFIER )
+            dbg.enterAlt(1);
+
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:256:3: id= IDENTIFIER
             {
-            id=(Token)input.LT(1);
-            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_name204); 
+            root_0 = (Object)adaptor.nil();
+
+            dbg.location(256,5);
+            id=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_name204); 
+            id_tree = (Object)adaptor.create(id);
+            adaptor.addChild(root_0, id_tree);
+
+            dbg.location(257,3);
              
                 name = id.getText();
                 context = IContext.NAME;
@@ -488,37 +705,82 @@ public class CollaborationUseLabelParser extends Parser {
 
             }
 
+            retval.stop = input.LT(-1);
+
+            retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
         }
         catch (MismatchedTokenException mte) {
-            
+
                   reportError(mte);
                   throw (new RuntimeException(Messages.NameMissing));
                
         }
         catch (RecognitionException re) {
-            
+
                   reportError(re); 
                   throw(re);
                
         }
         finally {
         }
-        return ;
+        dbg.location(261, 3);
+
+        }
+        finally {
+            dbg.exitRule(getGrammarFileName(), "name");
+            decRuleLevel();
+            if ( getRuleLevel()==0 ) {dbg.terminate();}
+        }
+
+        return retval;
     }
-    // $ANTLR end name
+    // $ANTLR end "name"
+
+    public static class collaboration_use_type_return extends ParserRuleReturnScope {
+        Object tree;
+        public Object getTree() { return tree; }
+    };
+
+    // $ANTLR start "collaboration_use_type"
+    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:272:1: collaboration_use_type : ( WS )* ( type | '<Undefined>' ) ;
+    public final CollaborationUseLabelParser.collaboration_use_type_return collaboration_use_type() throws RecognitionException {
+        CollaborationUseLabelParser.collaboration_use_type_return retval = new CollaborationUseLabelParser.collaboration_use_type_return();
+        retval.start = input.LT(1);
+
+        Object root_0 = null;
+
+        Token WS9=null;
+        Token string_literal11=null;
+        CollaborationUseLabelParser.type_return type10 = null;
 
 
-    // $ANTLR start collaboration_use_type
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:290:1: collaboration_use_type : ( WS )* ( type | '<Undefined>' ) ;
-    public final void collaboration_use_type() throws RecognitionException {
+        Object WS9_tree=null;
+        Object string_literal11_tree=null;
+
+        try { dbg.enterRule(getGrammarFileName(), "collaboration_use_type");
+        if ( getRuleLevel()==0 ) {dbg.commence();}
+        incRuleLevel();
+        dbg.location(272, 1);
+
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:291:3: ( ( WS )* ( type | '<Undefined>' ) )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:292:3: ( WS )* ( type | '<Undefined>' )
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:273:3: ( ( WS )* ( type | '<Undefined>' ) )
+            dbg.enterAlt(1);
+
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:274:3: ( WS )* ( type | '<Undefined>' )
             {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:292:3: ( WS )*
+            root_0 = (Object)adaptor.nil();
+
+            dbg.location(274,3);
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:274:3: ( WS )*
+            try { dbg.enterSubRule(3);
+
             loop3:
             do {
                 int alt3=2;
+                try { dbg.enterDecision(3);
+
                 int LA3_0 = input.LA(1);
 
                 if ( (LA3_0==WS) ) {
@@ -526,11 +788,19 @@ public class CollaborationUseLabelParser extends Parser {
                 }
 
 
+                } finally {dbg.exitDecision(3);}
+
                 switch (alt3) {
             	case 1 :
-            	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:292:4: WS
+            	    dbg.enterAlt(1);
+
+            	    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:274:4: WS
             	    {
-            	    match(input,WS,FOLLOW_WS_in_collaboration_use_type248); 
+            	    dbg.location(274,4);
+            	    WS9=(Token)match(input,WS,FOLLOW_WS_in_collaboration_use_type248); 
+            	    WS9_tree = (Object)adaptor.create(WS9);
+            	    adaptor.addChild(root_0, WS9_tree);
+
 
             	    }
             	    break;
@@ -539,9 +809,14 @@ public class CollaborationUseLabelParser extends Parser {
             	    break loop3;
                 }
             } while (true);
+            } finally {dbg.exitSubRule(3);}
 
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:293:3: ( type | '<Undefined>' )
+            dbg.location(275,3);
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:275:3: ( type | '<Undefined>' )
             int alt4=2;
+            try { dbg.enterSubRule(4);
+            try { dbg.enterDecision(4);
+
             int LA4_0 = input.LA(1);
 
             if ( (LA4_0==IDENTIFIER) ) {
@@ -552,75 +827,128 @@ public class CollaborationUseLabelParser extends Parser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("293:3: ( type | '<Undefined>' )", 4, 0, input);
+                    new NoViableAltException("", 4, 0, input);
 
+                dbg.recognitionException(nvae);
                 throw nvae;
             }
+            } finally {dbg.exitDecision(4);}
+
             switch (alt4) {
                 case 1 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:293:5: type
-                    {
-                    pushFollow(FOLLOW_type_in_collaboration_use_type256);
-                    type();
-                    _fsp--;
+                    dbg.enterAlt(1);
 
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:275:5: type
+                    {
+                    dbg.location(275,5);
+                    pushFollow(FOLLOW_type_in_collaboration_use_type256);
+                    type10=type();
+
+                    state._fsp--;
+
+                    adaptor.addChild(root_0, type10.getTree());
 
                     }
                     break;
                 case 2 :
-                    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:294:5: '<Undefined>'
+                    dbg.enterAlt(2);
+
+                    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:276:5: '<Undefined>'
                     {
-                    match(input,55,FOLLOW_55_in_collaboration_use_type264); 
+                    dbg.location(276,5);
+                    string_literal11=(Token)match(input,55,FOLLOW_55_in_collaboration_use_type264); 
+                    string_literal11_tree = (Object)adaptor.create(string_literal11);
+                    adaptor.addChild(root_0, string_literal11_tree);
+
 
                     }
                     break;
 
             }
+            } finally {dbg.exitSubRule(4);}
 
 
             }
 
+            retval.stop = input.LT(-1);
+
+            retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
         }
         catch (MismatchedTokenException mte) {
-            
+
                   reportError(mte);
                   throw (new RuntimeException("CollaborationUseTypeRule"));
                
         }
         catch (NoViableAltException noViableAltException) {
-            
+
                   reportError(noViableAltException);
                   throw new RuntimeException("Waiting for a valid type (Collaboration) or <Undefined>");
                 
         }
         catch (RecognitionException re) {
-            
+
                reportError(re); 
                throw(re);
                
         }
         finally {
         }
-        return ;
+        dbg.location(278, 3);
+
+        }
+        finally {
+            dbg.exitRule(getGrammarFileName(), "collaboration_use_type");
+            decRuleLevel();
+            if ( getRuleLevel()==0 ) {dbg.terminate();}
+        }
+
+        return retval;
     }
-    // $ANTLR end collaboration_use_type
+    // $ANTLR end "collaboration_use_type"
 
+    public static class type_return extends ParserRuleReturnScope {
+        Object tree;
+        public Object getTree() { return tree; }
+    };
 
-    // $ANTLR start type
-    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:311:1: type : id= IDENTIFIER ;
-    public final void type() throws RecognitionException {
+    // $ANTLR start "type"
+    // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:293:1: type : id= IDENTIFIER ;
+    public final CollaborationUseLabelParser.type_return type() throws RecognitionException {
+        CollaborationUseLabelParser.type_return retval = new CollaborationUseLabelParser.type_return();
+        retval.start = input.LT(1);
+
+        Object root_0 = null;
+
         Token id=null;
 
+        Object id_tree=null;
+
+        try { dbg.enterRule(getGrammarFileName(), "type");
+        if ( getRuleLevel()==0 ) {dbg.commence();}
+        incRuleLevel();
+        dbg.location(293, 1);
+
         try {
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:312:3: (id= IDENTIFIER )
-            // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\CollaborationUseLabel.g:313:3: id= IDENTIFIER
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:294:3: (id= IDENTIFIER )
+            dbg.enterAlt(1);
+
+            // D:\\Workspaces\\Papyrus_Branch_0.7\\org.eclipse.papyrus.parsers_TRUNK\\resources\\grammars\\CollaborationUseLabel.g:295:3: id= IDENTIFIER
             {
-            id=(Token)input.LT(1);
-            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_type318); 
-            
+            root_0 = (Object)adaptor.nil();
+
+            dbg.location(295,5);
+            id=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_type318); 
+            id_tree = (Object)adaptor.create(id);
+            adaptor.addChild(root_0, id_tree);
+
+            dbg.location(296,3);
+
                 String typeName = id.getText() ;
                 Collaboration utilType = PackageUtil.findCollaborationByName(nearestPackage, typeName);
-            
+
                 if (utilType != null) {
                     type = utilType;
                 } else {
@@ -631,24 +959,40 @@ public class CollaborationUseLabelParser extends Parser {
 
             }
 
+            retval.stop = input.LT(-1);
+
+            retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
         }
         catch (MismatchedTokenException mte) {
-            
+
                   reportError(mte);
                   throw (new RuntimeException("TypeRule"));
                
         }
         catch (RecognitionException re) {
-            
+
                reportError(re); 
                throw(re);
                
         }
         finally {
         }
-        return ;
+        dbg.location(307, 3);
+
+        }
+        finally {
+            dbg.exitRule(getGrammarFileName(), "type");
+            decRuleLevel();
+            if ( getRuleLevel()==0 ) {dbg.terminate();}
+        }
+
+        return retval;
     }
-    // $ANTLR end type
+    // $ANTLR end "type"
+
+    // Delegated rules
 
 
  
