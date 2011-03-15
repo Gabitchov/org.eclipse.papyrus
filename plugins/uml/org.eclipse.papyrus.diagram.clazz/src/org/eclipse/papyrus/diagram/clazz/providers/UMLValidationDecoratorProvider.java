@@ -24,10 +24,10 @@ import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.providers.ValidationDecoratorProvider;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditor;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.common.providers.ValidationDecoratorProvider;
 
 /**
  * @generated

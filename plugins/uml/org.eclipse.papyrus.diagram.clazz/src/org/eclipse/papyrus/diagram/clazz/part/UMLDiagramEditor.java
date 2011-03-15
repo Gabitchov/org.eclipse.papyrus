@@ -55,7 +55,6 @@ import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.navigator.resources.ProjectExplorer;
@@ -502,8 +501,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 			// If not the active editor, ignore selection changed.
 			if(this.equals(editor.getActiveEditor())) {
 				updateActions(getSelectionActions());
-			  ISelectionService selectionService=  getSite().getWorkbenchWindow().getSelectionService();
-
 				super.selectionChanged(part, selection);
 			} else {
 				super.selectionChanged(part, selection);
