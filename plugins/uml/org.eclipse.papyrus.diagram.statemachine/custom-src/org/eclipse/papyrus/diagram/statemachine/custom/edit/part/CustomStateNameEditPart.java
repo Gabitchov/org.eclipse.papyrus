@@ -85,8 +85,11 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 		StateFigure stateFigure = ((StateEditPart)getParent()).getPrimaryShape();
 		State state = (State)((View)getModel()).getElement();
 
-		
-			
+		View stateLabelView = (View)getModel();
+		View stateView = (View)stateLabelView.eContainer();
+		View stateCompartView = (View)stateView.getChildren().get(1);
+
+
 
 		stateFigure.fillInformation(getInformationFromState(state));
 
@@ -94,45 +97,38 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 		WrappingLabel stateLabel = (WrappingLabel)getFigure();
 		WrappingLabel infoLabel = stateFigure.getInformationLabel();
 
-		if(((notification.getFeature() instanceof EAttribute) && ((EAttribute)notification.getFeature()).getName().equals("fontHeight"))
-			|| stateFigure.hasInformationChanged()){
-			Dimension infoLabelBounds = infoLabel.getPreferredSize().getCopy();
-			Dimension stateLabelBounds = stateLabel.getPreferredSize().getCopy();
-			stateLabelBounds.width = Math.max(stateLabelBounds.width, infoLabelBounds.width);
-			stateLabelBounds.height = stateLabelBounds.height + infoLabelBounds.height;
+		Dimension infoLabelBounds = infoLabel.getPreferredSize().getCopy();
+		Dimension stateLabelBounds = stateLabel.getPreferredSize().getCopy();
+		stateLabelBounds.width = Math.max(stateLabelBounds.width, infoLabelBounds.width);
+		stateLabelBounds.height = stateLabelBounds.height + infoLabelBounds.height;
+		int stateHeight = Zone.getHeight(stateView);
+		int stateWidth = Zone.getWidth(stateView);
 
-			View stateLabelView = (View)getModel();
-			View stateView = (View)stateLabelView.eContainer();
-			View stateCompartView = (View)stateView.getChildren().get(1);
+		int stateCompartHeight = Zone.getHeight(stateCompartView);
 
-			int stateHeight = Zone.getHeight(stateView);
-			int stateWidth = Zone.getWidth(stateView);
+		int dx = stateLabelBounds.width - stateWidth;
+		int dy = stateCompartHeight + stateLabelBounds.height - stateHeight;
+		int x = Zone.getX(stateView);
+		int y = Zone.getY(stateView);
 
-			int stateCompartHeight = Zone.getHeight(stateCompartView);
 
-			int dx = stateLabelBounds.width - stateWidth;
-			int dy = stateCompartHeight + stateLabelBounds.height - stateHeight;
-			int x = Zone.getX(stateView);
-			int y = Zone.getY(stateView);
+		if((stateHeight != -1) && (stateLabelBounds.width != 0) && (dy != 0)) {
+			dx = (dx > 0) ? dx : 0;
+			// a resize request, which we route to the specific ResizeCommand
+			IAdaptable adaptableForState = new SemanticAdapter(null, stateView);
+			ChangeBoundsRequest internalResizeRequest = new ChangeBoundsRequest();
+			internalResizeRequest.setResizeDirection(PositionConstants.EAST);
+			internalResizeRequest.setSizeDelta(new Dimension(dx, dy));
+			Rectangle rect = new Rectangle(x, y, stateWidth + dx, stateHeight + dy);
 
-			if((stateHeight != -1) && (stateLabelBounds.width != 0) && (dy != 0)) {
-				dx = (dx > 0) ? dx : 0;
-				// a resize request, which we route to the specific ResizeCommand
-				IAdaptable adaptableForState = new SemanticAdapter(null, stateView);
-				ChangeBoundsRequest internalResizeRequest = new ChangeBoundsRequest();
-				internalResizeRequest.setResizeDirection(PositionConstants.EAST);
-				internalResizeRequest.setSizeDelta(new Dimension(dx, dy));
-				Rectangle rect = new Rectangle(x, y, stateWidth + dx, stateHeight + dy);
+			CustomStateResizeCommand internalResizeCommand = new CustomStateResizeCommand(adaptableForState, getDiagramPreferencesHint(), getEditingDomain(), DiagramUIMessages.CreateCommand_Label, internalResizeRequest, rect, true);
+			internalResizeCommand.setOptions(Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
 
-				CustomStateResizeCommand internalResizeCommand = new CustomStateResizeCommand(adaptableForState, getDiagramPreferencesHint(), getEditingDomain(), DiagramUIMessages.CreateCommand_Label, internalResizeRequest, rect, true);
-				internalResizeCommand.setOptions(Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
+			try {
+				internalResizeCommand.execute(null, null);
+			} catch (ExecutionException e) {
+			}				
 
-				try {
-					internalResizeCommand.execute(null, null);
-				} catch (ExecutionException e) {
-				}				
-
-			}
 		}
 		refreshVisuals();
 	}
