@@ -27,4 +27,12 @@
    <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization file="resource/overlayFacet.uiCustom"/>
    </extension>
+   <extension point="org.eclipse.emf.facet.infra.query.registration">
+      <modelqueryset file="resource/My.querySet"/>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization
+            file="resource/backgroundPackage.uiCustom"
+            loadByDefault="true"/>
+   </extension>
 </plugin>
