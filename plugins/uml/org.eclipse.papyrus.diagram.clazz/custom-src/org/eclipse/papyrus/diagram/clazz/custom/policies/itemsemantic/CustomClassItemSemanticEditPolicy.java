@@ -45,7 +45,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateComm
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorDurationObservationEditPart;

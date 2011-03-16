@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Type;
 /**
  * custom class to create an association
  */
-public class CAssociationClassCreateCommand extends org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationClass2CreateCommand {
+public class CAssociationClassCreateCommand extends org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationClassLinkCreateCommand {
 
 	// code copy from the super class!
 	protected  Package deduceContainer(EObject source, EObject target) {

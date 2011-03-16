@@ -1620,7 +1620,7 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case AssociationClass2EditPart.VISUAL_ID:
+		case AssociationClassLinkEditPart.VISUAL_ID:
 			if(AssociationClassRoleSourceEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -1765,7 +1765,7 @@ public class UMLVisualIDRegistry {
 		if(UMLPackage.eINSTANCE.getAssociationClass().isSuperTypeOf(domainElement.eClass())
 
 		) {
-			return AssociationClass2EditPart.VISUAL_ID;
+			return AssociationClassLinkEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getAssociation().isSuperTypeOf(domainElement.eClass())
 
@@ -2389,7 +2389,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7035, viewInfo);
 
-		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "org.eclipse.emf.ecore.impl.DynamicEObjectImpl@19e4512 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1c8b823 (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))");
+		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15e6ce5 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@3f4294 (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))");
 
 		root.addNode(2008, viewInfo);
 

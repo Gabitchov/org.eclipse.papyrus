@@ -25,8 +25,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.AbstractionCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AbstractionReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationBranchCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationBranchReorientCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationClass2CreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationClassReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationClassLinkCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationClassLinkReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.CommentAnnotatedElementCreateCommand;
@@ -56,7 +56,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorDurationObservationEditPart;
@@ -117,7 +117,7 @@ public class AssociationBranchItemSemanticEditPolicy extends UMLBaseItemSemantic
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
-			return getGEFWrapper(new AssociationClass2CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new AssociationClassLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Association_4001 == req.getElementType()) {
 			return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
@@ -175,7 +175,7 @@ public class AssociationBranchItemSemanticEditPolicy extends UMLBaseItemSemantic
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
-			return getGEFWrapper(new AssociationClass2CreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new AssociationClassLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Association_4001 == req.getElementType()) {
 			return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
@@ -247,8 +247,8 @@ public class AssociationBranchItemSemanticEditPolicy extends UMLBaseItemSemantic
 				return UnexecutableCommand.INSTANCE;
 			}
 			return getGEFWrapper(reorientCommand.reduce());
-		case AssociationClass2EditPart.VISUAL_ID:
-			return getGEFWrapper(new AssociationClassReorientCommand(req));
+		case AssociationClassLinkEditPart.VISUAL_ID:
+			return getGEFWrapper(new AssociationClassLinkReorientCommand(req));
 		case AssociationEditPart.VISUAL_ID:
 			return getGEFWrapper(new AssociationReorientCommand(req));
 		case AssociationBranchEditPart.VISUAL_ID:

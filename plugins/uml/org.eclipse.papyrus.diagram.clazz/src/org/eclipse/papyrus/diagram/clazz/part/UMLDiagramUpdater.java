@@ -1814,7 +1814,7 @@ public class UMLDiagramUpdater {
 			return getSlot_3030ContainedLinks(view);
 		case TemplateSignatureEditPart.VISUAL_ID:
 			return getTemplateSignature_3033ContainedLinks(view);
-		case AssociationClass2EditPart.VISUAL_ID:
+		case AssociationClassLinkEditPart.VISUAL_ID:
 			return getAssociationClass_4017ContainedLinks(view);
 		case AssociationEditPart.VISUAL_ID:
 			return getAssociation_4001ContainedLinks(view);
@@ -1965,7 +1965,7 @@ public class UMLDiagramUpdater {
 			return getSlot_3030IncomingLinks(view);
 		case TemplateSignatureEditPart.VISUAL_ID:
 			return getTemplateSignature_3033IncomingLinks(view);
-		case AssociationClass2EditPart.VISUAL_ID:
+		case AssociationClassLinkEditPart.VISUAL_ID:
 			return getAssociationClass_4017IncomingLinks(view);
 		case AssociationEditPart.VISUAL_ID:
 			return getAssociation_4001IncomingLinks(view);
@@ -2116,7 +2116,7 @@ public class UMLDiagramUpdater {
 			return getSlot_3030OutgoingLinks(view);
 		case TemplateSignatureEditPart.VISUAL_ID:
 			return getTemplateSignature_3033OutgoingLinks(view);
-		case AssociationClass2EditPart.VISUAL_ID:
+		case AssociationClassLinkEditPart.VISUAL_ID:
 			return getAssociationClass_4017OutgoingLinks(view);
 		case AssociationEditPart.VISUAL_ID:
 			return getAssociation_4001OutgoingLinks(view);
@@ -5157,7 +5157,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			AssociationClass link = (AssociationClass)linkObject;
-			if(AssociationClass2EditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+			if(AssociationClassLinkEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 
@@ -5176,7 +5176,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			Type src = (Type)theSource;
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.AssociationClass_4017, AssociationClass2EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.AssociationClass_4017, AssociationClassLinkEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -5692,7 +5692,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			AssociationClass link = (AssociationClass)setting.getEObject();
-			if(AssociationClass2EditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+			if(AssociationClassLinkEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			List sources = link.getEndTypes();
@@ -5703,7 +5703,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			Type src = (Type)theSource;
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.AssociationClass_4017, AssociationClass2EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.AssociationClass_4017, AssociationClassLinkEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -6159,7 +6159,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			AssociationClass link = (AssociationClass)linkObject;
-			if(AssociationClass2EditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+			if(AssociationClassLinkEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 
@@ -6181,7 +6181,7 @@ public class UMLDiagramUpdater {
 			if(src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.AssociationClass_4017, AssociationClass2EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.AssociationClass_4017, AssociationClassLinkEditPart.VISUAL_ID));
 
 		}
 		return result;

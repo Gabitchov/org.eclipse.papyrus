@@ -4012,10 +4012,10 @@
       </links>
       <links
           visualID="4017"
-          editPartClassName="AssociationClass2EditPart"
-          itemSemanticEditPolicyClassName="AssociationClass2ItemSemanticEditPolicy"
-          createCommandClassName="AssociationClass2CreateCommand"
-          reorientCommandClassName="AssociationClassReorientCommand">
+          editPartClassName="AssociationClassLinkEditPart"
+          itemSemanticEditPolicyClassName="AssociationClassLinkItemSemanticEditPolicy"
+          createCommandClassName="AssociationClassLinkCreateCommand"
+          reorientCommandClassName="AssociationClassLinkReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
@@ -4032,7 +4032,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomAssociationClass2ItemSemanticEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomAssociationClassLinkItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass

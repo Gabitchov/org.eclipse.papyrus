@@ -30,7 +30,7 @@ import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassDashedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
@@ -1012,7 +1012,7 @@ public class UMLElementTypes {
 			return TemplateSignature_3033;
 		case AssociationClassDashedLinkEditPart.VISUAL_ID:
 			return Link_4016;
-		case AssociationClass2EditPart.VISUAL_ID:
+		case AssociationClassLinkEditPart.VISUAL_ID:
 			return AssociationClass_4017;
 		case AssociationEditPart.VISUAL_ID:
 			return Association_4001;

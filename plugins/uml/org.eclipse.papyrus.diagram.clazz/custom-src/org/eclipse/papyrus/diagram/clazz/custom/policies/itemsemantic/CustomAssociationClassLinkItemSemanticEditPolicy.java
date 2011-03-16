@@ -21,16 +21,16 @@ import org.eclipse.papyrus.diagram.clazz.custom.command.BranchDependenctReorient
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationClassCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationClass2ItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationClassLinkItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 
 /**
  * this a specialization to manage creation of association and associationClass
  */
-public class CustomAssociationClass2ItemSemanticEditPolicy extends AssociationClass2ItemSemanticEditPolicy {
+public class CustomAssociationClassLinkItemSemanticEditPolicy extends AssociationClassLinkItemSemanticEditPolicy {
 
 	/**
 	 * 
@@ -51,7 +51,7 @@ public class CustomAssociationClass2ItemSemanticEditPolicy extends AssociationCl
 
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch(getVisualID(req)) {
-		case AssociationClass2EditPart.VISUAL_ID:
+		case AssociationClassLinkEditPart.VISUAL_ID:
 			return getGEFWrapper(new CAssociationReorientCommand(req));
 		case AssociationEditPart.VISUAL_ID:
 			return getGEFWrapper(new CAssociationReorientCommand(req));

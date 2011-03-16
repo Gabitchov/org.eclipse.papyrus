@@ -21,13 +21,13 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.AbstractAssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.figure.AssociationFigure;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomAssociationClass2ItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationClass2ItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomAssociationClassLinkItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationClassLinkItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class AssociationClass2EditPart extends
+public class AssociationClassLinkEditPart extends
 
 AbstractAssociationEditPart implements ITreeBranchEditPart {
 
@@ -39,7 +39,7 @@ AbstractAssociationEditPart implements ITreeBranchEditPart {
 	/**
 	 * @generated
 	 */
-	public AssociationClass2EditPart(View view) {
+	public AssociationClassLinkEditPart(View view) {
 		super(view);
 	}
 
@@ -48,9 +48,9 @@ AbstractAssociationEditPart implements ITreeBranchEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationClass2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationClassLinkItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomAssociationClass2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomAssociationClassLinkItemSemanticEditPolicy());
 	}
 
 	/**

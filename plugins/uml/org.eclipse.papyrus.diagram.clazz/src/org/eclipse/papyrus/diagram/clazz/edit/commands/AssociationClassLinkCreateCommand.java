@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.Type;
 /**
  * @generated
  */
-public class AssociationClass2CreateCommand extends EditElementCommand {
+public class AssociationClassLinkCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -51,7 +51,7 @@ public class AssociationClass2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public AssociationClass2CreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+	public AssociationClassLinkCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;

@@ -45,7 +45,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateComm
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorDurationObservationEditPart;
@@ -89,7 +89,7 @@ public class CustomClassItemSemanticEditPolicyCN extends ClassItemSemanticEditPo
 
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch(getVisualID(req)) {
-		case AssociationClass2EditPart.VISUAL_ID:
+		case AssociationClassLinkEditPart.VISUAL_ID:
 			return getGEFWrapper(new CAssociationReorientCommand(req));
 		case AssociationEditPart.VISUAL_ID:
 			return getGEFWrapper(new CAssociationReorientCommand(req));
