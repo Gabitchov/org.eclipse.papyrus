@@ -357,7 +357,7 @@ ClassifierEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(14);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(13);
 		types.add(UMLElementTypes.AssociationClass_4017);
 		types.add(UMLElementTypes.Association_4001);
 		types.add(UMLElementTypes.Association_4019);
@@ -371,7 +371,6 @@ ClassifierEditPart {
 		types.add(UMLElementTypes.ElementImport_4009);
 		types.add(UMLElementTypes.PackageImport_4010);
 		types.add(UMLElementTypes.TemplateBinding_4015);
-		types.add(UMLElementTypes.Dependency_4022);
 		return types;
 	}
 
@@ -1223,96 +1222,6 @@ ClassifierEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if(targetEditPart instanceof Dependency2EditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof AssociationClassEditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof AssociationNodeEditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof InstanceSpecificationEditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof ComponentEditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof InterfaceEditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof ModelEditPartTN) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof EnumerationEditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof PackageEditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof ClassEditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof PrimitiveTypeEditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof DataTypeEditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof ConstraintEditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof DurationObservationEditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof TimeObservationEditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof DefaultNamedElementEditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof ShapeNamedElementEditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof ComponentEditPartCN) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof SignalEditPartCN) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof InterfaceEditPartCN) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof ModelEditPartCN) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof EnumerationEditPartCN) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof PackageEditPartCN) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof ClassEditPartCN) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof DataTypeEditPartCN) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof Constraint2EditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
 		return types;
 	}
 
@@ -1615,37 +1524,6 @@ ClassifierEditPart {
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
-		} else if(relationshipType == UMLElementTypes.Dependency_4022) {
-			types.add(UMLElementTypes.Dependency_2014);
-			types.add(UMLElementTypes.AssociationClass_2013);
-			types.add(UMLElementTypes.Association_2015);
-			types.add(UMLElementTypes.InstanceSpecification_2001);
-			types.add(UMLElementTypes.Component_2002);
-			types.add(UMLElementTypes.Signal_2003);
-			types.add(UMLElementTypes.Interface_2004);
-			types.add(UMLElementTypes.Model_2005);
-			types.add(UMLElementTypes.Enumeration_2006);
-			types.add(UMLElementTypes.Package_2007);
-			types.add(UMLElementTypes.Class_2008);
-			types.add(UMLElementTypes.PrimitiveType_2009);
-			types.add(UMLElementTypes.DataType_2010);
-			types.add(UMLElementTypes.Constraint_2011);
-			types.add(UMLElementTypes.DurationObservation_2095);
-			types.add(UMLElementTypes.TimeObservation_2096);
-			types.add(UMLElementTypes.NamedElement_2097);
-			types.add(UMLElementTypes.NamedElement_2098);
-			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			types.add(UMLElementTypes.InstanceSpecification_3020);
-			types.add(UMLElementTypes.Component_3021);
-			types.add(UMLElementTypes.Signal_3022);
-			types.add(UMLElementTypes.Interface_3023);
-			types.add(UMLElementTypes.Model_3024);
-			types.add(UMLElementTypes.Enumeration_3025);
-			types.add(UMLElementTypes.Package_3009);
-			types.add(UMLElementTypes.Class_3010);
-			types.add(UMLElementTypes.PrimitiveType_3026);
-			types.add(UMLElementTypes.DataType_3027);
-			types.add(UMLElementTypes.Constraint_3029);
 		}
 		return types;
 	}
@@ -1654,7 +1532,7 @@ ClassifierEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(17);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(16);
 		types.add(UMLElementTypes.AssociationClass_4017);
 		types.add(UMLElementTypes.Association_4001);
 		types.add(UMLElementTypes.Association_4019);
@@ -1669,7 +1547,6 @@ ClassifierEditPart {
 		types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		types.add(UMLElementTypes.TemplateBinding_4015);
-		types.add(UMLElementTypes.Dependency_4022);
 		types.add(UMLElementTypes.TimeObservationEvent_4024);
 		types.add(UMLElementTypes.DurationObservationEvent_4025);
 		return types;
@@ -1968,37 +1845,6 @@ ClassifierEditPart {
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
-		} else if(relationshipType == UMLElementTypes.Dependency_4022) {
-			types.add(UMLElementTypes.Dependency_2014);
-			types.add(UMLElementTypes.AssociationClass_2013);
-			types.add(UMLElementTypes.Association_2015);
-			types.add(UMLElementTypes.InstanceSpecification_2001);
-			types.add(UMLElementTypes.Component_2002);
-			types.add(UMLElementTypes.Signal_2003);
-			types.add(UMLElementTypes.Interface_2004);
-			types.add(UMLElementTypes.Model_2005);
-			types.add(UMLElementTypes.Enumeration_2006);
-			types.add(UMLElementTypes.Package_2007);
-			types.add(UMLElementTypes.Class_2008);
-			types.add(UMLElementTypes.PrimitiveType_2009);
-			types.add(UMLElementTypes.DataType_2010);
-			types.add(UMLElementTypes.Constraint_2011);
-			types.add(UMLElementTypes.DurationObservation_2095);
-			types.add(UMLElementTypes.TimeObservation_2096);
-			types.add(UMLElementTypes.NamedElement_2097);
-			types.add(UMLElementTypes.NamedElement_2098);
-			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			types.add(UMLElementTypes.InstanceSpecification_3020);
-			types.add(UMLElementTypes.Component_3021);
-			types.add(UMLElementTypes.Signal_3022);
-			types.add(UMLElementTypes.Interface_3023);
-			types.add(UMLElementTypes.Model_3024);
-			types.add(UMLElementTypes.Enumeration_3025);
-			types.add(UMLElementTypes.Package_3009);
-			types.add(UMLElementTypes.Class_3010);
-			types.add(UMLElementTypes.PrimitiveType_3026);
-			types.add(UMLElementTypes.DataType_3027);
-			types.add(UMLElementTypes.Constraint_3029);
 		} else if(relationshipType == UMLElementTypes.TimeObservationEvent_4024) {
 			types.add(UMLElementTypes.TimeObservation_2096);
 		} else if(relationshipType == UMLElementTypes.DurationObservationEvent_4025) {

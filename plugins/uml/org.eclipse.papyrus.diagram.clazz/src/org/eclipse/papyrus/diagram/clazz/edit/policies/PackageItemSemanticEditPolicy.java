@@ -24,8 +24,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AbstractionCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AbstractionReorientCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.AddedLinkCreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.AddedLinkReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ConnectorDurationObservationCreateCommand;
@@ -55,7 +53,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateSignatureCreateCo
 import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorDurationObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorTimeObservationEditPart;
@@ -163,9 +160,6 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return getGEFWrapper(new TemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Dependency_4022 == req.getElementType()) {
-			return getGEFWrapper(new AddedLinkCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		if(UMLElementTypes.TimeObservationEvent_4024 == req.getElementType()) {
 			return null;
 		}
@@ -215,9 +209,6 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return getGEFWrapper(new TemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Dependency_4022 == req.getElementType()) {
-			return getGEFWrapper(new AddedLinkCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		if(UMLElementTypes.TimeObservationEvent_4024 == req.getElementType()) {
 			return getGEFWrapper(new ConnectorTimeObservationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -255,8 +246,6 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 			return getGEFWrapper(new ProfileApplicationReorientCommand(req));
 		case TemplateBindingEditPart.VISUAL_ID:
 			return getGEFWrapper(new TemplateBindingReorientCommand(req));
-		case AddedLinkEditPart.VISUAL_ID:
-			return getGEFWrapper(new AddedLinkReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

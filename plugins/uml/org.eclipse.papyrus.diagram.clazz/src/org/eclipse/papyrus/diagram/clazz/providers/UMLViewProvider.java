@@ -412,7 +412,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		case InstanceSpecificationLinkEditPart.VISUAL_ID:
 			return createInstanceSpecification_4021(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		case AddedLinkEditPart.VISUAL_ID:
-			return createDependency_4022(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			return createLink_4022(containerView, index, persisted, preferencesHint);
 		case ContainmentLinkEditPart.VISUAL_ID:
 			return createLink_4023(containerView, index, persisted, preferencesHint);
 		case ConnectorTimeObservationEditPart.VISUAL_ID:
@@ -2558,7 +2558,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Edge createDependency_4022(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Edge createLink_4022(View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
@@ -2569,20 +2569,20 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
 		edge.setType(UMLVisualIDRegistry.getType(AddedLinkEditPart.VISUAL_ID));
-		edge.setElement(domainElement);
+		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Dependency");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "ContainmentSubLink");
 
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Dependency");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "ContainmentSubLink");
 
 		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
 		//if (routing != null) {
 		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		//}
 
-		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Dependency");
+		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "ContainmentSubLink");
 
 		return edge;
 	}

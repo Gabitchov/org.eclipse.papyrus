@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.util.StringStatics;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
@@ -27,11 +28,17 @@ import org.eclipse.papyrus.diagram.clazz.custom.command.ContainmentLinkReorientC
 import org.eclipse.papyrus.diagram.clazz.custom.command.CustomOwnerClassChangeCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.AddedLinkItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.PackageableElement;
 
-public class CustomAddedLinkItemSemanticEditPolicy extends AddedLinkItemSemanticEditPolicy {
+public class CustomAddedLinkItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
+
+	public CustomAddedLinkItemSemanticEditPolicy() {
+		super(UMLElementTypes.Link_4022);
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * / * {@inheritDoc}

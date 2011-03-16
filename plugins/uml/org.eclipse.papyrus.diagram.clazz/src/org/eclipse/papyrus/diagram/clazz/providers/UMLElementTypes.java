@@ -520,7 +520,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Dependency_4022 = getElementType("org.eclipse.papyrus.diagram.clazz.AddedLink_4022"); //$NON-NLS-1$
+	public static final IElementType Link_4022 = getElementType("org.eclipse.papyrus.diagram.clazz.AddedLink_4022"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -791,8 +791,6 @@ public class UMLElementTypes {
 
 			elements.put(InstanceSpecification_4021, UMLPackage.eINSTANCE.getInstanceSpecification());
 
-			elements.put(Dependency_4022, UMLPackage.eINSTANCE.getDependency());
-
 			elements.put(TimeObservationEvent_4024, UMLPackage.eINSTANCE.getTimeObservation_Event());
 
 			elements.put(DurationObservationEvent_4025, UMLPackage.eINSTANCE.getDurationObservation_Event());
@@ -889,7 +887,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(TemplateBinding_4015);
 			KNOWN_ELEMENT_TYPES.add(GeneralizationSet_4020);
 			KNOWN_ELEMENT_TYPES.add(InstanceSpecification_4021);
-			KNOWN_ELEMENT_TYPES.add(Dependency_4022);
+			KNOWN_ELEMENT_TYPES.add(Link_4022);
 			KNOWN_ELEMENT_TYPES.add(Link_4023);
 			KNOWN_ELEMENT_TYPES.add(TimeObservationEvent_4024);
 			KNOWN_ELEMENT_TYPES.add(DurationObservationEvent_4025);
@@ -1055,7 +1053,7 @@ public class UMLElementTypes {
 		case InstanceSpecificationLinkEditPart.VISUAL_ID:
 			return InstanceSpecification_4021;
 		case AddedLinkEditPart.VISUAL_ID:
-			return Dependency_4022;
+			return Link_4022;
 		case ContainmentLinkEditPart.VISUAL_ID:
 			return Link_4023;
 		case ConnectorTimeObservationEditPart.VISUAL_ID:

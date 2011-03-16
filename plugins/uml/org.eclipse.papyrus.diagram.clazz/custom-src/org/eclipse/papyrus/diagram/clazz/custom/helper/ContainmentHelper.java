@@ -112,8 +112,8 @@ public class ContainmentHelper extends ElementHelper {
 		EditPartViewer editPartViewer = (EditPartViewer)sourceEditPart.getViewer();
 		PreferencesHint preferencesHint = sourceEditPart.getDiagramPreferencesHint();
 
-		String linkHint = ((IHintedType)UMLElementTypes.Dependency_4022).getSemanticHint();
-		ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Dependency_4022, ((IHintedType)org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Dependency_4022).getSemanticHint(), sourceEditPart.getDiagramPreferencesHint());
+		String linkHint = ((IHintedType)UMLElementTypes.Link_4022).getSemanticHint();
+		ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Link_4022, ((IHintedType)org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Link_4022).getSemanticHint(), sourceEditPart.getDiagramPreferencesHint());
 		View targetView = (View)createConnectionViewRequest.getTargetEditPart().getModel();
 		IAdaptable targetViewAdapter = new SemanticAdapter(null, targetView);
 		IAdaptable circleAdapter = null;
