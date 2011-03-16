@@ -109,8 +109,6 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		GeneralizationPreferencePage.initDefaults(store);
 
-		AssociationClassPreferencePage.initDefaults(store);
-
 		UsagePreferencePage.initDefaults(store);
 
 		AssociationPreferencePage.initDefaults(store);
@@ -124,6 +122,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		GeneralizationSetPreferencePage.initDefaults(store);
 
 		InterfaceRealizationPreferencePage.initDefaults(store);
+
+		AssociationClassLinkPreferencePage.initDefaults(store);
 
 	}
 

@@ -1783,14 +1783,6 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassPreferencePage"
-            name="AssociationClass Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.UsagePreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.UsagePreferencePage"
             name="Usage Link" />
@@ -1844,6 +1836,14 @@
 			class="org.eclipse.papyrus.diagram.clazz.preferences.InterfaceRealizationPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.InterfaceRealizationPreferencePage"
             name="InterfaceRealization Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassLinkPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassLinkPreferencePage"
+            name="AssociationClassLink Link" />
 		
 
 </extension>

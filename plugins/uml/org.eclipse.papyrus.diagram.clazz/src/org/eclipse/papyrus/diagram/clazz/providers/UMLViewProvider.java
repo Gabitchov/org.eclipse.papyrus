@@ -1768,16 +1768,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "AssociationClass");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "AssociationClassLink");
 
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "AssociationClass");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "AssociationClassLink");
 
 		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
 		//if (routing != null) {
 		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		//}
 
-		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "AssociationClass");
+		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "AssociationClassLink");
 
 		Node label6031 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationClassRoleSourceEditPart.VISUAL_ID));
 		label6031.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
