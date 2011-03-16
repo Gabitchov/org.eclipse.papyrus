@@ -26,7 +26,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.ComponentCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ConstraintCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.DataTypeCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.DefaultNamedElementCreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.Dependency2CreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.DependencyNodeCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.DurationObservationCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.EnumerationCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.InstanceSpecificationCreateCommand;
@@ -58,7 +58,7 @@ public class ModelItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.Dependency_2014 == req.getElementType()) {
-			return getGEFWrapper(new Dependency2CreateCommand(req));
+			return getGEFWrapper(new DependencyNodeCreateCommand(req));
 		}
 		if(UMLElementTypes.AssociationClass_2013 == req.getElementType()) {
 			return getGEFWrapper(new AssociationClassCreateCommand(req));

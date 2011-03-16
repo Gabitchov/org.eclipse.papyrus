@@ -57,9 +57,9 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentSubLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DefaultNamedElementEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPart;
@@ -902,7 +902,7 @@ public class UMLElementTypes {
 		switch(visualID) {
 		case ModelEditPart.VISUAL_ID:
 			return Package_1000;
-		case Dependency2EditPart.VISUAL_ID:
+		case DependencyNodeEditPart.VISUAL_ID:
 			return Dependency_2014;
 		case AssociationClassEditPart.VISUAL_ID:
 			return AssociationClass_2013;

@@ -49,7 +49,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.Dependency2ItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.edit.policies.DependencyNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
@@ -61,7 +61,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class Dependency2EditPart extends
+public class DependencyNodeEditPart extends
 
 AbstractBorderedShapeEditPart {
 
@@ -83,7 +83,7 @@ AbstractBorderedShapeEditPart {
 	/**
 	 * @generated
 	 */
-	public Dependency2EditPart(View view) {
+	public DependencyNodeEditPart(View view) {
 		super(view);
 	}
 
@@ -92,7 +92,7 @@ AbstractBorderedShapeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new Dependency2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DependencyNodeItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -267,7 +267,7 @@ AbstractBorderedShapeEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
 		if(targetEditPart instanceof AssociationClassEditPart) {
@@ -357,7 +357,7 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
 		if(targetEditPart instanceof AssociationClassEditPart) {
@@ -447,7 +447,7 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
 		if(targetEditPart instanceof AssociationClassEditPart) {
@@ -537,7 +537,7 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
 		if(targetEditPart instanceof AssociationClassEditPart) {
@@ -627,7 +627,7 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof AssociationClassEditPart) {

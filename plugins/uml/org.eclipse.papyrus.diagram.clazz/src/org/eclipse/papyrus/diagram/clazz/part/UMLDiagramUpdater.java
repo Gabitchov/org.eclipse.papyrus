@@ -204,7 +204,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
 			PackageableElement childElement = (PackageableElement)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Dependency2EditPart.VISUAL_ID) {
+			if(visualID == DependencyNodeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1708,7 +1708,7 @@ public class UMLDiagramUpdater {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
 		case ModelEditPart.VISUAL_ID:
 			return getPackage_1000ContainedLinks(view);
-		case Dependency2EditPart.VISUAL_ID:
+		case DependencyNodeEditPart.VISUAL_ID:
 			return getDependency_2014ContainedLinks(view);
 		case AssociationClassEditPart.VISUAL_ID:
 			return getAssociationClass_2013ContainedLinks(view);
@@ -1859,7 +1859,7 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getIncomingLinks(View view) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
-		case Dependency2EditPart.VISUAL_ID:
+		case DependencyNodeEditPart.VISUAL_ID:
 			return getDependency_2014IncomingLinks(view);
 		case AssociationClassEditPart.VISUAL_ID:
 			return getAssociationClass_2013IncomingLinks(view);
@@ -2010,7 +2010,7 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getOutgoingLinks(View view) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
-		case Dependency2EditPart.VISUAL_ID:
+		case DependencyNodeEditPart.VISUAL_ID:
 			return getDependency_2014OutgoingLinks(view);
 		case AssociationClassEditPart.VISUAL_ID:
 			return getAssociationClass_2013OutgoingLinks(view);

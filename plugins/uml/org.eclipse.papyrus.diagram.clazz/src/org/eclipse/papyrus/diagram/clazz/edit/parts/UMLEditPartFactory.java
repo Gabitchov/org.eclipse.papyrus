@@ -44,8 +44,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ModelEditPart.VISUAL_ID:
 				return new ModelEditPart(view);
 
-			case Dependency2EditPart.VISUAL_ID:
-				return new Dependency2EditPart(view);
+			case DependencyNodeEditPart.VISUAL_ID:
+				return new DependencyNodeEditPart(view);
 
 			case MultiDependencyLabelEditPart.VISUAL_ID:
 				return new MultiDependencyLabelEditPart(view);

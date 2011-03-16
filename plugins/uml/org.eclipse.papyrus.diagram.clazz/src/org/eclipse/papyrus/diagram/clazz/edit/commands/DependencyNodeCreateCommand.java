@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * @generated
  */
-public class Dependency2CreateCommand extends EditElementCommand {
+public class DependencyNodeCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -46,7 +46,7 @@ public class Dependency2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public Dependency2CreateCommand(CreateElementRequest req, EObject eObject) {
+	public DependencyNodeCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -55,14 +55,14 @@ public class Dependency2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static Dependency2CreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new Dependency2CreateCommand(req, eObject);
+	public static DependencyNodeCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new DependencyNodeCreateCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public Dependency2CreateCommand(CreateElementRequest req) {
+	public DependencyNodeCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 

@@ -58,12 +58,12 @@ import org.eclipse.papyrus.service.edit.service.IElementEditService;
 /**
  * @generated
  */
-public class Dependency2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class DependencyNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public Dependency2ItemSemanticEditPolicy() {
+	public DependencyNodeItemSemanticEditPolicy() {
 		super(UMLElementTypes.Dependency_2014);
 	}
 

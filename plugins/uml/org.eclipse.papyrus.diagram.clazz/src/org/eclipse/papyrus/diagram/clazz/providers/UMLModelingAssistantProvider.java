@@ -42,7 +42,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DefaultNamedElementEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPartCN;
@@ -322,8 +322,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	public List getRelTypesOnSource(IAdaptable source) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart)source.getAdapter(IGraphicalEditPart.class);
-		if(sourceEditPart instanceof Dependency2EditPart) {
-			return ((Dependency2EditPart)sourceEditPart).getMARelTypesOnSource();
+		if(sourceEditPart instanceof DependencyNodeEditPart) {
+			return ((DependencyNodeEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
 		if(sourceEditPart instanceof AssociationClassEditPart) {
 			return ((AssociationClassEditPart)sourceEditPart).getMARelTypesOnSource();
@@ -426,8 +426,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	public List getRelTypesOnTarget(IAdaptable target) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart)target.getAdapter(IGraphicalEditPart.class);
-		if(targetEditPart instanceof Dependency2EditPart) {
-			return ((Dependency2EditPart)targetEditPart).getMARelTypesOnTarget();
+		if(targetEditPart instanceof DependencyNodeEditPart) {
+			return ((DependencyNodeEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof AssociationClassEditPart) {
 			return ((AssociationClassEditPart)targetEditPart).getMARelTypesOnTarget();
@@ -534,8 +534,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart)source.getAdapter(IGraphicalEditPart.class);
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart)target.getAdapter(IGraphicalEditPart.class);
-		if(sourceEditPart instanceof Dependency2EditPart) {
-			return ((Dependency2EditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		if(sourceEditPart instanceof DependencyNodeEditPart) {
+			return ((DependencyNodeEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof AssociationClassEditPart) {
 			return ((AssociationClassEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -638,8 +638,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	public List getTypesForSource(IAdaptable target, IElementType relationshipType) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart)target.getAdapter(IGraphicalEditPart.class);
-		if(targetEditPart instanceof Dependency2EditPart) {
-			return ((Dependency2EditPart)targetEditPart).getMATypesForSource(relationshipType);
+		if(targetEditPart instanceof DependencyNodeEditPart) {
+			return ((DependencyNodeEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if(targetEditPart instanceof AssociationClassEditPart) {
 			return ((AssociationClassEditPart)targetEditPart).getMATypesForSource(relationshipType);
@@ -745,8 +745,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	public List getTypesForTarget(IAdaptable source, IElementType relationshipType) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart)source.getAdapter(IGraphicalEditPart.class);
-		if(sourceEditPart instanceof Dependency2EditPart) {
-			return ((Dependency2EditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		if(sourceEditPart instanceof DependencyNodeEditPart) {
+			return ((DependencyNodeEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof AssociationClassEditPart) {
 			return ((AssociationClassEditPart)sourceEditPart).getMATypesForTarget(relationshipType);

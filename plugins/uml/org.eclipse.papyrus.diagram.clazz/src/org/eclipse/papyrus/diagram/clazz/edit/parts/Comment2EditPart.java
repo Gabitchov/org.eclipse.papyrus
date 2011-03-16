@@ -301,7 +301,7 @@ AbstractCommentEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if(targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
 		if(targetEditPart instanceof AssociationClassEditPart) {

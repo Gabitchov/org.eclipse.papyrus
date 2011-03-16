@@ -51,7 +51,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.command.DependencyDiamonViewCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomDeferredCreateConnectionViewCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.commands.DeleteLinkDuringCreationCommand;
@@ -224,7 +224,7 @@ public class MultiDependencyHelper extends ElementHelper {
 
 		// if the the source or the target is a node dependency the purpose is
 		// to create only one branch
-		if((sourceEditPart instanceof Dependency2EditPart) || (targetEditPart instanceof Dependency2EditPart)) {
+		if((sourceEditPart instanceof DependencyNodeEditPart) || (targetEditPart instanceof DependencyNodeEditPart)) {
 			return getBranchDepencencyCommand(createConnectionViewAndElementRequest, command);
 		}
 
@@ -401,10 +401,10 @@ public class MultiDependencyHelper extends ElementHelper {
 	 * @return may be null
 	 */
 	protected GraphicalEditPart lookForDependencyNodeEditPart(DependencyBranchEditPart dependencyBranchEditPart) {
-		if(dependencyBranchEditPart.getSource() instanceof Dependency2EditPart) {
+		if(dependencyBranchEditPart.getSource() instanceof DependencyNodeEditPart) {
 			return (GraphicalEditPart)dependencyBranchEditPart.getSource();
 		}
-		if(dependencyBranchEditPart.getTarget() instanceof Dependency2EditPart) {
+		if(dependencyBranchEditPart.getTarget() instanceof DependencyNodeEditPart) {
 			return (GraphicalEditPart)dependencyBranchEditPart.getTarget();
 		}
 		return null;

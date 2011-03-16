@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.diagram.clazz.custom.edit.part;
 
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**
@@ -29,7 +29,7 @@ public class CDependencyBranchEditPart extends org.eclipse.papyrus.diagram.clazz
 	}
 
 	protected void refreshVisuals() {
-		if(getTarget() instanceof Dependency2EditPart) {
+		if(getTarget() instanceof DependencyNodeEditPart) {
 			if(getPrimaryShape() instanceof DashedEdgeFigure) {
 				((DashedEdgeFigure)getPrimaryShape()).setArrow(false);
 			}

@@ -41,7 +41,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DefaultNamedElementEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPartCN;
@@ -181,7 +181,7 @@ public class InheritedClassDiagramElementViewProvider extends UMLViewProvider {
 		visualID = UMLVisualIDRegistry.getVisualID(semanticHint);
 
 		switch(visualID) {
-		case Dependency2EditPart.VISUAL_ID:
+		case DependencyNodeEditPart.VISUAL_ID:
 			return createDependency_2014(domainElement, containerView, index, persisted, preferencesHint);
 		case AssociationClassEditPart.VISUAL_ID:
 			return createAssociationClass_2013(domainElement, containerView, index, persisted, preferencesHint);

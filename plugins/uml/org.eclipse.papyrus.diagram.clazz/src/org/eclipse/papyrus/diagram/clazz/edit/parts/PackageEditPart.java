@@ -385,7 +385,7 @@ NamedElementEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if(targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
 		if(targetEditPart instanceof AssociationClassEditPart) {
@@ -475,7 +475,7 @@ NamedElementEditPart {
 		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if(targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
 		if(targetEditPart instanceof AssociationClassEditPart) {
@@ -565,7 +565,7 @@ NamedElementEditPart {
 		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if(targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
 		if(targetEditPart instanceof AssociationClassEditPart) {
@@ -655,7 +655,7 @@ NamedElementEditPart {
 		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if(targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
 		if(targetEditPart instanceof AssociationClassEditPart) {
@@ -745,7 +745,7 @@ NamedElementEditPart {
 		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if(targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof AssociationClassEditPart) {
@@ -835,7 +835,7 @@ NamedElementEditPart {
 		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if(targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
 		if(targetEditPart instanceof AssociationClassEditPart) {

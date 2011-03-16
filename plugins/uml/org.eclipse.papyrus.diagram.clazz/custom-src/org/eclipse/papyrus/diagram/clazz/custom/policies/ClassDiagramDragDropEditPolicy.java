@@ -47,7 +47,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationLiteralEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
@@ -93,7 +93,7 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 	@Override
 	protected Set<Integer> getDroppableElementVisualId() {
 		Set<Integer> droppableElementsVisualID = new HashSet<Integer>();
-		droppableElementsVisualID.add(Dependency2EditPart.VISUAL_ID);
+		droppableElementsVisualID.add(DependencyNodeEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(AssociationEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(AssociationClassEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(AssociationNodeEditPart.VISUAL_ID);
@@ -137,7 +137,7 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 			return dropAssociation(dropRequest, semanticLink, linkVISUALID);
 		}
 		switch(nodeVISUALID) {
-		case Dependency2EditPart.VISUAL_ID:
+		case DependencyNodeEditPart.VISUAL_ID:
 			return dropDependency(dropRequest, semanticLink, nodeVISUALID);
 		case AssociationClassEditPart.VISUAL_ID:
 			return dropAssociationClass(dropRequest, semanticLink, nodeVISUALID);

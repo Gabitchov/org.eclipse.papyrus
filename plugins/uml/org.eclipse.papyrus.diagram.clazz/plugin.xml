@@ -150,7 +150,7 @@
       <modelingAssistantProvider class="org.eclipse.papyrus.diagram.clazz.providers.UMLModelingAssistantProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart" id="Package_1000"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart" id="Dependency_2014"/>
+         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNodeEditPart" id="Dependency_2014"/>
          <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart" id="AssociationClass_2013"/>
          <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart" id="Association_2015"/>
          <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart" id="InstanceSpecification_2001"/>

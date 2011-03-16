@@ -2227,11 +2227,11 @@
       </childNodes>
       <topLevelNodes
           visualID="2014"
-          editPartClassName="Dependency2EditPart"
-          itemSemanticEditPolicyClassName="Dependency2ItemSemanticEditPolicy"
+          editPartClassName="DependencyNodeEditPart"
+          itemSemanticEditPolicyClassName="DependencyNodeItemSemanticEditPolicy"
           canonicalEditPolicyClassName="DependencyCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="DependencyGraphicalNodeEditPolicy"
-          createCommandClassName="Dependency2CreateCommand">
+          createCommandClassName="DependencyNodeCreateCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
