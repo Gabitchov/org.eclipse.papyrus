@@ -119,6 +119,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		SubstitutionPreferencePage.initDefaults(store);
 
+		ContainmentLinkPreferencePage.initDefaults(store);
+
 		ElementImportPreferencePage.initDefaults(store);
 
 		GeneralizationSetPreferencePage.initDefaults(store);

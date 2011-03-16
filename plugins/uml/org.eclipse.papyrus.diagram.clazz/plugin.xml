@@ -1823,6 +1823,14 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.ContainmentLinkPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.ContainmentLinkPreferencePage"
+            name="ContainmentLink Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.ElementImportPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.ElementImportPreferencePage"
             name="ElementImport Link" />

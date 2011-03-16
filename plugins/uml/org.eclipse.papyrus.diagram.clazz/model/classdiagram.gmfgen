@@ -5663,7 +5663,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:NotationType"
-            uniqueIdentifier="org.eclipse.papyrus.diagram.clazz.ContainmentLink_4023"/>
+            uniqueIdentifier="org.eclipse.papyrus.diagram.clazz.ContainmentLink_4023"
+            displayName="ContainmentLink"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.AddedLinkFigure"/>
