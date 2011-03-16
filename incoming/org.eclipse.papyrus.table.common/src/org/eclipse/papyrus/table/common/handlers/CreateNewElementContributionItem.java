@@ -11,8 +11,8 @@
  *******************************************************************************/
 package org.eclipse.papyrus.table.common.handlers;
 
-import org.eclipse.emf.facet.widgets.nattable.api.INatTableWidget;
-import org.eclipse.emf.facet.widgets.nattable.api.INatTableWidgetProvider;
+import org.eclipse.emf.facet.widgets.nattable.INatTableWidget;
+import org.eclipse.emf.facet.widgets.nattable.INatTableWidgetProvider;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.InstantiationMethod;
 import org.eclipse.jface.action.ContributionItem;
 import org.eclipse.swt.SWT;

@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.table.menu.providers;
 
 import org.eclipse.core.expressions.PropertyTester;
-import org.eclipse.emf.facet.widgets.nattable.api.INatTableWidgetProvider;
+import org.eclipse.emf.facet.widgets.nattable.INatTableWidgetProvider;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 

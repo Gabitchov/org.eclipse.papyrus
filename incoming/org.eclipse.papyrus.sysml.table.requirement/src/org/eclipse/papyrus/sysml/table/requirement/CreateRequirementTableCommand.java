@@ -17,7 +17,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.core.services.ServiceException;
@@ -61,7 +60,7 @@ public class CreateRequirementTableCommand extends AbstractCreateNattableEditorC
 	protected Object createEditorModel(ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
 		PapyrusTableInstance papyrusTable = (PapyrusTableInstance)super.createEditorModel(serviceRegistry);
 
-		ResourceSet resourceSet = new ResourceSetImpl();
+		ResourceSet resourceSet = papyrusTable.getTable().eResource().getResourceSet();
 
 		String symbolicName = org.eclipse.papyrus.sysml.table.requirement.Activator.getDefault().getBundle().getSymbolicName();
 		URI uri = URI.createPlatformPluginURI(symbolicName + "/resource/Requirements.tableconfiguration", true); //$NON-NLS-1$

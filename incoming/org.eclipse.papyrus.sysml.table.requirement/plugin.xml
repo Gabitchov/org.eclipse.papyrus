@@ -10,10 +10,8 @@
       <menuContribution allPopups="false" locationURI="toolbar:org.eclipse.papyrus.table.ui.toolbar">
          <command commandId="org.eclipse.papyrus.sysml.table.requirement.create.table.command" icon="icons/table_requirement.png" style="push" tooltip="Create a New SysML Requirement Table">
             <visibleWhen>
-               <with
-                     variable="activeEditorId">
-                  <equals
-                        value="org.eclipse.papyrus.core.papyrusEditor">
+               <with variable="activeEditorId">
+                  <equals value="org.eclipse.papyrus.core.papyrusEditor">
                   </equals>
                </with>
             </visibleWhen>
@@ -22,10 +20,8 @@
       <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createtable">
          <command commandId="org.eclipse.papyrus.sysml.table.requirement.create.table.command" icon="icons/table_requirement.png" style="push" tooltip="Create a New SysML Requirement Table">
             <visibleWhen>
-               <with
-                     variable="activeEditorId">
-                  <equals
-                        value="org.eclipse.papyrus.core.papyrusEditor">
+               <with variable="activeEditorId">
+                  <equals value="org.eclipse.papyrus.core.papyrusEditor">
                   </equals>
                </with>
             </visibleWhen>
@@ -34,10 +30,8 @@
       <menuContribution allPopups="false" locationURI="menu:org.eclipse.papyrus.table.ui.menu.tables">
          <command commandId="org.eclipse.papyrus.sysml.table.requirement.create.table.command" icon="icons/table_requirement.png" style="push" tooltip="Create a New SysML Requirement Table">
             <visibleWhen>
-               <with
-                     variable="activeEditorId">
-                  <equals
-                        value="org.eclipse.papyrus.core.papyrusEditor">
+               <with variable="activeEditorId">
+                  <equals value="org.eclipse.papyrus.core.papyrusEditor">
                   </equals>
                </with>
             </visibleWhen>
@@ -52,12 +46,8 @@
       <handler class="org.eclipse.papyrus.sysml.table.requirement.CreateRequirementTableCommand" commandId="org.eclipse.papyrus.sysml.table.requirement.create.table.command">
          <activeWhen>
             <and>
-               <with
-                     variable="selection">
-                  <test
-                        forcePluginActivation="true"
-                        property="org.eclipse.papyrus.sysml.table.requirement.tester.isAppliedRequirements"
-                        value="true">
+               <with variable="selection">
+                  <test forcePluginActivation="true" property="org.eclipse.papyrus.sysml.table.requirement.tester.isAppliedRequirements" value="true">
                   </test>
                </with>
             </and>
@@ -68,14 +58,13 @@
    <extension point="org.eclipse.emf.facet.infra.query.registration">
       <modelqueryset file="resource/requirements.querySet"/>
    </extension>
-   <extension
-         point="org.eclipse.core.expressions.propertyTesters">
-      <propertyTester
-            class="org.eclipse.papyrus.sysml.table.requirement.tester.RequirementPropertyTester"
-            id="org.eclipse.papyrus.sysml.table.requirement.tester"
-            namespace="org.eclipse.papyrus.sysml.table.requirement.tester"
-            properties="isAppliedRequirements"
-            type="org.eclipse.jface.viewers.IStructuredSelection">
+   <extension point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester class="org.eclipse.papyrus.sysml.table.requirement.tester.RequirementPropertyTester" id="org.eclipse.papyrus.sysml.table.requirement.tester" namespace="org.eclipse.papyrus.sysml.table.requirement.tester" properties="isAppliedRequirements" type="org.eclipse.jface.viewers.IStructuredSelection">
       </propertyTester>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization
+            file="resource/testConfig.uiCustom"
+            loadByDefault="true"/>
    </extension>
 </plugin>

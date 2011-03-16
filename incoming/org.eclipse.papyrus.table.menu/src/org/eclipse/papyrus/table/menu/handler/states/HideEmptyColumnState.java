@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.table.menu.handler.states;
 
-import org.eclipse.emf.facet.widgets.nattable.api.INatTableWidgetProvider;
+import org.eclipse.emf.facet.widgets.nattable.INatTableWidgetProvider;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 

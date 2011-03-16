@@ -19,7 +19,7 @@ import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionExcep
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.emf.facet.infra.query.runtime.ModelQueryParameterValue;
-import org.eclipse.emf.facet.widgets.celleditors.CommandFactoriesRegistry;
+import org.eclipse.emf.facet.widgets.celleditors.ICommandFactoriesRegistry;
 import org.eclipse.emf.facet.widgets.celleditors.ICommandFactory;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.InstantiationMethodParameters;
 import org.eclipse.uml2.uml.Abstraction;
@@ -49,7 +49,7 @@ public class CreateAbstractionQuery implements IJavaModelQuery<Package, Abstract
 			}
 		}
 		if(editingDomain != null) {
-			ICommandFactory commandFactory = CommandFactoriesRegistry.getInstance().getCommandFactoryFor(editingDomain);
+			ICommandFactory commandFactory = ICommandFactoriesRegistry.INSTANCE.getCommandFactoryFor(editingDomain);
 
 			if(context != null) {
 				Abstraction abstraction = UMLFactory.eINSTANCE.createAbstraction();

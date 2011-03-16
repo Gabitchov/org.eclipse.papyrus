@@ -17,8 +17,8 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
-import org.eclipse.emf.facet.widgets.nattable.api.INatTableWidget;
-import org.eclipse.emf.facet.widgets.nattable.api.INatTableWidgetProvider;
+import org.eclipse.emf.facet.widgets.nattable.INatTableWidget;
+import org.eclipse.emf.facet.widgets.nattable.INatTableWidgetProvider;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.handlers.HandlerUtil;
 
