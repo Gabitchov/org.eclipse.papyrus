@@ -111,12 +111,4 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.papyrus.profiletool"
          version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.xtext.integration"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.papyrus.xtext.uml"
-         version="0.0.0"/>
-
 </feature>
