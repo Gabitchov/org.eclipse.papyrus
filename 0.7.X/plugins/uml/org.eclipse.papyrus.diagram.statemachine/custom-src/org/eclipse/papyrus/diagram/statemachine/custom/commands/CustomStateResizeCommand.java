@@ -14,6 +14,8 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.statemachine.custom.helpers.Zone;
 
@@ -62,10 +64,20 @@ public class CustomStateResizeCommand extends AbstractTransactionalCommand {
 		View state = (View)adaptable.getAdapter(View.class);
 		View stateLabel = (View)state.getChildren().get(0);
 		View stateCompartment = (View)state.getChildren().get(1);
+		
 		// a bunch of initializations
 		int direction = request.getResizeDirection();
 		int dx = request.getSizeDelta().width;
 		int dy = request.getSizeDelta().height;
+		
+		Iterator<Node> it = state.getChildren().iterator();
+
+		while(it.hasNext()) {
+			Node currentNode = it.next();
+			if(currentNode.getLayoutConstraint() == null) {
+				currentNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+			}
+		}
 
 		if(internalResize) {
 			Zone.setHeight(stateLabel, Zone.getHeight(stateLabel) + dy);
@@ -100,7 +112,7 @@ public class CustomStateResizeCommand extends AbstractTransactionalCommand {
 		// one or two axis
 		// depending on their relative positions to the borders of the state
 		// machine
-		Iterator it = stateCompartment.getChildren().iterator();
+		it = stateCompartment.getChildren().iterator();
 		while(it.hasNext()) {
 			View view = (View)it.next();
 			String zone = Zone.getZone(view);
