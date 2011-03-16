@@ -26,16 +26,16 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.command.ContainmentLinkReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CustomOwnerClassChangeCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentSubLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.PackageableElement;
 
-public class CustomAddedLinkItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class CustomContainmentSubLinkItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 
-	public CustomAddedLinkItemSemanticEditPolicy() {
+	public CustomContainmentSubLinkItemSemanticEditPolicy() {
 		super(UMLElementTypes.Link_4022);
 		// TODO Auto-generated constructor stub
 	}

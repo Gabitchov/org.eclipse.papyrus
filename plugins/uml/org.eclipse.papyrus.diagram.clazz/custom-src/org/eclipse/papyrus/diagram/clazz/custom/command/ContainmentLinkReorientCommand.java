@@ -32,7 +32,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ContainmentHelper;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentSubLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
@@ -191,8 +191,8 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 		if(myTargetEditPart instanceof ClassEditPart || myTargetEditPart instanceof PackageEditPart) {
 			CompoundCommand cc = new CompoundCommand();
 			for(Object currentLink : ((AbstractGraphicalEditPart)myTargetEditPart).getTargetConnections()) {
-				if(currentLink instanceof AddedLinkEditPart) {
-					AddedLinkEditPart addedLinkEP = (AddedLinkEditPart)currentLink;
+				if(currentLink instanceof ContainmentSubLinkEditPart) {
+					ContainmentSubLinkEditPart addedLinkEP = (ContainmentSubLinkEditPart)currentLink;
 					if((addedLinkEP.getSource() instanceof CContainmentCircleEditPart)) {
 						if(((CContainmentCircleEditPart)addedLinkEP.getSource()).getSourceConnections().size() == 1) {
 							cc.add(new ICommandProxy(new DeleteCommand(getEditingDomain(), (View)addedLinkEP.getSource().getModel())));

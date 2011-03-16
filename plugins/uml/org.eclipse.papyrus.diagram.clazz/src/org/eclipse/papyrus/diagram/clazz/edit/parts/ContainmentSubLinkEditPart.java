@@ -21,12 +21,12 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ViewComponentEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.figure.AddedLinkFigure;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomViewComponentEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomAddedLinkItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomContainmentSubLinkItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class AddedLinkEditPart extends ConnectionNodeEditPart
+public class ContainmentSubLinkEditPart extends ConnectionNodeEditPart
 
 implements ITreeBranchEditPart {
 
@@ -38,7 +38,7 @@ implements ITreeBranchEditPart {
 	/**
 	 * @generated
 	 */
-	public AddedLinkEditPart(View view) {
+	public ContainmentSubLinkEditPart(View view) {
 		super(view);
 	}
 
@@ -50,7 +50,7 @@ implements ITreeBranchEditPart {
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ViewComponentEditPolicy());
 		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new CustomViewComponentEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomAddedLinkItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomContainmentSubLinkItemSemanticEditPolicy());
 	}
 
 	/**

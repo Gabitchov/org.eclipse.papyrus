@@ -43,7 +43,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.CommentAnnotatedElementRe
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentSubLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
@@ -137,7 +137,7 @@ public class CustomClassItemSemanticEditPolicy extends ClassItemSemanticEditPoli
 			return getGEFWrapper(new CommentAnnotatedElementReorientCommand(req));
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:
 			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
-		case AddedLinkEditPart.VISUAL_ID:
+		case ContainmentSubLinkEditPart.VISUAL_ID:
 			return getGEFWrapper(new ContainmentLinkReorientCommand(req, getHost()));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);

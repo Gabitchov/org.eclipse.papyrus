@@ -34,7 +34,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CContainmentCircleEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentSubLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
@@ -73,8 +73,8 @@ public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 
 		/* if the element deleted is the link between a containment circle and a class */
 
-		if(getHost() instanceof AddedLinkEditPart) {
-			AddedLinkEditPart hostaddedlink = (AddedLinkEditPart)getHost();
+		if(getHost() instanceof ContainmentSubLinkEditPart) {
+			ContainmentSubLinkEditPart hostaddedlink = (ContainmentSubLinkEditPart)getHost();
 			EditPart circlecontainment = hostaddedlink.getSource();
 			ContainmentCircleEditPart containmentcircleeditpart = (ContainmentCircleEditPart)hostaddedlink.getSource();
 

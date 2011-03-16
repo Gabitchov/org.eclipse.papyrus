@@ -5636,10 +5636,10 @@
       </links>
       <links
           visualID="4022"
-          editPartClassName="AddedLinkEditPart"
-          itemSemanticEditPolicyClassName="AddedLinkItemSemanticEditPolicy"
-          createCommandClassName="AddedLinkCreateCommand"
-          reorientCommandClassName="AddedLinkReorientCommand">
+          editPartClassName="ContainmentSubLinkEditPart"
+          itemSemanticEditPolicyClassName="ContainmentSubLinkCreateCommandItemSemanticEditPolicy"
+          createCommandClassName="ContainmentSubLinkCreateCommand"
+          reorientCommandClassName="ContainmentSubLinkCreateCommandReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
@@ -5656,7 +5656,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomAddedLinkItemSemanticEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomContainmentSubLinkItemSemanticEditPolicy"/>
       </links>
       <links
           visualID="4023"

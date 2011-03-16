@@ -16,8 +16,6 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
-import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
-import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 
 /**
  * @generated

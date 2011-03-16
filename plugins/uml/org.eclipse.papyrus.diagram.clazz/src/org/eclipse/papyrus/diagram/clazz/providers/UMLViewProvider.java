@@ -411,7 +411,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createGeneralizationSet_4020(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		case InstanceSpecificationLinkEditPart.VISUAL_ID:
 			return createInstanceSpecification_4021(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case AddedLinkEditPart.VISUAL_ID:
+		case ContainmentSubLinkEditPart.VISUAL_ID:
 			return createLink_4022(containerView, index, persisted, preferencesHint);
 		case ContainmentLinkEditPart.VISUAL_ID:
 			return createLink_4023(containerView, index, persisted, preferencesHint);
@@ -2568,7 +2568,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(UMLVisualIDRegistry.getType(AddedLinkEditPart.VISUAL_ID));
+		edge.setType(UMLVisualIDRegistry.getType(ContainmentSubLinkEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();

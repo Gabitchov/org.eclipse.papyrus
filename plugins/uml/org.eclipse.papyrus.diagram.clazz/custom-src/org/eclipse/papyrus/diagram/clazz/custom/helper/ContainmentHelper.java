@@ -52,7 +52,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.command.CustomCreateContainmentL
 import org.eclipse.papyrus.diagram.clazz.custom.command.CustomDropAppliedStereotypeCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomDeferredCreateConnectionViewCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentSubLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
@@ -313,7 +313,7 @@ public class ContainmentHelper extends ElementHelper {
 	 */
 	public static boolean isReorientContainmentLink(ReconnectRequest request) {
 		int visualId = getVisualID(request);
-		return visualId == AddedLinkEditPart.VISUAL_ID;
+		return visualId == ContainmentSubLinkEditPart.VISUAL_ID;
 	}
 
 	/**
@@ -368,7 +368,7 @@ public class ContainmentHelper extends ElementHelper {
 	 * @return true, if is containment link
 	 */
 	public static boolean isContainmentLink(Edge edge) {
-		return UMLVisualIDRegistry.getVisualID(edge) == AddedLinkEditPart.VISUAL_ID;
+		return UMLVisualIDRegistry.getVisualID(edge) == ContainmentSubLinkEditPart.VISUAL_ID;
 	}
 
 	/**

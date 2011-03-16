@@ -584,8 +584,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case TargetISLinkLabelEditPart.VISUAL_ID:
 				return new TargetISLinkLabelEditPart(view);
 
-			case AddedLinkEditPart.VISUAL_ID:
-				return new AddedLinkEditPart(view);
+			case ContainmentSubLinkEditPart.VISUAL_ID:
+				return new ContainmentSubLinkEditPart(view);
 
 			case ContainmentLinkEditPart.VISUAL_ID:
 				return new ContainmentLinkEditPart(view);

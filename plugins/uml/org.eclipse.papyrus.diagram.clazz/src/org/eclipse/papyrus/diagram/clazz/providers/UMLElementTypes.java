@@ -28,11 +28,10 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassDashedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class2EditPart;
@@ -54,6 +53,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintConstrainedElement
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentLinkEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentSubLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DefaultNamedElementEditPart;
@@ -1052,7 +1052,7 @@ public class UMLElementTypes {
 			return GeneralizationSet_4020;
 		case InstanceSpecificationLinkEditPart.VISUAL_ID:
 			return InstanceSpecification_4021;
-		case AddedLinkEditPart.VISUAL_ID:
+		case ContainmentSubLinkEditPart.VISUAL_ID:
 			return Link_4022;
 		case ContainmentLinkEditPart.VISUAL_ID:
 			return Link_4023;
