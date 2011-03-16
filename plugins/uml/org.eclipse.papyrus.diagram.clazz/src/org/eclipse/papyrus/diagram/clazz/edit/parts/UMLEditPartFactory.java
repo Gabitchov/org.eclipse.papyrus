@@ -422,8 +422,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID:
 				return new TemplateSignatureTemplateParameterCompartmentEditPart(view);
 
-			case CommentLinkDescriptorEditPart.VISUAL_ID:
-				return new CommentLinkDescriptorEditPart(view);
+			case AssociationClassDashedLinkEditPart.VISUAL_ID:
+				return new AssociationClassDashedLinkEditPart(view);
 
 			case AssociationClass2EditPart.VISUAL_ID:
 				return new AssociationClass2EditPart(view);

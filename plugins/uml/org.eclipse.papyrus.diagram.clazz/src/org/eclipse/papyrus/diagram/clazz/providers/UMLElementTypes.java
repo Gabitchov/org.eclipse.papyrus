@@ -31,6 +31,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassDashedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
@@ -43,7 +44,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassifierTemplateParameterE
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Comment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentLinkDescriptorEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectableElementTemplateParameterEditPart;
@@ -1010,7 +1010,7 @@ public class UMLElementTypes {
 			return Node_3032;
 		case TemplateSignatureEditPart.VISUAL_ID:
 			return TemplateSignature_3033;
-		case CommentLinkDescriptorEditPart.VISUAL_ID:
+		case AssociationClassDashedLinkEditPart.VISUAL_ID:
 			return Link_4016;
 		case AssociationClass2EditPart.VISUAL_ID:
 			return AssociationClass_4017;

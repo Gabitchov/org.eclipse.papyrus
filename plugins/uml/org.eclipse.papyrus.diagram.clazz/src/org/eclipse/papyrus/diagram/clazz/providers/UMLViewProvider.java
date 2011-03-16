@@ -369,7 +369,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		IElementType elementType = getSemanticElementType(semanticAdapter);
 		String elementTypeHint = ((IHintedType)elementType).getSemanticHint();
 		switch(UMLVisualIDRegistry.getVisualID(elementTypeHint)) {
-		case CommentLinkDescriptorEditPart.VISUAL_ID:
+		case AssociationClassDashedLinkEditPart.VISUAL_ID:
 			return createLink_4016(containerView, index, persisted, preferencesHint);
 		case AssociationClass2EditPart.VISUAL_ID:
 			return createAssociationClass_4017(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
@@ -1731,7 +1731,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(UMLVisualIDRegistry.getType(CommentLinkDescriptorEditPart.VISUAL_ID));
+		edge.setType(UMLVisualIDRegistry.getType(AssociationClassDashedLinkEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();

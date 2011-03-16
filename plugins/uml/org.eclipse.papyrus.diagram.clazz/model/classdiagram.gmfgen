@@ -3990,10 +3990,10 @@
       </topLevelNodes>
       <links
           visualID="4016"
-          editPartClassName="CommentLinkDescriptorEditPart"
-          itemSemanticEditPolicyClassName="CommentLinkDescriptorItemSemanticEditPolicy"
-          createCommandClassName="CommentLinkDescriptorCreateCommand"
-          reorientCommandClassName="CommentLinkDescriptorReorientCommand">
+          editPartClassName="AssociationClassDashedLinkEditPart"
+          itemSemanticEditPolicyClassName="AssociationClassDashedLinkItemSemanticEditPolicy"
+          createCommandClassName="AssociationClassDashedLinkCreateCommand"
+          reorientCommandClassName="AssociationClassDashedLinkReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType

@@ -26,7 +26,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEdit
 /**
  * @generated
  */
-public class CommentLinkDescriptorEditPart extends ConnectionNodeEditPart
+public class AssociationClassDashedLinkEditPart extends ConnectionNodeEditPart
 
 implements ITreeBranchEditPart {
 
@@ -38,7 +38,7 @@ implements ITreeBranchEditPart {
 	/**
 	 * @generated
 	 */
-	public CommentLinkDescriptorEditPart(View view) {
+	public AssociationClassDashedLinkEditPart(View view) {
 		super(view);
 	}
 

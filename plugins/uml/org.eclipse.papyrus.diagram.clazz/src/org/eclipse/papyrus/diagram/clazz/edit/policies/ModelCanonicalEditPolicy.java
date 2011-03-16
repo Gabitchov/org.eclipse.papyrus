@@ -55,6 +55,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassDashedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
@@ -62,7 +63,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Comment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentLinkDescriptorEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
@@ -325,7 +325,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		for(Iterator linksIterator = existingLinks.iterator(); linksIterator.hasNext();) {
 			Edge nextDiagramLink = (Edge)linksIterator.next();
 			int diagramLinkVisualID = UMLVisualIDRegistry.getVisualID(nextDiagramLink);
-			if(diagramLinkVisualID == -1 || diagramLinkVisualID == CommentLinkDescriptorEditPart.VISUAL_ID || diagramLinkVisualID == AddedLinkEditPart.VISUAL_ID || diagramLinkVisualID == ContainmentLinkEditPart.VISUAL_ID) {
+			if(diagramLinkVisualID == -1 || diagramLinkVisualID == AssociationClassDashedLinkEditPart.VISUAL_ID || diagramLinkVisualID == AddedLinkEditPart.VISUAL_ID || diagramLinkVisualID == ContainmentLinkEditPart.VISUAL_ID) {
 				if(nextDiagramLink.getSource() != null && nextDiagramLink.getTarget() != null) {
 					linksIterator.remove();
 				}
