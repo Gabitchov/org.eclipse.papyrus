@@ -230,7 +230,7 @@ http://www.eclipse.org/legal/epl-v10.html
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
+<!--
    <plugin
          id="org.eclipse.papyrus.documentation.view"
          download-size="0"
@@ -244,7 +244,7 @@ http://www.eclipse.org/legal/epl-v10.html
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
+-->
    <plugin
          id="org.eclipse.papyrus.navigation"
          download-size="0"
