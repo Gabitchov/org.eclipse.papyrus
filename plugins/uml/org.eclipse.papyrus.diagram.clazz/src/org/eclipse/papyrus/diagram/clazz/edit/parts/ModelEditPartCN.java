@@ -189,10 +189,10 @@ NamedElementEditPart {
 			return true;
 		}
 
-		if(childEditPart instanceof ModelPackageableElementCompartment2EditPart) {
+		if(childEditPart instanceof ModelPackageableElementCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((ModelPackageableElementCompartment2EditPart)childEditPart).getFigure());
+			pane.add(((ModelPackageableElementCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
 
@@ -220,10 +220,10 @@ NamedElementEditPart {
 		if(childEditPart instanceof ModelNameEditPartCN) {
 			return true;
 		}
-		if(childEditPart instanceof ModelPackageableElementCompartment2EditPart) {
+		if(childEditPart instanceof ModelPackageableElementCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.remove(((ModelPackageableElementCompartment2EditPart)childEditPart).getFigure());
+			pane.remove(((ModelPackageableElementCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
 		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
@@ -261,7 +261,7 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof ModelPackageableElementCompartment2EditPart) {
+		if(editPart instanceof ModelPackageableElementCompartmentEditPartCN) {
 			return getPrimaryShape().getPackageableElementFigure();
 		}
 		if(editPart instanceof IBorderItemEditPart) {

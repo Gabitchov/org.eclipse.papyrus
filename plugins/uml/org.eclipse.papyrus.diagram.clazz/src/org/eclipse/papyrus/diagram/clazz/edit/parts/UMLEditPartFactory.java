@@ -365,8 +365,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InterfaceNestedClassifierCompartmentEditPartCN.VISUAL_ID:
 				return new InterfaceNestedClassifierCompartmentEditPartCN(view);
 
-			case ModelPackageableElementCompartment2EditPart.VISUAL_ID:
-				return new ModelPackageableElementCompartment2EditPart(view);
+			case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
+				return new ModelPackageableElementCompartmentEditPartCN(view);
 
 			case EnumerationEnumerationLiteralCompartment2EditPart.VISUAL_ID:
 				return new EnumerationEnumerationLiteralCompartment2EditPart(view);

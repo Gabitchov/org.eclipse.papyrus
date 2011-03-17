@@ -6183,9 +6183,9 @@
       </compartments>
       <compartments
           visualID="7030"
-          editPartClassName="ModelPackageableElementCompartment2EditPart"
-          itemSemanticEditPolicyClassName="ModelPackageableElementCompartment2ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="ModelPackageableElementCompartment2CanonicalEditPolicy"
+          editPartClassName="ModelPackageableElementCompartmentEditPartCN"
+          itemSemanticEditPolicyClassName="ModelPackageableElementCompartmentItemSemanticEditPolicyCN"
+          canonicalEditPolicyClassName="ModelPackageableElementCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30"
           title="PackageableElementCompartment"
           canCollapse="false"

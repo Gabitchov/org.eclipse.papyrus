@@ -150,7 +150,7 @@ public class UMLDiagramUpdater {
 			return getInterfaceOperationCompartment_7028SemanticChildren(view);
 		case InterfaceNestedClassifierCompartmentEditPartCN.VISUAL_ID:
 			return getInterfaceNestedClassifierCompartment_7029SemanticChildren(view);
-		case ModelPackageableElementCompartment2EditPart.VISUAL_ID:
+		case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
 			return getModelPackageableElementCompartment_7030SemanticChildren(view);
 		case EnumerationEnumerationLiteralCompartment2EditPart.VISUAL_ID:
 			return getEnumerationEnumerationLiteralCompartment_7031SemanticChildren(view);

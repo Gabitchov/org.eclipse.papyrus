@@ -31,12 +31,12 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class ModelPackageableElementCompartment2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class ModelPackageableElementCompartmentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public ModelPackageableElementCompartment2ItemSemanticEditPolicy() {
+	public ModelPackageableElementCompartmentItemSemanticEditPolicyCN() {
 		super(UMLElementTypes.Model_3024);
 	}
 
