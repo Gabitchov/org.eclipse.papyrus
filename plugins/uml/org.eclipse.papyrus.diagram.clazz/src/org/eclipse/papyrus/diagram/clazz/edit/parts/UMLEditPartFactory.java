@@ -353,8 +353,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ComponentNestedClassifierCompartmentEditPartCN.VISUAL_ID:
 				return new ComponentNestedClassifierCompartmentEditPartCN(view);
 
-			case SignalAttributeCompartment2EditPart.VISUAL_ID:
-				return new SignalAttributeCompartment2EditPart(view);
+			case SignalAttributeCompartmentEditPartCN.VISUAL_ID:
+				return new SignalAttributeCompartmentEditPartCN(view);
 
 			case InterfaceAttributeCompartment2EditPart.VISUAL_ID:
 				return new InterfaceAttributeCompartment2EditPart(view);

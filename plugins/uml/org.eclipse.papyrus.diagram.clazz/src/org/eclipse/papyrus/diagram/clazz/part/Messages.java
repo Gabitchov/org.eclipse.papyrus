@@ -795,7 +795,7 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String SignalAttributeCompartment2EditPart_title;
+	public static String SignalAttributeCompartmentEditPartCN_title;
 
 	/**
 	 * @generated

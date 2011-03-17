@@ -6083,9 +6083,9 @@
       </compartments>
       <compartments
           visualID="7026"
-          editPartClassName="SignalAttributeCompartment2EditPart"
-          itemSemanticEditPolicyClassName="SignalAttributeCompartment2ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="SignalAttributeCompartment2CanonicalEditPolicy"
+          editPartClassName="SignalAttributeCompartmentEditPartCN"
+          itemSemanticEditPolicyClassName="SignalAttributeCompartmentItemSemanticEditPolicyCN"
+          canonicalEditPolicyClassName="SignalAttributeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.8"
           title="AttributeCompartment"
           needsTitle="false"

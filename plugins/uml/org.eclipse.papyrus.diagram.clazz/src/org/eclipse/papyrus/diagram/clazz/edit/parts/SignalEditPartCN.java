@@ -192,10 +192,10 @@ ClassifierEditPart {
 			return true;
 		}
 
-		if(childEditPart instanceof SignalAttributeCompartment2EditPart) {
+		if(childEditPart instanceof SignalAttributeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((SignalAttributeCompartment2EditPart)childEditPart).getFigure());
+			pane.add(((SignalAttributeCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
 
@@ -216,10 +216,10 @@ ClassifierEditPart {
 		if(childEditPart instanceof SignalNameEditPartCN) {
 			return true;
 		}
-		if(childEditPart instanceof SignalAttributeCompartment2EditPart) {
+		if(childEditPart instanceof SignalAttributeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.remove(((SignalAttributeCompartment2EditPart)childEditPart).getFigure());
+			pane.remove(((SignalAttributeCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
 		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
@@ -253,7 +253,7 @@ ClassifierEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof SignalAttributeCompartment2EditPart) {
+		if(editPart instanceof SignalAttributeCompartmentEditPartCN) {
 			return getPrimaryShape().getAttributeCompartmentFigure();
 		}
 		if(editPart instanceof IBorderItemEditPart) {
@@ -1861,7 +1861,7 @@ ClassifierEditPart {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
 			if(type == UMLElementTypes.Property_3005) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(SignalAttributeCompartment2EditPart.VISUAL_ID));
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(SignalAttributeCompartmentEditPartCN.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);

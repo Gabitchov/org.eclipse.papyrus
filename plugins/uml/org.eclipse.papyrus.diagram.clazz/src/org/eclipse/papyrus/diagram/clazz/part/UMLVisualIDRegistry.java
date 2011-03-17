@@ -512,7 +512,7 @@ public class UMLVisualIDRegistry {
 				return NestedClassForComponentEditPart.VISUAL_ID;
 			}
 			break;
-		case SignalAttributeCompartment2EditPart.VISUAL_ID:
+		case SignalAttributeCompartmentEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -1168,7 +1168,7 @@ public class UMLVisualIDRegistry {
 			if(SignalNameEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(SignalAttributeCompartment2EditPart.VISUAL_ID == nodeVisualID) {
+			if(SignalAttributeCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
@@ -1394,7 +1394,7 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case SignalAttributeCompartment2EditPart.VISUAL_ID:
+		case SignalAttributeCompartmentEditPartCN.VISUAL_ID:
 			if(PropertyForSignalEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
