@@ -55,7 +55,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationTemplateParameterEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
@@ -223,7 +223,7 @@ public class InheritedClassDiagramElementViewProvider extends UMLViewProvider {
 			return createNamedElement_2098(domainElement, containerView, index, persisted, preferencesHint);
 		case PropertyForComponentEditPart.VISUAL_ID:
 			return createProperty_3002(domainElement, containerView, index, persisted, preferencesHint);
-		case OperationEditPart.VISUAL_ID:
+		case OperationForComponentEditPart.VISUAL_ID:
 			return createOperation_3003(domainElement, containerView, index, persisted, preferencesHint);
 		case Class2EditPart.VISUAL_ID:
 			return createClass_3004(domainElement, containerView, index, persisted, preferencesHint);

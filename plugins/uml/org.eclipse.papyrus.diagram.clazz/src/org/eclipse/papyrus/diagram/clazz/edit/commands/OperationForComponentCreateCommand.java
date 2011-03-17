@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * @generated
  */
-public class OperationCreateCommand extends EditElementCommand {
+public class OperationForComponentCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -47,7 +47,7 @@ public class OperationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public OperationCreateCommand(CreateElementRequest req, EObject eObject) {
+	public OperationForComponentCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -56,14 +56,14 @@ public class OperationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static OperationCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new OperationCreateCommand(req, eObject);
+	public static OperationForComponentCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new OperationForComponentCreateCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public OperationCreateCommand(CreateElementRequest req) {
+	public OperationForComponentCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 

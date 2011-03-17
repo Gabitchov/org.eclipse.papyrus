@@ -173,8 +173,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case PropertyForComponentEditPart.VISUAL_ID:
 				return new PropertyForComponentEditPart(view);
 
-			case OperationEditPart.VISUAL_ID:
-				return new OperationEditPart(view);
+			case OperationForComponentEditPart.VISUAL_ID:
+				return new OperationForComponentEditPart(view);
 
 			case Class2EditPart.VISUAL_ID:
 				return new Class2EditPart(view);

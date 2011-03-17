@@ -96,11 +96,11 @@
       <childNodes
           xsi:type="gmfgen:GenChildLabelNode"
           visualID="3003"
-          editPartClassName="OperationEditPart"
+          editPartClassName="OperationForComponentEditPart"
           itemSemanticEditPolicyClassName="OperationItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="OperationCanonicalEditPolicy"
-          graphicalNodeEditPolicyClassName="OperationGraphicalNodeEditPolicy"
-          createCommandClassName="OperationCreateCommand"
+          canonicalEditPolicyClassName="OperationForComponentCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="OperationForComponentGraphicalNodeEditPolicy"
+          createCommandClassName="OperationForComponentCreateCommand"
           containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.12 /0/@diagram/@compartments.34">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>

@@ -79,7 +79,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationTemplateParameterEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
@@ -944,7 +944,7 @@ public class UMLElementTypes {
 			return NamedElement_2098;
 		case PropertyForComponentEditPart.VISUAL_ID:
 			return Property_3002;
-		case OperationEditPart.VISUAL_ID:
+		case OperationForComponentEditPart.VISUAL_ID:
 			return Operation_3003;
 		case Class2EditPart.VISUAL_ID:
 			return Class_3004;
