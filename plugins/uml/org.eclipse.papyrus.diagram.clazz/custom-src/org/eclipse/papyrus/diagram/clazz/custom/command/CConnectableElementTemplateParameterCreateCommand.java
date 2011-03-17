@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 
 public class CConnectableElementTemplateParameterCreateCommand extends ConnectableElementTemplateParameterCreateCommand {
+
 	public CConnectableElementTemplateParameterCreateCommand(CreateElementRequest req) {
 		super(req);
 		// TODO Auto-generated constructor stub
@@ -44,7 +45,7 @@ public class CConnectableElementTemplateParameterCreateCommand extends Connectab
 		owner.getOwnedParameters().add(newElement);
 		TemplateSignature childHolder = (TemplateSignature)getElementToEdit();
 		childHolder.getParameters().add(newElement);
-		TemplateParameterConfigurationDialog configurationDialog= new TemplateParameterConfigurationDialog(new Shell(), SWT.APPLICATION_MODAL,UMLPackage.eINSTANCE.getConnectableElement());
+		TemplateParameterConfigurationDialog configurationDialog = new TemplateParameterConfigurationDialog(new Shell(), SWT.APPLICATION_MODAL, UMLPackage.eINSTANCE.getConnectableElement());
 		configurationDialog.setOwner(childHolder);
 		configurationDialog.open();
 		newElement.setParameteredElement(configurationDialog.getParameterableElement());

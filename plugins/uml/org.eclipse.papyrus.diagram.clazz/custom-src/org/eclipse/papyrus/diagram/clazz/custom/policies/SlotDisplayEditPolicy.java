@@ -26,20 +26,18 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Slot;
-import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
-import org.omg.CORBA.portable.ValueInputStream;
 
 /**
  * It is used to refresh the label the slot
  */
-public class SlotDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener{
+public class SlotDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
 
 
-	public static String SLOT_DISPLAY="SLOT_DISPLAY";
+	public static String SLOT_DISPLAY = "SLOT_DISPLAY";
+
 	/**
 	 * Stores the semantic element related to the edit policy. If resolveSemanticElement is used, there are problems when the edit part is getting
 	 * destroyed, i.e. the link to the semantic element is removed, but the listeners should still be removed
@@ -76,6 +74,7 @@ public class SlotDisplayEditPolicy extends GraphicalEditPolicyEx implements Noti
 		}
 		return null;
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -92,13 +91,13 @@ public class SlotDisplayEditPolicy extends GraphicalEditPolicyEx implements Noti
 			// adds a listener on the view and the element controlled by the editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
 			getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
-			if( hostSemanticElement!=null){
-				Slot slot= (Slot)hostSemanticElement;
-				Iterator<ValueSpecification> iterator= slot.getValues().iterator();
+			if(hostSemanticElement != null) {
+				Slot slot = (Slot)hostSemanticElement;
+				Iterator<ValueSpecification> iterator = slot.getValues().iterator();
 				while(iterator.hasNext()) {
 					ValueSpecification valueSpecification = (ValueSpecification)iterator.next();
 					getDiagramEventBroker().addNotificationListener(valueSpecification, this);
-					
+
 				}
 			}
 
@@ -120,32 +119,33 @@ public class SlotDisplayEditPolicy extends GraphicalEditPolicyEx implements Noti
 		}
 		getDiagramEventBroker().removeNotificationListener(view, this);
 		getDiagramEventBroker().removeNotificationListener(hostSemanticElement, this);
-		if( hostSemanticElement!=null){
-			Slot slot= (Slot)hostSemanticElement;
-			Iterator<ValueSpecification> iterator= slot.getValues().iterator();
+		if(hostSemanticElement != null) {
+			Slot slot = (Slot)hostSemanticElement;
+			Iterator<ValueSpecification> iterator = slot.getValues().iterator();
 			while(iterator.hasNext()) {
 				ValueSpecification valueSpecification = (ValueSpecification)iterator.next();
 				getDiagramEventBroker().removeNotificationListener(valueSpecification, this);
-				
+
 			}
 		}
 		// removes the reference to the semantic element
 		hostSemanticElement = null;
 	}
+
 	protected void refreshDisplay() {
 		getHost().refresh();
-		
+
 
 	}
 
 	public void notifyChanged(Notification notification) {
-		if(notification.getEventType()==Notification.ADD){
-			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getSlot_Value())){
+		if(notification.getEventType() == Notification.ADD) {
+			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getSlot_Value())) {
 				getDiagramEventBroker().addNotificationListener(((EObject)notification.getNewValue()), this);
-			
+
 			}
-		}else if(notification.getEventType()==Notification.REMOVE){
-			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getSlot_Value())){
+		} else if(notification.getEventType() == Notification.REMOVE) {
+			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getSlot_Value())) {
 				getDiagramEventBroker().removeNotificationListener(((EObject)notification.getOldValue()), this);
 			}
 		}

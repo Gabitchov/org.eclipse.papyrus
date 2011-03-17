@@ -1,17 +1,11 @@
 package org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic;
 
-import java.util.Iterator;
-
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
-import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
@@ -20,30 +14,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.command.BranchDependenctReorientCommand;
-import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CTemplateBindingCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.ContainmentLinkReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ContainmentHelper;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentSubLinkEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassLinkEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentAnnotatedElementEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorDurationObservationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorTimeObservationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageImportEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageMergeEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ProfileApplicationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.PackageItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 
 public class CustomPackageItemSemanticEditPolicy extends PackageItemSemanticEditPolicy {
@@ -100,6 +77,7 @@ public class CustomPackageItemSemanticEditPolicy extends PackageItemSemanticEdit
 		}
 		return super.getReorientRefRelationshipSourceCommand(request);
 	}
+
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
@@ -107,7 +85,7 @@ public class CustomPackageItemSemanticEditPolicy extends PackageItemSemanticEdit
 		}
 		return super.getCompleteCreateRelationshipCommand(req);
 	}
-	
+
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
@@ -115,6 +93,7 @@ public class CustomPackageItemSemanticEditPolicy extends PackageItemSemanticEdit
 		}
 		return super.getStartCreateRelationshipCommand(req);
 	}
+
 	@Override
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
 		// TODO Auto-generated method stub

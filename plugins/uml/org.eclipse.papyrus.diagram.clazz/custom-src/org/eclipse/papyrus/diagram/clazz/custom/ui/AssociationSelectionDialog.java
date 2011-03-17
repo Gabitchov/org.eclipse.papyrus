@@ -34,65 +34,73 @@ public class AssociationSelectionDialog extends AbstractAssociationSelectionDial
 
 	/** The selected association. */
 	protected Association selectedAssociation;
-	
+
 	/** The common associations. */
 	protected HashSet<Association> commonAssociations;
-	
+
 	/**
 	 * Instantiates a new association selection dialog.
-	 *
-	 * @param parent the parent shell
-	 * @param style the style
-	 * @param commonAssociations list of assocation in which we would like to llok for
+	 * 
+	 * @param parent
+	 *        the parent shell
+	 * @param style
+	 *        the style
+	 * @param commonAssociations
+	 *        list of assocation in which we would like to llok for
 	 */
 	public AssociationSelectionDialog(Shell parent, int style, HashSet<Association> commonAssociations) {
 		super(parent, style);
-		this.commonAssociations=commonAssociations;
-		this.selectedAssociation=(Association)commonAssociations.toArray()[0];
+		this.commonAssociations = commonAssociations;
+		this.selectedAssociation = (Association)commonAssociations.toArray()[0];
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.diagram.clazz.custom.ui.AbstractAssociationSelectionDialog#createContents()
-	 *
+	 * 
 	 */
-	
+
 	protected void createContents() {
 		// TODO Auto-generated method stub
 		super.createContents();
 		final ILabelProvider labelProvider = new AdapterFactoryLabelProvider(org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
-		final IStructuredContentProvider  associationContentProvider=new IStructuredContentProvider() {
-			
-			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {}
-			
-			public void dispose() {}
-			
+		final IStructuredContentProvider associationContentProvider = new IStructuredContentProvider() {
+
+			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+			}
+
+			public void dispose() {
+			}
+
 			public Object[] getElements(Object inputElement) {
 				return commonAssociations.toArray();
 			}
 		};
-		final TableViewer tableViewer= new TableViewer(table);
+		final TableViewer tableViewer = new TableViewer(table);
 		tableViewer.setLabelProvider(labelProvider);
 		tableViewer.setContentProvider(associationContentProvider);
 		tableViewer.setInput(commonAssociations);
 		btnOk.addMouseListener(new MouseListener() {
 
 			public void mouseUp(MouseEvent e) {
-				ISelection selection=tableViewer.getSelection();
-				if( selection instanceof IStructuredSelection){
-					selectedAssociation= (Association)((IStructuredSelection)selection).getFirstElement();
+				ISelection selection = tableViewer.getSelection();
+				if(selection instanceof IStructuredSelection) {
+					selectedAssociation = (Association)((IStructuredSelection)selection).getFirstElement();
 					shlAssociationselection.close();
 				}
 			}
 
-			public void mouseDown(MouseEvent e) {}
-			public void mouseDoubleClick(MouseEvent e) {}
+			public void mouseDown(MouseEvent e) {
+			}
+
+			public void mouseDoubleClick(MouseEvent e) {
+			}
 		});
 		btnCancel.setVisible(false);
 	}
-	
+
 	/**
 	 * Gets the selected association.
-	 *
+	 * 
 	 * @return the selected association
 	 */
 	public Association getSelectedAssociation() {

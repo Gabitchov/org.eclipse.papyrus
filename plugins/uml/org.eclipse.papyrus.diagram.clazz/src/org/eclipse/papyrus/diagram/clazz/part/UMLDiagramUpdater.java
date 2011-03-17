@@ -1254,7 +1254,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Property4EditPart.VISUAL_ID) {
+			if(visualID == PropertyForClassCNEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1478,7 +1478,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Property4EditPart.VISUAL_ID) {
+			if(visualID == PropertyForClassCNEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1792,7 +1792,7 @@ public class UMLDiagramUpdater {
 			return getClass_3010ContainedLinks(view);
 		case ReceptionEditPart.VISUAL_ID:
 			return getReception_3011ContainedLinks(view);
-		case Property4EditPart.VISUAL_ID:
+		case PropertyForClassCNEditPart.VISUAL_ID:
 			return getProperty_3012ContainedLinks(view);
 		case Operation3EditPart.VISUAL_ID:
 			return getOperation_3013ContainedLinks(view);
@@ -1943,7 +1943,7 @@ public class UMLDiagramUpdater {
 			return getClass_3010IncomingLinks(view);
 		case ReceptionEditPart.VISUAL_ID:
 			return getReception_3011IncomingLinks(view);
-		case Property4EditPart.VISUAL_ID:
+		case PropertyForClassCNEditPart.VISUAL_ID:
 			return getProperty_3012IncomingLinks(view);
 		case Operation3EditPart.VISUAL_ID:
 			return getOperation_3013IncomingLinks(view);
@@ -2094,7 +2094,7 @@ public class UMLDiagramUpdater {
 			return getClass_3010OutgoingLinks(view);
 		case ReceptionEditPart.VISUAL_ID:
 			return getReception_3011OutgoingLinks(view);
-		case Property4EditPart.VISUAL_ID:
+		case PropertyForClassCNEditPart.VISUAL_ID:
 			return getProperty_3012OutgoingLinks(view);
 		case Operation3EditPart.VISUAL_ID:
 			return getOperation_3013OutgoingLinks(view);

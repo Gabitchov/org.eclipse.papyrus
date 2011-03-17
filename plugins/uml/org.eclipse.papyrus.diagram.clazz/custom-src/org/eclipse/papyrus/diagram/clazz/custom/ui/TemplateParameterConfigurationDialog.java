@@ -31,26 +31,26 @@ import org.eclipse.uml2.uml.TemplateSignature;
  * this class is used to select parameterable element by taking account the kind of the paramter.
  */
 public class TemplateParameterConfigurationDialog extends AbstractTemplateParameterConfigurationDialog {
-	
+
 	/** The templatesignature. */
 	protected TemplateSignature templatesignature;
-	
+
 	/** The parameterable element. */
 	protected ParameterableElement parameterableElement;
-	
+
 	/** The defaultparameterable element. */
 	protected ParameterableElement defaultparameterableElement;
-	
+
 	/** The eclass. */
 	protected EClass eclass;
-	
-	/** The not wanted. */
-	protected List<EClass> notWanted=null;
 
-	
+	/** The not wanted. */
+	protected List<EClass> notWanted = null;
+
+
 	/**
 	 * Gets the parameterable element.
-	 *
+	 * 
 	 * @return the parameterable element
 	 */
 	public ParameterableElement getParameterableElement() {
@@ -60,7 +60,7 @@ public class TemplateParameterConfigurationDialog extends AbstractTemplateParame
 
 	/**
 	 * Gets the defaultparameterable element.
-	 *
+	 * 
 	 * @return the defaultparameterable element
 	 */
 	public ParameterableElement getDefaultparameterableElement() {
@@ -69,46 +69,54 @@ public class TemplateParameterConfigurationDialog extends AbstractTemplateParame
 
 	/**
 	 * Instantiates a new template parameter configuration dialog.
-	 *
-	 * @param parent the shell parent
-	 * @param style the style see {@link SWT}
-	 * @param elementtype the elementtype the kind of parameterable element that we look for
+	 * 
+	 * @param parent
+	 *        the shell parent
+	 * @param style
+	 *        the style see {@link SWT}
+	 * @param elementtype
+	 *        the elementtype the kind of parameterable element that we look for
 	 */
-	public TemplateParameterConfigurationDialog(Shell parent, int style,EClass elementtype) {
+	public TemplateParameterConfigurationDialog(Shell parent, int style, EClass elementtype) {
 		super(parent, style);
-		this.eclass=elementtype;
-		this.notWanted=new ArrayList<EClass>();
+		this.eclass = elementtype;
+		this.notWanted = new ArrayList<EClass>();
 	}
-	
+
 	/**
 	 * Instantiates a new template parameter configuration dialog.
-	 *
-	 * @param parent the parent
-	 * @param style the style
-	 * @param elementtype the elementtype
-	 * @param eclassNotWanted the list of eclass that we do not want to select, can not be null
+	 * 
+	 * @param parent
+	 *        the parent
+	 * @param style
+	 *        the style
+	 * @param elementtype
+	 *        the elementtype
+	 * @param eclassNotWanted
+	 *        the list of eclass that we do not want to select, can not be null
 	 */
-	public TemplateParameterConfigurationDialog(Shell parent, int style,EClass elementtype,List<EClass> eclassNotWanted) {
+	public TemplateParameterConfigurationDialog(Shell parent, int style, EClass elementtype, List<EClass> eclassNotWanted) {
 		super(parent, style);
-		this.eclass=elementtype;
-		assert(notWanted!=null);
-		this.notWanted=eclassNotWanted;
+		this.eclass = elementtype;
+		assert (notWanted != null);
+		this.notWanted = eclassNotWanted;
 	}
-	
+
 	/**
 	 * Sets the owner.
-	 *
-	 * @param templateSignature the new owner
+	 * 
+	 * @param templateSignature
+	 *        the new owner
 	 */
-	public void setOwner(TemplateSignature templateSignature){
-		this.templatesignature=templateSignature;
+	public void setOwner(TemplateSignature templateSignature) {
+		this.templatesignature = templateSignature;
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.diagram.clazz.custom.ui.AbstractTemplateParameterConfigurationDialog#createContents()
-	 *
+	 * 
 	 */
-	
+
 	@Override
 	protected void createContents() {
 		// TODO Auto-generated method stub
@@ -119,10 +127,10 @@ public class TemplateParameterConfigurationDialog extends AbstractTemplateParame
 		getChoosePararameteredElementButton().addMouseListener(new MouseListener() {
 
 			public void mouseUp(MouseEvent e) {
-				
-				ElementChooseDialog elementChoose= new ElementChooseDialog(new Shell(), SWT.None, templatesignature.getTemplate(),eclass, notWanted);
-				if(elementChoose.open() !=null) {
-					parameterableElement=((ParameterableElement)elementChoose.getSelectedElement());
+
+				ElementChooseDialog elementChoose = new ElementChooseDialog(new Shell(), SWT.None, templatesignature.getTemplate(), eclass, notWanted);
+				if(elementChoose.open() != null) {
+					parameterableElement = ((ParameterableElement)elementChoose.getSelectedElement());
 					labelProvider.getText(parameterableElement);
 					getParameteredElementContent().setText(labelProvider.getText(parameterableElement));
 					getParameteredElementContent().setImage(labelProvider.getImage(parameterableElement));
@@ -131,17 +139,20 @@ public class TemplateParameterConfigurationDialog extends AbstractTemplateParame
 
 			}
 
-			public void mouseDown(MouseEvent e) {}
-			public void mouseDoubleClick(MouseEvent e) {}
+			public void mouseDown(MouseEvent e) {
+			}
+
+			public void mouseDoubleClick(MouseEvent e) {
+			}
 		});
 		getChooseDefaultParameterButton().addMouseListener(new MouseListener() {
 
 
 			public void mouseUp(MouseEvent e) {
-				if(parameterableElement!=null){
-					ElementChooseDialog elementChoose= new ElementChooseDialog(new Shell(), SWT.None, templatesignature.getTemplate(),parameterableElement.eClass());
-					if(elementChoose.open() !=null) {
-						defaultparameterableElement=((ParameterableElement)elementChoose.getSelectedElement());
+				if(parameterableElement != null) {
+					ElementChooseDialog elementChoose = new ElementChooseDialog(new Shell(), SWT.None, templatesignature.getTemplate(), parameterableElement.eClass());
+					if(elementChoose.open() != null) {
+						defaultparameterableElement = ((ParameterableElement)elementChoose.getSelectedElement());
 						labelProvider.getText(defaultparameterableElement);
 						getDefaultElementContent().setText(labelProvider.getText(defaultparameterableElement));
 						getDefaultElementContent().setImage(labelProvider.getImage(defaultparameterableElement));
@@ -149,19 +160,25 @@ public class TemplateParameterConfigurationDialog extends AbstractTemplateParame
 				}
 			}
 
-			public void mouseDown(MouseEvent e) {}
-			public void mouseDoubleClick(MouseEvent e) {}
+			public void mouseDown(MouseEvent e) {
+			}
+
+			public void mouseDoubleClick(MouseEvent e) {
+			}
 		});
 		getBtnCancel().addMouseListener(new MouseListener() {
 
 			public void mouseUp(MouseEvent e) {
 				getParent().close();
-				defaultparameterableElement=null;
-				parameterableElement=null;
+				defaultparameterableElement = null;
+				parameterableElement = null;
 			}
 
-			public void mouseDown(MouseEvent e) {}
-			public void mouseDoubleClick(MouseEvent e) {}
+			public void mouseDown(MouseEvent e) {
+			}
+
+			public void mouseDoubleClick(MouseEvent e) {
+			}
 		});
 		getBtnExecute().addMouseListener(new MouseListener() {
 
@@ -169,8 +186,11 @@ public class TemplateParameterConfigurationDialog extends AbstractTemplateParame
 				getParent().close();
 			}
 
-			public void mouseDown(MouseEvent e) {}
-			public void mouseDoubleClick(MouseEvent e) {}
+			public void mouseDown(MouseEvent e) {
+			}
+
+			public void mouseDoubleClick(MouseEvent e) {
+			}
 		});
 	}
 }

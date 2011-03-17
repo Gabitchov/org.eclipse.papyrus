@@ -21,7 +21,7 @@ import org.eclipse.uml2.uml.Property;
 
 /**
  * this a listener to refresh the source role of the instance specification
- *
+ * 
  */
 public class ISRoleSourceDisplayEditPolicy extends InstanceSpecificationRoleDisplayEditPolicy {
 

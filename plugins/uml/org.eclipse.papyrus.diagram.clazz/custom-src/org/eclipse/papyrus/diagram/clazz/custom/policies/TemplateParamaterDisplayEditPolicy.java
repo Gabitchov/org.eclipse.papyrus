@@ -29,16 +29,17 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * It is used to refresh the label of all parameter element
  */
-public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener{
+public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
 
-	
-	public static String TEMPLATE_PARAMETER_DISPLAY="TEMPLATE_PARAMETER_DISPLAY";
+
+	public static String TEMPLATE_PARAMETER_DISPLAY = "TEMPLATE_PARAMETER_DISPLAY";
+
 	/**
 	 * Stores the semantic element related to the edit policy. If resolveSemanticElement is used, there are problems when the edit part is getting
 	 * destroyed, i.e. the link to the semantic element is removed, but the listeners should still be removed
 	 */
 	protected Element hostSemanticElement;
-	
+
 	/**
 	 * Returns the view controlled by the host edit part
 	 * 
@@ -56,7 +57,7 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx im
 	protected Element initSemanticElement() {
 		return (Element)getView().getElement();
 	}
-	
+
 	/**
 	 * Gets the diagram event broker from the editing domain.
 	 * 
@@ -69,6 +70,7 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx im
 		}
 		return null;
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -85,10 +87,10 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx im
 			// adds a listener on the view and the element controlled by the editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
 			getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
-			if(((TemplateParameter)hostSemanticElement).getParameteredElement()!=null){
+			if(((TemplateParameter)hostSemanticElement).getParameteredElement() != null) {
 				getDiagramEventBroker().addNotificationListener(((TemplateParameter)hostSemanticElement).getParameteredElement(), this);
 			}
-			if(((TemplateParameter)hostSemanticElement).getDefault()!=null){
+			if(((TemplateParameter)hostSemanticElement).getDefault() != null) {
 				getDiagramEventBroker().addNotificationListener(((TemplateParameter)hostSemanticElement).getDefault(), this);
 			}
 			refreshDisplay();
@@ -96,7 +98,7 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx im
 			Activator.log.error("No semantic element was found during activation of the mask managed label edit policy", null);
 		}
 	}
-	
+
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -113,33 +115,34 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx im
 		if(hostSemanticElement != null) {
 			getDiagramEventBroker().removeNotificationListener(hostSemanticElement, this);
 		}
-		if(((TemplateParameter)hostSemanticElement).getParameteredElement()!=null){
+		if(((TemplateParameter)hostSemanticElement).getParameteredElement() != null) {
 			getDiagramEventBroker().removeNotificationListener(((TemplateParameter)hostSemanticElement).getParameteredElement(), this);
 		}
-		if(((TemplateParameter)hostSemanticElement).getDefault()!=null){
+		if(((TemplateParameter)hostSemanticElement).getDefault() != null) {
 			getDiagramEventBroker().removeNotificationListener(((TemplateParameter)hostSemanticElement).getDefault(), this);
 		}
 
 		// removes the reference to the semantic element
 		hostSemanticElement = null;
 	}
+
 	protected void refreshDisplay() {
 		getHost().refresh();
-		
+
 	}
 
 	public void notifyChanged(Notification notification) {
-		if(notification.getEventType()==Notification.SET){
-			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameter_ParameteredElement())){
+		if(notification.getEventType() == Notification.SET) {
+			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameter_ParameteredElement())) {
 				//add a listener
 				getDiagramEventBroker().addNotificationListener(((TemplateParameter)hostSemanticElement).getParameteredElement(), this);
 			}
-			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameter_Default())){
+			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameter_Default())) {
 				getDiagramEventBroker().addNotificationListener(((TemplateParameter)hostSemanticElement).getDefault(), this);
 			}
 		}
 		refreshDisplay();
 	}
-		
-	
+
+
 }

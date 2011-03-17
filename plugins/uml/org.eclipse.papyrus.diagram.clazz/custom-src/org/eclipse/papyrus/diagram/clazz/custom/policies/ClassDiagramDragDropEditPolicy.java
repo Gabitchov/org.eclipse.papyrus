@@ -17,11 +17,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
@@ -59,7 +56,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy;
@@ -67,11 +63,8 @@ import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.PackageableElement;
-import org.eclipse.uml2.uml.TemplateBinding;
-import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
 
 /**
  * The Class ClassDiagramDragDropEditPolicy.
@@ -117,13 +110,13 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 	 * {@inheritedDoc}
 	 */
 	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID, int linkVISUALID) {
-		
+
 		//respecify for enumeration because this is also an instancespecification
-		if(nodeVISUALID== EnumerationLiteralEditPart.VISUAL_ID){
-			 return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticLink));
+		if(nodeVISUALID == EnumerationLiteralEditPart.VISUAL_ID) {
+			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticLink));
 		}
-		
-		if(nodeVISUALID== InstanceSpecificationEditPart.VISUAL_ID||linkVISUALID ==InstanceSpecificationLinkEditPart.VISUAL_ID) {
+
+		if(nodeVISUALID == InstanceSpecificationEditPart.VISUAL_ID || linkVISUALID == InstanceSpecificationLinkEditPart.VISUAL_ID) {
 			return dropInstanceSpecification(dropRequest, semanticLink, linkVISUALID);
 		}
 
@@ -158,20 +151,24 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 	}
 
 
-/**
- * drop a instance specification as a link or as a node
- * @param dropRequest the drop request
- * @param semanticLink the element
- * @param linkVISUALID the visualID
- * @return the command in charge of the drop
- */
+	/**
+	 * drop a instance specification as a link or as a node
+	 * 
+	 * @param dropRequest
+	 *        the drop request
+	 * @param semanticLink
+	 *        the element
+	 * @param linkVISUALID
+	 *        the visualID
+	 * @return the command in charge of the drop
+	 */
 	protected Command dropInstanceSpecification(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
-		if( semanticLink instanceof InstanceSpecification){
-			if( ((InstanceSpecification)semanticLink).getClassifiers().size()>0){
-				if(((InstanceSpecification)semanticLink).getClassifiers().get(0)instanceof Association){
+		if(semanticLink instanceof InstanceSpecification) {
+			if(((InstanceSpecification)semanticLink).getClassifiers().size() > 0) {
+				if(((InstanceSpecification)semanticLink).getClassifiers().get(0) instanceof Association) {
 					//DROP AS LINK
-					ArrayList<InstanceSpecification> endTypes=InstanceSpecificationLinkHelper.getEnds(((InstanceSpecification)semanticLink));
-					if( endTypes.size()>0){		
+					ArrayList<InstanceSpecification> endTypes = InstanceSpecificationLinkHelper.getEnds(((InstanceSpecification)semanticLink));
+					if(endTypes.size() > 0) {
 						Element source = endTypes.get(0);
 						Element target = endTypes.get(1);
 						return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Instance"), source, target, InstanceSpecificationLinkEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink));
@@ -242,7 +239,7 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 			Element target = (Element)endtypes.toArray()[0];
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4001, dropRequest.getLocation(), semanticLink));
 		}
-		
+
 		if(endtypes.size() == 2) {
 			Element source = (Element)endtypes.toArray()[0];
 			Element target = (Element)endtypes.toArray()[1];
@@ -378,20 +375,20 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 		return new ICommandProxy(cc);
 	}
 
-	
-	
-	
+
+
+
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy#getDropCommand(org.eclipse.gef.requests.ChangeBoundsRequest)
-	 *
+	 * 
 	 */
 	protected Command getDropCommand(ChangeBoundsRequest request) {
 		//this is a drop done by user internal to the diagram
 		//prevent from the drop intra diagram of a template signature into the diagram
-		Iterator editPartsIter= request.getEditParts().iterator();
-		while(editPartsIter.hasNext()){
-			if(editPartsIter.next() instanceof RedefinableTemplateSignatureEditPart){
+		Iterator editPartsIter = request.getEditParts().iterator();
+		while(editPartsIter.hasNext()) {
+			if(editPartsIter.next() instanceof RedefinableTemplateSignatureEditPart) {
 				return UnexecutableCommand.INSTANCE;
 			}
 		}
@@ -403,7 +400,7 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 		req.setLocation(request.getLocation());
 		req.setResizeDirection(request.getResizeDirection());
 		Command cmd = getHost().getCommand(req);
-		if (cmd == null || !cmd.canExecute()) {
+		if(cmd == null || !cmd.canExecute()) {
 			return getDropObjectsCommand(castToDropObjectsRequest(request));
 		}
 

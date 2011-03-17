@@ -21,7 +21,6 @@ import org.eclipse.papyrus.diagram.clazz.custom.command.BranchDependenctReorient
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CTemplateBindingCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CustomAssociationBranchReorientCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;

@@ -675,7 +675,7 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return Property4EditPart.VISUAL_ID;
+				return PropertyForClassCNEditPart.VISUAL_ID;
 			}
 			break;
 		case ClassOperationCompartmentEditPart.VISUAL_ID:
@@ -784,7 +784,7 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return Property4EditPart.VISUAL_ID;
+				return PropertyForClassCNEditPart.VISUAL_ID;
 			}
 			break;
 		case ClassOperationCompartment2EditPart.VISUAL_ID:
@@ -1496,7 +1496,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
-			if(Property4EditPart.VISUAL_ID == nodeVisualID) {
+			if(PropertyForClassCNEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1567,7 +1567,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ClassAttributeCompartment2EditPart.VISUAL_ID:
-			if(Property4EditPart.VISUAL_ID == nodeVisualID) {
+			if(PropertyForClassCNEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -2389,7 +2389,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7035, viewInfo);
 
-		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "org.eclipse.emf.ecore.impl.DynamicEObjectImpl@5bded4 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1825569 (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))");
+		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "org.eclipse.emf.ecore.impl.DynamicEObjectImpl@4e8b33 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@94eb7c (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))");
 
 		root.addNode(2008, viewInfo);
 

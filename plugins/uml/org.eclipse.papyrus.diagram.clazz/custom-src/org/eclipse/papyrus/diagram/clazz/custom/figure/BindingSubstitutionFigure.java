@@ -12,24 +12,19 @@
  */
 package org.eclipse.papyrus.diagram.clazz.custom.figure;
 
-import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.text.FlowPage;
 import org.eclipse.gmf.runtime.draw2d.ui.text.TextFlowEx;
-import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 
 
 /**
  * this is a label that can be etited as multiline
- *
+ * 
  */
-public class BindingSubstitutionFigure extends FlowPage implements  ILabelFigure, IMultilineEditableFigure {
+public class BindingSubstitutionFigure extends FlowPage implements ILabelFigure, IMultilineEditableFigure {
 
 	protected TextFlowEx textFlow;
 
@@ -50,6 +45,7 @@ public class BindingSubstitutionFigure extends FlowPage implements  ILabelFigure
 	public TextFlowEx getTextFlow() {
 		return textFlow;
 	}
+
 	/**
 	 * 
 	 * @return the container of the text flow
@@ -57,6 +53,7 @@ public class BindingSubstitutionFigure extends FlowPage implements  ILabelFigure
 	public FlowPage getPageFlow() {
 		return this;
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure#getText()
@@ -66,7 +63,8 @@ public class BindingSubstitutionFigure extends FlowPage implements  ILabelFigure
 	public String getText() {
 		return textFlow.getText();
 	}
-	/** 
+
+	/**
 	 * @see org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure#setText(java.lang.String)
 	 * 
 	 * @param text
@@ -77,22 +75,24 @@ public class BindingSubstitutionFigure extends FlowPage implements  ILabelFigure
 	}
 
 
-	public  BindingSubstitutionFigure getTemplateBindingFigure() {
+	public BindingSubstitutionFigure getTemplateBindingFigure() {
 		return this;
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure#setIcon(org.eclipse.swt.graphics.Image)
-	 *
+	 * 
 	 */
 	public void setIcon(Image icon) {
 		// TODO Auto-generated method stub
 
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure#getIcon()
-	 *
+	 * 
 	 */
 	public Image getIcon() {
 		// TODO Auto-generated method stub

@@ -29,7 +29,6 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Property;
 
@@ -94,7 +93,7 @@ public class InstanceSpecificationPreferencePage extends AbstractPapyrusElementP
 	}
 
 	/** buttons to select the display kind for the label of the {@link InstanceSpecification} */
-	protected Button  displName, displType;
+	protected Button displName, displType;
 
 	/** current property display style */
 	private int propertyValue = getPreferenceStore().getInt(IPapyrusInstancePreferencesConstant.INSTANCESPECIFICATION_LABEL_DISPLAY_PREFERENCE);

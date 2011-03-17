@@ -44,7 +44,7 @@ public class CClassifierTemplateParameterCreateCommand extends ClassifierTemplat
 		owner.getOwnedParameters().add(newElement);
 		TemplateSignature childHolder = (TemplateSignature)getElementToEdit();
 		childHolder.getParameters().add(newElement);
-		TemplateParameterConfigurationDialog configurationDialog= new TemplateParameterConfigurationDialog(new Shell(), SWT.APPLICATION_MODAL,UMLPackage.eINSTANCE.getClassifier());
+		TemplateParameterConfigurationDialog configurationDialog = new TemplateParameterConfigurationDialog(new Shell(), SWT.APPLICATION_MODAL, UMLPackage.eINSTANCE.getClassifier());
 		configurationDialog.setOwner(childHolder);
 		configurationDialog.open();
 		newElement.setParameteredElement(configurationDialog.getParameterableElement());

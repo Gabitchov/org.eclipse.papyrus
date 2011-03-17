@@ -260,8 +260,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ReceptionEditPart.VISUAL_ID:
 				return new ReceptionEditPart(view);
 
-			case Property4EditPart.VISUAL_ID:
-				return new Property4EditPart(view);
+			case PropertyForClassCNEditPart.VISUAL_ID:
+				return new PropertyForClassCNEditPart(view);
 
 			case Operation3EditPart.VISUAL_ID:
 				return new Operation3EditPart(view);

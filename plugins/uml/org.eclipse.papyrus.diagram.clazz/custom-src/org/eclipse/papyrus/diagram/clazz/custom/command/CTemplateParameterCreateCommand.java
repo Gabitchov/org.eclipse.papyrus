@@ -35,6 +35,7 @@ public class CTemplateParameterCreateCommand extends TemplateParameterCreateComm
 	public CTemplateParameterCreateCommand(CreateElementRequest req) {
 		super(req);
 	}
+
 	/**
 	 * @generated
 	 */
@@ -45,11 +46,11 @@ public class CTemplateParameterCreateCommand extends TemplateParameterCreateComm
 		owner.getOwnedParameters().add(newElement);
 		TemplateSignature childHolder = (TemplateSignature)getElementToEdit();
 		childHolder.getParameters().add(newElement);
-		ArrayList<EClass> eclassnotWanted= new ArrayList<EClass>();
+		ArrayList<EClass> eclassnotWanted = new ArrayList<EClass>();
 		eclassnotWanted.add(UMLPackage.eINSTANCE.getClassifier());
 		eclassnotWanted.add(UMLPackage.eINSTANCE.getOperation());
 		eclassnotWanted.add(UMLPackage.eINSTANCE.getConnectableElement());
-		TemplateParameterConfigurationDialog configurationDialog= new TemplateParameterConfigurationDialog(new Shell(), SWT.APPLICATION_MODAL,UMLPackage.eINSTANCE.getPackageableElement(),eclassnotWanted);
+		TemplateParameterConfigurationDialog configurationDialog = new TemplateParameterConfigurationDialog(new Shell(), SWT.APPLICATION_MODAL, UMLPackage.eINSTANCE.getPackageableElement(), eclassnotWanted);
 		configurationDialog.setOwner(childHolder);
 		configurationDialog.open();
 		newElement.setParameteredElement(configurationDialog.getParameterableElement());

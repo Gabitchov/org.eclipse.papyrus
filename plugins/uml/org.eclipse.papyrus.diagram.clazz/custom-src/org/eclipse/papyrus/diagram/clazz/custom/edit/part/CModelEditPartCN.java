@@ -21,7 +21,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.figure.node.PackageFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.PackageNodePlateFigure;
-import org.eclipse.swt.graphics.Image;
 
 /**
  * this a specific editpart used to overload the method createNodePlate

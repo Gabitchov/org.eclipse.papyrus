@@ -18,7 +18,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.clazz.custom.command.BranchDependenctReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CInstanceSpecificationLinkCreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.InstanceSpecificationLinkCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.InstanceSpecificationItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
@@ -36,20 +35,19 @@ public class CustomInstanceSpecificationItemSemanticEditPolicy extends InstanceS
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
-	
+
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.InstanceSpecification_4021== req.getElementType()) {
-			return getGEFWrapper(new CInstanceSpecificationLinkCreateCommand(req,
-					req.getSource(), req.getTarget()));
+		if(UMLElementTypes.InstanceSpecification_4021 == req.getElementType()) {
+			return getGEFWrapper(new CInstanceSpecificationLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getStartCreateRelationshipCommand(req);
 	}
+
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		// TODO Auto-generated method stub
-		if (UMLElementTypes.InstanceSpecification_4021== req.getElementType()) {
-			return getGEFWrapper(new CInstanceSpecificationLinkCreateCommand(req,
-					req.getSource(), req.getTarget()));
+		if(UMLElementTypes.InstanceSpecification_4021 == req.getElementType()) {
+			return getGEFWrapper(new CInstanceSpecificationLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getCompleteCreateRelationshipCommand(req);
 	}

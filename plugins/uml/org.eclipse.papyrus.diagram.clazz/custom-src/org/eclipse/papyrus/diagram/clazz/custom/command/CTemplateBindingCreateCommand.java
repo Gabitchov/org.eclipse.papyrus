@@ -26,8 +26,8 @@ import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * 
- *custom class in order to fill the propety signature of a template bindinf
- *
+ * custom class in order to fill the propety signature of a template bindinf
+ * 
  */
 public class CTemplateBindingCreateCommand extends org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand {
 
@@ -39,7 +39,7 @@ public class CTemplateBindingCreateCommand extends org.eclipse.papyrus.diagram.c
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand#canExecute()
-	 *
+	 * 
 	 */
 	public boolean canExecute() {
 		if(source == null && target == null) {
@@ -51,7 +51,7 @@ public class CTemplateBindingCreateCommand extends org.eclipse.papyrus.diagram.c
 		if(target != null && false == target instanceof TemplateableElement) {
 			return false;
 		}
-		if(target != null && target instanceof TemplateableElement&& ((TemplateableElement)target).getOwnedTemplateSignature()==null) {
+		if(target != null && target instanceof TemplateableElement && ((TemplateableElement)target).getOwnedTemplateSignature() == null) {
 			return false;
 		}
 		if(getSource() == null) {
@@ -63,11 +63,12 @@ public class CTemplateBindingCreateCommand extends org.eclipse.papyrus.diagram.c
 		}
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateTemplateBinding_4015(getContainer(), getSource(), getTarget());
 	}
-	
+
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
-	 *
+	 * @see org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
+	 *      org.eclipse.core.runtime.IAdaptable)
+	 * 
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if(!canExecute()) {

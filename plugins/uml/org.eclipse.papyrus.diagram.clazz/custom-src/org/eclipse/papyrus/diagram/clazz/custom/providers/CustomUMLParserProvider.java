@@ -39,9 +39,9 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property3EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Property4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForClassCNEditPart;
 import org.eclipse.papyrus.diagram.clazz.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.parser.custom.AssociationEndParser;
@@ -141,7 +141,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 			return getCustomPropertyParser();
 		case Operation2EditPart.VISUAL_ID:
 			return getOperationParser();
-		case Property4EditPart.VISUAL_ID:
+		case PropertyForClassCNEditPart.VISUAL_ID:
 			return getCustomPropertyParser();
 		case Operation3EditPart.VISUAL_ID:
 			return getOperationParser();
@@ -153,10 +153,10 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 			return getAssociationName_6002Parser();
 		case AssociationName3EditPart.VISUAL_ID:
 			return getAssociationTargetRole();
-		
+
 		case AssociationName5EditPart.VISUAL_ID:
 			return getAssociationSourceMultiplicity();
-		
+
 		case AssociationBranchRoleEditPart.VISUAL_ID:
 			return getAssociationSourceRole();
 		case AssociationBranchMutliplicityEditPart.VISUAL_ID:
@@ -177,7 +177,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 			return getAppliedStereotypeParser();
 		case AppliedStereotypeDependencyEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
-		
+
 		case AppliedStereotypeElementImportEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
 		case AppliedStereotypePackageImportEditPart.VISUAL_ID:

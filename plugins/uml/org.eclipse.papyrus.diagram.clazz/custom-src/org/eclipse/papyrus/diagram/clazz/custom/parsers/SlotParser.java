@@ -29,15 +29,15 @@ import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
- * this is a parser to display  a slot in the diagram
- *
+ * this is a parser to display a slot in the diagram
+ * 
  */
 public class SlotParser implements IParser {
 
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getCompletionProcessor(org.eclipse.core.runtime.IAdaptable)
-	 *
+	 * 
 	 * @param element
 	 * @return
 	 */
@@ -45,10 +45,11 @@ public class SlotParser implements IParser {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getEditString(org.eclipse.core.runtime.IAdaptable, int)
-	 *
+	 * 
 	 * @param element
 	 * @param flags
 	 * @return
@@ -57,10 +58,11 @@ public class SlotParser implements IParser {
 		// TODO Auto-generated method stub
 		return getPrintString(element, flags);
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getParseCommand(org.eclipse.core.runtime.IAdaptable, java.lang.String, int)
-	 *
+	 * 
 	 * @param element
 	 * @param newString
 	 * @param flags
@@ -70,10 +72,11 @@ public class SlotParser implements IParser {
 		// TODO Auto-generated method stub
 		return UnexecutableCommand.INSTANCE;
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getPrintString(org.eclipse.core.runtime.IAdaptable, int)
-	 *
+	 * 
 	 * @param element
 	 * @param flags
 	 * @return
@@ -92,7 +95,7 @@ public class SlotParser implements IParser {
 				Iterator<ValueSpecification> iter = slot.getValues().iterator();
 				while(iter.hasNext()) {
 					ValueSpecification currentSpecification = iter.next();
-					if(currentSpecification instanceof InstanceValue &&((InstanceValue)currentSpecification).getInstance()!=null) {
+					if(currentSpecification instanceof InstanceValue && ((InstanceValue)currentSpecification).getInstance() != null) {
 						result = result + ((InstanceValue)currentSpecification).getInstance().getName() + ", ";
 					} else {
 						result = result + currentSpecification.stringValue() + ", ";
@@ -104,10 +107,11 @@ public class SlotParser implements IParser {
 		}
 		return "<UNDEFINED>";
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#isAffectingEvent(java.lang.Object, int)
-	 *
+	 * 
 	 * @param event
 	 * @param flags
 	 * @return
@@ -116,10 +120,11 @@ public class SlotParser implements IParser {
 		// TODO Auto-generated method stub
 		return true;
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#isValidEditString(org.eclipse.core.runtime.IAdaptable, java.lang.String)
-	 *
+	 * 
 	 * @param element
 	 * @param editString
 	 * @return

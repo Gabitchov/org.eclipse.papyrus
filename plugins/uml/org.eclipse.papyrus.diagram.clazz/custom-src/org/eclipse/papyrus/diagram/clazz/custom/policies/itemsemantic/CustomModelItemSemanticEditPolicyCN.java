@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.clazz.custom.command.BranchDependenctReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CTemplateBindingCreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ModelItemSemanticEditPolicyCN;
@@ -30,14 +29,15 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
  * 
  */
 public class CustomModelItemSemanticEditPolicyCN extends ModelItemSemanticEditPolicyCN {
+
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return getGEFWrapper(new CTemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getCompleteCreateRelationshipCommand(req);
 	}
-	
-	
+
+
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch(getVisualID(req)) {
 		case DependencyBranchEditPart.VISUAL_ID:
@@ -47,6 +47,7 @@ public class CustomModelItemSemanticEditPolicyCN extends ModelItemSemanticEditPo
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
+
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {

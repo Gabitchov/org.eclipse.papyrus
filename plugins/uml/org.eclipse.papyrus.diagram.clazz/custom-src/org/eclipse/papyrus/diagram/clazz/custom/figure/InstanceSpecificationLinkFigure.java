@@ -21,19 +21,21 @@ import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
 
 
 public class InstanceSpecificationLinkFigure extends UMLEdgeFigure {
+
 	protected WrappingLabel targetLabel;
+
 	protected WrappingLabel sourceLabel;
-	
+
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 */
 	public InstanceSpecificationLinkFigure() {
 		super();
-		targetLabel= new WrappingLabel();
+		targetLabel = new WrappingLabel();
 		this.add(targetLabel);
-		sourceLabel= new WrappingLabel();
+		sourceLabel = new WrappingLabel();
 		this.add(sourceLabel);
 	}
 
@@ -54,5 +56,5 @@ public class InstanceSpecificationLinkFigure extends UMLEdgeFigure {
 	public WrappingLabel getSourceLabel() {
 		return sourceLabel;
 	}
-	
+
 }

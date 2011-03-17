@@ -90,9 +90,9 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ProfileApplicationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property3EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Property4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForClassCNEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ReceptionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
@@ -986,7 +986,7 @@ public class UMLElementTypes {
 			return Class_3010;
 		case ReceptionEditPart.VISUAL_ID:
 			return Reception_3011;
-		case Property4EditPart.VISUAL_ID:
+		case PropertyForClassCNEditPart.VISUAL_ID:
 			return Property_3012;
 		case Operation3EditPart.VISUAL_ID:
 			return Operation_3013;

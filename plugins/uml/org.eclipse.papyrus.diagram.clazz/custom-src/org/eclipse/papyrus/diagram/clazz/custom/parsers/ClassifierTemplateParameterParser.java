@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.diagram.clazz.custom.parsers;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
@@ -34,25 +33,25 @@ public class ClassifierTemplateParameterParser implements IParser {
 
 	public String getEditString(IAdaptable element, int flags) {
 		return getPrintString(element, flags);
-		}
+	}
 
-		public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-			// TODO Auto-generated method stub
-			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
-		}
+	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
+		// TODO Auto-generated method stub
+		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+	}
 
-		public String getPrintString(IAdaptable element, int flags) {
-			if(element instanceof EObjectAdapter) {
-				final TemplateParameter templateParam = ((TemplateParameter)((EObjectAdapter)element).getRealObject());
-				if(templateParam.getOwnedParameteredElement() == null) {
-					return "<UNDEFINED>";
-				}
-				String out = "";
-				if(templateParam.getOwnedParameteredElement() instanceof Classifier) {
-					Classifier namedElement = (Classifier)templateParam.getOwnedParameteredElement();
-					out = out + namedElement.getName() + ": " + namedElement.eClass().getName();
-				}
-				if( templateParam instanceof ClassifierTemplateParameter){
+	public String getPrintString(IAdaptable element, int flags) {
+		if(element instanceof EObjectAdapter) {
+			final TemplateParameter templateParam = ((TemplateParameter)((EObjectAdapter)element).getRealObject());
+			if(templateParam.getOwnedParameteredElement() == null) {
+				return "<UNDEFINED>";
+			}
+			String out = "";
+			if(templateParam.getOwnedParameteredElement() instanceof Classifier) {
+				Classifier namedElement = (Classifier)templateParam.getOwnedParameteredElement();
+				out = out + namedElement.getName() + ": " + namedElement.eClass().getName();
+			}
+			if(templateParam instanceof ClassifierTemplateParameter) {
 				if(!((ClassifierTemplateParameter)templateParam).getConstrainingClassifiers().isEmpty()) {
 					out = out + ">";
 					for(int i = 0; i < ((ClassifierTemplateParameter)templateParam).getConstrainingClassifiers().size(); i++) {
@@ -63,20 +62,20 @@ public class ClassifierTemplateParameterParser implements IParser {
 					}
 
 				}
-				}
-				return out;
-
 			}
+			return out;
 
-			return "<UNDEFINED>";
 		}
 
-		public boolean isAffectingEvent(Object event, int flags) {
-			return false;
-		}
-
-		public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
-			return ParserEditStatus.EDITABLE_STATUS;
-		}
-
+		return "<UNDEFINED>";
 	}
+
+	public boolean isAffectingEvent(Object event, int flags) {
+		return false;
+	}
+
+	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
+		return ParserEditStatus.EDITABLE_STATUS;
+	}
+
+}

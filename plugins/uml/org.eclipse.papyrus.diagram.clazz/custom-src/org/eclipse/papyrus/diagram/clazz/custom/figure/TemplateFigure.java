@@ -20,30 +20,33 @@ import org.eclipse.papyrus.diagram.common.figure.node.PapyrusNodeFigure;
 /**
  * this is the figure of a template signature
  * It contains only a compartment for template paramater.
- *
+ * 
  */
 public class TemplateFigure extends PapyrusNodeFigure {
+
 	RectangleFigure templateParameterRectangle;
+
 	@Override
 	public Dimension getPreferredSize(int wHint, int hHint) {
-		Dimension prefDim= new Dimension(60,40);
+		Dimension prefDim = new Dimension(60, 40);
 		// TODO Auto-generated method stub
-		Dimension contentDim=templateParameterRectangle.getPreferredSize();
-		if(contentDim.width+10>prefDim.width){
-			prefDim.width=contentDim.width+10;
+		Dimension contentDim = templateParameterRectangle.getPreferredSize();
+		if(contentDim.width + 10 > prefDim.width) {
+			prefDim.width = contentDim.width + 10;
 		}
-		if(contentDim.height+10>prefDim.height){
-			prefDim.height=contentDim.height+10;
+		if(contentDim.height + 10 > prefDim.height) {
+			prefDim.height = contentDim.height + 10;
 		}
 		return prefDim;
 	}
+
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 */
-	public TemplateFigure(){
-		templateParameterRectangle= new RectangleFigure();
+	public TemplateFigure() {
+		templateParameterRectangle = new RectangleFigure();
 		templateParameterRectangle.setOpaque(false);
 		templateParameterRectangle.setFill(false);
 		templateParameterRectangle.setOutline(false);
@@ -52,6 +55,7 @@ public class TemplateFigure extends PapyrusNodeFigure {
 		templateParameterRectangle.setForegroundColor(ColorConstants.red);
 		add(templateParameterRectangle);
 	}
+
 	public RectangleFigure getTemplateParameterRectangle() {
 		return templateParameterRectangle;
 

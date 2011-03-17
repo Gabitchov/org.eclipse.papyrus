@@ -17,7 +17,6 @@ package org.eclipse.papyrus.diagram.clazz.custom.locator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
-import org.eclipse.papyrus.diagram.common.locator.AdvancedBorderItemLocator;
 
 /**
  * This class is used to constrain the position of Containment circle when they are added on a class element

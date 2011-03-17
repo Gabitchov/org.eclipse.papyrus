@@ -46,8 +46,8 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * this class has in charge to create the semantic  instance specification as a link
- *
+ * this class has in charge to create the semantic instance specification as a link
+ * 
  */
 public class AttachInstanceSpecifcationCommand extends AbstractTransactionalCommand {
 
@@ -56,43 +56,51 @@ public class AttachInstanceSpecifcationCommand extends AbstractTransactionalComm
 	protected EditPartViewer viewer;
 
 	protected CreateConnectionViewRequest req;
+
 	protected InstanceSpecification source;
+
 	protected InstanceSpecification target;
-	protected HashSet<Association> commonAssociations= new HashSet<Association>();
+
+	protected HashSet<Association> commonAssociations = new HashSet<Association>();
 
 	/**
 	 * 
 	 * Constructor.
-	 *
-	 * @param domain the editing domain 
-	 * @param req the request of connection
-	 * @param viewAdapter the view that has been created
-	 * @param viewer the viewer
+	 * 
+	 * @param domain
+	 *        the editing domain
+	 * @param req
+	 *        the request of connection
+	 * @param viewAdapter
+	 *        the view that has been created
+	 * @param viewer
+	 *        the viewer
 	 */
-	public AttachInstanceSpecifcationCommand(TransactionalEditingDomain domain,CreateConnectionViewRequest req, IAdaptable viewAdapter, EditPartViewer viewer) {
+	public AttachInstanceSpecifcationCommand(TransactionalEditingDomain domain, CreateConnectionViewRequest req, IAdaptable viewAdapter, EditPartViewer viewer) {
 		super(domain, "attach instance", null);
 		this.viewAdapter = viewAdapter;
 		this.viewer = viewer;
-		this.req=req;
+		this.req = req;
 
 	}
+
 	@Override
 	public boolean canExecute() {
-		if(req.getSourceEditPart()==null&& req.getTargetEditPart()!=null){
-			this.target=(InstanceSpecification)((View)req.getTargetEditPart().getModel()).getElement();
+		if(req.getSourceEditPart() == null && req.getTargetEditPart() != null) {
+			this.target = (InstanceSpecification)((View)req.getTargetEditPart().getModel()).getElement();
 			//test if is an instanceSpecification
-			if((((View)req.getTargetEditPart().getModel()).getElement() instanceof InstanceSpecification)){
-				InstanceSpecification instance=(InstanceSpecification)(((View)req.getTargetEditPart().getModel()).getElement());
+			if((((View)req.getTargetEditPart().getModel()).getElement() instanceof InstanceSpecification)) {
+				InstanceSpecification instance = (InstanceSpecification)(((View)req.getTargetEditPart().getModel()).getElement());
 				//Is it associated to a classifier?
-				if (instance.getClassifiers().size()>0){
-					HashSet<Association> assoSource= new HashSet<Association>();
-					Iterator<Classifier> iterator= target.getClassifiers().iterator();
+				if(instance.getClassifiers().size() > 0) {
+					HashSet<Association> assoSource = new HashSet<Association>();
+					Iterator<Classifier> iterator = target.getClassifiers().iterator();
 					while(iterator.hasNext()) {
 						Classifier classifier = (Classifier)iterator.next();
 						assoSource.addAll(classifier.getAssociations());
 					}
 					//how many association it linked?
-					if (assoSource.size()>0){
+					if(assoSource.size() > 0) {
 						return true;
 					}
 				}
@@ -100,39 +108,40 @@ public class AttachInstanceSpecifcationCommand extends AbstractTransactionalComm
 			}
 			return false;
 		}
-		
+
 		//source and target != null 
 		//look for if it exist at least a common association between classifiers referenced between these instances
-		if(req.getSourceEditPart()!=null&& req.getTargetEditPart()!=null){
-			if(!(((View)req.getSourceEditPart().getModel()).getElement() instanceof InstanceSpecification)){
+		if(req.getSourceEditPart() != null && req.getTargetEditPart() != null) {
+			if(!(((View)req.getSourceEditPart().getModel()).getElement() instanceof InstanceSpecification)) {
 				return false;
 			}
-			if(!(((View)req.getTargetEditPart().getModel()).getElement() instanceof InstanceSpecification)){
+			if(!(((View)req.getTargetEditPart().getModel()).getElement() instanceof InstanceSpecification)) {
 				System.err.println();
 				return false;
 			}
-			this.source=(InstanceSpecification)((View)req.getSourceEditPart().getModel()).getElement();
-			this.target=(InstanceSpecification)((View)req.getTargetEditPart().getModel()).getElement();
-			if (source.getClassifiers().size()==0||target.getClassifiers().size()==0){
-				return false;}
-			HashSet<Association> assoSource= new HashSet<Association>();
-			Iterator<Classifier> iterator= source.getClassifiers().iterator();
+			this.source = (InstanceSpecification)((View)req.getSourceEditPart().getModel()).getElement();
+			this.target = (InstanceSpecification)((View)req.getTargetEditPart().getModel()).getElement();
+			if(source.getClassifiers().size() == 0 || target.getClassifiers().size() == 0) {
+				return false;
+			}
+			HashSet<Association> assoSource = new HashSet<Association>();
+			Iterator<Classifier> iterator = source.getClassifiers().iterator();
 			while(iterator.hasNext()) {
 				Classifier classifier = (Classifier)iterator.next();
 				assoSource.addAll(classifier.getAssociations());
 			}
 
-			HashSet<Association> assoTarget= new HashSet<Association>();
-			iterator= target.getClassifiers().iterator();
+			HashSet<Association> assoTarget = new HashSet<Association>();
+			iterator = target.getClassifiers().iterator();
 			while(iterator.hasNext()) {
 				Classifier classifier = (Classifier)iterator.next();
 				assoTarget.addAll(classifier.getAssociations());
 			}
 			assoSource.retainAll(assoTarget);
-			commonAssociations= new HashSet<Association>();
+			commonAssociations = new HashSet<Association>();
 			commonAssociations.addAll(assoSource);
 
-			return (commonAssociations.size()>0);
+			return (commonAssociations.size() > 0);
 		}
 		return false;
 
@@ -142,13 +151,13 @@ public class AttachInstanceSpecifcationCommand extends AbstractTransactionalComm
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		View view = (View)viewAdapter.getAdapter(View.class);
 		AssociationSelectionDialog associationSelectionDialog;
-		Association selectedAssociation=null;
-		if(source.getClassifiers().size()>0 && target.getClassifiers().size()>0){
+		Association selectedAssociation = null;
+		if(source.getClassifiers().size() > 0 && target.getClassifiers().size() > 0) {
 
 			//look for the good association
-			associationSelectionDialog	= new  AssociationSelectionDialog(new Shell(), SWT.NATIVE, commonAssociations);
+			associationSelectionDialog = new AssociationSelectionDialog(new Shell(), SWT.NATIVE, commonAssociations);
 			associationSelectionDialog.open();
-			selectedAssociation=associationSelectionDialog.getSelectedAssociation();
+			selectedAssociation = associationSelectionDialog.getSelectedAssociation();
 
 			if(view != null && view.eContainer() != null) {
 				View parent = (View)view.eContainer();
@@ -161,25 +170,22 @@ public class AttachInstanceSpecifcationCommand extends AbstractTransactionalComm
 				instanceSpecification.getClassifiers().add(selectedAssociation);
 				view.setElement(instanceSpecification);
 				//Creation of slots
-				Iterator<Property> proIterator=selectedAssociation.getMemberEnds().iterator();
+				Iterator<Property> proIterator = selectedAssociation.getMemberEnds().iterator();
 				while(proIterator.hasNext()) {
 					Property property = (Property)proIterator.next();
-					Slot slot= UMLFactory.eINSTANCE.createSlot();
+					Slot slot = UMLFactory.eINSTANCE.createSlot();
 					slot.setDefiningFeature(property);
-					if(source.getClassifiers().contains(property.getOwner())){
+					if(source.getClassifiers().contains(property.getOwner())) {
 						source.getSlots().add(slot);
 						associateValue(target, slot, property.getType());
-					}
-					else if(target.getClassifiers().contains(property.getOwner())){
+					} else if(target.getClassifiers().contains(property.getOwner())) {
 						target.getSlots().add(slot);
 						associateValue(source, slot, property.getType());
-					}
-					else{
+					} else {
 						instanceSpecification.getSlots().add(slot);
-						if(source.getClassifiers().contains(property.getType())){
+						if(source.getClassifiers().contains(property.getType())) {
 							associateValue(source, slot, property.getType());
-						}
-						else{
+						} else {
 							associateValue(target, slot, property.getType());
 
 						}
@@ -191,20 +197,25 @@ public class AttachInstanceSpecifcationCommand extends AbstractTransactionalComm
 	}
 
 	/**
-	 * create an instanceValue for the slot (owner) with the reference to  InstanceSpecification and the good type
-	 * @param instanceSpecification that is referenced by the instanceValue
-	 * @param owner of the instance value
-	 * @param type of the instanceValue
+	 * create an instanceValue for the slot (owner) with the reference to InstanceSpecification and the good type
+	 * 
+	 * @param instanceSpecification
+	 *        that is referenced by the instanceValue
+	 * @param owner
+	 *        of the instance value
+	 * @param type
+	 *        of the instanceValue
 	 * @return a instanceValue
 	 */
-	protected InstanceValue associateValue(InstanceSpecification instanceSpecification, Slot owner,Type type){
-		InstanceValue iv=UMLFactory.eINSTANCE.createInstanceValue();
+	protected InstanceValue associateValue(InstanceSpecification instanceSpecification, Slot owner, Type type) {
+		InstanceValue iv = UMLFactory.eINSTANCE.createInstanceValue();
 		iv.setName(NamedElementHelper.EINSTANCE.getNewUMLElementName(owner, iv.eClass()));
 		iv.setType(type);
 		iv.setInstance(target);
 		owner.getValues().add(iv);
 		return iv;
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}

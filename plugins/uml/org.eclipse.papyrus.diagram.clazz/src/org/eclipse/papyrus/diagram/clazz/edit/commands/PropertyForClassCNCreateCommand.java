@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * @generated
  */
-public class Property4CreateCommand extends EditElementCommand {
+public class PropertyForClassCNCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -47,7 +47,7 @@ public class Property4CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public Property4CreateCommand(CreateElementRequest req, EObject eObject) {
+	public PropertyForClassCNCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -56,14 +56,14 @@ public class Property4CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static Property4CreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new Property4CreateCommand(req, eObject);
+	public static PropertyForClassCNCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new PropertyForClassCNCreateCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public Property4CreateCommand(CreateElementRequest req) {
+	public PropertyForClassCNCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 

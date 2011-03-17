@@ -33,6 +33,7 @@ public class COperationTemplateParameterCreateCommand extends OperationTemplateP
 		super(req);
 		// TODO Auto-generated constructor stub
 	}
+
 	/**
 	 * @generated
 	 */
@@ -44,7 +45,7 @@ public class COperationTemplateParameterCreateCommand extends OperationTemplateP
 		owner.getOwnedParameters().add(newElement);
 		TemplateSignature childHolder = (TemplateSignature)getElementToEdit();
 		childHolder.getParameters().add(newElement);
-		TemplateParameterConfigurationDialog configurationDialog= new TemplateParameterConfigurationDialog(new Shell(), SWT.APPLICATION_MODAL,UMLPackage.eINSTANCE.getOperation());
+		TemplateParameterConfigurationDialog configurationDialog = new TemplateParameterConfigurationDialog(new Shell(), SWT.APPLICATION_MODAL, UMLPackage.eINSTANCE.getOperation());
 		configurationDialog.setOwner(childHolder);
 		configurationDialog.open();
 		newElement.setParameteredElement(configurationDialog.getParameterableElement());

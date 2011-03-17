@@ -24,13 +24,14 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 /**
  * 
  * specialization in order to call specific command
- *
+ * 
  */
 public class CRedefinableTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy extends RedefinableTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy {
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.clazz.edit.policies.RedefinableTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy#getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest)
-	 *
+	 * 
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.ClassifierTemplateParameter_3031 == req.getElementType()) {
