@@ -348,7 +348,7 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return PropertyEditPart.VISUAL_ID;
+				return PropertyForComponentEditPart.VISUAL_ID;
 			}
 			break;
 		case InstanceSpecificationSlotCompartmentEditPart.VISUAL_ID:
@@ -362,7 +362,7 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return PropertyEditPart.VISUAL_ID;
+				return PropertyForComponentEditPart.VISUAL_ID;
 			}
 			break;
 		case ComponentOperationCompartmentEditPart.VISUAL_ID:
@@ -495,7 +495,7 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return PropertyEditPart.VISUAL_ID;
+				return PropertyForComponentEditPart.VISUAL_ID;
 			}
 			break;
 		case ComponentOperationCompartment2EditPart.VISUAL_ID:
@@ -1283,7 +1283,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case AssociationClassAttributeCompartmentEditPart.VISUAL_ID:
-			if(PropertyEditPart.VISUAL_ID == nodeVisualID) {
+			if(PropertyForComponentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1293,7 +1293,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ComponentAttributeCompartmentEditPart.VISUAL_ID:
-			if(PropertyEditPart.VISUAL_ID == nodeVisualID) {
+			if(PropertyForComponentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1380,7 +1380,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ComponentAttributeCompartment2EditPart.VISUAL_ID:
-			if(PropertyEditPart.VISUAL_ID == nodeVisualID) {
+			if(PropertyForComponentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -2389,7 +2389,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7035, viewInfo);
 
-		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "org.eclipse.emf.ecore.impl.DynamicEObjectImpl@4e8b33 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@94eb7c (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))");
+		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "org.eclipse.emf.ecore.impl.DynamicEObjectImpl@ba436d (eClass: org.eclipse.emf.ecore.impl.EClassImpl@a0dbbe (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))");
 
 		root.addNode(2008, viewInfo);
 

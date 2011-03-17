@@ -47,7 +47,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.command.AssociationClassViewCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.PropertyCommandForAssociation;
 import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomDeferredCreateConnectionViewCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.PropertyCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.PropertyForComponentCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
@@ -73,7 +73,7 @@ public class AssociationClassHelper extends ElementHelper {
 		// create target property
 
 		CreateElementRequest request = new CreateElementRequest(domain, source, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
-		EditElementCommand c = new PropertyCreateCommand(request);
+		EditElementCommand c = new PropertyForComponentCreateCommand(request);
 		LookForElement.getCommandStack().execute(new ICommandProxy(c));
 		assert (c.getCommandResult() == null);
 		assert (c.getCommandResult().getReturnValue() == null);

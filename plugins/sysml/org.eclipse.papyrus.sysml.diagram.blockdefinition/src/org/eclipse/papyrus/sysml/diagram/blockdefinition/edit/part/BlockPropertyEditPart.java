@@ -16,12 +16,12 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForComponentEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.BlockPropertyHelper;
 import org.eclipse.uml2.uml.Property;
 
 
-public class BlockPropertyEditPart extends PropertyEditPart {
+public class BlockPropertyEditPart extends PropertyForComponentEditPart {
 
 	BlockPropertyHelper notifier;
 

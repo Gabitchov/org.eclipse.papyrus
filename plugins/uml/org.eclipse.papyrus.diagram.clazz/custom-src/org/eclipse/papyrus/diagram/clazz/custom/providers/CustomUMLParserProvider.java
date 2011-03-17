@@ -40,7 +40,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property5EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForClassCNEditPart;
 import org.eclipse.papyrus.diagram.clazz.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLParserProvider;
@@ -131,7 +131,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	 */
 	protected IParser getParser(int visualID) {
 		switch(visualID) {
-		case PropertyEditPart.VISUAL_ID:
+		case PropertyForComponentEditPart.VISUAL_ID:
 			return getCustomPropertyParser();
 		case OperationEditPart.VISUAL_ID:
 			return getOperationParser();

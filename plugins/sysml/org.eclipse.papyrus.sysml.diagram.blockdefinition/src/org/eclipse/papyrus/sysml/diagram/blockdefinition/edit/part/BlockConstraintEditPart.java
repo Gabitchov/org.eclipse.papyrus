@@ -14,10 +14,10 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part;
 
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForComponentEditPart;
 
 
-public class BlockConstraintEditPart extends PropertyEditPart {
+public class BlockConstraintEditPart extends PropertyForComponentEditPart {
 
 	public BlockConstraintEditPart(View view) {
 		super(view);

@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.PropertyCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.PropertyForComponentCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * The Class PropertyCommandForAssociation use to create a property into an association (ownedEnd)
  */
-public class PropertyCommandForAssociation extends PropertyCreateCommand {
+public class PropertyCommandForAssociation extends PropertyForComponentCreateCommand {
 
 	/**
 	 * Instantiates a new property command for association.

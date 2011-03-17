@@ -594,7 +594,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == PropertyEditPart.VISUAL_ID) {
+			if(visualID == PropertyForComponentEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -642,7 +642,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == PropertyEditPart.VISUAL_ID) {
+			if(visualID == PropertyForComponentEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -918,7 +918,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == PropertyEditPart.VISUAL_ID) {
+			if(visualID == PropertyForComponentEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1748,7 +1748,7 @@ public class UMLDiagramUpdater {
 			return getNamedElement_2097ContainedLinks(view);
 		case ShapeNamedElementEditPart.VISUAL_ID:
 			return getNamedElement_2098ContainedLinks(view);
-		case PropertyEditPart.VISUAL_ID:
+		case PropertyForComponentEditPart.VISUAL_ID:
 			return getProperty_3002ContainedLinks(view);
 		case OperationEditPart.VISUAL_ID:
 			return getOperation_3003ContainedLinks(view);
@@ -1899,7 +1899,7 @@ public class UMLDiagramUpdater {
 			return getNamedElement_2097IncomingLinks(view);
 		case ShapeNamedElementEditPart.VISUAL_ID:
 			return getNamedElement_2098IncomingLinks(view);
-		case PropertyEditPart.VISUAL_ID:
+		case PropertyForComponentEditPart.VISUAL_ID:
 			return getProperty_3002IncomingLinks(view);
 		case OperationEditPart.VISUAL_ID:
 			return getOperation_3003IncomingLinks(view);
@@ -2050,7 +2050,7 @@ public class UMLDiagramUpdater {
 			return getNamedElement_2097OutgoingLinks(view);
 		case ShapeNamedElementEditPart.VISUAL_ID:
 			return getNamedElement_2098OutgoingLinks(view);
-		case PropertyEditPart.VISUAL_ID:
+		case PropertyForComponentEditPart.VISUAL_ID:
 			return getProperty_3002OutgoingLinks(view);
 		case OperationEditPart.VISUAL_ID:
 			return getOperation_3003OutgoingLinks(view);
