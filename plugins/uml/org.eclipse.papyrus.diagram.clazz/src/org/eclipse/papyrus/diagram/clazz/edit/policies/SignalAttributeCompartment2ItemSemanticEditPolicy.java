@@ -14,7 +14,7 @@ package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.PropertyForInterfaceCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.PropertyForSignalCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 
 /**
@@ -34,7 +34,7 @@ public class SignalAttributeCompartment2ItemSemanticEditPolicy extends UMLBaseIt
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.Property_3005 == req.getElementType()) {
-			return getGEFWrapper(new PropertyForInterfaceCreateCommand(req));
+			return getGEFWrapper(new PropertyForSignalCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

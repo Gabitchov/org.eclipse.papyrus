@@ -386,7 +386,7 @@
           itemSemanticEditPolicyClassName="PropertyForSignalItemSemanticEditPolicy"
           canonicalEditPolicyClassName="PropertyForSignalCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="PropertyForSignalGraphicalNodeEditPolicy"
-          createCommandClassName="PropertyForInterfaceCreateCommand"
+          createCommandClassName="PropertyForSignalCreateCommand"
           containers="/0/@diagram/@compartments.14 /0/@diagram/@compartments.6">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -451,10 +451,10 @@
           xsi:type="gmfgen:GenChildLabelNode"
           visualID="3006"
           editPartClassName="PropertyForInterfaceEditPart"
-          itemSemanticEditPolicyClassName="Property3ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="Property3CanonicalEditPolicy"
-          graphicalNodeEditPolicyClassName="Property3GraphicalNodeEditPolicy"
-          createCommandClassName="Property3CreateCommand"
+          itemSemanticEditPolicyClassName="PropertyForInterfaceItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="PropertyForInterfaceCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="PropertyForInterfaceGraphicalNodeEditPolicy"
+          createCommandClassName="PropertyForInterfaceCreateCommand"
           containers="/0/@diagram/@compartments.15 /0/@diagram/@compartments.7">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -506,11 +506,11 @@
       <childNodes
           xsi:type="gmfgen:GenChildLabelNode"
           visualID="3007"
-          editPartClassName="Operation2EditPart"
-          itemSemanticEditPolicyClassName="Operation2ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="Operation2CanonicalEditPolicy"
-          graphicalNodeEditPolicyClassName="Operation2GraphicalNodeEditPolicy"
-          createCommandClassName="Operation2CreateCommand"
+          editPartClassName="OperationForInterfaceEditpart"
+          itemSemanticEditPolicyClassName="OperationForInterfaceItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="OperationForInterfaceCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="OperationForInterfaceGraphicalNodeEditPolicy"
+          createCommandClassName="OperationForInterfaceCreateCommand"
           containers="/0/@diagram/@compartments.8 /0/@diagram/@compartments.16">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>

@@ -25,8 +25,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
+import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -100,10 +100,10 @@ public class PropertyForInterfaceCreateCommand extends EditElementCommand {
 
 		Property newElement = UMLFactory.eINSTANCE.createProperty();
 
-		Signal owner = (Signal)getElementToEdit();
+		Interface owner = (Interface)getElementToEdit();
 		owner.getOwnedAttributes().add(newElement);
 
-		ElementInitializers.getInstance().init_Property_3005(newElement);
+		ElementInitializers.getInstance().init_Property_3006(newElement);
 
 		doConfigure(newElement, monitor, info);
 

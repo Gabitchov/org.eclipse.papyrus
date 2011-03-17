@@ -33,7 +33,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchRoleEditPar
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForInterfaceEditpart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForComponentEditPart;
@@ -139,7 +139,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 			return getCustomPropertyParser();
 		case PropertyForInterfaceEditPart.VISUAL_ID:
 			return getCustomPropertyParser();
-		case Operation2EditPart.VISUAL_ID:
+		case OperationForInterfaceEditpart.VISUAL_ID:
 			return getOperationParser();
 		case PropertyForClassCNEditPart.VISUAL_ID:
 			return getCustomPropertyParser();
