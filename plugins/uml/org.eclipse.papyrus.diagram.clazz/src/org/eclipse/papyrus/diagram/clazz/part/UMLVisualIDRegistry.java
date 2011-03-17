@@ -675,7 +675,7 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return PropertyForClassCNEditPart.VISUAL_ID;
+				return PropertyForClassEditPart.VISUAL_ID;
 			}
 			break;
 		case ClassOperationCompartmentEditPart.VISUAL_ID:
@@ -784,7 +784,7 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return PropertyForClassCNEditPart.VISUAL_ID;
+				return PropertyForClassEditPart.VISUAL_ID;
 			}
 			break;
 		case ClassOperationCompartment2EditPart.VISUAL_ID:
@@ -1496,7 +1496,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
-			if(PropertyForClassCNEditPart.VISUAL_ID == nodeVisualID) {
+			if(PropertyForClassEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1567,7 +1567,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ClassAttributeCompartment2EditPart.VISUAL_ID:
-			if(PropertyForClassCNEditPart.VISUAL_ID == nodeVisualID) {
+			if(PropertyForClassEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

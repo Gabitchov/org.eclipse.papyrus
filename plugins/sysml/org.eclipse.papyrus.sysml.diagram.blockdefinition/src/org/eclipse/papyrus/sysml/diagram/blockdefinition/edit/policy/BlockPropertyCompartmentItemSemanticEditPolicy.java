@@ -16,7 +16,7 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.PropertyForClassCNCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.PropertyForClassCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramElementTypes;
 
@@ -34,7 +34,7 @@ public class BlockPropertyCompartmentItemSemanticEditPolicy extends UMLBaseItemS
 			|| BlockDefinitionDiagramElementTypes.BLOCK_REFERENCE_CLN == req.getElementType()
 //			|| BlockDefinitionDiagramElementTypes.BLOCK_VALUETYPE_CLN == req.getElementType()
 		) {
-			return getGEFWrapper(new PropertyForClassCNCreateCommand(req));
+			return getGEFWrapper(new PropertyForClassCreateCommand(req));
 		}
 
 		return UnexecutableCommand.INSTANCE;
