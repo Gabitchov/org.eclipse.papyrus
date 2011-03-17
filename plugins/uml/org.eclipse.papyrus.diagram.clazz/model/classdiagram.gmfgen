@@ -6007,9 +6007,9 @@
       </compartments>
       <compartments
           visualID="7023"
-          editPartClassName="ComponentAttributeCompartment2EditPart"
-          itemSemanticEditPolicyClassName="ComponentAttributeCompartment2ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="ComponentAttributeCompartment2CanonicalEditPolicy"
+          editPartClassName="ComponentAttributeCompartmentEditPartCN"
+          itemSemanticEditPolicyClassName="ComponentAttributeCompartmentItemSemanticEditPolicyCN"
+          canonicalEditPolicyClassName="ComponentAttributeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.0"
           title="AttributeCompartment"
           needsTitle="false"
@@ -6031,9 +6031,9 @@
       </compartments>
       <compartments
           visualID="7024"
-          editPartClassName="ComponentOperationCompartment2EditPart"
-          itemSemanticEditPolicyClassName="ComponentOperationCompartment2ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="ComponentOperationCompartment2CanonicalEditPolicy"
+          editPartClassName="ComponentOperationCompartmentEditPartCN"
+          itemSemanticEditPolicyClassName="ComponentOperationCompartmentItemSemanticEditPolicyCN"
+          canonicalEditPolicyClassName="ComponentOperationCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.1"
           title="OperationCompartment"
           needsTitle="false"
@@ -6055,9 +6055,9 @@
       </compartments>
       <compartments
           visualID="7025"
-          editPartClassName="ComponentNestedClassifierCompartment2EditPart"
-          itemSemanticEditPolicyClassName="ComponentNestedClassifierCompartment2ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="ComponentNestedClassifierCompartment2CanonicalEditPolicy"
+          editPartClassName="ComponentNestedClassifierCompartmentEditPartCN"
+          itemSemanticEditPolicyClassName="ComponentNestedClassifierCompartmentItemSemanticEditPolicyCN"
+          canonicalEditPolicyClassName="ComponentNestedClassifierCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.2"
           title="NestedClassifierCompartment"
           needsTitle="false"

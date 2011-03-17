@@ -29,7 +29,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.ComponentAttributeCompartment2ItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.edit.policies.ComponentAttributeCompartmentItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.clazz.part.Messages;
 import org.eclipse.papyrus.diagram.common.editparts.ResizeableListCompartmentEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
@@ -37,7 +37,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 /**
  * @generated
  */
-public class ComponentAttributeCompartment2EditPart
+public class ComponentAttributeCompartmentEditPartCN
 
 extends ResizeableListCompartmentEditPart
 
@@ -51,7 +51,7 @@ extends ResizeableListCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	public ComponentAttributeCompartment2EditPart(View view) {
+	public ComponentAttributeCompartmentEditPartCN(View view) {
 		super(view);
 	}
 
@@ -66,7 +66,7 @@ extends ResizeableListCompartmentEditPart
 	 * @generated
 	 */
 	public String getCompartmentName() {
-		return Messages.ComponentAttributeCompartment2EditPart_title;
+		return Messages.ComponentAttributeCompartmentEditPartCN_title;
 	}
 
 	/**
@@ -84,13 +84,13 @@ extends ResizeableListCompartmentEditPart
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ResizableCompartmentEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ComponentAttributeCompartment2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ComponentAttributeCompartmentItemSemanticEditPolicyCN());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 
 		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.ComponentAttributeCompartment2CanonicalEditPolicy());
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.ComponentAttributeCompartmentCanonicalEditPolicyCN());
 
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());

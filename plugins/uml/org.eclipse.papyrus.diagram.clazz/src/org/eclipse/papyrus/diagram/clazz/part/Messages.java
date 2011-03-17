@@ -780,17 +780,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String ComponentAttributeCompartment2EditPart_title;
+	public static String ComponentAttributeCompartmentEditPartCN_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ComponentOperationCompartment2EditPart_title;
+	public static String ComponentOperationCompartmentEditPartCN_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ComponentNestedClassifierCompartment2EditPart_title;
+	public static String ComponentNestedClassifierCompartmentEditPartCN_title;
 
 	/**
 	 * @generated

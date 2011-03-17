@@ -14,18 +14,18 @@ package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.PropertyForComponentCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.OperationForComponentCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 
 /**
  * @generated
  */
-public class ComponentAttributeCompartment2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class ComponentOperationCompartmentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public ComponentAttributeCompartment2ItemSemanticEditPolicy() {
+	public ComponentOperationCompartmentItemSemanticEditPolicyCN() {
 		super(UMLElementTypes.Component_3021);
 	}
 
@@ -33,8 +33,8 @@ public class ComponentAttributeCompartment2ItemSemanticEditPolicy extends UMLBas
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.Property_3002 == req.getElementType()) {
-			return getGEFWrapper(new PropertyForComponentCreateCommand(req));
+		if(UMLElementTypes.Operation_3003 == req.getElementType()) {
+			return getGEFWrapper(new OperationForComponentCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

@@ -136,11 +136,11 @@ public class UMLDiagramUpdater {
 			return getInterfaceNestedClassifierCompartment_7008SemanticChildren(view);
 		case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
 			return getModelPackageableElementCompartment_7009SemanticChildren(view);
-		case ComponentAttributeCompartment2EditPart.VISUAL_ID:
+		case ComponentAttributeCompartmentEditPartCN.VISUAL_ID:
 			return getComponentAttributeCompartment_7023SemanticChildren(view);
-		case ComponentOperationCompartment2EditPart.VISUAL_ID:
+		case ComponentOperationCompartmentEditPartCN.VISUAL_ID:
 			return getComponentOperationCompartment_7024SemanticChildren(view);
-		case ComponentNestedClassifierCompartment2EditPart.VISUAL_ID:
+		case ComponentNestedClassifierCompartmentEditPartCN.VISUAL_ID:
 			return getComponentNestedClassifierCompartment_7025SemanticChildren(view);
 		case SignalAttributeCompartment2EditPart.VISUAL_ID:
 			return getSignalAttributeCompartment_7026SemanticChildren(view);
@@ -822,7 +822,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getNestedClassifiers().iterator(); it.hasNext();) {
 			Classifier childElement = (Classifier)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Class3EditPart.VISUAL_ID) {
+			if(visualID == NestedClassForInterfaceEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1062,7 +1062,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getNestedClassifiers().iterator(); it.hasNext();) {
 			Classifier childElement = (Classifier)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Class3EditPart.VISUAL_ID) {
+			if(visualID == NestedClassForInterfaceEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1770,7 +1770,7 @@ public class UMLDiagramUpdater {
 			return getProperty_3006ContainedLinks(view);
 		case OperationForInterfaceEditpart.VISUAL_ID:
 			return getOperation_3007ContainedLinks(view);
-		case Class3EditPart.VISUAL_ID:
+		case NestedClassForInterfaceEditPart.VISUAL_ID:
 			return getClass_3008ContainedLinks(view);
 		case InstanceSpecificationEditPartCN.VISUAL_ID:
 			return getInstanceSpecification_3020ContainedLinks(view);
@@ -1921,7 +1921,7 @@ public class UMLDiagramUpdater {
 			return getProperty_3006IncomingLinks(view);
 		case OperationForInterfaceEditpart.VISUAL_ID:
 			return getOperation_3007IncomingLinks(view);
-		case Class3EditPart.VISUAL_ID:
+		case NestedClassForInterfaceEditPart.VISUAL_ID:
 			return getClass_3008IncomingLinks(view);
 		case InstanceSpecificationEditPartCN.VISUAL_ID:
 			return getInstanceSpecification_3020IncomingLinks(view);
@@ -2072,7 +2072,7 @@ public class UMLDiagramUpdater {
 			return getProperty_3006OutgoingLinks(view);
 		case OperationForInterfaceEditpart.VISUAL_ID:
 			return getOperation_3007OutgoingLinks(view);
-		case Class3EditPart.VISUAL_ID:
+		case NestedClassForInterfaceEditPart.VISUAL_ID:
 			return getClass_3008OutgoingLinks(view);
 		case InstanceSpecificationEditPartCN.VISUAL_ID:
 			return getInstanceSpecification_3020OutgoingLinks(view);

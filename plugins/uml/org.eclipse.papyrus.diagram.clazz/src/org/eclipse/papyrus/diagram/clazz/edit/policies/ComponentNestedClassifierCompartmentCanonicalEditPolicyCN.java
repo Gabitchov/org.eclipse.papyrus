@@ -32,7 +32,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForInterfaceEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.clazz.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -41,7 +41,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class InterfaceNestedClassifierCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
+public class ComponentNestedClassifierCompartmentCanonicalEditPolicyCN extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -59,7 +59,7 @@ public class InterfaceNestedClassifierCompartmentCanonicalEditPolicy extends Can
 	 * @generated
 	 */
 	protected EStructuralFeature getFeatureToSynchronize() {
-		return UMLPackage.eINSTANCE.getInterface_NestedClassifier();
+		return UMLPackage.eINSTANCE.getClass_NestedClassifier();
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class InterfaceNestedClassifierCompartmentCanonicalEditPolicy extends Can
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getInterfaceNestedClassifierCompartment_7008SemanticChildren(viewObject);
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getComponentNestedClassifierCompartment_7025SemanticChildren(viewObject);
 		for(UMLNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -87,7 +87,7 @@ public class InterfaceNestedClassifierCompartmentCanonicalEditPolicy extends Can
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		return NestedClassForInterfaceEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
+		return NestedClassForComponentEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class InterfaceNestedClassifierCompartmentCanonicalEditPolicy extends Can
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getInterfaceNestedClassifierCompartment_7008SemanticChildren((View)getHost().getModel());
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getComponentNestedClassifierCompartment_7025SemanticChildren((View)getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();
