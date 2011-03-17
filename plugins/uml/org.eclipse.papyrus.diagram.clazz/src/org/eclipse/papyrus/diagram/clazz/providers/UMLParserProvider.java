@@ -96,9 +96,9 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeNameEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Property3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Property5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForComponentEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForInterfaceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForSignalEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ReceptionEditPart;
@@ -1588,7 +1588,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getTemplateParameter_3016Parser();
 		case PropertyForSignalEditPart.VISUAL_ID:
 			return getProperty_3005Parser();
-		case Property3EditPart.VISUAL_ID:
+		case PropertyForInterfaceEditPart.VISUAL_ID:
 			return getProperty_3006Parser();
 		case Operation2EditPart.VISUAL_ID:
 			return getOperation_3007Parser();
