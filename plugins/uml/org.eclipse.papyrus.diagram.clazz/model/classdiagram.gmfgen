@@ -6217,9 +6217,9 @@
       </compartments>
       <compartments
           visualID="7031"
-          editPartClassName="EnumerationEnumerationLiteralCompartment2EditPart"
-          itemSemanticEditPolicyClassName="EnumerationEnumerationLiteralCompartment2ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="EnumerationEnumerationLiteralCompartment2CanonicalEditPolicy"
+          editPartClassName="EnumerationEnumerationLiteralCompartmentEditPartCN"
+          itemSemanticEditPolicyClassName="EnumerationEnumerationLiteralCompartmentItemSemanticEditPolicyCN"
+          canonicalEditPolicyClassName="EnumerationEnumerationLiteralCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.18"
           title="EnumerationLiteralCompartment"
           needsTitle="false"

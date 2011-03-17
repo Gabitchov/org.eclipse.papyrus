@@ -820,7 +820,7 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String EnumerationEnumerationLiteralCompartment2EditPart_title;
+	public static String EnumerationEnumerationLiteralCompartmentEditPartCN_title;
 
 	/**
 	 * @generated

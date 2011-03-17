@@ -602,7 +602,7 @@ public class UMLVisualIDRegistry {
 				return Constraint2EditPart.VISUAL_ID;
 			}
 			break;
-		case EnumerationEnumerationLiteralCompartment2EditPart.VISUAL_ID:
+		case EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getEnumerationLiteral().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -1210,7 +1210,7 @@ public class UMLVisualIDRegistry {
 			if(EnumerationNameEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(EnumerationEnumerationLiteralCompartment2EditPart.VISUAL_ID == nodeVisualID) {
+			if(EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1452,7 +1452,7 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case EnumerationEnumerationLiteralCompartment2EditPart.VISUAL_ID:
+		case EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID:
 			if(EnumerationLiteralEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}

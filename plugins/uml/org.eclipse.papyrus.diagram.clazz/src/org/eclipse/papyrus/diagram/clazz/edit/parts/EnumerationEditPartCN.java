@@ -170,10 +170,10 @@ ClassifierEditPart {
 			return true;
 		}
 
-		if(childEditPart instanceof EnumerationEnumerationLiteralCompartment2EditPart) {
+		if(childEditPart instanceof EnumerationEnumerationLiteralCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getEnumerationLiteralCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((EnumerationEnumerationLiteralCompartment2EditPart)childEditPart).getFigure());
+			pane.add(((EnumerationEnumerationLiteralCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
 
@@ -187,10 +187,10 @@ ClassifierEditPart {
 		if(childEditPart instanceof EnumerationNameEditPartCN) {
 			return true;
 		}
-		if(childEditPart instanceof EnumerationEnumerationLiteralCompartment2EditPart) {
+		if(childEditPart instanceof EnumerationEnumerationLiteralCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getEnumerationLiteralCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.remove(((EnumerationEnumerationLiteralCompartment2EditPart)childEditPart).getFigure());
+			pane.remove(((EnumerationEnumerationLiteralCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -220,7 +220,7 @@ ClassifierEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof EnumerationEnumerationLiteralCompartment2EditPart) {
+		if(editPart instanceof EnumerationEnumerationLiteralCompartmentEditPartCN) {
 			return getPrimaryShape().getEnumerationLiteralCompartmentFigure();
 		}
 		return getContentPane();
@@ -1825,7 +1825,7 @@ ClassifierEditPart {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
 			if(type == UMLElementTypes.EnumerationLiteral_3017) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(EnumerationEnumerationLiteralCompartment2EditPart.VISUAL_ID));
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);

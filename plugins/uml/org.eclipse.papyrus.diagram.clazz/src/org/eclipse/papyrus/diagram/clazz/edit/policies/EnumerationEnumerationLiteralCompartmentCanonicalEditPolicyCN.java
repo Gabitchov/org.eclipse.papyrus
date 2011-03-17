@@ -41,7 +41,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class EnumerationEnumerationLiteralCompartment2CanonicalEditPolicy extends CanonicalEditPolicy {
+public class EnumerationEnumerationLiteralCompartmentCanonicalEditPolicyCN extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
