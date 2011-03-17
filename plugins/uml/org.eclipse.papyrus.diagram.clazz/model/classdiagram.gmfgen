@@ -6275,9 +6275,9 @@
       </compartments>
       <compartments
           visualID="7011"
-          editPartClassName="ClassAttributeCompartmentEditPart"
-          itemSemanticEditPolicyClassName="ClassAttributeCompartmentItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="ClassAttributeCompartmentCanonicalEditPolicy"
+          editPartClassName="ClassAttributeCompartmentEditPartCN"
+          itemSemanticEditPolicyClassName="ClassAttributeCompartmentItemSemanticEditPolicyCN"
+          canonicalEditPolicyClassName="ClassAttributeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.22"
           title="AttributeCompartment"
           needsTitle="false"

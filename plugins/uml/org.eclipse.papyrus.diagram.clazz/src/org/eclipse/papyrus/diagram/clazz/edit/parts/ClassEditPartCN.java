@@ -200,10 +200,10 @@ ClassifierEditPart {
 			return true;
 		}
 
-		if(childEditPart instanceof ClassAttributeCompartmentEditPart) {
+		if(childEditPart instanceof ClassAttributeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((ClassAttributeCompartmentEditPart)childEditPart).getFigure());
+			pane.add(((ClassAttributeCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
 
@@ -238,10 +238,10 @@ ClassifierEditPart {
 		if(childEditPart instanceof ClassNameEditPartCN) {
 			return true;
 		}
-		if(childEditPart instanceof ClassAttributeCompartmentEditPart) {
+		if(childEditPart instanceof ClassAttributeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.remove(((ClassAttributeCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((ClassAttributeCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
 		if(childEditPart instanceof ClassOperationCompartmentEditPart) {
@@ -287,7 +287,7 @@ ClassifierEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof ClassAttributeCompartmentEditPart) {
+		if(editPart instanceof ClassAttributeCompartmentEditPartCN) {
 			return getPrimaryShape().getAttributeCompartmentFigure();
 		}
 		if(editPart instanceof ClassOperationCompartmentEditPart) {
@@ -1911,7 +1911,7 @@ ClassifierEditPart {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
 			if(type == UMLElementTypes.Property_3012) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassAttributeCompartmentEditPart.VISUAL_ID));
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassAttributeCompartmentEditPartCN.VISUAL_ID));
 			}
 			if(type == UMLElementTypes.Reception_3011) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassOperationCompartmentEditPart.VISUAL_ID));

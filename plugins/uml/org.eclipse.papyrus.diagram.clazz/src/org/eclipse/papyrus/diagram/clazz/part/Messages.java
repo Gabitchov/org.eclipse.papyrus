@@ -830,7 +830,7 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String ClassAttributeCompartmentEditPart_title;
+	public static String ClassAttributeCompartmentEditPartCN_title;
 
 	/**
 	 * @generated
