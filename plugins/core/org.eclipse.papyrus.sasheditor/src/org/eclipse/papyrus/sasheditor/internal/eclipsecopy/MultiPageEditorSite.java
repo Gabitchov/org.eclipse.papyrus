@@ -530,15 +530,24 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 		ISelectionProvider oldSelectionProvider = selectionProvider;
 		selectionProvider = provider;
 		if(oldSelectionProvider != null) {
+			//see code WindowSelectionService (line287)
+			// in some case as GraphicalView do not implement IPostSelectionProvider
 			oldSelectionProvider.removeSelectionChangedListener(getSelectionChangedListener());
 			if(oldSelectionProvider instanceof IPostSelectionProvider) {
 				((IPostSelectionProvider)oldSelectionProvider).removePostSelectionChangedListener(getPostSelectionChangedListener());
+			}
+			else{
+				oldSelectionProvider.removeSelectionChangedListener(getPostSelectionChangedListener());
 			}
 		}
 		if(selectionProvider != null) {
 			selectionProvider.addSelectionChangedListener(getSelectionChangedListener());
 			if(selectionProvider instanceof IPostSelectionProvider) {
 				((IPostSelectionProvider)selectionProvider).addPostSelectionChangedListener(getPostSelectionChangedListener());
+			}
+			else{
+				selectionProvider.addSelectionChangedListener(getPostSelectionChangedListener());
+				
 			}
 		}
 	}
