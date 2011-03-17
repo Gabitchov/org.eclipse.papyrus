@@ -20,12 +20,12 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class InterfaceOperationCompartment2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class InterfaceOperationCompartmentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public InterfaceOperationCompartment2ItemSemanticEditPolicy() {
+	public InterfaceOperationCompartmentItemSemanticEditPolicyCN() {
 		super(UMLElementTypes.Interface_3023);
 	}
 

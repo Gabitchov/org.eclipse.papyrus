@@ -28,8 +28,9 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.NestedClazzCompartmentCreationEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.InterfaceAttributeCompartment2ItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.edit.policies.InterfaceNestedClassifierCompartmentItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.clazz.part.Messages;
 import org.eclipse.papyrus.diagram.common.editparts.ResizeableListCompartmentEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
@@ -37,7 +38,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 /**
  * @generated
  */
-public class InterfaceAttributeCompartment2EditPart
+public class InterfaceNestedClassifierCompartmentEditPartCN
 
 extends ResizeableListCompartmentEditPart
 
@@ -46,12 +47,12 @@ extends ResizeableListCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 7027;
+	public static final int VISUAL_ID = 7029;
 
 	/**
 	 * @generated
 	 */
-	public InterfaceAttributeCompartment2EditPart(View view) {
+	public InterfaceNestedClassifierCompartmentEditPartCN(View view) {
 		super(view);
 	}
 
@@ -66,7 +67,7 @@ extends ResizeableListCompartmentEditPart
 	 * @generated
 	 */
 	public String getCompartmentName() {
-		return Messages.InterfaceAttributeCompartment2EditPart_title;
+		return Messages.InterfaceNestedClassifierCompartmentEditPartCN_title;
 	}
 
 	/**
@@ -84,16 +85,17 @@ extends ResizeableListCompartmentEditPart
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ResizableCompartmentEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InterfaceAttributeCompartment2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InterfaceNestedClassifierCompartmentItemSemanticEditPolicyCN());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 
 		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.InterfaceAttributeCompartment2CanonicalEditPolicy());
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.InterfaceNestedClassifierCompartmentCanonicalEditPolicyCN());
 
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new NestedClazzCompartmentCreationEditPolicy());
 	}
 
 	/**

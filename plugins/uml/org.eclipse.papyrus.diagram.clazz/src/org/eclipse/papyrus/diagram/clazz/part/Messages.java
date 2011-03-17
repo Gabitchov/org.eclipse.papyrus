@@ -800,17 +800,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String InterfaceAttributeCompartment2EditPart_title;
+	public static String InterfaceAttributeCompartmentEditPartCN_title;
 
 	/**
 	 * @generated
 	 */
-	public static String InterfaceOperationCompartment2EditPart_title;
+	public static String InterfaceOperationCompartmentEditPartCN_title;
 
 	/**
 	 * @generated
 	 */
-	public static String InterfaceNestedClassifierCompartment2EditPart_title;
+	public static String InterfaceNestedClassifierCompartmentEditPartCN_title;
 
 	/**
 	 * @generated

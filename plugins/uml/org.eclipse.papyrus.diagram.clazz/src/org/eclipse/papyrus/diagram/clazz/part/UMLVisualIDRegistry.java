@@ -519,21 +519,21 @@ public class UMLVisualIDRegistry {
 				return PropertyForSignalEditPart.VISUAL_ID;
 			}
 			break;
-		case InterfaceAttributeCompartment2EditPart.VISUAL_ID:
+		case InterfaceAttributeCompartmentEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return PropertyForInterfaceEditPart.VISUAL_ID;
 			}
 			break;
-		case InterfaceOperationCompartment2EditPart.VISUAL_ID:
+		case InterfaceOperationCompartmentEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getOperation().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return OperationForInterfaceEditpart.VISUAL_ID;
 			}
 			break;
-		case InterfaceNestedClassifierCompartment2EditPart.VISUAL_ID:
+		case InterfaceNestedClassifierCompartmentEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -1179,13 +1179,13 @@ public class UMLVisualIDRegistry {
 			if(InterfaceNameEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(InterfaceAttributeCompartment2EditPart.VISUAL_ID == nodeVisualID) {
+			if(InterfaceAttributeCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(InterfaceOperationCompartment2EditPart.VISUAL_ID == nodeVisualID) {
+			if(InterfaceOperationCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(InterfaceNestedClassifierCompartment2EditPart.VISUAL_ID == nodeVisualID) {
+			if(InterfaceNestedClassifierCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
@@ -1399,17 +1399,17 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case InterfaceAttributeCompartment2EditPart.VISUAL_ID:
+		case InterfaceAttributeCompartmentEditPartCN.VISUAL_ID:
 			if(PropertyForInterfaceEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case InterfaceOperationCompartment2EditPart.VISUAL_ID:
+		case InterfaceOperationCompartmentEditPartCN.VISUAL_ID:
 			if(OperationForInterfaceEditpart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case InterfaceNestedClassifierCompartment2EditPart.VISUAL_ID:
+		case InterfaceNestedClassifierCompartmentEditPartCN.VISUAL_ID:
 			if(NestedClassForInterfaceEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -2389,7 +2389,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7035, viewInfo);
 
-		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "org.eclipse.emf.ecore.impl.DynamicEObjectImpl@17becd8 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@fa983e (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))");
+		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "org.eclipse.emf.ecore.impl.DynamicEObjectImpl@14308 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@d7c445 (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))");
 
 		root.addNode(2008, viewInfo);
 

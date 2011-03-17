@@ -14,18 +14,18 @@ package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.PropertyForInterfaceCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.NestedClassForInterfaceCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 
 /**
  * @generated
  */
-public class InterfaceAttributeCompartment2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class InterfaceNestedClassifierCompartmentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public InterfaceAttributeCompartment2ItemSemanticEditPolicy() {
+	public InterfaceNestedClassifierCompartmentItemSemanticEditPolicyCN() {
 		super(UMLElementTypes.Interface_3023);
 	}
 
@@ -33,8 +33,8 @@ public class InterfaceAttributeCompartment2ItemSemanticEditPolicy extends UMLBas
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.Property_3006 == req.getElementType()) {
-			return getGEFWrapper(new PropertyForInterfaceCreateCommand(req));
+		if(UMLElementTypes.Class_3008 == req.getElementType()) {
+			return getGEFWrapper(new NestedClassForInterfaceCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}
