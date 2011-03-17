@@ -34,7 +34,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Class2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
@@ -76,6 +75,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceRealizationEditPart
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
@@ -946,7 +946,7 @@ public class UMLElementTypes {
 			return Property_3002;
 		case OperationForComponentEditPart.VISUAL_ID:
 			return Operation_3003;
-		case Class2EditPart.VISUAL_ID:
+		case NestedClassForComponentEditPart.VISUAL_ID:
 			return Class_3004;
 		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 			return RedefinableTemplateSignature_3015;

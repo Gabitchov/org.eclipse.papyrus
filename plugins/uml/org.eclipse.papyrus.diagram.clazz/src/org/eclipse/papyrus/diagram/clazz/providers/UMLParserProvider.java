@@ -53,7 +53,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.BindingSubstitutionEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Class2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassNameEditPart;
@@ -88,6 +87,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceRealizationName2Edi
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelNameEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.MultiDependencyLabelEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForComponentEditPart;
@@ -1576,7 +1576,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getProperty_3002Parser();
 		case OperationForComponentEditPart.VISUAL_ID:
 			return getOperation_3003Parser();
-		case Class2EditPart.VISUAL_ID:
+		case NestedClassForComponentEditPart.VISUAL_ID:
 			return getClass_3004Parser();
 		case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
 			return getConnectableElementTemplateParameter_3034Parser();

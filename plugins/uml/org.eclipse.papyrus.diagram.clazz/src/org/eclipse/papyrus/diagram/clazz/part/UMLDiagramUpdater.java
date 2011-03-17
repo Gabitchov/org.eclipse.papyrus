@@ -690,7 +690,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getNestedClassifiers().iterator(); it.hasNext();) {
 			Classifier childElement = (Classifier)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Class2EditPart.VISUAL_ID) {
+			if(visualID == NestedClassForComponentEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -966,7 +966,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getNestedClassifiers().iterator(); it.hasNext();) {
 			Classifier childElement = (Classifier)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Class2EditPart.VISUAL_ID) {
+			if(visualID == NestedClassForComponentEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1654,7 +1654,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getNestedClassifiers().iterator(); it.hasNext();) {
 			Classifier childElement = (Classifier)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Class2EditPart.VISUAL_ID) {
+			if(visualID == NestedClassForComponentEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1752,7 +1752,7 @@ public class UMLDiagramUpdater {
 			return getProperty_3002ContainedLinks(view);
 		case OperationForComponentEditPart.VISUAL_ID:
 			return getOperation_3003ContainedLinks(view);
-		case Class2EditPart.VISUAL_ID:
+		case NestedClassForComponentEditPart.VISUAL_ID:
 			return getClass_3004ContainedLinks(view);
 		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 			return getRedefinableTemplateSignature_3015ContainedLinks(view);
@@ -1903,7 +1903,7 @@ public class UMLDiagramUpdater {
 			return getProperty_3002IncomingLinks(view);
 		case OperationForComponentEditPart.VISUAL_ID:
 			return getOperation_3003IncomingLinks(view);
-		case Class2EditPart.VISUAL_ID:
+		case NestedClassForComponentEditPart.VISUAL_ID:
 			return getClass_3004IncomingLinks(view);
 		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 			return getRedefinableTemplateSignature_3015IncomingLinks(view);
@@ -2054,7 +2054,7 @@ public class UMLDiagramUpdater {
 			return getProperty_3002OutgoingLinks(view);
 		case OperationForComponentEditPart.VISUAL_ID:
 			return getOperation_3003OutgoingLinks(view);
-		case Class2EditPart.VISUAL_ID:
+		case NestedClassForComponentEditPart.VISUAL_ID:
 			return getClass_3004OutgoingLinks(view);
 		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 			return getRedefinableTemplateSignature_3015OutgoingLinks(view);

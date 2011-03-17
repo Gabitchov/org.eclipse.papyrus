@@ -176,8 +176,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case OperationForComponentEditPart.VISUAL_ID:
 				return new OperationForComponentEditPart(view);
 
-			case Class2EditPart.VISUAL_ID:
-				return new Class2EditPart(view);
+			case NestedClassForComponentEditPart.VISUAL_ID:
+				return new NestedClassForComponentEditPart(view);
 
 			case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 				return new RedefinableTemplateSignatureEditPart(view);
