@@ -750,7 +750,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Property2EditPart.VISUAL_ID) {
+			if(visualID == PropertyForSignalEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -990,7 +990,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Property2EditPart.VISUAL_ID) {
+			if(visualID == PropertyForSignalEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1764,7 +1764,7 @@ public class UMLDiagramUpdater {
 			return getClassifierTemplateParameter_3031ContainedLinks(view);
 		case TemplateParameterEditPart.VISUAL_ID:
 			return getTemplateParameter_3016ContainedLinks(view);
-		case Property2EditPart.VISUAL_ID:
+		case PropertyForSignalEditPart.VISUAL_ID:
 			return getProperty_3005ContainedLinks(view);
 		case Property3EditPart.VISUAL_ID:
 			return getProperty_3006ContainedLinks(view);
@@ -1915,7 +1915,7 @@ public class UMLDiagramUpdater {
 			return getClassifierTemplateParameter_3031IncomingLinks(view);
 		case TemplateParameterEditPart.VISUAL_ID:
 			return getTemplateParameter_3016IncomingLinks(view);
-		case Property2EditPart.VISUAL_ID:
+		case PropertyForSignalEditPart.VISUAL_ID:
 			return getProperty_3005IncomingLinks(view);
 		case Property3EditPart.VISUAL_ID:
 			return getProperty_3006IncomingLinks(view);
@@ -2066,7 +2066,7 @@ public class UMLDiagramUpdater {
 			return getClassifierTemplateParameter_3031OutgoingLinks(view);
 		case TemplateParameterEditPart.VISUAL_ID:
 			return getTemplateParameter_3016OutgoingLinks(view);
-		case Property2EditPart.VISUAL_ID:
+		case PropertyForSignalEditPart.VISUAL_ID:
 			return getProperty_3005OutgoingLinks(view);
 		case Property3EditPart.VISUAL_ID:
 			return getProperty_3006OutgoingLinks(view);

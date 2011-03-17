@@ -25,12 +25,12 @@ import org.eclipse.papyrus.service.edit.service.IElementEditService;
 /**
  * @generated
  */
-public class Property2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class PropertyForSignalItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public Property2ItemSemanticEditPolicy() {
+	public PropertyForSignalItemSemanticEditPolicy() {
 		super(UMLElementTypes.Property_3005);
 	}
 
