@@ -15,7 +15,7 @@ public class PackagePreferencePage extends RequirementDiagramNodePreferencePage 
 	/**
 	 * the list of the compartments for this node
 	 */
-	public static final String compartments[] = { Messages.PackagePackageableElementCompartmentEditPart_title };
+	public static final String compartments[] = { Messages.PackagePackageableElementCompartmentEditPartCN_title };
 
 
 	/**

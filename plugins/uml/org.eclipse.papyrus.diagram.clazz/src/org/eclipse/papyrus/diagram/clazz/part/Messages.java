@@ -825,7 +825,7 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String PackagePackageableElementCompartmentEditPart_title;
+	public static String PackagePackageableElementCompartmentEditPartCN_title;
 
 	/**
 	 * @generated
