@@ -54,6 +54,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.BindingSubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class3EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForInterfaceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassNameEditPartCN;

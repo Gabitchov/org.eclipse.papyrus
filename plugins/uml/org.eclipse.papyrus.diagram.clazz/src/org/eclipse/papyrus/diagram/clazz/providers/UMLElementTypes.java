@@ -35,6 +35,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassLinkEditPart
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class3EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForInterfaceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;

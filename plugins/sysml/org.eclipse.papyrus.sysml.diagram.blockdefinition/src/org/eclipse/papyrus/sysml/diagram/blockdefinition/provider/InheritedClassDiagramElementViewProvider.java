@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForComponentEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Class3EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForInterfaceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
@@ -243,7 +243,7 @@ public class InheritedClassDiagramElementViewProvider extends UMLViewProvider {
 			return createProperty_3006(domainElement, containerView, index, persisted, preferencesHint);
 		case OperationForInterfaceEditpart.VISUAL_ID:
 			return createOperation_3007(domainElement, containerView, index, persisted, preferencesHint);
-		case Class3EditPart.VISUAL_ID:
+		case NestedClassForInterfaceEditPart.VISUAL_ID:
 			return createClass_3008(domainElement, containerView, index, persisted, preferencesHint);
 		case InstanceSpecificationEditPartCN.VISUAL_ID:
 			return createInstanceSpecification_3020(domainElement, containerView, index, persisted, preferencesHint);

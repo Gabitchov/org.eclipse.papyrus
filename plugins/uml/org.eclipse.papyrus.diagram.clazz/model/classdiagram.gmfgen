@@ -562,11 +562,11 @@
       <childNodes
           xsi:type="gmfgen:GenChildLabelNode"
           visualID="3008"
-          editPartClassName="Class3EditPart"
-          itemSemanticEditPolicyClassName="Class3ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="Class3CanonicalEditPolicy"
-          graphicalNodeEditPolicyClassName="Class3GraphicalNodeEditPolicy"
-          createCommandClassName="Class3CreateCommand"
+          editPartClassName="NestedClassForInterfaceEditPart"
+          itemSemanticEditPolicyClassName="NestedClassForInterfaceItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="NestedClassForInterfaceCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="NestedClassForInterfaceGraphicalNodeEditPolicy"
+          createCommandClassName="NestedClassForInterfaceCreateCommand"
           containers="/0/@diagram/@compartments.9 /0/@diagram/@compartments.17"
           labelElementIcon="true">
         <diagramRunTimeClass

@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -20,7 +32,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * @generated
  */
-public class Class3CreateCommand extends EditElementCommand {
+public class NestedClassForInterfaceCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -35,7 +47,7 @@ public class Class3CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public Class3CreateCommand(CreateElementRequest req, EObject eObject) {
+	public NestedClassForInterfaceCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -44,14 +56,14 @@ public class Class3CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static Class3CreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new Class3CreateCommand(req, eObject);
+	public static NestedClassForInterfaceCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new NestedClassForInterfaceCreateCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public Class3CreateCommand(CreateElementRequest req) {
+	public NestedClassForInterfaceCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
