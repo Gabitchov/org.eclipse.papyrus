@@ -2346,8 +2346,8 @@
         </modelFacet>
         <labels
             visualID="5066"
-            editPartClassName="AssociationClassName2EditPart"
-            itemSemanticEditPolicyClassName="AssociationClassName2ItemSemanticEditPolicy"
+            editPartClassName="AssociationClassNameEditPart"
+            itemSemanticEditPolicyClassName="AssociationClassNameItemSemanticEditPolicy"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>

@@ -160,8 +160,8 @@ ClassifierEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AssociationClassName2EditPart) {
-			((AssociationClassName2EditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof AssociationClassNameEditPart) {
+			((AssociationClassNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 
@@ -193,7 +193,7 @@ ClassifierEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AssociationClassName2EditPart) {
+		if(childEditPart instanceof AssociationClassNameEditPart) {
 			return true;
 		}
 		if(childEditPart instanceof AssociationClassAttributeCompartmentEditPart) {
@@ -341,7 +341,7 @@ ClassifierEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(AssociationClassName2EditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(AssociationClassNameEditPart.VISUAL_ID));
 	}
 
 	/**

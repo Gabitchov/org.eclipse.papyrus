@@ -949,7 +949,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case AssociationClassEditPart.VISUAL_ID:
-			if(AssociationClassName2EditPart.VISUAL_ID == nodeVisualID) {
+			if(AssociationClassNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(AssociationClassAttributeCompartmentEditPart.VISUAL_ID == nodeVisualID) {

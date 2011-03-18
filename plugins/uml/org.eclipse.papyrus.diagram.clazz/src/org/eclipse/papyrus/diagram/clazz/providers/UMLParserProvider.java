@@ -44,7 +44,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeTemplateBin
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeUsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotyperGeneralizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchMutliplicityEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassName2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationMultiplictySourceEditPart;
@@ -1530,7 +1530,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		switch(visualID) {
 		case MultiDependencyLabelEditPart.VISUAL_ID:
 			return getDependencyName_1Parser();
-		case AssociationClassName2EditPart.VISUAL_ID:
+		case AssociationClassNameEditPart.VISUAL_ID:
 			return getAssociationClassName_5066Parser();
 		case InstanceSpecificationNameEditPart.VISUAL_ID:
 			return getInstanceSpecificationName_5002Parser();

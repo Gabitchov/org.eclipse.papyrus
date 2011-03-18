@@ -80,7 +80,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class AssociationClassName2EditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class AssociationClassNameEditPart extends CompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
@@ -124,7 +124,7 @@ public class AssociationClassName2EditPart extends CompartmentEditPart implement
 	/**
 	 * @generated
 	 */
-	public AssociationClassName2EditPart(View view) {
+	public AssociationClassNameEditPart(View view) {
 		super(view);
 	}
 
@@ -339,7 +339,7 @@ public class AssociationClassName2EditPart extends CompartmentEditPart implement
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.AssociationClass_2013, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassName2EditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.AssociationClass_2013, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassNameEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
