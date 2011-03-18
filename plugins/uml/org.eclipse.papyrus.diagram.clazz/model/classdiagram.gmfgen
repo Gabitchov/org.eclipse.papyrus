@@ -1554,11 +1554,11 @@
       <childNodes
           xsi:type="gmfgen:GenChildLabelNode"
           visualID="3013"
-          editPartClassName="Operation3EditPart"
+          editPartClassName="OperationForClassEditPart"
           itemSemanticEditPolicyClassName="Operation3ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="Operation3CanonicalEditPolicy"
-          graphicalNodeEditPolicyClassName="Operation3GraphicalNodeEditPolicy"
-          createCommandClassName="Operation3CreateCommand"
+          canonicalEditPolicyClassName="OperationForClassCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="OperationForClassGraphicalNodeEditPolicy"
+          createCommandClassName="OperationForClassCommand"
           containers="/0/@diagram/@compartments.29 /0/@diagram/@compartments.22">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1610,11 +1610,11 @@
       <childNodes
           xsi:type="gmfgen:GenChildLabelNode"
           visualID="3014"
-          editPartClassName="Class5EditPart"
-          itemSemanticEditPolicyClassName="Class5ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="Class5CanonicalEditPolicy"
-          graphicalNodeEditPolicyClassName="Class5GraphicalNodeEditPolicy"
-          createCommandClassName="Class5CreateCommand"
+          editPartClassName="NestedClassForClassEditPart"
+          itemSemanticEditPolicyClassName="NestedClassForClassItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="NestedClassForClassCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="NestedClassForClassGraphicalNodeEditPolicy"
+          createCommandClassName="NestedClassForClassCreateCommand"
           containers="/0/@diagram/@compartments.23 /0/@diagram/@compartments.30"
           labelElementIcon="true">
         <diagramRunTimeClass
@@ -6299,9 +6299,9 @@
       </compartments>
       <compartments
           visualID="7012"
-          editPartClassName="ClassOperationCompartmentEditPart"
-          itemSemanticEditPolicyClassName="ClassOperationCompartmentItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="ClassOperationCompartmentCanonicalEditPolicy"
+          editPartClassName="ClassOperationCompartmentEditPartCN"
+          itemSemanticEditPolicyClassName="ClassOperationCompartmentItemSemanticEditPolicyCN"
+          canonicalEditPolicyClassName="ClassOperationCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.21 /0/@diagram/@childNodes.23"
           title="OperationCompartment"
           needsTitle="false"
@@ -6323,9 +6323,9 @@
       </compartments>
       <compartments
           visualID="7013"
-          editPartClassName="ClassNestedClassifierCompartmentEditPart"
-          itemSemanticEditPolicyClassName="ClassNestedClassifierCompartmentItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="ClassNestedClassifierCompartmentCanonicalEditPolicy"
+          editPartClassName="ClassNestedClassifierCompartmentEditPartCN"
+          itemSemanticEditPolicyClassName="ClassNestedClassifierCompartmentItemSemanticEditPolicyCN"
+          canonicalEditPolicyClassName="ClassNestedClassifierCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.24"
           title="NestedClassifierCompartment"
           needsTitle="false"

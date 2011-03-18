@@ -14,18 +14,19 @@ package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.Class5CreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.OperationForClassCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.ReceptionCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 
 /**
  * @generated
  */
-public class ClassNestedClassifierCompartmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class ClassOperationCompartmentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public ClassNestedClassifierCompartmentItemSemanticEditPolicy() {
+	public ClassOperationCompartmentItemSemanticEditPolicyCN() {
 		super(UMLElementTypes.Class_3010);
 	}
 
@@ -33,8 +34,11 @@ public class ClassNestedClassifierCompartmentItemSemanticEditPolicy extends UMLB
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.Class_3014 == req.getElementType()) {
-			return getGEFWrapper(new Class5CreateCommand(req));
+		if(UMLElementTypes.Reception_3011 == req.getElementType()) {
+			return getGEFWrapper(new ReceptionCreateCommand(req));
+		}
+		if(UMLElementTypes.Operation_3013 == req.getElementType()) {
+			return getGEFWrapper(new OperationForClassCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

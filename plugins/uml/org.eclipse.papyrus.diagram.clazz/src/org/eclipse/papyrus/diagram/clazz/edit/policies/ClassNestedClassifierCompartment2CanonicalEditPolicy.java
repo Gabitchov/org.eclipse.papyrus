@@ -32,7 +32,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.clazz.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -87,7 +87,7 @@ public class ClassNestedClassifierCompartment2CanonicalEditPolicy extends Canoni
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		return Class5EditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
+		return NestedClassForClassEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
 	}
 
 	/**

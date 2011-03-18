@@ -1,15 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- */
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -26,12 +14,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
  */
-public class Class5CreateCommand extends EditElementCommand {
+public class OperationForClassCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -46,7 +35,7 @@ public class Class5CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public Class5CreateCommand(CreateElementRequest req, EObject eObject) {
+	public OperationForClassCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -55,14 +44,14 @@ public class Class5CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static Class5CreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new Class5CreateCommand(req, eObject);
+	public static OperationForClassCommand create(CreateElementRequest req, EObject eObject) {
+		return new OperationForClassCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public Class5CreateCommand(CreateElementRequest req) {
+	public OperationForClassCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -97,12 +86,12 @@ public class Class5CreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		Class newElement = UMLFactory.eINSTANCE.createClass();
+		Operation newElement = UMLFactory.eINSTANCE.createOperation();
 
 		Class owner = (Class)getElementToEdit();
-		owner.getNestedClassifiers().add(newElement);
+		owner.getOwnedOperations().add(newElement);
 
-		ElementInitializers.getInstance().init_Class_3014(newElement);
+		ElementInitializers.getInstance().init_Operation_3013(newElement);
 
 		doConfigure(newElement, monitor, info);
 
@@ -113,7 +102,7 @@ public class Class5CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Class newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected void doConfigure(Operation newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

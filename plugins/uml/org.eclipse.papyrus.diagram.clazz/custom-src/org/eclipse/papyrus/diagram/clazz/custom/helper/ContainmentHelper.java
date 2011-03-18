@@ -49,7 +49,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.command.ContainmentCircleViewCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CustomCreateContainmentLinkCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CustomDropAppliedStereotypeCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentSubLinkEditPart;
@@ -538,7 +538,7 @@ public class ContainmentHelper extends ElementHelper {
 	}
 
 	private boolean canHaveContainmentLink(EditPart currentEditPart) {
-		return currentEditPart instanceof ClassEditPart || currentEditPart instanceof PackageEditPartCN || currentEditPart instanceof PackageEditPart || currentEditPart instanceof ModelEditPartTN || currentEditPart instanceof Class5EditPart || currentEditPart instanceof ModelEditPartCN;
+		return currentEditPart instanceof ClassEditPart || currentEditPart instanceof PackageEditPartCN || currentEditPart instanceof PackageEditPart || currentEditPart instanceof ModelEditPartTN || currentEditPart instanceof NestedClassForClassEditPart || currentEditPart instanceof ModelEditPartCN;
 
 	}
 

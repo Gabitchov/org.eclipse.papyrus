@@ -89,7 +89,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class Operation3EditPart
+public class OperationForClassEditPart
 
 extends UMLCompartmentEditPart
 
@@ -137,7 +137,7 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 	/**
 	 * @generated
 	 */
-	public Operation3EditPart(View view) {
+	public OperationForClassEditPart(View view) {
 		super(view);
 	}
 
@@ -353,7 +353,7 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Operation_3013, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.Operation3EditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Operation_3013, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForClassEditPart.VISUAL_ID));
 		}
 		return parser;
 	}

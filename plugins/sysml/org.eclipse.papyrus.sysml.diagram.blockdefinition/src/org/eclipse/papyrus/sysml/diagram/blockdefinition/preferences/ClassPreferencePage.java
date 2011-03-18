@@ -20,7 +20,7 @@ public class ClassPreferencePage extends BlockDefinitionDiagramNodePreferencePag
 	/**
 	 * the list of the compartments for this node
 	 */
-	public static final String compartments[] = { BlockPropertyCompartmentEditPart.COMPARTMENT_NAME, Messages.ClassOperationCompartmentEditPart_title, Messages.ClassNestedClassifierCompartmentEditPart_title };
+	public static final String compartments[] = { BlockPropertyCompartmentEditPart.COMPARTMENT_NAME, Messages.ClassOperationCompartmentEditPartCN_title, Messages.ClassNestedClassifierCompartmentEditPartCN_title };
 
 
 	/**

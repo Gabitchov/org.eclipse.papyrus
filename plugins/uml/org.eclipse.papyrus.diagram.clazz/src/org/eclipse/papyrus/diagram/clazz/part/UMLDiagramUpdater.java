@@ -158,9 +158,9 @@ public class UMLDiagramUpdater {
 			return getPackagePackageableElementCompartment_7010SemanticChildren(view);
 		case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
 			return getClassAttributeCompartment_7011SemanticChildren(view);
-		case ClassOperationCompartmentEditPart.VISUAL_ID:
+		case ClassOperationCompartmentEditPartCN.VISUAL_ID:
 			return getClassOperationCompartment_7012SemanticChildren(view);
-		case ClassNestedClassifierCompartmentEditPart.VISUAL_ID:
+		case ClassNestedClassifierCompartmentEditPartCN.VISUAL_ID:
 			return getClassNestedClassifierCompartment_7013SemanticChildren(view);
 		case DataTypeAttributeCompartment2EditPart.VISUAL_ID:
 			return getDataTypeAttributeCompartment_7032SemanticChildren(view);
@@ -1286,7 +1286,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
 			Operation childElement = (Operation)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Operation3EditPart.VISUAL_ID) {
+			if(visualID == OperationForClassEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1310,7 +1310,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getNestedClassifiers().iterator(); it.hasNext();) {
 			Classifier childElement = (Classifier)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Class5EditPart.VISUAL_ID) {
+			if(visualID == NestedClassForClassEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1510,7 +1510,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
 			Operation childElement = (Operation)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Operation3EditPart.VISUAL_ID) {
+			if(visualID == OperationForClassEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1534,7 +1534,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getNestedClassifiers().iterator(); it.hasNext();) {
 			Classifier childElement = (Classifier)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Class5EditPart.VISUAL_ID) {
+			if(visualID == NestedClassForClassEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1794,9 +1794,9 @@ public class UMLDiagramUpdater {
 			return getReception_3011ContainedLinks(view);
 		case PropertyForClassEditPart.VISUAL_ID:
 			return getProperty_3012ContainedLinks(view);
-		case Operation3EditPart.VISUAL_ID:
+		case OperationForClassEditPart.VISUAL_ID:
 			return getOperation_3013ContainedLinks(view);
-		case Class5EditPart.VISUAL_ID:
+		case NestedClassForClassEditPart.VISUAL_ID:
 			return getClass_3014ContainedLinks(view);
 		case PrimitiveTypeEditPartCN.VISUAL_ID:
 			return getPrimitiveType_3026ContainedLinks(view);
@@ -1945,9 +1945,9 @@ public class UMLDiagramUpdater {
 			return getReception_3011IncomingLinks(view);
 		case PropertyForClassEditPart.VISUAL_ID:
 			return getProperty_3012IncomingLinks(view);
-		case Operation3EditPart.VISUAL_ID:
+		case OperationForClassEditPart.VISUAL_ID:
 			return getOperation_3013IncomingLinks(view);
-		case Class5EditPart.VISUAL_ID:
+		case NestedClassForClassEditPart.VISUAL_ID:
 			return getClass_3014IncomingLinks(view);
 		case PrimitiveTypeEditPartCN.VISUAL_ID:
 			return getPrimitiveType_3026IncomingLinks(view);
@@ -2096,9 +2096,9 @@ public class UMLDiagramUpdater {
 			return getReception_3011OutgoingLinks(view);
 		case PropertyForClassEditPart.VISUAL_ID:
 			return getProperty_3012OutgoingLinks(view);
-		case Operation3EditPart.VISUAL_ID:
+		case OperationForClassEditPart.VISUAL_ID:
 			return getOperation_3013OutgoingLinks(view);
-		case Class5EditPart.VISUAL_ID:
+		case NestedClassForClassEditPart.VISUAL_ID:
 			return getClass_3014OutgoingLinks(view);
 		case PrimitiveTypeEditPartCN.VISUAL_ID:
 			return getPrimitiveType_3026OutgoingLinks(view);

@@ -41,7 +41,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.helper.MultiDependencyHelper;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNodeEditPart;
@@ -91,7 +91,7 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 		droppableElementsVisualID.add(AssociationClassEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(AssociationNodeEditPart.VISUAL_ID);
 
-		droppableElementsVisualID.add(Class5EditPart.VISUAL_ID);
+		droppableElementsVisualID.add(NestedClassForClassEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ClassEditPartCN.VISUAL_ID);
 		droppableElementsVisualID.add(PackageEditPartCN.VISUAL_ID);
 		droppableElementsVisualID.add(ModelEditPartCN.VISUAL_ID);
@@ -136,7 +136,7 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 			return dropAssociationClass(dropRequest, semanticLink, nodeVISUALID);
 		case AssociationNodeEditPart.VISUAL_ID:
 			return dropAssociation(dropRequest, semanticLink, nodeVISUALID);
-		case Class5EditPart.VISUAL_ID:
+		case NestedClassForClassEditPart.VISUAL_ID:
 		case ClassEditPartCN.VISUAL_ID:
 		case PackageEditPartCN.VISUAL_ID:
 		case ModelEditPartCN.VISUAL_ID:

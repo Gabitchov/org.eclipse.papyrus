@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation3EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ReceptionEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.clazz.part.UMLNodeDescriptor;
@@ -89,7 +89,7 @@ public class ClassOperationCompartment2CanonicalEditPolicy extends CanonicalEdit
 	 */
 	private boolean isMyDiagramElement(View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		return visualID == ReceptionEditPart.VISUAL_ID || visualID == Operation3EditPart.VISUAL_ID;
+		return visualID == ReceptionEditPart.VISUAL_ID || visualID == OperationForClassEditPart.VISUAL_ID;
 	}
 
 	/**

@@ -26,13 +26,12 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
  */
-public class Operation3CreateCommand extends EditElementCommand {
+public class NestedClassForClassCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -47,7 +46,7 @@ public class Operation3CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public Operation3CreateCommand(CreateElementRequest req, EObject eObject) {
+	public NestedClassForClassCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -56,14 +55,14 @@ public class Operation3CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static Operation3CreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new Operation3CreateCommand(req, eObject);
+	public static NestedClassForClassCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new NestedClassForClassCreateCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public Operation3CreateCommand(CreateElementRequest req) {
+	public NestedClassForClassCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -98,12 +97,12 @@ public class Operation3CreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		Operation newElement = UMLFactory.eINSTANCE.createOperation();
+		Class newElement = UMLFactory.eINSTANCE.createClass();
 
 		Class owner = (Class)getElementToEdit();
-		owner.getOwnedOperations().add(newElement);
+		owner.getNestedClassifiers().add(newElement);
 
-		ElementInitializers.getInstance().init_Operation_3013(newElement);
+		ElementInitializers.getInstance().init_Class_3014(newElement);
 
 		doConfigure(newElement, monitor, info);
 
@@ -114,7 +113,7 @@ public class Operation3CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Operation newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected void doConfigure(Class newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

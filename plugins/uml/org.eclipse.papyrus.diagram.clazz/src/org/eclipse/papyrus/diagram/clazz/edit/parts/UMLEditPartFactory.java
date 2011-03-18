@@ -263,11 +263,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case PropertyForClassEditPart.VISUAL_ID:
 				return new PropertyForClassEditPart(view);
 
-			case Operation3EditPart.VISUAL_ID:
-				return new Operation3EditPart(view);
+			case OperationForClassEditPart.VISUAL_ID:
+				return new OperationForClassEditPart(view);
 
-			case Class5EditPart.VISUAL_ID:
-				return new Class5EditPart(view);
+			case NestedClassForClassEditPart.VISUAL_ID:
+				return new NestedClassForClassEditPart(view);
 
 			case PrimitiveTypeEditPartCN.VISUAL_ID:
 				return new PrimitiveTypeEditPartCN(view);
@@ -377,11 +377,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
 				return new ClassAttributeCompartmentEditPartCN(view);
 
-			case ClassOperationCompartmentEditPart.VISUAL_ID:
-				return new ClassOperationCompartmentEditPart(view);
+			case ClassOperationCompartmentEditPartCN.VISUAL_ID:
+				return new ClassOperationCompartmentEditPartCN(view);
 
-			case ClassNestedClassifierCompartmentEditPart.VISUAL_ID:
-				return new ClassNestedClassifierCompartmentEditPart(view);
+			case ClassNestedClassifierCompartmentEditPartCN.VISUAL_ID:
+				return new ClassNestedClassifierCompartmentEditPartCN(view);
 
 			case DataTypeAttributeCompartment2EditPart.VISUAL_ID:
 				return new DataTypeAttributeCompartment2EditPart(view);

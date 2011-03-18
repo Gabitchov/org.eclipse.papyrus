@@ -31,7 +31,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ContainmentDragDropHelper;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
@@ -46,7 +46,7 @@ import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
  */
 public class CustomContainmentCreationEditPolicy extends CreationEditPolicy {
 
-	private static List<Integer> ourCanHaveContainmentLinks = Arrays.asList(new Integer[]{ Class5EditPart.VISUAL_ID, ClassEditPartCN.VISUAL_ID, PackageEditPartCN.VISUAL_ID, ModelEditPartCN.VISUAL_ID, ModelEditPartTN.VISUAL_ID, ClassEditPart.VISUAL_ID, PackageEditPart.VISUAL_ID });
+	private static List<Integer> ourCanHaveContainmentLinks = Arrays.asList(new Integer[]{ NestedClassForClassEditPart.VISUAL_ID, ClassEditPartCN.VISUAL_ID, PackageEditPartCN.VISUAL_ID, ModelEditPartCN.VISUAL_ID, ModelEditPartTN.VISUAL_ID, ClassEditPart.VISUAL_ID, PackageEditPart.VISUAL_ID });
 
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy#getReparentCommand(org.eclipse.gef.requests.ChangeBoundsRequest)

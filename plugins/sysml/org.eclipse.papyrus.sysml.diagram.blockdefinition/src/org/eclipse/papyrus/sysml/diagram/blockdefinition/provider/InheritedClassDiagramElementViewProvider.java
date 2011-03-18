@@ -26,7 +26,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForInterfaceEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassifierTemplateParameterEditPart;
@@ -53,7 +53,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForInterfaceEditpart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation3EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationTemplateParameterEditPart;
@@ -267,9 +267,9 @@ public class InheritedClassDiagramElementViewProvider extends UMLViewProvider {
 			return createReception_3011(domainElement, containerView, index, persisted, preferencesHint);
 		case PropertyForClassEditPart.VISUAL_ID:
 			return createProperty_3012(domainElement, containerView, index, persisted, preferencesHint);
-		case Operation3EditPart.VISUAL_ID:
+		case OperationForClassEditPart.VISUAL_ID:
 			return createOperation_3013(domainElement, containerView, index, persisted, preferencesHint);
-		case Class5EditPart.VISUAL_ID:
+		case NestedClassForClassEditPart.VISUAL_ID:
 			return createClass_3014(domainElement, containerView, index, persisted, preferencesHint);
 		case PrimitiveTypeEditPartCN.VISUAL_ID:
 			return createPrimitiveType_3026(domainElement, containerView, index, persisted, preferencesHint);

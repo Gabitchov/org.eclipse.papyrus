@@ -25,13 +25,13 @@ import org.eclipse.papyrus.service.edit.service.IElementEditService;
 /**
  * @generated
  */
-public class Class5ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class OperationForClassItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public Class5ItemSemanticEditPolicy() {
-		super(UMLElementTypes.Class_3014);
+	public OperationForClassItemSemanticEditPolicy() {
+		super(UMLElementTypes.Operation_3013);
 	}
 
 	/**
