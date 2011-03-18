@@ -780,14 +780,14 @@ public class UMLVisualIDRegistry {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
-		case ClassAttributeCompartment2EditPart.VISUAL_ID:
+		case ClassAttributeCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return PropertyForClassEditPart.VISUAL_ID;
 			}
 			break;
-		case ClassOperationCompartment2EditPart.VISUAL_ID:
+		case ClassOperationCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getReception().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -799,7 +799,7 @@ public class UMLVisualIDRegistry {
 				return OperationForClassEditPart.VISUAL_ID;
 			}
 			break;
-		case ClassNestedClassifierCompartment2EditPart.VISUAL_ID:
+		case ClassNestedClassifierCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -1055,13 +1055,13 @@ public class UMLVisualIDRegistry {
 			if(ClassNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(ClassAttributeCompartment2EditPart.VISUAL_ID == nodeVisualID) {
+			if(ClassAttributeCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(ClassOperationCompartment2EditPart.VISUAL_ID == nodeVisualID) {
+			if(ClassOperationCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(ClassNestedClassifierCompartment2EditPart.VISUAL_ID == nodeVisualID) {
+			if(ClassNestedClassifierCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
@@ -1566,12 +1566,12 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ClassAttributeCompartment2EditPart.VISUAL_ID:
+		case ClassAttributeCompartmentEditPart.VISUAL_ID:
 			if(PropertyForClassEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case ClassOperationCompartment2EditPart.VISUAL_ID:
+		case ClassOperationCompartmentEditPart.VISUAL_ID:
 			if(ReceptionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -1579,7 +1579,7 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ClassNestedClassifierCompartment2EditPart.VISUAL_ID:
+		case ClassNestedClassifierCompartmentEditPart.VISUAL_ID:
 			if(NestedClassForClassEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}

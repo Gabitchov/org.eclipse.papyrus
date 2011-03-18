@@ -713,9 +713,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Class");
 
 		Node label5029 = createLabel(node, UMLVisualIDRegistry.getType(ClassNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(ClassAttributeCompartment2EditPart.VISUAL_ID), true, false, true, true);
-		createCompartment(node, UMLVisualIDRegistry.getType(ClassOperationCompartment2EditPart.VISUAL_ID), true, false, true, true);
-		createCompartment(node, UMLVisualIDRegistry.getType(ClassNestedClassifierCompartment2EditPart.VISUAL_ID), true, false, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(ClassAttributeCompartmentEditPart.VISUAL_ID), true, false, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(ClassOperationCompartmentEditPart.VISUAL_ID), true, false, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPart.VISUAL_ID), true, false, true, true);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Class");
 

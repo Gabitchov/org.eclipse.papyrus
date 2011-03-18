@@ -15,10 +15,10 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part;
 
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassOperationCompartment2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassOperationCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.BlockPropertyCompartmentItemSemanticEditPolicy;
 
-public class BlockOperationCompartmentEditPart extends ClassOperationCompartment2EditPart {
+public class BlockOperationCompartmentEditPart extends ClassOperationCompartmentEditPart {
 
 	public final static String COMPARTMENT_NAME = "OperationCompartment";
 

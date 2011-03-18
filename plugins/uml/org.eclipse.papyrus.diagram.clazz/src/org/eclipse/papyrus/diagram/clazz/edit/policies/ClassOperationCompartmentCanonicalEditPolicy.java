@@ -1,22 +1,12 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- */
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
@@ -32,7 +22,8 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForClassEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForClassEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ReceptionEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.clazz.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -41,7 +32,12 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class ClassAttributeCompartment2CanonicalEditPolicy extends CanonicalEditPolicy {
+public class ClassOperationCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
+
+	/**
+	 * @generated
+	 */
+	private Set<EStructuralFeature> myFeaturesToSynchronize;
 
 	/**
 	 * @generated
@@ -58,8 +54,13 @@ public class ClassAttributeCompartment2CanonicalEditPolicy extends CanonicalEdit
 	/**
 	 * @generated
 	 */
-	protected EStructuralFeature getFeatureToSynchronize() {
-		return UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute();
+	protected Set getFeaturesToSynchronize() {
+		if(myFeaturesToSynchronize == null) {
+			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getClass_OwnedReception());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getClass_OwnedOperation());
+		}
+		return myFeaturesToSynchronize;
 	}
 
 	/**
@@ -69,7 +70,7 @@ public class ClassAttributeCompartment2CanonicalEditPolicy extends CanonicalEdit
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getClassAttributeCompartment_7017SemanticChildren(viewObject);
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getClassOperationCompartment_7018SemanticChildren(viewObject);
 		for(UMLNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -87,7 +88,8 @@ public class ClassAttributeCompartment2CanonicalEditPolicy extends CanonicalEdit
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		return PropertyForClassEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
+		int visualID = UMLVisualIDRegistry.getVisualID(view);
+		return visualID == ReceptionEditPart.VISUAL_ID || visualID == OperationForClassEditPart.VISUAL_ID;
 	}
 
 	/**
@@ -98,7 +100,7 @@ public class ClassAttributeCompartment2CanonicalEditPolicy extends CanonicalEdit
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getClassAttributeCompartment_7017SemanticChildren((View)getHost().getModel());
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getClassOperationCompartment_7018SemanticChildren((View)getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();
@@ -167,4 +169,5 @@ public class ClassAttributeCompartment2CanonicalEditPolicy extends CanonicalEdit
 
 		makeViewsImmutable(createdViews);
 	}
+
 }

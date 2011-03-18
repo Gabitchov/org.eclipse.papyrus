@@ -204,24 +204,24 @@ ClassifierEditPart {
 			return true;
 		}
 
-		if(childEditPart instanceof ClassAttributeCompartment2EditPart) {
+		if(childEditPart instanceof ClassAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((ClassAttributeCompartment2EditPart)childEditPart).getFigure());
+			pane.add(((ClassAttributeCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 
-		if(childEditPart instanceof ClassOperationCompartment2EditPart) {
+		if(childEditPart instanceof ClassOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((ClassOperationCompartment2EditPart)childEditPart).getFigure());
+			pane.add(((ClassOperationCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 
-		if(childEditPart instanceof ClassNestedClassifierCompartment2EditPart) {
+		if(childEditPart instanceof ClassNestedClassifierCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((ClassNestedClassifierCompartment2EditPart)childEditPart).getFigure());
+			pane.add(((ClassNestedClassifierCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 
@@ -249,22 +249,22 @@ ClassifierEditPart {
 		if(childEditPart instanceof ClassNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof ClassAttributeCompartment2EditPart) {
+		if(childEditPart instanceof ClassAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.remove(((ClassAttributeCompartment2EditPart)childEditPart).getFigure());
+			pane.remove(((ClassAttributeCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ClassOperationCompartment2EditPart) {
+		if(childEditPart instanceof ClassOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.remove(((ClassOperationCompartment2EditPart)childEditPart).getFigure());
+			pane.remove(((ClassOperationCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ClassNestedClassifierCompartment2EditPart) {
+		if(childEditPart instanceof ClassNestedClassifierCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.remove(((ClassNestedClassifierCompartment2EditPart)childEditPart).getFigure());
+			pane.remove(((ClassNestedClassifierCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
@@ -302,13 +302,13 @@ ClassifierEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof ClassAttributeCompartment2EditPart) {
+		if(editPart instanceof ClassAttributeCompartmentEditPart) {
 			return getPrimaryShape().getAttributeCompartmentFigure();
 		}
-		if(editPart instanceof ClassOperationCompartment2EditPart) {
+		if(editPart instanceof ClassOperationCompartmentEditPart) {
 			return getPrimaryShape().getOperationCompartmentFigure();
 		}
-		if(editPart instanceof ClassNestedClassifierCompartment2EditPart) {
+		if(editPart instanceof ClassNestedClassifierCompartmentEditPart) {
 			return getPrimaryShape().getNestedClassifierFigure();
 		}
 		if(editPart instanceof IBorderItemEditPart) {
@@ -1926,16 +1926,16 @@ ClassifierEditPart {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
 			if(type == UMLElementTypes.Property_3012) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassAttributeCompartment2EditPart.VISUAL_ID));
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassAttributeCompartmentEditPart.VISUAL_ID));
 			}
 			if(type == UMLElementTypes.Reception_3011) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassOperationCompartment2EditPart.VISUAL_ID));
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassOperationCompartmentEditPart.VISUAL_ID));
 			}
 			if(type == UMLElementTypes.Operation_3013) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassOperationCompartment2EditPart.VISUAL_ID));
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassOperationCompartmentEditPart.VISUAL_ID));
 			}
 			if(type == UMLElementTypes.Class_3014) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassNestedClassifierCompartment2EditPart.VISUAL_ID));
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPart.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);

@@ -1555,7 +1555,7 @@
           xsi:type="gmfgen:GenChildLabelNode"
           visualID="3013"
           editPartClassName="OperationForClassEditPart"
-          itemSemanticEditPolicyClassName="Operation3ItemSemanticEditPolicy"
+          itemSemanticEditPolicyClassName="OperationForClassItemSemanticEditPolicy"
           canonicalEditPolicyClassName="OperationForClassCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="OperationForClassGraphicalNodeEditPolicy"
           createCommandClassName="OperationForClassCommand"
@@ -6457,9 +6457,9 @@
       </compartments>
       <compartments
           visualID="7017"
-          editPartClassName="ClassAttributeCompartment2EditPart"
-          itemSemanticEditPolicyClassName="ClassAttributeCompartment2ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="ClassAttributeCompartment2CanonicalEditPolicy"
+          editPartClassName="ClassAttributeCompartmentEditPart"
+          itemSemanticEditPolicyClassName="ClassAttributeCompartmentItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="ClassAttributeCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.22"
           title="AttributeCompartment"
           needsTitle="false"
@@ -6481,9 +6481,9 @@
       </compartments>
       <compartments
           visualID="7018"
-          editPartClassName="ClassOperationCompartment2EditPart"
-          itemSemanticEditPolicyClassName="ClassOperationCompartment2ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="ClassOperationCompartment2CanonicalEditPolicy"
+          editPartClassName="ClassOperationCompartmentEditPart"
+          itemSemanticEditPolicyClassName="ClassOperationCompartmentItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="ClassOperationCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.21 /0/@diagram/@childNodes.23"
           title="OperationCompartment"
           needsTitle="false"
@@ -6505,9 +6505,9 @@
       </compartments>
       <compartments
           visualID="7019"
-          editPartClassName="ClassNestedClassifierCompartment2EditPart"
-          itemSemanticEditPolicyClassName="ClassNestedClassifierCompartment2ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="ClassNestedClassifierCompartment2CanonicalEditPolicy"
+          editPartClassName="ClassNestedClassifierCompartmentEditPart"
+          itemSemanticEditPolicyClassName="ClassNestedClassifierCompartmentItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="ClassNestedClassifierCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.24"
           title="NestedClassifierCompartment"
           needsTitle="false"

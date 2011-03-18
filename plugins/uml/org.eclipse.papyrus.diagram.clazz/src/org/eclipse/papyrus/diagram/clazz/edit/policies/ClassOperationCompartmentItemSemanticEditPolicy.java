@@ -9,12 +9,12 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class ClassOperationCompartment2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class ClassOperationCompartmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public ClassOperationCompartment2ItemSemanticEditPolicy() {
+	public ClassOperationCompartmentItemSemanticEditPolicy() {
 		super(UMLElementTypes.Class_2008);
 	}
 
@@ -30,5 +30,4 @@ public class ClassOperationCompartment2ItemSemanticEditPolicy extends UMLBaseIte
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

@@ -865,17 +865,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String ClassAttributeCompartment2EditPart_title;
+	public static String ClassAttributeCompartmentEditPart_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ClassOperationCompartment2EditPart_title;
+	public static String ClassOperationCompartmentEditPart_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ClassNestedClassifierCompartment2EditPart_title;
+	public static String ClassNestedClassifierCompartmentEditPart_title;
 
 	/**
 	 * @generated

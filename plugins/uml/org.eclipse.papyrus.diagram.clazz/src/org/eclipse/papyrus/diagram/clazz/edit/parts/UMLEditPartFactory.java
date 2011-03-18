@@ -395,14 +395,14 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
 				return new PackagePackageableElementCompartmentEditPart(view);
 
-			case ClassAttributeCompartment2EditPart.VISUAL_ID:
-				return new ClassAttributeCompartment2EditPart(view);
+			case ClassAttributeCompartmentEditPart.VISUAL_ID:
+				return new ClassAttributeCompartmentEditPart(view);
 
-			case ClassOperationCompartment2EditPart.VISUAL_ID:
-				return new ClassOperationCompartment2EditPart(view);
+			case ClassOperationCompartmentEditPart.VISUAL_ID:
+				return new ClassOperationCompartmentEditPart(view);
 
-			case ClassNestedClassifierCompartment2EditPart.VISUAL_ID:
-				return new ClassNestedClassifierCompartment2EditPart(view);
+			case ClassNestedClassifierCompartmentEditPart.VISUAL_ID:
+				return new ClassNestedClassifierCompartmentEditPart(view);
 
 			case DataTypeAttributeCompartmentEditPart.VISUAL_ID:
 				return new DataTypeAttributeCompartmentEditPart(view);

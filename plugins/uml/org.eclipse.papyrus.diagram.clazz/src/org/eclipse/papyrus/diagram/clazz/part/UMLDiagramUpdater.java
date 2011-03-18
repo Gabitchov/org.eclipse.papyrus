@@ -170,11 +170,11 @@ public class UMLDiagramUpdater {
 			return getEnumerationEnumerationLiteralCompartment_7015SemanticChildren(view);
 		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
 			return getPackagePackageableElementCompartment_7016SemanticChildren(view);
-		case ClassAttributeCompartment2EditPart.VISUAL_ID:
+		case ClassAttributeCompartmentEditPart.VISUAL_ID:
 			return getClassAttributeCompartment_7017SemanticChildren(view);
-		case ClassOperationCompartment2EditPart.VISUAL_ID:
+		case ClassOperationCompartmentEditPart.VISUAL_ID:
 			return getClassOperationCompartment_7018SemanticChildren(view);
-		case ClassNestedClassifierCompartment2EditPart.VISUAL_ID:
+		case ClassNestedClassifierCompartmentEditPart.VISUAL_ID:
 			return getClassNestedClassifierCompartment_7019SemanticChildren(view);
 		case DataTypeAttributeCompartmentEditPart.VISUAL_ID:
 			return getDataTypeAttributeCompartment_7020SemanticChildren(view);
