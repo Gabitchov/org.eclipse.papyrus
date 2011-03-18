@@ -37,8 +37,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DefaultNamedElementEditPart;
@@ -415,8 +415,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof CommentEditPartCN) {
 			return ((CommentEditPartCN)sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof Constraint2EditPart) {
-			return ((Constraint2EditPart)sourceEditPart).getMARelTypesOnSource();
+		if(sourceEditPart instanceof ConstraintEditPartCN) {
+			return ((ConstraintEditPartCN)sourceEditPart).getMARelTypesOnSource();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -519,8 +519,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof CommentEditPartCN) {
 			return ((CommentEditPartCN)targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
-			return ((Constraint2EditPart)targetEditPart).getMARelTypesOnTarget();
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			return ((ConstraintEditPartCN)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof TemplateSignatureEditPart) {
 			return ((TemplateSignatureEditPart)targetEditPart).getMARelTypesOnTarget();
@@ -627,8 +627,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof CommentEditPartCN) {
 			return ((CommentEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(sourceEditPart instanceof Constraint2EditPart) {
-			return ((Constraint2EditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		if(sourceEditPart instanceof ConstraintEditPartCN) {
+			return ((ConstraintEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -731,8 +731,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof CommentEditPartCN) {
 			return ((CommentEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
-			return ((Constraint2EditPart)targetEditPart).getMATypesForSource(relationshipType);
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			return ((ConstraintEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if(targetEditPart instanceof TemplateSignatureEditPart) {
 			return ((TemplateSignatureEditPart)targetEditPart).getMATypesForSource(relationshipType);
@@ -838,8 +838,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof CommentEditPartCN) {
 			return ((CommentEditPartCN)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
-		if(sourceEditPart instanceof Constraint2EditPart) {
-			return ((Constraint2EditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		if(sourceEditPart instanceof ConstraintEditPartCN) {
+			return ((ConstraintEditPartCN)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

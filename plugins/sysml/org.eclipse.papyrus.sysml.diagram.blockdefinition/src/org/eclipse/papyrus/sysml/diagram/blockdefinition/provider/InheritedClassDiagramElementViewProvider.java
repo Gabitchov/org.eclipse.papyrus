@@ -35,7 +35,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectableElementTemplateParameterEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPart;
@@ -281,7 +281,7 @@ public class InheritedClassDiagramElementViewProvider extends UMLViewProvider {
 			return createOperation_3019(domainElement, containerView, index, persisted, preferencesHint);
 		case CommentEditPartCN.VISUAL_ID:
 			return createComment_3028(domainElement, containerView, index, persisted, preferencesHint);
-		case Constraint2EditPart.VISUAL_ID:
+		case ConstraintEditPartCN.VISUAL_ID:
 			return createConstraint_3029(domainElement, containerView, index, persisted, preferencesHint);
 		case SlotEditPart.VISUAL_ID:
 			return createSlot_3030(domainElement, containerView, index, persisted, preferencesHint);

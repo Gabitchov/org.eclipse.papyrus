@@ -488,7 +488,7 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return Constraint2EditPart.VISUAL_ID;
+				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ComponentAttributeCompartmentEditPartCN.VISUAL_ID:
@@ -599,7 +599,7 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return Constraint2EditPart.VISUAL_ID;
+				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID:
@@ -668,7 +668,7 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return Constraint2EditPart.VISUAL_ID;
+				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
@@ -777,7 +777,7 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return Constraint2EditPart.VISUAL_ID;
+				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ClassAttributeCompartment2EditPart.VISUAL_ID:
@@ -1269,7 +1269,7 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case Constraint2EditPart.VISUAL_ID:
+		case ConstraintEditPartCN.VISUAL_ID:
 			if(ConstraintName2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -1375,7 +1375,7 @@ public class UMLVisualIDRegistry {
 			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(Constraint2EditPart.VISUAL_ID == nodeVisualID) {
+			if(ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1448,7 +1448,7 @@ public class UMLVisualIDRegistry {
 			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(Constraint2EditPart.VISUAL_ID == nodeVisualID) {
+			if(ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1491,7 +1491,7 @@ public class UMLVisualIDRegistry {
 			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(Constraint2EditPart.VISUAL_ID == nodeVisualID) {
+			if(ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1562,7 +1562,7 @@ public class UMLVisualIDRegistry {
 			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(Constraint2EditPart.VISUAL_ID == nodeVisualID) {
+			if(ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

@@ -42,7 +42,7 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.ClazzDiagramChangeStereotypedShapeEditpolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomConstraint2ItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.Constraint2ItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.edit.policies.ConstraintItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
@@ -59,7 +59,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class Constraint2EditPart extends
+public class ConstraintEditPartCN extends
 
 AbstractConstraintEditPart {
 
@@ -81,7 +81,7 @@ AbstractConstraintEditPart {
 	/**
 	 * @generated
 	 */
-	public Constraint2EditPart(View view) {
+	public ConstraintEditPartCN(View view) {
 		super(view);
 	}
 
@@ -90,7 +90,7 @@ AbstractConstraintEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new Constraint2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConstraintItemSemanticEditPolicyCN());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -402,7 +402,7 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -492,7 +492,7 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -582,7 +582,7 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -672,7 +672,7 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -762,7 +762,7 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -858,7 +858,7 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof CommentEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
 		if(targetEditPart instanceof TemplateSignatureEditPart) {

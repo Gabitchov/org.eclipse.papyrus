@@ -379,7 +379,7 @@ AbstractObservationEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -469,7 +469,7 @@ AbstractObservationEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -559,7 +559,7 @@ AbstractObservationEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -649,7 +649,7 @@ AbstractObservationEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -739,7 +739,7 @@ AbstractObservationEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -829,7 +829,7 @@ AbstractObservationEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.DurationObservationEvent_4025);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.DurationObservationEvent_4025);
 		}
 		return types;

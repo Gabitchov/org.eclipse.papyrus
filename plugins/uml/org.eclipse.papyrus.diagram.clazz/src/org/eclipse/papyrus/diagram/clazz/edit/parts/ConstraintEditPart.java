@@ -402,7 +402,7 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -492,7 +492,7 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -582,7 +582,7 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -672,7 +672,7 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -762,7 +762,7 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -858,7 +858,7 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof CommentEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
 		if(targetEditPart instanceof TemplateSignatureEditPart) {

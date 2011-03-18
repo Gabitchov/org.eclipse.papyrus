@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import java.util.Collections;
@@ -68,7 +80,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class ConstraintName2EditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class ConstraintNameEditPartCN extends CompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
@@ -112,7 +124,7 @@ public class ConstraintName2EditPart extends CompartmentEditPart implements ITex
 	/**
 	 * @generated
 	 */
-	public ConstraintName2EditPart(View view) {
+	public ConstraintNameEditPartCN(View view) {
 		super(view);
 	}
 
@@ -327,7 +339,7 @@ public class ConstraintName2EditPart extends CompartmentEditPart implements ITex
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Constraint_3029, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintName2EditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Constraint_3029, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintNameEditPartCN.VISUAL_ID));
 		}
 		return parser;
 	}

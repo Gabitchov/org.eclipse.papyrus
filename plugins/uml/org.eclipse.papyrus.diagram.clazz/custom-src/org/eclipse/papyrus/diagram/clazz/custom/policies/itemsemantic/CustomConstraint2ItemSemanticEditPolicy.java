@@ -17,13 +17,13 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.clazz.custom.command.BranchDependenctReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.Constraint2ItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.edit.policies.ConstraintItemSemanticEditPolicyCN;
 
 /**
  * this class has been specialized in order to manage reconnection of multidependency
  * 
  */
-public class CustomConstraint2ItemSemanticEditPolicy extends Constraint2ItemSemanticEditPolicy {
+public class CustomConstraint2ItemSemanticEditPolicy extends ConstraintItemSemanticEditPolicyCN {
 
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch(getVisualID(req)) {

@@ -37,7 +37,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
@@ -123,7 +123,7 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicyCN extends C
 		case PrimitiveTypeEditPartCN.VISUAL_ID:
 		case DataTypeEditPartCN.VISUAL_ID:
 		case CommentEditPartCN.VISUAL_ID:
-		case Constraint2EditPart.VISUAL_ID:
+		case ConstraintEditPartCN.VISUAL_ID:
 			return true;
 		}
 		return false;

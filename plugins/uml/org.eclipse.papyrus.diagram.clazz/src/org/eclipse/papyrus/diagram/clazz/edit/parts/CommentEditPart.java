@@ -394,7 +394,7 @@ AbstractCommentEditPart {
 		if(targetEditPart instanceof CommentEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
 		if(targetEditPart instanceof TemplateSignatureEditPart) {

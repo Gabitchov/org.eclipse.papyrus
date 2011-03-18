@@ -2022,11 +2022,11 @@
       </childNodes>
       <childNodes
           visualID="3029"
-          editPartClassName="Constraint2EditPart"
-          itemSemanticEditPolicyClassName="Constraint2ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="Constraint2CanonicalEditPolicy"
-          graphicalNodeEditPolicyClassName="Constraint2GraphicalNodeEditPolicy"
-          createCommandClassName="Constraint2CreateCommand"
+          editPartClassName="ConstraintEditPartCN"
+          itemSemanticEditPolicyClassName="ConstraintItemSemanticEditPolicyCN"
+          canonicalEditPolicyClassName="ConstraintCanonicalEditPolicyCN"
+          graphicalNodeEditPolicyClassName="ConstraintGraphicalNodeEditPolicyCN"
+          createCommandClassName="ConstraintCreateCommandCN"
           containers="/0/@diagram/@compartments.20 /0/@diagram/@compartments.10 /0/@diagram/@compartments.18 /0/@diagram/@compartments.27">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -2077,7 +2077,7 @@
         </modelFacet>
         <labels
             visualID="5064"
-            editPartClassName="ConstraintName2EditPart"
+            editPartClassName="ConstraintNameEditPartCN"
             itemSemanticEditPolicyClassName="ConstraintName2ItemSemanticEditPolicy"
             elementIcon="true">
           <diagramRunTimeClass

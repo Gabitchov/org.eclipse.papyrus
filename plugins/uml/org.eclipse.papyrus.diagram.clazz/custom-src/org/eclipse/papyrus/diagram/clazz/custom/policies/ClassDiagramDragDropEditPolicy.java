@@ -41,7 +41,6 @@ import org.eclipse.papyrus.diagram.clazz.custom.helper.MultiDependencyHelper;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNodeEditPart;
@@ -52,6 +51,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationLinkEdi
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceRealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;

@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * @generated
  */
-public class Constraint2CreateCommand extends EditElementCommand {
+public class ConstraintCreateCommandCN extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -47,7 +47,7 @@ public class Constraint2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public Constraint2CreateCommand(CreateElementRequest req, EObject eObject) {
+	public ConstraintCreateCommandCN(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -56,14 +56,14 @@ public class Constraint2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static Constraint2CreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new Constraint2CreateCommand(req, eObject);
+	public static ConstraintCreateCommandCN create(CreateElementRequest req, EObject eObject) {
+		return new ConstraintCreateCommandCN(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public Constraint2CreateCommand(CreateElementRequest req) {
+	public ConstraintCreateCommandCN(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 

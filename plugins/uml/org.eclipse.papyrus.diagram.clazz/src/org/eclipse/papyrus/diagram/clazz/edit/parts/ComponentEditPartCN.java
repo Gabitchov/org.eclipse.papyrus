@@ -745,7 +745,7 @@ ClassifierEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -835,7 +835,7 @@ ClassifierEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -925,7 +925,7 @@ ClassifierEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -1015,7 +1015,7 @@ ClassifierEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -1105,7 +1105,7 @@ ClassifierEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -1186,7 +1186,7 @@ ClassifierEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
 		if(targetEditPart instanceof ModelEditPartTN) {

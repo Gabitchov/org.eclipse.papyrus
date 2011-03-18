@@ -58,12 +58,12 @@ import org.eclipse.papyrus.service.edit.service.IElementEditService;
 /**
  * @generated
  */
-public class Constraint2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class ConstraintItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public Constraint2ItemSemanticEditPolicy() {
+	public ConstraintItemSemanticEditPolicyCN() {
 		super(UMLElementTypes.Constraint_3029);
 	}
 

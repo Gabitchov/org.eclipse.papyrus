@@ -45,9 +45,9 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectableElementTemplateParameterEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorDurationObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorTimeObservationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentSubLinkEditPart;
@@ -1002,7 +1002,7 @@ public class UMLElementTypes {
 			return Operation_3019;
 		case CommentEditPartCN.VISUAL_ID:
 			return Comment_3028;
-		case Constraint2EditPart.VISUAL_ID:
+		case ConstraintEditPartCN.VISUAL_ID:
 			return Constraint_3029;
 		case SlotEditPart.VISUAL_ID:
 			return Slot_3030;

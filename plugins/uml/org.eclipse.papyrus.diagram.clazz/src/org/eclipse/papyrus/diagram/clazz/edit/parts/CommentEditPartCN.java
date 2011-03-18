@@ -394,7 +394,7 @@ AbstractCommentEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if(targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
 		if(targetEditPart instanceof TemplateSignatureEditPart) {
