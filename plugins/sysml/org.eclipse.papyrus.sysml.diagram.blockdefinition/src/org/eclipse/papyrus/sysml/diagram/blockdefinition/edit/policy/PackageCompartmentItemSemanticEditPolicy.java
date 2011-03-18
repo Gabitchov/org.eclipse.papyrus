@@ -11,7 +11,7 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.PackagePackageableElementCompartment2ItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.edit.policies.PackagePackageableElementCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.command.BlockCreateCommand;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramElementTypes;
 
@@ -21,7 +21,7 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitio
  * (or Block Definition Diagram specific elements)
  * 
  */
-public class PackageCompartmentItemSemanticEditPolicy extends PackagePackageableElementCompartment2ItemSemanticEditPolicy {
+public class PackageCompartmentItemSemanticEditPolicy extends PackagePackageableElementCompartmentItemSemanticEditPolicy {
 
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(BlockDefinitionDiagramElementTypes.BLOCK == req.getElementType()) {
