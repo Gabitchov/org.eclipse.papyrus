@@ -18,10 +18,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml;bundle-version="3.1.0",
  org.eclipse.papyrus.sasheditor;bundle-version="0.8.0",
  org.eclipse.papyrus.editor;bundle-version="0.8.0",
- org.eclipse.papyrus.core;bundle-version="0.8.0"
+ org.eclipse.papyrus.core;bundle-version="0.8.0",
+ org.eclipse.papyrus.properties.runtime;bundle-version="0.8.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.xtext.gmf.glue,
+ org.eclipse.xtext.gmf.glue.concurrency,
  org.eclipse.xtext.gmf.glue.contentassist,
  org.eclipse.xtext.gmf.glue.edit.part,
  org.eclipse.xtext.gmf.glue.editingdomain,

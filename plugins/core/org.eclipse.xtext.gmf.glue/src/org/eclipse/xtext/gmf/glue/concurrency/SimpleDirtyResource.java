@@ -40,9 +40,9 @@ public class SimpleDirtyResource implements IDirtyResource {
 		return resource.getSerializer().serialize(resource.getContents().get(0));
 	}
 	
-//	public String getActualContents() {
-//		return resource.getSerializer().serialize(resource.getContents().get(0));
-//	}
+	public String getActualContents() {
+		return getContents();
+	}
 
 	public IResourceDescription getDescription() {
 		return resourceDescriptionManager.getResourceDescription(resource);

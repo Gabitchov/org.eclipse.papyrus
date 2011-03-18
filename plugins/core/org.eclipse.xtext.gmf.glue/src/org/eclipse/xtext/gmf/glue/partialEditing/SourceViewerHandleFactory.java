@@ -11,8 +11,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.text.source.IOverviewRuler;
 import org.eclipse.jface.text.source.ISharedTextColors;
 import org.eclipse.jface.text.source.IVerticalRuler;
+import org.eclipse.jface.text.source.OverviewRuler;
 import org.eclipse.jface.text.source.VerticalRuler;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
@@ -71,20 +73,17 @@ public class SourceViewerHandleFactory {
 	 *
 	 */
 	public SourceViewerHandle create(Composite parent, ISyntheticResourceProvider resourceProvider) {
+		/*
+		 * final IVerticalRuler ruler = new VerticalRuler(VERTICAL_RULER_WIDTH, new DefaultMarkerAnnotationAccess());
+		final IOverviewRuler oRuler = new OverviewRuler(new DefaultMarkerAnnotationAccess(), VERTICAL_RULER_WIDTH, getSharedColors());
+		final XtextSourceViewer viewer = sourceViewerFactory.createSourceViewer(parent, ruler, oRuler, true, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
+		 */
+		
 		//final XtextSourceViewer viewer= sourceViewerFactory.createSourceViewer(parent, null, null, false, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
 		final IVerticalRuler ruler = new VerticalRuler(VERTICAL_RULER_WIDTH, null) ;
-		final XtextSourceViewer viewer = sourceViewerFactory.createSourceViewer(parent, ruler, null, true, SWT.None);
+		//final XtextSourceViewer viewer = sourceViewerFactory.createSourceViewer(parent, ruler, null, true, SWT.None);
+		final XtextSourceViewer viewer = new CustomXtextSourceViewer(parent, ruler, null, true, SWT.None);
 		XtextSourceViewerConfiguration viewerConfiguration = sourceViewerConfigurationProvider.get();
-//		SourceViewerConfiguration configuration= new SourceViewerConfiguration() {
-//			public IContentAssistant getContentAssistant(ISourceViewer sourceViewer) {
-//
-//				ContentAssistant assistant= new ContentAssistant();
-//				assistant.enableAutoActivation(true);
-//				assistant.enableAutoInsert(true);
-//				assistant.setContentAssistProcessor(fTemplateProcessor, IDocument.DEFAULT_CONTENT_TYPE);
-//				return assistant;
-//			}
-//		};
 		viewer.configure(viewerConfiguration);
 		
 		final SourceViewerDecorationSupport viewerDecorationSupport = new SourceViewerDecorationSupport(viewer, null, new DefaultMarkerAnnotationAccess(), getSharedColors());

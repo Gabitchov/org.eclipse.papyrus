@@ -38,20 +38,10 @@ public class PopupXtextEditorKeyListener extends KeyAdapter implements VerifyKey
 	 * @param popupXtextEditorHelper 
 	 * @param contentAssistant 
 	 */
-	public PopupXtextEditorKeyListener(PopupXtextEditorHelper popupXtextEditorHelper, ContentAssistantFacade contentAssistant) {
+	public PopupXtextEditorKeyListener(PopupXtextEditorHelper popupXtextEditorHelper, ContentAssistant contentAssistant) {
 		this.popupXtextEditorHelper = popupXtextEditorHelper;
-		try {
-			Field f = ContentAssistantFacade.class.getDeclaredField("fContentAssistant") ;
-			f.setAccessible(true) ;
-			this.contentAssistant = (ContentAssistant) f.get(contentAssistant) ;
-			System.out.println() ;
-		}
-		catch (Exception exception) {
-			System.out.println(exception) ;
-			this.contentAssistant = null ;
-		}
+		this.contentAssistant = contentAssistant;
 		isIgnoreNextESC = false;
-		
 	}
 
 	@Override

@@ -11,6 +11,7 @@ package org.eclipse.xtext.gmf.glue.edit.part;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.commands.operations.DefaultOperationHistory;
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -27,6 +28,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramEditDomain;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.commands.ActionHandler;
 import org.eclipse.jface.text.ITextOperationTarget;
+import org.eclipse.jface.text.contentassist.ContentAssistant;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.jface.text.templates.TemplateException;
@@ -58,6 +60,7 @@ import org.eclipse.ui.texteditor.ITextEditorActionConstants;
 import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
 import org.eclipse.ui.texteditor.IUpdate;
 import org.eclipse.xtext.gmf.glue.Activator;
+import org.eclipse.xtext.gmf.glue.partialEditing.CustomXtextSourceViewer;
 import org.eclipse.xtext.gmf.glue.partialEditing.ISyntheticResourceProvider;
 import org.eclipse.xtext.gmf.glue.partialEditing.OperationHistoryListener;
 import org.eclipse.xtext.gmf.glue.partialEditing.PartialModelEditor;
@@ -109,6 +112,7 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 	private String semanticElementFragment;
 	private EObject semanticElement ;
 	private String textToEdit ;
+	
 	/**
 	 * The file extension used to dynamically select the appropriate xtext editor
 	 */
@@ -290,9 +294,10 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 	private void registerKeyListener() {
 		//XtextSourceViewer sourceViewer = (XtextSourceViewer) xtextEditor.getInternalSourceViewer();
 		final StyledText xtextTextWidget = sourceViewerHandle.getViewer().getTextWidget();
+		CustomXtextSourceViewer viewer = (CustomXtextSourceViewer)sourceViewerHandle.getViewer() ;
 		keyListener = 
 			new PopupXtextEditorKeyListener
-						(this, sourceViewerHandle.getViewer().getContentAssistantFacade());
+						(this, (ContentAssistant) viewer.getContentAssistant());
 		//keyListener.installUndoRedoSupport(sourceViewerHandle.getViewer()) ;
 		xtextTextWidget.addVerifyKeyListener(keyListener);
 		xtextTextWidget.addKeyListener(keyListener);
