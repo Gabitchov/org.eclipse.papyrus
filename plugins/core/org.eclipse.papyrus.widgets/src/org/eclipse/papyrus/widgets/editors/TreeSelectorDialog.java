@@ -52,6 +52,12 @@ public class TreeSelectorDialog extends SelectionDialog {
 
 	private Label descriptionLabel;
 
+	private Object input=null;
+
+	public void setInput(Object input) {
+		this.input = input;
+	}
+
 	/**
 	 * 
 	 * Constructor.
@@ -86,9 +92,14 @@ public class TreeSelectorDialog extends SelectionDialog {
 		contentProvider = provider;
 		if(fTree != null) {
 			getViewer().setContentProvider(contentProvider);
-			if(getViewer().getInput() == null)
-				getViewer().setInput(""); //$NON-NLS-1$
-
+			if(getViewer().getInput() == null){
+				if(input==null){
+					getViewer().setInput(""); //$NON-NLS-1$
+				}
+				else{
+					getViewer().setInput(input);
+				}
+			}
 			List<?> initialSelection = getInitialElementSelections();
 			if(!initialSelection.isEmpty()) {
 				getViewer().setSelection(new StructuredSelection(initialSelection.get(0)), true);
@@ -115,7 +126,7 @@ public class TreeSelectorDialog extends SelectionDialog {
 		if(contentProvider != null) {
 			getViewer().setContentProvider(contentProvider);
 			if(getViewer().getInput() == null)
-				getViewer().setInput(""); //$NON-NLS-1$
+				getViewer().setInput(input); //$NON-NLS-1$
 
 			List<?> initialSelection = getInitialElementSelections();
 			if(!initialSelection.isEmpty() && initialSelection.get(0) != null) {
