@@ -60,8 +60,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Comment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
@@ -676,7 +676,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
-		case Comment2EditPart.VISUAL_ID:
+		case CommentEditPartCN.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getComment_3028ContainedLinks(view));

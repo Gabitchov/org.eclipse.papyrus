@@ -56,8 +56,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.BindingSubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassifierTemplateParameterEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentBody2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentBodyEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectableElementTemplateParameterEditPart;
@@ -88,18 +88,18 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.MultiDependencyLabelEditPart
 import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForInterfaceEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForDataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForComponentEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForDataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForInterfaceEditpart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationTemplateParameterEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeNameEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyforDataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForInterfaceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForSignalEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyforDataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ReceptionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ShapeNamedElementNameEditPart;
@@ -1624,7 +1624,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getProperty_3018Parser();
 		case OperationForDataTypeEditPart.VISUAL_ID:
 			return getOperation_3019Parser();
-		case CommentBody2EditPart.VISUAL_ID:
+		case CommentBodyEditPartCN.VISUAL_ID:
 			return getCommentBody_5063Parser();
 		case ConstraintName2EditPart.VISUAL_ID:
 			return getConstraintName_5064Parser();

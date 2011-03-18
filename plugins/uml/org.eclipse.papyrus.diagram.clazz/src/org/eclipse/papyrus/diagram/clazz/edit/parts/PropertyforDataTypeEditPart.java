@@ -56,7 +56,6 @@ import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.AppliedStereotypePropertyDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.PropertyLabelEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.PropertyforDataTypeCanonicalEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.PropertyforDataTypeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;

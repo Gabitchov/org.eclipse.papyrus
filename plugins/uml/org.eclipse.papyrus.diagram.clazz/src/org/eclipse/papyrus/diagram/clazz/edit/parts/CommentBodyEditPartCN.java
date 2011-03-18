@@ -77,7 +77,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class CommentBody2EditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class CommentBodyEditPartCN extends CompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
@@ -121,7 +121,7 @@ public class CommentBody2EditPart extends CompartmentEditPart implements ITextAw
 	/**
 	 * @generated
 	 */
-	public CommentBody2EditPart(View view) {
+	public CommentBodyEditPartCN(View view) {
 		super(view);
 	}
 
@@ -324,7 +324,7 @@ public class CommentBody2EditPart extends CompartmentEditPart implements ITextAw
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Comment_3028, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.CommentBody2EditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Comment_3028, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.CommentBodyEditPartCN.VISUAL_ID));
 		}
 		return parser;
 	}

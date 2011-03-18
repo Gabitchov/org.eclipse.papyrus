@@ -41,7 +41,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.ClazzDiagramChangeStereotypedShapeEditpolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.Comment2ItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.edit.policies.CommentItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
@@ -58,7 +58,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class Comment2EditPart extends
+public class CommentEditPartCN extends
 
 AbstractCommentEditPart {
 
@@ -80,7 +80,7 @@ AbstractCommentEditPart {
 	/**
 	 * @generated
 	 */
-	public Comment2EditPart(View view) {
+	public CommentEditPartCN(View view) {
 		super(view);
 	}
 
@@ -89,7 +89,7 @@ AbstractCommentEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new Comment2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CommentItemSemanticEditPolicyCN());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -151,8 +151,8 @@ AbstractCommentEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof CommentBody2EditPart) {
-			((CommentBody2EditPart)childEditPart).setLabel(getPrimaryShape().getCornerBentFigure());
+		if(childEditPart instanceof CommentBodyEditPartCN) {
+			((CommentBodyEditPartCN)childEditPart).setLabel(getPrimaryShape().getCornerBentFigure());
 			return true;
 		}
 
@@ -163,7 +163,7 @@ AbstractCommentEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof CommentBody2EditPart) {
+		if(childEditPart instanceof CommentBodyEditPartCN) {
 			return true;
 		}
 		return false;
@@ -284,7 +284,7 @@ AbstractCommentEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(CommentBody2EditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(CommentBodyEditPartCN.VISUAL_ID));
 	}
 
 	/**
@@ -391,7 +391,7 @@ AbstractCommentEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Comment2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
 		if(targetEditPart instanceof Constraint2EditPart) {

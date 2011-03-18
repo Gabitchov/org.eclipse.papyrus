@@ -15,7 +15,7 @@ package org.eclipse.papyrus.diagram.clazz.edit.policies;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ClassCreateCommandCN;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.Comment2CreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.CommentCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ComponentCreateCommandCN;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Constraint2CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.DataTypeCreateCommandCN;
@@ -75,7 +75,7 @@ public class PackagePackageableElementCompartmentItemSemanticEditPolicyCN extend
 			return getGEFWrapper(new DataTypeCreateCommandCN(req));
 		}
 		if(UMLElementTypes.Comment_3028 == req.getElementType()) {
-			return getGEFWrapper(new Comment2CreateCommand(req));
+			return getGEFWrapper(new CommentCreateCommandCN(req));
 		}
 		if(UMLElementTypes.Constraint_3029 == req.getElementType()) {
 			return getGEFWrapper(new Constraint2CreateCommand(req));

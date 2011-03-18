@@ -35,7 +35,7 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Comment2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
@@ -122,7 +122,7 @@ public class ModelPackageableElementCompartmentCanonicalEditPolicy extends Canon
 		case ClassEditPartCN.VISUAL_ID:
 		case PrimitiveTypeEditPartCN.VISUAL_ID:
 		case DataTypeEditPartCN.VISUAL_ID:
-		case Comment2EditPart.VISUAL_ID:
+		case CommentEditPartCN.VISUAL_ID:
 		case Constraint2EditPart.VISUAL_ID:
 			return true;
 		}

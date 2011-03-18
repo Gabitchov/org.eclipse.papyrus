@@ -1954,11 +1954,11 @@
       </childNodes>
       <childNodes
           visualID="3028"
-          editPartClassName="Comment2EditPart"
-          itemSemanticEditPolicyClassName="Comment2ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="Comment2CanonicalEditPolicy"
-          graphicalNodeEditPolicyClassName="Comment2GraphicalNodeEditPolicy"
-          createCommandClassName="Comment2CreateCommand"
+          editPartClassName="CommentEditPartCN"
+          itemSemanticEditPolicyClassName="CommentItemSemanticEditPolicyCN"
+          canonicalEditPolicyClassName="CommentCanonicalEditPolicyCN"
+          graphicalNodeEditPolicyClassName="CommentGraphicalNodeEditPolicyCN"
+          createCommandClassName="CommentCreateCommandCN"
           containers="/0/@diagram/@compartments.20 /0/@diagram/@compartments.10 /0/@diagram/@compartments.18 /0/@diagram/@compartments.27">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1999,8 +1999,8 @@
         </modelFacet>
         <labels
             visualID="5063"
-            editPartClassName="CommentBody2EditPart"
-            itemSemanticEditPolicyClassName="CommentBody2ItemSemanticEditPolicy">
+            editPartClassName="CommentBodyEditPartCN"
+            itemSemanticEditPolicyClassName="CommentBodyItemSemanticEditPolicyCN">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap

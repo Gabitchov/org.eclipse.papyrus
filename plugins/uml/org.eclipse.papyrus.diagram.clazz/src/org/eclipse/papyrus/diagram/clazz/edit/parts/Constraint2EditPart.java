@@ -855,7 +855,7 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if(targetEditPart instanceof Comment2EditPart) {
+		if(targetEditPart instanceof CommentEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {

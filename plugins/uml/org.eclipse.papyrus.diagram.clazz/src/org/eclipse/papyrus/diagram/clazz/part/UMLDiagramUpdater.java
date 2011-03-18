@@ -894,7 +894,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
 			Comment childElement = (Comment)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Comment2EditPart.VISUAL_ID) {
+			if(visualID == CommentEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1134,7 +1134,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
 			Comment childElement = (Comment)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Comment2EditPart.VISUAL_ID) {
+			if(visualID == CommentEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1230,7 +1230,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
 			Comment childElement = (Comment)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Comment2EditPart.VISUAL_ID) {
+			if(visualID == CommentEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1454,7 +1454,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
 			Comment childElement = (Comment)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Comment2EditPart.VISUAL_ID) {
+			if(visualID == CommentEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1806,7 +1806,7 @@ public class UMLDiagramUpdater {
 			return getProperty_3018ContainedLinks(view);
 		case OperationForDataTypeEditPart.VISUAL_ID:
 			return getOperation_3019ContainedLinks(view);
-		case Comment2EditPart.VISUAL_ID:
+		case CommentEditPartCN.VISUAL_ID:
 			return getComment_3028ContainedLinks(view);
 		case Constraint2EditPart.VISUAL_ID:
 			return getConstraint_3029ContainedLinks(view);
@@ -1957,7 +1957,7 @@ public class UMLDiagramUpdater {
 			return getProperty_3018IncomingLinks(view);
 		case OperationForDataTypeEditPart.VISUAL_ID:
 			return getOperation_3019IncomingLinks(view);
-		case Comment2EditPart.VISUAL_ID:
+		case CommentEditPartCN.VISUAL_ID:
 			return getComment_3028IncomingLinks(view);
 		case Constraint2EditPart.VISUAL_ID:
 			return getConstraint_3029IncomingLinks(view);
@@ -2108,7 +2108,7 @@ public class UMLDiagramUpdater {
 			return getProperty_3018OutgoingLinks(view);
 		case OperationForDataTypeEditPart.VISUAL_ID:
 			return getOperation_3019OutgoingLinks(view);
-		case Comment2EditPart.VISUAL_ID:
+		case CommentEditPartCN.VISUAL_ID:
 			return getComment_3028OutgoingLinks(view);
 		case Constraint2EditPart.VISUAL_ID:
 			return getConstraint_3029OutgoingLinks(view);

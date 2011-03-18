@@ -30,7 +30,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassifierTemplateParameterEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Comment2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
@@ -279,7 +279,7 @@ public class InheritedClassDiagramElementViewProvider extends UMLViewProvider {
 			return createProperty_3018(domainElement, containerView, index, persisted, preferencesHint);
 		case OperationForDataTypeEditPart.VISUAL_ID:
 			return createOperation_3019(domainElement, containerView, index, persisted, preferencesHint);
-		case Comment2EditPart.VISUAL_ID:
+		case CommentEditPartCN.VISUAL_ID:
 			return createComment_3028(domainElement, containerView, index, persisted, preferencesHint);
 		case Constraint2EditPart.VISUAL_ID:
 			return createConstraint_3029(domainElement, containerView, index, persisted, preferencesHint);

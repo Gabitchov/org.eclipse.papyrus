@@ -287,11 +287,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case OperationForDataTypeEditPart.VISUAL_ID:
 				return new OperationForDataTypeEditPart(view);
 
-			case Comment2EditPart.VISUAL_ID:
-				return new Comment2EditPart(view);
+			case CommentEditPartCN.VISUAL_ID:
+				return new CommentEditPartCN(view);
 
-			case CommentBody2EditPart.VISUAL_ID:
-				return new CommentBody2EditPart(view);
+			case CommentBodyEditPartCN.VISUAL_ID:
+				return new CommentBodyEditPartCN(view);
 
 			case Constraint2EditPart.VISUAL_ID:
 				return new Constraint2EditPart(view);

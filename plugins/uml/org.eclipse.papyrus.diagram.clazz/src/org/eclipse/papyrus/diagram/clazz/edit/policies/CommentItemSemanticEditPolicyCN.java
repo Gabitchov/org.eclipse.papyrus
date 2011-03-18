@@ -33,12 +33,12 @@ import org.eclipse.papyrus.service.edit.service.IElementEditService;
 /**
  * @generated
  */
-public class Comment2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class CommentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public Comment2ItemSemanticEditPolicy() {
+	public CommentItemSemanticEditPolicyCN() {
 		super(UMLElementTypes.Comment_3028);
 	}
 
