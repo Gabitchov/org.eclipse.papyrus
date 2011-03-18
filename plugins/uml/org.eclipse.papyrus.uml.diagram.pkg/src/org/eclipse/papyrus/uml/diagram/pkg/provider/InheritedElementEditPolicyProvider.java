@@ -17,7 +17,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartment2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.pkg.edit.part.PackageDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.pkg.edit.policy.CustomDragDropEditPolicy;
 
@@ -35,7 +35,7 @@ public class InheritedElementEditPolicyProvider extends AbstractProvider impleme
 			return false;
 		}
 
-		if((gep instanceof PackagePackageableElementCompartment2EditPart) || (gep instanceof PackagePackageableElementCompartmentEditPart)) {
+		if((gep instanceof PackagePackageableElementCompartment2EditPart) || (gep instanceof PackagePackageableElementCompartmentEditPartCN)) {
 			return true;
 		}
 
