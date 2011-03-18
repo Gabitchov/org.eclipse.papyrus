@@ -54,7 +54,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class PackagePackageableElementCompartment2CanonicalEditPolicy extends CanonicalEditPolicy {
+public class PackagePackageableElementCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * @generated

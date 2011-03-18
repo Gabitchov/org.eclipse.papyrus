@@ -860,7 +860,7 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String PackagePackageableElementCompartment2EditPart_title;
+	public static String PackagePackageableElementCompartmentEditPart_title;
 
 	/**
 	 * @generated

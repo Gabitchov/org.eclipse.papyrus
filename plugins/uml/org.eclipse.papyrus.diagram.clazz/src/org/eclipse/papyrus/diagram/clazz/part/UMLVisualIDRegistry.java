@@ -718,7 +718,7 @@ public class UMLVisualIDRegistry {
 				return EnumerationLiteralEditPart.VISUAL_ID;
 			}
 			break;
-		case PackagePackageableElementCompartment2EditPart.VISUAL_ID:
+		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -1041,7 +1041,7 @@ public class UMLVisualIDRegistry {
 			if(PackageNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(PackagePackageableElementCompartment2EditPart.VISUAL_ID == nodeVisualID) {
+			if(PackagePackageableElementCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
@@ -1528,7 +1528,7 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case PackagePackageableElementCompartment2EditPart.VISUAL_ID:
+		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
 			if(InstanceSpecificationEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
