@@ -56,7 +56,7 @@ import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.AppliedStereotypeOperationDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.OperationLabelEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.Operation4ItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.edit.policies.OperationForDataTypeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -89,7 +89,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class Operation4EditPart
+public class OperationForDataTypeEditPart
 
 extends UMLCompartmentEditPart
 
@@ -137,7 +137,7 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 	/**
 	 * @generated
 	 */
-	public Operation4EditPart(View view) {
+	public OperationForDataTypeEditPart(View view) {
 		super(view);
 	}
 
@@ -156,7 +156,7 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new Operation4ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new OperationForDataTypeItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
@@ -353,7 +353,7 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Operation_3019, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Operation_3019, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForDataTypeEditPart.VISUAL_ID));
 		}
 		return parser;
 	}

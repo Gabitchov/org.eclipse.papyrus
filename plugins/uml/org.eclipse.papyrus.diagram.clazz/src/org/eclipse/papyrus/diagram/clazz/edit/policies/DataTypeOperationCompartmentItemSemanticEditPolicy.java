@@ -14,7 +14,7 @@ package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.Operation4CreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.OperationForDataTypeCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 
 /**
@@ -34,7 +34,7 @@ public class DataTypeOperationCompartmentItemSemanticEditPolicy extends UMLBaseI
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.Operation_3019 == req.getElementType()) {
-			return getGEFWrapper(new Operation4CreateCommand(req));
+			return getGEFWrapper(new OperationForDataTypeCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

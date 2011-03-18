@@ -26,13 +26,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.uml2.uml.DataType;
-import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
  */
-public class Operation4CreateCommand extends EditElementCommand {
+public class PropertyforDataTypeCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -47,7 +47,7 @@ public class Operation4CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public Operation4CreateCommand(CreateElementRequest req, EObject eObject) {
+	public PropertyforDataTypeCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -56,14 +56,14 @@ public class Operation4CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static Operation4CreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new Operation4CreateCommand(req, eObject);
+	public static PropertyforDataTypeCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new PropertyforDataTypeCreateCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public Operation4CreateCommand(CreateElementRequest req) {
+	public PropertyforDataTypeCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -98,12 +98,12 @@ public class Operation4CreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		Operation newElement = UMLFactory.eINSTANCE.createOperation();
+		Property newElement = UMLFactory.eINSTANCE.createProperty();
 
 		DataType owner = (DataType)getElementToEdit();
-		owner.getOwnedOperations().add(newElement);
+		owner.getOwnedAttributes().add(newElement);
 
-		ElementInitializers.getInstance().init_Operation_3019(newElement);
+		ElementInitializers.getInstance().init_Property_3018(newElement);
 
 		doConfigure(newElement, monitor, info);
 
@@ -114,7 +114,7 @@ public class Operation4CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Operation newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected void doConfigure(Property newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

@@ -32,7 +32,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForDataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.clazz.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -41,7 +41,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class DataTypeOperationCompartment2CanonicalEditPolicy extends CanonicalEditPolicy {
+public class DataTypeOperationCompartmentCanonicalEditPolicyCN extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -87,7 +87,7 @@ public class DataTypeOperationCompartment2CanonicalEditPolicy extends CanonicalE
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		return Operation4EditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
+		return OperationForDataTypeEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
 	}
 
 	/**

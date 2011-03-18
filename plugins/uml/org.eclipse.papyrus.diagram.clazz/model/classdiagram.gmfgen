@@ -1843,11 +1843,11 @@
       <childNodes
           xsi:type="gmfgen:GenChildLabelNode"
           visualID="3018"
-          editPartClassName="Property5EditPart"
-          itemSemanticEditPolicyClassName="Property5ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="Property5CanonicalEditPolicy"
-          graphicalNodeEditPolicyClassName="Property5GraphicalNodeEditPolicy"
-          createCommandClassName="Property5CreateCommand"
+          editPartClassName="PropertyforDataTypeEditPart"
+          itemSemanticEditPolicyClassName="PropertyforDataTypeItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="PropertyforDataTypeCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="PropertyforDataTypeGraphicalNodeEditPolicy"
+          createCommandClassName="PropertyforDataTypeCreateCommand"
           containers="/0/@diagram/@compartments.31 /0/@diagram/@compartments.24">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1899,11 +1899,11 @@
       <childNodes
           xsi:type="gmfgen:GenChildLabelNode"
           visualID="3019"
-          editPartClassName="Operation4EditPart"
-          itemSemanticEditPolicyClassName="Operation4ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="Operation4CanonicalEditPolicy"
-          graphicalNodeEditPolicyClassName="Operation4GraphicalNodeEditPolicy"
-          createCommandClassName="Operation4CreateCommand"
+          editPartClassName="OperationForDataTypeEditPart"
+          itemSemanticEditPolicyClassName="OperationForDataTypeItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="OperationForDataTypeCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="OperationForDataTypeGraphicalNodeEditPolicy"
+          createCommandClassName="OperationForDataTypeCreateCommand"
           containers="/0/@diagram/@compartments.25 /0/@diagram/@compartments.32">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -6351,9 +6351,9 @@
       </compartments>
       <compartments
           visualID="7032"
-          editPartClassName="DataTypeAttributeCompartment2EditPart"
-          itemSemanticEditPolicyClassName="DataTypeAttributeCompartment2ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="DataTypeAttributeCompartment2CanonicalEditPolicy"
+          editPartClassName="DataTypeAttributeCompartmentEditPartCN"
+          itemSemanticEditPolicyClassName="DataTypeAttributeCompartmentItemSemanticEditPolicyCN"
+          canonicalEditPolicyClassName="DataTypeAttributeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.27"
           title="AttributeCompartment"
           needsTitle="false"
@@ -6375,9 +6375,9 @@
       </compartments>
       <compartments
           visualID="7033"
-          editPartClassName="DataTypeOperationCompartment2EditPart"
-          itemSemanticEditPolicyClassName="DataTypeOperationCompartment2ItemSemanticEditPolicy"
-          canonicalEditPolicyClassName="DataTypeOperationCompartment2CanonicalEditPolicy"
+          editPartClassName="DataTypeOperationCompartmentEditPartCN"
+          itemSemanticEditPolicyClassName="DataTypeOperationCompartmentItemSemanticEditPolicyCN"
+          canonicalEditPolicyClassName="DataTypeOperationCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.28"
           title="OperationCompartment"
           needsTitle="false"

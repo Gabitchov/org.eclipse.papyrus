@@ -35,9 +35,9 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForInterfaceEditpart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForClassEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForDataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForComponentEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Property5EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyforDataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForInterfaceEditPart;
@@ -145,9 +145,9 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 			return getCustomPropertyParser();
 		case OperationForClassEditPart.VISUAL_ID:
 			return getOperationParser();
-		case Property5EditPart.VISUAL_ID:
+		case PropertyforDataTypeEditPart.VISUAL_ID:
 			return getCustomPropertyParser();
-		case Operation4EditPart.VISUAL_ID:
+		case OperationForDataTypeEditPart.VISUAL_ID:
 			return getOperationParser();
 		case AssociationName2EditPart.VISUAL_ID:
 			return getAssociationName_6002Parser();

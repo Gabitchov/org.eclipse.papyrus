@@ -845,12 +845,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String DataTypeAttributeCompartment2EditPart_title;
+	public static String DataTypeAttributeCompartmentEditPartCN_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DataTypeOperationCompartment2EditPart_title;
+	public static String DataTypeOperationCompartmentEditPartCN_title;
 
 	/**
 	 * @generated

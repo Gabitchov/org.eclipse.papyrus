@@ -76,7 +76,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForInterfaceEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForDataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForInterfaceEditpart;
@@ -88,7 +88,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ProfileApplicationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Property5EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyforDataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForInterfaceEditPart;
@@ -996,9 +996,9 @@ public class UMLElementTypes {
 			return PrimitiveType_3026;
 		case DataTypeEditPartCN.VISUAL_ID:
 			return DataType_3027;
-		case Property5EditPart.VISUAL_ID:
+		case PropertyforDataTypeEditPart.VISUAL_ID:
 			return Property_3018;
-		case Operation4EditPart.VISUAL_ID:
+		case OperationForDataTypeEditPart.VISUAL_ID:
 			return Operation_3019;
 		case Comment2EditPart.VISUAL_ID:
 			return Comment_3028;

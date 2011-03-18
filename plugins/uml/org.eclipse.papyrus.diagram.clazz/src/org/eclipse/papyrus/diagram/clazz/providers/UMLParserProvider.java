@@ -88,7 +88,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.MultiDependencyLabelEditPart
 import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.NestedClassForInterfaceEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForDataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForInterfaceEditpart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationTemplateParameterEditPart;
@@ -96,7 +96,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeNameEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Property5EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyforDataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForInterfaceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForSignalEditPart;
@@ -1620,9 +1620,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getPrimitiveTypeName_5058Parser();
 		case DataTypeNameEditPartCN.VISUAL_ID:
 			return getDataTypeName_5061Parser();
-		case Property5EditPart.VISUAL_ID:
+		case PropertyforDataTypeEditPart.VISUAL_ID:
 			return getProperty_3018Parser();
-		case Operation4EditPart.VISUAL_ID:
+		case OperationForDataTypeEditPart.VISUAL_ID:
 			return getOperation_3019Parser();
 		case CommentBody2EditPart.VISUAL_ID:
 			return getCommentBody_5063Parser();

@@ -162,9 +162,9 @@ public class UMLDiagramUpdater {
 			return getClassOperationCompartment_7012SemanticChildren(view);
 		case ClassNestedClassifierCompartmentEditPartCN.VISUAL_ID:
 			return getClassNestedClassifierCompartment_7013SemanticChildren(view);
-		case DataTypeAttributeCompartment2EditPart.VISUAL_ID:
+		case DataTypeAttributeCompartmentEditPartCN.VISUAL_ID:
 			return getDataTypeAttributeCompartment_7032SemanticChildren(view);
-		case DataTypeOperationCompartment2EditPart.VISUAL_ID:
+		case DataTypeOperationCompartmentEditPartCN.VISUAL_ID:
 			return getDataTypeOperationCompartment_7033SemanticChildren(view);
 		case EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID:
 			return getEnumerationEnumerationLiteralCompartment_7015SemanticChildren(view);
@@ -1334,7 +1334,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Property5EditPart.VISUAL_ID) {
+			if(visualID == PropertyforDataTypeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1358,7 +1358,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
 			Operation childElement = (Operation)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Operation4EditPart.VISUAL_ID) {
+			if(visualID == OperationForDataTypeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1558,7 +1558,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Property5EditPart.VISUAL_ID) {
+			if(visualID == PropertyforDataTypeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1582,7 +1582,7 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
 			Operation childElement = (Operation)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == Operation4EditPart.VISUAL_ID) {
+			if(visualID == OperationForDataTypeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1802,9 +1802,9 @@ public class UMLDiagramUpdater {
 			return getPrimitiveType_3026ContainedLinks(view);
 		case DataTypeEditPartCN.VISUAL_ID:
 			return getDataType_3027ContainedLinks(view);
-		case Property5EditPart.VISUAL_ID:
+		case PropertyforDataTypeEditPart.VISUAL_ID:
 			return getProperty_3018ContainedLinks(view);
-		case Operation4EditPart.VISUAL_ID:
+		case OperationForDataTypeEditPart.VISUAL_ID:
 			return getOperation_3019ContainedLinks(view);
 		case Comment2EditPart.VISUAL_ID:
 			return getComment_3028ContainedLinks(view);
@@ -1953,9 +1953,9 @@ public class UMLDiagramUpdater {
 			return getPrimitiveType_3026IncomingLinks(view);
 		case DataTypeEditPartCN.VISUAL_ID:
 			return getDataType_3027IncomingLinks(view);
-		case Property5EditPart.VISUAL_ID:
+		case PropertyforDataTypeEditPart.VISUAL_ID:
 			return getProperty_3018IncomingLinks(view);
-		case Operation4EditPart.VISUAL_ID:
+		case OperationForDataTypeEditPart.VISUAL_ID:
 			return getOperation_3019IncomingLinks(view);
 		case Comment2EditPart.VISUAL_ID:
 			return getComment_3028IncomingLinks(view);
@@ -2104,9 +2104,9 @@ public class UMLDiagramUpdater {
 			return getPrimitiveType_3026OutgoingLinks(view);
 		case DataTypeEditPartCN.VISUAL_ID:
 			return getDataType_3027OutgoingLinks(view);
-		case Property5EditPart.VISUAL_ID:
+		case PropertyforDataTypeEditPart.VISUAL_ID:
 			return getProperty_3018OutgoingLinks(view);
-		case Operation4EditPart.VISUAL_ID:
+		case OperationForDataTypeEditPart.VISUAL_ID:
 			return getOperation_3019OutgoingLinks(view);
 		case Comment2EditPart.VISUAL_ID:
 			return getComment_3028OutgoingLinks(view);

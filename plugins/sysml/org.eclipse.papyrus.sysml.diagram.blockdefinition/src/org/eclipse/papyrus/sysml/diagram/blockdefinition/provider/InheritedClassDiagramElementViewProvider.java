@@ -54,7 +54,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForInterfaceEditpart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForClassEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForDataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationTemplateParameterEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
@@ -64,7 +64,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForSignalEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForInterfaceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForClassEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Property5EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyforDataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ReceptionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
@@ -275,9 +275,9 @@ public class InheritedClassDiagramElementViewProvider extends UMLViewProvider {
 			return createPrimitiveType_3026(domainElement, containerView, index, persisted, preferencesHint);
 		case DataTypeEditPartCN.VISUAL_ID:
 			return createDataType_3027(domainElement, containerView, index, persisted, preferencesHint);
-		case Property5EditPart.VISUAL_ID:
+		case PropertyforDataTypeEditPart.VISUAL_ID:
 			return createProperty_3018(domainElement, containerView, index, persisted, preferencesHint);
-		case Operation4EditPart.VISUAL_ID:
+		case OperationForDataTypeEditPart.VISUAL_ID:
 			return createOperation_3019(domainElement, containerView, index, persisted, preferencesHint);
 		case Comment2EditPart.VISUAL_ID:
 			return createComment_3028(domainElement, containerView, index, persisted, preferencesHint);
