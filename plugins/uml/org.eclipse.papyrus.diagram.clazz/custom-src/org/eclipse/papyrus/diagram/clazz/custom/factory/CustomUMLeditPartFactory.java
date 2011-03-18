@@ -29,8 +29,8 @@ import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CPackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CPackageEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationTargetNameEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationSourceNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
@@ -66,9 +66,9 @@ public class CustomUMLeditPartFactory extends UMLEditPartFactory {
 				return new CAssociationNodeEditPart(view);
 			case DependencyNodeEditPart.VISUAL_ID:
 				return new CDependencyNodeEditPart(view);
-			case AssociationName5EditPart.VISUAL_ID:
+			case AssociationSourceNameEditPart.VISUAL_ID:
 				return new AssociationEndSourceEditPart(view);
-			case AssociationName3EditPart.VISUAL_ID:
+			case AssociationTargetNameEditPart.VISUAL_ID:
 				return new AssociationEndTargetEditPart(view);
 			case AssociationClassRoleSourceEditPart.VISUAL_ID:
 				return new CAssociationClassEndSourceEditPart(view);

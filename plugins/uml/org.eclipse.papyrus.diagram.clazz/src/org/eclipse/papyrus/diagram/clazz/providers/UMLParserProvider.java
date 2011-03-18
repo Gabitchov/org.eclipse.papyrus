@@ -47,11 +47,11 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchMutliplicit
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationMultiplictySourceEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationMultiplictyTargetEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationMultiplicitySourceEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationMultiplicityTargetEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNameEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationSourceNameEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationTargetNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.BindingSubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassNameEditPartCN;
@@ -1638,15 +1638,15 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getAssociationClassName_6032Parser();
 		case AppliedStereotypeAssociationEditPart.VISUAL_ID:
 			return getAssociationName_6001Parser();
-		case AssociationName2EditPart.VISUAL_ID:
+		case AssociationNameEditPart.VISUAL_ID:
 			return getAssociationName_6002Parser();
-		case AssociationName3EditPart.VISUAL_ID:
+		case AssociationTargetNameEditPart.VISUAL_ID:
 			return getAssociationName_6003Parser();
-		case AssociationName5EditPart.VISUAL_ID:
+		case AssociationSourceNameEditPart.VISUAL_ID:
 			return getAssociationName_6005Parser();
-		case AssociationMultiplictySourceEditPart.VISUAL_ID:
+		case AssociationMultiplicitySourceEditPart.VISUAL_ID:
 			return getAssociationName_6033Parser();
-		case AssociationMultiplictyTargetEditPart.VISUAL_ID:
+		case AssociationMultiplicityTargetEditPart.VISUAL_ID:
 			return getAssociationName_6034Parser();
 		case AssociationBranchMutliplicityEditPart.VISUAL_ID:
 			return getAssociationName_6035Parser();

@@ -440,20 +440,20 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AppliedStereotypeAssociationEditPart.VISUAL_ID:
 				return new AppliedStereotypeAssociationEditPart(view);
 
-			case AssociationName2EditPart.VISUAL_ID:
-				return new AssociationName2EditPart(view);
+			case AssociationNameEditPart.VISUAL_ID:
+				return new AssociationNameEditPart(view);
 
-			case AssociationName3EditPart.VISUAL_ID:
-				return new AssociationName3EditPart(view);
+			case AssociationTargetNameEditPart.VISUAL_ID:
+				return new AssociationTargetNameEditPart(view);
 
-			case AssociationName5EditPart.VISUAL_ID:
-				return new AssociationName5EditPart(view);
+			case AssociationSourceNameEditPart.VISUAL_ID:
+				return new AssociationSourceNameEditPart(view);
 
-			case AssociationMultiplictySourceEditPart.VISUAL_ID:
-				return new AssociationMultiplictySourceEditPart(view);
+			case AssociationMultiplicitySourceEditPart.VISUAL_ID:
+				return new AssociationMultiplicitySourceEditPart(view);
 
-			case AssociationMultiplictyTargetEditPart.VISUAL_ID:
-				return new AssociationMultiplictyTargetEditPart(view);
+			case AssociationMultiplicityTargetEditPart.VISUAL_ID:
+				return new AssociationMultiplicityTargetEditPart(view);
 
 			case AssociationBranchEditPart.VISUAL_ID:
 				return new AssociationBranchEditPart(view);

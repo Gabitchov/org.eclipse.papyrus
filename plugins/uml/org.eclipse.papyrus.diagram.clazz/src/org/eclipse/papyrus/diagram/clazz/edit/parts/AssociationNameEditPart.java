@@ -20,6 +20,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
@@ -50,7 +51,6 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.diagram.clazz.custom.policies.DisplayAssociationEndTargetMultiplicityEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
@@ -59,6 +59,7 @@ import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditMan
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
+import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
@@ -68,6 +69,8 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
+import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
@@ -78,12 +81,12 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class AssociationMultiplictyTargetEditPart extends LabelEditPart implements ITextAwareEditPart {
+public class AssociationNameEditPart extends LabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6034;
+	public static final int VISUAL_ID = 6002;
 
 	/**
 	 * @generated
@@ -123,13 +126,13 @@ public class AssociationMultiplictyTargetEditPart extends LabelEditPart implemen
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationMultiplictyTargetEditPart.VISUAL_ID), new Point(0, -20));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNameEditPart.VISUAL_ID), new Point(0, 20));
 	}
 
 	/**
 	 * @generated
 	 */
-	public AssociationMultiplictyTargetEditPart(View view) {
+	public AssociationNameEditPart(View view) {
 		super(view);
 	}
 
@@ -141,14 +144,13 @@ public class AssociationMultiplictyTargetEditPart extends LabelEditPart implemen
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ModelEditPart.LinkLabelDragPolicy());
-		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new DisplayAssociationEndTargetMultiplicityEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	public int getKeyPoint() {
-		return ConnectionLocator.SOURCE;
+		return ConnectionLocator.MIDDLE;
 	}
 
 	/**
@@ -239,7 +241,19 @@ public class AssociationMultiplictyTargetEditPart extends LabelEditPart implemen
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
+		EObject parserElement = getParserElement();
+		if(parserElement == null) {
+			return null;
+		}
+
+		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
+		for(View view : views) {
+			if(NameLabelIconHelper.showLabelIcon(view)) {
+				return UMLElementTypes.getImage(parserElement.eClass());
+			}
+		}
 		return null;
+
 	}
 
 	/**
@@ -286,7 +300,7 @@ public class AssociationMultiplictyTargetEditPart extends LabelEditPart implemen
 	 * @generated
 	 */
 	protected boolean isEditable() {
-		return false;
+		return getParser() != null;
 	}
 
 	/**
@@ -340,7 +354,7 @@ public class AssociationMultiplictyTargetEditPart extends LabelEditPart implemen
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Association_4001, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationMultiplictyTargetEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Association_4001, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNameEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -592,7 +606,15 @@ public class AssociationMultiplictyTargetEditPart extends LabelEditPart implemen
 	 * @generated
 	 */
 	public int getDirectEditionType() {
-		// The label is read-only (defined in GMFGen model)
+		if(checkExtendedEditor()) {
+			initExtendedEditorConfiguration();
+			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
+		}
+		if(checkDefaultEdition()) {
+			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
+		}
+
+		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
 
@@ -708,6 +730,10 @@ public class AssociationMultiplictyTargetEditPart extends LabelEditPart implemen
 					refreshLabel();
 				}
 			}
+		}
+
+		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
+			refreshLabel();
 		}
 
 		super.handleNotificationEvent(event);

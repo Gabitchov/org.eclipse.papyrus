@@ -30,9 +30,9 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeUsageEditPa
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotyperGeneralizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchMutliplicityEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchRoleEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNameEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationTargetNameEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationSourceNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForDataTypeEditPart;
@@ -149,12 +149,12 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 			return getCustomPropertyParser();
 		case OperationForDataTypeEditPart.VISUAL_ID:
 			return getOperationParser();
-		case AssociationName2EditPart.VISUAL_ID:
+		case AssociationNameEditPart.VISUAL_ID:
 			return getAssociationName_6002Parser();
-		case AssociationName3EditPart.VISUAL_ID:
+		case AssociationTargetNameEditPart.VISUAL_ID:
 			return getAssociationTargetRole();
 
-		case AssociationName5EditPart.VISUAL_ID:
+		case AssociationSourceNameEditPart.VISUAL_ID:
 			return getAssociationSourceMultiplicity();
 
 		case AssociationBranchRoleEditPart.VISUAL_ID:

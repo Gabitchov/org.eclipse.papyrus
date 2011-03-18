@@ -4191,8 +4191,8 @@
         </labels>
         <labels
             visualID="6002"
-            editPartClassName="AssociationName2EditPart"
-            itemSemanticEditPolicyClassName="AssociationName2ItemSemanticEditPolicy"
+            editPartClassName="AssociationNameEditPart"
+            itemSemanticEditPolicyClassName="AssociationNameItemSemanticEditPolicy"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -4213,8 +4213,8 @@
         </labels>
         <labels
             visualID="6003"
-            editPartClassName="AssociationName3EditPart"
-            itemSemanticEditPolicyClassName="AssociationName3ItemSemanticEditPolicy"
+            editPartClassName="AssociationTargetNameEditPart"
+            itemSemanticEditPolicyClassName="AssociationTargetNameItemSemanticEditPolicy"
             readOnly="true"
             alignment="SOURCE">
           <diagramRunTimeClass
@@ -4243,8 +4243,8 @@
         </labels>
         <labels
             visualID="6005"
-            editPartClassName="AssociationName5EditPart"
-            itemSemanticEditPolicyClassName="AssociationName5ItemSemanticEditPolicy"
+            editPartClassName="AssociationSourceNameEditPart"
+            itemSemanticEditPolicyClassName="AssociationSourceNameItemSemanticEditPolicy"
             readOnly="true"
             alignment="TARGET">
           <diagramRunTimeClass
@@ -4273,8 +4273,8 @@
         </labels>
         <labels
             visualID="6033"
-            editPartClassName="AssociationMultiplictySourceEditPart"
-            itemSemanticEditPolicyClassName="AssociationMultiplictySourceSemanticEditPolicy"
+            editPartClassName="AssociationMultiplicitySourceEditPart"
+            itemSemanticEditPolicyClassName="AssociationMultiplicitySourceSemanticEditPolicy"
             readOnly="true"
             alignment="TARGET">
           <diagramRunTimeClass
@@ -4303,8 +4303,8 @@
         </labels>
         <labels
             visualID="6034"
-            editPartClassName="AssociationMultiplictyTargetEditPart"
-            itemSemanticEditPolicyClassName="AssociationMultiplictyTargetSemanticEditPolicy"
+            editPartClassName="AssociationMultiplicityTargetEditPart"
+            itemSemanticEditPolicyClassName="AssociationMultiplicityTargetSemanticEditPolicy"
             readOnly="true"
             alignment="SOURCE">
           <diagramRunTimeClass

@@ -1632,19 +1632,19 @@ public class UMLVisualIDRegistry {
 			if(AppliedStereotypeAssociationEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(AssociationName2EditPart.VISUAL_ID == nodeVisualID) {
+			if(AssociationNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(AssociationName3EditPart.VISUAL_ID == nodeVisualID) {
+			if(AssociationTargetNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(AssociationName5EditPart.VISUAL_ID == nodeVisualID) {
+			if(AssociationSourceNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(AssociationMultiplictySourceEditPart.VISUAL_ID == nodeVisualID) {
+			if(AssociationMultiplicitySourceEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(AssociationMultiplictyTargetEditPart.VISUAL_ID == nodeVisualID) {
+			if(AssociationMultiplicityTargetEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

@@ -16,7 +16,7 @@ package org.eclipse.papyrus.diagram.clazz.custom.edit.part;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationEndTargetLabelHelper;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationTargetNameEditPart;
 import org.eclipse.ui.views.properties.IPropertySource;
 
 
@@ -24,7 +24,7 @@ import org.eclipse.ui.views.properties.IPropertySource;
  * The Class AssociationEndSourceEditPart.
  * Ensure the edition of ends in the diagram
  */
-public class AssociationEndSourceEditPart extends AssociationName3EditPart {
+public class AssociationEndSourceEditPart extends AssociationTargetNameEditPart {
 
 	/**
 	 * Instantiates a new association end source edit part.

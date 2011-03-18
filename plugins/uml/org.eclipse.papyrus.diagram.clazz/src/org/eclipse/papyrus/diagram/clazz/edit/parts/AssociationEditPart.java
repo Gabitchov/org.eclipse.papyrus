@@ -64,24 +64,24 @@ AbstractAssociationEditPart implements ITreeBranchEditPart {
 			((AppliedStereotypeAssociationEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeAssociationLabel());
 			return true;
 		}
-		if(childEditPart instanceof AssociationName2EditPart) {
-			((AssociationName2EditPart)childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
+		if(childEditPart instanceof AssociationNameEditPart) {
+			((AssociationNameEditPart)childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof AssociationName3EditPart) {
-			((AssociationName3EditPart)childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
+		if(childEditPart instanceof AssociationTargetNameEditPart) {
+			((AssociationTargetNameEditPart)childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
 			return true;
 		}
-		if(childEditPart instanceof AssociationName5EditPart) {
-			((AssociationName5EditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
+		if(childEditPart instanceof AssociationSourceNameEditPart) {
+			((AssociationSourceNameEditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
 			return true;
 		}
-		if(childEditPart instanceof AssociationMultiplictySourceEditPart) {
-			((AssociationMultiplictySourceEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
+		if(childEditPart instanceof AssociationMultiplicitySourceEditPart) {
+			((AssociationMultiplicitySourceEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
 			return true;
 		}
-		if(childEditPart instanceof AssociationMultiplictyTargetEditPart) {
-			((AssociationMultiplictyTargetEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicityTargetLabel());
+		if(childEditPart instanceof AssociationMultiplicityTargetEditPart) {
+			((AssociationMultiplicityTargetEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicityTargetLabel());
 			return true;
 		}
 		return false;
@@ -104,19 +104,19 @@ AbstractAssociationEditPart implements ITreeBranchEditPart {
 		if(childEditPart instanceof AppliedStereotypeAssociationEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationName2EditPart) {
+		if(childEditPart instanceof AssociationNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationName3EditPart) {
+		if(childEditPart instanceof AssociationTargetNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationName5EditPart) {
+		if(childEditPart instanceof AssociationSourceNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationMultiplictySourceEditPart) {
+		if(childEditPart instanceof AssociationMultiplicitySourceEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationMultiplictyTargetEditPart) {
+		if(childEditPart instanceof AssociationMultiplicityTargetEditPart) {
 			return true;
 		}
 		return false;

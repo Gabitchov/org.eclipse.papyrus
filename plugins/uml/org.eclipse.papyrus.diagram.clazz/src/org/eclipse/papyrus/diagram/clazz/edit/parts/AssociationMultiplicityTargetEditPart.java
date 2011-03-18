@@ -50,7 +50,7 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.diagram.clazz.custom.policies.DisplayAssociationEndSourceEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.DisplayAssociationEndTargetMultiplicityEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
@@ -78,12 +78,12 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class AssociationName5EditPart extends LabelEditPart implements ITextAwareEditPart {
+public class AssociationMultiplicityTargetEditPart extends LabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6005;
+	public static final int VISUAL_ID = 6034;
 
 	/**
 	 * @generated
@@ -123,13 +123,13 @@ public class AssociationName5EditPart extends LabelEditPart implements ITextAwar
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart.VISUAL_ID), new Point(0, 20));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationMultiplicityTargetEditPart.VISUAL_ID), new Point(0, -20));
 	}
 
 	/**
 	 * @generated
 	 */
-	public AssociationName5EditPart(View view) {
+	public AssociationMultiplicityTargetEditPart(View view) {
 		super(view);
 	}
 
@@ -141,14 +141,14 @@ public class AssociationName5EditPart extends LabelEditPart implements ITextAwar
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ModelEditPart.LinkLabelDragPolicy());
-		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new DisplayAssociationEndSourceEditPolicy());
+		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new DisplayAssociationEndTargetMultiplicityEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	public int getKeyPoint() {
-		return ConnectionLocator.TARGET;
+		return ConnectionLocator.SOURCE;
 	}
 
 	/**
@@ -340,7 +340,7 @@ public class AssociationName5EditPart extends LabelEditPart implements ITextAwar
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Association_4001, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Association_4001, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationMultiplicityTargetEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
