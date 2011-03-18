@@ -64,8 +64,8 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 			((AppliedStereotypeSubstitutionEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
-		if(childEditPart instanceof SubstitutionName2EditPart) {
-			((SubstitutionName2EditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof SubstitutionNameEditPart) {
+			((SubstitutionNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		return false;
@@ -88,7 +88,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		if(childEditPart instanceof AppliedStereotypeSubstitutionEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof SubstitutionName2EditPart) {
+		if(childEditPart instanceof SubstitutionNameEditPart) {
 			return true;
 		}
 		return false;

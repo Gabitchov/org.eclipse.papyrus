@@ -2009,7 +2009,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6010 = (Location)label6010.getLayoutConstraint();
 		location6010.setX(0);
 		location6010.setY(40);
-		Node label6011 = createLabel(edge, UMLVisualIDRegistry.getType(SubstitutionName2EditPart.VISUAL_ID));
+		Node label6011 = createLabel(edge, UMLVisualIDRegistry.getType(SubstitutionNameEditPart.VISUAL_ID));
 		label6011.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6011 = (Location)label6011.getLayoutConstraint();
 		location6011.setX(0);
@@ -2051,7 +2051,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6012 = (Location)label6012.getLayoutConstraint();
 		location6012.setX(0);
 		location6012.setY(40);
-		Node label6013 = createLabel(edge, UMLVisualIDRegistry.getType(RealizationName2EditPart.VISUAL_ID));
+		Node label6013 = createLabel(edge, UMLVisualIDRegistry.getType(RealizationNameEditPart.VISUAL_ID));
 		label6013.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6013 = (Location)label6013.getLayoutConstraint();
 		location6013.setX(0);

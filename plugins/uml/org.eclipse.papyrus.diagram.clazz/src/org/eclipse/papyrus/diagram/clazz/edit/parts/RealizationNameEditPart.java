@@ -77,12 +77,12 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwareEditPart {
+public class RealizationNameEditPart extends LabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6011;
+	public static final int VISUAL_ID = 6013;
 
 	/**
 	 * @generated
@@ -122,13 +122,13 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionName2EditPart.VISUAL_ID), new Point(0, 60));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationNameEditPart.VISUAL_ID), new Point(0, 60));
 	}
 
 	/**
 	 * @generated
 	 */
-	public SubstitutionName2EditPart(View view) {
+	public RealizationNameEditPart(View view) {
 		super(view);
 	}
 
@@ -338,7 +338,7 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Substitution_4004, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionName2EditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Realization_4005, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationNameEditPart.VISUAL_ID));
 		}
 		return parser;
 	}

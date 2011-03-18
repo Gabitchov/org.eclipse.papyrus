@@ -1673,7 +1673,7 @@ public class UMLVisualIDRegistry {
 			if(AppliedStereotypeSubstitutionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(SubstitutionName2EditPart.VISUAL_ID == nodeVisualID) {
+			if(SubstitutionNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1681,7 +1681,7 @@ public class UMLVisualIDRegistry {
 			if(AppliedStereotypeRealizationEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(RealizationName2EditPart.VISUAL_ID == nodeVisualID) {
+			if(RealizationNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

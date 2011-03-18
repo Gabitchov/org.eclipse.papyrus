@@ -31,8 +31,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotyperGeneraliza
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchMutliplicityEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchRoleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNameEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationTargetNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationSourceNameEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationTargetNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForDataTypeEditPart;

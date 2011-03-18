@@ -100,14 +100,14 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForComponentEditPart
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForInterfaceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForSignalEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyforDataTypeEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationName2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ReceptionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ShapeNamedElementNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SlotEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SourceISLinkLabelEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionName2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TargetISLinkLabelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateParameterEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TimeObservationNameEditPart;
@@ -1658,11 +1658,11 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getInterfaceRealizationName_6009Parser();
 		case AppliedStereotypeSubstitutionEditPart.VISUAL_ID:
 			return getSubstitutionName_6010Parser();
-		case SubstitutionName2EditPart.VISUAL_ID:
+		case SubstitutionNameEditPart.VISUAL_ID:
 			return getSubstitutionName_6011Parser();
 		case AppliedStereotypeRealizationEditPart.VISUAL_ID:
 			return getRealizationName_6012Parser();
-		case RealizationName2EditPart.VISUAL_ID:
+		case RealizationNameEditPart.VISUAL_ID:
 			return getRealizationName_6013Parser();
 		case AbstractionNameEditPart.VISUAL_ID:
 			return getAbstractionName_6014Parser();

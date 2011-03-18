@@ -485,8 +485,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AppliedStereotypeSubstitutionEditPart.VISUAL_ID:
 				return new AppliedStereotypeSubstitutionEditPart(view);
 
-			case SubstitutionName2EditPart.VISUAL_ID:
-				return new SubstitutionName2EditPart(view);
+			case SubstitutionNameEditPart.VISUAL_ID:
+				return new SubstitutionNameEditPart(view);
 
 			case RealizationEditPart.VISUAL_ID:
 				return new RealizationEditPart(view);
@@ -494,8 +494,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AppliedStereotypeRealizationEditPart.VISUAL_ID:
 				return new AppliedStereotypeRealizationEditPart(view);
 
-			case RealizationName2EditPart.VISUAL_ID:
-				return new RealizationName2EditPart(view);
+			case RealizationNameEditPart.VISUAL_ID:
+				return new RealizationNameEditPart(view);
 
 			case AbstractionEditPart.VISUAL_ID:
 				return new AbstractionEditPart(view);
