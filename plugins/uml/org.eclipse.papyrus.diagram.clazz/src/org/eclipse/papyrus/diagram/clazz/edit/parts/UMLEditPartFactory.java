@@ -296,8 +296,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ConstraintEditPartCN.VISUAL_ID:
 				return new ConstraintEditPartCN(view);
 
-			case ConstraintName2EditPart.VISUAL_ID:
-				return new ConstraintName2EditPart(view);
+			case ConstraintNameEditPartCN.VISUAL_ID:
+				return new ConstraintNameEditPartCN(view);
 
 			case ConstraintBodyEditPartCN.VISUAL_ID:
 				return new ConstraintBodyEditPartCN(view);
@@ -341,8 +341,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID:
 				return new InterfaceNestedClassifierCompartmentEditPart(view);
 
-			case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
-				return new ModelPackageableElementCompartmentEditPart(view);
+			case ModelPackageableElementCompartmentEditPartTN.VISUAL_ID:
+				return new ModelPackageableElementCompartmentEditPartTN(view);
 
 			case ComponentAttributeCompartmentEditPartCN.VISUAL_ID:
 				return new ComponentAttributeCompartmentEditPartCN(view);

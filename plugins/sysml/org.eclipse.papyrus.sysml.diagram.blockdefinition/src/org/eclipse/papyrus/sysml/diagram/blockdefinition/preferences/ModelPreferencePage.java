@@ -19,7 +19,7 @@ public class ModelPreferencePage extends BlockDefinitionDiagramNodePreferencePag
 	/**
 	 * the list of the compartments for this node
 	 */
-	public static final String compartments[] = { Messages.ModelPackageableElementCompartmentEditPart_title };
+	public static final String compartments[] = { Messages.ModelPackageableElementCompartmentEditPartTN_title};
 
 	/**
 	 * 

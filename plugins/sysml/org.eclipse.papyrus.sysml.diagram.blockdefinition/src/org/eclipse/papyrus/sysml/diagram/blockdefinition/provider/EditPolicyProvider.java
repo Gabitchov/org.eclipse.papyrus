@@ -17,7 +17,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelPackageableElementCompartmentEditPartCN;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelPackageableElementCompartmentEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelPackageableElementCompartmentEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPartCN;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
@@ -37,7 +37,7 @@ public class EditPolicyProvider extends AbstractProvider implements IEditPolicyP
 			return false;
 		}
 
-		if((gep instanceof PackagePackageableElementCompartment2EditPart) || (gep instanceof PackagePackageableElementCompartmentEditPartCN) || (gep instanceof ModelPackageableElementCompartmentEditPart) || (gep instanceof ModelPackageableElementCompartmentEditPartCN) || (gep instanceof ModelPackageableElementCompartmentEditPartCN)) {
+		if((gep instanceof PackagePackageableElementCompartment2EditPart) || (gep instanceof PackagePackageableElementCompartmentEditPartCN) || (gep instanceof ModelPackageableElementCompartmentEditPartTN) || (gep instanceof ModelPackageableElementCompartmentEditPartCN) || (gep instanceof ModelPackageableElementCompartmentEditPartCN)) {
 
 			return true;
 		}
@@ -51,7 +51,7 @@ public class EditPolicyProvider extends AbstractProvider implements IEditPolicyP
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageCompartmentItemSemanticEditPolicy());
 		}
 
-		if((editPart instanceof ModelPackageableElementCompartmentEditPartCN) || (editPart instanceof ModelPackageableElementCompartmentEditPart)) {
+		if((editPart instanceof ModelPackageableElementCompartmentEditPartCN) || (editPart instanceof ModelPackageableElementCompartmentEditPartTN)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageCompartmentItemSemanticEditPolicy());
 		}
 	}

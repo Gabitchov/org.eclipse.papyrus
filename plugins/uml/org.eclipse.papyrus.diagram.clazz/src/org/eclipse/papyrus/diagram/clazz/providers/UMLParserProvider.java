@@ -64,8 +64,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectableElementTemplatePa
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintBodyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintBodyEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintLabelEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintNameEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DefaultNamedElementNameEditPart;
@@ -1626,7 +1626,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getOperation_3019Parser();
 		case CommentBodyEditPartCN.VISUAL_ID:
 			return getCommentBody_5063Parser();
-		case ConstraintName2EditPart.VISUAL_ID:
+		case ConstraintNameEditPartCN.VISUAL_ID:
 			return getConstraintName_5064Parser();
 		case ConstraintBodyEditPartCN.VISUAL_ID:
 			return getConstraintSpecification_5160Parser();

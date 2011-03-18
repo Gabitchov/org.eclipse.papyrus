@@ -429,7 +429,7 @@ public class UMLVisualIDRegistry {
 				return NestedClassForInterfaceEditPart.VISUAL_ID;
 			}
 			break;
-		case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
+		case ModelPackageableElementCompartmentEditPartTN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -1019,7 +1019,7 @@ public class UMLVisualIDRegistry {
 			if(ModelNameEditPartTN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(ModelPackageableElementCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+			if(ModelPackageableElementCompartmentEditPartTN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
@@ -1270,7 +1270,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ConstraintEditPartCN.VISUAL_ID:
-			if(ConstraintName2EditPart.VISUAL_ID == nodeVisualID) {
+			if(ConstraintNameEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(ConstraintBodyEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -1341,7 +1341,7 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
+		case ModelPackageableElementCompartmentEditPartTN.VISUAL_ID:
 			if(InstanceSpecificationEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}

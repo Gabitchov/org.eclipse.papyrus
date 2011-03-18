@@ -153,8 +153,8 @@ AbstractConstraintEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ConstraintName2EditPart) {
-			((ConstraintName2EditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof ConstraintNameEditPartCN) {
+			((ConstraintNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		if(childEditPart instanceof ConstraintBodyEditPartCN) {
@@ -169,7 +169,7 @@ AbstractConstraintEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ConstraintName2EditPart) {
+		if(childEditPart instanceof ConstraintNameEditPartCN) {
 			return true;
 		}
 		if(childEditPart instanceof ConstraintBodyEditPartCN) {
@@ -293,7 +293,7 @@ AbstractConstraintEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ConstraintName2EditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ConstraintNameEditPartCN.VISUAL_ID));
 	}
 
 	/**
