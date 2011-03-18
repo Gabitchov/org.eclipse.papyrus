@@ -183,6 +183,13 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.TemplateParameter_3016);
 			return types;
 		}
+		if(editPart instanceof TemplateSignatureEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+			types.add(UMLElementTypes.ClassifierTemplateParameter_3031);
+			types.add(UMLElementTypes.OperationTemplateParameter_3035);
+			types.add(UMLElementTypes.TemplateParameter_3016);
+			return types;
+		}
 		if(editPart instanceof InstanceSpecificationEditPartCN) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
 			types.add(UMLElementTypes.Slot_3030);
@@ -243,29 +250,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Operation_3019);
 			return types;
 		}
-		if(editPart instanceof TemplateSignatureEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(3);
-			types.add(UMLElementTypes.ClassifierTemplateParameter_3031);
-			types.add(UMLElementTypes.OperationTemplateParameter_3035);
-			types.add(UMLElementTypes.TemplateParameter_3016);
-			return types;
-		}
-		if(editPart instanceof ModelPackageableElementCompartmentEditPartTN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(12);
-			types.add(UMLElementTypes.InstanceSpecification_3020);
-			types.add(UMLElementTypes.Component_3021);
-			types.add(UMLElementTypes.Signal_3022);
-			types.add(UMLElementTypes.Interface_3023);
-			types.add(UMLElementTypes.Model_3024);
-			types.add(UMLElementTypes.Enumeration_3025);
-			types.add(UMLElementTypes.Package_3009);
-			types.add(UMLElementTypes.Class_3010);
-			types.add(UMLElementTypes.PrimitiveType_3026);
-			types.add(UMLElementTypes.DataType_3027);
-			types.add(UMLElementTypes.Comment_3028);
-			types.add(UMLElementTypes.Constraint_3029);
-			return types;
-		}
 		if(editPart instanceof ModelPackageableElementCompartmentEditPartCN) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(12);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
@@ -283,6 +267,22 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof PackagePackageableElementCompartmentEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(12);
+			types.add(UMLElementTypes.InstanceSpecification_3020);
+			types.add(UMLElementTypes.Component_3021);
+			types.add(UMLElementTypes.Signal_3022);
+			types.add(UMLElementTypes.Interface_3023);
+			types.add(UMLElementTypes.Model_3024);
+			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.Class_3010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
+			types.add(UMLElementTypes.DataType_3027);
+			types.add(UMLElementTypes.Comment_3028);
+			types.add(UMLElementTypes.Constraint_3029);
+			return types;
+		}
+		if(editPart instanceof ModelPackageableElementCompartmentEditPartTN) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(12);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -486,6 +486,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			return ((RedefinableTemplateSignatureEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
+		if(targetEditPart instanceof TemplateSignatureEditPart) {
+			return ((TemplateSignatureEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
 		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			return ((InstanceSpecificationEditPartCN)targetEditPart).getMARelTypesOnTarget();
 		}
@@ -521,9 +524,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof ConstraintEditPartCN) {
 			return ((ConstraintEditPartCN)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof TemplateSignatureEditPart) {
-			return ((TemplateSignatureEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -698,6 +698,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			return ((RedefinableTemplateSignatureEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if(targetEditPart instanceof TemplateSignatureEditPart) {
+			return ((TemplateSignatureEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
 		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			return ((InstanceSpecificationEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
 		}
@@ -733,9 +736,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof ConstraintEditPartCN) {
 			return ((ConstraintEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof TemplateSignatureEditPart) {
-			return ((TemplateSignatureEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

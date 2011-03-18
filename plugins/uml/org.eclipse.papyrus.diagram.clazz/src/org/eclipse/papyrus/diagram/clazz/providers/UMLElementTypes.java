@@ -685,13 +685,29 @@ public class UMLElementTypes {
 
 			elements.put(NamedElement_2098, UMLPackage.eINSTANCE.getNamedElement());
 
+			elements.put(Property_3012, UMLPackage.eINSTANCE.getProperty());
+
 			elements.put(Property_3002, UMLPackage.eINSTANCE.getProperty());
 
-			elements.put(Operation_3003, UMLPackage.eINSTANCE.getOperation());
+			elements.put(Property_3005, UMLPackage.eINSTANCE.getProperty());
+
+			elements.put(Property_3006, UMLPackage.eINSTANCE.getProperty());
+
+			elements.put(Property_3018, UMLPackage.eINSTANCE.getProperty());
+
+			elements.put(Class_3014, UMLPackage.eINSTANCE.getClass_());
 
 			elements.put(Class_3004, UMLPackage.eINSTANCE.getClass_());
 
-			elements.put(RedefinableTemplateSignature_3015, UMLPackage.eINSTANCE.getRedefinableTemplateSignature());
+			elements.put(Class_3008, UMLPackage.eINSTANCE.getClass_());
+
+			elements.put(Operation_3013, UMLPackage.eINSTANCE.getOperation());
+
+			elements.put(Operation_3003, UMLPackage.eINSTANCE.getOperation());
+
+			elements.put(Operation_3007, UMLPackage.eINSTANCE.getOperation());
+
+			elements.put(Operation_3019, UMLPackage.eINSTANCE.getOperation());
 
 			elements.put(ConnectableElementTemplateParameter_3034, UMLPackage.eINSTANCE.getConnectableElementTemplateParameter());
 
@@ -701,13 +717,15 @@ public class UMLElementTypes {
 
 			elements.put(TemplateParameter_3016, UMLPackage.eINSTANCE.getTemplateParameter());
 
-			elements.put(Property_3005, UMLPackage.eINSTANCE.getProperty());
+			elements.put(EnumerationLiteral_3017, UMLPackage.eINSTANCE.getEnumerationLiteral());
 
-			elements.put(Property_3006, UMLPackage.eINSTANCE.getProperty());
+			elements.put(Reception_3011, UMLPackage.eINSTANCE.getReception());
 
-			elements.put(Operation_3007, UMLPackage.eINSTANCE.getOperation());
+			elements.put(Slot_3030, UMLPackage.eINSTANCE.getSlot());
 
-			elements.put(Class_3008, UMLPackage.eINSTANCE.getClass_());
+			elements.put(RedefinableTemplateSignature_3015, UMLPackage.eINSTANCE.getRedefinableTemplateSignature());
+
+			elements.put(TemplateSignature_3033, UMLPackage.eINSTANCE.getTemplateSignature());
 
 			elements.put(InstanceSpecification_3020, UMLPackage.eINSTANCE.getInstanceSpecification());
 
@@ -721,35 +739,17 @@ public class UMLElementTypes {
 
 			elements.put(Enumeration_3025, UMLPackage.eINSTANCE.getEnumeration());
 
-			elements.put(EnumerationLiteral_3017, UMLPackage.eINSTANCE.getEnumerationLiteral());
-
 			elements.put(Package_3009, UMLPackage.eINSTANCE.getPackage());
 
 			elements.put(Class_3010, UMLPackage.eINSTANCE.getClass_());
-
-			elements.put(Reception_3011, UMLPackage.eINSTANCE.getReception());
-
-			elements.put(Property_3012, UMLPackage.eINSTANCE.getProperty());
-
-			elements.put(Operation_3013, UMLPackage.eINSTANCE.getOperation());
-
-			elements.put(Class_3014, UMLPackage.eINSTANCE.getClass_());
 
 			elements.put(PrimitiveType_3026, UMLPackage.eINSTANCE.getPrimitiveType());
 
 			elements.put(DataType_3027, UMLPackage.eINSTANCE.getDataType());
 
-			elements.put(Property_3018, UMLPackage.eINSTANCE.getProperty());
-
-			elements.put(Operation_3019, UMLPackage.eINSTANCE.getOperation());
-
 			elements.put(Comment_3028, UMLPackage.eINSTANCE.getComment());
 
 			elements.put(Constraint_3029, UMLPackage.eINSTANCE.getConstraint());
-
-			elements.put(Slot_3030, UMLPackage.eINSTANCE.getSlot());
-
-			elements.put(TemplateSignature_3033, UMLPackage.eINSTANCE.getTemplateSignature());
 
 			elements.put(AssociationClass_4017, UMLPackage.eINSTANCE.getAssociationClass());
 
@@ -832,40 +832,40 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(TimeObservation_2096);
 			KNOWN_ELEMENT_TYPES.add(NamedElement_2097);
 			KNOWN_ELEMENT_TYPES.add(NamedElement_2098);
+			KNOWN_ELEMENT_TYPES.add(Property_3012);
 			KNOWN_ELEMENT_TYPES.add(Property_3002);
-			KNOWN_ELEMENT_TYPES.add(Operation_3003);
+			KNOWN_ELEMENT_TYPES.add(Property_3005);
+			KNOWN_ELEMENT_TYPES.add(Property_3006);
+			KNOWN_ELEMENT_TYPES.add(Property_3018);
+			KNOWN_ELEMENT_TYPES.add(Class_3014);
 			KNOWN_ELEMENT_TYPES.add(Class_3004);
-			KNOWN_ELEMENT_TYPES.add(RedefinableTemplateSignature_3015);
+			KNOWN_ELEMENT_TYPES.add(Class_3008);
+			KNOWN_ELEMENT_TYPES.add(Operation_3013);
+			KNOWN_ELEMENT_TYPES.add(Operation_3003);
+			KNOWN_ELEMENT_TYPES.add(Operation_3007);
+			KNOWN_ELEMENT_TYPES.add(Operation_3019);
 			KNOWN_ELEMENT_TYPES.add(ConnectableElementTemplateParameter_3034);
 			KNOWN_ELEMENT_TYPES.add(OperationTemplateParameter_3035);
 			KNOWN_ELEMENT_TYPES.add(ClassifierTemplateParameter_3031);
 			KNOWN_ELEMENT_TYPES.add(TemplateParameter_3016);
-			KNOWN_ELEMENT_TYPES.add(Property_3005);
-			KNOWN_ELEMENT_TYPES.add(Property_3006);
-			KNOWN_ELEMENT_TYPES.add(Operation_3007);
-			KNOWN_ELEMENT_TYPES.add(Class_3008);
+			KNOWN_ELEMENT_TYPES.add(EnumerationLiteral_3017);
+			KNOWN_ELEMENT_TYPES.add(Reception_3011);
+			KNOWN_ELEMENT_TYPES.add(Slot_3030);
+			KNOWN_ELEMENT_TYPES.add(RedefinableTemplateSignature_3015);
+			KNOWN_ELEMENT_TYPES.add(Node_3032);
+			KNOWN_ELEMENT_TYPES.add(TemplateSignature_3033);
 			KNOWN_ELEMENT_TYPES.add(InstanceSpecification_3020);
 			KNOWN_ELEMENT_TYPES.add(Component_3021);
 			KNOWN_ELEMENT_TYPES.add(Signal_3022);
 			KNOWN_ELEMENT_TYPES.add(Interface_3023);
 			KNOWN_ELEMENT_TYPES.add(Model_3024);
 			KNOWN_ELEMENT_TYPES.add(Enumeration_3025);
-			KNOWN_ELEMENT_TYPES.add(EnumerationLiteral_3017);
 			KNOWN_ELEMENT_TYPES.add(Package_3009);
 			KNOWN_ELEMENT_TYPES.add(Class_3010);
-			KNOWN_ELEMENT_TYPES.add(Reception_3011);
-			KNOWN_ELEMENT_TYPES.add(Property_3012);
-			KNOWN_ELEMENT_TYPES.add(Operation_3013);
-			KNOWN_ELEMENT_TYPES.add(Class_3014);
 			KNOWN_ELEMENT_TYPES.add(PrimitiveType_3026);
 			KNOWN_ELEMENT_TYPES.add(DataType_3027);
-			KNOWN_ELEMENT_TYPES.add(Property_3018);
-			KNOWN_ELEMENT_TYPES.add(Operation_3019);
 			KNOWN_ELEMENT_TYPES.add(Comment_3028);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3029);
-			KNOWN_ELEMENT_TYPES.add(Slot_3030);
-			KNOWN_ELEMENT_TYPES.add(Node_3032);
-			KNOWN_ELEMENT_TYPES.add(TemplateSignature_3033);
 			KNOWN_ELEMENT_TYPES.add(Link_4016);
 			KNOWN_ELEMENT_TYPES.add(AssociationClass_4017);
 			KNOWN_ELEMENT_TYPES.add(Association_4001);
@@ -942,14 +942,30 @@ public class UMLElementTypes {
 			return NamedElement_2097;
 		case ShapeNamedElementEditPart.VISUAL_ID:
 			return NamedElement_2098;
+		case PropertyForClassEditPart.VISUAL_ID:
+			return Property_3012;
 		case PropertyForComponentEditPart.VISUAL_ID:
 			return Property_3002;
-		case OperationForComponentEditPart.VISUAL_ID:
-			return Operation_3003;
+		case PropertyForSignalEditPart.VISUAL_ID:
+			return Property_3005;
+		case PropertyForInterfaceEditPart.VISUAL_ID:
+			return Property_3006;
+		case PropertyforDataTypeEditPart.VISUAL_ID:
+			return Property_3018;
+		case NestedClassForClassEditPart.VISUAL_ID:
+			return Class_3014;
 		case NestedClassForComponentEditPart.VISUAL_ID:
 			return Class_3004;
-		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
-			return RedefinableTemplateSignature_3015;
+		case NestedClassForInterfaceEditPart.VISUAL_ID:
+			return Class_3008;
+		case OperationForClassEditPart.VISUAL_ID:
+			return Operation_3013;
+		case OperationForComponentEditPart.VISUAL_ID:
+			return Operation_3003;
+		case OperationForInterfaceEditpart.VISUAL_ID:
+			return Operation_3007;
+		case OperationForDataTypeEditPart.VISUAL_ID:
+			return Operation_3019;
 		case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
 			return ConnectableElementTemplateParameter_3034;
 		case OperationTemplateParameterEditPart.VISUAL_ID:
@@ -958,14 +974,18 @@ public class UMLElementTypes {
 			return ClassifierTemplateParameter_3031;
 		case TemplateParameterEditPart.VISUAL_ID:
 			return TemplateParameter_3016;
-		case PropertyForSignalEditPart.VISUAL_ID:
-			return Property_3005;
-		case PropertyForInterfaceEditPart.VISUAL_ID:
-			return Property_3006;
-		case OperationForInterfaceEditpart.VISUAL_ID:
-			return Operation_3007;
-		case NestedClassForInterfaceEditPart.VISUAL_ID:
-			return Class_3008;
+		case EnumerationLiteralEditPart.VISUAL_ID:
+			return EnumerationLiteral_3017;
+		case ReceptionEditPart.VISUAL_ID:
+			return Reception_3011;
+		case SlotEditPart.VISUAL_ID:
+			return Slot_3030;
+		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
+			return RedefinableTemplateSignature_3015;
+		case ContainmentCircleEditPart.VISUAL_ID:
+			return Node_3032;
+		case TemplateSignatureEditPart.VISUAL_ID:
+			return TemplateSignature_3033;
 		case InstanceSpecificationEditPartCN.VISUAL_ID:
 			return InstanceSpecification_3020;
 		case ComponentEditPartCN.VISUAL_ID:
@@ -978,38 +998,18 @@ public class UMLElementTypes {
 			return Model_3024;
 		case EnumerationEditPartCN.VISUAL_ID:
 			return Enumeration_3025;
-		case EnumerationLiteralEditPart.VISUAL_ID:
-			return EnumerationLiteral_3017;
 		case PackageEditPartCN.VISUAL_ID:
 			return Package_3009;
 		case ClassEditPartCN.VISUAL_ID:
 			return Class_3010;
-		case ReceptionEditPart.VISUAL_ID:
-			return Reception_3011;
-		case PropertyForClassEditPart.VISUAL_ID:
-			return Property_3012;
-		case OperationForClassEditPart.VISUAL_ID:
-			return Operation_3013;
-		case NestedClassForClassEditPart.VISUAL_ID:
-			return Class_3014;
 		case PrimitiveTypeEditPartCN.VISUAL_ID:
 			return PrimitiveType_3026;
 		case DataTypeEditPartCN.VISUAL_ID:
 			return DataType_3027;
-		case PropertyforDataTypeEditPart.VISUAL_ID:
-			return Property_3018;
-		case OperationForDataTypeEditPart.VISUAL_ID:
-			return Operation_3019;
 		case CommentEditPartCN.VISUAL_ID:
 			return Comment_3028;
 		case ConstraintEditPartCN.VISUAL_ID:
 			return Constraint_3029;
-		case SlotEditPart.VISUAL_ID:
-			return Slot_3030;
-		case ContainmentCircleEditPart.VISUAL_ID:
-			return Node_3032;
-		case TemplateSignatureEditPart.VISUAL_ID:
-			return TemplateSignature_3033;
 		case AssociationClassDashedLinkEditPart.VISUAL_ID:
 			return Link_4016;
 		case AssociationClassLinkEditPart.VISUAL_ID:

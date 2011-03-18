@@ -154,22 +154,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case DefaultNamedElementEditPart.VISUAL_ID:
 				case ShapeNamedElementEditPart.VISUAL_ID:
 				case PropertyForComponentEditPart.VISUAL_ID:
-				case OperationForComponentEditPart.VISUAL_ID:
 				case NestedClassForComponentEditPart.VISUAL_ID:
-				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
+				case OperationForComponentEditPart.VISUAL_ID:
 				case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
 				case OperationTemplateParameterEditPart.VISUAL_ID:
 				case ClassifierTemplateParameterEditPart.VISUAL_ID:
 				case TemplateParameterEditPart.VISUAL_ID:
-				case EnumerationEditPartCN.VISUAL_ID:
 				case EnumerationLiteralEditPart.VISUAL_ID:
 				case ReceptionEditPart.VISUAL_ID:
+				case SlotEditPart.VISUAL_ID:
+				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
+				case TemplateSignatureEditPart.VISUAL_ID:
+				case EnumerationEditPartCN.VISUAL_ID:
 				case PrimitiveTypeEditPartCN.VISUAL_ID:
 				case DataTypeEditPartCN.VISUAL_ID:
 				case CommentEditPartCN.VISUAL_ID:
 				case ConstraintEditPartCN.VISUAL_ID:
-				case SlotEditPart.VISUAL_ID:
-				case TemplateSignatureEditPart.VISUAL_ID:
 				case EnumerationEditPart.VISUAL_ID:
 				case PackageEditPart.VISUAL_ID:
 				case ClassEditPart.VISUAL_ID:
@@ -177,10 +177,15 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case DataTypeEditPart.VISUAL_ID:
 				case ConstraintEditPart.VISUAL_ID:
 				case CommentEditPart.VISUAL_ID:
+				case PropertyForClassEditPart.VISUAL_ID:
 				case PropertyForSignalEditPart.VISUAL_ID:
 				case PropertyForInterfaceEditPart.VISUAL_ID:
-				case OperationForInterfaceEditpart.VISUAL_ID:
+				case PropertyforDataTypeEditPart.VISUAL_ID:
+				case NestedClassForClassEditPart.VISUAL_ID:
 				case NestedClassForInterfaceEditPart.VISUAL_ID:
+				case OperationForClassEditPart.VISUAL_ID:
+				case OperationForInterfaceEditpart.VISUAL_ID:
+				case OperationForDataTypeEditPart.VISUAL_ID:
 				case InstanceSpecificationEditPartCN.VISUAL_ID:
 				case ComponentEditPartCN.VISUAL_ID:
 				case SignalEditPartCN.VISUAL_ID:
@@ -188,11 +193,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case ModelEditPartCN.VISUAL_ID:
 				case PackageEditPartCN.VISUAL_ID:
 				case ClassEditPartCN.VISUAL_ID:
-				case PropertyForClassEditPart.VISUAL_ID:
-				case OperationForClassEditPart.VISUAL_ID:
-				case NestedClassForClassEditPart.VISUAL_ID:
-				case PropertyforDataTypeEditPart.VISUAL_ID:
-				case OperationForDataTypeEditPart.VISUAL_ID:
 					if(domainElement == null || visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for domain element
 					}
@@ -202,7 +202,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return DependencyNodeEditPart.VISUAL_ID == visualID || AssociationClassEditPart.VISUAL_ID == visualID || AssociationNodeEditPart.VISUAL_ID == visualID || InstanceSpecificationEditPart.VISUAL_ID == visualID || ComponentEditPart.VISUAL_ID == visualID || SignalEditPart.VISUAL_ID == visualID || InterfaceEditPart.VISUAL_ID == visualID || ModelEditPartTN.VISUAL_ID == visualID || EnumerationEditPart.VISUAL_ID == visualID || PackageEditPart.VISUAL_ID == visualID || ClassEditPart.VISUAL_ID == visualID || PrimitiveTypeEditPart.VISUAL_ID == visualID || DataTypeEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ShortCutDiagramEditPart.VISUAL_ID == visualID || DurationObservationEditPart.VISUAL_ID == visualID || TimeObservationEditPart.VISUAL_ID == visualID || DefaultNamedElementEditPart.VISUAL_ID == visualID || ShapeNamedElementEditPart.VISUAL_ID == visualID || PropertyForComponentEditPart.VISUAL_ID == visualID || OperationForComponentEditPart.VISUAL_ID == visualID || NestedClassForComponentEditPart.VISUAL_ID == visualID || RedefinableTemplateSignatureEditPart.VISUAL_ID == visualID || ConnectableElementTemplateParameterEditPart.VISUAL_ID == visualID || OperationTemplateParameterEditPart.VISUAL_ID == visualID || ClassifierTemplateParameterEditPart.VISUAL_ID == visualID || TemplateParameterEditPart.VISUAL_ID == visualID || PropertyForSignalEditPart.VISUAL_ID == visualID || PropertyForInterfaceEditPart.VISUAL_ID == visualID || OperationForInterfaceEditpart.VISUAL_ID == visualID || NestedClassForInterfaceEditPart.VISUAL_ID == visualID || InstanceSpecificationEditPartCN.VISUAL_ID == visualID || ComponentEditPartCN.VISUAL_ID == visualID || SignalEditPartCN.VISUAL_ID == visualID || InterfaceEditPartCN.VISUAL_ID == visualID || ModelEditPartCN.VISUAL_ID == visualID || EnumerationEditPartCN.VISUAL_ID == visualID || EnumerationLiteralEditPart.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID || ClassEditPartCN.VISUAL_ID == visualID || ReceptionEditPart.VISUAL_ID == visualID || PropertyForClassEditPart.VISUAL_ID == visualID || OperationForClassEditPart.VISUAL_ID == visualID || NestedClassForClassEditPart.VISUAL_ID == visualID || PrimitiveTypeEditPartCN.VISUAL_ID == visualID || DataTypeEditPartCN.VISUAL_ID == visualID || PropertyforDataTypeEditPart.VISUAL_ID == visualID || OperationForDataTypeEditPart.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID || ConstraintEditPartCN.VISUAL_ID == visualID || SlotEditPart.VISUAL_ID == visualID || ContainmentCircleEditPart.VISUAL_ID == visualID || TemplateSignatureEditPart.VISUAL_ID == visualID;
+		return DependencyNodeEditPart.VISUAL_ID == visualID || AssociationClassEditPart.VISUAL_ID == visualID || AssociationNodeEditPart.VISUAL_ID == visualID || InstanceSpecificationEditPart.VISUAL_ID == visualID || ComponentEditPart.VISUAL_ID == visualID || SignalEditPart.VISUAL_ID == visualID || InterfaceEditPart.VISUAL_ID == visualID || ModelEditPartTN.VISUAL_ID == visualID || EnumerationEditPart.VISUAL_ID == visualID || PackageEditPart.VISUAL_ID == visualID || ClassEditPart.VISUAL_ID == visualID || PrimitiveTypeEditPart.VISUAL_ID == visualID || DataTypeEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ShortCutDiagramEditPart.VISUAL_ID == visualID || DurationObservationEditPart.VISUAL_ID == visualID || TimeObservationEditPart.VISUAL_ID == visualID || DefaultNamedElementEditPart.VISUAL_ID == visualID || ShapeNamedElementEditPart.VISUAL_ID == visualID || PropertyForClassEditPart.VISUAL_ID == visualID || PropertyForComponentEditPart.VISUAL_ID == visualID || PropertyForSignalEditPart.VISUAL_ID == visualID || PropertyForInterfaceEditPart.VISUAL_ID == visualID || PropertyforDataTypeEditPart.VISUAL_ID == visualID || NestedClassForClassEditPart.VISUAL_ID == visualID || NestedClassForComponentEditPart.VISUAL_ID == visualID || NestedClassForInterfaceEditPart.VISUAL_ID == visualID || OperationForClassEditPart.VISUAL_ID == visualID || OperationForComponentEditPart.VISUAL_ID == visualID || OperationForInterfaceEditpart.VISUAL_ID == visualID || OperationForDataTypeEditPart.VISUAL_ID == visualID || ConnectableElementTemplateParameterEditPart.VISUAL_ID == visualID || OperationTemplateParameterEditPart.VISUAL_ID == visualID || ClassifierTemplateParameterEditPart.VISUAL_ID == visualID || TemplateParameterEditPart.VISUAL_ID == visualID || EnumerationLiteralEditPart.VISUAL_ID == visualID || ReceptionEditPart.VISUAL_ID == visualID || SlotEditPart.VISUAL_ID == visualID || RedefinableTemplateSignatureEditPart.VISUAL_ID == visualID || ContainmentCircleEditPart.VISUAL_ID == visualID || TemplateSignatureEditPart.VISUAL_ID == visualID || InstanceSpecificationEditPartCN.VISUAL_ID == visualID || ComponentEditPartCN.VISUAL_ID == visualID || SignalEditPartCN.VISUAL_ID == visualID || InterfaceEditPartCN.VISUAL_ID == visualID || ModelEditPartCN.VISUAL_ID == visualID || EnumerationEditPartCN.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID || ClassEditPartCN.VISUAL_ID == visualID || PrimitiveTypeEditPartCN.VISUAL_ID == visualID || DataTypeEditPartCN.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID || ConstraintEditPartCN.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -289,14 +289,30 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createNamedElement_2097(domainElement, containerView, index, persisted, preferencesHint);
 		case ShapeNamedElementEditPart.VISUAL_ID:
 			return createNamedElement_2098(domainElement, containerView, index, persisted, preferencesHint);
+		case PropertyForClassEditPart.VISUAL_ID:
+			return createProperty_3012(domainElement, containerView, index, persisted, preferencesHint);
 		case PropertyForComponentEditPart.VISUAL_ID:
 			return createProperty_3002(domainElement, containerView, index, persisted, preferencesHint);
-		case OperationForComponentEditPart.VISUAL_ID:
-			return createOperation_3003(domainElement, containerView, index, persisted, preferencesHint);
+		case PropertyForSignalEditPart.VISUAL_ID:
+			return createProperty_3005(domainElement, containerView, index, persisted, preferencesHint);
+		case PropertyForInterfaceEditPart.VISUAL_ID:
+			return createProperty_3006(domainElement, containerView, index, persisted, preferencesHint);
+		case PropertyforDataTypeEditPart.VISUAL_ID:
+			return createProperty_3018(domainElement, containerView, index, persisted, preferencesHint);
+		case NestedClassForClassEditPart.VISUAL_ID:
+			return createClass_3014(domainElement, containerView, index, persisted, preferencesHint);
 		case NestedClassForComponentEditPart.VISUAL_ID:
 			return createClass_3004(domainElement, containerView, index, persisted, preferencesHint);
-		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
-			return createRedefinableTemplateSignature_3015(domainElement, containerView, index, persisted, preferencesHint);
+		case NestedClassForInterfaceEditPart.VISUAL_ID:
+			return createClass_3008(domainElement, containerView, index, persisted, preferencesHint);
+		case OperationForClassEditPart.VISUAL_ID:
+			return createOperation_3013(domainElement, containerView, index, persisted, preferencesHint);
+		case OperationForComponentEditPart.VISUAL_ID:
+			return createOperation_3003(domainElement, containerView, index, persisted, preferencesHint);
+		case OperationForInterfaceEditpart.VISUAL_ID:
+			return createOperation_3007(domainElement, containerView, index, persisted, preferencesHint);
+		case OperationForDataTypeEditPart.VISUAL_ID:
+			return createOperation_3019(domainElement, containerView, index, persisted, preferencesHint);
 		case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
 			return createConnectableElementTemplateParameter_3034(domainElement, containerView, index, persisted, preferencesHint);
 		case OperationTemplateParameterEditPart.VISUAL_ID:
@@ -305,14 +321,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createClassifierTemplateParameter_3031(domainElement, containerView, index, persisted, preferencesHint);
 		case TemplateParameterEditPart.VISUAL_ID:
 			return createTemplateParameter_3016(domainElement, containerView, index, persisted, preferencesHint);
-		case PropertyForSignalEditPart.VISUAL_ID:
-			return createProperty_3005(domainElement, containerView, index, persisted, preferencesHint);
-		case PropertyForInterfaceEditPart.VISUAL_ID:
-			return createProperty_3006(domainElement, containerView, index, persisted, preferencesHint);
-		case OperationForInterfaceEditpart.VISUAL_ID:
-			return createOperation_3007(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedClassForInterfaceEditPart.VISUAL_ID:
-			return createClass_3008(domainElement, containerView, index, persisted, preferencesHint);
+		case EnumerationLiteralEditPart.VISUAL_ID:
+			return createEnumerationLiteral_3017(domainElement, containerView, index, persisted, preferencesHint);
+		case ReceptionEditPart.VISUAL_ID:
+			return createReception_3011(domainElement, containerView, index, persisted, preferencesHint);
+		case SlotEditPart.VISUAL_ID:
+			return createSlot_3030(domainElement, containerView, index, persisted, preferencesHint);
+		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
+			return createRedefinableTemplateSignature_3015(domainElement, containerView, index, persisted, preferencesHint);
+		case ContainmentCircleEditPart.VISUAL_ID:
+			return createNode_3032(domainElement, containerView, index, persisted, preferencesHint);
+		case TemplateSignatureEditPart.VISUAL_ID:
+			return createTemplateSignature_3033(domainElement, containerView, index, persisted, preferencesHint);
 		case InstanceSpecificationEditPartCN.VISUAL_ID:
 			return createInstanceSpecification_3020(domainElement, containerView, index, persisted, preferencesHint);
 		case ComponentEditPartCN.VISUAL_ID:
@@ -325,38 +345,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createModel_3024(domainElement, containerView, index, persisted, preferencesHint);
 		case EnumerationEditPartCN.VISUAL_ID:
 			return createEnumeration_3025(domainElement, containerView, index, persisted, preferencesHint);
-		case EnumerationLiteralEditPart.VISUAL_ID:
-			return createEnumerationLiteral_3017(domainElement, containerView, index, persisted, preferencesHint);
 		case PackageEditPartCN.VISUAL_ID:
 			return createPackage_3009(domainElement, containerView, index, persisted, preferencesHint);
 		case ClassEditPartCN.VISUAL_ID:
 			return createClass_3010(domainElement, containerView, index, persisted, preferencesHint);
-		case ReceptionEditPart.VISUAL_ID:
-			return createReception_3011(domainElement, containerView, index, persisted, preferencesHint);
-		case PropertyForClassEditPart.VISUAL_ID:
-			return createProperty_3012(domainElement, containerView, index, persisted, preferencesHint);
-		case OperationForClassEditPart.VISUAL_ID:
-			return createOperation_3013(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedClassForClassEditPart.VISUAL_ID:
-			return createClass_3014(domainElement, containerView, index, persisted, preferencesHint);
 		case PrimitiveTypeEditPartCN.VISUAL_ID:
 			return createPrimitiveType_3026(domainElement, containerView, index, persisted, preferencesHint);
 		case DataTypeEditPartCN.VISUAL_ID:
 			return createDataType_3027(domainElement, containerView, index, persisted, preferencesHint);
-		case PropertyforDataTypeEditPart.VISUAL_ID:
-			return createProperty_3018(domainElement, containerView, index, persisted, preferencesHint);
-		case OperationForDataTypeEditPart.VISUAL_ID:
-			return createOperation_3019(domainElement, containerView, index, persisted, preferencesHint);
 		case CommentEditPartCN.VISUAL_ID:
 			return createComment_3028(domainElement, containerView, index, persisted, preferencesHint);
 		case ConstraintEditPartCN.VISUAL_ID:
 			return createConstraint_3029(domainElement, containerView, index, persisted, preferencesHint);
-		case SlotEditPart.VISUAL_ID:
-			return createSlot_3030(domainElement, containerView, index, persisted, preferencesHint);
-		case ContainmentCircleEditPart.VISUAL_ID:
-			return createNode_3032(domainElement, containerView, index, persisted, preferencesHint);
-		case TemplateSignatureEditPart.VISUAL_ID:
-			return createTemplateSignature_3033(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;

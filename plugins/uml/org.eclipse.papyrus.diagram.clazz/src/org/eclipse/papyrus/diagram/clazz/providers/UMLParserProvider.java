@@ -1574,10 +1574,24 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getNamedElementName_5158Parser();
 		case PropertyForComponentEditPart.VISUAL_ID:
 			return getProperty_3002Parser();
-		case OperationForComponentEditPart.VISUAL_ID:
-			return getOperation_3003Parser();
+		case PropertyForSignalEditPart.VISUAL_ID:
+			return getProperty_3005Parser();
+		case PropertyForInterfaceEditPart.VISUAL_ID:
+			return getProperty_3006Parser();
+		case PropertyforDataTypeEditPart.VISUAL_ID:
+			return getProperty_3018Parser();
+		case NestedClassForClassEditPart.VISUAL_ID:
+			return getClass_3014Parser();
 		case NestedClassForComponentEditPart.VISUAL_ID:
 			return getClass_3004Parser();
+		case NestedClassForInterfaceEditPart.VISUAL_ID:
+			return getClass_3008Parser();
+		case OperationForComponentEditPart.VISUAL_ID:
+			return getOperation_3003Parser();
+		case OperationForInterfaceEditpart.VISUAL_ID:
+			return getOperation_3007Parser();
+		case OperationForDataTypeEditPart.VISUAL_ID:
+			return getOperation_3019Parser();
 		case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
 			return getConnectableElementTemplateParameter_3034Parser();
 		case OperationTemplateParameterEditPart.VISUAL_ID:
@@ -1586,14 +1600,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getClassifierTemplateParameter_3031Parser();
 		case TemplateParameterEditPart.VISUAL_ID:
 			return getTemplateParameter_3016Parser();
-		case PropertyForSignalEditPart.VISUAL_ID:
-			return getProperty_3005Parser();
-		case PropertyForInterfaceEditPart.VISUAL_ID:
-			return getProperty_3006Parser();
-		case OperationForInterfaceEditpart.VISUAL_ID:
-			return getOperation_3007Parser();
-		case NestedClassForInterfaceEditPart.VISUAL_ID:
-			return getClass_3008Parser();
+		case EnumerationLiteralEditPart.VISUAL_ID:
+			return getEnumerationLiteral_3017Parser();
+		case ReceptionEditPart.VISUAL_ID:
+			return getReception_3011Parser();
+		case SlotEditPart.VISUAL_ID:
+			return getSlot_3030Parser();
 		case InstanceSpecificationNameEditPartCN.VISUAL_ID:
 			return getInstanceSpecificationName_5040Parser();
 		case ComponentNameEditPartCN.VISUAL_ID:
@@ -1606,32 +1618,20 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getModelName_5052Parser();
 		case EnumerationNameEditPartCN.VISUAL_ID:
 			return getEnumerationName_5055Parser();
-		case EnumerationLiteralEditPart.VISUAL_ID:
-			return getEnumerationLiteral_3017Parser();
 		case PackageNameEditPartCN.VISUAL_ID:
 			return getPackageName_5017Parser();
 		case ClassNameEditPartCN.VISUAL_ID:
 			return getClassName_5014Parser();
-		case ReceptionEditPart.VISUAL_ID:
-			return getReception_3011Parser();
-		case NestedClassForClassEditPart.VISUAL_ID:
-			return getClass_3014Parser();
 		case PrimitiveTypeNameEditPartCN.VISUAL_ID:
 			return getPrimitiveTypeName_5058Parser();
 		case DataTypeNameEditPartCN.VISUAL_ID:
 			return getDataTypeName_5061Parser();
-		case PropertyforDataTypeEditPart.VISUAL_ID:
-			return getProperty_3018Parser();
-		case OperationForDataTypeEditPart.VISUAL_ID:
-			return getOperation_3019Parser();
 		case CommentBodyEditPartCN.VISUAL_ID:
 			return getCommentBody_5063Parser();
 		case ConstraintNameEditPartCN.VISUAL_ID:
 			return getConstraintName_5064Parser();
 		case ConstraintBodyEditPartCN.VISUAL_ID:
 			return getConstraintSpecification_5160Parser();
-		case SlotEditPart.VISUAL_ID:
-			return getSlot_3030Parser();
 		case AssociationClassRoleSourceEditPart.VISUAL_ID:
 			return getAssociationClassName_6031Parser();
 		case AssociationClassRoleTargetEditPart.VISUAL_ID:

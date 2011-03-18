@@ -170,17 +170,41 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ShapeNamedElementNameEditPart.VISUAL_ID:
 				return new ShapeNamedElementNameEditPart(view);
 
+			case PropertyForClassEditPart.VISUAL_ID:
+				return new PropertyForClassEditPart(view);
+
 			case PropertyForComponentEditPart.VISUAL_ID:
 				return new PropertyForComponentEditPart(view);
 
-			case OperationForComponentEditPart.VISUAL_ID:
-				return new OperationForComponentEditPart(view);
+			case PropertyForSignalEditPart.VISUAL_ID:
+				return new PropertyForSignalEditPart(view);
+
+			case PropertyForInterfaceEditPart.VISUAL_ID:
+				return new PropertyForInterfaceEditPart(view);
+
+			case PropertyforDataTypeEditPart.VISUAL_ID:
+				return new PropertyforDataTypeEditPart(view);
+
+			case NestedClassForClassEditPart.VISUAL_ID:
+				return new NestedClassForClassEditPart(view);
 
 			case NestedClassForComponentEditPart.VISUAL_ID:
 				return new NestedClassForComponentEditPart(view);
 
-			case RedefinableTemplateSignatureEditPart.VISUAL_ID:
-				return new RedefinableTemplateSignatureEditPart(view);
+			case NestedClassForInterfaceEditPart.VISUAL_ID:
+				return new NestedClassForInterfaceEditPart(view);
+
+			case OperationForClassEditPart.VISUAL_ID:
+				return new OperationForClassEditPart(view);
+
+			case OperationForComponentEditPart.VISUAL_ID:
+				return new OperationForComponentEditPart(view);
+
+			case OperationForInterfaceEditpart.VISUAL_ID:
+				return new OperationForInterfaceEditpart(view);
+
+			case OperationForDataTypeEditPart.VISUAL_ID:
+				return new OperationForDataTypeEditPart(view);
 
 			case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
 				return new ConnectableElementTemplateParameterEditPart(view);
@@ -194,17 +218,23 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case TemplateParameterEditPart.VISUAL_ID:
 				return new TemplateParameterEditPart(view);
 
-			case PropertyForSignalEditPart.VISUAL_ID:
-				return new PropertyForSignalEditPart(view);
+			case EnumerationLiteralEditPart.VISUAL_ID:
+				return new EnumerationLiteralEditPart(view);
 
-			case PropertyForInterfaceEditPart.VISUAL_ID:
-				return new PropertyForInterfaceEditPart(view);
+			case ReceptionEditPart.VISUAL_ID:
+				return new ReceptionEditPart(view);
 
-			case OperationForInterfaceEditpart.VISUAL_ID:
-				return new OperationForInterfaceEditpart(view);
+			case SlotEditPart.VISUAL_ID:
+				return new SlotEditPart(view);
 
-			case NestedClassForInterfaceEditPart.VISUAL_ID:
-				return new NestedClassForInterfaceEditPart(view);
+			case RedefinableTemplateSignatureEditPart.VISUAL_ID:
+				return new RedefinableTemplateSignatureEditPart(view);
+
+			case ContainmentCircleEditPart.VISUAL_ID:
+				return new ContainmentCircleEditPart(view);
+
+			case TemplateSignatureEditPart.VISUAL_ID:
+				return new TemplateSignatureEditPart(view);
 
 			case InstanceSpecificationEditPartCN.VISUAL_ID:
 				return new InstanceSpecificationEditPartCN(view);
@@ -242,9 +272,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case EnumerationNameEditPartCN.VISUAL_ID:
 				return new EnumerationNameEditPartCN(view);
 
-			case EnumerationLiteralEditPart.VISUAL_ID:
-				return new EnumerationLiteralEditPart(view);
-
 			case PackageEditPartCN.VISUAL_ID:
 				return new PackageEditPartCN(view);
 
@@ -257,18 +284,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ClassNameEditPartCN.VISUAL_ID:
 				return new ClassNameEditPartCN(view);
 
-			case ReceptionEditPart.VISUAL_ID:
-				return new ReceptionEditPart(view);
-
-			case PropertyForClassEditPart.VISUAL_ID:
-				return new PropertyForClassEditPart(view);
-
-			case OperationForClassEditPart.VISUAL_ID:
-				return new OperationForClassEditPart(view);
-
-			case NestedClassForClassEditPart.VISUAL_ID:
-				return new NestedClassForClassEditPart(view);
-
 			case PrimitiveTypeEditPartCN.VISUAL_ID:
 				return new PrimitiveTypeEditPartCN(view);
 
@@ -280,12 +295,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case DataTypeNameEditPartCN.VISUAL_ID:
 				return new DataTypeNameEditPartCN(view);
-
-			case PropertyforDataTypeEditPart.VISUAL_ID:
-				return new PropertyforDataTypeEditPart(view);
-
-			case OperationForDataTypeEditPart.VISUAL_ID:
-				return new OperationForDataTypeEditPart(view);
 
 			case CommentEditPartCN.VISUAL_ID:
 				return new CommentEditPartCN(view);
@@ -302,47 +311,14 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ConstraintBodyEditPartCN.VISUAL_ID:
 				return new ConstraintBodyEditPartCN(view);
 
-			case SlotEditPart.VISUAL_ID:
-				return new SlotEditPart(view);
+			case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
+				return new ClassAttributeCompartmentEditPartCN(view);
 
-			case ContainmentCircleEditPart.VISUAL_ID:
-				return new ContainmentCircleEditPart(view);
+			case ClassOperationCompartmentEditPartCN.VISUAL_ID:
+				return new ClassOperationCompartmentEditPartCN(view);
 
-			case TemplateSignatureEditPart.VISUAL_ID:
-				return new TemplateSignatureEditPart(view);
-
-			case AssociationClassAttributeCompartmentEditPart.VISUAL_ID:
-				return new AssociationClassAttributeCompartmentEditPart(view);
-
-			case InstanceSpecificationSlotCompartmentEditPart.VISUAL_ID:
-				return new InstanceSpecificationSlotCompartmentEditPart(view);
-
-			case ComponentAttributeCompartmentEditPart.VISUAL_ID:
-				return new ComponentAttributeCompartmentEditPart(view);
-
-			case ComponentOperationCompartmentEditPart.VISUAL_ID:
-				return new ComponentOperationCompartmentEditPart(view);
-
-			case ComponentNestedClassifierCompartmentEditPart.VISUAL_ID:
-				return new ComponentNestedClassifierCompartmentEditPart(view);
-
-			case RedefinableTemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID:
-				return new RedefinableTemplateSignatureTemplateParameterCompartmentEditPart(view);
-
-			case SignalAttributeCompartmentEditPart.VISUAL_ID:
-				return new SignalAttributeCompartmentEditPart(view);
-
-			case InterfaceAttributeCompartmentEditPart.VISUAL_ID:
-				return new InterfaceAttributeCompartmentEditPart(view);
-
-			case InterfaceOperationCompartmentEditPart.VISUAL_ID:
-				return new InterfaceOperationCompartmentEditPart(view);
-
-			case InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID:
-				return new InterfaceNestedClassifierCompartmentEditPart(view);
-
-			case ModelPackageableElementCompartmentEditPartTN.VISUAL_ID:
-				return new ModelPackageableElementCompartmentEditPartTN(view);
+			case ClassNestedClassifierCompartmentEditPartCN.VISUAL_ID:
+				return new ClassNestedClassifierCompartmentEditPartCN(view);
 
 			case ComponentAttributeCompartmentEditPartCN.VISUAL_ID:
 				return new ComponentAttributeCompartmentEditPartCN(view);
@@ -365,35 +341,23 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InterfaceNestedClassifierCompartmentEditPartCN.VISUAL_ID:
 				return new InterfaceNestedClassifierCompartmentEditPartCN(view);
 
-			case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
-				return new ModelPackageableElementCompartmentEditPartCN(view);
-
-			case EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID:
-				return new EnumerationEnumerationLiteralCompartmentEditPartCN(view);
-
-			case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
-				return new PackagePackageableElementCompartmentEditPartCN(view);
-
-			case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
-				return new ClassAttributeCompartmentEditPartCN(view);
-
-			case ClassOperationCompartmentEditPartCN.VISUAL_ID:
-				return new ClassOperationCompartmentEditPartCN(view);
-
-			case ClassNestedClassifierCompartmentEditPartCN.VISUAL_ID:
-				return new ClassNestedClassifierCompartmentEditPartCN(view);
-
 			case DataTypeAttributeCompartmentEditPartCN.VISUAL_ID:
 				return new DataTypeAttributeCompartmentEditPartCN(view);
 
 			case DataTypeOperationCompartmentEditPartCN.VISUAL_ID:
 				return new DataTypeOperationCompartmentEditPartCN(view);
 
-			case EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID:
-				return new EnumerationEnumerationLiteralCompartmentEditPart(view);
+			case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
+				return new ModelPackageableElementCompartmentEditPartCN(view);
 
-			case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
-				return new PackagePackageableElementCompartmentEditPart(view);
+			case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
+				return new PackagePackageableElementCompartmentEditPartCN(view);
+
+			case EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID:
+				return new EnumerationEnumerationLiteralCompartmentEditPartCN(view);
+
+			case InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID:
+				return new InstanceSpecificationSlotCompartmentEditPartCN(view);
 
 			case ClassAttributeCompartmentEditPart.VISUAL_ID:
 				return new ClassAttributeCompartmentEditPart(view);
@@ -404,20 +368,56 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ClassNestedClassifierCompartmentEditPart.VISUAL_ID:
 				return new ClassNestedClassifierCompartmentEditPart(view);
 
+			case ComponentAttributeCompartmentEditPart.VISUAL_ID:
+				return new ComponentAttributeCompartmentEditPart(view);
+
+			case ComponentOperationCompartmentEditPart.VISUAL_ID:
+				return new ComponentOperationCompartmentEditPart(view);
+
+			case ComponentNestedClassifierCompartmentEditPart.VISUAL_ID:
+				return new ComponentNestedClassifierCompartmentEditPart(view);
+
+			case InterfaceAttributeCompartmentEditPart.VISUAL_ID:
+				return new InterfaceAttributeCompartmentEditPart(view);
+
+			case InterfaceOperationCompartmentEditPart.VISUAL_ID:
+				return new InterfaceOperationCompartmentEditPart(view);
+
+			case InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID:
+				return new InterfaceNestedClassifierCompartmentEditPart(view);
+
 			case DataTypeAttributeCompartmentEditPart.VISUAL_ID:
 				return new DataTypeAttributeCompartmentEditPart(view);
 
 			case DataTypeOperationCompartmentEditPart.VISUAL_ID:
 				return new DataTypeOperationCompartmentEditPart(view);
 
-			case InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID:
-				return new InstanceSpecificationSlotCompartmentEditPartCN(view);
+			case AssociationClassAttributeCompartmentEditPart.VISUAL_ID:
+				return new AssociationClassAttributeCompartmentEditPart(view);
+
+			case InstanceSpecificationSlotCompartmentEditPart.VISUAL_ID:
+				return new InstanceSpecificationSlotCompartmentEditPart(view);
+
+			case SignalAttributeCompartmentEditPart.VISUAL_ID:
+				return new SignalAttributeCompartmentEditPart(view);
+
+			case ModelPackageableElementCompartmentEditPartTN.VISUAL_ID:
+				return new ModelPackageableElementCompartmentEditPartTN(view);
+
+			case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
+				return new PackagePackageableElementCompartmentEditPart(view);
+
+			case EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID:
+				return new EnumerationEnumerationLiteralCompartmentEditPart(view);
 
 			case AssociationClassOperationCompartmentEditPart.VISUAL_ID:
 				return new AssociationClassOperationCompartmentEditPart(view);
 
 			case AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID:
 				return new AssociationClassNestedClassifierCompartmentEditPart(view);
+
+			case RedefinableTemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID:
+				return new RedefinableTemplateSignatureTemplateParameterCompartmentEditPart(view);
 
 			case TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID:
 				return new TemplateSignatureTemplateParameterCompartmentEditPart(view);

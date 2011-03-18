@@ -825,6 +825,9 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
+		if(targetEditPart instanceof TemplateSignatureEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
+		}
 		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
@@ -859,9 +862,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
 		if(targetEditPart instanceof ConstraintEditPartCN) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
-		}
-		if(targetEditPart instanceof TemplateSignatureEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
 		return types;
@@ -1048,6 +1048,7 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.NamedElement_2097);
 			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			types.add(UMLElementTypes.TemplateSignature_3033);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
 			types.add(UMLElementTypes.Signal_3022);
@@ -1060,7 +1061,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Comment_3028);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.TemplateSignature_3033);
 		}
 		return types;
 	}

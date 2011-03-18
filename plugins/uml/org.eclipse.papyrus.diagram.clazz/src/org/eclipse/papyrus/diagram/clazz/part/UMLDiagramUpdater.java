@@ -114,28 +114,12 @@ public class UMLDiagramUpdater {
 			return getClass_3010SemanticChildren(view);
 		case DataTypeEditPartCN.VISUAL_ID:
 			return getDataType_3027SemanticChildren(view);
-		case AssociationClassAttributeCompartmentEditPart.VISUAL_ID:
-			return getAssociationClassAttributeCompartment_7034SemanticChildren(view);
-		case InstanceSpecificationSlotCompartmentEditPart.VISUAL_ID:
-			return getInstanceSpecificationSlotCompartment_7001SemanticChildren(view);
-		case ComponentAttributeCompartmentEditPart.VISUAL_ID:
-			return getComponentAttributeCompartment_7002SemanticChildren(view);
-		case ComponentOperationCompartmentEditPart.VISUAL_ID:
-			return getComponentOperationCompartment_7003SemanticChildren(view);
-		case ComponentNestedClassifierCompartmentEditPart.VISUAL_ID:
-			return getComponentNestedClassifierCompartment_7004SemanticChildren(view);
-		case RedefinableTemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID:
-			return getRedefinableTemplateSignatureTemplateParameterCompartment_7014SemanticChildren(view);
-		case SignalAttributeCompartmentEditPart.VISUAL_ID:
-			return getSignalAttributeCompartment_7005SemanticChildren(view);
-		case InterfaceAttributeCompartmentEditPart.VISUAL_ID:
-			return getInterfaceAttributeCompartment_7006SemanticChildren(view);
-		case InterfaceOperationCompartmentEditPart.VISUAL_ID:
-			return getInterfaceOperationCompartment_7007SemanticChildren(view);
-		case InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID:
-			return getInterfaceNestedClassifierCompartment_7008SemanticChildren(view);
-		case ModelPackageableElementCompartmentEditPartTN.VISUAL_ID:
-			return getModelPackageableElementCompartment_7009SemanticChildren(view);
+		case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
+			return getClassAttributeCompartment_7011SemanticChildren(view);
+		case ClassOperationCompartmentEditPartCN.VISUAL_ID:
+			return getClassOperationCompartment_7012SemanticChildren(view);
+		case ClassNestedClassifierCompartmentEditPartCN.VISUAL_ID:
+			return getClassNestedClassifierCompartment_7013SemanticChildren(view);
 		case ComponentAttributeCompartmentEditPartCN.VISUAL_ID:
 			return getComponentAttributeCompartment_7023SemanticChildren(view);
 		case ComponentOperationCompartmentEditPartCN.VISUAL_ID:
@@ -150,42 +134,58 @@ public class UMLDiagramUpdater {
 			return getInterfaceOperationCompartment_7028SemanticChildren(view);
 		case InterfaceNestedClassifierCompartmentEditPartCN.VISUAL_ID:
 			return getInterfaceNestedClassifierCompartment_7029SemanticChildren(view);
-		case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
-			return getModelPackageableElementCompartment_7030SemanticChildren(view);
-		case EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID:
-			return getEnumerationEnumerationLiteralCompartment_7031SemanticChildren(view);
-		case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
-			return getPackagePackageableElementCompartment_7010SemanticChildren(view);
-		case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
-			return getClassAttributeCompartment_7011SemanticChildren(view);
-		case ClassOperationCompartmentEditPartCN.VISUAL_ID:
-			return getClassOperationCompartment_7012SemanticChildren(view);
-		case ClassNestedClassifierCompartmentEditPartCN.VISUAL_ID:
-			return getClassNestedClassifierCompartment_7013SemanticChildren(view);
 		case DataTypeAttributeCompartmentEditPartCN.VISUAL_ID:
 			return getDataTypeAttributeCompartment_7032SemanticChildren(view);
 		case DataTypeOperationCompartmentEditPartCN.VISUAL_ID:
 			return getDataTypeOperationCompartment_7033SemanticChildren(view);
-		case EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID:
-			return getEnumerationEnumerationLiteralCompartment_7015SemanticChildren(view);
-		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
-			return getPackagePackageableElementCompartment_7016SemanticChildren(view);
+		case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
+			return getModelPackageableElementCompartment_7030SemanticChildren(view);
+		case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
+			return getPackagePackageableElementCompartment_7010SemanticChildren(view);
+		case EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID:
+			return getEnumerationEnumerationLiteralCompartment_7031SemanticChildren(view);
+		case InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID:
+			return getInstanceSpecificationSlotCompartment_7035SemanticChildren(view);
 		case ClassAttributeCompartmentEditPart.VISUAL_ID:
 			return getClassAttributeCompartment_7017SemanticChildren(view);
 		case ClassOperationCompartmentEditPart.VISUAL_ID:
 			return getClassOperationCompartment_7018SemanticChildren(view);
 		case ClassNestedClassifierCompartmentEditPart.VISUAL_ID:
 			return getClassNestedClassifierCompartment_7019SemanticChildren(view);
+		case ComponentAttributeCompartmentEditPart.VISUAL_ID:
+			return getComponentAttributeCompartment_7002SemanticChildren(view);
+		case ComponentOperationCompartmentEditPart.VISUAL_ID:
+			return getComponentOperationCompartment_7003SemanticChildren(view);
+		case ComponentNestedClassifierCompartmentEditPart.VISUAL_ID:
+			return getComponentNestedClassifierCompartment_7004SemanticChildren(view);
+		case InterfaceAttributeCompartmentEditPart.VISUAL_ID:
+			return getInterfaceAttributeCompartment_7006SemanticChildren(view);
+		case InterfaceOperationCompartmentEditPart.VISUAL_ID:
+			return getInterfaceOperationCompartment_7007SemanticChildren(view);
+		case InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID:
+			return getInterfaceNestedClassifierCompartment_7008SemanticChildren(view);
 		case DataTypeAttributeCompartmentEditPart.VISUAL_ID:
 			return getDataTypeAttributeCompartment_7020SemanticChildren(view);
 		case DataTypeOperationCompartmentEditPart.VISUAL_ID:
 			return getDataTypeOperationCompartment_7021SemanticChildren(view);
-		case InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID:
-			return getInstanceSpecificationSlotCompartment_7035SemanticChildren(view);
+		case AssociationClassAttributeCompartmentEditPart.VISUAL_ID:
+			return getAssociationClassAttributeCompartment_7034SemanticChildren(view);
+		case InstanceSpecificationSlotCompartmentEditPart.VISUAL_ID:
+			return getInstanceSpecificationSlotCompartment_7001SemanticChildren(view);
+		case SignalAttributeCompartmentEditPart.VISUAL_ID:
+			return getSignalAttributeCompartment_7005SemanticChildren(view);
+		case ModelPackageableElementCompartmentEditPartTN.VISUAL_ID:
+			return getModelPackageableElementCompartment_7009SemanticChildren(view);
+		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
+			return getPackagePackageableElementCompartment_7016SemanticChildren(view);
+		case EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID:
+			return getEnumerationEnumerationLiteralCompartment_7015SemanticChildren(view);
 		case AssociationClassOperationCompartmentEditPart.VISUAL_ID:
 			return getAssociationClassOperationCompartment_7036SemanticChildren(view);
 		case AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID:
 			return getAssociationClassNestedClassifierCompartment_7037SemanticChildren(view);
+		case RedefinableTemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID:
+			return getRedefinableTemplateSignatureTemplateParameterCompartment_7014SemanticChildren(view);
 		case TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID:
 			return getTemplateSignatureTemplateParameterCompartment_7038SemanticChildren(view);
 		}
@@ -1748,14 +1748,30 @@ public class UMLDiagramUpdater {
 			return getNamedElement_2097ContainedLinks(view);
 		case ShapeNamedElementEditPart.VISUAL_ID:
 			return getNamedElement_2098ContainedLinks(view);
+		case PropertyForClassEditPart.VISUAL_ID:
+			return getProperty_3012ContainedLinks(view);
 		case PropertyForComponentEditPart.VISUAL_ID:
 			return getProperty_3002ContainedLinks(view);
-		case OperationForComponentEditPart.VISUAL_ID:
-			return getOperation_3003ContainedLinks(view);
+		case PropertyForSignalEditPart.VISUAL_ID:
+			return getProperty_3005ContainedLinks(view);
+		case PropertyForInterfaceEditPart.VISUAL_ID:
+			return getProperty_3006ContainedLinks(view);
+		case PropertyforDataTypeEditPart.VISUAL_ID:
+			return getProperty_3018ContainedLinks(view);
+		case NestedClassForClassEditPart.VISUAL_ID:
+			return getClass_3014ContainedLinks(view);
 		case NestedClassForComponentEditPart.VISUAL_ID:
 			return getClass_3004ContainedLinks(view);
-		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
-			return getRedefinableTemplateSignature_3015ContainedLinks(view);
+		case NestedClassForInterfaceEditPart.VISUAL_ID:
+			return getClass_3008ContainedLinks(view);
+		case OperationForClassEditPart.VISUAL_ID:
+			return getOperation_3013ContainedLinks(view);
+		case OperationForComponentEditPart.VISUAL_ID:
+			return getOperation_3003ContainedLinks(view);
+		case OperationForInterfaceEditpart.VISUAL_ID:
+			return getOperation_3007ContainedLinks(view);
+		case OperationForDataTypeEditPart.VISUAL_ID:
+			return getOperation_3019ContainedLinks(view);
 		case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
 			return getConnectableElementTemplateParameter_3034ContainedLinks(view);
 		case OperationTemplateParameterEditPart.VISUAL_ID:
@@ -1764,14 +1780,16 @@ public class UMLDiagramUpdater {
 			return getClassifierTemplateParameter_3031ContainedLinks(view);
 		case TemplateParameterEditPart.VISUAL_ID:
 			return getTemplateParameter_3016ContainedLinks(view);
-		case PropertyForSignalEditPart.VISUAL_ID:
-			return getProperty_3005ContainedLinks(view);
-		case PropertyForInterfaceEditPart.VISUAL_ID:
-			return getProperty_3006ContainedLinks(view);
-		case OperationForInterfaceEditpart.VISUAL_ID:
-			return getOperation_3007ContainedLinks(view);
-		case NestedClassForInterfaceEditPart.VISUAL_ID:
-			return getClass_3008ContainedLinks(view);
+		case EnumerationLiteralEditPart.VISUAL_ID:
+			return getEnumerationLiteral_3017ContainedLinks(view);
+		case ReceptionEditPart.VISUAL_ID:
+			return getReception_3011ContainedLinks(view);
+		case SlotEditPart.VISUAL_ID:
+			return getSlot_3030ContainedLinks(view);
+		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
+			return getRedefinableTemplateSignature_3015ContainedLinks(view);
+		case TemplateSignatureEditPart.VISUAL_ID:
+			return getTemplateSignature_3033ContainedLinks(view);
 		case InstanceSpecificationEditPartCN.VISUAL_ID:
 			return getInstanceSpecification_3020ContainedLinks(view);
 		case ComponentEditPartCN.VISUAL_ID:
@@ -1784,36 +1802,18 @@ public class UMLDiagramUpdater {
 			return getModel_3024ContainedLinks(view);
 		case EnumerationEditPartCN.VISUAL_ID:
 			return getEnumeration_3025ContainedLinks(view);
-		case EnumerationLiteralEditPart.VISUAL_ID:
-			return getEnumerationLiteral_3017ContainedLinks(view);
 		case PackageEditPartCN.VISUAL_ID:
 			return getPackage_3009ContainedLinks(view);
 		case ClassEditPartCN.VISUAL_ID:
 			return getClass_3010ContainedLinks(view);
-		case ReceptionEditPart.VISUAL_ID:
-			return getReception_3011ContainedLinks(view);
-		case PropertyForClassEditPart.VISUAL_ID:
-			return getProperty_3012ContainedLinks(view);
-		case OperationForClassEditPart.VISUAL_ID:
-			return getOperation_3013ContainedLinks(view);
-		case NestedClassForClassEditPart.VISUAL_ID:
-			return getClass_3014ContainedLinks(view);
 		case PrimitiveTypeEditPartCN.VISUAL_ID:
 			return getPrimitiveType_3026ContainedLinks(view);
 		case DataTypeEditPartCN.VISUAL_ID:
 			return getDataType_3027ContainedLinks(view);
-		case PropertyforDataTypeEditPart.VISUAL_ID:
-			return getProperty_3018ContainedLinks(view);
-		case OperationForDataTypeEditPart.VISUAL_ID:
-			return getOperation_3019ContainedLinks(view);
 		case CommentEditPartCN.VISUAL_ID:
 			return getComment_3028ContainedLinks(view);
 		case ConstraintEditPartCN.VISUAL_ID:
 			return getConstraint_3029ContainedLinks(view);
-		case SlotEditPart.VISUAL_ID:
-			return getSlot_3030ContainedLinks(view);
-		case TemplateSignatureEditPart.VISUAL_ID:
-			return getTemplateSignature_3033ContainedLinks(view);
 		case AssociationClassLinkEditPart.VISUAL_ID:
 			return getAssociationClass_4017ContainedLinks(view);
 		case AssociationEditPart.VISUAL_ID:
@@ -1899,14 +1899,30 @@ public class UMLDiagramUpdater {
 			return getNamedElement_2097IncomingLinks(view);
 		case ShapeNamedElementEditPart.VISUAL_ID:
 			return getNamedElement_2098IncomingLinks(view);
+		case PropertyForClassEditPart.VISUAL_ID:
+			return getProperty_3012IncomingLinks(view);
 		case PropertyForComponentEditPart.VISUAL_ID:
 			return getProperty_3002IncomingLinks(view);
-		case OperationForComponentEditPart.VISUAL_ID:
-			return getOperation_3003IncomingLinks(view);
+		case PropertyForSignalEditPart.VISUAL_ID:
+			return getProperty_3005IncomingLinks(view);
+		case PropertyForInterfaceEditPart.VISUAL_ID:
+			return getProperty_3006IncomingLinks(view);
+		case PropertyforDataTypeEditPart.VISUAL_ID:
+			return getProperty_3018IncomingLinks(view);
+		case NestedClassForClassEditPart.VISUAL_ID:
+			return getClass_3014IncomingLinks(view);
 		case NestedClassForComponentEditPart.VISUAL_ID:
 			return getClass_3004IncomingLinks(view);
-		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
-			return getRedefinableTemplateSignature_3015IncomingLinks(view);
+		case NestedClassForInterfaceEditPart.VISUAL_ID:
+			return getClass_3008IncomingLinks(view);
+		case OperationForClassEditPart.VISUAL_ID:
+			return getOperation_3013IncomingLinks(view);
+		case OperationForComponentEditPart.VISUAL_ID:
+			return getOperation_3003IncomingLinks(view);
+		case OperationForInterfaceEditpart.VISUAL_ID:
+			return getOperation_3007IncomingLinks(view);
+		case OperationForDataTypeEditPart.VISUAL_ID:
+			return getOperation_3019IncomingLinks(view);
 		case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
 			return getConnectableElementTemplateParameter_3034IncomingLinks(view);
 		case OperationTemplateParameterEditPart.VISUAL_ID:
@@ -1915,14 +1931,16 @@ public class UMLDiagramUpdater {
 			return getClassifierTemplateParameter_3031IncomingLinks(view);
 		case TemplateParameterEditPart.VISUAL_ID:
 			return getTemplateParameter_3016IncomingLinks(view);
-		case PropertyForSignalEditPart.VISUAL_ID:
-			return getProperty_3005IncomingLinks(view);
-		case PropertyForInterfaceEditPart.VISUAL_ID:
-			return getProperty_3006IncomingLinks(view);
-		case OperationForInterfaceEditpart.VISUAL_ID:
-			return getOperation_3007IncomingLinks(view);
-		case NestedClassForInterfaceEditPart.VISUAL_ID:
-			return getClass_3008IncomingLinks(view);
+		case EnumerationLiteralEditPart.VISUAL_ID:
+			return getEnumerationLiteral_3017IncomingLinks(view);
+		case ReceptionEditPart.VISUAL_ID:
+			return getReception_3011IncomingLinks(view);
+		case SlotEditPart.VISUAL_ID:
+			return getSlot_3030IncomingLinks(view);
+		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
+			return getRedefinableTemplateSignature_3015IncomingLinks(view);
+		case TemplateSignatureEditPart.VISUAL_ID:
+			return getTemplateSignature_3033IncomingLinks(view);
 		case InstanceSpecificationEditPartCN.VISUAL_ID:
 			return getInstanceSpecification_3020IncomingLinks(view);
 		case ComponentEditPartCN.VISUAL_ID:
@@ -1935,36 +1953,18 @@ public class UMLDiagramUpdater {
 			return getModel_3024IncomingLinks(view);
 		case EnumerationEditPartCN.VISUAL_ID:
 			return getEnumeration_3025IncomingLinks(view);
-		case EnumerationLiteralEditPart.VISUAL_ID:
-			return getEnumerationLiteral_3017IncomingLinks(view);
 		case PackageEditPartCN.VISUAL_ID:
 			return getPackage_3009IncomingLinks(view);
 		case ClassEditPartCN.VISUAL_ID:
 			return getClass_3010IncomingLinks(view);
-		case ReceptionEditPart.VISUAL_ID:
-			return getReception_3011IncomingLinks(view);
-		case PropertyForClassEditPart.VISUAL_ID:
-			return getProperty_3012IncomingLinks(view);
-		case OperationForClassEditPart.VISUAL_ID:
-			return getOperation_3013IncomingLinks(view);
-		case NestedClassForClassEditPart.VISUAL_ID:
-			return getClass_3014IncomingLinks(view);
 		case PrimitiveTypeEditPartCN.VISUAL_ID:
 			return getPrimitiveType_3026IncomingLinks(view);
 		case DataTypeEditPartCN.VISUAL_ID:
 			return getDataType_3027IncomingLinks(view);
-		case PropertyforDataTypeEditPart.VISUAL_ID:
-			return getProperty_3018IncomingLinks(view);
-		case OperationForDataTypeEditPart.VISUAL_ID:
-			return getOperation_3019IncomingLinks(view);
 		case CommentEditPartCN.VISUAL_ID:
 			return getComment_3028IncomingLinks(view);
 		case ConstraintEditPartCN.VISUAL_ID:
 			return getConstraint_3029IncomingLinks(view);
-		case SlotEditPart.VISUAL_ID:
-			return getSlot_3030IncomingLinks(view);
-		case TemplateSignatureEditPart.VISUAL_ID:
-			return getTemplateSignature_3033IncomingLinks(view);
 		case AssociationClassLinkEditPart.VISUAL_ID:
 			return getAssociationClass_4017IncomingLinks(view);
 		case AssociationEditPart.VISUAL_ID:
@@ -2050,14 +2050,30 @@ public class UMLDiagramUpdater {
 			return getNamedElement_2097OutgoingLinks(view);
 		case ShapeNamedElementEditPart.VISUAL_ID:
 			return getNamedElement_2098OutgoingLinks(view);
+		case PropertyForClassEditPart.VISUAL_ID:
+			return getProperty_3012OutgoingLinks(view);
 		case PropertyForComponentEditPart.VISUAL_ID:
 			return getProperty_3002OutgoingLinks(view);
-		case OperationForComponentEditPart.VISUAL_ID:
-			return getOperation_3003OutgoingLinks(view);
+		case PropertyForSignalEditPart.VISUAL_ID:
+			return getProperty_3005OutgoingLinks(view);
+		case PropertyForInterfaceEditPart.VISUAL_ID:
+			return getProperty_3006OutgoingLinks(view);
+		case PropertyforDataTypeEditPart.VISUAL_ID:
+			return getProperty_3018OutgoingLinks(view);
+		case NestedClassForClassEditPart.VISUAL_ID:
+			return getClass_3014OutgoingLinks(view);
 		case NestedClassForComponentEditPart.VISUAL_ID:
 			return getClass_3004OutgoingLinks(view);
-		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
-			return getRedefinableTemplateSignature_3015OutgoingLinks(view);
+		case NestedClassForInterfaceEditPart.VISUAL_ID:
+			return getClass_3008OutgoingLinks(view);
+		case OperationForClassEditPart.VISUAL_ID:
+			return getOperation_3013OutgoingLinks(view);
+		case OperationForComponentEditPart.VISUAL_ID:
+			return getOperation_3003OutgoingLinks(view);
+		case OperationForInterfaceEditpart.VISUAL_ID:
+			return getOperation_3007OutgoingLinks(view);
+		case OperationForDataTypeEditPart.VISUAL_ID:
+			return getOperation_3019OutgoingLinks(view);
 		case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
 			return getConnectableElementTemplateParameter_3034OutgoingLinks(view);
 		case OperationTemplateParameterEditPart.VISUAL_ID:
@@ -2066,14 +2082,16 @@ public class UMLDiagramUpdater {
 			return getClassifierTemplateParameter_3031OutgoingLinks(view);
 		case TemplateParameterEditPart.VISUAL_ID:
 			return getTemplateParameter_3016OutgoingLinks(view);
-		case PropertyForSignalEditPart.VISUAL_ID:
-			return getProperty_3005OutgoingLinks(view);
-		case PropertyForInterfaceEditPart.VISUAL_ID:
-			return getProperty_3006OutgoingLinks(view);
-		case OperationForInterfaceEditpart.VISUAL_ID:
-			return getOperation_3007OutgoingLinks(view);
-		case NestedClassForInterfaceEditPart.VISUAL_ID:
-			return getClass_3008OutgoingLinks(view);
+		case EnumerationLiteralEditPart.VISUAL_ID:
+			return getEnumerationLiteral_3017OutgoingLinks(view);
+		case ReceptionEditPart.VISUAL_ID:
+			return getReception_3011OutgoingLinks(view);
+		case SlotEditPart.VISUAL_ID:
+			return getSlot_3030OutgoingLinks(view);
+		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
+			return getRedefinableTemplateSignature_3015OutgoingLinks(view);
+		case TemplateSignatureEditPart.VISUAL_ID:
+			return getTemplateSignature_3033OutgoingLinks(view);
 		case InstanceSpecificationEditPartCN.VISUAL_ID:
 			return getInstanceSpecification_3020OutgoingLinks(view);
 		case ComponentEditPartCN.VISUAL_ID:
@@ -2086,36 +2104,18 @@ public class UMLDiagramUpdater {
 			return getModel_3024OutgoingLinks(view);
 		case EnumerationEditPartCN.VISUAL_ID:
 			return getEnumeration_3025OutgoingLinks(view);
-		case EnumerationLiteralEditPart.VISUAL_ID:
-			return getEnumerationLiteral_3017OutgoingLinks(view);
 		case PackageEditPartCN.VISUAL_ID:
 			return getPackage_3009OutgoingLinks(view);
 		case ClassEditPartCN.VISUAL_ID:
 			return getClass_3010OutgoingLinks(view);
-		case ReceptionEditPart.VISUAL_ID:
-			return getReception_3011OutgoingLinks(view);
-		case PropertyForClassEditPart.VISUAL_ID:
-			return getProperty_3012OutgoingLinks(view);
-		case OperationForClassEditPart.VISUAL_ID:
-			return getOperation_3013OutgoingLinks(view);
-		case NestedClassForClassEditPart.VISUAL_ID:
-			return getClass_3014OutgoingLinks(view);
 		case PrimitiveTypeEditPartCN.VISUAL_ID:
 			return getPrimitiveType_3026OutgoingLinks(view);
 		case DataTypeEditPartCN.VISUAL_ID:
 			return getDataType_3027OutgoingLinks(view);
-		case PropertyforDataTypeEditPart.VISUAL_ID:
-			return getProperty_3018OutgoingLinks(view);
-		case OperationForDataTypeEditPart.VISUAL_ID:
-			return getOperation_3019OutgoingLinks(view);
 		case CommentEditPartCN.VISUAL_ID:
 			return getComment_3028OutgoingLinks(view);
 		case ConstraintEditPartCN.VISUAL_ID:
 			return getConstraint_3029OutgoingLinks(view);
-		case SlotEditPart.VISUAL_ID:
-			return getSlot_3030OutgoingLinks(view);
-		case TemplateSignatureEditPart.VISUAL_ID:
-			return getTemplateSignature_3033OutgoingLinks(view);
 		case AssociationClassLinkEditPart.VISUAL_ID:
 			return getAssociationClass_4017OutgoingLinks(view);
 		case AssociationEditPart.VISUAL_ID:
