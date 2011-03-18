@@ -18,6 +18,8 @@ import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator;
 import org.eclipse.gmf.codegen.gmfgen.GenLink;
 import org.eclipse.gmf.codegen.gmfgen.GenNode;
 import org.eclipse.gmf.codegen.gmfgen.MetamodelType;
+import org.eclipse.gmf.codegen.gmfgen.NotationType;
+import org.eclipse.gmf.codegen.gmfgen.SpecializationType;
 import org.eclipse.gmf.codegen.util.Generator;
 import org.eclipse.gmf.common.UnexpectedBehaviourException;
 
@@ -84,6 +86,19 @@ public class PapyrusGenerator extends Generator {
 			if(link.getElementType() instanceof MetamodelType) {
 				MetamodelType metamodelType = (MetamodelType)link.getElementType();
 				generateLinkPreferencePage(link, metamodelType.getDisplayName());
+			}
+			if(link.getElementType() instanceof SpecializationType) {
+				SpecializationType metamodelType = (SpecializationType)link.getElementType();
+				if( !metamodelType.getDisplayName().toUpperCase().equals("UNDEFINED")){
+					generateLinkPreferencePage(link, metamodelType.getDisplayName());
+				}
+
+			}
+			if(link.getElementType() instanceof NotationType) {
+				NotationType notationType = (NotationType)link.getElementType();
+				if( !notationType.getDisplayName().toUpperCase().equals("UNDEFINED")){
+					generateLinkPreferencePage(link, notationType.getDisplayName());
+				}
 			}
 		}
 
