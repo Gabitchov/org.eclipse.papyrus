@@ -21,14 +21,22 @@ import org.eclipse.emf.ecore.EClass;
  * comparator EClass by taking in account their names 
  *
  */
-public class EclassComparator implements Comparator<EClass>{
+public class EclassComparator implements Comparator<Object>{
 
-	public int compare(EClass eclass0, EClass eclass1) {
-
-		String emp1Name = (eclass0).getName();        
-		String emp2Name = (eclass1).getName();
-		//uses compareTo method of String class to compare names of the Eclasses
-		return emp1Name.compareTo(emp2Name);
+	/**
+	 * 
+	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+	 *
+	 */
+	public int compare(Object eclass0, Object eclass1) {
+		//it verify if this isan Eclass
+		if(eclass0 instanceof EClass && eclass1 instanceof EClass){
+			String emp1Name = ((EClass)eclass0).getName();        
+			String emp2Name = ((EClass)eclass1).getName();
+			//uses compareTo method of String class to compare names of the Eclasses
+			return emp1Name.compareTo(emp2Name);
+		}
+		else{return 0;}
 	}
 
 

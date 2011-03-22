@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.modelexplorer.Activator;
@@ -30,9 +31,26 @@ import org.eclipse.swt.widgets.Shell;
  */
 public class ModelExplorerBasedTreeSelectorDialog extends TreeSelectorDialog {
 
-	protected ModelExplorerBasedContentProvider contentProvider;
-	protected EObject eObject=null;
+	protected EclassModelExplorerBasedContentProvider contentProvider;
+	protected EObject root=null;
+	protected LabelProvider metaclassLabelProvider= new MetaclassLabelProvider();
 	
+	
+	/**
+	 * get the label provider used to display metaclasses in the combo
+	 * @return the label provider
+	 */
+	public LabelProvider getMetaclassLabelProvider() {
+		return metaclassLabelProvider;
+	}
+
+	/**
+	 * set the label provider that will display text in the combo that represent the available list of metaclasses
+	 * @param metaclassLabelProvider
+	 */
+	public void setMetaclassLabelProvider(LabelProvider metaclassLabelProvider) {
+		this.metaclassLabelProvider = metaclassLabelProvider;
+	}
 	/**
 	 * constructor
 	 * @param parentShell
@@ -40,10 +58,10 @@ public class ModelExplorerBasedTreeSelectorDialog extends TreeSelectorDialog {
 	 * @param wantedEClass the meta-classes wanted, can be null
 	 * @param metaClassNotWanted, the list of sub meta-classes not wanted, can not be null
 	 */
-	public ModelExplorerBasedTreeSelectorDialog(Shell parentShell, EObject root, EClass wantedEClass, List<EClass> metaClassNotWanted) {
+	public ModelExplorerBasedTreeSelectorDialog(Shell parentShell, EObject root, Object wantedEClass, List<Object> metaClassNotWanted) {
 		super(parentShell);
-		eObject= root;
-		contentProvider = new ModelExplorerBasedContentProvider(root);
+		this.root= root;
+		contentProvider = new EclassModelExplorerBasedContentProvider(root);
 		contentProvider.setMetaClassWanted(wantedEClass);
 		contentProvider.setMetaClassNotWanted(metaClassNotWanted);
 		this.setContentProvider(contentProvider);
@@ -54,7 +72,7 @@ public class ModelExplorerBasedTreeSelectorDialog extends TreeSelectorDialog {
 	public void create() {
 		// TODO Auto-generated method stub
 		super.create();
-		setDescription("Look for "+contentProvider.getMetaClassWanted().getName());
+		setDescription("Look for "+metaclassLabelProvider.getText(contentProvider.getMetaClassWanted()));
 		ViewerFilter[] filters= { new HierarchicViewerFilter(contentProvider)};
 		getViewer().setFilters(filters);
 		

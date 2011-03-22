@@ -48,41 +48,41 @@ public class HierarchicViewerFilter extends ViewerFilter {
 
 		SemanticFromModelExplorer brige= new SemanticFromModelExplorer();
 
-		EObject eObject=null;
+		EObject semanticObject=null;
 		if(element instanceof IAdaptable){
-			eObject=(EObject)brige.getSemanticElement(element);
+			semanticObject=(EObject)brige.getSemanticElement(element);
 		}
 		if(element instanceof EObject){
-			eObject=(EObject)element;
+			semanticObject=(EObject)element;
 		}
 
-		if (eObject!=null){//it contains nothing 
-			if(eObject instanceof EReference){
+		if (semanticObject!=null){//it contains nothing 
+			if(semanticObject instanceof EReference){
 				//Do not display references that are not containment kind
-				if(!((EReference)eObject).isContainment()){return false;}
+				if(!((EReference)semanticObject).isContainment()){return false;}
 				//this an ereference maybe it references something that is interesting
 				boolean result=false;
 				Object[] children=contentProvider.getChildren(element);
 				for(int i=0; i<children.length;i++){
-					boolean contains=select(viewer,eObject,children[i]);
+					boolean contains=select(viewer,semanticObject,children[i]);
 					result=result||contains;
 				}
 				return result;
 			}
 
-			if(eObject.eContents().size()==0){
-				return contentProvider.isValidValue(eObject);
+			if(semanticObject.eContents().size()==0){
+				return contentProvider.isValidValue(semanticObject);
 			}
 			else{ //it contains something so we have to test children before
 				boolean result=false;
-				if( contentProvider.isValidValue(eObject)){
+				if( contentProvider.isValidValue(semanticObject)){
 					return true;
 				}
 
-				Iterator<EObject>iter=eObject.eAllContents();
+				Iterator<EObject>iter=semanticObject.eAllContents();
 				while(iter.hasNext()){
 					EObject subEObject= iter.next();
-					boolean contains=select(viewer,eObject,subEObject);
+					boolean contains=select(viewer,semanticObject,subEObject);
 					result=result||contains;
 				}
 				return result;

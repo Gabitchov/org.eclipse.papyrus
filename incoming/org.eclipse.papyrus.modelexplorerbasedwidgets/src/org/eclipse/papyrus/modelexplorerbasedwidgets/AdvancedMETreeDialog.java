@@ -15,12 +15,14 @@ package org.eclipse.papyrus.modelexplorerbasedwidgets;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -38,9 +40,19 @@ public class AdvancedMETreeDialog extends ModelExplorerBasedTreeSelectorDialog {
 	protected Label metaclassLabel=null;
 	protected Combo combo;
 	protected EPackage metaModel;
-	protected ArrayList<EClass> metaclasses=new ArrayList<EClass>();
+	protected ArrayList<Object> metaclasses=new ArrayList<Object>();
 
-	public AdvancedMETreeDialog(Shell parentShell, EObject root, EClass wantedEClass, List<EClass> metaClassNotWanted,EPackage metaModel) {
+	/**
+	 * 
+	 * Constructor to display this dialog
+	 *
+	 * @param parentShell a shell
+	 * @param root the Eobject that will be the root of the Tree, it can be null
+	 * @param wantedEClass, in order to filter the tree by taking in account only this kind of object
+	 * @param metaClassNotWanted the list of not wanted object (to be pertinent, it has to be a subclass of wantedEclass
+	 * @param metaModel an Epackage that represent the domain model
+	 */
+	public AdvancedMETreeDialog(Shell parentShell, EObject root, Object wantedEClass, List<Object> metaClassNotWanted,EPackage metaModel) {
 		super(parentShell, root, wantedEClass, metaClassNotWanted);
 		this.metaModel=metaModel;
 	}
@@ -52,7 +64,7 @@ public class AdvancedMETreeDialog extends ModelExplorerBasedTreeSelectorDialog {
 		metaclassLabel = new Label(getDialogArea(), SWT.WRAP);
 		metaclassLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		metaclassLabel.setText("Metaclass:");
-		setDescription("Look for "+contentProvider.getMetaClassWanted().getName());
+		setDescription("Look for "+ metaclassLabelProvider.getText(contentProvider.getMetaClassWanted()));
 
 		//install combo
 		combo = new Combo(getDialogArea(), SWT.NONE);
@@ -60,10 +72,11 @@ public class AdvancedMETreeDialog extends ModelExplorerBasedTreeSelectorDialog {
 		combo.addSelectionListener(new SelectionListener() {
 			//creation of inner class for the selection
 			public void widgetSelected(SelectionEvent e) {
+				//look for the new wantedEClass
 				int index=combo.getSelectionIndex();
 				contentProvider.setMetaClassWanted(metaclasses.get(index));
-				setDescription("Look for "+contentProvider.getMetaClassWanted().getName());
-				contentProvider.setMetaClassNotWanted(new ArrayList<EClass>());
+				setDescription("Look for "+metaclassLabelProvider.getText(contentProvider.getMetaClassWanted()));
+				contentProvider.setMetaClassNotWanted(new ArrayList<Object>());
 				if(getViewer()!=null){
 					getViewer().refresh();
 				}
@@ -71,22 +84,42 @@ public class AdvancedMETreeDialog extends ModelExplorerBasedTreeSelectorDialog {
 
 			public void widgetDefaultSelected(SelectionEvent e) {}
 		});
-		//fill the list of meta-classes
-		for(Iterator<EObject> iterator = metaModel.eContents().iterator(); iterator.hasNext();) {
+		
+		fillmetaclassList(metaModel);
+		fillMetaclassCombo(metaclasses, new EclassComparator());
+		getShell().pack();
+
+
+	}
+	/**
+	 * Put into the list metaclasses all element from the Epackage
+	 * border effect the list metaclasses is filled
+	 * @param ePackage that represent the domain model
+	 */
+	protected void fillmetaclassList(EPackage ePackage){
+		metaclasses.clear();
+		for(Iterator<EObject> iterator = ePackage.eContents().iterator(); iterator.hasNext();) {
 			EObject type = iterator.next();
 			if(type instanceof EClass){
 				metaclasses.add(((EClass)type));
 			}
 		}
-		Collections.sort(metaclasses, new EclassComparator());
-		//fill the combo
-		for(Iterator<EClass> iterator = metaclasses.iterator(); iterator.hasNext();) {
-			EClass type = (EClass)iterator.next();
-			combo.add((type).getName());
-		}
-		getShell().pack();
-
-
 	}
-
+	/**
+	 * take in account all metaclasses and fill the combo by taking account order done by the comparator.
+	 * Border effect: the variable combo is filled by all element contained in the parameter metaclasses
+	 * @param metaclasses the list of metaclasses
+	 * @param comparator a comparator
+	 */
+	protected void fillMetaclassCombo( ArrayList<Object> metaclasses,Comparator<Object> comparator ){
+		this.metaclasses=metaclasses;
+		//fill the list of meta-classes
+		combo.removeAll();
+		Collections.sort(metaclasses, comparator);
+		//fill the combo
+		for(Iterator<Object> iterator = metaclasses.iterator(); iterator.hasNext();) {
+			combo.add(metaclassLabelProvider.getText(iterator.next()));
+		}
+		
+	}
 }

@@ -26,14 +26,15 @@ import org.eclipse.papyrus.widgets.providers.EncapsulatedContentProvider;
 
 /**
  * this is an Encapsulated content provider based on the model explorer on which we can filter wanted meta-classes
+ * It can only filter if wantedMetaclass and metaclassNotWanted are Eclass
  */
-public class ModelExplorerBasedContentProvider extends EncapsulatedContentProvider  implements IMetaclassFilteredContentProvider{
+public class EclassModelExplorerBasedContentProvider extends EncapsulatedContentProvider  implements IMetaclassFilteredContentProvider{
 
 
 	/** The not wanted. */
-	protected ArrayList<EClass> metaClassNotWantedList=new ArrayList<EClass>();
+	protected ArrayList<Object> metaClassNotWantedList=new ArrayList<Object>();
 	/** The not wanted. */
-	protected EClass metaClassWanted=null;
+	protected Object metaClassWanted=null;
 	/**
 	 * a bridge to find the seamntic element behind an object of the model explorer
 	 */
@@ -47,7 +48,7 @@ public class ModelExplorerBasedContentProvider extends EncapsulatedContentProvid
 	 * the constructor
 	 * @param semanticRoot the root that we want to display at top
 	 */
-	public ModelExplorerBasedContentProvider(EObject semanticRoot) {
+	public EclassModelExplorerBasedContentProvider(EObject semanticRoot) {
 		super(new ModelContentProvider(semanticRoot));
 		this.semanticRoot= semanticRoot;
 	}
@@ -55,14 +56,14 @@ public class ModelExplorerBasedContentProvider extends EncapsulatedContentProvid
 	/**
 	 * {@inheritDoc}
 	 */
-	public void setMetaClassNotWanted(List<EClass> metaClassNotWanted) {
+	public void setMetaClassNotWanted(List<Object> metaClassNotWanted) {
 		metaClassNotWantedList.clear();
 		metaClassNotWantedList.addAll(metaClassNotWanted);
 	}
 	/**
 	 * {@inheritDoc}
 	 */
-	public void setMetaClassWanted(EClass metaClassWanted) {
+	public void setMetaClassWanted(Object metaClassWanted) {
 		this.metaClassWanted=metaClassWanted;
 	}
 
@@ -71,35 +72,47 @@ public class ModelExplorerBasedContentProvider extends EncapsulatedContentProvid
 	 * get Wanted metaclasse
 	 * @return Eclass that reprensent the wanted metaclass
 	 */
-	public EClass getMetaClassWanted() {
+	public Object getMetaClassWanted() {
 		return metaClassWanted;
 	}
 
 	@Override
 	public boolean isValidValue(Object element) {
+		
+		//to filter, test if the wanted metaclass is not null
 		if(metaClassWanted!=null){
-			EObject eObject=null;
+			// get the semantic object form the element
+			EObject semanticObject=null;
+			
 			if(element instanceof IAdaptable){
-				eObject=(EObject)brige.getSemanticElement(element);
+				semanticObject=(EObject)brige.getSemanticElement(element);
 			}
 			if(element instanceof EObject){
-				eObject=(EObject)element;
+				semanticObject=(EObject)element;
 			}
 			//return ok for Ereference
-			if(element instanceof EReference||eObject instanceof EReference){
+			if(element instanceof EReference||semanticObject instanceof EReference){
 				return true;
 			}
-			if(eObject!=null){
-				if(metaClassWanted.isSuperTypeOf(eObject.eClass())){
+			//the semantic object is not null
+			if(semanticObject!=null){
+				//test if this is an Eclass
+				if(metaClassWanted instanceof EClass){
+					//test if the semanticobject is instance of metaclassWanted
+					// and not an instance of metaclassNotWanted
+				if(((EClass)metaClassWanted).isSuperTypeOf(semanticObject.eClass())){
 					if(metaClassNotWantedList.size()>0){
-						Iterator<EClass> iternotwanted= metaClassNotWantedList.iterator();
+						Iterator<Object> iternotwanted= metaClassNotWantedList.iterator();
 						while( iternotwanted.hasNext()){
-							if(iternotwanted.next().isSuperTypeOf(eObject.eClass())){
+							Object notWanted=iternotwanted.next();
+							if(notWanted instanceof EClass)
+							if(((EClass)notWanted).isSuperTypeOf(semanticObject.eClass())){
 								return false;
 							}
 						}
 					}
 					return true;
+				}
 				}
 				return false;
 			}

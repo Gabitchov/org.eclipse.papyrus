@@ -31,10 +31,10 @@ public interface IMetaclassFilteredContentProvider extends
 	 * @param metaClassNotWanted list of metaclasses that are not wanted
 	 * 
 	 */
-	public void setMetaClassNotWanted(List<EClass> metaClassNotWanted);
+	public void setMetaClassNotWanted(List<Object> metaClassNotWanted);
 	/**
 	 * a the kind of metaclasses wanted
 	 * @param metaClassWanted
 	 */
-	public void setMetaClassWanted(EClass metaClassWanted);
+	public void setMetaClassWanted(Object metaClassWanted);
 }
