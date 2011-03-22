@@ -12,7 +12,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.modelexplorerbasedwidgets;
+package org.eclipse.papyrus.modelexplorer.widgets;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.core.utils.EditorUtils;

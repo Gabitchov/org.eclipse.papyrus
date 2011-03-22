@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.modelexplorerbasedwidgets;
+package org.eclipse.papyrus.modelexplorer.widgets;
 
 import java.util.List;
 

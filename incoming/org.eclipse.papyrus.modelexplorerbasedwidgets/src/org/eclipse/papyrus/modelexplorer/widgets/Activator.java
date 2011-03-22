@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.modelexplorerbasedwidgets;
+package org.eclipse.papyrus.modelexplorer.widgets;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -22,7 +22,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.widgets"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.modelexplorer.widgets"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
