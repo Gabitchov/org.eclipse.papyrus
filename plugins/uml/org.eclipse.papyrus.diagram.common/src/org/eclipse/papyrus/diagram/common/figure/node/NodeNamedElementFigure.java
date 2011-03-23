@@ -15,13 +15,8 @@
 package org.eclipse.papyrus.diagram.common.figure.node;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.StringTokenizer;
 
-import javax.swing.border.LineBorder;
-
-import org.eclipse.draw2d.AbstractLayout;
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.FigureListener;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
@@ -334,6 +329,18 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		// Add the label to the figure, at pos 0
 		getIconLabelContainer().add(iconLabel, getIconLabelConstraint(), getIconLabelPosition());
 		iconLabel.setLabelAlignment(PositionConstants.LEFT);
+	}
+
+	/**
+	 * Creates the icon label.
+	 * 
+	 * @param position
+	 *        the position
+	 */
+	protected void createIconLabel(int position) {
+		iconLabel = new Label();
+		getIconLabelContainer().add(iconLabel, getIconLabelConstraint(), getIconLabelPosition());
+		iconLabel.setLabelAlignment(position);
 	}
 
 	/**
@@ -960,6 +967,32 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		// Set stereotype icon on figure
 		this.iconLabel.setIcon(image);
 	}
+	
+	/**
+	 * Sets the applied stereotype icon.
+	 * 
+	 * @param image
+	 *        the image
+	 * @param position
+	 *        the position
+	 */
+	public void setAppliedStereotypeIcon(Image image, int position) {
+		if(image == null) {
+			// Remove label if any
+			if(this.iconLabel != null) {
+				getIconLabelContainer().remove(this.iconLabel);
+				this.iconLabel = null;
+			}
+			return;
+		}
 
+		// Set the stereotype label with position parameter if it does not already exist
+		if(this.iconLabel == null) {
+			this.createIconLabel(position);
+		}
+
+		// Set stereotype icon on figure
+		this.iconLabel.setIcon(image);
+	}
 
 }
