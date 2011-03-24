@@ -13,9 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.test.canonical;
 
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassAttributeCompartment2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassNestedClassifierCompartment2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassOperationCompartment2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassAttributeCompartmentEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassNestedClassifierCompartmentEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassOperationCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentAttributeCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentNestedClassifierCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentOperationCompartmentEditPart;
@@ -84,22 +84,22 @@ public class TestClassDiagramChildLabel extends TestChildLabel {
 	
 	public void testToManageClassProperty() {
 		//Enumeration
-		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Property_3012, ClassAttributeCompartment2EditPart.VISUAL_ID);
+		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Property_3012, ClassAttributeCompartmentEditPart.VISUAL_ID);
 			}
 	
 	public void testToManageClassReception() {
 		//Enumeration
-		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Reception_3011, ClassOperationCompartment2EditPart.VISUAL_ID);
+		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Reception_3011, ClassOperationCompartmentEditPart.VISUAL_ID);
 				}
 	
 	public void testToManageClassOperation() {
 		//Enumeration
-		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Operation_3013, ClassOperationCompartment2EditPart.VISUAL_ID);
+		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Operation_3013, ClassOperationCompartmentEditPart.VISUAL_ID);
 				}
 	@Test
 	public void testToClassNestedClass() {
 		//class
-		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Class_3014, ClassNestedClassifierCompartment2EditPart.VISUAL_ID);
+		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Class_3014, ClassNestedClassifierCompartmentEditPart.VISUAL_ID);
 	}
 	
 	
