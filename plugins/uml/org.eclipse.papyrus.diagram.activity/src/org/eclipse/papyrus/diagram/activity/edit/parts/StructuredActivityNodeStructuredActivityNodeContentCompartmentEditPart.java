@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.ScrollPane;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -34,6 +35,7 @@ import org.eclipse.papyrus.diagram.activity.edit.policies.StructuredActivityNode
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy;
+import org.eclipse.papyrus.diagram.common.groups.edit.policies.DragDropEditGroupPolicy;
 import org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy;
 
 /**
@@ -65,13 +67,18 @@ extends ShapeCompartmentEditPart
 	}
 
 	/**
-	 * @generated NOT (remove the top border)
+	 * @generated NOT (remove the top border,hide scrollbar)
 	 */
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
 		result.setTitleVisibility(false);
 		// remove the top border
 		result.setBorder(null);
+		// Hide scrollBar
+		result.getScrollPane().setEnabled(false);
+		result.getScrollPane().setHorizontalScrollBar(null);
+		result.getScrollPane().setVerticalScrollBar(null);
+		result.getScrollPane().setScrollBarVisibility(ScrollPane.NEVER);
 		return result;
 	}
 
@@ -90,7 +97,7 @@ extends ShapeCompartmentEditPart
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.StructuredActivityNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreateInGroupEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditGroupPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new XYLayoutEditGroupPolicy());
 	}

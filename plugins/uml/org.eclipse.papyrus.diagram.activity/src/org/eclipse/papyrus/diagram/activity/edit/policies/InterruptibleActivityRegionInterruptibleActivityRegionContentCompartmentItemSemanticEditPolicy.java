@@ -37,7 +37,6 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.SequenceNodeCreateComm
 import org.eclipse.papyrus.diagram.activity.edit.commands.StructuredActivityNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ValueSpecificationActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.common.groups.commands.MoveElementInGroupCommand;
 
 /**
  * @generated
@@ -148,18 +147,5 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 		return super.getCreateCommand(req);
 	}
 
-	/**
-	 * Get the command to move an element to this group
-	 * 
-	 * @see org.eclipse.papyrus.diagram.activity.edit.policies.UMLBaseItemSemanticEditPolicy#getMoveCommand(org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest)
-	 * @param req
-	 *        the move request
-	 * @return the command to move an element in the group
-	 * @generated NOT
-	 */
-	@Override
-	protected Command getMoveCommand(MoveRequest req) {
-		return getGEFWrapper(new MoveElementInGroupCommand(req, getHost()));
-	}
 
 }

@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IExpandableFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityDiagramItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy;
@@ -68,8 +69,8 @@ public class ActivityDiagramEditPart extends DiagramEditPart {
 				// getExtendedBounds)
 				// See bug 313985 (https://bugs.eclipse.org/bugs/show_bug.cgi?id=313985) for more details
 				applyClippingStrategy(childFigure);
-				if(childFigure instanceof BorderedNodeFigure) {
-					return new Rectangle[]{ ((BorderedNodeFigure)childFigure).getExtendedBounds() };
+				if(childFigure instanceof IExpandableFigure) {
+					return new Rectangle[]{ ((IExpandableFigure)childFigure).getExtendedBounds() };
 
 				} else {
 					return new Rectangle[]{ childFigure.getBounds() };

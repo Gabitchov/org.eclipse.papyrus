@@ -13,8 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
+import org.eclipse.draw2d.IClippingStrategy;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.ScrollPane;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -36,6 +38,7 @@ import org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy;
+import org.eclipse.papyrus.diagram.common.groups.edit.policies.DragDropEditGroupPolicy;
 import org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy;
 
 /**
@@ -67,7 +70,7 @@ extends ShapeCompartmentEditPart
 	}
 
 	/**
-	 * @generated NOT (remove the bottom border)
+	 * @generated NOT (remove the bottom border, remove scrollbars)
 	 */
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
@@ -76,6 +79,13 @@ extends ShapeCompartmentEditPart
 		OneLineBorder border = new OneLineBorder();
 		border.setPosition(PositionConstants.TOP);
 		result.setBorder(border);
+		// remove scrollbars
+		result.getScrollPane().setEnabled(false);
+		result.getScrollPane().setHorizontalScrollBar(null);
+		result.getScrollPane().setVerticalScrollBar(null);
+		result.getScrollPane().setScrollBarVisibility(ScrollPane.NEVER);
+		//result.getScrollPane().getViewport().setContentsTracksHeight(true);
+
 		return result;
 	}
 
@@ -94,7 +104,7 @@ extends ShapeCompartmentEditPart
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.ActivityPartitionActivityPartitionContentCompartmentCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreateInGroupEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditGroupPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new XYLayoutEditGroupPolicy());
 	}
