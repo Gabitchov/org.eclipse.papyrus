@@ -36,11 +36,20 @@ public class GroupRequestConstants {
 	 * Used to notify the user that the notification to choose the parent failed
 	 */
 	public static final String CHOOSE_PARENT_ERROR_NOTIFICATION = "The notification failed to run because no list of avaiable parent was set up";
-	
+
 	/**
-	 * The constant to recover the list of all graphical graphical children after group creation 
+	 * The constant to recover the list of all graphical graphical children after group creation
 	 */
 	public static final String GRAPHICAL_CHILDREN = "ALL_AUTOMATIC_GRAPHICAL_CHILDREN";
 
+	/**
+	 * Constant set in the extended data of a request. It used to know if the edit part handling the request should launch a refrech to all group it
+	 * intersect
+	 */
+	public static final String SEND_UPDATE_REFERENCE_TO_CHILDREN = "HAS_TO_SEND_UPDATE_REFERENCE_TO_CHILDREN";
 
+	/**
+	 * Initial constrain of the element targeted by a request
+	 */
+	public static final String CONSTRAINT_AFTER_MOVING = "CONSTRAINT_AFTER_MOVING";
 }

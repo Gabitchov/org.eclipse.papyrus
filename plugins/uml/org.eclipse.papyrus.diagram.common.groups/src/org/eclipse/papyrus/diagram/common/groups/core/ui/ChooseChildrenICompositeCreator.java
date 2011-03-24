@@ -19,6 +19,7 @@ import java.util.Map;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.core.utils.GMFtoEMFCommandWrapper;
@@ -67,6 +68,9 @@ public class ChooseChildrenICompositeCreator implements ICompositeCreator, Notif
 	 */
 	private Map<Button, IGraphicalEditPart> childCheckBoxes;
 
+	/** {@link EditPart} hosting the {@link EditPolicy} */
+	private IGraphicalEditPart host;
+
 
 	/**
 	 * Construct a {@link ICompositeCreator} in order to asked the user to choose children among a given list
@@ -75,15 +79,16 @@ public class ChooseChildrenICompositeCreator implements ICompositeCreator, Notif
 	 * @param parentEditPart
 	 *        EditPart of the parent (This part can be the {@link CompartmentEditPart} or the main {@link EditPart} of the element
 	 * @param allChildren
-	 *        @see {@link #allChildren}
+	 * @see {@link #allChildren}
 	 * @param automaticChildren
-	 *        @see {@link #automaticChildren}
+	 * @see {@link #automaticChildren}
 	 */
-	public ChooseChildrenICompositeCreator(IGraphicalEditPart parentEditPart, List<IGraphicalEditPart> allChildren, List<IGraphicalEditPart> automaticChildren) {
+	public ChooseChildrenICompositeCreator(IGraphicalEditPart parentEditPart, List<IGraphicalEditPart> allChildren, List<IGraphicalEditPart> automaticChildren, IGraphicalEditPart host) {
 		super();
 		this.parentEditPart = parentEditPart;
 		this.allChildren = allChildren;
 		this.automaticChildren = automaticChildren;
+		this.host = host;
 		childCheckBoxes = new HashMap<Button, IGraphicalEditPart>();
 	}
 
@@ -99,7 +104,7 @@ public class ChooseChildrenICompositeCreator implements ICompositeCreator, Notif
 			if(checkBoxButton.getSelection() && checkBoxButton.isEnabled()) {
 				IGraphicalEditPart childPart = childCheckBoxes.get(checkBoxButton);
 				String label = "Change graphical parent" + " of " + CreatorUtils.getLabel(childPart) + " to " + CreatorUtils.getLabel(parentEditPart);
-				ChangeGraphicalParentCommand cmd = new ChangeGraphicalParentCommand(editingDomain, label, parentEditPart, childPart);
+				ChangeGraphicalParentCommand cmd = new ChangeGraphicalParentCommand(editingDomain, label, parentEditPart, childPart, host);
 				if(cmd != null && cmd.canExecute()) {
 					//Execute the command
 					editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
@@ -110,7 +115,7 @@ public class ChooseChildrenICompositeCreator implements ICompositeCreator, Notif
 	}
 
 	public String getLabel() {
-		return "Choose graphical children";//TODO externalize string
+		return Messages.ChooseChildrenICompositeCreator_ChooseChildren;
 	}
 
 	/**
@@ -150,9 +155,9 @@ public class ChooseChildrenICompositeCreator implements ICompositeCreator, Notif
 	 * If not then it is not selected
 	 * 
 	 * @param toolkit
-	 *        @see {@link ICompositeCreator}
+	 * @see {@link ICompositeCreator}
 	 * @param top
-	 *        @see {@link ICompositeCreator}
+	 * @see {@link ICompositeCreator}
 	 * @param previousElement
 	 *        A control element under which the check boxes bill be displayed
 	 */
@@ -162,7 +167,7 @@ public class ChooseChildrenICompositeCreator implements ICompositeCreator, Notif
 			String label = CreatorUtils.getLabel(child);
 			Button checkBox = toolkit.createButton(top, label, SWT.CHECK);
 			//FIXME finish the MouseTrackLMistenner
-			//checkBox.addMouseTrackListener(new CheckboxIGraphicalFocusListenner(child));
+			//			checkBox.addMouseTrackListener(new CheckboxIGraphicalFocusListenner(child));
 			//If the child has already parentEditPart as graphical parent the notification will not display it
 			if(!child.getParent().equals(parentEditPart)) {
 				if(automaticChildren.contains(child)) {

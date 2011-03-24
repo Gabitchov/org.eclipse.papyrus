@@ -37,12 +37,15 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.LayerConstants;
 import org.eclipse.gef.editparts.LayerManager;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.notation.Bounds;
@@ -109,24 +112,33 @@ public class Utils {
 	 *        an empty list that will be filled with edits part of available graphical parents (e.g. new ArrayList())
 	 * @param childPart
 	 *        Edit part of the element we want to find out which may be its containers
+	 * @param doTransalte
+	 *        if true compute the list of all graphical and model parent after moving and false compute the list before moving
 	 * @return true if succeed
 	 */
 	@SuppressWarnings("unchecked")
-	public static boolean createComputedListsOfParents(List<IGraphicalEditPart> graphicalParentsToComplete, List<IGraphicalEditPart> modelParentsToComplete, IGraphicalEditPart childPart) {
+	public static boolean createComputedListsOfParents(List<IGraphicalEditPart> graphicalParentsToComplete, List<IGraphicalEditPart> modelParentsToComplete, IGraphicalEditPart childPart, ChangeBoundsRequest request, boolean doTransalte) {
 		Collection<View> diagramViews = new ArrayList<View>(childPart.getViewer().getEditPartRegistry().keySet());
-		diagramViews.remove(childPart.getModel());
+		Object _elementView = childPart.getModel();
+		if(_elementView instanceof View) {
+			diagramViews.remove(_elementView);
+			View myGroupView = (View)_elementView;
+			withdrawGraphicalSonsOf(diagramViews, myGroupView);
+		}
 		Rectangle bounds = null;
 		EClass childType = null;
 		if(childPart != null) {
-			bounds = childPart.getFigure().getBounds();
-			childType = ((View)childPart.getModel()).eClass();
+			bounds = Utils.getAbsoluteBounds(childPart).getCopy();
+			childType = childPart.resolveSemanticElement().eClass();
 		}
-
+		if(doTransalte) {
+			bounds = request.getTransformedRectangle(bounds);
+		}
 		return createComputedListsOfParents(graphicalParentsToComplete, modelParentsToComplete, bounds, childType, diagramViews, childPart);
 	}
 
 	/**
-	 * Find containers which may be chosen as graphical and as model parent of the element
+	 * Find containers which may be chosen as graphical and as model parent of the element (after creation)
 	 * 
 	 * @param graphicalParentsToComplete
 	 *        an empty list that will be filled with edits part of available graphical parents (e.g. new ArrayList())
@@ -143,18 +155,12 @@ public class Utils {
 	 * @return true if succeed
 	 */
 	@SuppressWarnings("unchecked")
-	public static boolean createComputedListsOfParents(List<IGraphicalEditPart> graphicalParentsToComplete, List<IGraphicalEditPart> modelParentsToComplete, CreateViewAndElementRequest creationRequest, IGraphicalEditPart anyPart, EClass child, String ElementTypeName) {
+	public static boolean createComputedListsOfParents(List<IGraphicalEditPart> graphicalParentsToComplete, List<IGraphicalEditPart> modelParentsToComplete, CreateViewAndElementRequest creationRequest, IGraphicalEditPart anyPart, EClass child) {
 		Collection<View> diagramViews = new ArrayList<View>(anyPart.getViewer().getEditPartRegistry().keySet());
 		Dimension size = creationRequest.getSize();
 		//FIXME : Add a correct default size
 		// If size == null then a default size is used to create the bounds of the new elements
 		if(size == null || size.isEmpty()) {
-			//			IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-			//			String prefWidthName = PreferenceConstantHelper.getElementConstant(ElementTypeName, PreferenceConstantHelper.WIDTH);
-			//			String prefHeightName = PreferenceConstantHelper.getElementConstant(ElementTypeName, PreferenceConstantHelper.HEIGHT);
-			//			int width = store.getInt(prefWidthName);
-			//			int height = store.getInt(prefHeightName);
-			//			size = new Dimension(width, height);
 			size = new Dimension(0, 0);
 		}
 		Rectangle bounds = new Rectangle(creationRequest.getLocation(), size);
@@ -233,23 +239,138 @@ public class Utils {
 	 *        Name of the element to be created (name used to look for default size FIXME)
 	 * @return true if succeed
 	 */
-	public static boolean createComputedListsOfVisualYRelatedElements(List<IGraphicalEditPart> childsToComplete, CreateViewAndElementRequest creationRequest, IGraphicalEditPart anyPart, AbstractContainerNodeDescriptor descriptor, String ElementTypeName) {
+	public static boolean createComputedListsOfVisualYRelatedElements(List<IGraphicalEditPart> childsToComplete, CreateViewAndElementRequest creationRequest, IGraphicalEditPart anyPart, AbstractContainerNodeDescriptor descriptor) {
 		Collection<View> diagramViews = new ArrayList<View>(anyPart.getViewer().getEditPartRegistry().keySet());
 		Dimension size = creationRequest.getSize();
 		//FIXME : Add a correct default size
 		// If size == null then a default size is used to create the bounds of the new elements
 		if(size == null || size.isEmpty()) {
-			//			IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-			//			String prefWidthName = PreferenceConstantHelper.getElementConstant(ElementTypeName, PreferenceConstantHelper.WIDTH);
-			//			String prefHeightName = PreferenceConstantHelper.getElementConstant(ElementTypeName, PreferenceConstantHelper.HEIGHT);
-			//			int width = store.getInt(prefWidthName);
-			//			int height = store.getInt(prefHeightName);
-			//			size = new Dimension(width, height);
 			size = new Dimension(0, 0);
 		}
 		Rectangle bounds = new Rectangle(creationRequest.getLocation(), size);
 		createComputedListsOfVisualyRelatedElements(childsToComplete, bounds, descriptor, diagramViews, anyPart);
 		return true;
+	}
+
+	/**
+	 * This method complete the list childsToComplete to add element which are visually contained in the element which is moving ("parent") and which
+	 * can
+	 * be graphical children of this new elements
+	 * 
+	 * @param childsToComplete
+	 *        Empty list which will contain in the newly created element "parent" and which can be graphical children of this new elements
+	 * @param request
+	 *        {@link ChangeBoundsRequest}
+	 * @param parentPart
+	 *        {@link IGraphicalEditPart} of the parent
+	 * @param descriptor
+	 *        {@link AbstractContainerNodeDescriptor} of the parent
+	 * @return true is succeed
+	 */
+	public static boolean createComputedListsOfVisuallyRelatedElements(List<IGraphicalEditPart> childsToComplete, ChangeBoundsRequest request, IGraphicalEditPart parentPart, AbstractContainerNodeDescriptor descriptor, boolean doTransalte) {
+		Collection<View> diagramViews = new ArrayList<View>(parentPart.getViewer().getEditPartRegistry().keySet());
+		diagramViews.remove(parentPart.getModel());
+		Rectangle bounds = null;
+
+		IGraphicalEditPart compartmentEditPart = (IGraphicalEditPart)Utils.getCompartementEditPartFromMainEditPart(parentPart.getViewer().getEditPartRegistry(), parentPart);
+		if(compartmentEditPart == null) {
+			compartmentEditPart = parentPart;
+		}
+		if(parentPart != null) {
+			bounds = Utils.getAbsoluteBounds(compartmentEditPart).getCopy();
+		}
+		if(doTransalte) {
+			//bounds.translate(request.getMoveDelta());
+			bounds = request.getTransformedRectangle(bounds);
+		}
+		createComputedListsOfVisualyRelatedElements(childsToComplete, bounds, descriptor, diagramViews, parentPart);
+		return true;
+	}
+
+	/***
+	 * Compute a list of all group which include the bounds of my group which has been moved with the following request
+	 * 
+	 * @param element
+	 *        Element which we can know the groups which it intersect
+	 * @param request
+	 *        {@link ChangeBoundsRequest} of the moving group
+	 * @param doTranslate
+	 *        if true translate the bound of the element. (used to find the difference between element before and after the command)
+	 * @return The list of {@link IGraphicalEditPart} group that which has their compartment edit part which intersect the compartment of my
+	 */
+	public static List<IGraphicalEditPart> createComputeListsOfAllGroupContainerVisually(IGraphicalEditPart element, ChangeBoundsRequest request, boolean doTranslate) {
+		List<IGraphicalEditPart> result = new ArrayList<IGraphicalEditPart>();
+		EditPartViewer viewer = element.getViewer();
+		Map editPartRegistry = null;
+		//IF the the viewer is unavailable then is return ull
+		if(viewer != null) {
+			editPartRegistry = viewer.getEditPartRegistry();
+		}
+		if(editPartRegistry == null || element == null) {
+			return null;
+		}
+		IGraphicalEditPart myCompartmentEditPart = (IGraphicalEditPart)getCompartementEditPartFromMainEditPart(editPartRegistry, element);
+		Rectangle myBounds = null;
+		if(myCompartmentEditPart != null) {
+			myBounds = getAbsoluteBounds(myCompartmentEditPart).getCopy();
+		} else {
+			myBounds = getAbsoluteBounds(element).getCopy();
+		}
+		if(doTranslate) {
+			myBounds = request.getTransformedRectangle(myBounds);
+		}
+
+		Collection<View> diagramViews = new ArrayList<View>(editPartRegistry.keySet());
+		Object _elementView = element.getModel();
+		diagramViews.remove(_elementView);
+		/*
+		 * Withdraw from the collection of element all elements which are graphical child in myGroupView
+		 * TODO see if not needed in createComputedList...
+		 */
+		if(_elementView instanceof View) {
+			View myGroupView = (View)_elementView;
+			withdrawGraphicalSonsOf(diagramViews, myGroupView);
+		}
+
+
+		for(Object view : diagramViews) {
+			if(view instanceof View) {
+				Object editpart = editPartRegistry.get(view);
+				if(editpart instanceof IGraphicalEditPart) {
+					IGraphicalEditPart part = (IGraphicalEditPart)editpart;
+					IGraphicalEditPart partCompartment = (IGraphicalEditPart)getCompartementEditPartFromMainEditPart(editPartRegistry, part);
+					if(GroupContainmentRegistry.isContainerConcerned(part) && partCompartment != null) {
+						Rectangle partBounds = getAbsoluteBounds(partCompartment);
+						if(partBounds.contains(myBounds)) {
+							result.add(part);
+						}
+					}
+				}
+			}
+		}
+
+
+		return result;
+	}
+
+	/**
+	 * Function which withdraw from a list of view all view which are descendant of the myView parameter
+	 * (This function is called recursively
+	 * 
+	 * @param views
+	 *        List of the view
+	 * @param myView
+	 *        The view we want to remove the descendant
+	 */
+	private static void withdrawGraphicalSonsOf(Collection<View> views, View myView) {
+		for(Object o : myView.getChildren()) {
+			if(o instanceof View) {
+				View childView = (View)o;
+				withdrawGraphicalSonsOf(views, childView);
+				views.remove(childView);
+			}
+
+		}
 	}
 
 	/**
@@ -763,6 +884,7 @@ public class Utils {
 	 */
 	public static Rectangle getAbsoluteBounds(IGraphicalEditPart part) {
 		// take bounds from figure
+		part.getTopGraphicEditPart().refresh();
 		Rectangle bounds = part.getFigure().getBounds().getCopy();
 
 		if(part.getNotationView() instanceof Node) {
@@ -788,14 +910,18 @@ public class Utils {
 		}
 
 		part.getFigure().getParent().translateToAbsolute(bounds);
-		
+
 		return bounds;
 	}
+
 	/**
 	 * This method compute the delta between to IGraphicalEditPart.
-	 * @param oldParent Old IGraphicalEditPart
-	 * @param newParent New IGraphicalEditPart
-	 * @return Return a DDimention between the two bounds (often use to translate point or Rectangle) 
+	 * 
+	 * @param oldParent
+	 *        Old IGraphicalEditPart
+	 * @param newParent
+	 *        New IGraphicalEditPart
+	 * @return Return a DDimention between the two bounds (often use to translate point or Rectangle)
 	 */
 	public static Dimension computeDeltaToChangeParent(IGraphicalEditPart oldParent, IGraphicalEditPart newParent) {
 		Rectangle hostBounds = Utils.getAbsoluteBounds(oldParent);
@@ -803,22 +929,23 @@ public class Utils {
 		Dimension delta = hostBounds.getLocation().getDifference(parentBounds.getLocation());
 		return delta;
 	}
-	
+
 	public static Dimension computeDeltaToChangeParent(IGraphicalEditPart oldParent, Rectangle newParent) {
 		Rectangle hostBounds = Utils.getAbsoluteBounds(oldParent);
 		Dimension delta = hostBounds.getLocation().getDifference(newParent.getLocation());
 		return delta;
 	}
-	
+
 	/**
 	 * Give the reference object which can reference the child for the parent type part
+	 * 
 	 * @param parentType
 	 *        EClass of the parent OBject you want to know the EReference
 	 * @param childType
 	 *        EClass of the child you want to test
 	 * @return null if no reference is found
 	 */
-	public static EReference getContainmentEReference(EClass parentType ,EClass childType) {
+	public static EReference getContainmentEReference(EClass parentType, EClass childType) {
 		List<EReference> result = new ArrayList<EReference>();
 		EReference usedReference = null;
 		for(EReference reference : parentType.getEAllContainments()) {
@@ -826,7 +953,7 @@ public class Utils {
 				result.add(reference);
 			}
 		}
-		
+
 		//Select the best containment relation
 		for(EReference ref : result) {
 			if(usedReference == null || ref.getEReferenceType().getEAllSuperTypes().contains(usedReference.getEReferenceType())) {
@@ -835,5 +962,65 @@ public class Utils {
 			}
 		}
 		return usedReference;
+	}
+
+	/**
+	 * 
+	 * @param editPartRegistry
+	 *        Check if the object is contained in the editPartRegistery
+	 * @param _child
+	 * @return
+	 */
+	public static boolean isContainedInRegistery(Map editPartRegistry, Object _child) {
+		if(_child instanceof IGraphicalEditPart) {
+			return editPartRegistry.containsKey(((IGraphicalEditPart)_child).getModel());
+		}
+		return false;
+
+	}
+
+	/**
+	 * Test is the element is a compartment edit part that can be used to create the child
+	 * 
+	 * @param editPartRegistry
+	 * @param _child
+	 * @return
+	 */
+	public static boolean isAGoodCompartementEditPart(Map editPartRegistry, Object _child) {
+		return _child instanceof CompartmentEditPart && isContainedInRegistery(editPartRegistry, _child) && ((EditPart)_child) instanceof ShapeCompartmentEditPart;
+	}
+
+	/**
+	 * Get the compartment editPart from a parent editPart
+	 * 
+	 * @param editPartRegistry
+	 *        EditPartRegistery
+	 * @param parentEditPart
+	 *        EditPart of the parent
+	 * @return the CompartementEditPart and null if not found
+	 */
+	public static EditPart getCompartementEditPartFromMainEditPart(Map editPartRegistry, EditPart parentEditPart) {
+		EditPart resultCompartmentEditPart = null;
+		//An edit part has been found
+		if(parentEditPart instanceof CompartmentEditPart) {
+			resultCompartmentEditPart = parentEditPart;
+			return resultCompartmentEditPart;
+		} else {
+			List<EditPart> potentialCompartementPart = new ArrayList<EditPart>();
+			for(Object _child : parentEditPart.getChildren()) {
+				if(isAGoodCompartementEditPart(editPartRegistry, _child)) {
+					potentialCompartementPart.add((EditPart)_child);
+				}
+			}
+			if(potentialCompartementPart.size() == 1) {
+				resultCompartmentEditPart = potentialCompartementPart.get(0);
+				return resultCompartmentEditPart;
+			} else if(potentialCompartementPart.size() == 1) {
+				//FIXME find a correct behavior if several potential CompartementPart  (should normally never be the case)
+				resultCompartmentEditPart = potentialCompartementPart.get(0);
+				return resultCompartmentEditPart;
+			}
+		}
+		return resultCompartmentEditPart;
 	}
 }

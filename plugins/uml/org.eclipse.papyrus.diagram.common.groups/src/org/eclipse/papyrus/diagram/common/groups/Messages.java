@@ -67,7 +67,12 @@ public class Messages extends NLS {
 	 * Message displayed when the user is asked to choose between graphical parents
 	 */
 	public static String ChooseParentNotificationCommand_ChooseGraphicalParent;
-	
+
+	/**
+	 * Label of the Choose Children Notification
+	 */
+	public static String ChooseChildrenICompositeCreator_ChooseChildren;
+
 	/**
 	 * Message displayed when the user is asked to choose between model parents (This message is a warnig)
 	 */

@@ -21,6 +21,8 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.core.utils.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.groups.Messages;
@@ -66,9 +68,14 @@ public class ChooseParentICompositeCreator implements ICompositeCreator, Notific
 	private List<Button> childCheckBoxes;
 
 	/**
-	 * Edit part of the chils
+	 * Edit part of the children
 	 */
 	private IGraphicalEditPart childPart;
+
+	/**
+	 * {@link EditPart} hosting the {@link EditPolicy}
+	 */
+	private IGraphicalEditPart host;
 
 	/**
 	 * 
@@ -83,12 +90,13 @@ public class ChooseParentICompositeCreator implements ICompositeCreator, Notific
 	 *        Model : Change the model parent and the graphical parent
 	 *        Graphical : Change only the graphical parent
 	 */
-	public ChooseParentICompositeCreator(List<IGraphicalEditPart> parents, IGraphicalEditPart _childPart, Boolean mode) {
+	public ChooseParentICompositeCreator(List<IGraphicalEditPart> parents, IGraphicalEditPart _childPart, Boolean mode, IGraphicalEditPart getHost) {
 		super();
 		this.parents = parents;
 		childCheckBoxes = new ArrayList<Button>(parents.size());
 		childPart = _childPart;
 		this.mode = mode;
+		this.host = getHost;
 	}
 
 	/**
@@ -122,6 +130,7 @@ public class ChooseParentICompositeCreator implements ICompositeCreator, Notific
 
 	/**
 	 * Create for each parent a check box and select the default one
+	 * 
 	 * @param toolkit
 	 * @param top
 	 * @param previousElement
@@ -206,8 +215,8 @@ public class ChooseParentICompositeCreator implements ICompositeCreator, Notific
 	 *        to create an transactionnal command
 	 */
 	private void changeGraphicalParent(IGraphicalEditPart newParent, TransactionalEditingDomain editingDomain) {
-		String label = "Change graphical parent"+" of "+CreatorUtils.getLabel(childPart)+" to "+CreatorUtils.getLabel(newParent);
-		ChangeGraphicalParentCommand reassignParent = new ChangeGraphicalParentCommand(editingDomain, label, newParent, childPart);
+		String label = "Change graphical parent" + " of " + CreatorUtils.getLabel(childPart) + " to " + CreatorUtils.getLabel(newParent);
+		ChangeGraphicalParentCommand reassignParent = new ChangeGraphicalParentCommand(editingDomain, label, newParent, childPart, host);
 		//If the command is valid the system execute it
 		if(reassignParent != null && reassignParent.canExecute()) {
 			//Execute the command

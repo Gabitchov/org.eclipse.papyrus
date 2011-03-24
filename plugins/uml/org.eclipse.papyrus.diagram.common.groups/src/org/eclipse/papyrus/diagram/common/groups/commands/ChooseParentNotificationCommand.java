@@ -20,6 +20,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
@@ -35,8 +36,9 @@ import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
 /**
  * Command to display the notification for choosing parent.
  * This command handle two modes:
- * 	@see #GRAPHICAL_MODE : Display the notification in order to choose the graphical parent
- * 	@see #MODEL_MODE : Display the warning in order to choose the model parent and change automatically the graphical parent
+ * 
+ * @see #GRAPHICAL_MODE : Display the notification in order to choose the graphical parent
+ * @see #MODEL_MODE : Display the warning in order to choose the model parent and change automatically the graphical parent
  * @author arthur daussy
  */
 public class ChooseParentNotificationCommand extends AbstractTransactionalCommand {
@@ -59,6 +61,9 @@ public class ChooseParentNotificationCommand extends AbstractTransactionalComman
 	/** creation request */
 	private CreateViewAndElementRequest request;
 
+	/** EditPart of host of the {@link EditPolicy} */
+	private IGraphicalEditPart host;
+
 	/**
 	 * Constructor for element creation.
 	 * 
@@ -71,11 +76,12 @@ public class ChooseParentNotificationCommand extends AbstractTransactionalComman
 	 * @param request
 	 *        creation request
 	 */
-	public ChooseParentNotificationCommand(TransactionalEditingDomain domain, String label, List<IGraphicalEditPart> parents, CreateViewAndElementRequest request, Boolean mode) {
+	public ChooseParentNotificationCommand(TransactionalEditingDomain domain, String label, List<IGraphicalEditPart> parents, CreateViewAndElementRequest request, Boolean mode, IGraphicalEditPart getHost) {
 		super(domain, label, null);
 		this.parents = parents;
 		this.request = request;
 		this.mode = mode;
+		this.host = getHost;
 	}
 
 
@@ -97,7 +103,7 @@ public class ChooseParentNotificationCommand extends AbstractTransactionalComman
 
 			}
 			if(parentNotification != null) {
-				ChooseParentICompositeCreator creator = new ChooseParentICompositeCreator(parents, childEditPart, mode);
+				ChooseParentICompositeCreator creator = new ChooseParentICompositeCreator(parents, childEditPart, mode, host);
 				parentNotification.setComposite(creator).addAction(creator).run();
 				return CommandResult.newOKCommandResult();
 			}
@@ -112,6 +118,7 @@ public class ChooseParentNotificationCommand extends AbstractTransactionalComman
 	 * 1 - Get descriptors
 	 * 2 - Get View (adapter)
 	 * 3 - Get IGraphicalEditPart if it exist
+	 * 
 	 * @return true if it as found the edit part
 	 */
 	private Boolean getEditPartFromDescriptor() {

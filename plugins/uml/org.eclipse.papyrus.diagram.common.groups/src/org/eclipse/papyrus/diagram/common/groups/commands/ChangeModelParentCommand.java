@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.common.groups.commands;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -29,7 +30,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.PackageUtil;
 import org.eclipse.gmf.runtime.emf.type.core.internal.l10n.EMFTypeCoreMessages;
-import org.eclipse.papyrus.diagram.common.groups.groupcontainment.AbstractContainerNodeDescriptor;
 
 /**
  * This command will change the model parent of child to the IAdaptable parent.
@@ -48,11 +48,10 @@ public class ChangeModelParentCommand extends AbstractTransactionalCommand {
 
 	private IAdaptable elementAdapter;
 
-	private Map editPartRegistery;
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param domain
 	 * @param parentGroupAdapter
 	 * @param chilrendToMove
@@ -64,10 +63,9 @@ public class ChangeModelParentCommand extends AbstractTransactionalCommand {
 		this.chilrendToMove = chilrendToMove;
 		this.elementAdapter = parentGroupAdapter;
 		targetContainer = null;
-		if(anyPart != null) {
-			this.editPartRegistery = anyPart.getViewer().getEditPartRegistry();
-		}
-
+		//		if(anyPart != null) {
+		//			this.editPartRegistery = anyPart.getViewer().getEditPartRegistry();
+		//		}
 
 	}
 
@@ -83,12 +81,14 @@ public class ChangeModelParentCommand extends AbstractTransactionalCommand {
 			return CommandResult.newErrorCommandResult("Unable to change the model parent of the object because the system was enable to find the EObject of the parent group");
 		}
 
-		for(Iterator i = getElementsToMove().keySet().iterator(); i.hasNext();) {
+		for(Iterator<EObject> i = getElementsToMove().keySet().iterator(); i.hasNext();) {
 			EObject element = (EObject)i.next();
 			EReference feature = getTargetFeature(element);
-			if(feature != null) {
-				if(FeatureMapUtil.isMany(targetContainer, feature)) {
-					((Collection)targetContainer.eGet(feature)).add(element);
+			if(feature != null && targetContainer.eClass().getEAllReferences().contains(feature)) {
+				if(feature.isMany()) {
+					@SuppressWarnings("rawtypes")
+					Collection coll = (Collection)targetContainer.eGet(feature);
+					coll.add(element);
 				} else {
 					targetContainer.eSet(feature, element);
 				}

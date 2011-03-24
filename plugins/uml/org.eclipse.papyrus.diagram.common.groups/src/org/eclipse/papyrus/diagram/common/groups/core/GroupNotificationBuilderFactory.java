@@ -101,7 +101,9 @@ public class GroupNotificationBuilderFactory {
 
 	/**
 	 * Create a simple notification builder from a label
-	 * @param label Title of your notification
+	 * 
+	 * @param label
+	 *        Title of your notification
 	 * @return a NotificationBuilder
 	 */
 	public static NotificationBuilder getQuestionBuilder(String label) {
@@ -113,9 +115,12 @@ public class GroupNotificationBuilderFactory {
 		return builder;
 
 	}
+
 	/**
 	 * Create a simple warning notification builder from a label
-	 * @param label Title of your notification
+	 * 
+	 * @param label
+	 *        Title of your notification
 	 * @return a NotificationBuilder
 	 */
 	public static NotificationBuilder getWarningBuilder(String label) {

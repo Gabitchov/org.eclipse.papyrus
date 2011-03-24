@@ -114,7 +114,7 @@ public class GroupContainmentRegistry {
 	 * Get the AbstractContainerNodeDescriptor from a EClass
 	 * 
 	 * @param containerEClass
-	 * @return Set<AbstractContainerNodeDescriptor> Return all the descriptor wich match the corresponding EClass
+	 * @return Set<AbstractContainerNodeDescriptor> Return all the descriptor which match the corresponding EClass
 	 */
 	public static Set<AbstractContainerNodeDescriptor> getDescriptorsWithContainerEClass(EClass containerEClass) {
 		Set<AbstractContainerNodeDescriptor> descriptors = new HashSet<AbstractContainerNodeDescriptor>(modelContainersDescriptors.size() + graphicalContainersDescriptors.size());
@@ -168,7 +168,33 @@ public class GroupContainmentRegistry {
 	}
 
 	/**
+	 * Return true it the element pointed by the EditPart is a node whicj=h is concerned by the framework
+	 * 
+	 * @param editPart
+	 *        of EObject you want to test
+	 * @return
+	 */
+	public static boolean isNodeConcerned(IGraphicalEditPart editPart) {
+		EClass current = editPart.resolveSemanticElement().eClass();
+		Set<EReference> allReferences = new HashSet<EReference>();
+		for(AbstractContainerNodeDescriptor nodeDesc1 : modelContainersDescriptors.values()) {
+			allReferences.addAll(nodeDesc1.getChildrenReferences());
+		}
+		for(AbstractContainerNodeDescriptor nodeDesc2 : graphicalContainersDescriptors.values()) {
+			allReferences.addAll(nodeDesc2.getChildrenReferences());
+		}
+		for(EReference ref : allReferences) {
+			if(ref.getEReferenceType().isSuperTypeOf(current)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Get the group descriptor of the edit part concerned by the group framework.
+	 * Warning the edit part has to be exactly the same than the one register in the extension point.
+	 * For example in the case of Activity Diagram. Onlu the compartment edit Part are register.
 	 * 
 	 * @param editPart
 	 *        the edit part to get descriptor of
