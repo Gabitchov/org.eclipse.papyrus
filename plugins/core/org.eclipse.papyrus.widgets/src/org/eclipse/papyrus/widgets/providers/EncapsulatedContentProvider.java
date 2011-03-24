@@ -34,7 +34,7 @@ public class EncapsulatedContentProvider implements IHierarchicContentProvider {
 	/**
 	 * The encapsulated static content provider
 	 */
-	private IStaticContentProvider encapsulated;
+	protected IStaticContentProvider encapsulated;
 
 	/**
 	 * 
