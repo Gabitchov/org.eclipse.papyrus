@@ -357,20 +357,20 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 				Iterator<HyperlinkDocument> iterdoc = documentList.iterator();
 				while(iterdoc.hasNext()) {
 					HyperlinkDocument currentDocument = iterdoc.next();
-					transactionalEditingDomain.getCommandStack().execute(HyperlinkHelper.getAddHyperLinkDocumentCommand(transactionalEditingDomain, view, currentDocument.getTooltipText(), currentDocument.getHyperlinkDocument()));
+					transactionalEditingDomain.getCommandStack().execute(HyperlinkHelper.getAddHyperLinkDocumentCommand(transactionalEditingDomain, view, currentDocument.getTooltipText(), currentDocument.getHyperlinkDocument(),false));
 				}
 
 				// save hyperlinkWeb list
 				Iterator<HyperLinkWeb> iterweb = hyperlinkWebList.iterator();
 				while(iterweb.hasNext()) {
 					HyperLinkWeb currentWeb = iterweb.next();
-					transactionalEditingDomain.getCommandStack().execute(HyperlinkHelper.getAddHyperLinkWebCommand(transactionalEditingDomain, view, currentWeb.getTooltipText(), currentWeb.getHyperLinkWeb()));
+					transactionalEditingDomain.getCommandStack().execute(HyperlinkHelper.getAddHyperLinkWebCommand(transactionalEditingDomain, view, currentWeb.getTooltipText(), currentWeb.getHyperLinkWeb(),false));
 				}
 				// save hyperlink Document list
 				Iterator<HyperLinkDiagram> iterDiag = diagramList.iterator();
 				while(iterDiag.hasNext()) {
 					HyperLinkDiagram currentDiag = iterDiag.next();
-					transactionalEditingDomain.getCommandStack().execute(HyperlinkHelper.getAddHyperLinkDiagamCommand(transactionalEditingDomain, view, currentDiag.getTooltipText(), currentDiag.getDiagram().getName(), currentDiag.getDiagram()));
+					transactionalEditingDomain.getCommandStack().execute(HyperlinkHelper.getAddHyperLinkDiagamCommand(transactionalEditingDomain, view, currentDiag.getTooltipText(), currentDiag.getDiagram().getName(), currentDiag.getDiagram(),false));
 				}
 
 				getHyperLinkShell().close();

@@ -52,11 +52,12 @@ public class HyperlinkHelper {
 	 *        the localization of the document
 	 * @param tooltipText
 	 *        the tooltip text
-	 * 
+	 * @param isDefault
+	 * 		  to set this hyperlink as default
 	 * @return the adds the hyper link command
 	 */
-	public static RecordingCommand getAddHyperLinkDocumentCommand(TransactionalEditingDomain domain, EModelElement object, String tooltipText, String localization) {
-		return new CreateHyperLinkDocumentCommand(domain, object, tooltipText, localization);
+	public static RecordingCommand getAddHyperLinkDocumentCommand(TransactionalEditingDomain domain, EModelElement object, String tooltipText, String localization,boolean isDefault) {
+		return new CreateHyperLinkDocumentCommand(domain, object, tooltipText, localization, isDefault);
 	}
 
 	/**
@@ -70,11 +71,13 @@ public class HyperlinkHelper {
 	 *        the web link
 	 * @param tooltiptext
 	 *        the tooltip text
+	 *@param isDefault
+	 * 		  to set this hyperlink as default
 	 * 
 	 * @return the adds the document command
 	 */
-	public static RecordingCommand getAddHyperLinkWebCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext, String link) {
-		return new CreateHyperLinkWebCommand(domain, object, tooltiptext, link);
+	public static RecordingCommand getAddHyperLinkWebCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext, String link, boolean isDefault) {
+		return new CreateHyperLinkWebCommand(domain, object, tooltiptext, link, isDefault);
 	}
 
 	/**
@@ -90,11 +93,13 @@ public class HyperlinkHelper {
 	 *        the diagram name
 	 * @param diagram
 	 *        the diagram
+	 *@param isDefault
+	 * 		  to set this hyperlink as default
 	 * 
 	 * @return the adds the hyper link diagram command
 	 */
-	public static RecordingCommand getAddHyperLinkDiagamCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext, String diagramName, EModelElement diagram) {
-		return new CreateHyperLinkDiagramCommand(domain, object, tooltiptext, diagramName, diagram);
+	public static RecordingCommand getAddHyperLinkDiagamCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext, String diagramName, EModelElement diagram,boolean isDefault) {
+		return new CreateHyperLinkDiagramCommand(domain, object, tooltiptext, diagramName, diagram,isDefault);
 	}
 
 	/**
@@ -155,6 +160,13 @@ public class HyperlinkHelper {
 						if(currentAnnotation.getReferences().get(0).eResource() != null) {
 							hyperLinkDiagram.setDiagram((Diagram)currentAnnotation.getReferences().get(0));
 							hyperLinkDiagram.setTooltipText(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT));
+							if(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION)!=null){
+								boolean isDefaultNaviagation=Boolean.getBoolean(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION));
+								hyperLinkDiagram.setIsDefault(isDefaultNaviagation);
+							}
+							else{
+								hyperLinkDiagram.setIsDefault(false);
+							}
 							result.add(hyperLinkDiagram);
 						}
 					}
@@ -162,11 +174,26 @@ public class HyperlinkHelper {
 					HyperlinkDocument hyperLinkDocument = new HyperlinkDocument();
 					hyperLinkDocument.setHyperlinkDocument(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT_LOCALIZATION));
 					hyperLinkDocument.setTooltipText(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT));
+					if(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION)!=null){
+						boolean isDefaultNaviagation=Boolean.getBoolean(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION));
+						hyperLinkDocument.setIsDefault(isDefaultNaviagation);
+					}
+					else{
+						hyperLinkDocument.setIsDefault(false);
+					}
+					
 					result.add(hyperLinkDocument);
 				} else if(hyperlinkKind.equals(VisualInformationPapyrusConstant.HYPERLINK_WEB)) {
 					HyperLinkWeb hyperLinkWeb = new HyperLinkWeb();
 					hyperLinkWeb.setHyperLinkWeb(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_WEB_LINK));
 					hyperLinkWeb.setTooltipText(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT));
+					if(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION)!=null){
+						boolean isDefaultNaviagation=Boolean.getBoolean(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION));
+						hyperLinkWeb.setIsDefault(isDefaultNaviagation);
+					}
+					else{
+						hyperLinkWeb.setIsDefault(false);
+					}
 					result.add(hyperLinkWeb);
 				}
 			}

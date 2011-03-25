@@ -31,6 +31,9 @@ public class CreateHyperLinkDocumentCommand extends CreateEAnnotationCommand {
 	/** The localization. */
 	public String localization;
 
+	/** to set if is a default hyperlink */
+	public boolean isDefault;
+
 	/**
 	 * Instantiates a new creates the hyper link command.
 	 * 
@@ -42,11 +45,14 @@ public class CreateHyperLinkDocumentCommand extends CreateEAnnotationCommand {
 	 *        the hyperlink kind see {@link VisualInformationPapyrusConstant}
 	 * @param localization
 	 *        the localization
+	 * @param isDefault
+	 * 		  to set this hyperlink as default
 	 */
-	public CreateHyperLinkDocumentCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext, String localization) {
+	public CreateHyperLinkDocumentCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext, String localization, boolean isDefault) {
 		super(domain, object, VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT);
 		this.tooltiptext = tooltiptext;
 		this.localization = localization;
+		this.isDefault= isDefault;
 	}
 
 	/**
@@ -56,6 +62,7 @@ public class CreateHyperLinkDocumentCommand extends CreateEAnnotationCommand {
 		EAnnotation eAnnotation = createEAnnotation();
 		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT, this.tooltiptext);
 		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT_LOCALIZATION, this.localization);
+		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION, ""+this.isDefault);
 		attachEannotation(eAnnotation, getObject());
 	}
 

@@ -33,6 +33,7 @@ public class CreateHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 
 	private EModelElement diagram;
 
+	protected boolean isDefaultNavigation;
 	/**
 	 * Instantiates a new creates the hyper link command.
 	 * 
@@ -45,11 +46,12 @@ public class CreateHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 	 * @param name
 	 *        the localization
 	 */
-	public CreateHyperLinkDiagramCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext, String name, EModelElement diagram) {
+	public CreateHyperLinkDiagramCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext, String name, EModelElement diagram, boolean isDefaultNavigation) {
 		super(domain, object, VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM);
 		this.tooltiptext = tooltiptext;
 		this.name = name;
 		this.diagram = diagram;
+		this.isDefaultNavigation=isDefaultNavigation;
 	}
 
 	/**
@@ -60,6 +62,7 @@ public class CreateHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 		eAnnotation.getReferences().add(diagram);
 		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT, this.tooltiptext);
 		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM_NAME, this.name);
+		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION, ""+this.isDefaultNavigation);
 		attachEannotation(eAnnotation, getObject());
 	}
 
