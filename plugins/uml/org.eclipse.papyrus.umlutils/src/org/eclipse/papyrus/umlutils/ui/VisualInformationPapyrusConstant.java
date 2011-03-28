@@ -164,6 +164,8 @@ public interface VisualInformationPapyrusConstant {
 	public static final String HYPERLINK_TOOLTYPE_TEXT = "tooltip_text";
 
 	public static final String HYPERLINK_DIAGRAM_NAME = "diagram_name";
+	
+	public static final String HYPERLINK_IS_DEFAULT_NAVIGATION = "is_default_navigation";
 
 	public static final String HYPERLINK_DOCUMENT_LOCALIZATION = "localization";
 
