@@ -67,9 +67,11 @@
       </objectContribution>
    </extension>
 
-  <extension
-         point="org.eclipse.help.toc">
-      <toc file="toc.xml" primary="true"/>
-   </extension>
+  <extension point="org.eclipse.help.toc">
+      <toc file="toc.xml" primary="false"/>
+  </extension>
+  <extension point="org.eclipse.help.toc">
+      <toc file="tocdev.xml" primary="false"/>
+  </extension>
    
 </plugin>

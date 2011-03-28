@@ -144,10 +144,10 @@ helper setChildrenForClass (in node:di2::GraphNode) : OrderedSet(notation::Node)
 
 helper setChildrenForRedefinableTemplateSignature (in node:di2::GraphNode) : OrderedSet(notation::Node)
 {
-	var containedCTP:= object notation::DecorationNode {
-		type:=VisualId_ContainerofCTP;
+	var containedCTP := object notation::DecorationNode {
+		type :=VisualId_ContainerofCTP;
 		
-		children:= setClassifierTemplateParameters(node);
+		children := setClassifierTemplateParameters(node);
 		
 		var style1 := object notation::SortingStyle {
 		};
@@ -156,12 +156,12 @@ helper setChildrenForRedefinableTemplateSignature (in node:di2::GraphNode) : Ord
 		styles := OrderedSet {
 			style1, style2
 		};
-		layoutConstraint:=object notation::Bounds {};
+		layoutConstraint := object notation::Bounds {};
 		
 	};
-	var containedCTPs : OrderedSet(notation::Node);
-	containedCTPs += containedCTP;
-	return containedCTPs;
+	return OrderedSet {
+		containedCTP;
+	}
 }
 
 helper setClassifierTemplateParameters(in node:di2::GraphNode):OrderedSet (notation::Node){
