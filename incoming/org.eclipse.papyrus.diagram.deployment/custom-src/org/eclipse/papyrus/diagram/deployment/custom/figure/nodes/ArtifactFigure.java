@@ -18,8 +18,10 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.figure.node.CompartmentFigure;
 import org.eclipse.papyrus.diagram.deployment.part.UMLDiagramEditorPlugin;
+import org.eclipse.swt.graphics.Image;
 
 
 // TODO: Auto-generated Javadoc
@@ -56,8 +58,8 @@ public class ArtifactFigure extends CompartmentFigure {
 	 */
 	public ArtifactFigure(String tagvalue) {
 		super(COMPARTMENT, tagvalue);
-		ImageDescriptor IMG_DESC = UMLDiagramEditorPlugin.getBundledImageDescriptor("icons/obj16/ArtifactIcon.gif");
-		setAppliedStereotypeIcon(IMG_DESC.createImage(), PositionConstants.RIGHT);
+		Image img = Activator.getPluginIconImage(UMLDiagramEditorPlugin.ID, "icons/obj16/ArtifactIcon.gif");
+		setAppliedStereotypeIcon(img, PositionConstants.RIGHT);
 	}
 
 	/**
