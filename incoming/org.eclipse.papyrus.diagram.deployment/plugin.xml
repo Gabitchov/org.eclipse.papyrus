@@ -40,7 +40,7 @@
                      ifEmpty="false"
                      operator="and">
                   <instanceof
-                        value="org.eclipse.papyrus.diagram.component.edit.parts.ComponentEditPart">
+                        value="org.eclipse.papyrus.diagram.deployment.edit.parts.ArtifactEditPart">
                   </instanceof>
                </iterate>
             </with>
@@ -121,7 +121,6 @@
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
             actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
-            contextId="com.cea.papyrus.gmf.editor.context"
             factoryClass="org.eclipse.papyrus.diagram.deployment.DeploymentDiagramEditorFactory"
             icon="icons/obj16/DeploymentDiagram.gif">
       </editorDiagram>
@@ -134,41 +133,15 @@
       </creationCommand>
    </extension>
 
-
    <extension point="org.eclipse.ui.contexts" id="ui-context">
-      <?gmfgen generated="true"?>
       <context
-         description="%context.description"
-         id="org.eclipse.papyrus.diagram.deployment.ui.diagramContext"
-         name="%context.name"
-         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+            description="%context.description"
+            id="org.eclipse.papyrus.diagram.deployment.ui.diagramContext"
+            name="%context.name"
+            parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
       </context>
+      <?gmfgen generated="true"?>
    </extension>
-   
-
-
-
-
-	<?gmfgen generated="true"?>
-	
-	<?gmfgen generated="true"?>
-	
-
-
-
-
-
-<?gmfgen generated="true"?>
-
-
-
-
-
-
-   
-
-
-
    
    <extension point="org.eclipse.ui.commands" id="update-cmd">
       <?gmfgen generated="true"?>
@@ -217,43 +190,6 @@
          categoryId="org.eclipse.papyrus.diagram.deployment.part.UMLDiagramEditorID"
          defaultHandler="org.eclipse.papyrus.diagram.deployment.part.LoadResourceAction"/>
    </extension>
-
-   <extension point="org.eclipse.ui.handlers" id="menu-handlers">
-      <?gmfgen generated="true"?>
-   </extension>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <extension
 		id="Papyrus Deployment Diagram (Incubation).palettedefinition"
@@ -399,7 +335,7 @@
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
 					<entry
        description="Nodes"
-       id="component.group.nodes"
+       id="deployment.group.nodes"
        kind="drawer"
        label="Nodes"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
@@ -412,32 +348,32 @@
  	 
  	 	<predefinedEntry
           id="deployment.tool.node"
-          path="/component.group.nodes">
+          path="/deployment.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
           id="deployment.tool.device"
-          path="/component.group.nodes">
+          path="/deployment.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
           id="deployment.tool.executionEnvironment"
-          path="/component.group.nodes">
+          path="/deployment.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
           id="deployment.tool.artifact"
-          path="/component.group.nodes">
+          path="/deployment.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
           id="deployment.tool.comment"
-          path="/component.group.nodes">
+          path="/deployment.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
           id="deployment.tool.constraint"
-          path="/component.group.nodes">
+          path="/deployment.group.nodes">
     </predefinedEntry>
 
 	<entry
        description="Links"
-       id="component.group.links"
+       id="deployment.group.links"
        kind="drawer"
        label="Links"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
@@ -450,23 +386,23 @@
  	 
  	 	<predefinedEntry
           id="deployment.tool.link"
-          path="/component.group.links">
+          path="/deployment.group.links">
     </predefinedEntry>
  	<predefinedEntry
           id="deployment.tool.dependency"
-          path="/component.group.links">
+          path="/deployment.group.links">
     </predefinedEntry>
  	<predefinedEntry
           id="deployment.tool.generalization"
-          path="/component.group.links">
+          path="/deployment.group.links">
     </predefinedEntry>
  	<predefinedEntry
           id="deployment.tool.deployment"
-          path="/component.group.links">
+          path="/deployment.group.links">
     </predefinedEntry>
  	<predefinedEntry
           id="deployment.tool.manifestation"
-          path="/component.group.links">
+          path="/deployment.group.links">
     </predefinedEntry>
 
 
@@ -746,7 +682,7 @@
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
    </extension>
-
+   
 <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
       <?gmfgen generated="true"?>
       <modelingAssistantProvider class="org.eclipse.papyrus.diagram.deployment.providers.UMLModelingAssistantProvider">
@@ -861,7 +797,7 @@
                id="org.eclipse.papyrus.diagram.deployment.ExecutionEnvironment_21"
                name="%metatype.name.ExecutionEnvironment_21"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <specializes id="org.eclipse.papyrus.diagram.deployment.ExecutionEnvironment_2002"/>
             <param name="semanticHint" value="21"/>
          </specializationType>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">

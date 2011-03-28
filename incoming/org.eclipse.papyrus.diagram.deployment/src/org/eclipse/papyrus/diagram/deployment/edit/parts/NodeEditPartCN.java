@@ -31,10 +31,10 @@ import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditP
 import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.diagram.deployment.custom.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.deployment.custom.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.deployment.custom.figure.nodes.NodeFigure;
 import org.eclipse.papyrus.diagram.deployment.edit.policies.NodeItemSemanticEditPolicyCN;
-import org.eclipse.papyrus.diagram.deployment.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.deployment.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.deployment.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.deployment.providers.UMLElementTypes;
@@ -83,7 +83,7 @@ ShapeNodeEditPart {
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}

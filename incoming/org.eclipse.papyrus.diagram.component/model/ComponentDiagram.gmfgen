@@ -34,6 +34,10 @@
           xsi:type="gmfgen:CustomBehaviour"
           key="&quot;REMOVE_ORPHAN_VIEW&quot;"
           editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.component.custom.edit.policies.RemoveOrphanViewPolicy"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+          editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
       <domainDiagramElement
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Model"/>
       <childNodes
@@ -184,8 +188,6 @@
               height="50"/>
         </viewmap>
         <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
-        <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy"/>
@@ -287,8 +289,6 @@
               height="50"/>
         </viewmap>
         <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
-        <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy"/>
@@ -389,8 +389,6 @@
               height="20"/>
         </viewmap>
         <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
-        <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.component.custom.edit.policies.RemoveOrphanViewPolicy"/>
@@ -450,8 +448,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
@@ -516,8 +512,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
@@ -617,8 +611,6 @@
               height="100"/>
         </viewmap>
         <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
-        <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy"/>
@@ -717,8 +709,6 @@
               width="20"
               height="20"/>
         </viewmap>
-        <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface"/>
@@ -779,8 +769,6 @@
               width="150"
               height="150"/>
         </viewmap>
-        <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
@@ -854,8 +842,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment"/>
@@ -916,8 +902,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
@@ -1902,7 +1886,7 @@
         iD="org.eclipse.papyrus.diagram.component"
         name="Papyrus Component Diagram (Incubation)"
         provider="Eclipse Modeling Project"
-        version="0.8.0.qualifier">
+        version="0.7.2.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
     </plugin>

@@ -38,9 +38,9 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator;
+import org.eclipse.papyrus.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.component.custom.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.component.edit.policies.InterfaceItemSemanticEditPolicyPCN;
-import org.eclipse.papyrus.diagram.component.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.component.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.component.providers.UMLElementTypes;
@@ -84,8 +84,8 @@ AbstractBorderedShapeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InterfaceItemSemanticEditPolicyPCN());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -302,10 +302,31 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof ConstraintEditPartPCN) {
 			types.add(UMLElementTypes.Usage_4001);
 		}
+		if(targetEditPart instanceof ComponentEditPart) {
+			types.add(UMLElementTypes.InterfaceRealization_4006);
+		}
 		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.InterfaceRealization_4006);
 		}
+		if(targetEditPart instanceof PackageEditPart) {
+			types.add(UMLElementTypes.InterfaceRealization_4006);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.InterfaceRealization_4006);
+		}
+		if(targetEditPart instanceof PortEditPart) {
+			types.add(UMLElementTypes.InterfaceRealization_4006);
+		}
+		if(targetEditPart instanceof ComponentEditPartCN) {
+			types.add(UMLElementTypes.InterfaceRealization_4006);
+		}
+		if(targetEditPart instanceof ComponentEditPartPCN) {
+			types.add(UMLElementTypes.InterfaceRealization_4006);
+		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.component.edit.parts.InterfaceEditPartPCN) {
+			types.add(UMLElementTypes.InterfaceRealization_4006);
+		}
+		if(targetEditPart instanceof ConstraintEditPartPCN) {
 			types.add(UMLElementTypes.InterfaceRealization_4006);
 		}
 		if(targetEditPart instanceof ComponentEditPart) {
@@ -477,8 +498,15 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Constraint_3075);
 		} else if(relationshipType == UMLElementTypes.InterfaceRealization_4006) {
+			types.add(UMLElementTypes.Component_2002);
 			types.add(UMLElementTypes.Interface_2003);
+			types.add(UMLElementTypes.Package_3200);
+			types.add(UMLElementTypes.Constraint_3199);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Component_3070);
+			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Constraint_3075);
 		} else if(relationshipType == UMLElementTypes.Generalization_4003) {
 			types.add(UMLElementTypes.Component_2002);
 			types.add(UMLElementTypes.Interface_2003);

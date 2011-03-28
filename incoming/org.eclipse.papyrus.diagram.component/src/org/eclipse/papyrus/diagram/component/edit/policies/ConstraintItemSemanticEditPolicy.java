@@ -116,7 +116,7 @@ public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.InterfaceRealization_4006 == req.getElementType()) {
-			return null;
+			return getGEFWrapper(new InterfaceRealizationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Substitution_4012 == req.getElementType()) {
 			return getGEFWrapper(new SubstitutionCreateCommand(req, req.getSource(), req.getTarget()));

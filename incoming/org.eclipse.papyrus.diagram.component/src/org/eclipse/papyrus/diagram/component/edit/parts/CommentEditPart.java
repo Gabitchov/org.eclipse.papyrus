@@ -32,8 +32,8 @@ import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDis
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.component.edit.policies.CommentItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.component.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.component.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.component.providers.UMLElementTypes;
@@ -79,7 +79,7 @@ AbstractCommentEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CommentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}

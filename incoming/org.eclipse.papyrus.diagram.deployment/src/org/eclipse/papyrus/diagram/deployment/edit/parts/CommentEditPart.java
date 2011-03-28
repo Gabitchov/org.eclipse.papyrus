@@ -33,7 +33,6 @@ import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabe
 import org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.deployment.edit.policies.CommentItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.deployment.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.deployment.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.deployment.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.deployment.providers.UMLElementTypes;
@@ -79,7 +78,6 @@ AbstractCommentEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CommentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}

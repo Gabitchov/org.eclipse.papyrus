@@ -32,8 +32,8 @@ import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDis
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.component.edit.policies.ConstraintItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.component.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.component.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.component.providers.UMLElementTypes;
@@ -79,7 +79,7 @@ AbstractConstraintEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConstraintItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -336,10 +336,31 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof ConstraintEditPartPCN) {
 			types.add(UMLElementTypes.Usage_4001);
 		}
+		if(targetEditPart instanceof ComponentEditPart) {
+			types.add(UMLElementTypes.InterfaceRealization_4006);
+		}
 		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.InterfaceRealization_4006);
 		}
+		if(targetEditPart instanceof PackageEditPart) {
+			types.add(UMLElementTypes.InterfaceRealization_4006);
+		}
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.component.edit.parts.ConstraintEditPart) {
+			types.add(UMLElementTypes.InterfaceRealization_4006);
+		}
+		if(targetEditPart instanceof PortEditPart) {
+			types.add(UMLElementTypes.InterfaceRealization_4006);
+		}
+		if(targetEditPart instanceof ComponentEditPartCN) {
+			types.add(UMLElementTypes.InterfaceRealization_4006);
+		}
+		if(targetEditPart instanceof ComponentEditPartPCN) {
+			types.add(UMLElementTypes.InterfaceRealization_4006);
+		}
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
+			types.add(UMLElementTypes.InterfaceRealization_4006);
+		}
+		if(targetEditPart instanceof ConstraintEditPartPCN) {
 			types.add(UMLElementTypes.InterfaceRealization_4006);
 		}
 		if(targetEditPart instanceof ComponentEditPart) {
@@ -529,8 +550,15 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Constraint_3075);
 		} else if(relationshipType == UMLElementTypes.InterfaceRealization_4006) {
+			types.add(UMLElementTypes.Component_2002);
 			types.add(UMLElementTypes.Interface_2003);
+			types.add(UMLElementTypes.Package_3200);
+			types.add(UMLElementTypes.Constraint_3199);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Component_3070);
+			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Constraint_3075);
 		} else if(relationshipType == UMLElementTypes.Substitution_4012) {
 			types.add(UMLElementTypes.Component_2002);
 			types.add(UMLElementTypes.Interface_2003);
@@ -601,8 +629,9 @@ AbstractConstraintEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(8);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(9);
 		types.add(UMLElementTypes.Usage_4001);
+		types.add(UMLElementTypes.InterfaceRealization_4006);
 		types.add(UMLElementTypes.Substitution_4012);
 		types.add(UMLElementTypes.Manifestation_4014);
 		types.add(UMLElementTypes.ComponentRealization_4007);
@@ -619,6 +648,16 @@ AbstractConstraintEditPart {
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(relationshipType == UMLElementTypes.Usage_4001) {
+			types.add(UMLElementTypes.Component_2002);
+			types.add(UMLElementTypes.Interface_2003);
+			types.add(UMLElementTypes.Package_3200);
+			types.add(UMLElementTypes.Constraint_3199);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Component_3070);
+			types.add(UMLElementTypes.Component_3071);
+			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Constraint_3075);
+		} else if(relationshipType == UMLElementTypes.InterfaceRealization_4006) {
 			types.add(UMLElementTypes.Component_2002);
 			types.add(UMLElementTypes.Interface_2003);
 			types.add(UMLElementTypes.Package_3200);

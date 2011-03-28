@@ -685,11 +685,11 @@ public class UMLVisualIDRegistry {
 
 		viewInfo = new BaseViewInfo(21, ViewInfo.Node, "ExecutionEnvironment");
 
-		root.addNode(19, viewInfo);
-
 		root.addNode(17, viewInfo);
 
 		root.addNode(18, viewInfo);
+
+		root.addNode(19, viewInfo);
 
 		root.addNode(30, viewInfo);
 

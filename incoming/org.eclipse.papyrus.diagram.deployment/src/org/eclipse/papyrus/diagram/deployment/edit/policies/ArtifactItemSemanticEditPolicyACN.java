@@ -28,12 +28,9 @@ import org.eclipse.papyrus.diagram.deployment.edit.commands.CommentAnnotatedElem
 import org.eclipse.papyrus.diagram.deployment.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.diagram.deployment.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.diagram.deployment.edit.commands.DependencyCreateCommand;
-import org.eclipse.papyrus.diagram.deployment.edit.commands.DependencyReorientCommand;
 import org.eclipse.papyrus.diagram.deployment.edit.commands.DeploymentCreateCommand;
-import org.eclipse.papyrus.diagram.deployment.edit.commands.DeploymentReorientCommand;
 import org.eclipse.papyrus.diagram.deployment.edit.commands.GeneralizationCreateCommand;
 import org.eclipse.papyrus.diagram.deployment.edit.commands.ManifestationCreateCommand;
-import org.eclipse.papyrus.diagram.deployment.edit.commands.ManifestationReorientCommand;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ArtifactCompositeCompartmentEditPartACN;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ArtifactEditPartACN;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.CommentAnnotatedElementEditPart;
@@ -212,7 +209,10 @@ public class ArtifactItemSemanticEditPolicyACN extends UMLBaseItemSemanticEditPo
 	 */
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch(getVisualID(req)) {
+		case DeploymentEditPart.VISUAL_ID:
+		case ManifestationEditPart.VISUAL_ID:
 		case GeneralizationEditPart.VISUAL_ID:
+		case DependencyEditPart.VISUAL_ID:
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getRelationship());
 			if(provider == null) {
 				return UnexecutableCommand.INSTANCE;
@@ -223,12 +223,6 @@ public class ArtifactItemSemanticEditPolicyACN extends UMLBaseItemSemanticEditPo
 				return UnexecutableCommand.INSTANCE;
 			}
 			return getGEFWrapper(reorientCommand.reduce());
-		case DeploymentEditPart.VISUAL_ID:
-			return getGEFWrapper(new DeploymentReorientCommand(req));
-		case ManifestationEditPart.VISUAL_ID:
-			return getGEFWrapper(new ManifestationReorientCommand(req));
-		case DependencyEditPart.VISUAL_ID:
-			return getGEFWrapper(new DependencyReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

@@ -43,12 +43,12 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Localization: plugin
-Export-Package: org.eclipse.papyrus.diagram.deployment.edit.helpers,
- org.eclipse.papyrus.diagram.deployment.edit.parts,
+Export-Package: org.eclipse.papyrus.diagram.deployment.edit.parts,
  org.eclipse.papyrus.diagram.deployment.part,
  org.eclipse.papyrus.diagram.deployment.providers
 Import-Package: org.eclipse.papyrus.core.adaptor.gmf,
  org.eclipse.papyrus.diagram.common.figure.node,
+ org.eclipse.papyrus.diagram.deployment.edit.parts,
  org.eclipse.papyrus.diagram.deployment.part,
  org.eclipse.papyrus.editor,
  org.eclipse.papyrus.service.edit.service,

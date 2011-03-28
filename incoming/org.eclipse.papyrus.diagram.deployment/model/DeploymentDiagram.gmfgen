@@ -28,6 +28,10 @@
       <viewmap
           xsi:type="gmfgen:FigureViewmap"
           figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+          editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.RemoveOrphanViewPolicy"/>
       <domainDiagramElement
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Model"/>
       <childNodes
@@ -76,8 +80,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Node"/>
@@ -167,8 +169,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Device"/>
@@ -256,8 +256,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ExecutionEnvironment"/>
@@ -350,8 +348,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Artifact"/>
@@ -449,8 +445,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Artifact"/>
@@ -514,8 +508,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment"/>
@@ -574,8 +566,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
@@ -677,8 +667,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ExecutionEnvironment"/>
@@ -756,8 +744,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Device"/>
@@ -847,8 +833,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Artifact"/>
@@ -927,8 +911,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Node"/>
@@ -1544,7 +1526,7 @@
             largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             createMethodName="createNodesGroup"
-            id="&quot;component.group.nodes&quot;">
+            id="&quot;deployment.group.nodes&quot;">
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Node"
@@ -1606,7 +1588,7 @@
             largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             createMethodName="createLinksGroup"
-            id="&quot;component.group.links&quot;"
+            id="&quot;deployment.group.links&quot;"
             stack="true"
             collapse="true">
           <entries
@@ -1729,6 +1711,9 @@
             body="// Constraint specification init&#xD;&#xA;org.eclipse.uml2.uml.LiteralString value = org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createLiteralString();&#xD;&#xA;value.setValue(&quot;&quot;);&#xD;&#xA;return value;"/>
         <expressions
             body="// Comment body init&#xD;&#xA;return &quot;&quot;;"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="// Creation constraint for TopLevelNodes&#xD;&#xA;&#x9;if(! (getElementToEdit() instanceof org.eclipse.uml2.uml.Package)) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;return true;"/>
       </providers>
     </expressionProviders>
     <labelParsers
@@ -1776,6 +1761,11 @@
         name="EP_Constraint_NODE"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractConstraintEditPart"/>
     <extensionNodes
+        xsi:type="papyrusgmfgenextension:GenNodeConstraint"
+        comment="Creation constraint for TopLevelNode in virtual canvas"
+        genNode="/0/@diagram/@topLevelNodes.0 /0/@diagram/@topLevelNodes.1 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.5"
+        genConstraint="/0/@expressionProviders/@providers.1/@expressions.3"/>
+    <extensionNodes
         xsi:type="papyrusgmfgenextension:AdditionalEditPartCandies"
         comment="Indicate specific BaseEditHelper in place of generated EditHelper"
         baseEditHelperPackage="org.eclipse.papyrus.diagram.common.helper"/>
@@ -1786,8 +1776,8 @@
         genView="/0/@diagram/@topLevelNodes.0 /0/@diagram/@topLevelNodes.1 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.5 /0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6 /0/@diagram/@links.1 /0/@diagram/@links.2"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:EditPartUsingReorientService"
-        comment="Use the edit service for reorient command (Generalization only)"
-        name="Generalization"
-        genView="/0/@diagram/@links.5"/>
+        comment="Use the edit service for reorient command (All DirectedRelationship)"
+        name="DirectedRelationship"
+        genView="/0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

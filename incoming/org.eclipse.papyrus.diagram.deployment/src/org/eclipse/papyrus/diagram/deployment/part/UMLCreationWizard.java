@@ -104,13 +104,13 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 		diagramModelFilePage.setDescription(Messages.UMLCreationWizard_DiagramModelFilePageDescription);
 		addPage(diagramModelFilePage);
 
-		domainModelFilePage = new UMLCreationWizardPage("DomainModelFile", getSelection(), "umlDeployment") { //$NON-NLS-1$ //$NON-NLS-2$
+		domainModelFilePage = new UMLCreationWizardPage("DomainModelFile", getSelection(), "PapyrusUMLDeployment") { //$NON-NLS-1$ //$NON-NLS-2$
 
 			public void setVisible(boolean visible) {
 				if(visible) {
 					String fileName = diagramModelFilePage.getFileName();
 					fileName = fileName.substring(0, fileName.length() - ".PapyrusUMLDeployment_diagram".length()); //$NON-NLS-1$
-					setFileName(UMLDiagramEditorUtil.getUniqueFileName(getContainerFullPath(), fileName, "umlDeployment")); //$NON-NLS-1$
+					setFileName(UMLDiagramEditorUtil.getUniqueFileName(getContainerFullPath(), fileName, "PapyrusUMLDeployment")); //$NON-NLS-1$
 				}
 				super.setVisible(visible);
 			}

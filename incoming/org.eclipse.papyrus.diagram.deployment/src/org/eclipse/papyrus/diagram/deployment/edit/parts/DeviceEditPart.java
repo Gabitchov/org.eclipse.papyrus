@@ -30,10 +30,10 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.diagram.deployment.custom.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.deployment.custom.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.deployment.custom.figure.nodes.DeviceFigure;
 import org.eclipse.papyrus.diagram.deployment.edit.policies.DeviceItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.deployment.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.deployment.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.deployment.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.deployment.providers.UMLElementTypes;
@@ -80,7 +80,7 @@ ShapeNodeEditPart {
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}

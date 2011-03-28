@@ -133,7 +133,7 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.InterfaceRealization_4006 == req.getElementType()) {
-			return null;
+			return getGEFWrapper(new InterfaceRealizationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Generalization_4003 == req.getElementType()) {
 			return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));

@@ -21,6 +21,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
+import org.eclipse.papyrus.diagram.deployment.custom.edit.policies.CustomDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.deployment.custom.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.deployment.edit.policies.DeploymentDiagramItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.deployment.part.UMLVisualIDRegistry;
 
@@ -108,6 +110,8 @@ public class DeploymentDiagramEditPart extends DiagramEditPart {
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.deployment.edit.policies.ModelCanonicalEditPolicy());
 
 
+		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 

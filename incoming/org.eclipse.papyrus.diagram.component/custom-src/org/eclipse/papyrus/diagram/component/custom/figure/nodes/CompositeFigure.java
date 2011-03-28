@@ -18,7 +18,6 @@ import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.figure.node.CompartmentFigure;
 import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;

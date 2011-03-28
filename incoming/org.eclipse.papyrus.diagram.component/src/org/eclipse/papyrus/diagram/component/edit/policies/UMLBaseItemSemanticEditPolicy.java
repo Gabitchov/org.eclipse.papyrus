@@ -47,7 +47,6 @@ import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Generalization;
-import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.Manifestation;
 import org.eclipse.uml2.uml.NamedElement;
@@ -349,7 +348,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateInterfaceRealization_4006(Package container, NamedElement source, Interface target) {
+		public boolean canCreateInterfaceRealization_4006(Package container, NamedElement source, NamedElement target) {
 			return canExistInterfaceRealization_4006(container, null, source, target);
 		}
 
@@ -471,12 +470,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistInterfaceRealization_4006(Package container, InterfaceRealization linkInstance, NamedElement source, Interface target) {
+		public boolean canExistInterfaceRealization_4006(Package container, InterfaceRealization linkInstance, NamedElement source, NamedElement target) {
 			try {
 				if(source == null) {
 					return true;
 				} else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getInterface()); //$NON-NLS-1$
+					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getNamedElement()); //$NON-NLS-1$
 					Object sourceVal = UMLOCLFactory.getExpression(7, UMLPackage.eINSTANCE.getNamedElement(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
 					if(false == sourceVal instanceof Boolean || !((Boolean)sourceVal).booleanValue()) {
 						return false;
@@ -486,7 +485,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return true;
 				} else {
 					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getNamedElement()); //$NON-NLS-1$
-					Object targetVal = UMLOCLFactory.getExpression(6, UMLPackage.eINSTANCE.getInterface(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					Object targetVal = UMLOCLFactory.getExpression(6, UMLPackage.eINSTANCE.getNamedElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
 					if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
 						return false;
 					} // else fall-through
