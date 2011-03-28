@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension
+	<extension
          point="org.eclipse.m2m.qvt.oml.javaBlackboxUnits">
       <unit
             name="ConverterLibs" namespace="Converter.Utils">
@@ -14,16 +14,16 @@
             <metamodel nsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
          </library>
       </unit>
-   </extension>
-   <extension
+	</extension>
+	<extension
          point="org.eclipse.m2m.qvt.oml.runtime.qvtTransformation">
       <library
             file="TransfoQvtoDi2toDi/"
             id="org.eclipse.papyrus.conversion.di2todi.library1">
       </library>
-   </extension>
+	</extension>
 
-   <extension
+	<extension
          point="org.eclipse.ui.popupMenus">
       <objectContribution
             objectClass="org.eclipse.core.resources.IFile"
@@ -44,10 +44,12 @@
                id="org.eclipse.papyrus.conversion.di2todi.action">
          </action>
       </objectContribution>
-   </extension>
+	</extension>
    
-  <extension
-         point="org.eclipse.help.toc">
-      <toc file="toc.xml" primary="true"/>
-   </extension>
+	<extension point="org.eclipse.help.toc">
+    	<toc file="toc.xml" primary="false"/>
+	</extension>
+	<extension point="org.eclipse.help.toc">
+		<toc file="tocdev.xml" primary="false"/>
+	</extension>
 </plugin>
