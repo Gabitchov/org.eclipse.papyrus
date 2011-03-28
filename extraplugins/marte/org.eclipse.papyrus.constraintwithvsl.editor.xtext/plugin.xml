@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.eclipse.org/papyrus/constraintwithvsl/editor/xtext/ConstraintWithVSLl" 
+       class = "org.eclipse.papyrus.constraintwithvsl.editor.xtext.constraintWithVSLl.ConstraintWithVSLlPackage"
+       genModel = "org/eclipse/papyrus/constraintwithvsl/editor/xtext/ConstraintWithVSLl.genmodel" /> 
+	
+  </extension>
+
+
+
+
+
+</plugin>
