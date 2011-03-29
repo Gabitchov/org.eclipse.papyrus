@@ -18,8 +18,10 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.ui.parts.ScrollingGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -33,7 +35,6 @@ import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditor;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
-import org.eclipse.papyrus.diagram.common.groups.groupcontainment.EditingDomainRegisteringService;
 import org.eclipse.papyrus.diagram.common.listeners.DropTargetListener;
 import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.widgets.Composite;
@@ -112,6 +113,22 @@ public class UmlActivityDiagramForMultiEditor extends UMLDiagramEditor {
 		splitter = parent;
 		super.createGraphicalViewer(parent);
 	}
+/*
+ * FIXME create viewer which allow to select element trought group
+ * 
+ */
+//    /**
+//     * Creates a ScrollingGraphicalViewer without the drop adapter which
+//     * excludes drag and drop functionality from other defined views (XML)
+//     * Subclasses must override this method to include the DnD functionality
+//     * 
+//     * @return ScrollingGraphicalViewer
+//     */
+//	@Override
+//    protected ScrollingGraphicalViewer createScrollingGraphicalViewer() {
+//       // return new DiagramGraphicalViewer();
+//        return new GroupGraphicalViewer();
+//    }
 
 	/**
 	 * {@inheritDoc}
@@ -157,7 +174,5 @@ public class UmlActivityDiagramForMultiEditor extends UMLDiagramEditor {
 				return getEditingDomain();
 			}
 		});
-		//configure group framework
-		EditingDomainRegisteringService.addGroupFrameworkForEditingDomain(getEditingDomain(), getDiagramEditPart());
 	}
 }

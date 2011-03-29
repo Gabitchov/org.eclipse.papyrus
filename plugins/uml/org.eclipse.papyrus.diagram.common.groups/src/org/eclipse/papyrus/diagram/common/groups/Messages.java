@@ -20,6 +20,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS {
 
+
 	/**
 	 * Initialize from files
 	 */
@@ -69,13 +70,28 @@ public class Messages extends NLS {
 	public static String ChooseParentNotificationCommand_ChooseGraphicalParent;
 
 	/**
+	 * Message display on the Choose graphical children notification
+	 * e.g "Change graphical parent"
+	 */
+	public static String ChooseParentNotificationCommand_ChooseGraphicalParentMessage;
+
+	/**
 	 * Label of the Choose Children Notification
 	 */
 	public static String ChooseChildrenICompositeCreator_ChooseChildren;
 
 	/**
+	 * Message display to choose graphical children
+	 */
+	public static String ChooseParentNotificationCommand_ChooseGraphicalChildrenMessage;
+
+	/**
 	 * Message displayed when the user is asked to choose between model parents (This message is a warnig)
 	 */
 	public static String ChooseParentNotificationCommand_ChooseModelParent;
+
+
+
+
 
 }

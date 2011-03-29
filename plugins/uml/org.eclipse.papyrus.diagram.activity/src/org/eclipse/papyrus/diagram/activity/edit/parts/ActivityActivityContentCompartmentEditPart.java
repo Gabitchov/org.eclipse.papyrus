@@ -35,7 +35,7 @@ import org.eclipse.papyrus.diagram.activity.edit.policies.CustomDiagramDragDropE
 import org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
-import org.eclipse.papyrus.diagram.common.groups.edit.policies.DragDropEditGroupPolicy;
+
 
 
 /**

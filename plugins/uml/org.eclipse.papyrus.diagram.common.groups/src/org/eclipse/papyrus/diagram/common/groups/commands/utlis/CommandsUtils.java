@@ -37,6 +37,7 @@ import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdap
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SemanticCreateCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
@@ -51,7 +52,7 @@ import org.eclipse.papyrus.diagram.common.groups.commands.ChooseParentNotificati
 import org.eclipse.papyrus.diagram.common.groups.commands.SetUpReferencesCommand;
 import org.eclipse.papyrus.diagram.common.groups.commands.UpdateReferencesCommand;
 import org.eclipse.papyrus.diagram.common.groups.core.groupcontainment.GroupContainmentRegistry;
-import org.eclipse.papyrus.diagram.common.groups.core.ui.utils.CreatorUtils;
+import org.eclipse.papyrus.diagram.common.groups.core.utils.DefaultModelParent;
 import org.eclipse.papyrus.diagram.common.groups.core.utils.Utils;
 import org.eclipse.papyrus.diagram.common.groups.groupcontainment.AbstractContainerNodeDescriptor;
 import org.eclipse.papyrus.diagram.common.groups.utils.GroupRequestConstants;
@@ -286,10 +287,6 @@ public class CommandsUtils {
 		return null;
 	}
 
-
-
-
-
 	/**
 	 * Update model for all new direct child.
 	 * 
@@ -351,15 +348,16 @@ public class CommandsUtils {
 	 *        EditingDomain to create TransactionalCommand
 	 * @param label
 	 *        Label of the command
+	 * @param diagramPart
 	 * @return The command or null is not possible
 	 */
-	public static CompositeCommand getChooseGraphicalChildrenNotificationCommand(List<IGraphicalEditPart> allChildren, List<IGraphicalEditPart> automaticChildren, CreateViewAndElementRequest request, TransactionalEditingDomain domain, String label, IGraphicalEditPart getHost) {
+	public static CompositeCommand getChooseGraphicalChildrenNotificationCommand(List<IGraphicalEditPart> allChildren, List<IGraphicalEditPart> automaticChildren, CreateViewAndElementRequest request, TransactionalEditingDomain domain, String label, IGraphicalEditPart getHost, DiagramEditPart diagramPart) {
 		if(allChildren.size() > automaticChildren.size()) {
 			Iterator<? extends CreateViewRequest.ViewDescriptor> descriptors = request.getViewDescriptors().iterator();
 			CompositeCommand compositeCommand = new CompositeCommand(label);
 			while(descriptors.hasNext()) {
 				CreateViewRequest.ViewDescriptor descriptor = (CreateViewRequest.ViewDescriptor)descriptors.next();
-				ChooseChildrenNotificationCommand cmd = new ChooseChildrenNotificationCommand(domain, label, allChildren, automaticChildren, descriptor, getHost);
+				ChooseChildrenNotificationCommand cmd = new ChooseChildrenNotificationCommand(domain, label, allChildren, automaticChildren, descriptor, getHost, diagramPart);
 				if(cmd != null) {
 					compositeCommand.compose(cmd);
 				}
@@ -387,14 +385,12 @@ public class CommandsUtils {
 	 * @see #getChooseGraphicalChildrenNotificationCommand
 	 * @return
 	 */
-	public static CompositeCommand getChooseGraphicalChildrenNotificationCommand(List<IGraphicalEditPart> allChildren, List<IGraphicalEditPart> automaticChildren, IAdaptable adapter, TransactionalEditingDomain domain, String label, IGraphicalEditPart getHost) {
+	public static CompositeCommand getChooseGraphicalChildrenNotificationCommand(List<IGraphicalEditPart> allChildren, List<IGraphicalEditPart> automaticChildren, IAdaptable adapter, TransactionalEditingDomain domain, String label, IGraphicalEditPart getHost, DiagramEditPart diagramPart) {
 		CompositeCommand result = null;
-		if(allChildren.size() > automaticChildren.size()) {
-			ChooseChildrenNotificationCommand cmd = new ChooseChildrenNotificationCommand(domain, label, allChildren, automaticChildren, adapter, getHost);
-			if(cmd != null) {
-				result = new CompositeCommand(label);
-				result.compose(cmd);
-			}
+		ChooseChildrenNotificationCommand cmd = new ChooseChildrenNotificationCommand(domain, label, allChildren, automaticChildren, adapter, getHost, diagramPart);
+		if(cmd != null) {
+			result = new CompositeCommand(label);
+			result.compose(cmd);
 		}
 		return result;
 	}
@@ -423,7 +419,7 @@ public class CommandsUtils {
 	 * @param modelParents
 	 * @return the composite command of all this steps
 	 */
-	public static CompositeCommand getHandleChildrenCommand(Set<AbstractContainerNodeDescriptor> descriptors, Request request, IGraphicalEditPart diagramPart, TransactionalEditingDomain editingDomain, IAdaptable parentAdapter, List<IGraphicalEditPart> modelParents, IGraphicalEditPart getHost) {
+	public static CompositeCommand getHandleChildrenCommand(Set<AbstractContainerNodeDescriptor> descriptors, Request request, DiagramEditPart diagramPart, TransactionalEditingDomain editingDomain, IAdaptable parentAdapter, List<IGraphicalEditPart> modelParents, IGraphicalEditPart getHost) {
 		CompositeCommand cc = null;
 		//Do the following only if the created element is a group 
 		if(!descriptors.isEmpty()) {
@@ -463,7 +459,7 @@ public class CommandsUtils {
 						}
 					}
 					/*
-					 * Command to update model
+					 * Command to update model of directChild which can be contain by the moving group
 					 */
 					if(!directChildsToComplete.isEmpty()) {
 						ChangeModelParentCommand updateChildrenModel = getUpdateChildrenModel(directChildsToComplete, descriptor, editingDomain, parentAdapter, directChildsToComplete.get(0));
@@ -471,8 +467,6 @@ public class CommandsUtils {
 							cc.compose(updateChildrenModel);
 						}
 					}
-
-
 					/*
 					 * Command to update visually contained element to set their graphical parent with the parent Adapter
 					 */
@@ -481,9 +475,9 @@ public class CommandsUtils {
 					}
 					String updateCommandeLabel = "Update children references";//$NON-NLS-1$
 					/*
-					 * Update all graphical children references
+					 * Update all graphical children references and model
 					 */
-					updateReferencesOfGraphicalChildren(request, editingDomain, parentAdapter, cc, directChildsToComplete, oldDirectChildsToComplete, handleChildrenLabel + ":" + updateCommandeLabel + " -> " + "update reference graphical child");
+					updateReferencesAndModelOfGraphicalChildren(request, editingDomain, parentAdapter, cc, directChildsToComplete, oldDirectChildsToComplete, handleChildrenLabel + ":" + updateCommandeLabel + " -> " + "update reference graphical child", getHost);
 					/*
 					 * Command to update references of new child
 					 */
@@ -499,18 +493,17 @@ public class CommandsUtils {
 					/*
 					 * Command to create the graphical notification
 					 */
-					if(!choiceToMakeChildren.isEmpty()) {
-						String chooseGraphicalChildrenLabel = "Notification for choosing graphical children";//$NON-NLS-1$
-						CompositeCommand chooseGraphicalChildrenCommand = null;
-						if(request instanceof CreateViewAndElementRequest) {
-							chooseGraphicalChildrenCommand = getChooseGraphicalChildrenNotificationCommand(directChildsToComplete, newGraphicalChildren, (CreateViewAndElementRequest)request, editingDomain, chooseGraphicalChildrenLabel, getHost);
-						} else if(request instanceof ChangeBoundsRequest) {
-							chooseGraphicalChildrenCommand = getChooseGraphicalChildrenNotificationCommand(directChildsToComplete, newGraphicalChildren, parentAdapter, editingDomain, chooseGraphicalChildrenLabel, getHost);
-						}
-						if(chooseGraphicalChildrenCommand != null) {
-							cc.compose(chooseGraphicalChildrenCommand);
-						}
+					String chooseGraphicalChildrenLabel = "Notification for choosing graphical children";//$NON-NLS-1$
+					CompositeCommand chooseGraphicalChildrenCommand = null;
+					if(request instanceof CreateViewAndElementRequest) {
+						chooseGraphicalChildrenCommand = getChooseGraphicalChildrenNotificationCommand(directChildsToComplete, newGraphicalChildren, (CreateViewAndElementRequest)request, editingDomain, chooseGraphicalChildrenLabel, getHost, diagramPart);
+					} else if(request instanceof ChangeBoundsRequest) {
+						chooseGraphicalChildrenCommand = getChooseGraphicalChildrenNotificationCommand(directChildsToComplete, newGraphicalChildren, parentAdapter, editingDomain, chooseGraphicalChildrenLabel, getHost, diagramPart);
 					}
+					if(chooseGraphicalChildrenCommand != null) {
+						cc.compose(chooseGraphicalChildrenCommand);
+					}
+
 					cc.reduce();
 					if(cc.isEmpty()) {
 						cc = null;
@@ -529,10 +522,14 @@ public class CommandsUtils {
 	 * @param editingDomain
 	 * @param parentAdapter
 	 * @param cc
+	 *        Composite command to complete with new commands
 	 * @param childList
 	 * @param updateCommandeLabel
+	 *        Label for the command
+	 * @param getHost
+	 *        {@link IGraphicalEditPart} hosting the {@link EditPart}
 	 */
-	private static void updateReferencesOfGraphicalChildren(Request request, TransactionalEditingDomain editingDomain, IAdaptable parentAdapter, CompositeCommand cc, List<IGraphicalEditPart> childList, List<IGraphicalEditPart> oldChildsList, String updateCommandeLabel) {
+	private static void updateReferencesAndModelOfGraphicalChildren(Request request, TransactionalEditingDomain editingDomain, IAdaptable parentAdapter, CompositeCommand cc, List<IGraphicalEditPart> childList, List<IGraphicalEditPart> oldChildsList, String updateCommandeLabel, IGraphicalEditPart getHost) {
 		if(request instanceof ChangeBoundsRequest) {
 			Object _movingPart = parentAdapter.getAdapter(EditPart.class);
 			if(_movingPart instanceof IGraphicalEditPart) {
@@ -550,28 +547,63 @@ public class CommandsUtils {
 					IGraphicalEditPart compartmentEditPart = (IGraphicalEditPart)Utils.getCompartementEditPartFromMainEditPart(movingEditPart.getViewer().getEditPartRegistry(), movingEditPart);
 					//Suppress old reference
 					for(IGraphicalEditPart parentGroup : oldGroupContainer) {
+						//						if(!newGroupContainer.contains(parentGroup) && !parentGroup.equals(compartmentEditPart)) {
 						if(!newGroupContainer.contains(parentGroup) && !parentGroup.equals(compartmentEditPart)) {
 							//Unset the reference
 							UpdateReferencesCommand cmd1 = new UpdateReferencesCommand(editingDomain, updateCommandeLabel, Collections.singletonList(graphicalChild), GroupContainmentRegistry.getContainerDescriptor(parentGroup), parentGroup, UpdateReferencesCommand.UNSET_MODE);
 							if(cmd1 != null) {
 								cc.compose(cmd1);
 							}
-						} else {
-							newGroupContainer.remove(parentGroup);
 						}
 					}
-					//Add new reference
+					//List of all model parent available (except the compoartment edit part)
+					List<IGraphicalEditPart> modelParents = new ArrayList<IGraphicalEditPart>();
+					EObject childEObject = ((IGraphicalEditPart)graphicalChild).resolveSemanticElement();
+					//Does the child have already a model parent valide
+					boolean alreadyHaveValideModelParent = false;
+					AbstractContainerNodeDescriptor containerDescriptor = GroupContainmentRegistry.getContainerDescriptor(compartmentEditPart);
+					//If compartmentEditPart refer to an a group which can be model parent then the child already have a model parent
+					if(containerDescriptor != null) {
+						alreadyHaveValideModelParent = containerDescriptor.canIBeModelParentOf(childEObject.eClass());
+					}
+					//Add new reference and update model
 					for(IGraphicalEditPart newParentGroup : newGroupContainer) {
 						//set Reference
-						if(!newParentGroup.equals(compartmentEditPart)) {
-							UpdateReferencesCommand cmd2 = new UpdateReferencesCommand(editingDomain, updateCommandeLabel, Collections.singletonList(graphicalChild), GroupContainmentRegistry.getContainerDescriptor(newParentGroup), newParentGroup, UpdateReferencesCommand.SET_MODE);
-							if(cmd2 != null) {
-								cc.compose(cmd2);
+						UpdateReferencesCommand cmd2 = new UpdateReferencesCommand(editingDomain, updateCommandeLabel, Collections.singletonList(graphicalChild), GroupContainmentRegistry.getContainerDescriptor(newParentGroup), newParentGroup, UpdateReferencesCommand.SET_MODE);
+						if(cmd2 != null) {
+							cc.compose(cmd2);
+						}
+						//Create a list of all model parent available. Set alreadyHaveValideModelParent to true if the child already have a model parent wich is on the new model parent
+						AbstractContainerNodeDescriptor desc = GroupContainmentRegistry.getContainerDescriptor(newParentGroup);
+						if(desc != null) {
+							if(desc.canIBeModelParentOf(childEObject.eClass())) {
+								modelParents.add(newParentGroup);
+							}
+						}
+					}
+					if(!alreadyHaveValideModelParent) {
+						Map<EObject, EReference> child = null;
+						IGraphicalEditPart newModelParent = null;
+						if(!modelParents.isEmpty()) {
+							newModelParent = modelParents.get(0);
+							AbstractContainerNodeDescriptor newDesc = GroupContainmentRegistry.getContainerDescriptor(newModelParent);
+							if(newDesc != null && newModelParent != null) {
+								EReference ref = newDesc.getContainmentReferenceFor(childEObject.eClass());
+								child = Collections.singletonMap(childEObject, ref);
+							}
+						} else {
+							DefaultModelParent parent = Utils.getDefaultModelParent(childEObject.eClass(), getHost);
+							child = Collections.singletonMap(childEObject, parent.geteReference());
+							newModelParent = parent.getiGraphicalEditPart();
+						}
+						if(child != null && newModelParent != null) {
+							ChangeModelParentCommand changeModelParent = new ChangeModelParentCommand(editingDomain, newModelParent, child, newModelParent);
+							if(changeModelParent != null) {
+								cc.compose(changeModelParent);
 							}
 						}
 					}
 				}
-
 			}
 		}
 	}
@@ -582,12 +614,12 @@ public class CommandsUtils {
 	 * @param groupContainer
 	 * @param label
 	 */
-//	private static void printListIGraphical(List<IGraphicalEditPart> groupContainer, String label) {
-//		System.out.println("Print list : " + label);
-//		for(IGraphicalEditPart child : groupContainer) {
-//			System.out.println(CreatorUtils.getLabel(child));
-//		}
-//	}
+	//	private static void printListIGraphical(List<IGraphicalEditPart> groupContainer, String label) {
+	//		System.out.println("Print list : " + label);
+	//		for(IGraphicalEditPart child : groupContainer) {
+	//			System.out.println(CreatorUtils.getLabel(child));
+	//		}
+	//	}
 
 	/**
 	 * Get all {@link IGraphicalEditPart} which are graphical children from a {@link IGraphicalEditPart} parent
@@ -729,7 +761,7 @@ public class CommandsUtils {
 		IGraphicalEditPart graphicalParent = null;
 		if(!_graphicalParents.isEmpty()) {
 			graphicalParent = _graphicalParents.get(0);
-			request.getExtendedData().put(GRAPHICAL_PARENT, graphicalParent);
+
 			request.getExtendedData().put(GroupRequestConstants.GRAPHICAL_CONTAINERS, _graphicalParents);
 		}
 		if(_modelParents != null) {
@@ -762,9 +794,10 @@ public class CommandsUtils {
 			IGraphicalEditPart defaultGraphicalEditPart = _modelParents.get(0);
 			//If the current host is different the first element on the modelParent list the system send the request to its edit part
 			if(!getHost.equals(defaultGraphicalEditPart)) {
+				request.getExtendedData().put(NEW_PARENT_HOST, defaultGraphicalEditPart);
 				return defaultGraphicalEditPart.getCommand(request);
 			}
-			modelContainer = _modelParents.get(0).resolveSemanticElement();
+			modelContainer = getHost.resolveSemanticElement();
 			createElementRequest.setContainer(modelContainer);
 		} else {
 			/*

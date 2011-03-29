@@ -13,9 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.groups.core.ui;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
@@ -25,17 +28,21 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.core.utils.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.groups.Messages;
 import org.eclipse.papyrus.diagram.common.groups.commands.ChangeGraphicalParentCommand;
+import org.eclipse.papyrus.diagram.common.groups.core.PendingGroupNotificationsManager;
 import org.eclipse.papyrus.diagram.common.groups.core.ui.utils.CreatorUtils;
 import org.eclipse.papyrus.ui.toolbox.notification.ICompositeCreator;
-import org.eclipse.papyrus.ui.toolbox.notification.INotification;
-import org.eclipse.papyrus.ui.toolbox.notification.NotificationRunnable;
 import org.eclipse.papyrus.ui.toolbox.notification.builders.IContext;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.forms.widgets.FormText;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
@@ -46,7 +53,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  * @author arthur daussy
  * 
  */
-public class ChooseChildrenICompositeCreator implements ICompositeCreator, NotificationRunnable {
+public class ChooseChildrenNotificationConfigurator extends NotificationConfigurator {
 
 	/**
 	 * EditPart of the parent
@@ -56,20 +63,22 @@ public class ChooseChildrenICompositeCreator implements ICompositeCreator, Notif
 	/**
 	 * All possible graphical children
 	 */
-	private List<IGraphicalEditPart> allChildren;
+	protected List<IGraphicalEditPart> allChildren;
 
 	/**
 	 * All children which are automatically chosen as graphical child
 	 */
-	private List<IGraphicalEditPart> automaticChildren;
+	protected List<IGraphicalEditPart> automaticChildren;
 
 	/**
 	 * buttons for children
 	 */
 	private Map<Button, IGraphicalEditPart> childCheckBoxes;
 
-	/** {@link EditPart} hosting the {@link EditPolicy} */
-	private IGraphicalEditPart host;
+	/**
+	 * {@link EditPart} hosting the {@link EditPolicy}
+	 */
+	protected IGraphicalEditPart host;
 
 
 	/**
@@ -83,13 +92,13 @@ public class ChooseChildrenICompositeCreator implements ICompositeCreator, Notif
 	 * @param automaticChildren
 	 * @see {@link #automaticChildren}
 	 */
-	public ChooseChildrenICompositeCreator(IGraphicalEditPart parentEditPart, List<IGraphicalEditPart> allChildren, List<IGraphicalEditPart> automaticChildren, IGraphicalEditPart host) {
-		super();
+	public ChooseChildrenNotificationConfigurator(IGraphicalEditPart parentEditPart, List<IGraphicalEditPart> allChildren, List<IGraphicalEditPart> automaticChildren, IGraphicalEditPart host, PendingGroupNotificationsManager manager) {
+		super(parentEditPart, manager, Messages.ChooseChildrenICompositeCreator_ChooseChildren, Mode.QUESTION_MODE);
 		this.parentEditPart = parentEditPart;
 		this.allChildren = allChildren;
 		this.automaticChildren = automaticChildren;
 		this.host = host;
-		childCheckBoxes = new HashMap<Button, IGraphicalEditPart>();
+		this.childCheckBoxes = new HashMap<Button, IGraphicalEditPart>();
 	}
 
 	/**
@@ -99,23 +108,31 @@ public class ChooseChildrenICompositeCreator implements ICompositeCreator, Notif
 	 * @param context
 	 */
 	public void run(IContext context) {
-		TransactionalEditingDomain editingDomain = parentEditPart.getEditingDomain();
+		TransactionalEditingDomain editingDomain = mainEditPart.getEditingDomain();
+		Set<IGraphicalEditPart> childrenUpdated = new HashSet<IGraphicalEditPart>();
 		for(Button checkBoxButton : childCheckBoxes.keySet()) {
 			if(checkBoxButton.getSelection() && checkBoxButton.isEnabled()) {
 				IGraphicalEditPart childPart = childCheckBoxes.get(checkBoxButton);
-				String label = "Change graphical parent" + " of " + CreatorUtils.getLabel(childPart) + " to " + CreatorUtils.getLabel(parentEditPart);
-				ChangeGraphicalParentCommand cmd = new ChangeGraphicalParentCommand(editingDomain, label, parentEditPart, childPart, host);
-				if(cmd != null && cmd.canExecute()) {
-					//Execute the command
-					editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
+				if(!childrenUpdated.contains(childPart)) {
+					changeGraphicalParentOf(editingDomain, childPart);
+					childrenUpdated.add(childPart);
 				}
 			}
 		}
 		closeNotitfication(context);
 	}
 
-	public String getLabel() {
-		return Messages.ChooseChildrenICompositeCreator_ChooseChildren;
+	/**
+	 * @param editingDomain
+	 * @param childPart
+	 */
+	private void changeGraphicalParentOf(TransactionalEditingDomain editingDomain, IGraphicalEditPart childPart) {
+		String label = "Change graphical parent" + " of " + CreatorUtils.getLabel(childPart) + " to " + CreatorUtils.getLabel(mainEditPart);
+		ChangeGraphicalParentCommand cmd = new ChangeGraphicalParentCommand(editingDomain, label, mainEditPart, childPart, host);
+		if(cmd != null && cmd.canExecute()) {
+			//Execute the command
+			editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
+		}
 	}
 
 	/**
@@ -134,7 +151,7 @@ public class ChooseChildrenICompositeCreator implements ICompositeCreator, Notif
 		Composite top = toolkit.createComposite(parent, SWT.NONE);
 		top.setLayout(new FormLayout());
 		FormText textLabel = toolkit.createFormText(top, false);
-		textLabel.setText(Messages.ChooseParentNotificationCommand_ChooseGraphicalParent, false, true);
+		textLabel.setText(Messages.ChooseParentNotificationCommand_ChooseGraphicalChildrenMessage + CreatorUtils.getLabel(mainEditPart) + " :", false, true);
 		FormData data = new FormData();
 		textLabel.setLayoutData(data);
 		Control previousElement = textLabel;
@@ -163,13 +180,13 @@ public class ChooseChildrenICompositeCreator implements ICompositeCreator, Notif
 	 */
 	private void createCheckBoxes(FormToolkit toolkit, Composite top, Control previousElement) {
 		FormData data;
-		for(IGraphicalEditPart child : allChildren) {
+		for(final IGraphicalEditPart child : allChildren) {
 			String label = CreatorUtils.getLabel(child);
 			Button checkBox = toolkit.createButton(top, label, SWT.CHECK);
 			//FIXME finish the MouseTrackLMistenner
 			//			checkBox.addMouseTrackListener(new CheckboxIGraphicalFocusListenner(child));
 			//If the child has already parentEditPart as graphical parent the notification will not display it
-			if(!child.getParent().equals(parentEditPart)) {
+			if(!child.getParent().equals(mainEditPart)) {
 				if(automaticChildren.contains(child)) {
 					checkBox.setSelection(true);
 					checkBox.setEnabled(false);
@@ -182,21 +199,95 @@ public class ChooseChildrenICompositeCreator implements ICompositeCreator, Notif
 				previousElement = checkBox;
 				childCheckBoxes.put(checkBox, child);
 			}
-		}
+			// add dispose listener to remove from handled widgets
+			checkBox.addDisposeListener(new DisposeListener() {
 
+				/**
+				 * Remove widget from handled ones
+				 * 
+				 * @param e
+				 *        the dispose event
+				 */
+				public void widgetDisposed(DisposeEvent e) {
+					childCheckBoxes.remove(e.widget);
+				}
+			});
+
+			checkBox.addSelectionListener(new SelectionAdapter() {
+
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					Widget check = e.widget;
+					if(check instanceof Button) {
+						boolean selection = ((Button)check).getSelection();
+						for(Button b : getAllButtonFor(child)) {
+							b.setSelection(selection);
+						}
+					}
+				}
+
+				/**
+				 * This method will return a list of all button referencing a {@link IGraphicalEditPart}
+				 * 
+				 * @param child
+				 *        The {@link IGraphicalEditPart} of which you want to find the {@link Button}
+				 * @return List of all button
+				 */
+				private List<Button> getAllButtonFor(IGraphicalEditPart child) {
+					List<Button> result = new ArrayList<Button>();
+					for(Button childButton : childCheckBoxes.keySet()) {
+						IGraphicalEditPart childEdipart = childCheckBoxes.get(childButton);
+						if(childEdipart.equals(child)) {
+							result.add(childButton);
+						}
+					}
+					return result;
+				}
+			});
+		}
+	}
+
+
+	/**
+	 * This method check if the {@link ChooseChildrenNotificationConfigurator} create with all the following parameters would be different from the
+	 * current one
+	 * 
+	 * @param _parentEditPart
+	 * @see {@link #mainEditPart}
+	 * @param _allChildren
+	 * @see {@link #allChildren}
+	 * @param _automaticChildren
+	 * @see {@link #automaticChildren}
+	 * @param _host
+	 * @see {@link #host}
+	 * @return true the notification would be different
+	 */
+	public boolean isThereAnyModification(IGraphicalEditPart _parentEditPart, List<IGraphicalEditPart> _allChildren, List<IGraphicalEditPart> _automaticChildren, IGraphicalEditPart _host) {
+		boolean sameParentEditPart = mainEditPart.equals(_parentEditPart);
+		boolean sameHost = host.equals(_host);
+		boolean sameAllChildren = containsSameElements(allChildren, _allChildren);
+		boolean sameAutomaticChildren = containsSameElements(automaticChildren, _automaticChildren);
+		return !(sameParentEditPart && sameHost && sameAllChildren && sameAutomaticChildren);
 	}
 
 	/**
-	 * Close the notification
+	 * Compare two list of {@link IGraphicalEditPart} elements and return true if it contains the same elements
 	 * 
-	 * @param context
+	 * @param list1
+	 *        List of {@link IGraphicalEditPart}
+	 * @param list2
+	 *        List of {@link IGraphicalEditPart}
+	 * @return true is contains same elements
 	 */
-	private void closeNotitfication(IContext context) {
-		Object get = context.get(IContext.NOTIFICATION_OBJECT);
-		if(get instanceof INotification) {
-			INotification notification = (INotification)get;
-			notification.delete();
-		}
+	private boolean containsSameElements(List<IGraphicalEditPart> list1, List<IGraphicalEditPart> list2) {
+		return list1.containsAll(list2) && list2.containsAll(list1);
+	}
+
+	@Override
+	protected void closeNotitfication(IContext context) {
+		papyrusNotificationView.dispose();
+		notification.delete();
+		manager.removeChooseChildrenNotification(mainEditPart);
 	}
 
 }

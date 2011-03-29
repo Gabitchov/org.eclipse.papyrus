@@ -101,10 +101,6 @@ public class CreateInGroupEditPolicy extends CreationEditPolicy {
 		EditPart currentEditPart = getHost();
 		if(currentEditPart instanceof IGraphicalEditPart) {
 			/*
-			 * Get the host Igraphical edit part
-			 */
-			IGraphicalEditPart currentGraphicalEditPart = (IGraphicalEditPart)currentEditPart;
-			/*
 			 * Handling parents
 			 */
 			DiagramEditPart diagramPart = DiagramEditPartsUtil.getDiagramEditPart(currentEditPart);
@@ -120,10 +116,11 @@ public class CreateInGroupEditPolicy extends CreationEditPolicy {
 			/*
 			 * If the current host is not a model parent of the element in creation then the request is send to suitable one
 			 */
-			Command relocatedCommand = CommandsUtils.sendRequestSuitableHost(request, createElementRequest, currentGraphicalEditPart, modelParents);
+			Command relocatedCommand = CommandsUtils.sendRequestSuitableHost(request, createElementRequest, (IGraphicalEditPart)getHost(), modelParents);
 			if(relocatedCommand != null) {
 				return relocatedCommand;
 			}
+
 			/*
 			 * handling sons if the creation is a group
 			 */
@@ -136,7 +133,7 @@ public class CreateInGroupEditPolicy extends CreationEditPolicy {
 			 * 2 - Create View Request
 			 * 3 - Create Choice request (If there is any choice to make)
 			 */
-			Command createElementCommand = currentGraphicalEditPart.getCommand(new EditCommandRequestWrapper((CreateElementRequest)requestAdapter.getAdapter(CreateElementRequest.class), request.getExtendedData()));
+			Command createElementCommand = getHost().getCommand(new EditCommandRequestWrapper((CreateElementRequest)requestAdapter.getAdapter(CreateElementRequest.class), request.getExtendedData()));
 
 			if(createElementCommand == null || !createElementCommand.canExecute()) {
 				return UnexecutableCommand.INSTANCE;
@@ -148,7 +145,7 @@ public class CreateInGroupEditPolicy extends CreationEditPolicy {
 			/*
 			 * Refresh Connection command
 			 */
-			Command refreshConnectionCommand = currentGraphicalEditPart.getCommand(new RefreshConnectionsRequest(((List<?>)request.getNewObject())));
+			Command refreshConnectionCommand = getHost().getCommand(new RefreshConnectionsRequest(((List<?>)request.getNewObject())));
 			/*
 			 * create the semantic global command
 			 */
@@ -200,6 +197,7 @@ public class CreateInGroupEditPolicy extends CreationEditPolicy {
 				newParentPart = (IGraphicalEditPart)parentPart;
 			}
 		}
+		request.getExtendedData().put(CommandsUtils.GRAPHICAL_PARENT, newParentPart);
 		View parent = (View)newParentPart.getModel();
 		// construct command as in super method (except parent)
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
@@ -210,7 +208,6 @@ public class CreateInGroupEditPolicy extends CreationEditPolicy {
 			CreateCommand createCommand = new CreateCommand(editingDomain, descriptor, parent);
 			cc.compose(createCommand);
 		}
-
 		return new ICommandProxy(cc.reduce());
 	}
 

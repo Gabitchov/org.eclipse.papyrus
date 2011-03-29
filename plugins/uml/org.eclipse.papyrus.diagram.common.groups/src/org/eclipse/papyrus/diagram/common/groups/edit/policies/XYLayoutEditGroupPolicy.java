@@ -45,6 +45,7 @@ import org.eclipse.papyrus.diagram.common.groups.commands.SetUpReferencesCommand
 import org.eclipse.papyrus.diagram.common.groups.commands.UpdateReferencesCommand;
 import org.eclipse.papyrus.diagram.common.groups.commands.utlis.CommandsUtils;
 import org.eclipse.papyrus.diagram.common.groups.core.groupcontainment.GroupContainmentRegistry;
+import org.eclipse.papyrus.diagram.common.groups.core.utils.DefaultModelParent;
 import org.eclipse.papyrus.diagram.common.groups.core.utils.Utils;
 import org.eclipse.papyrus.diagram.common.groups.groupcontainment.AbstractContainerNodeDescriptor;
 import org.eclipse.papyrus.diagram.common.groups.utils.GroupRequestConstants;
@@ -181,13 +182,13 @@ public class XYLayoutEditGroupPolicy extends XYLayoutEditPolicy {
 						return relocateCommand;
 					}
 					/*
-					 * Update model
-					 */
-					updateModel(commandWrapper, movingEditPart, editingDomain);
-					/*
 					 * Execute the change bound request
 					 */
 					commandWrapper.compose(new CommandProxy(superCommand));
+					/*
+					 * Update model
+					 */
+					updateModel(commandWrapper, movingEditPart, editingDomain);
 					/*
 					 * Update the references
 					 * 1 - Set up new references
@@ -266,17 +267,26 @@ public class XYLayoutEditGroupPolicy extends XYLayoutEditPolicy {
 				EditPart compartmentEditPartHost = Utils.getCompartementEditPartFromMainEditPart(movingEditPart.getViewer().getEditPartRegistry(), host);
 				if(compartmentEditPartHost instanceof IGraphicalEditPart) {
 					AbstractContainerNodeDescriptor group = GroupContainmentRegistry.getContainerDescriptor((IGraphicalEditPart)compartmentEditPartHost);
+					EReference ref = null;
+					Map<EObject, EReference> child = null;
+					EObject childEObject = movingEditPart.resolveSemanticElement();
 					if(group != null) {
-						EObject movingEObject = movingEditPart.resolveSemanticElement();
+						EObject movingEObject = childEObject;
 						if(movingEObject != null) {
 							if(group.canIBeModelParentOf(movingEObject.eClass())) {
-								EReference ref = group.getContainmentReferenceFor(movingEObject.eClass());
-								Map<EObject, EReference> child = Collections.singletonMap(movingEObject, ref);
-								ChangeModelParentCommand changeModelParent = new ChangeModelParentCommand(editingDomain, compartmentEditPartHost, child, movingEditPart);
-								if(changeModelParent != null) {
-									commandWrapper.compose(changeModelParent);
-								}
+								ref = group.getContainmentReferenceFor(movingEObject.eClass());
+								child = Collections.singletonMap(movingEObject, ref);
 							}
+						}
+					} else {
+						DefaultModelParent defaultModelContainer = Utils.getDefaultModelParent(childEObject.eClass(), (IGraphicalEditPart)getHost());
+						ref = defaultModelContainer.geteReference();
+						child = Collections.singletonMap(childEObject, defaultModelContainer.geteReference());
+					}
+					if(ref != null && child != null) {
+						ChangeModelParentCommand changeModelParent = new ChangeModelParentCommand(editingDomain, compartmentEditPartHost, child, movingEditPart);
+						if(changeModelParent != null) {
+							commandWrapper.compose(changeModelParent);
 						}
 					}
 				}
@@ -319,7 +329,7 @@ public class XYLayoutEditGroupPolicy extends XYLayoutEditPolicy {
 	 * @param compartmentMovingEditPart
 	 * @return the resulting command or null if nothing to do
 	 */
-	private Command getHandleChildren(ChangeBoundsRequest request, String label, IGraphicalEditPart movingEditPart, IGraphicalEditPart diagramPart, IGraphicalEditPart movingCompartmentEditPart, TransactionalEditingDomain editingDomain) {
+	private Command getHandleChildren(ChangeBoundsRequest request, String label, IGraphicalEditPart movingEditPart, DiagramEditPart diagramPart, IGraphicalEditPart movingCompartmentEditPart, TransactionalEditingDomain editingDomain) {
 
 		CompositeCommand result = new CompositeCommand(label);
 
@@ -334,13 +344,6 @@ public class XYLayoutEditGroupPolicy extends XYLayoutEditPolicy {
 			if(handleChildren != null) {
 				result.compose(handleChildren);
 			}
-			//			/*
-			//			 * Prevent inside not to move after resize the parent on the west side
-			//			 */
-			//			int direction = request.getResizeDirection();
-			//			if (PositionConstants.NORTH_WEST == direction || PositionConstants.WEST == direction || PositionConstants.SOUTH_WEST == direction){
-			//				
-			//			}
 			/*
 			 * Change the the graphical parent of the GroupRequestConstants.GRAPHICAL_CHILDREN) set in the getHandleChildrenCommand
 			 */

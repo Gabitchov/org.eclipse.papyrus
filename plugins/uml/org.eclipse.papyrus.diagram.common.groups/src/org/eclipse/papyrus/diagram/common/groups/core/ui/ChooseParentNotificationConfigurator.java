@@ -13,11 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.groups.core.ui;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -29,13 +29,13 @@ import org.eclipse.papyrus.diagram.common.groups.Messages;
 import org.eclipse.papyrus.diagram.common.groups.commands.ChangeGraphicalParentCommand;
 import org.eclipse.papyrus.diagram.common.groups.commands.ChangeModelParentCommand;
 import org.eclipse.papyrus.diagram.common.groups.commands.ChooseParentNotificationCommand;
+import org.eclipse.papyrus.diagram.common.groups.core.PendingGroupNotificationsManager;
 import org.eclipse.papyrus.diagram.common.groups.core.ui.utils.CreatorUtils;
 import org.eclipse.papyrus.diagram.common.groups.core.utils.Utils;
-import org.eclipse.papyrus.ui.toolbox.notification.ICompositeCreator;
-import org.eclipse.papyrus.ui.toolbox.notification.INotification;
-import org.eclipse.papyrus.ui.toolbox.notification.NotificationRunnable;
 import org.eclipse.papyrus.ui.toolbox.notification.builders.IContext;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
@@ -50,7 +50,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  * @author adaussy
  * 
  */
-public class ChooseParentICompositeCreator implements ICompositeCreator, NotificationRunnable {
+public class ChooseParentNotificationConfigurator extends NotificationConfigurator {
 
 	/**
 	 * List of availables parents
@@ -65,12 +65,12 @@ public class ChooseParentICompositeCreator implements ICompositeCreator, Notific
 	/**
 	 * buttons for children
 	 */
-	private List<Button> childCheckBoxes;
+	private Map<Button, IGraphicalEditPart> childCheckBoxes;
 
 	/**
 	 * Edit part of the children
 	 */
-	private IGraphicalEditPart childPart;
+	private IGraphicalEditPart mainEditPart;
 
 	/**
 	 * {@link EditPart} hosting the {@link EditPolicy}
@@ -90,11 +90,11 @@ public class ChooseParentICompositeCreator implements ICompositeCreator, Notific
 	 *        Model : Change the model parent and the graphical parent
 	 *        Graphical : Change only the graphical parent
 	 */
-	public ChooseParentICompositeCreator(List<IGraphicalEditPart> parents, IGraphicalEditPart _childPart, Boolean mode, IGraphicalEditPart getHost) {
-		super();
+	public ChooseParentNotificationConfigurator(List<IGraphicalEditPart> parents, IGraphicalEditPart _childPart, Boolean mode, IGraphicalEditPart getHost, PendingGroupNotificationsManager _manager, Mode messageMode, String label) {
+		super(_childPart, _manager, label, messageMode);
 		this.parents = parents;
-		childCheckBoxes = new ArrayList<Button>(parents.size());
-		childPart = _childPart;
+		childCheckBoxes = new HashMap<Button, IGraphicalEditPart>();
+		mainEditPart = _childPart;
 		this.mode = mode;
 		this.host = getHost;
 	}
@@ -115,7 +115,7 @@ public class ChooseParentICompositeCreator implements ICompositeCreator, Notific
 		Composite top = toolkit.createComposite(parent, SWT.NONE);
 		top.setLayout(new FormLayout());
 		FormText textLabel = toolkit.createFormText(top, false);
-		textLabel.setText(Messages.ChooseParentNotificationCommand_ChooseGraphicalParent, false, true);
+		textLabel.setText(Messages.ChooseParentNotificationCommand_ChooseGraphicalParentMessage + CreatorUtils.getLabel(mainEditPart), false, true);
 		FormData data = new FormData();
 		textLabel.setLayoutData(data);
 		Control previousElement = textLabel;
@@ -126,6 +126,11 @@ public class ChooseParentICompositeCreator implements ICompositeCreator, Notific
 
 
 		return top;
+	}
+
+
+	public IGraphicalEditPart getChildPart() {
+		return mainEditPart;
 	}
 
 	/**
@@ -141,18 +146,29 @@ public class ChooseParentICompositeCreator implements ICompositeCreator, Notific
 		for(IGraphicalEditPart parentEditPart : parents) {
 			String label = CreatorUtils.getLabel(parentEditPart);
 			Button checkBox = toolkit.createButton(top, label, SWT.RADIO);
-			//FIXME finish the MouseTrackLMistenner
-			checkBox.addMouseTrackListener(new CheckboxIGraphicalFocusListenner(parentEditPart));
-			if(childPart.getParent().equals(parentEditPart)) {
+			if(mainEditPart.getParent().equals(parentEditPart)) {
 				checkBox.setSelection(true);
-
 			} else {
 				checkBox.setSelection(false);
 			}
 			data = CreatorUtils.getFormDataUnder(previousElement);
 			checkBox.setLayoutData(data);
 			previousElement = checkBox;
-			childCheckBoxes.add(checkBox);
+			childCheckBoxes.put(checkBox, parentEditPart);
+			// add dispose listener to remove from handled widgets
+			checkBox.addDisposeListener(new DisposeListener() {
+
+				/**
+				 * Remove widget from handled ones
+				 * 
+				 * @param e
+				 *        the dispose event
+				 */
+				public void widgetDisposed(DisposeEvent e) {
+					childCheckBoxes.remove(e.widget);
+				}
+			});
+			//checkBox.addSelectionListener(
 		}
 	}
 
@@ -163,20 +179,15 @@ public class ChooseParentICompositeCreator implements ICompositeCreator, Notific
 	 * @param context
 	 */
 	public void run(IContext context) {
-		//Utils.getUpdateGraphicalParentCmd();
-
-
-		int index = 0;
 		IGraphicalEditPart newParent = null;
-		for(Button button : childCheckBoxes) {
-			if(button.getSelection()) {
-				newParent = parents.get(index);
+		for(Button checkBoxButton : childCheckBoxes.keySet()) {
+			if(checkBoxButton.getSelection()) {
+				newParent = childCheckBoxes.get(checkBoxButton);
 			}
-			index++;
 		}
 		//If the system has found the edit part of the new parent
 		if(newParent != null) {
-			TransactionalEditingDomain editingDomain = newParent.getEditingDomain();
+			TransactionalEditingDomain editingDomain = mainEditPart.getEditingDomain();
 			/*
 			 * Change the model parent if needed
 			 */
@@ -194,19 +205,6 @@ public class ChooseParentICompositeCreator implements ICompositeCreator, Notific
 	}
 
 	/**
-	 * Close the notification
-	 * 
-	 * @param context
-	 */
-	private void closeNotitfication(IContext context) {
-		Object get = context.get(IContext.NOTIFICATION_OBJECT);
-		if(get instanceof INotification) {
-			INotification notification = (INotification)get;
-			notification.delete();
-		}
-	}
-
-	/**
 	 * Change the graphical parent
 	 * 
 	 * @param newParent
@@ -215,8 +213,8 @@ public class ChooseParentICompositeCreator implements ICompositeCreator, Notific
 	 *        to create an transactionnal command
 	 */
 	private void changeGraphicalParent(IGraphicalEditPart newParent, TransactionalEditingDomain editingDomain) {
-		String label = "Change graphical parent" + " of " + CreatorUtils.getLabel(childPart) + " to " + CreatorUtils.getLabel(newParent);
-		ChangeGraphicalParentCommand reassignParent = new ChangeGraphicalParentCommand(editingDomain, label, newParent, childPart, host);
+		String label = "Change graphical parent" + " of " + CreatorUtils.getLabel(mainEditPart) + " to " + CreatorUtils.getLabel(newParent);
+		ChangeGraphicalParentCommand reassignParent = new ChangeGraphicalParentCommand(editingDomain, label, newParent, mainEditPart, host);
 		//If the command is valid the system execute it
 		if(reassignParent != null && reassignParent.canExecute()) {
 			//Execute the command
@@ -234,25 +232,32 @@ public class ChooseParentICompositeCreator implements ICompositeCreator, Notific
 	 */
 	private void changeModelParent(IGraphicalEditPart newParent, TransactionalEditingDomain editingDomain) {
 		if(mode == ChooseParentNotificationCommand.MODEL_MODE) {
-			EObject childObject = childPart.resolveSemanticElement();
+			EObject childObject = mainEditPart.resolveSemanticElement();
 			EObject parentObject = newParent.resolveSemanticElement();
-			EReference ref = Utils.getContainmentEReference(parentObject.eClass(), childObject.eClass());
-			if(ref != null) {
-				Map<EObject, EReference> chilrendToMove = new HashMap<EObject, EReference>();
-				chilrendToMove.put(childObject, ref);
-				ChangeModelParentCommand reassignModelparent = new ChangeModelParentCommand(editingDomain, newParent, chilrendToMove, newParent);
-				//If the command is valid the system execute it
-				if(reassignModelparent != null && reassignModelparent.canExecute()) {
-					//Execute the command
-					editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(reassignModelparent));
+			if(parentObject != null && childObject != null) {
+				EReference ref = Utils.getContainmentEReference(parentObject.eClass(), childObject.eClass());
+				if(ref != null) {
+					Map<EObject, EReference> chilrendToMove = new HashMap<EObject, EReference>();
+					chilrendToMove.put(childObject, ref);
+					ChangeModelParentCommand reassignModelparent = new ChangeModelParentCommand(editingDomain, newParent, chilrendToMove, newParent);
+					//If the command is valid the system execute it
+					if(reassignModelparent != null && reassignModelparent.canExecute()) {
+						//Execute the command
+						editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(reassignModelparent));
+					}
 				}
+			} else {
+				org.eclipse.papyrus.diagram.common.groups.Activator.getDefault().getLog().log(new Status(Status.WARNING, org.eclipse.papyrus.diagram.common.groups.Activator.PLUGIN_ID, "One of the needed element is unavailable"));
 			}
 		}
 	}
 
-
-	public String getLabel() {
-		return "ok";
+	@Override
+	protected void closeNotitfication(IContext context) {
+		papyrusNotificationView.dispose();
+		notification.delete();
+		manager.removeChooseParentNotification(mainEditPart);
 	}
+
 
 }

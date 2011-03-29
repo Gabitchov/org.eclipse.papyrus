@@ -53,8 +53,8 @@ import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.diagram.common.groups.commands.ChangeModelParentCommand;
 import org.eclipse.papyrus.diagram.common.groups.core.groupcontainment.GroupContainmentRegistry;
-import org.eclipse.papyrus.diagram.common.groups.core.ui.ChooseContainedElementsCreator.ChildSelection;
 import org.eclipse.papyrus.diagram.common.groups.groupcontainment.AbstractContainerNodeDescriptor;
 import org.eclipse.papyrus.diagram.common.groups.utils.GraphicalAndModelElementComparator;
 import org.eclipse.papyrus.diagram.common.groups.utils.GraphicalAndModelElementComparator.Mode;
@@ -288,7 +288,7 @@ public class Utils {
 	}
 
 	/***
-	 * Compute a list of all group which include the bounds of my group which has been moved with the following request
+	 * Compute a list of all group which include the bounds of my element which has been moved with the following request
 	 * 
 	 * @param element
 	 *        Element which we can know the groups which it intersect
@@ -840,40 +840,41 @@ public class Utils {
 		}
 	}
 
-	/**
-	 * Construct a map ready to use for ChooseContainedElementsCreator, which indicate children selection state for a group
-	 * 
-	 * @param group
-	 *        the parent group
-	 * @param children
-	 *        the group children
-	 * @return the selection map of children
-	 */
-	public static Map<IGraphicalEditPart, ChildSelection> contructSelectionMapForGroupChildren(IGraphicalEditPart group, List<IGraphicalEditPart> children) {
-		Map<IGraphicalEditPart, ChildSelection> map = new HashMap<IGraphicalEditPart, ChildSelection>(children.size());
-		for(IGraphicalEditPart child : children) {
-			IGraphicalEditPart oldGraphicalContainer = (IGraphicalEditPart)child.getParent();
-			if(!GroupContainmentRegistry.isContainerConcerned(oldGraphicalContainer)) {
-				/*
-				 * The child is not handled by any group yet :
-				 * the group becomes the new parent if it is a model container,
-				 * otherwise, the user can decide
-				 */
-				if(GroupContainmentRegistry.isContainerModel(group)) {
-					map.put(child, ChildSelection.ALWAYS_SELECTED);
-				} else {
-					map.put(child, ChildSelection.SELECTED);
-				}
-			} else if(group.equals(oldGraphicalContainer)) {
-				// Child is already in the group, keep it
-				map.put(child, ChildSelection.ALWAYS_SELECTED);
-			} else {
-				// Child is in another group, let the user decide to take it
-				map.put(child, ChildSelection.NOT_SELECTED);
-			}
-		}
-		return map;
-	}
+	//
+	//	/**
+	//	 * Construct a map ready to use for ChooseContainedElementsCreator, which indicate children selection state for a group
+	//	 * 
+	//	 * @param group
+	//	 *        the parent group
+	//	 * @param children
+	//	 *        the group children
+	//	 * @return the selection map of children
+	//	 */
+	//	public static Map<IGraphicalEditPart, ChildSelection> contructSelectionMapForGroupChildren(IGraphicalEditPart group, List<IGraphicalEditPart> children) {
+	//		Map<IGraphicalEditPart, ChildSelection> map = new HashMap<IGraphicalEditPart, ChildSelection>(children.size());
+	//		for(IGraphicalEditPart child : children) {
+	//			IGraphicalEditPart oldGraphicalContainer = (IGraphicalEditPart)child.getParent();
+	//			if(!GroupContainmentRegistry.isContainerConcerned(oldGraphicalContainer)) {
+	//				/*
+	//				 * The child is not handled by any group yet :
+	//				 * the group becomes the new parent if it is a model container,
+	//				 * otherwise, the user can decide
+	//				 */
+	//				if(GroupContainmentRegistry.isContainerModel(group)) {
+	//					map.put(child, ChildSelection.ALWAYS_SELECTED);
+	//				} else {
+	//					map.put(child, ChildSelection.SELECTED);
+	//				}
+	//			} else if(group.equals(oldGraphicalContainer)) {
+	//				// Child is already in the group, keep it
+	//				map.put(child, ChildSelection.ALWAYS_SELECTED);
+	//			} else {
+	//				// Child is in another group, let the user decide to take it
+	//				map.put(child, ChildSelection.NOT_SELECTED);
+	//			}
+	//		}
+	//		return map;
+	//	}
 
 	/**
 	 * Get the bounds of an edit part
@@ -1022,5 +1023,48 @@ public class Utils {
 			}
 		}
 		return resultCompartmentEditPart;
+	}
+
+
+	/**
+	 * Get the child map needed for {@link ChangeModelParentCommand}
+	 * 
+	 * @param elementType
+	 *        {@link EClass} of the elemnt you want to find the default model parent
+	 * @param getHost
+	 *        Host of the editPolicy
+	 * @param newIgraphicalParent
+	 *        {@link IGraphicalEditPart} to complete with the new {@link IGraphicalEditPart} of the defautl model parent
+	 * @return
+	 */
+	public static DefaultModelParent getDefaultModelParent(EClass elementType, IGraphicalEditPart getHost) {
+		IGraphicalEditPart hostParent = getHost;
+
+		while(hostParent != null) {
+			EObject hostParentElement = hostParent.resolveSemanticElement();
+			if(GroupContainmentRegistry.getDescriptorsWithContainerEClass(hostParentElement.eClass()).isEmpty()) {
+				for(EReference containmentRelation : hostParentElement.eClass().getEAllContainments()) {
+					if(containmentRelation.getEReferenceType().isSuperTypeOf(elementType)) {
+						return new DefaultModelParent(hostParent, containmentRelation);
+					}
+				}
+			}
+			hostParent = (IGraphicalEditPart)hostParent.getParent();
+		}
+		return null;
+	}
+
+	public static boolean isRequestGroupFrameworkConcerned(ChangeBoundsRequest request) {
+		for(Object editPart : request.getEditParts()) {
+			if(editPart instanceof IGraphicalEditPart) {
+				IGraphicalEditPart iGraphicalEditPart = (IGraphicalEditPart)editPart;
+				boolean isNodeConcerned = GroupContainmentRegistry.isNodeConcerned(iGraphicalEditPart);
+				boolean isGroupConcerned = GroupContainmentRegistry.isContainerConcerned(iGraphicalEditPart);
+				if(isGroupConcerned || isNodeConcerned) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }

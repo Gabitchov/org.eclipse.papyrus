@@ -39,7 +39,6 @@ import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.groups.core.ui.utils.CreatorUtils;
 import org.eclipse.papyrus.diagram.common.groups.core.utils.Utils;
 import org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy;
 import org.eclipse.papyrus.diagram.common.groups.utils.GroupRequestConstants;
@@ -257,7 +256,6 @@ public class ChangeGraphicalParentCommand extends AbstractTransactionalCommand {
 						parentCompartmentFigure.getBounds().setBounds(oldBounds);
 					} else {
 						newDimension = Utils.computeDeltaToChangeParent(oldParentPart, (IGraphicalEditPart)parent);
-
 					}
 					LayoutConstraint layoutConstraint = ((Node)childView).getLayoutConstraint();
 					if(layoutConstraint instanceof Location) {

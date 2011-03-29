@@ -38,7 +38,6 @@ import org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy;
-import org.eclipse.papyrus.diagram.common.groups.edit.policies.DragDropEditGroupPolicy;
 import org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy;
 
 /**
@@ -104,7 +103,7 @@ extends ShapeCompartmentEditPart
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.ActivityPartitionActivityPartitionContentCompartmentCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreateInGroupEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditGroupPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new XYLayoutEditGroupPolicy());
 	}

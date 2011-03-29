@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -28,10 +29,11 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.groups.Messages;
-import org.eclipse.papyrus.diagram.common.groups.core.GroupNotificationBuilderFactory;
-import org.eclipse.papyrus.diagram.common.groups.core.ui.ChooseParentICompositeCreator;
+import org.eclipse.papyrus.diagram.common.groups.core.PendingGroupNotificationsManager;
+import org.eclipse.papyrus.diagram.common.groups.core.ui.ChooseParentNotificationConfigurator;
+import org.eclipse.papyrus.diagram.common.groups.core.ui.NotificationConfigurator;
 import org.eclipse.papyrus.diagram.common.groups.utils.GroupRequestConstants;
-import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
+import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 
 /**
  * Command to display the notification for choosing parent.
@@ -65,6 +67,16 @@ public class ChooseParentNotificationCommand extends AbstractTransactionalComman
 	private IGraphicalEditPart host;
 
 	/**
+	 * Manage of the pending notification
+	 */
+	private PendingGroupNotificationsManager manager;
+
+	/**
+	 * {@link NotificationConfigurator} of the pointed childEditPart
+	 */
+	private ChooseParentNotificationConfigurator notifConfigurator;
+
+	/**
 	 * Constructor for element creation.
 	 * 
 	 * @param domain
@@ -82,6 +94,7 @@ public class ChooseParentNotificationCommand extends AbstractTransactionalComman
 		this.request = request;
 		this.mode = mode;
 		this.host = getHost;
+		this.manager = PendingGroupNotificationsManager.getInstanceForDiagram(DiagramEditPartsUtil.getDiagramEditPart(getHost));
 	}
 
 
@@ -93,18 +106,17 @@ public class ChooseParentNotificationCommand extends AbstractTransactionalComman
 		if(parents != null) {
 			getEditPartFromDescriptor();
 			String label;
-			NotificationBuilder parentNotification = null;
+			ChooseParentNotificationConfigurator configurator = null;
 			if(mode == GRAPHICAL_MODE) {
 				label = new String(Messages.ChooseParentNotificationCommand_ChooseGraphicalParent);
-				parentNotification = GroupNotificationBuilderFactory.getQuestionBuilder(label);
+				configurator = new ChooseParentNotificationConfigurator(parents, childEditPart, mode, host, manager, NotificationConfigurator.Mode.QUESTION_MODE, label);
 			} else {
 				label = new String(Messages.ChooseParentNotificationCommand_ChooseGraphicalParent);
-				parentNotification = GroupNotificationBuilderFactory.getWarningBuilder(label);
-
+				configurator = new ChooseParentNotificationConfigurator(parents, childEditPart, mode, host, manager, NotificationConfigurator.Mode.WARNING_MODE, label);
 			}
-			if(parentNotification != null) {
-				ChooseParentICompositeCreator creator = new ChooseParentICompositeCreator(parents, childEditPart, mode, host);
-				parentNotification.setComposite(creator).addAction(creator).run();
+			if(configurator != null) {
+				notifConfigurator = configurator;
+				configurator.runConfigurator();
 				return CommandResult.newOKCommandResult();
 			}
 		}
@@ -158,6 +170,21 @@ public class ChooseParentNotificationCommand extends AbstractTransactionalComman
 	 */
 	public void setMode(boolean mode) {
 		this.mode = mode;
+	}
+
+	/**
+	 * Inform that the command has been undone and delete or update the created notification
+	 * 
+	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#didUndo(org.eclipse.emf.transaction.Transaction)
+	 * @param tx
+	 *        a transaction that has been undone.
+	 */
+	@Override
+	protected void didUndo(Transaction tx) {
+		if(notifConfigurator != null) {
+			notifConfigurator.closeNotification();
+		}
+		super.didUndo(tx);
 	}
 
 }
