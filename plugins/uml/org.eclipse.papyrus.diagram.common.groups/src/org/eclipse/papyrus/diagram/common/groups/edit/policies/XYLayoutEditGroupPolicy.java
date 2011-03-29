@@ -210,6 +210,13 @@ public class XYLayoutEditGroupPolicy extends XYLayoutEditPolicy {
 							commandWrapper.compose(new CommandProxy(handleChildren));
 						}
 					}
+					/*
+					 * ChooseParentNotificationCommand
+					 */
+					CompositeCommand choiceCommand = CommandsUtils.getChooseParentNotification(editingDomain, request, graphicalParents, modelParents, (IGraphicalEditPart)getHost());
+					if ( choiceCommand != null){
+						commandWrapper.compose(choiceCommand);
+					}
 
 					return new ICommandProxy(commandWrapper);
 				} else {

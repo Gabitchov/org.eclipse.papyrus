@@ -185,7 +185,6 @@ public class ChangeGraphicalParentCommand extends AbstractTransactionalCommand {
 			}
 		} else {
 			parent = Utils.getCompartementEditPartFromMainEditPart(editPartRegistry, parent);
-
 		}
 		if(parent == null) {
 			//If no parent is found then an error is thrown

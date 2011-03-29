@@ -146,7 +146,8 @@ public class ChooseParentNotificationConfigurator extends NotificationConfigurat
 		for(IGraphicalEditPart parentEditPart : parents) {
 			String label = CreatorUtils.getLabel(parentEditPart);
 			Button checkBox = toolkit.createButton(top, label, SWT.RADIO);
-			if(mainEditPart.getParent().equals(parentEditPart)) {
+			EditPart childParent = mainEditPart.getParent();
+			if(childParent != null && childParent.equals(parentEditPart)) {
 				checkBox.setSelection(true);
 			} else {
 				checkBox.setSelection(false);

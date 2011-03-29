@@ -153,6 +153,45 @@ public class CommandsUtils {
 		}
 		return choiceCommand;
 	}
+	/**
+	 * Return the command which create the notification to asked to the user to choose the graphical parent of undetermined element (elements which
+	 * have at least 2 possible graphical parent)
+	 * FIXME change the composite command to a normal command (composite command is not needed anymore)
+	 * 
+	 * @param editingDomain
+	 *        TransactionalEditingDomain in order to create the command
+	 * @param childAdapter
+	 *        {@link IAdaptable} to find the {@link IGraphicalEditPart} of the child
+	 * @return the composite command. This command is in two parts. The first represent the Notification to choose the model parent and if needed the
+	 *         command to chose the graphical parent.
+	 */
+	public static CompositeCommand getChooseParentNotification(TransactionalEditingDomain editingDomain, ChangeBoundsRequest request, List<IGraphicalEditPart> graphicalParents, List<IGraphicalEditPart> modelParents, IGraphicalEditPart getHost) {
+		/*
+		 * ChooseParentNotificationCommand
+		 * 1 - Check if there is any choice to make
+		 * 1.1 - Check that All list are initialized
+		 * 1.2 - Check there are There at least 2 elements in one of the two least
+		 * 2 - Create a composite command :
+		 * 2.1 - Create the Graphical Choice command
+		 * 2.2 - create the Model Choice command
+		 */
+		CompositeCommand choiceCommand = null;
+		if(graphicalParents != null && modelParents != null && (modelParents.size() > 1 || graphicalParents.size() > 1)) {
+			String chooseCommandLabel = "Print choice notifications";//$NON-NLS-1$
+			choiceCommand = new CompositeCommand(chooseCommandLabel);
+			if(modelParents.size() > 1) {
+				ChooseParentNotificationCommand modelNotificationCommand = new ChooseParentNotificationCommand(editingDomain, chooseCommandLabel + " : Model ", modelParents, request, ChooseParentNotificationCommand.MODEL_MODE, getHost);
+				choiceCommand.compose(modelNotificationCommand);
+			} else {
+				if(graphicalParents.size() > 1) {
+					ChooseParentNotificationCommand graphicalNotificationCommand = new ChooseParentNotificationCommand(editingDomain, chooseCommandLabel + " : Graphical ", graphicalParents, request, ChooseParentNotificationCommand.GRAPHICAL_MODE, getHost);
+					choiceCommand.compose(graphicalNotificationCommand);
+				}
+			}
+
+		}
+		return choiceCommand;
+	}
 
 	/**
 	 * Check if the child already have a graphical parent and if its graphical parent is not a model parent on the new element in creation

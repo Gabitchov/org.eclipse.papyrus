@@ -21,7 +21,10 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
@@ -61,7 +64,7 @@ public class ChooseParentNotificationCommand extends AbstractTransactionalComman
 	private IGraphicalEditPart childEditPart;
 
 	/** creation request */
-	private CreateViewAndElementRequest request;
+	private Request request;
 
 	/** EditPart of host of the {@link EditPolicy} */
 	private IGraphicalEditPart host;
@@ -76,6 +79,7 @@ public class ChooseParentNotificationCommand extends AbstractTransactionalComman
 	 */
 	private ChooseParentNotificationConfigurator notifConfigurator;
 
+
 	/**
 	 * Constructor for element creation.
 	 * 
@@ -88,7 +92,7 @@ public class ChooseParentNotificationCommand extends AbstractTransactionalComman
 	 * @param request
 	 *        creation request
 	 */
-	public ChooseParentNotificationCommand(TransactionalEditingDomain domain, String label, List<IGraphicalEditPart> parents, CreateViewAndElementRequest request, Boolean mode, IGraphicalEditPart getHost) {
+	public ChooseParentNotificationCommand(TransactionalEditingDomain domain, String label, List<IGraphicalEditPart> parents, Request request, Boolean mode, IGraphicalEditPart getHost) {
 		super(domain, label, null);
 		this.parents = parents;
 		this.request = request;
@@ -98,26 +102,30 @@ public class ChooseParentNotificationCommand extends AbstractTransactionalComman
 	}
 
 
+
+
+
 	/**
 	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
 	 *      org.eclipse.core.runtime.IAdaptable)
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor arg0, IAdaptable arg1) throws ExecutionException {
 		if(parents != null) {
-			getEditPartFromDescriptor();
-			String label;
-			ChooseParentNotificationConfigurator configurator = null;
-			if(mode == GRAPHICAL_MODE) {
-				label = new String(Messages.ChooseParentNotificationCommand_ChooseGraphicalParent);
-				configurator = new ChooseParentNotificationConfigurator(parents, childEditPart, mode, host, manager, NotificationConfigurator.Mode.QUESTION_MODE, label);
-			} else {
-				label = new String(Messages.ChooseParentNotificationCommand_ChooseGraphicalParent);
-				configurator = new ChooseParentNotificationConfigurator(parents, childEditPart, mode, host, manager, NotificationConfigurator.Mode.WARNING_MODE, label);
-			}
-			if(configurator != null) {
-				notifConfigurator = configurator;
-				configurator.runConfigurator();
-				return CommandResult.newOKCommandResult();
+			if(getEditPartFromDescriptor()) {
+				String label;
+				ChooseParentNotificationConfigurator configurator = null;
+				if(mode == GRAPHICAL_MODE) {
+					label = new String(Messages.ChooseParentNotificationCommand_ChooseGraphicalParent);
+					configurator = new ChooseParentNotificationConfigurator(parents, childEditPart, mode, host, manager, NotificationConfigurator.Mode.QUESTION_MODE, label);
+				} else {
+					label = new String(Messages.ChooseParentNotificationCommand_ChooseGraphicalParent);
+					configurator = new ChooseParentNotificationConfigurator(parents, childEditPart, mode, host, manager, NotificationConfigurator.Mode.WARNING_MODE, label);
+				}
+				if(configurator != null) {
+					notifConfigurator = configurator;
+					configurator.runConfigurator();
+					return CommandResult.newOKCommandResult();
+				}
 			}
 		}
 		return CommandResult.newErrorCommandResult(GroupRequestConstants.CHOOSE_PARENT_ERROR_NOTIFICATION);
@@ -134,22 +142,44 @@ public class ChooseParentNotificationCommand extends AbstractTransactionalComman
 	 * @return true if it as found the edit part
 	 */
 	private Boolean getEditPartFromDescriptor() {
-		Iterator<? extends CreateViewRequest.ViewDescriptor> descriptors = request.getViewDescriptors().iterator();
-		while(descriptors.hasNext()) {
-			CreateViewRequest.ViewDescriptor descriptor = (CreateViewRequest.ViewDescriptor)descriptors.next();
-			Object view = descriptor.getAdapter(View.class);
-			if(view instanceof View) {
-				View childView = (View)view;
-				if(!parents.isEmpty()) {
-					Object childEditPartAux = parents.get(0).getViewer().getEditPartRegistry().get(childView);
-					if(childEditPartAux instanceof IGraphicalEditPart) {
-						childEditPart = (IGraphicalEditPart)childEditPartAux;
-						return true;
+		if(request instanceof CreateViewAndElementRequest) {
+			CreateViewAndElementRequest createRequest = (CreateViewAndElementRequest)request;
+			Iterator<? extends CreateViewRequest.ViewDescriptor> descriptors = createRequest.getViewDescriptors().iterator();
+			while(descriptors.hasNext()) {
+				CreateViewRequest.ViewDescriptor descriptor = (CreateViewRequest.ViewDescriptor)descriptors.next();
+				Object view = descriptor.getAdapter(View.class);
+				if(view instanceof View) {
+					View childView = (View)view;
+					if(!parents.isEmpty()) {
+						Object childEditPartAux = parents.get(0).getViewer().getEditPartRegistry().get(childView);
+						if(childEditPartAux instanceof IGraphicalEditPart) {
+							childEditPart = (IGraphicalEditPart)childEditPartAux;
+						}
 					}
 				}
 			}
+		} else if(request instanceof ChangeBoundsRequest) {
+			ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest)request;
+			if(!changeBoundsRequest.getEditParts().isEmpty()) {
+				Object editPart = changeBoundsRequest.getEditParts().get(0);
+				if(editPart instanceof IGraphicalEditPart) {
+					IGraphicalEditPart _childEditPart = (IGraphicalEditPart)editPart;
+					View childView = _childEditPart.getNotationView();
+					if(!parents.isEmpty()) {
+						Object childEditPartAux = parents.get(0).getViewer().getEditPartRegistry().get(childView);
+						if(childEditPartAux instanceof IGraphicalEditPart) {
+							childEditPart = (IGraphicalEditPart)childEditPartAux;
+						}
+					}
+
+				}
+			}
 		}
-		return false;
+		if(childEditPart != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
