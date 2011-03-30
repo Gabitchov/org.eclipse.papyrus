@@ -40,6 +40,10 @@ public class InteractionFragmentHelper {
 	 * @return the fragment found happening just before, or null
 	 */
 	public static InteractionFragment findPreviousFragment(InteractionFragment interactionFragment, EObject uppestContainerToSearchInto) {
+		if (interactionFragment == null) {
+			return null;
+		}
+
 		Element paramElement;
 		if(uppestContainerToSearchInto instanceof Element) {
 			paramElement = (Element)uppestContainerToSearchInto;
@@ -63,6 +67,10 @@ public class InteractionFragmentHelper {
 	 * @return the fragment found happening just after, or null
 	 */
 	public static InteractionFragment findNextFragment(InteractionFragment interactionFragment, EObject uppestContainerToSearchInto) {
+		if (interactionFragment == null) {
+			return null;
+		}
+
 		Element paramElement;
 		if(uppestContainerToSearchInto instanceof Element) {
 			paramElement = (Element)uppestContainerToSearchInto;
