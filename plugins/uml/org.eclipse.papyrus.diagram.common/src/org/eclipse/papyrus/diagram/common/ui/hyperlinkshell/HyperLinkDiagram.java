@@ -14,6 +14,11 @@
 package org.eclipse.papyrus.diagram.common.ui.hyperlinkshell;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.utils.ServiceUtils;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 
 /**
  * The Class HyperLinkDiagram a container of diagram
@@ -41,4 +46,20 @@ public class HyperLinkDiagram extends HyperlinkObject {
 		super.setObject(object);
 	}
 
+	@Override
+	public void executeMousePressed() {
+		IMultiDiagramEditor papyrusEditor=EditorUtils.getMultiDiagramEditor();
+		IPageMngr pageMngr=null;
+		try {
+			pageMngr = ServiceUtils.getInstance().getIPageMngr(papyrusEditor.getServicesRegistry());
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
+		// better to set focus on existing page than close and
+		// open
+		if(pageMngr.isOpen(this.getDiagram())) {
+			pageMngr.closePage(this.getDiagram());
+		}
+		pageMngr.openPage((this.getDiagram()));
+	}
 }

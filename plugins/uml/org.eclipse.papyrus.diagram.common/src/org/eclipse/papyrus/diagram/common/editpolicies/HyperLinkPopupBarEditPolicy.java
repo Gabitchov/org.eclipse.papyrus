@@ -13,18 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.editpolicies;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.draw2d.Graphics;
@@ -49,24 +41,17 @@ import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.helper.HyperlinkHelper;
-import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkDiagram;
+import org.eclipse.papyrus.diagram.common.helper.AbstractHyperLinkHelper;
+import org.eclipse.papyrus.diagram.common.helper.DiagramHyperLinkHelper;
+import org.eclipse.papyrus.diagram.common.helper.DocumentHyperLinkHelper;
+import org.eclipse.papyrus.diagram.common.helper.HyperlinkHelperFactory;
+import org.eclipse.papyrus.diagram.common.helper.WebHyperLinkHelper;
+import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkException;
+import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkLabelProvider;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkManagerShell;
-import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkWeb;
-import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkDocument;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkObject;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.ui.IEditorDescriptor;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorRegistry;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
-import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
@@ -76,6 +61,7 @@ import org.eclipse.uml2.uml.Package;
  * sub-diagrams or to associate hyper-link of files
  */
 public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
+	
 
 	public static Package topPackage(Element element) {
 		if(element.getOwner() == null) {
@@ -204,11 +190,8 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		 */
 		@Override
 		public void handleMousePressed(MouseEvent event) {
-
 			if(1 == event.button) {
-
 			}
-
 			super.handleMousePressed(event);
 		}
 
@@ -300,70 +283,16 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			}
 			if(1 == me.button) // context menu, hide the popup bar
 			{
-				IPageMngr pageMngr = EditorUtils.getIPageMngr();
 				if(me.getSource() instanceof PopupBarLabelPlusHandle) {
-					// hyperLinkManagerShell = new
-					// HyperLinkManagerShell((Element) ((GraphicalEditPart)
-					// getHost())
-					// .getNotationView().getElement(), ((GraphicalEditPart)
-					// getHost()).getNotationView(),
-					// getEditorRegistry(), ((GraphicalEditPart)
-					// getHost()).getEditingDomain());
-					// hyperLinkManagerShell.createShell();
 					hyperLinkManagerShell = new HyperLinkManagerShell(getEditorRegistry(), ((GraphicalEditPart)getHost()).getEditingDomain(), (Element)((GraphicalEditPart)getHost()).getNotationView().getElement(), ((GraphicalEditPart)getHost()).getNotationView(), topPackage((Element)((GraphicalEditPart)getHost()).getNotationView().getElement()));
-					hyperLinkManagerShell.setDiagramList(hyperLinkDiagramList);
-					hyperLinkManagerShell.setDocumentList(hyperLinkDocumentList);
-					hyperLinkManagerShell.setHyperlinkWebList(hyperLinkList);
+					hyperLinkManagerShell.sethyperLinkObjectList(hyperLinkObjectList);
 					hyperLinkManagerShell.open();
 
 				} else if(me.getSource() instanceof PopupBarLabelHandle) {
-					if((((PopupBarLabelHandle)me.getSource()).getReferencedObject()) instanceof HyperLinkDiagram) {
-						HyperLinkDiagram hyperLinkDiagram = (HyperLinkDiagram)(((PopupBarLabelHandle)me.getSource()).getReferencedObject());
-						// better to set focus on existing page than close and
-						// open
-						if(pageMngr.isOpen(hyperLinkDiagram.getDiagram())) {
-							pageMngr.closePage(hyperLinkDiagram.getDiagram());
-						}
-						pageMngr.openPage((hyperLinkDiagram.getDiagram()));
+					if((((PopupBarLabelHandle)me.getSource()).getReferencedObject()) instanceof HyperlinkObject) {
+						HyperlinkObject hyperLinkObject = (HyperlinkObject)(((PopupBarLabelHandle)me.getSource()).getReferencedObject());
+						hyperLinkObject.executeMousePressed();
 					}
-					if((((PopupBarLabelHandle)me.getSource()).getReferencedObject()) instanceof HyperlinkDocument) {
-						HyperlinkDocument hyperlinkDocument = (HyperlinkDocument)(((PopupBarLabelHandle)me.getSource()).getReferencedObject());
-						try {
-							// this is a file try to open it
-							IEditorDescriptor eDesc = PlatformUI.getWorkbench().getEditorRegistry().findEditor(IEditorRegistry.SYSTEM_EXTERNAL_EDITOR_ID);
-
-							// creation of a phantom workspace
-							IWorkspace ws = ResourcesPlugin.getWorkspace();
-							IProject project = ws.getRoot().getProject("External Files");
-							if(!project.exists()) {
-								project.create(null);
-							}
-							if(!project.isOpen()) {
-								project.open(null);
-							}
-							IPath location = new Path(hyperlinkDocument.getHyperlinkDocument());
-							IFile file = project.getFile(location.lastSegment());
-							if(!file.exists()) {
-								file.createLink(location, IResource.NONE, null);
-							}
-							IEditorInput editorInput = new FileEditorInput(file);
-							IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-							IWorkbenchPage page = window.getActivePage();
-							page.openEditor(editorInput, eDesc.getId());
-						} catch (Exception e) {
-							Activator.log.error(e);
-						}
-					}
-					if((((PopupBarLabelHandle)me.getSource()).getReferencedObject()) instanceof HyperLinkWeb) {
-						HyperLinkWeb hyperLinkWeb = (HyperLinkWeb)(((PopupBarLabelHandle)me.getSource()).getReferencedObject());
-						try {
-							// this is an url
-							PlatformUI.getWorkbench().getBrowserSupport().createBrowser(IWorkbenchBrowserSupport.AS_EXTERNAL, "aCustomId", "url", "url").openURL(new URL(hyperLinkWeb.getHyperLinkWeb()));
-						} catch (Exception e) {
-							Activator.log.error(e);
-						}
-					}
-
 				}
 
 				hideDiagramAssistant();
@@ -471,11 +400,8 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	/** mouse keys listener for the owner shape. */
 	private final PopupBarMouseListener myMouseKeyListener = new PopupBarMouseListener();
 
-	protected ArrayList<HyperLinkDiagram> hyperLinkDiagramList;
-
-	protected ArrayList<HyperLinkWeb> hyperLinkList;
-
-	protected ArrayList<HyperlinkDocument> hyperLinkDocumentList;
+	protected ArrayList<HyperlinkObject> hyperLinkObjectList;
+	protected HyperlinkHelperFactory hyperlinkHelperFactory;
 
 	/**
 	 * {@inheritedDoc}
@@ -483,6 +409,15 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	@Override
 	public void activate() {
 		super.activate();
+	}
+
+	public HyperLinkPopupBarEditPolicy() {
+		super();
+		ArrayList<AbstractHyperLinkHelper>  hyperLinkHelpers= new ArrayList<AbstractHyperLinkHelper>();
+		hyperLinkHelpers.add(new DiagramHyperLinkHelper());
+		hyperLinkHelpers.add(new DocumentHyperLinkHelper());
+		hyperLinkHelpers.add(new WebHyperLinkHelper());
+		hyperlinkHelperFactory= new HyperlinkHelperFactory(hyperLinkHelpers);
 	}
 
 	/**
@@ -497,17 +432,19 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	 * 
 	 * @return the int the new position after adding all objects in the list
 	 */
-	public int addObjectList(String imageLocation, int positonwidth, List<?> objectList) {
+	public int addObjectList(int positonwidth, List<?> objectList) {
 		for(int i = 0; i < objectList.size(); i++) {
-			PopupBarLabelHandle handle = new PopupBarLabelHandle(objectList.get(i), AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", imageLocation).createImage());
-
+			PopupBarLabelHandle handle=null;
+			HyperLinkLabelProvider hyperLinkLabelProvider= new HyperLinkLabelProvider(getEditorRegistry());
+			handle= new PopupBarLabelHandle(hyperLinkObjectList.get(i), hyperLinkLabelProvider.getImage(objectList.get(i)));
+			
 			Rectangle r1 = new Rectangle();
 			r1.setLocation(positonwidth, 5);
 			positonwidth += 20;
 			r1.setSize(16, 16);
 
 			Label l = new Label();
-			l.setText(((HyperlinkObject)objectList.get(i)).getTooltipText());
+			l.setText(hyperLinkLabelProvider.getTooltipText(hyperLinkObjectList.get(i)));
 
 			handle.setToolTip(l);
 			handle.setPreferredSize(16, 16);
@@ -667,33 +604,12 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		if(getFigureBar() != null) {
 			// add all subdiagrams
 
-			hyperLinkDiagramList = (ArrayList<HyperLinkDiagram>)HyperlinkHelper.getAllreferenced(((GraphicalEditPart)getHost()).getNotationView(), VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM);
-			for(int i = 0; i < hyperLinkDiagramList.size(); i++) {
-
-				// Button b = new Button(theDesc.myButtonIcon);
-				PopupBarLabelHandle handle = new PopupBarLabelHandle(hyperLinkDiagramList.get(i), getEditorRegistry().getEditorIcon(hyperLinkDiagramList.get(i).getObject()));
-
-				Rectangle r1 = new Rectangle();
-				r1.setLocation(xLoc, 5);
-				xLoc += 20;
-				r1.setSize(16, 16);
-
-				Label l = new Label();
-				l.setText(hyperLinkDiagramList.get(i).getTooltipText());
-
-				handle.setToolTip(l);
-				handle.setPreferredSize(16, 16);
-				handle.setBounds(r1);
-				handle.setBackgroundColor(ColorConstants.white);
-				getFigureBar().add(handle);
-				handle.addMouseListener(this.myMouseKeyListener);
-				handle.addMouseMotionListener(this);
-
+			try {
+				hyperLinkObjectList = (ArrayList<HyperlinkObject>)hyperlinkHelperFactory.getAllreferenced(((GraphicalEditPart)getHost()).getNotationView());
+			} catch (HyperLinkException e) {
+				e.printStackTrace();
 			}
-			hyperLinkList = (ArrayList<HyperLinkWeb>)HyperlinkHelper.getAllreferenced(((GraphicalEditPart)getHost()).getNotationView(), VisualInformationPapyrusConstant.HYPERLINK_WEB);
-			xLoc = addObjectList("/icons/obj16/hyperlink.gif", xLoc, hyperLinkList);
-			hyperLinkDocumentList = (ArrayList<HyperlinkDocument>)HyperlinkHelper.getAllreferenced(((GraphicalEditPart)getHost()).getNotationView(), VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT);
-			xLoc = addObjectList("/icons/obj16/file.gif", xLoc, hyperLinkDocumentList);
+			xLoc = addObjectList(xLoc, hyperLinkObjectList);
 			// add the PLUS button
 			PopupBarLabelHandle handle = new PopupBarLabelPlusHandle();
 			Rectangle r1 = new Rectangle();

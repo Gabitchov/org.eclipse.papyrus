@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -119,6 +119,18 @@ public abstract class AbstractHyperLinkManagerShell {
 
 	/** The modify diagram button. */
 	protected Button modifyDiagramButton = null;
+	protected Table availableHyperLink;
+	protected Table defaultHyperLink;
+
+	protected CTabItem tbtmDefaultsHyperlinks;
+
+	protected Button defaultHRight;
+
+	protected Button defaultHleft;
+
+	protected Button defaultHup;
+
+	protected Button defaultHdown;
 
 	/**
 	 * This method initializes cTabFolder.
@@ -136,6 +148,10 @@ public abstract class AbstractHyperLinkManagerShell {
 		createDocumentComposite();
 		createDiagramComposite();
 		createHyperlinkComposite();
+		//defaultHyperlinkComposite();
+		
+//		CTabItem tbtmLocalDiagramHyperlinks = new CTabItem(cTabFolder, SWT.NONE);
+//		tbtmLocalDiagramHyperlinks.setText("Local Diagram hyperlinks");
 		CTabItem cTabItem2 = new CTabItem(cTabFolder, SWT.NONE);
 		cTabItem2.setText("Diagram hyperlinks");
 		cTabItem2.setControl(diagramComposite);
@@ -148,6 +164,42 @@ public abstract class AbstractHyperLinkManagerShell {
 
 	}
 
+	private void defaultHyperlinkComposite(){
+		tbtmDefaultsHyperlinks = new CTabItem(cTabFolder, SWT.NONE);
+		tbtmDefaultsHyperlinks.setText("Defaults HyperLinks");
+		Composite defaultHyperlinkComposite = new Composite(cTabFolder, SWT.NONE);
+		defaultHyperlinkComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		tbtmDefaultsHyperlinks.setControl(defaultHyperlinkComposite);
+		
+		Label lblHyperlinks = new Label(defaultHyperlinkComposite, SWT.NONE);
+		lblHyperlinks.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		lblHyperlinks.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_BLACK));
+		lblHyperlinks.setBounds(23, 10, 71, 13);
+		lblHyperlinks.setText("HyperLinks:");
+		
+		Label lblDefaultHyperlinksby = new Label(defaultHyperlinkComposite, SWT.NONE);
+		lblDefaultHyperlinksby.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		lblDefaultHyperlinksby.setBounds(366, 10, 186, 13);
+		lblDefaultHyperlinksby.setText("Default Hyperlinks (by double-click):");
+		
+		availableHyperLink = new Table(defaultHyperlinkComposite, SWT.BORDER | SWT.FULL_SELECTION);
+		availableHyperLink.setBounds(20, 29, 276, 177);
+		
+		defaultHyperLink = new Table(defaultHyperlinkComposite, SWT.BORDER | SWT.FULL_SELECTION);
+		defaultHyperLink.setBounds(366, 29, 276, 177);
+		
+		defaultHRight = new Button(defaultHyperlinkComposite, SWT.NONE);
+		defaultHRight.setBounds(309, 29, 34, 23);
+		
+		defaultHleft = new Button(defaultHyperlinkComposite, SWT.NONE);
+		defaultHleft.setBounds(309, 68, 34, 23);
+		
+		defaultHup = new Button(defaultHyperlinkComposite, SWT.NONE);
+		defaultHup.setBounds(309, 117, 34, 23);
+		
+		defaultHdown = new Button(defaultHyperlinkComposite, SWT.NONE);
+		defaultHdown.setBounds(309, 158, 34, 23);
+	}
 	/**
 	 * This method initializes diagramComposite.
 	 */
@@ -339,6 +391,7 @@ public abstract class AbstractHyperLinkManagerShell {
 
 	/**
 	 * This method initializes hyperLinkShell.
+	 * @wbp.parser.entryPoint
 	 */
 	protected void createHyperLinkShell() {
 		GridData gridData9 = new GridData();
@@ -554,5 +607,4 @@ public abstract class AbstractHyperLinkManagerShell {
 	protected Button getRemoveDocumentButton() {
 		return removeDocumentButton;
 	}
-
 }

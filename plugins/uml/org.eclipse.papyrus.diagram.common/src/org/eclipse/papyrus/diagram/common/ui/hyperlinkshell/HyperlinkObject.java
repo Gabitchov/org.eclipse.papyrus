@@ -18,7 +18,7 @@ package org.eclipse.papyrus.diagram.common.ui.hyperlinkshell;
  * This is the Object use to manipulate into hyperlinks
  *
  */
-public class HyperlinkObject {
+public abstract class HyperlinkObject {
 
 	/**
 	 * the associated tool tip
@@ -78,4 +78,10 @@ public class HyperlinkObject {
 	public boolean getIsDefault(){
 		return this.isDefault;
 	}
+	
+	/**
+	 * Used to execute an action when the hyperlink object is selected and clicked 
+	 * for example can open a new editor or a diagram...
+	 */
+	public abstract void executeMousePressed();
 }
