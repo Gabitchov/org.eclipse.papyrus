@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://www.eclipse.org/papyrus/diagram/types/applystereotypeactionconfiguration/0.7"
-            class="org.eclipse.papyrus.diagram.extendedtypes.uml.applystereotypeactionconfiguration.provider.ApplyStereotypeActionConfigurationItemProviderAdapterFactory"
+            class="org.eclipse.papyrus.extendedtypes.uml.applystereotypeactionconfiguration.provider.ApplyStereotypeActionConfigurationItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

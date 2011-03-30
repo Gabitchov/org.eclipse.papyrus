@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8"
-            class="org.eclipse.papyrus.diagram.extendedtypes.emf.modifysemanticvaluesactionconfiguration.provider.ModifySemanticValuesActionConfigurationItemProviderAdapterFactory"
+            class="org.eclipse.papyrus.extendedtypes.emf.modifysemanticvaluesactionconfiguration.provider.ModifySemanticValuesActionConfigurationItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

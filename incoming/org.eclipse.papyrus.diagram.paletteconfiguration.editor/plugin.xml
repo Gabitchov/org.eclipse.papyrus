@@ -15,9 +15,9 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="org.eclipse.papyrus.diagram.paletteconfiguration.presentation.PaletteconfigurationModelWizardID"
+            id="org.eclipse.papyrus.paletteconfiguration.presentation.PaletteconfigurationModelWizardID"
             name="%_UI_PaletteconfigurationModelWizard_label"
-            class="org.eclipse.papyrus.diagram.paletteconfiguration.presentation.PaletteconfigurationModelWizard"
+            class="org.eclipse.papyrus.paletteconfiguration.presentation.PaletteconfigurationModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/PaletteconfigurationModelFile.gif">
          <description>%_UI_PaletteconfigurationModelWizard_description</description>
@@ -27,12 +27,12 @@
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            id="org.eclipse.papyrus.diagram.paletteconfiguration.presentation.PaletteconfigurationEditorID"
+            id="org.eclipse.papyrus.paletteconfiguration.presentation.PaletteconfigurationEditorID"
             name="%_UI_PaletteconfigurationEditor_label"
             icon="icons/full/obj16/PaletteconfigurationModelFile.gif"
             extensions="paletteconfiguration"
-            class="org.eclipse.papyrus.diagram.paletteconfiguration.presentation.PaletteconfigurationEditor"
-            contributorClass="org.eclipse.papyrus.diagram.paletteconfiguration.presentation.PaletteconfigurationActionBarContributor">
+            class="org.eclipse.papyrus.paletteconfiguration.presentation.PaletteconfigurationEditor"
+            contributorClass="org.eclipse.papyrus.paletteconfiguration.presentation.PaletteconfigurationActionBarContributor">
       </editor>
    </extension>
 

@@ -15,21 +15,21 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.eclipse.org/papyrus/diagram/types/extendedtypes/0.7"
-            class="org.eclipse.papyrus.diagram.extendedtypes.ExtendedtypesPackage"
+            class="org.eclipse.papyrus.extendedtypes.ExtendedtypesPackage"
             genModel="model/ExtendedTypes.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <parser
             type="extendedtypes"
-            class="org.eclipse.papyrus.diagram.extendedtypes.util.ExtendedtypesResourceFactoryImpl"/>
+            class="org.eclipse.papyrus.extendedtypes.util.ExtendedtypesResourceFactoryImpl"/>
    </extension>
    <extension
          point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
       <metamodel
             nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <adviceBinding
-               class="org.eclipse.papyrus.diagram.extendedtypes.advices.ExtendedTypesOwnerAdvice"
+               class="org.eclipse.papyrus.extendedtypes.advices.ExtendedTypesOwnerAdvice"
                id="org.eclipse.papyrus.uml.advice.ExtendedTypesOwnerAdvice"
                inheritance="all"
                typeId="org.eclipse.papyrus.uml.Element">

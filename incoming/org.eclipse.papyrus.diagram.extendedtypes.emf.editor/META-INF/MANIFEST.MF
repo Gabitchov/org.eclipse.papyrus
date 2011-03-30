@@ -1,23 +1,23 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.diagram.extendedtypes.emf.editor;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.extendedtypes.emf.editor;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.diagram.extendedtypes.emf.modifysemanticvaluesactionconfiguration.presentation.ModifySemanticValuesActionConfigurationEditorPlugin$Implementation
+Bundle-Activator: org.eclipse.papyrus.extendedtypes.emf.modifysemanticvaluesactionconfiguration.presentation.ModifySemanticValuesActionConfigurationEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.diagram.extendedtypes.emf.modifysemanticvaluesactionconfiguration.presentation
+Export-Package: org.eclipse.papyrus.extendedtypes.emf.modifysemanticvaluesactionconfiguration.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.papyrus.diagram.extendedtypes.emf.edit;visibility:=reexport,
+ org.eclipse.papyrus.extendedtypes.emf.edit;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
  org.eclipse.papyrus.core.queries.configuration.edit;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
- org.eclipse.papyrus.diagram.extendedtypes.edit;visibility:=reexport,
+ org.eclipse.papyrus.extendedtypes.edit;visibility:=reexport,
  org.eclipse.emf.facet.infra.query.edit;visibility:=reexport,
  org.eclipse.uml2.uml.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy

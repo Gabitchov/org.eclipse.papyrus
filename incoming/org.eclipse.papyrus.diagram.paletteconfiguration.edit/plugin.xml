@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"
-            class="org.eclipse.papyrus.diagram.paletteconfiguration.provider.PaletteconfigurationItemProviderAdapterFactory"
+            class="org.eclipse.papyrus.paletteconfiguration.provider.PaletteconfigurationItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
