@@ -14,14 +14,22 @@
 
 package org.eclipse.papyrus.diagram.common.helper;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.diagram.common.commands.CreateHyperLinkDocumentCommand;
+import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.EditorHyperlinkDocumentShell;
+import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkWeb;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkDocument;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkObject;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
+import org.eclipse.uml2.uml.Package;
 
 
 /**
@@ -57,5 +65,30 @@ public class DocumentHyperLinkHelper extends AbstractHyperLinkHelper {
 		}
 		else{return null;}
 	}
+	@Override
+	public String getNameofManagedHyperLink() {
+		return "Document";
+	}
+	@Override
+	public void executeNewMousePressed(List<HyperlinkObject> list, org.eclipse.uml2.uml.Package amodel) {
+		EditorHyperlinkDocumentShell editor = new EditorHyperlinkDocumentShell();
+		editor.open();
+		if(editor.getHyperlinkDocument() != null) {
+			list.add(editor.getHyperlinkDocument());
+		}
 
+	}
+	
+	@Override
+	public ArrayList<HyperlinkObject> getFilteredObject(List<HyperlinkObject> hyperlinkObjects) {
+		ArrayList<HyperlinkObject> result= new ArrayList<HyperlinkObject>();
+		Iterator<HyperlinkObject> iterator= hyperlinkObjects.iterator();
+		while(iterator.hasNext()) {
+			HyperlinkObject hyperlinkObject = (HyperlinkObject)iterator.next();
+			if(hyperlinkObject instanceof HyperlinkDocument){
+				result.add(hyperlinkObject);
+			}
+		}
+		return result;
+	}
 }

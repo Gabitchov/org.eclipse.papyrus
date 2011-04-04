@@ -15,12 +15,12 @@ package org.eclipse.papyrus.diagram.common.ui.hyperlinkshell;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.diagram.common.Activator;
@@ -34,7 +34,6 @@ import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 
@@ -43,155 +42,32 @@ import org.eclipse.uml2.uml.Package;
  */
 public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 
-	
-
-	/** The diagram list. */
-	protected ArrayList<HyperLinkDiagram> diagramList = new ArrayList<HyperLinkDiagram>();
-
-	/** The document list. */
-	protected ArrayList<HyperlinkDocument> documentList = new ArrayList<HyperlinkDocument>();
-
-	/** The hyperlink web list. */
-	protected ArrayList<HyperLinkWeb> hyperlinkWebList = new ArrayList<HyperLinkWeb>();
-
 
 	protected ArrayList<HyperlinkObject> allhypHyperlinkObjects=new ArrayList<HyperlinkObject>();
 
-	/**
-	 * Gets the diagram list.
-	 * 
-	 * @return the diagramList
-	 */
-	public ArrayList<HyperLinkDiagram> getDiagramList() {
-		return diagramList;
-	}
 
 
-	public void sethyperLinkObjectList(ArrayList<HyperlinkObject> hyperLinkObjectList) {
+	public void setInput(ArrayList<HyperlinkObject> hyperLinkObjectList) {
 		this.allhypHyperlinkObjects.clear();
 		this.allhypHyperlinkObjects.addAll(hyperLinkObjectList);
-		Iterator<HyperlinkObject> iter= hyperLinkObjectList.iterator();
+		Iterator<HyperLinkTab>iter= tabList.iterator();
 		while(iter.hasNext()) {
-			HyperlinkObject hyperlinkObject = (HyperlinkObject)iter.next();
-			if(hyperlinkObject.getIsDefault()){
-				
-			}
-			if(hyperlinkObject instanceof HyperLinkDiagram){
-				this.diagramList.add((HyperLinkDiagram)hyperlinkObject);
-
-			}
-			if(hyperlinkObject instanceof HyperlinkDocument){
-				this.documentList.add((HyperlinkDocument)hyperlinkObject);
-
-			}
-			if(hyperlinkObject instanceof HyperLinkWeb){
-				this.hyperlinkWebList.add((HyperLinkWeb)hyperlinkObject);
-
-			}
-
+			HyperLinkTab hyperLinkTab = (HyperLinkTab)iter.next();
+			hyperLinkTab.setInput(allhypHyperlinkObjects);
 		}
-		diagramlistTableViewer.setInput(getDiagramList());
-		documentlistTableViewer.setInput(getDocumentList());
-		hyperlinkWeblistTableViewer.setInput(getHyperlinkWebList());
-	//	availableHyperLinkViewer.setInput(this.allhypHyperlinkObjects);
 	}
-
-
-	/**
-	 * Gets the document list.
-	 * 
-	 * @return the documentList
-	 */
-	public ArrayList<HyperlinkDocument> getDocumentList() {
-		return documentList;
-
-	}
-
-	/**
-	 * Gets the hyperlink web list.
-	 * 
-	 * @return the hyperlinkWebList
-	 */
-	public ArrayList<HyperLinkWeb> getHyperlinkWebList() {
-		return hyperlinkWebList;
-	}
-
-
-
-	/**
-	 * The Class DiagramContentProvider.
-	 */
-	public class ObjectContentProvider implements IStructuredContentProvider {
-
-		/**
-		 * {@inheritedDoc}.
-		 */
-		public void dispose() {
-		}
-
-		/**
-		 * {@inheritedDoc}.
-		 * 
-		 * @param viewer
-		 *        the viewer
-		 * @param oldInput
-		 *        the old input
-		 * @param newInput
-		 *        the new input
-		 */
-		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		}
-
-		/**
-		 * {@inheritedDoc}.
-		 * 
-		 * @param inputElement
-		 *        the input element
-		 * 
-		 * @return the elements
-		 */
-		public Object[] getElements(Object inputElement) {
-			if(inputElement instanceof ArrayList<?>) {
-				return ((ArrayList<?>)inputElement).toArray();
-			}
-			return null;
-		}
-
-	}
-
-	
-
-	/** The editor registry. */
-	private IPageIconsRegistry editorRegistry;
-
-	/** The SEP. */
-	private final String SEP = " - ";
-
-	/** The element. */
-	private Element element;
 
 	/** The view. */
 	private View view;
-
-	/** The diagramlist table viewer. */
-	private TableViewer diagramlistTableViewer;
-
-	/** The documentlist table viewer. */
-	private TableViewer documentlistTableViewer;
-
-	/** The hyperlink weblist table viewer. */
-	private TableViewer hyperlinkWeblistTableViewer;
-
-	/** The content provider. */
-	protected ObjectContentProvider contentProvider;
-
 	/** The amodel. */
 	private Package amodel;
 
 	/** The domain. */
 	private TransactionalEditingDomain transactionalEditingDomain;
 
-//	protected TableViewer availableHyperLinkViewer;
+	private HyperlinkHelperFactory hyperLinkHelperFactory;
+
+	//	protected TableViewer availableHyperLinkViewer;
 
 	//protected TableViewer defaultHyperLinkViewer;
 
@@ -209,38 +85,24 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	 * @param aview
 	 *        the aview of the uml element
 	 */
-	public HyperLinkManagerShell(IPageIconsRegistry editorFactoryRegistry, TransactionalEditingDomain domain, Element umlElement, View aview, Package model) {
+	public HyperLinkManagerShell(IPageIconsRegistry editorFactoryRegistry, TransactionalEditingDomain domain, Element umlElement, View aview, Package model, HyperlinkHelperFactory hyperHelperFactory) {
 		super();
-		this.element = umlElement;
+		this.hyperLinkHelperFactory= hyperHelperFactory;
 		this.view = aview;
 		this.amodel = model;
 		this.transactionalEditingDomain = domain;
-		this.editorRegistry = editorFactoryRegistry;
-		this.diagramList = new ArrayList<HyperLinkDiagram>();
-		this.hyperlinkWebList = new ArrayList<HyperLinkWeb>();
-		this.documentList = new ArrayList<HyperlinkDocument>();
-		contentProvider = new ObjectContentProvider();
 		createHyperLinkShell();
 		// associate tableViewer for each table
-
-		diagramlistTableViewer = new TableViewer(this.getDiagramListtable());
-		diagramlistTableViewer.setLabelProvider(new HyperLinkLabelProvider(editorFactoryRegistry));
-		diagramlistTableViewer.setContentProvider(contentProvider);
-		diagramlistTableViewer.setInput(getDiagramList());
-
-		initializeLocalHyperLinkFolder();
-		initializeHyperlinkWebFolder();
-		initializeDocumentFolder();
-		initializeDiagramFolder();
-		initializeDefaultHyperLinkFolder();
-
+		Iterator<AbstractHyperLinkHelper> iter= hyperHelperFactory.getHyperLinkHelpers().iterator();
+		while(iter.hasNext()) {
+			AbstractHyperLinkHelper abstractHyperLinkHelper = (AbstractHyperLinkHelper)iter.next();
+			initializeFolder(abstractHyperLinkHelper);
+		}
 		// listener for the button cancel
 		getCancelButton().addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				diagramList = null;
-				documentList = null;
-				hyperlinkWebList = null;
+				tabList.clear();
 				getHyperLinkShell().close();
 			}
 
@@ -252,27 +114,23 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 		getOkButton().addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				
+
 				// empaty all hyperlinks
 				transactionalEditingDomain.getCommandStack().execute(HyperlinkHelperFactory.getEmptyAllHyperLinkCommand(transactionalEditingDomain, view));
 				allhypHyperlinkObjects.clear();
-				allhypHyperlinkObjects.addAll(diagramList);
-				allhypHyperlinkObjects.addAll(documentList);
-				allhypHyperlinkObjects.addAll(hyperlinkWebList);
-				
+				Iterator<HyperLinkTab>iter= tabList.iterator();
+				while(iter.hasNext()) {
+					HyperLinkTab hyperLinkTab = (HyperLinkTab)iter.next();
+					allhypHyperlinkObjects.addAll(hyperLinkTab.getHyperlinkObjects());
+				}
 				// save hyperlink Document list
-				ArrayList<AbstractHyperLinkHelper>  hyperLinkHelpers= new ArrayList<AbstractHyperLinkHelper>();
-				hyperLinkHelpers.add(new DiagramHyperLinkHelper());
-				hyperLinkHelpers.add(new DocumentHyperLinkHelper());
-				hyperLinkHelpers.add(new WebHyperLinkHelper());
-				HyperlinkHelperFactory hyperlinkHelperFactory= new HyperlinkHelperFactory(hyperLinkHelpers);
 				try {
-					transactionalEditingDomain.getCommandStack().execute(hyperlinkHelperFactory.getAddHyperLinkCommand(transactionalEditingDomain, view, allhypHyperlinkObjects));
+					transactionalEditingDomain.getCommandStack().execute(hyperLinkHelperFactory.getAddHyperLinkCommand(transactionalEditingDomain, view, allhypHyperlinkObjects));
 				} catch (HyperLinkException error) {
 					Activator.log.error(error);
 				}
-		
 
+				tabList.clear();
 				getHyperLinkShell().close();
 			}
 
@@ -283,20 +141,20 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	}
 
 	public void initializeDefaultHyperLinkFolder() {
-//		this.defaultHdown.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowDown_16x16.gif").createImage());
-//		this.defaultHup.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowUp_16x16.gif").createImage());
-//		this.defaultHleft.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowLeft_16x16.gif").createImage());
-//		this.defaultHRight.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowRight_16x16.gif").createImage());
-//		availableHyperLinkViewer = new TableViewer(this.availableHyperLink);
-//		availableHyperLinkViewer.setLabelProvider(new HyperLinkLabelProvider(editorRegistry));
-//		availableHyperLinkViewer.setContentProvider(contentProvider);
-//
-//
-//
-//		defaultHyperLinkViewer = new TableViewer(this.defaultHyperLink);
-//		defaultHyperLinkViewer.setLabelProvider(new HyperLinkLabelProvider(editorRegistry));
-//		defaultHyperLinkViewer.setContentProvider(contentProvider);
-//		defaultHyperLinkViewer.setInput(getHyperlinkWebList());
+		//		this.defaultHdown.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowDown_16x16.gif").createImage());
+		//		this.defaultHup.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowUp_16x16.gif").createImage());
+		//		this.defaultHleft.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowLeft_16x16.gif").createImage());
+		//		this.defaultHRight.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowRight_16x16.gif").createImage());
+		//		availableHyperLinkViewer = new TableViewer(this.availableHyperLink);
+		//		availableHyperLinkViewer.setLabelProvider(new HyperLinkLabelProvider(editorRegistry));
+		//		availableHyperLinkViewer.setContentProvider(contentProvider);
+		//
+		//
+		//
+		//		defaultHyperLinkViewer = new TableViewer(this.defaultHyperLink);
+		//		defaultHyperLinkViewer.setLabelProvider(new HyperLinkLabelProvider(editorRegistry));
+		//		defaultHyperLinkViewer.setContentProvider(contentProvider);
+		//		defaultHyperLinkViewer.setInput(getHyperlinkWebList());
 	}
 
 	public void initializeLocalHyperLinkFolder() {
@@ -304,156 +162,96 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 
 	}
 
-	/**
-	 * Initialize hyperlink web folder.
-	 */
-	public void initializeHyperlinkWebFolder() {
-		hyperlinkWeblistTableViewer = new TableViewer(this.getHyperlinkTable());
-		hyperlinkWeblistTableViewer.setLabelProvider(new HyperLinkLabelProvider(editorRegistry));
-		hyperlinkWeblistTableViewer.setContentProvider(contentProvider);
-		hyperlinkWeblistTableViewer.setInput(getHyperlinkWebList());
 
-		// button and behavior
-		getNewhyperlinkButton().addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
-			}
-
-			public void mouseDown(MouseEvent e) {
-				EditorHyperlinkWebShell editor = new EditorHyperlinkWebShell();
-				editor.open();
-				if(editor.getHyperLinkWeb() != null) {
-					hyperlinkWebList.add(editor.getHyperLinkWeb());
-					hyperlinkWeblistTableViewer.setInput(getHyperlinkWebList());
-				}
-			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-		getModifyHyperlinkButton().addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
-			}
-
-			public void mouseDown(MouseEvent e) {
-
-				if(hyperlinkWeblistTableViewer.getTable().getSelection().length != 0) {
-					HyperLinkWeb hyperLinkWeb = (HyperLinkWeb)((IStructuredSelection)hyperlinkWeblistTableViewer.getSelection()).getFirstElement();
-					EditorHyperlinkWebShell editor = new EditorHyperlinkWebShell();
-					editor.setHyperLinkWeb(hyperLinkWeb);
-					editor.open();
-					int index = hyperlinkWebList.indexOf(hyperLinkWeb);
-					hyperlinkWebList.remove(hyperLinkWeb);
-					hyperlinkWebList.add(index, editor.getHyperLinkWeb());
-					hyperlinkWeblistTableViewer.setInput(getHyperlinkWebList());
-				}
-			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-		getRemoveHyperLinkButton().addMouseListener(new RemoveElementListener(hyperlinkWeblistTableViewer, hyperlinkWebList));
-		getUpHyperLinkWebButton().addMouseListener(new UpElementListener(hyperlinkWeblistTableViewer, hyperlinkWebList));
-		getDownHyperLinkWebbutton().addMouseListener(new DownElementListener(hyperlinkWeblistTableViewer, hyperlinkWebList));
-	}
-
-	/**
-	 * Initialize document folder.
-	 */
-	public void initializeDocumentFolder() {
-		documentlistTableViewer = new TableViewer(this.getDocumentTable());
-		documentlistTableViewer.setLabelProvider(new HyperLinkLabelProvider(editorRegistry));
-		documentlistTableViewer.setContentProvider(contentProvider);
-		documentlistTableViewer.setInput(getDocumentList());
-		getNewDocumentButton().addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
-
-			}
-
-			public void mouseDown(MouseEvent e) {
-				EditorHyperlinkDocumentShell editor = new EditorHyperlinkDocumentShell();
-				editor.open();
-				if(editor.getHyperlinkDocument() != null) {
-					documentList.add(editor.getHyperlinkDocument());
-					documentlistTableViewer.setInput(getDocumentList());
-				}
-			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-			}
-		});
-		getModifyDocumentButton1().addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
-			}
-
-			public void mouseDown(MouseEvent e) {
-				if(documentlistTableViewer.getTable().getSelection().length != 0) {
-					HyperlinkDocument hyperLinkdoc = (HyperlinkDocument)((IStructuredSelection)documentlistTableViewer.getSelection()).getFirstElement();
-					EditorHyperlinkDocumentShell editor = new EditorHyperlinkDocumentShell();
-					editor.setHyperlinkDocument(hyperLinkdoc);
-					editor.open();
-					int index = documentList.indexOf(hyperLinkdoc);
-					documentList.remove(hyperLinkdoc);
-					documentList.add(index, editor.getHyperlinkDocument());
-					documentlistTableViewer.setInput(documentList);
-				}
-			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-			}
-		});
-		getRemoveDocumentButton().addMouseListener(new RemoveElementListener(documentlistTableViewer, documentList));
-		getUpDocumentButton().addMouseListener(new UpElementListener(documentlistTableViewer, documentList));
-		getDownDocumentButton().addMouseListener(new DownElementListener(documentlistTableViewer, documentList));
-	}
 
 	/**
 	 * Initialize diagram folder.
 	 */
-	public void initializeDiagramFolder() {
-		getRemoveDiagramButton().addMouseListener(new RemoveElementListener(diagramlistTableViewer, diagramList));
-		getUpDiagramButton().addMouseListener(new UpElementListener(diagramlistTableViewer, diagramList));
-		getDownDiagramButton().addMouseListener(new DownElementListener(diagramlistTableViewer, diagramList));
-		getNewDiagrambutton().addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
-
-			}
-
+	public void initializeFolder(final AbstractHyperLinkHelper abstractHyperLinkHelper) {
+		
+		final HyperLinkTab hyperLinkTab=new HyperLinkTab(getcTabFolder(), abstractHyperLinkHelper,allhypHyperlinkObjects);
+		tabList.add( hyperLinkTab);
+		hyperLinkTab.getRemoveHyperLinkButton().addMouseListener(new MouseListener() {
+			public void mouseUp(MouseEvent e) {}
 			public void mouseDown(MouseEvent e) {
-				EditorHyperlinkDiagramShell editor = new EditorHyperlinkDiagramShell(editorRegistry, amodel);
-				editor.open();
-				if(editor.getHyperLinkDiagram() != null) {
-					diagramList.add(editor.getHyperLinkDiagram());
-					diagramlistTableViewer.setInput(getDiagramList());
+				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
+					Iterator iterator = ((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).iterator();
+					while(iterator.hasNext()) {
+						Object object = iterator.next();
+						hyperLinkTab.getHyperlinkObjects().remove(object);
+						hyperLinkTab.getTableViewer().setInput(hyperLinkTab.getHyperlinkObjects());
+					}
 				}
 			}
 
 			public void mouseDoubleClick(MouseEvent e) {
 			}
 		});
-		getModifyDiagramButton().addMouseListener(new MouseListener() {
+		hyperLinkTab.getUpHyperLinkButton().addMouseListener(new MouseListener() {
 
-			public void mouseUp(MouseEvent e) {
-			}
+			public void mouseUp(MouseEvent e) {}
 
 			public void mouseDown(MouseEvent e) {
-				if(diagramlistTableViewer.getTable().getSelection().length != 0) {
-					HyperLinkDiagram hyperLinkdiagram = (HyperLinkDiagram)((IStructuredSelection)diagramlistTableViewer.getSelection()).getFirstElement();
-					EditorHyperlinkDiagramShell editor = new EditorHyperlinkDiagramShell(editorRegistry, amodel);
-					editor.setHyperLinkDiagram(hyperLinkdiagram);
-					editor.open();
-					int index = diagramList.indexOf(hyperLinkdiagram);
-					diagramList.remove(hyperLinkdiagram);
-					diagramList.add(index, editor.getHyperLinkDiagram());
-					diagramlistTableViewer.setInput(getDiagramList());
+				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
+					Object elt = ((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).getFirstElement();
+					if(hyperLinkTab.getHyperlinkObjects().indexOf(elt) == 0) {
+						return;
+					}
+					Iterator iterator = ((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).iterator();
+					while(iterator.hasNext()) {
+						HyperlinkObject currentHyperLinkDoc = (HyperlinkObject)iterator.next();
+						int index = hyperLinkTab.getHyperlinkObjects().indexOf(currentHyperLinkDoc);
+						hyperLinkTab.getHyperlinkObjects().remove(currentHyperLinkDoc);
+						hyperLinkTab.getHyperlinkObjects().add(index - 1, currentHyperLinkDoc);
+						hyperLinkTab.getTableViewer().setInput(hyperLinkTab.getHyperlinkObjects());
+					}
+				}
+			}
+
+			public void mouseDoubleClick(MouseEvent e) {}
+		});
+		hyperLinkTab.getDownHyperLinkButton().addMouseListener(new MouseListener() {
+
+			public void mouseUp(MouseEvent e) {}
+
+			public void mouseDown(MouseEvent e) {
+				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
+					Object[] block = ((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).toArray();
+					if((hyperLinkTab.getHyperlinkObjects().indexOf(block[block.length - 1])) == hyperLinkTab.getHyperlinkObjects().size() - 1) {
+						return;
+					}
+					for(int i = block.length - 1; i >= 0; i--) {
+						HyperlinkObject currentobject = (HyperlinkObject)block[i];
+						int index = hyperLinkTab.getHyperlinkObjects().indexOf(currentobject);
+						hyperLinkTab.getHyperlinkObjects().remove(currentobject);
+						hyperLinkTab.getHyperlinkObjects().add(index + 1, currentobject);
+						hyperLinkTab.getTableViewer().setInput(hyperLinkTab.getHyperlinkObjects());
+					}
+				}
+			}
+
+			public void mouseDoubleClick(MouseEvent e) {}
+		});
+		hyperLinkTab.getNewHyperLinkbutton().addMouseListener(new MouseListener() {
+
+			public void mouseUp(MouseEvent e) {}
+
+			public void mouseDown(MouseEvent e) {
+				abstractHyperLinkHelper.executeNewMousePressed(hyperLinkTab.getHyperlinkObjects(), amodel);
+				hyperLinkTab.setInput(hyperLinkTab.getHyperlinkObjects());
+			}
+
+			public void mouseDoubleClick(MouseEvent e) {}
+		});
+		hyperLinkTab.getModifyHyperLinkButton().addMouseListener(new MouseListener() {
+
+			public void mouseUp(MouseEvent e) {	}
+
+			public void mouseDown(MouseEvent e) {
+				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
+					HyperlinkObject hyperLinkObject = (HyperlinkObject)((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).getFirstElement();
+					abstractHyperLinkHelper.executeEditMousePressed(hyperLinkTab.getHyperlinkObjects(), hyperLinkObject,amodel);
+					hyperLinkTab.setInput(hyperLinkTab.getHyperlinkObjects());
 				}
 			}
 

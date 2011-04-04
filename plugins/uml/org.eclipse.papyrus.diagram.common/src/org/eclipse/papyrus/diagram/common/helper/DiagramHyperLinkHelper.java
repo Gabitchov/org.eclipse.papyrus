@@ -14,6 +14,10 @@
 
 package org.eclipse.papyrus.diagram.common.helper;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
@@ -21,10 +25,23 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.utils.ServiceUtils;
+import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.diagram.common.commands.CreateHyperLinkDiagramCommand;
+import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.EditorHyperlinkDiagramShell;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkDiagram;
+import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkWeb;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkObject;
+import org.eclipse.papyrus.diagram.common.util.ServiceUtilsForGMF;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
+import org.eclipse.uml2.uml.Package;
 
 /**
  * this is an helper to manager hyperlink Diagram 
@@ -60,6 +77,39 @@ public class DiagramHyperLinkHelper extends AbstractHyperLinkHelper {
 			return new CreateHyperLinkDiagramCommand(domain, object, hyperLinkDiagram.getTooltipText(), hyperLinkDiagram.getDiagram().getName(),  hyperLinkDiagram.getDiagram(),hyperLinkDiagram.getIsDefault());
 		}
 		else{return null;}
+	}
+	@Override
+	public String getNameofManagedHyperLink() {
+		return "Diagram";
+	}
+	@Override
+	public void executeNewMousePressed(List<HyperlinkObject> list, Package amodel) {
+		IPageIconsRegistry editorRegistry=null;
+		IMultiDiagramEditor papyrusEditor=EditorUtils.getMultiDiagramEditor();
+		try {
+			editorRegistry= papyrusEditor.getServicesRegistry().getService(IPageIconsRegistry.class);
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		EditorHyperlinkDiagramShell editor = new EditorHyperlinkDiagramShell(editorRegistry, amodel);
+		editor.open();
+		if(editor.getHyperLinkDiagram() != null) {
+			list.add(editor.getHyperLinkDiagram());
+		}
+
+	}
+	@Override
+	public ArrayList<HyperlinkObject> getFilteredObject(List<HyperlinkObject> hyperlinkObjects) {
+		ArrayList<HyperlinkObject> result= new ArrayList<HyperlinkObject>();
+		Iterator<HyperlinkObject> iterator= hyperlinkObjects.iterator();
+		while(iterator.hasNext()) {
+			HyperlinkObject hyperlinkObject = (HyperlinkObject)iterator.next();
+			if(hyperlinkObject instanceof HyperLinkDiagram){
+				result.add(hyperlinkObject);
+			}
+		}
+		return result;
 	}
 
 }

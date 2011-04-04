@@ -284,14 +284,14 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			if(1 == me.button) // context menu, hide the popup bar
 			{
 				if(me.getSource() instanceof PopupBarLabelPlusHandle) {
-					hyperLinkManagerShell = new HyperLinkManagerShell(getEditorRegistry(), ((GraphicalEditPart)getHost()).getEditingDomain(), (Element)((GraphicalEditPart)getHost()).getNotationView().getElement(), ((GraphicalEditPart)getHost()).getNotationView(), topPackage((Element)((GraphicalEditPart)getHost()).getNotationView().getElement()));
-					hyperLinkManagerShell.sethyperLinkObjectList(hyperLinkObjectList);
+					hyperLinkManagerShell = new HyperLinkManagerShell(getEditorRegistry(), ((GraphicalEditPart)getHost()).getEditingDomain(), (Element)((GraphicalEditPart)getHost()).getNotationView().getElement(), ((GraphicalEditPart)getHost()).getNotationView(), topPackage((Element)((GraphicalEditPart)getHost()).getNotationView().getElement()),hyperlinkHelperFactory);
+					hyperLinkManagerShell.setInput(hyperLinkObjectList);
 					hyperLinkManagerShell.open();
 
 				} else if(me.getSource() instanceof PopupBarLabelHandle) {
 					if((((PopupBarLabelHandle)me.getSource()).getReferencedObject()) instanceof HyperlinkObject) {
 						HyperlinkObject hyperLinkObject = (HyperlinkObject)(((PopupBarLabelHandle)me.getSource()).getReferencedObject());
-						hyperLinkObject.executeMousePressed();
+						hyperLinkObject.executeSelectPressed();
 					}
 				}
 

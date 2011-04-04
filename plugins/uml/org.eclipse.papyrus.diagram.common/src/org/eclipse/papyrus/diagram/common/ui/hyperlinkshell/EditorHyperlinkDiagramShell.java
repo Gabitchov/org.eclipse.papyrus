@@ -19,7 +19,6 @@ import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Package;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EditorHyperlinkDiagramShell.
  */
@@ -164,7 +163,7 @@ public class EditorHyperlinkDiagramShell extends AbstractEditHyperlinkDocumentSh
 	 * 
 	 * @return the hyperLinkDiagram maybe null, if cancel or bad selection
 	 */
-	protected HyperLinkDiagram getHyperLinkDiagram() {
+	public HyperLinkDiagram getHyperLinkDiagram() {
 		return hyperLinkDiagram;
 	}
 
@@ -174,7 +173,7 @@ public class EditorHyperlinkDiagramShell extends AbstractEditHyperlinkDocumentSh
 	 * @param hyperLinkDiagram
 	 *        the hyperLinkDiagram to set
 	 */
-	protected void setHyperLinkDiagram(HyperLinkDiagram hyperLinkDiagram) {
+	public void setHyperLinkDiagram(HyperLinkDiagram hyperLinkDiagram) {
 		getObjectLabeltext().setText(hyperLinkDiagram.getDiagram().getName());
 		getTooltipInputText().setText(hyperLinkDiagram.getTooltipText());
 		this.hyperLinkDiagram = hyperLinkDiagram;

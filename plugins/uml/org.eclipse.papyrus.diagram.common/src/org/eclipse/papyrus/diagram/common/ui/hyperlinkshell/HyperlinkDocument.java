@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.ui.hyperlinkshell;
 
+import java.util.List;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -28,6 +30,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.uml2.uml.Package;
 
 /**
  * The Class HyperlinkDocument. A container of document
@@ -54,7 +57,7 @@ public class HyperlinkDocument extends HyperlinkObject {
 	}
 
 	@Override
-	public void executeMousePressed() {
+	public void executeSelectPressed() {
 		try {
 			// this is a file try to open it
 			IEditorDescriptor eDesc = PlatformUI.getWorkbench().getEditorRegistry().findEditor(IEditorRegistry.SYSTEM_EXTERNAL_EDITOR_ID);
@@ -80,6 +83,17 @@ public class HyperlinkDocument extends HyperlinkObject {
 		} catch (Exception e) {
 			Activator.log.error(e);
 		}
+		
+	}
+
+	@Override
+	public void executeEditMousePressed(List<HyperlinkObject> list, Package amodel) {
+		EditorHyperlinkDocumentShell editor = new EditorHyperlinkDocumentShell();
+		editor.setHyperlinkDocument(this);
+		editor.open();
+		int index = list.indexOf(this);
+		list.remove(this);
+		list.add(index, editor.getHyperlinkDocument());
 		
 	}
 }

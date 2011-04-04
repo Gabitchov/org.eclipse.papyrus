@@ -59,7 +59,7 @@ public class HyperLinkLabelProvider implements ILabelProvider {
 			return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", HYPERLINK_DOCUMENT_ICON_PATH).createImage();
 		}
 		else if(element instanceof HyperLinkWeb) {
-			AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", HYPERLINK_WEB_ICON_PATH).createImage();
+			return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", HYPERLINK_WEB_ICON_PATH).createImage();
 		}
 
 		else if(element instanceof HyperLinkDiagram) {

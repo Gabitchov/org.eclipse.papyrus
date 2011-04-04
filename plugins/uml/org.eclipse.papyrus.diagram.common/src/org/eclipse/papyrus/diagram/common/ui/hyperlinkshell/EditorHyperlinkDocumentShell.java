@@ -35,7 +35,7 @@ public class EditorHyperlinkDocumentShell extends AbstractEditHyperlinkDocumentS
 	 * 
 	 * @return the hyperlinkDocument
 	 */
-	protected HyperlinkDocument getHyperlinkDocument() {
+	public HyperlinkDocument getHyperlinkDocument() {
 		return hyperlinkDocument;
 	}
 
@@ -45,7 +45,7 @@ public class EditorHyperlinkDocumentShell extends AbstractEditHyperlinkDocumentS
 	 * @param hyperlinkDocument
 	 *        the hyperlinkDocument to set
 	 */
-	protected void setHyperlinkDocument(HyperlinkDocument hyperlinkDocument) {
+	public void setHyperlinkDocument(HyperlinkDocument hyperlinkDocument) {
 		this.hyperlinkDocument = hyperlinkDocument;
 		getObjectLabeltext().setText(getHyperlinkDocument().getHyperlinkDocument());
 		getTooltipInputText().setText(getHyperlinkDocument().getTooltipText());
@@ -112,9 +112,11 @@ public class EditorHyperlinkDocumentShell extends AbstractEditHyperlinkDocumentS
 				String[] filterExt = { "*.txt", "*.doc", "*.pdf", "*.*" };
 				fd.setFilterExtensions(filterExt);
 				String selected = fd.open();
-				getObjectLabeltext().setText(selected);
-				if(usedefaultTooltip) {
-					getTooltipInputText().setText(selected);
+				if(selected!=null){
+					getObjectLabeltext().setText(selected);
+					if(usedefaultTooltip) {
+						getTooltipInputText().setText(selected);
+					}
 				}
 			}
 

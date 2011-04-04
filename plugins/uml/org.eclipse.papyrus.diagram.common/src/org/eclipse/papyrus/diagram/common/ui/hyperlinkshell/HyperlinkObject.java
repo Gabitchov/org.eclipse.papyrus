@@ -13,6 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.ui.hyperlinkshell;
 
+import java.util.List;
+
+import org.eclipse.uml2.uml.Package;
+
 
 /**
  * This is the Object use to manipulate into hyperlinks
@@ -83,5 +87,13 @@ public abstract class HyperlinkObject {
 	 * Used to execute an action when the hyperlink object is selected and clicked 
 	 * for example can open a new editor or a diagram...
 	 */
-	public abstract void executeMousePressed();
+	public abstract void executeSelectPressed();
+	
+	/**
+	 * Used to execute an action when the hyperlink object is selected and clicked to be edited
+ 
+	 * @param list of hyperlink that are containted by a graphical element
+	 * @param amodel the top package root element
+	 */
+	public abstract void executeEditMousePressed(List<HyperlinkObject> list, Package amodel);
 }

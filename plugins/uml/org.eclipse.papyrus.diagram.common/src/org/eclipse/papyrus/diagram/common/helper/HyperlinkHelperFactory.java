@@ -35,6 +35,11 @@ public class HyperlinkHelperFactory {
 
 	protected ArrayList<AbstractHyperLinkHelper> hyperLinkHelpers= new ArrayList<AbstractHyperLinkHelper>();
 
+	
+	public ArrayList<AbstractHyperLinkHelper> getHyperLinkHelpers() {
+		return hyperLinkHelpers;
+	}
+
 	public HyperlinkHelperFactory(ArrayList<AbstractHyperLinkHelper> hyperLinkHelpers){
 		this.hyperLinkHelpers.clear();
 		this.hyperLinkHelpers.addAll(hyperLinkHelpers);
