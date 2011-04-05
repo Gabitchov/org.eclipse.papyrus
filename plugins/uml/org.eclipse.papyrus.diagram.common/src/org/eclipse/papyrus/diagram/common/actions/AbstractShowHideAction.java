@@ -39,6 +39,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.CheckedTreeSelectionDialog;
+import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -133,7 +134,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 		}
 		initAction();
 		buildInitialSelection();
-		CheckedTreeSelectionDialog selectionDialog = getSelectionDialog();
+		SelectionDialog selectionDialog = getSelectionDialog();
 		selectionDialog.open();
 		if(selectionDialog.getReturnCode() == Dialog.OK) {
 			buildShowHideElementsList(selectionDialog.getResult());
@@ -159,8 +160,8 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 			}
 		}
 	}
-	
-	protected CheckedTreeSelectionDialog getSelectionDialog() {
+
+	protected SelectionDialog getSelectionDialog() {
 		CheckedTreeSelectionDialog selectionDialog = new CheckedTreeSelectionDialog(DisplayUtils.getDisplay().getActiveShell(), labelProvider, contentProvider);
 		selectionDialog.setTitle(title);
 		selectionDialog.setMessage(message);

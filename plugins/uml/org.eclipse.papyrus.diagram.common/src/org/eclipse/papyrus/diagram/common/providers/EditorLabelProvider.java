@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.providers;
 
@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.View;
@@ -149,7 +151,6 @@ public class EditorLabelProvider implements ILabelProvider {
 		if(element instanceof BasicCompartment || element instanceof DecorationNode) {
 			return Activator.getPluginIconImage(Activator.ID, ICON_COMPARTMENT);
 		}
-
 		return null;
 	}
 
@@ -184,7 +185,13 @@ public class EditorLabelProvider implements ILabelProvider {
 
 			index.put(className, number + 1);
 			return className + " " + number;
+		} else if(element instanceof View) { //maybe it is a view of a compartment
+			EditPart dummyEP = EditPartService.getInstance().createGraphicEditPart((View)element);
+			if(dummyEP instanceof ResizableCompartmentEditPart) {
+				return ((ResizableCompartmentEditPart)dummyEP).getCompartmentName();
+			}
 		}
+
 		return Messages.EditorLabelProvider_No_name;
 	}
 }
