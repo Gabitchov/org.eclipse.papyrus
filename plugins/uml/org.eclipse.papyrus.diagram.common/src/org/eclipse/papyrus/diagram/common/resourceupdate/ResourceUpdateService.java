@@ -37,15 +37,16 @@ import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.IService;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Profile;
@@ -56,14 +57,13 @@ import org.eclipse.uml2.uml.Profile;
  * 
  * @author Ansgar Radermacher (CEA LIST)
  */
-public class ResourceUpdateService implements IService, IResourceChangeListener, IResourceDeltaVisitor {
+public class ResourceUpdateService implements IService, IResourceChangeListener, IResourceDeltaVisitor, IPartListener {
 
 	public static final String RESOURCE_UPDATE_ID = Activator.ID + ".resourceUpdate";
 
 	// public init (CoreMultiDiagramEditor editor, ISaveAndDirtyService saveAndDirty, ModelSet modelSet) {
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
-		isActive = true;
-
+		modifiedMainResource = false;
 		modelSet = servicesRegistry.getService(ModelSet.class);
 		editor = servicesRegistry.getService(IMultiDiagramEditor.class);
 	}
@@ -72,35 +72,30 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 	 * The listener operation that is called by the workspace
 	 */
 	public void resourceChanged(IResourceChangeEvent event) {
-		if(isActive) {
-			switch(event.getType()) {
-			case IResourceChangeEvent.PRE_CLOSE:
-			case IResourceChangeEvent.PRE_BUILD:
-			case IResourceChangeEvent.POST_BUILD:
-			case IResourceChangeEvent.PRE_DELETE:
-				// do nothing (only handle change)
-				break;
-			case IResourceChangeEvent.POST_CHANGE:
-				try {
-					// delegate to visitor (event.getResource is typically null) and there
-					// might be a tree of changed resources
-					event.getDelta().accept(this);
-				} catch (CoreException coreException) {
-					log.error(coreException);
-				}
-				break;
+		switch(event.getType()) {
+		case IResourceChangeEvent.PRE_CLOSE:
+		case IResourceChangeEvent.PRE_BUILD:
+		case IResourceChangeEvent.POST_BUILD:
+		case IResourceChangeEvent.PRE_DELETE:
+			// do nothing (only handle change)
+			break;
+		case IResourceChangeEvent.POST_CHANGE:
+			try {
+				// delegate to visitor (event.getResource is typically null) and there
+				// might be a tree of changed resources
+				event.getDelta().accept(this);
+			} catch (CoreException coreException) {
+				log.error(coreException);
 			}
+			break;
 		}
+
 	}
 
 	/**
 	 * A visitor for resource changes. Detects, whether a changed resource belongs to an opened editor
 	 */
 	public boolean visit(IResourceDelta delta) {
-		if(!isActive) {
-			// don't follow resource changes, once inactive (due to a pending user dialog) 
-			return false;
-		}
 		IResource changedResource = delta.getResource();
 		if(delta.getFlags() == IResourceDelta.MARKERS) {
 			// only markers have been changed. Refresh their display only (no need to reload resources)
@@ -108,7 +103,6 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 			modelSet.eNotify(new NotificationImpl(Notification.SET, new Object(), delta.getMarkerDeltas()));
 			return false;
 		}
-		boolean resourceOfMainModelChanged = false;
 		// only proceed in case of Files (not projects, folders, ...) for the moment
 		if(!(changedResource instanceof IFile)) {
 			return true;
@@ -129,19 +123,11 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 			if(normalizedURI.path().endsWith(changedResourcePath)) {
 				if(changedResourcePathWOExt.equals(modelSet.getFilenameWithoutExtension())) {
 					// model itself has changed.
-					// check before, if it is not the model of the active Papyrus editor (which may perform a save/saveAs operation)
-					IMultiDiagramEditor editor = EditorUtils.getMultiDiagramEditor();
-					if(editor != null) {
-						try {
-							ModelSet modelSetOfActiveEditor = editor.getServicesRegistry().getService(ModelSet.class);
-							if(!changedResourcePathWOExt.equals(modelSetOfActiveEditor.getFilenameWithoutExtension())) {
-								// if !equal: resource opened by a non-active editor has changed
-								// => change is not the result of save/saveAs operation => ask user 
-								resourceOfMainModelChanged = true;
-								break;
-							}
-						} catch (ServiceException e) {
-						}
+					// mark main resource as changed. User will asked later, when he activates the editor.
+					if(!modifiedMainResource) {
+						modifiedMainResource = true;
+						this.changedResourcePath = changedResourcePath;
+						this.delta = delta;
 					}
 				}
 				// changed resource does not belong to the model, it might however belong to a referenced
@@ -158,70 +144,14 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 				}
 			}
 		}
-		if(!resourceOfMainModelChanged) {
-			return true;
-		}
-		switch(delta.getKind()) {
-		case IResourceDelta.ADDED:
-			break;
-		case IResourceDelta.REMOVED:
-			// asynchronous notification to avoid that the removal of multiple resource files
-			// belonging to the editor (e.g. .uml and .notation) at the same time leads to multiple
-			// user feedback.
-			isActive = false;
-			Display.getDefault().asyncExec(new Runnable() {
-
-				public void run() {
-
-					MessageDialog.openInformation(new Shell(), "Resource removal", "The resource " + changedResourcePath + " that is in use by a Papyrus editor has been removed. Use save/save as, if you want to keep the model");
-					isActive = true;
-				}
-			});
-			break;
-		case IResourceDelta.CHANGED:
-			// reopen the editor asynchronously to avoid that changes of multiple resource files
-			// belonging to the editor (e.g. .uml and .notation) lead to multiple reloads.
-			// de-activate until user responds to message dialog 
-			isActive = false;
-			Display.getDefault().asyncExec(new Runnable() {
-
-				public void run() {
-
-					String message = "The resource " + changedResourcePath + " that is in use by a Papyrus editor has changed. Do you want to reopen the editor in order to update its contents?";
-					if(editor.isDirty()) {
-						message += " CAVEAT: the editor contains unsaved modifications that would be lost.";
-					}
-
-					if(MessageDialog.openQuestion(new Shell(), "Resource change", message)) {
-						// unloading and reloading all resources of the main causes the following problems
-						//  - since resources are removed during the modelSets unload operation, the call eResource().getContents ()
-						//    used by the model explorer leads to a null pointer exception
-						//  - diagrams in model explorer are not shown
-						//  - would need to reset dirty flags
-						// => clean & simple option is to close and reopen the editor.
-
-						IWorkbench wb = PlatformUI.getWorkbench();
-						IWorkbenchPage page = wb.getActiveWorkbenchWindow().getActivePage();
-						IEditorInput input = editor.getEditorInput();
-						page.closeEditor(editor, false);
-						try {
-							IEditorDescriptor desc = wb.getEditorRegistry().getDefaultEditor(input.getName());
-							page.openEditor(input, desc.getId(), false);
-						} catch (PartInitException e) {
-							log.error(e);
-						}
-					} else {
-						// response "no" => don't reload and reactivate listener
-						isActive = true;
-					}
-				}
-			});
-			break;
-		}
-		return true; // visit the children
+		return true;
 	}
 
-	private boolean isActive;
+	private String changedResourcePath;
+
+	private IResourceDelta delta;
+
+	private boolean modifiedMainResource;
 
 	private IMultiDiagramEditor editor;
 
@@ -229,14 +159,24 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 
 	// private ILifeCycleEventsProvider lifeCycleEvents;
 
+	/**
+	 * Activate the listeners. It will listen to resource changes and to changes of the active editor
+	 */
 	private void activate() {
 		// ... add service to the workspace
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(this, IResourceChangeEvent.POST_CHANGE);
+		IWorkbenchPage page = editor.getSite().getPage();
+		page.addPartListener(this);
 	}
 
+	/**
+	 * DeActivate the listeners.
+	 */
 	private void deactivate() {
 		// remove it from workspace
 		ResourcesPlugin.getWorkspace().removeResourceChangeListener(this);
+		IWorkbenchPage page = editor.getSite().getPage();
+		page.removePartListener(this);
 	}
 
 	public void startService() throws ServiceException {
@@ -246,5 +186,77 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 	public void disposeService() throws ServiceException {
 		deactivate();
 		// lifeCycleEvents.removeDoSaveListener(listener);
+	}
+
+	public void partActivated(IWorkbenchPart part) {
+		// TODO Auto-generated method stub
+		if((part == editor.getSite().getPart()) && modifiedMainResource) {
+
+			switch(delta.getKind()) {
+			case IResourceDelta.ADDED:
+				break;
+			case IResourceDelta.REMOVED:
+				// asynchronous notification to avoid that the removal of multiple resource files
+				// belonging to the editor (e.g. .uml and .notation) at the same time leads to multiple
+				// user feedback.
+
+				MessageDialog.openInformation(new Shell(), "Resource removal", "The resource " + changedResourcePath + " that is in use by a Papyrus editor has been removed. Use save/save as, if you want to keep the model");
+				break;
+
+			case IResourceDelta.CHANGED:
+				// reopen the editor asynchronously to avoid that changes of multiple resource files
+				// belonging to the editor (e.g. .uml and .notation) lead to multiple reloads.
+				// de-activate until user responds to message dialog 
+
+				String message = "The resource " + changedResourcePath + " that is in use by a Papyrus editor has changed. Do you want to reopen the editor in order to update its contents?";
+				if(editor.isDirty()) {
+					message += " CAVEAT: the editor contains unsaved modifications that would be lost.";
+				}
+
+				if(MessageDialog.openQuestion(new Shell(), "Resource change", message)) {
+					// unloading and reloading all resources of the main causes the following problems
+					//  - since resources are removed during the modelSets unload operation, the call eResource().getContents ()
+					//    used by the model explorer leads to a null pointer exception
+					//  - diagrams in model explorer are not shown
+					//  - would need to reset dirty flags
+					// => clean & simple option is to close and reopen the editor.
+
+					Display.getCurrent().asyncExec(new Runnable() {
+
+						public void run() {
+							IWorkbench wb = PlatformUI.getWorkbench();
+							IWorkbenchPage page = wb.getActiveWorkbenchWindow().getActivePage();
+							IEditorInput input = editor.getEditorInput();
+							page.closeEditor(editor, false);
+							try {
+								IEditorDescriptor desc = wb.getEditorRegistry().getDefaultEditor(input.getName());
+								page.openEditor(input, desc.getId(), false);
+							} catch (PartInitException e) {
+								log.error(e);
+							}
+						}
+					});
+				}
+				break;
+			}
+			modifiedMainResource = false;
+		}
+	}
+
+	public void partDeactivated(IWorkbenchPart part) {
+		if(part == editor.getSite().getPart()) {
+			// reset modified state when leaving - assume that actions while active (in particular save)
+			// do not require a re-load
+			modifiedMainResource = false;
+		}
+	}
+
+	public void partBroughtToTop(IWorkbenchPart part) {
+	}
+
+	public void partClosed(IWorkbenchPart part) {
+	}
+
+	public void partOpened(IWorkbenchPart part) {
 	}
 }
