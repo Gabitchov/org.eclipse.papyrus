@@ -32,23 +32,14 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.lifecycleevents.ILifeCycleEventsProvider;
 import org.eclipse.papyrus.core.services.IService;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.resource.ModelSet;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IEditorDescriptor;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IPartListener;
-import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Profile;
 
 /**
@@ -57,15 +48,20 @@ import org.eclipse.uml2.uml.Profile;
  * 
  * @author Ansgar Radermacher (CEA LIST)
  */
-public class ResourceUpdateService implements IService, IResourceChangeListener, IResourceDeltaVisitor, IPartListener {
+public class ResourceUpdateService implements IService, IResourceChangeListener, IResourceDeltaVisitor {
 
 	public static final String RESOURCE_UPDATE_ID = Activator.ID + ".resourceUpdate";
 
 	// public init (CoreMultiDiagramEditor editor, ISaveAndDirtyService saveAndDirty, ModelSet modelSet) {
-	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
-		modifiedMainResource = false;
-		modelSet = servicesRegistry.getService(ModelSet.class);
-		editor = servicesRegistry.getService(IMultiDiagramEditor.class);
+	public void init(ServicesRegistry serviceRegistry) throws ServiceException {
+		modelSet = serviceRegistry.getService(ModelSet.class);
+		editor = serviceRegistry.getService(IMultiDiagramEditor.class);
+		ILifeCycleEventsProvider lcEventsProvider = serviceRegistry.getService(ILifeCycleEventsProvider.class);
+		saveListener = new SaveListener();
+		lcEventsProvider.addDoSaveListener(saveListener.preSaveListener);
+		lcEventsProvider.addPostDoSaveListener(saveListener.postSaveListener);
+
+		partActivationListener = new PartActivationListener(editor);
 	}
 
 	/**
@@ -124,10 +120,8 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 				if(changedResourcePathWOExt.equals(modelSet.getFilenameWithoutExtension())) {
 					// model itself has changed.
 					// mark main resource as changed. User will asked later, when he activates the editor.
-					if(!modifiedMainResource) {
-						modifiedMainResource = true;
-						this.changedResourcePath = changedResourcePath;
-						this.delta = delta;
+					if(!saveListener.isSaveActive() && !partActivationListener.isModied()) {
+						partActivationListener.setModificationData(changedResourcePath, delta);
 					}
 				}
 				// changed resource does not belong to the model, it might however belong to a referenced
@@ -147,12 +141,6 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 		return true;
 	}
 
-	private String changedResourcePath;
-
-	private IResourceDelta delta;
-
-	private boolean modifiedMainResource;
-
 	private IMultiDiagramEditor editor;
 
 	private ModelSet modelSet;
@@ -166,7 +154,7 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 		// ... add service to the workspace
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(this, IResourceChangeEvent.POST_CHANGE);
 		IWorkbenchPage page = editor.getSite().getPage();
-		page.addPartListener(this);
+		page.addPartListener(partActivationListener);
 	}
 
 	/**
@@ -176,7 +164,7 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 		// remove it from workspace
 		ResourcesPlugin.getWorkspace().removeResourceChangeListener(this);
 		IWorkbenchPage page = editor.getSite().getPage();
-		page.removePartListener(this);
+		page.removePartListener(partActivationListener);
 	}
 
 	public void startService() throws ServiceException {
@@ -188,75 +176,7 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 		// lifeCycleEvents.removeDoSaveListener(listener);
 	}
 
-	public void partActivated(IWorkbenchPart part) {
-		// TODO Auto-generated method stub
-		if((part == editor.getSite().getPart()) && modifiedMainResource) {
+	private PartActivationListener partActivationListener;
 
-			switch(delta.getKind()) {
-			case IResourceDelta.ADDED:
-				break;
-			case IResourceDelta.REMOVED:
-				// asynchronous notification to avoid that the removal of multiple resource files
-				// belonging to the editor (e.g. .uml and .notation) at the same time leads to multiple
-				// user feedback.
-
-				MessageDialog.openInformation(new Shell(), "Resource removal", "The resource " + changedResourcePath + " that is in use by a Papyrus editor has been removed. Use save/save as, if you want to keep the model");
-				break;
-
-			case IResourceDelta.CHANGED:
-				// reopen the editor asynchronously to avoid that changes of multiple resource files
-				// belonging to the editor (e.g. .uml and .notation) lead to multiple reloads.
-				// de-activate until user responds to message dialog 
-
-				String message = "The resource " + changedResourcePath + " that is in use by a Papyrus editor has changed. Do you want to reopen the editor in order to update its contents?";
-				if(editor.isDirty()) {
-					message += " CAVEAT: the editor contains unsaved modifications that would be lost.";
-				}
-
-				if(MessageDialog.openQuestion(new Shell(), "Resource change", message)) {
-					// unloading and reloading all resources of the main causes the following problems
-					//  - since resources are removed during the modelSets unload operation, the call eResource().getContents ()
-					//    used by the model explorer leads to a null pointer exception
-					//  - diagrams in model explorer are not shown
-					//  - would need to reset dirty flags
-					// => clean & simple option is to close and reopen the editor.
-
-					Display.getCurrent().asyncExec(new Runnable() {
-
-						public void run() {
-							IWorkbench wb = PlatformUI.getWorkbench();
-							IWorkbenchPage page = wb.getActiveWorkbenchWindow().getActivePage();
-							IEditorInput input = editor.getEditorInput();
-							page.closeEditor(editor, false);
-							try {
-								IEditorDescriptor desc = wb.getEditorRegistry().getDefaultEditor(input.getName());
-								page.openEditor(input, desc.getId(), false);
-							} catch (PartInitException e) {
-								log.error(e);
-							}
-						}
-					});
-				}
-				break;
-			}
-			modifiedMainResource = false;
-		}
-	}
-
-	public void partDeactivated(IWorkbenchPart part) {
-		if(part == editor.getSite().getPart()) {
-			// reset modified state when leaving - assume that actions while active (in particular save)
-			// do not require a re-load
-			modifiedMainResource = false;
-		}
-	}
-
-	public void partBroughtToTop(IWorkbenchPart part) {
-	}
-
-	public void partClosed(IWorkbenchPart part) {
-	}
-
-	public void partOpened(IWorkbenchPart part) {
-	}
+	private SaveListener saveListener;
 }
