@@ -58,6 +58,9 @@
                remove="true">
          </predefinedEntry>
       </contribution>
+       <editor
+            class="org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor(org.eclipse.papyrus.diagram.common)">
+      </editor>
    </paletteProvider>
 </extension>
 
