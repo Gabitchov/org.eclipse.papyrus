@@ -21,7 +21,7 @@
       <browserCustomization file="resource/LoadRecipeFacet.uiCustom"/>
    </extension>
    <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
-      <browserCustomization file="resource/LoadRecipeFacet2.uiCustom">
+      <browserCustomization file="resource/LoadRecipeAdvancedFacet.uiCustom">
       </browserCustomization>
    </extension>
    <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
@@ -34,5 +34,11 @@
       <browserCustomization
             file="resource/backgroundPackage.uiCustom"
             loadByDefault="true"/>
+   </extension>
+   <extension
+         point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization
+            file="resource/packageInGreenWithoutPackageableElement.uiCustom">
+      </browserCustomization>
    </extension>
 </plugin>
