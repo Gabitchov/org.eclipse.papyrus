@@ -52,11 +52,7 @@ public class TreeSelectorDialog extends SelectionDialog {
 
 	private Label descriptionLabel;
 
-	private Object input=null;
-
-	public void setInput(Object input) {
-		this.input = input;
-	}
+	private Object input = null;
 
 	/**
 	 * 
@@ -92,13 +88,8 @@ public class TreeSelectorDialog extends SelectionDialog {
 		contentProvider = provider;
 		if(fTree != null) {
 			getViewer().setContentProvider(contentProvider);
-			if(getViewer().getInput() == null){
-				if(input==null){
-					getViewer().setInput(""); //$NON-NLS-1$
-				}
-				else{
-					getViewer().setInput(input);
-				}
+			if(getViewer().getInput() == null) {
+				doSetInput();
 			}
 			List<?> initialSelection = getInitialElementSelections();
 			if(!initialSelection.isEmpty()) {
@@ -125,8 +116,9 @@ public class TreeSelectorDialog extends SelectionDialog {
 		}
 		if(contentProvider != null) {
 			getViewer().setContentProvider(contentProvider);
-			if(getViewer().getInput() == null)
-				getViewer().setInput(input); //$NON-NLS-1$
+			if(getViewer().getInput() == null) {
+				doSetInput();
+			}
 
 			List<?> initialSelection = getInitialElementSelections();
 			if(!initialSelection.isEmpty() && initialSelection.get(0) != null) {
@@ -195,6 +187,24 @@ public class TreeSelectorDialog extends SelectionDialog {
 	 */
 	public TreeViewer getViewer() {
 		return fTree.getViewer();
+	}
+
+	/**
+	 * Sets the input object for this dialog's TreeViewer
+	 * 
+	 * @param input
+	 */
+	public void setInput(Object input) {
+		this.input = input;
+	}
+
+	private void doSetInput() {
+		if(input == null) {
+			//Default non-null input for IStaticContentProvider (input-independent)
+			getViewer().setInput(""); //$NON-NLS-1$
+		} else {
+			getViewer().setInput(input);
+		}
 	}
 
 }
