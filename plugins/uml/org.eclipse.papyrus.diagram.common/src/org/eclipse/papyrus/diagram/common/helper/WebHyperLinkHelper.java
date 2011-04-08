@@ -44,7 +44,7 @@ public class WebHyperLinkHelper extends AbstractHyperLinkHelper {
 			hyperLinkWeb.setHyperLinkWeb(eAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_WEB_LINK));
 			hyperLinkWeb.setTooltipText(eAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT));
 			if(eAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION)!=null){
-				boolean isDefaultNaviagation=Boolean.getBoolean(eAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION));
+				boolean isDefaultNaviagation=Boolean.parseBoolean(eAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION));
 				hyperLinkWeb.setIsDefault(isDefaultNaviagation);
 			}
 			else{
@@ -60,7 +60,7 @@ public class WebHyperLinkHelper extends AbstractHyperLinkHelper {
 	public RecordingCommand getAddHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object, HyperlinkObject hyperlinkObject) {
 		if( hyperlinkObject instanceof HyperLinkWeb){
 			HyperLinkWeb hyperLinkWeb= (HyperLinkWeb)hyperlinkObject;
-			return new CreateHyperLinkWebCommand(domain, object, hyperLinkWeb.getTooltipText(), hyperLinkWeb.getHyperLinkWeb(),false);
+			return new CreateHyperLinkWebCommand(domain, object, hyperLinkWeb.getTooltipText(), hyperLinkWeb.getHyperLinkWeb(),hyperlinkObject.getIsDefault());
 		}
 		else{return null;}
 	}

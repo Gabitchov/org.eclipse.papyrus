@@ -16,9 +16,7 @@ package org.eclipse.papyrus.diagram.common.ui.hyperlinkshell;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
@@ -38,7 +36,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
- * this class is GUI that reprensesent a tab for each kind of hyperlink
+ * this class is GUI that represent a tab for each kind of hyperlink
  * for example a tab for diagram, for web links...
  * 
  */
@@ -98,7 +96,7 @@ public class HyperLinkTab {
 		
 		this.contentProvider= new HyperLinkContentProvider();
 		CTabItem cTabItem2 = new CTabItem(cTabFolder, SWT.NONE);
-		cTabItem2.setText(hyperLinkHelper.getNameofManagedHyperLink()+" hyperlinks:");
+		cTabItem2.setText(hyperLinkHelper.getNameofManagedHyperLink()+" hyperlinks");
 		Composite diagramComposite = new Composite(cTabFolder, SWT.NONE);
 		cTabItem2.setControl(diagramComposite);
 		GridData gridData4 = new GridData();

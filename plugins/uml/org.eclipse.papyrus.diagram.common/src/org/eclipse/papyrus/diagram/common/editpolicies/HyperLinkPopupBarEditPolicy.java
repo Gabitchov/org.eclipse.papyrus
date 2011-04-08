@@ -46,6 +46,7 @@ import org.eclipse.papyrus.diagram.common.helper.DiagramHyperLinkHelper;
 import org.eclipse.papyrus.diagram.common.helper.DocumentHyperLinkHelper;
 import org.eclipse.papyrus.diagram.common.helper.HyperlinkHelperFactory;
 import org.eclipse.papyrus.diagram.common.helper.WebHyperLinkHelper;
+import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.AdvancedHLManager;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkException;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkLabelProvider;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkManagerShell;
@@ -284,7 +285,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			if(1 == me.button) // context menu, hide the popup bar
 			{
 				if(me.getSource() instanceof PopupBarLabelPlusHandle) {
-					hyperLinkManagerShell = new HyperLinkManagerShell(getEditorRegistry(), ((GraphicalEditPart)getHost()).getEditingDomain(), (Element)((GraphicalEditPart)getHost()).getNotationView().getElement(), ((GraphicalEditPart)getHost()).getNotationView(), topPackage((Element)((GraphicalEditPart)getHost()).getNotationView().getElement()),hyperlinkHelperFactory);
+					hyperLinkManagerShell = new AdvancedHLManager(getEditorRegistry(), ((GraphicalEditPart)getHost()).getEditingDomain(), (Element)((GraphicalEditPart)getHost()).getNotationView().getElement(), ((GraphicalEditPart)getHost()).getNotationView(), topPackage((Element)((GraphicalEditPart)getHost()).getNotationView().getElement()),hyperlinkHelperFactory);
 					hyperLinkManagerShell.setInput(hyperLinkObjectList);
 					hyperLinkManagerShell.open();
 

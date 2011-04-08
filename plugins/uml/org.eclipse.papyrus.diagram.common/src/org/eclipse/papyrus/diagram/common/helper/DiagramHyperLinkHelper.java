@@ -58,7 +58,8 @@ public class DiagramHyperLinkHelper extends AbstractHyperLinkHelper {
 					hyperLinkDiagram.setDiagram((Diagram)eAnnotation.getReferences().get(0));
 					hyperLinkDiagram.setTooltipText(eAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT));
 					if(eAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION)!=null){
-						boolean isDefaultNaviagation=Boolean.getBoolean(eAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION));
+						String stringboolean=eAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION);
+						boolean isDefaultNaviagation=Boolean.parseBoolean(stringboolean);
 						hyperLinkDiagram.setIsDefault(isDefaultNaviagation);
 					}
 					else{

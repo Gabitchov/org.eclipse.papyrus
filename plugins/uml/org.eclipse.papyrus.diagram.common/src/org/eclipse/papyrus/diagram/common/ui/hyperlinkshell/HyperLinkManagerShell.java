@@ -15,20 +15,14 @@ package org.eclipse.papyrus.diagram.common.ui.hyperlinkshell;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.helper.AbstractHyperLinkHelper;
-import org.eclipse.papyrus.diagram.common.helper.DiagramHyperLinkHelper;
-import org.eclipse.papyrus.diagram.common.helper.DocumentHyperLinkHelper;
 import org.eclipse.papyrus.diagram.common.helper.HyperlinkHelperFactory;
-import org.eclipse.papyrus.diagram.common.helper.WebHyperLinkHelper;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -45,6 +39,16 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 
 	protected ArrayList<HyperlinkObject> allhypHyperlinkObjects=new ArrayList<HyperlinkObject>();
 
+	/** The view. */
+	protected View view;
+	/** The amodel. */
+	protected Package amodel;
+
+	/** The domain. */
+	protected TransactionalEditingDomain transactionalEditingDomain;
+
+	protected HyperlinkHelperFactory hyperLinkHelperFactory;
+
 
 
 	public void setInput(ArrayList<HyperlinkObject> hyperLinkObjectList) {
@@ -57,19 +61,7 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 		}
 	}
 
-	/** The view. */
-	private View view;
-	/** The amodel. */
-	private Package amodel;
-
-	/** The domain. */
-	private TransactionalEditingDomain transactionalEditingDomain;
-
-	private HyperlinkHelperFactory hyperLinkHelperFactory;
-
-	//	protected TableViewer availableHyperLinkViewer;
-
-	//protected TableViewer defaultHyperLinkViewer;
+	
 
 	/**
 	 * Instantiates a new hyper link manager shell2.
@@ -111,55 +103,38 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 		});
 
 		// listener for the button OK
-		getOkButton().addSelectionListener(new SelectionListener() {
+		SelectionListener okListener =new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-
-				// empaty all hyperlinks
-				transactionalEditingDomain.getCommandStack().execute(HyperlinkHelperFactory.getEmptyAllHyperLinkCommand(transactionalEditingDomain, view));
-				allhypHyperlinkObjects.clear();
-				Iterator<HyperLinkTab>iter= tabList.iterator();
-				while(iter.hasNext()) {
-					HyperLinkTab hyperLinkTab = (HyperLinkTab)iter.next();
-					allhypHyperlinkObjects.addAll(hyperLinkTab.getHyperlinkObjects());
-				}
-				// save hyperlink Document list
-				try {
-					transactionalEditingDomain.getCommandStack().execute(hyperLinkHelperFactory.getAddHyperLinkCommand(transactionalEditingDomain, view, allhypHyperlinkObjects));
-				} catch (HyperLinkException error) {
-					Activator.log.error(error);
-				}
-
-				tabList.clear();
-				getHyperLinkShell().close();
+				executeOkButton();
+				
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
-		});
-
+		};
+		getOkButton().addSelectionListener(okListener);
 	}
 
-	public void initializeDefaultHyperLinkFolder() {
-		//		this.defaultHdown.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowDown_16x16.gif").createImage());
-		//		this.defaultHup.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowUp_16x16.gif").createImage());
-		//		this.defaultHleft.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowLeft_16x16.gif").createImage());
-		//		this.defaultHRight.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowRight_16x16.gif").createImage());
-		//		availableHyperLinkViewer = new TableViewer(this.availableHyperLink);
-		//		availableHyperLinkViewer.setLabelProvider(new HyperLinkLabelProvider(editorRegistry));
-		//		availableHyperLinkViewer.setContentProvider(contentProvider);
-		//
-		//
-		//
-		//		defaultHyperLinkViewer = new TableViewer(this.defaultHyperLink);
-		//		defaultHyperLinkViewer.setLabelProvider(new HyperLinkLabelProvider(editorRegistry));
-		//		defaultHyperLinkViewer.setContentProvider(contentProvider);
-		//		defaultHyperLinkViewer.setInput(getHyperlinkWebList());
-	}
+	protected void executeOkButton(){
+		// empty all hyperlinks
+		transactionalEditingDomain.getCommandStack().execute(HyperlinkHelperFactory.getEmptyAllHyperLinkCommand(transactionalEditingDomain, view));
+		allhypHyperlinkObjects.clear();
+		Iterator<HyperLinkTab>iter= tabList.iterator();
+		while(iter.hasNext()) {
+			HyperLinkTab hyperLinkTab = (HyperLinkTab)iter.next();
+			allhypHyperlinkObjects.addAll(hyperLinkTab.getHyperlinkObjects());
+		}
+		// save hyperlink Document list
+		try {
+			transactionalEditingDomain.getCommandStack().execute(hyperLinkHelperFactory.getAddHyperLinkCommand(transactionalEditingDomain, view, allhypHyperlinkObjects));
+		} catch (HyperLinkException error) {
+			Activator.log.error(error);
+		}
 
-	public void initializeLocalHyperLinkFolder() {
-		// TODO Auto-generated method stub
-
+		tabList.clear();
+		getHyperLinkShell().close();
+		
 	}
 
 

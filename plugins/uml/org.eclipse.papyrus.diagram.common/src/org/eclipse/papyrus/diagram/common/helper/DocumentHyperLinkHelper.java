@@ -45,7 +45,7 @@ public class DocumentHyperLinkHelper extends AbstractHyperLinkHelper {
 			hyperLinkDocument.setHyperlinkDocument(eAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT_LOCALIZATION));
 			hyperLinkDocument.setTooltipText(eAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT));
 			if(eAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION)!=null){
-				boolean isDefaultNaviagation=Boolean.getBoolean(eAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION));
+				boolean isDefaultNaviagation=Boolean.parseBoolean(eAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION));
 				hyperLinkDocument.setIsDefault(isDefaultNaviagation);
 			}
 			else{
@@ -61,7 +61,7 @@ public class DocumentHyperLinkHelper extends AbstractHyperLinkHelper {
 	public RecordingCommand getAddHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object, HyperlinkObject hyperlinkObject) {
 		if( hyperlinkObject instanceof HyperlinkDocument){
 			HyperlinkDocument hyperLinkDocument= (HyperlinkDocument)hyperlinkObject;
-			return new CreateHyperLinkDocumentCommand(domain, object, hyperLinkDocument.getTooltipText(), hyperLinkDocument.getHyperlinkDocument(),false);
+			return new CreateHyperLinkDocumentCommand(domain, object, hyperLinkDocument.getTooltipText(), hyperLinkDocument.getHyperlinkDocument(),hyperlinkObject.getIsDefault());
 		}
 		else{return null;}
 	}

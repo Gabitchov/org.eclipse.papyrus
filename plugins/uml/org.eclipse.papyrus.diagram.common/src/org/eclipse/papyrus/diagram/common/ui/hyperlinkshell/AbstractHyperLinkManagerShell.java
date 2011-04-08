@@ -22,7 +22,6 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
@@ -52,20 +51,7 @@ public abstract class AbstractHyperLinkManagerShell {
 		return cTabFolder;
 	}
 
-	/** The newhyperlink button. */
-	protected Button newhyperlinkButton = null;
-
-	/** The remove hyper link button. */
-	protected Button removeHyperLinkButton = null;
-
-	/** The up hyper link button. */
-	protected Button upHyperLinkWebButton = null;
-
-	/** The down hyper linkbutton. */
-	protected Button downHyperLinkWebbutton = null;
-
-	/** The hyperlink listlabel. */
-	protected Label hyperlinkListlabel = null;
+	
 
 	/** The Ok button. */
 	protected Button OkButton = null;
@@ -73,26 +59,7 @@ public abstract class AbstractHyperLinkManagerShell {
 	/** The cancel button. */
 	protected Button cancelButton = null;
 
-	/** The modify hyperlink button. */
-	protected Button modifyHyperlinkButton = null;
-
-	/** The modify document button1. */
-	protected Button modifyDocumentButton1 = null;
-
-	/** The modify diagram button. */
-	protected Button modifyDiagramButton = null;
-	protected Table availableHyperLink;
-	protected Table defaultHyperLink;
-
-	protected CTabItem tbtmDefaultsHyperlinks;
-
-	protected Button defaultHRight;
-
-	protected Button defaultHleft;
-
-	protected Button defaultHup;
-
-	protected Button defaultHdown;
+	
 
 	protected ArrayList<HyperLinkTab>tabList=new ArrayList<HyperLinkTab>();
 	/**
@@ -112,42 +79,7 @@ public abstract class AbstractHyperLinkManagerShell {
 
 	}
 
-//	private void defaultHyperlinkComposite(){
-//		tbtmDefaultsHyperlinks = new CTabItem(cTabFolder, SWT.NONE);
-//		tbtmDefaultsHyperlinks.setText("Defaults HyperLinks");
-//		Composite defaultHyperlinkComposite = new Composite(cTabFolder, SWT.NONE);
-//		defaultHyperlinkComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-//		tbtmDefaultsHyperlinks.setControl(defaultHyperlinkComposite);
-//		
-//		Label lblHyperlinks = new Label(defaultHyperlinkComposite, SWT.NONE);
-//		lblHyperlinks.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-//		lblHyperlinks.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_BLACK));
-//		lblHyperlinks.setBounds(23, 10, 71, 13);
-//		lblHyperlinks.setText("HyperLinks:");
-//		
-//		Label lblDefaultHyperlinksby = new Label(defaultHyperlinkComposite, SWT.NONE);
-//		lblDefaultHyperlinksby.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-//		lblDefaultHyperlinksby.setBounds(366, 10, 186, 13);
-//		lblDefaultHyperlinksby.setText("Default Hyperlinks (by double-click):");
-//		
-//		availableHyperLink = new Table(defaultHyperlinkComposite, SWT.BORDER | SWT.FULL_SELECTION);
-//		availableHyperLink.setBounds(20, 29, 276, 177);
-//		
-//		defaultHyperLink = new Table(defaultHyperlinkComposite, SWT.BORDER | SWT.FULL_SELECTION);
-//		defaultHyperLink.setBounds(366, 29, 276, 177);
-//		
-//		defaultHRight = new Button(defaultHyperlinkComposite, SWT.NONE);
-//		defaultHRight.setBounds(309, 29, 34, 23);
-//		
-//		defaultHleft = new Button(defaultHyperlinkComposite, SWT.NONE);
-//		defaultHleft.setBounds(309, 68, 34, 23);
-//		
-//		defaultHup = new Button(defaultHyperlinkComposite, SWT.NONE);
-//		defaultHup.setBounds(309, 117, 34, 23);
-//		
-//		defaultHdown = new Button(defaultHyperlinkComposite, SWT.NONE);
-//		defaultHdown.setBounds(309, 158, 34, 23);
-//	}
+
 
 	/**
 	 * This method initializes HyperlinkComposite.
