@@ -9,7 +9,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.papyrus.extensionpoints.uml2;bundle-version="0.7.0",
  org.eclipse.uml2.uml;bundle-version="3.1.0",
  org.eclipse.papyrus.umlutils;bundle-version="0.7.0",
- org.eclipse.papyrus.diagram.common;bundle-version="0.7.3"
+ org.eclipse.papyrus.diagram.common;bundle-version="0.7.2"
 Export-Package: org.eclipse.papyrus.MARTE,
  org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM,
  org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.impl,
