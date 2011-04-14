@@ -20,7 +20,6 @@ import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.AbstractServiceUtils;
-import org.eclipse.papyrus.core.utils.ServiceUtils;
 import org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.ui.IWorkbenchPart;
 
@@ -35,14 +34,14 @@ import org.eclipse.ui.IWorkbenchPart;
  */
 public class ServiceUtilsForGMF extends AbstractServiceUtils<IDiagramEditDomain> {
 
-	private final static ServiceUtils instance = new ServiceUtils();
+	private final static ServiceUtilsForGMF instance = new ServiceUtilsForGMF();
 
 	/**
-	 * Get the singleton instance of the class.
+	 * Get the singleton instance of the class. 
 	 * 
 	 * @return
 	 */
-	public static final ServiceUtils getInstance() {
+	public static final ServiceUtilsForGMF getInstance() {
 		return instance;
 	}
 

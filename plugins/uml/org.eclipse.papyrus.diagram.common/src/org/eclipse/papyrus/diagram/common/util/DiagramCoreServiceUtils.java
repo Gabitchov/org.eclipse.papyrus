@@ -22,7 +22,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramEditDomain;
 import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.ui.IWorkbenchPart;
@@ -74,15 +73,17 @@ public class DiagramCoreServiceUtils {
 	 *        or null if not found
 	 * @return
 	 */
-	static ServicesRegistry getServiceRegistryChecked(IDiagramEditDomain domain) throws ServiceNotFoundException {
+	static ServicesRegistry getServiceRegistryChecked(IDiagramEditDomain domain) throws ServiceException {
 
-		if(domain instanceof DiagramEditDomain) {
-			IWorkbenchPart part = ((DiagramEditDomain)domain).getEditorPart().getEditorSite().getPart();
-			if(part instanceof UmlGmfDiagramEditor) {
-				return ((UmlGmfDiagramEditor)part).getServicesRegistry();
-			}
-		}
-		throw new ServiceNotFoundException("Can't get the ServiceRegistry.");
+		return ServiceUtilsForGMF.getInstance().getServiceRegistry(domain);
+
+//		if(domain instanceof DiagramEditDomain) {
+//			IWorkbenchPart part = ((DiagramEditDomain)domain).getEditorPart().getEditorSite().getPart();
+//			if(part instanceof UmlGmfDiagramEditor) {
+//				return ((UmlGmfDiagramEditor)part).getServicesRegistry();
+//			}
+//		}
+//		throw new ServiceNotFoundException("Can't get the ServiceRegistry.");
 
 	}
 
