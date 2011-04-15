@@ -9,6 +9,7 @@
  * Contributors:
  * 	  Patrick Tessier (CEA) - initial API and implementation
  *    Thibault Landre (Atos Origin) - initial API and implementation
+ *    Vincent Lorenzo (CEA-LIST) - Bug 335987 [General][Enhancement] Show/Hide Connectors Labels and External Nodes Labels
  */
 
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
@@ -233,6 +234,21 @@ switch («EXPAND xpt::editor::VisualIDRegistry::getVisualIDMethodCall FOR getDia
 *@generated
 **/
 protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification event) {
+«IF self.labels->exists(oclIsKindOf(gmfgen::GenExternalNodeLabel))-» 
+	/*
+	 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
+	 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
+	 */
+	if(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+		Object notifier = event.getNotifier();
+		java.util.List<?> modelChildren = ((org.eclipse.gmf.runtime.notation.View)getModel()).getChildren();
+		if(!(notifier instanceof org.eclipse.gmf.runtime.notation.Edge)) {
+			if(modelChildren.contains(event.getNotifier())) {
+				return;
+			}
+		}
+	}
+	«ENDIF-»
 		super.handleNotificationEvent(event);
 		«FOREACH papyrusgmfgenextension::ExtendedGenView.allInstances()->select(v:papyrusgmfgenextension::ExtendedGenView|v.genView->includes(self)) AS extendedObject»
 	 		«EXPAND specificHandleNotificationEventBody FOR extendedObject.propRefreshHook-»

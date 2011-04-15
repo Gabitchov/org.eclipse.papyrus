@@ -21,9 +21,14 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.swt.graphics.Image;
@@ -150,6 +155,17 @@ public class EditorLabelProvider implements ILabelProvider {
 		//if the element is a compartment
 		if(element instanceof BasicCompartment || element instanceof DecorationNode) {
 			return Activator.getPluginIconImage(Activator.ID, ICON_COMPARTMENT);
+		} else if(element instanceof Diagram) {
+			IPageIconsRegistry registry = null;
+			try {
+				registry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry().getService(IPageIconsRegistry.class);
+			} catch (ServiceException e) {
+				//nothing to do
+			}
+			if(registry == null) {
+				registry = new PageIconsRegistry();
+			}
+			return registry.getEditorIcon(element);
 		}
 		return null;
 	}
@@ -185,6 +201,8 @@ public class EditorLabelProvider implements ILabelProvider {
 
 			index.put(className, number + 1);
 			return className + " " + number;
+		} else if(element instanceof Diagram) {
+			return ((Diagram)element).getName();
 		} else if(element instanceof View) { //maybe it is a view of a compartment
 			EditPart dummyEP = EditPartService.getInstance().createGraphicEditPart((View)element);
 			if(dummyEP instanceof ResizableCompartmentEditPart) {

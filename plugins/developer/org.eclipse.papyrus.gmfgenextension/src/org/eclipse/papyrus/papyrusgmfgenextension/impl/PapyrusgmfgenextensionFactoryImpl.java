@@ -93,6 +93,7 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 			case PapyrusgmfgenextensionPackage.ADDITIONAL_EDIT_PART_CANDIES: return createAdditionalEditPartCandies();
 			case PapyrusgmfgenextensionPackage.EDIT_PART_USING_DELETE_SERVICE: return createEditPartUsingDeleteService();
 			case PapyrusgmfgenextensionPackage.EDIT_PART_USING_REORIENT_SERVICE: return createEditPartUsingReorientService();
+			case PapyrusgmfgenextensionPackage.LABEL_ROLE: return createLabelRole();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -266,6 +267,16 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	public EditPartUsingReorientService createEditPartUsingReorientService() {
 		EditPartUsingReorientServiceImpl editPartUsingReorientService = new EditPartUsingReorientServiceImpl();
 		return editPartUsingReorientService;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LabelRole createLabelRole() {
+		LabelRoleImpl labelRole = new LabelRoleImpl();
+		return labelRole;
 	}
 
 	/**

@@ -9,9 +9,11 @@
  * Contributors:
  *    Thibault Landre (Atos Origin) - initial API and implementation
  *	  Vincent Lorenzo (CEA-LIST) - Add templates to manage the display of the compartments in the preferences pages
+ *    Vincent Lorenzo (CEA-LIST) - bug 335987: [General][Enhancement] Show/Hide Connectors Labels https://bugs.eclipse.org/bugs/show_bug.cgi?id=335987
  */
 
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
 «EXTENSION xpt::diagram::ViewmapAttributesUtils»
 
 «EXTENSION xpt::preferences::PrefsConstant»
@@ -61,6 +63,15 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 			}
 	 	«ENDIF-»
 	 
+	 	 «REM» executed, only if the element has labels with defined role (using papyrusgmfgenextension::LabelRole)  «ENDREM»
+		 «IF self.labels->exists(lbl : gmfgen::GenExternalNodeLabel | (papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.externalNodeLabels->includes(lbl))->size()<>0))-»			
+		 	for(String role : getLabelVisibilityPreferences().keySet()){
+				String preferenceName = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getLabelElementConstant(key, role, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.LABEL_VISIBILITY);
+				store.setDefault(preferenceName, getLabelVisibilityPreferences().get(role));
+			}
+		 «ENDIF-»
+	 	«REM» end of the add for papyrusgmfgenextension::LabelRole «ENDREM»
+	 
 	    //org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
 		
@@ -83,5 +94,47 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 		}
 	«ENDIF-»
 
+	
+	«REM» executed, only if the element has labels with defined role (using papyrusgmfgenextension::LabelRole)  «ENDREM»
+		«IF self.labels->exists(lbl0 : gmfgen::GenExternalNodeLabel | (papyrusgmfgenextension::LabelRole.allInstances()->select(label0 : papyrusgmfgenextension::LabelRole | label0.externalNodeLabels->includes(lbl0))->size()<>0))-»
+		«EXPAND xpt::Common::generatedClassComment»
+		public static java.util.TreeMap<String,String> getStaticLabelRole(){
+			java.util.TreeMap<String,String> map = new java.util.TreeMap<String, String>(new org.eclipse.papyrus.diagram.common.util.StringComparator());
+			«FOREACH labels AS lbl-»
+			«IF lbl.oclIsKindOf(gmfgen::GenExternalNodeLabel)-»
+					«IF papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.externalNodeLabels->includes(lbl.oclAsType(gmfgen::GenExternalNodeLabel)))->size()<>0-»
+					map.put(
+					"«papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.externalNodeLabels->includes(lbl.oclAsType(gmfgen::GenExternalNodeLabel)))->asSequence()->first().role»"
+					,"«papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.externalNodeLabels->includes(lbl.oclAsType(gmfgen::GenExternalNodeLabel)))->asSequence()->first().iconPathRole»"
+					);//$NON-NLS-1$
+					«ENDIF-»
+				«ENDIF-»
+		    «ENDFOREACH-»
+			return map;
+		}
+		
+			«EXPAND xpt::Common::generatedClassComment»
+			public static java.util.TreeMap<String,Boolean> getLabelVisibilityPreferences(){
+				java.util.TreeMap<String,Boolean> map = new java.util.TreeMap<String,Boolean>();
+				«FOREACH labels AS lbl-»
+				«IF lbl.oclIsKindOf(gmfgen::GenExternalNodeLabel)-»
+					«IF papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.externalNodeLabels->includes(lbl.oclAsType(gmfgen::GenExternalNodeLabel)))->size()<>0-»
+					map.put(
+					"«papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.externalNodeLabels->includes(lbl.oclAsType(gmfgen::GenExternalNodeLabel)))->asSequence()->first().role»"
+					,«papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.externalNodeLabels->includes(lbl.oclAsType(gmfgen::GenExternalNodeLabel)))->asSequence()->first().visibleByDefault»
+					);//$NON-NLS-1$
+					«ENDIF-»
+				«ENDIF-»
+				«ENDFOREACH-»
+				return map;
+				
+			}
+			
+			«EXPAND xpt::Common::generatedClassComment»
+			public java.util.TreeMap<String,String> getLabelRole(){
+				return getStaticLabelRole();
+			}
+		«ENDIF-»
+		«REM» end of the code used to managed papyrusgmfgenextension::LabelRole«ENDREM»
 }
 «ENDDEFINE»

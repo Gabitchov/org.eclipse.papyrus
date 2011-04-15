@@ -14,16 +14,15 @@
 package org.eclipse.papyrus.diagram.menu.actions;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -33,8 +32,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConnectionLabelsEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.requests.ToggleConnectionLabelsRequest;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -43,12 +41,12 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.diagram.common.commands.ShowHideConnectionLabelsRequest;
+import org.eclipse.papyrus.diagram.common.commands.ShowHideLabelsRequest;
+import org.eclipse.papyrus.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.diagram.menu.dialogs.ShowHideLabelSelectionDialog;
 import org.eclipse.papyrus.diagram.menu.messages.Messages;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.ui.dialogs.CheckedTreeSelectionDialog;
 
 /**
  * Adapted code from {@link ShowConnectionLabelsAction}
@@ -61,7 +59,7 @@ import org.eclipse.ui.dialogs.CheckedTreeSelectionDialog;
  * </ul>
  * 
  */
-public class ShowHideConnectionLabelsAction extends AbstractGraphicalParametricAction {
+public class ShowHideLabelsAction extends AbstractGraphicalParametricAction {
 
 	/**
 	 * Parameters for this action
@@ -72,6 +70,7 @@ public class ShowHideConnectionLabelsAction extends AbstractGraphicalParametricA
 
 	public static final String SHOW_PARAMETER = "show"; //$NON-NLS-1$
 
+
 	/**
 	 * 
 	 * Constructor.
@@ -81,7 +80,7 @@ public class ShowHideConnectionLabelsAction extends AbstractGraphicalParametricA
 	 * @param selectedEditPart
 	 *        the list of selected {@link EditPart}
 	 */
-	public ShowHideConnectionLabelsAction(String parameter, List<IGraphicalEditPart> selectedEditPart) {
+	public ShowHideLabelsAction(String parameter, List<IGraphicalEditPart> selectedEditPart) {
 		super(parameter, selectedEditPart);
 	}
 
@@ -93,24 +92,39 @@ public class ShowHideConnectionLabelsAction extends AbstractGraphicalParametricA
 	 */
 	@Override
 	protected Command getBuildedCommand() {
-		List<ConnectionEditPart> connections = getConnections();
+
+		List<IGraphicalEditPart> selections = getSelection();
 		CompoundCommand cmd = new CompoundCommand("ShowHideConnectionLabelCommand"); //$NON-NLS-1$
-		if(getParameter().equals(MANAGE_PARAMETER)) {
-			ManageConnectorLabelsAction action = new ManageConnectorLabelsAction(Messages.ShowHideConnectionLabelsAction_LabelsManager, Messages.ShowHideConnectionLabelsAction_SelectTheLabelToDisplay, getConnections());
-			cmd.add(action.getActionCommand());
-		} else {
-			Request req = null;
-			if(getParameter().equals(HIDE_PARAMETER)) {
-				req = new ToggleConnectionLabelsRequest(false);
-			} else if(getParameter().equals(SHOW_PARAMETER)) {
-				req = new ToggleConnectionLabelsRequest(true);
-			}
-			if(req != null) {
-				for(ConnectionEditPart current : connections) {
-					Command command = current.getCommand(req);
-					if(command != null) {
-						cmd.add(command);
+		if(!selections.isEmpty()) {
+			if(getParameter().equals(MANAGE_PARAMETER)) {
+				ManageLabelsAction action = new ManageLabelsAction(Messages.ShowHideConnectionLabelsAction_LabelsManager, Messages.ShowHideConnectionLabelsAction_SelectTheLabelToDisplay, getSelection());
+				cmd.add(action.getActionCommand());
+			} else {
+				/*
+				 * we have a problem with the hide action for Hide All Label,
+				 * because, this request hide the labels and the port too!
+				 * so, we need to use the CustomRequest!
+				 */
+				ContentProvider provider = new ContentProvider(DiagramEditPartsUtil.getDiagramEditPart(selections.get(0)));
+				for(IGraphicalEditPart current : selections) {
+					Object[] children = provider.getChildren(current);
+					for(Object currentObj : children) {
+						if(currentObj instanceof View) {
+							ShowHideLabelsRequest request = null;
+							if(getParameter().equals(HIDE_PARAMETER)) {
+								request = new ShowHideLabelsRequest(false, (View)currentObj);
+							} else if(getParameter().equals(SHOW_PARAMETER)) {
+								request = new ShowHideLabelsRequest(true, (View)currentObj);
+							}
+							if(request != null) {
+								Command tmp = current.getCommand(request);
+								if(tmp != null) {
+									cmd.add(tmp);
+								}
+							}
+						}
 					}
+
 				}
 			}
 		}
@@ -182,13 +196,25 @@ public class ShowHideConnectionLabelsAction extends AbstractGraphicalParametricA
 		return false;
 	}
 
+	//	@Override
+	//	public boolean isEnabled() {
+	//		if(super.isEnabled()) {
+	//			for(IGraphicalEditPart current : getSelection()) {
+	//				if(current.getEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE) == null) {
+	//					return false;
+	//				}
+	//			}
+	//		}
+	//		return true;
+	//	}
+
 	/**
 	 * This class provides a dialog to manage the displaying of the labels for connections
 	 * 
 	 * 
 	 * 
 	 */
-	public class ManageConnectorLabelsAction {
+	public class ManageLabelsAction {
 
 		/**
 		 * This map is used to store the new states of the labels
@@ -204,7 +230,7 @@ public class ShowHideConnectionLabelsAction extends AbstractGraphicalParametricA
 		private String message;
 
 		/** the list of connections to manage */
-		private List<ConnectionEditPart> connections;
+		private List<IGraphicalEditPart> editparts;
 
 		/**
 		 * 
@@ -214,10 +240,10 @@ public class ShowHideConnectionLabelsAction extends AbstractGraphicalParametricA
 		 * @param message
 		 * @param editPolicyKey
 		 */
-		public ManageConnectorLabelsAction(String title, String message, List<ConnectionEditPart> connections) {
+		public ManageLabelsAction(String title, String message, List<IGraphicalEditPart> editparts) {
 			this.title = title;
 			this.message = message;
-			this.connections = connections;
+			this.editparts = editparts;
 			initMap();
 		}
 
@@ -230,14 +256,13 @@ public class ShowHideConnectionLabelsAction extends AbstractGraphicalParametricA
 		protected Command getActionCommand() {
 			CompoundCommand cmd = new CompoundCommand("Manage Conection Labels "); //$NON-NLS-1$
 
-			DiagramEditPart diagramEP = DiagramEditPartsUtil.getDiagramEditPart(connections.get(0));
-
-			CheckedTreeSelectionDialog selectionDialog = new CheckedTreeSelectionDialog(DisplayUtils.getDisplay().getActiveShell(), new CustomEditorLabelProvider(diagramEP), new ContentProvider(diagramEP));
+			DiagramEditPart diagramEP = DiagramEditPartsUtil.getDiagramEditPart(editparts.get(0));
+			ShowHideLabelSelectionDialog selectionDialog = new ShowHideLabelSelectionDialog(DisplayUtils.getDisplay().getActiveShell(), new EditorLabelProvider(), new ContentProvider(diagramEP));
 			selectionDialog.setTitle(this.title);
 			selectionDialog.setMessage(this.message);
 			selectionDialog.setContainerMode(true);
-			selectionDialog.setInput(connections);
-			selectionDialog.setExpandedElements(connections.toArray());
+			selectionDialog.setInput(editparts);
+			selectionDialog.setExpandedElements(editparts.toArray());
 			selectionDialog.setInitialElementSelections(getInitialSelection());
 			selectionDialog.open();
 			if(selectionDialog.getReturnCode() == Dialog.OK) {
@@ -260,8 +285,17 @@ public class ShowHideConnectionLabelsAction extends AbstractGraphicalParametricA
 					if(oldStatus == newStatus) {
 						//do nothing
 					} else {
-						ShowHideConnectionLabelsRequest request = new ShowHideConnectionLabelsRequest(newStatus, view);
-						EditPart ep = DiagramEditPartsUtil.getEditPartFromView(view, getConnections().get(0));
+						if(oldStatus) {
+							EditPart ep = DiagramEditPartsUtil.getEditPartFromView(view, getSelection().get(0));
+							int dummy = 0;
+							dummy++;
+						}
+						ShowHideLabelsRequest request = new ShowHideLabelsRequest(newStatus, view);
+						//						EditPart ep = DiagramEditPartsUtil.getEditPartFromView(view, getConnections().get(0));
+						EditPart ep = DiagramEditPartsUtil.getEditPartFromView(view, getSelection().get(0));
+
+						//						EditPart ep = DiagramEditPartsUtil.getEditPartFromView(view, diagramEP);
+						//Command command = ep.getParent().getCommand(request);
 						Command command = ep.getParent().getCommand(request);
 						if(command != null) {
 							cmd.add(command);
@@ -282,7 +316,20 @@ public class ShowHideConnectionLabelsAction extends AbstractGraphicalParametricA
 		 */
 		public List<View> getInitialSelection() {
 			List<View> selection = new ArrayList<View>();
-			for(ConnectionEditPart current : getConnections()) {
+			//			for(ConnectionEditPart current : getConnections()) {
+			//				View model = (View)(current).getModel();
+			//				Iterator<?> iter = model.getChildren().iterator();
+			//				while(iter.hasNext()) {
+			//					View childView = (View)iter.next();
+			//					if(isLabelView(current, model, childView)) {
+			//						if(childView.isVisible()) {
+			//							selection.add(childView);
+			//						}
+			//					}
+			//				}
+			//			}
+
+			for(IGraphicalEditPart current : getSelection()) {
 				View model = (View)(current).getModel();
 				Iterator<?> iter = model.getChildren().iterator();
 				while(iter.hasNext()) {
@@ -302,8 +349,9 @@ public class ShowHideConnectionLabelsAction extends AbstractGraphicalParametricA
 		 */
 		public void initMap() {
 			viewStatus.clear();
-			for(EditPart current : getConnections()) {
-				View model = (View)((ConnectionEditPart)current).getModel();
+			//			for(EditPart current : getConnections()) {
+			for(EditPart current : getSelection()) {
+				View model = (View)((IGraphicalEditPart)current).getModel();
 				Iterator<?> iter = model.getChildren().iterator();
 				while(iter.hasNext()) {
 					View childView = (View)iter.next();
@@ -315,79 +363,6 @@ public class ShowHideConnectionLabelsAction extends AbstractGraphicalParametricA
 		}
 	}
 
-	/**
-	 * 
-	 * Provide the label for the selected element
-	 * 
-	 */
-	protected class CustomEditorLabelProvider extends EditorLabelProvider {
-
-		/**
-		 * the diagram EditPart. It's used to find the editpart corresponding to a view
-		 */
-		private DiagramEditPart diagramEP;
-
-		/**
-		 * 
-		 * Constructor.
-		 * 
-		 * @param diagramEP
-		 *        the current diagram for this action
-		 */
-		public CustomEditorLabelProvider(DiagramEditPart diagramEP) {
-			this.diagramEP = diagramEP;
-		}
-
-		/**
-		 * 
-		 * @see org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider#getText(java.lang.Object)
-		 * 
-		 * @param element
-		 * @return
-		 */
-		@Override
-		public String getText(Object element) {
-			if(element instanceof View) {
-				EditPart ep = DiagramEditPartsUtil.getEditPartFromView((View)element, diagramEP);
-				if(ep instanceof GraphicalEditPart) {
-					IFigure figure = ((GraphicalEditPart)ep).getFigure();
-					if(figure instanceof WrappingLabel) {
-						return ((WrappingLabel)figure).getText();
-					}
-				}
-			}
-			return super.getText(element);
-		}
-
-		/**
-		 * 
-		 * @see org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider#getImage(java.lang.Object)
-		 * 
-		 * @param element
-		 * @return
-		 */
-		@Override
-		public Image getImage(Object element) {
-			if(element instanceof View) {
-				/*
-				 * TODO : when the generation template will be modified, we will have a way to get easily the function of the label.
-				 * so we will display something like that :
-				 * multiplicity role icon + source multiplicity + value of the multiplicity
-				 */
-
-				//				EditPart ep = DiagramEditPartsUtil.getEditPartFromView((View)element, diagramEP);
-				//				if(ep instanceof IAdaptable) {
-				//					Object property = ep.getAdapter(IPropertySource.class);
-				//					if(property != null) {
-				//						//its a label for a property!
-				//						return super.getImage(property);
-				//					}
-				//				}
-				return null;
-			}
-			return super.getImage(element);
-		}
-	}
 
 	/**
 	 * 
@@ -458,8 +433,9 @@ public class ShowHideConnectionLabelsAction extends AbstractGraphicalParametricA
 		 */
 		public Object[] getChildren(Object parentElement) {
 			List<View> children = new ArrayList<View>();
-			if(parentElement instanceof ConnectionEditPart) {
-				View model = (View)((ConnectionEditPart)parentElement).getModel();
+			//			if(parentElement instanceof ConnectionEditPart) {
+			if(parentElement instanceof EditPart) {
+				View model = (View)((EditPart)parentElement).getModel();
 				Iterator<?> iter = model.getChildren().iterator();
 				while(iter.hasNext()) {
 					View childView = (View)iter.next();
@@ -468,6 +444,7 @@ public class ShowHideConnectionLabelsAction extends AbstractGraphicalParametricA
 					}
 				}
 			}
+			Collections.sort(children, new LabelRoleComparator());
 			return children.toArray();
 		}
 
@@ -497,7 +474,36 @@ public class ShowHideConnectionLabelsAction extends AbstractGraphicalParametricA
 			Object[] children = getChildren(element);
 			return children != null && children.length != 0;
 		}
+	}
 
+	public class LabelRoleComparator implements Comparator<View> {
 
+		public int compare(View o1, View o2) {
+			EditPart ep1 = EditPartService.getInstance().createGraphicEditPart(o1);
+			EditPart ep2 = EditPartService.getInstance().createGraphicEditPart(o2);
+
+			if(ep1 instanceof ILabelRoleProvider && ep2 instanceof ILabelRoleProvider) {
+				String role1 = ((ILabelRoleProvider)ep1).getLabelRole();
+				String role2 = ((ILabelRoleProvider)ep2).getLabelRole();
+				return role1.compareToIgnoreCase(role2);
+
+			}
+			return 0;
+		}
+	}
+
+	@Override
+	public List<IGraphicalEditPart> getSelection() {
+		List<IGraphicalEditPart> selection = super.getSelection();
+		List<IGraphicalEditPart> delete = new ArrayList<IGraphicalEditPart>();
+		Iterator<IGraphicalEditPart> iter = selection.iterator();
+		//		while(iter.hasNext()) {
+		//			IGraphicalEditPart current = iter.next();
+		//			if(Util.isAffixedChildNode(current)) {
+		//				delete.remove(current);
+		//			}
+		//		}
+		selection.removeAll(delete);
+		return selection;
 	}
 }

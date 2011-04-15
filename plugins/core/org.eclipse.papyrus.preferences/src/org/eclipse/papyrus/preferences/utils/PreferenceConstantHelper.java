@@ -9,6 +9,7 @@
  * Contributors:
  *		Thibault Landre (Atos Origin) - Initial API and implementation
  *      Lorenzo Vincent (CEA LIST) - Add Compartment Visibility
+ *      Vincent Lorenzo (CEA-LIst) -  bug 335989: [Preferences] [Enhancement] Add a group for labels in each Connection Preference Page
  *****************************************************************************/
 package org.eclipse.papyrus.preferences.utils;
 
@@ -100,7 +101,6 @@ public class PreferenceConstantHelper {
 
 	private final static String QUALIFIEDNAME_CONSTANT = "qualifiedname"; //$NON-NLS-1$
 
-
 	private final static String HEIGHT_CONSTANT = "height";//$NON-NLS-1$
 
 	private final static String WIDTH_CONSTANT = "width"; //$NON-NLS-1$
@@ -108,6 +108,10 @@ public class PreferenceConstantHelper {
 	private final static String COMPARTMENT_VISIBILITY_CONSTANT = "compartment.visibility"; //$NON-NLS-1$
 
 	private final static String COMPARTMENT_NAME_VISIBILITY_CONSTANT = "compartment_name.visibility"; //$NON-NLS-1$
+
+	private final static String LABEL_VISIBILITY_CONSTANT = "label.visibility"; //$NON-NLS-1$
+
+
 
 	/**
 	 * A preference of type COLOR FILL
@@ -209,7 +213,12 @@ public class PreferenceConstantHelper {
 	 */
 	public static final int COMPARTMENT_NAME_VISIBILITY = COMPARTMENT_VISIBILITY + 1;
 
-	
+	/**
+	 * A preference of type label visibility
+	 */
+	public static final int LABEL_VISIBILITY = COMPARTMENT_NAME_VISIBILITY + 1;
+
+
 	/**
 	 * Get the preference constant used to store the preference of an element.
 	 * 
@@ -285,6 +294,8 @@ public class PreferenceConstantHelper {
 		case COMPARTMENT_NAME_VISIBILITY:
 			sb.append(COMPARTMENT_NAME_VISIBILITY_CONSTANT);
 			break;
+		case LABEL_VISIBILITY:
+			sb.append(LABEL_VISIBILITY_CONSTANT);
 		default:
 			break;
 		}
@@ -317,6 +328,22 @@ public class PreferenceConstantHelper {
 	public static String getCompartmentElementConstant(String elementName, String compartmentName, int preferenceType) {
 		String tmp = getElementConstant(elementName, preferenceType);
 		return tmp.replaceFirst("\\.", "_" + compartmentName + "."); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+	}
+
+	/**
+	 * 
+	 * 
+	 * @param elementName
+	 *        diagramKind+'_'+element
+	 * @param labelRole
+	 *        he role of the label
+	 * @param preferenceType
+	 *        the type of preference to store. It must be a value defined in {@link PreferenceConstantHelper}
+	 * @return the key for the element of a diagram
+	 */
+	public static String getLabelElementConstant(String elementName, String labelRole, int preferenceType) {
+		String tmp = getElementConstant(elementName, preferenceType);
+		return tmp.replaceFirst("\\.", "_" + labelRole + "."); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	/**

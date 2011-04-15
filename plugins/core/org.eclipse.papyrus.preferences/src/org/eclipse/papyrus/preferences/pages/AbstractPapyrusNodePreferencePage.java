@@ -8,15 +8,18 @@
  *
  * Contributors:
  *		Thibault Landre (Atos Origin) - Initial API and implementation
- *		Vincent Lorenzo (CEA LIST) - Add a list for the compartment names 
+ *		Vincent Lorenzo (CEA LIST) - Add a list for the compartment names
+ *		Vincent Lorenzo (CEA-LIst) -  bug 335989: [Preferences] [Enhancement] Add a group for labels in each Connection Preference Page
  *****************************************************************************/
 package org.eclipse.papyrus.preferences.pages;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 import org.eclipse.papyrus.preferences.ui.BackgroundColor;
 import org.eclipse.papyrus.preferences.ui.DecorationGroup;
+import org.eclipse.papyrus.preferences.ui.LabelGroup;
 import org.eclipse.papyrus.preferences.ui.NodeColorGroup;
 import org.eclipse.papyrus.preferences.ui.NodeCompartmentGroup;
 import org.eclipse.swt.widgets.Composite;
@@ -63,6 +66,12 @@ public abstract class AbstractPapyrusNodePreferencePage extends AbstractPapyrusE
 			NodeCompartmentGroup compartmentGroup = new NodeCompartmentGroup(parent, getPreferenceKey(), this, compartmentsList, getPreferenceStore());
 			addAbstractGroup(compartmentGroup);
 		}
+
+		//Label role group
+		if(!getLabelRole().isEmpty()) {
+			LabelGroup compartmentGroup = new LabelGroup(parent, getPreferenceKey(), this, getLabelRole());
+			addAbstractGroup(compartmentGroup);
+		}
 	}
 
 	/**
@@ -70,6 +79,13 @@ public abstract class AbstractPapyrusNodePreferencePage extends AbstractPapyrusE
 	 */
 	protected void initializeCompartmentsList() {
 		// TODO Auto-generated method stub	
+	}
+
+	/**
+	 * @generated
+	 */
+	public TreeMap<String, String> getLabelRole() {
+		return new TreeMap<String, String>();
 	}
 
 }

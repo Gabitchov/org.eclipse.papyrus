@@ -9,10 +9,12 @@
  * Contributors:
  * 	Thibault Landre (Atos Origin) - initial API and implementation
  *	Vincent Lorenzo (CEA-LIST) Add a line to initialize the display of the compartments to true
+ *  Vincent Lorenzo (CEA-LIST) - Add lines to initialize the display of the labels - Bug 335987 [General][Enhancement] Show/Hide Connectors Labels and External Nodes Labels
  */
   
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
 «IMPORT 'http://www.eclipse.org/emf/2002/Ecore'»
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
 
 «EXTENSION xpt::preferences::PrefsConstant»
 «EXTENSION xpt::diagram::Utils»
@@ -412,7 +414,8 @@ public class «notationViewProviderClassName»«EXPAND xpt::providers::ViewProvi
 		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		//}
 		«EXPAND initRountingFromPrefs('edge', 'prefStore')-»
-«EXPAND initLabel('edge', 'prefStore') FOREACH labels-»
+        «EXPAND initLabel('edge', 'prefStore') FOREACH labels-»
+		«EXPAND initLabelVisibility('edge', 'prefStore') FOR self-»
 		return edge;
 	}
 «ENDDEFINE»
@@ -617,4 +620,18 @@ protected org.eclipse.gmf.runtime.emf.type.core.IElementType getSemanticElementT
 «ENDDEFINE»
 
 «DEFINE specificInitRountingFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenCommonBase»
+«ENDDEFINE»
+
+«REM» write the line to initialize the property isVisible for the label of the link «ENDREM»
+«DEFINE initLabelVisibility(String viewVar, String prefStoreVar) FOR gmfgen::GenLink»
+	«IF self.labels->exists(lbl : gmfgen::GenLinkLabel | (papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.linkLabels->includes(lbl))->size()<>0))»
+	 org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
+	«ENDIF»
+«ENDDEFINE»
+
+«REM» write the line to initialize the property isVisible for the label of the link «ENDREM»
+«DEFINE initLabelVisibility(String viewVar, String prefStoreVar) FOR gmfgen::GenNode»
+	«IF self.labels->exists(lbl : gmfgen::GenExternalNodeLabel | (papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.externalNodeLabels->includes(lbl))->size()<>0))»
+	 org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
+	«ENDIF»
 «ENDDEFINE»

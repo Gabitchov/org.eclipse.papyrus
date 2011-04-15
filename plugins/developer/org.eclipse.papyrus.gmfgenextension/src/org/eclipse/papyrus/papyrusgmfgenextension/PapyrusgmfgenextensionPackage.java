@@ -860,6 +860,80 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelRoleImpl <em>Label Role</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelRoleImpl
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getLabelRole()
+	 * @generated
+	 */
+	int LABEL_ROLE = 17;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LABEL_ROLE__COMMENT = COMMENTED_ELEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Role</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LABEL_ROLE__ROLE = COMMENTED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Icon Path Role</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LABEL_ROLE__ICON_PATH_ROLE = COMMENTED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Link Labels</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LABEL_ROLE__LINK_LABELS = COMMENTED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>External Node Labels</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LABEL_ROLE__EXTERNAL_NODE_LABELS = COMMENTED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Visible By Default</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LABEL_ROLE__VISIBLE_BY_DEFAULT = COMMENTED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>Label Role</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LABEL_ROLE_FEATURE_COUNT = COMMENTED_ELEMENT_FEATURE_COUNT + 5;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView <em>Extended Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1371,6 +1445,71 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	EReference getEditPartUsingReorientService_GenView();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelRole <em>Label Role</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Label Role</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelRole
+	 * @generated
+	 */
+	EClass getLabelRole();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#getRole <em>Role</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Role</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#getRole()
+	 * @see #getLabelRole()
+	 * @generated
+	 */
+	EAttribute getLabelRole_Role();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#getIconPathRole <em>Icon Path Role</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Icon Path Role</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#getIconPathRole()
+	 * @see #getLabelRole()
+	 * @generated
+	 */
+	EAttribute getLabelRole_IconPathRole();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#getLinkLabels <em>Link Labels</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Link Labels</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#getLinkLabels()
+	 * @see #getLabelRole()
+	 * @generated
+	 */
+	EReference getLabelRole_LinkLabels();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#getExternalNodeLabels <em>External Node Labels</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>External Node Labels</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#getExternalNodeLabels()
+	 * @see #getLabelRole()
+	 * @generated
+	 */
+	EReference getLabelRole_ExternalNodeLabels();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#isVisibleByDefault <em>Visible By Default</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Visible By Default</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#isVisibleByDefault()
+	 * @see #getLabelRole()
+	 * @generated
+	 */
+	EAttribute getLabelRole_VisibleByDefault();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1810,6 +1949,56 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EDIT_PART_USING_REORIENT_SERVICE__GEN_VIEW = eINSTANCE.getEditPartUsingReorientService_GenView();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelRoleImpl <em>Label Role</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelRoleImpl
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getLabelRole()
+		 * @generated
+		 */
+		EClass LABEL_ROLE = eINSTANCE.getLabelRole();
+
+		/**
+		 * The meta object literal for the '<em><b>Role</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LABEL_ROLE__ROLE = eINSTANCE.getLabelRole_Role();
+
+		/**
+		 * The meta object literal for the '<em><b>Icon Path Role</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LABEL_ROLE__ICON_PATH_ROLE = eINSTANCE.getLabelRole_IconPathRole();
+
+		/**
+		 * The meta object literal for the '<em><b>Link Labels</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LABEL_ROLE__LINK_LABELS = eINSTANCE.getLabelRole_LinkLabels();
+
+		/**
+		 * The meta object literal for the '<em><b>External Node Labels</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LABEL_ROLE__EXTERNAL_NODE_LABELS = eINSTANCE.getLabelRole_ExternalNodeLabels();
+
+		/**
+		 * The meta object literal for the '<em><b>Visible By Default</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LABEL_ROLE__VISIBLE_BY_DEFAULT = eINSTANCE.getLabelRole_VisibleByDefault();
 
 	}
 

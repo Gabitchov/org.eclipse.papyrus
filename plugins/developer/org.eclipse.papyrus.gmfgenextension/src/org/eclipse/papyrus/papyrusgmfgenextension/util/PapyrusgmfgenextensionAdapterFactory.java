@@ -154,6 +154,10 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 				return createEditPartUsingReorientServiceAdapter();
 			}
 			@Override
+			public Adapter caseLabelRole(LabelRole object) {
+				return createLabelRoleAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -408,6 +412,20 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEditPartUsingReorientServiceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelRole <em>Label Role</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelRole
+	 * @generated
+	 */
+	public Adapter createLabelRoleAdapter() {
 		return null;
 	}
 

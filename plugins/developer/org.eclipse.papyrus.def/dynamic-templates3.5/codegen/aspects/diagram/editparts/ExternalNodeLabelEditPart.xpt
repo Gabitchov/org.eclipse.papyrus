@@ -10,6 +10,7 @@
  *    Dmitry Stadnik (Borland) - initial API and implementation
  *    Alexander Shatalin (Borland) - initial API and implementation
  *  modified by Patrick Tessier (CEA LIST, patch from Vincent Lorenzo)
+ *    Vincent Lorenzo (CEA-LIST) - bug 335987: [General][Enhancement] Show/Hide Connectors Labels https://bugs.eclipse.org/bugs/show_bug.cgi?id=335987
  */
 
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
@@ -33,3 +34,30 @@
 «REM»definition of the inheritance «ENDREM»
 «DEFINE specifyInheritance FOR papyrusgmfgenextension::ExtendedGenView-»«superOwnedEditPart»«ENDDEFINE»
 «REM»END: BEGIN: PapyrusGenCode«ENDREM»
+
+«REM» we add the interface ILabelRoleProvider «ENDREM»
+«AROUND implementsList FOR gmfgen::GenExternalNodeLabel-»
+	«targetDef.proceed()»
+	«REM»BEGIN: PapyrusGenCode«ENDREM»
+	«IF papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.externalNodeLabels->includes(self))->size()<>0»
+	, org.eclipse.papyrus.diagram.common.editparts.ILabelRoleProvider
+	«ENDIF»
+	«REM»END: PapyrusGenCode«ENDREM»
+«ENDAROUND»
+
+«REM» we add the methods provided by the interface «ENDREM»
+«AROUND additions FOR gmfgen::GenExternalNodeLabel-»
+	«REM»BEGIN: PapyrusGenCode«ENDREM»
+	«IF papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.externalNodeLabels->includes(self))->size()<>0»
+		«EXPAND xpt::Common::generatedClassComment»
+		public String getLabelRole(){
+		return "«papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.externalNodeLabels->includes(self))->asSequence()->first().role»";//$NON-NLS-1$
+		}
+		
+		«EXPAND xpt::Common::generatedClassComment»
+		public String getIconPathRole(){
+		return "«papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.externalNodeLabels->includes(self))->asSequence()->first().iconPathRole»";//$NON-NLS-1$
+		}
+	«ENDIF»
+	«REM»END: PapyrusGenCode«ENDREM»
+«ENDAROUND»

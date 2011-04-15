@@ -8,12 +8,15 @@
  *
  * Contributors:
  *		Thibault Landre (Atos Origin) - Initial API and implementation
- *
+ *      Vincent Lorenzo (CEA-LIst) -  bug 335989: [Preferences] [Enhancement] Add a group for labels in each Connection Preference Page
  *****************************************************************************/
 package org.eclipse.papyrus.preferences.pages;
 
-import org.eclipse.papyrus.preferences.ui.LinkColorGroup;
+import java.util.TreeMap;
+
 import org.eclipse.papyrus.preferences.ui.ConnectionGroup;
+import org.eclipse.papyrus.preferences.ui.LabelGroup;
+import org.eclipse.papyrus.preferences.ui.LinkColorGroup;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -35,6 +38,7 @@ import org.eclipse.swt.widgets.Composite;
  */
 public abstract class AbstractPapyrusLinkPreferencePage extends AbstractPapyrusElementPreferencePage {
 
+
 	@Override
 	protected void createPageContents(Composite parent) {
 		super.createPageContents(parent);
@@ -46,6 +50,15 @@ public abstract class AbstractPapyrusLinkPreferencePage extends AbstractPapyrusE
 		ConnectionGroup connectionGroupComposite = new ConnectionGroup(parent, getPreferenceKey(), this);
 		addAbstractGroup(connectionGroupComposite);
 
+		//Label role group
+		if(!getLabelRole().isEmpty()) {
+			LabelGroup compartmentGroup = new LabelGroup(parent, getPreferenceKey(), this, getLabelRole());
+			addAbstractGroup(compartmentGroup);
+		}
+
 	}
 
+	public TreeMap<String, String> getLabelRole() {
+		return new TreeMap<String, String>();
+	}
 }

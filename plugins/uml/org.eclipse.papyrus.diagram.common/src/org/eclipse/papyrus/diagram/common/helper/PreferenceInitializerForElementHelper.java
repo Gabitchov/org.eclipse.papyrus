@@ -39,6 +39,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
@@ -197,7 +198,7 @@ public class PreferenceInitializerForElementHelper {
 	}
 
 	/**
-	 * init the status of the compartment for the node (Showed or hided)
+	 * init the status of the compartment for the node (Showed or hidden)
 	 * 
 	 * @param view
 	 *        the element to initialize
@@ -220,7 +221,7 @@ public class PreferenceInitializerForElementHelper {
 					String compartmentName = ((ResizableCompartmentFigure)fig1).getCompartmentTitle();
 					if(compartmentName != null) {
 						String diagramKind = view.getDiagram().getType();
-						String preferenceKey = PreferenceConstantHelper.getCompartmentElementConstant(diagramKind + "_" + elementName, compartmentName, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+						String preferenceKey = PreferenceConstantHelper.getCompartmentElementConstant(diagramKind + "_" + elementName, compartmentName, PreferenceConstantHelper.COMPARTMENT_VISIBILITY); //$NON-NLS-1$
 						boolean value = store.getBoolean(preferenceKey);
 
 						if(!value) {//the default value is true : nothing to do
@@ -228,7 +229,7 @@ public class PreferenceInitializerForElementHelper {
 							ViewUtil.setStructuralFeatureValue((View)object, (EStructuralFeature)namedElement, value);
 						}
 
-						String compartmentNameVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(diagramKind + "_" + elementName, compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+						String compartmentNameVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(diagramKind + "_" + elementName, compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY); //$NON-NLS-1$
 						boolean showCompartmentName = store.getBoolean(compartmentNameVisibilityPreference);
 						if(showCompartmentName) {
 							View childView = (View)object;
@@ -241,6 +242,34 @@ public class PreferenceInitializerForElementHelper {
 						}
 
 					}
+				}
+				dummyEP = null;
+			}
+		}
+	}
+
+	/**
+	 * init the status of each label for the node or for the link (Showed or hidden)
+	 * 
+	 * @param view
+	 *        the element to initialize
+	 * @param store
+	 *        the preference store
+	 * @param elementName
+	 *        the name to the element
+	 */
+	public static void initLabelVisibilityFromPrefs(View view, final IPreferenceStore store, String elementName) {
+		EList<?> children = view.getPersistedChildren();
+		if(children != null) {
+			for(Object object : children) {
+
+				//we look for the name of the compartment for this view
+				EditPart dummyEP = EditPartService.getInstance().createGraphicEditPart((View)object);
+				if(dummyEP instanceof ILabelRoleProvider) {
+					String role = ((ILabelRoleProvider)dummyEP).getLabelRole();
+					String diagramKind = view.getDiagram().getType();
+					String key = PreferenceConstantHelper.getLabelElementConstant(diagramKind + "_" + elementName, role, PreferenceConstantHelper.LABEL_VISIBILITY); //$NON-NLS-1$
+					((View)object).setVisible(store.getBoolean(key));
 				}
 				dummyEP = null;
 			}

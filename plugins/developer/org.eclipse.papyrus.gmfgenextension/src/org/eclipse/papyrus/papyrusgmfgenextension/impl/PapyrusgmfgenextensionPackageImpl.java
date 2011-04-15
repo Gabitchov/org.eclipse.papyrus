@@ -24,6 +24,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingReorientService;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook;
 import org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint;
+import org.eclipse.papyrus.papyrusgmfgenextension.LabelRole;
 import org.eclipse.papyrus.papyrusgmfgenextension.MutatingCanvas;
 import org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart;
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusExtensionRootNode;
@@ -147,6 +148,13 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * @generated
 	 */
 	private EClass editPartUsingReorientServiceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass labelRoleEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -609,6 +617,60 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLabelRole() {
+		return labelRoleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLabelRole_Role() {
+		return (EAttribute)labelRoleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLabelRole_IconPathRole() {
+		return (EAttribute)labelRoleEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLabelRole_LinkLabels() {
+		return (EReference)labelRoleEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLabelRole_ExternalNodeLabels() {
+		return (EReference)labelRoleEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLabelRole_VisibleByDefault() {
+		return (EAttribute)labelRoleEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -697,6 +759,13 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		editPartUsingReorientServiceEClass = createEClass(EDIT_PART_USING_REORIENT_SERVICE);
 		createEAttribute(editPartUsingReorientServiceEClass, EDIT_PART_USING_REORIENT_SERVICE__NAME);
 		createEReference(editPartUsingReorientServiceEClass, EDIT_PART_USING_REORIENT_SERVICE__GEN_VIEW);
+
+		labelRoleEClass = createEClass(LABEL_ROLE);
+		createEAttribute(labelRoleEClass, LABEL_ROLE__ROLE);
+		createEAttribute(labelRoleEClass, LABEL_ROLE__ICON_PATH_ROLE);
+		createEReference(labelRoleEClass, LABEL_ROLE__LINK_LABELS);
+		createEReference(labelRoleEClass, LABEL_ROLE__EXTERNAL_NODE_LABELS);
+		createEAttribute(labelRoleEClass, LABEL_ROLE__VISIBLE_BY_DEFAULT);
 	}
 
 	/**
@@ -746,6 +815,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		additionalEditPartCandiesEClass.getESuperTypes().add(this.getCommentedElement());
 		editPartUsingDeleteServiceEClass.getESuperTypes().add(this.getCommentedElement());
 		editPartUsingReorientServiceEClass.getESuperTypes().add(this.getCommentedElement());
+		labelRoleEClass.getESuperTypes().add(this.getCommentedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(extendedGenViewEClass, ExtendedGenView.class, "ExtendedGenView", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -812,6 +882,13 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		initEClass(editPartUsingReorientServiceEClass, EditPartUsingReorientService.class, "EditPartUsingReorientService", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEditPartUsingReorientService_Name(), theEcorePackage.getEString(), "name", null, 0, 1, EditPartUsingReorientService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEditPartUsingReorientService_GenView(), theGMFGenPackage.getGenLink(), null, "genView", null, 0, -1, EditPartUsingReorientService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(labelRoleEClass, LabelRole.class, "LabelRole", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLabelRole_Role(), theEcorePackage.getEString(), "role", null, 1, 1, LabelRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLabelRole_IconPathRole(), ecorePackage.getEString(), "iconPathRole", null, 0, 1, LabelRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLabelRole_LinkLabels(), theGMFGenPackage.getGenLinkLabel(), null, "linkLabels", null, 0, -1, LabelRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLabelRole_ExternalNodeLabels(), theGMFGenPackage.getGenExternalNodeLabel(), null, "externalNodeLabels", null, 0, -1, LabelRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLabelRole_VisibleByDefault(), theEcorePackage.getEBoolean(), "visibleByDefault", "true", 0, 1, LabelRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

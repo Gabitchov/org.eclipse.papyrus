@@ -8,9 +8,11 @@
  *
  * Contributors:
  *    Thibault Landre (Atos Origin) - initial API and implementation
+ *    Vincent Lorenzo (CEA-LIST) - 335987: [General][Enhancement] Show/Hide Connectors Labels https://bugs.eclipse.org/bugs/show_bug.cgi?id=335987
  */
 
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
 
 «EXTENSION xpt::preferences::PrefsConstant»
 
@@ -35,8 +37,52 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 
 	«EXPAND xpt::Common::generatedClassComment»
 	public static void initDefaults(org.eclipse.jface.preference.IPreferenceStore store) {
-
+	«REM» executed, only if the element has labels with defined role (using papyrusgmfgenextension::LabelRole)  «ENDREM»
+		«IF self.labels->exists(lbl0 : gmfgen::GenLinkLabel | (papyrusgmfgenextension::LabelRole.allInstances()->select(label0 : papyrusgmfgenextension::LabelRole | label0.linkLabels->includes(lbl0))->size()<>0))-»
+		    String key = «getDiagram().editPartsPackageName».«getDiagram().editPartClassName».MODEL_ID+"_«elementType.displayName»";
+			for(String role : getLabelVisibilityPreferences().keySet()){
+				String preferenceName = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getLabelElementConstant(key, role, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.LABEL_VISIBILITY);
+				store.setDefault(preferenceName, getLabelVisibilityPreferences().get(role));
+			}
+		«ENDIF-»
+	«REM» end of the add for papyrusgmfgenextension::LabelRole«ENDREM»
 	}
 	
+		«REM» executed, only if the element has labels with defined role (using papyrusgmfgenextension::LabelRole)  «ENDREM»
+		«IF self.labels->exists(lbl0 : gmfgen::GenLinkLabel | (papyrusgmfgenextension::LabelRole.allInstances()->select(label0 : papyrusgmfgenextension::LabelRole | label0.linkLabels->includes(lbl0))->size()<>0))-»
+			«EXPAND xpt::Common::generatedClassComment»
+			public static java.util.TreeMap<String,String> getStaticLabelRole(){
+				java.util.TreeMap<String,String> map = new java.util.TreeMap<String, String>(new org.eclipse.papyrus.diagram.common.util.StringComparator());
+				«FOREACH labels AS lbl-»
+				«IF papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.linkLabels->includes(lbl))->size()<>0-»
+				map.put(
+				"«papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.linkLabels->includes(lbl))->asSequence()->first().role»"
+				,"«papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.linkLabels->includes(lbl))->asSequence()->first().iconPathRole»"
+				);//$NON-NLS-1$ //$NON-NLS-2$
+				«ENDIF-»
+			    «ENDFOREACH-»
+				return map;
+			}
+			
+			«EXPAND xpt::Common::generatedClassComment»
+			public static java.util.TreeMap<String,Boolean> getLabelVisibilityPreferences(){
+				java.util.TreeMap<String,Boolean> map = new java.util.TreeMap<String,Boolean>();
+				«FOREACH labels AS lbl-»
+				«IF papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.linkLabels->includes(lbl))->size()<>0-»
+				map.put(
+				"«papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.linkLabels->includes(lbl))->asSequence()->first().role»"
+				,«papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.linkLabels->includes(lbl))->asSequence()->first().visibleByDefault»
+				);//$NON-NLS-1$
+				«ENDIF-»
+			    «ENDFOREACH-»
+				return map;
+			}
+			
+			«EXPAND xpt::Common::generatedClassComment»
+			public java.util.TreeMap<String,String> getLabelRole(){
+				return getStaticLabelRole();
+			}
+		«ENDIF»
+	«REM» end of the code used to managed papyrusgmfgenextension::LabelRole«ENDREM»
 }
 «ENDDEFINE»

@@ -15,15 +15,15 @@ package org.eclipse.papyrus.diagram.menu.actions.handlers;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.papyrus.diagram.menu.actions.ShowHideConnectionLabelsAction;
+import org.eclipse.papyrus.diagram.menu.actions.ShowHideLabelsAction;
 
 /**
- * Handler for the {@link ShowHideConnectionLabelsAction}
+ * Handler for the {@link ShowHideLabelsAction}
  * 
  * 
  * 
  */
-public class ShowHideConnectionLabelsHandler extends AbstractGraphicalCommandHandler {
+public class ShowHideLabelsHandler extends AbstractGraphicalCommandHandler {
 
 	/**
 	 * parameter ID for this action
@@ -36,7 +36,7 @@ public class ShowHideConnectionLabelsHandler extends AbstractGraphicalCommandHan
 	 * 
 	 * @param parameterID
 	 */
-	public ShowHideConnectionLabelsHandler() {
+	public ShowHideLabelsHandler() {
 		super(parameterID);
 	}
 
@@ -45,7 +45,7 @@ public class ShowHideConnectionLabelsHandler extends AbstractGraphicalCommandHan
 	 * @param parameter
 	 *        the value of the parameter for the handler
 	 */
-	public ShowHideConnectionLabelsHandler(String parameter) {
+	public ShowHideLabelsHandler(String parameter) {
 		super(parameterID, parameter);
 	}
 
@@ -58,7 +58,7 @@ public class ShowHideConnectionLabelsHandler extends AbstractGraphicalCommandHan
 	 */
 	@Override
 	protected Command getCommand() throws ExecutionException {
-		ShowHideConnectionLabelsAction action = new ShowHideConnectionLabelsAction(this.parameter, getSelectedElements());
+		ShowHideLabelsAction action = new ShowHideLabelsAction(this.parameter, getSelectedElements());
 		return action.getCommand();
 	}
 
@@ -70,9 +70,9 @@ public class ShowHideConnectionLabelsHandler extends AbstractGraphicalCommandHan
 	 */
 	@Override
 	public boolean isEnabled() {
-		if(this.parameter.equals(ShowHideConnectionLabelsAction.MANAGE_PARAMETER)) {
+		if(this.parameter.equals(ShowHideLabelsAction.MANAGE_PARAMETER)) {
 			//we test if the action can be executed with an other parameter (because getCommand() for this parameter open a dialog
-			ShowHideConnectionLabelsAction action = new ShowHideConnectionLabelsAction(ShowHideConnectionLabelsAction.SHOW_PARAMETER, getSelectedElements());
+			ShowHideLabelsAction action = new ShowHideLabelsAction(ShowHideLabelsAction.SHOW_PARAMETER, getSelectedElements());
 			return action.getCommand().canExecute();
 
 		} else {
