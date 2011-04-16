@@ -10,6 +10,7 @@
  *    Thibault Landre (Atos Origin) - initial API and implementation
  *	  Vincent Lorenzo (CEA-LIST) - Add templates to manage the display of the compartments in the preferences pages
  *    Vincent Lorenzo (CEA-LIST) - bug 335987: [General][Enhancement] Show/Hide Connectors Labels https://bugs.eclipse.org/bugs/show_bug.cgi?id=335987
+ *    Vincent Lorenzo (CEA-LIST) - bug 342954: [Preferences] Add the possibility to define the visibility of the compartments using the GmfGen
  */
 
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
@@ -57,9 +58,9 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 	    store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(key, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.HEIGHT),«defaultSizeHeight(self.viewmap, 40)»);
 	 
 	 	«IF compartments->size() <> 0-»
-			for(String name : compartments) {
-				String preferenceName = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getCompartmentElementConstant(key, name, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
-				store.setDefault(preferenceName, true);
+			for(String name : getCompartmentVisibilityPreferences().keySet()){
+				String preferenceName = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getLabelElementConstant(key, name, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+				store.setDefault(preferenceName, getCompartmentVisibilityPreferences().get(name));
 			}
 	 	«ENDIF-»
 	 
@@ -94,6 +95,22 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 		}
 	«ENDIF-»
 
+	«EXPAND xpt::Common::generatedClassComment»
+		public static java.util.TreeMap<String,Boolean> getCompartmentVisibilityPreferences(){
+			java.util.TreeMap<String,Boolean> map = new java.util.TreeMap<String,Boolean>();
+			«FOREACH compartments AS cpt-»
+				«IF papyrusgmfgenextension::CompartmentVisibilityPreference.allInstances()->select(cptPref : papyrusgmfgenextension::CompartmentVisibilityPreference | cptPref.compartments->includes(cpt))->size()<>0-»
+					«IF papyrusgmfgenextension::CompartmentVisibilityPreference.allInstances()->select(cptPref : papyrusgmfgenextension::CompartmentVisibilityPreference | cptPref.compartments->includes(cpt))->asSequence()->first().visibleByDefault=true-»
+					  map.put("«cpt.title»", Boolean.TRUE);
+				      «ELSE-»
+				      map.put("«cpt.title»", Boolean.FALSE);
+				      «ENDIF-»
+				   «ELSE-»
+				   		map.put("«cpt.title»",Boolean.TRUE);
+				   «ENDIF-»
+			«ENDFOREACH-»
+			return map;
+		}
 	
 	«REM» executed, only if the element has labels with defined role (using papyrusgmfgenextension::LabelRole)  «ENDREM»
 		«IF self.labels->exists(lbl0 : gmfgen::GenExternalNodeLabel | (papyrusgmfgenextension::LabelRole.allInstances()->select(label0 : papyrusgmfgenextension::LabelRole | label0.externalNodeLabels->includes(lbl0))->size()<>0))-»

@@ -19,6 +19,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode;
 import org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement;
+import org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference;
 import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService;
 import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingReorientService;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView;
@@ -155,6 +156,13 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * @generated
 	 */
 	private EClass labelRoleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compartmentVisibilityPreferenceEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -671,6 +679,33 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompartmentVisibilityPreference() {
+		return compartmentVisibilityPreferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCompartmentVisibilityPreference_VisibleByDefault() {
+		return (EAttribute)compartmentVisibilityPreferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompartmentVisibilityPreference_Compartments() {
+		return (EReference)compartmentVisibilityPreferenceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -766,6 +801,10 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		createEReference(labelRoleEClass, LABEL_ROLE__LINK_LABELS);
 		createEReference(labelRoleEClass, LABEL_ROLE__EXTERNAL_NODE_LABELS);
 		createEAttribute(labelRoleEClass, LABEL_ROLE__VISIBLE_BY_DEFAULT);
+
+		compartmentVisibilityPreferenceEClass = createEClass(COMPARTMENT_VISIBILITY_PREFERENCE);
+		createEAttribute(compartmentVisibilityPreferenceEClass, COMPARTMENT_VISIBILITY_PREFERENCE__VISIBLE_BY_DEFAULT);
+		createEReference(compartmentVisibilityPreferenceEClass, COMPARTMENT_VISIBILITY_PREFERENCE__COMPARTMENTS);
 	}
 
 	/**
@@ -816,6 +855,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		editPartUsingDeleteServiceEClass.getESuperTypes().add(this.getCommentedElement());
 		editPartUsingReorientServiceEClass.getESuperTypes().add(this.getCommentedElement());
 		labelRoleEClass.getESuperTypes().add(this.getCommentedElement());
+		compartmentVisibilityPreferenceEClass.getESuperTypes().add(this.getCommentedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(extendedGenViewEClass, ExtendedGenView.class, "ExtendedGenView", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -889,6 +929,10 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		initEReference(getLabelRole_LinkLabels(), theGMFGenPackage.getGenLinkLabel(), null, "linkLabels", null, 0, -1, LabelRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLabelRole_ExternalNodeLabels(), theGMFGenPackage.getGenExternalNodeLabel(), null, "externalNodeLabels", null, 0, -1, LabelRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLabelRole_VisibleByDefault(), theEcorePackage.getEBoolean(), "visibleByDefault", "true", 0, 1, LabelRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(compartmentVisibilityPreferenceEClass, CompartmentVisibilityPreference.class, "CompartmentVisibilityPreference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCompartmentVisibilityPreference_VisibleByDefault(), theEcorePackage.getEBoolean(), "visibleByDefault", "true", 0, 1, CompartmentVisibilityPreference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompartmentVisibilityPreference_Compartments(), theGMFGenPackage.getGenCompartment(), null, "compartments", null, 0, -1, CompartmentVisibilityPreference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

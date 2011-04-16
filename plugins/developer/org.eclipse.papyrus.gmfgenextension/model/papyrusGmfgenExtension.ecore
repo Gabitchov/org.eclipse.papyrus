@@ -135,4 +135,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibleByDefault" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
         defaultValueLiteral="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompartmentVisibilityPreference" eSuperTypes="#//CommentedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="This element allows to define the compartments which are hidden (or visible) by default"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibleByDefault" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compartments" upperBound="-1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.ecore#//GenCompartment"/>
+  </eClassifiers>
 </ecore:EPackage>

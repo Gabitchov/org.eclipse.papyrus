@@ -94,6 +94,7 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 			case PapyrusgmfgenextensionPackage.EDIT_PART_USING_DELETE_SERVICE: return createEditPartUsingDeleteService();
 			case PapyrusgmfgenextensionPackage.EDIT_PART_USING_REORIENT_SERVICE: return createEditPartUsingReorientService();
 			case PapyrusgmfgenextensionPackage.LABEL_ROLE: return createLabelRole();
+			case PapyrusgmfgenextensionPackage.COMPARTMENT_VISIBILITY_PREFERENCE: return createCompartmentVisibilityPreference();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -277,6 +278,16 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	public LabelRole createLabelRole() {
 		LabelRoleImpl labelRole = new LabelRoleImpl();
 		return labelRole;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompartmentVisibilityPreference createCompartmentVisibilityPreference() {
+		CompartmentVisibilityPreferenceImpl compartmentVisibilityPreference = new CompartmentVisibilityPreferenceImpl();
+		return compartmentVisibilityPreference;
 	}
 
 	/**

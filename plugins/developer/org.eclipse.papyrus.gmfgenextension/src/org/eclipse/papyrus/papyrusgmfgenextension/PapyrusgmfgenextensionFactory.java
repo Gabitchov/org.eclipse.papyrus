@@ -189,6 +189,15 @@ public interface PapyrusgmfgenextensionFactory extends EFactory {
 	LabelRole createLabelRole();
 
 	/**
+	 * Returns a new object of class '<em>Compartment Visibility Preference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Compartment Visibility Preference</em>'.
+	 * @generated
+	 */
+	CompartmentVisibilityPreference createCompartmentVisibilityPreference();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

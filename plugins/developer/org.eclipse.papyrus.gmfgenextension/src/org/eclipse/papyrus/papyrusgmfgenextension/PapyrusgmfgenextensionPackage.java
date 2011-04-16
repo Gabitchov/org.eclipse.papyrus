@@ -934,6 +934,53 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CompartmentVisibilityPreferenceImpl <em>Compartment Visibility Preference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.CompartmentVisibilityPreferenceImpl
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getCompartmentVisibilityPreference()
+	 * @generated
+	 */
+	int COMPARTMENT_VISIBILITY_PREFERENCE = 18;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARTMENT_VISIBILITY_PREFERENCE__COMMENT = COMMENTED_ELEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Visible By Default</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARTMENT_VISIBILITY_PREFERENCE__VISIBLE_BY_DEFAULT = COMMENTED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Compartments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARTMENT_VISIBILITY_PREFERENCE__COMPARTMENTS = COMMENTED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Compartment Visibility Preference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARTMENT_VISIBILITY_PREFERENCE_FEATURE_COUNT = COMMENTED_ELEMENT_FEATURE_COUNT + 2;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView <em>Extended Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1510,6 +1557,38 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	EAttribute getLabelRole_VisibleByDefault();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference <em>Compartment Visibility Preference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Compartment Visibility Preference</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference
+	 * @generated
+	 */
+	EClass getCompartmentVisibilityPreference();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference#isVisibleByDefault <em>Visible By Default</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Visible By Default</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference#isVisibleByDefault()
+	 * @see #getCompartmentVisibilityPreference()
+	 * @generated
+	 */
+	EAttribute getCompartmentVisibilityPreference_VisibleByDefault();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference#getCompartments <em>Compartments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Compartments</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference#getCompartments()
+	 * @see #getCompartmentVisibilityPreference()
+	 * @generated
+	 */
+	EReference getCompartmentVisibilityPreference_Compartments();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1999,6 +2078,32 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LABEL_ROLE__VISIBLE_BY_DEFAULT = eINSTANCE.getLabelRole_VisibleByDefault();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CompartmentVisibilityPreferenceImpl <em>Compartment Visibility Preference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.CompartmentVisibilityPreferenceImpl
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getCompartmentVisibilityPreference()
+		 * @generated
+		 */
+		EClass COMPARTMENT_VISIBILITY_PREFERENCE = eINSTANCE.getCompartmentVisibilityPreference();
+
+		/**
+		 * The meta object literal for the '<em><b>Visible By Default</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPARTMENT_VISIBILITY_PREFERENCE__VISIBLE_BY_DEFAULT = eINSTANCE.getCompartmentVisibilityPreference_VisibleByDefault();
+
+		/**
+		 * The meta object literal for the '<em><b>Compartments</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPARTMENT_VISIBILITY_PREFERENCE__COMPARTMENTS = eINSTANCE.getCompartmentVisibilityPreference_Compartments();
 
 	}
 
