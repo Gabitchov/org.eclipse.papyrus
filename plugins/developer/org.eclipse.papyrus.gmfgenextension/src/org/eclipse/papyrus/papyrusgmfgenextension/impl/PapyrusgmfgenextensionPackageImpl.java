@@ -25,7 +25,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingReorientService;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook;
 import org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint;
-import org.eclipse.papyrus.papyrusgmfgenextension.LabelRole;
+import org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference;
 import org.eclipse.papyrus.papyrusgmfgenextension.MutatingCanvas;
 import org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart;
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusExtensionRootNode;
@@ -155,7 +155,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass labelRoleEClass = null;
+	private EClass labelVisibilityPreferenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -629,8 +629,8 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLabelRole() {
-		return labelRoleEClass;
+	public EClass getLabelVisibilityPreference() {
+		return labelVisibilityPreferenceEClass;
 	}
 
 	/**
@@ -638,8 +638,8 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLabelRole_Role() {
-		return (EAttribute)labelRoleEClass.getEStructuralFeatures().get(0);
+	public EAttribute getLabelVisibilityPreference_Role() {
+		return (EAttribute)labelVisibilityPreferenceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -647,8 +647,8 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLabelRole_IconPathRole() {
-		return (EAttribute)labelRoleEClass.getEStructuralFeatures().get(1);
+	public EAttribute getLabelVisibilityPreference_IconPathRole() {
+		return (EAttribute)labelVisibilityPreferenceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -656,8 +656,8 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLabelRole_LinkLabels() {
-		return (EReference)labelRoleEClass.getEStructuralFeatures().get(2);
+	public EReference getLabelVisibilityPreference_LinkLabels() {
+		return (EReference)labelVisibilityPreferenceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -665,8 +665,8 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLabelRole_ExternalNodeLabels() {
-		return (EReference)labelRoleEClass.getEStructuralFeatures().get(3);
+	public EReference getLabelVisibilityPreference_ExternalNodeLabels() {
+		return (EReference)labelVisibilityPreferenceEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -674,8 +674,8 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLabelRole_VisibleByDefault() {
-		return (EAttribute)labelRoleEClass.getEStructuralFeatures().get(4);
+	public EAttribute getLabelVisibilityPreference_VisibleByDefault() {
+		return (EAttribute)labelVisibilityPreferenceEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -795,12 +795,12 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		createEAttribute(editPartUsingReorientServiceEClass, EDIT_PART_USING_REORIENT_SERVICE__NAME);
 		createEReference(editPartUsingReorientServiceEClass, EDIT_PART_USING_REORIENT_SERVICE__GEN_VIEW);
 
-		labelRoleEClass = createEClass(LABEL_ROLE);
-		createEAttribute(labelRoleEClass, LABEL_ROLE__ROLE);
-		createEAttribute(labelRoleEClass, LABEL_ROLE__ICON_PATH_ROLE);
-		createEReference(labelRoleEClass, LABEL_ROLE__LINK_LABELS);
-		createEReference(labelRoleEClass, LABEL_ROLE__EXTERNAL_NODE_LABELS);
-		createEAttribute(labelRoleEClass, LABEL_ROLE__VISIBLE_BY_DEFAULT);
+		labelVisibilityPreferenceEClass = createEClass(LABEL_VISIBILITY_PREFERENCE);
+		createEAttribute(labelVisibilityPreferenceEClass, LABEL_VISIBILITY_PREFERENCE__ROLE);
+		createEAttribute(labelVisibilityPreferenceEClass, LABEL_VISIBILITY_PREFERENCE__ICON_PATH_ROLE);
+		createEReference(labelVisibilityPreferenceEClass, LABEL_VISIBILITY_PREFERENCE__LINK_LABELS);
+		createEReference(labelVisibilityPreferenceEClass, LABEL_VISIBILITY_PREFERENCE__EXTERNAL_NODE_LABELS);
+		createEAttribute(labelVisibilityPreferenceEClass, LABEL_VISIBILITY_PREFERENCE__VISIBLE_BY_DEFAULT);
 
 		compartmentVisibilityPreferenceEClass = createEClass(COMPARTMENT_VISIBILITY_PREFERENCE);
 		createEAttribute(compartmentVisibilityPreferenceEClass, COMPARTMENT_VISIBILITY_PREFERENCE__VISIBLE_BY_DEFAULT);
@@ -854,7 +854,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		additionalEditPartCandiesEClass.getESuperTypes().add(this.getCommentedElement());
 		editPartUsingDeleteServiceEClass.getESuperTypes().add(this.getCommentedElement());
 		editPartUsingReorientServiceEClass.getESuperTypes().add(this.getCommentedElement());
-		labelRoleEClass.getESuperTypes().add(this.getCommentedElement());
+		labelVisibilityPreferenceEClass.getESuperTypes().add(this.getCommentedElement());
 		compartmentVisibilityPreferenceEClass.getESuperTypes().add(this.getCommentedElement());
 
 		// Initialize classes and features; add operations and parameters
@@ -923,12 +923,12 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		initEAttribute(getEditPartUsingReorientService_Name(), theEcorePackage.getEString(), "name", null, 0, 1, EditPartUsingReorientService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEditPartUsingReorientService_GenView(), theGMFGenPackage.getGenLink(), null, "genView", null, 0, -1, EditPartUsingReorientService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(labelRoleEClass, LabelRole.class, "LabelRole", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLabelRole_Role(), theEcorePackage.getEString(), "role", null, 1, 1, LabelRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLabelRole_IconPathRole(), ecorePackage.getEString(), "iconPathRole", null, 0, 1, LabelRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLabelRole_LinkLabels(), theGMFGenPackage.getGenLinkLabel(), null, "linkLabels", null, 0, -1, LabelRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLabelRole_ExternalNodeLabels(), theGMFGenPackage.getGenExternalNodeLabel(), null, "externalNodeLabels", null, 0, -1, LabelRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLabelRole_VisibleByDefault(), theEcorePackage.getEBoolean(), "visibleByDefault", "true", 0, 1, LabelRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(labelVisibilityPreferenceEClass, LabelVisibilityPreference.class, "LabelVisibilityPreference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLabelVisibilityPreference_Role(), theEcorePackage.getEString(), "role", null, 1, 1, LabelVisibilityPreference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLabelVisibilityPreference_IconPathRole(), ecorePackage.getEString(), "iconPathRole", null, 0, 1, LabelVisibilityPreference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLabelVisibilityPreference_LinkLabels(), theGMFGenPackage.getGenLinkLabel(), null, "linkLabels", null, 0, -1, LabelVisibilityPreference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLabelVisibilityPreference_ExternalNodeLabels(), theGMFGenPackage.getGenExternalNodeLabel(), null, "externalNodeLabels", null, 0, -1, LabelVisibilityPreference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLabelVisibilityPreference_VisibleByDefault(), theEcorePackage.getEBoolean(), "visibleByDefault", "true", 0, 1, LabelVisibilityPreference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compartmentVisibilityPreferenceEClass, CompartmentVisibilityPreference.class, "CompartmentVisibilityPreference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCompartmentVisibilityPreference_VisibleByDefault(), theEcorePackage.getEBoolean(), "visibleByDefault", "true", 0, 1, CompartmentVisibilityPreference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -9,34 +9,39 @@ package org.eclipse.papyrus.papyrusgmfgenextension.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel;
 import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel;
-import org.eclipse.papyrus.papyrusgmfgenextension.LabelRole;
+
+import org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference;
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Label Role</b></em>'.
+ * An implementation of the model object '<em><b>Label Visibility Preference</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelRoleImpl#getRole <em>Role</em>}</li>
- *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelRoleImpl#getIconPathRole <em>Icon Path Role</em>}</li>
- *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelRoleImpl#getLinkLabels <em>Link Labels</em>}</li>
- *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelRoleImpl#getExternalNodeLabels <em>External Node Labels</em>}</li>
- *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelRoleImpl#isVisibleByDefault <em>Visible By Default</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelVisibilityPreferenceImpl#getRole <em>Role</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelVisibilityPreferenceImpl#getIconPathRole <em>Icon Path Role</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelVisibilityPreferenceImpl#getLinkLabels <em>Link Labels</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelVisibilityPreferenceImpl#getExternalNodeLabels <em>External Node Labels</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelVisibilityPreferenceImpl#isVisibleByDefault <em>Visible By Default</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class LabelRoleImpl extends CommentedElementImpl implements LabelRole {
-
+public class LabelVisibilityPreferenceImpl extends CommentedElementImpl implements LabelVisibilityPreference {
 	/**
 	 * The default value of the '{@link #getRole() <em>Role</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -122,7 +127,7 @@ public class LabelRoleImpl extends CommentedElementImpl implements LabelRole {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LabelRoleImpl() {
+	protected LabelVisibilityPreferenceImpl() {
 		super();
 	}
 
@@ -133,7 +138,7 @@ public class LabelRoleImpl extends CommentedElementImpl implements LabelRole {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return PapyrusgmfgenextensionPackage.Literals.LABEL_ROLE;
+		return PapyrusgmfgenextensionPackage.Literals.LABEL_VISIBILITY_PREFERENCE;
 	}
 
 	/**
@@ -154,7 +159,7 @@ public class LabelRoleImpl extends CommentedElementImpl implements LabelRole {
 		String oldRole = role;
 		role = newRole;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.LABEL_ROLE__ROLE, oldRole, role));
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__ROLE, oldRole, role));
 	}
 
 	/**
@@ -175,7 +180,7 @@ public class LabelRoleImpl extends CommentedElementImpl implements LabelRole {
 		String oldIconPathRole = iconPathRole;
 		iconPathRole = newIconPathRole;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.LABEL_ROLE__ICON_PATH_ROLE, oldIconPathRole, iconPathRole));
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__ICON_PATH_ROLE, oldIconPathRole, iconPathRole));
 	}
 
 	/**
@@ -185,7 +190,7 @@ public class LabelRoleImpl extends CommentedElementImpl implements LabelRole {
 	 */
 	public EList<GenLinkLabel> getLinkLabels() {
 		if (linkLabels == null) {
-			linkLabels = new EObjectResolvingEList<GenLinkLabel>(GenLinkLabel.class, this, PapyrusgmfgenextensionPackage.LABEL_ROLE__LINK_LABELS);
+			linkLabels = new EObjectResolvingEList<GenLinkLabel>(GenLinkLabel.class, this, PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__LINK_LABELS);
 		}
 		return linkLabels;
 	}
@@ -197,7 +202,7 @@ public class LabelRoleImpl extends CommentedElementImpl implements LabelRole {
 	 */
 	public EList<GenExternalNodeLabel> getExternalNodeLabels() {
 		if (externalNodeLabels == null) {
-			externalNodeLabels = new EObjectResolvingEList<GenExternalNodeLabel>(GenExternalNodeLabel.class, this, PapyrusgmfgenextensionPackage.LABEL_ROLE__EXTERNAL_NODE_LABELS);
+			externalNodeLabels = new EObjectResolvingEList<GenExternalNodeLabel>(GenExternalNodeLabel.class, this, PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__EXTERNAL_NODE_LABELS);
 		}
 		return externalNodeLabels;
 	}
@@ -220,7 +225,7 @@ public class LabelRoleImpl extends CommentedElementImpl implements LabelRole {
 		boolean oldVisibleByDefault = visibleByDefault;
 		visibleByDefault = newVisibleByDefault;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.LABEL_ROLE__VISIBLE_BY_DEFAULT, oldVisibleByDefault, visibleByDefault));
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__VISIBLE_BY_DEFAULT, oldVisibleByDefault, visibleByDefault));
 	}
 
 	/**
@@ -231,15 +236,15 @@ public class LabelRoleImpl extends CommentedElementImpl implements LabelRole {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__ROLE:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__ROLE:
 				return getRole();
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__ICON_PATH_ROLE:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__ICON_PATH_ROLE:
 				return getIconPathRole();
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__LINK_LABELS:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__LINK_LABELS:
 				return getLinkLabels();
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__EXTERNAL_NODE_LABELS:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__EXTERNAL_NODE_LABELS:
 				return getExternalNodeLabels();
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__VISIBLE_BY_DEFAULT:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__VISIBLE_BY_DEFAULT:
 				return isVisibleByDefault();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -254,21 +259,21 @@ public class LabelRoleImpl extends CommentedElementImpl implements LabelRole {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__ROLE:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__ROLE:
 				setRole((String)newValue);
 				return;
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__ICON_PATH_ROLE:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__ICON_PATH_ROLE:
 				setIconPathRole((String)newValue);
 				return;
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__LINK_LABELS:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__LINK_LABELS:
 				getLinkLabels().clear();
 				getLinkLabels().addAll((Collection<? extends GenLinkLabel>)newValue);
 				return;
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__EXTERNAL_NODE_LABELS:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__EXTERNAL_NODE_LABELS:
 				getExternalNodeLabels().clear();
 				getExternalNodeLabels().addAll((Collection<? extends GenExternalNodeLabel>)newValue);
 				return;
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__VISIBLE_BY_DEFAULT:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__VISIBLE_BY_DEFAULT:
 				setVisibleByDefault((Boolean)newValue);
 				return;
 		}
@@ -283,19 +288,19 @@ public class LabelRoleImpl extends CommentedElementImpl implements LabelRole {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__ROLE:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__ROLE:
 				setRole(ROLE_EDEFAULT);
 				return;
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__ICON_PATH_ROLE:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__ICON_PATH_ROLE:
 				setIconPathRole(ICON_PATH_ROLE_EDEFAULT);
 				return;
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__LINK_LABELS:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__LINK_LABELS:
 				getLinkLabels().clear();
 				return;
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__EXTERNAL_NODE_LABELS:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__EXTERNAL_NODE_LABELS:
 				getExternalNodeLabels().clear();
 				return;
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__VISIBLE_BY_DEFAULT:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__VISIBLE_BY_DEFAULT:
 				setVisibleByDefault(VISIBLE_BY_DEFAULT_EDEFAULT);
 				return;
 		}
@@ -310,15 +315,15 @@ public class LabelRoleImpl extends CommentedElementImpl implements LabelRole {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__ROLE:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__ROLE:
 				return ROLE_EDEFAULT == null ? role != null : !ROLE_EDEFAULT.equals(role);
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__ICON_PATH_ROLE:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__ICON_PATH_ROLE:
 				return ICON_PATH_ROLE_EDEFAULT == null ? iconPathRole != null : !ICON_PATH_ROLE_EDEFAULT.equals(iconPathRole);
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__LINK_LABELS:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__LINK_LABELS:
 				return linkLabels != null && !linkLabels.isEmpty();
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__EXTERNAL_NODE_LABELS:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__EXTERNAL_NODE_LABELS:
 				return externalNodeLabels != null && !externalNodeLabels.isEmpty();
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE__VISIBLE_BY_DEFAULT:
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE__VISIBLE_BY_DEFAULT:
 				return visibleByDefault != VISIBLE_BY_DEFAULT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -344,4 +349,4 @@ public class LabelRoleImpl extends CommentedElementImpl implements LabelRole {
 		return result.toString();
 	}
 
-} //LabelRoleImpl
+} //LabelVisibilityPreferenceImpl

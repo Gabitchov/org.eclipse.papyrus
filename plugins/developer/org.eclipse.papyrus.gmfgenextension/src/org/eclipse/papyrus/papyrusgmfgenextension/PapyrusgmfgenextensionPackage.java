@@ -860,14 +860,14 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelRoleImpl <em>Label Role</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelVisibilityPreferenceImpl <em>Label Visibility Preference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelRoleImpl
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getLabelRole()
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelVisibilityPreferenceImpl
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getLabelVisibilityPreference()
 	 * @generated
 	 */
-	int LABEL_ROLE = 17;
+	int LABEL_VISIBILITY_PREFERENCE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -876,7 +876,7 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LABEL_ROLE__COMMENT = COMMENTED_ELEMENT__COMMENT;
+	int LABEL_VISIBILITY_PREFERENCE__COMMENT = COMMENTED_ELEMENT__COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Role</b></em>' attribute.
@@ -885,7 +885,7 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LABEL_ROLE__ROLE = COMMENTED_ELEMENT_FEATURE_COUNT + 0;
+	int LABEL_VISIBILITY_PREFERENCE__ROLE = COMMENTED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Icon Path Role</b></em>' attribute.
@@ -894,7 +894,7 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LABEL_ROLE__ICON_PATH_ROLE = COMMENTED_ELEMENT_FEATURE_COUNT + 1;
+	int LABEL_VISIBILITY_PREFERENCE__ICON_PATH_ROLE = COMMENTED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Link Labels</b></em>' reference list.
@@ -903,7 +903,7 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LABEL_ROLE__LINK_LABELS = COMMENTED_ELEMENT_FEATURE_COUNT + 2;
+	int LABEL_VISIBILITY_PREFERENCE__LINK_LABELS = COMMENTED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>External Node Labels</b></em>' reference list.
@@ -912,7 +912,7 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LABEL_ROLE__EXTERNAL_NODE_LABELS = COMMENTED_ELEMENT_FEATURE_COUNT + 3;
+	int LABEL_VISIBILITY_PREFERENCE__EXTERNAL_NODE_LABELS = COMMENTED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Visible By Default</b></em>' attribute.
@@ -921,17 +921,16 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LABEL_ROLE__VISIBLE_BY_DEFAULT = COMMENTED_ELEMENT_FEATURE_COUNT + 4;
+	int LABEL_VISIBILITY_PREFERENCE__VISIBLE_BY_DEFAULT = COMMENTED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of structural features of the '<em>Label Role</em>' class.
+	 * The number of structural features of the '<em>Label Visibility Preference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LABEL_ROLE_FEATURE_COUNT = COMMENTED_ELEMENT_FEATURE_COUNT + 5;
-
+	int LABEL_VISIBILITY_PREFERENCE_FEATURE_COUNT = COMMENTED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CompartmentVisibilityPreferenceImpl <em>Compartment Visibility Preference</em>}' class.
@@ -1492,69 +1491,69 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	EReference getEditPartUsingReorientService_GenView();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelRole <em>Label Role</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference <em>Label Visibility Preference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Label Role</em>'.
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelRole
+	 * @return the meta object for class '<em>Label Visibility Preference</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference
 	 * @generated
 	 */
-	EClass getLabelRole();
+	EClass getLabelVisibilityPreference();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#getRole <em>Role</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getRole <em>Role</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Role</em>'.
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#getRole()
-	 * @see #getLabelRole()
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getRole()
+	 * @see #getLabelVisibilityPreference()
 	 * @generated
 	 */
-	EAttribute getLabelRole_Role();
+	EAttribute getLabelVisibilityPreference_Role();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#getIconPathRole <em>Icon Path Role</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getIconPathRole <em>Icon Path Role</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Icon Path Role</em>'.
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#getIconPathRole()
-	 * @see #getLabelRole()
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getIconPathRole()
+	 * @see #getLabelVisibilityPreference()
 	 * @generated
 	 */
-	EAttribute getLabelRole_IconPathRole();
+	EAttribute getLabelVisibilityPreference_IconPathRole();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#getLinkLabels <em>Link Labels</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getLinkLabels <em>Link Labels</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Link Labels</em>'.
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#getLinkLabels()
-	 * @see #getLabelRole()
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getLinkLabels()
+	 * @see #getLabelVisibilityPreference()
 	 * @generated
 	 */
-	EReference getLabelRole_LinkLabels();
+	EReference getLabelVisibilityPreference_LinkLabels();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#getExternalNodeLabels <em>External Node Labels</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getExternalNodeLabels <em>External Node Labels</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>External Node Labels</em>'.
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#getExternalNodeLabels()
-	 * @see #getLabelRole()
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getExternalNodeLabels()
+	 * @see #getLabelVisibilityPreference()
 	 * @generated
 	 */
-	EReference getLabelRole_ExternalNodeLabels();
+	EReference getLabelVisibilityPreference_ExternalNodeLabels();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#isVisibleByDefault <em>Visible By Default</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#isVisibleByDefault <em>Visible By Default</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Visible By Default</em>'.
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelRole#isVisibleByDefault()
-	 * @see #getLabelRole()
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#isVisibleByDefault()
+	 * @see #getLabelVisibilityPreference()
 	 * @generated
 	 */
-	EAttribute getLabelRole_VisibleByDefault();
+	EAttribute getLabelVisibilityPreference_VisibleByDefault();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference <em>Compartment Visibility Preference</em>}'.
@@ -2030,14 +2029,14 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		EReference EDIT_PART_USING_REORIENT_SERVICE__GEN_VIEW = eINSTANCE.getEditPartUsingReorientService_GenView();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelRoleImpl <em>Label Role</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelVisibilityPreferenceImpl <em>Label Visibility Preference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelRoleImpl
-		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getLabelRole()
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelVisibilityPreferenceImpl
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getLabelVisibilityPreference()
 		 * @generated
 		 */
-		EClass LABEL_ROLE = eINSTANCE.getLabelRole();
+		EClass LABEL_VISIBILITY_PREFERENCE = eINSTANCE.getLabelVisibilityPreference();
 
 		/**
 		 * The meta object literal for the '<em><b>Role</b></em>' attribute feature.
@@ -2045,7 +2044,7 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LABEL_ROLE__ROLE = eINSTANCE.getLabelRole_Role();
+		EAttribute LABEL_VISIBILITY_PREFERENCE__ROLE = eINSTANCE.getLabelVisibilityPreference_Role();
 
 		/**
 		 * The meta object literal for the '<em><b>Icon Path Role</b></em>' attribute feature.
@@ -2053,7 +2052,7 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LABEL_ROLE__ICON_PATH_ROLE = eINSTANCE.getLabelRole_IconPathRole();
+		EAttribute LABEL_VISIBILITY_PREFERENCE__ICON_PATH_ROLE = eINSTANCE.getLabelVisibilityPreference_IconPathRole();
 
 		/**
 		 * The meta object literal for the '<em><b>Link Labels</b></em>' reference list feature.
@@ -2061,7 +2060,7 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LABEL_ROLE__LINK_LABELS = eINSTANCE.getLabelRole_LinkLabels();
+		EReference LABEL_VISIBILITY_PREFERENCE__LINK_LABELS = eINSTANCE.getLabelVisibilityPreference_LinkLabels();
 
 		/**
 		 * The meta object literal for the '<em><b>External Node Labels</b></em>' reference list feature.
@@ -2069,7 +2068,7 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LABEL_ROLE__EXTERNAL_NODE_LABELS = eINSTANCE.getLabelRole_ExternalNodeLabels();
+		EReference LABEL_VISIBILITY_PREFERENCE__EXTERNAL_NODE_LABELS = eINSTANCE.getLabelVisibilityPreference_ExternalNodeLabels();
 
 		/**
 		 * The meta object literal for the '<em><b>Visible By Default</b></em>' attribute feature.
@@ -2077,7 +2076,7 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LABEL_ROLE__VISIBLE_BY_DEFAULT = eINSTANCE.getLabelRole_VisibleByDefault();
+		EAttribute LABEL_VISIBILITY_PREFERENCE__VISIBLE_BY_DEFAULT = eINSTANCE.getLabelVisibilityPreference_VisibleByDefault();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CompartmentVisibilityPreferenceImpl <em>Compartment Visibility Preference</em>}' class.

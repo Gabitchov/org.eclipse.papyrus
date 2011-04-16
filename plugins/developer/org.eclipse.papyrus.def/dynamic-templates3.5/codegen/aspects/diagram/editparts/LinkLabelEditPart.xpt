@@ -20,7 +20,7 @@
 «AROUND implementsList FOR gmfgen::GenLinkLabel»
 	«targetDef.proceed()»
 	«REM»BEGIN: PapyrusGenCode«ENDREM»
-	«IF papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.linkLabels->includes(self))->size()<>0»
+	«IF papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.linkLabels->includes(self))->size()<>0»
 	, org.eclipse.papyrus.diagram.common.editparts.ILabelRoleProvider
 	«ENDIF»
 	«REM»END: PapyrusGenCode«ENDREM»
@@ -30,15 +30,15 @@
 «AROUND additions FOR gmfgen::GenLinkLabel-»
 «targetDef.proceed()»
 	«REM»BEGIN: PapyrusGenCode«ENDREM»
-	«IF papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.linkLabels->includes(self))->size()<>0»
+	«IF papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.linkLabels->includes(self))->size()<>0»
 		«EXPAND xpt::Common::generatedClassComment»
 		public String getLabelRole(){
-		return "«papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.linkLabels->includes(self))->asSequence()->first().role»";//$NON-NLS-1$
+		return "«papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.linkLabels->includes(self))->asSequence()->first().role»";//$NON-NLS-1$
 		}
 		
 		«EXPAND xpt::Common::generatedClassComment»
 		public String getIconPathRole(){
-		return "«papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.linkLabels->includes(self))->asSequence()->first().iconPathRole»";//$NON-NLS-1$
+		return "«papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.linkLabels->includes(self))->asSequence()->first().iconPathRole»";//$NON-NLS-1$
 		}
 	«ENDIF»
 	«REM»END: PapyrusGenCode«ENDREM»

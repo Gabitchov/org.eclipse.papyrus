@@ -122,7 +122,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="genView" ordered="false"
         unique="false" upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.ecore#//GenLink"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LabelRole" eSuperTypes="#//CommentedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="LabelVisibilityPreference" eSuperTypes="#//CommentedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="This element is always linked with link Label and External Node Label.&#xD;&#xA;role : the role of the Label (Stereotype, Source Multiplicity, Target Multiplicity, Name, ...)&#xD;&#xA;iconPath : an icon illustrating the role of the Label&#xD;&#xA;visibleByDefault : if false, the label is not visible when the element is created&#xD;&#xA;&#xD;&#xA;These informations are used by the action Show/Hide Label."/>
     </eAnnotations>

@@ -39,7 +39,7 @@
 «AROUND implementsList FOR gmfgen::GenExternalNodeLabel-»
 	«targetDef.proceed()»
 	«REM»BEGIN: PapyrusGenCode«ENDREM»
-	«IF papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.externalNodeLabels->includes(self))->size()<>0»
+	«IF papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.externalNodeLabels->includes(self))->size()<>0»
 	, org.eclipse.papyrus.diagram.common.editparts.ILabelRoleProvider
 	«ENDIF»
 	«REM»END: PapyrusGenCode«ENDREM»
@@ -48,15 +48,15 @@
 «REM» we add the methods provided by the interface «ENDREM»
 «AROUND additions FOR gmfgen::GenExternalNodeLabel-»
 	«REM»BEGIN: PapyrusGenCode«ENDREM»
-	«IF papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.externalNodeLabels->includes(self))->size()<>0»
+	«IF papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.externalNodeLabels->includes(self))->size()<>0»
 		«EXPAND xpt::Common::generatedClassComment»
 		public String getLabelRole(){
-		return "«papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.externalNodeLabels->includes(self))->asSequence()->first().role»";//$NON-NLS-1$
+		return "«papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.externalNodeLabels->includes(self))->asSequence()->first().role»";//$NON-NLS-1$
 		}
 		
 		«EXPAND xpt::Common::generatedClassComment»
 		public String getIconPathRole(){
-		return "«papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.externalNodeLabels->includes(self))->asSequence()->first().iconPathRole»";//$NON-NLS-1$
+		return "«papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.externalNodeLabels->includes(self))->asSequence()->first().iconPathRole»";//$NON-NLS-1$
 		}
 	«ENDIF»
 	«REM»END: PapyrusGenCode«ENDREM»

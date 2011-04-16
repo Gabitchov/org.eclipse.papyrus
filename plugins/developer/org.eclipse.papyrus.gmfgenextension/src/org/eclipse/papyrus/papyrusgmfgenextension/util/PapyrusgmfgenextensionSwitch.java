@@ -211,10 +211,10 @@ public class PapyrusgmfgenextensionSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PapyrusgmfgenextensionPackage.LABEL_ROLE: {
-				LabelRole labelRole = (LabelRole)theEObject;
-				T result = caseLabelRole(labelRole);
-				if (result == null) result = caseCommentedElement(labelRole);
+			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE: {
+				LabelVisibilityPreference labelVisibilityPreference = (LabelVisibilityPreference)theEObject;
+				T result = caseLabelVisibilityPreference(labelVisibilityPreference);
+				if (result == null) result = caseCommentedElement(labelVisibilityPreference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -485,17 +485,17 @@ public class PapyrusgmfgenextensionSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Label Role</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Label Visibility Preference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Label Role</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Label Visibility Preference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLabelRole(LabelRole object) {
+	public T caseLabelVisibilityPreference(LabelVisibilityPreference object) {
 		return null;
 	}
 

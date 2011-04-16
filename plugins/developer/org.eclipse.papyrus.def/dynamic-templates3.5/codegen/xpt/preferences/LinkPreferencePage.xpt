@@ -37,27 +37,27 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 
 	«EXPAND xpt::Common::generatedClassComment»
 	public static void initDefaults(org.eclipse.jface.preference.IPreferenceStore store) {
-	«REM» executed, only if the element has labels with defined role (using papyrusgmfgenextension::LabelRole)  «ENDREM»
-		«IF self.labels->exists(lbl0 : gmfgen::GenLinkLabel | (papyrusgmfgenextension::LabelRole.allInstances()->select(label0 : papyrusgmfgenextension::LabelRole | label0.linkLabels->includes(lbl0))->size()<>0))-»
+	«REM» executed, only if the element has labels with defined role (using papyrusgmfgenextension::LabelVisibilityPreference)  «ENDREM»
+		«IF self.labels->exists(lbl0 : gmfgen::GenLinkLabel | (papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label0 : papyrusgmfgenextension::LabelVisibilityPreference | label0.linkLabels->includes(lbl0))->size()<>0))-»
 		    String key = «getDiagram().editPartsPackageName».«getDiagram().editPartClassName».MODEL_ID+"_«elementType.displayName»";
 			for(String role : getLabelVisibilityPreferences().keySet()){
 				String preferenceName = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getLabelElementConstant(key, role, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.LABEL_VISIBILITY);
 				store.setDefault(preferenceName, getLabelVisibilityPreferences().get(role));
 			}
 		«ENDIF-»
-	«REM» end of the add for papyrusgmfgenextension::LabelRole«ENDREM»
+	«REM» end of the add for papyrusgmfgenextension::LabelVisibilityPreference«ENDREM»
 	}
 	
-		«REM» executed, only if the element has labels with defined role (using papyrusgmfgenextension::LabelRole)  «ENDREM»
-		«IF self.labels->exists(lbl0 : gmfgen::GenLinkLabel | (papyrusgmfgenextension::LabelRole.allInstances()->select(label0 : papyrusgmfgenextension::LabelRole | label0.linkLabels->includes(lbl0))->size()<>0))-»
+		«REM» executed, only if the element has labels with defined role (using papyrusgmfgenextension::LabelVisibilityPreference)  «ENDREM»
+		«IF self.labels->exists(lbl0 : gmfgen::GenLinkLabel | (papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label0 : papyrusgmfgenextension::LabelVisibilityPreference | label0.linkLabels->includes(lbl0))->size()<>0))-»
 			«EXPAND xpt::Common::generatedClassComment»
 			public static java.util.TreeMap<String,String> getStaticLabelRole(){
 				java.util.TreeMap<String,String> map = new java.util.TreeMap<String, String>(new org.eclipse.papyrus.diagram.common.util.StringComparator());
 				«FOREACH labels AS lbl-»
-				«IF papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.linkLabels->includes(lbl))->size()<>0-»
+				«IF papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.linkLabels->includes(lbl))->size()<>0-»
 				map.put(
-				"«papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.linkLabels->includes(lbl))->asSequence()->first().role»"
-				,"«papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.linkLabels->includes(lbl))->asSequence()->first().iconPathRole»"
+				"«papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.linkLabels->includes(lbl))->asSequence()->first().role»"
+				,"«papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.linkLabels->includes(lbl))->asSequence()->first().iconPathRole»"
 				);//$NON-NLS-1$ //$NON-NLS-2$
 				«ENDIF-»
 			    «ENDFOREACH-»
@@ -68,10 +68,10 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 			public static java.util.TreeMap<String,Boolean> getLabelVisibilityPreferences(){
 				java.util.TreeMap<String,Boolean> map = new java.util.TreeMap<String,Boolean>();
 				«FOREACH labels AS lbl-»
-				«IF papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.linkLabels->includes(lbl))->size()<>0-»
+				«IF papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.linkLabels->includes(lbl))->size()<>0-»
 				map.put(
-				"«papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.linkLabels->includes(lbl))->asSequence()->first().role»"
-				,«papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.linkLabels->includes(lbl))->asSequence()->first().visibleByDefault»
+				"«papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.linkLabels->includes(lbl))->asSequence()->first().role»"
+				,«papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.linkLabels->includes(lbl))->asSequence()->first().visibleByDefault»
 				);//$NON-NLS-1$
 				«ENDIF-»
 			    «ENDFOREACH-»
@@ -83,6 +83,6 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 				return getStaticLabelRole();
 			}
 		«ENDIF»
-	«REM» end of the code used to managed papyrusgmfgenextension::LabelRole«ENDREM»
+	«REM» end of the code used to managed papyrusgmfgenextension::LabelVisibilityPreference«ENDREM»
 }
 «ENDDEFINE»

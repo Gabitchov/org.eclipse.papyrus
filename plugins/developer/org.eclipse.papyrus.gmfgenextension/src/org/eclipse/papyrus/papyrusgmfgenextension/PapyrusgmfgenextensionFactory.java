@@ -180,13 +180,13 @@ public interface PapyrusgmfgenextensionFactory extends EFactory {
 	EditPartUsingReorientService createEditPartUsingReorientService();
 
 	/**
-	 * Returns a new object of class '<em>Label Role</em>'.
+	 * Returns a new object of class '<em>Label Visibility Preference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Label Role</em>'.
+	 * @return a new object of class '<em>Label Visibility Preference</em>'.
 	 * @generated
 	 */
-	LabelRole createLabelRole();
+	LabelVisibilityPreference createLabelVisibilityPreference();
 
 	/**
 	 * Returns a new object of class '<em>Compartment Visibility Preference</em>'.

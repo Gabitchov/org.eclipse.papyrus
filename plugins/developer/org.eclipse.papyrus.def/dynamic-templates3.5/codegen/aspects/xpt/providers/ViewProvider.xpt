@@ -624,14 +624,14 @@ protected org.eclipse.gmf.runtime.emf.type.core.IElementType getSemanticElementT
 
 «REM» write the line to initialize the property isVisible for the label of the link «ENDREM»
 «DEFINE initLabelVisibility(String viewVar, String prefStoreVar) FOR gmfgen::GenLink»
-	«IF self.labels->exists(lbl : gmfgen::GenLinkLabel | (papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.linkLabels->includes(lbl))->size()<>0))»
+	«IF self.labels->exists(lbl : gmfgen::GenLinkLabel | (papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.linkLabels->includes(lbl))->size()<>0))»
 	 org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 «ENDDEFINE»
 
 «REM» write the line to initialize the property isVisible for the label of the link «ENDREM»
 «DEFINE initLabelVisibility(String viewVar, String prefStoreVar) FOR gmfgen::GenNode»
-	«IF self.labels->exists(lbl : gmfgen::GenExternalNodeLabel | (papyrusgmfgenextension::LabelRole.allInstances()->select(label : papyrusgmfgenextension::LabelRole | label.externalNodeLabels->includes(lbl))->size()<>0))»
+	«IF self.labels->exists(lbl : gmfgen::GenExternalNodeLabel | (papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.externalNodeLabels->includes(lbl))->size()<>0))»
 	 org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 «ENDDEFINE»
