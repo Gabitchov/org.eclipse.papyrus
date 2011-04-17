@@ -26,16 +26,25 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class GeneralizationEditHelper extends DirectedRelationshipEditHelper {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected EReference getSourceReference() {
 		return UMLPackage.eINSTANCE.getGeneralization_Specific();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected EReference getTargetReference() {
 		return UMLPackage.eINSTANCE.getGeneralization_General();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		return new GeneralizationReorientCommand(req);

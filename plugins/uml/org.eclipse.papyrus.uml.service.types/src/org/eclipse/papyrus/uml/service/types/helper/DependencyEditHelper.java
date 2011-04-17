@@ -31,21 +31,33 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class DependencyEditHelper extends DirectedRelationshipEditHelper {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected EReference getSourceReference() {
 		return UMLPackage.eINSTANCE.getDependency_Client();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected EReference getTargetReference() {
 		return UMLPackage.eINSTANCE.getDependency_Supplier();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		return new DependencyReorientCommand(req);
 	}
-	
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getDestroyReferenceCommand(DestroyReferenceRequest req) {
 
@@ -74,6 +86,9 @@ public class DependencyEditHelper extends DirectedRelationshipEditHelper {
 		return command;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getSetCommand(SetRequest req) {
 

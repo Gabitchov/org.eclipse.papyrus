@@ -25,17 +25,26 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This helper provides edit commands for UML {@link Extend}.
  */
 public class ExtendEditHelper extends DirectedRelationshipEditHelper {
-
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected EReference getSourceReference() {
 		return UMLPackage.eINSTANCE.getExtend_Extension();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected EReference getTargetReference() {
 		return UMLPackage.eINSTANCE.getExtend_ExtendedCase();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		return new ExtendReorientCommand(req);
