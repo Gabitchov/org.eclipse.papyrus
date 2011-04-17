@@ -52,6 +52,7 @@ public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice
 	 *        the request
 	 * @return the command to execute before the edit helper work is done
 	 */
+	@Override
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
 
 		List<EObject> dependentsToDestroy = new ArrayList<EObject>();

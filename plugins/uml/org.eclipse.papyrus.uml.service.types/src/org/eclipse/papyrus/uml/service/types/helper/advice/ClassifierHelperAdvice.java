@@ -31,6 +31,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
 

@@ -33,6 +33,10 @@ import org.eclipse.uml2.uml.PartDecomposition;
  */
 public class LifelineHelperAdvice extends AbstractEditHelperAdvice {
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
 
 		List<EObject> dependentsToDestroy = new ArrayList<EObject>();

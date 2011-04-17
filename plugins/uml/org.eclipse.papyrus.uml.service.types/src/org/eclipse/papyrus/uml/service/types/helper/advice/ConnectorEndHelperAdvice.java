@@ -26,6 +26,9 @@ import org.eclipse.uml2.uml.ConnectorEnd;
  */
 public class ConnectorEndHelperAdvice extends AbstractEditHelperAdvice {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
 

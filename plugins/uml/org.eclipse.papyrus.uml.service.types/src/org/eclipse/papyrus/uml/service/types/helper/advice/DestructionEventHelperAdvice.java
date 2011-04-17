@@ -31,6 +31,10 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
  */
 public class DestructionEventHelperAdvice extends AbstractEditHelperAdvice {
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
 
 		List<EObject> dependentsToDestroy = new ArrayList<EObject>();

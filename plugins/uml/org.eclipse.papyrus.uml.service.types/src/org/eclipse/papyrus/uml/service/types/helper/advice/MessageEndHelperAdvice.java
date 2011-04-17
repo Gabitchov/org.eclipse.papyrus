@@ -20,6 +20,10 @@ import org.eclipse.uml2.uml.MessageEnd;
 
 public class MessageEndHelperAdvice extends AbstractEditHelperAdvice {
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
 		MessageEnd me = (MessageEnd)request.getElementToDestroy();
 

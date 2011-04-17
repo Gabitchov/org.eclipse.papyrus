@@ -43,6 +43,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class CollaborationHelperAdvice extends AbstractEditHelperAdvice {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
 		List<EObject> dependentsToDestroy = new ArrayList<EObject>();
@@ -58,6 +61,9 @@ public class CollaborationHelperAdvice extends AbstractEditHelperAdvice {
 		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getBeforeDestroyReferenceCommand(DestroyReferenceRequest request) {
 		ICommand gmfCommand = null;
@@ -94,6 +100,9 @@ public class CollaborationHelperAdvice extends AbstractEditHelperAdvice {
 		return gmfCommand;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	protected ICommand getBeforeSetCommand(SetRequest request) {

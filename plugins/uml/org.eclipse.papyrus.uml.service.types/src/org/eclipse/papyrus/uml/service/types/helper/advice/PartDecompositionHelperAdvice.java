@@ -20,6 +20,10 @@ import org.eclipse.uml2.uml.PartDecomposition;
 
 public class PartDecompositionHelperAdvice extends AbstractEditHelperAdvice {
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
 		PartDecomposition decomposition = (PartDecomposition)request.getElementToDestroy();
 		// destroy the decomposed lifelines

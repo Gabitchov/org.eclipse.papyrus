@@ -34,6 +34,9 @@ import org.eclipse.uml2.uml.DirectedRelationship;
  */
 public class DirectedRelationshipHelperAdvice extends AbstractEditHelperAdvice {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getBeforeReorientRelationshipCommand(ReorientRelationshipRequest request) {
 

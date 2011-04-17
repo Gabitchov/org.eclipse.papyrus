@@ -37,6 +37,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class CollaborationUseHelperAdvice extends AbstractEditHelperAdvice {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getBeforeDestroyReferenceCommand(DestroyReferenceRequest request) {
 		ICommand gmfCommand = null;
@@ -68,6 +71,9 @@ public class CollaborationUseHelperAdvice extends AbstractEditHelperAdvice {
 		return gmfCommand;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	protected ICommand getBeforeSetCommand(SetRequest request) {
