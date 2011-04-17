@@ -378,7 +378,8 @@
 	
 	<!-- IMetamodelType for Constraint -->
 	<metamodelType id="org.eclipse.papyrus.uml.Constraint" name="UML::Constraint"
-		eclass="Constraint" 
+		eclass="Constraint"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.ConstraintEditHelper"			
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="UML::Constraint"/>
 	</metamodelType>
