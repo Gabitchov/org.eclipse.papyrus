@@ -105,23 +105,26 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	 * @return a list that contains one command to move the diagram
 	 */
 	protected List<Command> getDropDiagramIntoCommand(TransactionalEditingDomain domain,EObject targetOwner, Diagram childElement){
-		ArrayList<Command> commandList= new ArrayList<Command>();
-		EReference eref= NotationPackage.eINSTANCE.getView_Element();
-		if(eref!=null){
-			SetRequest setRequest= new SetRequest(childElement, eref, targetOwner);
-			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(childElement);
-			if(provider != null) {
-				// Retrieve delete command from the Element Edit service
-				ICommand command = provider.getEditCommand(setRequest);
-
-				if(command != null) {
-					commandList.add( new GMFtoEMFCommandWrapper(command));
-				}
-			}
-		}
-
-
-		return commandList;
+		// Diagram drag and drop is not supported.
+		throw new UnsupportedOperationException();
+				
+//		ArrayList<Command> commandList= new ArrayList<Command>();
+//		EReference eref= NotationPackage.eINSTANCE.getView_Element();
+//		if(eref!=null){
+//			SetRequest setRequest= new SetRequest(childElement, eref, targetOwner);
+//			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(childElement);
+//			if(provider != null) {
+//				// Retrieve delete command from the Element Edit service
+//				ICommand command = provider.getEditCommand(setRequest);
+//
+//				if(command != null) {
+//					commandList.add( new GMFtoEMFCommandWrapper(command));
+//				}
+//			}
+//		}
+//
+//
+//		return commandList;
 	}
 	/**
 	 * get the list of command to put an eobject before or after another EObject
@@ -330,7 +333,8 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 				}
 
 				if(eObjectchild instanceof Diagram){
-					result.addAll(getDropDiagramIntoCommand(getEditingDomain(), targetEObject,(Diagram) eObjectchild));
+					// Do not allow diagram drag and drop, it is not supported yet.
+					// result.addAll(getDropDiagramIntoCommand(getEditingDomain(), targetEObject,(Diagram) eObjectchild));
 				}
 				//test if object is an eobject
 				else if(eObjectchild!=null){
