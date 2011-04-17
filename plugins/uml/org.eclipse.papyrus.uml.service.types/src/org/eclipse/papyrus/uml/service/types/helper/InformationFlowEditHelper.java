@@ -26,16 +26,25 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class InformationFlowEditHelper extends DirectedRelationshipEditHelper {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected EReference getSourceReference() {
 		return UMLPackage.eINSTANCE.getInformationFlow_InformationSource();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected EReference getTargetReference() {
 		return UMLPackage.eINSTANCE.getInformationFlow_InformationTarget();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		return new InformationFlowReorientCommand(req);

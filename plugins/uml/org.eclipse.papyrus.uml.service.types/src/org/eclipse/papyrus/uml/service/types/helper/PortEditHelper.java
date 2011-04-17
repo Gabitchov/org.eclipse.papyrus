@@ -40,6 +40,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class PortEditHelper extends ElementEditHelper {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getConfigureCommand(final ConfigureRequest req) {
 
@@ -55,6 +58,9 @@ public class PortEditHelper extends ElementEditHelper {
 		};
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getSetCommand(SetRequest req) {
 

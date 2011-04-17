@@ -26,16 +26,25 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class IncludeEditHelper extends DirectedRelationshipEditHelper {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected EReference getSourceReference() {
 		return UMLPackage.eINSTANCE.getInclude_IncludingCase();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected EReference getTargetReference() {
 		return UMLPackage.eINSTANCE.getInclude_Addition();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		return new IncludeReorientCommand(req);

@@ -37,6 +37,9 @@ import org.eclipse.uml2.uml.UseCase;
  */
 public class UseCaseEditHelper extends BehavioredClassifierEditHelper {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getDestroyDependentsCommand(DestroyDependentsRequest req) {
 

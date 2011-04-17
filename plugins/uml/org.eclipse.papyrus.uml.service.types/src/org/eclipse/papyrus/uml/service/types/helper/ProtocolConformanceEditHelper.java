@@ -26,16 +26,25 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class ProtocolConformanceEditHelper extends DirectedRelationshipEditHelper {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected EReference getSourceReference() {
 		return UMLPackage.eINSTANCE.getProtocolConformance_SpecificMachine();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected EReference getTargetReference() {
 		return UMLPackage.eINSTANCE.getProtocolConformance_GeneralMachine();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		return new ProtocolConformanceReorientCommand(req);

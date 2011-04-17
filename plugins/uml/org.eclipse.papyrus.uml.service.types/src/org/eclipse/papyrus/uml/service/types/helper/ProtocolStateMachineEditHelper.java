@@ -36,6 +36,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class ProtocolStateMachineEditHelper extends ClassEditHelper {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getDestroyDependentsCommand(DestroyDependentsRequest req) {
 
