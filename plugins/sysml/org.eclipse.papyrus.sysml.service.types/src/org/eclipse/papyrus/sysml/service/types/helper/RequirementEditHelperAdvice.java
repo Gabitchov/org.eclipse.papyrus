@@ -75,7 +75,7 @@ public class RequirementEditHelperAdvice extends AbstractStereotypedElementEditH
 
 	/** Complete creation process by applying the expected stereotype */
 	@Override
-	protected ICommand getAfterConfigureCommand(final ConfigureRequest request) {
+	protected ICommand getBeforeConfigureCommand(final ConfigureRequest request) {
 
 		return new ConfigureElementCommand(request) {
 
