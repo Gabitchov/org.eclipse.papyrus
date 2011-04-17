@@ -37,8 +37,11 @@ import org.eclipse.uml2.uml.Namespace;
  */
 public class NamedElementInitializerHelperAdvice extends AbstractEditHelperAdvice {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	protected ICommand getAfterConfigureCommand(final ConfigureRequest request) {
+	protected ICommand getBeforeConfigureCommand(final ConfigureRequest request) {
 		return new ConfigureElementCommand(request) {
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
