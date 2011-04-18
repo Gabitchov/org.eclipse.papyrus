@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.resource.ModelSet;
-import org.eclipse.papyrus.resource.ModelUtils;
 
 /**
  * Utilities method to manage notation models. Should be moved in a more suitable plugin
@@ -43,15 +43,17 @@ public class NotationUtils {
 
 	/**
 	 * Gets the NotationModel for the currently selected editor. <br>
-	 * Warning: this method can return null if called during the MultiEditor initialization.
+	 * Warning: This method is designed to be call from ui.handlers. It is not designed to 
+	 * be call from Editors. This method can return null if called during the MultiEditor initialization.
 	 * 
+	 * @see ServiceUtilsForActionHandlers.getInstance().getModelSet()
 	 * 
 	 * @return The {@link NotationModel} of the current editor, or null if not found.
 	 */
 	public static NotationModel getNotationModel() {
 
 		try {
-			return (NotationModel)ModelUtils.getModelSetChecked().getModel(NotationModel.MODEL_ID);
+			return (NotationModel)ServiceUtilsForActionHandlers.getInstance().getModelSet().getModel(NotationModel.MODEL_ID);
 		} catch (ServiceException e) {
 			return null;
 		}
@@ -59,8 +61,10 @@ public class NotationUtils {
 
 	/**
 	 * Gets the NotationModel for the currently selected editor. <br>
-	 * Warning: this method can return null if called during the MultiEditor initialization.
+	 * Warning: This method is designed to be call from ui.handlers. It is not designed to 
+	 * be call from Editors. This method can return null if called during the MultiEditor initialization.
 	 * 
+	 * @see ServiceUtilsForActionHandlers.getInstance().getModelSet()
 	 * 
 	 * @return The {@link NotationModel} of the current editor, or null if not found.
 	 * @throws ServiceException
@@ -68,7 +72,7 @@ public class NotationUtils {
 	 */
 	public static NotationModel getNotationModelChecked() throws ServiceException {
 
-		return (NotationModel)ModelUtils.getModelSetChecked().getModel(NotationModel.MODEL_ID);
+		return (NotationModel)ServiceUtilsForActionHandlers.getInstance().getModelSet().getModel(NotationModel.MODEL_ID);
 	}
 
 	/**

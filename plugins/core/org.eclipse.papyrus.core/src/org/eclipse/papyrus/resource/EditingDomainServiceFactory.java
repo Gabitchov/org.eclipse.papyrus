@@ -3,7 +3,6 @@
  */
 package org.eclipse.papyrus.resource;
 
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.core.services.IServiceFactory;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;

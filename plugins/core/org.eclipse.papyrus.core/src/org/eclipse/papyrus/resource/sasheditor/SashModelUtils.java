@@ -6,6 +6,7 @@ package org.eclipse.papyrus.resource.sasheditor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.ModelUtils;
 import org.eclipse.papyrus.resource.uml.UmlUtils;
@@ -22,15 +23,17 @@ public class SashModelUtils {
 
 	/**
 	 * Gets the SashModel for the currently selected editor. <br>
-	 * Warning: this method can return null if called during the MultiEditor initialization.
+	 * Warning: This method is designed to be call from ui.handlers. It is not designed to 
+	 * be call from Editors. This method can return null if called during the MultiEditor initialization.
 	 * 
+	 * @see ServiceUtilsForActionHandlers.getInstance().getModelSet()
 	 * 
 	 * @return The {@link SashModel} of the current editor, or null if not found.
 	 */
 	public static SashModel getSashModel() {
 
 		try {
-			return (SashModel)ModelUtils.getModelSetChecked().getModel(SashModel.MODEL_ID);
+			return (SashModel)ServiceUtilsForActionHandlers.getInstance().getModelSet().getModel(SashModel.MODEL_ID);
 		} catch (ServiceException e) {
 			return null;
 		}
@@ -38,8 +41,10 @@ public class SashModelUtils {
 
 	/**
 	 * Gets the SashModel for the currently selected editor. <br>
-	 * Warning: this method can return null if called during the MultiEditor initialization.
+	 * Warning: This method is designed to be call from ui.handlers. It is not designed to 
+	 * be call from Editors. This method can return null if called during the MultiEditor initialization.
 	 * 
+	 * @see ServiceUtilsForActionHandlers.getInstance().getModelSet()
 	 * 
 	 * @return The {@link SashModel} of the current editor, or null if not found.
 	 * @throws ServiceException
@@ -47,7 +52,7 @@ public class SashModelUtils {
 	 */
 	public static SashModel getSashModelChecked() throws ServiceException {
 
-		return (SashModel)ModelUtils.getModelSetChecked().getModel(SashModel.MODEL_ID);
+		return (SashModel)ServiceUtilsForActionHandlers.getInstance().getModelSet().getModel(SashModel.MODEL_ID);
 	}
 
 	/**

@@ -7,6 +7,7 @@ import javax.imageio.spi.ServiceRegistry;
 
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.resource.ModelUtils;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.sasheditor.SashModel;
@@ -23,7 +24,10 @@ public class UmlUtils {
 	/**
 	 * Gets the UmlModel for the currently selected editor.
 	 * <br>
-	 * Warning: this method can return null if called during the MultiEditor initialization.
+	 * Warning: This method is designed to be call from ui.handlers. It is not designed to 
+	 * be call from Editors. This method can return null if called during the MultiEditor initialization.
+	 * 
+	 * @see ServiceUtilsForActionHandlers.getInstance().getModelSet()
 	 *
 	 * 
 	 * @return The {@link UmlModel} of the current editor, or null if not found.
@@ -31,7 +35,7 @@ public class UmlUtils {
 	public static UmlModel getUmlModel() {
 
 		try {
-			return (UmlModel)ModelUtils.getModelSetChecked().getModel(UmlModel.MODEL_ID);
+			return (UmlModel)ServiceUtilsForActionHandlers.getInstance().getModelSet().getModel(UmlModel.MODEL_ID);
 		} catch (ServiceException e) {
 			return null;
 		}
@@ -48,7 +52,7 @@ public class UmlUtils {
 	 */
 	public static UmlModel getUmlModelChecked() throws ServiceException {
 
-		return (UmlModel)ModelUtils.getModelSetChecked().getModel(UmlModel.MODEL_ID);
+		return (UmlModel)ServiceUtilsForActionHandlers.getInstance().getModelSet().getModel(UmlModel.MODEL_ID);
 	}
 	
 	/**
