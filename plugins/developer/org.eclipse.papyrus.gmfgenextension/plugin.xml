@@ -196,6 +196,21 @@
                                 </or>
                              </enablement>
                           </action>
+                          <action
+                                class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.SetCompartmentNeedsTitleToTrueAction"
+                                icon="icons/none_comp_vis.gif"
+                                id="org.eclipse.papyrus.gmfgenextension.action1"
+                                label="Set Compartment &quot;Needs Title&quot; to true"
+                                menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddHyperLinkPopupBarBehavior"
+                                tooltip="Create Compartment Title Visibility Node (and change &quot;Needs Title&quot; to true)">
+                                <enablement>
+                                <or>
+                                   <objectClass
+                                         name="org.eclipse.gmf.codegen.gmfgen.GenCompartment">
+                                   </objectClass>
+                                </or>
+                             </enablement>
+                          </action>
       </objectContribution>
    </extension>
 
