@@ -18,7 +18,9 @@ package org.eclipse.papyrus.service.edit.context;
 import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.service.edit.messages.Messages;
 
 /**
  * <pre>
@@ -46,7 +48,7 @@ public class TypeContext {
 
 		IClientContext context = ClientContextManager.getInstance().getClientContext(ID);
 		if(context == null) {
-			throw new ServiceException("Could not retrieve Papyrus context (GMF Extensible Type IClientContext): " + ID + ".");
+			throw new ServiceException(NLS.bind(Messages.TypeContext_ContextNotFound, ID));
 		}
 
 		return context;

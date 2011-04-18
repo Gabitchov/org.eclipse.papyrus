@@ -37,7 +37,7 @@ public interface IElementEditService extends IAdaptable {
 	/**
 	 * <pre>
 	 * 
-	 * Test if the service can fullfil the request in parameter.
+	 * Test if the service can fulfill the request in parameter.
 	 * 
 	 * @see {@link IElementType#canEdit(IEditCommandRequest)}
 	 * 

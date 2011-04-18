@@ -14,12 +14,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.service.edit.service;
 
-
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.ServiceUtils;
 import org.eclipse.papyrus.service.edit.Activator;
 import org.eclipse.papyrus.service.edit.internal.ElementEditServiceProvider;
+import org.eclipse.papyrus.service.edit.messages.Messages;
 
 /**
  * <pre>
@@ -48,9 +49,9 @@ public class ElementEditServiceUtils {
 		try {
 			return getEditServiceProvider().getEditService(objectToEdit);
 		} catch (ServiceException e) {
-			Activator.log.error("Unable to get ElementType edit service for " + objectToEdit + ".", e);
+			Activator.log.error(NLS.bind(Messages.ElementEditServiceUtils_UnableToFindElementType, objectToEdit), e);
 		} catch (NullPointerException e) {
-			Activator.log.error("Unable to get ElementType edit service for " + objectToEdit + ".", e);
+			Activator.log.error(NLS.bind(Messages.ElementEditServiceUtils_UnableToFindElementType, objectToEdit), e);
 		}
 
 		return null;
@@ -79,7 +80,7 @@ public class ElementEditServiceUtils {
 		try {
 			return getEditServiceProviderFromElementTypeRegistry();
 		} catch (ServiceException e) {
-			Activator.log.error("Unable to get ElementType edit service provider.", e);
+			Activator.log.error(Messages.ElementEditServiceUtils_UnableToFindServiceProvider, e);
 		}
 
 		return null;

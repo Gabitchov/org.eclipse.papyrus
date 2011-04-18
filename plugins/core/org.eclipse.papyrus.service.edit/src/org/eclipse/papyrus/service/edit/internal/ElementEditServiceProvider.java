@@ -23,8 +23,10 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.service.edit.context.TypeContext;
+import org.eclipse.papyrus.service.edit.messages.Messages;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.papyrus.service.edit.service.IElementEditServiceProvider;
 
@@ -86,7 +88,7 @@ public class ElementEditServiceProvider implements IElementEditServiceProvider {
 	public IElementEditService getEditService(Object objectToEdit) throws ServiceException {
 
 		if(!(objectToEdit instanceof EObject) && !(objectToEdit instanceof EClass) && !(objectToEdit instanceof IElementType)) {
-			throw new ServiceException("EObject, EClass or IElementType expected in method parameter.");
+			throw new ServiceException(Messages.ElementEditServiceProvider_UnexpectedParameterType);
 		}
 
 		IElementType elementType = null;
@@ -102,12 +104,12 @@ public class ElementEditServiceProvider implements IElementEditServiceProvider {
 		if(objectToEdit instanceof IElementType) {
 			// Make sure the IElementType is in Papyrus shared context
 			if(sharedClientContext.includes((IElementType)objectToEdit)) {
-				elementType = (IElementType) objectToEdit;
+				elementType = (IElementType)objectToEdit;
 			}
 		}
 
 		if(elementType == null) {
-			throw new ServiceException("No IElementType bound to Papyrus shared client context for " + objectToEdit + ".");
+			throw new ServiceException(NLS.bind(Messages.ElementEditServiceProvider_NoIElementTypeFound, objectToEdit));
 		}
 
 		return new ElementEditService(elementType, sharedClientContext);
@@ -136,7 +138,7 @@ public class ElementEditServiceProvider implements IElementEditServiceProvider {
 
 		return services;
 	}
-	
+
 	/**
 	 * <pre>
 	 * Tests if the id 
@@ -146,11 +148,11 @@ public class ElementEditServiceProvider implements IElementEditServiceProvider {
 	 */
 	public boolean isKnownElementType(String id) {
 		boolean isKnown = false;
-		
-		if (ElementTypeRegistry.getInstance().getType(id) != null) {
+
+		if(ElementTypeRegistry.getInstance().getType(id) != null) {
 			isKnown = sharedClientContext.includes(ElementTypeRegistry.getInstance().getType(id));
 		}
-		
+
 		return isKnown;
 	}
 }

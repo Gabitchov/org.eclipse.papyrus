@@ -59,7 +59,7 @@ public interface IElementEditServiceProvider {
 	 * </pre>
 	 */
 	public List<IElementEditService> getContainedTypeEditServices(EObject owner, EReference containmentReference) throws ServiceException;
-	
+
 	/**
 	 * <pre>
 	 * Tests if the id 
