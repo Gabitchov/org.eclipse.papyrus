@@ -18,18 +18,26 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.sysml.blocks.Block;
+import org.eclipse.papyrus.sysml.blocks.ValueType;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.service.types.matcher.BlockMatcher;
+import org.eclipse.papyrus.sysml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.sysml.service.types.utils.NamedElementHelper;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /** SysML FlowPort#InOut edit helper advice */
 public class FlowPortEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
@@ -72,7 +80,7 @@ public class FlowPortEditHelperAdvice extends AbstractStereotypedElementEditHelp
 
 	/** Complete creation process by applying the expected stereotype */
 	@Override
-	protected ICommand getAfterConfigureCommand(final ConfigureRequest request) {
+	protected ICommand getBeforeConfigureCommand(final ConfigureRequest request) {
 
 		return new ConfigureElementCommand(request) {
 
@@ -90,12 +98,46 @@ public class FlowPortEditHelperAdvice extends AbstractStereotypedElementEditHelp
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(port.getOwner(), PortandflowsPackage.eINSTANCE.getFlowPort());
+					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(port.getOwner(), PortandflowsPackage.eINSTANCE.getFlowPort().getName().toLowerCase());
 					port.setName(initializedName);
 				}
 
 				return CommandResult.newOKCommandResult(port);
 			}
 		};
+	}
+	
+	/** 
+	 * Restrict allowed types to 
+	 * 		{@link Block}, {@link Signal}, {@link DataType}, {@link ValueType} 
+	 */
+	@Override
+	protected ICommand getBeforeSetCommand(SetRequest request) {
+		
+		// Only allow null, Block, Signel, DataType or ValueType as the new type
+		if(UMLPackage.eINSTANCE.getTypedElement_Type().equals(request.getFeature())) {
+			if (request.getValue() != null) {
+				
+				if (! (request.getValue() instanceof Element)) {
+					return UnexecutableCommand.INSTANCE; // Should not happen
+				}
+				
+				Element value = (Element) request.getValue();
+				if ((value instanceof DataType) || (value instanceof Signal)) {
+					return null; // accept these types
+				}
+				
+				ValueType valueType = ElementUtil.getStereotypeApplication(value, ValueType.class);
+				Block block = ElementUtil.getStereotypeApplication(value, Block.class);
+
+				if ((block != null) || (valueType != null)) {
+					return null; // accept these types
+				}
+				
+				return UnexecutableCommand.INSTANCE; // forbid other types
+			}
+		}
+
+		return null;
 	}
 }
