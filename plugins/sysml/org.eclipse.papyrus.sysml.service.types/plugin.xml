@@ -273,6 +273,19 @@
 	</metamodel>
 </extension>
 
+<!-- Additionnal advices ConstraintBlockParameterPropertyEditHelperAdvice -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+	
+	<!-- Helper advice for Property created in the context of a ConstraintBlock -->
+	<adviceBinding id="org.eclipse.papyrus.sysml.advice.ConstraintBlockPropertyHelperAdvice"
+		class="org.eclipse.papyrus.sysml.service.types.helper.ConstraintBlockPropertyEditHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Property">
+	</adviceBinding>
+
+	</metamodel>
+</extension>
 
 <!-- SysML ElementType bindings to Papyrus shared IClientContext -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
@@ -309,6 +322,8 @@
 		<elementType ref="org.eclipse.papyrus.sysml.View" />
 		<elementType ref="org.eclipse.papyrus.sysml.ViewPoint" />
 		<elementType ref="org.eclipse.papyrus.sysml.Satisfy" />
+		
+		<advice ref="org.eclipse.papyrus.sysml.advice.ConstraintBlockPropertyHelperAdvice" />
 
 	</binding>
 	

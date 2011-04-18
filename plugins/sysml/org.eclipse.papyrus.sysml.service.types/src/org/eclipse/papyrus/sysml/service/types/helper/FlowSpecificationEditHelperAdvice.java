@@ -18,16 +18,21 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
+import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.sysml.service.types.matcher.FlowSpecificationMatcher;
 import org.eclipse.papyrus.sysml.service.types.matcher.RequirementMatcher;
 import org.eclipse.papyrus.sysml.service.types.utils.NamedElementHelper;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
@@ -40,6 +45,34 @@ public class FlowSpecificationEditHelperAdvice extends AbstractStereotypedElemen
 		requiredProfileIDs.add(SysmlResource.PORT_AND_FLOWS_ID);
 	}
 
+	/**
+	 * FlowSpecification owned feature restrictions :
+	 * [1] Flow specifications cannot own operations or receptions (they can only own FlowProperties).
+	 * [2] Every “ownedAttribute” of a FlowSpecification must be a FlowProperty.
+	 */
+	@Override
+	protected ICommand getBeforeCreateCommand(CreateElementRequest request) {
+		
+		IElementType elementToCreate = request.getElementType();
+		
+		// [1] Flow specifications cannot own operations or receptions (they can only own FlowProperties).
+		if (elementToCreate == UMLElementTypes.OPERATION) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		if (elementToCreate == UMLElementTypes.RECEPTION) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		
+		// [2] Every “ownedAttribute” of a FlowSpecification must be a FlowProperty.
+		if (UMLElementTypes.PROPERTY.getEClass().isSuperTypeOf(elementToCreate.getEClass())) {
+			if (elementToCreate != SysMLElementTypes.FLOW_PROPERTY) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+		
+		return super.getBeforeCreateCommand(request);
+	}
+	
 	/**
 	 * Check if the creation context is allowed.
 	 * 
