@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
@@ -30,11 +31,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 
 /** SysML Property Reference edit helper advice */
-public class ReferencePropertyEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
-
-	/** Default constructor */
-	public ReferencePropertyEditHelperAdvice() {
-	}
+public class ReferencePropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * Check if the creation context is a {@link Block}.

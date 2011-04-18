@@ -125,7 +125,14 @@
 		name="Create a new ItemFlow" description="Create a new ItemFlow"
 		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ItemFlowHandler">
 	</command>
-	
+
+	<!-- Creation command for PartProperty -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.sysml.modelexplorer.PartPropertyCreateCommand"
+		name="Create a new Part" description="Create a new Part"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.PartPropertyHandler">
+	</command>
+		
 	<!-- Creation command for Problem -->
 	<command categoryId="org.eclipse.papyrus.editor.category"
 		id="org.eclipse.papyrus.sysml.modelexplorer.ProblemCreateCommand"
@@ -140,6 +147,13 @@
 		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.RationaleHandler">
 	</command>
 	
+	<!-- Creation command for ReferenceProperty -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.sysml.modelexplorer.ReferencePropertyCreateCommand"
+		name="Create a new Reference" description="Create a new Reference"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ReferencePropertyHandler">
+	</command>
+	
 	<!-- Creation command for Requirement -->
 	<command categoryId="org.eclipse.papyrus.editor.category"
 		id="org.eclipse.papyrus.sysml.modelexplorer.RequirementCreateCommand"
@@ -152,6 +166,13 @@
 		id="org.eclipse.papyrus.sysml.modelexplorer.UnitCreateCommand"
 		name="Create a new Unit" description="Create a new Unit"
 		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.UnitHandler">
+	</command>
+	
+	<!-- Creation command for ValueProperty -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.sysml.modelexplorer.ValuePropertyCreateCommand"
+		name="Create a new Value" description="Create a new Value"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ValuePropertyHandler">
 	</command>
 	
 	<!-- Creation command for ValueType -->
@@ -324,6 +345,13 @@
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
+		<!-- Creation menu action for Part -->
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.PartPropertyCreateCommand"
+			label="Create a new Part" tooltip="Create a new Part" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+				
 		<!-- Creation menu action for Problem -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ProblemCreateCommand"
 			label="Create a new Problem" tooltip="Create a new Problem" style="push"		
@@ -338,6 +366,13 @@
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
+		<!-- Creation menu action for Reference -->
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ReferencePropertyCreateCommand"
+			label="Create a new Reference" tooltip="Create a new Reference" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+				
 		<!-- Creation menu action for Requirement -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.RequirementCreateCommand"
 			label="Create a new Requirement" tooltip="Create a new Requirement" style="push"		
@@ -352,6 +387,13 @@
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
+		<!-- Creation menu action for Value -->
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ValuePropertyCreateCommand"
+			label="Create a new Value" tooltip="Create a new Value" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+				
 		<!-- Creation menu action for ValueType -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ValueTypeCreateCommand"
 			label="Create a new ValueType" tooltip="Create a new ValueType" style="push"		

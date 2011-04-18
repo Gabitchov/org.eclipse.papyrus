@@ -29,10 +29,13 @@ public class CommandFilter {
 			visibleCommands.add(SysMLElementTypes.FLOW_PROPERTY);
 			visibleCommands.add(SysMLElementTypes.FLOW_SPECIFICATION);
 			// visibleCommands.add(SysMLElementTypes.ITEM_FLOW);
+			visibleCommands.add(SysMLElementTypes.PART_PROPERTY);
 			visibleCommands.add(SysMLElementTypes.PROBLEM);
 			visibleCommands.add(SysMLElementTypes.RATIONALE);
+			visibleCommands.add(SysMLElementTypes.REFERENCE_PROPERTY);
 			visibleCommands.add(SysMLElementTypes.REQUIREMENT);
 			visibleCommands.add(SysMLElementTypes.UNIT);
+			visibleCommands.add(SysMLElementTypes.VALUE_PROPERTY);
 			visibleCommands.add(SysMLElementTypes.VALUE_TYPE);
 			// visibleCommands.add(SysMLElementTypes.VALUE_TYPE_ENUMERATION);
 			// visibleCommands.add(SysMLElementTypes.VALUE_TYPE_PRIMITIVE_TYPE);

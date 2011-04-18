@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
@@ -31,11 +32,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 
 /** SysML Property Part edit helper advice */
-public class PartPropertyEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
-
-	/** Default constructor */
-	public PartPropertyEditHelperAdvice() {
-	}
+public class PartPropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * Check if the creation context is a {@link Block}.
@@ -79,7 +76,7 @@ public class PartPropertyEditHelperAdvice extends AbstractStereotypedElementEdit
 				if(element != null) {
 
 					// Set default name
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), "reference"); //$NON-NLS-1$
+					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), "part"); //$NON-NLS-1$
 					element.setName(initializedName);
 					// Initialize the aggregation to composite.
 					element.setAggregation(AggregationKind.COMPOSITE_LITERAL);
