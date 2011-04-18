@@ -5,8 +5,7 @@ Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.dev.java.utils.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.jdt.core,
- org.eclipse.ltk.core.refactoring
+ org.eclipse.jdt.core
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName

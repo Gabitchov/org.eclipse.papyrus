@@ -26,12 +26,14 @@ import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * This action allows to empty the selected packages or the packahe included in a IPackageFragmentRoot (i.e : a Source Folder)
+ * This action allows to empty the selected packages or the package included in a IPackageFragmentRoot (i.e : a Source Folder)
  * 
  * 
  * 
@@ -57,17 +59,19 @@ public class EmptyPackagesHandler extends AbstractHandler {
 			}
 			if(children != null) {
 				for(IJavaElement currentElement : children) {
-				if(currentElement instanceof ICompilationUnit) {
-					try {
-						((ICompilationUnit)currentElement).delete(true, new NullProgressMonitor());
-					} catch (JavaModelException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					if(currentElement instanceof ICompilationUnit) {
+						try {
+							((ICompilationUnit)currentElement).delete(true, new NullProgressMonitor());
+						} catch (JavaModelException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
 			}
-			}
 		}
+		MessageDialog dialog = new MessageDialog(Display.getDefault().getActiveShell(), "Empty Package", null, "All the package are now empty!", MessageDialog.INFORMATION, new String[]{ "OK" }, 0); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		dialog.open();
 		return null;
 	}
 

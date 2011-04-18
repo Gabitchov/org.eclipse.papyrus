@@ -6,7 +6,7 @@
       <command
             categoryId="org.eclipse.ui.category.project"
             defaultHandler="org.eclipse.papyrus.dev.java.utils.EmptyPackagesHandler"
-            id="org.eclipse.papyrus.eclipse.utils.EmptyPackagesCommand"
+            id="org.eclipse.papyrus.dev.java.utils.EmptyPackagesCommand"
             name="%command.name">
       </command>
    </extension>
@@ -16,11 +16,14 @@
             allPopups="false"
             locationURI="popup:org.eclipse.ui.popup.any">
          <command
-               commandId="org.eclipse.papyrus.eclipse.utils.EmptyPackagesCommand"
+               commandId="org.eclipse.papyrus.dev.java.utils.EmptyPackagesCommand"
                icon="icons/16977.empty_pack_obj.png"
                label="%command.label"
                mnemonic="%command.mnemonic"
                style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
          </command>
       </menuContribution>
    </extension>
