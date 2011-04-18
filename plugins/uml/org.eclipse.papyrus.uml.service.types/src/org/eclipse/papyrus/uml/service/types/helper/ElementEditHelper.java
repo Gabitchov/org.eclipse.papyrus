@@ -21,8 +21,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.diagram.common.commands.UnapplyAllStereotypesCommand;
+import org.eclipse.papyrus.service.edit.commands.IConfigureCommandFactory;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -33,16 +35,35 @@ import org.eclipse.uml2.uml.Element;
  * Expected behavior:
  * - Removes any stereotype application before deletion
  * 
+ * The configure command allows contributions provided by the request parameters.
  * </pre>
  */
 public class ElementEditHelper extends DefaultEditHelper {
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected ICommand getConfigureCommand(ConfigureRequest req) {
+		if (req.getParameter(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID) != null) {
+			IConfigureCommandFactory factory = (IConfigureCommandFactory) req.getParameter(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID);
+			return factory.create(req);
+		}
+		return super.getConfigureCommand(req);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Map<EClass, EReference> getDefaultContainmentFeatures() {
 		return (Map<EClass, EReference>)super.getDefaultContainmentFeatures();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {
 

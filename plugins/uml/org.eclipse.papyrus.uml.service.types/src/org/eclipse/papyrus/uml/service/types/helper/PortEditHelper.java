@@ -18,6 +18,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
@@ -46,7 +47,7 @@ public class PortEditHelper extends ElementEditHelper {
 	@Override
 	protected ICommand getConfigureCommand(final ConfigureRequest req) {
 
-		return new ConfigureElementCommand(req) {
+		ICommand configureCommand = new ConfigureElementCommand(req) {
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
@@ -56,6 +57,8 @@ public class PortEditHelper extends ElementEditHelper {
 				return CommandResult.newOKCommandResult(element);
 			}
 		};
+		
+		return CompositeCommand.compose(configureCommand, super.getConfigureCommand(req));
 	}
 
 	/**
