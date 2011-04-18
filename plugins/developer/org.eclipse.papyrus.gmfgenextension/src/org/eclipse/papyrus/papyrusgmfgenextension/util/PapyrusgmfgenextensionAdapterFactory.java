@@ -162,6 +162,10 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 				return createCompartmentVisibilityPreferenceAdapter();
 			}
 			@Override
+			public Adapter caseCompartmentTitleVisibilityPreference(CompartmentTitleVisibilityPreference object) {
+				return createCompartmentTitleVisibilityPreferenceAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -444,6 +448,20 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCompartmentVisibilityPreferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.papyrusgmfgenextension.CompartmentTitleVisibilityPreference <em>Compartment Title Visibility Preference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.CompartmentTitleVisibilityPreference
+	 * @generated
+	 */
+	public Adapter createCompartmentTitleVisibilityPreferenceAdapter() {
 		return null;
 	}
 

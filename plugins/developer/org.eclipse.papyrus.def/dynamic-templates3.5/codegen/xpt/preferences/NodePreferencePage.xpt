@@ -58,9 +58,16 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 	    store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(key, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.HEIGHT),«defaultSizeHeight(self.viewmap, 40)»);
 	 
 	 	«IF compartments->size() <> 0-»
-			for(String name : getCompartmentVisibilityPreferences().keySet()){
+	 		java.util.Map<String, Boolean> map = getCompartmentVisibilityPreferences();
+			for(String name : map.keySet()){
 				String preferenceName = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getLabelElementConstant(key, name, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
-				store.setDefault(preferenceName, getCompartmentVisibilityPreferences().get(name));
+				store.setDefault(preferenceName, map.get(name));
+			}
+			
+			map = getCompartmentTitleVisibilityPreferences();
+			for(String name : map.keySet()){
+				String preferenceName = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getLabelElementConstant(key, name, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+				store.setDefault(preferenceName, map.get(name));
 			}
 	 	«ENDIF-»
 	 
@@ -93,7 +100,7 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 				this.compartmentsList.add(name);
 			}
 		}
-	«ENDIF-»
+	
 
 	«EXPAND xpt::Common::generatedClassComment»
 		public static java.util.TreeMap<String,Boolean> getCompartmentVisibilityPreferences(){
@@ -111,11 +118,28 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 			«ENDFOREACH-»
 			return map;
 		}
-	
+		
+		«EXPAND xpt::Common::generatedClassComment»
+		public static java.util.TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences(){
+			java.util.TreeMap<String,Boolean> map = new java.util.TreeMap<String,Boolean>();
+			«FOREACH compartments AS cpt-»
+				«IF papyrusgmfgenextension::CompartmentTitleVisibilityPreference.allInstances()->select(cptPref : papyrusgmfgenextension::CompartmentTitleVisibilityPreference | cptPref.compartments->includes(cpt))->size()<>0-»
+					«IF papyrusgmfgenextension::CompartmentTitleVisibilityPreference.allInstances()->select(cptPref : papyrusgmfgenextension::CompartmentTitleVisibilityPreference | cptPref.compartments->includes(cpt))->asSequence()->first().visibleByDefault=true-»
+					  map.put("«cpt.title»", Boolean.TRUE);
+				    «ELSE-»
+				      map.put("«cpt.title»", Boolean.FALSE);
+				    «ENDIF-»
+				«ELSE-»
+				   	  map.put("«cpt.title»",Boolean.TRUE);
+				«ENDIF-»
+			«ENDFOREACH-»
+			return map;
+		}
+	«ENDIF-»
 	«REM» executed, only if the element has labels with defined role (using papyrusgmfgenextension::LabelVisibilityPreference)  «ENDREM»
 		«IF self.labels->exists(lbl0 : gmfgen::GenExternalNodeLabel | (papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label0 : papyrusgmfgenextension::LabelVisibilityPreference | label0.externalNodeLabels->includes(lbl0))->size()<>0))-»
 		«EXPAND xpt::Common::generatedClassComment»
-		public static java.util.TreeMap<String,String> getStaticLabelVisibilityPreference(){
+		public static java.util.TreeMap<String,String> getStaticLabelRole(){
 			java.util.TreeMap<String,String> map = new java.util.TreeMap<String, String>(new org.eclipse.papyrus.diagram.common.util.StringComparator());
 			«FOREACH labels AS lbl-»
 			«IF lbl.oclIsKindOf(gmfgen::GenExternalNodeLabel)-»
@@ -130,7 +154,7 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 			return map;
 		}
 		
-			«EXPAND xpt::Common::generatedClassComment»
+		«EXPAND xpt::Common::generatedClassComment»
 			public static java.util.TreeMap<String,Boolean> getLabelVisibilityPreferences(){
 				java.util.TreeMap<String,Boolean> map = new java.util.TreeMap<String,Boolean>();
 				«FOREACH labels AS lbl-»
@@ -144,7 +168,6 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 				«ENDIF-»
 				«ENDFOREACH-»
 				return map;
-				
 			}
 			
 			«EXPAND xpt::Common::generatedClassComment»

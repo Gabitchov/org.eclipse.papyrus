@@ -198,6 +198,15 @@ public interface PapyrusgmfgenextensionFactory extends EFactory {
 	CompartmentVisibilityPreference createCompartmentVisibilityPreference();
 
 	/**
+	 * Returns a new object of class '<em>Compartment Title Visibility Preference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Compartment Title Visibility Preference</em>'.
+	 * @generated
+	 */
+	CompartmentTitleVisibilityPreference createCompartmentTitleVisibilityPreference();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

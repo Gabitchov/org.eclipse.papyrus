@@ -225,6 +225,13 @@ public class PapyrusgmfgenextensionSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case PapyrusgmfgenextensionPackage.COMPARTMENT_TITLE_VISIBILITY_PREFERENCE: {
+				CompartmentTitleVisibilityPreference compartmentTitleVisibilityPreference = (CompartmentTitleVisibilityPreference)theEObject;
+				T result = caseCompartmentTitleVisibilityPreference(compartmentTitleVisibilityPreference);
+				if (result == null) result = caseCommentedElement(compartmentTitleVisibilityPreference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -511,6 +518,21 @@ public class PapyrusgmfgenextensionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCompartmentVisibilityPreference(CompartmentVisibilityPreference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Compartment Title Visibility Preference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Compartment Title Visibility Preference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompartmentTitleVisibilityPreference(CompartmentTitleVisibilityPreference object) {
 		return null;
 	}
 
