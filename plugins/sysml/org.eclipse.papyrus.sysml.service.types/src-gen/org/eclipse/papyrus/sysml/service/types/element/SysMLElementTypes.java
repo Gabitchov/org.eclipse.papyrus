@@ -51,17 +51,26 @@ public class SysMLElementTypes extends AbstractElementTypeEnumerator {
 	/** IElementType for SysML ItemFlow */
 	public static final IHintedType ITEM_FLOW = (IHintedType)getElementType("org.eclipse.papyrus.sysml.ItemFlow"); //$NON-NLS-1$
 	
+	/** IElementType for SysML Part (Property) */
+	public static final IHintedType PART_PROPERTY = (IHintedType)getElementType("org.eclipse.papyrus.sysml.PartProperty"); //$NON-NLS-1$
+	
 	/** IElementType for SysML Problem */
 	public static final IHintedType PROBLEM = (IHintedType)getElementType("org.eclipse.papyrus.sysml.Problem"); //$NON-NLS-1$
 	
 	/** IElementType for SysML Rationale */
 	public static final IHintedType RATIONALE = (IHintedType)getElementType("org.eclipse.papyrus.sysml.Rationale"); //$NON-NLS-1$
 	
+	/** IElementType for SysML Reference (Property) */
+	public static final IHintedType REFERENCE_PROPERTY = (IHintedType)getElementType("org.eclipse.papyrus.sysml.ReferenceProperty"); //$NON-NLS-1$
+	
 	/** IElementType for SysML Requirement */
 	public static final IHintedType REQUIREMENT = (IHintedType)getElementType("org.eclipse.papyrus.sysml.Requirement"); //$NON-NLS-1$
 	
 	/** IElementType for SysML Unit */
 	public static final IHintedType UNIT = (IHintedType)getElementType("org.eclipse.papyrus.sysml.Unit"); //$NON-NLS-1$
+	
+	/** IElementType for SysML Value (Property) */
+	public static final IHintedType VALUE_PROPERTY = (IHintedType)getElementType("org.eclipse.papyrus.sysml.ValueProperty"); //$NON-NLS-1$
 	
 	/** IElementType for SysML ValueType */
 	public static final IHintedType VALUE_TYPE = (IHintedType)getElementType("org.eclipse.papyrus.sysml.ValueType"); //$NON-NLS-1$

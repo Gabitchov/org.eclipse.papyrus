@@ -152,7 +152,34 @@
 		<specializes id="org.eclipse.papyrus.uml.Comment" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.ProblemMatcher" />
 	</specializationType>
+
+	<!-- ISpecializationType PartProperty of UML::Property -->
+	<specializationType id="org.eclipse.papyrus.sysml.PartProperty" name="SysML::PartProperty"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.PartPropertyEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::PartProperty"/>
+		<specializes id="org.eclipse.papyrus.uml.Property" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.PartPropertyMatcher" />
+	</specializationType>
 	
+	<!-- ISpecializationType ReferenceProperty of UML::Property -->
+	<specializationType id="org.eclipse.papyrus.sysml.ReferenceProperty" name="SysML::ReferenceProperty"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ReferencePropertyEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::ReferenceProperty"/>
+		<specializes id="org.eclipse.papyrus.uml.Property" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.ReferencePropertyMatcher" />
+	</specializationType>
+	
+	<!-- ISpecializationType ValueProperty of UML::Property -->
+	<specializationType id="org.eclipse.papyrus.sysml.ValueProperty" name="SysML::ValueProperty"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ValuePropertyEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::ValueProperty"/>
+		<specializes id="org.eclipse.papyrus.uml.Property" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.ValuePropertyMatcher" />
+	</specializationType>
+				
 	<!-- ISpecializationType Rationale of UML::Comment -->
 	<specializationType id="org.eclipse.papyrus.sysml.Rationale" name="SysML::Rationale"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.RationaleEditHelperAdvice"
@@ -268,10 +295,13 @@
 		<elementType ref="org.eclipse.papyrus.sysml.FlowProperty" />
 		<elementType ref="org.eclipse.papyrus.sysml.FlowSpecification" />
 		<elementType ref="org.eclipse.papyrus.sysml.ItemFlow" />
+		<elementType ref="org.eclipse.papyrus.sysml.PartProperty" />		
 		<elementType ref="org.eclipse.papyrus.sysml.Problem" />
 		<elementType ref="org.eclipse.papyrus.sysml.Rationale" />
+		<elementType ref="org.eclipse.papyrus.sysml.ReferenceProperty" />				
 		<elementType ref="org.eclipse.papyrus.sysml.Requirement" />
 		<elementType ref="org.eclipse.papyrus.sysml.Unit" />
+		<elementType ref="org.eclipse.papyrus.sysml.ValueProperty" />		
 		<elementType ref="org.eclipse.papyrus.sysml.ValueType" />
 		<elementType ref="org.eclipse.papyrus.sysml.ValueType_Enumeration" />
 		<elementType ref="org.eclipse.papyrus.sysml.ValueType_PrimitiveType" />
