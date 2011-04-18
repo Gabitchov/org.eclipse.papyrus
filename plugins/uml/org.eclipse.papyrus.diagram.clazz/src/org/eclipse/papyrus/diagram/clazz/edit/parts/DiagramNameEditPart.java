@@ -83,7 +83,9 @@ public class DiagramNameEditPart
 
 extends AbstractShortcutDiagramNameEditPart
 
-implements ITextAwareEditPart, IBorderItemEditPart {
+implements ITextAwareEditPart, IBorderItemEditPart
+
+{
 
 	/**
 	 * @generated

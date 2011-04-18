@@ -242,45 +242,21 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_Property_3012(Property instance) {
+		try {
+			Object value_0 = name_Property_3012(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_Property_3002(Property instance) {
 		try {
 			Object value_0 = name_Property_3002(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init_Operation_3003(Operation instance) {
-		try {
-			Object value_0 = name_Operation_3003(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init_Class_3004(Class instance) {
-		try {
-			Object value_0 = name_Class_3004(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init_RedefinableTemplateSignature_3015(RedefinableTemplateSignature instance) {
-		try {
-			Object value_0 = name_RedefinableTemplateSignature_3015(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -316,9 +292,33 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Operation_3007(Operation instance) {
+	public void init_Property_3018(Property instance) {
 		try {
-			Object value_0 = name_Operation_3007(instance);
+			Object value_0 = name_Property_3018(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Class_3014(Class instance) {
+		try {
+			Object value_0 = name_Class_3014(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Class_3004(Class instance) {
+		try {
+			Object value_0 = name_Class_3004(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -331,6 +331,90 @@ public class ElementInitializers {
 	public void init_Class_3008(Class instance) {
 		try {
 			Object value_0 = name_Class_3008(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Operation_3013(Operation instance) {
+		try {
+			Object value_0 = name_Operation_3013(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Operation_3003(Operation instance) {
+		try {
+			Object value_0 = name_Operation_3003(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Operation_3007(Operation instance) {
+		try {
+			Object value_0 = name_Operation_3007(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Operation_3019(Operation instance) {
+		try {
+			Object value_0 = name_Operation_3019(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_EnumerationLiteral_3017(EnumerationLiteral instance) {
+		try {
+			Object value_0 = name_EnumerationLiteral_3017(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Reception_3011(Reception instance) {
+		try {
+			Object value_0 = name_Reception_3011(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_RedefinableTemplateSignature_3015(RedefinableTemplateSignature instance) {
+		try {
+			Object value_0 = name_RedefinableTemplateSignature_3015(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -412,18 +496,6 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_EnumerationLiteral_3017(EnumerationLiteral instance) {
-		try {
-			Object value_0 = name_EnumerationLiteral_3017(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	public void init_Package_3009(Package instance) {
 		try {
 			Object value_0 = name_Package_3009(instance);
@@ -448,54 +520,6 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Reception_3011(Reception instance) {
-		try {
-			Object value_0 = name_Reception_3011(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init_Property_3012(Property instance) {
-		try {
-			Object value_0 = name_Property_3012(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init_Operation_3013(Operation instance) {
-		try {
-			Object value_0 = name_Operation_3013(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init_Class_3014(Class instance) {
-		try {
-			Object value_0 = name_Class_3014(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	public void init_PrimitiveType_3026(PrimitiveType instance) {
 		try {
 			Object value_0 = name_PrimitiveType_3026(instance);
@@ -511,30 +535,6 @@ public class ElementInitializers {
 	public void init_DataType_3027(DataType instance) {
 		try {
 			Object value_0 = name_DataType_3027(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init_Property_3018(Property instance) {
-		try {
-			Object value_0 = name_Property_3018(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init_Operation_3019(Operation instance) {
-		try {
-			Object value_0 = name_Operation_3019(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -797,28 +797,14 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private String name_Property_3012(Property self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
 	private String name_Property_3002(Property self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_Operation_3003(Operation self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_Class_3004(Class self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_RedefinableTemplateSignature_3015(RedefinableTemplateSignature self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 
@@ -839,7 +825,21 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_Operation_3007(Operation self) {
+	private String name_Property_3018(Property self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Class_3014(Class self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Class_3004(Class self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 
@@ -847,6 +847,55 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_Class_3008(Class self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Operation_3013(Operation self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Operation_3003(Operation self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Operation_3007(Operation self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Operation_3019(Operation self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_EnumerationLiteral_3017(EnumerationLiteral self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Reception_3011(Reception self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_RedefinableTemplateSignature_3015(RedefinableTemplateSignature self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 
@@ -895,13 +944,6 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_EnumerationLiteral_3017(EnumerationLiteral self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
-	}
-
-	/**
-	 * @generated
-	 */
 	private String name_Package_3009(Package self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
@@ -916,34 +958,6 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_Reception_3011(Reception self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_Property_3012(Property self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_Operation_3013(Operation self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_Class_3014(Class self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
-	}
-
-	/**
-	 * @generated
-	 */
 	private String name_PrimitiveType_3026(PrimitiveType self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
@@ -952,20 +966,6 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_DataType_3027(DataType self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_Property_3018(Property self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_Operation_3019(Operation self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 

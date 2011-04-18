@@ -725,57 +725,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String AssociationClassAttributeCompartmentEditPart_title;
+	public static String ClassAttributeCompartmentEditPartCN_title;
 
 	/**
 	 * @generated
 	 */
-	public static String InstanceSpecificationSlotCompartmentEditPart_title;
+	public static String ClassOperationCompartmentEditPartCN_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ComponentAttributeCompartmentEditPart_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ComponentOperationCompartmentEditPart_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ComponentNestedClassifierCompartmentEditPart_title;
-
-	/**
-	 * @generated
-	 */
-	public static String RedefinableTemplateSignatureTemplateParameterCompartmentEditPart_title;
-
-	/**
-	 * @generated
-	 */
-	public static String SignalAttributeCompartmentEditPart_title;
-
-	/**
-	 * @generated
-	 */
-	public static String InterfaceAttributeCompartmentEditPart_title;
-
-	/**
-	 * @generated
-	 */
-	public static String InterfaceOperationCompartmentEditPart_title;
-
-	/**
-	 * @generated
-	 */
-	public static String InterfaceNestedClassifierCompartmentEditPart_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ModelPackageableElementCompartmentEditPartTN_title;
+	public static String ClassNestedClassifierCompartmentEditPartCN_title;
 
 	/**
 	 * @generated
@@ -815,36 +775,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String ModelPackageableElementCompartmentEditPartCN_title;
-
-	/**
-	 * @generated
-	 */
-	public static String EnumerationEnumerationLiteralCompartmentEditPartCN_title;
-
-	/**
-	 * @generated
-	 */
-	public static String PackagePackageableElementCompartmentEditPartCN_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ClassAttributeCompartmentEditPartCN_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ClassOperationCompartmentEditPartCN_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ClassNestedClassifierCompartmentEditPartCN_title;
-
-	/**
-	 * @generated
-	 */
 	public static String DataTypeAttributeCompartmentEditPartCN_title;
 
 	/**
@@ -855,12 +785,22 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String EnumerationEnumerationLiteralCompartmentEditPart_title;
+	public static String ModelPackageableElementCompartmentEditPartCN_title;
 
 	/**
 	 * @generated
 	 */
-	public static String PackagePackageableElementCompartmentEditPart_title;
+	public static String PackagePackageableElementCompartmentEditPartCN_title;
+
+	/**
+	 * @generated
+	 */
+	public static String EnumerationEnumerationLiteralCompartmentEditPartCN_title;
+
+	/**
+	 * @generated
+	 */
+	public static String InstanceSpecificationSlotCompartmentEditPartCN_title;
 
 	/**
 	 * @generated
@@ -880,6 +820,36 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String ComponentAttributeCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ComponentOperationCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ComponentNestedClassifierCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String InterfaceAttributeCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String InterfaceOperationCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String InterfaceNestedClassifierCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
 	public static String DataTypeAttributeCompartmentEditPart_title;
 
 	/**
@@ -890,7 +860,32 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String InstanceSpecificationSlotCompartmentEditPartCN_title;
+	public static String AssociationClassAttributeCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String InstanceSpecificationSlotCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String SignalAttributeCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ModelPackageableElementCompartmentEditPartTN_title;
+
+	/**
+	 * @generated
+	 */
+	public static String PackagePackageableElementCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String EnumerationEnumerationLiteralCompartmentEditPart_title;
 
 	/**
 	 * @generated
@@ -901,6 +896,11 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String AssociationClassNestedClassifierCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String RedefinableTemplateSignatureTemplateParameterCompartmentEditPart_title;
 
 	/**
 	 * @generated

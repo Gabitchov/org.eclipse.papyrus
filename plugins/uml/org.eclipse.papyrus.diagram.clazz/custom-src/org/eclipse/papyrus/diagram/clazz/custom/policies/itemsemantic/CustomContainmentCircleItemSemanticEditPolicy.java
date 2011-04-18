@@ -50,15 +50,21 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.ContainmentCircleItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.ui.toolbox.notification.popups.PopupNotification;
 import org.eclipse.swt.SWT;
 import org.eclipse.uml2.uml.NamedElement;
 
 
-public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCircleItemSemanticEditPolicy {
+public class CustomContainmentCircleItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+
+	public CustomContainmentCircleItemSemanticEditPolicy() {
+		super(UMLElementTypes.Node_3032);
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * Gets the destroy element command gen.
@@ -204,6 +210,7 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 
@@ -241,6 +248,7 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Command getCommand(Request request) {
 		if(request instanceof ReconnectRequest) {
 			if(((ReconnectRequest)request).getTarget() instanceof CContainmentCircleEditPart) {

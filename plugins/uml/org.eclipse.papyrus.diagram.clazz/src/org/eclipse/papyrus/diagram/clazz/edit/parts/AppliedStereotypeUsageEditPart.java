@@ -77,7 +77,9 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class AppliedStereotypeUsageEditPart extends LabelEditPart implements ITextAwareEditPart {
+public class AppliedStereotypeUsageEditPart extends LabelEditPart implements ITextAwareEditPart
+
+{
 
 	/**
 	 * @generated

@@ -81,7 +81,9 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class AssociationNameEditPart extends LabelEditPart implements ITextAwareEditPart {
+public class AssociationNameEditPart extends LabelEditPart implements ITextAwareEditPart
+
+{
 
 	/**
 	 * @generated

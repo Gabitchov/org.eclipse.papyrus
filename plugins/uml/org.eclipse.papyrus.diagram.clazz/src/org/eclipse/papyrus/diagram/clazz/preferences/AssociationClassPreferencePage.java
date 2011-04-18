@@ -12,6 +12,9 @@
  */
 package org.eclipse.papyrus.diagram.clazz.preferences;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
@@ -53,9 +56,16 @@ public class AssociationClassPreferencePage extends AbstractPapyrusNodePreferenc
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 100);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 100);
 
-		for(String name : compartments) {
-			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
-			store.setDefault(preferenceName, true);
+		Map<String, Boolean> map = getCompartmentVisibilityPreferences();
+		for(String name : map.keySet()) {
+			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			store.setDefault(preferenceName, map.get(name));
+		}
+
+		map = getCompartmentTitleVisibilityPreferences();
+		for(String name : map.keySet()) {
+			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+			store.setDefault(preferenceName, map.get(name));
 		}
 
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
@@ -78,6 +88,28 @@ public class AssociationClassPreferencePage extends AbstractPapyrusNodePreferenc
 		for(String name : compartments) {
 			this.compartmentsList.add(name);
 		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static TreeMap<String, Boolean> getCompartmentVisibilityPreferences() {
+		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
+		map.put("AttributeCompartment", Boolean.TRUE);
+		map.put("OperationCompartment", Boolean.TRUE);
+		map.put("NestedClassifierCompartment", Boolean.TRUE);
+		return map;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
+		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
+		map.put("AttributeCompartment", Boolean.TRUE);
+		map.put("OperationCompartment", Boolean.TRUE);
+		map.put("NestedClassifierCompartment", Boolean.TRUE);
+		return map;
 	}
 
 }

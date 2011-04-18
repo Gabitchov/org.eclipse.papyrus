@@ -245,12 +245,32 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Property_3012 = getElementType("org.eclipse.papyrus.diagram.clazz.Property_3012"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Property_3002 = getElementType("org.eclipse.papyrus.diagram.clazz.Property_3002"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Operation_3003 = getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3003"); //$NON-NLS-1$
+	public static final IElementType Property_3005 = getElementType("org.eclipse.papyrus.diagram.clazz.Property_3005"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Property_3006 = getElementType("org.eclipse.papyrus.diagram.clazz.Property_3006"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Property_3018 = getElementType("org.eclipse.papyrus.diagram.clazz.Property_3018"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Class_3014 = getElementType("org.eclipse.papyrus.diagram.clazz.Class_3014"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -260,7 +280,27 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType RedefinableTemplateSignature_3015 = getElementType("org.eclipse.papyrus.diagram.clazz.RedefinableTemplateSignature_3015"); //$NON-NLS-1$
+	public static final IElementType Class_3008 = getElementType("org.eclipse.papyrus.diagram.clazz.Class_3008"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Operation_3013 = getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3013"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Operation_3003 = getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3003"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Operation_3007 = getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3007"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Operation_3019 = getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3019"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -285,22 +325,32 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Property_3005 = getElementType("org.eclipse.papyrus.diagram.clazz.Property_3005"); //$NON-NLS-1$
+	public static final IElementType EnumerationLiteral_3017 = getElementType("org.eclipse.papyrus.diagram.clazz.EnumerationLiteral_3017"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Property_3006 = getElementType("org.eclipse.papyrus.diagram.clazz.Property_3006"); //$NON-NLS-1$
+	public static final IElementType Reception_3011 = getElementType("org.eclipse.papyrus.diagram.clazz.Reception_3011"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Operation_3007 = getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3007"); //$NON-NLS-1$
+	public static final IElementType Slot_3030 = getElementType("org.eclipse.papyrus.diagram.clazz.Slot_3030"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Class_3008 = getElementType("org.eclipse.papyrus.diagram.clazz.Class_3008"); //$NON-NLS-1$
+	public static final IElementType RedefinableTemplateSignature_3015 = getElementType("org.eclipse.papyrus.diagram.clazz.RedefinableTemplateSignature_3015"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Node_3032 = getElementType("org.eclipse.papyrus.diagram.clazz.ContainmentCircle_3032"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType TemplateSignature_3033 = getElementType("org.eclipse.papyrus.diagram.clazz.TemplateSignature_3033"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -335,37 +385,12 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType EnumerationLiteral_3017 = getElementType("org.eclipse.papyrus.diagram.clazz.EnumerationLiteral_3017"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	public static final IElementType Package_3009 = getElementType("org.eclipse.papyrus.diagram.clazz.Package_3009"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Class_3010 = getElementType("org.eclipse.papyrus.diagram.clazz.Class_3010"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Reception_3011 = getElementType("org.eclipse.papyrus.diagram.clazz.Reception_3011"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Property_3012 = getElementType("org.eclipse.papyrus.diagram.clazz.Property_3012"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Operation_3013 = getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3013"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Class_3014 = getElementType("org.eclipse.papyrus.diagram.clazz.Class_3014"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -380,37 +405,12 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Property_3018 = getElementType("org.eclipse.papyrus.diagram.clazz.Property_3018"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Operation_3019 = getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3019"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	public static final IElementType Comment_3028 = getElementType("org.eclipse.papyrus.diagram.clazz.Comment_3028"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Constraint_3029 = getElementType("org.eclipse.papyrus.diagram.clazz.Constraint_3029"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Slot_3030 = getElementType("org.eclipse.papyrus.diagram.clazz.Slot_3030"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Node_3032 = getElementType("org.eclipse.papyrus.diagram.clazz.ContainmentCircle_3032"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType TemplateSignature_3033 = getElementType("org.eclipse.papyrus.diagram.clazz.TemplateSignature_3033"); //$NON-NLS-1$
 
 	/**
 	 * @generated

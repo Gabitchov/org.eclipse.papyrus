@@ -511,18 +511,69 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser operation_3003Parser;
+	private IParser property_3005Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getOperation_3003Parser() {
-		if(operation_3003Parser == null) {
+	private IParser getProperty_3005Parser() {
+		if(property_3005Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			operation_3003Parser = parser;
+			property_3005Parser = parser;
 		}
-		return operation_3003Parser;
+		return property_3005Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser property_3006Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getProperty_3006Parser() {
+		if(property_3006Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			property_3006Parser = parser;
+		}
+		return property_3006Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser property_3018Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getProperty_3018Parser() {
+		if(property_3018Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			property_3018Parser = parser;
+		}
+		return property_3018Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser class_3014Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getClass_3014Parser() {
+		if(class_3014Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			class_3014Parser = parser;
+		}
+		return class_3014Parser;
 	}
 
 	/**
@@ -540,6 +591,74 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			class_3004Parser = parser;
 		}
 		return class_3004Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser class_3008Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getClass_3008Parser() {
+		if(class_3008Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			class_3008Parser = parser;
+		}
+		return class_3008Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser operation_3003Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOperation_3003Parser() {
+		if(operation_3003Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			operation_3003Parser = parser;
+		}
+		return operation_3003Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser operation_3007Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOperation_3007Parser() {
+		if(operation_3007Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			operation_3007Parser = parser;
+		}
+		return operation_3007Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser operation_3019Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOperation_3019Parser() {
+		if(operation_3019Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			operation_3019Parser = parser;
+		}
+		return operation_3019Parser;
 	}
 
 	/**
@@ -605,69 +724,50 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser property_3005Parser;
+	private IParser enumerationLiteral_3017Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getProperty_3005Parser() {
-		if(property_3005Parser == null) {
+	private IParser getEnumerationLiteral_3017Parser() {
+		if(enumerationLiteral_3017Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			property_3005Parser = parser;
+			enumerationLiteral_3017Parser = parser;
 		}
-		return property_3005Parser;
+		return enumerationLiteral_3017Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser property_3006Parser;
+	private IParser reception_3011Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getProperty_3006Parser() {
-		if(property_3006Parser == null) {
+	private IParser getReception_3011Parser() {
+		if(reception_3011Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			property_3006Parser = parser;
+			reception_3011Parser = parser;
 		}
-		return property_3006Parser;
+		return reception_3011Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser operation_3007Parser;
+	private SlotParser slot_3030Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getOperation_3007Parser() {
-		if(operation_3007Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			operation_3007Parser = parser;
+	private IParser getSlot_3030Parser() {
+		if(slot_3030Parser == null) {
+			slot_3030Parser = new SlotParser();
 		}
-		return operation_3007Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser class_3008Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getClass_3008Parser() {
-		if(class_3008Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			class_3008Parser = parser;
-		}
-		return class_3008Parser;
+		return slot_3030Parser;
 	}
 
 	/**
@@ -775,23 +875,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser enumerationLiteral_3017Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getEnumerationLiteral_3017Parser() {
-		if(enumerationLiteral_3017Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			enumerationLiteral_3017Parser = parser;
-		}
-		return enumerationLiteral_3017Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser packageName_5017Parser;
 
 	/**
@@ -826,40 +909,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser reception_3011Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getReception_3011Parser() {
-		if(reception_3011Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			reception_3011Parser = parser;
-		}
-		return reception_3011Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser class_3014Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getClass_3014Parser() {
-		if(class_3014Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			class_3014Parser = parser;
-		}
-		return class_3014Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser primitiveTypeName_5058Parser;
 
 	/**
@@ -889,40 +938,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			dataTypeName_5061Parser = parser;
 		}
 		return dataTypeName_5061Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser property_3018Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getProperty_3018Parser() {
-		if(property_3018Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			property_3018Parser = parser;
-		}
-		return property_3018Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser operation_3019Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getOperation_3019Parser() {
-		if(operation_3019Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			operation_3019Parser = parser;
-		}
-		return operation_3019Parser;
 	}
 
 	/**
@@ -970,21 +985,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			constraintSpecification_5160Parser = new ConstraintParser();
 		}
 		return constraintSpecification_5160Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private SlotParser slot_3030Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getSlot_3030Parser() {
-		if(slot_3030Parser == null) {
-			slot_3030Parser = new SlotParser();
-		}
-		return slot_3030Parser;
 	}
 
 	/**
