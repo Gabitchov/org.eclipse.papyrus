@@ -49,12 +49,12 @@ public interface BoundedSubtype extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Base Type</em>' reference.
-	 * @see #setBaseType(Property)
+	 * @see #setBaseType(DataType)
 	 * @see org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.DataTypesPackage#getBoundedSubtype_BaseType()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-	Property getBaseType();
+	DataType getBaseType();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.BoundedSubtype#getBaseType <em>Base Type</em>}' reference.
@@ -64,7 +64,7 @@ public interface BoundedSubtype extends EObject {
 	 * @see #getBaseType()
 	 * @generated
 	 */
-	void setBaseType(Property value);
+	void setBaseType(DataType value);
 
 	/**
 	 * Returns the value of the '<em><b>Min Value</b></em>' attribute.
