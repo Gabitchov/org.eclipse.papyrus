@@ -15461,7 +15461,7 @@
           </eAnnotations>
           <packagedElement xmi:type="uml:Stereotype" xmi:id="_HYVowA-NEdyLh7muGbCqMw" name="BoundedSubtype">
             <ownedAttribute xmi:id="_OrmbAA-NEdyLh7muGbCqMw" name="baseType" visibility="public" isUnique="false">
-              <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+              <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#DataType"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RF-LsQ-NEdyLh7muGbCqMw" value="1"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RF-LsA-NEdyLh7muGbCqMw" value="1"/>
               <defaultValue xmi:type="uml:LiteralString" xmi:id="_RF-Lsg-NEdyLh7muGbCqMw">

@@ -649,7 +649,7 @@ public class DataTypesPackageImpl extends EPackageImpl implements DataTypesPacka
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(boundedSubtypeEClass, BoundedSubtype.class, "BoundedSubtype", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBoundedSubtype_BaseType(), theUMLPackage.getProperty(), null, "baseType", null, 1, 1, BoundedSubtype.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getBoundedSubtype_BaseType(), theUMLPackage.getDataType(), null, "baseType", null, 1, 1, BoundedSubtype.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getBoundedSubtype_MinValue(), ecorePackage.getEString(), "minValue", null, 1, 1, BoundedSubtype.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getBoundedSubtype_MaxValue(), ecorePackage.getEString(), "maxValue", null, 1, 1, BoundedSubtype.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getBoundedSubtype_IsMinOpen(), ecorePackage.getEBoolean(), "isMinOpen", null, 1, 1, BoundedSubtype.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

@@ -54,7 +54,7 @@ public class BoundedSubtypeImpl extends EObjectImpl implements BoundedSubtype {
 	 * @generated
 	 * @ordered
 	 */
-	protected Property baseType;
+	protected DataType baseType;
 
 	/**
 	 * The default value of the '{@link #getMinValue() <em>Min Value</em>}' attribute.
@@ -170,10 +170,10 @@ public class BoundedSubtypeImpl extends EObjectImpl implements BoundedSubtype {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property getBaseType() {
+	public DataType getBaseType() {
 		if (baseType != null && baseType.eIsProxy()) {
 			InternalEObject oldBaseType = (InternalEObject)baseType;
-			baseType = (Property)eResolveProxy(oldBaseType);
+			baseType = (DataType)eResolveProxy(oldBaseType);
 			if (baseType != oldBaseType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DataTypesPackage.BOUNDED_SUBTYPE__BASE_TYPE, oldBaseType, baseType));
@@ -187,7 +187,7 @@ public class BoundedSubtypeImpl extends EObjectImpl implements BoundedSubtype {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property basicGetBaseType() {
+	public DataType basicGetBaseType() {
 		return baseType;
 	}
 
@@ -196,8 +196,8 @@ public class BoundedSubtypeImpl extends EObjectImpl implements BoundedSubtype {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBaseType(Property newBaseType) {
-		Property oldBaseType = baseType;
+	public void setBaseType(DataType newBaseType) {
+		DataType oldBaseType = baseType;
 		baseType = newBaseType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DataTypesPackage.BOUNDED_SUBTYPE__BASE_TYPE, oldBaseType, baseType));
@@ -360,7 +360,7 @@ public class BoundedSubtypeImpl extends EObjectImpl implements BoundedSubtype {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DataTypesPackage.BOUNDED_SUBTYPE__BASE_TYPE:
-				setBaseType((Property)newValue);
+				setBaseType((DataType)newValue);
 				return;
 			case DataTypesPackage.BOUNDED_SUBTYPE__MIN_VALUE:
 				setMinValue((String)newValue);
@@ -390,7 +390,7 @@ public class BoundedSubtypeImpl extends EObjectImpl implements BoundedSubtype {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DataTypesPackage.BOUNDED_SUBTYPE__BASE_TYPE:
-				setBaseType((Property)null);
+				setBaseType((DataType)null);
 				return;
 			case DataTypesPackage.BOUNDED_SUBTYPE__MIN_VALUE:
 				setMinValue(MIN_VALUE_EDEFAULT);
