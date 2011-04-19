@@ -41,14 +41,21 @@
 		name="Create a new Conform" description="Create a new Conform"
 		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ConformHandler">
 	</command>
-	
+		
 	<!-- Creation command for ConstraintBlock -->
 	<command categoryId="org.eclipse.papyrus.editor.category"
 		id="org.eclipse.papyrus.sysml.modelexplorer.ConstraintBlockCreateCommand"
 		name="Create a new ConstraintBlock" description="Create a new ConstraintBlock"
 		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ConstraintBlockHandler">
 	</command>
-	
+
+	<!-- Creation command for Conform -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.sysml.modelexplorer.ConstraintBlockParameterCreateCommand"
+		name="Create a new Parameter" description="Create a new Parameter"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ConstraintBlockParameterHandler">
+	</command>
+		
 	<!-- Creation command for ConstraintProperty -->
 	<command categoryId="org.eclipse.papyrus.editor.category"
 		id="org.eclipse.papyrus.sysml.modelexplorer.ConstraintPropertyCreateCommand"
@@ -257,7 +264,7 @@
 		<!-- Creation menu action for Conform -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ConformCreateCommand"
 			label="Create a new Conform" tooltip="Create a new Conform" style="push"		
-			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif" >
+			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Conform.gif" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
@@ -267,7 +274,14 @@
 			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintBlock.gif" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
-		
+
+		<!-- Creation menu action for ConstraintBlock Parameter -->
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ConstraintBlockParameterCreateCommand"
+			label="Create a new Parameter" tooltip="Create a new Parameter" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+				
 		<!-- Creation menu action for ConstraintProperty -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ConstraintPropertyCreateCommand"
 			label="Create a new ConstraintProperty" tooltip="Create a new ConstraintProperty" style="push"		
@@ -327,7 +341,7 @@
 		<!-- Creation menu action for FlowProperty -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowPropertyCreateCommand"
 			label="Create a new FlowProperty" tooltip="Create a new FlowProperty" style="push"		
-			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowProperty_INOUT.gif" >
+			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowProperty.gif" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
@@ -387,7 +401,7 @@
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
-		<!-- Creation menu action for Value -->
+		<!-- Creation menu action for ValueProperty -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ValuePropertyCreateCommand"
 			label="Create a new Value" tooltip="Create a new Value" style="push"		
 			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" >
@@ -425,14 +439,14 @@
 		<!-- Creation menu action for View -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ViewCreateCommand"
 			label="Create a new View" tooltip="Create a new View" style="push"		
-			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif" >
+			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/View.gif" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for ViewPoint -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ViewPointCreateCommand"
 			label="Create a new ViewPoint" tooltip="Create a new ViewPoint" style="push"		
-			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif" >
+			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/ViewPoint.gif" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		

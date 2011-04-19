@@ -156,16 +156,6 @@
 		<specializes id="org.eclipse.papyrus.uml.InformationFlow" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.ItemFlowMatcher" />
 	</specializationType>
-	
-	<!-- ISpecializationType Problem of UML::Comment -->
-	<specializationType id="org.eclipse.papyrus.sysml.Problem" name="SysML::Problem"
-		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ProblemEditHelperAdvice"
-		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Problem.gif"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="SysML::Problem"/>
-		<specializes id="org.eclipse.papyrus.uml.Comment" />
-		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.ProblemMatcher" />
-	</specializationType>
 
 	<!-- ISpecializationType PartProperty of UML::Property -->
 	<specializationType id="org.eclipse.papyrus.sysml.PartProperty" name="SysML::PartProperty"
@@ -176,25 +166,15 @@
 		<specializes id="org.eclipse.papyrus.uml.Property" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.PartPropertyMatcher" />
 	</specializationType>
-	
-	<!-- ISpecializationType ReferenceProperty of UML::Property -->
-	<specializationType id="org.eclipse.papyrus.sysml.ReferenceProperty" name="SysML::ReferenceProperty"
-		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ReferencePropertyEditHelperAdvice"
-		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+		
+	<!-- ISpecializationType Problem of UML::Comment -->
+	<specializationType id="org.eclipse.papyrus.sysml.Problem" name="SysML::Problem"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ProblemEditHelperAdvice"
+		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Problem.gif"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="SysML::ReferenceProperty"/>
-		<specializes id="org.eclipse.papyrus.uml.Property" />
-		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.ReferencePropertyMatcher" />
-	</specializationType>
-	
-	<!-- ISpecializationType ValueProperty of UML::Property -->
-	<specializationType id="org.eclipse.papyrus.sysml.ValueProperty" name="SysML::ValueProperty"
-		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ValuePropertyEditHelperAdvice"
-		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="SysML::ValueProperty"/>
-		<specializes id="org.eclipse.papyrus.uml.Property" />
-		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.ValuePropertyMatcher" />
+			<param name="semanticHint" value="SysML::Problem"/>
+		<specializes id="org.eclipse.papyrus.uml.Comment" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.ProblemMatcher" />
 	</specializationType>
 				
 	<!-- ISpecializationType Rationale of UML::Comment -->
@@ -206,7 +186,17 @@
 		<specializes id="org.eclipse.papyrus.uml.Comment" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.RationaleMatcher" />
 	</specializationType>
-	
+
+	<!-- ISpecializationType ReferenceProperty of UML::Property -->
+	<specializationType id="org.eclipse.papyrus.sysml.ReferenceProperty" name="SysML::ReferenceProperty"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ReferencePropertyEditHelperAdvice"
+		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::ReferenceProperty"/>
+		<specializes id="org.eclipse.papyrus.uml.Property" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.ReferencePropertyMatcher" />
+	</specializationType>
+		
 	<!-- ISpecializationType Requirement of UML::Class -->
 	<specializationType id="org.eclipse.papyrus.sysml.Requirement" name="SysML::Requirement"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.RequirementEditHelperAdvice"
@@ -226,7 +216,17 @@
 		<specializes id="org.eclipse.papyrus.uml.InstanceSpecification" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.UnitMatcher" />
 	</specializationType>
-	
+			
+	<!-- ISpecializationType ValueProperty of UML::Property -->
+	<specializationType id="org.eclipse.papyrus.sysml.ValueProperty" name="SysML::ValueProperty"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ValuePropertyEditHelperAdvice"
+		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::ValueProperty"/>
+		<specializes id="org.eclipse.papyrus.uml.Property" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.ValuePropertyMatcher" />
+	</specializationType>
+		
 	<!-- ISpecializationType ValueType of UML::DataType -->
 	<specializationType id="org.eclipse.papyrus.sysml.ValueType" name="SysML::ValueType"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ValueTypeEditHelperAdvice"

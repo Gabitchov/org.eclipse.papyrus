@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<paletteDefinition>
+	<content>
+		<drawer
+			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.SYSML_BlockDefinition__PortAndFlowTools" name="PortAndFlows">
+			
+			<aspectTool description="Create a new Port" id="blockdefinition.tool.port"
+				name="Port" refToolId="blockdefinition.tool.port">
+			</aspectTool>
+			<aspectTool description="Create a new FlowPort" id="blockdefinition.tool.flowport"
+				name="FlowPort" refToolId="blockdefinition.tool.flowport">
+			</aspectTool>			
+			<aspectTool description="Create a new FlowSpecification" id="blockdefinition.tool.flowspecification"
+				name="FlowSpecification" refToolId="blockdefinition.tool.flowspecification">
+			</aspectTool>			
+			<aspectTool description="Create a new FlowProperty" id="blockdefinition.tool.flowproperty"
+				name="FlowProperty" refToolId="blockdefinition.tool.flowproperty">
+			</aspectTool>
+			
+		</drawer>
+	</content>
+</paletteDefinition>

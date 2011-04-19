@@ -1,0 +1,40 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *		
+ *		CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
+package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
+
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
+
+public class GeneralizationPreferencePage extends BlockDefinitionDiagramLinkPreferencePage {
+
+	/** Constant key to access preferences */
+	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_Generalization";
+
+	/** Default constructor */
+	public GeneralizationPreferencePage() {
+		super();
+		setPreferenceKey(ElementTypes.DIAGRAM_ID + "_Generalization"); //$NON-NLS-1$
+	}
+
+	/**
+	 * Initialize defaults using a specified {@link IPreferenceStore}
+	 * 
+	 * @param store
+	 *        the preference store.
+	 */
+	public static void initDefaults(IPreferenceStore store) {
+		// Start of user code custom default initializations
+		// End of user code
+	}
+}

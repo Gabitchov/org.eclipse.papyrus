@@ -14,10 +14,34 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.umlutils;bundle-version="0.8.0",
  org.eclipse.core.expressions,
  org.eclipse.papyrus.diagram.common;bundle-version="0.8.0",
- org.eclipse.papyrus.editor;bundle-version="0.8.0"
+ org.eclipse.papyrus.editor;bundle-version="0.8.0",
+ org.eclipse.papyrus.diagram.clazz;bundle-version="0.8.0",
+ org.eclipse.papyrus.preferences;bundle-version="0.8.0",
+ org.eclipse.papyrus.sysml.edit;bundle-version="0.8.0",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.8.0",
+ org.eclipse.papyrus.service.edit;bundle-version="0.8.0",
+ org.eclipse.papyrus.uml.service.types;bundle-version="0.8.0",
+ org.eclipse.papyrus.sysml.service.types;bundle-version="0.8.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
-Export-Package: org.eclipse.papyrus.sysml.diagram.common,
+Export-Package: org.eclipse.papyrus.gmf.diagram.common.edit.policy,
+ org.eclipse.papyrus.gmf.diagram.common.factory,
+ org.eclipse.papyrus.gmf.diagram.common.locator,
+ org.eclipse.papyrus.gmf.diagram.common.provider,
+ org.eclipse.papyrus.sysml.diagram.common,
  org.eclipse.papyrus.sysml.diagram.common.commands,
- org.eclipse.papyrus.sysml.diagram.common.utils
+ org.eclipse.papyrus.sysml.diagram.common.edit.part,
+ org.eclipse.papyrus.sysml.diagram.common.edit.policy,
+ org.eclipse.papyrus.sysml.diagram.common.factory,
+ org.eclipse.papyrus.sysml.diagram.common.figure,
+ org.eclipse.papyrus.sysml.diagram.common.parser,
+ org.eclipse.papyrus.sysml.diagram.common.preferences,
+ org.eclipse.papyrus.sysml.diagram.common.utils,
+ org.eclipse.papyrus.uml.diagram.common.dnd.helper,
+ org.eclipse.papyrus.uml.diagram.common.edit.part,
+ org.eclipse.papyrus.uml.diagram.common.edit.policy,
+ org.eclipse.papyrus.uml.diagram.common.factory,
+ org.eclipse.papyrus.uml.diagram.common.figure,
+ org.eclipse.papyrus.uml.diagram.common.parser,
+ org.eclipse.papyrus.uml.diagram.common.utils

@@ -54,7 +54,7 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 	 * 
 	 * </pre>
 	 */
-	private ICommand buildCommand() {
+	protected ICommand buildCommand() {
 
 		if(getSelectedElements().size() != 1) {
 			return UnexecutableCommand.INSTANCE;

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<paletteDefinition>
+	<content>
+		<drawer
+			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.SYSML_BlockDefinition__ModelElements" name="ModelElements">
+			
+			<aspectTool description="Create a new Actor" id="blockdefinition.tool.actor"
+				name="Actor" refToolId="blockdefinition.tool.actor">
+			</aspectTool>
+			<aspectTool description="Create a new Block" id="blockdefinition.tool.block"
+				name="Block" refToolId="blockdefinition.tool.block">
+			</aspectTool>
+			<aspectTool description="Create a new Interface" id="blockdefinition.tool.interface"
+				name="Interface" refToolId="blockdefinition.tool.interface">
+			</aspectTool>
+			<aspectTool description="Create a new Signal" id="blockdefinition.tool.signal"
+				name="Signal" refToolId="blockdefinition.tool.signal">
+			</aspectTool>			
+			<aspectTool description="Create a new Operation" id="blockdefinition.tool.operation"
+				name="Operation" refToolId="blockdefinition.tool.operation">
+			</aspectTool>
+			<aspectTool description="Create a new Reception" id="blockdefinition.tool.reception"
+				name="Reception" refToolId="blockdefinition.tool.reception">
+			</aspectTool>
+			<aspectTool description="Create a new Property" id="blockdefinition.tool.property"
+				name="Property" refToolId="blockdefinition.tool.property">
+			</aspectTool>
+			<aspectTool description="Create a new Part" id="blockdefinition.tool.part"
+				name="Part" refToolId="blockdefinition.tool.part">
+			</aspectTool>
+			<aspectTool description="Create a new Reference" id="blockdefinition.tool.reference"
+				name="Reference" refToolId="blockdefinition.tool.reference">
+			</aspectTool>
+			<aspectTool description="Create a new Value" id="blockdefinition.tool.value"
+				name="Value" refToolId="blockdefinition.tool.value">
+			</aspectTool>			
+		</drawer>
+	</content>
+</paletteDefinition>

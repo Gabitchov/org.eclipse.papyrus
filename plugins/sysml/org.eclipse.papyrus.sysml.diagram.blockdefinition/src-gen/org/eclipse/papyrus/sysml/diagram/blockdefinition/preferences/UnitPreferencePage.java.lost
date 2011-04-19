@@ -1,0 +1,13 @@
+
+Mon Apr 04 14:56:01 CEST 2011
+================================================================================
+Start of user code custom label preference key
+	public static String prefLabelKey = ElementTypes.DIAGRAM_ID + "_" + CustomGraphicalTypes.LABEL_SYSML_UNIT_NAME_ID; //$NON-NLS-1$
+	// End of user code
+
+Mon Apr 04 16:43:21 CEST 2011
+================================================================================
+Start of user code label preference key
+	public static String prefLabelKey = ElementTypes.DIAGRAM_ID + "_" + CustomGraphicalTypes.LABEL_SYSML_UNIT_NAME_ID; //$NON-NLS-1$	
+
+	// End of user code
