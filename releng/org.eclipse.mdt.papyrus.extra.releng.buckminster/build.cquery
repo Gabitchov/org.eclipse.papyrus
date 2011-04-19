@@ -5,5 +5,5 @@
     <cq:advisorNode namePattern=".*doc\.user" skipComponent="true"/>
     <cq:advisorNode namePattern="org\.eclipse\.papyrus.*\.source" skipComponent="true"/>
     <cq:advisorNode namePattern="org\.eclipse\.swt\.gtk\.linux\.s390x\.source" skipComponent="true"/>
-	<cq:advisorNode namePattern=".*" useMaterialization="false" useTargetPlatform="false"/>
+	<cq:advisorNode namePattern=".*" useMaterialization="false" useTargetPlatform="false" branchTagPath="0.7.X"/>
 </cq:componentQuery>
