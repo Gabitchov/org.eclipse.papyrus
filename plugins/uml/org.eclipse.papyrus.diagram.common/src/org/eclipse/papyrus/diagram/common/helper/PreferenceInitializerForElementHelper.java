@@ -30,7 +30,6 @@ import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.JumpLinkStatus;
 import org.eclipse.gmf.runtime.notation.JumpLinkType;
-import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.Smoothness;
@@ -231,16 +230,11 @@ public class PreferenceInitializerForElementHelper {
 
 						String compartmentNameVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(diagramKind + "_" + elementName, compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY); //$NON-NLS-1$
 						boolean showCompartmentName = store.getBoolean(compartmentNameVisibilityPreference);
-						if(showCompartmentName) {
 							View childView = (View)object;
 							TitleStyle style = (TitleStyle)childView.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
-							if(style == null) {
-								style = NotationFactory.eINSTANCE.createTitleStyle();
-								childView.getStyles().add(style);
-							}
-							style.setShowTitle(true);
+						if(style != null) {
+							style.setShowTitle(showCompartmentName);
 						}
-
 					}
 				}
 				dummyEP = null;
@@ -263,7 +257,7 @@ public class PreferenceInitializerForElementHelper {
 		if(children != null) {
 			for(Object object : children) {
 
-				//we look for the name of the compartment for this view
+				//we look for the name of the label for this view
 				EditPart dummyEP = EditPartService.getInstance().createGraphicEditPart((View)object);
 				if(dummyEP instanceof ILabelRoleProvider) {
 					String role = ((ILabelRoleProvider)dummyEP).getLabelRole();
