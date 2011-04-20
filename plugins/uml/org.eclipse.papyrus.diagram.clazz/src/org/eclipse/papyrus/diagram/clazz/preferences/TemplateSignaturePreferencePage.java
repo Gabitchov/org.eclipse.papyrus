@@ -1,15 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- */
 package org.eclipse.papyrus.diagram.clazz.preferences;
 
 import java.util.Map;
@@ -30,6 +18,7 @@ public class TemplateSignaturePreferencePage extends AbstractPapyrusNodePreferen
 	 * @generated
 	 */
 	public static final String compartments[] = { "TemplateParameterCompartment" };
+
 
 	/**
 	 * @generated
@@ -56,17 +45,20 @@ public class TemplateSignaturePreferencePage extends AbstractPapyrusNodePreferen
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
 
-		Map<String, Boolean> map = getCompartmentVisibilityPreferences();
+		Map<String, Boolean> map = getStaticCompartmentVisibilityPreferences();
 		for(String name : map.keySet()) {
 			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 			store.setDefault(preferenceName, map.get(name));
 		}
 
-		map = getCompartmentTitleVisibilityPreferences();
+		map = getStaticCompartmentTitleVisibilityPreferences();
 		for(String name : map.keySet()) {
 			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
 			store.setDefault(preferenceName, map.get(name));
 		}
+
+
+
 
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
@@ -90,10 +82,11 @@ public class TemplateSignaturePreferencePage extends AbstractPapyrusNodePreferen
 		}
 	}
 
+
 	/**
 	 * @generated
 	 */
-	public static TreeMap<String, Boolean> getCompartmentVisibilityPreferences() {
+	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("TemplateParameterCompartment", Boolean.TRUE);
 		return map;
@@ -102,10 +95,20 @@ public class TemplateSignaturePreferencePage extends AbstractPapyrusNodePreferen
 	/**
 	 * @generated
 	 */
-	public static TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
+	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("TemplateParameterCompartment", Boolean.TRUE);
+
+		map.put("TemplateParameterCompartment", Boolean.FALSE);
 		return map;
 	}
+
+	/**
+	 * @generated
+	 */
+	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
+		return getStaticCompartmentTitleVisibilityPreferences();
+	}
+
+
 
 }

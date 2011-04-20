@@ -74,6 +74,7 @@ public class ReceptionCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -89,7 +90,10 @@ public class ReceptionCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -98,10 +102,13 @@ public class ReceptionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		Reception newElement = UMLFactory.eINSTANCE.createReception();
 
 		Class owner = (Class)getElementToEdit();
 		owner.getOwnedReceptions().add(newElement);
+
 
 		ElementInitializers.getInstance().init_Reception_3011(newElement);
 

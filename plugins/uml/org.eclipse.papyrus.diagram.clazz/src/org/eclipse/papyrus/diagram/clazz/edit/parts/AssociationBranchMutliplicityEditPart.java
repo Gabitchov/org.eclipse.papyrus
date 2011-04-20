@@ -56,6 +56,7 @@ import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
+import org.eclipse.papyrus.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
@@ -78,7 +79,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class AssociationBranchMutliplicityEditPart extends LabelEditPart implements ITextAwareEditPart
+public class AssociationBranchMutliplicityEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider
 
 {
 
@@ -712,6 +713,9 @@ public class AssociationBranchMutliplicityEditPart extends LabelEditPart impleme
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -721,6 +725,20 @@ public class AssociationBranchMutliplicityEditPart extends LabelEditPart impleme
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getLabelRole() {
+		return "TargetMultiplicity";//$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getIconPathRole() {
+		return "platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/MultiplicityHandler.gif";//$NON-NLS-1$
 	}
 
 }

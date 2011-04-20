@@ -74,6 +74,7 @@ public class InterfaceCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -89,7 +90,10 @@ public class InterfaceCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -98,10 +102,13 @@ public class InterfaceCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		Interface newElement = UMLFactory.eINSTANCE.createInterface();
 
 		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
+
 
 		ElementInitializers.getInstance().init_Interface_2004(newElement);
 

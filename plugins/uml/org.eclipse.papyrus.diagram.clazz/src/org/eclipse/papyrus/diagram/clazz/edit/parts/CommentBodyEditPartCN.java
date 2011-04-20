@@ -719,6 +719,7 @@ public class CommentBodyEditPartCN extends CompartmentEditPart implements ITextA
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

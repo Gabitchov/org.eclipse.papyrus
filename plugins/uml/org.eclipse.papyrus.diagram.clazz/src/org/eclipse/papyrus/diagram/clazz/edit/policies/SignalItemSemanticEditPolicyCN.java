@@ -131,11 +131,11 @@ public class SignalItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return getGEFWrapper(new AssociationClassLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Association_4001 == req.getElementType()) {
-			return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		if(UMLElementTypes.Association_4019 == req.getElementType()) {
 			return getGEFWrapper(new AssociationBranchCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.Association_4001 == req.getElementType()) {
+			return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Generalization_4002 == req.getElementType()) {
 			return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
@@ -152,11 +152,11 @@ public class SignalItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 		if(UMLElementTypes.Usage_4007 == req.getElementType()) {
 			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Dependency_4008 == req.getElementType()) {
-			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		if(UMLElementTypes.Dependency_4018 == req.getElementType()) {
 			return getGEFWrapper(new Dependency3CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.Dependency_4008 == req.getElementType()) {
+			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.ElementImport_4009 == req.getElementType()) {
 			return getGEFWrapper(new ElementImportCreateCommand(req, req.getSource(), req.getTarget()));
@@ -189,11 +189,11 @@ public class SignalItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return getGEFWrapper(new AssociationClassLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Association_4001 == req.getElementType()) {
-			return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		if(UMLElementTypes.Association_4019 == req.getElementType()) {
 			return getGEFWrapper(new AssociationBranchCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.Association_4001 == req.getElementType()) {
+			return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Generalization_4002 == req.getElementType()) {
 			return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
@@ -210,11 +210,11 @@ public class SignalItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 		if(UMLElementTypes.Usage_4007 == req.getElementType()) {
 			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Dependency_4008 == req.getElementType()) {
-			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		if(UMLElementTypes.Dependency_4018 == req.getElementType()) {
 			return getGEFWrapper(new Dependency3CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.Dependency_4008 == req.getElementType()) {
+			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.ElementImport_4009 == req.getElementType()) {
 			return getGEFWrapper(new ElementImportCreateCommand(req, req.getSource(), req.getTarget()));
@@ -261,10 +261,10 @@ public class SignalItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 			return getGEFWrapper(reorientCommand.reduce());
 		case AssociationClassLinkEditPart.VISUAL_ID:
 			return getGEFWrapper(new AssociationClassLinkReorientCommand(req));
-		case AssociationEditPart.VISUAL_ID:
-			return getGEFWrapper(new AssociationReorientCommand(req));
 		case AssociationBranchEditPart.VISUAL_ID:
 			return getGEFWrapper(new AssociationBranchReorientCommand(req));
+		case AssociationEditPart.VISUAL_ID:
+			return getGEFWrapper(new AssociationReorientCommand(req));
 		case SubstitutionEditPart.VISUAL_ID:
 			return getGEFWrapper(new SubstitutionReorientCommand(req));
 		case RealizationEditPart.VISUAL_ID:
@@ -273,10 +273,10 @@ public class SignalItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 			return getGEFWrapper(new AbstractionReorientCommand(req));
 		case UsageEditPart.VISUAL_ID:
 			return getGEFWrapper(new UsageReorientCommand(req));
-		case DependencyEditPart.VISUAL_ID:
-			return getGEFWrapper(new DependencyReorientCommand(req));
 		case DependencyBranchEditPart.VISUAL_ID:
 			return getGEFWrapper(new Dependency2ReorientCommand(req));
+		case DependencyEditPart.VISUAL_ID:
+			return getGEFWrapper(new DependencyReorientCommand(req));
 		case ElementImportEditPart.VISUAL_ID:
 			return getGEFWrapper(new ElementImportReorientCommand(req));
 		case PackageImportEditPart.VISUAL_ID:

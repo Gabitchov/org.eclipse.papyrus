@@ -55,6 +55,7 @@ import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
+import org.eclipse.papyrus.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
@@ -77,7 +78,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class SubstitutionNameEditPart extends LabelEditPart implements ITextAwareEditPart
+public class SubstitutionNameEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider
 
 {
 
@@ -718,6 +719,9 @@ public class SubstitutionNameEditPart extends LabelEditPart implements ITextAwar
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -727,6 +731,20 @@ public class SubstitutionNameEditPart extends LabelEditPart implements ITextAwar
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getLabelRole() {
+		return "Name";//$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getIconPathRole() {
+		return "platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png";//$NON-NLS-1$
 	}
 
 }

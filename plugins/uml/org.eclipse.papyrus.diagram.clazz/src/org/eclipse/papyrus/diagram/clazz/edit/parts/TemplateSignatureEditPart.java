@@ -142,6 +142,7 @@ AbstractBorderItemEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 
+
 		if(childEditPart instanceof TemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -204,6 +205,7 @@ AbstractBorderItemEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+
 
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());

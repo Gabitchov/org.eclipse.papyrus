@@ -57,6 +57,7 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.diagram.common.editparts.AbstractShortcutDiagramNameEditPart;
+import org.eclipse.papyrus.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
@@ -83,7 +84,7 @@ public class DiagramNameEditPart
 
 extends AbstractShortcutDiagramNameEditPart
 
-implements ITextAwareEditPart, IBorderItemEditPart
+implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider
 
 {
 
@@ -755,6 +756,20 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 */
 	protected IFigure createFigurePrim() {
 		return new WrappingLabel();
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getLabelRole() {
+		return "Name";//$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getIconPathRole() {
+		return "platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png";//$NON-NLS-1$
 	}
 
 }

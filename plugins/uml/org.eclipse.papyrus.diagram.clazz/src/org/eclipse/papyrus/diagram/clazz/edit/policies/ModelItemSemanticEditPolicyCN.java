@@ -133,11 +133,11 @@ public class ModelItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy
 		if(UMLElementTypes.Usage_4007 == req.getElementType()) {
 			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Dependency_4008 == req.getElementType()) {
-			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		if(UMLElementTypes.Dependency_4018 == req.getElementType()) {
 			return getGEFWrapper(new Dependency3CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.Dependency_4008 == req.getElementType()) {
+			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.ElementImport_4009 == req.getElementType()) {
 			return getGEFWrapper(new ElementImportCreateCommand(req, req.getSource(), req.getTarget()));
@@ -182,11 +182,11 @@ public class ModelItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy
 		if(UMLElementTypes.Usage_4007 == req.getElementType()) {
 			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Dependency_4008 == req.getElementType()) {
-			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		if(UMLElementTypes.Dependency_4018 == req.getElementType()) {
 			return getGEFWrapper(new Dependency3CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.Dependency_4008 == req.getElementType()) {
+			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.ElementImport_4009 == req.getElementType()) {
 			return getGEFWrapper(new ElementImportCreateCommand(req, req.getSource(), req.getTarget()));
@@ -232,10 +232,10 @@ public class ModelItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy
 			return getGEFWrapper(new AbstractionReorientCommand(req));
 		case UsageEditPart.VISUAL_ID:
 			return getGEFWrapper(new UsageReorientCommand(req));
-		case DependencyEditPart.VISUAL_ID:
-			return getGEFWrapper(new DependencyReorientCommand(req));
 		case DependencyBranchEditPart.VISUAL_ID:
 			return getGEFWrapper(new Dependency2ReorientCommand(req));
+		case DependencyEditPart.VISUAL_ID:
+			return getGEFWrapper(new DependencyReorientCommand(req));
 		case ElementImportEditPart.VISUAL_ID:
 			return getGEFWrapper(new ElementImportReorientCommand(req));
 		case PackageImportEditPart.VISUAL_ID:

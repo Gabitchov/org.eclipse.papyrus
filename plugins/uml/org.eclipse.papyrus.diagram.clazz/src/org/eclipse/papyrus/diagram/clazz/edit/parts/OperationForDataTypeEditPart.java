@@ -778,6 +778,7 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 
 			this.setFont(THIS_FONT);
 
+
 		}
 
 	}

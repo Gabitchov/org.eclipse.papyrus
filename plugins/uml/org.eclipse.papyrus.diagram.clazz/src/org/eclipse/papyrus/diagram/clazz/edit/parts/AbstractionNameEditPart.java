@@ -55,6 +55,7 @@ import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
+import org.eclipse.papyrus.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
@@ -77,7 +78,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class AbstractionNameEditPart extends LabelEditPart implements ITextAwareEditPart
+public class AbstractionNameEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider
 
 {
 
@@ -422,7 +423,7 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 				} else if(configuration instanceof IAdvancedEditorConfiguration) {
 					dialog = ((IAdvancedEditorConfiguration)configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
 				} else if(configuration instanceof IDirectEditorConfiguration) {
-					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
+					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), ((IDirectEditorConfiguration)configuration).getTextToEdit(resolveSemanticElement()), (IDirectEditorConfiguration)configuration);
 				} else {
 					return;
 				}
@@ -581,7 +582,6 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 		if(accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
 
-				@Override
 				public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}
@@ -731,6 +731,9 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -741,6 +744,20 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getLabelRole() {
+		return "Name";//$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getIconPathRole() {
+		return "platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png";//$NON-NLS-1$
 	}
 
 }
