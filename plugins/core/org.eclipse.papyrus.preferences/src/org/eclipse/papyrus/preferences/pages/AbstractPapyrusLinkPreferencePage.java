@@ -58,7 +58,7 @@ public abstract class AbstractPapyrusLinkPreferencePage extends AbstractPapyrusE
 
 	}
 
-	public TreeMap<String, String> getLabelRole() {
+	protected TreeMap<String, String> getLabelRole() {
 		return new TreeMap<String, String>();
 	}
 }

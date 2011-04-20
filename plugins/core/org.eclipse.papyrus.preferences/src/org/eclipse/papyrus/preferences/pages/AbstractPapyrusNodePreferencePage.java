@@ -63,7 +63,7 @@ public abstract class AbstractPapyrusNodePreferencePage extends AbstractPapyrusE
 		DecorationGroup decorationGroup = new DecorationGroup(parent, getPreferenceKey(), this);
 		addAbstractGroup(decorationGroup);
 		if(!compartmentsList.isEmpty()) {
-			NodeCompartmentGroup compartmentGroup = new NodeCompartmentGroup(parent, getPreferenceKey(), this, compartmentsList, getPreferenceStore());
+			NodeCompartmentGroup compartmentGroup = new NodeCompartmentGroup(parent, getPreferenceKey(), this, compartmentsList, getCompartmentTitleVisibilityPreferences().keySet(), getPreferenceStore());
 			addAbstractGroup(compartmentGroup);
 		}
 
@@ -82,10 +82,20 @@ public abstract class AbstractPapyrusNodePreferencePage extends AbstractPapyrusE
 	}
 
 	/**
-	 * @generated
+	 * 
+	 * @return
+	 *         the label roles
 	 */
-	public TreeMap<String, String> getLabelRole() {
+	protected TreeMap<String, String> getLabelRole() {
 		return new TreeMap<String, String>();
 	}
 
+	/**
+	 * 
+	 * @return
+	 *         the compartment title visibility
+	 */
+	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
+		return new TreeMap<String, Boolean>();
+	}
 }

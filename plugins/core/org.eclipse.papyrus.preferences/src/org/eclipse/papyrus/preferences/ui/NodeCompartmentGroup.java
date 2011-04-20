@@ -16,6 +16,7 @@
 package org.eclipse.papyrus.preferences.ui;
 
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.gmf.runtime.common.ui.preferences.CheckBoxFieldEditor;
 import org.eclipse.jface.dialogs.DialogPage;
@@ -41,6 +42,7 @@ public class NodeCompartmentGroup extends AbstractGroup {
 
 	private final IPreferenceStore myPreferenceStore;
 
+	private final Set<String> compartmentsWithTitle;
 
 	/**
 	 * 
@@ -51,9 +53,10 @@ public class NodeCompartmentGroup extends AbstractGroup {
 	 * @param dialogPage
 	 * @param compartmentsName
 	 */
-	public NodeCompartmentGroup(Composite parent, String title, DialogPage dialogPage, List<String> compartmentsName, IPreferenceStore store) {
+	public NodeCompartmentGroup(Composite parent, String title, DialogPage dialogPage, List<String> compartmentsName, Set<String> compartmentsWithTitle, IPreferenceStore store) {
 		super(parent, title, dialogPage);
 		this.myCompartments = compartmentsName;
+		this.compartmentsWithTitle = compartmentsWithTitle;
 		myPreferenceStore = store;
 		createContent(parent);
 	}
@@ -85,16 +88,17 @@ public class NodeCompartmentGroup extends AbstractGroup {
 		String compartmentVisibilityLabel = "Show compartment";
 		Button showCompartmentButton = addCheckboxField(group, compartmentVisibilityPreference, compartmentVisibilityLabel);
 
-		String compartmentNameVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartment, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
-		String compartmentNameVisibilityLabel = "Show title";
-		Button showNameButton = addCheckboxField(group, compartmentNameVisibilityPreference, compartmentNameVisibilityLabel);
+		if(this.compartmentsWithTitle.contains(compartment)) {
+			String compartmentNameVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartment, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+			String compartmentNameVisibilityLabel = "Show title";
+			Button showNameButton = addCheckboxField(group, compartmentNameVisibilityPreference, compartmentNameVisibilityLabel);
 
-		boolean showCompartmentIsNotChecked = !myPreferenceStore.getBoolean(compartmentVisibilityPreference);
-		if(showCompartmentIsNotChecked) {
-			showNameButton.setEnabled(false);
+			boolean showCompartmentIsNotChecked = !myPreferenceStore.getBoolean(compartmentVisibilityPreference);
+			if(showCompartmentIsNotChecked) {
+				showNameButton.setEnabled(false);
+			}
+			createDependency(showCompartmentButton, new Control[]{ showNameButton });
 		}
-
-		createDependency(showCompartmentButton, new Control[]{ showNameButton });
 	}
 
 
