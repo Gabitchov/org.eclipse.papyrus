@@ -13,6 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.preferences;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileDiagramEditPart;
 import org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorPlugin;
@@ -55,10 +58,20 @@ public class ProfilePreferencePage extends AbstractPapyrusNodePreferencePage {
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 200);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 100);
 
-		for(String name : compartments) {
-			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
-			store.setDefault(preferenceName, true);
+		Map<String, Boolean> map = getStaticCompartmentVisibilityPreferences();
+		for(String name : map.keySet()) {
+			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			store.setDefault(preferenceName, map.get(name));
 		}
+
+		map = getStaticCompartmentTitleVisibilityPreferences();
+		for(String name : map.keySet()) {
+			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+			store.setDefault(preferenceName, map.get(name));
+		}
+
+
+
 
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
@@ -81,5 +94,34 @@ public class ProfilePreferencePage extends AbstractPapyrusNodePreferencePage {
 			this.compartmentsList.add(name);
 		}
 	}
+
+
+	/**
+	 * @generated
+	 */
+	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
+		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
+		map.put("ProfilePackageableElementCompartment", Boolean.TRUE);
+		return map;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
+		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
+
+		map.put("ProfilePackageableElementCompartment", Boolean.FALSE);
+		return map;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
+		return getStaticCompartmentTitleVisibilityPreferences();
+	}
+
+
 
 }

@@ -52,6 +52,7 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
+import org.eclipse.papyrus.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
@@ -79,7 +80,11 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class AssociationMultiplicityTargetEditPart extends LabelEditPart implements ITextAwareEditPart {
+public class AssociationMultiplicityTargetEditPart extends LabelEditPart implements ITextAwareEditPart
+
+, ILabelRoleProvider
+
+{
 
 	/**
 	 * @generated
@@ -110,14 +115,12 @@ public class AssociationMultiplicityTargetEditPart extends LabelEditPart impleme
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
@@ -636,7 +639,6 @@ public class AssociationMultiplicityTargetEditPart extends LabelEditPart impleme
 
 	/**
 	 * Initializes the extended editor configuration
-	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -652,7 +654,6 @@ public class AssociationMultiplicityTargetEditPart extends LabelEditPart impleme
 
 	/**
 	 * Updates the preference configuration
-	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -666,9 +667,7 @@ public class AssociationMultiplicityTargetEditPart extends LabelEditPart impleme
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * 
-	 * @param theRequest
-	 *        the direct edit request that starts the direct edit system
+	 * @param theRequest the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
@@ -740,5 +739,23 @@ public class AssociationMultiplicityTargetEditPart extends LabelEditPart impleme
 		// Parent should assign one using setLabel() method
 		return null;
 	}
+
+
+
+
+	/**
+	 * @generated
+	 */
+	public String getLabelRole() {
+		return "";//$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getIconPathRole() {
+		return "platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/MultiplicityHandler.gif";//$NON-NLS-1$
+	}
+
 
 }

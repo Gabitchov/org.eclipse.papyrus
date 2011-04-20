@@ -342,8 +342,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		return tool;
 	}
 
-
-
 	/**
 	 * @generated
 	 */

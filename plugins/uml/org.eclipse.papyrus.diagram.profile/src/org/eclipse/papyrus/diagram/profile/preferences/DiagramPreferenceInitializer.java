@@ -61,9 +61,6 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		PrimitiveTypePreferencePage.initDefaults(store);
 
 
-		PrimitiveTypePreferencePage.initDefaults(store);
-
-
 		PackagePreferencePage.initDefaults(store);
 
 

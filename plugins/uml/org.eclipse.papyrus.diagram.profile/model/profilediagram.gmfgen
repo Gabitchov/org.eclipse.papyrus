@@ -2050,6 +2050,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.profile.custom.policies.CustomGraphicalNodeEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
@@ -2840,7 +2844,6 @@
           childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14"
           title="PackageableElementCompartment"
           canCollapse="false"
-          needsTitle="false"
           node="/0/@diagram/@topLevelNodes.8"
           listLayout="false">
         <diagramRunTimeClass
@@ -2874,7 +2877,6 @@
           childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14"
           title="PackageableElementCompartment"
           canCollapse="false"
-          needsTitle="false"
           node="/0/@diagram/@childNodes.11"
           listLayout="false">
         <diagramRunTimeClass
@@ -2908,7 +2910,6 @@
           childNodes="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.7"
           title="ProfilePackageableElementCompartment"
           canCollapse="false"
-          needsTitle="false"
           node="/0/@diagram/@topLevelNodes.7"
           listLayout="false">
         <diagramRunTimeClass
@@ -2942,7 +2943,6 @@
           childNodes="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.7"
           title="ProfilePackageableElementCompartment"
           canCollapse="false"
-          needsTitle="false"
           node="/0/@diagram/@childNodes.10"
           listLayout="false">
         <diagramRunTimeClass
@@ -2975,7 +2975,6 @@
           canonicalEditPolicyClassName="StereotypeAttributeCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.4"
           title="AttributeCompartment"
-          needsTitle="false"
           node="/0/@diagram/@topLevelNodes.2">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -2999,7 +2998,6 @@
           canonicalEditPolicyClassName="StereotypeAttributeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.4"
           title="AttributeCompartment"
-          needsTitle="false"
           node="/0/@diagram/@childNodes.6">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -3023,7 +3021,6 @@
           canonicalEditPolicyClassName="StereotypeOperationCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.5"
           title="OperationCompartment"
-          needsTitle="false"
           node="/0/@diagram/@topLevelNodes.2">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -3047,7 +3044,6 @@
           canonicalEditPolicyClassName="StereotypeOperationCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.5"
           title="OperationCompartment"
-          needsTitle="false"
           node="/0/@diagram/@childNodes.6">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -3072,7 +3068,6 @@
           childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14"
           title="ModelElementCompartment"
           canCollapse="false"
-          needsTitle="false"
           node="/0/@diagram/@topLevelNodes.6"
           listLayout="false">
         <diagramRunTimeClass
@@ -3106,7 +3101,6 @@
           childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14"
           title="ModelElementCompartment"
           canCollapse="false"
-          needsTitle="false"
           node="/0/@diagram/@childNodes.9"
           listLayout="false">
         <diagramRunTimeClass
@@ -3139,7 +3133,6 @@
           canonicalEditPolicyClassName="EnumerationEnumerationLiteralCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.2"
           title="EnumerationEnumerationLiteral"
-          needsTitle="false"
           node="/0/@diagram/@childNodes.13">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -3163,7 +3156,6 @@
           canonicalEditPolicyClassName="EnumerationEnumerationLiteralCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.2"
           title="EnumerationEnumerationLiteral"
-          needsTitle="false"
           node="/0/@diagram/@topLevelNodes.9">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -3187,7 +3179,6 @@
           canonicalEditPolicyClassName="DataTypeAttributeCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.3"
           title="DataTypeAttributeCompartment"
-          needsTitle="false"
           node="/0/@diagram/@topLevelNodes.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -3211,7 +3202,6 @@
           canonicalEditPolicyClassName="DataTypeAttributeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.3"
           title="DataTypeAttributeCompartment"
-          needsTitle="false"
           node="/0/@diagram/@childNodes.14">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -3235,7 +3225,6 @@
           canonicalEditPolicyClassName="DataTypeOperationCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.1"
           title="DataTypeOperationCompartment"
-          needsTitle="false"
           node="/0/@diagram/@topLevelNodes.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -3259,7 +3248,6 @@
           canonicalEditPolicyClassName="DataTypeOperationCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.1"
           title="DataTypeOperationCompartment"
-          needsTitle="false"
           node="/0/@diagram/@childNodes.14">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -3687,5 +3675,51 @@
         xsi:type="papyrusgmfgenextension:AdditionalEditPartCandies"
         comment="add the basic helper to remove all application of stereotypes"
         baseEditHelperPackage="org.eclipse.papyrus.diagram.common.helper"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:CompartmentTitleVisibilityPreference"
+        comment="Hidden Title Compartments"
+        visibleByDefault="false"
+        compartments="/0/@diagram/@compartments.0 /0/@diagram/@compartments.1 /0/@diagram/@compartments.2 /0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.5 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.11 /0/@diagram/@compartments.12 /0/@diagram/@compartments.13 /0/@diagram/@compartments.14 /0/@diagram/@compartments.15"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Stereotype"
+        role="Stereotype"
+        iconPathRole="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif"
+        linkLabels="/0/@diagram/@links.5/@labels.1 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.1/@labels.0 /0/@diagram/@links.8/@labels.0 /0/@diagram/@links.7/@labels.1"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Name"
+        role="Name"
+        iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png"
+        linkLabels="/0/@diagram/@links.1/@labels.1 /0/@diagram/@links.5/@labels.0"
+        externalNodeLabels="/0/@diagram/@topLevelNodes.12/@labels.0"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="SourceMultiplicity"
+        iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/MultiplicityHandler.gif"
+        linkLabels="/0/@diagram/@links.1/@labels.4"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="TargetMultiplicity"
+        iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/MultiplicityHandler.gif"
+        linkLabels="/0/@diagram/@links.1/@labels.5"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="SourceRole"
+        role="SourceRole"
+        iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/role.gif"
+        linkLabels="/0/@diagram/@links.1/@labels.3"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="TargetRole"
+        role="TargetRole"
+        iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/role.gif"
+        linkLabels="/0/@diagram/@links.1/@labels.2"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Alias"
+        role="Alias"
+        iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/alias.png"
+        linkLabels="/0/@diagram/@links.7/@labels.0"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

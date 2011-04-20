@@ -44,6 +44,10 @@ public class ExtensionPreferencePage extends AbstractPapyrusLinkPreferencePage {
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
+
 	}
+
+
+
 
 }
