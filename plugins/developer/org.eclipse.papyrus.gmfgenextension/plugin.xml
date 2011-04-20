@@ -77,6 +77,18 @@
                        </objectClass>
                     </enablement>
                  </action>
+                 <action
+                       class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeShowHideLabelsBehavior"
+                       enablesFor="*"
+                       id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeShowHideLabelBehavior"
+                       label="Add behavior to show/hide labels"
+                       menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddNodeShowHideBehavior">
+                    <enablement>
+                       <objectClass
+                             name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                       </objectClass>
+                    </enablement>
+                 </action>
                
                  <action
                class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddGenLinkStereotypeDisplayBehavior"
