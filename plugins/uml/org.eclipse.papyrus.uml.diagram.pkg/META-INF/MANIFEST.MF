@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Papyrus Package Diagram (incubation)
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.pkg;singleton:=true
 Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.pkg.Activator
-Bundle-Vendor: Eclipse.org
+Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.diagram.common,

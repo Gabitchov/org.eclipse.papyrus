@@ -26,7 +26,7 @@
 
 <extension point="org.eclipse.ui.handlers">
 	<handler
-		class="org.eclipse.papyrus.uml.diagram.pkg.CreatePackageDiagramWithNavigationHandler"
+		class="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramCreateCommand"
 		commandId="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand">
 		<activeWhen>
 			<with variable="activeEditorId">
@@ -85,7 +85,7 @@
 		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
 		name="UML_Package" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
 		path="palettes/package.palette.xml"
-		provider="Eclipse.org">
+		provider="CEA LIST">
 		<Priority name="Low"/>
 		
 		<!-- Specify diagram this palette tools relate to -->						
@@ -103,13 +103,55 @@
 		<context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Package"/>
 	</viewProvider>
 
-	<!-- ViewProvider for inherited elements (from ClassDiagramm UMLViewProvider) -->
-	<viewProvider class="org.eclipse.papyrus.uml.diagram.pkg.provider.InheritedElementViewProvider">
+	<!-- ViewProvider for inherited elements (from ClassDiagram ViewProvider) -->
+	<viewProvider class="org.eclipse.papyrus.uml.diagram.pkg.provider.InheritedClassDiagramViewProvider">
 		<Priority name="Low"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007, 3009"/> <!-- "2007, 3009" = Package / Package_CN -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008, 4010"/> <!-- "4008" = Dependency, "4010" = PackageImport -->		
-	</viewProvider>	
 		
+		<!-- 
+			"2007" = PACKAGE
+			"3009" = PACKAGE_CN
+			"2012" = COMMENT
+		  -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007, 3009, 2012"/>
+		
+		<!-- 
+			"4008" = DEPENDENCY
+			"4010" = PACKAGE_IMPORT
+			"4013" = COMMENT_ANNOTATED_ELEMENT
+		  -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008, 4010, 4013"/>
+		
+		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
+		
+		<!-- "uml.Package" -->
+		<object id="uml.Package" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Package"/>
+		</object>
+		
+		<!-- "uml.Comment" -->
+		<object id="uml.Comment" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Comment"/>
+		</object>
+		
+		<!-- "uml.Dependency" -->
+		<object id="uml.Dependency" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Dependency"/>
+		</object>
+		
+		<!-- "uml.PackageImport" -->
+		<object id="uml.PackageImport" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.PackageImport"/>
+		</object>
+		
+		<!-- Additional activation contexts for nodes semantic objects -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node"
+			elements="uml.Package, uml.Comment"/>
+		
+		<!-- Additional activation contexts for edges semantic objects -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge"
+			elements="uml.Dependency, uml.PackageImport"/>
+			
+	</viewProvider>	
 </extension>
 
 <!-- Diagram edit part providers declaration -->
@@ -119,55 +161,71 @@
 	<editpartProvider class="org.eclipse.papyrus.uml.diagram.pkg.provider.PackageDiagramEditPartProvider">
 		<Priority name="Low"/>
 		<object 
-			id="org.eclipse.papyrus.uml.diagram.package.Diagram"
+			id="org.eclipse.papyrus.uml.diagram.pkg.Diagram"
 			class="org.eclipse.gmf.runtime.notation.Diagram">
 			<method name="getType()" value="Package"/>
 		</object>
+		<context views="org.eclipse.papyrus.uml.diagram.pkg.Diagram"/>	
 	</editpartProvider>
 
 	<!-- EditPartProvider for inherited elements (from Class Diagram) -->
-	<editpartProvider class="org.eclipse.papyrus.uml.diagram.pkg.provider.InheritedElementEditPartProvider">
+	<editpartProvider class="org.eclipse.papyrus.uml.diagram.pkg.provider.InheritedClassDiagramEditPartProvider">
 		<Priority name="Low"/>
 		
 		<!-- 
 			The semantic hints given here are used in case the provider is not already loaded.
 			As soon as the provider is loaded its provides method is used.
-			"2007" = Package
-			"5026" = Package name label
-			"7016" = Package packageable element compartment
-			"3009" = Package (Child Node)
-			"5017" = Package (Child Node) name label
-			"7010" = Package (Child Node) packageable element compartment -->			
+			"2007" = PACKAGE
+			"5026" = PACKAGE_LABEL_NAME_HINT
+			"7016" = PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
+			"3009" = PACKAGE_CN
+			"5017" = PACKAGE_CN_LABEL_NAME_HINT
+			"7010" = PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
+			"2012" = COMMENT
+			"5038" = COMMENT_LABEL_BODY_HINT
+		  -->
 		<object
-			id="Package"
+			id="PACKAGE"
 			class="org.eclipse.gmf.runtime.notation.Node">
 			<method name="getType()" value="2007, 5026, 7016"/>
 		</object>
 		<object
-			id="Package_CN"
+			id="PACKAGE_CN"
 			class="org.eclipse.gmf.runtime.notation.Node">
 			<method name="getType()" value="3009, 5017, 7010"/>
 		</object>
+		<object
+			id="COMMENT"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2012, 5038"/>
+		</object>
 
 		<!-- 
-			"4008" = Dependency
-			"6026" = Dependency name label
-			"6027" = Dependency applied stereotype label
-			"4010" = PackageImport 
-			"6022" = PackageImport applied stereotype label -->					
+			"4008" = DEPENDENCY
+			"6026" = DEPENDENCY_LABEL_NAME_HINT
+			"6027" = DEPENDENCY_LABEL_APPLIED_STEREOTYPE_HINT
+			"4010" = PACKAGE_IMPORT
+			"6022" = PACKAGE_IMPORT_LABEL_APPLIED_STEREOTYPE_HINT
+			"4013" = COMMENT_ANNOTATED_ELEMENT
+		  -->
 		<object
-			id="Dependency"
+			id="DEPENDENCY"
 			class="org.eclipse.gmf.runtime.notation.Edge">
 			<method name="getType()" value="4008, 6026, 6027"/>
 		</object>
 		<object
-			id="PackageImport"
+			id="PACKAGE_IMPORT"
 			class="org.eclipse.gmf.runtime.notation.Edge">
 			<method name="getType()" value="4010, 6022"/>
 		</object>
+		<object
+			id="COMMENT_ANNOTATED_ELEMENT"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4013"/>
+		</object>
 		
-		<context views="Package, Package_CN"/>
-		<context views="Dependency, PackageImport"/>
+		<context views="PACKAGE, PACKAGE_CN, COMMENT"/>
+		<context views="DEPENDENCY, PACKAGE_IMPORT, COMMENT_ANNOTATED_ELEMENT"/>
 		
 	</editpartProvider>
 		
@@ -177,7 +235,7 @@
 <extension
 	point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
 	<editpolicyProvider
-		class="org.eclipse.papyrus.uml.diagram.pkg.provider.InheritedElementEditPolicyProvider">
+		class="org.eclipse.papyrus.uml.diagram.pkg.provider.PackageDiagramEditPolicyProvider">
 		<Priority name="Low"/>
 	</editpolicyProvider>
 </extension>
@@ -187,45 +245,58 @@
 
 	<!-- Diagram Preference pages declaration -->
 	<page
-		id="org.eclipse.papyrus.uml.diagram.package.preferences"
+		id="org.eclipse.papyrus.uml.diagram.pkg.preferences"
 		name="Package Diagram"
 		category="org.eclipse.papyrus.preferences.diagrams"
-		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.DiagramGeneralPreferencePage">
-	</page>
-
-	<page
-		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.DiagramPrintingPreferencePage"
-		name="Printing"
-		category="org.eclipse.papyrus.uml.diagram.package.preferences"
-		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.DiagramPrintingPreferencePage">
-	</page>
-
-	<page
-		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.DiagramRulersAndGridPreferencePage"
-		name="Rulers and Grid"
-		category="org.eclipse.papyrus.uml.diagram.package.preferences"
-		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.DiagramRulersAndGridPreferencePage">
+		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.PackageDiagramGeneralPreferencePage">
 	</page>
 
 	<!-- Element Preference pages declaration -->
-	<page  	category="org.eclipse.papyrus.uml.diagram.package.preferences"
+	<page  	category="org.eclipse.papyrus.uml.diagram.pkg.preferences"
 		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.PackagePreferencePage"
 		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.PackagePreferencePage"
 		name="Package">
 	</page>
 
-	<page  	category="org.eclipse.papyrus.uml.diagram.package.preferences"
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.pkg.preferences"
+		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.CommentPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.CommentPreferencePage"
+		name="Comment">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.pkg.preferences"
 		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.DependencyPreferencePage"
 		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.DependencyPreferencePage"
 		name="Dependency">
 	</page>
 			
-	<page  	category="org.eclipse.papyrus.uml.diagram.package.preferences"
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.pkg.preferences"
 		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.PackageImportPreferencePage"
 		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.PackageImportPreferencePage"
 		name="PackageImport">
 	</page>	
 
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.pkg.preferences"
+		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.CommentLinkPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.CommentLinkPreferencePage"
+		name="CommentLink">
+	</page>
+	
+	
+
 </extension>
+
+<!-- // Start of user code custom extensions 
+  -->
+
+<!-- Insert custom extensions here. -->
+<!-- // End of user code 
+  -->
 
 </plugin>
