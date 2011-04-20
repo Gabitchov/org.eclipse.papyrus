@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -31,6 +31,7 @@ public class ComponentPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 * @generated
 	 */
 	public static final String compartments[] = { "ComponentCompositeCompartment" };
+
 
 	/**
 	 * @generated
@@ -69,6 +70,9 @@ public class ComponentPreferencePage extends AbstractPapyrusNodePreferencePage {
 			store.setDefault(preferenceName, map.get(name));
 		}
 
+
+
+
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
 
@@ -90,6 +94,7 @@ public class ComponentPreferencePage extends AbstractPapyrusNodePreferencePage {
 			this.compartmentsList.add(name);
 		}
 	}
+
 
 	/**
 	 * @generated
@@ -116,5 +121,7 @@ public class ComponentPreferencePage extends AbstractPapyrusNodePreferencePage {
 	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
 		return getStaticCompartmentTitleVisibilityPreferences();
 	}
+
+
 
 }

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -80,6 +80,7 @@ import org.eclipse.ui.PlatformUI;
  */
 public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextAwareEditPart
 
+
 {
 
 	/**
@@ -107,6 +108,8 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 	 */
 	private String defaultText;
 
+
+
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -120,6 +123,8 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -586,6 +591,8 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 		return getPrimaryView();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -681,6 +688,8 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -711,6 +720,9 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -721,5 +733,9 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 		// Parent should assign one using setLabel() method
 		return null;
 	}
+
+
+
+
 
 }

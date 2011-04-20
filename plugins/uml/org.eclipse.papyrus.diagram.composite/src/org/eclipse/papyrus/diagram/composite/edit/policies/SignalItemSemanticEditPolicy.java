@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -78,6 +78,9 @@ public class SignalItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 		super(UMLElementTypes.Signal_2081);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -94,6 +97,7 @@ public class SignalItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

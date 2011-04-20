@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -34,6 +34,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
  * @generated
  */
 public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
+
 
 	/**
 	 * @generated

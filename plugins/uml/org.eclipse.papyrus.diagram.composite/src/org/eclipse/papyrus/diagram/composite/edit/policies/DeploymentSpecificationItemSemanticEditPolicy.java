@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -78,6 +78,9 @@ public class DeploymentSpecificationItemSemanticEditPolicy extends UMLBaseItemSe
 		super(UMLElementTypes.DeploymentSpecification_2078);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -94,6 +97,7 @@ public class DeploymentSpecificationItemSemanticEditPolicy extends UMLBaseItemSe
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

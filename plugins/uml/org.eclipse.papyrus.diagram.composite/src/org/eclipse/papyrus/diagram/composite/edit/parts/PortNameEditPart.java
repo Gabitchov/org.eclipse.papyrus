@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -85,9 +85,12 @@ import org.eclipse.ui.PlatformUI;
  */
 public class PortNameEditPart
 
+
 extends LabelEditPart
 
+
 implements ITextAwareEditPart, IBorderItemEditPart
+
 
 {
 
@@ -116,6 +119,8 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 */
 	private String defaultText;
 
+
+
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -129,6 +134,8 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -623,6 +630,8 @@ implements ITextAwareEditPart, IBorderItemEditPart
 		return getPrimaryView();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -726,6 +735,8 @@ implements ITextAwareEditPart, IBorderItemEditPart
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -773,5 +784,8 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	protected IFigure createFigurePrim() {
 		return new WrappingLabel();
 	}
+
+
+
 
 }

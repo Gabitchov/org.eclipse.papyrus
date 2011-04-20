@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -38,6 +38,9 @@ public class OpaqueBehaviorItemSemanticEditPolicyCLN extends UMLBaseItemSemantic
 		super(UMLElementTypes.OpaqueBehavior_3108);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -60,5 +63,6 @@ public class OpaqueBehaviorItemSemanticEditPolicyCLN extends UMLBaseItemSemantic
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
+
 
 }

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -28,6 +28,7 @@ import org.eclipse.swt.graphics.Image;
  */
 public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelProvider {
 
+
 	/**
 	 * @generated
 	 */
@@ -37,6 +38,7 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 		return etype == null ? "" : etype.getDisplayName();
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -44,6 +46,7 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 		IElementType etype = getElementType(getView(unwrap(element)));
 		return etype == null ? null : UMLElementTypes.getImage(etype);
 	}
+
 
 	/**
 	 * @generated
@@ -83,5 +86,7 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 		}
 		return null;
 	}
+
+
 
 }

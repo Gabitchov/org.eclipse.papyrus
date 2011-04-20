@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -105,6 +105,8 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 	 */
 	private String defaultText;
 
+
+
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -118,6 +120,8 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -570,6 +574,8 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 		return (View)getModel();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -673,6 +679,8 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -688,6 +696,7 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
+
 
 	/**
 	 * @generated
@@ -720,6 +729,7 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -731,10 +741,13 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 		return null;
 	}
 
+
+
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
+
 
 	/**
 	 * @generated
@@ -761,6 +774,7 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -768,5 +782,6 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
+
 
 }

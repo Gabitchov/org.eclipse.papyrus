@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -80,6 +80,7 @@ public class NodeCompositeItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		super(UMLElementTypes.Node_2072);
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -89,6 +90,8 @@ public class NodeCompositeItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		}
 		return super.getCreateCommand(req);
 	}
+
+
 
 	/**
 	 * @generated
@@ -106,6 +109,7 @@ public class NodeCompositeItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

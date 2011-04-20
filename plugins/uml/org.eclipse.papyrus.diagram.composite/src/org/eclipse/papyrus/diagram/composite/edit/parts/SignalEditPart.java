@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -60,6 +60,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class SignalEditPart extends
 
+
 NamedElementEditPart {
 
 	/**
@@ -98,6 +99,9 @@ NamedElementEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
+
+
+
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -107,6 +111,10 @@ NamedElementEditPart {
 		super.handleNotificationEvent(event);
 
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -156,8 +164,10 @@ NamedElementEditPart {
 			return true;
 		}
 
+
 		return false;
 	}
+
 
 	/**
 	 * @generated
@@ -196,6 +206,7 @@ NamedElementEditPart {
 		return getContentPane();
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -208,6 +219,7 @@ NamedElementEditPart {
 
 		return result;
 	}
+
 
 	/**
 	 * Creates figure for this edit part.
@@ -5297,6 +5309,10 @@ NamedElementEditPart {
 		}
 		return types;
 	}
+
+
+
+
 
 	/**
 	 * @generated

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -105,6 +105,8 @@ public class TimeConstraintSpecificationEditPart extends CompartmentEditPart imp
 	 */
 	private String defaultText;
 
+
+
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -118,6 +120,8 @@ public class TimeConstraintSpecificationEditPart extends CompartmentEditPart imp
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -570,6 +574,8 @@ public class TimeConstraintSpecificationEditPart extends CompartmentEditPart imp
 		return getPrimaryView();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -673,6 +679,8 @@ public class TimeConstraintSpecificationEditPart extends CompartmentEditPart imp
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -688,6 +696,7 @@ public class TimeConstraintSpecificationEditPart extends CompartmentEditPart imp
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
+
 
 	/**
 	 * @generated
@@ -720,6 +729,7 @@ public class TimeConstraintSpecificationEditPart extends CompartmentEditPart imp
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -731,10 +741,13 @@ public class TimeConstraintSpecificationEditPart extends CompartmentEditPart imp
 		return null;
 	}
 
+
+
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
+
 
 	/**
 	 * @generated
@@ -761,6 +774,7 @@ public class TimeConstraintSpecificationEditPart extends CompartmentEditPart imp
 
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -768,5 +782,6 @@ public class TimeConstraintSpecificationEditPart extends CompartmentEditPart imp
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
+
 
 }

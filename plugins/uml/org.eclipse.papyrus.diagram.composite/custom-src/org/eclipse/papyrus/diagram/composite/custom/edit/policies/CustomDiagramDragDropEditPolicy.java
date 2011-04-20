@@ -437,7 +437,7 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 			Element source = (Element)sourceEnds.toArray()[0];
 			Element target = (Element)targetEnds.toArray()[0];
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Dependency"), source, target, //$NON-NLS-1$
-			linkVISUALID, dropRequest.getLocation(), semanticLink));
+				linkVISUALID, dropRequest.getLocation(), semanticLink));
 		} else {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -464,7 +464,7 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 			Element source = semanticLink.getOwner();
 			Element target = (Element)targetEnds.toArray()[0];
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop RoleBinding"), source, target, //$NON-NLS-1$
-			linkVISUALID, dropRequest.getLocation(), semanticLink));
+				linkVISUALID, dropRequest.getLocation(), semanticLink));
 		} else {
 			return UnexecutableCommand.INSTANCE;
 		}

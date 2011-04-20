@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -80,6 +80,7 @@ import org.eclipse.ui.PlatformUI;
  */
 public class UsageNameEditPart extends LabelEditPart implements ITextAwareEditPart
 
+
 {
 
 	/**
@@ -107,6 +108,8 @@ public class UsageNameEditPart extends LabelEditPart implements ITextAwareEditPa
 	 */
 	private String defaultText;
 
+
+
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -120,6 +123,8 @@ public class UsageNameEditPart extends LabelEditPart implements ITextAwareEditPa
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -586,6 +591,8 @@ public class UsageNameEditPart extends LabelEditPart implements ITextAwareEditPa
 		return getPrimaryView();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -689,6 +696,8 @@ public class UsageNameEditPart extends LabelEditPart implements ITextAwareEditPa
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -719,6 +728,9 @@ public class UsageNameEditPart extends LabelEditPart implements ITextAwareEditPa
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -729,5 +741,9 @@ public class UsageNameEditPart extends LabelEditPart implements ITextAwareEditPa
 		// Parent should assign one using setLabel() method
 		return null;
 	}
+
+
+
+
 
 }

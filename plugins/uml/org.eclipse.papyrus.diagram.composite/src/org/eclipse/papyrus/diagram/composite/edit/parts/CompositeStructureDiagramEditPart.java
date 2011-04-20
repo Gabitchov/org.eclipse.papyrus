@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -54,11 +54,14 @@ public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 	 */
 	public static final int VISUAL_ID = 1000;
 
+
+
 	/**
 	 * @generated
 	 */
 	public CompositeStructureDiagramEditPart(View view) {
 		super(view);
+
 
 		getFigure().setClippingStrategy(new IClippingStrategy() {
 
@@ -120,6 +123,7 @@ public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -150,6 +154,7 @@ public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -166,6 +171,10 @@ public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */
@@ -181,6 +190,7 @@ public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -191,5 +201,7 @@ public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 		}
 		return super.getAdapter(adapter);
 	}
+
+
 
 }

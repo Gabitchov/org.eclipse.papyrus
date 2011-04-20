@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -75,6 +75,7 @@ public class DurationConstraintCreateCommandCN extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,7 +91,10 @@ public class DurationConstraintCreateCommandCN extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -99,10 +103,13 @@ public class DurationConstraintCreateCommandCN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		DurationConstraint newElement = UMLFactory.eINSTANCE.createDurationConstraint();
 
 		Namespace owner = (Namespace)getElementToEdit();
 		owner.getOwnedRules().add(newElement);
+
 
 		ElementInitializers.getInstance().init_DurationConstraint_3116(newElement);
 
@@ -111,6 +118,9 @@ public class DurationConstraintCreateCommandCN extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
+
+
+
 
 	/**
 	 * @generated

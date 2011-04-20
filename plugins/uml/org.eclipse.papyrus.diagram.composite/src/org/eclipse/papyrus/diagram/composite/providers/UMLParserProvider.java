@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -1198,6 +1198,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return constraintSpecification_6039Parser;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -2251,6 +2252,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return class_3114Parser;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -2613,6 +2615,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		}
 		return informationFlowName_6032Parser;
 	}
+
 
 	/**
 	 * @generated

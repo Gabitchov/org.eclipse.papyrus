@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -73,6 +73,9 @@ public class DurationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		super(UMLElementTypes.Duration_2104);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -89,6 +92,7 @@ public class DurationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

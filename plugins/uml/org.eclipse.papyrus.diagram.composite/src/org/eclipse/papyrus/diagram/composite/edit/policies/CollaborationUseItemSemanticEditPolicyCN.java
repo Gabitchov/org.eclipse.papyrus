@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -73,6 +73,9 @@ public class CollaborationUseItemSemanticEditPolicyCN extends UMLBaseItemSemanti
 		super(UMLElementTypes.CollaborationUse_3071);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -89,6 +92,7 @@ public class CollaborationUseItemSemanticEditPolicyCN extends UMLBaseItemSemanti
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -40,6 +40,8 @@ import org.eclipse.papyrus.diagram.composite.part.Messages;
  */
 public class PropertyPartCompartmentEditPartCN
 
+
+
 extends ShapeCompartmentEditPart
 
 {
@@ -56,12 +58,14 @@ extends ShapeCompartmentEditPart
 		super(view);
 	}
 
+
 	/**
 	 * @generated
 	 */
 	public String getCompartmentName() {
 		return Messages.PropertyPartCompartmentEditPartCN_title;
 	}
+
 
 	/**
 	 * @generated
@@ -80,6 +84,9 @@ extends ShapeCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PortInCompartmentCreationEditPolicy());
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -88,6 +95,8 @@ extends ShapeCompartmentEditPart
 			super.setRatio(ratio);
 		}
 	}
+
+
 
 	/**
 	 * @generated

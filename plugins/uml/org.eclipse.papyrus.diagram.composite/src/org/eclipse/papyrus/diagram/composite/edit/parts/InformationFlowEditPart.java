@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -67,6 +67,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		return false;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -76,6 +77,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		}
 		super.addChildVisual(childEditPart, -1);
 	}
+
 
 	/**
 	 * @generated
@@ -90,6 +92,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		return false;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -99,6 +102,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		}
 		super.removeChildVisual(childEditPart);
 	}
+
 
 	/**
 	 * Creates figure for this edit part.

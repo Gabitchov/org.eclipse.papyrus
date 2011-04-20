@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -42,6 +42,10 @@ public class GeneralizationItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 	public GeneralizationItemSemanticEditPolicy() {
 		super(UMLElementTypes.Generalization_4015);
 	}
+
+
+
+
 
 	/**
 	 * @generated

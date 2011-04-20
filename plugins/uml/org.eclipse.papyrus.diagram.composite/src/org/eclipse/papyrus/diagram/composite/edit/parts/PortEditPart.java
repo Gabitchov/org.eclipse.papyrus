@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -69,6 +69,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class PortEditPart extends
 
+
 AbstractBorderEditPart {
 
 	/**
@@ -111,6 +112,9 @@ AbstractBorderEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
+
+
+
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -133,6 +137,10 @@ AbstractBorderEditPart {
 		super.handleNotificationEvent(event);
 
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -186,6 +194,7 @@ AbstractBorderEditPart {
 		return (PortFigure)primaryShape;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -211,10 +220,12 @@ AbstractBorderEditPart {
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
+
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
 	}
+
 
 	/**
 	 * Creates figure for this edit part.
@@ -5071,6 +5082,10 @@ AbstractBorderEditPart {
 		}
 		return types;
 	}
+
+
+
+
 
 	/**
 	 * @generated

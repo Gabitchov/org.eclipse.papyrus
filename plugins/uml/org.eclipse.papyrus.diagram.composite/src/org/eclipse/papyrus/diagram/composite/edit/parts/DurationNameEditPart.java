@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -108,6 +108,8 @@ public class DurationNameEditPart extends CompartmentEditPart implements ITextAw
 	 */
 	private String defaultText;
 
+
+
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -121,6 +123,8 @@ public class DurationNameEditPart extends CompartmentEditPart implements ITextAw
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -585,6 +589,8 @@ public class DurationNameEditPart extends CompartmentEditPart implements ITextAw
 		return (View)getModel();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -688,6 +694,8 @@ public class DurationNameEditPart extends CompartmentEditPart implements ITextAw
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -703,6 +711,7 @@ public class DurationNameEditPart extends CompartmentEditPart implements ITextAw
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
+
 
 	/**
 	 * @generated
@@ -750,10 +759,13 @@ public class DurationNameEditPart extends CompartmentEditPart implements ITextAw
 		return null;
 	}
 
+
+
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
+
 
 	/**
 	 * @generated
@@ -780,6 +792,7 @@ public class DurationNameEditPart extends CompartmentEditPart implements ITextAw
 
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -787,5 +800,6 @@ public class DurationNameEditPart extends CompartmentEditPart implements ITextAw
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
+
 
 }

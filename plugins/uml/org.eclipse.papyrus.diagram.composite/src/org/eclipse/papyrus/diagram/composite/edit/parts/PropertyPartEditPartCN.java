@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -73,6 +73,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class PropertyPartEditPartCN extends
 
+
 org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 
 	/**
@@ -122,6 +123,9 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
+
+
+
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -131,6 +135,10 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		super.handleNotificationEvent(event);
 
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -187,12 +195,17 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			return true;
 		}
 
+
 		if(childEditPart instanceof PropertyPartCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((PropertyPartCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
+
+
+
+
 
 		//Papyrus Gencode :Affixed Port locator
 		if(childEditPart instanceof PortEditPart) {
@@ -201,8 +214,12 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			return true;
 		}
 
+
+
+
 		return false;
 	}
+
 
 	/**
 	 * @generated
@@ -257,6 +274,7 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		return getContentPane();
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -269,6 +287,7 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 
 		return result;
 	}
+
 
 	/**
 	 * Creates figure for this edit part.
@@ -5130,6 +5149,10 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		}
 		return types;
 	}
+
+
+
+
 
 	/**
 	 * @generated

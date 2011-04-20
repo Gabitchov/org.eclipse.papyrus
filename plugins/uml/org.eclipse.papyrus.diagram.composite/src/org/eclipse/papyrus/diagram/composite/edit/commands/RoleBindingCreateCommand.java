@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -45,6 +45,7 @@ public class RoleBindingCreateCommand extends EditElementCommand {
 	 */
 	protected final EObject target;
 
+
 	/**
 	 * @generated
 	 */
@@ -83,6 +84,7 @@ public class RoleBindingCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateDependency_4017(getContainer(), getSource(), getTarget());
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -100,6 +102,7 @@ public class RoleBindingCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 
 	}
+
 
 	/**
 	 * @generated

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -75,10 +75,12 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 */
 	private UMLBaseItemSemanticEditPolicy.LinkConstraints linkConstraints;
 
+
 	/**
 	 * @generated
 	 */
 	private ElementInitializers initializers;
+
 
 	/**
 	 * @generated
@@ -258,6 +260,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	public void setElementInitializers(ElementInitializers i) {
 		this.initializers = i;
 	}
+
 
 	/**
 	 * @generated

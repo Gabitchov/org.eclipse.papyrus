@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -38,6 +38,9 @@ public class ActivityItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEditPo
 		super(UMLElementTypes.Activity_3103);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -60,5 +63,6 @@ public class ActivityItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEditPo
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
+
 
 }

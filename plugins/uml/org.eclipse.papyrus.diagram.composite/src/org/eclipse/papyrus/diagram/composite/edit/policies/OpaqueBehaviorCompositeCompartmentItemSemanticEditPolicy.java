@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -60,6 +60,7 @@ public class OpaqueBehaviorCompositeCompartmentItemSemanticEditPolicy extends UM
 	public OpaqueBehaviorCompositeCompartmentItemSemanticEditPolicy() {
 		super(UMLElementTypes.OpaqueBehavior_2065);
 	}
+
 
 	/**
 	 * @generated
