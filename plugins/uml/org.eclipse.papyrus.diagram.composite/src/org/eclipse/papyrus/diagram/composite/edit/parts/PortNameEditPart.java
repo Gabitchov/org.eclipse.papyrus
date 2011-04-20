@@ -87,7 +87,9 @@ public class PortNameEditPart
 
 extends LabelEditPart
 
-implements ITextAwareEditPart, IBorderItemEditPart {
+implements ITextAwareEditPart, IBorderItemEditPart
+
+{
 
 	/**
 	 * @generated

@@ -19,17 +19,16 @@ import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
 
 /**
- * Preference page for ConstraintConstrainedElement notation element.
- * Currently not generated.
+ * @generated
  */
-public class ConstraintConstrainedElementPreferencePage extends AbstractPapyrusLinkPreferencePage {
+public class CommentAnnotatedElementPreferencePage extends AbstractPapyrusLinkPreferencePage {
 
 	/**
 	 * @generated
 	 */
-	public ConstraintConstrainedElementPreferencePage() {
+	public CommentAnnotatedElementPreferencePage() {
 		super();
-		setPreferenceKey(CompositeStructureDiagramEditPart.MODEL_ID + "_ConstraintConstrainedElement");
+		setPreferenceKey(CompositeStructureDiagramEditPart.MODEL_ID + "_CommentAnnotatedElement");
 	}
 
 	/**

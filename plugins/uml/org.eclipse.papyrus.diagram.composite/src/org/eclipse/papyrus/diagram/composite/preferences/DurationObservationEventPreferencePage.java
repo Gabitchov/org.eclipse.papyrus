@@ -19,8 +19,7 @@ import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
 
 /**
- * Preference page for CommentAnnotatedElement notation element.
- * Currently not generated.
+ * @generated
  */
 public class DurationObservationEventPreferencePage extends AbstractPapyrusLinkPreferencePage {
 

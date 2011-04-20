@@ -78,7 +78,9 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class ManifestationNameEditPart extends LabelEditPart implements ITextAwareEditPart {
+public class ManifestationNameEditPart extends LabelEditPart implements ITextAwareEditPart
+
+{
 
 	/**
 	 * @generated

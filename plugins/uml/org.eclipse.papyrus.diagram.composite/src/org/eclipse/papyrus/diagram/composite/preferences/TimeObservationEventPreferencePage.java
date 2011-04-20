@@ -19,17 +19,16 @@ import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
 
 /**
- * Preference page for CommentAnnotatedElement notation element.
- * Currently not generated.
+ * @generated
  */
-public class CommentAnnotatedElementPreferencePage extends AbstractPapyrusLinkPreferencePage {
+public class TimeObservationEventPreferencePage extends AbstractPapyrusLinkPreferencePage {
 
 	/**
 	 * @generated
 	 */
-	public CommentAnnotatedElementPreferencePage() {
+	public TimeObservationEventPreferencePage() {
 		super();
-		setPreferenceKey(CompositeStructureDiagramEditPart.MODEL_ID + "_CommentAnnotatedElement");
+		setPreferenceKey(CompositeStructureDiagramEditPart.MODEL_ID + "_TimeObservationEvent");
 	}
 
 	/**

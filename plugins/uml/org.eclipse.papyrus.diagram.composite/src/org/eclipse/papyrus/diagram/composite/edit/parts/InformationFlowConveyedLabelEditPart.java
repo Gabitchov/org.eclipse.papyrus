@@ -80,7 +80,9 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class InformationFlowConveyedLabelEditPart extends LabelEditPart implements ITextAwareEditPart {
+public class InformationFlowConveyedLabelEditPart extends LabelEditPart implements ITextAwareEditPart
+
+{
 
 	/**
 	 * @generated

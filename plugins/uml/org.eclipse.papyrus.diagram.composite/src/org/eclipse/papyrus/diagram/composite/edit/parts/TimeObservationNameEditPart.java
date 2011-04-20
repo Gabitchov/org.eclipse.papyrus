@@ -84,7 +84,9 @@ public class TimeObservationNameEditPart
 
 extends LabelEditPart
 
-implements ITextAwareEditPart, IBorderItemEditPart {
+implements ITextAwareEditPart, IBorderItemEditPart
+
+{
 
 	/**
 	 * @generated

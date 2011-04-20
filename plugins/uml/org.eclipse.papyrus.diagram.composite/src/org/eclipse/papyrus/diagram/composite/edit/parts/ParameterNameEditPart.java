@@ -87,7 +87,9 @@ public class ParameterNameEditPart
 
 extends LabelEditPart
 
-implements ITextAwareEditPart, IBorderItemEditPart {
+implements ITextAwareEditPart, IBorderItemEditPart
+
+{
 
 	/**
 	 * @generated

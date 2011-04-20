@@ -1700,7 +1700,8 @@
 
 <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
-   </extension>
+</extension>
+
 <extension point="org.eclipse.ui.preferencePages">
 
 
@@ -2774,7 +2775,8 @@
 			<editor id="org.eclipse.papyrus.diagram.composite"/>
 		</paletteProvider>	
 			
-	</extension>
+</extension>
+
 <extension
       point="org.eclipse.ui.commands">
    <command
@@ -2792,7 +2794,7 @@
          <MarkerType name="org.eclipse.papyrus.diagram.composite.diagnostic"/>
          <Priority name="Lowest"/>
       </MarkerNavigationProvider>
-   </extension>
+</extension>
 
 <extension id="diagnostic" name="Papyrus Composite Structure Diagram (Incubation) problems" point="org.eclipse.core.resources.markers">
       <?gmfgen generated="true"?>
@@ -2847,6 +2849,7 @@
 	</binding>
 		
 </extension>
+
 <extension
       point="org.eclipse.ui.services">
    <sourceProvider
@@ -2884,6 +2887,7 @@
       </activeWhen>
    </handler>
 </extension>
+
 <!-- The Command to manages the Provided and Required Interfaces for a Port-->
 <extension
       point="org.eclipse.ui.commands">
@@ -2894,6 +2898,7 @@
          name="Manage Provided Interfaces">
    </command>
 </extension>
+
 <!-- The Handler to manages the Provided and Required Interfaces for a Port-->
 <extension
       point="org.eclipse.ui.handlers">
@@ -2922,6 +2927,7 @@
       </activeWhen>
    </handler>
 </extension>
+
 <!-- Add the Menu to manages the Provided and Required Interfaces for a Port-->
 <extension
       point="org.eclipse.ui.menus">
