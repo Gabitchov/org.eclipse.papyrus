@@ -19,7 +19,7 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 public class SlotPreferencePage extends BlockDefinitionDiagramNodePreferencePage {
 
 	/** Constant key to access preferences */
-	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_Slot";
+	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_Slot"; //$NON-NLS-1$
 
 	/** Default constructor */
 	public SlotPreferencePage() {

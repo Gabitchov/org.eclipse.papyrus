@@ -19,7 +19,7 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 public class CommentPreferencePage extends BlockDefinitionDiagramNodePreferencePage {
 
 	/** Constant key to access preferences */
-	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_Comment";
+	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_Comment"; //$NON-NLS-1$
 
 
 	/** Default constructor */
@@ -39,5 +39,6 @@ public class CommentPreferencePage extends BlockDefinitionDiagramNodePreferenceP
 		// End of user code
 
 	}
+
 
 }

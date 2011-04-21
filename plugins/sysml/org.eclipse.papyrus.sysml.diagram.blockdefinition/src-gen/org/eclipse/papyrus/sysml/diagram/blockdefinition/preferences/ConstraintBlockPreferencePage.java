@@ -13,6 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
 
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
@@ -23,11 +27,29 @@ public class ConstraintBlockPreferencePage extends BlockDefinitionDiagramNodePre
 	/** Constant key to access preferences */
 	public static String prefKey = ElementTypes.DIAGRAM_ID + "_" + SysMLGraphicalTypes.SHAPE_SYSML_CONSTRAINTBLOCK_AS_CLASSIFIER_ID; //$NON-NLS-1$
 
-	/** The list of compartments for this node */
-	public static final String compartments[] = { "parameters", "constraints" };
+	/** The compartments default visibility for preferences */
+	public static final Map<String, Boolean> compartmentDefaultVisibilityMap;
 
-	/** The list of visible (default preference) compartments for this node */
-	public static final String default_compartments[] = { "parameters", "constraints" };
+	/** The compartment titles default visibility for preferences */
+	public static final Map<String, Boolean> compartmentTitleDefaultVisibilityMap;
+
+	/** Static attribute initialization */
+	static {
+		compartmentDefaultVisibilityMap = new LinkedHashMap<String, Boolean>();
+		compartmentDefaultVisibilityMap.put("parameters", Boolean.TRUE); //$NON-NLS-1$	
+		compartmentDefaultVisibilityMap.put("constraints", Boolean.TRUE); //$NON-NLS-1$	
+
+		compartmentTitleDefaultVisibilityMap = new LinkedHashMap<String, Boolean>();
+		compartmentTitleDefaultVisibilityMap.put("parameters", Boolean.TRUE); //$NON-NLS-1$
+		compartmentTitleDefaultVisibilityMap.put("constraints", Boolean.TRUE); //$NON-NLS-1$
+
+
+		// Start of user code custom static initializations
+		// End of user code
+
+		Collections.unmodifiableMap(compartmentDefaultVisibilityMap);
+		Collections.unmodifiableMap(compartmentTitleDefaultVisibilityMap);
+	}
 
 	/** Constructor */
 	public ConstraintBlockPreferencePage() {
@@ -38,32 +60,39 @@ public class ConstraintBlockPreferencePage extends BlockDefinitionDiagramNodePre
 	/** Default preferences initializer */
 	public static void initDefaults(IPreferenceStore store) {
 		// Start of user code custom default initializations		
-		// Initialize compartment and compartment title visibility
-		for(String compartmentName : compartments) {
-			// Register all compartment as masked (visible compartment are set after)
-			String showCompartmentKey = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, compartmentName, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
-			store.setDefault(showCompartmentKey, false);
-
-			// Set compartment title visibility
-			String showCompartmentTitleKey = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
-			store.setDefault(showCompartmentTitleKey, true);
-		}
-
-		// Initialize visible compartments
-		for(String compartmentName : default_compartments) {
-			String showCompartmentKey = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, compartmentName, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
-			store.setDefault(showCompartmentKey, true);
-		}
 		// End of user code
+
+		// Initialize default visibility for compartments in preference page.
+		for(String compartmentName : compartmentDefaultVisibilityMap.keySet()) {
+			String showCompartmentKey = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, compartmentName, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			store.setDefault(showCompartmentKey, compartmentDefaultVisibilityMap.get(compartmentName));
+		}
+
+		// Initialize default title visibility for compartments in preference page.
+		for(String compartmentName : compartmentTitleDefaultVisibilityMap.keySet()) {
+			String showCompartmentTitleKey = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+			store.setDefault(showCompartmentTitleKey, compartmentTitleDefaultVisibilityMap.get(compartmentName));
+		}
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage#initializeCompartmentsList()
+	 * {@inheritDoc}
 	 */
 	@Override
-	protected void initializeCompartmentsList() {
-		for(String name : compartments) {
-			this.compartmentsList.add(name);
+	protected void initializeCompartmentNamesList() {
+		for(String name : compartmentDefaultVisibilityMap.keySet()) {
+			this.compartmentNamesList.add(name);
 		}
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void initializeCompartmentTitlesList() {
+		for(String name : compartmentTitleDefaultVisibilityMap.keySet()) {
+			this.compartmentTitlesList.add(name);
+		}
+	}
+
 }

@@ -19,7 +19,7 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 public class ClassPreferencePage extends BlockDefinitionDiagramNodePreferencePage {
 
 	/** Constant key to access preferences */
-	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_Class";
+	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_Class"; //$NON-NLS-1$
 
 	/** Default constructor */
 	public ClassPreferencePage() {

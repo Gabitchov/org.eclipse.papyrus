@@ -13,6 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
 
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
@@ -23,11 +27,29 @@ public class ActorPreferencePage extends BlockDefinitionDiagramNodePreferencePag
 	/** Constant key to access preferences */
 	public static String prefKey = ElementTypes.DIAGRAM_ID + "_" + UMLGraphicalTypes.SHAPE_UML_ACTOR_AS_CLASSIFIER_ID; //$NON-NLS-1$
 
-	/** The list of compartments for this node */
-	public static final String compartments[] = { "properties", "operations" };
+	/** The compartments default visibility for preferences */
+	public static final Map<String, Boolean> compartmentDefaultVisibilityMap;
 
-	/** The list of visible (default preference) compartments for this node */
-	public static final String default_compartments[] = {};
+	/** The compartment titles default visibility for preferences */
+	public static final Map<String, Boolean> compartmentTitleDefaultVisibilityMap;
+
+	/** Static attribute initialization */
+	static {
+		compartmentDefaultVisibilityMap = new LinkedHashMap<String, Boolean>();
+		compartmentDefaultVisibilityMap.put("properties", Boolean.FALSE); //$NON-NLS-1$	
+		compartmentDefaultVisibilityMap.put("operations", Boolean.FALSE); //$NON-NLS-1$	
+
+		compartmentTitleDefaultVisibilityMap = new LinkedHashMap<String, Boolean>();
+		compartmentTitleDefaultVisibilityMap.put("properties", Boolean.TRUE); //$NON-NLS-1$
+		compartmentTitleDefaultVisibilityMap.put("operations", Boolean.TRUE); //$NON-NLS-1$
+
+
+		// Start of user code custom static initializations
+		// End of user code
+
+		Collections.unmodifiableMap(compartmentDefaultVisibilityMap);
+		Collections.unmodifiableMap(compartmentTitleDefaultVisibilityMap);
+	}
 
 	/** Constructor */
 	public ActorPreferencePage() {
@@ -41,15 +63,38 @@ public class ActorPreferencePage extends BlockDefinitionDiagramNodePreferencePag
 		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.WIDTH), 100);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.HEIGHT), 60);
 		// End of user code
+
+		// Initialize default visibility for compartments in preference page.
+		for(String compartmentName : compartmentDefaultVisibilityMap.keySet()) {
+			String showCompartmentKey = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, compartmentName, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			store.setDefault(showCompartmentKey, compartmentDefaultVisibilityMap.get(compartmentName));
+		}
+
+		// Initialize default title visibility for compartments in preference page.
+		for(String compartmentName : compartmentTitleDefaultVisibilityMap.keySet()) {
+			String showCompartmentTitleKey = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+			store.setDefault(showCompartmentTitleKey, compartmentTitleDefaultVisibilityMap.get(compartmentName));
+		}
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage#initializeCompartmentsList()
+	 * {@inheritDoc}
 	 */
 	@Override
-	protected void initializeCompartmentsList() {
-		for(String name : compartments) {
-			this.compartmentsList.add(name);
+	protected void initializeCompartmentNamesList() {
+		for(String name : compartmentDefaultVisibilityMap.keySet()) {
+			this.compartmentNamesList.add(name);
 		}
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void initializeCompartmentTitlesList() {
+		for(String name : compartmentTitleDefaultVisibilityMap.keySet()) {
+			this.compartmentTitlesList.add(name);
+		}
+	}
+
 }

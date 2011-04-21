@@ -52,7 +52,9 @@ public class UnitPreferencePage extends BlockDefinitionDiagramNodePreferencePage
 
 		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(prefLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_NAME | DISP_DIMENSION);
 		// End of user code
+
 	}
+
 
 	/** buttons to select the display mask of the label */
 	protected Button bttnName, bttnDimension;

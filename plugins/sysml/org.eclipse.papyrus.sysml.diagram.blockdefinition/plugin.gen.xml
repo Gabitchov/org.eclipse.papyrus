@@ -787,8 +787,8 @@
 			"6033" = ASSOCIATION_LABEL_MULTIPLICITY_SOURCE_HINT
 			"6034" = ASSOCIATION_LABEL_MULTIPLICITY_TARGET_HINT
 			"4017" = ASSOCIATION_CLASS
-			"6031" = ASSOCIATION_CLASS_LABEL_ASSOCIATION_CLASS_ROLE_SOURCE_HINT
-			"6032" = ASSOCIATION_CLASS_LABEL_ASSOCIATION_CLASS_ROLE_TARGET_HINT
+			"6031" = ASSOCIATION_CLASS_LABEL_ROLE_SOURCE_HINT
+			"6032" = ASSOCIATION_CLASS_LABEL_ROLE_TARGET_HINT
 			"4013" = COMMENT_ANNOTATED_ELEMENT
 			"4014" = CONSTRAINT_CONSTRAINED_ELEMENT
 			"4016" = ASSOCIATION_CLASS_DASHED_LINK
@@ -1147,8 +1147,7 @@
 
 <!-- Palette tool declaration (declares the real palette containment) -->
 <extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
-	name="SYSML_Basic_BlockDefinition">
-	
+	name="SYSML Basic (test)">
 	<paletteDefinition ID="SYSML_Basic_BlockDefinition"
 		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
 		name="SYSML_Basic_BlockDefinition" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
@@ -1161,12 +1160,179 @@
 	</paletteDefinition>
 </extension>
 
+<!-- Palette tool declaration (declares the real palette containment) -->
+<extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
+	name="SysML Constraints (BDD)">		
+	<paletteDefinition ID="SYSML_Constraints_BlockDefinition"
+		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+		name="SYSML_Constraints_BlockDefinition" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		path="palettes/blockdefinition.palette.constraints.xml"
+		provider="CEA LIST">
+		<Priority name="Low"/>
+
+		<!-- Specify diagram this palette tools relate to -->				
+		<editor id="org.eclipse.papyrus.sysml.diagram.blockdefinition"/>
+	</paletteDefinition>
+</extension>
+
+<!-- Palette tool declaration (declares the real palette containment) -->
+<extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
+	name="SysML DataTypes (BDD)">
+	<paletteDefinition ID="SYSML_DataTypes_BlockDefinition"
+		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+		name="SYSML_DataTypes_BlockDefinition" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		path="palettes/blockdefinition.palette.datatypes.xml"
+		provider="CEA LIST">
+		<Priority name="Low"/>
+
+		<!-- Specify diagram this palette tools relate to -->				
+		<editor id="org.eclipse.papyrus.sysml.diagram.blockdefinition"/>
+	</paletteDefinition>
+</extension>
+
+<!-- Palette tool declaration (declares the real palette containment) -->
+<extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
+	name="SysML Port and flows (BDD)">	
+	<paletteDefinition ID="SYSML_PortAndFlows_BlockDefinition"
+		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+		name="SYSML_PortAndFlows_BlockDefinition" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		path="palettes/blockdefinition.palette.portandflows.xml"
+		provider="CEA LIST">
+		<Priority name="Low"/>
+
+		<!-- Specify diagram this palette tools relate to -->				
+		<editor id="org.eclipse.papyrus.sysml.diagram.blockdefinition"/>
+	</paletteDefinition>	
+</extension>
+
+<!-- Palette tool declaration (declares the real palette containment) -->
+
+<extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
+	name="SysML ModelElements (BDD)">
+	<paletteDefinition ID="SYSML_ModelElements_BlockDefinition"
+		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+		name="SYSML_ModelElements_BlockDefinition" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		path="palettes/blockdefinition.palette.modelelements.xml"
+		provider="CEA LIST">
+		<Priority name="Low"/>
+
+		<!-- Specify diagram this palette tools relate to -->				
+		<editor id="org.eclipse.papyrus.sysml.diagram.blockdefinition"/>
+	</paletteDefinition>	
+</extension>
+
+<!-- Parser provider declaration -->
 <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders">
 	<ParserProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ParserProvider">
 		<Priority name="Low"/>
 	</ParserProvider>
 </extension>
   
+<extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
+      <MarkerNavigationProvider class="org.eclipse.papyrus.gmf.diagram.common.provider.MarkerNavigationProvider">
+         <MarkerType name="org.eclipse.papyrus.sysml.diagram.blockdefinition.diagnostic"/>
+         <Priority name="Lowest"/>
+      </MarkerNavigationProvider>
+   </extension>
+
+<extension id="diagnostic" name="Block Definition Diagram (Incubation) problems" point="org.eclipse.core.resources.markers">
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+      <persistent value="true"/>
+</extension>
+
+<extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+	<decoratorProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ValidationDecoratorProvider">
+		<Priority name="Lowest"/>
+		<object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+		<context decoratorTargets="PRIMARY_VIEW"/>
+	</decoratorProvider>
+</extension>
+
+<!-- The Command to manages the Provided and Required Interfaces for a Port-->
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Allows to manage easily provided Interfaces for a Port"
+         id="org.eclipse.papyrus.sysml.diagram.blockdefinition.command.manage.interfaces"
+         name="Manage Provided Interfaces">
+   </command>
+</extension>
+<!-- The Handler to manages the Provided and Required Interfaces for a Port-->
+<extension
+      point="org.eclipse.ui.handlers">
+   <handler
+         class="org.eclipse.papyrus.sysml.diagram.blockdefinition.handler.ManageProvidedInterfacesHandler"
+         commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.command.manage.interfaces">
+      <activeWhen>
+         <and>
+            <with
+                  variable="selection">
+               <iterate>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.common.edit.part.DefaultChildLabelEditPart">
+                  </instanceof>
+               </iterate>
+            </with>
+            <with
+                  variable="activeEditor">
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.diagram.common.diagram.tester.diagramType"
+                     value="BlockDefinition">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+</extension>
+
+<!-- Add the Menu to manages the Provided and Required Interfaces for a Port-->
+<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         allPopups="false"
+         locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?endof=editMenu">
+      <command
+            commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.command.manage.interfaces"
+            icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.popup.manage.interface"
+            label="Manage Interfaces"
+            mnemonic="&amp;I"
+            style="push"
+            tooltip="The command to manage the interfaces provided and required by a Port">
+            <!-- The action is visible only if there is an active handler for it  -->
+         <visibleWhen
+               checkEnabled="true">
+         </visibleWhen>
+      </command>
+      </menuContribution>
+</extension>
+
+<!-- Diagram specific advices -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+
+	<!-- Delete moved views advice -->		
+	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringMoveHelperAdvice"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.advice.DeleteViewDuringMoveHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Element">
+	</adviceBinding>
+		
+	</metamodel>
+</extension>
+	
+<!-- UML ElementType bindings to Papyrus shared IClientContext -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+
+	<!-- Bindings declaration to shared IClientContext -->
+	<binding context="org.eclipse.papyrus.service.edit.TypeContext">	
+		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringMoveHelperAdvice"/>
+	</binding>
+		
+</extension>
 <!-- // End of user code 
   -->
 

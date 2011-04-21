@@ -33,6 +33,8 @@ public class PrimitiveTypePreferencePage extends BlockDefinitionDiagramNodePrefe
 	public static void initDefaults(IPreferenceStore store) {
 		// Start of user code custom default initializations		
 		// End of user code
+
 	}
+
 
 }

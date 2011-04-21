@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
-import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.BlockDefinitionDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDiagramDragDropEditPolicy;
 
 public class BlockDefinitionDiagramEditPolicyProvider extends AbstractProvider implements IEditPolicyProvider {
 
@@ -101,7 +101,7 @@ public class BlockDefinitionDiagramEditPolicyProvider extends AbstractProvider i
 	}
 
 	public void createEditPolicies(EditPart editPart) {
-		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new BlockDefinitionDiagramDragDropEditPolicy());
+		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	}
 
 }

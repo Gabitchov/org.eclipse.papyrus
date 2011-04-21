@@ -40,7 +40,7 @@
       <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.32"/>
     </genNodes>
     <genLinks>
-      <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.10"/>
+      <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.11"/>
     </genLinks>
     <genLinks>
       <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.4"/>
@@ -52,7 +52,7 @@
       <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.9"/>
     </genLinks>
     <genLinks>
-      <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.2"/>
+      <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.3"/>
     </genLinks>
     <genLinks name="AssociationClass">
       <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.1"/>

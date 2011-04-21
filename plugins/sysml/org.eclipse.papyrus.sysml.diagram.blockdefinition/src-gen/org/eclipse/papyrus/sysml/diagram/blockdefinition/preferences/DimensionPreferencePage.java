@@ -36,6 +36,8 @@ public class DimensionPreferencePage extends BlockDefinitionDiagramNodePreferenc
 		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.WIDTH), 100);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.HEIGHT), 60);
 		// End of user code
+
 	}
+
 
 }
