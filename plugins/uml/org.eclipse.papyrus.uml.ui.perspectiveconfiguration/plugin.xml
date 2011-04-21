@@ -65,6 +65,9 @@
          <toolbar
                toolbarID="org.eclipse.papyrus.table.toolbar">
          </toolbar>
+         <command
+               commandID="org.eclipse.ui.window.preferences">
+         </command>
       </configuration>
    </extension>
 
