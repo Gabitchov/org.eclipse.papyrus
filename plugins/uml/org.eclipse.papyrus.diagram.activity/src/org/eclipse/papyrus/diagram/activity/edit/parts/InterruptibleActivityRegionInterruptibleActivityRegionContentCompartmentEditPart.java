@@ -78,7 +78,7 @@ extends ShapeCompartmentEditPart
 		result.getScrollPane().setHorizontalScrollBar(null);
 		result.getScrollPane().setVerticalScrollBar(null);
 		result.getScrollPane().setScrollBarVisibility(ScrollPane.NEVER);
-		
+
 		return result;
 	}
 

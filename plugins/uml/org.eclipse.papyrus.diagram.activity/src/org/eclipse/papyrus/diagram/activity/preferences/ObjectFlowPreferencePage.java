@@ -45,6 +45,7 @@ public class ObjectFlowPreferencePage extends AbstractPapyrusLinkPreferencePage 
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
+
 	}
 
 	/**
