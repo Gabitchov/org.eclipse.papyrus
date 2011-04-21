@@ -7677,8 +7677,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Link"
               description="Create of a link for comment"
-              largeIconPath="icons/full/obj16/Link.gif"
-              smallIconPath="icons/full/obj16/Link.gif"
+              largeIconPath="icons/obj16/Link.gif"
+              smallIconPath="icons/obj16/Link.gif"
               genLinks="/0/@diagram/@links.5"/>
         </groups>
       </palette>
