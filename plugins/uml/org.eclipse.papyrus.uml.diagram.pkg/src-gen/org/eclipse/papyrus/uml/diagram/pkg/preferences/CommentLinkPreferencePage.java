@@ -19,7 +19,8 @@ import org.eclipse.papyrus.uml.diagram.pkg.provider.ElementTypes;
 public class CommentLinkPreferencePage extends PackageDiagramLinkPreferencePage {
 
 	/** Constant key to access preferences */
-	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_CommentAnnotatedElement";
+	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_CommentAnnotatedElement"; //$NON-NLS-1$
+
 
 	/** Default constructor */
 	public CommentLinkPreferencePage() {
@@ -36,5 +37,7 @@ public class CommentLinkPreferencePage extends PackageDiagramLinkPreferencePage 
 	public static void initDefaults(IPreferenceStore store) {
 		// Start of user code custom default initializations
 		// End of user code
+
 	}
+
 }

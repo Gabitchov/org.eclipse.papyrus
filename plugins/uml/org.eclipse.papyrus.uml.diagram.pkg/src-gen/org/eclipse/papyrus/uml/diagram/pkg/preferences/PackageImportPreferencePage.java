@@ -13,13 +13,32 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.pkg.preferences;
 
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.pkg.provider.ElementTypes;
 
 public class PackageImportPreferencePage extends PackageDiagramLinkPreferencePage {
 
 	/** Constant key to access preferences */
-	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_PackageImport";
+	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_PackageImport"; //$NON-NLS-1$
+
+	/** The compartments default visibility for preferences */
+	public static final Map<String, Boolean> labelDefaultVisibilityMap;
+
+	/** Static attribute initialization */
+	static {
+		labelDefaultVisibilityMap = new LinkedHashMap<String, Boolean>();
+		labelDefaultVisibilityMap.put("Stereotype", Boolean.TRUE); //$NON-NLS-1$	
+
+		// Start of user code custom static initializations
+		// End of user code
+
+		Collections.unmodifiableMap(labelDefaultVisibilityMap);
+	}
 
 	/** Default constructor */
 	public PackageImportPreferencePage() {
@@ -36,5 +55,20 @@ public class PackageImportPreferencePage extends PackageDiagramLinkPreferencePag
 	public static void initDefaults(IPreferenceStore store) {
 		// Start of user code custom default initializations
 		// End of user code
+
+		for(String labelName : labelDefaultVisibilityMap.keySet()) {
+			String showLabelKey = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, labelName, PreferenceConstantHelper.LABEL_VISIBILITY);
+			store.setDefault(showLabelKey, labelDefaultVisibilityMap.get(labelName));
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void initializeLabelsList() {
+		for(String name : labelDefaultVisibilityMap.keySet()) {
+			this.labelsList.add(name);
+		}
 	}
 }

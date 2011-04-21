@@ -22,6 +22,9 @@ import org.eclipse.papyrus.uml.diagram.pkg.provider.ElementTypes;
 
 public class PackageDiagramCreateCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected String getDefaultDiagramName() {
 		return "NewDiagram"; // //$NON-NLS-1$
@@ -44,7 +47,6 @@ public class PackageDiagramCreateCommand extends AbstractPapyrusGmfCreateDiagram
 	}
 
 	/**
-	 * 
 	 * {@inheritDoc}
 	 */
 	@Override
