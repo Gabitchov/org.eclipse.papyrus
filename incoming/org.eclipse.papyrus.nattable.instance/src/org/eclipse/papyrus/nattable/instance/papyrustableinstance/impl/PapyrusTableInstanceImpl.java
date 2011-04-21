@@ -1,16 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+/**
+ * <copyright>
+ * </copyright>
  *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl;
 
 import java.util.Collection;
@@ -26,10 +19,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.facet.infra.query.ModelQuery;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
+import org.eclipse.emf.facet.infra.query.ModelQuery;
+
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
 
 import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstancePackage;
@@ -120,7 +113,7 @@ public class PapyrusTableInstanceImpl extends EObjectImpl implements PapyrusTabl
 	 * @generated
 	 * @ordered
 	 */
-	protected TableInstance table;
+	protected TableInstance2 table;
 
 	/**
 	 * The cached value of the '{@link #getFillingQueries() <em>Filling Queries</em>}' reference list.
@@ -219,10 +212,10 @@ public class PapyrusTableInstanceImpl extends EObjectImpl implements PapyrusTabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TableInstance getTable() {
+	public TableInstance2 getTable() {
 		if (table != null && table.eIsProxy()) {
 			InternalEObject oldTable = (InternalEObject)table;
-			table = (TableInstance)eResolveProxy(oldTable);
+			table = (TableInstance2)eResolveProxy(oldTable);
 			if (table != oldTable) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__TABLE, oldTable, table));
@@ -236,7 +229,7 @@ public class PapyrusTableInstanceImpl extends EObjectImpl implements PapyrusTabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TableInstance basicGetTable() {
+	public TableInstance2 basicGetTable() {
 		return table;
 	}
 
@@ -245,8 +238,8 @@ public class PapyrusTableInstanceImpl extends EObjectImpl implements PapyrusTabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTable(TableInstance newTable) {
-		TableInstance oldTable = table;
+	public void setTable(TableInstance2 newTable) {
+		TableInstance2 oldTable = table;
 		table = newTable;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__TABLE, oldTable, table));
@@ -306,7 +299,7 @@ public class PapyrusTableInstanceImpl extends EObjectImpl implements PapyrusTabl
 				setIsSynchronized((Boolean)newValue);
 				return;
 			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__TABLE:
-				setTable((TableInstance)newValue);
+				setTable((TableInstance2)newValue);
 				return;
 			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__FILLING_QUERIES:
 				getFillingQueries().clear();
@@ -334,7 +327,7 @@ public class PapyrusTableInstanceImpl extends EObjectImpl implements PapyrusTabl
 				setIsSynchronized(IS_SYNCHRONIZED_EDEFAULT);
 				return;
 			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__TABLE:
-				setTable((TableInstance)null);
+				setTable((TableInstance2)null);
 				return;
 			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__FILLING_QUERIES:
 				getFillingQueries().clear();

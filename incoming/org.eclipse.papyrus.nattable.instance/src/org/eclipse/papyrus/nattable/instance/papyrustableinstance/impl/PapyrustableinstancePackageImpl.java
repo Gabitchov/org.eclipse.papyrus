@@ -1,16 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+/**
+ * <copyright>
+ * </copyright>
  *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -21,7 +14,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.emf.facet.infra.query.QueryPackage;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
+
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.Tableinstance2Package;
 
 import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstanceFactory;
@@ -88,7 +82,7 @@ public class PapyrustableinstancePackageImpl extends EPackageImpl implements Pap
 		isInited = true;
 
 		// Initialize simple dependencies
-		TableinstancePackage.eINSTANCE.eClass();
+		Tableinstance2Package.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		thePapyrustableinstancePackage.createPackageContents();
@@ -219,7 +213,7 @@ public class PapyrustableinstancePackageImpl extends EPackageImpl implements Pap
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		TableinstancePackage theTableinstancePackage = (TableinstancePackage)EPackage.Registry.INSTANCE.getEPackage(TableinstancePackage.eNS_URI);
+		Tableinstance2Package theTableinstance2Package = (Tableinstance2Package)EPackage.Registry.INSTANCE.getEPackage(Tableinstance2Package.eNS_URI);
 		QueryPackage theQueryPackage = (QueryPackage)EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI);
 
 		// Create type parameters
@@ -233,7 +227,7 @@ public class PapyrustableinstancePackageImpl extends EPackageImpl implements Pap
 		initEAttribute(getPapyrusTableInstance_Name(), ecorePackage.getEString(), "name", "no name", 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPapyrusTableInstance_Type(), ecorePackage.getEString(), "type", "PapyrusDefaultTable", 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPapyrusTableInstance_IsSynchronized(), ecorePackage.getEBoolean(), "isSynchronized", "false", 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPapyrusTableInstance_Table(), theTableinstancePackage.getTableInstance(), null, "table", null, 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPapyrusTableInstance_Table(), theTableinstance2Package.getTableInstance2(), null, "table", null, 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPapyrusTableInstance_FillingQueries(), theQueryPackage.getModelQuery(), null, "fillingQueries", null, 0, -1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource

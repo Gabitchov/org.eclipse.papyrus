@@ -1,23 +1,18 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+/**
+ * <copyright>
+ * </copyright>
  *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
-
+ * $Id$
+ */
 package org.eclipse.papyrus.nattable.instance.papyrustableinstance;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.emf.facet.infra.query.ModelQuery;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
+
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,7 +35,6 @@ import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstan
  * @generated
  */
 public interface PapyrusTableInstance extends EObject {
-
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * The default value is <code>"no name"</code>.
@@ -127,12 +121,12 @@ public interface PapyrusTableInstance extends EObject {
 	 * The TableInstance
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Table</em>' reference.
-	 * @see #setTable(TableInstance)
+	 * @see #setTable(TableInstance2)
 	 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstancePackage#getPapyrusTableInstance_Table()
 	 * @model
 	 * @generated
 	 */
-	TableInstance getTable();
+	TableInstance2 getTable();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getTable <em>Table</em>}' reference.
@@ -142,7 +136,7 @@ public interface PapyrusTableInstance extends EObject {
 	 * @see #getTable()
 	 * @generated
 	 */
-	void setTable(TableInstance value);
+	void setTable(TableInstance2 value);
 
 	/**
 	 * Returns the value of the '<em><b>Filling Queries</b></em>' reference list.
