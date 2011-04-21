@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.table.common.handlers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -33,8 +34,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.facet.infra.query.ModelQuery;
 import org.eclipse.emf.facet.infra.query.ModelQuerySet;
 import org.eclipse.emf.facet.infra.query.core.ModelQuerySetCatalog;
+import org.eclipse.emf.facet.widgets.nattable.NatTableWidgetUtils;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstanceFactory;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.jface.dialogs.Dialog;
@@ -221,7 +224,8 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 		PapyrusNattableModel papyrusModel = (PapyrusNattableModel)ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(PapyrusNattableModel.MODEL_ID);
 		papyrusModel.addPapyrusTableInstance(papyrusTable);
 
-		TableInstance tableInstance = TableinstanceFactory.eINSTANCE.createTableInstance();
+		//TableInstance tableInstance = TableinstanceFactory.eINSTANCE.createTableInstance();
+		TableInstance2 tableInstance = NatTableWidgetUtils.createTableInstance(Collections.EMPTY_LIST, defaultDescription, null, getTableContext(), null);
 		tableInstance.setDescription(description);
 
 		// Save the model in the associated resource
