@@ -4590,9 +4590,6 @@ public class UMLVisualIDRegistry {
 			if(InterfaceNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(InterfaceCompartmentEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			break;
 		case PrimitiveTypeEditPart.VISUAL_ID:
 			if(PrimitiveTypeNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -5018,9 +5015,6 @@ public class UMLVisualIDRegistry {
 			break;
 		case InterfaceEditPartCN.VISUAL_ID:
 			if(InterfaceNameEditPartCN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InterfaceCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

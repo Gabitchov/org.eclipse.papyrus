@@ -30,7 +30,7 @@ public class ExecutionEnvironmentPreferencePage extends AbstractPapyrusNodePrefe
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "ExecutionEnvironmentCompositeCompartment" };
+	public static final String compartments[] = { "structure" };
 
 
 	/**
@@ -101,7 +101,7 @@ public class ExecutionEnvironmentPreferencePage extends AbstractPapyrusNodePrefe
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("ExecutionEnvironmentCompositeCompartment", Boolean.TRUE);
+		map.put("structure", Boolean.TRUE);
 		return map;
 	}
 
@@ -111,7 +111,7 @@ public class ExecutionEnvironmentPreferencePage extends AbstractPapyrusNodePrefe
 	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 
-		map.put("ExecutionEnvironmentCompositeCompartment", Boolean.TRUE);
+		map.put("structure", Boolean.TRUE);
 		return map;
 	}
 

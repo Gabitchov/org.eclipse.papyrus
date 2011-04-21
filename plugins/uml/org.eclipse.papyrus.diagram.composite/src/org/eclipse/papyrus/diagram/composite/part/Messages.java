@@ -658,11 +658,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String InterfaceCompartmentEditPartCN_title;
-
-	/**
-	 * @generated
-	 */
 	public static String ActivityCompositeCompartmentEditPart_title;
 
 	/**
@@ -719,11 +714,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String CollaborationCompositeCompartmentEditPart_title;
-
-	/**
-	 * @generated
-	 */
-	public static String InterfaceCompartmentEditPart_title;
 
 	/**
 	 * @generated

@@ -79,7 +79,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createActivityActivityCompositeCompartment_7063Children(getCompartment(view, ActivityCompositeCompartmentEditPart.VISUAL_ID));
+		createActivityStructure_7063Children(getCompartment(view, ActivityCompositeCompartmentEditPart.VISUAL_ID));
 
 	}
 
@@ -93,7 +93,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createInteractionInteractionCompositeCompartment_7064Children(getCompartment(view, InteractionCompositeCompartmentEditPart.VISUAL_ID));
+		createInteractionStructure_7064Children(getCompartment(view, InteractionCompositeCompartmentEditPart.VISUAL_ID));
 
 	}
 
@@ -107,7 +107,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createProtocolStateMachineProtocolStateMachineCompositeCompartment_7065Children(getCompartment(view, ProtocolStateMachineCompositeCompartmentEditPart.VISUAL_ID));
+		createProtocolStateMachineStructure_7065Children(getCompartment(view, ProtocolStateMachineCompositeCompartmentEditPart.VISUAL_ID));
 
 	}
 
@@ -121,7 +121,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createStateMachineStateMachineCompositeCompartment_7066Children(getCompartment(view, StateMachineCompositeCompartmentEditPart.VISUAL_ID));
+		createStateMachineStructure_7066Children(getCompartment(view, StateMachineCompositeCompartmentEditPart.VISUAL_ID));
 
 	}
 
@@ -135,7 +135,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createFunctionBehaviorFunctionBehaviorCompositeCompartment_7067Children(getCompartment(view, FunctionBehaviorCompositeCompartmentEditPart.VISUAL_ID));
+		createFunctionBehaviorStructure_7067Children(getCompartment(view, FunctionBehaviorCompositeCompartmentEditPart.VISUAL_ID));
 
 	}
 
@@ -149,7 +149,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createOpaqueBehaviorOpaqueBehaviorCompositeCompartment_7068Children(getCompartment(view, OpaqueBehaviorCompositeCompartmentEditPart.VISUAL_ID));
+		createOpaqueBehaviorStructure_7068Children(getCompartment(view, OpaqueBehaviorCompositeCompartmentEditPart.VISUAL_ID));
 
 	}
 
@@ -163,7 +163,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createComponentComponentCompositeCompartment_7069Children(getCompartment(view, ComponentCompositeCompartmentEditPart.VISUAL_ID));
+		createComponentStructure_7069Children(getCompartment(view, ComponentCompositeCompartmentEditPart.VISUAL_ID));
 
 	}
 
@@ -177,7 +177,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createDeviceDeviceCompositeCompartment_7070Children(getCompartment(view, DeviceCompositeCompartmentEditPart.VISUAL_ID));
+		createDeviceStructure_7070Children(getCompartment(view, DeviceCompositeCompartmentEditPart.VISUAL_ID));
 
 	}
 
@@ -191,7 +191,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createExecutionEnvironmentExecutionEnvironmentCompositeCompartment_7071Children(getCompartment(view, ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID));
+		createExecutionEnvironmentStructure_7071Children(getCompartment(view, ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID));
 
 	}
 
@@ -205,7 +205,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createNodeNodeCompositeCompartment_7072Children(getCompartment(view, NodeCompositeCompartmentEditPart.VISUAL_ID));
+		createNodeStructure_7072Children(getCompartment(view, NodeCompositeCompartmentEditPart.VISUAL_ID));
 
 	}
 
@@ -219,7 +219,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createClassClassCompositeCompartment_7073Children(getCompartment(view, ClassCompositeCompartmentEditPart.VISUAL_ID));
+		createClassStructure_7073Children(getCompartment(view, ClassCompositeCompartmentEditPart.VISUAL_ID));
 
 	}
 
@@ -229,7 +229,7 @@ public class UMLDiagramContentInitializer {
 	private void createCollaboration_2075Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
 		myLinkDescriptors.addAll(UMLDiagramUpdater.getCollaboration_2075OutgoingLinks(view));
-		createCollaborationCollaborationCompositeCompartment_7075Children(getCompartment(view, CollaborationCompositeCompartmentEditPart.VISUAL_ID));
+		createCollaborationStructure_7075Children(getCompartment(view, CollaborationCompositeCompartmentEditPart.VISUAL_ID));
 
 	}
 
@@ -239,7 +239,6 @@ public class UMLDiagramContentInitializer {
 	private void createInterface_2076Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
 		myLinkDescriptors.addAll(UMLDiagramUpdater.getInterface_2076OutgoingLinks(view));
-		createInterfaceInterfaceCompartment_7076Children(getCompartment(view, InterfaceCompartmentEditPart.VISUAL_ID));
 
 	}
 
@@ -262,7 +261,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createEnumerationEnumerationEnumerationLiteralCompartment_7048Children(getCompartment(view, EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID));
+		createEnumerationLiterals_7048Children(getCompartment(view, EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID));
 
 	}
 
@@ -272,8 +271,8 @@ public class UMLDiagramContentInitializer {
 	private void createDataType_2068Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
 		myLinkDescriptors.addAll(UMLDiagramUpdater.getDataType_2068OutgoingLinks(view));
-		createDataTypeDataTypeAttributeCompartment_7033Children(getCompartment(view, DataTypeAttributeCompartmentEditPart.VISUAL_ID));
-		createDataTypeDataTypeOperationCompartment_7034Children(getCompartment(view, DataTypeOperationCompartmentEditPart.VISUAL_ID));
+		createDataTypeProperties_7033Children(getCompartment(view, DataTypeAttributeCompartmentEditPart.VISUAL_ID));
+		createDataTypeOperations_7034Children(getCompartment(view, DataTypeOperationCompartmentEditPart.VISUAL_ID));
 
 	}
 
@@ -647,7 +646,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createPropertyPropertyPartCompartment_7077Children(getCompartment(view, PropertyPartCompartmentEditPartCN.VISUAL_ID));
+		createPropertyStructure_7077Children(getCompartment(view, PropertyPartCompartmentEditPartCN.VISUAL_ID));
 
 	}
 
@@ -679,7 +678,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createActivityActivityCompositeCompartment_7050Children(getCompartment(view, ActivityCompositeCompartmentEditPartCN.VISUAL_ID));
+		createActivityStructure_7050Children(getCompartment(view, ActivityCompositeCompartmentEditPartCN.VISUAL_ID));
 
 	}
 
@@ -693,7 +692,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createInteractionInteractionCompositeCompartment_7051Children(getCompartment(view, InteractionCompositeCompartmentEditPartCN.VISUAL_ID));
+		createInteractionStructure_7051Children(getCompartment(view, InteractionCompositeCompartmentEditPartCN.VISUAL_ID));
 
 	}
 
@@ -707,7 +706,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createProtocolStateMachineProtocolStateMachineCompositeCompartment_7052Children(getCompartment(view, ProtocolStateMachineCompositeCompartmentEditPartCN.VISUAL_ID));
+		createProtocolStateMachineStructure_7052Children(getCompartment(view, ProtocolStateMachineCompositeCompartmentEditPartCN.VISUAL_ID));
 
 	}
 
@@ -721,7 +720,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createStateMachineStateMachineCompositeCompartment_7053Children(getCompartment(view, StateMachineCompositeCompartmentEditPartCN.VISUAL_ID));
+		createStateMachineStructure_7053Children(getCompartment(view, StateMachineCompositeCompartmentEditPartCN.VISUAL_ID));
 
 	}
 
@@ -735,7 +734,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createFunctionBehaviorFunctionBehaviorCompositeCompartment_7054Children(getCompartment(view, FunctionBehaviorCompositeCompartmentEditPartCN.VISUAL_ID));
+		createFunctionBehaviorStructure_7054Children(getCompartment(view, FunctionBehaviorCompositeCompartmentEditPartCN.VISUAL_ID));
 
 	}
 
@@ -749,7 +748,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createOpaqueBehaviorOpaqueBehaviorCompositeCompartment_7055Children(getCompartment(view, OpaqueBehaviorCompositeCompartmentEditPartCN.VISUAL_ID));
+		createOpaqueBehaviorStructure_7055Children(getCompartment(view, OpaqueBehaviorCompositeCompartmentEditPartCN.VISUAL_ID));
 
 	}
 
@@ -763,7 +762,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createComponentComponentCompositeCompartment_7056Children(getCompartment(view, ComponentCompositeCompartmentEditPartCN.VISUAL_ID));
+		createComponentStructure_7056Children(getCompartment(view, ComponentCompositeCompartmentEditPartCN.VISUAL_ID));
 
 	}
 
@@ -777,7 +776,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createDeviceDeviceCompositeCompartment_7057Children(getCompartment(view, DeviceCompositeCompartmentEditPartCN.VISUAL_ID));
+		createDeviceStructure_7057Children(getCompartment(view, DeviceCompositeCompartmentEditPartCN.VISUAL_ID));
 
 	}
 
@@ -791,7 +790,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createExecutionEnvironmentExecutionEnvironmentCompositeCompartment_7058Children(getCompartment(view, ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID));
+		createExecutionEnvironmentStructure_7058Children(getCompartment(view, ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID));
 
 	}
 
@@ -805,7 +804,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createNodeNodeCompositeCompartment_7059Children(getCompartment(view, NodeCompositeCompartmentEditPartCN.VISUAL_ID));
+		createNodeStructure_7059Children(getCompartment(view, NodeCompositeCompartmentEditPartCN.VISUAL_ID));
 
 	}
 
@@ -819,7 +818,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createClassClassCompositeCompartment_7060Children(getCompartment(view, ClassCompositeCompartmentEditPartCN.VISUAL_ID));
+		createClassStructure_7060Children(getCompartment(view, ClassCompositeCompartmentEditPartCN.VISUAL_ID));
 
 	}
 
@@ -829,7 +828,7 @@ public class UMLDiagramContentInitializer {
 	private void createCollaboration_3086Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
 		myLinkDescriptors.addAll(UMLDiagramUpdater.getCollaboration_3086OutgoingLinks(view));
-		createCollaborationCollaborationCompositeCompartment_7061Children(getCompartment(view, CollaborationCompositeCompartmentEditPartCN.VISUAL_ID));
+		createCollaborationStructure_7061Children(getCompartment(view, CollaborationCompositeCompartmentEditPartCN.VISUAL_ID));
 
 	}
 
@@ -839,7 +838,6 @@ public class UMLDiagramContentInitializer {
 	private void createInterface_3087Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
 		myLinkDescriptors.addAll(UMLDiagramUpdater.getInterface_3087OutgoingLinks(view));
-		createInterfaceInterfaceCompositeCompartment_7062Children(getCompartment(view, InterfaceCompartmentEditPartCN.VISUAL_ID));
 
 	}
 
@@ -862,7 +860,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createEnumerationEnumerationEnumerationLiteralCompartment_7049Children(getCompartment(view, EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID));
+		createEnumerationLiterals_7049Children(getCompartment(view, EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID));
 
 	}
 
@@ -872,8 +870,8 @@ public class UMLDiagramContentInitializer {
 	private void createDataType_3080Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
 		myLinkDescriptors.addAll(UMLDiagramUpdater.getDataType_3080OutgoingLinks(view));
-		createDataTypeDataTypeAttributeCompartment_7036Children(getCompartment(view, DataTypeAttributeCompartmentEditPartCN.VISUAL_ID));
-		createDataTypeDataTypeOperationCompartment_7037Children(getCompartment(view, DataTypeOperationCompartmentEditPartCN.VISUAL_ID));
+		createDataTypeProperties_7036Children(getCompartment(view, DataTypeAttributeCompartmentEditPartCN.VISUAL_ID));
+		createDataTypeOperations_7037Children(getCompartment(view, DataTypeOperationCompartmentEditPartCN.VISUAL_ID));
 
 	}
 
@@ -1132,8 +1130,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createDataTypeDataTypeAttributeCompartment_7033Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getDataTypeDataTypeAttributeCompartment_7033SemanticChildren(view);
+	private void createDataTypeProperties_7033Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getDataTypeProperties_7033SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1142,8 +1140,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createDataTypeDataTypeOperationCompartment_7034Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getDataTypeDataTypeOperationCompartment_7034SemanticChildren(view);
+	private void createDataTypeOperations_7034Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getDataTypeOperations_7034SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1152,8 +1150,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createDataTypeDataTypeAttributeCompartment_7036Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getDataTypeDataTypeAttributeCompartment_7036SemanticChildren(view);
+	private void createDataTypeProperties_7036Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getDataTypeProperties_7036SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1162,8 +1160,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createDataTypeDataTypeOperationCompartment_7037Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getDataTypeDataTypeOperationCompartment_7037SemanticChildren(view);
+	private void createDataTypeOperations_7037Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getDataTypeOperations_7037SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1172,8 +1170,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createEnumerationEnumerationEnumerationLiteralCompartment_7048Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getEnumerationEnumerationEnumerationLiteralCompartment_7048SemanticChildren(view);
+	private void createEnumerationLiterals_7048Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getEnumerationLiterals_7048SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1182,8 +1180,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createEnumerationEnumerationEnumerationLiteralCompartment_7049Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getEnumerationEnumerationEnumerationLiteralCompartment_7049SemanticChildren(view);
+	private void createEnumerationLiterals_7049Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getEnumerationLiterals_7049SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1192,8 +1190,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createActivityActivityCompositeCompartment_7050Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getActivityActivityCompositeCompartment_7050SemanticChildren(view);
+	private void createActivityStructure_7050Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getActivityStructure_7050SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1202,8 +1200,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createInteractionInteractionCompositeCompartment_7051Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getInteractionInteractionCompositeCompartment_7051SemanticChildren(view);
+	private void createInteractionStructure_7051Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getInteractionStructure_7051SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1212,8 +1210,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createProtocolStateMachineProtocolStateMachineCompositeCompartment_7052Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getProtocolStateMachineProtocolStateMachineCompositeCompartment_7052SemanticChildren(view);
+	private void createProtocolStateMachineStructure_7052Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getProtocolStateMachineStructure_7052SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1222,8 +1220,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createStateMachineStateMachineCompositeCompartment_7053Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getStateMachineStateMachineCompositeCompartment_7053SemanticChildren(view);
+	private void createStateMachineStructure_7053Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getStateMachineStructure_7053SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1232,8 +1230,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createFunctionBehaviorFunctionBehaviorCompositeCompartment_7054Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getFunctionBehaviorFunctionBehaviorCompositeCompartment_7054SemanticChildren(view);
+	private void createFunctionBehaviorStructure_7054Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getFunctionBehaviorStructure_7054SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1242,8 +1240,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createOpaqueBehaviorOpaqueBehaviorCompositeCompartment_7055Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getOpaqueBehaviorOpaqueBehaviorCompositeCompartment_7055SemanticChildren(view);
+	private void createOpaqueBehaviorStructure_7055Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getOpaqueBehaviorStructure_7055SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1252,8 +1250,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createComponentComponentCompositeCompartment_7056Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getComponentComponentCompositeCompartment_7056SemanticChildren(view);
+	private void createComponentStructure_7056Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getComponentStructure_7056SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1262,8 +1260,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createDeviceDeviceCompositeCompartment_7057Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getDeviceDeviceCompositeCompartment_7057SemanticChildren(view);
+	private void createDeviceStructure_7057Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getDeviceStructure_7057SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1272,8 +1270,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createExecutionEnvironmentExecutionEnvironmentCompositeCompartment_7058Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getExecutionEnvironmentExecutionEnvironmentCompositeCompartment_7058SemanticChildren(view);
+	private void createExecutionEnvironmentStructure_7058Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getExecutionEnvironmentStructure_7058SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1282,8 +1280,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createNodeNodeCompositeCompartment_7059Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getNodeNodeCompositeCompartment_7059SemanticChildren(view);
+	private void createNodeStructure_7059Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getNodeStructure_7059SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1292,8 +1290,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createClassClassCompositeCompartment_7060Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getClassClassCompositeCompartment_7060SemanticChildren(view);
+	private void createClassStructure_7060Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getClassStructure_7060SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1302,8 +1300,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createCollaborationCollaborationCompositeCompartment_7061Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getCollaborationCollaborationCompositeCompartment_7061SemanticChildren(view);
+	private void createCollaborationStructure_7061Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getCollaborationStructure_7061SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1312,14 +1310,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createInterfaceInterfaceCompositeCompartment_7062Children(View view) {
-	}
-
-	/**
-	 * @generated
-	 */
-	private void createActivityActivityCompositeCompartment_7063Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getActivityActivityCompositeCompartment_7063SemanticChildren(view);
+	private void createActivityStructure_7063Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getActivityStructure_7063SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1328,8 +1320,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createInteractionInteractionCompositeCompartment_7064Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getInteractionInteractionCompositeCompartment_7064SemanticChildren(view);
+	private void createInteractionStructure_7064Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getInteractionStructure_7064SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1338,8 +1330,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createProtocolStateMachineProtocolStateMachineCompositeCompartment_7065Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getProtocolStateMachineProtocolStateMachineCompositeCompartment_7065SemanticChildren(view);
+	private void createProtocolStateMachineStructure_7065Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getProtocolStateMachineStructure_7065SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1348,8 +1340,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createStateMachineStateMachineCompositeCompartment_7066Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getStateMachineStateMachineCompositeCompartment_7066SemanticChildren(view);
+	private void createStateMachineStructure_7066Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getStateMachineStructure_7066SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1358,8 +1350,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createFunctionBehaviorFunctionBehaviorCompositeCompartment_7067Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getFunctionBehaviorFunctionBehaviorCompositeCompartment_7067SemanticChildren(view);
+	private void createFunctionBehaviorStructure_7067Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getFunctionBehaviorStructure_7067SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1368,8 +1360,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createOpaqueBehaviorOpaqueBehaviorCompositeCompartment_7068Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getOpaqueBehaviorOpaqueBehaviorCompositeCompartment_7068SemanticChildren(view);
+	private void createOpaqueBehaviorStructure_7068Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getOpaqueBehaviorStructure_7068SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1378,8 +1370,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createComponentComponentCompositeCompartment_7069Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getComponentComponentCompositeCompartment_7069SemanticChildren(view);
+	private void createComponentStructure_7069Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getComponentStructure_7069SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1388,8 +1380,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createDeviceDeviceCompositeCompartment_7070Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getDeviceDeviceCompositeCompartment_7070SemanticChildren(view);
+	private void createDeviceStructure_7070Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getDeviceStructure_7070SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1398,8 +1390,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createExecutionEnvironmentExecutionEnvironmentCompositeCompartment_7071Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getExecutionEnvironmentExecutionEnvironmentCompositeCompartment_7071SemanticChildren(view);
+	private void createExecutionEnvironmentStructure_7071Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getExecutionEnvironmentStructure_7071SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1408,8 +1400,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createNodeNodeCompositeCompartment_7072Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getNodeNodeCompositeCompartment_7072SemanticChildren(view);
+	private void createNodeStructure_7072Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getNodeStructure_7072SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1418,8 +1410,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createClassClassCompositeCompartment_7073Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getClassClassCompositeCompartment_7073SemanticChildren(view);
+	private void createClassStructure_7073Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getClassStructure_7073SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1428,8 +1420,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createCollaborationCollaborationCompositeCompartment_7075Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getCollaborationCollaborationCompositeCompartment_7075SemanticChildren(view);
+	private void createCollaborationStructure_7075Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getCollaborationStructure_7075SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
@@ -1438,14 +1430,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createInterfaceInterfaceCompartment_7076Children(View view) {
-	}
-
-	/**
-	 * @generated
-	 */
-	private void createPropertyPropertyPartCompartment_7077Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getPropertyPropertyPartCompartment_7077SemanticChildren(view);
+	private void createPropertyStructure_7077Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getPropertyStructure_7077SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}

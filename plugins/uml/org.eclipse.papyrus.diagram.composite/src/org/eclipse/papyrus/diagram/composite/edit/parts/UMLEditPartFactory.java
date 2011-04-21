@@ -711,9 +711,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case CollaborationCompositeCompartmentEditPartCN.VISUAL_ID:
 				return new CollaborationCompositeCompartmentEditPartCN(view);
 
-			case InterfaceCompartmentEditPartCN.VISUAL_ID:
-				return new InterfaceCompartmentEditPartCN(view);
-
 			case ActivityCompositeCompartmentEditPart.VISUAL_ID:
 				return new ActivityCompositeCompartmentEditPart(view);
 
@@ -749,9 +746,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case CollaborationCompositeCompartmentEditPart.VISUAL_ID:
 				return new CollaborationCompositeCompartmentEditPart(view);
-
-			case InterfaceCompartmentEditPart.VISUAL_ID:
-				return new InterfaceCompartmentEditPart(view);
 
 			case PropertyPartCompartmentEditPartCN.VISUAL_ID:
 				return new PropertyPartCompartmentEditPartCN(view);

@@ -13,10 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.composite.preferences;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.diagram.common.util.StringComparator;
 import org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
+import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 
 /**
  * @generated
@@ -44,10 +49,41 @@ public class ConnectorPreferencePage extends AbstractPapyrusLinkPreferencePage {
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
+		String key = CompositeStructureDiagramEditPart.MODEL_ID + "_Connector";
+		Map<String, Boolean> map = getStaticLabelVisibilityPreferences();
+		for(String role : map.keySet()) {
+			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, role, PreferenceConstantHelper.LABEL_VISIBILITY);
+			store.setDefault(preferenceName, map.get(role));
+		}
 
 	}
 
 
+	/**
+	 * @generated
+	 */
+	private static TreeMap<String, String> getStaticLabelRole() {
+		TreeMap<String, String> map = new TreeMap<String, String>(new StringComparator());
+		map.put("Stereotype", "");//$NON-NLS-1$ //$NON-NLS-2$
+		return map;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
+		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
+		map.put("Stereotype", Boolean.TRUE);
+
+		return map;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected TreeMap<String, String> getLabelRole() {
+		return getStaticLabelRole();
+	}
 
 
 }

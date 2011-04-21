@@ -13,7 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.composite.preferences;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.diagram.common.util.StringComparator;
 import org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
@@ -54,6 +58,13 @@ public class PortPreferencePage extends AbstractPapyrusNodePreferencePage {
 
 
 
+		Map<String, Boolean> map = getStaticLabelVisibilityPreferences();
+
+		for(String role : map.keySet()) {
+			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, role, PreferenceConstantHelper.LABEL_VISIBILITY);
+			store.setDefault(preferenceName, map.get(role));
+		}
+
 
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
@@ -68,5 +79,31 @@ public class PortPreferencePage extends AbstractPapyrusNodePreferencePage {
 	}
 
 
+	/**
+	 * @generated
+	 */
+	private static TreeMap<String, String> getStaticLabelRole() {
+		TreeMap<String, String> map = new TreeMap<String, String>(new StringComparator());
+		map.put("Name", "");//$NON-NLS-1$
+		map.put("Stereotype", "");//$NON-NLS-1$
+		return map;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
+		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
+		map.put("Name", Boolean.TRUE);
+		map.put("Stereotype", Boolean.TRUE);
+		return map;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected TreeMap<String, String> getLabelRole() {
+		return getStaticLabelRole();
+	}
 
 }

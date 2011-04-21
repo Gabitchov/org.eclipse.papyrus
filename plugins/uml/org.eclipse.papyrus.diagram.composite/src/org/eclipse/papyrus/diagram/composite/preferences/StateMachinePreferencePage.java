@@ -32,7 +32,7 @@ public class StateMachinePreferencePage extends AbstractPapyrusNodePreferencePag
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "StateMachineCompositeCompartment" };
+	public static final String compartments[] = { "structure" };
 
 	/**
 	 * @generated
@@ -101,7 +101,7 @@ public class StateMachinePreferencePage extends AbstractPapyrusNodePreferencePag
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("StateMachineCompositeCompartment", Boolean.TRUE);
+		map.put("structure", Boolean.TRUE);
 		return map;
 	}
 
@@ -111,7 +111,7 @@ public class StateMachinePreferencePage extends AbstractPapyrusNodePreferencePag
 	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 
-		map.put("StateMachineCompositeCompartment", Boolean.TRUE);
+		map.put("structure", Boolean.TRUE);
 		return map;
 	}
 

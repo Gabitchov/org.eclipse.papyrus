@@ -32,7 +32,7 @@ public class InteractionPreferencePage extends AbstractPapyrusNodePreferencePage
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "InteractionCompositeCompartment" };
+	public static final String compartments[] = { "structure" };
 
 	/**
 	 * @generated
@@ -101,7 +101,7 @@ public class InteractionPreferencePage extends AbstractPapyrusNodePreferencePage
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("InteractionCompositeCompartment", Boolean.TRUE);
+		map.put("structure", Boolean.TRUE);
 		return map;
 	}
 
@@ -111,7 +111,7 @@ public class InteractionPreferencePage extends AbstractPapyrusNodePreferencePage
 	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 
-		map.put("InteractionCompositeCompartment", Boolean.TRUE);
+		map.put("structure", Boolean.TRUE);
 		return map;
 	}
 

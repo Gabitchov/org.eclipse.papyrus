@@ -32,7 +32,7 @@ public class OpaqueBehaviorPreferencePage extends AbstractPapyrusNodePreferenceP
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "OpaqueBehaviorCompositeCompartment" };
+	public static final String compartments[] = { "structure" };
 
 	/**
 	 * @generated
@@ -101,7 +101,7 @@ public class OpaqueBehaviorPreferencePage extends AbstractPapyrusNodePreferenceP
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("OpaqueBehaviorCompositeCompartment", Boolean.TRUE);
+		map.put("structure", Boolean.TRUE);
 		return map;
 	}
 
@@ -111,7 +111,7 @@ public class OpaqueBehaviorPreferencePage extends AbstractPapyrusNodePreferenceP
 	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 
-		map.put("OpaqueBehaviorCompositeCompartment", Boolean.TRUE);
+		map.put("structure", Boolean.TRUE);
 		return map;
 	}
 

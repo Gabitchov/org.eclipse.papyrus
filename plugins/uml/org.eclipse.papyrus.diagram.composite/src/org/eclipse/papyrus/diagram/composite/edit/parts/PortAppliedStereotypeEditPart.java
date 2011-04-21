@@ -54,6 +54,7 @@ import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.diagram.common.editparts.AbstractLabelEditPart;
+import org.eclipse.papyrus.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
@@ -90,6 +91,7 @@ extends AbstractLabelEditPart
 
 implements ITextAwareEditPart, IBorderItemEditPart
 
+, ILabelRoleProvider
 
 {
 
@@ -765,6 +767,20 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	}
 
 
+
+	/**
+	 * @generated
+	 */
+	public String getLabelRole() {
+		return "Stereotype";//$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getIconPathRole() {
+		return "";//$NON-NLS-1$
+	}
 
 
 }

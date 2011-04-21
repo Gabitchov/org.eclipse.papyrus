@@ -13,9 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.composite.preferences;
 
-import java.util.Map;
-import java.util.TreeMap;
-
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
@@ -28,11 +25,6 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 
 
-
-	/**
-	 * @generated
-	 */
-	public static final String compartments[] = { "InterfaceCompartment" };
 
 	/**
 	 * @generated
@@ -59,17 +51,6 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
 
-		Map<String, Boolean> map = getStaticCompartmentVisibilityPreferences();
-		for(String name : map.keySet()) {
-			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
-			store.setDefault(preferenceName, map.get(name));
-		}
-
-		map = getStaticCompartmentTitleVisibilityPreferences();
-		for(String name : map.keySet()) {
-			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
-			store.setDefault(preferenceName, map.get(name));
-		}
 
 
 
@@ -84,42 +65,6 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 		//		new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
 		//store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
 
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected void initializeCompartmentsList() {
-		for(String name : compartments) {
-			this.compartmentsList.add(name);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
-		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("InterfaceCompartment", Boolean.TRUE);
-		return map;
-	}
-
-	/**
-	 * @generated
-	 */
-	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
-		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-
-		map.put("InterfaceCompartment", Boolean.TRUE);
-		return map;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
-		return getStaticCompartmentTitleVisibilityPreferences();
 	}
 
 

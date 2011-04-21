@@ -32,7 +32,7 @@ public class DataTypePreferencePage extends AbstractPapyrusNodePreferencePage {
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "DataTypeAttributeCompartment", "DataTypeOperationCompartment" };
+	public static final String compartments[] = { "properties", "operations" };
 
 	/**
 	 * @generated
@@ -101,8 +101,8 @@ public class DataTypePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("DataTypeAttributeCompartment", Boolean.TRUE);
-		map.put("DataTypeOperationCompartment", Boolean.TRUE);
+		map.put("properties", Boolean.TRUE);
+		map.put("operations", Boolean.TRUE);
 		return map;
 	}
 
@@ -112,9 +112,9 @@ public class DataTypePreferencePage extends AbstractPapyrusNodePreferencePage {
 	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 
-		map.put("DataTypeAttributeCompartment", Boolean.TRUE);
+		map.put("properties", Boolean.TRUE);
 
-		map.put("DataTypeOperationCompartment", Boolean.TRUE);
+		map.put("operations", Boolean.TRUE);
 		return map;
 	}
 

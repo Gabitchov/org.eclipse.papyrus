@@ -169,13 +169,6 @@ NamedElementEditPart {
 		}
 
 
-		if(childEditPart instanceof InterfaceCompartmentEditPart) {
-			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((InterfaceCompartmentEditPart)childEditPart).getFigure());
-			return true;
-		}
-
 		return false;
 	}
 
@@ -185,12 +178,6 @@ NamedElementEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof InterfaceNameEditPart) {
-			return true;
-		}
-		if(childEditPart instanceof InterfaceCompartmentEditPart) {
-			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.remove(((InterfaceCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -220,9 +207,6 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof InterfaceCompartmentEditPart) {
-			return getPrimaryShape().getCompositeCompartmentFigure();
-		}
 		return getContentPane();
 	}
 

@@ -52,6 +52,7 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
+import org.eclipse.papyrus.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
@@ -80,6 +81,7 @@ import org.eclipse.ui.PlatformUI;
  */
 public class RepresentationTagLabelEditPart extends LabelEditPart implements ITextAwareEditPart
 
+, ILabelRoleProvider
 
 {
 
@@ -746,6 +748,20 @@ public class RepresentationTagLabelEditPart extends LabelEditPart implements ITe
 
 
 
+
+	/**
+	 * @generated
+	 */
+	public String getLabelRole() {
+		return "Tag";//$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getIconPathRole() {
+		return "";//$NON-NLS-1$
+	}
 
 
 }
