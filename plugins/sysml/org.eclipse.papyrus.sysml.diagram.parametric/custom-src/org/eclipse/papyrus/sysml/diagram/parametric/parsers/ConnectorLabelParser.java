@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.parsers;
 
 import java.text.FieldPosition;
@@ -48,15 +48,15 @@ public class ConnectorLabelParser extends MessageFormatParser implements ISemant
 	}
 
 	public ConnectorLabelParser() {
-		super(new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() });
+		super(new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() });
 	}
 
 	protected EStructuralFeature getEStructuralFeature(Object notification) {
 		EStructuralFeature featureImpl = null;
-		if (notification instanceof Notification) {
-			Object feature = ((Notification) notification).getFeature();
-			if (feature instanceof EStructuralFeature) {
-				featureImpl = (EStructuralFeature) feature;
+		if(notification instanceof Notification) {
+			Object feature = ((Notification)notification).getFeature();
+			if(feature instanceof EStructuralFeature) {
+				featureImpl = (EStructuralFeature)feature;
 			}
 		}
 		return featureImpl;
@@ -76,14 +76,14 @@ public class ConnectorLabelParser extends MessageFormatParser implements ISemant
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		Object obj = element.getAdapter(EObject.class);
-		Connector connector = (Connector) obj;
+		Connector connector = (Connector)obj;
 		String name = connector.getName();
-		if (name == null) {
+		if(name == null) {
 			name = " ";
 		}
-		if (connector.getType() != null) {
+		if(connector.getType() != null) {
 			String type = connector.getType().getName();
-			if (type == null) {
+			if(type == null) {
 				type = "";
 			}
 			return String.format(TYPED_PARAMETER_FORMAT, name, type);
@@ -105,9 +105,9 @@ public class ConnectorLabelParser extends MessageFormatParser implements ISemant
 	 */
 	public List<?> getSemanticElementsBeingParsed(EObject element) {
 		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
-		Connector connector = (Connector) element;
+		Connector connector = (Connector)element;
 		semanticElementsBeingParsed.add(connector);
-		if (connector.getType() != null) {
+		if(connector.getType() != null) {
 			semanticElementsBeingParsed.add(connector.getType());
 		}
 		return semanticElementsBeingParsed;
@@ -117,22 +117,20 @@ public class ConnectorLabelParser extends MessageFormatParser implements ISemant
 	 * Determines if the given feature has to be taken into account in this parser
 	 * 
 	 * @param feature
-	 *            the feature to test
+	 *        the feature to test
 	 * @return true if is valid, false otherwise
 	 */
 	private boolean isValidFeature(EStructuralFeature feature) {
-		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature)
-				|| UMLPackage.eINSTANCE.getConnector_Type().equals(feature) ;
+		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getConnector_Type().equals(feature);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public String getEditString(IAdaptable adapter, int flags) {
-		EObject element = (EObject) adapter.getAdapter(EObject.class);
-		return getEditorProcessor().format(getEditableValues(element), new StringBuffer(), new FieldPosition(0))
-				.toString();
+		EObject element = (EObject)adapter.getAdapter(EObject.class);
+		return getEditorProcessor().format(getEditableValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
-	
+
 }

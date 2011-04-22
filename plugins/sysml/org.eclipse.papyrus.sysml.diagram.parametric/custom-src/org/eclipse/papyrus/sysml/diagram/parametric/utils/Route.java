@@ -63,8 +63,8 @@ public class Route {
 	 */
 	private void calculateName() {
 		name = "";
-		for (Property property : propertyList) {
-			if (name.length() == 0) {
+		for(Property property : propertyList) {
+			if(name.length() == 0) {
 				name = property.getName();
 			} else {
 				name = name + "." + property.getName();
@@ -90,13 +90,13 @@ public class Route {
 	public LinkedList<Property> getProperties() {
 		return propertyList;
 	}
-	
+
 	/**
 	 * Gets the route depth.
 	 * 
 	 * @return the route depth
 	 */
-	public int getRouteDepth () {
+	public int getRouteDepth() {
 		return propertyList.size();
 	}
 }

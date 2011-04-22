@@ -65,7 +65,7 @@ public class ParameterPositionLocator extends AdvancedBorderItemLocator {
 		// reset bounds of borderItem
 		Dimension size = getSize(borderItem);
 		Rectangle rectSuggested = getConstraint().getCopy();
-		if (rectSuggested.getTopLeft().x == 0 && rectSuggested.getTopLeft().y == 0) {
+		if(rectSuggested.getTopLeft().x == 0 && rectSuggested.getTopLeft().y == 0) {
 			rectSuggested.setLocation(getPreferredLocation(borderItem));
 		} else {
 			// recovered constraint must be translated with the parent location to be absolute

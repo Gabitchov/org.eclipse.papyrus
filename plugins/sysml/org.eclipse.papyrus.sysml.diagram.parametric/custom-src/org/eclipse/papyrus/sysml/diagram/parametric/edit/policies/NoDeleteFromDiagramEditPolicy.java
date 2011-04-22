@@ -44,8 +44,7 @@ public class NoDeleteFromDiagramEditPolicy extends AbstractEditPolicy {
 	public Command getCommand(Request request) {
 		if(RequestConstants.REQ_DELETE.equals(request.getType())) {
 			return UnexecutableCommand.INSTANCE;
-		}
-		else if(EditPolicy.DIRECT_EDIT_ROLE.equals(request.getType())) {
+		} else if(EditPolicy.DIRECT_EDIT_ROLE.equals(request.getType())) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getCommand(request);

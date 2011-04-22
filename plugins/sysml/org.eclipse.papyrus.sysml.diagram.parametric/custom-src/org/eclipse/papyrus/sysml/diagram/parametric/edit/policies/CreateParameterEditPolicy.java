@@ -34,18 +34,18 @@ public class CreateParameterEditPolicy extends AbstractEditPolicy {
 
 	@Override
 	public Command getCommand(Request request) {
-		if (RequestConstants.REQ_CREATE.equals(request.getType()) && request instanceof CreateUnspecifiedTypeRequest) {
-			CreateUnspecifiedTypeRequest creationRequest = (CreateUnspecifiedTypeRequest) request;
+		if(RequestConstants.REQ_CREATE.equals(request.getType()) && request instanceof CreateUnspecifiedTypeRequest) {
+			CreateUnspecifiedTypeRequest creationRequest = (CreateUnspecifiedTypeRequest)request;
 			EditPart parentEditPart = getHost();
-			if (parentEditPart instanceof ConstraintPropertyEditPart) {
+			if(parentEditPart instanceof ConstraintPropertyEditPart) {
 				//ConstraintPropertyEditPart compartementPart = (ConstraintPropertyEditPart) parentEditPart;
 				//EObject action = ViewUtil.resolveSemanticElement((View) getHost().getModel());
-				for (Object obj : creationRequest.getElementTypes()) {
-					if (SysmlElementTypes.Property_3002.equals(obj)) {
+				for(Object obj : creationRequest.getElementTypes()) {
+					if(SysmlElementTypes.Property_3002.equals(obj)) {
 						// do nothing or display WarningAndLinkDialog
 						return UnexecutableCommand.INSTANCE;
-//						return new CreateParameterViewCommand((IHintedType) SysmlElementTypes.Property_3002,
-//								compartementPart, action, getHost());
+						//						return new CreateParameterViewCommand((IHintedType) SysmlElementTypes.Property_3002,
+						//								compartementPart, action, getHost());
 					}
 				}
 			}

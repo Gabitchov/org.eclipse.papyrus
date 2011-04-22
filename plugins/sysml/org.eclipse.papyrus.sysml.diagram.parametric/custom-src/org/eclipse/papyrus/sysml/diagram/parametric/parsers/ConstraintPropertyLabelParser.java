@@ -68,15 +68,15 @@ public class ConstraintPropertyLabelParser extends MessageFormatParser implement
 	}
 
 	public ConstraintPropertyLabelParser() {
-		super(new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() });
+		super(new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() });
 	}
 
 	protected EStructuralFeature getEStructuralFeature(Object notification) {
 		EStructuralFeature featureImpl = null;
-		if (notification instanceof Notification) {
-			Object feature = ((Notification) notification).getFeature();
-			if (feature instanceof EStructuralFeature) {
-				featureImpl = (EStructuralFeature) feature;
+		if(notification instanceof Notification) {
+			Object feature = ((Notification)notification).getFeature();
+			if(feature instanceof EStructuralFeature) {
+				featureImpl = (EStructuralFeature)feature;
 			}
 		}
 		return featureImpl;
@@ -97,52 +97,49 @@ public class ConstraintPropertyLabelParser extends MessageFormatParser implement
 		String result = "";
 		Object obj = element.getAdapter(EObject.class);
 		Property property = null;
-		if (obj instanceof ConstraintProperty) {
-			property = ((ConstraintProperty) obj).getBase_Property();
+		if(obj instanceof ConstraintProperty) {
+			property = ((ConstraintProperty)obj).getBase_Property();
 		}
-		if (property != null) {
+		if(property != null) {
 			String name = property.isDerived() ? "/ " + property.getName() : property.getName();
 			result = String.format(UNTYPED_PARAMETER_FORMAT, name);
 			// manage type
-			if (property.getType() != null) {
+			if(property.getType() != null) {
 				String type = property.getType().getName();
 				result = String.format(TYPED_PARAMETER_FORMAT, name, type);
 			}
 			// manage multiplicity
-			if (property.getLower() != 1 || property.getUpper() != 1) {
-				result = String.format(MULTIPLICITY_PARAMETER_FORMAT, result, ValueSpecificationUtil
-						.getSpecificationValue(property.getLowerValue()), ValueSpecificationUtil
-						.getSpecificationValue(property.getUpperValue()));
+			if(property.getLower() != 1 || property.getUpper() != 1) {
+				result = String.format(MULTIPLICITY_PARAMETER_FORMAT, result, ValueSpecificationUtil.getSpecificationValue(property.getLowerValue()), ValueSpecificationUtil.getSpecificationValue(property.getUpperValue()));
 			}
 			// manage initial values
-			if (property.getDefaultValue() != null) {
+			if(property.getDefaultValue() != null) {
 				ValueSpecification valueSpecification = property.getDefaultValue();
-				if (valueSpecification instanceof InstanceValue
-						&& property.getType().equals(valueSpecification.getType())) {
+				if(valueSpecification instanceof InstanceValue && property.getType().equals(valueSpecification.getType())) {
 					result = String.format(DEFAULT_VALUE_PARAMETER_FORMAT, result, ValueSpecificationUtil.getSpecificationValue(valueSpecification));
 				}
 			}
 			// manage modifier
 			StringBuffer sb = new StringBuffer();
-			if (property.isReadOnly()) {
+			if(property.isReadOnly()) {
 				sb.append(sb.length() == 0 ? "readOnly" : ", readOnly");
 			}
-			if (property.isOrdered()) {
+			if(property.isOrdered()) {
 				sb.append(sb.length() == 0 ? "ordered" : ", ordered");
 			}
-			if (property.isUnique()) {
+			if(property.isUnique()) {
 				sb.append(sb.length() == 0 ? "unique" : ", unique");
 			}
-			if (property.isDerivedUnion()) {
+			if(property.isDerivedUnion()) {
 				sb.append(sb.length() == 0 ? "union" : ", union");
 			}
 			EList<Property> redefinedProperties = property.getRedefinedProperties();
-			if (redefinedProperties != null && !redefinedProperties.isEmpty()) {
-				for (Property p : redefinedProperties) {
+			if(redefinedProperties != null && !redefinedProperties.isEmpty()) {
+				for(Property p : redefinedProperties) {
 					sb.append(sb.length() == 0 ? p.getName() : ", redefines " + p.getName());
 				}
 			}
-			if (sb.length() != 0) {
+			if(sb.length() != 0) {
 				result = String.format(MODIFIER_PARAMETER_FORMAT, result, sb.toString());
 			}
 		}
@@ -163,21 +160,21 @@ public class ConstraintPropertyLabelParser extends MessageFormatParser implement
 	public List<?> getSemanticElementsBeingParsed(EObject element) {
 		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
 		Property property = null;
-		if (element instanceof ConstraintProperty) {
-			property = ((ConstraintProperty) element).getBase_Property();
+		if(element instanceof ConstraintProperty) {
+			property = ((ConstraintProperty)element).getBase_Property();
 		}
-		if (property != null) {
+		if(property != null) {
 			semanticElementsBeingParsed.add(property);
-			if (property.getType() != null) {
-				semanticElementsBeingParsed.add(property.getType());				
+			if(property.getType() != null) {
+				semanticElementsBeingParsed.add(property.getType());
 			}
-			if (property.getLowerValue() != null) {
+			if(property.getLowerValue() != null) {
 				semanticElementsBeingParsed.add(property.getLowerValue());
 			}
-			if (property.getUpperValue() != null) {
+			if(property.getUpperValue() != null) {
 				semanticElementsBeingParsed.add(property.getUpperValue());
 			}
-			if (property.getDefaultValue() != null) {
+			if(property.getDefaultValue() != null) {
 				semanticElementsBeingParsed.add(property.getDefaultValue());
 			}
 		}
@@ -188,22 +185,11 @@ public class ConstraintPropertyLabelParser extends MessageFormatParser implement
 	 * Determines if the given feature has to be taken into account in this parser
 	 * 
 	 * @param feature
-	 *            the feature to test
+	 *        the feature to test
 	 * @return true if is valid, false otherwise
 	 */
 	private boolean isValidFeature(EStructuralFeature feature) {
-		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature)
-				|| UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature)
-				|| UMLPackage.eINSTANCE.getInstanceValue_Instance().equals(feature)
-				|| UMLPackage.eINSTANCE.getMultiplicityElement_IsOrdered().equals(feature)
-				|| UMLPackage.eINSTANCE.getMultiplicityElement_IsUnique().equals(feature)
-				|| UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue().equals(feature)
-				|| UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue().equals(feature)
-				|| UMLPackage.eINSTANCE.getStructuralFeature_IsReadOnly().equals(feature)
-				|| UMLPackage.eINSTANCE.getFeature_IsStatic().equals(feature)
-				|| UMLPackage.eINSTANCE.getProperty_IsDerived().equals(feature)
-				|| UMLPackage.eINSTANCE.getProperty_IsDerivedUnion().equals(feature)
-				|| UMLPackage.eINSTANCE.getProperty_RedefinedProperty().equals(feature);
+		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature) || UMLPackage.eINSTANCE.getInstanceValue_Instance().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_IsOrdered().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_IsUnique().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue().equals(feature) || UMLPackage.eINSTANCE.getStructuralFeature_IsReadOnly().equals(feature) || UMLPackage.eINSTANCE.getFeature_IsStatic().equals(feature) || UMLPackage.eINSTANCE.getProperty_IsDerived().equals(feature) || UMLPackage.eINSTANCE.getProperty_IsDerivedUnion().equals(feature) || UMLPackage.eINSTANCE.getProperty_RedefinedProperty().equals(feature);
 	}
 
 	/**
@@ -211,12 +197,11 @@ public class ConstraintPropertyLabelParser extends MessageFormatParser implement
 	 */
 	@Override
 	public String getEditString(IAdaptable adapter, int flags) {
-		EObject element = (EObject) adapter.getAdapter(EObject.class);
-		if (element instanceof ConstraintProperty) {
-			element = ((ConstraintProperty) element).getBase_Property();
+		EObject element = (EObject)adapter.getAdapter(EObject.class);
+		if(element instanceof ConstraintProperty) {
+			element = ((ConstraintProperty)element).getBase_Property();
 		}
-		return getEditorProcessor().format(getEditableValues(element), new StringBuffer(), new FieldPosition(0))
-				.toString();
+		return getEditorProcessor().format(getEditableValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
 
 	/**
@@ -224,19 +209,19 @@ public class ConstraintPropertyLabelParser extends MessageFormatParser implement
 	 */
 	@Override
 	protected ICommand getParseCommand(IAdaptable adapter, Object[] values, int flags) {
-		if (values == null || validateNewValues(values).getCode() != IParserEditStatus.EDITABLE) {
+		if(values == null || validateNewValues(values).getCode() != IParserEditStatus.EDITABLE) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		EObject element = (EObject) adapter.getAdapter(EObject.class);
-		if (element instanceof ConstraintProperty) {
-			element = ((ConstraintProperty) element).getBase_Property();
+		EObject element = (EObject)adapter.getAdapter(EObject.class);
+		if(element instanceof ConstraintProperty) {
+			element = ((ConstraintProperty)element).getBase_Property();
 		}
 		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(element);
-		if (editingDomain == null) {
+		if(editingDomain == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, "Set Values"); //$NON-NLS-1$
-		for (int i = 0; i < values.length; i++) {
+		for(int i = 0; i < values.length; i++) {
 			command.compose(getModificationCommand(element, editableFeatures[i], values[i]));
 		}
 		return command;

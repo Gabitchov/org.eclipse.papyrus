@@ -68,21 +68,20 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 
 	/** The child type. */
 	private final IHintedType childType;
-	
+
 	private static CompositeTransactionalCommand command;
 
 	/**
 	 * Instantiates a new self compartment notification helper.
 	 * 
 	 * @param compartmentPart
-	 *            the compartment part
+	 *        the compartment part
 	 * @param childFeature
-	 *            the child feature
+	 *        the child feature
 	 * @param childType
-	 *            the child type
+	 *        the child type
 	 */
-	public SelfCompartmentNotificationHelper(final ConstraintPropertyEditPart compartmentPart,
-			final EStructuralFeature childFeature, final IHintedType childType) {
+	public SelfCompartmentNotificationHelper(final ConstraintPropertyEditPart compartmentPart, final EStructuralFeature childFeature, final IHintedType childType) {
 		this.compartmentPart = compartmentPart;
 		this.childFeature = childFeature;
 		this.childType = childType;
@@ -96,11 +95,11 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 
 		@Override
 		protected void safeNotifyChanged(Notification msg) {
-			if (UMLPackage.eINSTANCE.getTypedElement_Type().equals(msg.getFeature())) {
+			if(UMLPackage.eINSTANCE.getTypedElement_Type().equals(msg.getFeature())) {
 				// listen type once it's set
-				listenObject((Notifier) msg.getNewValue());
+				listenObject((Notifier)msg.getNewValue());
 				updatePropertiesParts(compartmentPart, childFeature, childType);
-			} else if (UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute().equals(msg.getFeature())) {
+			} else if(UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute().equals(msg.getFeature())) {
 				updatePropertiesParts(compartmentPart, childFeature, childType);
 			}
 		}
@@ -110,45 +109,44 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 	 * Update children edit parts so that each child is represented once
 	 * 
 	 * @param compartmentPart
-	 *            the compartment part containing children
+	 *        the compartment part containing children
 	 * @param childFeature
-	 *            the feature containing children
+	 *        the feature containing children
 	 * @param childType
-	 *            the children's IHintedType represented as Node
+	 *        the children's IHintedType represented as Node
 	 */
 	// TODO refactor this method
-	public static void updatePropertiesParts(ConstraintPropertyEditPart compartmentPart,
-			EStructuralFeature childFeature, IHintedType childType) {
-		if (compartmentPart == null || childFeature == null || childType == null) {
+	public static void updatePropertiesParts(ConstraintPropertyEditPart compartmentPart, EStructuralFeature childFeature, IHintedType childType) {
+		if(compartmentPart == null || childFeature == null || childType == null) {
 			return;
 		}
 		command = new CompositeTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "update children");
 		command.setTransactionNestingEnabled(false);
-		if (compartmentPart.getModel() instanceof View) {
-			View compartmentView = (View) compartmentPart.getModel();
+		if(compartmentPart.getModel() instanceof View) {
+			View compartmentView = (View)compartmentPart.getModel();
 			EObject containerObject = compartmentView.getElement();
-			if (containerObject instanceof ConstraintProperty) {
-				Property baseProperty = ((ConstraintProperty) containerObject).getBase_Property();
-				if (baseProperty != null && baseProperty.getType() != null) {
+			if(containerObject instanceof ConstraintProperty) {
+				Property baseProperty = ((ConstraintProperty)containerObject).getBase_Property();
+				if(baseProperty != null && baseProperty.getType() != null) {
 					Object untypedOwnedObjects = baseProperty.getType().eGet(childFeature);
-					if (untypedOwnedObjects instanceof List<?>) {
-						List<?> ownedEObjectChildren = (List<?>) untypedOwnedObjects;
+					if(untypedOwnedObjects instanceof List<?>) {
+						List<?> ownedEObjectChildren = (List<?>)untypedOwnedObjects;
 						Set<EObject> drawnEObjectChildren = new HashSet<EObject>(ownedEObjectChildren.size());
 
 						// list children already drawn and remove old children
-						for (Iterator<?> iterator = compartmentView.getPersistedChildren().iterator(); iterator.hasNext();) {
-							EObject childView = (EObject) iterator.next();
-							if (childView instanceof View && ((View) childView).getElement() != null) {
-								EObject child = ((View) childView).getElement();
-								switch (SysmlVisualIDRegistry.getVisualID((View) childView)) {
-								
+						for(Iterator<?> iterator = compartmentView.getPersistedChildren().iterator(); iterator.hasNext();) {
+							EObject childView = (EObject)iterator.next();
+							if(childView instanceof View && ((View)childView).getElement() != null) {
+								EObject child = ((View)childView).getElement();
+								switch(SysmlVisualIDRegistry.getVisualID((View)childView)) {
+
 								case Property2EditPart.VISUAL_ID:
 									// property already drawn
-									if (ownedEObjectChildren.contains(child)) {
+									if(ownedEObjectChildren.contains(child)) {
 										drawnEObjectChildren.add(child);
 									} else {
 										// delete old connectors
-										deleteConnectorsViews(command, (View) childView);
+										deleteConnectorsViews(command, (View)childView);
 										// remove remaining property if any
 										iterator.remove();
 									}
@@ -167,26 +165,22 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 						// draw remaining children
 						List<Object> childrenToDraw = new ArrayList<Object>(ownedEObjectChildren);
 						childrenToDraw.removeAll(drawnEObjectChildren);
-						for (Object child : childrenToDraw) {
-							if (child instanceof EObject) {
-								IAdaptable adapter = new EObjectAdapter((EObject) child);
-								ViewDescriptor descriptor = new ViewDescriptor(adapter, Node.class, childType
-										.getSemanticHint(), ViewUtil.APPEND, false, compartmentPart
-										.getDiagramPreferencesHint());
-								CreateCommand nodeCreationCommand = new CreateCommand(compartmentPart
-										.getEditingDomain(), descriptor, compartmentView);
+						for(Object child : childrenToDraw) {
+							if(child instanceof EObject) {
+								IAdaptable adapter = new EObjectAdapter((EObject)child);
+								ViewDescriptor descriptor = new ViewDescriptor(adapter, Node.class, childType.getSemanticHint(), ViewUtil.APPEND, false, compartmentPart.getDiagramPreferencesHint());
+								CreateCommand nodeCreationCommand = new CreateCommand(compartmentPart.getEditingDomain(), descriptor, compartmentView);
 								command.add(nodeCreationCommand);
 							}
 						}
 					}
 				} else {
 					// constraint property type is set to null, remove old children
-					for (Iterator<?> iterator = compartmentView.getPersistedChildren().iterator(); iterator.hasNext();) {
-						EObject childView = (EObject) iterator.next();
-						if ((childView instanceof View)
-								&& SysmlVisualIDRegistry.getVisualID((View) childView) == Property2EditPart.VISUAL_ID) {
+					for(Iterator<?> iterator = compartmentView.getPersistedChildren().iterator(); iterator.hasNext();) {
+						EObject childView = (EObject)iterator.next();
+						if((childView instanceof View) && SysmlVisualIDRegistry.getVisualID((View)childView) == Property2EditPart.VISUAL_ID) {
 							// delete old connectors
-							deleteConnectorsViews(command, (View) childView);
+							deleteConnectorsViews(command, (View)childView);
 							// delete parameter view
 							iterator.remove();
 						}
@@ -197,12 +191,12 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 			}
 		}
 	}
-	
+
 	/**
 	 * Execute command.
 	 */
 	private static void execute() {
-		if (!command.isEmpty()) {
+		if(!command.isEmpty()) {
 			try {
 				OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
 			} catch (ExecutionException e) {
@@ -216,20 +210,20 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 	 * Delete source and target connectors of the deleted parameter view
 	 * 
 	 * @param cmd
-	 *            the cmd
+	 *        the cmd
 	 * @param propertyView
-	 *            the property view
+	 *        the property view
 	 */
 	private static void deleteConnectorsViews(ICompositeCommand cmd, View propertyView) {
-		for (Iterator<?> it = propertyView.getTargetEdges().iterator(); it.hasNext();) {
-			Edge incomingLink = (Edge) it.next();
-			if (SysmlVisualIDRegistry.getVisualID(incomingLink) == ConnectorEditPart.VISUAL_ID) {
+		for(Iterator<?> it = propertyView.getTargetEdges().iterator(); it.hasNext();) {
+			Edge incomingLink = (Edge)it.next();
+			if(SysmlVisualIDRegistry.getVisualID(incomingLink) == ConnectorEditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(incomingLink));
 			}
 		}
-		for (Iterator<?> it = propertyView.getSourceEdges().iterator(); it.hasNext();) {
-			Edge outgoingLink = (Edge) it.next();
-			if (SysmlVisualIDRegistry.getVisualID(outgoingLink) == ConnectorEditPart.VISUAL_ID) {
+		for(Iterator<?> it = propertyView.getSourceEdges().iterator(); it.hasNext();) {
+			Edge outgoingLink = (Edge)it.next();
+			if(SysmlVisualIDRegistry.getVisualID(outgoingLink) == ConnectorEditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(outgoingLink));
 			}
 		}

@@ -49,9 +49,9 @@ public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 	 */
 	public String getName() {
 		String lName = "";
-		if (getAvailableRoutes().isEmpty()) {
+		if(getAvailableRoutes().isEmpty()) {
 			lName = getProperty().getName();
-		} else if (!hasSeveralRoutes()) {
+		} else if(!hasSeveralRoutes()) {
 			lName = getAvailableRoutes().get(0).getName();
 		} else {
 			lName = getSelectedRoute();
@@ -61,11 +61,11 @@ public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 
 	private String getSelectedRoute() {
 		String result = "";
-		if ("".equals(getRootingProperty(graphNode))) {
+		if("".equals(getRootingProperty(graphNode))) {
 			LinkedList<Route> filteredAvailableRoute = filterAvailableRoute(getAvailableRoutes());
-			if (filteredAvailableRoute.size() == 1) {
+			if(filteredAvailableRoute.size() == 1) {
 				result = filteredAvailableRoute.getFirst().getName();
-			} else if (!filteredAvailableRoute.isEmpty()) {
+			} else if(!filteredAvailableRoute.isEmpty()) {
 				// doesn't display dialog box, only get the first route
 				//result = getUserSelectionRoute(filteredAvailableRoute);
 				result = filteredAvailableRoute.getFirst().getName();
@@ -73,7 +73,7 @@ public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 		} else {
 			String oldRouteSelectedValue = getRootingProperty(graphNode);
 			Map<String, Route> routeNameAndRoute = getRouteNameAndRoute(getAvailableRoutes());
-			if (routeNameAndRoute.containsKey(oldRouteSelectedValue)) {
+			if(routeNameAndRoute.containsKey(oldRouteSelectedValue)) {
 				result = oldRouteSelectedValue;
 			} else {
 				result = calculateNewRoute(oldRouteSelectedValue);
@@ -89,8 +89,8 @@ public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 
 			@Override
 			public String getText(Object element) {
-				if (element instanceof Route) {
-					return ((Route) element).getName();
+				if(element instanceof Route) {
+					return ((Route)element).getName();
 				}
 				return super.getText(element);
 			}
@@ -103,8 +103,8 @@ public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 		dialog.open();
 
 		String result = "";
-		if (dialog.getResult() != null) {
-			result = ((Route) dialog.getFirstResult()).getName();
+		if(dialog.getResult() != null) {
+			result = ((Route)dialog.getFirstResult()).getName();
 		} else {
 			result = filteredAvailableRoute.getFirst().getName();
 		}
@@ -116,15 +116,15 @@ public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 	 * are already displayed in the diagram.
 	 * 
 	 * @param availableRoutes
-	 *            the availableRoutes for this property
+	 *        the availableRoutes for this property
 	 * @return the availableRoutes for this property that are not already displayed in the diagram
 	 */
 	private LinkedList<Route> filterAvailableRoute(List<Route> availableRoutes) {
 		Map<String, Route> routeNameAndRoute = getRouteNameAndRoute(availableRoutes);
-		for (Object view : DiagramEditPartsUtil.getEObjectViews(getProperty())) {
-			if (view instanceof Node) {
-				String routeNamedSaved = getRootingProperty((Node) view);
-				if (routeNameAndRoute.containsKey(routeNamedSaved)) {
+		for(Object view : DiagramEditPartsUtil.getEObjectViews(getProperty())) {
+			if(view instanceof Node) {
+				String routeNamedSaved = getRootingProperty((Node)view);
+				if(routeNameAndRoute.containsKey(routeNamedSaved)) {
 					routeNameAndRoute.remove(routeNamedSaved);
 				}
 			}
@@ -136,12 +136,12 @@ public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 	 * Return a map containing the routes and their associated names from a list of routes
 	 * 
 	 * @param routes
-	 *            the list of routes
+	 *        the list of routes
 	 * @return the map with key the route, and value the name of the route.
 	 */
 	private Map<String, Route> getRouteNameAndRoute(List<Route> routes) {
 		Map<String, Route> routeAndName = new HashMap<String, Route>();
-		for (Route route : routes) {
+		for(Route route : routes) {
 			routeAndName.put(route.getName(), route);
 		}
 		return routeAndName;
@@ -152,16 +152,16 @@ public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 		// If the length of the availableRoutes is bigger than the length of the old route, it means
 		// that the property
 		// is dragged/dropped to a parent container of its current container
-		if (getAvailableRoutes().get(0).getName().length() > oldRouteSelectedValue.length()) {
-			for (Route route : getAvailableRoutes()) {
+		if(getAvailableRoutes().get(0).getName().length() > oldRouteSelectedValue.length()) {
+			for(Route route : getAvailableRoutes()) {
 
-				if (route.getName().indexOf(oldRouteSelectedValue) > 0) {
+				if(route.getName().indexOf(oldRouteSelectedValue) > 0) {
 					availableSpecificRoute.add(route.getName());
 				}
 			}
 			// If a unique route is present in the list, it means that there is only a route
 			// possible
-			if (availableSpecificRoute.size() == 1) {
+			if(availableSpecificRoute.size() == 1) {
 				return availableSpecificRoute.get(0);
 			} else {
 				// Otherwise it means there is several routes possible. We need to check the name of
@@ -171,12 +171,12 @@ public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 		}
 		// Otherwise the element is dragged/dropped to a child container of its current container
 		else {
-			for (Route route : getAvailableRoutes()) {
-				if (oldRouteSelectedValue.indexOf(route.getName()) > 0) {
+			for(Route route : getAvailableRoutes()) {
+				if(oldRouteSelectedValue.indexOf(route.getName()) > 0) {
 					availableSpecificRoute.add(route.getName());
 				}
 			}
-			if (availableSpecificRoute.size() == 1) {
+			if(availableSpecificRoute.size() == 1) {
 				return availableSpecificRoute.get(0);
 			}
 		}
@@ -190,7 +190,7 @@ public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 	 * @param name
 	 */
 	public void createRootingProperty(Node node, String name) {
-		if ("".equals(getRootingProperty(node))) {
+		if("".equals(getRootingProperty(node))) {
 			EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			annotation.setSource(PROPERTY_ROUTE_URL_SOURCE);
 			node.getEAnnotations().add(annotation);
@@ -207,7 +207,7 @@ public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 	 */
 	public boolean isExistingRoute(String name) {
 		boolean result = false;
-		for (Route r : getAvailableRoutes()) {
+		for(Route r : getAvailableRoutes()) {
 			result |= r.getName().equals(name);
 		}
 		return result;
@@ -217,15 +217,15 @@ public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 	 * Gets the rooting property.
 	 * 
 	 * @param node
-	 *            the node
+	 *        the node
 	 * @param key
-	 *            the key
+	 *        the key
 	 * @return the rooting property
 	 */
 	private String getRootingProperty(Node node) {
 		String value = "";
 		EAnnotation eAnnotation = node.getEAnnotation(PROPERTY_ROUTE_URL_SOURCE);
-		if (eAnnotation != null) {
+		if(eAnnotation != null) {
 			value = eAnnotation.getDetails().get(SELECTED_ROUTE_KEY);
 		}
 		return value;

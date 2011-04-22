@@ -45,8 +45,7 @@ public class ModelValidationHelper {
 	 * @return the status
 	 */
 	public static IStatus validateConnector(Connector connector, IValidationContext ctx) {
-		if ((EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType()))
-				&& UMLPackage.eINSTANCE.getConnector_End().equals(ctx.getFeature())) {
+		if((EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType())) && UMLPackage.eINSTANCE.getConnector_End().equals(ctx.getFeature())) {
 			// do nothing
 		}
 		return ctx.createSuccessStatus();
@@ -61,18 +60,18 @@ public class ModelValidationHelper {
 	 */
 	public static IStatus validateProperty(Property property, IValidationContext ctx) {
 		// TODO this validator will manage connectorEnd update when source/target property is moved into and IBD
-		if ((EMFEventType.MOVE.equals(ctx.getEventType())) || (EMFEventType.SET.equals(ctx.getEventType()))) {
+		if((EMFEventType.MOVE.equals(ctx.getEventType())) || (EMFEventType.SET.equals(ctx.getEventType()))) {
 			// only update if property is linked to connector end
-			for (ConnectorEnd end : property.getEnds()) {
-				if (end.getOwner() != null && end.getOwner() instanceof Connector) {
-					Element owner = ((Connector) end.getOwner()).getOwner();
-					if (owner instanceof Classifier) {
-						PropertyLinkedToClassifier link = new PropertyLinkedToClassifier((Classifier) owner, property);
-						if (link.isLinkedWithMultiLevelPath()) {
+			for(ConnectorEnd end : property.getEnds()) {
+				if(end.getOwner() != null && end.getOwner() instanceof Connector) {
+					Element owner = ((Connector)end.getOwner()).getOwner();
+					if(owner instanceof Classifier) {
+						PropertyLinkedToClassifier link = new PropertyLinkedToClassifier((Classifier)owner, property);
+						if(link.isLinkedWithMultiLevelPath()) {
 							createNestedConnectorEnd(end);
 						} else {
 							Stereotype appliedStereotype = end.getAppliedStereotype(NESTED_CONNECTOR_END_STEREOTYPE);
-							if (appliedStereotype != null) {
+							if(appliedStereotype != null) {
 								end.unapplyStereotype(appliedStereotype);
 							}
 						}
@@ -91,23 +90,21 @@ public class ModelValidationHelper {
 	 * @return the status
 	 */
 	public static IStatus validateConnectorEnd(ConnectorEnd connectorEnd, IValidationContext ctx) {
-		if ((EMFEventType.SET.equals(ctx.getEventType()))
-				&& UMLPackage.eINSTANCE.getConnectorEnd_Role().equals(ctx.getFeature())) {
+		if((EMFEventType.SET.equals(ctx.getEventType())) && UMLPackage.eINSTANCE.getConnectorEnd_Role().equals(ctx.getFeature())) {
 			ConnectableElement connectableElement = connectorEnd.getRole();
 			Element connector = connectorEnd.getOwner();
-			if (connector != null && connector.getOwner() instanceof Classifier) {
-				Classifier owner = (Classifier) connector.getOwner();
-				PropertyLinkedToClassifier link = new PropertyLinkedToClassifier((Classifier) owner,
-						(Property) connectableElement);
-				if (link.isLinkedWithMultiLevelPath()) {
+			if(connector != null && connector.getOwner() instanceof Classifier) {
+				Classifier owner = (Classifier)connector.getOwner();
+				PropertyLinkedToClassifier link = new PropertyLinkedToClassifier((Classifier)owner, (Property)connectableElement);
+				if(link.isLinkedWithMultiLevelPath()) {
 					// create a nested connector end
 					NestedConnectorEnd end = createNestedConnectorEnd(connectorEnd);
-					if (!link.getAvailableRoutes().isEmpty()) {
+					if(!link.getAvailableRoutes().isEmpty()) {
 						end.getPropertyPath().addAll(link.getAvailableRoutes().get(0).getProperties());
 					}
 				} else {
 					Stereotype appliedStereotype = connectorEnd.getAppliedStereotype(NESTED_CONNECTOR_END_STEREOTYPE);
-					if (appliedStereotype != null) {
+					if(appliedStereotype != null) {
 						connectorEnd.unapplyStereotype(appliedStereotype);
 					}
 				}
@@ -137,13 +134,13 @@ public class ModelValidationHelper {
 	 * Creates the nested connector end for a connector end
 	 * 
 	 * @param connectorEnd
-	 *            the connector end
+	 *        the connector end
 	 * @return the nested connector end
 	 */
 	private static NestedConnectorEnd createNestedConnectorEnd(ConnectorEnd connectorEnd) {
 		NestedConnectorEnd nested = BlocksFactory.eINSTANCE.createNestedConnectorEnd();
 		Resource res = ResourceUtil.getResource(connectorEnd);
-		if (res != null) {
+		if(res != null) {
 			res.getEobjects().add(nested);
 			nested.setBase_ConnectorEnd(connectorEnd);
 		}

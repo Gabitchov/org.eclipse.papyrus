@@ -10,7 +10,7 @@
  * Contributors:
  *  Thibault Landre (Atos Origin) thibault.landre@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.utils;
 
 import java.util.LinkedList;
@@ -57,7 +57,7 @@ public class PropertyLinkedToClassifier {
 	public boolean isLinkedToClassifier() {
 		return !routes.isEmpty();
 	}
-	
+
 	/**
 	 * Checks if the property is linked to classifier with a multi-level path of accessible property from the classifier
 	 * 
@@ -65,8 +65,8 @@ public class PropertyLinkedToClassifier {
 	 */
 	public boolean isLinkedWithMultiLevelPath() {
 		boolean result = false;
-		if (!routes.isEmpty()) {
-			for (Route r : routes) {
+		if(!routes.isEmpty()) {
+			for(Route r : routes) {
 				result |= r.getRouteDepth() > 1;
 			}
 		}
@@ -110,22 +110,22 @@ public class PropertyLinkedToClassifier {
 	private void refreshLinkToClassifier(Classifier classifierParent, final Property propertyToFind, final Route route) {
 		EList<Property> classifierParentAttributes = classifierParent.getAllAttributes();
 		// If the property is contained by the classifier
-		if (classifierParentAttributes.contains(propertyToFind)) {
+		if(classifierParentAttributes.contains(propertyToFind)) {
 			route.addSegment(propertyToFind);
 			routes.add(route);
 		} else {
-			for (Property attribute : classifierParentAttributes) {
-				if (!(attribute instanceof Port)) {
+			for(Property attribute : classifierParentAttributes) {
+				if(!(attribute instanceof Port)) {
 					Type attributeType = attribute.getType();
 					// stop loop
-					if (route.getProperties().contains(attribute)) {
+					if(route.getProperties().contains(attribute)) {
 						// Launch a warning ? an error ?
 						break;
 					}
-					if (attributeType instanceof Classifier) {
+					if(attributeType instanceof Classifier) {
 						Route newRoute = new Route(new LinkedList<Property>(route.getProperties()));
 						newRoute.addSegment(attribute);
-						refreshLinkToClassifier((Classifier) attributeType, propertyToFind, newRoute);
+						refreshLinkToClassifier((Classifier)attributeType, propertyToFind, newRoute);
 					}
 				}
 			}

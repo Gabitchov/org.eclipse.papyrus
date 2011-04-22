@@ -38,7 +38,6 @@ import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
-import org.eclipse.uml2.uml.UMLFactory;
 
 public class CreateParametricDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 
@@ -60,22 +59,22 @@ public class CreateParametricDiagramCommand extends AbstractPapyrusGmfCreateDiag
 		return "ParametricDiagram";
 	}
 
-//	@Override
-//	protected EObject createRootElement() {
-//		return UMLFactory.eINSTANCE.createModel();
-//	}
-//
-//	@Override
-//	protected void initializeModel(EObject owner) {
-//		EObject eObject = getSelectedElement();
-//		if(eObject == null) {
-//			eObject = owner;
-//		}
-//
-//		if(eObject instanceof Class) {
-//			this.selectedElement = (Class)eObject;
-//		}
-//	}
+	//	@Override
+	//	protected EObject createRootElement() {
+	//		return UMLFactory.eINSTANCE.createModel();
+	//	}
+	//
+	//	@Override
+	//	protected void initializeModel(EObject owner) {
+	//		EObject eObject = getSelectedElement();
+	//		if(eObject == null) {
+	//			eObject = owner;
+	//		}
+	//
+	//		if(eObject instanceof Class) {
+	//			this.selectedElement = (Class)eObject;
+	//		}
+	//	}
 
 	@Override
 	protected void initializeDiagram(EObject diagram) {

@@ -40,8 +40,7 @@ public class ParametricDiagramForMultiEditor extends SysmlDiagramEditor {
 	/**
 	 * The image descriptor of the diagram icon
 	 */
-	private static final ImageDescriptor DIAG_IMG_DESC = SysmlDiagramEditorPlugin
-			.getBundledImageDescriptor(ParametricDiagramForMultiEditor.DIAG_IMG_PATH);
+	private static final ImageDescriptor DIAG_IMG_DESC = SysmlDiagramEditorPlugin.getBundledImageDescriptor(ParametricDiagramForMultiEditor.DIAG_IMG_PATH);
 
 	/** The editor splitter. */
 	private Composite splitter;

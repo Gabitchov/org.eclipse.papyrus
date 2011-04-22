@@ -34,9 +34,9 @@ public class NoDeleteFromModelEditPolicy extends AbstractEditPolicy {
 	 */
 	@Override
 	public boolean understandsRequest(Request req) {
-		if(RequestConstants.REQ_SEMANTIC_WRAPPER.equals(req.getType()) && req instanceof EditCommandRequestWrapper){
+		if(RequestConstants.REQ_SEMANTIC_WRAPPER.equals(req.getType()) && req instanceof EditCommandRequestWrapper) {
 			IEditCommandRequest wrappedRequest = ((EditCommandRequestWrapper)req).getEditCommandRequest();
-			if(wrappedRequest instanceof DestroyElementRequest){
+			if(wrappedRequest instanceof DestroyElementRequest) {
 				return true;
 			}
 		}
@@ -50,9 +50,9 @@ public class NoDeleteFromModelEditPolicy extends AbstractEditPolicy {
 	 */
 	@Override
 	public Command getCommand(Request request) {
-		if(RequestConstants.REQ_SEMANTIC_WRAPPER.equals(request.getType()) && request instanceof EditCommandRequestWrapper){
+		if(RequestConstants.REQ_SEMANTIC_WRAPPER.equals(request.getType()) && request instanceof EditCommandRequestWrapper) {
 			IEditCommandRequest wrappedRequest = ((EditCommandRequestWrapper)request).getEditCommandRequest();
-			if(wrappedRequest instanceof DestroyElementRequest){
+			if(wrappedRequest instanceof DestroyElementRequest) {
 				return UnexecutableCommand.INSTANCE;
 			}
 		}

@@ -53,22 +53,22 @@ public class ConstraintLabelParser extends MessageFormatParser implements ISeman
 	}
 
 	public ConstraintLabelParser() {
-		super(new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() });
+		super(new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() });
 	}
 
 	/**
 	 * Gets the e structural feature.
 	 * 
 	 * @param notification
-	 *            the notification
+	 *        the notification
 	 * @return the e structural feature
 	 */
 	protected EStructuralFeature getEStructuralFeature(Object notification) {
 		EStructuralFeature featureImpl = null;
-		if (notification instanceof Notification) {
-			Object feature = ((Notification) notification).getFeature();
-			if (feature instanceof EStructuralFeature) {
-				featureImpl = (EStructuralFeature) feature;
+		if(notification instanceof Notification) {
+			Object feature = ((Notification)notification).getFeature();
+			if(feature instanceof EStructuralFeature) {
+				featureImpl = (EStructuralFeature)feature;
 			}
 		}
 		return featureImpl;
@@ -88,14 +88,14 @@ public class ConstraintLabelParser extends MessageFormatParser implements ISeman
 	public String getPrintString(IAdaptable element, int flags) {
 		String result = "";
 		Object obj = element.getAdapter(EObject.class);
-		if (obj instanceof ConstraintProperty) {
-			Property property = ((ConstraintProperty) obj).getBase_Property();
-			if (property != null) {
+		if(obj instanceof ConstraintProperty) {
+			Property property = ((ConstraintProperty)obj).getBase_Property();
+			if(property != null) {
 				// manage constraint
-				if (property.getDefaultValue() != null) {
+				if(property.getDefaultValue() != null) {
 					ValueSpecification valueSpecification = property.getDefaultValue();
 					String specificationValue = ValueSpecificationUtil.getSpecificationValue(valueSpecification);
-					if (specificationValue != null && specificationValue.length() > 0) {
+					if(specificationValue != null && specificationValue.length() > 0) {
 						result = String.format(CONSTRAINT_LABEL__FORMAT, specificationValue);
 					}
 				}
@@ -117,11 +117,11 @@ public class ConstraintLabelParser extends MessageFormatParser implements ISeman
 	 */
 	public List<?> getSemanticElementsBeingParsed(EObject element) {
 		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
-		if (element instanceof ConstraintProperty) {
-			Property property = ((ConstraintProperty) element).getBase_Property();
-			if (property != null) {
+		if(element instanceof ConstraintProperty) {
+			Property property = ((ConstraintProperty)element).getBase_Property();
+			if(property != null) {
 				semanticElementsBeingParsed.add(property);
-				if (property.getDefaultValue() != null) {
+				if(property.getDefaultValue() != null) {
 					semanticElementsBeingParsed.add(property.getDefaultValue());
 				}
 			}
@@ -133,12 +133,11 @@ public class ConstraintLabelParser extends MessageFormatParser implements ISeman
 	 * Determines if the given feature has to be taken into account in this parser
 	 * 
 	 * @param feature
-	 *            the feature to test
+	 *        the feature to test
 	 * @return true if is valid, false otherwise
 	 */
 	private boolean isValidFeature(EStructuralFeature feature) {
-		return UMLPackage.eINSTANCE.getProperty_DefaultValue().equals(feature)
-				|| UMLPackage.eINSTANCE.getProperty_DefaultValue().equals(feature);
+		return UMLPackage.eINSTANCE.getProperty_DefaultValue().equals(feature) || UMLPackage.eINSTANCE.getProperty_DefaultValue().equals(feature);
 	}
 
 	/**
@@ -147,11 +146,11 @@ public class ConstraintLabelParser extends MessageFormatParser implements ISeman
 	@Override
 	public String getEditString(IAdaptable adapter, int flags) {
 		String result = "";
-		EObject element = (EObject) adapter.getAdapter(EObject.class);
-		if (element instanceof ConstraintProperty) {
-			element = ((ConstraintProperty) element).getBase_Property();
-			if (element instanceof Property) {
-				ValueSpecification defaultValue = ((Property) element).getDefaultValue();
+		EObject element = (EObject)adapter.getAdapter(EObject.class);
+		if(element instanceof ConstraintProperty) {
+			element = ((ConstraintProperty)element).getBase_Property();
+			if(element instanceof Property) {
+				ValueSpecification defaultValue = ((Property)element).getDefaultValue();
 				result = ValueSpecificationUtil.getSpecificationValue(defaultValue);
 			}
 		}
@@ -166,13 +165,12 @@ public class ConstraintLabelParser extends MessageFormatParser implements ISeman
 		Object obj = adapter.getAdapter(EObject.class);
 		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(obj);
 
-		if (editingDomain != null && obj instanceof ConstraintProperty) {
-			obj = ((ConstraintProperty) obj).getBase_Property();
-			if (obj instanceof Property) {
-				ValueSpecification valueSpec = ((Property) obj).getDefaultValue();
-				if (valueSpec != null) {
-					CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain,
-							"Set Values");
+		if(editingDomain != null && obj instanceof ConstraintProperty) {
+			obj = ((ConstraintProperty)obj).getBase_Property();
+			if(obj instanceof Property) {
+				ValueSpecification valueSpec = ((Property)obj).getDefaultValue();
+				if(valueSpec != null) {
+					CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, "Set Values");
 					command.compose(new CommandProxy(new SetValueSpecificationValueCommand(valueSpec, newString)));
 					return command;
 				}

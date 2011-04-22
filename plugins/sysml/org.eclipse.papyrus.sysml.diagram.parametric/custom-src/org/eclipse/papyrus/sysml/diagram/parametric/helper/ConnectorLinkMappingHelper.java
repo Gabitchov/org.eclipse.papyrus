@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.helper;
 
 import java.util.Collection;
@@ -63,8 +63,8 @@ public class ConnectorLinkMappingHelper implements ILinkMappingHelper {
 
 			public java.util.Collection<?> caseConnector(org.eclipse.uml2.uml.Connector object) {
 				EList<ConnectorEnd> ends = object.getEnds();
-				if (ends != null && !ends.isEmpty()) {
-					return Collections.singleton(object.getEnds().get(0));					
+				if(ends != null && !ends.isEmpty()) {
+					return Collections.singleton(object.getEnds().get(0));
 				}
 				return Collections.emptyList();
 			};
@@ -79,8 +79,8 @@ public class ConnectorLinkMappingHelper implements ILinkMappingHelper {
 
 			public java.util.Collection<?> caseConnector(org.eclipse.uml2.uml.Connector object) {
 				EList<ConnectorEnd> ends = object.getEnds();
-				if (ends != null && !ends.isEmpty() && ends.size() > 0) {
-					return Collections.singleton(object.getEnds().get(1));					
+				if(ends != null && !ends.isEmpty() && ends.size() > 0) {
+					return Collections.singleton(object.getEnds().get(1));
 				}
 				return Collections.emptyList();
 			};
