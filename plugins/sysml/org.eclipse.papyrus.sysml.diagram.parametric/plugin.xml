@@ -5,7 +5,7 @@
       <contributionItemProvider checkPluginLoaded="false" class="org.eclipse.papyrus.sysml.diagram.parametric.providers.ParametricDiagramContributionItemProvider">
       <Priority name="Low"/>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart"/>
+            <popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart" policyClass="org.eclipse.papyrus.sysml.diagram.parametric.providers.ParametricDiagramContributionPolicyClass"/> 
             <popupAction id="papyrus.restoreRelatedLinksAction" path="/navigateMenu/additions"/>
          </popupContribution>
       </contributionItemProvider>
