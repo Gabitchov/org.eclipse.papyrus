@@ -128,9 +128,10 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	public IElementType getUMLElementType(int elementID) {
 		return UMLElementTypes.getElementType(elementID);
 	}
+
 	@Override
 	protected Command getDropCommand(ChangeBoundsRequest request) {
-		if (Utils.isRequestGroupFrameworkConcerned(request)){
+		if(Utils.isRequestGroupFrameworkConcerned(request)) {
 			return null;
 		}
 		return super.getDropCommand(request);
@@ -151,8 +152,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	public int getLinkWithClassVisualID(EObject domainElement) {
 		return UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement);
 	}
-	
-	
+
+
 
 	/**
 	 * {@inheritDoc}

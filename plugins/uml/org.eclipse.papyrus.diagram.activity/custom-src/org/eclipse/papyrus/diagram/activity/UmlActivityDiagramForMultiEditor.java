@@ -18,10 +18,8 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.ui.parts.ScrollingGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -113,22 +111,22 @@ public class UmlActivityDiagramForMultiEditor extends UMLDiagramEditor {
 		splitter = parent;
 		super.createGraphicalViewer(parent);
 	}
-/*
- * FIXME create viewer which allow to select element trought group
- * 
- */
-//    /**
-//     * Creates a ScrollingGraphicalViewer without the drop adapter which
-//     * excludes drag and drop functionality from other defined views (XML)
-//     * Subclasses must override this method to include the DnD functionality
-//     * 
-//     * @return ScrollingGraphicalViewer
-//     */
-//	@Override
-//    protected ScrollingGraphicalViewer createScrollingGraphicalViewer() {
-//       // return new DiagramGraphicalViewer();
-//        return new GroupGraphicalViewer();
-//    }
+
+	/*
+	 * FIXME create viewer which allow to select element trought group
+	 */
+	//    /**
+	//     * Creates a ScrollingGraphicalViewer without the drop adapter which
+	//     * excludes drag and drop functionality from other defined views (XML)
+	//     * Subclasses must override this method to include the DnD functionality
+	//     * 
+	//     * @return ScrollingGraphicalViewer
+	//     */
+	//	@Override
+	//    protected ScrollingGraphicalViewer createScrollingGraphicalViewer() {
+	//       // return new DiagramGraphicalViewer();
+	//        return new GroupGraphicalViewer();
+	//    }
 
 	/**
 	 * {@inheritDoc}

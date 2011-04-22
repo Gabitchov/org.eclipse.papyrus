@@ -17,6 +17,7 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.commands.RestoreRelatedLinksCommand;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
@@ -50,7 +51,11 @@ public class RestoreRelatedLinksAction extends AbstractAction {
 	 */
 	@Override
 	public boolean isEnabled() {
-		return (!getSelection().isEmpty() && getDiagramNotationID().equals(getCurrentDiagram().getType()));
+		Diagram currentDiagram = getCurrentDiagram();
+		if(currentDiagram != null) {
+			return (!getSelection().isEmpty() && getDiagramNotationID().equals(currentDiagram.getType()));
+		}
+		return false;
 	}
 
 	/**
