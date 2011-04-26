@@ -32,7 +32,9 @@ import org.eclipse.ui.PlatformUI;
  */
 public class ActivityDiagramContributionPolicyClass implements IPopupMenuContributionPolicy {
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean appliesTo(ISelection selection, IConfigurationElement configuration) {
 		IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		if(editorPart instanceof IMultiDiagramEditor) {
