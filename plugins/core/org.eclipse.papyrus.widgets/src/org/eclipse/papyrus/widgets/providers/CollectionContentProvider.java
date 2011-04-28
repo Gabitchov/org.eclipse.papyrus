@@ -24,6 +24,10 @@ import org.eclipse.jface.viewers.Viewer;
  */
 public class CollectionContentProvider implements IStructuredContentProvider {
 
+	private CollectionContentProvider() {
+
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -56,4 +60,6 @@ public class CollectionContentProvider implements IStructuredContentProvider {
 
 		return new Object[]{};
 	}
+
+	public static CollectionContentProvider instance = new CollectionContentProvider();
 }

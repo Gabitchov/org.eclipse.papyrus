@@ -58,11 +58,13 @@ public abstract class AbstractContextualContentProvider implements IStaticConten
 		List<Context> contexts = new LinkedList<Context>();
 
 		Context rootContext = null;
-		for(Resource resource : source.eResource().getResourceSet().getResources()) {
-			if(!resource.getContents().isEmpty() && resource.getContents().get(0) instanceof Context) {
-				rootContext = (Context)resource.getContents().get(0);
-				contexts.add(rootContext);
-				break;
+		if(source.eResource() != null) {
+			for(Resource resource : source.eResource().getResourceSet().getResources()) {
+				if(!resource.getContents().isEmpty() && resource.getContents().get(0) instanceof Context) {
+					rootContext = (Context)resource.getContents().get(0);
+					contexts.add(rootContext);
+					break;
+				}
 			}
 		}
 

@@ -13,6 +13,7 @@ package org.eclipse.papyrus.properties.modelelement;
 
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
@@ -103,7 +104,21 @@ public interface ModelElement {
 	 * @param localPropertyPath
 	 * @return
 	 */
-	public boolean forceRefresh(String localPropertyPath);
+	public boolean forceRefresh(String propertyPath);
 
+	/**
+	 * Sets the DataSource associated to this model element
+	 * 
+	 * @param source
+	 *        The DataSource to associate to this model element
+	 */
 	public void setDataSource(DataSource source);
+
+	/**
+	 * @return the default factory used to handle operations such as object
+	 *         creation or edition, or null if these operations are not supported.
+	 *         This factory will typically be used by Multiple value editors, to
+	 *         create or edit a single entry.
+	 */
+	public ReferenceValueFactory getValueFactory(String propertyPath);
 }

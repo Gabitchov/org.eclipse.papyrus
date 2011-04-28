@@ -14,8 +14,10 @@ package org.eclipse.papyrus.properties.modelelement;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.properties.databinding.MultipleObservable;
 import org.eclipse.papyrus.properties.databinding.MultipleObservableValue;
 import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
@@ -32,12 +34,30 @@ import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
  */
 public class CompositeModelElement extends AbstractModelElement {
 
-	public IObservableValue getObservable(String propertyPath) {
-		MultipleObservableValue observableValue = new MultipleObservableValue();
+	public IObservable getObservable(String propertyPath) {
+
+		MultipleObservable observableComposite = null;
+
 		for(ModelElement element : elements) {
-			observableValue.addObservable((IObservableValue)element.getObservable(propertyPath));
+			IObservable observable = element.getObservable(propertyPath);
+
+			if(observableComposite == null) {
+				if(observable instanceof IObservableValue) {
+					observableComposite = new MultipleObservableValue();
+				} else {
+					return null; //The support for CompositeObservableList is too complicated. 
+					//There are too many non-trivial choices (Union or Intersection display, 
+					//unadapted behavior of MultipleValueEditors, ...)
+					//observableComposite = new MultipleObservableList();
+				}
+			}
+
+			if(!observableComposite.add(observable)) {
+				return null;
+			}
 		}
-		return observableValue;
+
+		return observableComposite;
 	}
 
 	/**

@@ -96,6 +96,9 @@ mapping PropertyEditor::toEditorXML() : XML::Element inherits Widget::toWidgetXM
 	if self.readOnly then
 		children := children->including(createAttribute("readOnly", "true"))
 	endif;
+	if not self.showLabel then
+		children := children->including(createAttribute("showLabel", "false"))
+	endif;
 	
 	addNamespace(self.widgetType.namespace, self);
 }

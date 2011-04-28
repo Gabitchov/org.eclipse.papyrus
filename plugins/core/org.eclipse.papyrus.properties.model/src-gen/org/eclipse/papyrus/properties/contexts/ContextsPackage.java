@@ -791,13 +791,22 @@ public interface ContextsPackage extends EPackage {
 	int CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS = 5;
 
 	/**
+	 * The feature id for the '<em><b>Overrideable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_DESCRIPTOR__OVERRIDEABLE = 6;
+
+	/**
 	 * The number of structural features of the '<em>Constraint Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_DESCRIPTOR_FEATURE_COUNT = 6;
+	int CONSTRAINT_DESCRIPTOR_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.properties.contexts.impl.ConfigPropertyImpl <em>Config Property</em>}' class.
@@ -1475,6 +1484,17 @@ public interface ContextsPackage extends EPackage {
 	EReference getConstraintDescriptor_OverriddenConstraints();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#isOverrideable <em>Overrideable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Overrideable</em>'.
+	 * @see org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#isOverrideable()
+	 * @see #getConstraintDescriptor()
+	 * @generated
+	 */
+	EAttribute getConstraintDescriptor_Overrideable();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.properties.contexts.ConfigProperty <em>Config Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2004,6 +2024,14 @@ public interface ContextsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS = eINSTANCE.getConstraintDescriptor_OverriddenConstraints();
+
+		/**
+		 * The meta object literal for the '<em><b>Overrideable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT_DESCRIPTOR__OVERRIDEABLE = eINSTANCE.getConstraintDescriptor_Overrideable();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.properties.contexts.impl.ConfigPropertyImpl <em>Config Property</em>}' class.

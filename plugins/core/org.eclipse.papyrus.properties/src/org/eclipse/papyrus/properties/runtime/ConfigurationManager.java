@@ -566,8 +566,8 @@ public class ConfigurationManager {
 	}
 
 	public Property getProperty(String propertyPath, Context context) {
-		String elementName = propertyPath.substring(0, propertyPath.lastIndexOf(":"));
-		String propertyName = propertyPath.substring(propertyPath.lastIndexOf(":") + 1, propertyPath.length());
+		String elementName = propertyPath.substring(0, propertyPath.lastIndexOf(":")); //$NON-NLS-1$
+		String propertyName = propertyPath.substring(propertyPath.lastIndexOf(":") + 1, propertyPath.length()); //$NON-NLS-1$
 		Set<DataContextElement> elements = new HashSet<DataContextElement>();
 
 		Collection<Context> allContexts;

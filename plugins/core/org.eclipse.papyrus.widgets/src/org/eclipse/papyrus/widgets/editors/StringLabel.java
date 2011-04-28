@@ -41,7 +41,7 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 	 */
 	public StringLabel(Composite parent, int style) {
 		super(parent, style);
-		valueLabel = factory.createCLabel(this, "", style);
+		valueLabel = factory.createCLabel(this, "", style); //$NON-NLS-1$
 		valueLabel.setLayoutData(getDefaultLayoutData());
 		labelProvider = new LabelProvider();
 	}

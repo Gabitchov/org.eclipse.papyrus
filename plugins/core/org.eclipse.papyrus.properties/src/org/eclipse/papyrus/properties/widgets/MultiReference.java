@@ -12,7 +12,6 @@
 package org.eclipse.papyrus.properties.widgets;
 
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.properties.creation.PropertyEditorFactory;
 import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.widgets.editors.MultipleReferenceEditor;
@@ -48,8 +47,6 @@ public class MultiReference extends AbstractPropertyEditor {
 	 */
 	public MultiReference(Composite parent, int style) {
 		editor = new MultipleReferenceEditor(parent, style);
-		factory = new PropertyEditorFactory();
-		editor.setFactory(factory);
 		super.setEditor(editor);
 	}
 
@@ -65,6 +62,11 @@ public class MultiReference extends AbstractPropertyEditor {
 		editor.setProviders(contentProvider, labelProvider);
 		editor.setOrdered(input.isOrdered(propertyPath));
 		editor.setUnique(input.isUnique(propertyPath));
+		if(factory == null) {
+			editor.setFactory(input.getValueFactory(propertyPath));
+		} else {
+			editor.setFactory(factory);
+		}
 
 		super.doBinding();
 	}

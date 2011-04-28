@@ -11,12 +11,15 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.databinding,
  org.eclipse.jface.databinding,
  org.eclipse.papyrus.log;bundle-version="0.8.0",
- org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.100"
+ org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.100",
+ org.eclipse.core.resources;bundle-version="3.7.100",
+ org.eclipse.ui.ide;bundle-version="3.7.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.widgets, 
- org.eclipse.papyrus.widgets.editors,
+Export-Package: org.eclipse.papyrus.widgets,
  org.eclipse.papyrus.widgets.creation,
+ org.eclipse.papyrus.widgets.editors,
  org.eclipse.papyrus.widgets.providers,
- org.eclipse.papyrus.widgets.selectors
+ org.eclipse.papyrus.widgets.selectors,
+ org.eclipse.papyrus.widgets.util
 Bundle-Localization: plugin

@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.widgets;
 
+import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.widgets.Composite;
 
@@ -27,6 +28,12 @@ public class ReferenceDialog extends AbstractPropertyEditor {
 	 * The ReferenceDialog widget
 	 */
 	protected org.eclipse.papyrus.widgets.editors.ReferenceDialog editor;
+
+	/**
+	 * The ValueFactory used to create or edit Objects directly from
+	 * this editor
+	 */
+	protected ReferenceValueFactory factory;
 
 	/**
 	 * Constructor.
@@ -46,7 +53,32 @@ public class ReferenceDialog extends AbstractPropertyEditor {
 		IStaticContentProvider provider = input.getContentProvider(propertyPath);
 		editor.setLabelProvider(input.getLabelProvider(propertyPath));
 		editor.setContentProvider(provider);
+		if(factory == null) { //Use the default factory from the DataSource
+			editor.setValueFactory(input.getValueFactory(propertyPath));
+		} else { //Use the factory explicitly specified
+			editor.setValueFactory(factory);
+		}
+
 		super.doBinding();
+	}
+
+	/**
+	 * Sets the ValueFactory used to create or edit Objects directly from
+	 * this editor
+	 * 
+	 * @param factory
+	 */
+	public void setFactory(ReferenceValueFactory factory) {
+		this.factory = factory;
+		editor.setValueFactory(factory);
+	}
+
+	/**
+	 * @return The ValueFactory used to create or edit Objects directly from
+	 *         this editor
+	 */
+	public ReferenceValueFactory getFactory() {
+		return factory;
 	}
 
 }

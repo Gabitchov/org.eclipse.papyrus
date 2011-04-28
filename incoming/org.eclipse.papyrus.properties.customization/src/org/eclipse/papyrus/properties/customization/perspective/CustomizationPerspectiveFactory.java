@@ -18,9 +18,9 @@ import org.eclipse.ui.IPerspectiveFactory;
 
 public class CustomizationPerspectiveFactory implements IPerspectiveFactory {
 
-	private final static String PROPERTIES = "org.eclipse.ui.views.PropertySheet";
+	private final static String PROPERTIES = "org.eclipse.ui.views.PropertySheet"; //$NON-NLS-1$
 
-	private final static String PROJECT_EXPLORER = "org.eclipse.ui.navigator.ProjectExplorer";
+	private final static String PROJECT_EXPLORER = "org.eclipse.ui.navigator.ProjectExplorer"; //$NON-NLS-1$
 
 	public void createInitialLayout(IPageLayout layout) {
 		layout.addView(PROJECT_EXPLORER, IPageLayout.LEFT, 0.20f, layout.getEditorArea());

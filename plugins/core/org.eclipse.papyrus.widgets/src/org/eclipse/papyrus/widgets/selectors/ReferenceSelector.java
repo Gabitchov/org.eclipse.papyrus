@@ -21,10 +21,13 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.widgets.editors.IElementSelectionListener;
 import org.eclipse.papyrus.widgets.editors.IElementSelector;
 import org.eclipse.papyrus.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -70,6 +73,9 @@ public class ReferenceSelector implements IElementSelector {
 	 * at a time.
 	 */
 	protected boolean multiSelection;
+
+
+	private Set<IElementSelectionListener> elementSelectionListeners = new HashSet<IElementSelectionListener>();
 
 	/**
 	 * The set of selected elements. If the selector is marked as "unique",
@@ -201,7 +207,7 @@ public class ReferenceSelector implements IElementSelector {
 		this.contentProvider = new EncapsulatedContentProvider(staticContentProvider);
 		if(fTree != null) {
 			fTree.getViewer().setContentProvider(contentProvider);
-			fTree.getViewer().setInput("");
+			fTree.getViewer().setInput(""); //$NON-NLS-1$
 		}
 	}
 
@@ -216,7 +222,7 @@ public class ReferenceSelector implements IElementSelector {
 		//		filter.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
 		final PatternFilter filter = new PatternFilter();
-		filter.setPattern("*");
+		filter.setPattern("*"); //$NON-NLS-1$
 
 		fTree = new FilteredTree(content, SWT.MULTI | SWT.BORDER, new PatternFilter(), true);
 
@@ -224,7 +230,7 @@ public class ReferenceSelector implements IElementSelector {
 		fTree.getViewer().getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		if(contentProvider != null) {
 			fTree.getViewer().setContentProvider(contentProvider);
-			fTree.getViewer().setInput("");
+			fTree.getViewer().setInput(""); //$NON-NLS-1$
 		}
 		if(labelProvider != null) {
 			fTree.getViewer().setLabelProvider(labelProvider);
@@ -248,10 +254,32 @@ public class ReferenceSelector implements IElementSelector {
 				}
 			}
 		});
+
+		//Adds double-click support
+		fTree.getViewer().getTree().addSelectionListener(new SelectionListener() {
+
+			public void widgetSelected(SelectionEvent e) {
+				// Nothing
+			}
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+				if(!elementSelectionListeners.isEmpty()) {
+					Object[] selectedElements = getSelectedElements();
+					for(IElementSelectionListener listener : elementSelectionListeners) {
+						listener.addElements(selectedElements);
+					}
+				}
+			}
+
+		});
 	}
 
 	public void setUnique(boolean unique) {
 		this.unique = unique;
+	}
+
+	public void addElementSelectionListener(IElementSelectionListener listener) {
+		elementSelectionListeners.add(listener);
 	}
 
 	//	/**

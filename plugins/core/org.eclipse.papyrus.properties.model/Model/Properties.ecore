@@ -173,6 +173,9 @@
           eType="#//contexts/ConfigProperty" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="overriddenConstraints"
           upperBound="-1" eType="#//contexts/ConstraintDescriptor"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="overrideable" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConfigProperty" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
@@ -210,6 +213,9 @@
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="contentProviderClass"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="showLabel" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CompositeWidget" eSuperTypes="#//ui/Widget">
       <eStructuralFeatures xsi:type="ecore:EReference" name="layout" lowerBound="1"

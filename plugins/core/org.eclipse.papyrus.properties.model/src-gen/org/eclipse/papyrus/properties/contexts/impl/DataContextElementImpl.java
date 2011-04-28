@@ -353,8 +353,14 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 
 		if(object.getClass() == getClass()) {
 			DataContextElement element = (DataContextElement)object;
-			if(!getName().equals(element.getName())) {
-				return false;
+			if(getName() == null) {
+				if(element.getName() != null) {
+					return false;
+				}
+			} else {
+				if(!getName().equals(element.getName())) {
+					return false;
+				}
 			}
 
 			if(getPackage() == null) {

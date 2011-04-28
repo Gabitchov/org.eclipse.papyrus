@@ -34,6 +34,7 @@ import org.eclipse.papyrus.properties.ui.UiPackage;
  *   <li>{@link org.eclipse.papyrus.properties.ui.impl.PropertyEditorImpl#getWidgetType <em>Widget Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.ui.impl.PropertyEditorImpl#getUnresolvedProperty <em>Unresolved Property</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.ui.impl.PropertyEditorImpl#getContentProviderClass <em>Content Provider Class</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.ui.impl.PropertyEditorImpl#isShowLabel <em>Show Label</em>}</li>
  * </ul>
  * </p>
  *
@@ -109,6 +110,26 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * @ordered
 	 */
 	protected String contentProviderClass = CONTENT_PROVIDER_CLASS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isShowLabel() <em>Show Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isShowLabel()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SHOW_LABEL_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isShowLabel() <em>Show Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isShowLabel()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean showLabel = SHOW_LABEL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -295,6 +316,27 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isShowLabel() {
+		return showLabel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setShowLabel(boolean newShowLabel) {
+		boolean oldShowLabel = showLabel;
+		showLabel = newShowLabel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.PROPERTY_EDITOR__SHOW_LABEL, oldShowLabel, showLabel));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -324,6 +366,8 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 				return getUnresolvedProperty();
 			case UiPackage.PROPERTY_EDITOR__CONTENT_PROVIDER_CLASS:
 				return getContentProviderClass();
+			case UiPackage.PROPERTY_EDITOR__SHOW_LABEL:
+				return isShowLabel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -350,6 +394,9 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 				return;
 			case UiPackage.PROPERTY_EDITOR__CONTENT_PROVIDER_CLASS:
 				setContentProviderClass((String)newValue);
+				return;
+			case UiPackage.PROPERTY_EDITOR__SHOW_LABEL:
+				setShowLabel((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -378,6 +425,9 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 			case UiPackage.PROPERTY_EDITOR__CONTENT_PROVIDER_CLASS:
 				setContentProviderClass(CONTENT_PROVIDER_CLASS_EDEFAULT);
 				return;
+			case UiPackage.PROPERTY_EDITOR__SHOW_LABEL:
+				setShowLabel(SHOW_LABEL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -400,6 +450,8 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 				return unresolvedProperty != null;
 			case UiPackage.PROPERTY_EDITOR__CONTENT_PROVIDER_CLASS:
 				return CONTENT_PROVIDER_CLASS_EDEFAULT == null ? contentProviderClass != null : !CONTENT_PROVIDER_CLASS_EDEFAULT.equals(contentProviderClass);
+			case UiPackage.PROPERTY_EDITOR__SHOW_LABEL:
+				return showLabel != SHOW_LABEL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -418,6 +470,8 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 		result.append(readOnly);
 		result.append(", contentProviderClass: ");
 		result.append(contentProviderClass);
+		result.append(", showLabel: ");
+		result.append(showLabel);
 		result.append(')');
 		return result.toString();
 	}

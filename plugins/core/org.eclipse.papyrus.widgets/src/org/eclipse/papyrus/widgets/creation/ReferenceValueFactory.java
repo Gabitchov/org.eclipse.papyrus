@@ -85,6 +85,7 @@ public interface ReferenceValueFactory {
 	 *        The widget calling the factory. May be used for example to retrieve the shell for opening a Dialog.
 	 * @param object
 	 *        The object to edit
+	 * @return the edited object, or null if the object has been edited "in place"
 	 */
-	public void edit(Control widget, Object object);
+	public Object edit(Control widget, Object object);
 }

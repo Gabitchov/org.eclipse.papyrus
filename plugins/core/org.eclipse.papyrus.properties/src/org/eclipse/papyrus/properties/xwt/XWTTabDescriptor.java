@@ -56,7 +56,7 @@ public class XWTTabDescriptor extends AbstractTabDescriptor {
 
 	public String getCategory() {
 		String category = tab.getCategory();
-		return category == null ? "" : category;
+		return category == null ? "" : category; //$NON-NLS-1$
 	}
 
 	public String getId() {

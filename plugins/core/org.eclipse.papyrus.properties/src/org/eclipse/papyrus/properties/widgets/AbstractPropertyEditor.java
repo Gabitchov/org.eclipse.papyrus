@@ -15,6 +15,7 @@ import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.contexts.Property;
 import org.eclipse.papyrus.properties.modelelement.DataSource;
@@ -70,6 +71,11 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 * (For single values only)
 	 */
 	protected IObservableValue observableValue;
+
+	/**
+	 * Indicates if the editor's label should be displayed
+	 */
+	protected boolean showLabel = true;
 
 	public static int descriptionMaxCharPerLine = 200;
 
@@ -161,13 +167,23 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 				valueEditor.setModelObservable(inputObservableValue);
 		}
 
-		AbstractEditor editor = getEditor();
-		if(editor != null)
-			editor.setReadOnly(isReadOnly);
+		applyReadOnly(isReadOnly);
 
 		if(input.forceRefresh(propertyPath)) {
 			input.addChangeListener(this);
 		}
+	}
+
+	/**
+	 * Applies the readOnly state to the editor
+	 * 
+	 * @param readOnly
+	 *        Indicates if this widget should be read-only
+	 */
+	protected void applyReadOnly(boolean readOnly) {
+		AbstractEditor editor = getEditor();
+		if(editor != null)
+			editor.setReadOnly(readOnly);
 	}
 
 	public void handleChange(ChangeEvent event) {
@@ -200,10 +216,12 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 			label += " *"; //$NON-NLS-1$
 		}
 
-		if(valueEditor != null) {
-			valueEditor.setLabel(label);
-		} else if(listEditor != null) {
-			listEditor.setLabel(label);
+		if(showLabel) {
+			if(valueEditor != null) {
+				valueEditor.setLabel(label);
+			} else if(listEditor != null) {
+				listEditor.setLabel(label);
+			}
 		}
 	}
 
@@ -236,7 +254,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 */
 	protected String getLabel() {
 		Property property = getModelProperty();
-		if(property == null || property.getLabel() == null || property.getLabel().trim().equals(""))
+		if(property == null || property.getLabel() == null || property.getLabel().trim().equals("")) //$NON-NLS-1$
 			return Util.getLabel(getLocalPropertyPath());
 
 		return property.getLabel();
@@ -247,12 +265,12 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 * The description is the widget's ToolTipText
 	 */
 	protected void updateDescription() {
-		String description = "";
+		String description = ""; //$NON-NLS-1$
 		Property property = getModelProperty();
 		if(property != null)
 			description = property.getDescription();
 
-		if(description == null || description.trim().equals("")) {
+		if(description == null || description.trim().equals("")) { //$NON-NLS-1$
 			return;
 		}
 
@@ -312,8 +330,13 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 *         available
 	 */
 	protected IObservableList getInputObservableList() {
-		if(observableList == null)
-			observableList = (IObservableList)input.getObservable(propertyPath);
+		if(observableList == null) {
+			try {
+				observableList = (IObservableList)input.getObservable(propertyPath);
+			} catch (Exception ex) {
+				Activator.log.error("Cannot find a valid IObservable for " + propertyPath, ex); //$NON-NLS-1$
+			}
+		}
 
 		return observableList;
 	}
@@ -323,8 +346,13 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 *         available
 	 */
 	protected IObservableValue getInputObservableValue() {
-		if(observableValue == null)
-			observableValue = (IObservableValue)input.getObservable(propertyPath);
+		if(observableValue == null) {
+			try {
+				observableValue = (IObservableValue)input.getObservable(propertyPath);
+			} catch (Exception ex) {
+				Activator.log.error("Cannot find a valid IObservable for " + propertyPath, ex); //$NON-NLS-1$
+			}
+		}
 
 		return observableValue;
 	}
@@ -334,5 +362,47 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 */
 	protected String getLocalPropertyPath() {
 		return propertyPath.substring(propertyPath.lastIndexOf(":") + 1); //$NON-NLS-1$
+	}
+
+	/**
+	 * Sets the editor's Layout Data
+	 * 
+	 * @param data
+	 */
+	public void setLayoutData(Object data) {
+		if(getEditor() != null)
+			getEditor().setLayoutData(data);
+	}
+
+	/**
+	 * Returns the editor's Layout Data
+	 * 
+	 * @param data
+	 * @return
+	 */
+	public Object getLayoutData() {
+		return getEditor() == null ? null : getEditor().getLayoutData();
+	}
+
+	/**
+	 * Indicates whether the editor's label should be displayed or not
+	 * 
+	 * @param showLabel
+	 */
+	public void setShowLabel(boolean showLabel) {
+		AbstractEditor editor = getEditor();
+		this.showLabel = showLabel;
+		if(editor != null) {
+			editor.setDisplayLabel(showLabel);
+		}
+	}
+
+	/**
+	 * Indicates whether the editor's label is displayed or not
+	 * 
+	 * @return
+	 */
+	public boolean getShowLabel() {
+		return this.showLabel;
 	}
 }

@@ -26,6 +26,7 @@ import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.properties.customization.Activator;
+import org.eclipse.papyrus.properties.customization.messages.Messages;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
@@ -53,13 +54,13 @@ public class CustomizationPreferencePage extends FieldEditorPreferencePage imple
 
 	public void init(IWorkbench workbench) {
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());
-		setDescription("Property view customization preferences");
+		setDescription(Messages.CustomizationPreferencePage_PropertyViewCustomizationPreferences);
 	}
 
 	@Override
 	protected void createFieldEditors() {
-		addField(new BooleanFieldEditor(OPEN_CUSTOMIZATION_PERSPECTIVE, "Open customization perspective", getFieldEditorParent()));
-		addField(new BooleanFieldEditor(ASK_FOR_CONFIRMATION, "Ask for confirmation", getFieldEditorParent()));
+		addField(new BooleanFieldEditor(OPEN_CUSTOMIZATION_PERSPECTIVE, Messages.CustomizationPreferencePage_OpenCustomizationPerspective, getFieldEditorParent()));
+		addField(new BooleanFieldEditor(ASK_FOR_CONFIRMATION, Messages.CustomizationPreferencePage_AskForConfirmation, getFieldEditorParent()));
 	}
 
 	public static boolean openCustomizationPerspective() {

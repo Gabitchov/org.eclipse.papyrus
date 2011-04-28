@@ -44,6 +44,7 @@ import org.eclipse.papyrus.properties.environment.ConstraintType;
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ConstraintDescriptorImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ConstraintDescriptorImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ConstraintDescriptorImpl#getOverriddenConstraints <em>Overridden Constraints</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ConstraintDescriptorImpl#isOverrideable <em>Overrideable</em>}</li>
  * </ul>
  * </p>
  *
@@ -109,6 +110,26 @@ public class ConstraintDescriptorImpl extends EObjectImpl implements ConstraintD
 	 * @ordered
 	 */
 	protected EList<ConstraintDescriptor> overriddenConstraints;
+
+	/**
+	 * The default value of the '{@link #isOverrideable() <em>Overrideable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOverrideable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean OVERRIDEABLE_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isOverrideable() <em>Overrideable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOverrideable()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean overrideable = OVERRIDEABLE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -270,6 +291,27 @@ public class ConstraintDescriptorImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isOverrideable() {
+		return overrideable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOverrideable(boolean newOverrideable) {
+		boolean oldOverrideable = overrideable;
+		overrideable = newOverrideable;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDEABLE, oldOverrideable, overrideable));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -334,6 +376,8 @@ public class ConstraintDescriptorImpl extends EObjectImpl implements ConstraintD
 				return getProperties();
 			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS:
 				return getOverriddenConstraints();
+			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDEABLE:
+				return isOverrideable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -368,6 +412,9 @@ public class ConstraintDescriptorImpl extends EObjectImpl implements ConstraintD
 				getOverriddenConstraints().clear();
 				getOverriddenConstraints().addAll((Collection<? extends ConstraintDescriptor>)newValue);
 				return;
+			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDEABLE:
+				setOverrideable((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -398,6 +445,9 @@ public class ConstraintDescriptorImpl extends EObjectImpl implements ConstraintD
 			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS:
 				getOverriddenConstraints().clear();
 				return;
+			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDEABLE:
+				setOverrideable(OVERRIDEABLE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -422,6 +472,8 @@ public class ConstraintDescriptorImpl extends EObjectImpl implements ConstraintD
 				return properties != null && !properties.isEmpty();
 			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS:
 				return overriddenConstraints != null && !overriddenConstraints.isEmpty();
+			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDEABLE:
+				return overrideable != OVERRIDEABLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -438,6 +490,8 @@ public class ConstraintDescriptorImpl extends EObjectImpl implements ConstraintD
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
+		result.append(", overrideable: ");
+		result.append(overrideable);
 		result.append(')');
 		return result.toString();
 	}

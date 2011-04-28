@@ -34,7 +34,7 @@ public class RootFactoryImpl extends EFactoryImpl implements RootFactory {
 	 */
 	public static RootFactory init() {
 		try {
-			RootFactory theRootFactory = (RootFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/properties/root");
+			RootFactory theRootFactory = (RootFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/properties/root"); //$NON-NLS-1$
 			if(theRootFactory != null) {
 				return theRootFactory;
 			}
@@ -67,7 +67,7 @@ public class RootFactoryImpl extends EFactoryImpl implements RootFactory {
 		case RootPackage.PROPERTIES_ROOT:
 			return createPropertiesRoot();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

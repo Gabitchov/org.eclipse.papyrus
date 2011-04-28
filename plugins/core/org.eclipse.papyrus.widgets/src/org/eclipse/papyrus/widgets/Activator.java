@@ -98,7 +98,7 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public Image getImage(String pluginId, String path) {
 		final ImageRegistry registry = getImageRegistry();
-		String key = pluginId + "/" + path;
+		String key = pluginId + "/" + path; //$NON-NLS-1$
 		Image image = registry.get(key);
 		if(image == null) {
 			registry.put(key, AbstractUIPlugin.imageDescriptorFromPlugin(pluginId, path));

@@ -17,6 +17,14 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.properties.customization.messages.messages"; //$NON-NLS-1$
 
+	public static String CopyContextAction_Copying;
+
+	public static String CopyContextAction_InitializingTheCopyOf;
+
+	public static String CopyContextAction_ThisMayTakeSomeTime;
+
+	public static String CopyContextAction_To;
+
 	public static String CustomizationDialog_cancel;
 
 	public static String CustomizationDialog_cannotDeletePluginContext;
@@ -59,6 +67,12 @@ public class Messages extends NLS {
 
 	public static String CustomizationDialog_yes;
 
+	public static String CustomizationPreferencePage_AskForConfirmation;
+
+	public static String CustomizationPreferencePage_OpenCustomizationPerspective;
+
+	public static String CustomizationPreferencePage_PropertyViewCustomizationPreferences;
+
 	public static String InputDialog_enterConfigurationName;
 
 	public static String Preview_disablePreview;
@@ -68,6 +82,17 @@ public class Messages extends NLS {
 	public static String Preview_preview;
 
 	public static String Preview_previewIsDisabled;
+
+	public static String Preview_Unnamed;
+	public static String UIEditor_ChangePerspective;
+
+	public static String UIEditor_ChangePerspectiveMessage;
+
+	public static String UIEditor_FilterViews;
+
+	public static String UIEditor_No;
+
+	public static String UIEditor_Yes;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

@@ -11,8 +11,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.widgets.selectors;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.eclipse.papyrus.widgets.editors.IElementSelectionListener;
 import org.eclipse.papyrus.widgets.editors.IElementSelector;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
@@ -36,6 +42,8 @@ public class StringSelector implements IElementSelector {
 	 * Indicates if this StringSelector is multiline
 	 */
 	protected boolean multiline;
+
+	protected Set<IElementSelectionListener> elementSelectionListeners = new HashSet<IElementSelectionListener>();
 
 	/**
 	 * Constructs a single-line String Selector
@@ -77,6 +85,28 @@ public class StringSelector implements IElementSelector {
 	 */
 	public void createControls(Composite parent) {
 		text = new Text(parent, (multiline ? SWT.MULTI : SWT.NONE) | SWT.BORDER);
+		if(!multiline) {
+			text.addKeyListener(new KeyListener() {
+
+				public void keyPressed(KeyEvent e) {
+					//Nothing
+				}
+
+				public void keyReleased(KeyEvent e) {
+					if((e.keyCode == SWT.CR || e.keyCode == SWT.KEYPAD_CR) && e.stateMask == SWT.NONE) {
+						if(!elementSelectionListeners.isEmpty()) {
+							Object[] result = getSelectedElements();
+							if(!result[0].equals("")) { //$NON-NLS-1$
+								for(IElementSelectionListener listener : elementSelectionListeners) {
+									listener.addElements(result);
+								}
+							}
+						}
+					}
+				}
+
+			});
+		}
 	}
 
 	/**
@@ -100,5 +130,9 @@ public class StringSelector implements IElementSelector {
 	 */
 	public void clearTemporaryElements() {
 		//Ignored
+	}
+
+	public void addElementSelectionListener(IElementSelectionListener listener) {
+		elementSelectionListeners.add(listener);
 	}
 }

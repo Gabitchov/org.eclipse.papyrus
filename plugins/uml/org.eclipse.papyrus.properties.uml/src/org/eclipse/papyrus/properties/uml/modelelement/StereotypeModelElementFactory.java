@@ -37,6 +37,8 @@ import org.eclipse.uml2.uml.Stereotype;
  * 
  * TODO : enable the framework to handle B:name and C:name (Currently not possible,
  * as "name" is not directly a property of B nor C)
+ * The problem probably comes from the Stereotype generator, which uses the same
+ * inheritance mechanism as the Ecore generator, and not from the framework itself
  * 
  * @author Camille Letavernier
  */

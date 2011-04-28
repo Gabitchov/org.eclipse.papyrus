@@ -195,10 +195,10 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 
 					activePage.addPartListener(this);
 				} else {
-					Activator.log.warn("There is no active page");
+					Activator.log.warn("There is no active page"); //$NON-NLS-1$
 				}
 			} else {
-				Activator.log.warn("There is no current window");
+				Activator.log.warn("There is no current window"); //$NON-NLS-1$
 			}
 		}
 
@@ -265,12 +265,12 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 		this.currentView = view;
 		if(view != null) {
 			if(view.getName() == null) {
-				previewTitle.setText("<<Unnamed>>");
+				previewTitle.setText(Messages.Preview_Unnamed);
 			} else {
 				previewTitle.setText(view.getName());
 			}
 		} else {
-			previewTitle.setText("");
+			previewTitle.setText(""); //$NON-NLS-1$
 		}
 
 		previewTitle.getParent().layout();
@@ -388,7 +388,7 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 
 	private boolean isAfter(Tab tab1, Tab tab2, Set<Tab> checkedTabs) {
 		if(checkedTabs.contains(tab2)) {
-			Activator.log.warn("Loop in the afterTabs");
+			Activator.log.warn("Loop in the afterTabs"); //$NON-NLS-1$
 			return false;
 		}
 

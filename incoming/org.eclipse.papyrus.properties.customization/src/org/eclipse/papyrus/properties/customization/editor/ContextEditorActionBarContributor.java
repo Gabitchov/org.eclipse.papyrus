@@ -37,6 +37,7 @@ import org.eclipse.papyrus.properties.customization.editor.actions.MoDiscoCopyAc
 import org.eclipse.papyrus.properties.customization.editor.actions.MoDiscoCutAction;
 import org.eclipse.papyrus.properties.customization.editor.actions.MoDiscoDeleteAction;
 import org.eclipse.papyrus.properties.customization.editor.actions.MoDiscoPasteAction;
+import org.eclipse.papyrus.properties.customization.editor.actions.ToggleDataContextAction;
 import org.eclipse.papyrus.properties.customization.editor.actions.ValidationAction;
 import org.eclipse.papyrus.properties.customization.util.ActionUtil;
 
@@ -142,8 +143,10 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 			IAction action = iterator.next();
 			if(action instanceof CreateChildAction) {
 				CreateChildAction createChildAction = (CreateChildAction)action;
-				if(createChildAction.getText().equals("Data Context Root")) { //It's the only relevant property we have access to... //$NON-NLS-1$
-					iterator.remove();
+				if(!ToggleDataContextAction.showDataContext) {
+					if(createChildAction.getText().equals("Data Context Root")) { //It's the only relevant property we have access to... //$NON-NLS-1$
+						iterator.remove();
+					}
 				}
 			}
 		}

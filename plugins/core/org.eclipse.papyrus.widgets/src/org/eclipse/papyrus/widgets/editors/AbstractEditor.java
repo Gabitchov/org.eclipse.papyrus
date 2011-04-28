@@ -44,6 +44,11 @@ public abstract class AbstractEditor extends Composite {
 	protected Label label;
 
 	/**
+	 * The label value for this editor
+	 */
+	protected String labelText;
+
+	/**
 	 * The set of elements listening on changes from this editor
 	 */
 	protected Set<ICommitListener> commitListeners = new HashSet<ICommitListener>();
@@ -169,11 +174,28 @@ public abstract class AbstractEditor extends Composite {
 	 *        The new text for this editor's label
 	 */
 	public void setLabel(String label) {
+		this.labelText = label;
+
 		if(this.label != null) {
 			this.label.setText(label);
 		} else {
 			createLabel(label);
 			this.label.moveAbove(getChildren()[0]);
+		}
+	}
+
+	/**
+	 * Show or delete the Label Widget.
+	 * 
+	 * @param displayLabel
+	 */
+	public void setDisplayLabel(boolean displayLabel) {
+		if(displayLabel) {
+			setLabel(labelText);
+		} else {
+			if(this.label != null) {
+				this.label.dispose();
+			}
 		}
 	}
 

@@ -25,6 +25,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.contexts.View;
+import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
@@ -72,7 +73,7 @@ public class DataSource implements IChangeListener {
 		this.selection = selection;
 	}
 
-	private ModelElement getModelElement(String propertyPath) {
+	public ModelElement getModelElement(String propertyPath) {
 		//ConfigurationManager.instance.getProperty(propertyPath)
 		String key = propertyPath.substring(0, propertyPath.lastIndexOf(":")); //$NON-NLS-1$
 		ModelElement element = elements.get(key);
@@ -252,5 +253,12 @@ public class DataSource implements IChangeListener {
 		if(element == null)
 			return false;
 		return element.forceRefresh(getLocalPropertyPath(propertyPath));
+	}
+
+	public ReferenceValueFactory getValueFactory(String propertyPath) {
+		ModelElement element = getModelElement(propertyPath);
+		if(element == null)
+			return null;
+		return element.getValueFactory(getLocalPropertyPath(propertyPath));
 	}
 }

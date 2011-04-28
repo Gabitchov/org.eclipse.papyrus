@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.properties.databinding;
+package org.eclipse.papyrus.properties.uml.databinding;
 
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.emf.common.command.Command;
@@ -33,7 +33,7 @@ import org.eclipse.papyrus.service.edit.service.IElementEditService;
  */
 public class PapyrusObservableValue extends EObjectObservableValue {
 
-	private EditingDomain domain;
+	protected EditingDomain domain;
 
 	/**
 	 * 
@@ -71,6 +71,7 @@ public class PapyrusObservableValue extends EObjectObservableValue {
 	protected void doSetValue(Object value) {
 		try {
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getObserved());
+
 			if(provider != null) {
 				SetRequest request = new SetRequest(eObject, eStructuralFeature, value);
 				ICommand createGMFCommand = provider.getEditCommand(request);

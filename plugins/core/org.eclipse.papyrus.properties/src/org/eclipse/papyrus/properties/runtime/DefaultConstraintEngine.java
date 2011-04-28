@@ -55,7 +55,7 @@ public class DefaultConstraintEngine implements ConstraintEngine {
 					constraint.setConstraintDescriptor(descriptor);
 					constraints.add(constraint);
 				} catch (Exception ex) {
-					Activator.log.error(ex);
+					Activator.log.error("Cannot load constraint " + descriptor.getName(), ex); //$NON-NLS-1$
 				}
 			}
 		}
@@ -103,9 +103,9 @@ public class DefaultConstraintEngine implements ConstraintEngine {
 			}
 		}
 
-		//Activator.log.debug("Filtered Constraints : " + matchedConstraints); //$NON-NLS-1$
+		Activator.log.warn("Filtered Constraints : " + matchedConstraints); //$NON-NLS-1$
 		resolveConstraintConflicts(matchedConstraints);
-		Activator.log.debug("Filtered Constraints : " + matchedConstraints); //$NON-NLS-1$
+		Activator.log.warn("Filtered Constraints : " + matchedConstraints); //$NON-NLS-1$
 
 		return matchedConstraints;
 	}
@@ -117,8 +117,14 @@ public class DefaultConstraintEngine implements ConstraintEngine {
 				if(c == c2)
 					continue;
 
-				if(c.overrides(c2)) {
+				if(c.getDescriptor().getOverriddenConstraints().contains(c2.getDescriptor())) {
 					matchedConstraints.remove(c2);
+					continue;
+				}
+
+				if(c2.getDescriptor().isOverrideable() && c.overrides(c2)) {
+					matchedConstraints.remove(c2);
+					continue;
 				}
 			}
 		}

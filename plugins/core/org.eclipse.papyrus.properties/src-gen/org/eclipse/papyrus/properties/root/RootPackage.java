@@ -35,7 +35,7 @@ public interface RootPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	String eNAME = "root";
+	String eNAME = "root"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -44,7 +44,7 @@ public interface RootPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/papyrus/properties/root";
+	String eNS_URI = "http://www.eclipse.org/papyrus/properties/root"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -53,7 +53,7 @@ public interface RootPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	String eNS_PREFIX = "root";
+	String eNS_PREFIX = "root"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.

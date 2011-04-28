@@ -120,6 +120,15 @@ public class UiSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case UiPackage.UNKNOWN_COMPONENT: {
+				UnknownComponent unknownComponent = (UnknownComponent)theEObject;
+				T result = caseUnknownComponent(unknownComponent);
+				if (result == null) result = caseWidget(unknownComponent);
+				if (result == null) result = caseUIComponent(unknownComponent);
+				if (result == null) result = caseElement(unknownComponent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case UiPackage.LAYOUT: {
 				Layout layout = (Layout)theEObject;
 				T result = caseLayout(layout);
@@ -148,15 +157,6 @@ public class UiSwitch<T> extends Switch<T> {
 				T result = caseReferenceAttribute(referenceAttribute);
 				if (result == null) result = caseWidgetAttribute(referenceAttribute);
 				if (result == null) result = caseElement(referenceAttribute);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case UiPackage.UNKNOWN_COMPONENT: {
-				UnknownComponent unknownComponent = (UnknownComponent)theEObject;
-				T result = caseUnknownComponent(unknownComponent);
-				if (result == null) result = caseWidget(unknownComponent);
-				if (result == null) result = caseUIComponent(unknownComponent);
-				if (result == null) result = caseElement(unknownComponent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

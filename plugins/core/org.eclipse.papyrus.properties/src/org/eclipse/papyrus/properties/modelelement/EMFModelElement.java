@@ -25,11 +25,13 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.properties.Activator;
+import org.eclipse.papyrus.properties.creation.EcorePropertyEditorFactory;
 import org.eclipse.papyrus.properties.databinding.EMFObservableList;
 import org.eclipse.papyrus.properties.databinding.EMFObservableValue;
 import org.eclipse.papyrus.properties.providers.EMFObjectLabelProvider;
 import org.eclipse.papyrus.properties.providers.EcoreEnumeratorContentProvider;
 import org.eclipse.papyrus.properties.providers.EcoreReferenceContentProvider;
+import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
@@ -237,5 +239,20 @@ public class EMFModelElement extends AbstractModelElement {
 		if(feature == null)
 			return false;
 		return feature.isDerived();
+	}
+
+	@Override
+	public ReferenceValueFactory getValueFactory(String propertyPath) {
+		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature != null) {
+			if(feature instanceof EReference) {
+				EReference reference = (EReference)feature;
+				if(reference.isContainment()) {
+					return new EcorePropertyEditorFactory(reference.getEReferenceType());
+				}
+			}
+		}
+
+		return super.getValueFactory(propertyPath);
 	}
 }

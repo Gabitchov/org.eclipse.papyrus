@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 
@@ -27,18 +28,7 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
  * 
  * All sub-elements will be edited at the same time, with the same value.
  */
-public class MultipleObservableValue extends AbstractObservableValue {
-
-	/**
-	 * 
-	 * Constructs an instance of MultipleObservableValue with a single sub-element
-	 * 
-	 * @param observable
-	 * 
-	 */
-	public MultipleObservableValue(IObservableValue observable) {
-		observableValues.add(observable);
-	}
+public class MultipleObservableValue extends AbstractObservableValue implements MultipleObservable {
 
 	/**
 	 * 
@@ -135,14 +125,12 @@ public class MultipleObservableValue extends AbstractObservableValue {
 		}
 	}
 
-	/**
-	 * Adds an observableValue to the list of sub-elements
-	 * 
-	 * @param observableValue
-	 *        The observableValue to add
-	 */
-	public void addObservable(IObservableValue observableValue) {
-		observableValues.add(observableValue);
+	public boolean add(IObservable observable) {
+		if(observable instanceof MultipleObservableValue) {
+			observableValues.add((IObservableValue)observable);
+			return true;
+		}
+		return false;
 	}
 
 	private List<IObservableValue> observableValues = new LinkedList<IObservableValue>();

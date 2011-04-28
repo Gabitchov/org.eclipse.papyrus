@@ -24,6 +24,7 @@ import org.eclipse.papyrus.properties.environment.PropertyEditorType;
  *   <li>{@link org.eclipse.papyrus.properties.ui.PropertyEditor#getWidgetType <em>Widget Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.ui.PropertyEditor#getUnresolvedProperty <em>Unresolved Property</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.ui.PropertyEditor#getContentProviderClass <em>Content Provider Class</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.ui.PropertyEditor#isShowLabel <em>Show Label</em>}</li>
  * </ul>
  * </p>
  *
@@ -162,5 +163,32 @@ public interface PropertyEditor extends Widget {
 	 * @generated
 	 */
 	void setContentProviderClass(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Show Label</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Show Label</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Show Label</em>' attribute.
+	 * @see #setShowLabel(boolean)
+	 * @see org.eclipse.papyrus.properties.ui.UiPackage#getPropertyEditor_ShowLabel()
+	 * @model default="true" required="true"
+	 * @generated
+	 */
+	boolean isShowLabel();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.properties.ui.PropertyEditor#isShowLabel <em>Show Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Show Label</em>' attribute.
+	 * @see #isShowLabel()
+	 * @generated
+	 */
+	void setShowLabel(boolean value);
 
 } // PropertyEditor

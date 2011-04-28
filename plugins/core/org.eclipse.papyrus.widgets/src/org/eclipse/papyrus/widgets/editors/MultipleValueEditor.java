@@ -16,6 +16,7 @@ import java.util.LinkedList;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -31,6 +32,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -152,13 +154,15 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		listData.minimumHeight = 80;
 		list.setLayoutData(listData);
 
+		list.addSelectionListener(this);
+
 		listViewer = new ListViewer(list);
-		listViewer.setContentProvider(new CollectionContentProvider());
+		listViewer.setContentProvider(CollectionContentProvider.instance);
 
 		createListControls();
 
 		this.selector = selector;
-		dialog = new MultipleValueSelectorDialog(parent.getShell(), selector, label, unique);
+		dialog = new MultipleValueSelectorDialog(parent.getShell(), selector, label, unique, ordered);
 		if(label != null)
 			dialog.setTitle(label);
 
@@ -169,7 +173,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		updateControls();
 	}
 
-	private void updateControls() {
+	protected void updateControls() {
 		add.setEnabled(!readOnly);
 		remove.setEnabled(!readOnly);
 		up.setEnabled(ordered && !readOnly);
@@ -275,30 +279,19 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * @param ordered
 	 */
 	protected void createListControls() {
-		up = new Button(controlsSection, SWT.PUSH);
-		up.setImage(Activator.getDefault().getImage("/icons/Up_12x12.gif")); //$NON-NLS-1$
-		up.addSelectionListener(this);
-		up.setToolTipText(Messages.MultipleValueEditor_MoveSelectedElementsUp);
+		up = createButton(Activator.getDefault().getImage("/icons/Up_12x12.gif"), Messages.MultipleValueEditor_MoveSelectedElementsUp); //$NON-NLS-1$
+		down = createButton(Activator.getDefault().getImage("/icons/Down_12x12.gif"), Messages.MultipleValueEditor_MoveSelectedElementsDown); //$NON-NLS-1$
+		add = createButton(Activator.getDefault().getImage("/icons/Add_12x12.gif"), Messages.MultipleValueEditor_AddElements); //$NON-NLS-1$
+		remove = createButton(Activator.getDefault().getImage("/icons/Delete_12x12.gif"), Messages.MultipleValueEditor_RemoveSelectedElements); //$NON-NLS-1$
+		edit = createButton(Activator.getDefault().getImage("/icons/Edit_12x12.gif"), Messages.MultipleValueEditor_EditSelectedValue); //$NON-NLS-1$
+	}
 
-		down = new Button(controlsSection, SWT.PUSH);
-		down.setImage(Activator.getDefault().getImage("/icons/Down_12x12.gif")); //$NON-NLS-1$
-		down.addSelectionListener(this);
-		down.setToolTipText(Messages.MultipleValueEditor_MoveSelectedElementsDown);
-
-		add = new Button(controlsSection, SWT.PUSH);
-		add.setImage(Activator.getDefault().getImage("/icons/Add_12x12.gif")); //$NON-NLS-1$
-		add.addSelectionListener(this);
-		add.setToolTipText(Messages.MultipleValueEditor_AddElements);
-
-		remove = new Button(controlsSection, SWT.PUSH);
-		remove.setImage(Activator.getDefault().getImage("/icons/Delete_12x12.gif")); //$NON-NLS-1$
-		remove.addSelectionListener(this);
-		remove.setToolTipText(Messages.MultipleValueEditor_RemoveSelectedElements);
-
-		edit = new Button(controlsSection, SWT.PUSH);
-		edit.setImage(Activator.getDefault().getImage("/icons/Edit_12x12.gif")); //$NON-NLS-1$
-		edit.addSelectionListener(this);
-		edit.setToolTipText(Messages.MultipleValueEditor_EditSelectedValue);
+	protected Button createButton(Image image, String toolTipText) {
+		Button button = new Button(controlsSection, SWT.PUSH);
+		button.setImage(image); //$NON-NLS-1$
+		button.addSelectionListener(this);
+		button.setToolTipText(toolTipText);
+		return button;
 	}
 
 	@Override
@@ -358,6 +351,12 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		modelProperty.addAll(resultElements);
 
 		commit();
+	}
+
+	@Override
+	protected void commit() {
+		super.commit();
+		listViewer.refresh();
 	}
 
 	/**
@@ -422,7 +421,19 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 			return;
 		}
 
-		referenceFactory.edit(this, selection.getFirstElement());
+		int index = listViewer.getList().getSelectionIndex();
+
+		Object currentValue = selection.getFirstElement();
+		Object newValue = referenceFactory.edit(this.edit, selection.getFirstElement());
+
+		if(newValue != currentValue && newValue != null) {
+			modelProperty.remove(index);
+			modelProperty.add(index, newValue);
+
+			//commit(); // The commit only occurs in the case where we modify the list (We don't commit direct edition on objects)
+		}
+
+		commit();
 	}
 
 	/**
@@ -442,7 +453,9 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * {@inheritDoc}
 	 */
 	public void widgetDefaultSelected(SelectionEvent e) {
-		//Nothing
+		if(e.widget == list && edit.isEnabled()) {
+			editAction();
+		}
 	}
 
 	/**
@@ -456,13 +469,15 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 
 	/**
 	 * Refreshes the viewer when a change occurs on the ObservableList
+	 * TODO : Problem : a change occurring on an element of the list is not sent here
+	 * TODO : When undoing a command, the change event is not received (Although it modifies the list itself)
 	 * 
 	 * @see org.eclipse.core.databinding.observable.IChangeListener#handleChange(org.eclipse.core.databinding.observable.ChangeEvent)
 	 * 
 	 * @param event
 	 */
 	public void handleChange(ChangeEvent event) {
-		listViewer.refresh(true);
+		listViewer.refresh();
 	}
 
 	/**
@@ -507,5 +522,11 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	public void setToolTipText(String text) {
 		list.setToolTipText(text);
 		super.setLabelToolTipText(text);
+	}
+
+	@Override
+	public void setModelObservable(IObservableList modelProperty) {
+		super.setModelObservable(modelProperty);
+		updateControls();
 	}
 }

@@ -183,7 +183,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 		Context context = (Context)tab.eContainer();
 		if(context.eResource() == null) {
 			context = ConfigurationManager.instance.getContext(context.getName());
-			Activator.log.warn("No resource for Context : " + context + " ; refreshing the model"); //$NON-NLS-1$
+			Activator.log.warn("No resource for Context : " + context + " ; refreshing the model"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
 		URI sectionURI = URI.createURI(section.getSectionFile());

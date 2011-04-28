@@ -96,6 +96,10 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 				return createCompositeWidgetAdapter();
 			}
 			@Override
+			public Adapter caseUnknownComponent(UnknownComponent object) {
+				return createUnknownComponentAdapter();
+			}
+			@Override
 			public Adapter caseLayout(Layout object) {
 				return createLayoutAdapter();
 			}
@@ -110,10 +114,6 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseReferenceAttribute(ReferenceAttribute object) {
 				return createReferenceAttributeAdapter();
-			}
-			@Override
-			public Adapter caseUnknownComponent(UnknownComponent object) {
-				return createUnknownComponentAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {

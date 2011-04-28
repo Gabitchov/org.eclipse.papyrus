@@ -105,7 +105,7 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 	}
 
 	private String getLabel(Context context) {
-		return context.getName() + " (" + (ConfigurationManager.instance.isPlugin(context) ? Messages.Preferences_Plugin : Messages.Preferences_Custom) + ")"; //$NON-NLS-1$ //$NON-NLS-4$
+		return context.getName() + " (" + (ConfigurationManager.instance.isPlugin(context) ? Messages.Preferences_Plugin : Messages.Preferences_Custom) + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-4$
 	}
 
 	private final ContextState contextState = new ContextState();

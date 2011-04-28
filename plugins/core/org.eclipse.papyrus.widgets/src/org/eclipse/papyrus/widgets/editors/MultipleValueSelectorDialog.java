@@ -47,7 +47,7 @@ import org.eclipse.ui.dialogs.SelectionDialog;
  * @author Camille Letavernier
  * 
  */
-public class MultipleValueSelectorDialog extends SelectionDialog implements SelectionListener {
+public class MultipleValueSelectorDialog extends SelectionDialog implements SelectionListener, IElementSelectionListener {
 
 	/**
 	 * The object selector
@@ -158,7 +158,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	 *        The element selector used by this dialog
 	 */
 	public MultipleValueSelectorDialog(Shell parentShell, IElementSelector selector) {
-		this(parentShell, selector, null, false);
+		this(parentShell, selector, null, false, false);
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	 *        The title of this dialog
 	 */
 	public MultipleValueSelectorDialog(Shell parentShell, IElementSelector selector, String title) {
-		this(parentShell, selector, title, false);
+		this(parentShell, selector, title, false, false);
 	}
 
 	/**
@@ -187,7 +187,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	 *        True if the values returned by this dialog should be unique
 	 */
 	public MultipleValueSelectorDialog(Shell parentShell, IElementSelector selector, boolean unique) {
-		this(parentShell, selector, null, unique);
+		this(parentShell, selector, null, unique, false);
 	}
 
 	/**
@@ -203,7 +203,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	 * @param unique
 	 *        True if the values returned by this dialog should be unique
 	 */
-	public MultipleValueSelectorDialog(Shell parentShell, IElementSelector selector, String title, boolean unique) {
+	public MultipleValueSelectorDialog(Shell parentShell, IElementSelector selector, String title, boolean unique, boolean ordered) {
 		super(parentShell);
 		Assert.isNotNull(selector, "The element selector should be defined"); //$NON-NLS-1$
 		this.selector = selector;
@@ -211,6 +211,9 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		setHelpAvailable(false);
 		setTitle(title);
 		this.unique = unique;
+		this.ordered = ordered;
+
+		selector.addElementSelectionListener(this);
 	}
 
 	/**
@@ -222,18 +225,24 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 
 		Composite parent = getDialogArea();
 		GridLayout layout = (GridLayout)parent.getLayout();
-		layout.numColumns = 4;
-		layout.makeColumnsEqualWidth = false;
+		layout.numColumns = 2;
+		layout.makeColumnsEqualWidth = true;
 
-		createSelectorSection(parent);
-		createControlsSection(parent);
-		createListSection(parent);
-		createRightButtonsSection(parent);
+		Composite selectorPane = new Composite(parent, SWT.NONE);
+		selectorPane.setLayout(new GridLayout(2, false));
+		selectorPane.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		getShell().setSize(400, 300);
+		Composite selectedPane = new Composite(parent, SWT.NONE);
+		selectedPane.setLayout(new GridLayout(2, false));
+		selectedPane.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+		createSelectorSection(selectorPane);
+		createControlsSection(selectorPane);
+		createListSection(selectedPane);
+		createRightButtonsSection(selectedPane);
+
+		getShell().setSize(600, 400);
 		getShell().layout();
-
-		setResult(new LinkedList<Object>(allElements));
 
 		super.getShell().setImage(Activator.getDefault().getImage("/icons/papyrus.png")); //$NON-NLS-1$
 
@@ -305,7 +314,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		selectedElements.setLayoutData(data);
 		selectedElementsViewer = new ListViewer(selectedElements);
 
-		selectedElementsViewer.setContentProvider(new CollectionContentProvider());
+		selectedElementsViewer.setContentProvider(CollectionContentProvider.instance);
 
 		if(labelProvider != null)
 			selectedElementsViewer.setLabelProvider(labelProvider);
@@ -468,7 +477,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		if(factory == null)
 			return;
 
-		Object newObject = factory.createObject(getShell());
+		Object newObject = factory.createObject(this.create);
 		if(newObject == null)
 			return;
 
@@ -515,8 +524,6 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		selector.setSelectedElements(allElements.toArray());
 		selectedElementsViewer.setSelection(null);
 		selectedElementsViewer.refresh();
-
-		setResult(new LinkedList<Object>(allElements));
 	}
 
 	/**
@@ -532,7 +539,6 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	protected void removeAllAction() {
 		allElements.clear();
 		selector.setSelectedElements(new Object[0]);
-		setResult(new LinkedList<Object>());
 		selectedElementsViewer.setSelection(null);
 		selectedElementsViewer.refresh();
 	}
@@ -552,12 +558,10 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	 * @param elements
 	 *        The elements to be added
 	 */
-	private void addElements(Object[] elements) {
+	public void addElements(Object[] elements) {
 		if(elements != null) {
 			allElements.addAll(Arrays.asList(elements));
 			selectedElementsViewer.refresh();
-
-			setResult(new LinkedList<Object>(allElements));
 		}
 	}
 
@@ -573,6 +577,9 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 			factory.validateObjects(objectsToValidate);
 			selector.clearTemporaryElements();
 		}
+
+		setResult(new LinkedList<Object>(allElements));
+
 		super.okPressed();
 	}
 

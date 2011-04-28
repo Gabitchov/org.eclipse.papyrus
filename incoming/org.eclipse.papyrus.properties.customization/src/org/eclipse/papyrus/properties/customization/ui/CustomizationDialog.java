@@ -27,6 +27,7 @@ import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.customization.Activator;
 import org.eclipse.papyrus.properties.customization.messages.Messages;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
+import org.eclipse.papyrus.widgets.editors.InputDialog;
 import org.eclipse.papyrus.widgets.providers.CollectionContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -90,14 +91,14 @@ public class CustomizationDialog extends TrayDialog {
 		availableContexts.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		availableContextsViewer = new ListViewer(availableContexts);
-		availableContextsViewer.setContentProvider(new CollectionContentProvider());
+		availableContextsViewer.setContentProvider(CollectionContentProvider.instance);
 		availableContextsViewer.setLabelProvider(new LabelProvider() {
 
 			@Override
 			public String getText(Object element) {
 				if(element != null && element instanceof Context) {
 					Context context = (Context)element;
-					return context.getName() + (ConfigurationManager.instance.isPlugin(context) ? Messages.CustomizationDialog_plugin : ""); //$NON-NLS-2$
+					return context.getName() + (ConfigurationManager.instance.isPlugin(context) ? Messages.CustomizationDialog_plugin : ""); //$NON-NLS-2$ //$NON-NLS-1$
 				}
 				return super.getText(element);
 			}
@@ -124,7 +125,7 @@ public class CustomizationDialog extends TrayDialog {
 					Context sourceContext = (Context)element;
 					try {
 
-						InputDialog dialog = new InputDialog(getShell(), Messages.CustomizationDialog_enterConfigurationName, Messages.CustomizationDialog_copyOf + sourceContext.getName(), new IInputValidator() {
+						InputDialog dialog = new InputDialog(getShell(), Messages.CustomizationDialog_enterConfigurationName, Messages.CustomizationDialog_enterConfigurationName, Messages.CustomizationDialog_copyOf + sourceContext.getName(), new IInputValidator() {
 
 							public String isValid(String newText) {
 								if(newText.trim().equals("")) { //$NON-NLS-1$

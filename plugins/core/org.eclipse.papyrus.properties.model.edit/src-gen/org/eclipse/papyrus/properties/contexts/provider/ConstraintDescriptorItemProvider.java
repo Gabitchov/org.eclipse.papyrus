@@ -72,6 +72,7 @@ public class ConstraintDescriptorItemProvider
 			addNamePropertyDescriptor(object);
 			addConstraintTypePropertyDescriptor(object);
 			addOverriddenConstraintsPropertyDescriptor(object);
+			addOverrideablePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -138,6 +139,28 @@ public class ConstraintDescriptorItemProvider
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Overrideable feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOverrideablePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConstraintDescriptor_overrideable_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConstraintDescriptor_overrideable_feature", "_UI_ConstraintDescriptor_type"),
+				 ContextsPackage.Literals.CONSTRAINT_DESCRIPTOR__OVERRIDEABLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -211,6 +234,7 @@ public class ConstraintDescriptorItemProvider
 
 		switch (notification.getFeatureID(ConstraintDescriptor.class)) {
 			case ContextsPackage.CONSTRAINT_DESCRIPTOR__NAME:
+			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDEABLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ContextsPackage.CONSTRAINT_DESCRIPTOR__CONSTRAINTS:

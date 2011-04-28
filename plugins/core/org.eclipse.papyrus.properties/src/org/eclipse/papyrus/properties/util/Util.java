@@ -222,14 +222,14 @@ public class Util {
 			return string.trim();
 		}
 
-		String[] stringChunks = string.split("\n|\r|\r\n|\n\r");
+		String[] stringChunks = string.split("\n|\r|\r\n|\n\r"); //$NON-NLS-1$
 
 		List<String> chunks = new LinkedList<String>();
 
 		for(String chunk : stringChunks) {
 			chunk = chunk.trim();
 			if(chunk.length() > maxCharPerLine) {
-				Matcher matcher = Pattern.compile("(.{0," + maxCharPerLine + "}\\b\\p{Punct}?)").matcher(chunk);
+				Matcher matcher = Pattern.compile("(.{0," + maxCharPerLine + "}\\b\\p{Punct}?)").matcher(chunk); //$NON-NLS-1$ //$NON-NLS-2$
 				while(matcher.find()) {
 					String group = matcher.group(1);
 					chunks.add(group);
@@ -239,9 +239,9 @@ public class Util {
 			}
 		}
 
-		String result = "";
+		String result = ""; //$NON-NLS-1$
 		for(String chunk : chunks) {
-			result += chunk.trim() + "\n";
+			result += chunk.trim() + "\n"; //$NON-NLS-1$
 		}
 
 		return result.trim();

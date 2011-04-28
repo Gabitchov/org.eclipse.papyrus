@@ -12,10 +12,23 @@
 package org.eclipse.papyrus.properties.creation;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.properties.Activator;
+import org.eclipse.papyrus.properties.messages.Messages;
+import org.eclipse.papyrus.properties.util.EMFHelper;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MenuEvent;
+import org.eclipse.swt.events.MenuListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 
 
 /**
@@ -29,11 +42,19 @@ import org.eclipse.papyrus.properties.Activator;
  */
 public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 
+	private EClass type;
+
 	private EClass eClass;
 
 	private String nsUri;
 
 	private String className;
+
+	private boolean menuVisible = false;
+
+	public EcorePropertyEditorFactory(EClass type) {
+		this.type = type;
+	}
 
 	/**
 	 * 
@@ -44,18 +65,19 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 
 	}
 
-	/**
+	/*
 	 * Creates a new EcorePropertyEditorFactory. The given EClass is used to instantiate
 	 * a new EObject when the {@link #createObject} method is called.
 	 * Constructor.
 	 * 
 	 * @param eClass
+	 * 
+	 * public EcorePropertyEditorFactory(EClass eClass) {
+	 * this.eClass = eClass;
+	 * this.nsUri = eClass.getEPackage().getNsURI();
+	 * this.className = eClass.getName();
+	 * }
 	 */
-	public EcorePropertyEditorFactory(EClass eClass) {
-		this.eClass = eClass;
-		this.nsUri = eClass.getEPackage().getNsURI();
-		this.className = eClass.getName();
-	}
 
 	/**
 	 * @return the nsUri of the EClass used by this factory to instantiate new EObjects
@@ -114,8 +136,76 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 	}
 
 	@Override
-	public Object createObject() {
-		return eClass.getEPackage().getEFactoryInstance().create(eClass);
+	public Object createObject(Control widget) {
+		EClass eClass = chooseEClass(widget);
+		if(eClass == null) {
+			return null;
+		}
+
+		EObject instance = eClass.getEPackage().getEFactoryInstance().create(eClass);
+		return super.createObject(widget, instance);
+	}
+
+	private EClass chooseEClass(Control widget) {
+		if(eClass != null) {
+			return eClass;
+		}
+
+		List<EClass> availableClasses = EMFHelper.getSubclassesOf(type, true);
+
+		System.out.println(availableClasses);
+
+		final Menu menu = new Menu(widget);
+		for(EClass eClass : availableClasses) {
+			final MenuItem item = new MenuItem(menu, SWT.NONE);
+			item.setText(eClass.getName());
+			item.setData("eClass", eClass); //$NON-NLS-1$
+			item.addSelectionListener(new SelectionListener() {
+
+				public void widgetSelected(SelectionEvent e) {
+					EcorePropertyEditorFactory.this.eClass = (EClass)item.getData("eClass"); //$NON-NLS-1$
+				}
+
+				public void widgetDefaultSelected(SelectionEvent e) {
+					// Nothing
+				}
+
+			});
+		}
+
+		menu.addMenuListener(new MenuListener() {
+
+			public void menuHidden(MenuEvent e) {
+				menuVisible = false;
+			}
+
+			public void menuShown(MenuEvent e) {
+				//Nothing
+			}
+
+		});
+
+		menu.setVisible(true);
+		menuVisible = true;
+
+		//The menu is blocking the thread
+		Display display = widget.getDisplay();
+		while(menu.isVisible()) {
+			try {
+				if(!display.readAndDispatch()) {
+					display.sleep();
+				}
+			} catch (Throwable ex) {
+				Activator.log.error(ex);
+			}
+		}
+		if(!display.isDisposed())
+			display.update();
+
+		EClass eClass = this.eClass;
+		this.eClass = null;
+
+		return eClass;
 	}
 
 	@Override
@@ -125,6 +215,6 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 
 	@Override
 	public String getCreationDialogTitle() {
-		return "Create a new " + className;
+		return Messages.EcorePropertyEditorFactory_CreateANew + className;
 	}
 }

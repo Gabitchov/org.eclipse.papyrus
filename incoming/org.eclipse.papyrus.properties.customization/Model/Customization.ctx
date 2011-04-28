@@ -262,6 +262,24 @@
       </constraints>
       <widget href="ui/Label.xwt#/"/>
     </sections>
+    <sections name="Single ToggleButton" sectionFile="ui/Single ToggleButton.xwt">
+      <constraints name="isSingleToggleButton">
+        <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.2"/>
+        <properties xsi:type="contexts:ReferenceProperty" name="query">
+          <value href="custom.querySet#isToggleButton"/>
+        </properties>
+      </constraints>
+      <widget href="ui/Single ToggleButton.xwt#/"/>
+    </sections>
+    <sections name="SingleFileSelector" sectionFile="ui/SingleFileSelector.xwt">
+      <constraints name="isSingleFileSelector">
+        <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.2"/>
+        <properties xsi:type="contexts:ReferenceProperty" name="query">
+          <value href="custom.querySet#isFileSelector"/>
+        </properties>
+      </constraints>
+      <widget href="ui/SingleFileSelector.xwt#/"/>
+    </sections>
   </tabs>
   <views name="Single Environment" sections="//@tabs.0/@sections.0" automaticContext="true">
     <constraints name="isSingleEnvironment">
@@ -627,7 +645,7 @@
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
     </constraints>
   </views>
-  <views name="Single PropertyEditor" sections="//@tabs.0/@sections.52" automaticContext="true">
+  <views name="Single PropertyEditor" sections="//@tabs.0/@sections.52 //@tabs.0/@sections.73 //@tabs.0/@sections.74" automaticContext="true">
     <constraints name="isSinglePropertyEditor">
       <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
@@ -800,6 +818,7 @@
         <properties name="type" type="Enumeration" description="The type of this property"/>
         <properties name="contextElement" type="Reference" description="The element to which this property belongs"/>
         <properties name="multiplicity" type="Integer" description="The multiplicity of this property."/>
+        <properties name="description"/>
       </elements>
       <elements name="UnknownProperty" supertypes="//@dataContexts.0/@elements.1/@elements.6"/>
       <elements name="DataContextPackage" supertypes="//@dataContexts.0/@elements.1/@elements.5">
@@ -816,6 +835,7 @@
         <properties name="constraints" type="Reference" multiplicity="-1" description="The sub-constraints of this constraint (Used for Composite constraints - Not implemented yet)"/>
         <properties name="properties" label="" type="Reference" multiplicity="-1" description="The list of properties used to instantiate this constraint (key - value pairs)"/>
         <properties name="overriddenConstraints" type="Reference" multiplicity="-1" description="The constraints overridden by this constraint. If two constraints match a given selection, a constraint may override another one. In such a case, the overridden constraint's displayUnit won't be displayed. This property is dedicated to manual resolution of constraints : the Constraint classes may also implement an automatic resolution of conflicts"/>
+        <properties name="overrideable" type="Boolean" description="If set to false, this constraint cannot be automatically overridden by other constraints. Only constraints which explicitly specify they need to override this constraint (Through the &quot;overriddenConstraints&quot; property) will be able to disable it."/>
       </elements>
       <elements name="ConfigProperty">
         <properties name="name" description="The name of the property"/>
@@ -840,6 +860,7 @@
         <properties name="property" type="Reference" description="The property that this editor will edit"/>
         <properties name="readOnly" type="Boolean" description="Indicates if this editor should be read-only. Note that in some cases, the read only state may be applied at runtime, independently of this field's value"/>
         <properties name="widgetType" type="Reference" description="The type of this widget"/>
+        <properties name="showLabel" type="Boolean" description="If set to false, the property editor's label won't be displayed"/>
       </elements>
       <elements name="CompositeWidget" supertypes="//@dataContexts.0/@elements.2/@elements.2">
         <properties name="layout" type="Reference" description="The layout of this widget"/>
@@ -878,6 +899,14 @@
       </elements>
       <elements name="Label">
         <properties name="text" label="Text" description="The text to display"/>
+      </elements>
+      <elements name="BooleanToggle">
+        <properties name="image" label="Image"/>
+      </elements>
+      <elements name="FileSelector">
+        <properties name="allowWorkspace"/>
+        <properties name="allowFileSystem"/>
+        <properties name="filteredExtension"/>
       </elements>
     </elements>
     <modelElementFactory href="pathmap://PPECustom/CustomizationEnvironment.xmi#//@modelElementFactories.0"/>

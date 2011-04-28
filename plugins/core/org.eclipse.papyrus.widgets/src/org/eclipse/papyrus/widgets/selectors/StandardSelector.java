@@ -12,10 +12,15 @@
 package org.eclipse.papyrus.widgets.selectors;
 
 import java.lang.reflect.Constructor;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.papyrus.widgets.Activator;
+import org.eclipse.papyrus.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.widgets.editors.AbstractValueEditor;
+import org.eclipse.papyrus.widgets.editors.ICommitListener;
+import org.eclipse.papyrus.widgets.editors.IElementSelectionListener;
 import org.eclipse.papyrus.widgets.editors.IElementSelector;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -35,9 +40,11 @@ public class StandardSelector implements IElementSelector {
 	private Class<? extends AbstractValueEditor> editorClass;
 
 	/**
-	 * The AbstractValueEditor used by this selecotr
+	 * The AbstractValueEditor used by this selector
 	 */
 	private AbstractValueEditor editor;
+
+	private Set<IElementSelectionListener> elementSelectionListeners = new HashSet<IElementSelectionListener>();
 
 	/**
 	 * Instantiates this selector, using the specified editor class
@@ -85,6 +92,18 @@ public class StandardSelector implements IElementSelector {
 		try {
 			Constructor<? extends AbstractValueEditor> construct = editorClass.getDeclaredConstructor(Composite.class, Integer.TYPE);
 			editor = construct.newInstance(parent, SWT.BORDER);
+			editor.addCommitListener(new ICommitListener() {
+
+				public void commit(AbstractEditor editor) {
+					if(!elementSelectionListeners.isEmpty()) {
+						Object value = StandardSelector.this.editor.getValue();
+						for(IElementSelectionListener listener : elementSelectionListeners) {
+							listener.addElements(new Object[]{ value });
+						}
+					}
+				}
+
+			});
 		} catch (Exception ex) {
 			Activator.log.error(ex);
 		}
@@ -96,6 +115,10 @@ public class StandardSelector implements IElementSelector {
 
 	public void clearTemporaryElements() {
 		//Ignored
+	}
+
+	public void addElementSelectionListener(IElementSelectionListener listener) {
+		elementSelectionListeners.add(listener);
 	}
 
 }

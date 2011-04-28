@@ -126,13 +126,15 @@ mapping XML::Element::toPropertyEditor() : PropertyEditor inherits XML::Element:
 	endif;
 	_property := prop;
 	
-	//Remove the readOnlyAttribute, as it is an actual property (i.e. not generic) in the UI Model
+	//Remove the readOnly and showLabel Attributes, as they are actual properties (i.e. not generic) in the UI Model
 	//Avoids dupplication of the attribute
 	var readOnlyAttribute := result.attributes->any(e | e.name = "readOnly");
-	result.attributes := result.attributes->excluding(readOnlyAttribute);
+	var showLabelAttribute := result.attributes->any(e | e.name = "showLabel");
+	result.attributes := result.attributes->excluding(readOnlyAttribute)->excluding(showLabelAttribute);
 	
 	unresolvedProperty := prop.oclAsType(UnknownProperty);
 	readOnly := self.children->exists(e | e.oclIsKindOf(XML::Attribute) and e.oclAsType(XML::Attribute).name = 'readOnly' and e.oclAsType(XML::Attribute).value='true');
+	showLabel := self.children->exists(e | e.oclIsKindOf(XML::Attribute) and e.oclAsType(XML::Attribute).name = 'showLabel' and e.oclAsType(XML::Attribute).value='true');
 }
 
 query XML::Element::getPropertyName() : String {

@@ -9,14 +9,13 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.properties.customization.ui;
+package org.eclipse.papyrus.widgets.editors;
 
 
 import java.util.Collections;
 
 import org.eclipse.jface.dialogs.IInputValidator;
-import org.eclipse.papyrus.properties.customization.Activator;
-import org.eclipse.papyrus.properties.customization.messages.Messages;
+import org.eclipse.papyrus.widgets.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
@@ -62,6 +61,16 @@ public class InputDialog extends SelectionDialog {
 	protected Text input;
 
 	/**
+	 * The dialog's title
+	 */
+	protected String title;
+
+	/**
+	 * The label describing the kind of text to input
+	 */
+	protected String labelText;
+
+	/**
 	 * 
 	 * Constructor.
 	 * 
@@ -74,10 +83,12 @@ public class InputDialog extends SelectionDialog {
 	 * @param validator
 	 *        The validator used to check the input string
 	 */
-	public InputDialog(Shell parentShell, String title, String initialValue, IInputValidator validator) {
+	public InputDialog(Shell parentShell, String title, String label, String initialValue, IInputValidator validator) {
 		super(parentShell);
 		this.initialValue = initialValue;
 		this.validator = validator;
+		this.title = title;
+		this.labelText = label;
 	}
 
 	@Override
@@ -98,7 +109,8 @@ public class InputDialog extends SelectionDialog {
 		errorLabel.setVisible(false);
 
 		Label label = new Label(getDialogArea(), SWT.None);
-		label.setText(Messages.InputDialog_enterConfigurationName);
+		if(labelText != null)
+			label.setText(labelText);
 		label.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
 
 		input = new Text(getDialogArea(), SWT.BORDER);
@@ -119,6 +131,9 @@ public class InputDialog extends SelectionDialog {
 
 		getShell().setImage(Activator.getDefault().getImage("/icons/papyrus.png")); //$NON-NLS-1$
 
+		if(title != null)
+			getShell().setText(title);
+
 		validate();
 		getShell().pack();
 	}
@@ -128,6 +143,13 @@ public class InputDialog extends SelectionDialog {
 	 * and error message will be displayed.
 	 */
 	protected void validate() {
+		if(validator == null) {
+			errorLabel.setVisible(false);
+			errorImage.setVisible(false);
+			getOkButton().setEnabled(true);
+			return;
+		}
+
 		String errorMessage = validator.isValid(input.getText());
 		if(errorMessage == null) {
 			errorLabel.setVisible(false);

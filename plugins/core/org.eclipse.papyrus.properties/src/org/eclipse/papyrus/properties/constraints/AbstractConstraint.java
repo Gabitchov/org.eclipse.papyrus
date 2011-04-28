@@ -62,9 +62,6 @@ public abstract class AbstractConstraint implements Constraint {
 			}
 		}
 
-		if(descriptor.getOverriddenConstraints().contains(constraint.getDescriptor()))
-			return true;
-
 		return false;
 	}
 

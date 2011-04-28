@@ -107,7 +107,7 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public Image getImage(String pluginId, String path) {
 		final ImageRegistry registry = getImageRegistry();
-		String key = pluginId + "/" + path;
+		String key = pluginId + "/" + path; //$NON-NLS-1$
 		Image image = registry.get(key);
 		if(image == null) {
 			registry.put(key, AbstractUIPlugin.imageDescriptorFromPlugin(pluginId, path));
@@ -125,11 +125,11 @@ public class Activator extends AbstractUIPlugin {
 	 *         The Image at the given location, or null if none was found
 	 */
 	public Image getImageFromPlugin(String imagePath) {
-		if(imagePath.startsWith("/")) {
+		if(imagePath.startsWith("/")) { //$NON-NLS-1$
 			String pluginId, path;
 			imagePath = imagePath.substring(1, imagePath.length());
-			pluginId = imagePath.substring(0, imagePath.indexOf("/"));
-			path = imagePath.substring(imagePath.indexOf("/"), imagePath.length());
+			pluginId = imagePath.substring(0, imagePath.indexOf("/")); //$NON-NLS-1$
+			path = imagePath.substring(imagePath.indexOf("/"), imagePath.length()); //$NON-NLS-1$
 			return getImage(pluginId, path);
 		} else {
 			return getImage(imagePath);

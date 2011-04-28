@@ -279,7 +279,7 @@ public class SelectionEditor extends Composite implements SelectionListener {
 
 		selectedElementsViewer = new ListViewer(selectedElements);
 
-		selectedElementsViewer.setContentProvider(new CollectionContentProvider());
+		selectedElementsViewer.setContentProvider(CollectionContentProvider.instance);
 
 		if(labelProvider != null)
 			selectedElementsViewer.setLabelProvider(labelProvider);

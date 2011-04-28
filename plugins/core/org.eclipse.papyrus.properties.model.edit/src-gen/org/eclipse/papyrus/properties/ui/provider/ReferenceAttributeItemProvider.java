@@ -169,12 +169,12 @@ public class ReferenceAttributeItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(UiPackage.Literals.REFERENCE_ATTRIBUTE__VALUE,
-				 UiFactory.eINSTANCE.createLayout()));
+				 UiFactory.eINSTANCE.createUnknownComponent()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(UiPackage.Literals.REFERENCE_ATTRIBUTE__VALUE,
-				 UiFactory.eINSTANCE.createUnknownComponent()));
+				 UiFactory.eINSTANCE.createLayout()));
 	}
 
 }

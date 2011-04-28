@@ -51,6 +51,10 @@ public class Messages extends NLS {
 	/** The Multiple value selector dialog_ remove all elements. */
 	public static String MultipleValueSelectorDialog_RemoveAllElements;
 
+	public static String ReferenceDialog_CreateANewObject;
+
+	public static String ReferenceDialog_EditTheCurrentValue;
+
 	/** The Reference dialog_ edit value */
 	public static String ReferenceDialog_EditValue;
 
@@ -65,6 +69,12 @@ public class Messages extends NLS {
 
 	/** the Enum radio_ no value */
 	public static String EnumRadio_NoValue;
+
+	public static String StringEditionFactory_EnterANewValue;
+
+	public static String StringFileSelector_Browse;
+
+	public static String StringFileSelector_BrowseWorkspace;
 
 	static {
 		// initialize resource bundle

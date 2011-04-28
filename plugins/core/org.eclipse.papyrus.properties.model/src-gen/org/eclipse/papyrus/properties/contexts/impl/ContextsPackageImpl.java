@@ -694,6 +694,15 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getConstraintDescriptor_Overrideable() {
+		return (EAttribute)constraintDescriptorEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getConfigProperty() {
 		return configPropertyEClass;
 	}
@@ -834,6 +843,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		createEReference(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__CONSTRAINTS);
 		createEReference(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__PROPERTIES);
 		createEReference(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS);
+		createEAttribute(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__OVERRIDEABLE);
 
 		configPropertyEClass = createEClass(CONFIG_PROPERTY);
 		createEAttribute(configPropertyEClass, CONFIG_PROPERTY__NAME);
@@ -949,6 +959,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		initEReference(getConstraintDescriptor_Constraints(), this.getConstraintDescriptor(), null, "constraints", null, 0, -1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConstraintDescriptor_Properties(), this.getConfigProperty(), null, "properties", null, 0, -1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConstraintDescriptor_OverriddenConstraints(), this.getConstraintDescriptor(), null, "overriddenConstraints", null, 0, -1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConstraintDescriptor_Overrideable(), ecorePackage.getEBoolean(), "overrideable", "true", 1, 1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configPropertyEClass, ConfigProperty.class, "ConfigProperty", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConfigProperty_Name(), ecorePackage.getEString(), "name", null, 1, 1, ConfigProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

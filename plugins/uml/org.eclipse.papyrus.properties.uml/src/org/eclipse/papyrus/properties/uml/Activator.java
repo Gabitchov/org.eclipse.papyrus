@@ -11,7 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.uml;
 
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.log.LogHelper;
+import org.eclipse.papyrus.properties.uml.extensionpoint.LanguageEditorExtensionPoint;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -21,7 +25,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	/** The plug-in ID */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.properties"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.properties.uml"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
@@ -45,6 +49,7 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(plugin);
+		new LanguageEditorExtensionPoint();
 	}
 
 	/*
@@ -66,4 +71,44 @@ public class Activator extends AbstractUIPlugin {
 	public static Activator getDefault() {
 		return plugin;
 	}
+
+	/**
+	 * @return The IPath representing the plugin's preferences folder location
+	 */
+	public IPath getPreferencesPath() {
+		return getStateLocation();
+	}
+
+	/**
+	 * Returns the image at the given path from this plugin
+	 * 
+	 * @param path
+	 *        the path of the image to be displayed
+	 * @return The Image at the given location, or null if it couldn't be found
+	 */
+	public Image getImage(String path) {
+		return getImage(PLUGIN_ID, path);
+	}
+
+	/**
+	 * Returns the image from the given image descriptor
+	 * 
+	 * @param pluginId
+	 *        The plugin in which the image is located
+	 * @param path
+	 *        The path to the image from the plugin
+	 * @return
+	 *         The Image at the given location, or null if it couldn't be found
+	 */
+	public Image getImage(String pluginId, String path) {
+		final ImageRegistry registry = getImageRegistry();
+		String key = pluginId + "/" + path;
+		Image image = registry.get(key);
+		if(image == null) {
+			registry.put(key, AbstractUIPlugin.imageDescriptorFromPlugin(pluginId, path));
+			image = registry.get(key);
+		}
+		return image;
+	}
+
 }

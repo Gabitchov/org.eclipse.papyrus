@@ -86,7 +86,7 @@ public class ProjectUtil {
 			custom.open(null);
 		}
 
-		custom.setHidden(true);
+		custom.setHidden(false);
 		workspace.getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
 
 		return custom;

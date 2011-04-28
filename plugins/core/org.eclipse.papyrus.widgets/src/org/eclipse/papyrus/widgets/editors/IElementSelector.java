@@ -63,4 +63,13 @@ public interface IElementSelector {
 	 */
 	public void clearTemporaryElements();
 
+	/**
+	 * Adds a new listener to this selector.
+	 * The selector can inform the listener that new elements have
+	 * been selected
+	 * 
+	 * @param listener
+	 */
+	public void addElementSelectionListener(IElementSelectionListener listener);
+
 }

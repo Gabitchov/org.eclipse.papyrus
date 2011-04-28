@@ -12,13 +12,14 @@
 package org.eclipse.papyrus.properties.uml.modelelement;
 
 import org.eclipse.core.databinding.observable.IObservable;
+import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.FeaturePath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.properties.databinding.PapyrusObservableList;
-import org.eclipse.papyrus.properties.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.properties.modelelement.EMFModelElement;
+import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableList;
+import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue;
 
 /**
  * A Model Element for manipulating Stereotype properties
@@ -45,7 +46,7 @@ public class StereotypeModelElement extends EMFModelElement {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(featurePath);
 		if(feature.getUpperBound() != 1) {
-			return new PapyrusObservableList(getSource(featurePath), feature, domain);
+			return new PapyrusObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
 		}
 
 		return new PapyrusObservableValue(getSource(featurePath), feature, domain);

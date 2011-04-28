@@ -17,11 +17,17 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.properties.messages.messages"; //$NON-NLS-1$
 
+	public static String EcorePropertyEditorFactory_CreateANew;
+
+	public static String EditionDialog_CreateANewElement;
+
 	public static String Preferences_Contexts;
 
 	public static String Preferences_Custom;
 
 	public static String Preferences_Plugin;
+
+	public static String PropertyEditorFactory_CreateANewElement;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

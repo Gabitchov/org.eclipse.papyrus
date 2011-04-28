@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.widgets;
 
+import org.eclipse.papyrus.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.widgets.editors.MultipleIntegerEditor;
 import org.eclipse.swt.widgets.Composite;
 
@@ -45,6 +46,10 @@ public class MultiInteger extends AbstractPropertyEditor {
 	protected void doBinding() {
 		editor.setOrdered(input.isOrdered(propertyPath));
 		editor.setUnique(input.isUnique(propertyPath));
+
+		if(getInputObservableList() instanceof ICommitListener) {
+			editor.addCommitListener((ICommitListener)getInputObservableList());
+		}
 
 		super.doBinding();
 	}

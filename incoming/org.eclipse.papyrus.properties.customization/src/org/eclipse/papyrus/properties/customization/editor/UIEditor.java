@@ -43,6 +43,7 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.customization.Activator;
 import org.eclipse.papyrus.properties.customization.editor.preview.Preview;
+import org.eclipse.papyrus.properties.customization.messages.Messages;
 import org.eclipse.papyrus.properties.customization.preferences.CustomizationPreferencePage;
 import org.eclipse.papyrus.properties.customization.providers.ContextContentProvider;
 import org.eclipse.papyrus.properties.customization.providers.ContextLabelProvider;
@@ -76,7 +77,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
 /**
  * A customization editor for Contexts from the Papyrus Property View.
- * The Editor is based on the Ecore reflexive editor and the EMF Facet
+ * The Editor is based on the Ecore reflective editor and the EMF Facet
  * customizable content & label providers
  * 
  * @author Camille Letavernier
@@ -113,7 +114,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 
 			final ViewFilter filter = new ViewFilter();
 
-			final StringEditor filterPattern = new StringEditor(parent, SWT.NONE, "Filter views :");
+			final StringEditor filterPattern = new StringEditor(parent, SWT.NONE, Messages.UIEditor_FilterViews);
 			filterPattern.addCommitListener(new ICommitListener() {
 
 				public void commit(AbstractEditor editor) {
@@ -195,7 +196,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 
 		if(CustomizationPreferencePage.askForConfirmation()) {
 			int defaultIndex = CustomizationPreferencePage.openCustomizationPerspective() ? 0 : 1;
-			MessageDialog confirmationDialog = new MessageDialog(getContainer().getShell(), "Change perspective ?", null, "This editor is associated to the Customization perspective. Do you want to open this perspective now ?", MessageDialog.QUESTION, new String[]{ "Yes", "No" }, defaultIndex);
+			MessageDialog confirmationDialog = new MessageDialog(getContainer().getShell(), Messages.UIEditor_ChangePerspective, null, Messages.UIEditor_ChangePerspectiveMessage, MessageDialog.QUESTION, new String[]{ Messages.UIEditor_Yes, Messages.UIEditor_No }, defaultIndex);
 			confirmationDialog.open();
 			openPerspective = confirmationDialog.getReturnCode() == 0;
 		} else {
@@ -237,7 +238,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 	public void doSaveAs() {
 		SaveAsDialog saveAsDialog = new SaveAsDialog(getSite().getShell());
 		saveAsDialog.create();
-		saveAsDialog.setMessage(EcoreEditorPlugin.INSTANCE.getString("_UI_SaveAs_message"));
+		saveAsDialog.setMessage(EcoreEditorPlugin.INSTANCE.getString("_UI_SaveAs_message")); //$NON-NLS-1$
 		saveAsDialog.open();
 		IPath path = saveAsDialog.getResult();
 		if(path != null) {
@@ -257,7 +258,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 					resourceSet.getResources().remove(0);
 					resourceSet.getResources().move(0, newResource);
 				} else {
-					System.out.println("Replace " + currentURI + " by " + newURI);
+					//System.out.println("Replace " + currentURI + " by " + newURI);
 					currentResource.setURI(newURI);
 				}
 
@@ -272,7 +273,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 						if(resource != currentResource) {
 							if(isRelative(currentURI, resource)) {
 								URI newResourceURI = resource.getURI().deresolve(currentURI).resolve(newURI);
-								System.out.println("Replace " + resource.getURI() + " by " + newResourceURI);
+								//System.out.println("Replace " + resource.getURI() + " by " + newResourceURI);
 								resource.setURI(newResourceURI);
 							}
 						}
@@ -288,7 +289,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 		URI resourceURI = resource.getURI();
 		URI uri = resourceURI.deresolve(baseURI);
 		if(uri.isRelative()) {
-			if(!(uri.toString().startsWith("..") || uri.toString().startsWith("/"))) {
+			if(!(uri.toString().startsWith("..") || uri.toString().startsWith("/"))) { //$NON-NLS-1$ //$NON-NLS-2$
 				return true;
 			}
 		}
@@ -340,7 +341,8 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 			selectionViewer.removeSelectionChangedListener(preview);
 		}
 		previews.clear();
-		iPropertySheetPage.dispose();
+		if(iPropertySheetPage != null)
+			iPropertySheetPage.dispose();
 		super.dispose();
 	}
 

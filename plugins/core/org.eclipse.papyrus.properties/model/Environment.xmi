@@ -4,6 +4,7 @@
   <constraintTypes label="EMF Instance Of" constraintClass="org.eclipse.papyrus.properties.constraints.EMFInstanceOfConstraint"/>
   <constraintTypes label="True Constraint" constraintClass="org.eclipse.papyrus.properties.constraints.TrueConstraint"/>
   <constraintTypes label="EMF Query" constraintClass="org.eclipse.papyrus.properties.constraints.EMFQueryConstraint"/>
+  <constraintTypes label="Java Instance Of" constraintClass="org.eclipse.papyrus.properties.constraints.JavaInstanceOf"/>
   <widgetTypes label="Label" widgetClass="Label"/>
   <widgetTypes label="Text" widgetClass="Text"/>
   <propertyEditorTypes label="StringEditor" widgetClass="StringEditor" namespace="//@namespaces.3"/>
@@ -24,6 +25,7 @@
   <propertyEditorTypes label="MultiInteger" widgetClass="MultiInteger" namespace="//@namespaces.3" type="Integer" multiplicity="-1"/>
   <propertyEditorTypes label="ViewEditor" widgetClass="ViewEditor" namespace="//@namespaces.3" type="Reference" multiplicity="-1"/>
   <propertyEditorTypes label="InvalidWidget" widgetClass="InvalidWidget" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="FileSelector" widgetClass="StringFileSelector" namespace="//@namespaces.3"/>
   <compositeWidgetTypes label="Composite" widgetClass="Composite"/>
   <compositeWidgetTypes label="Group" widgetClass="Group"/>
   <layoutTypes label="GridLayout" widgetClass="GridLayout"/>

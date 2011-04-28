@@ -65,15 +65,17 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 		super(parent, label);
 
 		GridData data = getDefaultLayoutData();
-		text = factory.createText(this, null, style);
-		text.setLayoutData(data);
 
 		if((style & SWT.MULTI) != 0) {
 			data.heightHint = 55;
 			style = style | SWT.V_SCROLL;
-			if(label != null) {
-				super.label.setLayoutData(getLabelLayoutData());
-			}
+		}
+
+		text = factory.createText(this, null, style);
+		text.setLayoutData(data);
+
+		if(label != null) {
+			super.label.setLayoutData(getLabelLayoutData());
 		}
 
 		//We listen on Carriage Return only if the editor isn't multiline
@@ -113,7 +115,7 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 	 */
 	public void keyReleased(KeyEvent e) {
 		if((e.keyCode == SWT.CR || e.keyCode == SWT.KEYPAD_CR) && e.stateMask == SWT.NONE) {
-			text.notifyListeners(SWT.FocusOut, new Event());
+			notifyChange();
 		}
 	}
 
@@ -141,6 +143,11 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 	@Override
 	public boolean isReadOnly() {
 		return !text.isEnabled();
+	}
+
+	protected void notifyChange() {
+		text.notifyListeners(SWT.FocusOut, new Event());
+		commit();
 	}
 
 	@Override

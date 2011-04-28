@@ -301,6 +301,15 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPropertyEditor_ShowLabel() {
+		return (EAttribute)propertyEditorEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCompositeWidget() {
 		return compositeWidgetEClass;
 	}
@@ -466,11 +475,15 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 		createEReference(propertyEditorEClass, PROPERTY_EDITOR__WIDGET_TYPE);
 		createEReference(propertyEditorEClass, PROPERTY_EDITOR__UNRESOLVED_PROPERTY);
 		createEAttribute(propertyEditorEClass, PROPERTY_EDITOR__CONTENT_PROVIDER_CLASS);
+		createEAttribute(propertyEditorEClass, PROPERTY_EDITOR__SHOW_LABEL);
 
 		compositeWidgetEClass = createEClass(COMPOSITE_WIDGET);
 		createEReference(compositeWidgetEClass, COMPOSITE_WIDGET__LAYOUT);
 		createEReference(compositeWidgetEClass, COMPOSITE_WIDGET__WIDGETS);
 		createEReference(compositeWidgetEClass, COMPOSITE_WIDGET__WIDGET_TYPE);
+
+		unknownComponentEClass = createEClass(UNKNOWN_COMPONENT);
+		createEAttribute(unknownComponentEClass, UNKNOWN_COMPONENT__TYPE_NAME);
 
 		layoutEClass = createEClass(LAYOUT);
 		createEReference(layoutEClass, LAYOUT__LAYOUT_TYPE);
@@ -483,9 +496,6 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 
 		referenceAttributeEClass = createEClass(REFERENCE_ATTRIBUTE);
 		createEReference(referenceAttributeEClass, REFERENCE_ATTRIBUTE__VALUE);
-
-		unknownComponentEClass = createEClass(UNKNOWN_COMPONENT);
-		createEAttribute(unknownComponentEClass, UNKNOWN_COMPONENT__TYPE_NAME);
 	}
 
 	/**
@@ -525,11 +535,11 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 		standardWidgetEClass.getESuperTypes().add(this.getWidget());
 		propertyEditorEClass.getESuperTypes().add(this.getWidget());
 		compositeWidgetEClass.getESuperTypes().add(this.getWidget());
+		unknownComponentEClass.getESuperTypes().add(this.getWidget());
 		layoutEClass.getESuperTypes().add(this.getUIComponent());
 		widgetAttributeEClass.getESuperTypes().add(this.getElement());
 		valueAttributeEClass.getESuperTypes().add(this.getWidgetAttribute());
 		referenceAttributeEClass.getESuperTypes().add(this.getWidgetAttribute());
-		unknownComponentEClass.getESuperTypes().add(this.getWidget());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(elementEClass, Element.class, "Element", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -548,11 +558,15 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 		initEReference(getPropertyEditor_WidgetType(), theEnvironmentPackage.getPropertyEditorType(), null, "widgetType", null, 1, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPropertyEditor_UnresolvedProperty(), theContextsPackage.getUnknownProperty(), null, "unresolvedProperty", null, 0, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPropertyEditor_ContentProviderClass(), ecorePackage.getEString(), "contentProviderClass", null, 0, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPropertyEditor_ShowLabel(), ecorePackage.getEBoolean(), "showLabel", "true", 1, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeWidgetEClass, CompositeWidget.class, "CompositeWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeWidget_Layout(), this.getLayout(), null, "layout", null, 1, 1, CompositeWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCompositeWidget_Widgets(), this.getWidget(), null, "widgets", null, 0, -1, CompositeWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCompositeWidget_WidgetType(), theEnvironmentPackage.getCompositeWidgetType(), null, "widgetType", null, 1, 1, CompositeWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(unknownComponentEClass, UnknownComponent.class, "UnknownComponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUnknownComponent_TypeName(), ecorePackage.getEString(), "typeName", null, 1, 1, UnknownComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(layoutEClass, Layout.class, "Layout", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLayout_LayoutType(), theEnvironmentPackage.getLayoutType(), null, "layoutType", null, 1, 1, Layout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -565,9 +579,6 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 
 		initEClass(referenceAttributeEClass, ReferenceAttribute.class, "ReferenceAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReferenceAttribute_Value(), this.getUIComponent(), null, "value", null, 1, 1, ReferenceAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(unknownComponentEClass, UnknownComponent.class, "UnknownComponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getUnknownComponent_TypeName(), ecorePackage.getEString(), "typeName", null, 1, 1, UnknownComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

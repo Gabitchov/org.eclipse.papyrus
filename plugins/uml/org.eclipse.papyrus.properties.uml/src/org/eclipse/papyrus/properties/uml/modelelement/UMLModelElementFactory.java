@@ -11,11 +11,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.uml.modelelement;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.modelelement.EMFModelElementFactory;
 import org.eclipse.papyrus.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.properties.uml.util.UMLUtil;
+import org.eclipse.uml2.uml.Element;
 
 /**
  * A Factory for building ModelElements manipulating UML Objects.
@@ -26,7 +29,13 @@ public class UMLModelElementFactory extends EMFModelElementFactory {
 
 	@Override
 	public ModelElement createFromSource(Object source, DataContextElement context) {
-		EObject umlSource = UMLUtil.resolveUMLElement(source);
-		return super.createFromSource(umlSource, context);
+		Element umlSource = UMLUtil.resolveUMLElement(source);
+		if(umlSource == null) {
+			Activator.log.warn("Unable to resolve the selected element to a UML Element"); //$NON-NLS-1$
+			return null;
+		}
+
+		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(umlSource);
+		return new UMLModelElement(umlSource, domain);
 	}
 }

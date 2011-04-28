@@ -15,7 +15,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.core.databinding.observable.list.ListDiff;
 import org.eclipse.core.databinding.observable.list.ObservableList;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -40,7 +39,7 @@ import org.eclipse.papyrus.widgets.editors.ICommitListener;
 public class EMFObservableList extends ObservableList implements ICommitListener {
 
 	/**
-	 * The list of commands that haven't been executed
+	 * The list of commands that haven't been executed yet
 	 */
 	protected List<Command> commands = new LinkedList<Command>();
 
@@ -94,6 +93,10 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 	 */
 	public void commit(AbstractEditor editor) {
 
+		if(commands.isEmpty()) {
+			return;
+		}
+
 		CompoundCommand compoundCommand = new CompoundCommand() {
 
 			@Override
@@ -142,11 +145,6 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 		commands.clear();
 	}
 
-	@Override
-	protected void fireListChange(ListDiff diff) {
-		super.fireListChange(diff);
-	}
-
 	/**
 	 * Refresh the cached list by copying the real list
 	 */
@@ -158,7 +156,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 
 	@Override
 	public void add(int index, Object value) {
-		Command command = AddCommand.create(editingDomain, source, feature, value, index);
+		Command command = getAddCommand(index, value);
 		commands.add(command);
 
 		wrappedList.add(index, value);
@@ -167,7 +165,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 
 	@Override
 	public void clear() {
-		Command command = RemoveCommand.create(editingDomain, source, feature, new LinkedList<Object>(wrappedList));
+		Command command = getClearCommand();
 		commands.add(command);
 
 		wrappedList.clear();
@@ -176,7 +174,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 
 	@Override
 	public boolean add(Object o) {
-		Command command = AddCommand.create(editingDomain, source, feature, o);
+		Command command = getAddCommand(o);
 		commands.add(command);
 
 		boolean result = wrappedList.add(o);
@@ -186,7 +184,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 
 	@Override
 	public boolean remove(Object o) {
-		Command command = RemoveCommand.create(editingDomain, source, feature, o);
+		Command command = getRemoveCommand(o);
 
 		commands.add(command);
 
@@ -197,7 +195,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 
 	@Override
 	public boolean addAll(Collection c) {
-		Command command = AddCommand.create(editingDomain, source, feature, c);
+		Command command = getAddAllCommand(c);
 		commands.add(command);
 
 		boolean result = wrappedList.addAll(c);
@@ -207,7 +205,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 
 	@Override
 	public boolean addAll(int index, Collection c) {
-		Command command = AddCommand.create(editingDomain, source, feature, c, index);
+		Command command = getAddAllCommand(index, c);
 		commands.add(command);
 
 		boolean result = wrappedList.addAll(index, c);
@@ -217,7 +215,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 
 	@Override
 	public boolean removeAll(Collection c) {
-		Command command = RemoveCommand.create(editingDomain, source, feature, c);
+		Command command = getRemoveCommand(c);
 		commands.add(command);
 
 		boolean result = wrappedList.removeAll(c);
@@ -227,17 +225,8 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 
 	@Override
 	public boolean retainAll(Collection c) {
-		List<Object> objectsToRemove = new LinkedList<Object>();
-		for(Object object : c) {
-			if(!contains(object)) {
-				objectsToRemove.add(object);
-			}
-		}
-		if(!objectsToRemove.isEmpty()) {
-			Command command = RemoveCommand.create(editingDomain, source, feature, objectsToRemove);
-			commands.add(command);
-
-		}
+		Command command = getRetainAllCommand(c);
+		commands.add(command);
 
 		boolean result = wrappedList.retainAll(c);
 		fireListChange(null);
@@ -246,7 +235,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 
 	@Override
 	public Object set(int index, Object element) {
-		Command command = SetCommand.create(editingDomain, source, feature, element, index);
+		Command command = getSetCommand(index, element);
 		commands.add(command);
 
 		Object result = wrappedList.set(index, element);
@@ -256,18 +245,13 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 
 	@Override
 	public Object move(int oldIndex, int newIndex) {
+		commands.addAll(getMoveCommands(oldIndex, newIndex));
+
 		Object value = get(oldIndex);
-		if(value != null) {
-			Command remove = RemoveCommand.create(editingDomain, source, feature, value);
-			Command add = AddCommand.create(editingDomain, source, feature, value, newIndex);
-			commands.add(remove);
-			commands.add(add);
+		wrappedList.remove(oldIndex);
+		wrappedList.add(newIndex, value);
 
-			wrappedList.remove(oldIndex);
-			wrappedList.add(newIndex, value);
-
-			fireListChange(null);
-		}
+		fireListChange(null);
 
 		return value;
 	}
@@ -276,13 +260,72 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 	public Object remove(int index) {
 		Object value = get(index);
 		if(value != null) {
-			Command command = RemoveCommand.create(editingDomain, source, feature, value);
+			Command command = getRemoveCommand(index);
 			commands.add(command);
 		}
 
 		Object result = wrappedList.remove(index);
 		fireListChange(null);
 		return result;
+	}
+
+	protected Command getAddCommand(int index, Object value) {
+		return AddCommand.create(editingDomain, source, feature, value, index);
+	}
+
+	protected Command getAddCommand(Object value) {
+		return AddCommand.create(editingDomain, source, feature, value);
+	}
+
+	protected Command getAddAllCommand(Collection<?> values) {
+		return AddCommand.create(editingDomain, source, feature, values);
+	}
+
+	protected Command getAddAllCommand(int index, Collection<?> values) {
+		return AddCommand.create(editingDomain, source, feature, values, index);
+	}
+
+	protected Command getClearCommand() {
+		return getRemoveAllCommand(new LinkedList<Object>(wrappedList));
+	}
+
+	protected Command getRemoveCommand(int index) {
+		Object value = get(index);
+		return getRemoveCommand(value);
+	}
+
+	protected Command getRemoveCommand(Object value) {
+		return RemoveCommand.create(editingDomain, source, feature, value);
+	}
+
+	protected Command getRemoveAllCommand(Collection<?> values) {
+		return RemoveCommand.create(editingDomain, source, feature, values);
+	}
+
+	protected List<Command> getMoveCommands(int oldIndex, int newIndex) {
+		Object value = get(oldIndex);
+		List<Command> commands = new LinkedList<Command>();
+		commands.add(getRemoveCommand(value));
+		commands.add(getAddCommand(newIndex, value));
+		return commands;
+	}
+
+	protected Command getRetainAllCommand(Collection<?> values) {
+		List<Object> objectsToRemove = new LinkedList<Object>();
+		for(Object object : values) {
+			if(!contains(object)) {
+				objectsToRemove.add(object);
+			}
+		}
+		if(!objectsToRemove.isEmpty()) {
+			return getRemoveAllCommand(objectsToRemove);
+		} else {
+			return null;
+		}
+	}
+
+	protected Command getSetCommand(int index, Object value) {
+		return SetCommand.create(editingDomain, source, feature, value, index);
 	}
 
 }

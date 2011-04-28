@@ -64,10 +64,10 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 			case UiPackage.STANDARD_WIDGET: return createStandardWidget();
 			case UiPackage.PROPERTY_EDITOR: return createPropertyEditor();
 			case UiPackage.COMPOSITE_WIDGET: return createCompositeWidget();
+			case UiPackage.UNKNOWN_COMPONENT: return createUnknownComponent();
 			case UiPackage.LAYOUT: return createLayout();
 			case UiPackage.VALUE_ATTRIBUTE: return createValueAttribute();
 			case UiPackage.REFERENCE_ATTRIBUTE: return createReferenceAttribute();
-			case UiPackage.UNKNOWN_COMPONENT: return createUnknownComponent();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}

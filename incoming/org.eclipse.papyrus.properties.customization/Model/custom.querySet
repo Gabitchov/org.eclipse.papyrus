@@ -30,4 +30,12 @@
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <scope href="http://www.eclipse.org/papyrus/properties/ui#//StandardWidget"/>
   </queries>
+  <queries xsi:type="query:OCLModelQuery" name="isToggleButton" description="Tests if the given PropertyEditor is a ToggleButton" lowerBound="1" query="widgetType.widgetClass = 'BooleanToggle' and widgetType.namespace.name = 'ppe'">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/ui#//PropertyEditor"/>
+  </queries>
+  <queries xsi:type="query:OCLModelQuery" name="isFileSelector" description="Tests if a PropertyEditor is a File Selector" lowerBound="1" query="widgetType.widgetClass = 'StringFileSelector' and widgetType.namespace.name = 'ppe'">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/ui#//PropertyEditor"/>
+  </queries>
 </query:ModelQuerySet>

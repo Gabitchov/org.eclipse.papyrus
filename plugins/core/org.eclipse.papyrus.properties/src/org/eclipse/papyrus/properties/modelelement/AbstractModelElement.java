@@ -13,7 +13,9 @@ package org.eclipse.papyrus.properties.modelelement;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.properties.contexts.Property;
+import org.eclipse.papyrus.properties.creation.PropertyEditorFactory;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
+import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
@@ -61,6 +63,17 @@ public abstract class AbstractModelElement implements ModelElement {
 
 	protected Property getProperty(String propertyPath) {
 		return ConfigurationManager.instance.getProperty(propertyPath, dataSource.getView().getContext());
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.properties.modelelement.ModelElement#getValueFactory(java.lang.String)
+	 * 
+	 * @param propertyPath
+	 * @return a default factory based on the property view configuration to
+	 *         edit objects, as if they were selected in an editor
+	 */
+	public ReferenceValueFactory getValueFactory(String propertyPath) {
+		return new PropertyEditorFactory();
 	}
 
 }

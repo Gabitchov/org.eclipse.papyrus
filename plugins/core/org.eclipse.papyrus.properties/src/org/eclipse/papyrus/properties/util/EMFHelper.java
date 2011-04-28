@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.properties.util;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -201,6 +202,56 @@ public class EMFHelper {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Return the root package containing the given package, or the package
+	 * itself if it is already the root
+	 * 
+	 * @param ePackage
+	 * @return
+	 */
+	public static EPackage getRootPackage(EPackage ePackage) {
+		if(ePackage.getESuperPackage() == null) {
+			return ePackage;
+		}
+		return getRootPackage(ePackage.getESuperPackage());
+	}
+
+
+	/**
+	 * Return the list of Concrete (ie. non-abstract) that are subtypes
+	 * of the given EClass
+	 * 
+	 * @param type
+	 * @return
+	 */
+	public static List<EClass> getSubclassesOf(EClass type, boolean concreteClassesOnly) {
+		List<EClass> result = new LinkedList<EClass>();
+		if(concreteClassesOnly || !type.isAbstract()) {
+			result.add(type);
+		}
+
+		EPackage ePackage = getRootPackage(type.getEPackage());
+		getSubclassesOf(type, ePackage, result, concreteClassesOnly);
+		return result;
+	}
+
+	private static void getSubclassesOf(EClass type, EPackage fromPackage, List<EClass> result, boolean concreteClassesOnly) {
+		for(EClassifier classifier : fromPackage.getEClassifiers()) {
+			if(classifier instanceof EClass) {
+				EClass eClass = (EClass)classifier;
+				if(eClass.getEAllSuperTypes().contains(type)) {
+					if(concreteClassesOnly || !eClass.isAbstract()) {
+						result.add(eClass);
+					}
+				}
+			}
+		}
+
+		for(EPackage subPackage : fromPackage.getESubpackages()) {
+			getSubclassesOf(type, subPackage, result, concreteClassesOnly);
+		}
 	}
 
 

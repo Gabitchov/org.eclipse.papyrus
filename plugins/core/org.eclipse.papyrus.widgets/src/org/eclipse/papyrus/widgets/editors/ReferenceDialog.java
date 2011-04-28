@@ -15,9 +15,11 @@ import java.util.Collections;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.widgets.Activator;
+import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.messages.Messages;
 import org.eclipse.papyrus.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
@@ -28,9 +30,12 @@ import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Widget;
 
 /**
  * An editor representing a single reference as a Label
@@ -42,7 +47,7 @@ import org.eclipse.swt.widgets.Composite;
  * @author Camille Letavernier
  * 
  */
-public class ReferenceDialog extends AbstractValueEditor implements IChangeListener, DisposeListener {
+public class ReferenceDialog extends AbstractValueEditor implements IChangeListener, DisposeListener, SelectionListener {
 
 	/**
 	 * The CLabel displaying the current value
@@ -50,9 +55,19 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	protected final CLabel currentValueLabel;
 
 	/**
-	 * The Button used to edit the current value
+	 * The Button used to browse the available values
 	 */
-	protected final Button openDialogButton;
+	protected final Button browseValuesButton;
+
+	/**
+	 * The Button used to create a new instance
+	 */
+	protected final Button createInstanceButton;
+
+	/**
+	 * The Button used to edit the current object
+	 */
+	protected final Button editInstanceButton;
 
 	/**
 	 * The Button used to unset the current value
@@ -81,6 +96,11 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	protected Object value;
 
 	/**
+	 * The factory used to create or edit objects directly from this editor
+	 */
+	protected ReferenceValueFactory valueFactory;
+
+	/**
 	 * 
 	 * Constructs a new ReferenceDialog in the given parent Composite.
 	 * The style will be applied to the CLabel displaying the current value.
@@ -91,56 +111,91 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	public ReferenceDialog(Composite parent, int style) {
 		super(parent, style);
 
-		((GridLayout)getLayout()).numColumns = 4;
+		((GridLayout)getLayout()).numColumns = 6;
 
 		currentValueLabel = factory.createCLabel(this, null, SWT.BORDER | style);
 		currentValueLabel.setLayoutData(getDefaultLayoutData());
 
 		dialog = new TreeSelectorDialog(parent.getShell());
 
-		openDialogButton = factory.createButton(this, null, SWT.PUSH);
-		openDialogButton.setImage(Activator.getDefault().getImage("/icons/browse_12x12.gif")); //$NON-NLS-1$
-		openDialogButton.setToolTipText(Messages.ReferenceDialog_EditValue);
-		openDialogButton.addSelectionListener(new SelectionListener() {
-
-			public void widgetSelected(SelectionEvent e) {
-				dialog.setInitialElementSelections(Collections.singletonList(getValue()));
-				int result = dialog.open();
-				if(result == Window.OK) {
-					Object[] newValue = dialog.getResult();
-					if(newValue.length == 0) {
-						modelProperty.setValue(null);
-					} else {
-						modelProperty.setValue(newValue[0]);
-					}
-					updateLabel();
-				}
-			}
-
-			public void widgetDefaultSelected(SelectionEvent e) {
-				// Nothing
-			}
-
-		});
+		browseValuesButton = factory.createButton(this, null, SWT.PUSH);
+		browseValuesButton.setImage(Activator.getDefault().getImage("/icons/browse_12x12.gif")); //$NON-NLS-1$
+		browseValuesButton.setToolTipText(Messages.ReferenceDialog_EditValue);
+		browseValuesButton.addSelectionListener(this);
 
 		unsetButton = factory.createButton(this, null, SWT.PUSH);
 		unsetButton.setImage(Activator.getDefault().getImage("/icons/Delete_12x12.gif")); //$NON-NLS-1$
 		unsetButton.setToolTipText(Messages.ReferenceDialog_UnsetValue);
-		unsetButton.addSelectionListener(new SelectionListener() {
+		unsetButton.addSelectionListener(this);
 
-			public void widgetSelected(SelectionEvent e) {
-				if(modelProperty != null) {
-					modelProperty.setValue(null);
-				} else {
-					handleChange(null);
-				}
+		createInstanceButton = factory.createButton(this, null, SWT.PUSH);
+		createInstanceButton.setImage(Activator.getDefault().getImage("/icons/Add_12x12.gif")); //$NON-NLS-1$
+		createInstanceButton.setToolTipText(Messages.ReferenceDialog_CreateANewObject);
+		createInstanceButton.addSelectionListener(this);
+
+		editInstanceButton = factory.createButton(this, null, SWT.PUSH);
+		editInstanceButton.setImage(Activator.getDefault().getImage("/icons/Edit_12x12.gif")); //$NON-NLS-1$
+		editInstanceButton.setToolTipText(Messages.ReferenceDialog_EditTheCurrentValue);
+		editInstanceButton.addSelectionListener(this);
+
+		updateControls();
+	}
+
+	/**
+	 * The action executed when the "browse" button is selected
+	 * Choose a value from a selection of already created objects
+	 */
+	protected void browseAction() {
+		dialog.setInitialElementSelections(Collections.singletonList(getValue()));
+		int result = dialog.open();
+		if(result == Window.OK) {
+			Object[] newValue = dialog.getResult();
+			if(newValue.length == 0) {
+				modelProperty.setValue(null);
+			} else {
+				modelProperty.setValue(newValue[0]);
 			}
+			updateLabel();
+		}
+	}
 
-			public void widgetDefaultSelected(SelectionEvent e) {
-				//Nothing
-			}
+	/**
+	 * The action executed when the "create" button is selected
+	 * Create a new instance and assign it to this reference
+	 */
+	protected void createAction() {
+		if(valueFactory != null && valueFactory.canCreateObject()) {
+			Object value = valueFactory.createObject(createInstanceButton);
+			if(value == null)
+				return;
+			valueFactory.validateObjects(Collections.singleton(value));
+			modelProperty.setValue(value);
+		}
+	}
 
-		});
+	/**
+	 * The action executed when the "edit" button is selected
+	 * Edits the object that is currently selected
+	 */
+	protected void editAction() {
+		Object currentValue = modelProperty.getValue();
+		if(currentValue != null && valueFactory != null && valueFactory.canEdit()) {
+			Object newValue = valueFactory.edit(editInstanceButton, modelProperty.getValue());
+			if(newValue != currentValue)
+				modelProperty.setValue(value);
+		}
+	}
+
+	/**
+	 * The action executed when the "unset" button is selected
+	 * Sets the current reference to null
+	 */
+	protected void unsetAction() {
+		if(modelProperty != null) {
+			modelProperty.setValue(null);
+		} else {
+			handleChange(null);
+		}
 	}
 
 	/**
@@ -227,7 +282,7 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	@Override
 	public void setReadOnly(boolean readOnly) {
 		currentValueLabel.setEnabled(!readOnly);
-		openDialogButton.setEnabled(!readOnly);
+		browseValuesButton.setEnabled(!readOnly);
 		unsetButton.setEnabled(!readOnly);
 	}
 
@@ -281,9 +336,65 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	}
 
 	@Override
+	public void setModelObservable(IObservableValue modelProperty) {
+		super.setModelObservable(modelProperty);
+		updateControls();
+	}
+
+	@Override
 	public void setToolTipText(String text) {
 		super.setLabelToolTipText(text);
 		currentValueLabel.setToolTipText(text);
+	}
+
+	public void setValueFactory(ReferenceValueFactory factory) {
+		valueFactory = factory;
+		updateControls();
+	}
+
+	public void widgetSelected(SelectionEvent e) {
+		Widget widget = e.widget;
+		if(widget == browseValuesButton) {
+			browseAction();
+		} else if(widget == createInstanceButton) {
+			createAction();
+		} else if(widget == editInstanceButton) {
+			editAction();
+		} else if(widget == unsetButton) {
+			unsetAction();
+		}
+		updateControls();
+	}
+
+	public void widgetDefaultSelected(SelectionEvent e) {
+		//Nothing
+	}
+
+	/**
+	 * Updates the buttons' status
+	 */
+	protected void updateControls() {
+		//Check if the edit & create buttons should be displayed
+		boolean exclude = valueFactory == null || !valueFactory.canCreateObject();
+		setExclusion(editInstanceButton, exclude);
+		setExclusion(createInstanceButton, exclude);
+
+		//If they are displayed, check if they should be enabled
+		if(!exclude) {
+			editInstanceButton.setEnabled(valueFactory != null && valueFactory.canEdit() && modelProperty != null && modelProperty.getValue() != null);
+			createInstanceButton.setEnabled(valueFactory != null && valueFactory.canCreateObject());
+		}
+	}
+
+	private void setExclusion(Control control, boolean exclude) {
+		if(control.getLayoutData() == null) {
+			GridData data = new GridData();
+			data.exclude = exclude;
+			control.setLayoutData(data);
+		} else {
+			GridData data = (GridData)control.getLayoutData();
+			data.exclude = exclude;
+		}
 	}
 
 }

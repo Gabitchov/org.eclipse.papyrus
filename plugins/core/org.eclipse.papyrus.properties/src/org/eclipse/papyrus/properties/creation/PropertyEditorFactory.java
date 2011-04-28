@@ -18,6 +18,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.properties.contexts.View;
+import org.eclipse.papyrus.properties.messages.Messages;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.properties.runtime.ConstraintEngine;
 import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
@@ -46,10 +47,25 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Return a null value. Implementors should override when object creation
+	 * needs to be supported. Implementors may rely on {@link #createObject(Control, Object)}
+	 * 
+	 * @see org.eclipse.papyrus.widgets.creation.ReferenceValueFactory#createObject(org.eclipse.swt.widgets.Control)
+	 * @see #createObject(org.eclipse.swt.widgets.Control, Object)
+	 * 
+	 * @param widget
+	 *        The widget from which this method is called. May be used to retrieve the current shell
+	 * @return
+	 *         The newly created object
 	 */
 	public Object createObject(Control widget) {
-		Object source = createObject();
+		return null;
+	}
+
+	/**
+	 * Facility
+	 */
+	protected Object createObject(Control widget, Object source) {
 		if(source == null)
 			return null;
 
@@ -97,7 +113,7 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 	 * @param source
 	 *        The object to edit
 	 */
-	public void edit(Control widget, Object source) {
+	public Object edit(Control widget, Object source) {
 		IStructuredSelection selection = new StructuredSelection(source);
 
 		ConstraintEngine constraintEngine = ConfigurationManager.instance.constraintEngine;
@@ -110,24 +126,14 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 
 			dialog.open();
 		}
-	}
 
-	/**
-	 * Creates a new empty instance. The instance will then be edited through
-	 * the matching property view, if any.
-	 * Subclasses should override this method if canCreateObject returns true
-	 * 
-	 * @return
-	 *         The newly created object
-	 */
-	protected Object createObject() {
-		return null;
+		return source;
 	}
 
 	/**
 	 * The standard Property Editor Factory cannot instantiate new objects.
 	 * However, subclasses may override this method to return true if they
-	 * implement {@link #createObject()}
+	 * implement {@link #createObject(Control)}
 	 * 
 	 * @see org.eclipse.papyrus.widgets.creation.ReferenceValueFactory#canCreateObject()
 	 * 
@@ -146,6 +152,6 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 	 * @see #createObject()
 	 */
 	public String getCreationDialogTitle() {
-		return "Create a new element";
+		return Messages.PropertyEditorFactory_CreateANewElement;
 	}
 }

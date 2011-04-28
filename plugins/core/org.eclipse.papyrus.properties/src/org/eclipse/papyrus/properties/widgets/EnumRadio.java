@@ -55,7 +55,7 @@ public class EnumRadio extends AbstractPropertyEditor {
 
 	@Override
 	protected void doBinding() {
-		enumRadio.setProviders(input.getContentProvider(propertyPath), null);
+		enumRadio.setProviders(input.getContentProvider(propertyPath), input.getLabelProvider(propertyPath));
 
 		super.doBinding();
 	}

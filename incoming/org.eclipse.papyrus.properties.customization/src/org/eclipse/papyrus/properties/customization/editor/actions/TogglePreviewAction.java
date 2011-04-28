@@ -27,7 +27,7 @@ public class TogglePreviewAction extends AbstractHandler {
 
 		//System.out.println("Toggle");
 
-		event.getCommand().getState("org.eclipse.papyrus.properties.customization.previewstate");
+		event.getCommand().getState("org.eclipse.papyrus.properties.customization.previewstate"); //$NON-NLS-1$
 
 		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		if(activePage == null) {

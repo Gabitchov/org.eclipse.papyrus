@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.widgets.editors;
 
+import org.eclipse.papyrus.widgets.creation.StringEditionFactory;
 import org.eclipse.papyrus.widgets.selectors.StringSelector;
 import org.eclipse.swt.widgets.Composite;
 
@@ -35,6 +36,7 @@ public class MultipleStringEditor extends MultipleValueEditor {
 	 */
 	public MultipleStringEditor(Composite parent, int style) {
 		super(parent, style, new StringSelector());
+		setFactory(new StringEditionFactory());
 	}
 
 	/**

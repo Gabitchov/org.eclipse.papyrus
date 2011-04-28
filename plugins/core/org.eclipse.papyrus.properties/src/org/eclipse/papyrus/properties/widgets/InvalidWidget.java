@@ -38,8 +38,8 @@ public class InvalidWidget extends AbstractPropertyEditor {
 		StringLabel editor = new StringLabel(parent, style);
 		setEditor(editor);
 
-		editor.getValueLabel().setText("Property view Error : invalid widget type");
-		editor.getValueLabel().setImage(Activator.getDefault().getImage("icons/error.gif"));
+		editor.getValueLabel().setText("Property view Error : invalid widget type"); //$NON-NLS-1$
+		editor.getValueLabel().setImage(Activator.getDefault().getImage("icons/error.gif")); //$NON-NLS-1$
 	}
 
 	@Override

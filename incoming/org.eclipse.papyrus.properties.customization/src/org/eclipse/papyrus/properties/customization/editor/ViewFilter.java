@@ -15,6 +15,8 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.properties.contexts.DataContextPackage;
 import org.eclipse.papyrus.properties.contexts.View;
 import org.eclipse.ui.internal.misc.StringMatcher;
 
@@ -24,7 +26,7 @@ public class ViewFilter extends ViewerFilter {
 	private StringMatcher matcher;
 
 	public void setPattern(String pattern) {
-		matcher = new StringMatcher("*" + pattern + "*", true, false);
+		matcher = new StringMatcher("*" + pattern + "*", true, false); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	@Override
@@ -34,15 +36,74 @@ public class ViewFilter extends ViewerFilter {
 
 		if(element instanceof IAdaptable) {
 			EObject eObject = (EObject)((IAdaptable)element).getAdapter(EObject.class);
-			if(eObject != null && eObject instanceof View) {
-				String viewName = (((View)eObject).getName());
-				if(viewName == null) {
-					return true;
+			if(eObject != null) {
+				if(eObject instanceof View) {
+					String viewName = ((View)eObject).getName();
+					if(viewName == null) {
+						return true;
+					}
+					return matcher.match(viewName);
+				} else if(eObject instanceof DataContextPackage) {
+					//FIXME : Le filtre ne fonctionne pas correctement pour afficher un DCElement dans un Package
+					return select((DataContextPackage)eObject);
+				} else if(eObject instanceof DataContextElement) {
+					return select((DataContextElement)eObject);
 				}
-				return matcher.match(viewName);
 			}
 		}
 
 		return true;
+	}
+
+	/**
+	 * An element is displayed if its name matches the filter, or if one of its
+	 * children's or parent's name match it
+	 * 
+	 * @param dataContextPackage
+	 * @return
+	 */
+	private boolean select(DataContextPackage dataContextPackage) {
+		if(dataContextPackage.getName() == null) {
+			return true;
+		}
+
+		if(matcher.match(dataContextPackage.getName())) {
+			return true;
+		}
+
+		for(DataContextElement subElement : dataContextPackage.getElements()) {
+			if(subElement instanceof DataContextPackage) {
+				if(select((DataContextPackage)subElement)) {
+					return true;
+				}
+			}
+
+			if(select(subElement)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	private boolean select(DataContextElement dataContextElement) {
+		if(dataContextElement.getName() == null) {
+			return true;
+		}
+
+		if(matcher.match(dataContextElement.getName())) {
+			return true;
+		}
+
+		DataContextPackage dataContextPackage = dataContextElement.getPackage();
+		while(dataContextPackage != null) {
+			if(matcher.match(dataContextPackage.getName())) {
+				return true;
+			}
+
+			dataContextPackage = dataContextPackage.getPackage();
+		}
+
+		return false;
 	}
 }

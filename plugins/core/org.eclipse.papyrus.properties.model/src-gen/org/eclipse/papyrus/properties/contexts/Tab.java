@@ -13,20 +13,20 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Tab</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.properties.contexts.Tab#getLabel <em>Label</em>}</li>
- * <li>{@link org.eclipse.papyrus.properties.contexts.Tab#getId <em>Id</em>}</li>
- * <li>{@link org.eclipse.papyrus.properties.contexts.Tab#getCategory <em>Category</em>}</li>
- * <li>{@link org.eclipse.papyrus.properties.contexts.Tab#getImage <em>Image</em>}</li>
- * <li>{@link org.eclipse.papyrus.properties.contexts.Tab#getAfterTab <em>After Tab</em>}</li>
- * <li>{@link org.eclipse.papyrus.properties.contexts.Tab#getSections <em>Sections</em>}</li>
- * <li>{@link org.eclipse.papyrus.properties.contexts.Tab#isIndented <em>Indented</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.Tab#getLabel <em>Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.Tab#getId <em>Id</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.Tab#getCategory <em>Category</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.Tab#getImage <em>Image</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.Tab#getAfterTab <em>After Tab</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.Tab#getSections <em>Sections</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.Tab#isIndented <em>Indented</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getTab()
  * @model
  * @generated
@@ -40,7 +40,6 @@ public interface Tab extends EObject {
 	 * If the meaning of the '<em>Label</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getTab_Label()
@@ -53,9 +52,7 @@ public interface Tab extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.properties.contexts.Tab#getLabel <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Label</em>' attribute.
+	 * @param value the new value of the '<em>Label</em>' attribute.
 	 * @see #getLabel()
 	 * @generated
 	 */
@@ -68,7 +65,6 @@ public interface Tab extends EObject {
 	 * If the meaning of the '<em>Id</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getTab_Id()
@@ -81,9 +77,7 @@ public interface Tab extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.properties.contexts.Tab#getId <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Id</em>' attribute.
+	 * @param value the new value of the '<em>Id</em>' attribute.
 	 * @see #getId()
 	 * @generated
 	 */
@@ -96,7 +90,6 @@ public interface Tab extends EObject {
 	 * If the meaning of the '<em>Category</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Category</em>' attribute.
 	 * @see #setCategory(String)
 	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getTab_Category()
@@ -109,9 +102,7 @@ public interface Tab extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.properties.contexts.Tab#getCategory <em>Category</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Category</em>' attribute.
+	 * @param value the new value of the '<em>Category</em>' attribute.
 	 * @see #getCategory()
 	 * @generated
 	 */
@@ -124,7 +115,6 @@ public interface Tab extends EObject {
 	 * If the meaning of the '<em>Image</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Image</em>' attribute.
 	 * @see #setImage(String)
 	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getTab_Image()
@@ -137,9 +127,7 @@ public interface Tab extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.properties.contexts.Tab#getImage <em>Image</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Image</em>' attribute.
+	 * @param value the new value of the '<em>Image</em>' attribute.
 	 * @see #getImage()
 	 * @generated
 	 */
@@ -152,7 +140,6 @@ public interface Tab extends EObject {
 	 * If the meaning of the '<em>After Tab</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>After Tab</em>' reference.
 	 * @see #setAfterTab(Tab)
 	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getTab_AfterTab()
@@ -165,9 +152,7 @@ public interface Tab extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.properties.contexts.Tab#getAfterTab <em>After Tab</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>After Tab</em>' reference.
+	 * @param value the new value of the '<em>After Tab</em>' reference.
 	 * @see #getAfterTab()
 	 * @generated
 	 */
@@ -182,7 +167,6 @@ public interface Tab extends EObject {
 	 * If the meaning of the '<em>Sections</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Sections</em>' containment reference list.
 	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getTab_Sections()
 	 * @see org.eclipse.papyrus.properties.contexts.Section#getTab
@@ -199,7 +183,6 @@ public interface Tab extends EObject {
 	 * If the meaning of the '<em>Indented</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Indented</em>' attribute.
 	 * @see #setIndented(boolean)
 	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getTab_Indented()
@@ -212,9 +195,7 @@ public interface Tab extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.properties.contexts.Tab#isIndented <em>Indented</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Indented</em>' attribute.
+	 * @param value the new value of the '<em>Indented</em>' attribute.
 	 * @see #isIndented()
 	 * @generated
 	 */

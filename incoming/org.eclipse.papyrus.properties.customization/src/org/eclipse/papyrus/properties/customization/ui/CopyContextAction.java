@@ -33,6 +33,7 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.contexts.Context;
+import org.eclipse.papyrus.properties.customization.messages.Messages;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.swt.widgets.Display;
@@ -73,12 +74,12 @@ public class CopyContextAction {
 		if(targetDirectory.exists()) {
 			throw new IOException("A context with this name already exists"); //$NON-NLS-1$
 		}
-		URI targetModelUri = URI.createFileURI(targetDirectory.toString() + "/" + targetName + ".ctx");
+		URI targetModelUri = URI.createFileURI(targetDirectory.toString() + "/" + targetName + ".ctx"); //$NON-NLS-1$ //$NON-NLS-2$
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Context sourceContext = (Context)EMFHelper.loadEMFModel(resourceSet, source.eResource().getURI());
 
-		copyAll(sourceContext, new File(targetDirectory, targetName + ".ctx"));
+		copyAll(sourceContext, new File(targetDirectory, targetName + ".ctx")); //$NON-NLS-1$
 
 		if(result.getCode() == IStatus.OK) {
 			Context targetContext = ConfigurationManager.instance.getContext(targetModelUri);
@@ -103,7 +104,7 @@ public class CopyContextAction {
 			dialog.run(true, false, new IRunnableWithProgress() {
 
 				public void run(IProgressMonitor monitor) {
-					monitor.beginTask("Initializing the copy of " + source.getName() + ". This may take some time", IProgressMonitor.UNKNOWN);
+					monitor.beginTask(Messages.CopyContextAction_InitializingTheCopyOf + source.getName() + Messages.CopyContextAction_ThisMayTakeSomeTime, IProgressMonitor.UNKNOWN);
 					EcoreUtil.resolveAll(source);
 					monitor.done();
 					result = Status.OK_STATUS;
@@ -120,7 +121,7 @@ public class CopyContextAction {
 						try {
 							targetDirectory.mkdirs();
 
-							monitor.beginTask("Copying " + source.getName() + " to " + targetName, source.eResource().getResourceSet().getResources().size());
+							monitor.beginTask(Messages.CopyContextAction_Copying + source.getName() + Messages.CopyContextAction_To + targetName, source.eResource().getResourceSet().getResources().size());
 
 							//Copy of the context
 							copy(source.eResource(), target);
@@ -140,7 +141,7 @@ public class CopyContextAction {
 							monitor.done();
 						} catch (IOException ex) {
 							Activator.log.error(ex);
-							result = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "An error occured during the copy of " + source.getName(), ex);
+							result = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "An error occured during the copy of " + source.getName(), ex); //$NON-NLS-1$
 							return;
 						}
 						result = Status.OK_STATUS;
@@ -160,8 +161,8 @@ public class CopyContextAction {
 
 	private void copy(Resource resource, File directory, EObject source, String targetName) throws IOException {
 		URI relativeURI = resource.getURI().deresolve(source.eResource().getURI());
-		if(relativeURI.toString().equals("")) {
-			relativeURI = URI.createURI(targetName + ".ctx");
+		if(relativeURI.toString().equals("")) { //$NON-NLS-1$
+			relativeURI = URI.createURI(targetName + ".ctx"); //$NON-NLS-1$
 		}
 		File target = new File(directory, relativeURI.toString());
 		copy(resource, target);
@@ -172,7 +173,7 @@ public class CopyContextAction {
 		URI resourceURI = resource.getURI();
 		URI uri = resourceURI.deresolve(baseURI);
 		if(uri.isRelative()) {
-			if(!(uri.toString().startsWith("..") || uri.toString().startsWith("/"))) {
+			if(!(uri.toString().startsWith("..") || uri.toString().startsWith("/"))) { //$NON-NLS-1$ //$NON-NLS-2$
 				return true;
 			}
 		}

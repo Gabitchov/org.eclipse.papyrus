@@ -362,10 +362,10 @@ public class UiItemProviderAdapterFactory extends UiAdapterFactory implements Co
 		if (standardWidgetItemProvider != null) standardWidgetItemProvider.dispose();
 		if (propertyEditorItemProvider != null) propertyEditorItemProvider.dispose();
 		if (compositeWidgetItemProvider != null) compositeWidgetItemProvider.dispose();
+		if (unknownComponentItemProvider != null) unknownComponentItemProvider.dispose();
 		if (layoutItemProvider != null) layoutItemProvider.dispose();
 		if (valueAttributeItemProvider != null) valueAttributeItemProvider.dispose();
 		if (referenceAttributeItemProvider != null) referenceAttributeItemProvider.dispose();
-		if (unknownComponentItemProvider != null) unknownComponentItemProvider.dispose();
 	}
 
 }
