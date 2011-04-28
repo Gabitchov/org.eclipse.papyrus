@@ -4,7 +4,11 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.navigation;singleton:=true
 Bundle-Version: 0.8.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.eclipse.papyrus.core
-Export-Package: org.eclipse.papyrus.navigation
+Require-Bundle: org.eclipse.papyrus.core,
+ org.eclipse.papyrus.preferences;bundle-version="0.8.0"
+Export-Package: org.eclipse.papyrus.navigation,
+ org.eclipse.papyrus.navigation.preference
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.eclipse.papyrus.navigation.Activator

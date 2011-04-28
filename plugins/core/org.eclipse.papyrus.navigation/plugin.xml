@@ -2,5 +2,21 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="navigationRule" name="navigationRule" schema="schema/navigationRule.exsd"/>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.preferences.generalcategory"
+            class="org.eclipse.papyrus.navigation.preference.NavigationPreferencePage"
+            id="org.eclipse.papyrus.navigation"
+            name="Navigation">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.papyrus.navigation.preference.NavigationPreferenceInitializer">
+      </initializer>
+   </extension>
+  
 
 </plugin>
