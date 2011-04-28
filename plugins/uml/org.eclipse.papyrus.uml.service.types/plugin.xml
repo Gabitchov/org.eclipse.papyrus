@@ -358,6 +358,7 @@
 	<!-- IMetamodelType for Connector -->
 	<metamodelType id="org.eclipse.papyrus.uml.Connector" name="UML::Connector"
 		eclass="Connector" 
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.ConnectorEditHelper"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="UML::Connector"/>
 	</metamodelType>

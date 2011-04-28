@@ -14,4 +14,5 @@ Export-Package: org.eclipse.papyrus.uml.service.types,
  org.eclipse.papyrus.uml.service.types.command,
  org.eclipse.papyrus.uml.service.types.element,
  org.eclipse.papyrus.uml.service.types.helper,
- org.eclipse.papyrus.uml.service.types.helper.advice
+ org.eclipse.papyrus.uml.service.types.helper.advice,
+ org.eclipse.papyrus.uml.service.types.utils
