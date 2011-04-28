@@ -45,7 +45,6 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class RoleBindingRoleNameParser implements ISemanticParser {
 
 	/**
-	 * 
 	 * {@inheritDoc}
 	 */
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {

@@ -65,6 +65,9 @@ public class ConnectorPreferencePage extends AbstractPapyrusLinkPreferencePage {
 	private static TreeMap<String, String> getStaticLabelRole() {
 		TreeMap<String, String> map = new TreeMap<String, String>(new StringComparator());
 		map.put("Stereotype", "");//$NON-NLS-1$ //$NON-NLS-2$
+		map.put("Name", "");//$NON-NLS-1$ //$NON-NLS-2$
+		map.put("SourceMultiplicity", "");//$NON-NLS-1$ //$NON-NLS-2$
+		map.put("TargetMultiplicity", "");//$NON-NLS-1$ //$NON-NLS-2$
 		return map;
 	}
 
@@ -74,6 +77,15 @@ public class ConnectorPreferencePage extends AbstractPapyrusLinkPreferencePage {
 	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("Stereotype", Boolean.TRUE);
+
+
+		map.put("Name", Boolean.FALSE);//$NON-NLS-1$
+
+
+		map.put("SourceMultiplicity", Boolean.FALSE);//$NON-NLS-1$
+
+
+		map.put("TargetMultiplicity", Boolean.FALSE);//$NON-NLS-1$
 
 		return map;
 	}

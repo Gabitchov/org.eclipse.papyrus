@@ -2589,6 +2589,63 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser connectorName_6050Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConnectorName_6050Parser() {
+		if(connectorName_6050Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			connectorName_6050Parser = parser;
+		}
+		return connectorName_6050Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser connectorName_6051Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConnectorName_6051Parser() {
+		if(connectorName_6051Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("sourceMul{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("sourceMul{0}"); //$NON-NLS-1$
+			parser.setEditPattern("sourceMul{0}"); //$NON-NLS-1$
+			connectorName_6051Parser = parser;
+		}
+		return connectorName_6051Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser connectorName_6052Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConnectorName_6052Parser() {
+		if(connectorName_6052Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("targetMul{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("targetMul{0}"); //$NON-NLS-1$
+			parser.setEditPattern("targetMul{0}"); //$NON-NLS-1$
+			connectorName_6052Parser = parser;
+		}
+		return connectorName_6052Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private AppliedStereotypeParser generalizationIsSubstitutable_6024Parser;
 
 	/**
@@ -2898,6 +2955,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getDependencyName_6023Parser();
 		case ConnectorAppliedStereotypeEditPart.VISUAL_ID:
 			return getConnectorName_6025Parser();
+		case ConnectorNameEditPart.VISUAL_ID:
+			return getConnectorName_6050Parser();
+		case ConnectorMultiplicitySourceEditPart.VISUAL_ID:
+			return getConnectorName_6051Parser();
+		case ConnectorMultiplicityTargetEditPart.VISUAL_ID:
+			return getConnectorName_6052Parser();
 		case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 			return getGeneralizationIsSubstitutable_6024Parser();
 		case InformationFlowAppliedStereotypeEditPart.VISUAL_ID:

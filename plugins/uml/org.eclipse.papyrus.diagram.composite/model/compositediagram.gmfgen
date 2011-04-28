@@ -9256,6 +9256,83 @@
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
+        <labels
+            visualID="6050"
+            editPartClassName="ConnectorNameEditPart"
+            itemSemanticEditPolicyClassName="ConnectorNameItemSemanticEditPolicy"
+            elementIcon="true">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getNameLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                y="-20"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              viewPattern=""
+              editorPattern=""
+              editPattern="">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            visualID="6051"
+            editPartClassName="ConnectorMultiplicitySourceEditPart"
+            itemSemanticEditPolicyClassName="ConnectorMultiplicitySourceItemSemanticEditPolicy"
+            readOnly="true"
+            alignment="SOURCE">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getMultiplicitySourceLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                y="20"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              viewPattern="sourceMul{0}"
+              editorPattern="sourceMul{0}"
+              editPattern="sourceMul{0}">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            visualID="6052"
+            editPartClassName="ConnectorMultiplicityTargetEditPart"
+            itemSemanticEditPolicyClassName="ConnectorMultiplicityTargetItemSemanticEditPolicy"
+            readOnly="true"
+            alignment="TARGET">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getMultiplicityTargetLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                y="20"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              viewPattern="targetMul{0}"
+              editorPattern="targetMul{0}"
+              editPattern="targetMul{0}">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
       </links>
       <links
           visualID="4015"
@@ -10815,7 +10892,7 @@
         extensibleViaService="true">
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.2/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.36/@labelModelFacet /0/@diagram/@topLevelNodes.14/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.15/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.18/@labels.0/@modelFacet /0/@diagram/@childNodes.19/@labels.0/@modelFacet /0/@diagram/@childNodes.20/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.16/@labels.0/@modelFacet /0/@diagram/@childNodes.21/@labels.0/@modelFacet /0/@diagram/@childNodes.22/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.25/@labels.0/@modelFacet /0/@diagram/@childNodes.26/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.35/@labelModelFacet /0/@diagram/@childNodes.33/@labelModelFacet /0/@diagram/@childNodes.34/@labelModelFacet /0/@diagram/@childNodes.37/@labelModelFacet /0/@diagram/@childNodes.38/@labelModelFacet /0/@diagram/@childNodes.39/@labelModelFacet /0/@diagram/@childNodes.40/@labelModelFacet /0/@diagram/@childNodes.41/@labelModelFacet /0/@diagram/@childNodes.42/@labelModelFacet /0/@diagram/@childNodes.43/@labelModelFacet /0/@diagram/@childNodes.44/@labelModelFacet /0/@diagram/@childNodes.45/@labelModelFacet /0/@diagram/@childNodes.46/@labelModelFacet /0/@diagram/@childNodes.47/@labelModelFacet /0/@diagram/@childNodes.48/@labelModelFacet /0/@diagram/@topLevelNodes.11/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.12/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.16/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.17/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.18/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.19/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.20/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.21/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.22/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.23/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.24/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.25/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.26/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.27/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.28/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.29/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.30/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.31/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.34/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.35/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.36/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.37/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.38/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.39/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.40/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.41/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.42/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.43/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.44/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.45/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.46/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.47/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.49/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.50/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.51/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.52/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.53/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.0/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.10/@labels.0/@modelFacet /0/@diagram/@links.12/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.33/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.32/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.28/@labels.0/@modelFacet /0/@diagram/@childNodes.29/@labels.0/@modelFacet /0/@diagram/@childNodes.30/@labels.0/@modelFacet /0/@diagram/@childNodes.32/@labels.0/@modelFacet /0/@diagram/@childNodes.31/@labels.0/@modelFacet"/>
+          uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.2/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.36/@labelModelFacet /0/@diagram/@topLevelNodes.14/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.15/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.18/@labels.0/@modelFacet /0/@diagram/@childNodes.19/@labels.0/@modelFacet /0/@diagram/@childNodes.20/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.16/@labels.0/@modelFacet /0/@diagram/@childNodes.21/@labels.0/@modelFacet /0/@diagram/@childNodes.22/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.25/@labels.0/@modelFacet /0/@diagram/@childNodes.26/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.35/@labelModelFacet /0/@diagram/@childNodes.33/@labelModelFacet /0/@diagram/@childNodes.34/@labelModelFacet /0/@diagram/@childNodes.37/@labelModelFacet /0/@diagram/@childNodes.38/@labelModelFacet /0/@diagram/@childNodes.39/@labelModelFacet /0/@diagram/@childNodes.40/@labelModelFacet /0/@diagram/@childNodes.41/@labelModelFacet /0/@diagram/@childNodes.42/@labelModelFacet /0/@diagram/@childNodes.43/@labelModelFacet /0/@diagram/@childNodes.44/@labelModelFacet /0/@diagram/@childNodes.45/@labelModelFacet /0/@diagram/@childNodes.46/@labelModelFacet /0/@diagram/@childNodes.47/@labelModelFacet /0/@diagram/@childNodes.48/@labelModelFacet /0/@diagram/@topLevelNodes.11/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.12/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.16/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.17/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.18/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.19/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.20/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.21/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.22/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.23/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.24/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.25/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.26/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.27/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.28/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.29/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.30/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.31/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.34/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.35/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.36/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.37/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.38/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.39/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.40/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.41/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.42/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.43/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.44/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.45/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.46/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.47/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.49/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.50/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.51/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.52/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.53/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.0/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.10/@labels.0/@modelFacet /0/@diagram/@links.12/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.33/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.32/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.28/@labels.0/@modelFacet /0/@diagram/@childNodes.29/@labels.0/@modelFacet /0/@diagram/@childNodes.30/@labels.0/@modelFacet /0/@diagram/@childNodes.32/@labels.0/@modelFacet /0/@diagram/@childNodes.31/@labels.0/@modelFacet /0/@diagram/@links.13/@labels.1/@modelFacet /0/@diagram/@links.13/@labels.2/@modelFacet /0/@diagram/@links.13/@labels.3/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.7/@labels.1/@modelFacet /0/@diagram/@links.8/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.1/@modelFacet /0/@diagram/@links.10/@labels.1/@modelFacet /0/@diagram/@links.12/@labels.1/@modelFacet /0/@diagram/@links.14/@labels.0/@modelFacet /0/@diagram/@links.13/@labels.0/@modelFacet /0/@diagram/@links.11/@labels.1/@modelFacet /0/@diagram/@topLevelNodes.33/@labels.1/@modelFacet /0/@diagram/@topLevelNodes.32/@labels.1/@modelFacet /0/@diagram/@childNodes.0/@labels.1/@modelFacet /0/@diagram/@links.18/@labels.1/@modelFacet /0/@diagram/@childNodes.1/@labels.1/@modelFacet"
@@ -10929,12 +11006,24 @@
         name="DirectedRelationship"
         genView="/0/@diagram/@links.14 /0/@diagram/@links.18 /0/@diagram/@links.12 /0/@diagram/@links.10 /0/@diagram/@links.9 /0/@diagram/@links.8 /0/@diagram/@links.7 /0/@diagram/@links.6 /0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.5"/>
     <extensionNodes
+        xsi:type="papyrusgmfgenextension:EditPartUsingReorientService"
+        comment="Use the edit service for reorient command (Connector)"
+        name="Connector"
+        genView="/0/@diagram/@links.13"/>
+    <extensionNodes
         xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
         comment="Name"
         role="Name"
         iconPathRole=""
         linkLabels="/0/@diagram/@links.3/@labels.0 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.7/@labels.0 /0/@diagram/@links.8/@labels.0 /0/@diagram/@links.9/@labels.0 /0/@diagram/@links.10/@labels.0 /0/@diagram/@links.11/@labels.0 /0/@diagram/@links.12/@labels.0"
         externalNodeLabels="/0/@diagram/@childNodes.0/@labels.0 /0/@diagram/@topLevelNodes.32/@labels.0 /0/@diagram/@topLevelNodes.33/@labels.0 /0/@diagram/@childNodes.1/@labels.0"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Name (Connector)"
+        role="Name"
+        iconPathRole=""
+        linkLabels="/0/@diagram/@links.13/@labels.1"
+        visibleByDefault="false"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
         comment="Stereotype"
@@ -10954,5 +11043,17 @@
         role="ConveyedElements"
         iconPathRole=""
         linkLabels="/0/@diagram/@links.18/@labels.0"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="SourceMultiplicity"
+        role="SourceMultiplicity"
+        linkLabels="/0/@diagram/@links.13/@labels.2"
+        visibleByDefault="false"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="TargetMultiplicity"
+        role="TargetMultiplicity"
+        linkLabels="/0/@diagram/@links.13/@labels.3"
+        visibleByDefault="false"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

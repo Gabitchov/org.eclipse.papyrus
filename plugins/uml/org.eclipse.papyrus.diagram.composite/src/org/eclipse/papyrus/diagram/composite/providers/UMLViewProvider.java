@@ -4090,6 +4090,21 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6025 = (Location)label6025.getLayoutConstraint();
 		location6025.setX(0);
 		location6025.setY(60);
+		Node label6050 = createLabel(edge, UMLVisualIDRegistry.getType(ConnectorNameEditPart.VISUAL_ID));
+		label6050.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6050 = (Location)label6050.getLayoutConstraint();
+		location6050.setX(0);
+		location6050.setY(-20);
+		Node label6051 = createLabel(edge, UMLVisualIDRegistry.getType(ConnectorMultiplicitySourceEditPart.VISUAL_ID));
+		label6051.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6051 = (Location)label6051.getLayoutConstraint();
+		location6051.setX(0);
+		location6051.setY(20);
+		Node label6052 = createLabel(edge, UMLVisualIDRegistry.getType(ConnectorMultiplicityTargetEditPart.VISUAL_ID));
+		label6052.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6052 = (Location)label6052.getLayoutConstraint();
+		location6052.setX(0);
+		location6052.setY(20);
 
 
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Connector");

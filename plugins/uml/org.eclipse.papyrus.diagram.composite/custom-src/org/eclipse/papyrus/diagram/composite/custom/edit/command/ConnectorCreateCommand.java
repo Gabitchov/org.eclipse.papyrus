@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -165,6 +165,8 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 		getContainer().getOwnedConnectors().add(newElement);
 
 		ConnectorEnd end0 = UMLFactory.eINSTANCE.createConnectorEnd();
+		end0.setLower(1);
+		end0.setUpper(1);
 		if(_getSource() instanceof Port) {
 			end0.setRole((Port)_getSource());
 			end0.setPartWithPort(sourcePartWithPort);
@@ -177,6 +179,8 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 		}
 
 		ConnectorEnd end1 = UMLFactory.eINSTANCE.createConnectorEnd();
+		end1.setLower(1);
+		end1.setUpper(1);
 		if(_getTarget() instanceof Port) {
 			end1.setRole((Port)_getTarget());
 			end1.setPartWithPort(targetPartWithPort);

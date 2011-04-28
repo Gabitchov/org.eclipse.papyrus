@@ -59,6 +59,18 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 			((ConnectorAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
+		if(childEditPart instanceof ConnectorNameEditPart) {
+			((ConnectorNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+			return true;
+		}
+		if(childEditPart instanceof ConnectorMultiplicitySourceEditPart) {
+			((ConnectorMultiplicitySourceEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
+			return true;
+		}
+		if(childEditPart instanceof ConnectorMultiplicityTargetEditPart) {
+			((ConnectorMultiplicityTargetEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicityTargetLabel());
+			return true;
+		}
 		return false;
 	}
 
@@ -79,6 +91,15 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof ConnectorAppliedStereotypeEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof ConnectorNameEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof ConnectorMultiplicitySourceEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof ConnectorMultiplicityTargetEditPart) {
 			return true;
 		}
 		return false;

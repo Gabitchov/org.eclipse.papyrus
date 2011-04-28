@@ -868,6 +868,15 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ConnectorAppliedStereotypeEditPart.VISUAL_ID:
 				return new ConnectorAppliedStereotypeEditPart(view);
 
+			case ConnectorNameEditPart.VISUAL_ID:
+				return new ConnectorNameEditPart(view);
+
+			case ConnectorMultiplicitySourceEditPart.VISUAL_ID:
+				return new ConnectorMultiplicitySourceEditPart(view);
+
+			case ConnectorMultiplicityTargetEditPart.VISUAL_ID:
+				return new ConnectorMultiplicityTargetEditPart(view);
+
 
 			case GeneralizationEditPart.VISUAL_ID:
 				return new GeneralizationEditPart(view);
