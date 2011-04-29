@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uicustom:MetamodelView xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" xmlns:uicustom="http://www.eclipse.org/EmfFacet/infra/browser/custom/0.8" metamodelURI="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7">
+  <types metaclassName="paletteconfiguration.PaletteConfiguration">
+    <customizedFeatures>
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+    </customizedFeatures>
+    <customizedFeatures customizedFeature="bold">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+    </customizedFeatures>
+    <references referenceName="drawerConfigurations">
+      <customizedFeatures customizedFeature="collapseLink">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      </customizedFeatures>
+    </references>
+    <references referenceName="icon">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+  </types>
+  <types metaclassName="paletteconfiguration.DrawerConfiguration">
+    <customizedFeatures customizedFeature="label">
+      <defaultValue xsi:type="uicustom:DerivedFeatureValue">
+        <valueCalculator xsi:type="query:JavaModelQuery" href="emffacet:/query/PaletteConfiguration#getDrawerLabel"/>
+      </defaultValue>
+    </customizedFeatures>
+    <customizedFeatures customizedFeature="hideMetaclassName">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+    </customizedFeatures>
+    <references referenceName="ownedConfigurations">
+      <customizedFeatures customizedFeature="collapseLink">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      </customizedFeatures>
+    </references>
+  </types>
+  <types metaclassName="paletteconfiguration.Configuration">
+    <customizedFeatures customizedFeature="icon">
+      <valueCases>
+        <value xsi:type="uicustom:DerivedFeatureValue">
+          <valueCalculator xsi:type="query:JavaModelQuery" href="emffacet:/query/PaletteConfiguration#getIcon"/>
+        </value>
+        <condition xsi:type="query:JavaModelQuery" href="emffacet:/query/PaletteConfiguration#hasIcon"/>
+      </valueCases>
+    </customizedFeatures>
+    <references referenceName="icon">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+  </types>
+  <types metaclassName="paletteconfiguration.ToolConfiguration">
+    <customizedFeatures customizedFeature="label">
+      <defaultValue xsi:type="uicustom:DerivedFeatureValue">
+        <valueCalculator xsi:type="query:JavaModelQuery" href="emffacet:/query/PaletteConfiguration#getToolLabel"/>
+      </defaultValue>
+    </customizedFeatures>
+    <customizedFeatures customizedFeature="hideMetaclassName">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+    </customizedFeatures>
+    <references referenceName="elementDescriptors">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+  </types>
+  <types metaclassName="paletteconfiguration.StackConfiguration">
+    <references referenceName="toolConfigurations">
+      <customizedFeatures customizedFeature="collapseLink">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      </customizedFeatures>
+    </references>
+    <references referenceName="ownedConfigurations">
+      <customizedFeatures customizedFeature="collapseLink">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      </customizedFeatures>
+    </references>
+  </types>
+  <availableQuerySets>PaletteConfiguration</availableQuerySets>
+</uicustom:MetamodelView>
