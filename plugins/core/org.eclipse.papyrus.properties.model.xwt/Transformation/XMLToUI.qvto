@@ -134,7 +134,7 @@ mapping XML::Element::toPropertyEditor() : PropertyEditor inherits XML::Element:
 	
 	unresolvedProperty := prop.oclAsType(UnknownProperty);
 	readOnly := self.children->exists(e | e.oclIsKindOf(XML::Attribute) and e.oclAsType(XML::Attribute).name = 'readOnly' and e.oclAsType(XML::Attribute).value='true');
-	showLabel := self.children->exists(e | e.oclIsKindOf(XML::Attribute) and e.oclAsType(XML::Attribute).name = 'showLabel' and e.oclAsType(XML::Attribute).value='true');
+	showLabel := not self.children->exists(e | e.oclIsKindOf(XML::Attribute) and e.oclAsType(XML::Attribute).name = 'showLabel' and e.oclAsType(XML::Attribute).value='false');
 }
 
 query XML::Element::getPropertyName() : String {
