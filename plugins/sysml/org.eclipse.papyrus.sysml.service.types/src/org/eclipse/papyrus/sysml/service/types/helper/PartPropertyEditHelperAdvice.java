@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ * 
+ * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.service.types.helper;
@@ -28,8 +29,12 @@ import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.service.types.matcher.BlockMatcher;
 import org.eclipse.papyrus.sysml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.AggregationKind;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /** SysML Property Part edit helper advice */
 public class PartPropertyEditHelperAdvice extends AbstractEditHelperAdvice {
@@ -82,6 +87,43 @@ public class PartPropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 					element.setAggregation(AggregationKind.COMPOSITE_LITERAL);
 				}
 				return CommandResult.newOKCommandResult(element);
+			}
+		};
+	}
+	
+	/** Complete creation process by adding the related association.
+	 *  This assumes the part type has been set at this point.
+	 */
+	@Override
+	protected ICommand getAfterConfigureCommand(final ConfigureRequest request) {
+
+		return new ConfigureElementCommand(request) {
+
+			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+				Property sourcePart = (Property)request.getElementToConfigure();
+				if((sourcePart != null) && (sourcePart.getType() != null)) {
+
+					// Create association between element owner and element type
+					Type sourceType = sourcePart.getClass_();
+					//Type targetType = sourcePart.getType();
+					Package associationContainer = sourceType.getNearestPackage();
+					
+					// Create targetProperty
+					Property targetProperty = UMLFactory.eINSTANCE.createProperty();
+					targetProperty.setType(sourceType);
+					targetProperty.setName("");
+					
+					Association association = UMLFactory.eINSTANCE.createAssociation();
+					association.getOwnedEnds().add(targetProperty);
+					association.getMemberEnds().add(sourcePart);
+					association.getMemberEnds().add(targetProperty);
+					
+					String associationName = NamedElementHelper.EINSTANCE.getNewUMLElementName(associationContainer, "PartAssociation"); //$NON-NLS-1$
+					association.setName(associationName);
+					
+					association.setPackage(associationContainer);
+				}
+				return CommandResult.newOKCommandResult(sourcePart);
 			}
 		};
 	}
