@@ -134,6 +134,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		GeneralizationPreferencePage.initDefaults(store);
 
 
+		AssociationBranchLinkPreferencePage.initDefaults(store);
+
+
 		InstanceSpecificationLinkPreferencePage.initDefaults(store);
 
 
@@ -177,6 +180,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 
 		SubstitutionPreferencePage.initDefaults(store);
+
+
+		DependencyBranchLinkPreferencePage.initDefaults(store);
 
 
 		ProfileApplicationPreferencePage.initDefaults(store);

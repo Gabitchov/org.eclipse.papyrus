@@ -1628,14 +1628,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case AssociationBranchEditPart.VISUAL_ID:
-			if(AssociationBranchRoleEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(AssociationBranchMutliplicityEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case AssociationEditPart.VISUAL_ID:
 			if(AppliedStereotypeAssociationEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -1653,6 +1645,14 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(AssociationMultiplicityTargetEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case AssociationBranchEditPart.VISUAL_ID:
+			if(AssociationBranchRoleEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(AssociationBranchMutliplicityEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1774,14 +1774,14 @@ public class UMLVisualIDRegistry {
 
 
 		) {
-			return AssociationBranchEditPart.VISUAL_ID;
+			return AssociationEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getAssociation().isSuperTypeOf(domainElement.eClass())
 
 
 
 		) {
-			return AssociationEditPart.VISUAL_ID;
+			return AssociationBranchEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(domainElement.eClass())
 
@@ -1830,14 +1830,14 @@ public class UMLVisualIDRegistry {
 
 
 		) {
-			return DependencyBranchEditPart.VISUAL_ID;
+			return DependencyEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())
 
 
 
 		) {
-			return DependencyEditPart.VISUAL_ID;
+			return DependencyBranchEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getElementImport().isSuperTypeOf(domainElement.eClass())
 
@@ -1999,18 +1999,6 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 
 
-		viewInfo = new BaseViewInfo(4019, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-
-		labelInfo = new BaseViewInfo(6024, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-
-		labelInfo = new BaseViewInfo(6035, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-
 		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
@@ -2036,6 +2024,18 @@ public class UMLVisualIDRegistry {
 
 
 		labelInfo = new BaseViewInfo(6034, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		viewInfo = new BaseViewInfo(4019, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+
+		labelInfo = new BaseViewInfo(6024, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6035, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
 
@@ -2107,10 +2107,6 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 
 
-		viewInfo = new BaseViewInfo(4018, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(4008, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
@@ -2121,6 +2117,10 @@ public class UMLVisualIDRegistry {
 
 		labelInfo = new BaseViewInfo(6027, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
+
+		viewInfo = new BaseViewInfo(4018, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
 
 
 		viewInfo = new BaseViewInfo(4009, ViewInfo.Edge, "");
@@ -2383,7 +2383,7 @@ public class UMLVisualIDRegistry {
 		root.addNode(2002, viewInfo);
 
 
-		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1cca5f9 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@a4b7c6 (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))");
+		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "org.eclipse.emf.ecore.impl.DynamicEObjectImpl@3dbcbb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@131a465 (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))");
 
 		root.addNode(2008, viewInfo);
 

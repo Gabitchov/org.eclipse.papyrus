@@ -120,7 +120,7 @@
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLClassDiagram"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2014,2013,2015,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2016,2095,2096,2097,2098,3012,3002,3005,3006,3018,3014,3004,3008,3013,3003,3007,3019,3034,3035,3031,3016,3017,3011,3030,3015,3032,3033,3020,3021,3022,3023,3024,3025,3009,3010,3026,3027,3028,3029"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4016,4017,4019,4001,4002,4003,4004,4005,4006,4007,4018,4008,4009,4010,4011,4012,4013,4014,4015,4020,4021,4022,4023,4024,4025"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4016,4017,4001,4019,4002,4003,4004,4005,4006,4007,4008,4018,4009,4010,4011,4012,4013,4014,4015,4020,4021,4022,4023,4024,4025"/>
       </viewProvider>
    </extension>
 <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
@@ -134,7 +134,7 @@
             <method name="getType()" value="2014,2013,2015,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2016,2095,2096,2097,2098,3012,3002,3005,3006,3018,3014,3004,3008,3013,3003,3007,3019,3034,3035,3031,3016,3017,3011,3030,3015,3032,3033,3020,3021,3022,3023,3024,3025,3009,3010,3026,3027,3028,3029"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4016,4017,4019,4001,4002,4003,4004,4005,4006,4007,4018,4008,4009,4010,4011,4012,4013,4014,4015,4020,4021,4022,4023,4024,4025"/>
+            <method name="getType()" value="4016,4017,4001,4019,4002,4003,4004,4005,4006,4007,4008,4018,4009,4010,4011,4012,4013,4014,4015,4020,4021,4022,4023,4024,4025"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
             <method name="getType()" value="1,5066,5002,5005,5008,5011,5020,5023,5026,5029,5032,5035,5037,5159,5038,0,5155,5156,5153,5154,5157,5158,5040,5043,5046,5049,5052,5055,5017,5014,5058,5061,5063,5064,5160"/>
@@ -729,20 +729,20 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Association_4019"
-               name="%metatype.name.Association_4019"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Association_2015"/>
-            <param name="semanticHint" value="4019"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <specializationType
                id="org.eclipse.papyrus.diagram.clazz.Association_4001"
                name="%metatype.name.Association_4001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.papyrus.diagram.clazz.Association_2015"/>
             <param name="semanticHint" value="4001"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.clazz.Association_4019"
+               name="%metatype.name.Association_4019"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.clazz.Association_2015"/>
+            <param name="semanticHint" value="4019"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
@@ -807,20 +807,20 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Dependency_4018"
-               name="%metatype.name.Dependency_4018"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Dependency_2014"/>
-            <param name="semanticHint" value="4018"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <specializationType
                id="org.eclipse.papyrus.diagram.clazz.Dependency_4008"
                name="%metatype.name.Dependency_4008"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.papyrus.diagram.clazz.Dependency_2014"/>
             <param name="semanticHint" value="4008"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.clazz.Dependency_4018"
+               name="%metatype.name.Dependency_4018"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.clazz.Dependency_2014"/>
+            <param name="semanticHint" value="4018"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
@@ -1011,16 +1011,16 @@
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Constraint_3029"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Link_4016"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.AssociationClass_4017"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Association_4019"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Association_4001"/>
+         <elementType ref="org.eclipse.papyrus.diagram.clazz.Association_4019"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Generalization_4002"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.InterfaceRealization_4003"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Substitution_4004"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Realization_4005"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Abstraction_4006"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Usage_4007"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Dependency_4018"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Dependency_4008"/>
+         <elementType ref="org.eclipse.papyrus.diagram.clazz.Dependency_4018"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.ElementImport_4009"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.PackageImport_4010"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.PackageMerge_4011"/>
@@ -1735,6 +1735,14 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationBranchLinkPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationBranchLinkPreferencePage"
+            name="AssociationBranchLink Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.InstanceSpecificationLinkPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.InstanceSpecificationLinkPreferencePage"
             name="InstanceSpecificationLink Link" />
@@ -1850,6 +1858,14 @@
 			class="org.eclipse.papyrus.diagram.clazz.preferences.SubstitutionPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.SubstitutionPreferencePage"
             name="Substitution Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.DependencyBranchLinkPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.DependencyBranchLinkPreferencePage"
+            name="DependencyBranchLink Link" />
 		
 		
 

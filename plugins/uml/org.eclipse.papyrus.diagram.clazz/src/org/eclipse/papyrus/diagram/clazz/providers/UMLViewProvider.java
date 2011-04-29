@@ -373,10 +373,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createLink_4016(containerView, index, persisted, preferencesHint);
 		case AssociationClassLinkEditPart.VISUAL_ID:
 			return createAssociationClass_4017(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case AssociationBranchEditPart.VISUAL_ID:
-			return createAssociation_4019(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		case AssociationEditPart.VISUAL_ID:
 			return createAssociation_4001(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+		case AssociationBranchEditPart.VISUAL_ID:
+			return createAssociation_4019(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		case GeneralizationEditPart.VISUAL_ID:
 			return createGeneralization_4002(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		case InterfaceRealizationEditPart.VISUAL_ID:
@@ -389,10 +389,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createAbstraction_4006(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		case UsageEditPart.VISUAL_ID:
 			return createUsage_4007(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case DependencyBranchEditPart.VISUAL_ID:
-			return createDependency_4018(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		case DependencyEditPart.VISUAL_ID:
 			return createDependency_4008(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+		case DependencyBranchEditPart.VISUAL_ID:
+			return createDependency_4018(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		case ElementImportEditPart.VISUAL_ID:
 			return createElementImport_4009(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		case PackageImportEditPart.VISUAL_ID:
@@ -2059,10 +2059,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
 
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "AssociationLink");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "AssociationBranchLink");
 
 
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "AssociationLink");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "AssociationBranchLink");
 
 		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
 		//if (routing != null) {
@@ -2070,7 +2070,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		//}
 
 
-		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "AssociationLink");
+		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "AssociationBranchLink");
 
 		Node label6024 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationBranchRoleEditPart.VISUAL_ID));
 		label6024.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
@@ -2084,7 +2084,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6035.setY(20);
 
 
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "AssociationLink");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "AssociationBranchLink");
 
 		return edge;
 	}
@@ -2446,10 +2446,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
 
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "DependencyLink");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "DependencyBranchLink");
 
 
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "DependencyLink");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "DependencyBranchLink");
 
 		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
 		//if (routing != null) {
@@ -2457,7 +2457,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		//}
 
 
-		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "DependencyLink");
+		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "DependencyBranchLink");
 
 
 

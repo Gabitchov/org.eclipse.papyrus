@@ -1636,8 +1636,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getAssociationClassName_6031Parser();
 		case AssociationClassRoleTargetEditPart.VISUAL_ID:
 			return getAssociationClassName_6032Parser();
-		case AssociationBranchMutliplicityEditPart.VISUAL_ID:
-			return getAssociationName_6035Parser();
 		case AppliedStereotypeAssociationEditPart.VISUAL_ID:
 			return getAssociationName_6001Parser();
 		case AssociationNameEditPart.VISUAL_ID:
@@ -1650,6 +1648,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getAssociationName_6033Parser();
 		case AssociationMultiplicityTargetEditPart.VISUAL_ID:
 			return getAssociationName_6034Parser();
+		case AssociationBranchMutliplicityEditPart.VISUAL_ID:
+			return getAssociationName_6035Parser();
 		case AppliedStereotyperGeneralizationEditPart.VISUAL_ID:
 			return getGeneralizationIsSubstitutable_6007Parser();
 		case AppliedStereotypeInterfaceRealizationEditPart.VISUAL_ID:

@@ -808,10 +808,10 @@ public class UMLElementTypes {
 			elements.put(AssociationClass_4017, UMLPackage.eINSTANCE.getAssociationClass());
 
 
-			elements.put(Association_4019, UMLPackage.eINSTANCE.getAssociation());
-
-
 			elements.put(Association_4001, UMLPackage.eINSTANCE.getAssociation());
+
+
+			elements.put(Association_4019, UMLPackage.eINSTANCE.getAssociation());
 
 
 			elements.put(Generalization_4002, UMLPackage.eINSTANCE.getGeneralization());
@@ -832,10 +832,10 @@ public class UMLElementTypes {
 			elements.put(Usage_4007, UMLPackage.eINSTANCE.getUsage());
 
 
-			elements.put(Dependency_4018, UMLPackage.eINSTANCE.getDependency());
-
-
 			elements.put(Dependency_4008, UMLPackage.eINSTANCE.getDependency());
+
+
+			elements.put(Dependency_4018, UMLPackage.eINSTANCE.getDependency());
 
 
 			elements.put(ElementImport_4009, UMLPackage.eINSTANCE.getElementImport());
@@ -939,16 +939,16 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Constraint_3029);
 			KNOWN_ELEMENT_TYPES.add(Link_4016);
 			KNOWN_ELEMENT_TYPES.add(AssociationClass_4017);
-			KNOWN_ELEMENT_TYPES.add(Association_4019);
 			KNOWN_ELEMENT_TYPES.add(Association_4001);
+			KNOWN_ELEMENT_TYPES.add(Association_4019);
 			KNOWN_ELEMENT_TYPES.add(Generalization_4002);
 			KNOWN_ELEMENT_TYPES.add(InterfaceRealization_4003);
 			KNOWN_ELEMENT_TYPES.add(Substitution_4004);
 			KNOWN_ELEMENT_TYPES.add(Realization_4005);
 			KNOWN_ELEMENT_TYPES.add(Abstraction_4006);
 			KNOWN_ELEMENT_TYPES.add(Usage_4007);
-			KNOWN_ELEMENT_TYPES.add(Dependency_4018);
 			KNOWN_ELEMENT_TYPES.add(Dependency_4008);
+			KNOWN_ELEMENT_TYPES.add(Dependency_4018);
 			KNOWN_ELEMENT_TYPES.add(ElementImport_4009);
 			KNOWN_ELEMENT_TYPES.add(PackageImport_4010);
 			KNOWN_ELEMENT_TYPES.add(PackageMerge_4011);
@@ -1085,10 +1085,10 @@ public class UMLElementTypes {
 			return Link_4016;
 		case AssociationClassLinkEditPart.VISUAL_ID:
 			return AssociationClass_4017;
-		case AssociationBranchEditPart.VISUAL_ID:
-			return Association_4019;
 		case AssociationEditPart.VISUAL_ID:
 			return Association_4001;
+		case AssociationBranchEditPart.VISUAL_ID:
+			return Association_4019;
 		case GeneralizationEditPart.VISUAL_ID:
 			return Generalization_4002;
 		case InterfaceRealizationEditPart.VISUAL_ID:
@@ -1101,10 +1101,10 @@ public class UMLElementTypes {
 			return Abstraction_4006;
 		case UsageEditPart.VISUAL_ID:
 			return Usage_4007;
-		case DependencyBranchEditPart.VISUAL_ID:
-			return Dependency_4018;
 		case DependencyEditPart.VISUAL_ID:
 			return Dependency_4008;
+		case DependencyBranchEditPart.VISUAL_ID:
+			return Dependency_4018;
 		case ElementImportEditPart.VISUAL_ID:
 			return ElementImport_4009;
 		case PackageImportEditPart.VISUAL_ID:
