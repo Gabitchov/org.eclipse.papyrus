@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<fragment>
+   <extension
+         id="org.eclipse.papyrus.paletteconfiguration.tests.test1"
+         name="Test PaletteConfiguration provider with file Test1.paletteConfiguration"
+         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+      <paletteDefinition
+            ID="org.eclipse.papyrus.paletteconfiguration.tests.test1"
+            class="org.eclipse.papyrus.paletteconfiguration.provider.ExtendedPluginPaletteProvider"
+            icon="icons/debug.gif"
+            name="Test PaletteConfiguration provider with file Test1.paletteConfiguration"
+            path="/model/Test1.paletteConfiguration"
+            provider="CEA LIST">
+         <Priority
+               name="Lowest">
+         </Priority>
+         <editor
+               id="org.eclipse.papyrus.diagram.clazz">
+         </editor>
+      </paletteDefinition>
+   </extension>
+<extension
+         point="org.eclipse.papyrus.extendedtypes.extendedTypesSetConfiguration">
+      <configuration
+            description="Test - extended types for UML"
+            icon="icons/debug.gif"
+            name="Test - Class diagram Test types"
+            path="model/Test1.extendedtypes"
+            id="test1.palette">
+      </configuration>
+   </extension>
+</fragment>
