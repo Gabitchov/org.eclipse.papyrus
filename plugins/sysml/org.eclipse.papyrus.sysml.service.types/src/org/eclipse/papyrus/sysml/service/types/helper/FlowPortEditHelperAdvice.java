@@ -114,7 +114,7 @@ public class FlowPortEditHelperAdvice extends AbstractStereotypedElementEditHelp
 	@Override
 	protected ICommand getBeforeSetCommand(SetRequest request) {
 		
-		// Only allow null, Block, Signel, DataType or ValueType as the new type
+		// Only allow null, Block, Signal, DataType or ValueType as the new type
 		if(UMLPackage.eINSTANCE.getTypedElement_Type().equals(request.getFeature())) {
 			if (request.getValue() != null) {
 				
