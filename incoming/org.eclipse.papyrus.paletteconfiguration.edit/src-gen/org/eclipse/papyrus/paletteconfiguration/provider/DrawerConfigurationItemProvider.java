@@ -160,6 +160,11 @@ public class DrawerConfigurationItemProvider
 			(createChildParameter
 				(PaletteconfigurationPackage.Literals.DRAWER_CONFIGURATION__OWNED_CONFIGURATIONS,
 				 PaletteconfigurationFactory.eINSTANCE.createStackConfiguration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PaletteconfigurationPackage.Literals.DRAWER_CONFIGURATION__OWNED_CONFIGURATIONS,
+				 PaletteconfigurationFactory.eINSTANCE.createSeparatorConfiguration()));
 	}
 
 }

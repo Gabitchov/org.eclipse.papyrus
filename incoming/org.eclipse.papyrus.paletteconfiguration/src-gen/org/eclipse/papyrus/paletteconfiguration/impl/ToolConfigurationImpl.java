@@ -43,7 +43,7 @@ import org.eclipse.papyrus.paletteconfiguration.ToolKind;
  *
  * @generated
  */
-public class ToolConfigurationImpl extends ChildConfigurationImpl implements ToolConfiguration {
+public class ToolConfigurationImpl extends LeafConfigurationImpl implements ToolConfiguration {
 	/**
 	 * The cached value of the '{@link #getPreValidationQuery() <em>Pre Validation Query</em>}' reference.
 	 * <!-- begin-user-doc -->

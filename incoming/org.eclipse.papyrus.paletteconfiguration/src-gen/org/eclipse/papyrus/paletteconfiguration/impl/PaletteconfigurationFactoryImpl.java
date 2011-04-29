@@ -67,6 +67,7 @@ public class PaletteconfigurationFactoryImpl extends EFactoryImpl implements Pal
 			case PaletteconfigurationPackage.DRAWER_CONFIGURATION: return createDrawerConfiguration();
 			case PaletteconfigurationPackage.ICON_DESCRIPTOR: return createIconDescriptor();
 			case PaletteconfigurationPackage.ELEMENT_DESCRIPTOR: return createElementDescriptor();
+			case PaletteconfigurationPackage.SEPARATOR_CONFIGURATION: return createSeparatorConfiguration();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -160,6 +161,16 @@ public class PaletteconfigurationFactoryImpl extends EFactoryImpl implements Pal
 	public ElementDescriptor createElementDescriptor() {
 		ElementDescriptorImpl elementDescriptor = new ElementDescriptorImpl();
 		return elementDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SeparatorConfiguration createSeparatorConfiguration() {
+		SeparatorConfigurationImpl separatorConfiguration = new SeparatorConfigurationImpl();
+		return separatorConfiguration;
 	}
 
 	/**

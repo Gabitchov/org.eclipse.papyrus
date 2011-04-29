@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
@@ -26,9 +27,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
-import org.eclipse.gmf.runtime.emf.type.core.internal.impl.HintedTypeFactory;
-import org.eclipse.papyrus.extendedtypes.ExtendedElementTypeConfiguration;
-import org.eclipse.papyrus.extendedtypes.ExtendedElementTypeSet;
+import org.eclipse.papyrus.extendedtypes.preferences.ExtendedTypesPreferences;
 import org.eclipse.papyrus.extendedtypes.types.ExtendedHintedTypeFactory;
 import org.osgi.framework.Bundle;
 
@@ -117,17 +116,19 @@ public class ExtendedTypesRegistry {
 	protected List<ExtendedElementTypeSet> loadExtendedTypeSetsFromPlatform() {
 		List<ExtendedElementTypeSet> platformElementTypeSets = new ArrayList<ExtendedElementTypeSet>();
 
-		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(IExtendedTypeExtensionPoint.ID);
+		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(IExtendedTypeExtensionPoint.EXTENSION_POINT_ID);
 		// for each element, parses and retrieve the model file. then loads it and returns the root element 
 		for(IConfigurationElement element : elements) {
 			String modelPath = element.getAttribute(IExtendedTypeExtensionPoint.PATH);
+			String extendedTypeSetId = element.getAttribute(IExtendedTypeExtensionPoint.ID);
 			String contributorID = element.getContributor().getName();
 			if(Platform.inDebugMode()) {
 				Activator.log.debug("[Reading extension point]");
 				Activator.log.debug("-  Path to the model: " + modelPath);
 				Activator.log.debug("-  id of the container bundle: " + contributorID);
+				Activator.log.debug("-  id of the extended type set: " + extendedTypeSetId);
 			}
-			ExtendedElementTypeSet set = getExtendedElementTypeSet(modelPath, contributorID);
+			ExtendedElementTypeSet set = getExtendedElementTypeSet(extendedTypeSetId, modelPath, contributorID);
 			if(set != null) {
 				platformElementTypeSets.add(set);
 			}
@@ -144,13 +145,23 @@ public class ExtendedTypesRegistry {
 	 * It looks the model file in the fragments first, then in the plugin itself.<BR>
 	 * If this is already a fragment, it should look in the fragment only
 	 * </p>
+	 * 
+	 * @param extendedTypesID
+	 *        id of the extended type set to load
 	 * @param modelPath
 	 *        path of the model in the bundle
 	 * @param bundleId
 	 *        id of the bundle containing the model file
 	 * @return the loaded file or <code>null</code> if some problem occured during loading
 	 */
-	protected ExtendedElementTypeSet getExtendedElementTypeSet(String modelPath, String bundleId) {
+	protected ExtendedElementTypeSet getExtendedElementTypeSet(String extendedTypesID, String modelPath, String bundleId) {
+		// 1. look in preferences.
+		String filePath = ExtendedTypesPreferences.getExtendedTypesRedefinition(extendedTypesID);
+		if(filePath != null) {
+			getExtendedElementTypeSetInPluginStateArea(extendedTypesID);
+		}
+
+		// 2. no local redefinition. Load extended type set from plugin definition
 		Bundle bundle = Platform.getBundle(bundleId);
 		if(Platform.isFragment(bundle)) {
 			return getExtendedElementTypeSetInBundle(modelPath, bundleId);
@@ -170,7 +181,33 @@ public class ExtendedTypesRegistry {
 				return getExtendedElementTypeSetInBundle(modelPath, bundleId);
 			}
 		}
+	}
 
+	/**
+	 * Retrieves the contribution in the plugin area
+	 * 
+	 * @param path
+	 *        the path of the element type set to load in the plugin area
+	 */
+	protected ExtendedElementTypeSet getExtendedElementTypeSetInPluginStateArea(String path) {
+		// read in preferences area
+		IPath resourcePath = Activator.getDefault().getStateLocation().append(path);
+		URI uri = URI.createFileURI(resourcePath.toOSString());
+		if(uri != null && uri.isFile()) {
+			Resource resource = extendedTypesResourceSet.createResource(uri);
+			try {
+				resource.load(null);
+			} catch (IOException e) {
+				return null;
+			}
+			EObject content = resource.getContents().get(0);
+			if(content instanceof ExtendedElementTypeSet) {
+				return (ExtendedElementTypeSet)content;
+			}
+			Activator.log.error("Impossible to cast the object into an ExtendedElementTypeSet: " + content, null);
+			return null;
+		}
+		return null;
 	}
 
 	/**

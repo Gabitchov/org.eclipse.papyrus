@@ -80,6 +80,15 @@ public interface PaletteconfigurationFactory extends EFactory {
 	ElementDescriptor createElementDescriptor();
 
 	/**
+	 * Returns a new object of class '<em>Separator Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Separator Configuration</em>'.
+	 * @generated
+	 */
+	SeparatorConfiguration createSeparatorConfiguration();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

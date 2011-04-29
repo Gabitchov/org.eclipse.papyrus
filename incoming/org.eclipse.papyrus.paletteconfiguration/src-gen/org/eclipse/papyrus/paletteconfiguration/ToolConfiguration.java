@@ -28,7 +28,7 @@ import org.eclipse.papyrus.core.queries.configuration.QueryConfiguration;
  * @model
  * @generated
  */
-public interface ToolConfiguration extends ChildConfiguration {
+public interface ToolConfiguration extends LeafConfiguration {
 	/**
 	 * Returns the value of the '<em><b>Pre Validation Query</b></em>' reference.
 	 * <!-- begin-user-doc -->

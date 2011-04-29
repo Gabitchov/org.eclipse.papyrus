@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -33,6 +34,7 @@ import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteRoot;
+import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.PaletteToolEntry;
@@ -40,6 +42,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
 import org.eclipse.gmf.runtime.gef.ui.internal.palette.PaletteStack;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.paletteconfiguration.Activator;
@@ -47,8 +50,10 @@ import org.eclipse.papyrus.paletteconfiguration.ChildConfiguration;
 import org.eclipse.papyrus.paletteconfiguration.Configuration;
 import org.eclipse.papyrus.paletteconfiguration.DrawerConfiguration;
 import org.eclipse.papyrus.paletteconfiguration.IconDescriptor;
+import org.eclipse.papyrus.paletteconfiguration.LeafConfiguration;
 import org.eclipse.papyrus.paletteconfiguration.PaletteConfiguration;
 import org.eclipse.papyrus.paletteconfiguration.PaletteconfigurationPackage;
+import org.eclipse.papyrus.paletteconfiguration.SeparatorConfiguration;
 import org.eclipse.papyrus.paletteconfiguration.StackConfiguration;
 import org.eclipse.papyrus.paletteconfiguration.ToolConfiguration;
 import org.eclipse.papyrus.paletteconfiguration.util.PaletteconfigurationSwitch;
@@ -70,8 +75,14 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 	/** path to the palette configuration model in the bundle */
 	protected static final String PATH = "path";
 
+	/** name of the attribute: id of the palette */
+	private static final String ID = "ID";
+
 	/** id of the plugin declaring the extension */
 	protected String contributorID;
+
+	/** unique identifier for this palette contribution */
+	protected String paletteID;
 
 	/** contributions to the palette */
 	protected List<PaletteConfiguration> contributions;
@@ -236,6 +247,8 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 				generateStack(drawer, (StackConfiguration)configuration, predefinedEntries);
 			} else if(configuration.eClass().equals(PaletteconfigurationPackage.eINSTANCE.getToolConfiguration())) {
 				generateTool(drawer, (ToolConfiguration)configuration, predefinedEntries);
+			} else if(configuration.eClass().equals(PaletteconfigurationPackage.eINSTANCE.getSeparatorConfiguration())) {
+				generateSeparator(drawer, (SeparatorConfiguration)configuration, predefinedEntries);
 			}
 		}
 	}
@@ -363,11 +376,28 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 		}
 
 		// generate the nodes of the stack
-		for(ToolConfiguration toolConfiguration : configuration.getToolConfigurations()) {
-			generateTool(stack, toolConfiguration, predefinedEntries);
+		for(LeafConfiguration leafConfiguration : configuration.getOwnedConfigurations()) {
+			if(leafConfiguration instanceof SeparatorConfiguration) {
+				generateSeparator(stack, (SeparatorConfiguration)leafConfiguration, predefinedEntries);
+			} else if(leafConfiguration instanceof ToolConfiguration) {
+				generateTool(stack, (ToolConfiguration)leafConfiguration, predefinedEntries);	
+			}
 		}
 
 		return stack;
+	}
+
+	/**
+	 * Generates a {@link PaletteSeparator}, adds it to a container and returns it
+	 * @param container the container where to add the created separator
+	 * @param leafConfiguration the configuration of the element to create
+	 * @param predefinedEntries the predefined entries (unused here)
+	 * @return the created separator
+	 */
+	protected PaletteSeparator generateSeparator(PaletteContainer container, SeparatorConfiguration leafConfiguration, Map predefinedEntries) {
+		PaletteSeparator separator = new PaletteSeparator(leafConfiguration.getId()) ;
+		container.add(separator);
+		return separator;
 	}
 
 	/**
@@ -399,7 +429,14 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 	public void setContributions(IConfigurationElement configElement) {
 		// retrieve the model file
 		contributorID = configElement.getNamespaceIdentifier();
+		paletteID = configElement.getAttribute(ID);
 		String path = configElement.getAttribute(PATH);
+
+		if(paletteID == null) {
+			Activator.log.error("Impossible to find the palette identifier for contribution " + configElement.getValue(), null);
+			contributions = Collections.emptyList();
+			return;
+		}
 		if(path == null) {
 			Activator.log.error("Impossible to find the path for contribution " + configElement.getValue(), null);
 			contributions = Collections.emptyList();
@@ -436,38 +473,17 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 		// stores the bundle in which the resource is located.
 		// warning: in case of fragments, the contributor id can the the plugin, but the file can be localized in the fragment
 		// In this case, the real bundle used to load the file is the fragment bundle...
-		String bundleId = null;
+		// String bundleId = null;
 
 		// creates a resource set that will load the configuration
 		ResourceSet resourceSet = new ResourceSetImpl();
 
-		// try to load the resource in the fragments of the bundle, then the bundle itself. 
-		URL entry = null;
-		// try in fragments...
-		Bundle[] fragments = Platform.getFragments(bundle);
-		if(fragments != null) {
-			for(Bundle fragment : fragments) {
-				entry = fragment.getEntry(path);
-				if(entry != null) {
-					bundleId = fragment.getSymbolicName();
-					continue;
-				}
-			}
-		}
-		// look now in the bundle itself.
-		if(entry == null) {
-			entry = bundle.getEntry(path);
-			// no entry was found in the chidlren fragments, look in the bundle itself
-			if(entry == null) {
-				throw new FileNotFoundException("Loading palette configuration... Impossible to find a resource for path; " + path + " for bundle: " + bundle);
-			} else {
-				bundleId = bundle.getSymbolicName();
-			}
+		Resource resource = loadResourceFromPreferences(resourceSet);
+
+		if(resource == null) {
+			resource = loadResourceFromPlugin(bundle, path, resourceSet);
 		}
 
-
-
-		Resource resource = resourceSet.createResource(URI.createPlatformPluginURI("/" + bundleId + "/" + path, true));
 		if(resource == null) {
 			throw new FileNotFoundException("Loading palette configuration... Impossible to find a resource for path; " + path + " for bundle: " + bundle);
 		}
@@ -495,6 +511,68 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 	 */
 	public List<PaletteConfiguration> getContributions() {
 		return contributions;
+	}
+
+	/**
+	 * Returns the resource used for the configuration.
+	 * <P>
+	 * It checks in the preferences area, then in the plugin area
+	 * </P>
+	 */
+	protected Resource loadResourceFromPreferences(ResourceSet resourceSet) {
+		Resource resource = null;
+		// look in preference area
+		String path = PapyrusPalettePreferences.getPaletteRedefinition(paletteID);
+		if(path != null) {
+			// read in preferences area of diagram common! Thus, it can be accessed from the common plugin...
+			IPath resourcePath = org.eclipse.papyrus.diagram.common.Activator.getDefault().getStateLocation().append(path);
+			URI uri = URI.createFileURI(resourcePath.toOSString());
+			if(uri != null && uri.isFile()) {
+				resource = resourceSet.createResource(uri);
+				if(resource != null) {
+					return resource;
+				}
+			}
+
+		}
+		return resource;
+	}
+
+	/**
+	 * Loads the resource from the plugin area
+	 * 
+	 * @return the resource to load.
+	 * @throws FileNotFoundException
+	 */
+	protected Resource loadResourceFromPlugin(Bundle bundle, String path, ResourceSet resourceSet) throws FileNotFoundException {
+		Resource resource = null;
+		String bundleId = null;
+		// try to load the resource in the fragments of the bundle, then the bundle itself. 
+		URL entry = null;
+		// try in fragments...
+		Bundle[] fragments = Platform.getFragments(bundle);
+		if(fragments != null) {
+			for(Bundle fragment : fragments) {
+				entry = fragment.getEntry(path);
+				if(entry != null) {
+					bundleId = fragment.getSymbolicName();
+					continue;
+				}
+			}
+		}
+		// look now in the bundle itself.
+		if(entry == null) {
+			entry = bundle.getEntry(path);
+			// no entry was found in the children fragments, look in the bundle itself
+			if(entry == null) {
+				throw new FileNotFoundException("Loading palette configuration... Impossible to find a resource for path; " + path + " for bundle: " + bundle);
+			} else {
+				bundleId = bundle.getSymbolicName();
+			}
+		}
+
+		resource = resourceSet.createResource(URI.createPlatformPluginURI("/" + bundleId + "/" + path, true));
+		return resource;
 	}
 
 	/**

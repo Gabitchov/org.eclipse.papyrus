@@ -36,7 +36,7 @@ import org.eclipse.papyrus.paletteconfiguration.ToolConfiguration;
  * @generated
  */
 public class ToolConfigurationItemProvider
-	extends ChildConfigurationItemProvider
+	extends LeafConfigurationItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,

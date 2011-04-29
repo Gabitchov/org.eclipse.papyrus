@@ -78,7 +78,7 @@ public class StackConfigurationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PaletteconfigurationPackage.Literals.STACK_CONFIGURATION__TOOL_CONFIGURATIONS);
+			childrenFeatures.add(PaletteconfigurationPackage.Literals.STACK_CONFIGURATION__OWNED_CONFIGURATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -133,7 +133,7 @@ public class StackConfigurationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(StackConfiguration.class)) {
-			case PaletteconfigurationPackage.STACK_CONFIGURATION__TOOL_CONFIGURATIONS:
+			case PaletteconfigurationPackage.STACK_CONFIGURATION__OWNED_CONFIGURATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -153,8 +153,13 @@ public class StackConfigurationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PaletteconfigurationPackage.Literals.STACK_CONFIGURATION__TOOL_CONFIGURATIONS,
+				(PaletteconfigurationPackage.Literals.STACK_CONFIGURATION__OWNED_CONFIGURATIONS,
 				 PaletteconfigurationFactory.eINSTANCE.createToolConfiguration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PaletteconfigurationPackage.Literals.STACK_CONFIGURATION__OWNED_CONFIGURATIONS,
+				 PaletteconfigurationFactory.eINSTANCE.createSeparatorConfiguration()));
 	}
 
 }

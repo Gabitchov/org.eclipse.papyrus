@@ -9,6 +9,7 @@
          This extension point is used to registered new extended element types for creation of semantic elements with specific post/pre actions and validation.
       </documentation>
    </annotation>
+
    <element name="extension">
       <annotation>
          <appInfo>
@@ -60,7 +61,7 @@
                </documentation>
             </annotation>
          </attribute>
-		 <attribute name="icon" type="string">
+         <attribute name="icon" type="string">
             <annotation>
                <documentation>
                   Path to an icon, used in user interface
@@ -87,6 +88,13 @@ Note: Do not forget to add the file in the binary build of the plugin!
                <appInfo>
                   <meta.attribute kind="resource"/>
                </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The unique identifier of this contribution. To ease debug, it is advised to put the same identifier as the extended type set configuration identifier.
+               </documentation>
             </annotation>
          </attribute>
       </complexType>

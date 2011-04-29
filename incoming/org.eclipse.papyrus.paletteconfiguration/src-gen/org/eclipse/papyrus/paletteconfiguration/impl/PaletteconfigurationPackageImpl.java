@@ -22,9 +22,11 @@ import org.eclipse.papyrus.paletteconfiguration.Configuration;
 import org.eclipse.papyrus.paletteconfiguration.DrawerConfiguration;
 import org.eclipse.papyrus.paletteconfiguration.ElementDescriptor;
 import org.eclipse.papyrus.paletteconfiguration.IconDescriptor;
+import org.eclipse.papyrus.paletteconfiguration.LeafConfiguration;
 import org.eclipse.papyrus.paletteconfiguration.PaletteConfiguration;
 import org.eclipse.papyrus.paletteconfiguration.PaletteconfigurationFactory;
 import org.eclipse.papyrus.paletteconfiguration.PaletteconfigurationPackage;
+import org.eclipse.papyrus.paletteconfiguration.SeparatorConfiguration;
 import org.eclipse.papyrus.paletteconfiguration.StackConfiguration;
 import org.eclipse.papyrus.paletteconfiguration.ToolConfiguration;
 import org.eclipse.papyrus.paletteconfiguration.ToolKind;
@@ -91,6 +93,20 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 	 * @generated
 	 */
 	private EClass elementDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass separatorConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass leafConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -231,7 +247,7 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStackConfiguration_ToolConfigurations() {
+	public EReference getStackConfiguration_OwnedConfigurations() {
 		return (EReference)stackConfigurationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -366,6 +382,24 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSeparatorConfiguration() {
+		return separatorConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLeafConfiguration() {
+		return leafConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getToolKind() {
 		return toolKindEEnum;
 	}
@@ -407,7 +441,7 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 		createEReference(toolConfigurationEClass, TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS);
 
 		stackConfigurationEClass = createEClass(STACK_CONFIGURATION);
-		createEReference(stackConfigurationEClass, STACK_CONFIGURATION__TOOL_CONFIGURATIONS);
+		createEReference(stackConfigurationEClass, STACK_CONFIGURATION__OWNED_CONFIGURATIONS);
 
 		childConfigurationEClass = createEClass(CHILD_CONFIGURATION);
 
@@ -427,6 +461,10 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 		elementDescriptorEClass = createEClass(ELEMENT_DESCRIPTOR);
 		createEAttribute(elementDescriptorEClass, ELEMENT_DESCRIPTOR__ELEMENT_TYPE_ID);
 		createEAttribute(elementDescriptorEClass, ELEMENT_DESCRIPTOR__GRAPHICAL_HINTS);
+
+		separatorConfigurationEClass = createEClass(SEPARATOR_CONFIGURATION);
+
+		leafConfigurationEClass = createEClass(LEAF_CONFIGURATION);
 
 		// Create enums
 		toolKindEEnum = createEEnum(TOOL_KIND);
@@ -465,10 +503,12 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 
 		// Add supertypes to classes
 		paletteConfigurationEClass.getESuperTypes().add(this.getConfiguration());
-		toolConfigurationEClass.getESuperTypes().add(this.getChildConfiguration());
+		toolConfigurationEClass.getESuperTypes().add(this.getLeafConfiguration());
 		stackConfigurationEClass.getESuperTypes().add(this.getChildConfiguration());
 		childConfigurationEClass.getESuperTypes().add(this.getConfiguration());
 		drawerConfigurationEClass.getESuperTypes().add(this.getConfiguration());
+		separatorConfigurationEClass.getESuperTypes().add(this.getLeafConfiguration());
+		leafConfigurationEClass.getESuperTypes().add(this.getChildConfiguration());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(paletteConfigurationEClass, PaletteConfiguration.class, "PaletteConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -480,7 +520,7 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 		initEReference(getToolConfiguration_ElementDescriptors(), this.getElementDescriptor(), null, "elementDescriptors", null, 0, -1, ToolConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stackConfigurationEClass, StackConfiguration.class, "StackConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStackConfiguration_ToolConfigurations(), this.getToolConfiguration(), null, "toolConfigurations", null, 1, -1, StackConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStackConfiguration_OwnedConfigurations(), this.getLeafConfiguration(), null, "ownedConfigurations", null, 1, -1, StackConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(childConfigurationEClass, ChildConfiguration.class, "ChildConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -500,6 +540,10 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 		initEClass(elementDescriptorEClass, ElementDescriptor.class, "ElementDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getElementDescriptor_ElementTypeId(), theEcorePackage.getEString(), "elementTypeId", null, 1, 1, ElementDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getElementDescriptor_GraphicalHints(), theEcorePackage.getEString(), "graphicalHints", null, 0, -1, ElementDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(separatorConfigurationEClass, SeparatorConfiguration.class, "SeparatorConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(leafConfigurationEClass, LeafConfiguration.class, "LeafConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(toolKindEEnum, ToolKind.class, "ToolKind");

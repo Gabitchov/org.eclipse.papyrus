@@ -235,6 +235,61 @@ public interface PaletteconfigurationPackage extends EPackage {
 	int CHILD_CONFIGURATION_FEATURE_COUNT = CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.paletteconfiguration.impl.LeafConfigurationImpl <em>Leaf Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.paletteconfiguration.impl.LeafConfigurationImpl
+	 * @see org.eclipse.papyrus.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getLeafConfiguration()
+	 * @generated
+	 */
+	int LEAF_CONFIGURATION = 9;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEAF_CONFIGURATION__ID = CHILD_CONFIGURATION__ID;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEAF_CONFIGURATION__LABEL = CHILD_CONFIGURATION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEAF_CONFIGURATION__DESCRIPTION = CHILD_CONFIGURATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Icon</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEAF_CONFIGURATION__ICON = CHILD_CONFIGURATION__ICON;
+
+	/**
+	 * The number of structural features of the '<em>Leaf Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEAF_CONFIGURATION_FEATURE_COUNT = CHILD_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.paletteconfiguration.impl.ToolConfigurationImpl <em>Tool Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -251,7 +306,7 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOOL_CONFIGURATION__ID = CHILD_CONFIGURATION__ID;
+	int TOOL_CONFIGURATION__ID = LEAF_CONFIGURATION__ID;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -260,7 +315,7 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOOL_CONFIGURATION__LABEL = CHILD_CONFIGURATION__LABEL;
+	int TOOL_CONFIGURATION__LABEL = LEAF_CONFIGURATION__LABEL;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -269,7 +324,7 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOOL_CONFIGURATION__DESCRIPTION = CHILD_CONFIGURATION__DESCRIPTION;
+	int TOOL_CONFIGURATION__DESCRIPTION = LEAF_CONFIGURATION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Icon</b></em>' containment reference.
@@ -278,7 +333,7 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOOL_CONFIGURATION__ICON = CHILD_CONFIGURATION__ICON;
+	int TOOL_CONFIGURATION__ICON = LEAF_CONFIGURATION__ICON;
 
 	/**
 	 * The feature id for the '<em><b>Pre Validation Query</b></em>' reference.
@@ -287,7 +342,7 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOOL_CONFIGURATION__PRE_VALIDATION_QUERY = CHILD_CONFIGURATION_FEATURE_COUNT + 0;
+	int TOOL_CONFIGURATION__PRE_VALIDATION_QUERY = LEAF_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -296,7 +351,7 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOOL_CONFIGURATION__KIND = CHILD_CONFIGURATION_FEATURE_COUNT + 1;
+	int TOOL_CONFIGURATION__KIND = LEAF_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Element Descriptors</b></em>' containment reference list.
@@ -305,7 +360,7 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS = CHILD_CONFIGURATION_FEATURE_COUNT + 2;
+	int TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS = LEAF_CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Tool Configuration</em>' class.
@@ -314,7 +369,7 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOOL_CONFIGURATION_FEATURE_COUNT = CHILD_CONFIGURATION_FEATURE_COUNT + 3;
+	int TOOL_CONFIGURATION_FEATURE_COUNT = LEAF_CONFIGURATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.paletteconfiguration.impl.StackConfigurationImpl <em>Stack Configuration</em>}' class.
@@ -363,13 +418,13 @@ public interface PaletteconfigurationPackage extends EPackage {
 	int STACK_CONFIGURATION__ICON = CHILD_CONFIGURATION__ICON;
 
 	/**
-	 * The feature id for the '<em><b>Tool Configurations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Configurations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STACK_CONFIGURATION__TOOL_CONFIGURATIONS = CHILD_CONFIGURATION_FEATURE_COUNT + 0;
+	int STACK_CONFIGURATION__OWNED_CONFIGURATIONS = CHILD_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Stack Configuration</em>' class.
@@ -519,6 +574,61 @@ public interface PaletteconfigurationPackage extends EPackage {
 	int ELEMENT_DESCRIPTOR_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.paletteconfiguration.impl.SeparatorConfigurationImpl <em>Separator Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.paletteconfiguration.impl.SeparatorConfigurationImpl
+	 * @see org.eclipse.papyrus.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getSeparatorConfiguration()
+	 * @generated
+	 */
+	int SEPARATOR_CONFIGURATION = 8;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEPARATOR_CONFIGURATION__ID = LEAF_CONFIGURATION__ID;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEPARATOR_CONFIGURATION__LABEL = LEAF_CONFIGURATION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEPARATOR_CONFIGURATION__DESCRIPTION = LEAF_CONFIGURATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Icon</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEPARATOR_CONFIGURATION__ICON = LEAF_CONFIGURATION__ICON;
+
+	/**
+	 * The number of structural features of the '<em>Separator Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEPARATOR_CONFIGURATION_FEATURE_COUNT = LEAF_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.paletteconfiguration.ToolKind <em>Tool Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -526,7 +636,7 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * @see org.eclipse.papyrus.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getToolKind()
 	 * @generated
 	 */
-	int TOOL_KIND = 8;
+	int TOOL_KIND = 10;
 
 
 	/**
@@ -604,15 +714,15 @@ public interface PaletteconfigurationPackage extends EPackage {
 	EClass getStackConfiguration();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.paletteconfiguration.StackConfiguration#getToolConfigurations <em>Tool Configurations</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.paletteconfiguration.StackConfiguration#getOwnedConfigurations <em>Owned Configurations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Tool Configurations</em>'.
-	 * @see org.eclipse.papyrus.paletteconfiguration.StackConfiguration#getToolConfigurations()
+	 * @return the meta object for the containment reference list '<em>Owned Configurations</em>'.
+	 * @see org.eclipse.papyrus.paletteconfiguration.StackConfiguration#getOwnedConfigurations()
 	 * @see #getStackConfiguration()
 	 * @generated
 	 */
-	EReference getStackConfiguration_ToolConfigurations();
+	EReference getStackConfiguration_OwnedConfigurations();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.paletteconfiguration.ChildConfiguration <em>Child Configuration</em>}'.
@@ -764,6 +874,26 @@ public interface PaletteconfigurationPackage extends EPackage {
 	EAttribute getElementDescriptor_GraphicalHints();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.paletteconfiguration.SeparatorConfiguration <em>Separator Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Separator Configuration</em>'.
+	 * @see org.eclipse.papyrus.paletteconfiguration.SeparatorConfiguration
+	 * @generated
+	 */
+	EClass getSeparatorConfiguration();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.paletteconfiguration.LeafConfiguration <em>Leaf Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Leaf Configuration</em>'.
+	 * @see org.eclipse.papyrus.paletteconfiguration.LeafConfiguration
+	 * @generated
+	 */
+	EClass getLeafConfiguration();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.paletteconfiguration.ToolKind <em>Tool Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -858,12 +988,12 @@ public interface PaletteconfigurationPackage extends EPackage {
 		EClass STACK_CONFIGURATION = eINSTANCE.getStackConfiguration();
 
 		/**
-		 * The meta object literal for the '<em><b>Tool Configurations</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Configurations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STACK_CONFIGURATION__TOOL_CONFIGURATIONS = eINSTANCE.getStackConfiguration_ToolConfigurations();
+		EReference STACK_CONFIGURATION__OWNED_CONFIGURATIONS = eINSTANCE.getStackConfiguration_OwnedConfigurations();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.paletteconfiguration.impl.ChildConfigurationImpl <em>Child Configuration</em>}' class.
@@ -986,6 +1116,26 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ELEMENT_DESCRIPTOR__GRAPHICAL_HINTS = eINSTANCE.getElementDescriptor_GraphicalHints();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.paletteconfiguration.impl.SeparatorConfigurationImpl <em>Separator Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.paletteconfiguration.impl.SeparatorConfigurationImpl
+		 * @see org.eclipse.papyrus.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getSeparatorConfiguration()
+		 * @generated
+		 */
+		EClass SEPARATOR_CONFIGURATION = eINSTANCE.getSeparatorConfiguration();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.paletteconfiguration.impl.LeafConfigurationImpl <em>Leaf Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.paletteconfiguration.impl.LeafConfigurationImpl
+		 * @see org.eclipse.papyrus.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getLeafConfiguration()
+		 * @generated
+		 */
+		EClass LEAF_CONFIGURATION = eINSTANCE.getLeafConfiguration();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.paletteconfiguration.ToolKind <em>Tool Kind</em>}' enum.

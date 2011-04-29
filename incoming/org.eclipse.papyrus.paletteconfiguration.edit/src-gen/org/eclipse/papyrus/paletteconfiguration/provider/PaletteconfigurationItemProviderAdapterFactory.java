@@ -214,6 +214,29 @@ public class PaletteconfigurationItemProviderAdapterFactory extends Paletteconfi
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.paletteconfiguration.SeparatorConfiguration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SeparatorConfigurationItemProvider separatorConfigurationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.paletteconfiguration.SeparatorConfiguration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSeparatorConfigurationAdapter() {
+		if (separatorConfigurationItemProvider == null) {
+			separatorConfigurationItemProvider = new SeparatorConfigurationItemProvider(this);
+		}
+
+		return separatorConfigurationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -318,6 +341,7 @@ public class PaletteconfigurationItemProviderAdapterFactory extends Paletteconfi
 		if (drawerConfigurationItemProvider != null) drawerConfigurationItemProvider.dispose();
 		if (iconDescriptorItemProvider != null) iconDescriptorItemProvider.dispose();
 		if (elementDescriptorItemProvider != null) elementDescriptorItemProvider.dispose();
+		if (separatorConfigurationItemProvider != null) separatorConfigurationItemProvider.dispose();
 	}
 
 }

@@ -16,7 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.paletteconfiguration.StackConfiguration#getToolConfigurations <em>Tool Configurations</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.paletteconfiguration.StackConfiguration#getOwnedConfigurations <em>Owned Configurations</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,19 +26,19 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface StackConfiguration extends ChildConfiguration {
 	/**
-	 * Returns the value of the '<em><b>Tool Configurations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.paletteconfiguration.ToolConfiguration}.
+	 * Returns the value of the '<em><b>Owned Configurations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.paletteconfiguration.LeafConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Tool Configurations</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Configurations</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Tool Configurations</em>' containment reference list.
-	 * @see org.eclipse.papyrus.paletteconfiguration.PaletteconfigurationPackage#getStackConfiguration_ToolConfigurations()
+	 * @return the value of the '<em>Owned Configurations</em>' containment reference list.
+	 * @see org.eclipse.papyrus.paletteconfiguration.PaletteconfigurationPackage#getStackConfiguration_OwnedConfigurations()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<ToolConfiguration> getToolConfigurations();
+	EList<LeafConfiguration> getOwnedConfigurations();
 
 } // StackConfiguration

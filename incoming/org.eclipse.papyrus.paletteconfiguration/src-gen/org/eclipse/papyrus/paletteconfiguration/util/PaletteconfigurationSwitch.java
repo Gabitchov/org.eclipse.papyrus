@@ -80,6 +80,7 @@ public class PaletteconfigurationSwitch<T> extends Switch<T> {
 			case PaletteconfigurationPackage.TOOL_CONFIGURATION: {
 				ToolConfiguration toolConfiguration = (ToolConfiguration)theEObject;
 				T result = caseToolConfiguration(toolConfiguration);
+				if (result == null) result = caseLeafConfiguration(toolConfiguration);
 				if (result == null) result = caseChildConfiguration(toolConfiguration);
 				if (result == null) result = caseConfiguration(toolConfiguration);
 				if (result == null) result = defaultCase(theEObject);
@@ -122,6 +123,23 @@ public class PaletteconfigurationSwitch<T> extends Switch<T> {
 			case PaletteconfigurationPackage.ELEMENT_DESCRIPTOR: {
 				ElementDescriptor elementDescriptor = (ElementDescriptor)theEObject;
 				T result = caseElementDescriptor(elementDescriptor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PaletteconfigurationPackage.SEPARATOR_CONFIGURATION: {
+				SeparatorConfiguration separatorConfiguration = (SeparatorConfiguration)theEObject;
+				T result = caseSeparatorConfiguration(separatorConfiguration);
+				if (result == null) result = caseLeafConfiguration(separatorConfiguration);
+				if (result == null) result = caseChildConfiguration(separatorConfiguration);
+				if (result == null) result = caseConfiguration(separatorConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PaletteconfigurationPackage.LEAF_CONFIGURATION: {
+				LeafConfiguration leafConfiguration = (LeafConfiguration)theEObject;
+				T result = caseLeafConfiguration(leafConfiguration);
+				if (result == null) result = caseChildConfiguration(leafConfiguration);
+				if (result == null) result = caseConfiguration(leafConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -246,6 +264,36 @@ public class PaletteconfigurationSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseElementDescriptor(ElementDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Separator Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Separator Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSeparatorConfiguration(SeparatorConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Leaf Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Leaf Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLeafConfiguration(LeafConfiguration object) {
 		return null;
 	}
 

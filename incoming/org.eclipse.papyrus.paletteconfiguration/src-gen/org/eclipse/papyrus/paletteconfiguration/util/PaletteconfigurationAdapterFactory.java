@@ -104,6 +104,14 @@ public class PaletteconfigurationAdapterFactory extends AdapterFactoryImpl {
 				return createElementDescriptorAdapter();
 			}
 			@Override
+			public Adapter caseSeparatorConfiguration(SeparatorConfiguration object) {
+				return createSeparatorConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseLeafConfiguration(LeafConfiguration object) {
+				return createLeafConfigurationAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -232,6 +240,34 @@ public class PaletteconfigurationAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createElementDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.paletteconfiguration.SeparatorConfiguration <em>Separator Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.paletteconfiguration.SeparatorConfiguration
+	 * @generated
+	 */
+	public Adapter createSeparatorConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.paletteconfiguration.LeafConfiguration <em>Leaf Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.paletteconfiguration.LeafConfiguration
+	 * @generated
+	 */
+	public Adapter createLeafConfigurationAdapter() {
 		return null;
 	}
 

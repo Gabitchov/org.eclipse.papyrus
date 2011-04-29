@@ -18,10 +18,13 @@ package org.eclipse.papyrus.extendedtypes;
 public interface IExtendedTypeExtensionPoint {
 
 	/** ID of the extension point */
-	public final static String ID = Activator.PLUGIN_ID + ".extendedTypesSetConfiguration";
+	public final static String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".extendedTypesSetConfiguration";
 
 	/** attribute: path to the model file in the bundle */
 	public static final String PATH = "path";
+
+	/** attribute: identifier of the contribution */
+	public static final String ID = "id";
 
 	/** attribute: name of the configuration */
 	public static final String NAME = "name";
