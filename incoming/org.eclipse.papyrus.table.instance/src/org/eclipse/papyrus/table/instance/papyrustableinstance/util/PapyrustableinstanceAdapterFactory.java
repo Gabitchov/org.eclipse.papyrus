@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipse.papyrus.nattable.instance.papyrustableinstance.util;
+package org.eclipse.papyrus.table.instance.papyrustableinstance.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -13,14 +13,14 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.*;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.*;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstancePackage
+ * @see org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstancePackage
  * @generated
  */
 public class PapyrustableinstanceAdapterFactory extends AdapterFactoryImpl {
@@ -96,13 +96,13 @@ public class PapyrustableinstanceAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance <em>Papyrus Table Instance</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance <em>Papyrus Table Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance
+	 * @see org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance
 	 * @generated
 	 */
 	public Adapter createPapyrusTableInstanceAdapter() {

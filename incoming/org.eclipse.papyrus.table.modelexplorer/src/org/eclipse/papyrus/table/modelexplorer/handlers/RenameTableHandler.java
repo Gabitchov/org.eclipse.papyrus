@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.modelexplorer.handler.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.table.modelexplorer.messages.Messages;
 import org.eclipse.swt.widgets.Display;
 
@@ -58,7 +58,7 @@ public class RenameTableHandler extends AbstractTableModelExplorerHandler {
 				AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "RenameTableCommand", null) { //$NON-NLS-1$
 
 					@Override
-					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) {
+					protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) {
 						InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.RenameTableHandler_RenameAnExistingTable_Title, Messages.RenameTableHandler_NewNameMessage, currentName, null);
 						if(dialog.open() == Window.OK) {
 							final String name = dialog.getValue();

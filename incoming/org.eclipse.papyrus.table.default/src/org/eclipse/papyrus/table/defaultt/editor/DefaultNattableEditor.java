@@ -14,8 +14,8 @@
 package org.eclipse.papyrus.table.defaultt.editor;
 
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.table.common.editor.AbstractNattableEditor;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
 
 
 /**

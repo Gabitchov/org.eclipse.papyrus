@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl;
+package org.eclipse.papyrus.table.instance.papyrustableinstance.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -17,9 +17,9 @@ import org.eclipse.emf.facet.infra.query.QueryPackage;
 
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.Tableinstance2Package;
 
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstanceFactory;
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstancePackage;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstanceFactory;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstancePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,7 +46,7 @@ public class PapyrustableinstancePackageImpl extends EPackageImpl implements Pap
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstancePackage#eNS_URI
+	 * @see org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstancePackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

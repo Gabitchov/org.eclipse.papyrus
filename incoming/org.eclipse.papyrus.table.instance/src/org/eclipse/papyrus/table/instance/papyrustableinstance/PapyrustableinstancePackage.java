@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipse.papyrus.nattable.instance.papyrustableinstance;
+package org.eclipse.papyrus.table.instance.papyrustableinstance;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstanceFactory
+ * @see org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstanceFactory
  * @model kind="package"
  * @generated
  */
@@ -49,7 +49,7 @@ public interface PapyrustableinstancePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "org.eclipse.papyrus.nattable.instance.papyrustableinstance";
+	String eNS_PREFIX = "org.eclipse.papyrus.table.instance.papyrustableinstance";
 
 	/**
 	 * The singleton instance of the package.
@@ -57,14 +57,14 @@ public interface PapyrustableinstancePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	PapyrustableinstancePackage eINSTANCE = org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrustableinstancePackageImpl.init();
+	PapyrustableinstancePackage eINSTANCE = org.eclipse.papyrus.table.instance.papyrustableinstance.impl.PapyrustableinstancePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl <em>Papyrus Table Instance</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.table.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl <em>Papyrus Table Instance</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl
-	 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrustableinstancePackageImpl#getPapyrusTableInstance()
+	 * @see org.eclipse.papyrus.table.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl
+	 * @see org.eclipse.papyrus.table.instance.papyrustableinstance.impl.PapyrustableinstancePackageImpl#getPapyrusTableInstance()
 	 * @generated
 	 */
 	int PAPYRUS_TABLE_INSTANCE = 0;
@@ -125,65 +125,65 @@ public interface PapyrustableinstancePackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance <em>Papyrus Table Instance</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance <em>Papyrus Table Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Papyrus Table Instance</em>'.
-	 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance
+	 * @see org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance
 	 * @generated
 	 */
 	EClass getPapyrusTableInstance();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getName()
+	 * @see org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#getName()
 	 * @see #getPapyrusTableInstance()
 	 * @generated
 	 */
 	EAttribute getPapyrusTableInstance_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getType()
+	 * @see org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#getType()
 	 * @see #getPapyrusTableInstance()
 	 * @generated
 	 */
 	EAttribute getPapyrusTableInstance_Type();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#isIsSynchronized <em>Is Synchronized</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#isIsSynchronized <em>Is Synchronized</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Synchronized</em>'.
-	 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#isIsSynchronized()
+	 * @see org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#isIsSynchronized()
 	 * @see #getPapyrusTableInstance()
 	 * @generated
 	 */
 	EAttribute getPapyrusTableInstance_IsSynchronized();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getTable <em>Table</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#getTable <em>Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Table</em>'.
-	 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getTable()
+	 * @see org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#getTable()
 	 * @see #getPapyrusTableInstance()
 	 * @generated
 	 */
 	EReference getPapyrusTableInstance_Table();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getFillingQueries <em>Filling Queries</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#getFillingQueries <em>Filling Queries</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Filling Queries</em>'.
-	 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getFillingQueries()
+	 * @see org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#getFillingQueries()
 	 * @see #getPapyrusTableInstance()
 	 * @generated
 	 */
@@ -212,11 +212,11 @@ public interface PapyrustableinstancePackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl <em>Papyrus Table Instance</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.table.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl <em>Papyrus Table Instance</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl
-		 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrustableinstancePackageImpl#getPapyrusTableInstance()
+		 * @see org.eclipse.papyrus.table.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl
+		 * @see org.eclipse.papyrus.table.instance.papyrustableinstance.impl.PapyrustableinstancePackageImpl#getPapyrusTableInstance()
 		 * @generated
 		 */
 		EClass PAPYRUS_TABLE_INSTANCE = eINSTANCE.getPapyrusTableInstance();

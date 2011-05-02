@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl;
+package org.eclipse.papyrus.table.instance.papyrustableinstance.impl;
 
 import java.util.Collection;
 
@@ -24,8 +24,8 @@ import org.eclipse.emf.facet.infra.query.ModelQuery;
 
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
 
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstancePackage;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstancePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,11 +34,11 @@ import org.eclipse.papyrus.nattable.instance.papyrustableinstance.Papyrustablein
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#isIsSynchronized <em>Is Synchronized</em>}</li>
- *   <li>{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#getTable <em>Table</em>}</li>
- *   <li>{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#getFillingQueries <em>Filling Queries</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.table.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.table.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.table.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#isIsSynchronized <em>Is Synchronized</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.table.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#getTable <em>Table</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.table.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#getFillingQueries <em>Filling Queries</em>}</li>
  * </ul>
  * </p>
  *

@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.table.modelexplorer.providers;
 
 import org.eclipse.papyrus.modelexplorer.MoDiscoLabelProvider;
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -31,7 +31,7 @@ public class NavigatorTableLabelProvider extends MoDiscoLabelProvider {
 	 * evaluates error markers.
 	 */
 	@Override
-	public Image getImage(Object element) {
+	public Image getImage(final Object element) {
 		if(element instanceof PapyrusTableInstance) {
 			return getEditorRegistry().getEditorIcon(element);
 		}
@@ -46,7 +46,7 @@ public class NavigatorTableLabelProvider extends MoDiscoLabelProvider {
 	 * @return
 	 */
 	@Override
-	public String getText(Object element) {
+	public String getText(final Object element) {
 		if(element instanceof PapyrusTableInstance) {
 			return ((PapyrusTableInstance)element).getName();
 		}

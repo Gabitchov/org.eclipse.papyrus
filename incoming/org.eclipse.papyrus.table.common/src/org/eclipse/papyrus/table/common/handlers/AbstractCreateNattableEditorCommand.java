@@ -50,8 +50,6 @@ import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.ServiceUtils;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstanceFactory;
 import org.eclipse.papyrus.resource.AbstractBaseModel;
 import org.eclipse.papyrus.resource.IModel;
 import org.eclipse.papyrus.resource.ModelSet;
@@ -62,6 +60,8 @@ import org.eclipse.papyrus.table.common.messages.Messages;
 import org.eclipse.papyrus.table.common.modelresource.EMFFacetNattableModel;
 import org.eclipse.papyrus.table.common.modelresource.PapyrusNattableModel;
 import org.eclipse.papyrus.table.common.util.QueryRepresentation;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstanceFactory;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 

@@ -25,9 +25,9 @@ import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidgetInternalUti
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.ServiceUtils;
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstancePackage;
 import org.eclipse.papyrus.table.common.internal.TableEditorInput;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstancePackage;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;

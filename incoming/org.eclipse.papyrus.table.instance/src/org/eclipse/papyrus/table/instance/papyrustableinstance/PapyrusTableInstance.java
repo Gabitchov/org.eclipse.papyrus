@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipse.papyrus.nattable.instance.papyrustableinstance;
+package org.eclipse.papyrus.table.instance.papyrustableinstance;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -22,15 +22,15 @@ import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInsta
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#isIsSynchronized <em>Is Synchronized</em>}</li>
- *   <li>{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getTable <em>Table</em>}</li>
- *   <li>{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getFillingQueries <em>Filling Queries</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#isIsSynchronized <em>Is Synchronized</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#getTable <em>Table</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#getFillingQueries <em>Filling Queries</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstancePackage#getPapyrusTableInstance()
+ * @see org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstancePackage#getPapyrusTableInstance()
  * @model
  * @generated
  */
@@ -45,14 +45,14 @@ public interface PapyrusTableInstance extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstancePackage#getPapyrusTableInstance_Name()
+	 * @see org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstancePackage#getPapyrusTableInstance_Name()
 	 * @model default="no name"
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -71,14 +71,14 @@ public interface PapyrusTableInstance extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see #setType(String)
-	 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstancePackage#getPapyrusTableInstance_Type()
+	 * @see org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstancePackage#getPapyrusTableInstance_Type()
 	 * @model default="PapyrusDefaultTable"
 	 * @generated
 	 */
 	String getType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getType <em>Type</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' attribute.
@@ -97,14 +97,14 @@ public interface PapyrusTableInstance extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Synchronized</em>' attribute.
 	 * @see #setIsSynchronized(boolean)
-	 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstancePackage#getPapyrusTableInstance_IsSynchronized()
+	 * @see org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstancePackage#getPapyrusTableInstance_IsSynchronized()
 	 * @model default="false"
 	 * @generated
 	 */
 	boolean isIsSynchronized();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#isIsSynchronized <em>Is Synchronized</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#isIsSynchronized <em>Is Synchronized</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Synchronized</em>' attribute.
@@ -122,14 +122,14 @@ public interface PapyrusTableInstance extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Table</em>' reference.
 	 * @see #setTable(TableInstance2)
-	 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstancePackage#getPapyrusTableInstance_Table()
+	 * @see org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstancePackage#getPapyrusTableInstance_Table()
 	 * @model
 	 * @generated
 	 */
 	TableInstance2 getTable();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance#getTable <em>Table</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance#getTable <em>Table</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Table</em>' reference.
@@ -147,7 +147,7 @@ public interface PapyrusTableInstance extends EObject {
 	 * The queries used to fill the table
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Filling Queries</em>' reference list.
-	 * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstancePackage#getPapyrusTableInstance_FillingQueries()
+	 * @see org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstancePackage#getPapyrusTableInstance_FillingQueries()
 	 * @model
 	 * @generated
 	 */

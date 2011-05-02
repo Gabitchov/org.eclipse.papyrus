@@ -18,7 +18,7 @@ import java.util.Iterator;
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
 
 /**
  * This class provides test called by the plugin.xml in order to know if handlers should be active or not.
@@ -46,7 +46,7 @@ public class TablePropertyTester extends PropertyTester {
 	 * @param expectedValue
 	 * @return
 	 */
-	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
+	public boolean test(final Object receiver, final String property, final Object[] args, final Object expectedValue) {
 		if(IS_TABLE.equals(property) && receiver instanceof IStructuredSelection) {
 			boolean answer = isTable((IStructuredSelection)receiver);
 			return new Boolean(answer).equals(expectedValue);
@@ -63,7 +63,7 @@ public class TablePropertyTester extends PropertyTester {
 	 * @return
 	 *         <code>true</code> if the selection is composed by {@link TableInstance}
 	 */
-	private boolean isTable(IStructuredSelection selection) {
+	private boolean isTable(final IStructuredSelection selection) {
 		if(!selection.isEmpty()) {
 			Iterator<?> iter = selection.iterator();
 			while(iter.hasNext()) {

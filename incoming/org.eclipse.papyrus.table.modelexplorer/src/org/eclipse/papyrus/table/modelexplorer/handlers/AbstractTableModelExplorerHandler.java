@@ -20,7 +20,7 @@ import java.util.List;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.modelexplorer.handler.AbstractCommandHandler;
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.ui.PlatformUI;
 
 

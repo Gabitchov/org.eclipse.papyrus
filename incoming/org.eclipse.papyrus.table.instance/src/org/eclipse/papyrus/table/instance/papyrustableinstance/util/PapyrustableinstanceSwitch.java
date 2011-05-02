@@ -4,14 +4,14 @@
  *
  * $Id$
  */
-package org.eclipse.papyrus.nattable.instance.papyrustableinstance.util;
+package org.eclipse.papyrus.table.instance.papyrustableinstance.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.*;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +23,7 @@ import org.eclipse.papyrus.nattable.instance.papyrustableinstance.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstancePackage
+ * @see org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstancePackage
  * @generated
  */
 public class PapyrustableinstanceSwitch<T> extends Switch<T> {

@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipse.papyrus.nattable.instance.papyrustableinstance;
+package org.eclipse.papyrus.table.instance.papyrustableinstance;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrustableinstancePackage
+ * @see org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstancePackage
  * @generated
  */
 public interface PapyrustableinstanceFactory extends EFactory {
@@ -23,7 +23,7 @@ public interface PapyrustableinstanceFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	PapyrustableinstanceFactory eINSTANCE = org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl.PapyrustableinstanceFactoryImpl.init();
+	PapyrustableinstanceFactory eINSTANCE = org.eclipse.papyrus.table.instance.papyrustableinstance.impl.PapyrustableinstanceFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Papyrus Table Instance</em>'.

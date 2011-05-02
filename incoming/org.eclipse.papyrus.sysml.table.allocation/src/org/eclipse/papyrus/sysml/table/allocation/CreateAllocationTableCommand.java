@@ -22,10 +22,10 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.resource.NotFoundException;
 import org.eclipse.papyrus.sysml.table.allocation.editor.AllocationTableEditor;
 import org.eclipse.papyrus.table.common.handlers.AbstractCreateNattableEditorCommand;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 

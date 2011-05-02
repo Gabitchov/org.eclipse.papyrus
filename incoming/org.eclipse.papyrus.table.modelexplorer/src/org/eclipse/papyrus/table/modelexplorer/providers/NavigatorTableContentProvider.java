@@ -20,7 +20,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.modelexplorer.MoDiscoContentProvider;
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
 
 /**
  * This class provides a NavigatorContentProvider used to display tables in the Model Explorer
@@ -39,7 +39,7 @@ public class NavigatorTableContentProvider extends MoDiscoContentProvider {
 	 * @return
 	 */
 	@Override
-	public boolean hasChildren(Object element) {
+	public boolean hasChildren(final Object element) {
 		return getChildren(element).length > 0;
 	}
 
@@ -68,7 +68,7 @@ public class NavigatorTableContentProvider extends MoDiscoContentProvider {
 	 *        the owner of the tables
 	 * @return the list of tables contained by the given owner
 	 */
-	private List<PapyrusTableInstance> findAllExistingPapyrusTables(EObject owner) {
+	private List<PapyrusTableInstance> findAllExistingPapyrusTables(final EObject owner) {
 		ArrayList<PapyrusTableInstance> tables = new ArrayList<PapyrusTableInstance>();
 
 

@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipse.papyrus.nattable.instance.papyrustableinstance.impl;
+package org.eclipse.papyrus.table.instance.papyrustableinstance.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.*;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.*;
 
 /**
  * <!-- begin-user-doc -->

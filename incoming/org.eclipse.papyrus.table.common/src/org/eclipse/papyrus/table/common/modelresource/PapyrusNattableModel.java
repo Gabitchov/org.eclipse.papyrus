@@ -17,10 +17,10 @@ package org.eclipse.papyrus.table.common.modelresource;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.resource.AbstractModelWithSharedResource;
 import org.eclipse.papyrus.resource.IModel;
 import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
 
 
 
