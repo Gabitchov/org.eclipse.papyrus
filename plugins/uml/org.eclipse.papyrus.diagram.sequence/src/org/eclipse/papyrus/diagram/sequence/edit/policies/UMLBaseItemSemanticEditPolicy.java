@@ -52,6 +52,9 @@ import org.eclipse.papyrus.diagram.sequence.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.extendedtypes.types.IExtendedHintedElementType;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
@@ -224,6 +227,18 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
+		// check if the type is an extended type, and then create directly the element...
+		IElementType type = req.getElementType();
+		if(type instanceof IExtendedHintedElementType) {
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getContainer());
+			if(provider == null) {
+				return UnexecutableCommand.INSTANCE;
+			}
+			// Retrieve create command from the Element Edit service
+			ICommand createGMFCommand = provider.getEditCommand(req);
+
+			return getGEFWrapper(createGMFCommand);
+		}
 		return null;
 	}
 

@@ -67,7 +67,7 @@ Require-Bundle: org.eclipse.uml2.uml.edit;visibility:=reexport,
  org.eclipse.core.expressions,
  org.eclipse.papyrus.validation;bundle-version="0.8.0",
  org.eclipse.papyrus.extendedtypes;bundle-version="0.8.0";visibility:=reexport,
- org.eclipse.papyrus.service.edit;bundle-version="0.8.0",
+ org.eclipse.papyrus.service.edit;bundle-version="0.8.0";visibility:=reexport,
  org.eclipse.papyrus.navigation;bundle-version="0.8.0"
 Created-By: 1.5.0_06-b05 (Sun Microsystems Inc.)
 Ant-Version: Apache Ant 1.7.0
