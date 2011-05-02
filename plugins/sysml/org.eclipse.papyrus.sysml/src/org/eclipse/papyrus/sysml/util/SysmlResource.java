@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.util;
 
@@ -124,4 +124,28 @@ public class SysmlResource {
 	public static String ALLOCATIONS_ID = "SysML::Allocations";
 
 	public static String REQUIREMENTS_ID = "SysML::Requirements";
+	
+	// stereotype properties  ids
+	//requirements properties
+	public static String REQUIREMENT_BASE_CLASS_ID = "base_Class"; //$NON-NLS-1$
+	 
+	public static String REQUIREMENT_DERIVED_ID = "derived"; //$NON-NLS-1$
+	
+	public static String REQUIREMENT_DERIVED_FROM_ID = "derivedFrom";//$NON-NLS-1$
+	
+	public static String REQUIREMENT_ID_ID = "id";//$NON-NLS-1$
+	
+	public static String REQUIREMENT_MASTER_ID = "master";//$NON-NLS-1$
+	
+	public static String REQUIREMENT_REDEFINED_BY_ID = "redefinedBy";//$NON-NLS-1$
+	
+	public static String REQUIREMENT_SATISFIED_BY_ID = "satisfiedBy";//$NON-NLS-1$
+	
+	public static String REQUIREMENT_TEXT_ID = "text";//$NON-NLS-1$
+	
+	public static String REQUIREMENT_TRACED_TO_ID = "tracedTo";//$NON-NLS-1$
+	
+	public static String REQUIREMENT_VERIFIED_BY_ID = "verifiedBy";//$NON-NLS-1$
+	
+	
 }
