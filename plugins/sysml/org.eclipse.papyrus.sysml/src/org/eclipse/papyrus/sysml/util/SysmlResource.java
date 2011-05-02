@@ -24,7 +24,7 @@ public class SysmlResource {
 
 	public static final String PROFILES_PATHMAP = "pathmap://SysML_PROFILES/"; //$NON-NLS-1$
 
-	public static final String SYSML_PROFILE_NS_URI = SysmlPackage.eNS_URI; //$NON-NLS-1$
+	public static final String SYSML_PROFILE_NS_URI = SysmlPackage.eNS_URI; 
 
 	public static final String SYSML_PROFILE_URI = PROFILES_PATHMAP + "SysML.profile.uml"; //$NON-NLS-1$
 
@@ -137,7 +137,7 @@ public class SysmlResource {
 	
 	public static String REQUIREMENT_MASTER_ID = "master";//$NON-NLS-1$
 	
-	public static String REQUIREMENT_REDEFINED_BY_ID = "redefinedBy";//$NON-NLS-1$
+	public static String REQUIREMENT_REFINED_BY_ID = "refinedBy";//$NON-NLS-1$
 	
 	public static String REQUIREMENT_SATISFIED_BY_ID = "satisfiedBy";//$NON-NLS-1$
 	

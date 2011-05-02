@@ -24,7 +24,7 @@
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement"/>
       <valueQuery xsi:type="query:JavaModelQuery" href="requirementsQueries.querySet#GetRequirementSatisfiedByQuery"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="facet:FacetReference" name="/redefinedBy" upperBound="-1" volatile="true" unsettable="true">
+    <eStructuralFeatures xsi:type="facet:FacetReference" name="/refinedBy" upperBound="-1" volatile="true" unsettable="true">
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement"/>
       <valueQuery xsi:type="query:JavaModelQuery" href="requirementsQueries.querySet#GetRequirementRefinedByQuery"/>
     </eStructuralFeatures>

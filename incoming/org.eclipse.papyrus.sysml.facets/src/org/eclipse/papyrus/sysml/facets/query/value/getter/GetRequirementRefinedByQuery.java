@@ -29,7 +29,7 @@ public class GetRequirementRefinedByQuery implements IJavaModelQuery<Class, Coll
 	public Collection<NamedElement> evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		Stereotype ste = context.getAppliedStereotype(SysmlResource.REQUIREMENT_ID);
 		if(ste != null) {
-			Object value = context.getValue(ste, SysmlResource.REQUIREMENT_REDEFINED_BY_ID);
+			Object value = context.getValue(ste, SysmlResource.REQUIREMENT_REFINED_BY_ID);
 			return (Collection<NamedElement>)value;
 		}
 		return null;
