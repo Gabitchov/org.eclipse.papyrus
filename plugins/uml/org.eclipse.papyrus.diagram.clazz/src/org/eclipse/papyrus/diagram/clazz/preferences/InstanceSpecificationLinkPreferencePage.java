@@ -57,7 +57,6 @@ public class InstanceSpecificationLinkPreferencePage extends AbstractPapyrusLink
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -86,6 +85,5 @@ public class InstanceSpecificationLinkPreferencePage extends AbstractPapyrusLink
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
-
 
 }

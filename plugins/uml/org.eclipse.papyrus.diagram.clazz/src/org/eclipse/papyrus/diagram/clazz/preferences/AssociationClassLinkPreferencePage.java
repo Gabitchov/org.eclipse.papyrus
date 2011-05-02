@@ -57,7 +57,6 @@ public class AssociationClassLinkPreferencePage extends AbstractPapyrusLinkPrefe
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -86,6 +85,5 @@ public class AssociationClassLinkPreferencePage extends AbstractPapyrusLinkPrefe
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
-
 
 }

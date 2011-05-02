@@ -57,7 +57,6 @@ public class TemplateBindingPreferencePage extends AbstractPapyrusLinkPreference
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -86,6 +85,5 @@ public class TemplateBindingPreferencePage extends AbstractPapyrusLinkPreference
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
-
 
 }

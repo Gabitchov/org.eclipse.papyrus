@@ -71,7 +71,6 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage(navigatorItem.getView());
 		}
 
-
 		return super.getImage(element);
 	}
 
@@ -116,7 +115,6 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			}
 			return getText(navigatorItem.getView());
 		}
-
 
 		return super.getText(element);
 	}

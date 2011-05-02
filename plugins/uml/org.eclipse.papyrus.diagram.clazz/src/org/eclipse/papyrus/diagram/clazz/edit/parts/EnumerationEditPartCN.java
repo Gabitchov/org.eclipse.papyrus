@@ -170,7 +170,6 @@ ClassifierEditPart {
 			return true;
 		}
 
-
 		if(childEditPart instanceof EnumerationEnumerationLiteralCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getEnumerationLiteralCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 

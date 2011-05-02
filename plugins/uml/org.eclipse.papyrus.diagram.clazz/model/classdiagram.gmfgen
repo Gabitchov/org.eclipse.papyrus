@@ -7398,5 +7398,11 @@
         role="SourceMultiplicity"
         iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/MultiplicityHandler.gif"
         linkLabels="/0/@diagram/@links.2/@labels.4"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="This edit part allow double click on this XYlayout compartment"
+        genView="/0/@diagram/@compartments.12 /0/@diagram/@compartments.13 /0/@diagram/@compartments.30 /0/@diagram/@compartments.31"
+        name="PackageableElementCompartment"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.clazz.custom.policies.AbstractPackageableElementCompartmentEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

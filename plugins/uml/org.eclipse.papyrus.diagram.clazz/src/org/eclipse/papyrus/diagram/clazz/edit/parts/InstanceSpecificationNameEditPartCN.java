@@ -720,7 +720,6 @@ public class InstanceSpecificationNameEditPartCN extends CompartmentEditPart imp
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

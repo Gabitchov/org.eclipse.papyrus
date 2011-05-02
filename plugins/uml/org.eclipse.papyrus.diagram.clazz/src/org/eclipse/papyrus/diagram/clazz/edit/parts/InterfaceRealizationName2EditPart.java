@@ -719,9 +719,6 @@ public class InterfaceRealizationName2EditPart extends LabelEditPart implements 
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

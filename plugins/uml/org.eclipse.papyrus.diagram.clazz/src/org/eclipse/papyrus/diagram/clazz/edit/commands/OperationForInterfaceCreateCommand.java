@@ -74,7 +74,6 @@ public class OperationForInterfaceCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,10 +89,7 @@ public class OperationForInterfaceCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -102,13 +98,10 @@ public class OperationForInterfaceCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		Operation newElement = UMLFactory.eINSTANCE.createOperation();
 
 		Interface owner = (Interface)getElementToEdit();
 		owner.getOwnedOperations().add(newElement);
-
 
 		ElementInitializers.getInstance().init_Operation_3007(newElement);
 

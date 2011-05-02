@@ -722,9 +722,6 @@ public class BindingSubstitutionEditPart extends LabelEditPart implements ITextA
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

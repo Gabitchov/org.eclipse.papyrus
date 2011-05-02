@@ -711,9 +711,6 @@ public class AppliedStereotypeTemplateBindingEditPart extends LabelEditPart impl
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

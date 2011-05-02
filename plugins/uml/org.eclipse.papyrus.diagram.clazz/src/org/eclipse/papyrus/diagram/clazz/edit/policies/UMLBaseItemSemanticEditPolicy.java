@@ -245,9 +245,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		return null;
 	}
 
-	/**
-	 * @generated
-	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		// check if the type is an extended type, and then create directly the element...
 		IElementType type = req.getElementType();
@@ -306,9 +303,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
 
-
 		return getGEFWrapper(new MoveElementsCommand(req));
-
 
 	}
 

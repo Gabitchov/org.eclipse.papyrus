@@ -57,7 +57,6 @@ public class PackageMergePreferencePage extends AbstractPapyrusLinkPreferencePag
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -83,6 +82,5 @@ public class PackageMergePreferencePage extends AbstractPapyrusLinkPreferencePag
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
-
 
 }

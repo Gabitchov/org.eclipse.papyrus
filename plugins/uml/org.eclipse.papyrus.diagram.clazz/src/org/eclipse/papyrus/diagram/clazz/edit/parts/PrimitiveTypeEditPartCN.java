@@ -160,7 +160,6 @@ ClassifierEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
 

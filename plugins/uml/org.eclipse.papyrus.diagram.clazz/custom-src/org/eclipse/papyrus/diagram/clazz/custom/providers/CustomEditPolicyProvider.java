@@ -14,13 +14,20 @@
 package org.eclipse.papyrus.diagram.clazz.custom.providers;
 
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
-import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelPackageableElementCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelPackageableElementCompartmentEditPartTN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy;
 
 /**
  * this is an editpolicy provider in charge to install a policy to create a AssociationClass
@@ -42,7 +49,10 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 * {@inheritDoc}
 	 */
 	public void createEditPolicies(EditPart editPart) {
-		editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
+		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
+		if( editPart instanceof IPrimaryEditPart){
+			editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
+		}
 	}
 
 	/**
@@ -50,12 +60,17 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 * {@inheritDoc}
 	 */
 	public boolean provides(IOperation operation) {
-		// install editpolicy in the case of classifer
-		if(operation instanceof CreateEditPoliciesOperation) {
-			EditPart editPart = ((CreateEditPoliciesOperation)operation).getEditPart();
-			if(editPart instanceof INodeEditPart)
-				return true;
+		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation)operation;
+		if(!(epOperation.getEditPart() instanceof GraphicalEditPart)) {
+			return false;
 		}
+		GraphicalEditPart gep = (GraphicalEditPart)epOperation.getEditPart();
+		String diagramType = gep.getNotationView().getDiagram().getType();
+		if(ModelEditPart.MODEL_ID.equals(diagramType)) {
+			return true;
+		}
+
+
 		return false;
 	}
 

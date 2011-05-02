@@ -57,7 +57,6 @@ public class ElementImportPreferencePage extends AbstractPapyrusLinkPreferencePa
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -86,6 +85,5 @@ public class ElementImportPreferencePage extends AbstractPapyrusLinkPreferencePa
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
-
 
 }

@@ -14,6 +14,7 @@ package org.eclipse.papyrus.diagram.clazz.preferences;
 
 import java.util.Map;
 import java.util.TreeMap;
+
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
@@ -84,8 +85,5 @@ public class DependencyLinkPreferencePage extends AbstractPapyrusLinkPreferenceP
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
-
-
-
 
 }

@@ -31,7 +31,6 @@ public class AssociationClassPreferencePage extends AbstractPapyrusNodePreferenc
 	 */
 	public static final String compartments[] = { "AttributeCompartment", "OperationCompartment", "NestedClassifierCompartment" };
 
-
 	/**
 	 * @generated
 	 */
@@ -69,9 +68,6 @@ public class AssociationClassPreferencePage extends AbstractPapyrusNodePreferenc
 			store.setDefault(preferenceName, map.get(name));
 		}
 
-
-
-
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
 
@@ -93,7 +89,6 @@ public class AssociationClassPreferencePage extends AbstractPapyrusNodePreferenc
 			this.compartmentsList.add(name);
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -126,7 +121,5 @@ public class AssociationClassPreferencePage extends AbstractPapyrusNodePreferenc
 	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
 		return getStaticCompartmentTitleVisibilityPreferences();
 	}
-
-
 
 }

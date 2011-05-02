@@ -713,9 +713,6 @@ public class AssociationTargetNameEditPart extends LabelEditPart implements ITex
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

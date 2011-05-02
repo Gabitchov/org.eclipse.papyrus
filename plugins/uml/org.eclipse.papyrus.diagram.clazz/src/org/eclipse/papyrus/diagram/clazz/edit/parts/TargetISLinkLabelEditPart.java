@@ -714,9 +714,6 @@ public class TargetISLinkLabelEditPart extends LabelEditPart implements ITextAwa
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

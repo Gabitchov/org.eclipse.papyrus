@@ -31,7 +31,6 @@ public class InstanceSpecificationPreferencePage extends AbstractPapyrusNodePref
 	 */
 	public static final String compartments[] = { "SlotCompartment" };
 
-
 	/**
 	 * @generated
 	 */
@@ -69,9 +68,6 @@ public class InstanceSpecificationPreferencePage extends AbstractPapyrusNodePref
 			store.setDefault(preferenceName, map.get(name));
 		}
 
-
-
-
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
 
@@ -93,7 +89,6 @@ public class InstanceSpecificationPreferencePage extends AbstractPapyrusNodePref
 			this.compartmentsList.add(name);
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -120,7 +115,5 @@ public class InstanceSpecificationPreferencePage extends AbstractPapyrusNodePref
 	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
 		return getStaticCompartmentTitleVisibilityPreferences();
 	}
-
-
 
 }

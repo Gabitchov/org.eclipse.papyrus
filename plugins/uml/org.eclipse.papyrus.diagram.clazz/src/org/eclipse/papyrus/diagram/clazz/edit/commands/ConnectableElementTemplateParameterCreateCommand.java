@@ -73,7 +73,6 @@ public class ConnectableElementTemplateParameterCreateCommand extends EditElemen
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -89,10 +88,7 @@ public class ConnectableElementTemplateParameterCreateCommand extends EditElemen
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -101,16 +97,12 @@ public class ConnectableElementTemplateParameterCreateCommand extends EditElemen
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		ConnectableElementTemplateParameter newElement = UMLFactory.eINSTANCE.createConnectableElementTemplateParameter();
 
 		TemplateSignature owner = (TemplateSignature)getElementToEdit();
 		owner.getOwnedParameters().add(newElement);
 		TemplateSignature childHolder = (TemplateSignature)getElementToEdit();
 		childHolder.getParameters().add(newElement);
-
-
 
 		doConfigure(newElement, monitor, info);
 

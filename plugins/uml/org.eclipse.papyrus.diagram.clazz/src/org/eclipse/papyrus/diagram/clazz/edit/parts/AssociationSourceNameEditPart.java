@@ -713,9 +713,6 @@ public class AssociationSourceNameEditPart extends LabelEditPart implements ITex
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

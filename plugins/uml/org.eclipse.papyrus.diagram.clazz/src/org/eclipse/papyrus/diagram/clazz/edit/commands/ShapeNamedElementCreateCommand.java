@@ -71,7 +71,6 @@ public class ShapeNamedElementCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -87,10 +86,7 @@ public class ShapeNamedElementCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -98,7 +94,6 @@ public class ShapeNamedElementCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 
 		throw new UnsupportedOperationException("Unimplemented operation (abstract domain element).");
 	}

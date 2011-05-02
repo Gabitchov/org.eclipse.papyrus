@@ -719,7 +719,6 @@ public class ConstraintBodyEditPartCN extends CompartmentEditPart implements ITe
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

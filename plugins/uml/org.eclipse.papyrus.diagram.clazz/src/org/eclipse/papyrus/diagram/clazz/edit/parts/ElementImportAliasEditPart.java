@@ -719,9 +719,6 @@ public class ElementImportAliasEditPart extends LabelEditPart implements ITextAw
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

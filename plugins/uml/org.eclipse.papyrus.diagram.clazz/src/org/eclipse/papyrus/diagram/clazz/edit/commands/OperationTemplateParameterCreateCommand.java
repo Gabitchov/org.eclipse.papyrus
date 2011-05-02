@@ -73,7 +73,6 @@ public class OperationTemplateParameterCreateCommand extends EditElementCommand 
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -89,10 +88,7 @@ public class OperationTemplateParameterCreateCommand extends EditElementCommand 
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -101,16 +97,12 @@ public class OperationTemplateParameterCreateCommand extends EditElementCommand 
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		OperationTemplateParameter newElement = UMLFactory.eINSTANCE.createOperationTemplateParameter();
 
 		TemplateSignature owner = (TemplateSignature)getElementToEdit();
 		owner.getOwnedParameters().add(newElement);
 		TemplateSignature childHolder = (TemplateSignature)getElementToEdit();
 		childHolder.getParameters().add(newElement);
-
-
 
 		doConfigure(newElement, monitor, info);
 

@@ -713,9 +713,6 @@ public class AssociationMultiplicityTargetEditPart extends LabelEditPart impleme
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

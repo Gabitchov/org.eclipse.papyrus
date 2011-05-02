@@ -711,9 +711,6 @@ public class AppliedStereotypeRealizationEditPart extends LabelEditPart implemen
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

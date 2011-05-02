@@ -14,6 +14,7 @@ package org.eclipse.papyrus.diagram.clazz.preferences;
 
 import java.util.Map;
 import java.util.TreeMap;
+
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
@@ -24,8 +25,6 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
  * @generated
  */
 public class ClassPreferencePage extends AbstractPapyrusNodePreferencePage {
-
-
 
 	/**
 	 * @generated
@@ -68,9 +67,6 @@ public class ClassPreferencePage extends AbstractPapyrusNodePreferencePage {
 			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
 			store.setDefault(preferenceName, map.get(name));
 		}
-
-
-
 
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
@@ -125,7 +121,5 @@ public class ClassPreferencePage extends AbstractPapyrusNodePreferencePage {
 	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
 		return getStaticCompartmentTitleVisibilityPreferences();
 	}
-
-
 
 }
