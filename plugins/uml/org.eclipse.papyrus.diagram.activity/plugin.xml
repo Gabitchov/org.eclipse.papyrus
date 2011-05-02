@@ -3122,6 +3122,15 @@ and self.decisionInput.ownedParameter->select(
 			
 	</extension>
 
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+   <editpolicyProvider
+         class="org.eclipse.papyrus.diagram.activity.providers.CustomEditPolicyProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </editpolicyProvider>
+</extension>
 
 
 
