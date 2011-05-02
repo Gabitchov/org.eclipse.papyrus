@@ -18,6 +18,8 @@ import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableIn
 import org.eclipse.papyrus.table.common.editor.AbstractNattableEditor;
 
 
+
+
 /**
  * 
  * The requirement table editor
@@ -37,8 +39,7 @@ public class RequirementTableEditor extends AbstractNattableEditor {
 	 * @param rawModel2
 	 * 
 	 */
-	public RequirementTableEditor(ServicesRegistry servicesRegistry, PapyrusTableInstance rawModel) {
+	public RequirementTableEditor(final ServicesRegistry servicesRegistry, final PapyrusTableInstance rawModel) {
 		super(servicesRegistry, rawModel);
 	}
-
 }

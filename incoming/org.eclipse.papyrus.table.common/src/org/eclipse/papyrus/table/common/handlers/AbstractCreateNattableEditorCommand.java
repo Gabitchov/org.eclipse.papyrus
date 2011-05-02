@@ -35,9 +35,8 @@ import org.eclipse.emf.facet.infra.query.ModelQuery;
 import org.eclipse.emf.facet.infra.query.ModelQuerySet;
 import org.eclipse.emf.facet.infra.query.core.ModelQuerySetCatalog;
 import org.eclipse.emf.facet.widgets.nattable.NatTableWidgetUtils;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstanceFactory;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
+import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.jface.dialogs.Dialog;
@@ -75,10 +74,10 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 
 
 	/** the default name for the table */
-	private String defaultName;
+	private final String defaultName;
 
 	/** the default description for the table */
-	private String defaultDescription = "Table Description"; //$NON-NLS-1$
+	private final String defaultDescription = "Table Description"; //$NON-NLS-1$
 
 	/** the description for the table */
 	private String description;
@@ -87,7 +86,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	private String name;
 
 	/** the editor type */
-	private String editorType;
+	private final String editorType;
 
 	/**
 	 * 
@@ -98,7 +97,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 * @param defaultName
 	 *        the default name for this editor
 	 */
-	public AbstractCreateNattableEditorCommand(String editorType, String defaultName) {
+	public AbstractCreateNattableEditorCommand(final String editorType, final String defaultName) {
 		Assert.isNotNull(editorType != null);
 		this.editorType = editorType;
 		this.defaultName = defaultName;
@@ -113,16 +112,6 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 */
 	@Override
 	public boolean isEnabled() {
-		//		try {
-		//			if(getTableContext() != null) {
-		//				return true;
-		//			}
-		//		} catch (ServiceException e) {
-		//			// TODO Auto-generated catch block
-		//			Activator.getDefault().logError("Context for table is null", e); //$NON-NLS-1$
-		//
-		//		}
-		//		return false;
 		return getTableContext() != null;
 	}
 
@@ -133,7 +122,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 * @return
 	 * @throws ExecutionException
 	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {
+	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		try {
 
 			runAsTransaction();
@@ -157,8 +146,8 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 		TwoInputDialog dialog = new TwoInputDialog(Display.getCurrent().getActiveShell(), Messages.AbstractCreateNattableEditorCommand_CreateNewTableDialogTitle, Messages.AbstractCreateNattableEditorCommand_CreateNewTableDialog_TableNameMessage, Messages.AbstractCreateNattableEditorCommand_CreateNewTableDialog_TableDescriptionMessage, defaultName, defaultDescription, null);
 		if(dialog.open() == Dialog.OK) {
 			//get the name and the description for the table
-			this.name = dialog.getValue();
-			this.description = dialog.getValue_2();
+			name = dialog.getValue();
+			description = dialog.getValue_2();
 
 			final ServicesRegistry serviceRegistry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
 			TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
@@ -167,7 +156,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 			AbstractEMFOperation command = new AbstractEMFOperation(domain, "Create Table Editor") { //$NON-NLS-1$
 
 				@Override
-				protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				protected IStatus doExecute(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 					try {
 						AbstractCreateNattableEditorCommand.this.doExecute(serviceRegistry);
 					} catch (ServiceException e) {
@@ -199,7 +188,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 * @throws ServiceException
 	 * @throws NotFoundException
 	 */
-	public void doExecute(ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
+	public void doExecute(final ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
 
 		Object editorModel = createEditorModel(serviceRegistry);
 		// Get the mngr allowing to add/open new editor.
@@ -217,7 +206,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 * @throws NotFoundException
 	 *         The model where to save the TableInstance is not found.
 	 */
-	protected Object createEditorModel(ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
+	protected Object createEditorModel(final ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
 		PapyrusTableInstance papyrusTable = PapyrustableinstanceFactory.eINSTANCE.createPapyrusTableInstance();
 		papyrusTable.setName(name);
 		papyrusTable.setType(editorType);
@@ -225,7 +214,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 		papyrusModel.addPapyrusTableInstance(papyrusTable);
 
 		//TableInstance tableInstance = TableinstanceFactory.eINSTANCE.createTableInstance();
-		TableInstance2 tableInstance = NatTableWidgetUtils.createTableInstance(Collections.EMPTY_LIST, defaultDescription, null, getTableContext(), null);
+		TableInstance2 tableInstance = NatTableWidgetUtils.createTableInstance(Collections.EMPTY_LIST, defaultDescription, getTableConfiguration(), getTableContext(), null);
 		tableInstance.setDescription(description);
 
 		// Save the model in the associated resource
@@ -242,13 +231,17 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 		return papyrusTable;
 	}
 
+	protected TableConfiguration getTableConfiguration(){
+		return null;
+	}
+
 	/**
 	 * Set the table synchronization to <code>true</code> if there is filling queries, to <code>false</code> if not
 	 * 
 	 * @param papyrusTable
 	 *        the papyrusTable
 	 */
-	protected void setSynchronization(PapyrusTableInstance papyrusTable) {
+	protected void setSynchronization(final PapyrusTableInstance papyrusTable) {
 		papyrusTable.setIsSynchronized(papyrusTable.getFillingQueries().size() != 0);
 	}
 
@@ -258,7 +251,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 * @param papyrusTable
 	 *        the {@link PapyrusTableInstance} to fill with queries
 	 */
-	protected void setFillingQueries(PapyrusTableInstance papyrusTable) {
+	protected void setFillingQueries(final PapyrusTableInstance papyrusTable) {
 		ModelQuerySetCatalog catalog = ModelQuerySetCatalog.getSingleton();
 		for(QueryRepresentation rep : getQueryRepresentations()) {
 			ModelQuerySet querySet = catalog.getModelQuerySet(rep.getQuerySetName());
@@ -344,7 +337,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	/**
 	 * Get the root element associated with canvas.
 	 */
-	protected EObject getRootElement(Resource modelResource) {
+	protected EObject getRootElement(final Resource modelResource) {
 		EObject rootElement = null;
 		if(modelResource != null && modelResource.getContents() != null && modelResource.getContents().size() > 0) {
 			Object root = modelResource.getContents().get(0);

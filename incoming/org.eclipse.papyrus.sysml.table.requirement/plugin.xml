@@ -54,17 +54,15 @@
          </activeWhen>
       </handler>
    </extension>
-
-   <extension point="org.eclipse.emf.facet.infra.query.registration">
-      <modelqueryset file="resource/requirements.querySet"/>
-   </extension>
    <extension point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester class="org.eclipse.papyrus.sysml.table.requirement.tester.RequirementPropertyTester" id="org.eclipse.papyrus.sysml.table.requirement.tester" namespace="org.eclipse.papyrus.sysml.table.requirement.tester" properties="isAppliedRequirements" type="org.eclipse.jface.viewers.IStructuredSelection">
       </propertyTester>
    </extension>
    <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
-      <browserCustomization
-            file="resource/testConfig.uiCustom"
-            loadByDefault="true"/>
+      <browserCustomization file="resources/hideAllClassFeatures.uiCustom">
+      </browserCustomization>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.query.registration">
+      <modelqueryset file="resources/requirementsTable.querySet"/>
    </extension>
 </plugin>

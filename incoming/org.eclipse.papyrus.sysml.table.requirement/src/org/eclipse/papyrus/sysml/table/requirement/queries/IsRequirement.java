@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -42,9 +43,9 @@ public class IsRequirement implements IJavaModelQuery<EObject, Boolean> {
 
 		if(context instanceof Classifier) {
 			Classifier classifier = (Classifier)context;
-			Stereotype ste = classifier.getAppliedStereotype("SysML::Requirements::Requirement"); //$NON-NLS-1$
-			return new Boolean(ste != null);
+			Stereotype ste = classifier.getAppliedStereotype(SysmlResource.REQUIREMENT_ID);
+			return ste != null ? Boolean.TRUE : Boolean.FALSE;
 		}
-		return new Boolean(false);
+		return Boolean.FALSE;
 	}
 }

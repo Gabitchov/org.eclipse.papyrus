@@ -58,7 +58,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance;
-import org.eclipse.papyrus.properties.databinding.PapyrusObservableValue;
+import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.table.common.messages.Messages;
 import org.eclipse.papyrus.widgets.editors.StringEditor;
 import org.eclipse.papyrus.widgets.editors.StringLabel;
@@ -115,7 +115,7 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 			return new INatTableWidgetProvider() {
 
 				public INatTableWidget getNatTableWidget() {
-					return NatTableEditor.this.natTableWidget;
+					return natTableWidget;
 				}
 			};
 		}
@@ -125,16 +125,16 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 	@Override
 	public void init(final IEditorSite site, final IEditorInput input) throws PartInitException {
 		if(input instanceof TableEditorInput) {
-			this.tableEditorInput = (TableEditorInput)input;
-			this.editingDomain = this.tableEditorInput.getEditingDomain();
+			tableEditorInput = (TableEditorInput)input;
+			editingDomain = tableEditorInput.getEditingDomain();
 			initializeEditingDomain();
 			setSite(site);
-			setInput(this.tableEditorInput);
-			setPartName(this.tableEditorInput.getName());
+			setInput(tableEditorInput);
+			setPartName(tableEditorInput.getName());
 		} else if(input instanceof FileEditorInput) {
 			initializeEditingDomain();
 			FileEditorInput fileEditorInput = (FileEditorInput)input;
-			URI uri = URI.createFileURI(fileEditorInput.getPath().toOSString());
+			URI uri = URI.createPlatformResourceURI(fileEditorInput.getFile().getFullPath().toString(), false);
 			if(uri != null) {
 				Resource resource = null;
 				if(getEditingDomain() != null) {
@@ -151,9 +151,9 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 						break;
 					}
 				}
-				this.tableEditorInput = new TableEditorInput(tableInstance, getEditingDomain());
+				tableEditorInput = new TableEditorInput(tableInstance, getEditingDomain());
 				setSite(site);
-				setInput(this.tableEditorInput);
+				setInput(tableEditorInput);
 				setPartName(fileEditorInput.getName());
 			}
 
@@ -171,9 +171,9 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 	 */
 	@Override
 	public void createPartControl(final Composite parent) {
-		this.menuMgr = new MenuManager("#PopUp", NatTableEditor.ID); //$NON-NLS-1$
-		this.menuMgr.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
-		this.menuMgr.setRemoveAllWhenShown(true);
+		menuMgr = new MenuManager("#PopUp", NatTableEditor.ID); //$NON-NLS-1$
+		menuMgr.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
+		menuMgr.setRemoveAllWhenShown(true);
 
 		final TableInstance table = tableEditorInput.getPapyrusTableInstance().getTable();
 		EClass tableEClass = table.eClass();
@@ -189,8 +189,9 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		contextLabel.setLabel(Messages.NatTableEditor_TableContextLabel);
 		contextLabel.setToolTipText(Messages.NatTableEditor_TableContextTollTip);
 
+		//TODO use EMF Observable
 		EStructuralFeature contextFeature = tableEClass.getEStructuralFeature(TableinstancePackage.TABLE_INSTANCE__CONTEXT);
-		final IObservableValue contextObservable = new PapyrusObservableValue(table, contextFeature, getEditingDomain());
+		final IObservableValue contextObservable = new org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue(table, contextFeature, getEditingDomain());
 		contextObservable.addValueChangeListener(new IValueChangeListener() {
 
 			/**
@@ -199,7 +200,7 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 			 * 
 			 * @param event
 			 */
-			public void handleValueChange(ValueChangeEvent event) {
+			public void handleValueChange(final ValueChangeEvent event) {
 				//TODO : not verified
 				//Change the displayed icon for the StringLabel
 				EditorLabelProvider provider = new EditorLabelProvider();
@@ -252,7 +253,7 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		tableComposite.setLayoutData(compositeTableGridLayout);
 
 		// the nattable widget itself
-		this.natTableWidget = INatTableWidgetFactory.INSTANCE.createNatTableWidget(tableComposite, this, this.tableEditorInput.getPapyrusTableInstance().getTable(), this.menuMgr);
+		natTableWidget = INatTableWidgetFactory.INSTANCE.createNatTableWidget(tableComposite, this, tableEditorInput.getPapyrusTableInstance().getTable(), menuMgr);
 
 
 		final GridData tableGridData = new GridData();
@@ -260,19 +261,19 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		tableGridData.grabExcessVerticalSpace = true;
 		tableGridData.horizontalAlignment = SWT.FILL;
 		tableGridData.verticalAlignment = SWT.FILL;
-		this.natTableWidget.getComposite().setLayoutData(tableGridData);
+		natTableWidget.getComposite().setLayoutData(tableGridData);
 
-		getSite().setSelectionProvider(this.natTableWidget);
-		getSite().registerContextMenu(this.menuMgr, this.natTableWidget);
+		getSite().setSelectionProvider(natTableWidget);
+		getSite().registerContextMenu(menuMgr, natTableWidget);
 
 
 		//we add a listener on the resource in order to be synchronized with queries
-		Resource res = this.tableEditorInput.getPapyrusTableInstance().getTable().getContext().eResource();
+		Resource res = tableEditorInput.getPapyrusTableInstance().getTable().getContext().eResource();
 
 
 		res.setTrackingModification(true);
-		if(!res.eAdapters().contains(this.modelChangeAdapter)) {
-			res.eAdapters().add(this.modelChangeAdapter);
+		if(!res.eAdapters().contains(modelChangeAdapter)) {
+			res.eAdapters().add(modelChangeAdapter);
 		}
 
 	}
@@ -300,12 +301,12 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 
 	@Override
 	public void setFocus() {
-		this.natTableWidget.getComposite().setFocus();
+		natTableWidget.getComposite().setFocus();
 	}
 
 	@Override
 	public boolean isDirty() {
-		return ((BasicCommandStack)this.editingDomain.getCommandStack()).isSaveNeeded();
+		return ((BasicCommandStack)editingDomain.getCommandStack()).isSaveNeeded();
 	}
 
 	@Override
@@ -315,13 +316,13 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 
 	@Override
 	public void doSave(final IProgressMonitor monitor) {
-		this.natTableWidget.save();
+		natTableWidget.save();
 		firePropertyChange(PROP_DIRTY);
 	}
 
 	@Override
 	public void doSaveAs() {
-		this.natTableWidget.saveAs();
+		natTableWidget.saveAs();
 		firePropertyChange(PROP_DIRTY);
 	}
 
@@ -331,23 +332,23 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 	//	}
 
 	public void addSelectionChangedListener(final ISelectionChangedListener listener) {
-		this.natTableWidget.addSelectionChangedListener(listener);
+		natTableWidget.addSelectionChangedListener(listener);
 	}
 
 	public ISelection getSelection() {
-		return this.natTableWidget.getSelection();
+		return natTableWidget.getSelection();
 	}
 
 	public EditingDomain getEditingDomain() {
-		return this.editingDomain;
+		return editingDomain;
 	}
 
 	public void removeSelectionChangedListener(final ISelectionChangedListener listener) {
-		this.natTableWidget.removeSelectionChangedListener(listener);
+		natTableWidget.removeSelectionChangedListener(listener);
 	}
 
 	public void setSelection(final ISelection selection) {
-		this.natTableWidget.setSelection(selection);
+		natTableWidget.setSelection(selection);
 	}
 
 	// public INatTableWidget getNatTableWidget() {
@@ -358,13 +359,13 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 	 * This sets up the editing domain for the model editor
 	 */
 	protected void initializeEditingDomain() {
-		if(this.editingDomain == null) {
+		if(editingDomain == null) {
 			ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 			BasicCommandStack commandStack = new BasicCommandStack();
-			this.editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
+			editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
 		}
-		this.editingDomain.getCommandStack().removeCommandStackListener(this.commandListener);
-		this.editingDomain.getCommandStack().addCommandStackListener(this.commandListener);
+		editingDomain.getCommandStack().removeCommandStackListener(commandListener);
+		editingDomain.getCommandStack().addCommandStackListener(commandListener);
 	}
 
 	public IWorkbenchPart getPart() {
@@ -406,7 +407,7 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		 * @param fromObject
 		 * @return
 		 */
-		public Object convert(Object fromObject) {
+		public Object convert(final Object fromObject) {
 			if(fromObject instanceof EObject) {
 				return UMLUtil.getQualifiedText((EObject)fromObject);
 			}

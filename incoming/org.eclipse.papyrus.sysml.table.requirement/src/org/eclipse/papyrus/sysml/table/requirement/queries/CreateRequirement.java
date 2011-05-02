@@ -17,6 +17,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.emf.facet.infra.query.runtime.ModelQueryParameterValue;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
@@ -39,7 +40,8 @@ public class CreateRequirement implements IJavaModelQuery<Package, org.eclipse.u
 	 * @throws ModelQueryExecutionException
 	 */
 	public org.eclipse.uml2.uml.Class evaluate(final Package context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		EditingDomain editingDomain = null;
+		ModelQueryParameterValue modelquery = parameterValues.getParameterValueByName("editingDomain");
+		EditingDomain editingDomain = (EditingDomain)modelquery.getValue();
 		if(editingDomain != null) {
 			if(context != null) {
 
