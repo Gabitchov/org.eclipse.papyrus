@@ -9,11 +9,13 @@ Bundle-SymbolicName: org.eclipse.papyrus.paletteconfiguration.customiz
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.paletteconfiguration.customization
  ,org.eclipse.papyrus.paletteconfiguration.customization.queries
-Require-Bundle: org.eclipse.ui;bundle-version="3.7.0",org.eclipse.core
- .runtime;bundle-version="3.7.0",org.eclipse.papyrus.paletteconfigurat
- ion;bundle-version="0.8.0",org.eclipse.uml2.uml;bundle-version="3.2.0
- ",org.eclipse.emf.facet.infra.query.core;bundle-version="0.1.0",org.e
- clipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",org.eclipse.p
- apyrus.extendedtypes;bundle-version="0.8.0"
+Require-Bundle: org.eclipse.ui;bundle-version="3.7.0",
+ org.eclipse.core.runtime;bundle-version="3.7.0",
+ org.eclipse.papyrus.paletteconfiguration;bundle-version="0.8.0",
+ org.eclipse.uml2.uml;bundle-version="3.2.0",
+ org.eclipse.emf.facet.infra.query.core;bundle-version="0.1.0",
+ org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
+ org.eclipse.papyrus.extendedtypes;bundle-version="0.8.0",
+ org.eclipse.papyrus.paletteconfiguration.edit;bundle-version="0.8.0"
 Bundle-Version: 0.8.0.qualifier
 
