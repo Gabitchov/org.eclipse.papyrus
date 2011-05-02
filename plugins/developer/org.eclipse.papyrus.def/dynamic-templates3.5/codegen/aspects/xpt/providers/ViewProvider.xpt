@@ -53,8 +53,35 @@ public class «notationViewProviderClassName»«EXPAND xpt::providers::ViewProvi
 		if (op.getViewKind() == Edge.class)
 			return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 */
-		return true;
-	}
+
+            // check Diagram Type should be the class diagram
+            String modelID = «EXPAND xpt::editor::VisualIDRegistry::getModelIDMethodCall»(op.getContainerView());
+            if(!getDiagramProvidedId().equals(modelID)) {
+                  return false;
+            }
+            
+            int visualID = «EXPAND xpt::editor::VisualIDRegistry::getVisualIDMethodCall»(op.getSemanticHint());
+            if(org.eclipse.gmf.runtime.notation.Node.class.isAssignableFrom(op.getViewKind())) {
+                  return «EXPAND xpt::editor::VisualIDRegistry::canCreateNodeMethodCall»(op.getContainerView(), visualID);
+            }
+
+            return true;
+      }
+
+
+«EXPAND xpt::Common::generatedMemberComment»
+      protected String getDiagramProvidedId() {
+      /*
+      * Indicates for which diagram this provider works for.
+      * <p>
+      * This method can be overloaded when diagram editor inherits from another one, but should never be <code>null</code>
+      * </p>
+      * 
+       * @return the unique identifier of the diagram for which views are provided.
+      */
+            return «EXPAND xpt::editor::VisualIDRegistry::modelID»;
+      }
+
 
 	«EXPAND xpt::Common::generatedMemberComment»«REM»When diagram domain element is null only diagram kind is checked«ENDREM»
 	protected boolean provides(org.eclipse.gmf.runtime.diagram.core.services.view.CreateDiagramViewOperation op) {

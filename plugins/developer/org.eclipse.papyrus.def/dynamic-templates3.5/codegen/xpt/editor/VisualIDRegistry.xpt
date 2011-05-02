@@ -77,6 +77,8 @@ public class «visualIDRegistryClassName» {
 
 «DEFINE getModelIDMethodCall FOR gmfgen::GenDiagram»«getVisualIDRegistryQualifiedClassName()».«EXPAND getModelIDMethodName»«ENDDEFINE»
 
+
+
 «REM»
 	XXX looks like these methods would produce incorrect result for visualID of GenDiagram itself - ask Vano if
 	getType() method shouldn't be fixed similar to getVisualID, i.e. map diagram's visual id to MODEL_ID instead plain String.valueOf()

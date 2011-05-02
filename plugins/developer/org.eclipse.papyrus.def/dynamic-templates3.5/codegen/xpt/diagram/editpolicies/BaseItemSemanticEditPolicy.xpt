@@ -214,9 +214,23 @@ protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(org.ecli
 «ENDDEFINE»
 «DEFINE getCreateCommand FOR gmfgen::GenDiagram-»
 «EXPAND xpt::Common::generatedMemberComment»
-protected org.eclipse.gef.commands.Command getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
-	return null;
-}
+ protected org.eclipse.gef.commands.Command getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
+        // check if the type is an extended type, and then create directly the element...
+        org.eclipse.gmf.runtime.emf.type.core.IElementType type = req.getElementType();
+        if(type instanceof org.eclipse.papyrus.extendedtypes.types.IExtendedHintedElementType) {
+              org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(req.getContainer());
+              if(provider == null) {
+                    return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
+              }
+
+              // Retrieve create command from the Element Edit service
+              org.eclipse.gmf.runtime.common.core.command.ICommand createGMFCommand = provider.getEditCommand(req);
+
+              return getGEFWrapper(createGMFCommand);
+        }
+
+        return null;
+  }
 «ENDDEFINE»
 «DEFINE getSetCommand FOR gmfgen::GenDiagram-»
 «EXPAND xpt::Common::generatedMemberComment»
