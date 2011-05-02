@@ -336,6 +336,29 @@ public class BundleIconExplorerDialog extends SelectionStatusDialog {
 	}
 
 	/**
+	 * Returns the bundle identifier for the current image
+	 * 
+	 * @return the bundle identifier for the current image
+	 */
+	public String getCurrentBundleName() {
+		return currentBundleName;
+	}
+
+	/**
+	 * Returns the path to the icon in the bundle
+	 * 
+	 * @return the path to the icon in the bundle
+	 */
+	public String getIconPath() {
+		List<Object> proxies = Arrays.asList(getSelectedElements());
+		if(proxies.size() == 1) {
+			return ((ImageProxy)proxies.get(0)).getLocalPath();
+		}
+
+		return "";
+	}
+
+	/**
 	 * label provider for the icons in Bundle
 	 */
 	public class BundleIconLabelProvider extends LabelProvider {
@@ -398,8 +421,8 @@ public class BundleIconExplorerDialog extends SelectionStatusDialog {
 		 */
 		public ImageProxy(URL url) {
 			localPath = url.getPath();
-			path = PLUGIN_PROTOCOL + currentBundleName + localPath;
-			image = org.eclipse.papyrus.diagram.common.Activator.getImage(path, currentBundleName);
+			path = PLUGIN_PROTOCOL + getCurrentBundleName() + localPath;
+			image = org.eclipse.papyrus.diagram.common.Activator.getImage(path, getCurrentBundleName());
 			int index = localPath.lastIndexOf('/');
 			if(index > 0 && index < localPath.length()) {
 				fileName = localPath.substring(index + 1, localPath.length() - GIF_EXTENSION_LENGTH);
@@ -450,6 +473,16 @@ public class BundleIconExplorerDialog extends SelectionStatusDialog {
 
 		public String getPluginPath() {
 			return path;
+		}
+
+
+		/**
+		 * Returns the path to the icon in the bundle
+		 * 
+		 * @return the path to the icon in the bundle
+		 */
+		public String getLocalPath() {
+			return localPath;
 		}
 	}
 }

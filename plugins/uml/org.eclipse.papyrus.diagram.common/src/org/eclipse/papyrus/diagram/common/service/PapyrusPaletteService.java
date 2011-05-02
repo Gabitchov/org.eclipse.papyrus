@@ -13,19 +13,31 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent;
 import org.eclipse.core.runtime.preferences.InstanceScope;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -56,6 +68,7 @@ import org.eclipse.papyrus.diagram.common.part.IPaletteDescription;
 import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.ui.IEditorPart;
+import org.osgi.framework.Bundle;
 
 /**
  * Service that contributes to the palette of a given editor with a given content.
@@ -70,7 +83,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	public static class ProviderDescriptor extends ActivityFilterProviderDescriptor {
 
 		/** the provider configuration parsed from XML */
-		private XMLPaletteProviderConfiguration providerConfiguration;
+		protected XMLPaletteProviderConfiguration providerConfiguration;
 
 		/**
 		 * Constructs a <code>ISemanticProvider</code> descriptor for the specified configuration
@@ -83,9 +96,30 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 			super(element);
 
 			if(element != null) {
-				this.providerConfiguration = XMLPaletteProviderConfiguration.parse(element);
-				Assert.isNotNull(providerConfiguration);
+				this.providerConfiguration = parseConfiguration(element);
+				Assert.isNotNull(getProviderConfiguration());
 			}
+		}
+
+		/**
+		 * Parses the content of the xml file configuration
+		 * 
+		 * @param element
+		 *        the configuration element for this provider descriptor
+		 * @return the configuration of the descriptor
+		 */
+		protected XMLPaletteProviderConfiguration parseConfiguration(IConfigurationElement element) {
+			return XMLPaletteProviderConfiguration.parse(element);
+		}
+
+
+		/**
+		 * Returns the provider configuration for this descriptor
+		 * 
+		 * @return the provider Configuration for this descriptor
+		 */
+		protected XMLPaletteProviderConfiguration getProviderConfiguration() {
+			return providerConfiguration;
 		}
 
 		/**
@@ -97,7 +131,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		 */
 		// @unused
 		public boolean hasOnlyEntriesDefinition() {
-			return providerConfiguration.hasOnlyEntriesDefinition();
+			return getProviderConfiguration().hasOnlyEntriesDefinition();
 		}
 
 		/**
@@ -106,7 +140,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		 * @return this contribution's name
 		 */
 		public String getContributionName() {
-			return providerConfiguration.getName();
+			return getProviderConfiguration().getName();
 		}
 
 		/**
@@ -115,7 +149,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		 * @return this contribution's id
 		 */
 		public String getContributionID() {
-			return providerConfiguration.getID();
+			return getProviderConfiguration().getID();
 		}
 
 		/**
@@ -136,7 +170,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		 * @return the priority for this provider
 		 */
 		public ProviderPriority getPriority() {
-			return providerConfiguration.getPriority();
+			return getProviderConfiguration().getPriority();
 		}
 
 		/**
@@ -162,7 +196,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				if(!(part instanceof DiagramEditorWithFlyOutPalette)) {
 					return false;
 				}
-				boolean supports = providerConfiguration.supports(o.getEditor(), o.getContent());
+				boolean supports = getProviderConfiguration().supports(o.getEditor(), o.getContent());
 
 				if(!supports) {
 					return false;
@@ -207,7 +241,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				ContributeToPaletteOperation o = operation;
 
 				// FIXME returns directly the result
-				boolean supports = providerConfiguration.supports(o.getEditor(), o.getContent());
+				boolean supports = getProviderConfiguration().supports(o.getEditor(), o.getContent());
 
 				if(!supports) {
 					return false;
@@ -233,6 +267,205 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				return newProvider;
 			}
 			return super.getProvider();
+		}
+	}
+
+	/**
+	 * Provider descriptor for a extended palette definition.
+	 */
+	public static class ExtendedProviderDescriptor extends ProviderDescriptor {
+
+		/**
+		 * Constructor.
+		 * 
+		 * @param element
+		 *        configuration element for this descriptor
+		 */
+		public ExtendedProviderDescriptor(IConfigurationElement element) {
+			super(element);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected ExtendedPaletteProviderConfiguration parseConfiguration(IConfigurationElement element) {
+			return ExtendedPaletteProviderConfiguration.parse(element);
+		}
+
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected ExtendedPaletteProviderConfiguration getProviderConfiguration() {
+			return (ExtendedPaletteProviderConfiguration)providerConfiguration;
+		}
+
+		/**
+		 * Creates a new local redefinition of the configuration file
+		 * 
+		 * @return the path to the configuration file
+		 */
+		public String createLocalRedefinition() {
+			String filePath = getProviderConfiguration().getPath();
+			String bundleId = getProviderConfiguration().getBundleID();
+			String realId = bundleId;
+			InputStream stream = null;
+
+			Bundle bundle = Platform.getBundle(bundleId);
+			if(Platform.isFragment(bundle)) {
+				// retrieve the file in the fragment itself
+				stream = openConfigurationFile(bundle, filePath);
+			} else {
+				// this is a plugin. Search in sub fragments, then in the plugin
+				Bundle[] fragments = Platform.getFragments(bundle);
+				// no fragment, so the file should be in the plugin itself
+				if(fragments == null) {
+					stream = openConfigurationFile(bundle, filePath);
+				} else {
+					for(Bundle fragment : fragments) {
+						if(stream == null) {
+							stream = openConfigurationFile(fragment, filePath);
+							realId = fragment.getSymbolicName();
+						}
+					}
+
+					if(stream == null) {
+						// no file in fragments. open in the plugin itself
+						stream = openConfigurationFile(bundle, filePath);
+						realId = bundle.getSymbolicName();
+					}
+				}
+			}
+
+			// check the stream 
+			if(stream == null) {
+				Activator.log.error("Impossible to read initial file", null);
+				return null;
+			}
+
+			File stateLocationRootFile = Activator.getDefault().getStateLocation().toFile();
+			File bundleFolder = new File(stateLocationRootFile, realId);
+			bundleFolder.mkdir();
+
+			// for all intermediate folders in filePath, create a folder in plugin state location
+			File root = bundleFolder;
+			String[] folders = filePath.split("/");
+			for(int i = 0; i < folders.length - 1; i++) { // all intermediate folders. Last one is the file name itself...
+				String folderName = folders[i];
+				if(folderName != null && folderName.length() != 0) {
+					File newFolder = new File(root, folders[i]);
+					newFolder.mkdir();
+					root = newFolder;
+				}
+			}
+
+			File newFile = new File(root, folders[folders.length - 1]);
+			boolean fileCreated = false;
+
+			// check if file already exists or not
+			if(newFile.exists()) {
+				fileCreated = true;
+			} else {
+				try {
+					fileCreated = newFile.createNewFile();
+				} catch (IOException e) {
+					Activator.log.error("Impossible to create new file", e);
+					return null;
+				}
+			}
+
+			if(!fileCreated) {
+				Activator.log.error("It was not possible to create the file", null);
+				return null;
+			}
+
+			try {
+				FileOutputStream fileOutputStream = new FileOutputStream(newFile);
+				byte[] buf = new byte[1024];
+				int len;
+				while((len = stream.read(buf)) > 0) {
+					fileOutputStream.write(buf, 0, len);
+				}
+				stream.close();
+				fileOutputStream.close();
+			} catch (FileNotFoundException e) {
+				Activator.log.error("It was not possible to write in the file", e);
+				return null;
+			} catch (IOException e) {
+				Activator.log.error("It was not possible to write in the file", e);
+				return null;
+			}
+
+			return realId + filePath;
+		}
+
+		/**
+		 * Reads the configuration file in the bundle
+		 * 
+		 * @param bundle
+		 * @param filePath
+		 * @return
+		 */
+		protected InputStream openConfigurationFile(Bundle bundle, String filePath) {
+			try {
+				URL urlFile = bundle.getEntry(filePath);
+				urlFile = FileLocator.resolve(urlFile);
+				urlFile = FileLocator.toFileURL(urlFile);
+				if("file".equals(urlFile.getProtocol())) { //$NON-NLS-1$
+					return new FileInputStream(urlFile.getFile());
+				} else if("jar".equals(urlFile.getProtocol())) { //$NON-NLS-1$
+					String path = urlFile.getPath();
+					if(path.startsWith("file:")) {
+						// strip off the file: and the !/
+						int jarPathEndIndex = path.indexOf("!/");
+						if(jarPathEndIndex < 0) {
+							Activator.log.error("Impossible to find the jar path end", null);
+							return null;
+						}
+						String jarPath = path.substring("file:".length(), jarPathEndIndex);
+						ZipFile zipFile = new ZipFile(jarPath);
+						filePath = filePath.substring(jarPathEndIndex + 2, path.length());
+						ZipEntry entry = zipFile.getEntry(path);
+						return zipFile.getInputStream(entry);
+						// return new File(filePath);
+					}
+				}
+			} catch (IOException e) {
+				Activator.log.error("Impossible to find initial file", e);
+			}
+			return null;
+		}
+
+		/**
+		 * Returns the redefinition file URI
+		 * 
+		 * @return the redefinition file URI or <code>null</code> if no local redefinition can be found.
+		 */
+		public URI getRedefinitionFileURI() {
+			String path = PapyrusPalettePreferences.getPaletteRedefinition(getContributionID());
+			if(path == null) {
+				Activator.log.error("Path is null for the given contribution: " + getContributionID(), null);
+				return null;
+			}
+
+			File stateLocationRootFile = Activator.getDefault().getStateLocation().append(path).toFile();
+			if(stateLocationRootFile == null) {
+				Activator.log.error("No redefinition file was found for id: " + getContributionID(), null);
+				return null;
+			}
+			if(!stateLocationRootFile.exists()) {
+				Activator.log.error("local definition file does not exists : " + stateLocationRootFile, null);
+				return null;
+			}
+
+			if(!stateLocationRootFile.canRead()) {
+				Activator.log.error("Impossible to read local definition of the file " + stateLocationRootFile, null);
+				return null;
+			}
+			URI uri = URI.createFileURI(stateLocationRootFile.getAbsolutePath());
+			return uri;
 		}
 	}
 
@@ -427,7 +660,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	protected PapyrusPaletteService() {
 		super();
 
-		IEclipsePreferences prefs = new InstanceScope().getNode(Activator.ID);
+		IEclipsePreferences prefs = InstanceScope.INSTANCE.getNode(Activator.ID);
 		prefs.addPreferenceChangeListener(this);
 	}
 
@@ -463,11 +696,18 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	public static synchronized PapyrusPaletteService getInstance() {
 		if(instance == null) {
 			instance = new PapyrusPaletteService();
-			instance.configureProviders(DiagramUIPlugin.getPluginId(), "paletteProviders"); //$NON-NLS-1$
-			instance.configureProviders(Activator.ID, PALETTE_DEFINITION);
-			instance.configureLocalPalettes();
+			configureProviders();
 		}
 		return instance;
+	}
+
+	/**
+	 * 
+	 */
+	private static void configureProviders() {
+		getInstance().configureProviders(DiagramUIPlugin.getPluginId(), "paletteProviders"); //$NON-NLS-1$
+		getInstance().configureProviders(Activator.ID, PALETTE_DEFINITION);
+		getInstance().configureLocalPalettes();
 	}
 
 	/**
@@ -475,6 +715,11 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	 */
 	@Override
 	protected Service.ProviderDescriptor newProviderDescriptor(IConfigurationElement element) {
+		// if provider is coming from palette definition extension point : define an extended palette provider...
+		String extensionPointId = element.getDeclaringExtension().getExtensionPointUniqueIdentifier();
+		if(PALETTE_DEFINITION_FULL_ID.equals(extensionPointId)) {
+			return new ExtendedProviderDescriptor(element);
+		}
 		return new ProviderDescriptor(element);
 	}
 
@@ -707,7 +952,13 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		} else if(IPapyrusPaletteConstant.PALETTE_CUSTOMIZATIONS_ID.equals(id)) {
 			// refresh available palette table viewer
 			providerChanged(new ProviderChangeEvent(this));
+		} else if(IPapyrusPaletteConstant.PALETTE_REDEFINITIONS.equals(id)) {
+			for(Service.ProviderDescriptor descriptor : getProviders()) {
+				removeProvider(descriptor);	
+			}
+			configureProviders();
+			// refresh available palette table viewer
+			providerChanged(new ProviderChangeEvent(this));
 		}
 	}
-
 }

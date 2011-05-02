@@ -126,12 +126,32 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	protected boolean provides(CreateViewForKindOperation op) {
 		/*
-		 if (op.getViewKind() == Node.class)
-		 return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		 if (op.getViewKind() == Edge.class)
-		 return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 * if (op.getViewKind() == Node.class)
+		 * return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 * if (op.getViewKind() == Edge.class)
+		 * return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		 */
+		String modelID = UMLVisualIDRegistry.getModelID(op.getContainerView());
+		if(!getDiagramProvidedId().equals(modelID)) {
+			return false;
+		}
+		int visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
+		if(Node.class.isAssignableFrom(op.getViewKind())) {
+			return UMLVisualIDRegistry.canCreateNode(op.getContainerView(), visualID);
+		}
 		return true;
+	}
+
+	/**
+	 * Indicates for which diagram this provider works for.
+	 * <p>
+	 * This method can be overloaded when diagram editor inherits from another one, but should never be <code>null</code>
+	 * </p>
+	 * 
+	 * @return the unique identifier of the diagram for which views are provided.
+	 */
+	protected String getDiagramProvidedId() {
+		return ComponentDiagramEditPart.MODEL_ID;
 	}
 
 	/**

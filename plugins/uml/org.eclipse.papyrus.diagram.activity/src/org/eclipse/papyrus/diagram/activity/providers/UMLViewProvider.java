@@ -102,7 +102,23 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		 if (op.getViewKind() == Edge.class)
 		 return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		 */
+		String modelID = UMLVisualIDRegistry.getModelID(op.getContainerView());
+		if(!getDiagramProvidedId().equals(modelID)) {
+			return false;
+		}
 		return true;
+	}
+
+	/**
+	 * Indicates for which diagram this provider works for.
+	 * <p>
+	 * This method can be overloaded when diagram editor inherits from another one
+	 * </p>
+	 * 
+	 * @return the unique identifier of the diagram for which views are provided.
+	 */
+	protected String getDiagramProvidedId() {
+		return ActivityDiagramEditPart.MODEL_ID;
 	}
 
 	/**
@@ -3308,8 +3324,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6012 = (Location)label6012.getLayoutConstraint();
 		location6012.setX(0);
 		location6012.setY(40);
-
-
 		return edge;
 	}
 
@@ -3344,8 +3358,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Undefined");
-
-
 
 		return edge;
 	}

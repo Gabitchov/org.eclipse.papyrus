@@ -383,8 +383,8 @@ public class AspectActionsInformationComposite {
 	/**
 	 * Sets the new Selected entry
 	 * 
-	 * @param selectedEntryProxy
-	 *        the selectedEntryProxy to set
+	 * @param selectedConfiguration
+	 *        the selectedConfiguration to set
 	 */
 	public void setSelectedEntryProxy(PaletteEntryProxy selectedEntryProxy) {
 		// should save the content for the previous selected entry proxy...

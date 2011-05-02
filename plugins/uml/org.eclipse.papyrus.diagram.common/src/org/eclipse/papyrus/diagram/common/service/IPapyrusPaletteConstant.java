@@ -13,6 +13,8 @@
 
 package org.eclipse.papyrus.diagram.common.service;
 
+import org.eclipse.papyrus.diagram.common.Activator;
+
 /**
  * Constant for the papyrus palette extension point
  */
@@ -20,6 +22,9 @@ public interface IPapyrusPaletteConstant {
 
 	/** Papyrus palette definition extension point name */
 	public final String PALETTE_DEFINITION = "paletteDefinition"; //$NON-NLS-1$
+
+	/** Papyrus palette definition full extension point identifier */
+	public final String PALETTE_DEFINITION_FULL_ID = Activator.ID + "." + PALETTE_DEFINITION; //$NON-NLS-1$ //$NON-NLS-2$
 
 	/** name for the field giving the path to the XML file */
 	public final String CONTENT = "content"; //$NON-NLS-1$
@@ -68,6 +73,12 @@ public interface IPapyrusPaletteConstant {
 
 	/** id for the preference store for palette customizations */
 	public final String PALETTE_CUSTOMIZATIONS_ID = "paletteCustomization";
+
+	/** id for the preference store for palette redefinitions */
+	public final String PALETTE_REDEFINITIONS = "paletteRedefinitions";
+
+	/** id for the node: palette redefinition */
+	public final String PALETTE_REDEFINITION = "paletteRedefinition";
 
 	/** id for the preference store for local palette definitions */
 	public final String PALETTE_LOCAL_DEFINITIONS = "localPaletteDefinition";

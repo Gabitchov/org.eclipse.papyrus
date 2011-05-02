@@ -14,18 +14,31 @@
 package org.eclipse.papyrus.diagram.common.service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest.ViewAndElementDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
+import org.eclipse.gmf.runtime.diagram.ui.util.INotationType;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.EditorUtils;
@@ -33,7 +46,6 @@ import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.service.palette.AspectToolService;
 import org.eclipse.papyrus.diagram.common.service.palette.IAspectAction;
 import org.eclipse.papyrus.diagram.common.service.palette.IAspectActionProvider;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
@@ -42,7 +54,7 @@ import org.w3c.dom.NodeList;
 public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTool {
 
 	/** List of element types of which one will be created (of type <code>IElementType</code>). */
-	protected List elementTypes;
+	protected List<IElementType> elementTypes;
 
 	/** post action list */
 	protected List<IAspectAction> postActions = new ArrayList<IAspectAction>();
@@ -53,7 +65,7 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	 * @param elementTypes
 	 *        List of element types of which one will be created (of type <code>IElementType</code>).
 	 */
-	public AspectUnspecifiedTypeCreationTool(List elementTypes) {
+	public AspectUnspecifiedTypeCreationTool(List<IElementType> elementTypes) {
 		super(elementTypes);
 		this.elementTypes = elementTypes;
 
@@ -142,7 +154,7 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 			if(value instanceof NodeList) {
 				NodeList nodeList = ((NodeList)value);
 				for(int i = 0; i < nodeList.getLength(); i++) {
-					Node childNode = nodeList.item(i);
+					org.w3c.dom.Node childNode = nodeList.item(i);
 					String childName = childNode.getNodeName();
 					if(IPapyrusPaletteConstant.POST_ACTION.equals(childName)) {
 						// node is a post action => retrieve the id of the factory in charge of this configuration
@@ -171,6 +183,69 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	 */
 	public List<IElementType> getElementTypes() {
 		return elementTypes;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Request createTargetRequest() {
+		return new CreateAspectUnspecifiedTypeRequest(getElementTypes(), getPreferencesHint());
+	}
+
+
+
+	public class CreateAspectUnspecifiedTypeRequest extends CreateUnspecifiedTypeRequest {
+
+		/**
+		 * Constructor.
+		 * 
+		 * @param elementTypes
+		 * @param preferencesHint
+		 */
+		public CreateAspectUnspecifiedTypeRequest(List<IElementType> elementTypes, PreferencesHint preferencesHint) {
+			super(elementTypes, preferencesHint);
+		}
+
+		/**
+		 * Creates a <code>CreateViewRequest</code> or <code>CreateViewAndElementRequest</code> for each creation hint and
+		 * adds it to the map of requests.
+		 */
+		protected void createRequests() {
+			for(Iterator<IElementType> iter = elementTypes.iterator(); iter.hasNext();) {
+				IElementType elementType = iter.next();
+
+				Request request = null;
+				if(elementType instanceof INotationType) {
+					ViewDescriptor viewDescriptor = new ViewDescriptor(null, Node.class, ((INotationType)elementType).getSemanticHint(), getPreferencesHint());
+					request = new CreateViewRequest(viewDescriptor);
+				} else if(elementType instanceof IHintedType) {
+					ViewAndElementDescriptor viewDescriptor = new ViewAndElementDescriptor(new CreateElementRequestAdapter(new CreateElementRequest(elementType)), Node.class, getGraphicalHint((IHintedType)elementType), getPreferencesHint());
+					request = new CreateViewAndElementRequest(viewDescriptor);
+					request.setExtendedData(getExtendedData());
+				} else {
+					ViewAndElementDescriptor viewDescriptor = new ViewAndElementDescriptor(new CreateElementRequestAdapter(new CreateElementRequest(elementType)), Node.class, getPreferencesHint());
+					request = new CreateViewAndElementRequest(viewDescriptor);
+					request.setExtendedData(getExtendedData());
+				}
+
+				request.setType(getType());
+				requests.put(elementType, request);
+			}
+		}
+
+		/**
+		 * Returns the semantic hint for the given type. In case of extended type, it returns the hint of the super type
+		 * 
+		 * @param elementType
+		 *        the hinted element type from which hint is retrieved
+		 * @return
+		 */
+		protected String getGraphicalHint(IHintedType elementType) {
+			String hint = ((IHintedType)elementType).getSemanticHint();
+			return hint;
+		}
+
 	}
 
 }

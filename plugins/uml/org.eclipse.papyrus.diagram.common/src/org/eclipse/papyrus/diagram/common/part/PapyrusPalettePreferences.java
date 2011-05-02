@@ -28,6 +28,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
+import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.ExtendedProviderDescriptor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.WorkbenchException;
@@ -95,19 +96,96 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 	}
 
 	/**
-	 * Saves the given root memento into the preferences
+	 * Retrieves the root memento from the plugin preferences if there were existing local palette
+	 * redefinitions.
 	 * 
-	 * @param rootMemento
-	 *        the memento to save
+	 * @return the root memento if there were existing customizations, a newly created one otherwise (empty one)
 	 */
-	public static void saveCustomizations(XMLMemento rootMemento) {
+	protected static XMLMemento getLocalRedefinitions() {
+		String sValue = getPreferenceStore().getString(PALETTE_REDEFINITIONS);
+		try {
+			if(sValue != null && !sValue.equals("")) { //$NON-NLS-1$
+				XMLMemento rootMemento = XMLMemento.createReadRoot(new StringReader(sValue));
+				return rootMemento;
+			} else {
+				return XMLMemento.createWriteRoot(PALETTE_REDEFINITIONS);
+			}
+		} catch (WorkbenchException e) {
+			Activator.getDefault().logError("Impossible to read preferences for palette local redefinitions", e);
+		}
+		return null;
+	}
+
+	/**
+	 * Register a new local redefinition of a palette.
+	 * 
+	 * @param paletteID
+	 *        the id of the palette to register
+	 * @param path
+	 *        the path to the configuration of the palette
+	 * @return the memento that has been registered
+	 */
+	public static IMemento registerLocalRedefinition(String paletteID, String path) {
+		XMLMemento rootMemento = getLocalRedefinitions();
+
+		// try to find an existing local definition for this palette
+		IMemento memento = getPaletteRedefinitionNode(paletteID);
+
+		// if one exists, remove it from the preferences
+		if(memento != null) {
+			unregisterLocalRedefinition(paletteID);
+		}
+
+		// then register the new one
+		IMemento newMemento = rootMemento.createChild(PALETTE_REDEFINITION);
+		newMemento.putString(ID, paletteID);
+		newMemento.putString(PATH, path);
+
+		saveLocalRedefinitions(rootMemento);
+
+		return newMemento;
+	}
+
+
+	/**
+	 * Unregister a specific local redefinition
+	 * 
+	 * @param paletteID
+	 *        the identifier of the palette to unregister
+	 */
+	public static void unregisterLocalRedefinition(String paletteID) {
+		XMLMemento rootMemento = getLocalRedefinitions();
+		// no remove method...
+		// so, creation of a new root memento, then, duplicate all entries
+		// except the one to
+		// delete...
+		XMLMemento newRootMemento = XMLMemento.createWriteRoot(PALETTE_REDEFINITIONS);
+		for(IMemento memento : rootMemento.getChildren(PALETTE_REDEFINITION)) {
+			if(!memento.getString(ID).equals(paletteID)) {
+				newRootMemento.putMemento(memento);
+			}
+		}
+		// save new Memento
+		saveLocalRedefinitions(newRootMemento);
+
+	}
+
+	/**
+	 * saves the given root memento with the given key in the preference area
+	 * 
+	 * @param xmlMemento
+	 *        the memento to save
+	 * @param key
+	 *        the key for the preference store
+	 */
+	private static void saveMemento(XMLMemento xmlMemento, String key) {
 		// save memento
 		StringWriter writer = new StringWriter();
 		try {
-			rootMemento.save(writer);
+			xmlMemento.save(writer);
 
 			if(getPreferenceStore() != null) {
-				getPreferenceStore().setValue(PALETTE_CUSTOMIZATIONS_ID, writer.toString());
+				getPreferenceStore().setValue(key, writer.toString());
 			}
 		} catch (IOException e) {
 			Activator.getDefault().logError("input/ouput exception", e);
@@ -115,23 +193,33 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 	}
 
 	/**
-	 * Saves the given root memento into the preferences
+	 * Saves the set of local redefinitions into the preference store
+	 * 
+	 * @param rootMemento
+	 *        the memento to save
+	 */
+	public static void saveLocalRedefinitions(XMLMemento rootMemento) {
+		saveMemento(rootMemento, PALETTE_REDEFINITIONS);
+	}
+
+	/**
+	 * Saves the palette customizations into the preferences
+	 * 
+	 * @param rootMemento
+	 *        the memento to save
+	 */
+	public static void saveCustomizations(XMLMemento rootMemento) {
+		saveMemento(rootMemento, PALETTE_CUSTOMIZATIONS_ID);
+	}
+
+	/**
+	 * Saves the list of local palettes into the preferences
 	 * 
 	 * @param rootMemento
 	 *        the memento to save
 	 */
 	public static void saveLocalPalettes(XMLMemento rootMemento) {
-		// save memento
-		StringWriter writer = new StringWriter();
-		try {
-			rootMemento.save(writer);
-
-			if(getPreferenceStore() != null) {
-				getPreferenceStore().setValue(PALETTE_LOCAL_DEFINITIONS, writer.toString());
-			}
-		} catch (IOException e) {
-			Activator.getDefault().logError("input/ouput exception", e);
-		}
+		saveMemento(rootMemento, PALETTE_LOCAL_DEFINITIONS);
 	}
 
 	/**
@@ -183,6 +271,44 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 	// @unused
 	public static String getHiddenPalettes(IMemento hiddenPalettesMemento) {
 		return hiddenPalettesMemento.getString(ID);
+	}
+
+	/**
+	 * Returns the path for a given palette
+	 * 
+	 * @param paletteID
+	 *        the unique identifier of the palette to retrieve
+	 * @return the path to the configuration of the palette or <code>null</code> if no customization exists for this palette configuration
+	 */
+	public static String getPaletteRedefinition(String paletteID) {
+		if(paletteID == null) {
+			Activator.log.debug("Trying to find preferences for a null palette identifier");
+		}
+		IMemento memento = getPaletteRedefinitionNode(paletteID);
+		if(memento != null) {
+			return memento.getString(PATH);
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the memento associated to the palette, or <code>null</code> if none exists
+	 * 
+	 * @param paletteID
+	 *        the identifier of the palette to find
+	 * @return the memento found or <code>null</code> if no customization exists for this palette
+	 */
+	private static IMemento getPaletteRedefinitionNode(String paletteID) {
+		XMLMemento rootMemento = getLocalRedefinitions();
+		IMemento[] redefinitions = rootMemento.getChildren(PALETTE_REDEFINITION);
+		for(IMemento redefinitionMemento : redefinitions) {
+			String paletteNodeID = redefinitionMemento.getString(ID);
+			// check equals. Palette ID is not null, as checked at the begining of the method.
+			if(paletteID.equals(paletteNodeID)) {
+				return redefinitionMemento;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -430,4 +556,26 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 		return null;
 	}
 
+	/**
+	 * Creates the palette redefinition for the given contribution
+	 * 
+	 * @param descriptor
+	 *        descriptor of the contribution to redefine
+	 */
+	public static void createPaletteRedefinition(ExtendedProviderDescriptor descriptor) {
+		// copy the file in the plugin state area
+		String path = null;
+
+		// retrieve the file in the descriptor
+		path = descriptor.createLocalRedefinition();
+
+		if(path == null) {
+			Activator.log.error("There was an error during creation of the local file", null);
+			return;
+		}
+
+		// finally, register the new redefinition
+		registerLocalRedefinition(descriptor.getContributionID(), path);
+
+	}
 }

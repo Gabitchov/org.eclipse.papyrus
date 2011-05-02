@@ -51,6 +51,7 @@ import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteCustomizer;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
+import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.ExtendedProviderDescriptor;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.LocalProviderDescriptor;
 import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.swt.SWT;
@@ -96,6 +97,9 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 	/** path to the plugin descriptor icon */
 	protected final String PLUGIN_DESCRIPTOR = "/icons/plugin_desc.gif";
 
+	/** path to the plugin descriptor icon */
+	protected final String EXTENDED_PLUGIN_DESCRIPTOR = "/icons/extended_plugin_desc.gif";
+
 	/** viewer for the available tools */
 	protected TreeViewer availableToolsTreeViewer;
 
@@ -113,9 +117,6 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 
 	/** delete local palette button */
 	protected Button deletePaletteButton;
-
-	/** isntance scope to listen for preferences */
-	protected InstanceScope instanceScope = new InstanceScope();
 
 	/** edit local palette button */
 	protected Button editPaletteButton;
@@ -139,7 +140,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 	 */
 	@Override
 	public int open() {
-		IEclipsePreferences prefs = instanceScope.getNode(Activator.ID);
+		IEclipsePreferences prefs = InstanceScope.INSTANCE.getNode(Activator.ID);
 		prefs.addPreferenceChangeListener(this);
 		return super.open();
 	}
@@ -149,7 +150,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 	 */
 	@Override
 	public boolean close() {
-		IEclipsePreferences prefs = instanceScope.getNode(Activator.ID);
+		IEclipsePreferences prefs = InstanceScope.INSTANCE.getNode(Activator.ID);
 		prefs.removePreferenceChangeListener(this);
 		return super.close();
 	}
@@ -221,21 +222,34 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 			public void selectionChanged(SelectionChangedEvent event) {
 				// retrieve element selected
 				Object selectedElement = ((IStructuredSelection)event.getSelection()).getFirstElement();
-				if(selectedElement instanceof PapyrusPaletteService.LocalProviderDescriptor) {
+				if(selectedElement instanceof PapyrusPaletteService.ExtendedProviderDescriptor) {
+					PapyrusPaletteService.ProviderDescriptor descriptor = (PapyrusPaletteService.ProviderDescriptor)selectedElement;
 					deletePaletteButton.setEnabled(true);
-					// check if the palette is in good configuration to be edited...
-					if(PaletteUtil.areRequiredProfileApplied(getActiveSashPage(), (PapyrusPaletteService.LocalProviderDescriptor)selectedElement)) {
-						editPaletteButton.setEnabled(true);
-						editPaletteButton.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_EditButtonTooltip_LocalPaletteSelected);
-					} else {
-						editPaletteButton.setEnabled(false);
-						editPaletteButton.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_EditButtonTooltip_MissingProfile);
-					}
+					editPaletteButton.setEnabled(true);
+				} else if(selectedElement instanceof PapyrusPaletteService.LocalProviderDescriptor) {
+					PapyrusPaletteService.LocalProviderDescriptor descriptor = (PapyrusPaletteService.LocalProviderDescriptor)selectedElement;
+					deletePaletteButton.setEnabled(true);
+					editPaletteButton.setEnabled(true);
 				} else {
 					deletePaletteButton.setEnabled(false);
 					editPaletteButton.setEnabled(false);
-					editPaletteButton.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_EditButtonTooltip_LocalPaletteNotSelected);
 				}
+
+				//				if(selectedElement instanceof PapyrusPaletteService.LocalProviderDescriptor) {
+				//					deletePaletteButton.setEnabled(true);
+				//					// check if the palette is in good configuration to be edited...
+				//					if(PaletteUtil.areRequiredProfileApplied(getActiveSashPage(), (PapyrusPaletteService.LocalProviderDescriptor)selectedElement)) {
+				//						editPaletteButton.setEnabled(true);
+				//						editPaletteButton.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_EditButtonTooltip_LocalPaletteSelected);
+				//					} else {
+				//						editPaletteButton.setEnabled(false);
+				//						editPaletteButton.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_EditButtonTooltip_MissingProfile);
+				//					}
+				//				} else {
+				//					deletePaletteButton.setEnabled(false);
+				//					editPaletteButton.setEnabled(false);
+				//					editPaletteButton.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_EditButtonTooltip_LocalPaletteNotSelected);
+				//				}
 			}
 		};
 	}
@@ -351,8 +365,12 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 				}
 
 				IStructuredSelection selection = (IStructuredSelection)availablePalettesTableViewer.getSelection();
-				if(selection != null && (selection.getFirstElement() instanceof PapyrusPaletteService.LocalProviderDescriptor)) {
-					editLocalPalette((PapyrusPaletteService.LocalProviderDescriptor)selection.getFirstElement());
+				if(selection != null) {
+					if((selection.getFirstElement() instanceof PapyrusPaletteService.LocalProviderDescriptor)) {
+						editLocalPalette((PapyrusPaletteService.LocalProviderDescriptor)selection.getFirstElement());
+					} else if(selection.getFirstElement() instanceof PapyrusPaletteService.ExtendedProviderDescriptor) {
+						editExtendedPalette((PapyrusPaletteService.ExtendedProviderDescriptor)selection.getFirstElement());
+					}
 				}
 			}
 
@@ -383,7 +401,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 			 * {@inheritDoc}
 			 */
 			public void mouseUp(MouseEvent e) {
-				deleteLocalPalette();
+				restoreExtendedPaletteToDefault();
 			}
 
 			/**
@@ -447,6 +465,8 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 				IStructuredSelection selection = (IStructuredSelection)event.getSelection();
 				if(selection.getFirstElement() instanceof LocalProviderDescriptor) {
 					editLocalPalette((PapyrusPaletteService.LocalProviderDescriptor)selection.getFirstElement());
+				} else if(selection.getFirstElement() instanceof ExtendedProviderDescriptor) {
+					editExtendedPalette((PapyrusPaletteService.ExtendedProviderDescriptor)selection.getFirstElement());
 				}
 			}
 		});
@@ -481,6 +501,20 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 	}
 
 	/**
+	 * Reset the current selected extended palette to the initial configurtion in the plugin
+	 */
+	protected void restoreExtendedPaletteToDefault() {
+		IStructuredSelection selection = (IStructuredSelection)availablePalettesTableViewer.getSelection();
+		if(selection == null || !(selection.getFirstElement() instanceof PapyrusPaletteService.ExtendedProviderDescriptor)) {
+			MessageDialog.openError(getShell(), Messages.Dialog_Not_Local_Palette_Title, Messages.Dialog_Not_Local_Palette_Message);
+		} else {
+			PapyrusPaletteService.ExtendedProviderDescriptor descriptor = ((PapyrusPaletteService.ExtendedProviderDescriptor)selection.getFirstElement());
+			String id = descriptor.getContributionID();
+			PapyrusPalettePreferences.unregisterLocalRedefinition(id);
+		}
+	}
+
+	/**
 	 * Edits the current selected local palette
 	 */
 	protected void editLocalPalette(PapyrusPaletteService.LocalProviderDescriptor descriptor) {
@@ -488,6 +522,26 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 		WizardDialog wizardDialog = new WizardDialog(new Shell(), wizard);
 		wizardDialog.open();
 	}
+
+	/**
+	 * @param firstElement
+	 */
+	protected void editExtendedPalette(ExtendedProviderDescriptor descriptor) {
+		// check the file in plugin state area. 
+		String contributionID = descriptor.getContributionID();
+		String paletteRedefinition = PapyrusPalettePreferences.getPaletteRedefinition(contributionID);
+
+		if(paletteRedefinition == null) {
+			// create a local redefinition of this palette contribution
+			PapyrusPalettePreferences.createPaletteRedefinition(descriptor);
+		}
+
+
+		UpdateExtendedPaletteWizard wizard = new UpdateExtendedPaletteWizard(getActiveSashPage(), descriptor, getCustomizer());
+		WizardDialog wizardDialog = new WizardDialog(new Shell(), wizard);
+		wizardDialog.open();
+	}
+
 
 	/**
 	 * Changes the visibility of the given provider
@@ -634,6 +688,9 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 		public Image getImage(Object element) {
 			if(element instanceof PapyrusPaletteService.LocalProviderDescriptor) {
 				return Activator.getImage(LOCAL_DESCRIPTOR);
+			} else if(element instanceof PapyrusPaletteService.ExtendedProviderDescriptor) {
+				// icon should be decorated if it is already defined in a local way or not.
+				return Activator.getImage(EXTENDED_PLUGIN_DESCRIPTOR);
 			} else if(element instanceof PapyrusPaletteService.ProviderDescriptor) {
 				return Activator.getImage(PLUGIN_DESCRIPTOR);
 			}

@@ -14,6 +14,9 @@
 package org.eclipse.papyrus.diagram.common.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -23,16 +26,31 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
+import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest.ViewAndElementDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
+import org.eclipse.gmf.runtime.diagram.ui.util.INotationType;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.services.ServiceException;
@@ -50,11 +68,16 @@ import org.w3c.dom.NodeList;
  */
 public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnectionTool {
 
+	private static final int STATE_CONNECTION_WAITING_END = STATE_CONNECTION_STARTED + 1;
+
 	/** List of element types of which one will be created (of type <code>IElementType</code>). */
-	protected List elementTypes;
+	// protected List elementTypes;
 
 	/** post action list */
 	protected List<IAspectAction> postActions = new ArrayList<IAspectAction>();
+
+	/** List of elements to create */
+	private final List<IElementType> elementTypes;
 
 	/**
 	 * Creates an AspectUnspecifiedTypeCreationTool
@@ -62,99 +85,39 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 	 * @param elementTypes
 	 *        List of element types of which one will be created (of type <code>IElementType</code>).
 	 */
-	public AspectUnspecifiedTypeConnectionTool(List elementTypes) {
+	public AspectUnspecifiedTypeConnectionTool(List<IElementType> elementTypes) {
 		super(elementTypes);
 		this.elementTypes = elementTypes;
-
 	}
 
-	//	/**
-	//	 * {@inheritDoc}
-	//	 */
-	//	@Override
-	//	protected void createConnection() {
-	//		List<?> selectedEditParts = getCurrentViewer().getSelectedEditParts();
-	//
-	//		// only attempt to create connection if there are two shapes selected
-	//		if(!selectedEditParts.isEmpty()) {
-	//
-	//			IGraphicalEditPart sourceEditPart = (IGraphicalEditPart)selectedEditParts.get(0);
-	//
-	//			IGraphicalEditPart targetEditPart = selectedEditParts.size() == 2 ? (IGraphicalEditPart)selectedEditParts.get(1) : sourceEditPart;
-	//
-	//			CreateConnectionRequest connectionRequest = (CreateConnectionRequest)createTargetRequest();
-	//			//get the anchors locations
-	//			Point[] newLocation = LayoutUtils.getLinkAnchor(sourceEditPart, targetEditPart);
-	//			connectionRequest.setTargetEditPart(sourceEditPart);
-	//			connectionRequest.setType(RequestConstants.REQ_CONNECTION_START);
-	//			connectionRequest.setLocation(newLocation[0]);
-	//
-	//			// only if the connection is supported will we get a non null
-	//			// command from the sourceEditPart
-	//			if(sourceEditPart.getCommand(connectionRequest) != null) {
-	//
-	//				connectionRequest.setSourceEditPart(sourceEditPart);
-	//				connectionRequest.setTargetEditPart(targetEditPart);
-	//				connectionRequest.setType(RequestConstants.REQ_CONNECTION_END);
-	//				//connectionRequest.setLocation(new Point(0, 0));
-	//				connectionRequest.setLocation(newLocation[1]);
-	//
-	//				// inits the listener
-	//				View eObject = (View)targetEditPart.getAdapter(View.class);
-	//				DiagramEventBroker eventBroker = null;
-	//				NotificationListener listener = null;
-	//				boolean requiresPostAction = requiresPostAction();
-	//
-	//				// adds the listener
-	//				if(requiresPostAction) {
-	//					// register a listener to have information about element creation
-	//					// retrieves editing domain
-	//					TransactionalEditingDomain domain;
-	//					try {
-	//						domain = EditorUtils.getServiceRegistry().getService(TransactionalEditingDomain.class);
-	//						eventBroker = DiagramEventBroker.getInstance(domain);
-	//
-	//						if(eventBroker == null) {
-	//							return;
-	//						}
-	//						listener = new NotificationListener() {
-	//
-	//							public void notifyChanged(Notification notification) {
-	//								Connector newValue = (Connector)notification.getNewValue();
-	//								EditPart editPart = (EditPart)getCurrentViewer().getEditPartRegistry().get(newValue);
-	//								for(IAspectAction action : postActions) {
-	//									action.run(editPart);
-	//								}
-	//							}
-	//						};
-	//
-	//						eventBroker.addNotificationListener(eObject, listener);
-	//					} catch (ServiceException e) {
-	//						Activator.log.error(e);
-	//					}
-	//				}
-	//
-	//				EditPartViewer viewer = getCurrentViewer();
-	//				Command command = targetEditPart.getCommand(connectionRequest);
-	//				setCurrentCommand(command);
-	//
-	//				executeCurrentCommand();
-	//
-	//				if(requiresPostAction) {
-	//					if(eventBroker != null) {
-	//						eventBroker.removeNotificationListener(eObject, listener);
-	//					}
-	//				}
-	//
-	//				selectAddedObject(viewer, DiagramCommandStack.getReturnValues(command));
-	//
-	//				setAvoidDeactivation(false);
-	//				eraseSourceFeedback();
-	//				deactivate();
-	//			}
-	//		}
-	//	}
+	/**
+	 * @return the elementDescriptors
+	 */
+	public List<IElementType> getElementTypes() {
+		return elementTypes;
+	}
 
+	/**
+	 * @see org.eclipse.gef.tools.AbstractTool#handleButtonUp(int)
+	 */
+	protected boolean handleButtonUp(int button) {
+		setCtrlKeyDown(getCurrentInput().isControlKeyDown());
+
+		if(isInState(STATE_CONNECTION_STARTED)) {
+			setState(STATE_CONNECTION_WAITING_END);
+			return false;
+		} else if(isInState(STATE_CONNECTION_WAITING_END)) {
+			handleCreateConnection();
+		}
+
+		setState(STATE_TERMINAL);
+
+		if(isInState(STATE_TERMINAL | STATE_INVALID)) {
+			handleFinished();
+		}
+
+		return true;
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -382,11 +345,303 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 	}
 
 	/**
-	 * Returns the element types created by this tool
-	 * 
-	 * @return the element types created by this tool
+	 * {@inheritDoc}
 	 */
-	public List<IElementType> getElementTypes() {
-		return elementTypes;
+	@Override
+	protected CreateAspectUnspecifiedTypeConnectionRequest createTargetRequest() {
+		return new CreateAspectUnspecifiedTypeConnectionRequest(getElementTypes(), false, getPreferencesHint());
 	}
+
+
+	/**
+	 * Copy of the class {@link CreateUnspecifiedTypeConnectionRequest} to use the Papyrus request factory instead of the gmf one.
+	 */
+	public class CreateAspectUnspecifiedTypeConnectionRequest extends CreateUnspecifiedTypeConnectionRequest {
+
+		/**
+		 * List of relationship types of which one will be created (of type <code>IElementType</code>).
+		 */
+		// private List relationshipTypes;
+
+		/**
+		 * A map containing the <code>CreateConnectionRequest</code> for each
+		 * element type.
+		 */
+		private Map requests = new HashMap();
+
+		/**
+		 * A flag to indicate if the Modeling Assistant Service should be used to
+		 * find the types when the other end of the connection is known.
+		 */
+		private boolean useModelingAssistantService;
+
+		/**
+		 * A flag to indicate if this request is to create a connection from target
+		 * to source.
+		 */
+		private boolean directionReversed = false;
+
+		/**
+		 * The hint used to find the appropriate preference store from which general
+		 * diagramming preference values for properties of shapes, connections, and
+		 * diagrams can be retrieved. This hint is mapped to a preference store in
+		 * the {@link DiagramPreferencesRegistry}.
+		 */
+		private PreferencesHint preferencesHint;
+
+		/**
+		 * Creates a new <code>CreateUnspecifiedTypeConnectionRequest</code>.
+		 * 
+		 * @param relationshipTypes
+		 *        List of relationship types of which one will be created (of
+		 *        type <code>IElementType</code>).
+		 * @param useModelingAssistantService
+		 *        True if the Modeling Assistant Service should be used to find
+		 *        the types when the other end of the connection is known.
+		 * @param preferencesHint
+		 *        The preference hint that is to be used to find the appropriate
+		 *        preference store from which to retrieve diagram preference
+		 *        values. The preference hint is mapped to a preference store in
+		 *        the preference registry <@link DiagramPreferencesRegistry>.
+		 */
+		public CreateAspectUnspecifiedTypeConnectionRequest(List<IElementType> relationshipTypes, boolean useModelingAssistantService, PreferencesHint preferencesHint) {
+			super(relationshipTypes, useModelingAssistantService, preferencesHint);
+			this.useModelingAssistantService = useModelingAssistantService;
+			this.preferencesHint = preferencesHint;
+			createRequests();
+		}
+
+		/**
+		 * Creates a <code>CreateConnectionRequest</code> for each relationship
+		 * type and adds it to the map of requests.
+		 */
+		protected void createRequests() {
+			for(Iterator<IElementType> iter = getElementTypes().iterator(); iter.hasNext();) {
+				IElementType elementType = iter.next();
+				Request request = PapyrusCreateViewRequestFactory.getCreateConnectionRequest(elementType, getPreferencesHint());
+				request.setType(getType());
+				requests.put(elementType, request);
+			}
+		}
+
+		/**
+		 * Returns the <code>CreateRequest</code> for the relationship type passed in.
+		 * 
+		 * @param relationshipType
+		 * @return the <code>CreateRequest</code>
+		 */
+		public CreateRequest getRequestForType(IElementType relationshipType) {
+			if(requests != null) {
+				return (CreateConnectionRequest)requests.get(relationshipType);
+			}
+			return null;
+		}
+
+
+		public void addRequest(IElementType relationshipType, Request request) {
+			if(requests != null) {
+				requests.put(relationshipType, request);
+			}
+		}
+
+		/**
+		 * Returns a list of all the requests.
+		 * 
+		 * @return the requests
+		 */
+		public List getAllRequests() {
+			if(requests != null) {
+				return new ArrayList(requests.values());
+			}
+			return Collections.EMPTY_LIST;
+		}
+
+		//		/**
+		//		 * Returns the list of element types.
+		//		 * 
+		//		 * @return Returns the list of element types.
+		//		 */
+		//		public List getElementTypes() {
+		//			return relationshipTypes;
+		//		}
+
+		/**
+		 * @see org.eclipse.gef.requests.CreateConnectionRequest#setSourceEditPart(org.eclipse.gef.EditPart)
+		 */
+		public void setSourceEditPart(EditPart part) {
+			if(requests != null) {
+				for(Iterator iter = requests.values().iterator(); iter.hasNext();) {
+					CreateConnectionRequest request = (CreateConnectionRequest)iter.next();
+					request.setSourceEditPart(part);
+				}
+			}
+			super.setSourceEditPart(part);
+		}
+
+		/**
+		 * @see org.eclipse.gef.requests.TargetRequest#setTargetEditPart(org.eclipse.gef.EditPart)
+		 */
+		public void setTargetEditPart(EditPart part) {
+			if(requests != null) {
+				for(Iterator iter = requests.values().iterator(); iter.hasNext();) {
+					CreateConnectionRequest request = (CreateConnectionRequest)iter.next();
+					request.setTargetEditPart(part);
+				}
+			}
+			super.setTargetEditPart(part);
+		}
+
+		/**
+		 * @see org.eclipse.gef.requests.CreateRequest#setLocation(org.eclipse.draw2d.geometry.Point)
+		 */
+		public void setLocation(Point location) {
+			if(requests != null) {
+				for(Iterator iter = requests.values().iterator(); iter.hasNext();) {
+					CreateConnectionRequest request = (CreateConnectionRequest)iter.next();
+					request.setLocation(location);
+				}
+			}
+			super.setLocation(location);
+		}
+
+		/**
+		 * @see org.eclipse.gef.Request#setType(java.lang.Object)
+		 */
+		public void setType(Object type) {
+			if(requests != null) {
+				for(Iterator iter = requests.values().iterator(); iter.hasNext();) {
+					CreateConnectionRequest request = (CreateConnectionRequest)iter.next();
+					request.setType(type);
+				}
+			}
+			super.setType(type);
+		}
+
+		/**
+		 * Returns true if this request is to create a connection from target to
+		 * source.
+		 * 
+		 * @return Returns the directionReversed.
+		 */
+		public boolean isDirectionReversed() {
+			return directionReversed;
+		}
+
+		/**
+		 * Sets the directionReversed flag.
+		 * 
+		 * @param directionReversed
+		 *        The directionReversed to set.
+		 */
+		public void setDirectionReversed(boolean directionReversed) {
+			this.directionReversed = directionReversed;
+		}
+
+		/**
+		 * Should the Modeling Assistant Service be used?
+		 * 
+		 * @return Returns true if the Modeling Assistant Service should be used to
+		 *         find the types when the other end of the connection is known.
+		 */
+		public boolean useModelingAssistantService() {
+			return useModelingAssistantService;
+		}
+
+		/**
+		 * Gets the preferences hint that is to be used to find the appropriate
+		 * preference store from which to retrieve diagram preference values. The
+		 * preference hint is mapped to a preference store in the preference
+		 * registry <@link DiagramPreferencesRegistry>.
+		 * 
+		 * @return the preferences hint
+		 */
+		protected PreferencesHint getPreferencesHint() {
+			return preferencesHint;
+		}
+	}
+
+	public static class PapyrusCreateViewRequestFactory {
+
+		/**
+		 * Creates a new <code>CreateViewRequest</code> or <code>CreateViewAndElementRequest</code> based on the <code>IElementType</code> passed in.
+		 * 
+		 * @param type
+		 *        the <code>IElementType</code>
+		 * @param preferencesHint
+		 *        The preference hint that is to be used to find the appropriate
+		 *        preference store from which to retrieve diagram preference
+		 *        values. The preference hint is mapped to a preference store in
+		 *        the preference registry <@link DiagramPreferencesRegistry>.
+		 * @return the new request
+		 */
+		public static CreateViewRequest getCreateShapeRequest(IElementType type, PreferencesHint preferencesHint) {
+			if(type instanceof INotationType) {
+				ViewDescriptor viewDescriptor = new ViewDescriptor(null, Node.class, ((INotationType)type).getSemanticHint(), preferencesHint);
+				return new CreateViewRequest(viewDescriptor);
+			} else if(type instanceof IHintedType) {
+				ViewAndElementDescriptor viewDescriptor = new ViewAndElementDescriptor(new CreateElementRequestAdapter(new CreateElementRequest(type)), Node.class, ((IHintedType)type).getSemanticHint(), preferencesHint);
+				return new CreateViewAndElementRequest(viewDescriptor);
+			} else {
+				return new CreateViewAndElementRequest(type, preferencesHint);
+			}
+		}
+
+		/**
+		 * Creates a new <code>CreateConnectionViewRequest</code> or <code>CreateConnectionViewAndElementRequest</code> based on the
+		 * <code>IElementType</code> passed in.
+		 * 
+		 * @param type
+		 *        the <code>IElementType</code>
+		 * @param preferencesHint
+		 *        The preference hint that is to be used to find the appropriate
+		 *        preference store from which to retrieve diagram preference
+		 *        values. The preference hint is mapped to a preference store in
+		 *        the preference registry <@link DiagramPreferencesRegistry>.
+		 * @return the new request
+		 */
+		public static CreateConnectionViewRequest getCreateConnectionRequest(IElementType type, PreferencesHint preferencesHint) {
+			if(type instanceof INotationType) {
+				// Pass in the type as the element adapter so that it can be
+				// retrieved in the cases where a popup menu is to appear with a
+				// list of types.
+				ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(type, null, preferencesHint);
+				return new CreateConnectionViewRequest(viewDescriptor);
+			} else if(type instanceof IHintedType) {
+				return new CreateConnectionViewAndElementRequest(type, ((IHintedType)type).getSemanticHint(), preferencesHint);
+			} else {
+				return new CreateConnectionViewAndElementRequest(type, preferencesHint);
+			}
+		}
+
+		/**
+		 * Creates a new <code>CreateConnectionViewRequest</code> or <code>CreateConnectionViewAndElementRequest</code> based on the
+		 * <code>IElementType</code> passed in.
+		 * 
+		 * @param type
+		 *        the <code>IElementType</code>
+		 * @param graphicalHint
+		 *        graphical hint for the view to create
+		 * @param preferencesHint
+		 *        The preference hint that is to be used to find the appropriate
+		 *        preference store from which to retrieve diagram preference
+		 *        values. The preference hint is mapped to a preference store in
+		 *        the preference registry <@link DiagramPreferencesRegistry>.
+		 * @return the new request
+		 */
+		public static CreateConnectionViewRequest getCreateConnectionRequest(IElementType type, String graphicalHint, PreferencesHint preferencesHint) {
+			if(type instanceof INotationType) {
+				// Pass in the type as the element adapter so that it can be
+				// retrieved in the cases where a popup menu is to appear with a
+				// list of types.
+				ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(type, graphicalHint, preferencesHint);
+				return new CreateConnectionViewRequest(viewDescriptor);
+			} else if(type instanceof IHintedType) {
+				// force the graphical hint instead of the hint of the hinted element
+				return new CreateConnectionViewAndElementRequest(type, graphicalHint, preferencesHint);
+			} else {
+				return new CreateConnectionViewAndElementRequest(type, preferencesHint);
+			}
+		}
+	}
+
 }

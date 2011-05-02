@@ -196,25 +196,27 @@ public class Configuration {
 		List<Stereotype> stereotypeList = retrieveAllStereotypesOwnedByTheProfiles();
 		if(!stereotypeList.isEmpty()) {
 			for(Stereotype ste : stereotypeList) {
-				StereotypeRepresentation currentSte = null;
-				//does this stereotype exist?
-				if(getStereotypeRepresentation(ste.getQualifiedName()) == null) {
-					currentSte = new StereotypeRepresentation(ste.getQualifiedName());
-					myStereotypesList.add(currentSte);
-				} else {
-					currentSte = getStereotypeRepresentation(ste.getQualifiedName());
-				}
-				currentSte.setUMLStereotype(ste);
-				EList<Property> attributs = ste.getAllAttributes();
-				for(Property prop : attributs) {
-					if(prop != null) {
-						if((prop.getAssociation() == null && !prop.isDerived()) || ((prop.getAssociation() != null) && (!prop.getName().startsWith("base_")) && !prop.isDerived())) { //$NON-NLS-1$
-							if(currentSte.getPropertyRepresentation(ste.getQualifiedName(), prop.getQualifiedName()) == null) {
-								PropertyRepresentation myProp = new PropertyRepresentation(ste.getQualifiedName(), prop.getQualifiedName());
-								myProp.setUMLProperty(prop);
-								currentSte.addProperty(myProp);
-							} else {
-								currentSte.getPropertyRepresentation(ste.getQualifiedName(), prop.getQualifiedName()).setUMLProperty(prop);
+				if(ste != null) {
+					StereotypeRepresentation currentSte = null;
+					//does this stereotype exist?
+					if(getStereotypeRepresentation(ste.getQualifiedName()) == null) {
+						currentSte = new StereotypeRepresentation(ste.getQualifiedName());
+						myStereotypesList.add(currentSte);
+					} else {
+						currentSte = getStereotypeRepresentation(ste.getQualifiedName());
+					}
+					currentSte.setUMLStereotype(ste);
+					EList<Property> attributs = ste.getAllAttributes();
+					for(Property prop : attributs) {
+						if(prop != null) {
+							if((prop.getAssociation() == null && !prop.isDerived()) || ((prop.getAssociation() != null) && (!prop.getName().startsWith("base_")) && !prop.isDerived())) { //$NON-NLS-1$
+								if(currentSte.getPropertyRepresentation(ste.getQualifiedName(), prop.getQualifiedName()) == null) {
+									PropertyRepresentation myProp = new PropertyRepresentation(ste.getQualifiedName(), prop.getQualifiedName());
+									myProp.setUMLProperty(prop);
+									currentSte.addProperty(myProp);
+								} else {
+									currentSte.getPropertyRepresentation(ste.getQualifiedName(), prop.getQualifiedName()).setUMLProperty(prop);
+								}
 							}
 						}
 					}

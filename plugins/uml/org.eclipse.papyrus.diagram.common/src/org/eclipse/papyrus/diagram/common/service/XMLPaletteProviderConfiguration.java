@@ -50,7 +50,7 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 	 * @param configElement
 	 *        The provider XML configuration element
 	 */
-	private XMLPaletteProviderConfiguration(IConfigurationElement configElement) {
+	protected XMLPaletteProviderConfiguration(IConfigurationElement configElement) {
 		IConfigurationElement configChildren[];
 
 		// read the editor object if any
@@ -197,5 +197,4 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 	public ProviderPriority getPriority() {
 		return priority;
 	}
-
 }

@@ -54,6 +54,7 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.*;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
@@ -92,7 +93,29 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		 if (op.getViewKind() == Edge.class)
 		 return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		 */
+		// check Diagram Type should be the class diagram
+		String modelID = UMLVisualIDRegistry.getModelID(op.getContainerView());
+		if(!getDiagramProvidedId().equals(modelID)) {
+			return false;
+		}
+		int visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
+		if(Node.class.isAssignableFrom(op.getViewKind())) {
+			return UMLVisualIDRegistry.canCreateNode(op.getContainerView(), visualID);
+		}
+
 		return true;
+	}
+
+	/**
+	 * Indicates for which diagram this provider works for.
+	 * <p>
+	 * This method can be overloaded when diagram editor inherits from another one, but should never be <code>null</code>
+	 * </p>
+	 * 
+	 * @return the unique identifier of the diagram for which views are provided.
+	 */
+	protected String getDiagramProvidedId() {
+		return ModelEditPart.MODEL_ID;
 	}
 
 	/**
@@ -123,7 +146,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		} else {
 			visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
 			if(elementType != null) {
-				if(!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
+				if((!UMLElementTypes.isKnownElementType(elementType) && !(elementType instanceof IExtendedHintedElementType)) || (!(elementType instanceof IHintedType))) {
 					return false; // foreign element type
 				}
 				String elementTypeHint = ((IHintedType)elementType).getSemanticHint();
