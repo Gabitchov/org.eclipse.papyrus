@@ -13,11 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.table.requirement;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.facet.widgets.nattable.internal.Messages;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.sysml.table.requirement.editor.RequirementTableEditor;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
@@ -82,5 +86,14 @@ public class CreateRequirementTableCommand extends AbstractCreateNattableEditorC
 			return pack.getAppliedProfile(SysmlResource.REQUIREMENTS_ID, true) != null;
 		}
 		return false;
+	}
+
+	@Override
+	protected List<String> getHiddenColumnName() {
+		List<String> hiddenColumns = new ArrayList<String>();
+		hiddenColumns.add(Messages.NatTableWidget_metaclass);
+		//TODO should be externalized, currently not externalized in EMF-Facet
+		hiddenColumns.add("/eContainer"); //$NON-NLS-1$
+		return hiddenColumns;
 	}
 }

@@ -35,7 +35,9 @@ import org.eclipse.emf.facet.infra.query.ModelQuery;
 import org.eclipse.emf.facet.infra.query.ModelQuerySet;
 import org.eclipse.emf.facet.infra.query.core.ModelQuerySetCatalog;
 import org.eclipse.emf.facet.widgets.nattable.NatTableWidgetUtils;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Column;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
+import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidgetInternalUtils;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
@@ -226,11 +228,51 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 		Assert.isNotNull(context);
 		tableInstance.setContext(context);
 
+		setHiddenColumns(papyrusTable);
 		setFillingQueries(papyrusTable);
 		setSynchronization(papyrusTable);
 		return papyrusTable;
 	}
 
+	/**
+	 * Allows to hide the columns created by default
+	 * 
+	 * @param papyrusTable
+	 */
+	private void setHiddenColumns(final PapyrusTableInstance papyrusTable) {
+		List<String> hiddenColumnsName = getHiddenColumnName();
+		if(!hiddenColumnsName.isEmpty()) {
+			for(Column column : papyrusTable.getTable().getColumns()) {
+				String name = NatTableWidgetInternalUtils.getColumnName(column);
+				if(hiddenColumnsName.contains(name)) {
+					column.setIsHidden(true);
+				}
+			}
+		}
+	}
+ 
+	/**
+	 * Returns the list of the columns to hide. Currently, the name can be :
+	 * <ul>
+	 * <li>[Label]</li>
+	 * <li>[Metaclass]</li>
+	 * <li>/eContainer</li>
+	 * </ul>
+	 * 
+	 * @return
+	 *         the list of the columns to hide
+	 */
+	protected List<String> getHiddenColumnName() {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * Returns the table configura
+	 * tion for the table
+	 * 
+	 * @return
+	 *         the table configuration of the table
+	 */
 	protected TableConfiguration getTableConfiguration(){
 		return null;
 	}
