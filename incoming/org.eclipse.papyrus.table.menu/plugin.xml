@@ -4,11 +4,6 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            categoryId="org.eclipse.papyrus.editor.category"
-            id="org.eclipse.papyrus.table.menu.add.in.table"
-            name="Add in current table">
-      </command>
-      <command
             categoryId="org.eclipse.emf.facet.widgets.nattable.command.category"
             defaultHandler="org.eclipse.papyrus.table.menu.handler.CommonColumnHandler"
             description="Show only the common columns"
@@ -30,13 +25,6 @@
                id="org.eclipse.ui.commands.toggleState">
          </state>
       </command>
-   </extension>
-   <extension
-         point="org.eclipse.ui.handlers">
-      <handler
-            class="org.eclipse.papyrus.table.menu.handler.AddToCurrentTableHandler"
-            commandId="org.eclipse.papyrus.table.menu.add.in.table">
-      </handler>
    </extension>
    <!-- We remove this action, between, now we have the Drag&Drop -->
    <!--
