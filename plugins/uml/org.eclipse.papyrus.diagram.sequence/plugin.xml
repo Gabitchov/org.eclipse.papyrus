@@ -1491,6 +1491,15 @@
       <clientContext id="org.eclipse.papyrus.diagram.sequenceDefaultCtx"/>
       <clientContext id="org.eclipse.papyrus.diagram.sequenceCtx_3001"/>
    </extension>
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+   <editpolicyProvider
+         class="org.eclipse.papyrus.diagram.sequence.providers.CustomEditPolicyProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </editpolicyProvider>
+</extension>
 
 
 

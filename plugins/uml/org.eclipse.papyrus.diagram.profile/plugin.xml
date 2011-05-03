@@ -1563,6 +1563,15 @@
          <context decoratorTargets="PRIMARY_VIEW"/>
       </decoratorProvider>
    </extension>
+               <extension
+                     point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+                  <editpolicyProvider
+                        class="org.eclipse.papyrus.diagram.profile.custom.providers.CustomEditPolicyProvider">
+                     <Priority
+                           name="Lowest">
+                     </Priority>
+                  </editpolicyProvider>
+               </extension>
 
 
 

@@ -917,6 +917,15 @@
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+   <editpolicyProvider
+         class="org.eclipse.papyrus.diagram.deployment.custom.providers.CustomEditPolicyProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </editpolicyProvider>
+</extension>
 
 
 
