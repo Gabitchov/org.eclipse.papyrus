@@ -170,22 +170,12 @@
       </rm:uri>
     </rm:provider>
     
-    <!--
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
       <rm:uri format="{0}/facet/updates/milestones/0.1">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
-    </rm:provider>
-    -->
-    
-    <!-- EMF Facet -->
-	<rm:searchPath name="org.eclipse.emf.facet">
-		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<rm:uri format="http://download.eclipse.org/facet/updates/milestones/0.1" />
-		</rm:provider>
-	</rm:searchPath>
-    
+    </rm:provider>    
     
     <!--
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
