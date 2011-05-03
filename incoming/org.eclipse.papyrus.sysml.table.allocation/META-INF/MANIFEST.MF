@@ -9,7 +9,8 @@ Require-Bundle: org.eclipse.emf.facet.infra.common.core,
  org.eclipse.papyrus.table.instance;bundle-version="0.8.0",
  org.eclipse.emf.facet.widgets.nattable;bundle-version="0.1.0",
  org.eclipse.emf.facet.widgets.nattable.tableconfiguration;bundle-version="0.1.0",
- org.eclipse.emf.facet.widgets.nattable.instance;bundle-version="0.1.0"
+ org.eclipse.emf.facet.widgets.nattable.instance;bundle-version="0.1.0",
+ org.eclipse.papyrus.sysml
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,bin
 Bundle-Version: 0.8.0.qualifier

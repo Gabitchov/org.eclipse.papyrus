@@ -33,6 +33,4 @@ public class CreateAllocationTableFactory extends AbstractNattableEditorFactory 
 	public CreateAllocationTableFactory() {
 		super(AllocationTableEditor.class, AllocationTableEditor.EDITOR_TYPE);
 	}
-
-
 }

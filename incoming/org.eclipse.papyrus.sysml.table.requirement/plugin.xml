@@ -59,7 +59,7 @@
       </propertyTester>
    </extension>
    <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
-      <browserCustomization file="resources/hideAllClassFeatures.uiCustom">
+      <browserCustomization file="resources/table_UML_Class_hideAllClassFeatures.uiCustom">
       </browserCustomization>
    </extension>
    <extension point="org.eclipse.emf.facet.infra.query.registration">

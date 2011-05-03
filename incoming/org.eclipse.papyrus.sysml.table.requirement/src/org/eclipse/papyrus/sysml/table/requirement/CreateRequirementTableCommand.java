@@ -44,7 +44,12 @@ public class CreateRequirementTableCommand extends AbstractCreateNattableEditorC
 		super(RequirementTableEditor.EDITOR_TYPE, RequirementTableEditor.DEFAULT_NAME);
 	}
 
-
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.table.common.handlers.AbstractCreateNattableEditorCommand#getTableConfiguration()
+	 * 
+	 * @return
+	 */
 	@Override
 	protected TableConfiguration getTableConfiguration() {
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -78,5 +83,4 @@ public class CreateRequirementTableCommand extends AbstractCreateNattableEditorC
 		}
 		return false;
 	}
-
 }

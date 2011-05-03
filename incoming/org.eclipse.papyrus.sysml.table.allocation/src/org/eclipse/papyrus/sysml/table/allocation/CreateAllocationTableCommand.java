@@ -18,14 +18,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.resource.NotFoundException;
 import org.eclipse.papyrus.sysml.table.allocation.editor.AllocationTableEditor;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.table.common.handlers.AbstractCreateNattableEditorCommand;
-import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 
@@ -50,33 +46,25 @@ public class CreateAllocationTableCommand extends AbstractCreateNattableEditorCo
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.table.defaultt.handlers.AbstractCreateNattableEditorCommand#createEditorModel(ServicesRegistry)
+	 * @see org.eclipse.papyrus.table.common.handlers.AbstractCreateNattableEditorCommand#getTableConfiguration()
 	 * 
-	 * @param serviceRegistry
 	 * @return
-	 * @throws ServiceException
-	 * @throws NotFoundException
 	 */
 	@Override
-	protected Object createEditorModel(ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
-		PapyrusTableInstance papyrusTable = (PapyrusTableInstance)super.createEditorModel(serviceRegistry);
-
+	protected TableConfiguration getTableConfiguration() {
 		ResourceSet resourceSet = new ResourceSetImpl();
-		String symbolicName = org.eclipse.papyrus.sysml.table.allocation.Activator.getDefault().getBundle().getSymbolicName();
-		URI uri = URI.createPlatformPluginURI(symbolicName + "/resource/allocate.tableconfiguration", true); //$NON-NLS-1$
-		resourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().put("tableconfiguration", new XMIResourceFactoryImpl()); //$NON-NLS-1$
+
+		String symbolicName = Activator.getDefault().getBundle().getSymbolicName();
+		URI uri = URI.createPlatformPluginURI(symbolicName + "/resources/allocate.tableconfiguration", true); //$NON-NLS-1$
 		Resource resource = resourceSet.getResource(uri, true);
 
-		//we load the configuration for the table
 		TableConfiguration tableConfiguration = null;
-		if(resource.getContents().get(0) instanceof TableConfiguration) {
+		if(resource.getContents().get(0) instanceof org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration) {
 			tableConfiguration = (TableConfiguration)resource.getContents().get(0);
+			return tableConfiguration;
 		}
-
-		papyrusTable.getTable().setTableConfiguration(tableConfiguration);
-		return papyrusTable;
+		return null;
 	}
-
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.table.common.handlers.AbstractCreateNattableEditorCommand#isEnabled()
@@ -90,7 +78,7 @@ public class CreateAllocationTableCommand extends AbstractCreateNattableEditorCo
 			Element el = (Element)object;
 			Package pack = el.getNearestPackage();
 			//we can create an Allocation Table only when the profile is applied
-			return pack.getAppliedProfile("SysML::Allocations", true) != null; //$NON-NLS-1$
+			return pack.getAppliedProfile(SysmlResource.ALLOCATIONS_ID, true) != null;
 		}
 		return false;
 	}

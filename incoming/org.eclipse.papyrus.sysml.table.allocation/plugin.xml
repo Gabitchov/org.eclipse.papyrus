@@ -8,12 +8,7 @@
    </extension>
     <extension point="org.eclipse.ui.menus">
       <menuContribution allPopups="false" locationURI="toolbar:org.eclipse.papyrus.table.ui.toolbar">
-         <command
-               commandId="org.eclipse.papyrus.sysml.table.allocation.create.table.command"
-               icon="icons/allocation_table.png"
-               id="org.eclipse.papyrus.table.ui.toolbar.allocation.table"
-               style="push"
-               tooltip="Create a new SysML Allocation table">
+         <command commandId="org.eclipse.papyrus.sysml.table.allocation.create.table.command" icon="icons/allocation_table.png" id="org.eclipse.papyrus.table.ui.toolbar.allocation.table" style="push" tooltip="Create a new SysML Allocation table">
             <visibleWhen>
                <with variable="activeEditorId">
                   <equals value="org.eclipse.papyrus.core.papyrusEditor">
@@ -23,12 +18,7 @@
          </command>
       </menuContribution>
       <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createtable">
-       <command
-             commandId="org.eclipse.papyrus.sysml.table.allocation.create.table.command"
-             icon="icons/allocation_table.png"
-             id="org.eclipse.papyrus.modelexplorer.popupmenu.createtable.allocation.table"
-             style="push"
-             tooltip="Create a new SysML Allocation table">
+       <command commandId="org.eclipse.papyrus.sysml.table.allocation.create.table.command" icon="icons/allocation_table.png" id="org.eclipse.papyrus.modelexplorer.popupmenu.createtable.allocation.table" style="push" tooltip="Create a new SysML Allocation table">
             <visibleWhen>
                <with variable="activeEditorId">
                   <equals value="org.eclipse.papyrus.core.papyrusEditor">
@@ -38,12 +28,7 @@
          </command>
       </menuContribution>
       <menuContribution allPopups="false" locationURI="menu:org.eclipse.papyrus.table.ui.menu.tables">
-       <command
-             commandId="org.eclipse.papyrus.sysml.table.allocation.create.table.command"
-             icon="icons/allocation_table.png"
-             id="org.eclipse.papyrus.table.ui.menu.tables.allocation.table"
-             style="push"
-             tooltip="Create a new SysML Allocation table">
+       <command commandId="org.eclipse.papyrus.sysml.table.allocation.create.table.command" icon="icons/allocation_table.png" id="org.eclipse.papyrus.table.ui.menu.tables.allocation.table" style="push" tooltip="Create a new SysML Allocation table">
             <visibleWhen>
                <with variable="activeEditorId">
                   <equals value="org.eclipse.papyrus.core.papyrusEditor">
@@ -61,12 +46,8 @@
       <handler class="org.eclipse.papyrus.sysml.table.allocation.CreateAllocationTableCommand" commandId="org.eclipse.papyrus.sysml.table.allocation.create.table.command">
          <activeWhen>
             <and>
-               <with
-                     variable="selection">
-                  <test
-                        forcePluginActivation="true"
-                        property="org.eclipse.papyrus.sysml.table.allocation.tester.isAppliedAllocations"
-                        value="true">
+               <with variable="selection">
+                  <test forcePluginActivation="true" property="org.eclipse.papyrus.sysml.table.allocation.tester.isAppliedAllocations" value="true">
                   </test>
                </with>
             </and>
@@ -74,16 +55,13 @@
       </handler>
    </extension>
    <extension point="org.eclipse.emf.facet.infra.query.registration">
-      <modelqueryset file="resource/allocate.querySet"/>
+      <modelqueryset file="resources/allocate.querySet"/>
    </extension>
-   <extension
-         point="org.eclipse.core.expressions.propertyTesters">
-      <propertyTester
-            class="org.eclipse.papyrus.sysml.table.allocation.tester.AllocationPropertyTester"
-            id="org.eclipse.papyrus.sysml.table.allocation.tester"
-            namespace="org.eclipse.papyrus.sysml.table.allocation.tester"
-            properties="isAppliedAllocations"
-            type="org.eclipse.jface.viewers.IStructuredSelection">
+   <extension point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester class="org.eclipse.papyrus.sysml.table.allocation.tester.AllocationPropertyTester" id="org.eclipse.papyrus.sysml.table.allocation.tester" namespace="org.eclipse.papyrus.sysml.table.allocation.tester" properties="isAppliedAllocations" type="org.eclipse.jface.viewers.IStructuredSelection">
       </propertyTester>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization file="resources/table_SysML_Allocation_showOnlyClientAndSupplier.uiCustom"/>
    </extension>
 </plugin>

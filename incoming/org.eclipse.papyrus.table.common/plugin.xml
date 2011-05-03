@@ -25,6 +25,6 @@
       </menuContribution>
    </extension>
    <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
-      <browserCustomization file="resources/hideEAnnotationFeature.uiCustom"/>
+      <browserCustomization file="resources/table_Ecore_hideEAnnotationFeature.uiCustom"/>
    </extension>
 </plugin>

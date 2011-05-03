@@ -18,6 +18,9 @@ import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionExcep
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.emf.facet.infra.query.runtime.ModelQueryParameterValue;
+import org.eclipse.emf.facet.widgets.celleditors.ICommandFactoriesRegistry;
+import org.eclipse.emf.facet.widgets.celleditors.ICommandFactory;
+import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.InstantiationMethodParameters;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
@@ -40,9 +43,16 @@ public class CreateRequirement implements IJavaModelQuery<Package, org.eclipse.u
 	 * @throws ModelQueryExecutionException
 	 */
 	public org.eclipse.uml2.uml.Class evaluate(final Package context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		ModelQueryParameterValue modelquery = parameterValues.getParameterValueByName("editingDomain");
-		EditingDomain editingDomain = (EditingDomain)modelquery.getValue();
+		EditingDomain editingDomain = null;
+		ModelQueryParameterValue model = parameterValues.getParameterValueByName(InstantiationMethodParameters.getEditingDomainParameter().getName());
+		if(model != null) {
+			if(model.getValue() instanceof EditingDomain) {
+				editingDomain = (EditingDomain)model.getValue();
+			}
+		}
 		if(editingDomain != null) {
+			ICommandFactory commandFactory = ICommandFactoriesRegistry.INSTANCE.getCommandFactoryFor(editingDomain);
+
 			if(context != null) {
 
 				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(context);
