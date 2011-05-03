@@ -4,6 +4,8 @@
     xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <rm:property key="build.type" mutable="true" value="N"/>
   <rm:locator pattern="^org\.eclipse\.mdt\.papyrus\.releng.*" searchPathRef="releng"/>
+  <rm:locator pattern="^org\.eclipse\.emf\.facet(\..*)?" searchPathRef="org.eclipse.emf.facet" failOnError="true" />
+  
   <rm:locator pattern="^org\.eclipse\.papyrus\.build.*" searchPathRef="releng"/>
   <rm:locator pattern="^org\.eclipse\.papyrus.*" searchPathRef="sources"/>
   <rm:locator pattern="^org\.eclipse\.xtext\.gmf\.glue.*" searchPathRef="sources"/>
@@ -167,12 +169,24 @@
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
+    
+    <!--
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
       <rm:uri format="{0}/facet/updates/milestones/0.1">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
+    -->
+    
+    <!-- EMF Facet -->
+	<rm:searchPath name="org.eclipse.emf.facet">
+		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<rm:uri format="http://download.eclipse.org/facet/updates/milestones/0.1" />
+		</rm:provider>
+	</rm:searchPath>
+    
+    
     <!--
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
