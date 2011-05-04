@@ -37,9 +37,16 @@ public class CustomTransitionGuardEditPart extends TransitionGuardEditPart {
 					isFirstTrigger = false;
 				Event e = t.getEvent();
 				if(e instanceof CallEvent) {
-					textToEdit = textToEdit + ((CallEvent)e).getOperation().getName();
+					if(((CallEvent) e).getOperation() != null)
+						textToEdit = textToEdit + ((CallEvent)e).getOperation().getName();
+					else
+						textToEdit = textToEdit + ((CallEvent)e).getName();
+
 				} else if(e instanceof SignalEvent) {
-					textToEdit = textToEdit + ((SignalEvent)e).getSignal().getName();
+					if(((SignalEvent) e).getSignal() != null)
+						textToEdit = textToEdit + ((SignalEvent)e).getSignal().getName();
+					else
+						textToEdit = textToEdit + ((SignalEvent)e).getName();
 				} else if(e instanceof ChangeEvent) {
 
 					textToEdit = textToEdit + "when " + "\"" + retrieveBody((OpaqueExpression)((ChangeEvent)e).getChangeExpression(), "Natural language") + "\"";
@@ -68,7 +75,7 @@ public class CustomTransitionGuardEditPart extends TransitionGuardEditPart {
 
 		return textToEdit;
 	}
-	
+
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		// TODO Auto-generated method stub
