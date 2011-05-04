@@ -28,6 +28,10 @@ http://www.eclipse.org/legal/epl-v10.html
       <discovery label="%PapyrusUpdateSiteName" url="http://www.eclipse.org/modeling/mdt/?project=papyrus#papyrus"/>
    </url>
 
+   <includes
+         id="org.eclipse.epf.richtext"
+         version="0.0.0"/>
+
    <plugin
          id="org.eclipse.papyrus.core"
          download-size="0"
@@ -296,6 +300,20 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <plugin
          id="org.eclipse.papyrus.paletteconfiguration.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.documentation.view"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.documentation.view.papyrus"
          download-size="0"
          install-size="0"
          version="0.0.0"
