@@ -1,7 +1,0 @@
-# Tracing options for the org.eclipse.papyrus.diagram.deployment plug-in
-
-# Common issues
-org.eclipse.papyrus.diagram.deployment/debug=false
-
-# Visual IDs
-org.eclipse.papyrus.diagram.deployment/debug/visualID=false
