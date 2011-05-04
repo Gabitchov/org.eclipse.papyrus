@@ -39,5 +39,9 @@
 <unit id="org.eclipse.xtext.sdk.feature.group" version="1.0.1.v201008251220"/>
 <repository location="http://download.eclipse.org/releases/indigo"/>
 </location>
+<location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.epf.richtext.feature.group" version="1.6.0.201101131810"/>
+<repository location="http://download.eclipse.org/modeling/mdt/papyrus/extra/updates/richtext"/>
+</location>
 </locations>
 </target>
