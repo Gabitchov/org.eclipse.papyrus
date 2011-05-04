@@ -18,8 +18,6 @@ import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionExcep
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.emf.facet.infra.query.runtime.ModelQueryParameterValue;
-import org.eclipse.emf.facet.widgets.celleditors.ICommandFactoriesRegistry;
-import org.eclipse.emf.facet.widgets.celleditors.ICommandFactory;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.InstantiationMethodParameters;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
@@ -51,8 +49,6 @@ public class CreateRequirement implements IJavaModelQuery<Package, org.eclipse.u
 			}
 		}
 		if(editingDomain != null) {
-			ICommandFactory commandFactory = ICommandFactoriesRegistry.INSTANCE.getCommandFactoryFor(editingDomain);
-
 			if(context != null) {
 
 				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(context);
