@@ -9,7 +9,6 @@ Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.core;bundle-version="0.8.0";visibility:=reexport,
- org.eclipse.papyrus.extendedtypes;bundle-version="0.8.0";visibility:=reexport,
  org.eclipse.emf;bundle-version="2.6.0",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
  org.eclipse.papyrus.log;bundle-version="0.8.0"
