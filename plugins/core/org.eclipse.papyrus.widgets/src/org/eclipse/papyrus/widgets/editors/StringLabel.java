@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.Composite;
  */
 public class StringLabel extends AbstractValueEditor implements IChangeListener {
 
-	private CLabel valueLabel;
+	private final CLabel valueLabel;
 
 	private ILabelProvider labelProvider;
 
@@ -39,7 +39,7 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 	 * @param style
 	 *        The style to be applied to this editor's CLabel
 	 */
-	public StringLabel(Composite parent, int style) {
+	public StringLabel(final Composite parent, final int style) {
 		super(parent, style);
 		valueLabel = factory.createCLabel(this, "", style); //$NON-NLS-1$
 		valueLabel.setLayoutData(getDefaultLayoutData());
@@ -61,14 +61,16 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 	 * @param labelProvider
 	 *        The Label provider used to display the current value
 	 */
-	public void setLabelProvider(ILabelProvider labelProvider) {
+	public void setLabelProvider(final ILabelProvider labelProvider) {
 		this.labelProvider = labelProvider;
-		if(binding != null)
+		if(binding != null) {
 			binding.updateModelToTarget();
+		}
 	}
 
 	@Override
 	public void doBinding() {
+        //We don't do a real databinding here
 		modelProperty.addChangeListener(this);
 		updateLabel();
 	}
@@ -96,7 +98,7 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 	}
 
 	@Override
-	public void setReadOnly(boolean readOnly) {
+	public void setReadOnly(final boolean readOnly) {
 		//Nothing
 	}
 
@@ -106,20 +108,25 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 	}
 
 	@Override
-	public void setToolTipText(String text) {
+	public void setToolTipText(final String text) {
 		valueLabel.setToolTipText(text);
 		super.setLabelToolTipText(text);
 	}
 
-	public void handleChange(ChangeEvent event) {
+	public void handleChange(final ChangeEvent event) {
 		updateLabel();
 	}
 
 	@Override
 	public void dispose() {
-		if(modelProperty != null)
+		if(modelProperty != null) {
 			modelProperty.removeChangeListener(this);
+		}
 		super.dispose();
 	}
 
+	@Override
+	public void refreshValue() {
+		updateLabel();
+	}
 }
