@@ -5,11 +5,12 @@
 <!-- Diagram declaration -->
 <extension point="org.eclipse.papyrus.core.papyrusDiagram">
 	<creationCommand
-		creationCommandClass="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand"
-		icon="icons/obj16/Diagram_Requirement.gif"
-		id="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
-		label="SysML Requirement Diagram"
-        language="sysml"/>
+       creationCommandClass="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand"
+       creationCondition="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCondition"
+       icon="icons/obj16/Diagram_Requirement.gif"
+       id="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
+       label="SysML Requirement Diagram"
+       language="sysml"/>
 	<editorDiagram
 		actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
 		factoryClass="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramEditorFactory"

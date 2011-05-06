@@ -5,11 +5,12 @@
 <!-- Diagram declaration -->
 <extension point="org.eclipse.papyrus.core.papyrusDiagram">
 	<creationCommand
-		creationCommandClass="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramCreateCommand"
-		icon="icons/obj16/Diagram_Package.gif"
-		id="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
-		language="uml"
-		label="UML Package Diagram"/>
+       creationCommandClass="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramCreateCommand"
+       creationCondition="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramCreationCondition"
+       icon="icons/obj16/Diagram_Package.gif"
+       id="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
+       label="UML Package Diagram"
+       language="uml"/>
 	<editorDiagram
 		actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
 		factoryClass="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramEditorFactory"

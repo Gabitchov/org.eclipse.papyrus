@@ -85,10 +85,11 @@
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
+            creationCondition="org.eclipse.papyrus.diagram.communication.CommunicationDiagramCreationCondition"
             icon="icons/obj16/Diagram_Communication.gif"
             id="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
-            language="uml"
-            label="UML Communication Diagram">
+            label="UML Communication Diagram"
+            language="uml">
       </creationCommand>
    </extension>
 

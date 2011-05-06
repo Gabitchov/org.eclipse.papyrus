@@ -5,11 +5,12 @@
 <!-- Diagram declaration -->
 <extension point="org.eclipse.papyrus.core.papyrusDiagram">
 	<creationCommand
-		creationCommandClass="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramCreateCommand"
-		icon="icons/obj16/Diagram_BlockDefinition.gif"
-		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
-		language="sysml"
-		label="SysML Block Definition Diagram"/>
+       creationCommandClass="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramCreateCommand"
+       creationCondition="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramCondition"
+       icon="icons/obj16/Diagram_BlockDefinition.gif"
+       id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
+       label="SysML Block Definition Diagram"
+       language="sysml"/>
 	<editorDiagram
 		actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
 		factoryClass="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramEditorFactory"
