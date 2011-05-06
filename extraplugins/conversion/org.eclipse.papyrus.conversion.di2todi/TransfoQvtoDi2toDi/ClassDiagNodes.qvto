@@ -157,11 +157,10 @@ helper setChildrenForRedefinableTemplateSignature (in node:di2::GraphNode) : Ord
 			style1, style2
 		};
 		layoutConstraint := object notation::Bounds {};
-		
 	};
 	return OrderedSet {
-		containedCTP;
-	}
+		containedCTP
+	};
 }
 
 helper setClassifierTemplateParameters(in node:di2::GraphNode):OrderedSet (notation::Node){
