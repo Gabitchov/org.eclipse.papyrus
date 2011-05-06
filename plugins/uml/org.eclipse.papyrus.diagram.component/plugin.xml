@@ -106,7 +106,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.diagram.component.CreateComponentDiagramCommand"
+            class="org.eclipse.papyrus.diagram.component.CreateComponentDiagramWithNavigationHandler"
             commandId="org.eclipse.papyrus.diagram.component.CreateComponentDiagramCommand">
 		<activeWhen>
             <or>
@@ -169,6 +169,7 @@
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.diagram.component.CreateComponentDiagramCommand"
+            creationCondition="org.eclipse.papyrus.diagram.component.ComponentDiagramCreationCondition"
             icon="icons/obj16/ComponentDiagram.gif"
             id="org.eclipse.papyrus.diagram.component.CreateComponentDiagramCommand"
             label="UML Component Diagram"

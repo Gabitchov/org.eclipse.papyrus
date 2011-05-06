@@ -63,7 +63,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.diagram.deployment.CreateDeploymentDiagramCommand"
+            class="org.eclipse.papyrus.diagram.deployment.CreateDeploymentDiagramWithNavigationHandler"
             commandId="org.eclipse.papyrus.diagram.deployment.CreateDeploymentDiagramCommand">
 		<activeWhen>
             <or>
@@ -126,6 +126,7 @@
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.diagram.deployment.CreateDeploymentDiagramCommand"
+            creationCondition="org.eclipse.papyrus.diagram.deployment.DeploymentDiagramCreationCondition"
             icon="icons/obj16/DeploymentDiagram.gif"
             id="org.eclipse.papyrus.diagram.deployment.CreateDeploymentDiagramCommand"
             label="UML Deployment Diagram"
