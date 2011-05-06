@@ -86,7 +86,7 @@ public class StructuredActivityNodeKeywordParser extends MessageFormatParser imp
 	public String getPrintString(IAdaptable element, int flags) {
 		Object obj = element.getAdapter(EObject.class);
 		if(obj instanceof StructuredActivityNode) {
-			if(element instanceof ExpansionRegion) {
+			if(obj instanceof ExpansionRegion) {
 				ExpansionRegion region = (ExpansionRegion)obj;
 				return String.format(KEYWORD_FORMAT, region.getMode().getName());
 			} else {
