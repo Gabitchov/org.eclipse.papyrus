@@ -141,15 +141,15 @@ public class ObjectNodeParser extends MessageFormatParser implements ISemanticPa
 	@SuppressWarnings("unchecked")
 	public List getSemanticElementsBeingParsed(EObject element) {
 		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
-		ActivityParameterNode parameterNode = null;
-		if(element instanceof ActivityParameterNode) {
-			parameterNode = (ActivityParameterNode)element;
-			semanticElementsBeingParsed.add(parameterNode);
-			if(parameterNode.getType() != null) {
-				semanticElementsBeingParsed.add(parameterNode.getType());
+		ObjectNode objectNode = null;
+		if(element instanceof ObjectNode) {
+			objectNode = (ObjectNode)element;
+			semanticElementsBeingParsed.add(objectNode);
+			if(objectNode.getType() != null) {
+				semanticElementsBeingParsed.add(objectNode.getType());
 			}
-			if(parameterNode.getInStates() != null && !parameterNode.getInStates().isEmpty()) {
-				semanticElementsBeingParsed.addAll(parameterNode.getInStates());
+			if(objectNode.getInStates() != null && !objectNode.getInStates().isEmpty()) {
+				semanticElementsBeingParsed.addAll(objectNode.getInStates());
 			}
 		}
 		return semanticElementsBeingParsed;
