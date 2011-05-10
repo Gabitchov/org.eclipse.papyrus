@@ -37,6 +37,15 @@
                type="org.eclipse.ui.IWorkbenchPart">
          </propertyTester>
       </extension>
+      <extension
+            point="org.eclipse.papyrus.ui.perspectiveconfiguration">
+         <configuration
+               perspectiveID="org.eclipse.papyrus.core.perspective">
+            <toolbar
+                  toolbarID="org.eclipse.papyrus.layouttool.toolbarlayout">
+            </toolbar>
+         </configuration>
+      </extension>
      	 
 
 </plugin>
