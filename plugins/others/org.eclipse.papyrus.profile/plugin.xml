@@ -108,7 +108,7 @@
       <objectContribution
             adaptable="false"
             id="org.eclipse.gmt.modisco.infra.importPackage"
-            objectClass="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
+            objectClass="org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem">
          <action
                class="org.eclipse.papyrus.profile.ui.actions.ImportLibrariesFromRepositoryAction"
                id="org.eclipse.papyrus.profile.importPackage"
@@ -118,7 +118,7 @@
       <objectContribution
             adaptable="false"
             id="org.eclipse.gmt.modisco.infra.importPackageFile"
-            objectClass="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
+            objectClass="org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem">
          <action
                class="org.eclipse.papyrus.profile.ui.actions.ImportFromFile"
                id="org.eclipse.papyrus.profile.importFile"
@@ -128,7 +128,7 @@
       <objectContribution
             adaptable="false"
             id="org.eclipse.gmt.modisco.infra.importProfile"
-            objectClass="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
+            objectClass="org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem">
          <action
                class="org.eclipse.papyrus.profile.ui.actions.ImportProfileAction"
                icon="resources/icons/Profile.gif"
