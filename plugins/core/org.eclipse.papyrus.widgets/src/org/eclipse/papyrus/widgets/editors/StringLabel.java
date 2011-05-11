@@ -41,9 +41,9 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 	 */
 	public StringLabel(final Composite parent, final int style) {
 		super(parent, style);
-		valueLabel = factory.createCLabel(this, "", style); //$NON-NLS-1$
-		valueLabel.setLayoutData(getDefaultLayoutData());
-		labelProvider = new LabelProvider();
+		this.valueLabel = factory.createCLabel(this, "", style); //$NON-NLS-1$
+		this.valueLabel.setLayoutData(getDefaultLayoutData());
+		this.labelProvider = new LabelProvider();
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 	 *         The CLabel used to display this editor's value
 	 */
 	public CLabel getValueLabel() {
-		return valueLabel;
+		return this.valueLabel;
 	}
 
 	/**
@@ -63,15 +63,15 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 	 */
 	public void setLabelProvider(final ILabelProvider labelProvider) {
 		this.labelProvider = labelProvider;
-		if(binding != null) {
-			binding.updateModelToTarget();
+		if(this.binding != null) {
+			this.binding.updateModelToTarget();
 		}
 	}
 
 	@Override
 	public void doBinding() {
-        //We don't do a real databinding here
-		modelProperty.addChangeListener(this);
+		//We don't do a real databinding here
+		this.modelProperty.addChangeListener(this);
 		updateLabel();
 	}
 
@@ -79,17 +79,17 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 	 * Updates the CLabel's display
 	 */
 	protected void updateLabel() {
-		if(modelProperty != null) {
-			String text = labelProvider.getText(modelProperty.getValue());
-			Image image = labelProvider.getImage(modelProperty.getValue());
-			valueLabel.setText(text);
-			valueLabel.setImage(image);
+		if(this.modelProperty != null && !this.valueLabel.isDisposed()) {
+			String text = this.labelProvider.getText(this.modelProperty.getValue());
+			Image image = this.labelProvider.getImage(this.modelProperty.getValue());
+			this.valueLabel.setText(text);
+			this.valueLabel.setImage(image);
 		}
 	}
 
 	@Override
 	public Object getValue() {
-		return valueLabel.getText();
+		return this.valueLabel.getText();
 	}
 
 	@Override
@@ -104,12 +104,12 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 
 	@Override
 	public boolean isReadOnly() {
-		return !valueLabel.isEnabled();
+		return !this.valueLabel.isEnabled();
 	}
 
 	@Override
 	public void setToolTipText(final String text) {
-		valueLabel.setToolTipText(text);
+		this.valueLabel.setToolTipText(text);
 		super.setLabelToolTipText(text);
 	}
 
@@ -119,8 +119,8 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 
 	@Override
 	public void dispose() {
-		if(modelProperty != null) {
-			modelProperty.removeChangeListener(this);
+		if(this.modelProperty != null) {
+			this.modelProperty.removeChangeListener(this);
 		}
 		super.dispose();
 	}
