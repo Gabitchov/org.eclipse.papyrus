@@ -61,5 +61,8 @@ public class CollectionContentProvider implements IStructuredContentProvider {
 		return new Object[]{};
 	}
 
+	/**
+	 * The Singleton instance
+	 */
 	public static CollectionContentProvider instance = new CollectionContentProvider();
 }

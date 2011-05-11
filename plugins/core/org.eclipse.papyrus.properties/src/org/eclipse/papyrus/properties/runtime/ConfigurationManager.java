@@ -108,8 +108,9 @@ public class ConfigurationManager {
 	}
 
 	private void start() {
-		if(started)
+		if(started) {
 			return;
+		}
 
 		started = true;
 
@@ -225,8 +226,9 @@ public class ConfigurationManager {
 	 * @return
 	 */
 	private ContextDescriptor findDescriptor(Context context) {
-		if(context.getName() == null || context.getName().equals("")) //$NON-NLS-1$
+		if(context.getName() == null || context.getName().equals("")) { //$NON-NLS-1$
 			return null;
+		}
 
 		for(ContextDescriptor descriptor : preferences.getContexts()) {
 			if(descriptor.getName().equals(context.getName())) {
@@ -253,8 +255,9 @@ public class ConfigurationManager {
 	 */
 	public void addContext(URI uri) throws IOException {
 		Context context = (Context)loadEMFModel(uri);
-		if(context != null)
+		if(context != null) {
 			addContext(context, isApplied(context));
+		}
 	}
 
 	/**
@@ -425,7 +428,7 @@ public class ConfigurationManager {
 	 * 
 	 * @return All known contexts
 	 * 
-	 * @see {@link PropertyEditor#getPropertiesRoot()#getContexts()}
+	 * @see PropertiesRoot#getContexts()
 	 */
 	public Collection<Context> getContexts() {
 		return contexts.values();
@@ -500,8 +503,9 @@ public class ConfigurationManager {
 			break;
 		}
 
-		if(propertyEditorName == null)
+		if(propertyEditorName == null) {
 			return null;
+		}
 
 		return getDefaultWidget(EnvironmentPackage.ENVIRONMENT__PROPERTY_EDITOR_TYPES, PropertyEditorType.class, propertyEditorName, "ppe"); //$NON-NLS-1$
 	}
@@ -527,8 +531,9 @@ public class ConfigurationManager {
 	public Namespace getNamespaceByName(String name) {
 		for(Environment environment : root.getEnvironments()) {
 			for(Namespace namespace : environment.getNamespaces()) {
-				if(Util.namespaceEqualsByName(namespace, name))
+				if(Util.namespaceEqualsByName(namespace, name)) {
 					return namespace;
+				}
 			}
 		}
 		Activator.log.warn("Cannot find a registered namespace for '" + name + "'"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -565,6 +570,14 @@ public class ConfigurationManager {
 		instance.start();
 	}
 
+	/**
+	 * Retrieves the Property object associated to the propertyPath in the given context
+	 * 
+	 * @param propertyPath
+	 * @param context
+	 * @return
+	 *         The property associated to the given propertyPath
+	 */
 	public Property getProperty(String propertyPath, Context context) {
 		String elementName = propertyPath.substring(0, propertyPath.lastIndexOf(":")); //$NON-NLS-1$
 		String propertyName = propertyPath.substring(propertyPath.lastIndexOf(":") + 1, propertyPath.length()); //$NON-NLS-1$

@@ -21,6 +21,7 @@ import org.eclipse.papyrus.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.widgets.editors.StringEditor;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
@@ -35,7 +36,17 @@ public class NaturalLanguageEditor implements BodyEditor {
 	private String currentValue;
 
 	public void createWidget(Composite parent, int style) {
-		editor = new StringEditor(parent, style | SWT.MULTI);
+		editor = new StringEditor(parent, style | SWT.MULTI) {
+
+			@Override
+			protected GridData getDefaultLayoutData() {
+				GridData data = super.getDefaultLayoutData();
+				data.grabExcessVerticalSpace = true;
+				data.verticalAlignment = SWT.FILL;
+				return data;
+			}
+		};
+
 		editor.addCommitListener(new ICommitListener() {
 
 			public void commit(AbstractEditor editor) {
@@ -65,8 +76,9 @@ public class NaturalLanguageEditor implements BodyEditor {
 
 			@Override
 			protected void doSetValue(Object value) {
-				if(value instanceof String)
+				if(value instanceof String) {
 					currentValue = (String)value;
+				}
 			}
 
 		};

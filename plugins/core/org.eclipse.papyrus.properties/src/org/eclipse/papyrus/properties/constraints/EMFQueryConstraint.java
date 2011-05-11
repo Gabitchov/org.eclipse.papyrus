@@ -20,8 +20,8 @@ import org.eclipse.emf.facet.infra.query.core.ModelQuerySetCatalog;
 import org.eclipse.emf.facet.infra.query.runtime.ModelQueryResult;
 import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.contexts.ConfigProperty;
-import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
 import org.eclipse.papyrus.properties.contexts.ReferenceProperty;
+import org.eclipse.papyrus.properties.contexts.SimpleConstraint;
 import org.eclipse.papyrus.properties.contexts.ValueProperty;
 import org.eclipse.papyrus.properties.util.EMFHelper;
 
@@ -36,23 +36,18 @@ public class EMFQueryConstraint extends AbstractConstraint {
 	private OCLModelQuery query;
 
 	@Override
-	public void setConstraintDescriptor(ConstraintDescriptor descriptor) {
-		for(ConfigProperty property : descriptor.getProperties()) {
-			if(property.getName().equals("query")) { //$NON-NLS-1$
-
-				if(property instanceof ReferenceProperty) {
-					query = (OCLModelQuery)((ReferenceProperty)property).getValue();
-				} else if(property instanceof ValueProperty) {
-					String queryExpression = ((ValueProperty)property).getValue();
-					query = QueryFactory.eINSTANCE.createOCLModelQuery();
-					query.setQuery(queryExpression);
-					query.setReturnType(EcorePackage.eINSTANCE.getEBoolean());
-					query.getScope().add(EcorePackage.eINSTANCE.getEObject());
-					throw new UnsupportedOperationException();
-				}
-			}
+	protected void setDescriptor(SimpleConstraint descriptor) {
+		ConfigProperty property = getProperty("query"); //$NON-NLS-1$
+		if(property instanceof ReferenceProperty) {
+			query = (OCLModelQuery)getReferenceValue("query"); //$NON-NLS-1$
+		} else {
+			String queryExpression = ((ValueProperty)property).getValue();
+			query = QueryFactory.eINSTANCE.createOCLModelQuery();
+			query.setQuery(queryExpression);
+			query.setReturnType(EcorePackage.eINSTANCE.getEBoolean());
+			query.getScope().add(EcorePackage.eINSTANCE.getEObject());
+			throw new UnsupportedOperationException();
 		}
-		super.setConstraintDescriptor(descriptor);
 	}
 
 	public boolean match(Object selection) {

@@ -21,8 +21,21 @@ import org.eclipse.papyrus.properties.contexts.Section;
 import org.eclipse.papyrus.properties.contexts.Tab;
 import org.eclipse.papyrus.properties.contexts.View;
 
+/**
+ * A ContentProvider for retrieving the available ConstraintDescriptors
+ * 
+ * 
+ * @author Camille Letavernier
+ */
 public class ConstraintDescriptorContentProvider extends AbstractContextualContentProvider {
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param source
+	 *        The source Object used to retrieve the available ConstraintDescriptors
+	 */
 	public ConstraintDescriptorContentProvider(EObject source) {
 		super(source);
 	}

@@ -73,6 +73,14 @@ public class DataSource implements IChangeListener {
 		this.selection = selection;
 	}
 
+	/**
+	 * Return the instance of ModelElement associated to the given path
+	 * 
+	 * @param propertyPath
+	 *        The propertyPath to lookup
+	 * @return
+	 *         The ModelElement associated to the given propertyPath
+	 */
 	public ModelElement getModelElement(String propertyPath) {
 		//ConfigurationManager.instance.getProperty(propertyPath)
 		String key = propertyPath.substring(0, propertyPath.lastIndexOf(":")); //$NON-NLS-1$
@@ -105,8 +113,9 @@ public class DataSource implements IChangeListener {
 		String localPropertyPath = getLocalPropertyPath(propertyPath);
 		ModelElement element = getModelElement(propertyPath);
 
-		if(element == null)
+		if(element == null) {
 			return null;
+		}
 
 		IObservable observable = element.getObservable(localPropertyPath);
 		if(observable != null) {
@@ -133,8 +142,9 @@ public class DataSource implements IChangeListener {
 	 */
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
-		if(element == null)
+		if(element == null) {
 			return EmptyContentProvider.instance;
+		}
 
 		String localPropertyPath = getLocalPropertyPath(propertyPath);
 		return element.getContentProvider(localPropertyPath);
@@ -151,8 +161,9 @@ public class DataSource implements IChangeListener {
 	 */
 	public ILabelProvider getLabelProvider(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
-		if(element == null)
+		if(element == null) {
 			return null;
+		}
 		String localPropertyPath = getLocalPropertyPath(propertyPath);
 		return element.getLabelProvider(localPropertyPath);
 	}
@@ -207,8 +218,9 @@ public class DataSource implements IChangeListener {
 	 */
 	public boolean isOrdered(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
-		if(element == null)
+		if(element == null) {
 			return false;
+		}
 		return element.isOrdered(getLocalPropertyPath(propertyPath));
 	}
 
@@ -219,8 +231,9 @@ public class DataSource implements IChangeListener {
 	 */
 	public boolean isUnique(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
-		if(element == null)
+		if(element == null) {
 			return false;
+		}
 		return element.isUnique(getLocalPropertyPath(propertyPath));
 	}
 
@@ -231,8 +244,9 @@ public class DataSource implements IChangeListener {
 	 */
 	public boolean isMandatory(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
-		if(element == null)
+		if(element == null) {
 			return false;
+		}
 		return element.isMandatory(getLocalPropertyPath(propertyPath));
 	}
 
@@ -243,22 +257,42 @@ public class DataSource implements IChangeListener {
 	 */
 	public boolean isEditable(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
-		if(element == null)
+		if(element == null) {
 			return false;
+		}
 		return element.isEditable(getLocalPropertyPath(propertyPath));
 	}
 
+	/**
+	 * Returns true if the given property should be refresh each time a change
+	 * occurs in the property view. May help when the IObservable doesn't
+	 * catch some change events (For example, for some Ecore derived
+	 * properties).
+	 * 
+	 * @param propertyPath
+	 * @return true if the refresh should be forced
+	 */
 	public boolean forceRefresh(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
-		if(element == null)
+		if(element == null) {
 			return false;
+		}
 		return element.forceRefresh(getLocalPropertyPath(propertyPath));
 	}
 
+	/**
+	 * Return the value factory associated to the given path. May be null
+	 * 
+	 * @param propertyPath
+	 *        The property path to lookup
+	 * @return
+	 *         The factory used to edit and/or instantiate values for this property path
+	 */
 	public ReferenceValueFactory getValueFactory(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
-		if(element == null)
+		if(element == null) {
 			return null;
+		}
 		return element.getValueFactory(getLocalPropertyPath(propertyPath));
 	}
 }

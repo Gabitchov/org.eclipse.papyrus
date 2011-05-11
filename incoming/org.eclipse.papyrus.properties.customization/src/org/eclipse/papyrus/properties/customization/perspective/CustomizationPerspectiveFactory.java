@@ -15,7 +15,11 @@ import org.eclipse.papyrus.properties.customization.Activator;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 
-
+/**
+ * A Factory for instantiating the Customization perspective
+ * 
+ * @author Camille Letavernier
+ */
 public class CustomizationPerspectiveFactory implements IPerspectiveFactory {
 
 	private final static String PROPERTIES = "org.eclipse.ui.views.PropertySheet"; //$NON-NLS-1$

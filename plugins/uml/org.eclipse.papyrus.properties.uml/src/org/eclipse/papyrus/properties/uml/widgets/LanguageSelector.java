@@ -42,7 +42,7 @@ public class LanguageSelector extends StringSelector {
 	public Object[] getSelectedElements() {
 		java.util.List<String> languageNames = new LinkedList<String>();
 
-		if(text.getText() != null && !text.getText().trim().equals("")) {
+		if(text.getText() != null && !text.getText().trim().equals("")) { //$NON-NLS-1$
 			languageNames.add(text.getText());
 		} else {
 			String[] selection = list.getSelection();

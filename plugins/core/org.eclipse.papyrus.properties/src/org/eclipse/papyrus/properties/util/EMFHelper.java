@@ -114,8 +114,9 @@ public class EMFHelper {
 			return true;
 		} else {
 			for(EClass superClass : superTypes) {
-				if(isSubclass(superClass, fromClass))
+				if(isSubclass(superClass, fromClass)) {
 					return true;
+				}
 			}
 		}
 		return false;
@@ -131,10 +132,11 @@ public class EMFHelper {
 	 *         if the EObject could not be resolved
 	 */
 	public static EObject getEObject(Object source) {
-		if(source instanceof EObject)
+		if(source instanceof EObject) {
 			return (EObject)source;
-		else if(source instanceof IAdaptable)
+		} else if(source instanceof IAdaptable) {
 			return (EObject)((IAdaptable)source).getAdapter(EObject.class);
+		}
 
 		return null;
 	}
@@ -210,8 +212,13 @@ public class EMFHelper {
 	 * 
 	 * @param ePackage
 	 * @return
+	 *         The Root package
 	 */
 	public static EPackage getRootPackage(EPackage ePackage) {
+		if(ePackage == null) {
+			return null;
+		}
+
 		if(ePackage.getESuperPackage() == null) {
 			return ePackage;
 		}
@@ -220,15 +227,18 @@ public class EMFHelper {
 
 
 	/**
-	 * Return the list of Concrete (ie. non-abstract) that are subtypes
+	 * Return the list of EClasses that are subtypes
 	 * of the given EClass
 	 * 
 	 * @param type
+	 * @param concreteClassesOnly
+	 *        If true, only Concrete EClasses will be returned. Abstract and Interface EClasses will be filtered
 	 * @return
+	 *         The list of EClasses implementing or extending the given EClass
 	 */
 	public static List<EClass> getSubclassesOf(EClass type, boolean concreteClassesOnly) {
 		List<EClass> result = new LinkedList<EClass>();
-		if(concreteClassesOnly || !type.isAbstract()) {
+		if(!concreteClassesOnly || (!type.isAbstract() && !type.isInterface())) {
 			result.add(type);
 		}
 

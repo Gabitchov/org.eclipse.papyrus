@@ -27,11 +27,21 @@ import org.eclipse.papyrus.properties.contexts.DataContextPackage;
 import org.eclipse.papyrus.properties.contexts.DataContextRoot;
 import org.eclipse.papyrus.widgets.providers.AbstractStaticContentProvider;
 
-
+/**
+ * A ContentProvider for retrieving the available DataContextElements
+ * 
+ * @author Camille Letavernier
+ */
 public class DataContextElementContentProvider extends AbstractStaticContentProvider {
 
 	private List<DataContextElement> elements;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param element
+	 */
 	public DataContextElementContentProvider(DataContextElement element) {
 		Context context = findContext(element);
 		Set<Context> allContexts = new HashSet<Context>();

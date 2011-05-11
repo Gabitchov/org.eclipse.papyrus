@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *     Obeo - initial API and implementation
+ *     Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Added support for enum literals
  *******************************************************************************/
 package org.eclipse.papyrus.properties.providers;
 
@@ -18,6 +19,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
@@ -55,6 +57,9 @@ public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider {
 	@Override
 	public String getText(Object element) {
 		String title = ""; //$NON-NLS-1$
+		if(element instanceof Enumerator) {
+			return ((Enumerator)element).getName();
+		}
 		EObject eObject = getModel(element);
 		IItemLabelProvider itemLabelProvider = getItemLabelProvider(eObject);
 		if(itemLabelProvider != null) {
@@ -91,8 +96,9 @@ public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider {
 	 * @return the EObject from the given element
 	 */
 	private EObject getModel(Object element) {
-		if(element instanceof EObject)
+		if(element instanceof EObject) {
 			return (EObject)element;
+		}
 
 		EObject eObject = null;
 		if(element != null && element instanceof StructuredSelection) {

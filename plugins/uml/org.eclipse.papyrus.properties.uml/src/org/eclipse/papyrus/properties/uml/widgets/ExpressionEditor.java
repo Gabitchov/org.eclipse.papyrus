@@ -20,6 +20,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.properties.modelelement.DataSource;
 import org.eclipse.papyrus.properties.uml.expression.ExpressionList;
 import org.eclipse.papyrus.properties.uml.expression.ExpressionList.Expression;
+import org.eclipse.papyrus.properties.uml.messages.Messages;
 import org.eclipse.papyrus.properties.widgets.AbstractPropertyEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
@@ -48,7 +49,7 @@ public class ExpressionEditor extends AbstractPropertyEditor implements Listener
 		bodyEditorContainer.setLayout(new FillLayout());
 
 		bodyEditor = new DynamicBodyEditor(bodyEditorContainer, style);
-		bodyEditor.setLabel("Body");
+		bodyEditor.setLabel(Messages.ExpressionEditor_BodyLabel);
 		bodyEditor.addChangeListener(this);
 
 		languageEditor.getViewer().addSelectionChangedListener(this);
@@ -58,7 +59,7 @@ public class ExpressionEditor extends AbstractPropertyEditor implements Listener
 
 	@Override
 	public void setInput(DataSource input) {
-		bodies = (IObservableList)input.getObservable("UML:OpaqueExpression:body");
+		bodies = (IObservableList)input.getObservable("UML:OpaqueExpression:body"); //$NON-NLS-1$
 		super.setInput(input);
 	}
 
@@ -90,8 +91,9 @@ public class ExpressionEditor extends AbstractPropertyEditor implements Listener
 
 	public void handleEvent(Event event) {
 		String newValue = bodyEditor.getValue();
-		if(newValue == null)
+		if(newValue == null) {
 			return;
+		}
 
 		currentExpression.setBody(newValue);
 		((ExpressionList)observableList).commit(bodyEditor);

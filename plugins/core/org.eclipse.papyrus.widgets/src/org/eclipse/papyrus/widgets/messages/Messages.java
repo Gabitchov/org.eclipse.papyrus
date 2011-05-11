@@ -70,6 +70,8 @@ public class Messages extends NLS {
 	/** the Enum radio_ no value */
 	public static String EnumRadio_NoValue;
 
+	public static String IntegerMask_ErrorTooManyValues;
+
 	public static String StringEditionFactory_EnterANewValue;
 
 	public static String StringFileSelector_Browse;

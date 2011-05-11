@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.properties.contexts.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -13,6 +18,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.eclipse.papyrus.properties.contexts.CompositeConstraint;
 import org.eclipse.papyrus.properties.contexts.ConfigProperty;
 import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
 import org.eclipse.papyrus.properties.contexts.Context;
@@ -25,6 +31,7 @@ import org.eclipse.papyrus.properties.contexts.DisplayUnit;
 import org.eclipse.papyrus.properties.contexts.Property;
 import org.eclipse.papyrus.properties.contexts.ReferenceProperty;
 import org.eclipse.papyrus.properties.contexts.Section;
+import org.eclipse.papyrus.properties.contexts.SimpleConstraint;
 import org.eclipse.papyrus.properties.contexts.Tab;
 import org.eclipse.papyrus.properties.contexts.UnknownProperty;
 import org.eclipse.papyrus.properties.contexts.ValueProperty;
@@ -121,6 +128,20 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * @generated
 	 */
 	private EClass constraintDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass simpleConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compositeConstraintEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -658,16 +679,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConstraintDescriptor_ConstraintType() {
-		return (EReference)constraintDescriptorEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConstraintDescriptor_Constraints() {
+	public EReference getConstraintDescriptor_OverriddenConstraints() {
 		return (EReference)constraintDescriptorEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -676,8 +688,8 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConstraintDescriptor_Properties() {
-		return (EReference)constraintDescriptorEClass.getEStructuralFeatures().get(4);
+	public EClass getSimpleConstraint() {
+		return simpleConstraintEClass;
 	}
 
 	/**
@@ -685,8 +697,35 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConstraintDescriptor_OverriddenConstraints() {
-		return (EReference)constraintDescriptorEClass.getEStructuralFeatures().get(5);
+	public EReference getSimpleConstraint_ConstraintType() {
+		return (EReference)simpleConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSimpleConstraint_Properties() {
+		return (EReference)simpleConstraintEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompositeConstraint() {
+		return compositeConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompositeConstraint_Constraints() {
+		return (EReference)compositeConstraintEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -695,7 +734,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * @generated
 	 */
 	public EAttribute getConstraintDescriptor_Overrideable() {
-		return (EAttribute)constraintDescriptorEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)constraintDescriptorEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -839,11 +878,15 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		constraintDescriptorEClass = createEClass(CONSTRAINT_DESCRIPTOR);
 		createEAttribute(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__NAME);
 		createEReference(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__DISPLAY);
-		createEReference(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__CONSTRAINT_TYPE);
-		createEReference(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__CONSTRAINTS);
-		createEReference(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__PROPERTIES);
-		createEReference(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS);
 		createEAttribute(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__OVERRIDEABLE);
+		createEReference(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS);
+
+		simpleConstraintEClass = createEClass(SIMPLE_CONSTRAINT);
+		createEReference(simpleConstraintEClass, SIMPLE_CONSTRAINT__CONSTRAINT_TYPE);
+		createEReference(simpleConstraintEClass, SIMPLE_CONSTRAINT__PROPERTIES);
+
+		compositeConstraintEClass = createEClass(COMPOSITE_CONSTRAINT);
+		createEReference(compositeConstraintEClass, COMPOSITE_CONSTRAINT__CONSTRAINTS);
 
 		configPropertyEClass = createEClass(CONFIG_PROPERTY);
 		createEAttribute(configPropertyEClass, CONFIG_PROPERTY__NAME);
@@ -892,6 +935,8 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		unknownPropertyEClass.getESuperTypes().add(this.getProperty());
 		dataContextPackageEClass.getESuperTypes().add(this.getDataContextElement());
 		dataContextRootEClass.getESuperTypes().add(this.getDataContextPackage());
+		simpleConstraintEClass.getESuperTypes().add(this.getConstraintDescriptor());
+		compositeConstraintEClass.getESuperTypes().add(this.getConstraintDescriptor());
 		valuePropertyEClass.getESuperTypes().add(this.getConfigProperty());
 		referencePropertyEClass.getESuperTypes().add(this.getConfigProperty());
 
@@ -952,14 +997,18 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		initEAttribute(getDataContextRoot_Label(), ecorePackage.getEString(), "label", null, 1, 1, DataContextRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDataContextRoot_ModelElementFactory(), theEnvironmentPackage.getModelElementFactoryDescriptor(), null, "modelElementFactory", null, 1, 1, DataContextRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(constraintDescriptorEClass, ConstraintDescriptor.class, "ConstraintDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(constraintDescriptorEClass, ConstraintDescriptor.class, "ConstraintDescriptor", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConstraintDescriptor_Name(), ecorePackage.getEString(), "name", null, 1, 1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConstraintDescriptor_Display(), this.getDisplayUnit(), this.getDisplayUnit_Constraints(), "display", null, 0, 1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConstraintDescriptor_ConstraintType(), theEnvironmentPackage.getConstraintType(), null, "constraintType", null, 1, 1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConstraintDescriptor_Constraints(), this.getConstraintDescriptor(), null, "constraints", null, 0, -1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConstraintDescriptor_Properties(), this.getConfigProperty(), null, "properties", null, 0, -1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConstraintDescriptor_OverriddenConstraints(), this.getConstraintDescriptor(), null, "overriddenConstraints", null, 0, -1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConstraintDescriptor_Overrideable(), ecorePackage.getEBoolean(), "overrideable", "true", 1, 1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConstraintDescriptor_OverriddenConstraints(), this.getSimpleConstraint(), null, "overriddenConstraints", null, 0, -1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(simpleConstraintEClass, SimpleConstraint.class, "SimpleConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSimpleConstraint_ConstraintType(), theEnvironmentPackage.getConstraintType(), null, "constraintType", null, 1, 1, SimpleConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSimpleConstraint_Properties(), this.getConfigProperty(), null, "properties", null, 0, -1, SimpleConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(compositeConstraintEClass, CompositeConstraint.class, "CompositeConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompositeConstraint_Constraints(), this.getSimpleConstraint(), null, "constraints", null, 0, -1, CompositeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configPropertyEClass, ConfigProperty.class, "ConfigProperty", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConfigProperty_Name(), ecorePackage.getEString(), "name", null, 1, 1, ConfigProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

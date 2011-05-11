@@ -21,8 +21,6 @@ import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.messages.Messages;
 import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.MenuEvent;
-import org.eclipse.swt.events.MenuListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Control;
@@ -50,8 +48,15 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 
 	private String className;
 
-	private boolean menuVisible = false;
-
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * The factory will be able to instantiate the given EClass
+	 * 
+	 * @param type
+	 *        The EClass to instantiate when creating new EObjects
+	 */
 	public EcorePropertyEditorFactory(EClass type) {
 		this.type = type;
 	}
@@ -152,8 +157,13 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 		}
 
 		List<EClass> availableClasses = EMFHelper.getSubclassesOf(type, true);
+		if(availableClasses.isEmpty()) {
+			return null;
+		}
 
-		System.out.println(availableClasses);
+		if(availableClasses.size() == 1) {
+			return availableClasses.get(0);
+		}
 
 		final Menu menu = new Menu(widget);
 		for(EClass eClass : availableClasses) {
@@ -173,20 +183,7 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 			});
 		}
 
-		menu.addMenuListener(new MenuListener() {
-
-			public void menuHidden(MenuEvent e) {
-				menuVisible = false;
-			}
-
-			public void menuShown(MenuEvent e) {
-				//Nothing
-			}
-
-		});
-
 		menu.setVisible(true);
-		menuVisible = true;
 
 		//The menu is blocking the thread
 		Display display = widget.getDisplay();
@@ -199,8 +196,9 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 				Activator.log.error(ex);
 			}
 		}
-		if(!display.isDisposed())
+		if(!display.isDisposed()) {
 			display.update();
+		}
 
 		EClass eClass = this.eClass;
 		this.eClass = null;

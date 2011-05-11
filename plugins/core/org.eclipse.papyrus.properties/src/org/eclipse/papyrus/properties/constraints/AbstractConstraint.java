@@ -12,8 +12,12 @@
 package org.eclipse.papyrus.properties.constraints;
 
 import org.eclipse.papyrus.properties.Activator;
+import org.eclipse.papyrus.properties.contexts.ConfigProperty;
 import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
 import org.eclipse.papyrus.properties.contexts.DisplayUnit;
+import org.eclipse.papyrus.properties.contexts.ReferenceProperty;
+import org.eclipse.papyrus.properties.contexts.SimpleConstraint;
+import org.eclipse.papyrus.properties.contexts.ValueProperty;
 import org.eclipse.papyrus.properties.contexts.View;
 
 /**
@@ -28,16 +32,17 @@ public abstract class AbstractConstraint implements Constraint {
 	 * The descriptor used to instantiate this constraint.
 	 * Contains some attributes for this constraint
 	 */
-	protected ConstraintDescriptor descriptor;
+	protected SimpleConstraint descriptor;
 
 	/**
 	 * The display unit (Section or View) associated to this constraint
 	 */
 	protected DisplayUnit display;
 
-	public void setConstraintDescriptor(ConstraintDescriptor descriptor) {
+	public final void setConstraintDescriptor(SimpleConstraint descriptor) {
 		this.descriptor = descriptor;
 		display = descriptor.getDisplay();
+		setDescriptor(descriptor);
 	}
 
 	public View getView() {
@@ -79,6 +84,60 @@ public abstract class AbstractConstraint implements Constraint {
 
 	public ConstraintDescriptor getDescriptor() {
 		return descriptor;
+	}
+
+	protected ConfigProperty getProperty(String propertyName) {
+		if(descriptor == null) {
+			Activator.log.warn("The constraint descriptor has not been set for this constraint : " + this); //$NON-NLS-1$
+		} else {
+			for(ConfigProperty property : descriptor.getProperties()) {
+				if(property.getName().equals(propertyName)) {
+					return property;
+				}
+			}
+		}
+
+		Activator.log.warn("The property " + propertyName + " has not been set for constraint " + descriptor.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+
+		return null;
+	}
+
+	protected String getValue(String propertyName) {
+		ConfigProperty property = getProperty(propertyName);
+
+		if(property instanceof ValueProperty) {
+			return ((ValueProperty)property).getValue();
+		}
+
+		Activator.log.warn("The property " + propertyName + " is not a ValueProperty (Constraint " + descriptor.getName() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+
+		return null;
+	}
+
+	protected Object getReferenceValue(String propertyName) {
+		ConfigProperty property = getProperty(propertyName);
+		if(property instanceof ReferenceProperty) {
+			return ((ReferenceProperty)property).getValue();
+		}
+
+		Activator.log.warn("The property " + propertyName + " is not a ReferenceProperty (Constraint " + descriptor.getName() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+
+		return null;
+	}
+
+	/**
+	 * Sets the Constraint Descriptor for this constraint.
+	 * The constraint descriptor may contain some parameters to configure this
+	 * constraint.
+	 * Implementors may override.
+	 * 
+	 * @param descriptor
+	 *        The constraint descriptor to be associated to this constraint
+	 * 
+	 * @see #setConstraintDescriptor(SimpleConstraint)
+	 */
+	protected void setDescriptor(SimpleConstraint descriptor) {
+		//Implementors may override
 	}
 
 }

@@ -79,8 +79,9 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 		}
 
 		//We listen on Carriage Return only if the editor isn't multiline
-		if((style & SWT.MULTI) == 0)
+		if((style & SWT.MULTI) == 0) {
 			text.addKeyListener(this);
+		}
 
 		setWidgetObservable(WidgetProperties.text(SWT.FocusOut).observe(text), true);
 
@@ -91,8 +92,9 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 	protected GridData getLabelLayoutData() {
 		GridData result = super.getLabelLayoutData();
 		if(text != null) {
-			if((text.getStyle() & SWT.MULTI) != 0)
+			if((text.getStyle() & SWT.MULTI) != 0) {
 				result.verticalAlignment = SWT.BEGINNING;
+			}
 		}
 		return result;
 	}

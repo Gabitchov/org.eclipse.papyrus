@@ -44,11 +44,23 @@ public class EnumRadio extends AbstractPropertyEditor {
 		enumRadio = (org.eclipse.papyrus.widgets.editors.EnumRadio)valueEditor;
 	}
 
+	/**
+	 * Sets the maximum number of columns for this editor. The radio values
+	 * will be distributed according to this number
+	 * 
+	 * @param numColumns
+	 */
 	public void setNumColumns(int numColumns) {
 		this.numColumns = numColumns;
 		enumRadio.setNumColumns(numColumns);
 	}
 
+	/**
+	 * Return the maximum number of columns for this editor
+	 * 
+	 * @return
+	 *         The number of columns for this editor
+	 */
 	public int getNumColumns() {
 		return numColumns;
 	}

@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.properties.contexts.provider;
 
 import java.util.ArrayList;
@@ -283,26 +288,49 @@ public class ContextsItemProviderAdapterFactory extends ContextsAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.properties.contexts.SimpleConstraint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConstraintDescriptorItemProvider constraintDescriptorItemProvider;
+	protected SimpleConstraintItemProvider simpleConstraintItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.properties.contexts.SimpleConstraint}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createConstraintDescriptorAdapter() {
-		if (constraintDescriptorItemProvider == null) {
-			constraintDescriptorItemProvider = new ConstraintDescriptorItemProvider(this);
+	public Adapter createSimpleConstraintAdapter() {
+		if (simpleConstraintItemProvider == null) {
+			simpleConstraintItemProvider = new SimpleConstraintItemProvider(this);
 		}
 
-		return constraintDescriptorItemProvider;
+		return simpleConstraintItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.properties.contexts.CompositeConstraint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CompositeConstraintItemProvider compositeConstraintItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.properties.contexts.CompositeConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCompositeConstraintAdapter() {
+		if (compositeConstraintItemProvider == null) {
+			compositeConstraintItemProvider = new CompositeConstraintItemProvider(this);
+		}
+
+		return compositeConstraintItemProvider;
 	}
 
 	/**
@@ -459,7 +487,8 @@ public class ContextsItemProviderAdapterFactory extends ContextsAdapterFactory i
 		if (unknownPropertyItemProvider != null) unknownPropertyItemProvider.dispose();
 		if (dataContextPackageItemProvider != null) dataContextPackageItemProvider.dispose();
 		if (dataContextRootItemProvider != null) dataContextRootItemProvider.dispose();
-		if (constraintDescriptorItemProvider != null) constraintDescriptorItemProvider.dispose();
+		if (simpleConstraintItemProvider != null) simpleConstraintItemProvider.dispose();
+		if (compositeConstraintItemProvider != null) compositeConstraintItemProvider.dispose();
 		if (valuePropertyItemProvider != null) valuePropertyItemProvider.dispose();
 		if (referencePropertyItemProvider != null) referencePropertyItemProvider.dispose();
 	}

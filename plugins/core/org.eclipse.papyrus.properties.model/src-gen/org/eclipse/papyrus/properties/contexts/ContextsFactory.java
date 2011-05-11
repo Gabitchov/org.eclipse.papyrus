@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.properties.contexts;
 
 import org.eclipse.emf.ecore.EFactory;
@@ -107,13 +112,22 @@ public interface ContextsFactory extends EFactory {
 	DataContextRoot createDataContextRoot();
 
 	/**
-	 * Returns a new object of class '<em>Constraint Descriptor</em>'.
+	 * Returns a new object of class '<em>Simple Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constraint Descriptor</em>'.
+	 * @return a new object of class '<em>Simple Constraint</em>'.
 	 * @generated
 	 */
-	ConstraintDescriptor createConstraintDescriptor();
+	SimpleConstraint createSimpleConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Composite Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Composite Constraint</em>'.
+	 * @generated
+	 */
+	CompositeConstraint createCompositeConstraint();
 
 	/**
 	 * Returns a new object of class '<em>Value Property</em>'.

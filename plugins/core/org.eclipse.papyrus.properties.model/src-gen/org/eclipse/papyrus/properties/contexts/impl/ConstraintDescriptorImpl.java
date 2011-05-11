@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.properties.contexts.impl;
 
 import java.util.Collection;
@@ -29,6 +34,7 @@ import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
 import org.eclipse.papyrus.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.properties.contexts.DisplayUnit;
 
+import org.eclipse.papyrus.properties.contexts.SimpleConstraint;
 import org.eclipse.papyrus.properties.environment.ConstraintType;
 
 /**
@@ -40,17 +46,14 @@ import org.eclipse.papyrus.properties.environment.ConstraintType;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ConstraintDescriptorImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ConstraintDescriptorImpl#getDisplay <em>Display</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ConstraintDescriptorImpl#getConstraintType <em>Constraint Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ConstraintDescriptorImpl#getConstraints <em>Constraints</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ConstraintDescriptorImpl#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ConstraintDescriptorImpl#getOverriddenConstraints <em>Overridden Constraints</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ConstraintDescriptorImpl#isOverrideable <em>Overrideable</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ConstraintDescriptorImpl#getOverriddenConstraints <em>Overridden Constraints</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ConstraintDescriptorImpl extends EObjectImpl implements ConstraintDescriptor {
+public abstract class ConstraintDescriptorImpl extends EObjectImpl implements ConstraintDescriptor {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -72,46 +75,6 @@ public class ConstraintDescriptorImpl extends EObjectImpl implements ConstraintD
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getConstraintType() <em>Constraint Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstraintType()
-	 * @generated
-	 * @ordered
-	 */
-	protected ConstraintType constraintType;
-
-	/**
-	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstraints()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ConstraintDescriptor> constraints;
-
-	/**
-	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProperties()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ConfigProperty> properties;
-
-	/**
-	 * The cached value of the '{@link #getOverriddenConstraints() <em>Overridden Constraints</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOverriddenConstraints()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ConstraintDescriptor> overriddenConstraints;
-
-	/**
 	 * The default value of the '{@link #isOverrideable() <em>Overrideable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,6 +93,16 @@ public class ConstraintDescriptorImpl extends EObjectImpl implements ConstraintD
 	 * @ordered
 	 */
 	protected boolean overrideable = OVERRIDEABLE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getOverriddenConstraints() <em>Overridden Constraints</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOverriddenConstraints()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SimpleConstraint> overriddenConstraints;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -217,71 +190,9 @@ public class ConstraintDescriptorImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConstraintType getConstraintType() {
-		if (constraintType != null && constraintType.eIsProxy()) {
-			InternalEObject oldConstraintType = (InternalEObject)constraintType;
-			constraintType = (ConstraintType)eResolveProxy(oldConstraintType);
-			if (constraintType != oldConstraintType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ContextsPackage.CONSTRAINT_DESCRIPTOR__CONSTRAINT_TYPE, oldConstraintType, constraintType));
-			}
-		}
-		return constraintType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ConstraintType basicGetConstraintType() {
-		return constraintType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConstraintType(ConstraintType newConstraintType) {
-		ConstraintType oldConstraintType = constraintType;
-		constraintType = newConstraintType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.CONSTRAINT_DESCRIPTOR__CONSTRAINT_TYPE, oldConstraintType, constraintType));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ConstraintDescriptor> getConstraints() {
-		if (constraints == null) {
-			constraints = new EObjectContainmentEList<ConstraintDescriptor>(ConstraintDescriptor.class, this, ContextsPackage.CONSTRAINT_DESCRIPTOR__CONSTRAINTS);
-		}
-		return constraints;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ConfigProperty> getProperties() {
-		if (properties == null) {
-			properties = new EObjectContainmentEList<ConfigProperty>(ConfigProperty.class, this, ContextsPackage.CONSTRAINT_DESCRIPTOR__PROPERTIES);
-		}
-		return properties;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ConstraintDescriptor> getOverriddenConstraints() {
+	public EList<SimpleConstraint> getOverriddenConstraints() {
 		if (overriddenConstraints == null) {
-			overriddenConstraints = new EObjectResolvingEList<ConstraintDescriptor>(ConstraintDescriptor.class, this, ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS);
+			overriddenConstraints = new EObjectResolvingEList<SimpleConstraint>(SimpleConstraint.class, this, ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS);
 		}
 		return overriddenConstraints;
 	}
@@ -333,10 +244,6 @@ public class ConstraintDescriptorImpl extends EObjectImpl implements ConstraintD
 		switch (featureID) {
 			case ContextsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY:
 				return basicSetDisplay(null, msgs);
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__CONSTRAINTS:
-				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__PROPERTIES:
-				return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -367,17 +274,10 @@ public class ConstraintDescriptorImpl extends EObjectImpl implements ConstraintD
 				return getName();
 			case ContextsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY:
 				return getDisplay();
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__CONSTRAINT_TYPE:
-				if (resolve) return getConstraintType();
-				return basicGetConstraintType();
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__CONSTRAINTS:
-				return getConstraints();
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__PROPERTIES:
-				return getProperties();
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS:
-				return getOverriddenConstraints();
 			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDEABLE:
 				return isOverrideable();
+			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS:
+				return getOverriddenConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -397,23 +297,12 @@ public class ConstraintDescriptorImpl extends EObjectImpl implements ConstraintD
 			case ContextsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY:
 				setDisplay((DisplayUnit)newValue);
 				return;
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__CONSTRAINT_TYPE:
-				setConstraintType((ConstraintType)newValue);
-				return;
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__CONSTRAINTS:
-				getConstraints().clear();
-				getConstraints().addAll((Collection<? extends ConstraintDescriptor>)newValue);
-				return;
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__PROPERTIES:
-				getProperties().clear();
-				getProperties().addAll((Collection<? extends ConfigProperty>)newValue);
+			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDEABLE:
+				setOverrideable((Boolean)newValue);
 				return;
 			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS:
 				getOverriddenConstraints().clear();
-				getOverriddenConstraints().addAll((Collection<? extends ConstraintDescriptor>)newValue);
-				return;
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDEABLE:
-				setOverrideable((Boolean)newValue);
+				getOverriddenConstraints().addAll((Collection<? extends SimpleConstraint>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -433,20 +322,11 @@ public class ConstraintDescriptorImpl extends EObjectImpl implements ConstraintD
 			case ContextsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY:
 				setDisplay((DisplayUnit)null);
 				return;
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__CONSTRAINT_TYPE:
-				setConstraintType((ConstraintType)null);
-				return;
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__CONSTRAINTS:
-				getConstraints().clear();
-				return;
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__PROPERTIES:
-				getProperties().clear();
+			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDEABLE:
+				setOverrideable(OVERRIDEABLE_EDEFAULT);
 				return;
 			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS:
 				getOverriddenConstraints().clear();
-				return;
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDEABLE:
-				setOverrideable(OVERRIDEABLE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -464,16 +344,10 @@ public class ConstraintDescriptorImpl extends EObjectImpl implements ConstraintD
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ContextsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY:
 				return getDisplay() != null;
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__CONSTRAINT_TYPE:
-				return constraintType != null;
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__CONSTRAINTS:
-				return constraints != null && !constraints.isEmpty();
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__PROPERTIES:
-				return properties != null && !properties.isEmpty();
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS:
-				return overriddenConstraints != null && !overriddenConstraints.isEmpty();
 			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDEABLE:
 				return overrideable != OVERRIDEABLE_EDEFAULT;
+			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS:
+				return overriddenConstraints != null && !overriddenConstraints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

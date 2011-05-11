@@ -203,397 +203,397 @@
     </sections>
   </tabs>
   <views name="SingleConform" sections="//@tabs.0/@sections.0" automaticContext="true">
-    <constraints name="isSingleConform">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleConform">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::ModelElements::Conform"/>
     </constraints>
   </views>
   <views name="MultipleConform" sections="//@tabs.0/@sections.1" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleConform">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleConform">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::ModelElements::Conform"/>
     </constraints>
   </views>
   <views name="SingleView" sections="//@tabs.0/@sections.2" automaticContext="true">
-    <constraints name="isSingleView">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleView">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::ModelElements::View"/>
     </constraints>
   </views>
   <views name="MultipleView" sections="//@tabs.0/@sections.3" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleView">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleView">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::ModelElements::View"/>
     </constraints>
   </views>
   <views name="SingleViewPoint" sections="//@tabs.0/@sections.4" automaticContext="true">
-    <constraints name="isSingleViewPoint">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleViewPoint">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::ModelElements::ViewPoint"/>
     </constraints>
   </views>
   <views name="MultipleViewPoint" sections="//@tabs.0/@sections.5" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleViewPoint">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleViewPoint">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::ModelElements::ViewPoint"/>
     </constraints>
   </views>
   <views name="SingleBlock" sections="//@tabs.0/@sections.6" automaticContext="true">
-    <constraints name="isSingleBlock">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleBlock">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::Block"/>
     </constraints>
   </views>
   <views name="MultipleBlock" sections="//@tabs.0/@sections.7" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleBlock">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleBlock">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::Block"/>
     </constraints>
   </views>
   <views name="SingleDistributedProperty" sections="//@tabs.0/@sections.8" automaticContext="true">
-    <constraints name="isSingleDistributedProperty">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDistributedProperty">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::DistributedProperty"/>
     </constraints>
   </views>
   <views name="MultipleDistributedProperty" sections="//@tabs.0/@sections.9" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleDistributedProperty">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDistributedProperty">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::DistributedProperty"/>
     </constraints>
   </views>
   <views name="SingleDimension" sections="//@tabs.0/@sections.10" automaticContext="true">
-    <constraints name="isSingleDimension">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDimension">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::Dimension"/>
     </constraints>
   </views>
   <views name="MultipleDimension" sections="//@tabs.0/@sections.11" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleDimension">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDimension">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::Dimension"/>
     </constraints>
   </views>
   <views name="SingleUnit" sections="//@tabs.0/@sections.12" automaticContext="true">
-    <constraints name="isSingleUnit">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleUnit">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::Unit"/>
     </constraints>
   </views>
   <views name="MultipleUnit" sections="//@tabs.0/@sections.13" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleUnit">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleUnit">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::Unit"/>
     </constraints>
   </views>
   <views name="SingleValueType" sections="//@tabs.0/@sections.14" automaticContext="true">
-    <constraints name="isSingleValueType">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleValueType">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::ValueType"/>
     </constraints>
   </views>
   <views name="MultipleValueType" sections="//@tabs.0/@sections.15" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleValueType">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleValueType">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::ValueType"/>
     </constraints>
   </views>
   <views name="SingleNestedConnectorEnd" sections="//@tabs.0/@sections.16" automaticContext="true">
-    <constraints name="isSingleNestedConnectorEnd">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleNestedConnectorEnd">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::NestedConnectorEnd"/>
     </constraints>
   </views>
   <views name="MultipleNestedConnectorEnd" sections="//@tabs.0/@sections.17" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleNestedConnectorEnd">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleNestedConnectorEnd">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::NestedConnectorEnd"/>
     </constraints>
   </views>
   <views name="SingleParticipantProperty" sections="//@tabs.0/@sections.18" automaticContext="true">
-    <constraints name="isSingleParticipantProperty">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleParticipantProperty">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::ParticipantProperty"/>
     </constraints>
   </views>
   <views name="MultipleParticipantProperty" sections="//@tabs.0/@sections.19" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleParticipantProperty">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleParticipantProperty">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::ParticipantProperty"/>
     </constraints>
   </views>
   <views name="SingleConnectorProperty" sections="//@tabs.0/@sections.20" automaticContext="true">
-    <constraints name="isSingleConnectorProperty">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleConnectorProperty">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::ConnectorProperty"/>
     </constraints>
   </views>
   <views name="MultipleConnectorProperty" sections="//@tabs.0/@sections.21" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleConnectorProperty">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleConnectorProperty">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::ConnectorProperty"/>
     </constraints>
   </views>
   <views name="SingleBindingConnector" sections="//@tabs.0/@sections.22" automaticContext="true">
-    <constraints name="isSingleBindingConnector">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleBindingConnector">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::BindingConnector"/>
     </constraints>
   </views>
   <views name="MultipleBindingConnector" sections="//@tabs.0/@sections.23" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleBindingConnector">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleBindingConnector">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::BindingConnector"/>
     </constraints>
   </views>
   <views name="SinglePropertySpecificType" sections="//@tabs.0/@sections.24" automaticContext="true">
-    <constraints name="isSinglePropertySpecificType">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSinglePropertySpecificType">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::PropertySpecificType"/>
     </constraints>
   </views>
   <views name="MultiplePropertySpecificType" sections="//@tabs.0/@sections.25" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultiplePropertySpecificType">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultiplePropertySpecificType">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::PropertySpecificType"/>
     </constraints>
   </views>
   <views name="SingleFlowPort" sections="//@tabs.0/@sections.26" automaticContext="true">
-    <constraints name="isSingleFlowPort">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleFlowPort">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::PortAndFlows::FlowPort"/>
     </constraints>
   </views>
   <views name="MultipleFlowPort" sections="//@tabs.0/@sections.27" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleFlowPort">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleFlowPort">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::PortAndFlows::FlowPort"/>
     </constraints>
   </views>
   <views name="SingleFlowProperty" sections="//@tabs.0/@sections.28" automaticContext="true">
-    <constraints name="isSingleFlowProperty">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleFlowProperty">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::PortAndFlows::FlowProperty"/>
     </constraints>
   </views>
   <views name="MultipleFlowProperty" sections="//@tabs.0/@sections.29" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleFlowProperty">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleFlowProperty">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::PortAndFlows::FlowProperty"/>
     </constraints>
   </views>
   <views name="SingleFlowSpecification" sections="//@tabs.0/@sections.30" automaticContext="true">
-    <constraints name="isSingleFlowSpecification">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleFlowSpecification">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::PortAndFlows::FlowSpecification"/>
     </constraints>
   </views>
   <views name="MultipleFlowSpecification" sections="//@tabs.0/@sections.31" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleFlowSpecification">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleFlowSpecification">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::PortAndFlows::FlowSpecification"/>
     </constraints>
   </views>
   <views name="SingleItemFlow" sections="//@tabs.0/@sections.32" automaticContext="true">
-    <constraints name="isSingleItemFlow">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleItemFlow">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::PortAndFlows::ItemFlow"/>
     </constraints>
   </views>
   <views name="MultipleItemFlow" sections="//@tabs.0/@sections.33" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleItemFlow">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleItemFlow">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::PortAndFlows::ItemFlow"/>
     </constraints>
   </views>
   <views name="SingleConstraintBlock" sections="//@tabs.0/@sections.34" automaticContext="true">
-    <constraints name="isSingleConstraintBlock">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleConstraintBlock">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Constraints::ConstraintBlock"/>
     </constraints>
   </views>
   <views name="MultipleConstraintBlock" sections="//@tabs.0/@sections.35" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleConstraintBlock">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleConstraintBlock">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Constraints::ConstraintBlock"/>
     </constraints>
   </views>
   <views name="SingleConstraintProperty" sections="//@tabs.0/@sections.36" automaticContext="true">
-    <constraints name="isSingleConstraintProperty">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleConstraintProperty">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Constraints::ConstraintProperty"/>
     </constraints>
   </views>
   <views name="MultipleConstraintProperty" sections="//@tabs.0/@sections.37" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleConstraintProperty">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleConstraintProperty">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Constraints::ConstraintProperty"/>
     </constraints>
   </views>
   <views name="SingleOptional" sections="//@tabs.0/@sections.38" automaticContext="true">
-    <constraints name="isSingleOptional">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleOptional">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Optional"/>
     </constraints>
   </views>
   <views name="MultipleOptional" sections="//@tabs.0/@sections.39" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleOptional">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleOptional">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Optional"/>
     </constraints>
   </views>
   <views name="SingleRate" sections="//@tabs.0/@sections.40" automaticContext="true">
-    <constraints name="isSingleRate">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleRate">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Rate"/>
     </constraints>
   </views>
   <views name="MultipleRate" sections="//@tabs.0/@sections.41" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleRate">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleRate">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Rate"/>
     </constraints>
   </views>
   <views name="SingleProbability" sections="//@tabs.0/@sections.42" automaticContext="true">
-    <constraints name="isSingleProbability">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleProbability">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Probability"/>
     </constraints>
   </views>
   <views name="MultipleProbability" sections="//@tabs.0/@sections.43" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleProbability">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleProbability">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Probability"/>
     </constraints>
   </views>
   <views name="SingleContinuous" sections="//@tabs.0/@sections.44" automaticContext="true">
-    <constraints name="isSingleContinuous">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleContinuous">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Continuous"/>
     </constraints>
   </views>
   <views name="MultipleContinuous" sections="//@tabs.0/@sections.45" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleContinuous">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleContinuous">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Continuous"/>
     </constraints>
   </views>
   <views name="SingleDiscrete" sections="//@tabs.0/@sections.46" automaticContext="true">
-    <constraints name="isSingleDiscrete">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDiscrete">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Discrete"/>
     </constraints>
   </views>
   <views name="MultipleDiscrete" sections="//@tabs.0/@sections.47" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleDiscrete">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDiscrete">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Discrete"/>
     </constraints>
   </views>
   <views name="SingleControlOperator" sections="//@tabs.0/@sections.48" automaticContext="true">
-    <constraints name="isSingleControlOperator">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleControlOperator">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::ControlOperator"/>
     </constraints>
   </views>
   <views name="MultipleControlOperator" sections="//@tabs.0/@sections.49" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleControlOperator">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleControlOperator">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::ControlOperator"/>
     </constraints>
   </views>
   <views name="SingleNoBuffer" sections="//@tabs.0/@sections.50" automaticContext="true">
-    <constraints name="isSingleNoBuffer">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleNoBuffer">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::NoBuffer"/>
     </constraints>
   </views>
   <views name="MultipleNoBuffer" sections="//@tabs.0/@sections.51" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleNoBuffer">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleNoBuffer">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::NoBuffer"/>
     </constraints>
   </views>
   <views name="SingleOverwrite" sections="//@tabs.0/@sections.52" automaticContext="true">
-    <constraints name="isSingleOverwrite">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleOverwrite">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Overwrite"/>
     </constraints>
   </views>
   <views name="MultipleOverwrite" sections="//@tabs.0/@sections.53" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleOverwrite">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleOverwrite">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Overwrite"/>
     </constraints>
   </views>
   <views name="SingleAllocate" sections="//@tabs.0/@sections.54" automaticContext="true">
-    <constraints name="isSingleAllocate">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleAllocate">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Allocations::Allocate"/>
     </constraints>
   </views>
   <views name="MultipleAllocate" sections="//@tabs.0/@sections.55" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleAllocate">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleAllocate">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Allocations::Allocate"/>
     </constraints>
   </views>
   <views name="SingleAllocated" sections="//@tabs.0/@sections.56" automaticContext="true">
-    <constraints name="isSingleAllocated">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleAllocated">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Allocations::Allocated"/>
     </constraints>
   </views>
   <views name="MultipleAllocated" sections="//@tabs.0/@sections.57" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleAllocated">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleAllocated">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Allocations::Allocated"/>
     </constraints>
   </views>
   <views name="SingleAllocateActivityPartition" sections="//@tabs.0/@sections.58" automaticContext="true">
-    <constraints name="isSingleAllocateActivityPartition">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleAllocateActivityPartition">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Allocations::AllocateActivityPartition"/>
     </constraints>
   </views>
   <views name="MultipleAllocateActivityPartition" sections="//@tabs.0/@sections.59" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleAllocateActivityPartition">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleAllocateActivityPartition">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Allocations::AllocateActivityPartition"/>
     </constraints>
   </views>
   <views name="SingleTestCase" sections="//@tabs.0/@sections.60" automaticContext="true">
-    <constraints name="isSingleTestCase">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleTestCase">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Requirements::TestCase"/>
     </constraints>
   </views>
   <views name="MultipleTestCase" sections="//@tabs.0/@sections.61" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleTestCase">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleTestCase">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Requirements::TestCase"/>
     </constraints>
   </views>
   <views name="SingleRequirement" sections="//@tabs.0/@sections.62" automaticContext="true">
-    <constraints name="isSingleRequirement">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleRequirement">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Requirements::Requirement"/>
     </constraints>
   </views>
   <views name="MultipleRequirement" sections="//@tabs.0/@sections.63" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleRequirement">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleRequirement">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Requirements::Requirement"/>
     </constraints>
   </views>
   <views name="SingleRequirementRelated" sections="//@tabs.0/@sections.64" automaticContext="true">
-    <constraints name="isSingleRequirementRelated">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleRequirementRelated">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Requirements::RequirementRelated"/>
     </constraints>
   </views>
   <views name="MultipleRequirementRelated" sections="//@tabs.0/@sections.65" elementMultiplicity="-1" automaticContext="true">
-    <constraints name="isMultipleRequirementRelated">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleRequirementRelated">
       <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Requirements::RequirementRelated"/>
     </constraints>

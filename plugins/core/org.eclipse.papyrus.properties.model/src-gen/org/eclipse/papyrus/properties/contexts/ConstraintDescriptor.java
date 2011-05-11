@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.properties.contexts;
 
 import org.eclipse.emf.common.util.EList;
@@ -22,16 +27,13 @@ import org.eclipse.papyrus.properties.environment.ConstraintType;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#getDisplay <em>Display</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#getConstraintType <em>Constraint Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#getConstraints <em>Constraints</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#getOverriddenConstraints <em>Overridden Constraints</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#isOverrideable <em>Overrideable</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#getOverriddenConstraints <em>Overridden Constraints</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getConstraintDescriptor()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface ConstraintDescriptor extends EObject {
@@ -90,66 +92,8 @@ public interface ConstraintDescriptor extends EObject {
 	void setDisplay(DisplayUnit value);
 
 	/**
-	 * Returns the value of the '<em><b>Constraint Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Constraint Type</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constraint Type</em>' reference.
-	 * @see #setConstraintType(ConstraintType)
-	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getConstraintDescriptor_ConstraintType()
-	 * @model required="true"
-	 * @generated
-	 */
-	ConstraintType getConstraintType();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#getConstraintType <em>Constraint Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Constraint Type</em>' reference.
-	 * @see #getConstraintType()
-	 * @generated
-	 */
-	void setConstraintType(ConstraintType value);
-
-	/**
-	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Constraints</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constraints</em>' containment reference list.
-	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getConstraintDescriptor_Constraints()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ConstraintDescriptor> getConstraints();
-
-	/**
-	 * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.properties.contexts.ConfigProperty}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Properties</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Properties</em>' containment reference list.
-	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getConstraintDescriptor_Properties()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ConfigProperty> getProperties();
-
-	/**
 	 * Returns the value of the '<em><b>Overridden Constraints</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor}.
+	 * The list contents are of type {@link org.eclipse.papyrus.properties.contexts.SimpleConstraint}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Overridden Constraints</em>' reference list isn't clear,
@@ -161,7 +105,7 @@ public interface ConstraintDescriptor extends EObject {
 	 * @model
 	 * @generated
 	 */
-	EList<ConstraintDescriptor> getOverriddenConstraints();
+	EList<SimpleConstraint> getOverriddenConstraints();
 
 	/**
 	 * Returns the value of the '<em><b>Overrideable</b></em>' attribute.

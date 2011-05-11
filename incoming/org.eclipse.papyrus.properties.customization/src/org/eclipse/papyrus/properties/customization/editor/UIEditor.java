@@ -315,8 +315,9 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 
 	@Override
 	public IPropertySheetPage getPropertySheetPage() {
-		if(iPropertySheetPage == null)
+		if(iPropertySheetPage == null) {
 			iPropertySheetPage = new TabbedPropertySheetPage(this);
+		}
 		return iPropertySheetPage;
 	}
 
@@ -324,12 +325,22 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 		return "CustomizationPropertyView"; //$NON-NLS-1$
 	}
 
+	/**
+	 * Registers a Preview to this Editor
+	 * 
+	 * @param preview
+	 */
 	public void addPreview(Preview preview) {
 		previews.add(preview);
 		selectionViewer.addSelectionChangedListener(preview);
 		preview.selectionChanged(new SelectionChangedEvent(this, this.currentViewer.getSelection()));
 	}
 
+	/**
+	 * Unregisters a Preview from this editor
+	 * 
+	 * @param preview
+	 */
 	public void removePreview(Preview preview) {
 		previews.remove(preview);
 		selectionViewer.removeSelectionChangedListener(preview);
@@ -341,8 +352,9 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 			selectionViewer.removeSelectionChangedListener(preview);
 		}
 		previews.clear();
-		if(iPropertySheetPage != null)
+		if(iPropertySheetPage != null) {
 			iPropertySheetPage.dispose();
+		}
 		super.dispose();
 	}
 

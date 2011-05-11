@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.properties.contexts.util;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -114,6 +119,14 @@ public class ContextsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseConstraintDescriptor(ConstraintDescriptor object) {
 				return createConstraintDescriptorAdapter();
+			}
+			@Override
+			public Adapter caseSimpleConstraint(SimpleConstraint object) {
+				return createSimpleConstraintAdapter();
+			}
+			@Override
+			public Adapter caseCompositeConstraint(CompositeConstraint object) {
+				return createCompositeConstraintAdapter();
 			}
 			@Override
 			public Adapter caseConfigProperty(ConfigProperty object) {
@@ -298,6 +311,34 @@ public class ContextsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConstraintDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.properties.contexts.SimpleConstraint <em>Simple Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.properties.contexts.SimpleConstraint
+	 * @generated
+	 */
+	public Adapter createSimpleConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.properties.contexts.CompositeConstraint <em>Composite Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.properties.contexts.CompositeConstraint
+	 * @generated
+	 */
+	public Adapter createCompositeConstraintAdapter() {
 		return null;
 	}
 

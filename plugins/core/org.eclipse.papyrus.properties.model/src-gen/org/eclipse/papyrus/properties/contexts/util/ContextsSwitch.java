@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.properties.contexts.util;
 
 import java.util.List;
@@ -141,6 +146,20 @@ public class ContextsSwitch<T> extends Switch<T> {
 			case ContextsPackage.CONSTRAINT_DESCRIPTOR: {
 				ConstraintDescriptor constraintDescriptor = (ConstraintDescriptor)theEObject;
 				T result = caseConstraintDescriptor(constraintDescriptor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ContextsPackage.SIMPLE_CONSTRAINT: {
+				SimpleConstraint simpleConstraint = (SimpleConstraint)theEObject;
+				T result = caseSimpleConstraint(simpleConstraint);
+				if (result == null) result = caseConstraintDescriptor(simpleConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ContextsPackage.COMPOSITE_CONSTRAINT: {
+				CompositeConstraint compositeConstraint = (CompositeConstraint)theEObject;
+				T result = caseCompositeConstraint(compositeConstraint);
+				if (result == null) result = caseConstraintDescriptor(compositeConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -330,6 +349,36 @@ public class ContextsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConstraintDescriptor(ConstraintDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Simple Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Simple Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSimpleConstraint(SimpleConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Composite Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Composite Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompositeConstraint(CompositeConstraint object) {
 		return null;
 	}
 

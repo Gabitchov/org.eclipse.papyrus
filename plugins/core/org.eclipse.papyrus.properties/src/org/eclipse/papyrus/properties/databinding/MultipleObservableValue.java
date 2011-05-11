@@ -126,7 +126,7 @@ public class MultipleObservableValue extends AbstractObservableValue implements 
 	}
 
 	public boolean add(IObservable observable) {
-		if(observable instanceof MultipleObservableValue) {
+		if(observable instanceof IObservableValue) {
 			observableValues.add((IObservableValue)observable);
 			return true;
 		}

@@ -160,22 +160,26 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementFactory"
           lowerBound="1" eType="#//environment/ModelElementFactoryDescriptor"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ConstraintDescriptor">
+    <eClassifiers xsi:type="ecore:EClass" name="ConstraintDescriptor" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="display" eType="#//contexts/DisplayUnit"
           eOpposite="#//contexts/DisplayUnit/constraints"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="constraintType" lowerBound="1"
-          eType="#//environment/ConstraintType"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
-          eType="#//contexts/ConstraintDescriptor" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
-          eType="#//contexts/ConfigProperty" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="overriddenConstraints"
-          upperBound="-1" eType="#//contexts/ConstraintDescriptor"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="overrideable" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="overriddenConstraints"
+          upperBound="-1" eType="#//contexts/SimpleConstraint"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SimpleConstraint" eSuperTypes="#//contexts/ConstraintDescriptor">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="constraintType" lowerBound="1"
+          eType="#//environment/ConstraintType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+          eType="#//contexts/ConfigProperty" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CompositeConstraint" eSuperTypes="#//contexts/ConstraintDescriptor">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+          eType="#//contexts/SimpleConstraint" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConfigProperty" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"

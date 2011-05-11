@@ -29,7 +29,7 @@ public class LanguageEditorExtensionPoint {
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
 
 		for(IConfigurationElement e : config) {
-			String languageName = e.getAttribute("language");
+			String languageName = e.getAttribute("language"); //$NON-NLS-1$
 			String editorClassName = e.getAttribute("editor"); //$NON-NLS-1$
 
 

@@ -97,15 +97,16 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 		for(Context context : ConfigurationManager.instance.getContexts()) {
 			boolean applied = ConfigurationManager.instance.isPlugin(context);
 			Button checkbox = checkboxes.get(context);
-			if(checkbox != null)
+			if(checkbox != null) {
 				checkbox.setSelection(applied);
+			}
 
 			contextState.setContextState(context, applied);
 		}
 	}
 
 	private String getLabel(Context context) {
-		return context.getName() + " (" + (ConfigurationManager.instance.isPlugin(context) ? Messages.Preferences_Plugin : Messages.Preferences_Custom) + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-4$
+		return context.getName() + " (" + (ConfigurationManager.instance.isPlugin(context) ? Messages.Preferences_Plugin : Messages.Preferences_Custom) + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	private final ContextState contextState = new ContextState();
@@ -127,10 +128,11 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 
 		public void saveContext() {
 			for(Entry<Context, Boolean> entry : contexts.entrySet()) {
-				if(entry.getValue())
+				if(entry.getValue()) {
 					ConfigurationManager.instance.enableContext(entry.getKey());
-				else
+				} else {
 					ConfigurationManager.instance.disableContext(entry.getKey());
+				}
 			}
 		}
 

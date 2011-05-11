@@ -46,7 +46,7 @@ public class GenericPropertyModelElementFactory implements ModelElementFactory {
 
 		EClass valueProperty = ContextsPackage.eINSTANCE.getValueProperty();
 		EClass referenceProperty = ContextsPackage.eINSTANCE.getReferenceProperty();
-		EStructuralFeature attributes = ContextsPackage.eINSTANCE.getConstraintDescriptor_Properties();
+		EStructuralFeature attributes = ContextsPackage.eINSTANCE.getSimpleConstraint_Properties();
 
 		return new GenericAttributeModelElement(source, domain, attributes, ContextsFactory.eINSTANCE, valueProperty, referenceProperty);
 	}

@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.properties.contexts;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -755,31 +760,13 @@ public interface ContextsPackage extends EPackage {
 	int CONSTRAINT_DESCRIPTOR__DISPLAY = 1;
 
 	/**
-	 * The feature id for the '<em><b>Constraint Type</b></em>' reference.
+	 * The feature id for the '<em><b>Overrideable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_DESCRIPTOR__CONSTRAINT_TYPE = 2;
-
-	/**
-	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_DESCRIPTOR__CONSTRAINTS = 3;
-
-	/**
-	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_DESCRIPTOR__PROPERTIES = 4;
+	int CONSTRAINT_DESCRIPTOR__OVERRIDEABLE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Overridden Constraints</b></em>' reference list.
@@ -788,16 +775,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS = 5;
-
-	/**
-	 * The feature id for the '<em><b>Overrideable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_DESCRIPTOR__OVERRIDEABLE = 6;
+	int CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS = 3;
 
 	/**
 	 * The number of structural features of the '<em>Constraint Descriptor</em>' class.
@@ -806,7 +784,144 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_DESCRIPTOR_FEATURE_COUNT = 7;
+	int CONSTRAINT_DESCRIPTOR_FEATURE_COUNT = 4;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.properties.contexts.impl.SimpleConstraintImpl <em>Simple Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.properties.contexts.impl.SimpleConstraintImpl
+	 * @see org.eclipse.papyrus.properties.contexts.impl.ContextsPackageImpl#getSimpleConstraint()
+	 * @generated
+	 */
+	int SIMPLE_CONSTRAINT = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_CONSTRAINT__NAME = CONSTRAINT_DESCRIPTOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Display</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_CONSTRAINT__DISPLAY = CONSTRAINT_DESCRIPTOR__DISPLAY;
+
+	/**
+	 * The feature id for the '<em><b>Overrideable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_CONSTRAINT__OVERRIDEABLE = CONSTRAINT_DESCRIPTOR__OVERRIDEABLE;
+
+	/**
+	 * The feature id for the '<em><b>Overridden Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_CONSTRAINT__OVERRIDDEN_CONSTRAINTS = CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Constraint Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_CONSTRAINT__CONSTRAINT_TYPE = CONSTRAINT_DESCRIPTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_CONSTRAINT__PROPERTIES = CONSTRAINT_DESCRIPTOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Simple Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_DESCRIPTOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.properties.contexts.impl.CompositeConstraintImpl <em>Composite Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.properties.contexts.impl.CompositeConstraintImpl
+	 * @see org.eclipse.papyrus.properties.contexts.impl.ContextsPackageImpl#getCompositeConstraint()
+	 * @generated
+	 */
+	int COMPOSITE_CONSTRAINT = 12;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_CONSTRAINT__NAME = CONSTRAINT_DESCRIPTOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Display</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_CONSTRAINT__DISPLAY = CONSTRAINT_DESCRIPTOR__DISPLAY;
+
+	/**
+	 * The feature id for the '<em><b>Overrideable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_CONSTRAINT__OVERRIDEABLE = CONSTRAINT_DESCRIPTOR__OVERRIDEABLE;
+
+	/**
+	 * The feature id for the '<em><b>Overridden Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_CONSTRAINT__OVERRIDDEN_CONSTRAINTS = CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_CONSTRAINT__CONSTRAINTS = CONSTRAINT_DESCRIPTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Composite Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_DESCRIPTOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.properties.contexts.impl.ConfigPropertyImpl <em>Config Property</em>}' class.
@@ -816,7 +931,7 @@ public interface ContextsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.properties.contexts.impl.ContextsPackageImpl#getConfigProperty()
 	 * @generated
 	 */
-	int CONFIG_PROPERTY = 11;
+	int CONFIG_PROPERTY = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -844,7 +959,7 @@ public interface ContextsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.properties.contexts.impl.ContextsPackageImpl#getValueProperty()
 	 * @generated
 	 */
-	int VALUE_PROPERTY = 12;
+	int VALUE_PROPERTY = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -881,7 +996,7 @@ public interface ContextsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.properties.contexts.impl.ContextsPackageImpl#getReferenceProperty()
 	 * @generated
 	 */
-	int REFERENCE_PROPERTY = 13;
+	int REFERENCE_PROPERTY = 15;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1440,39 +1555,6 @@ public interface ContextsPackage extends EPackage {
 	EReference getConstraintDescriptor_Display();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#getConstraintType <em>Constraint Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Constraint Type</em>'.
-	 * @see org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#getConstraintType()
-	 * @see #getConstraintDescriptor()
-	 * @generated
-	 */
-	EReference getConstraintDescriptor_ConstraintType();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#getConstraints <em>Constraints</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Constraints</em>'.
-	 * @see org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#getConstraints()
-	 * @see #getConstraintDescriptor()
-	 * @generated
-	 */
-	EReference getConstraintDescriptor_Constraints();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#getProperties <em>Properties</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Properties</em>'.
-	 * @see org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#getProperties()
-	 * @see #getConstraintDescriptor()
-	 * @generated
-	 */
-	EReference getConstraintDescriptor_Properties();
-
-	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#getOverriddenConstraints <em>Overridden Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1482,6 +1564,59 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getConstraintDescriptor_OverriddenConstraints();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.properties.contexts.SimpleConstraint <em>Simple Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Simple Constraint</em>'.
+	 * @see org.eclipse.papyrus.properties.contexts.SimpleConstraint
+	 * @generated
+	 */
+	EClass getSimpleConstraint();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.properties.contexts.SimpleConstraint#getConstraintType <em>Constraint Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Constraint Type</em>'.
+	 * @see org.eclipse.papyrus.properties.contexts.SimpleConstraint#getConstraintType()
+	 * @see #getSimpleConstraint()
+	 * @generated
+	 */
+	EReference getSimpleConstraint_ConstraintType();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.properties.contexts.SimpleConstraint#getProperties <em>Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Properties</em>'.
+	 * @see org.eclipse.papyrus.properties.contexts.SimpleConstraint#getProperties()
+	 * @see #getSimpleConstraint()
+	 * @generated
+	 */
+	EReference getSimpleConstraint_Properties();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.properties.contexts.CompositeConstraint <em>Composite Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Composite Constraint</em>'.
+	 * @see org.eclipse.papyrus.properties.contexts.CompositeConstraint
+	 * @generated
+	 */
+	EClass getCompositeConstraint();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.properties.contexts.CompositeConstraint#getConstraints <em>Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Constraints</em>'.
+	 * @see org.eclipse.papyrus.properties.contexts.CompositeConstraint#getConstraints()
+	 * @see #getCompositeConstraint()
+	 * @generated
+	 */
+	EReference getCompositeConstraint_Constraints();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.properties.contexts.ConstraintDescriptor#isOverrideable <em>Overrideable</em>}'.
@@ -1994,20 +2129,30 @@ public interface ContextsPackage extends EPackage {
 		EReference CONSTRAINT_DESCRIPTOR__DISPLAY = eINSTANCE.getConstraintDescriptor_Display();
 
 		/**
+		 * The meta object literal for the '<em><b>Overridden Constraints</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS = eINSTANCE.getConstraintDescriptor_OverriddenConstraints();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.properties.contexts.impl.SimpleConstraintImpl <em>Simple Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.properties.contexts.impl.SimpleConstraintImpl
+		 * @see org.eclipse.papyrus.properties.contexts.impl.ContextsPackageImpl#getSimpleConstraint()
+		 * @generated
+		 */
+		EClass SIMPLE_CONSTRAINT = eINSTANCE.getSimpleConstraint();
+
+		/**
 		 * The meta object literal for the '<em><b>Constraint Type</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONSTRAINT_DESCRIPTOR__CONSTRAINT_TYPE = eINSTANCE.getConstraintDescriptor_ConstraintType();
-
-		/**
-		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONSTRAINT_DESCRIPTOR__CONSTRAINTS = eINSTANCE.getConstraintDescriptor_Constraints();
+		EReference SIMPLE_CONSTRAINT__CONSTRAINT_TYPE = eINSTANCE.getSimpleConstraint_ConstraintType();
 
 		/**
 		 * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
@@ -2015,15 +2160,25 @@ public interface ContextsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONSTRAINT_DESCRIPTOR__PROPERTIES = eINSTANCE.getConstraintDescriptor_Properties();
+		EReference SIMPLE_CONSTRAINT__PROPERTIES = eINSTANCE.getSimpleConstraint_Properties();
 
 		/**
-		 * The meta object literal for the '<em><b>Overridden Constraints</b></em>' reference list feature.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.properties.contexts.impl.CompositeConstraintImpl <em>Composite Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.properties.contexts.impl.CompositeConstraintImpl
+		 * @see org.eclipse.papyrus.properties.contexts.impl.ContextsPackageImpl#getCompositeConstraint()
+		 * @generated
+		 */
+		EClass COMPOSITE_CONSTRAINT = eINSTANCE.getCompositeConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS = eINSTANCE.getConstraintDescriptor_OverriddenConstraints();
+		EReference COMPOSITE_CONSTRAINT__CONSTRAINTS = eINSTANCE.getCompositeConstraint_Constraints();
 
 		/**
 		 * The meta object literal for the '<em><b>Overrideable</b></em>' attribute feature.

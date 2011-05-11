@@ -13,9 +13,7 @@ package org.eclipse.papyrus.properties.uml.constraints;
 
 import org.eclipse.papyrus.properties.constraints.AbstractConstraint;
 import org.eclipse.papyrus.properties.constraints.Constraint;
-import org.eclipse.papyrus.properties.contexts.ConfigProperty;
-import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
-import org.eclipse.papyrus.properties.contexts.ValueProperty;
+import org.eclipse.papyrus.properties.contexts.SimpleConstraint;
 import org.eclipse.papyrus.properties.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
@@ -42,14 +40,8 @@ public class HasStereotypeConstraint extends AbstractConstraint {
 	}
 
 	@Override
-	public void setConstraintDescriptor(ConstraintDescriptor descriptor) {
-		super.setConstraintDescriptor(descriptor);
-
-		for(ConfigProperty property : descriptor.getProperties()) {
-			if(property.getName().equals("stereotypeName")) { //$NON-NLS-1$
-				stereotypeName = ((ValueProperty)property).getValue();
-			}
-		}
+	public void setDescriptor(SimpleConstraint descriptor) {
+		stereotypeName = getValue("stereotypeName"); //$NON-NLS-1$
 	}
 
 	@Override

@@ -33,7 +33,7 @@ public class ProfileApplicationPropertyEditor extends AbstractPropertyEditor {
 		Object firstSelection = input.getSelection().getFirstElement();
 		Element umlElement = UMLUtil.resolveUMLElement(firstSelection);
 		if(umlElement == null || !(umlElement instanceof Package)) {
-			Activator.log.warn("This editor can only be used with UML Packages");
+			Activator.log.warn("This editor can only be used with UML Packages"); //$NON-NLS-1$
 			return;
 		}
 

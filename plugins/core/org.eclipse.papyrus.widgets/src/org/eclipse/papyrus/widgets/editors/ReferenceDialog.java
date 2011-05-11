@@ -27,6 +27,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
@@ -35,14 +37,14 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Widget;
 
 /**
- * An editor representing a single reference as a Label
- * A filtered selection dialog is used to edit the value.
- * Also offers support for unsetting the value.
- * This Editor needs a ContentProvider, and may use an optional LabelProvider,
- * describing the objects that can be referred by this property
+ * An editor representing a single reference as a Label A filtered selection
+ * dialog is used to edit the value. Also offers support for unsetting the
+ * value. This Editor needs a ContentProvider, and may use an optional
+ * LabelProvider, describing the objects that can be referred by this property
  * 
  * @author Camille Letavernier
  * 
@@ -57,22 +59,22 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	/**
 	 * The Button used to browse the available values
 	 */
-	protected final Button browseValuesButton;
+	protected Button browseValuesButton;
 
 	/**
 	 * The Button used to create a new instance
 	 */
-	protected final Button createInstanceButton;
+	protected Button createInstanceButton;
 
 	/**
 	 * The Button used to edit the current object
 	 */
-	protected final Button editInstanceButton;
+	protected Button editInstanceButton;
 
 	/**
 	 * The Button used to unset the current value
 	 */
-	protected final Button unsetButton;
+	protected Button unsetButton;
 
 	/**
 	 * The label provider used to display the values in both the label and the
@@ -81,7 +83,8 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	protected ILabelProvider labelProvider;
 
 	/**
-	 * The content provider, providing the different possible values for the input object
+	 * The content provider, providing the different possible values for the
+	 * input object
 	 */
 	protected IStaticContentProvider contentProvider;
 
@@ -102,8 +105,8 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 
 	/**
 	 * 
-	 * Constructs a new ReferenceDialog in the given parent Composite.
-	 * The style will be applied to the CLabel displaying the current value.
+	 * Constructs a new ReferenceDialog in the given parent Composite. The style
+	 * will be applied to the CLabel displaying the current value.
 	 * 
 	 * @param parent
 	 * @param style
@@ -115,9 +118,37 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 
 		currentValueLabel = factory.createCLabel(this, null, SWT.BORDER | style);
 		currentValueLabel.setLayoutData(getDefaultLayoutData());
+		currentValueLabel.addMouseListener(new MouseListener() {
 
-		dialog = new TreeSelectorDialog(parent.getShell());
+			public void mouseDoubleClick(MouseEvent e) {
+				editAction(); // TODO : Try to determine whether the double
+								// click should call the edit, create or browse
+								// action
+				// e.g. if the value is null, try to browse. If we cannot
+				// browse, try to create an instance.
+			}
 
+			public void mouseDown(MouseEvent e) {
+				// Nothing
+			}
+
+			public void mouseUp(MouseEvent e) {
+				// Nothing
+			}
+
+		});
+
+		dialog = createDialog(parent.getShell());
+
+		createButtons();
+		updateControls();
+	}
+
+	protected TreeSelectorDialog createDialog(Shell shell) {
+		return new TreeSelectorDialog(shell);
+	}
+
+	protected void createButtons() {
 		browseValuesButton = factory.createButton(this, null, SWT.PUSH);
 		browseValuesButton.setImage(Activator.getDefault().getImage("/icons/browse_12x12.gif")); //$NON-NLS-1$
 		browseValuesButton.setToolTipText(Messages.ReferenceDialog_EditValue);
@@ -137,13 +168,11 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 		editInstanceButton.setImage(Activator.getDefault().getImage("/icons/Edit_12x12.gif")); //$NON-NLS-1$
 		editInstanceButton.setToolTipText(Messages.ReferenceDialog_EditTheCurrentValue);
 		editInstanceButton.addSelectionListener(this);
-
-		updateControls();
 	}
 
 	/**
-	 * The action executed when the "browse" button is selected
-	 * Choose a value from a selection of already created objects
+	 * The action executed when the "browse" button is selected Choose a value
+	 * from a selection of already created objects
 	 */
 	protected void browseAction() {
 		dialog.setInitialElementSelections(Collections.singletonList(getValue()));
@@ -160,35 +189,37 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	}
 
 	/**
-	 * The action executed when the "create" button is selected
-	 * Create a new instance and assign it to this reference
+	 * The action executed when the "create" button is selected Create a new
+	 * instance and assign it to this reference
 	 */
 	protected void createAction() {
 		if(valueFactory != null && valueFactory.canCreateObject()) {
 			Object value = valueFactory.createObject(createInstanceButton);
-			if(value == null)
+			if(value == null) {
 				return;
+			}
 			valueFactory.validateObjects(Collections.singleton(value));
 			modelProperty.setValue(value);
 		}
 	}
 
 	/**
-	 * The action executed when the "edit" button is selected
-	 * Edits the object that is currently selected
+	 * The action executed when the "edit" button is selected Edits the object
+	 * that is currently selected
 	 */
 	protected void editAction() {
 		Object currentValue = modelProperty.getValue();
 		if(currentValue != null && valueFactory != null && valueFactory.canEdit()) {
 			Object newValue = valueFactory.edit(editInstanceButton, modelProperty.getValue());
-			if(newValue != currentValue)
+			if(newValue != currentValue) {
 				modelProperty.setValue(value);
+			}
 		}
 	}
 
 	/**
-	 * The action executed when the "unset" button is selected
-	 * Sets the current reference to null
+	 * The action executed when the "unset" button is selected Sets the current
+	 * reference to null
 	 */
 	protected void unsetAction() {
 		if(modelProperty != null) {
@@ -209,11 +240,11 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 
 		String valueLabel;
 		Image image = null;
-		if(getValue() == null)
+		if(getValue() == null) {
 			valueLabel = Messages.ReferenceDialog_Unset;
-		else if(labelProvider == null)
+		} else if(labelProvider == null) {
 			valueLabel = getValue().toString();
-		else {
+		} else {
 			valueLabel = labelProvider.getText(getValue());
 			image = labelProvider.getImage(getValue());
 		}
@@ -226,21 +257,22 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	 * Sets the Content provider for this editor
 	 * 
 	 * @param provider
-	 *        The content provider used to retrieve the possible values for this Reference
+	 *        The content provider used to retrieve the possible values for
+	 *        this Reference
 	 */
 	public void setContentProvider(IStaticContentProvider provider) {
 		dialog.setContentProvider(new EncapsulatedContentProvider(provider));
-		if(getValue() != null)
+		if(getValue() != null) {
 			dialog.setInitialElementSelections(Collections.singletonList(getValue()));
+		}
 
 		this.contentProvider = provider;
 	}
 
 	/**
-	 * Sets the Label provider for this editor
-	 * If the label provider is null, a default one will be used.
-	 * The same label provider is used for both the editor's label
-	 * and the selection dialog.
+	 * Sets the Label provider for this editor If the label provider is null, a
+	 * default one will be used. The same label provider is used for both the
+	 * editor's label and the selection dialog.
 	 * 
 	 * @param provider
 	 *        The label provider
@@ -299,7 +331,7 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	 */
 	@Override
 	protected void doBinding() {
-		//we don't do a real databinding here
+		// we don't do a real databinding here
 		getParent().addDisposeListener(this);
 		modelProperty.addChangeListener(this);
 		handleChange(null);
@@ -326,9 +358,11 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	 * {@inheritDoc}
 	 */
 	public void handleChange(ChangeEvent event) {
-		this.value = modelProperty.getValue();
-		dialog.setInitialElementSelections(Collections.singletonList(getValue()));
-		updateLabel();
+		if(modelProperty != null) {
+			this.value = modelProperty.getValue();
+			dialog.setInitialElementSelections(Collections.singletonList(getValue()));
+			updateLabel();
+		}
 	}
 
 	public void widgetDisposed(DisposeEvent e) {
@@ -367,19 +401,19 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	}
 
 	public void widgetDefaultSelected(SelectionEvent e) {
-		//Nothing
+		// Nothing
 	}
 
 	/**
 	 * Updates the buttons' status
 	 */
 	protected void updateControls() {
-		//Check if the edit & create buttons should be displayed
+		// Check if the edit & create buttons should be displayed
 		boolean exclude = valueFactory == null || !valueFactory.canCreateObject();
 		setExclusion(editInstanceButton, exclude);
 		setExclusion(createInstanceButton, exclude);
 
-		//If they are displayed, check if they should be enabled
+		// If they are displayed, check if they should be enabled
 		if(!exclude) {
 			editInstanceButton.setEnabled(valueFactory != null && valueFactory.canEdit() && modelProperty != null && modelProperty.getValue() != null);
 			createInstanceButton.setEnabled(valueFactory != null && valueFactory.canCreateObject());

@@ -21,6 +21,11 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 
+/**
+ * An action to toggle the UIEditor Preview
+ * 
+ * @author Camille Letavernier
+ */
 public class TogglePreviewAction extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {

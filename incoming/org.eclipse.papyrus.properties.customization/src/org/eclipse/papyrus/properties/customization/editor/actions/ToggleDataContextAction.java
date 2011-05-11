@@ -19,9 +19,17 @@ import org.eclipse.papyrus.properties.customization.editor.UIEditor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 
-
+/**
+ * An action to toggle the display of the DataContextElements in the UIEditor
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class ToggleDataContextAction extends AbstractHandler {
 
+	/**
+	 * Indicates if the DataContextElements should be displayed
+	 */
 	public static boolean showDataContext = false;
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {

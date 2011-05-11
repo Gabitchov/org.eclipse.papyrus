@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.properties.contexts.provider;
 
 
@@ -145,7 +150,12 @@ public class DisplayUnitItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ContextsPackage.Literals.DISPLAY_UNIT__CONSTRAINTS,
-				 ContextsFactory.eINSTANCE.createConstraintDescriptor()));
+				 ContextsFactory.eINSTANCE.createSimpleConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ContextsPackage.Literals.DISPLAY_UNIT__CONSTRAINTS,
+				 ContextsFactory.eINSTANCE.createCompositeConstraint()));
 	}
 
 	/**

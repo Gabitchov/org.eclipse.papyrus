@@ -11,24 +11,23 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.constraints;
 
-import org.eclipse.papyrus.properties.contexts.ConfigProperty;
-import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
-import org.eclipse.papyrus.properties.contexts.ValueProperty;
+import org.eclipse.papyrus.properties.contexts.SimpleConstraint;
 import org.eclipse.papyrus.properties.util.ClassLoader;
 
+/**
+ * A Constraint to test if an object is an instance of a given
+ * Java class
+ * 
+ * @author Camille Letavernier
+ */
 public class JavaInstanceOf extends AbstractConstraint {
 
 	private Class<?> clazz;
 
 	@Override
-	public void setConstraintDescriptor(ConstraintDescriptor descriptor) {
-		super.setConstraintDescriptor(descriptor);
+	public void setDescriptor(SimpleConstraint descriptor) {
 		ClassLoader loader = new ClassLoader();
-		for(ConfigProperty property : descriptor.getProperties()) {
-			if(property.getName().equals("class") && property instanceof ValueProperty) { //$NON-NLS-1$
-				clazz = loader.loadClass(((ValueProperty)property).getValue());
-			}
-		}
+		clazz = loader.loadClass(getValue("class")); //$NON-NLS-1$
 	}
 
 	public boolean match(Object selection) {

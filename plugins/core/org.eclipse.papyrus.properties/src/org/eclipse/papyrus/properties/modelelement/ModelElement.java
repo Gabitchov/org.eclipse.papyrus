@@ -58,6 +58,7 @@ public interface ModelElement {
 	 * 
 	 * @param propertyPath
 	 * @return
+	 *         the LabelProvider for the given path
 	 */
 	public ILabelProvider getLabelProvider(String propertyPath);
 
@@ -67,6 +68,7 @@ public interface ModelElement {
 	 * 
 	 * @param propertyPath
 	 * @return
+	 *         true is the property should be ordered
 	 */
 	public boolean isOrdered(String propertyPath);
 
@@ -76,6 +78,7 @@ public interface ModelElement {
 	 * 
 	 * @param propertyPath
 	 * @return
+	 *         true if the elements should be unique
 	 */
 	public boolean isUnique(String propertyPath);
 
@@ -83,7 +86,7 @@ public interface ModelElement {
 	 * Returns true if the given property is Mandatory.
 	 * 
 	 * @param propertyPath
-	 * @return
+	 * @return true if the property is mandatory
 	 */
 	public boolean isMandatory(String propertyPath);
 
@@ -91,7 +94,7 @@ public interface ModelElement {
 	 * Returns true if the given property is editable.
 	 * 
 	 * @param propertyPath
-	 * @return
+	 * @return true if the given property is editable.
 	 */
 	public boolean isEditable(String propertyPath);
 
@@ -101,8 +104,8 @@ public interface ModelElement {
 	 * catch some change events (For example, for some Ecore derived
 	 * properties).
 	 * 
-	 * @param localPropertyPath
-	 * @return
+	 * @param propertyPath
+	 * @return true if the refresh should be forced
 	 */
 	public boolean forceRefresh(String propertyPath);
 
@@ -115,6 +118,8 @@ public interface ModelElement {
 	public void setDataSource(DataSource source);
 
 	/**
+	 * @param propertyPath
+	 *        the propertyPath to lookup
 	 * @return the default factory used to handle operations such as object
 	 *         creation or edition, or null if these operations are not supported.
 	 *         This factory will typically be used by Multiple value editors, to

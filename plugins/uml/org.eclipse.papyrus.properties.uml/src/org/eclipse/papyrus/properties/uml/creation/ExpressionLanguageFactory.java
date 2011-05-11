@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.papyrus.properties.uml.expression.ExpressionList.Expression;
+import org.eclipse.papyrus.properties.uml.messages.Messages;
 import org.eclipse.papyrus.widgets.creation.StringEditionFactory;
 import org.eclipse.swt.widgets.Control;
 
@@ -26,7 +27,7 @@ public class ExpressionLanguageFactory extends StringEditionFactory {
 	private List<?> expressionList;
 
 	public ExpressionLanguageFactory(List<?> currentExpressionList) {
-		super("Edit language", "Set the new language");
+		super(Messages.ExpressionLanguageFactory_EditLanguage, Messages.ExpressionLanguageFactory_SetNewLanguage);
 
 		validator = new UniqueElementValidator();
 		this.expressionList = currentExpressionList;
@@ -43,14 +44,15 @@ public class ExpressionLanguageFactory extends StringEditionFactory {
 		}
 
 		public String isValid(String newText) {
-			if(newText.equals(currentValue))
+			if(newText.equals(currentValue)) {
 				return null;
+			}
 
 			for(Object object : expressionList) {
 				if(object instanceof Expression) {
 					Expression expression = (Expression)object;
 					if(newText.equals(expression.getLanguage())) {
-						return "The same language cannot be used more than once";
+						return Messages.ExpressionLanguageFactory_LanguageDuplicateError;
 					}
 				}
 			}

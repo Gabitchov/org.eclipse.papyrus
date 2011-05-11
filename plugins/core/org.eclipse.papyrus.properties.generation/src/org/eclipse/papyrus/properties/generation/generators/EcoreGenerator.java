@@ -42,6 +42,7 @@ import org.eclipse.swt.widgets.Label;
 
 /**
  * An IGenerator to create Property view contexts from an Ecore metamodel
+ * FIXME : The generator doesn't seem to keep the Metaclass inheritance
  * 
  * @author Camille Letavernier
  */

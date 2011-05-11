@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.properties.contexts.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -69,7 +74,8 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 			case ContextsPackage.UNKNOWN_PROPERTY: return createUnknownProperty();
 			case ContextsPackage.DATA_CONTEXT_PACKAGE: return createDataContextPackage();
 			case ContextsPackage.DATA_CONTEXT_ROOT: return createDataContextRoot();
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR: return createConstraintDescriptor();
+			case ContextsPackage.SIMPLE_CONSTRAINT: return createSimpleConstraint();
+			case ContextsPackage.COMPOSITE_CONSTRAINT: return createCompositeConstraint();
 			case ContextsPackage.VALUE_PROPERTY: return createValueProperty();
 			case ContextsPackage.REFERENCE_PROPERTY: return createReferenceProperty();
 			default:
@@ -172,9 +178,19 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConstraintDescriptor createConstraintDescriptor() {
-		ConstraintDescriptorImpl constraintDescriptor = new ConstraintDescriptorImpl();
-		return constraintDescriptor;
+	public SimpleConstraint createSimpleConstraint() {
+		SimpleConstraintImpl simpleConstraint = new SimpleConstraintImpl();
+		return simpleConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeConstraint createCompositeConstraint() {
+		CompositeConstraintImpl compositeConstraint = new CompositeConstraintImpl();
+		return compositeConstraint;
 	}
 
 	/**

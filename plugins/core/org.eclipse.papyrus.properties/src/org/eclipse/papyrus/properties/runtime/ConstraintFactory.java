@@ -12,9 +12,11 @@
 package org.eclipse.papyrus.properties.runtime;
 
 import org.eclipse.papyrus.properties.Activator;
-import org.eclipse.papyrus.properties.constraints.CompositeConstraint;
+import org.eclipse.papyrus.properties.constraints.CompoundConstraint;
 import org.eclipse.papyrus.properties.constraints.Constraint;
+import org.eclipse.papyrus.properties.contexts.CompositeConstraint;
 import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
+import org.eclipse.papyrus.properties.contexts.SimpleConstraint;
 
 /**
  * A Singleton class for creating {@link Constraint}s from a {@link ConstraintDescriptor}
@@ -44,34 +46,28 @@ public class ConstraintFactory {
 	 */
 	public Constraint createFromModel(ConstraintDescriptor model) {
 		Constraint constraint = null;
-		if(model.getConstraints().isEmpty()) {
-			constraint = loadConstraint(model);
-		} else {
-			CompositeConstraint cConstraint = new CompositeConstraint();
-			for(ConstraintDescriptor descriptor : model.getConstraints()) {
+		if(model instanceof CompositeConstraint) {
+			CompoundConstraint cConstraint = new CompoundConstraint();
+			for(SimpleConstraint descriptor : ((CompositeConstraint)model).getConstraints()) {
 				cConstraint.addConstraint(loadConstraint(descriptor));
 			}
 
 			constraint = cConstraint;
+		} else {
+			constraint = loadConstraint((SimpleConstraint)model);
 		}
 		return constraint;
 	}
 
-	private Constraint loadConstraint(ConstraintDescriptor model) {
+	private Constraint loadConstraint(SimpleConstraint model) {
 		String className = model.getConstraintType().getConstraintClass();
 		Constraint constraint = null;
 
 		try {
 			constraint = (Constraint)Class.forName(className).newInstance();
 			constraint.setConstraintDescriptor(model);
-		} catch (ClassNotFoundException ex) {
-			Activator.log.error(ex);
-		} catch (IllegalAccessException ex) {
-			Activator.log.error(ex);
-		} catch (InstantiationException ex) {
-			Activator.log.error(ex);
-		} catch (ClassCastException ex) {
-			Activator.log.error(ex);
+		} catch (Exception ex) {
+			Activator.log.error("Cannot load constraint " + model.getName(), ex); //$NON-NLS-1$
 		}
 
 		return constraint;

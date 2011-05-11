@@ -24,7 +24,8 @@ public class TrueConstraint extends AbstractConstraint {
 
 	@Override
 	protected boolean equivalent(Constraint constraint) {
-		return constraint != null && constraint instanceof TrueConstraint;
+		//return constraint != null && constraint instanceof TrueConstraint;
+		return false; //TrueConstraint is always true ; it shouldn't override another "always true" constraint
 	}
 
 }

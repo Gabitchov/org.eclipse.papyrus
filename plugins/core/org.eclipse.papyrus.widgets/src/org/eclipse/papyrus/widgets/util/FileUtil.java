@@ -19,8 +19,15 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.papyrus.widgets.Activator;
+import org.eclipse.papyrus.widgets.editors.StringFileSelector;
 
-
+/**
+ * A helper class for resolving files and path, either in the workspace or
+ * on the File system
+ * 
+ * @author Camille Letavernier
+ * @see StringFileSelector
+ */
 public class FileUtil {
 
 	public static String getPath(IFile file, boolean absolute) {

@@ -129,7 +129,7 @@ public class ExpressionList extends WritableList implements IChangeListener, ICo
 
 	private void addBody(String body, int fillBody) {
 		for(int i = 0; i < fillBody; i++) {
-			bodies.add("");
+			bodies.add(""); //$NON-NLS-1$
 		}
 
 		bodies.add(body);
@@ -137,7 +137,7 @@ public class ExpressionList extends WritableList implements IChangeListener, ICo
 
 	private void addLanguage(String language, int fillLanguage) {
 		for(int i = 0; i < fillLanguage; i++) {
-			languages.add("");
+			languages.add(""); //$NON-NLS-1$
 		}
 
 		languages.add(language);

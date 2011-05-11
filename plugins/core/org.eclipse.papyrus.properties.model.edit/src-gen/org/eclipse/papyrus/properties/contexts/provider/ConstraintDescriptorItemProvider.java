@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.properties.contexts.provider;
 
 
@@ -70,9 +75,8 @@ public class ConstraintDescriptorItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addConstraintTypePropertyDescriptor(object);
-			addOverriddenConstraintsPropertyDescriptor(object);
 			addOverrideablePropertyDescriptor(object);
+			addOverriddenConstraintsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -95,28 +99,6 @@ public class ConstraintDescriptorItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Constraint Type feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addConstraintTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ConstraintDescriptor_constraintType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConstraintDescriptor_constraintType_feature", "_UI_ConstraintDescriptor_type"),
-				 ContextsPackage.Literals.CONSTRAINT_DESCRIPTOR__CONSTRAINT_TYPE,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}
@@ -166,37 +148,6 @@ public class ConstraintDescriptorItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(ContextsPackage.Literals.CONSTRAINT_DESCRIPTOR__CONSTRAINTS);
-			childrenFeatures.add(ContextsPackage.Literals.CONSTRAINT_DESCRIPTOR__PROPERTIES);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
 	 * This returns ConstraintDescriptor.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -237,10 +188,6 @@ public class ConstraintDescriptorItemProvider
 			case ContextsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDEABLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__CONSTRAINTS:
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR__PROPERTIES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -255,21 +202,6 @@ public class ConstraintDescriptorItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ContextsPackage.Literals.CONSTRAINT_DESCRIPTOR__CONSTRAINTS,
-				 ContextsFactory.eINSTANCE.createConstraintDescriptor()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ContextsPackage.Literals.CONSTRAINT_DESCRIPTOR__PROPERTIES,
-				 ContextsFactory.eINSTANCE.createValueProperty()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ContextsPackage.Literals.CONSTRAINT_DESCRIPTOR__PROPERTIES,
-				 ContextsFactory.eINSTANCE.createReferenceProperty()));
 	}
 
 	/**

@@ -71,7 +71,7 @@ mapping EClass::toDataContextElement() : element : DataContextElement, viewSingl
 	viewMultiple.context := self.getContext();
 }
 
-mapping EClass::toConstraint(view : View) : ConstraintDescriptor {
+mapping EClass::toConstraint(view : View) : SimpleConstraint {
 	name := "is" + view.name.replace(' ', '');
 	display := view;
 	constraintType := pRoot.objectsOfType(PropertiesRoot).environments.constraintTypes->any(e | e.constraintClass = 'org.eclipse.papyrus.properties.constraints.EMFInstanceOfConstraint');

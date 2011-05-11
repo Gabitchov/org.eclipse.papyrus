@@ -19,7 +19,6 @@ import java.util.Set;
 
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.constraints.Constraint;
 import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
 import org.eclipse.papyrus.properties.contexts.Context;
@@ -33,7 +32,7 @@ import org.eclipse.papyrus.properties.util.ClassLoader;
  */
 public class DefaultConstraintEngine implements ConstraintEngine {
 
-	private Set<Constraint> constraints = new LinkedHashSet<Constraint>();
+	private final Set<Constraint> constraints = new LinkedHashSet<Constraint>();
 
 	public void contextChanged() {
 		constraints.clear();
@@ -43,39 +42,35 @@ public class DefaultConstraintEngine implements ConstraintEngine {
 		}
 	}
 
-	public void addContext(Context context) {
+	public void addContext(final Context context) {
 		ClassLoader loader = new ClassLoader();
 
 		for(View view : context.getViews()) {
 			for(ConstraintDescriptor descriptor : view.getConstraints()) {
-				String className = descriptor.getConstraintType().getConstraintClass();
-				try {
-					Class<? extends Constraint> clazz = loader.loadClass(className).asSubclass(Constraint.class);
-					Constraint constraint = clazz.newInstance();
-					constraint.setConstraintDescriptor(descriptor);
+				Constraint constraint = ConstraintFactory.getInstance().createFromModel(descriptor);
+				if(constraint != null) {
 					constraints.add(constraint);
-				} catch (Exception ex) {
-					Activator.log.error("Cannot load constraint " + descriptor.getName(), ex); //$NON-NLS-1$
 				}
 			}
 		}
 	}
 
-	public Set<View> getViews(ISelection forSelection) {
+	public Set<View> getViews(final ISelection forSelection) {
 		Set<View> result = new HashSet<View>();
 
 		IStructuredSelection selection;
-		if(forSelection instanceof IStructuredSelection)
+		if(forSelection instanceof IStructuredSelection) {
 			selection = (IStructuredSelection)forSelection;
-		else
+		} else {
 			return result;
+		}
 
 		Set<Constraint> matchedConstraints = match(selection);
 
 		return getViews(matchedConstraints);
 	}
 
-	private Set<Constraint> match(IStructuredSelection selection) {
+	private Set<Constraint> match(final IStructuredSelection selection) {
 		Set<Constraint> matchedConstraints = new LinkedHashSet<Constraint>();
 
 		for(Constraint c : constraints) {
@@ -103,19 +98,20 @@ public class DefaultConstraintEngine implements ConstraintEngine {
 			}
 		}
 
-		Activator.log.warn("Filtered Constraints : " + matchedConstraints); //$NON-NLS-1$
+		//		Activator.log.warn("Filtered Constraints : " + matchedConstraints); //$NON-NLS-1$
 		resolveConstraintConflicts(matchedConstraints);
-		Activator.log.warn("Filtered Constraints : " + matchedConstraints); //$NON-NLS-1$
+		//		Activator.log.warn("Filtered Constraints : " + matchedConstraints); //$NON-NLS-1$
 
 		return matchedConstraints;
 	}
 
-	private void resolveConstraintConflicts(Set<Constraint> matchedConstraints) {
+	private void resolveConstraintConflicts(final Set<Constraint> matchedConstraints) {
 		Set<Constraint> constraintsSet = new HashSet<Constraint>(matchedConstraints);
 		for(Constraint c : constraintsSet) {
 			for(Constraint c2 : constraintsSet) {
-				if(c == c2)
+				if(c == c2) {
 					continue;
+				}
 
 				if(c.getDescriptor().getOverriddenConstraints().contains(c2.getDescriptor())) {
 					matchedConstraints.remove(c2);
@@ -130,7 +126,7 @@ public class DefaultConstraintEngine implements ConstraintEngine {
 		}
 	}
 
-	private Set<View> getViews(Set<Constraint> matchedConstraints) {
+	private Set<View> getViews(final Set<Constraint> matchedConstraints) {
 		Set<View> views = new LinkedHashSet<View>();
 		for(Constraint c : matchedConstraints) {
 			views.add(c.getView());

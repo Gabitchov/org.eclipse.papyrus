@@ -48,7 +48,7 @@ import org.eclipse.swt.widgets.Shell;
  * 
  * @author Camille Letavernier
  */
-public class CustomizationDialog extends TrayDialog {
+public class CustomizationDialog extends TrayDialog implements SelectionListener {
 
 	private List availableContexts;
 
@@ -67,7 +67,7 @@ public class CustomizationDialog extends TrayDialog {
 	 * @param shell
 	 *        The shell in which the dialog will be opened
 	 */
-	public CustomizationDialog(Shell shell) {
+	public CustomizationDialog(final Shell shell) {
 		super(shell);
 	}
 
@@ -95,15 +95,16 @@ public class CustomizationDialog extends TrayDialog {
 		availableContextsViewer.setLabelProvider(new LabelProvider() {
 
 			@Override
-			public String getText(Object element) {
+			public String getText(final Object element) {
 				if(element != null && element instanceof Context) {
 					Context context = (Context)element;
-					return context.getName() + (ConfigurationManager.instance.isPlugin(context) ? Messages.CustomizationDialog_plugin : ""); //$NON-NLS-2$ //$NON-NLS-1$
+					return context.getName() + (ConfigurationManager.instance.isPlugin(context) ? Messages.CustomizationDialog_plugin : ""); //$NON-NLS-1$
 				}
 				return super.getText(element);
 			}
 		});
 		availableContextsViewer.setInput(contexts);
+		availableContexts.addSelectionListener(this);
 
 		Composite controls = new Composite(contents, SWT.NONE);
 		controls.setLayout(new FillLayout(SWT.VERTICAL));
@@ -112,121 +113,23 @@ public class CustomizationDialog extends TrayDialog {
 		copyContext.setText(Messages.CustomizationDialog_copy);
 		copyContext.setToolTipText(Messages.CustomizationDialog_createNewCopyByCopy);
 		copyContext.setEnabled(false);
-		copyContext.addSelectionListener(new SelectionListener() {
-
-			public void widgetSelected(SelectionEvent e) {
-				CopyContextAction action = new CopyContextAction();
-				IStructuredSelection selection = (IStructuredSelection)availableContextsViewer.getSelection();
-				if(selection.isEmpty())
-					return;
-
-				Object element = selection.getFirstElement();
-				if(element instanceof Context) {
-					Context sourceContext = (Context)element;
-					try {
-
-						InputDialog dialog = new InputDialog(getShell(), Messages.CustomizationDialog_enterConfigurationName, Messages.CustomizationDialog_enterConfigurationName, Messages.CustomizationDialog_copyOf + sourceContext.getName(), new IInputValidator() {
-
-							public String isValid(String newText) {
-								if(newText.trim().equals("")) { //$NON-NLS-1$
-									return Messages.CustomizationDialog_configurationNameNotEmpty;
-								}
-								if(ConfigurationManager.instance.getContext(newText) != null) {
-									return Messages.CustomizationDialog_configurationWithSameNameExists;
-								}
-								return null;
-							}
-
-						});
-						dialog.setTitle(Messages.CustomizationDialog_configurationName);
-						int result = dialog.open();
-						if(result == Window.OK) {
-							String targetName = dialog.getText();
-							action.copy(sourceContext, targetName, false);
-							availableContextsViewer.setInput(ConfigurationManager.instance.getContexts());
-						}
-					} catch (IOException ex) {
-						Activator.log.error(ex);
-					}
-				}
-			}
-
-			public void widgetDefaultSelected(SelectionEvent e) {
-				//Nothing
-			}
-
-		});
+		copyContext.addSelectionListener(this);
 
 		editContext = new Button(controls, SWT.PUSH);
 		editContext.setText(Messages.CustomizationDialog_edit);
 		editContext.setToolTipText(Messages.CustomizationDialog_editSelectedContext);
 		editContext.setEnabled(false);
-		editContext.addSelectionListener(new SelectionListener() {
-
-			public void widgetSelected(SelectionEvent e) {
-				EditContextAction action = new EditContextAction();
-				IStructuredSelection selection = (IStructuredSelection)availableContextsViewer.getSelection();
-				if(selection.isEmpty())
-					return;
-
-				Object element = selection.getFirstElement();
-				if(element instanceof Context) {
-					Context sourceContext = (Context)element;
-					try {
-						action.openEditor(sourceContext);
-						close();
-					} catch (Exception ex) {
-						Activator.log.error("An error occured while initializing the customization editor", ex); //$NON-NLS-1$
-						return;
-					}
-				}
-			}
-
-			public void widgetDefaultSelected(SelectionEvent e) {
-				//Nothing
-			}
-
-		});
+		editContext.addSelectionListener(this);
 
 		removeContext = new Button(controls, SWT.PUSH);
 		removeContext.setText(Messages.CustomizationDialog_delete);
 		removeContext.setToolTipText(Messages.CustomizationDialog_removeSelectedContext);
 		removeContext.setEnabled(false);
-		removeContext.addSelectionListener(new SelectionListener() {
-
-			public void widgetSelected(SelectionEvent e) {
-				RemoveContextAction action = new RemoveContextAction();
-				IStructuredSelection selection = (IStructuredSelection)availableContextsViewer.getSelection();
-				if(selection.isEmpty())
-					return;
-
-				Object element = selection.getFirstElement();
-				if(element instanceof Context) {
-					Context sourceContext = (Context)element;
-					if(ConfigurationManager.instance.isPlugin(sourceContext)) {
-						Activator.log.warn(Messages.CustomizationDialog_cannotDeletePluginContext);
-						//Plugin context cannot be deleted
-						return;
-					}
-
-					MessageDialog dialog = new MessageDialog(getShell(), Messages.CustomizationDialog_deleteContext, null, Messages.CustomizationDialog_deleteContextConfirmation1 + sourceContext.getName() + Messages.CustomizationDialog_deleteContextConfirmation2, MessageDialog.CONFIRM, new String[]{ Messages.CustomizationDialog_yes, Messages.CustomizationDialog_no, Messages.CustomizationDialog_cancel }, 2);
-					int result = dialog.open();
-					if(result == 0) { //0 is "Yes" (It is *not* the same 0 as Window.OK)
-						action.removeContext(sourceContext);
-						availableContextsViewer.setInput(ConfigurationManager.instance.getContexts());
-					}
-				}
-			}
-
-			public void widgetDefaultSelected(SelectionEvent e) {
-				//Nothing
-			}
-
-		});
+		removeContext.addSelectionListener(this);
 
 		availableContextsViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
-			public void selectionChanged(SelectionChangedEvent event) {
+			public void selectionChanged(final SelectionChangedEvent event) {
 				IStructuredSelection selection = (IStructuredSelection)event.getSelection();
 				boolean activate = false;
 
@@ -251,6 +154,89 @@ public class CustomizationDialog extends TrayDialog {
 		getShell().pack();
 	}
 
+	protected void editAction() {
+		EditContextAction action = new EditContextAction();
+		IStructuredSelection selection = (IStructuredSelection)availableContextsViewer.getSelection();
+		if(selection.isEmpty()) {
+			return;
+		}
+
+		Object element = selection.getFirstElement();
+		if(element instanceof Context) {
+			Context sourceContext = (Context)element;
+			try {
+				action.openEditor(sourceContext);
+				close();
+			} catch (Exception ex) {
+				Activator.log.error("An error occured while initializing the customization editor", ex); //$NON-NLS-1$
+				return;
+			}
+		}
+	}
+
+	protected void copyAction() {
+		CopyContextAction action = new CopyContextAction();
+		IStructuredSelection selection = (IStructuredSelection)availableContextsViewer.getSelection();
+		if(selection.isEmpty()) {
+			return;
+		}
+
+		Object element = selection.getFirstElement();
+		if(element instanceof Context) {
+			Context sourceContext = (Context)element;
+			try {
+
+				InputDialog dialog = new InputDialog(getShell(), Messages.CustomizationDialog_enterConfigurationName, Messages.CustomizationDialog_enterConfigurationName, Messages.CustomizationDialog_copyOf + sourceContext.getName(), new IInputValidator() {
+
+					public String isValid(final String newText) {
+						if(newText.trim().equals("")) { //$NON-NLS-1$
+							return Messages.CustomizationDialog_configurationNameNotEmpty;
+						}
+						if(ConfigurationManager.instance.getContext(newText) != null) {
+							return Messages.CustomizationDialog_configurationWithSameNameExists;
+						}
+						return null;
+					}
+
+				});
+				dialog.setTitle(Messages.CustomizationDialog_configurationName);
+				int result = dialog.open();
+				if(result == Window.OK) {
+					String targetName = dialog.getText();
+					action.copy(sourceContext, targetName, false);
+					availableContextsViewer.setInput(ConfigurationManager.instance.getContexts());
+				}
+			} catch (IOException ex) {
+				Activator.log.error(ex);
+			}
+		}
+	}
+
+	protected void deleteAction() {
+		RemoveContextAction action = new RemoveContextAction();
+		IStructuredSelection selection = (IStructuredSelection)availableContextsViewer.getSelection();
+		if(selection.isEmpty()) {
+			return;
+		}
+
+		Object element = selection.getFirstElement();
+		if(element instanceof Context) {
+			Context sourceContext = (Context)element;
+			if(ConfigurationManager.instance.isPlugin(sourceContext)) {
+				Activator.log.warn(Messages.CustomizationDialog_cannotDeletePluginContext);
+				//Plugin context cannot be deleted
+				return;
+			}
+
+			MessageDialog dialog = new MessageDialog(getShell(), Messages.CustomizationDialog_deleteContext, null, Messages.CustomizationDialog_deleteContextConfirmation1 + sourceContext.getName() + Messages.CustomizationDialog_deleteContextConfirmation2, MessageDialog.CONFIRM, new String[]{ Messages.CustomizationDialog_yes, Messages.CustomizationDialog_no, Messages.CustomizationDialog_cancel }, 2);
+			int result = dialog.open();
+			if(result == 0) { //0 is "Yes" (It is *not* the same 0 as Window.OK)
+				action.removeContext(sourceContext);
+				availableContextsViewer.setInput(ConfigurationManager.instance.getContexts());
+			}
+		}
+	}
+
 	@Override
 	protected int getShellStyle() {
 		return super.getShellStyle() | SWT.RESIZE;
@@ -262,4 +248,27 @@ public class CustomizationDialog extends TrayDialog {
 	}
 
 
+	public void widgetSelected(final SelectionEvent e) {
+		if(e.widget == editContext) {
+			editAction();
+		} else if(e.widget == removeContext) {
+			deleteAction();
+		} else if(e.widget == copyContext) {
+			copyAction();
+		}
+	}
+
+	public void widgetDefaultSelected(final SelectionEvent e) {
+		if(e.widget == availableContexts) {
+			IStructuredSelection selection = (IStructuredSelection)availableContextsViewer.getSelection();
+			if(!selection.isEmpty()) {
+				Context context = (Context)selection.getFirstElement();
+				if(ConfigurationManager.instance.isPlugin(context)) {
+					copyAction();
+				} else {
+					editAction();
+				}
+			}
+		}
+	}
 }

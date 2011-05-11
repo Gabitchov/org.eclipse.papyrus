@@ -38,6 +38,11 @@ public class MultipleObservableList extends ObservableList implements ICommitLis
 
 	List<IObservableList> observableLists = new LinkedList<IObservableList>();
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 */
 	public MultipleObservableList() {
 		super(new LinkedList<Object>(), Object.class);
 	}

@@ -37,8 +37,9 @@ public class Util {
 	 *         the given String with the first letter capitalized
 	 */
 	public static String firstToUpper(String source) {
-		if(source.length() == 0)
+		if(source.length() == 0) {
 			return source;
+		}
 		return source.substring(0, 1).toUpperCase() + source.substring(1);
 	}
 
@@ -138,8 +139,9 @@ public class Util {
 			for(DataContextElement contextElement : fromContextElements) {
 				if(contextElement instanceof DataContextPackage && contextElement.getName().equals(name)) {
 					DataContextElement result = getContextElementByQualifiedName(qualifiedName, ((DataContextPackage)contextElement).getElements());
-					if(result != null)
+					if(result != null) {
 						return result;
+					}
 				}
 			}
 		} else {
@@ -163,8 +165,9 @@ public class Util {
 	 */
 	public static List<Context> getDependencies(Context context) {
 		List<Context> result = new LinkedList<Context>();
-		if(context == null)
+		if(context == null) {
 			return result;
+		}
 
 		result.add(context);
 		findDependencies(context, result);
@@ -212,7 +215,7 @@ public class Util {
 	 * 
 	 * @param string
 	 *        The string to split
-	 * @param descriptionMaxCharPerLine
+	 * @param maxCharPerLine
 	 *        The maximum number of characters per line in the resulting string
 	 * @return
 	 *         The split string

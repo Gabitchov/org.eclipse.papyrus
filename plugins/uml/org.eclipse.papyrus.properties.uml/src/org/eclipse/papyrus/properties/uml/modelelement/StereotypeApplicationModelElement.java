@@ -14,8 +14,8 @@ package org.eclipse.papyrus.properties.uml.modelelement;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.properties.modelelement.AbstractModelElement;
-import org.eclipse.papyrus.properties.providers.EMFObjectLabelProvider;
 import org.eclipse.papyrus.properties.uml.databinding.ProfileApplicationObservableList;
 import org.eclipse.papyrus.properties.uml.databinding.StereotypeApplicationObservableList;
 import org.eclipse.papyrus.properties.uml.providers.ApplicableStereotypeContentProvider;
@@ -40,9 +40,9 @@ public class StereotypeApplicationModelElement extends AbstractModelElement {
 	}
 
 	public IObservable getObservable(String propertyPath) {
-		if(propertyPath.equals("stereotypeApplication")) {
+		if(propertyPath.equals("stereotypeApplication")) { //$NON-NLS-1$
 			return new StereotypeApplicationObservableList(umlSource, domain);
-		} else if(propertyPath.equals("profileApplication")) {
+		} else if(propertyPath.equals("profileApplication")) { //$NON-NLS-1$
 			return new ProfileApplicationObservableList((Package)umlSource, domain);
 		}
 
@@ -51,7 +51,7 @@ public class StereotypeApplicationModelElement extends AbstractModelElement {
 
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
-		return new EMFObjectLabelProvider();
+		return new EditorLabelProvider();
 	}
 
 	@Override

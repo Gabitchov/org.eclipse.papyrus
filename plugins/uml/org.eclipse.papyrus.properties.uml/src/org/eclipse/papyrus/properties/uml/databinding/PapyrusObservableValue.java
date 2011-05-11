@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.core.utils.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
@@ -83,5 +83,21 @@ public class PapyrusObservableValue extends EObjectObservableValue {
 		} catch (Exception ex) {
 			Activator.log.error(ex);
 		}
+	}
+
+	/**
+	 * 
+	 * @return the {@link EStructuralFeature} observed by this object
+	 */
+	public EStructuralFeature getEStructuralFeature() {
+		return eStructuralFeature;
+	}
+
+	/**
+	 * 
+	 * @return the {@link EObject} observed by this object
+	 */
+	public EObject getEObject() {
+		return eObject;
 	}
 }

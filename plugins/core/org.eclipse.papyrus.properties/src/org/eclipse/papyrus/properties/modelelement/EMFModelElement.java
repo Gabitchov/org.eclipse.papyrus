@@ -94,8 +94,9 @@ public class EMFModelElement extends AbstractModelElement {
 	public IObservable getObservable(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(propertyPath);
-		if(feature == null)
+		if(feature == null) {
 			return null;
+		}
 
 		if(feature.getUpperBound() != 1) {
 			IObservableList list = domain == null ? EMFProperties.list(featurePath).observe(source) : new EMFObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
@@ -111,7 +112,7 @@ public class EMFModelElement extends AbstractModelElement {
 	 * The last feature of the featurePath can be used to retrieve value from the returned EObject
 	 * 
 	 * @param featurePath
-	 * @return
+	 * @return the EObject found by resolving to the given FeaturePath
 	 */
 	public EObject getSource(FeaturePath featurePath) {
 		EObject currentSource = source;
@@ -204,40 +205,45 @@ public class EMFModelElement extends AbstractModelElement {
 	@Override
 	public boolean isOrdered(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
-		if(feature == null)
+		if(feature == null) {
 			return true;
+		}
 		return feature.isOrdered();
 	}
 
 	@Override
 	public boolean isUnique(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
-		if(feature == null)
+		if(feature == null) {
 			return false;
+		}
 		return feature.isUnique();
 	}
 
 	@Override
 	public boolean isMandatory(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
-		if(feature == null)
+		if(feature == null) {
 			return false;
+		}
 		return feature.isRequired();
 	}
 
 	@Override
 	public boolean isEditable(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
-		if(feature == null)
+		if(feature == null) {
 			return false;
+		}
 		return feature.isChangeable();
 	}
 
 	@Override
 	public boolean forceRefresh(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
-		if(feature == null)
+		if(feature == null) {
 			return false;
+		}
 		return feature.isDerived();
 	}
 

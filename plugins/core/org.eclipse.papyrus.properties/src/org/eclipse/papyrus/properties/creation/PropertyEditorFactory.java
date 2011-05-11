@@ -29,7 +29,8 @@ import org.eclipse.swt.widgets.Control;
  * to edit objects. For a given object, the factory uses the matching constraints
  * to find the property views associated to the object, and displays these views
  * in a Dialog.
- * This factory cannot instantiate new objects. However, subclasses should override {@link #createObject()} and {@link #canCreateObject()} to enable
+ * This factory cannot instantiate new objects. However, subclasses should override {@link #createObject(Control)} and {@link #canCreateObject()} to
+ * enable
  * this behavior.
  * 
  * @see org.eclipse.papyrus.properties.creation.EditionDialog
@@ -66,8 +67,9 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 	 * Facility
 	 */
 	protected Object createObject(Control widget, Object source) {
-		if(source == null)
+		if(source == null) {
 			return null;
+		}
 
 		IStructuredSelection selection = new StructuredSelection(source);
 
@@ -149,7 +151,7 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 	 *         The title of the dialog used to edit the newly created instance
 	 * 
 	 * @see #canCreateObject()
-	 * @see #createObject()
+	 * @see #createObject(Control)
 	 */
 	public String getCreationDialogTitle() {
 		return Messages.PropertyEditorFactory_CreateANewElement;

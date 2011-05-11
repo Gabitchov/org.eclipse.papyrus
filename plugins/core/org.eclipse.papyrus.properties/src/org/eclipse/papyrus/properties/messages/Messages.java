@@ -13,6 +13,11 @@ package org.eclipse.papyrus.properties.messages;
 
 import org.eclipse.osgi.util.NLS;
 
+/**
+ * String externalisation for plug-in org.eclipse.papyrus.properties
+ * 
+ * @author Camille Letavernier
+ */
 public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.properties.messages.messages"; //$NON-NLS-1$

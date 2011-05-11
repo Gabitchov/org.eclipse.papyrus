@@ -30,24 +30,60 @@ import org.eclipse.papyrus.properties.customization.messages.Messages;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
-
+/**
+ * This page handles preferences for dialog boxes
+ * 
+ * @author Camille Letavernier
+ */
 public class CustomizationPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
+	/**
+	 *
+	 */
 	public final static String OPEN_CUSTOMIZATION_PERSPECTIVE = "openCustomizationPerspective"; //$NON-NLS-1$
 
+	/**
+	 * 
+	 */
 	public final static String ASK_FOR_CONFIRMATION = "askForConfirmation"; //$NON-NLS-1$
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 */
 	public CustomizationPreferencePage() {
 	}
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param style
+	 */
 	public CustomizationPreferencePage(int style) {
 		super(style);
 	}
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param title
+	 * @param style
+	 */
 	public CustomizationPreferencePage(String title, int style) {
 		super(title, style);
 	}
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param title
+	 * @param image
+	 * @param style
+	 */
 	public CustomizationPreferencePage(String title, ImageDescriptor image, int style) {
 		super(title, image, style);
 	}
@@ -63,10 +99,21 @@ public class CustomizationPreferencePage extends FieldEditorPreferencePage imple
 		addField(new BooleanFieldEditor(ASK_FOR_CONFIRMATION, Messages.CustomizationPreferencePage_AskForConfirmation, getFieldEditorParent()));
 	}
 
+	/**
+	 * Indicates if the customization perspective should be opened
+	 * 
+	 * @return true if the customization perspective should be opened
+	 */
 	public static boolean openCustomizationPerspective() {
 		return Activator.getDefault().getPreferenceStore().getBoolean(OPEN_CUSTOMIZATION_PERSPECTIVE);
 	}
 
+	/**
+	 * Indicates if a dialog should ask the user for a confirmation before opening
+	 * the customization perspective
+	 * 
+	 * @return true if a user confirmation is needed
+	 */
 	public static boolean askForConfirmation() {
 		return Activator.getDefault().getPreferenceStore().getBoolean(ASK_FOR_CONFIRMATION);
 	}

@@ -15,7 +15,11 @@ import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.properties.customization.Activator;
 
-
+/**
+ * The initializer for @see {@link CustomizationPreferencePage}
+ * 
+ * @author Camille Letavernier
+ */
 public class CustomizationPreferencesInitializer extends AbstractPreferenceInitializer {
 
 	@Override

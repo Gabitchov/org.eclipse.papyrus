@@ -13,9 +13,7 @@ package org.eclipse.papyrus.properties.uml.constraints;
 
 import org.eclipse.papyrus.properties.constraints.AbstractConstraint;
 import org.eclipse.papyrus.properties.constraints.Constraint;
-import org.eclipse.papyrus.properties.contexts.ConfigProperty;
-import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
-import org.eclipse.papyrus.properties.contexts.ValueProperty;
+import org.eclipse.papyrus.properties.contexts.SimpleConstraint;
 import org.eclipse.papyrus.properties.uml.util.UMLUtil;
 import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.uml2.uml.Element;
@@ -32,15 +30,8 @@ public class UmlInstanceOfConstraint extends AbstractConstraint {
 	private String umlClassName;
 
 	@Override
-	public void setConstraintDescriptor(ConstraintDescriptor descriptor) {
-		for(ConfigProperty property : descriptor.getProperties()) {
-			if(property.getName().equals("umlClassName")) { //$NON-NLS-1$
-				if(property instanceof ValueProperty) {
-					umlClassName = ((ValueProperty)property).getValue();
-				}
-			}
-		}
-		super.setConstraintDescriptor(descriptor);
+	public void setDescriptor(SimpleConstraint descriptor) {
+		umlClassName = getValue("umlClassName"); //$NON-NLS-1$
 	}
 
 	public boolean match(Object selection) {

@@ -19,7 +19,12 @@ import org.eclipse.papyrus.widgets.editors.InputDialog;
 import org.eclipse.papyrus.widgets.messages.Messages;
 import org.eclipse.swt.widgets.Control;
 
-
+/**
+ * A ValueFactory for editing Strings
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class StringEditionFactory implements ReferenceValueFactory {
 
 	private String title = Messages.StringEditionFactory_EnterANewValue;
@@ -28,18 +33,49 @@ public class StringEditionFactory implements ReferenceValueFactory {
 
 	private IInputValidator validator;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 */
 	public StringEditionFactory() {
 	}
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param title
+	 *        The title of the dialog opened by this factory when editing a String
+	 * @param label
+	 *        The Label used to describe the kind of value being edited
+	 */
 	public StringEditionFactory(String title, String label) {
 		this.title = title;
 		this.label = label;
 	}
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param validator
+	 */
 	public StringEditionFactory(IInputValidator validator) {
 		this.validator = validator;
 	}
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param title
+	 *        The title of the dialog opened by this factory when editing a String
+	 * @param label
+	 *        The Label used to describe the kind of value being edited
+	 * @param validator
+	 *        The validator used to check the Strings being edited
+	 */
 	public StringEditionFactory(String title, String label, IInputValidator validator) {
 		this.title = title;
 		this.label = label;
@@ -78,6 +114,11 @@ public class StringEditionFactory implements ReferenceValueFactory {
 		return object;
 	}
 
+	/**
+	 * Sets the Validator for this factory
+	 * 
+	 * @param validator
+	 */
 	public void setValidator(IInputValidator validator) {
 		this.validator = validator;
 	}

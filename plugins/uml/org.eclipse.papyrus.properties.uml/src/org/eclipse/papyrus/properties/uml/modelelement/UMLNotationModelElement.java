@@ -1,0 +1,130 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
+package org.eclipse.papyrus.properties.uml.modelelement;
+
+import org.eclipse.core.databinding.observable.IObservable;
+import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.gef.EditPart;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.properties.modelelement.AbstractModelElement;
+import org.eclipse.papyrus.properties.uml.Activator;
+import org.eclipse.papyrus.properties.uml.databinding.ElementCustomizationObservableValue;
+import org.eclipse.papyrus.properties.uml.databinding.ElementCustomizationObservableValue.Property;
+import org.eclipse.papyrus.properties.uml.messages.Messages;
+import org.eclipse.papyrus.properties.uml.util.UMLUtil;
+import org.eclipse.papyrus.umlutils.NamedElementUtil;
+import org.eclipse.papyrus.widgets.providers.AbstractStaticContentProvider;
+import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
+import org.eclipse.uml2.uml.NamedElement;
+
+
+public class UMLNotationModelElement extends AbstractModelElement {
+
+	public static final String LabelCustomization = "labelCustomization"; //$NON-NLS-1$
+
+	public static final String StereotypeDisplay = "stereotypeDisplay"; //$NON-NLS-1$
+
+	public static final String ElementIcon = "elementIcon"; //$NON-NLS-1$
+
+	public static final String Shadow = "shadow"; //$NON-NLS-1$
+
+	public static final String QualifiedName = "qualifiedName"; //$NON-NLS-1$
+
+	private EditPart sourceElement;
+
+	public UMLNotationModelElement(EditPart sourceElement) {
+		this.sourceElement = sourceElement;
+	}
+
+	public IObservable getObservable(String propertyPath) {
+		if(propertyPath.equals(LabelCustomization)) {
+			return new ElementCustomizationObservableValue(sourceElement, Property.LABEL_CUSTOMIZATION);
+		} else if(propertyPath.equals(StereotypeDisplay)) {
+			//TODO : check if we need an observable in this case. For now, the Widget is responsible for updating the element
+			//@see StereotypeDisplay
+			return null;
+		} else if(propertyPath.equals(ElementIcon)) {
+			return new ElementCustomizationObservableValue(sourceElement, Property.ELEMENT_ICON);
+		} else if(propertyPath.equals(Shadow)) {
+			return new ElementCustomizationObservableValue(sourceElement, Property.SHADOW);
+		} else if(propertyPath.equals(QualifiedName)) {
+			return new ElementCustomizationObservableValue(sourceElement, Property.QUALIFIED_NAME);
+		}
+
+		Activator.log.warn("Unknown property : " + propertyPath); //$NON-NLS-1$
+
+		return null;
+	}
+
+	@Override
+	public IStaticContentProvider getContentProvider(String propertyPath) {
+		if(propertyPath.equals(QualifiedName)) {
+			//maxDepth corresponds to "None" (The name is not qualified), while 0 corresponds to "Full" (Fully qualified name)
+			return new AbstractStaticContentProvider() {
+
+				public Object[] getElements() {
+					int maxDepth = NamedElementUtil.getQualifiedNameMaxDepth((NamedElement)UMLUtil.resolveUMLElement(sourceElement));
+					if(maxDepth == 0) {
+						return new Integer[]{ 0 };
+					}
+
+					Integer[] result = new Integer[maxDepth + 1];
+					result[0] = maxDepth; //None
+					result[1] = 0; //Full
+					for(int i = 1; i < maxDepth; i++) {
+						result[i + 1] = i;
+					}
+					return result;
+				}
+
+			};
+		}
+
+		return null;
+	}
+
+	@Override
+	public ILabelProvider getLabelProvider(String propertyPath) {
+		//maxDepth corresponds to "None" (The name is not qualified), while 0 corresponds to "Full" (Fully qualified name)
+		int depth = NamedElementUtil.getQualifiedNameMaxDepth((NamedElement)UMLUtil.resolveUMLElement(sourceElement));
+		final int maxDepth = depth == 0 ? 1 : depth;
+
+		return new LabelProvider() {
+
+			@Override
+			public String getText(Object value) {
+				if(value instanceof Integer) {
+					Integer intValue = (Integer)value;
+					if(intValue == maxDepth) {
+						return Messages.UMLNotationModelElement_DepthNone;
+					} else if(intValue == 0) {
+						return Messages.UMLNotationModelElement_DepthFull;
+					} else {
+						return "-" + intValue; //$NON-NLS-1$
+					}
+				}
+				Activator.log.warn("Unknown value : " + value); //$NON-NLS-1$
+				return ""; //$NON-NLS-1$
+			}
+		};
+	}
+
+	public EModelElement getEModelElement() {
+		return (EModelElement)sourceElement.getModel();
+	}
+
+	public EditPart getEditPart() {
+		return sourceElement;
+	}
+
+}

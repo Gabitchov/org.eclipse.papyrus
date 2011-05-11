@@ -20,19 +20,31 @@ import org.eclipse.papyrus.properties.contexts.DataContextPackage;
 import org.eclipse.papyrus.properties.contexts.View;
 import org.eclipse.ui.internal.misc.StringMatcher;
 
-
+/**
+ * A Filter for the UIEditor. The Filter can match Views and DataContextElements
+ * An object is matched if it directly matches the filter, or if one of its parents
+ * match it, or if one of his children (at any level) match it.
+ * 
+ * @author Camille Letavernier
+ */
 public class ViewFilter extends ViewerFilter {
 
 	private StringMatcher matcher;
 
+	/**
+	 * Sets the pattern for this filter
+	 * 
+	 * @param pattern
+	 */
 	public void setPattern(String pattern) {
 		matcher = new StringMatcher("*" + pattern + "*", true, false); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
-		if(matcher == null)
+		if(matcher == null) {
 			return true;
+		}
 
 		if(element instanceof IAdaptable) {
 			EObject eObject = (EObject)((IAdaptable)element).getAdapter(EObject.class);

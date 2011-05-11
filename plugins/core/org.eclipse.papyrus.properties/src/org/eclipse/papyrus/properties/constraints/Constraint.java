@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.properties.constraints;
 
 import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
+import org.eclipse.papyrus.properties.contexts.SimpleConstraint;
 import org.eclipse.papyrus.properties.contexts.View;
 
 /**
@@ -31,7 +32,7 @@ public interface Constraint {
 	 * @param descriptor
 	 *        The constraint descriptor to be associated to this constraint
 	 */
-	public void setConstraintDescriptor(ConstraintDescriptor descriptor);
+	public void setConstraintDescriptor(SimpleConstraint descriptor);
 
 	/**
 	 * Tests if this constraint matches the given object

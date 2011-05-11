@@ -205,6 +205,11 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 		displayView();
 	}
 
+	/**
+	 * Sets the current Editor
+	 * 
+	 * @param editor
+	 */
 	public void setEditor(UIEditor editor) {
 		editor.addPreview(this);
 		currentEditors.add(editor);
@@ -236,8 +241,9 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 		path = path.append("/preview/"); //$NON-NLS-1$
 		try {
 			File previewDirectory = path.toFile();
-			if(!previewDirectory.exists())
+			if(!previewDirectory.exists()) {
 				previewDirectory.mkdirs();
+			}
 
 			File xwtFile = path.append(section.getSectionFile()).toFile();
 

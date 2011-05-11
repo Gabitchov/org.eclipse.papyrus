@@ -107,4 +107,24 @@ public class Activator extends AbstractUIPlugin {
 		return image;
 	}
 
+	/**
+	 * Returns the image from the given path
+	 * 
+	 * @param imagePath
+	 *        The path of the image, in the form /<plug-in ID>/<path to the image>
+	 * @return
+	 *         The Image at the given location, or null if none was found
+	 */
+	public Image getImageFromPlugin(String imagePath) {
+		if(imagePath.startsWith("/")) { //$NON-NLS-1$
+			String pluginId, path;
+			imagePath = imagePath.substring(1, imagePath.length());
+			pluginId = imagePath.substring(0, imagePath.indexOf("/")); //$NON-NLS-1$
+			path = imagePath.substring(imagePath.indexOf("/"), imagePath.length()); //$NON-NLS-1$
+			return getImage(pluginId, path);
+		} else {
+			return getImage(imagePath);
+		}
+	}
+
 }

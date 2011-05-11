@@ -52,8 +52,15 @@
          </editor>
          <editor
                editor="org.eclipse.papyrus.properties.uml.widgets.NaturalLanguageEditor"
-               language="PHP">
+               language="OCL">
          </editor>
+      </extension>
+      <extension
+            point="org.eclipse.papyrus.properties.context">
+         <context
+               contextModel="Model/UMLNotation/UMLNotation.ctx"
+               loadDefault="true">
+         </context>
       </extension>
 
 </plugin>

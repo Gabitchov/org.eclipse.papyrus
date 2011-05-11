@@ -56,7 +56,7 @@ public class LanguageRegistry {
 	private void createPreferences(URI preferencesURI) {
 		preferences = languagepreferencesFactory.eINSTANCE.createPreferences();
 		Editor defaultEditor = languagepreferencesFactory.eINSTANCE.createEditor();
-		defaultEditor.setClass("org.eclipse.papyrus.properties.uml.widgets.NaturalLanguageEditor");
+		defaultEditor.setClass("org.eclipse.papyrus.properties.uml.widgets.NaturalLanguageEditor"); //$NON-NLS-1$
 
 		preferences.getEditors().add(defaultEditor);
 		preferences.setDefaultEditor(defaultEditor);
@@ -84,7 +84,7 @@ public class LanguageRegistry {
 			}
 		}
 
-		return getEditorFor("");
+		return getEditorFor(""); //$NON-NLS-1$
 	}
 
 	public void setDefaultEditorFor(String languageName, Editor editor) {
@@ -106,7 +106,7 @@ public class LanguageRegistry {
 
 	public void registerEditor(String language, Editor editor) {
 		if(language == null)
-			language = "";
+			language = ""; //$NON-NLS-1$
 
 		if(!languageMapping.containsKey(language)) {
 			languageMapping.put(language, new LinkedList<Editor>());
@@ -165,7 +165,7 @@ public class LanguageRegistry {
 
 	public List<String> getLanguages() {
 		List<String> result = new LinkedList<String>(languageMapping.keySet());
-		result.remove("");
+		result.remove(""); //$NON-NLS-1$
 		Collections.sort(result);
 		return result;
 	}

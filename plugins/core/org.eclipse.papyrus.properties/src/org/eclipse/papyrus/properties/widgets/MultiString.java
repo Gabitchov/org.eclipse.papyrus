@@ -55,6 +55,10 @@ public class MultiString extends AbstractPropertyEditor {
 		super.doBinding();
 	}
 
+	/**
+	 * 
+	 * @return the ListViewer associated to this editor
+	 */
 	public ListViewer getViewer() {
 		return editor.getViewer();
 	}

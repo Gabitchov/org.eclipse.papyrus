@@ -29,9 +29,9 @@ import org.eclipse.papyrus.widgets.editors.ICommitListener;
 
 /**
  * An ObservableList using EMF Commands to edit the underlying list.
- * The commands are executed when the {@link #commit()} method is called.
+ * The commands are executed when the {@link #commit(AbstractEditor)} method is called.
  * However, the read operations (such as get, size, ...) return up-to-date
- * results, even when {@link #commit()} hasn't been called.
+ * results, even when {@link #commit(AbstractEditor)} hasn't been called.
  * 
  * @author Camille Letavernier
  */
@@ -88,7 +88,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 	 * Forces this list to commit all the pending commands. Only one composite command will
 	 * be executed, and can be undone in a single operation.
 	 * 
-	 * @see org.eclipse.papyrus.widgets.editors.ICommitListener#commit()
+	 * @see org.eclipse.papyrus.widgets.editors.ICommitListener#commit(AbstractEditor)
 	 * 
 	 */
 	public void commit(AbstractEditor editor) {

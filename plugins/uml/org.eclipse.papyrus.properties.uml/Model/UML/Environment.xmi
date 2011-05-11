@@ -4,9 +4,11 @@
   <modelElementFactories name="UML Factory" factoryClass="org.eclipse.papyrus.properties.uml.modelelement.UMLModelElementFactory"/>
   <modelElementFactories name="Stereotype Factory" factoryClass="org.eclipse.papyrus.properties.uml.modelelement.StereotypeModelElementFactory"/>
   <modelElementFactories name="Stereotype Application Factory" factoryClass="org.eclipse.papyrus.properties.uml.modelelement.StereotypeApplicationFactory"/>
+  <modelElementFactories name="UML Notation Factory" factoryClass="org.eclipse.papyrus.properties.uml.modelelement.UMLNotationFactory"/>
   <constraintTypes label="UML Instance Of" constraintClass="org.eclipse.papyrus.properties.uml.constraints.UmlInstanceOfConstraint"/>
   <constraintTypes label="Has Stereotype" constraintClass="org.eclipse.papyrus.properties.uml.constraints.HasStereotypeConstraint"/>
   <propertyEditorTypes label="ExpressionEditor" widgetClass="ExpressionEditor" namespace="//@namespaces.0" multiplicity="-1"/>
   <propertyEditorTypes label="Profile Application Editor" widgetClass="ProfileApplicationPropertyEditor" namespace="//@namespaces.0" type="Reference" multiplicity="-1"/>
+  <propertyEditorTypes label="StereotypeDisplayEditor" widgetClass="StereotypeDisplay" namespace="//@namespaces.0" type="Reference"/>
   <namespaces prefix="clr-namespace" name="uml" value="org.eclipse.papyrus.properties.uml.widgets"/>
 </environment:Environment>

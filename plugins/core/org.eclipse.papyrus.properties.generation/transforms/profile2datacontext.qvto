@@ -91,7 +91,7 @@ query Stereotype::getContext() : PropertyContext::Context {
 	return self.getRootProfile().map toContext().c;
 }
 
-mapping Stereotype::toConstraint(view : View) : ConstraintDescriptor{
+mapping Stereotype::toConstraint(view : View) : SimpleConstraint{
 	name := "is" + view.name.replace(' ', '');
 	display := view;
 	constraintType := pRoot.objectsOfType(PropertiesRoot).environments.constraintTypes->any(e | e.constraintClass = 'org.eclipse.papyrus.properties.uml.constraints.HasStereotypeConstraint');

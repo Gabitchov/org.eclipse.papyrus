@@ -17,7 +17,11 @@ import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.customization.editor.actions.ToggleDataContextAction;
 
-
+/**
+ * A Query to test if the DataContextElements should be displayed in the UIEditor
+ * 
+ * @author Camille Letavernier
+ */
 public class ShowContextQuery implements IJavaModelQuery<Context, Boolean> {
 
 	public Boolean evaluate(Context context, ParameterValueList parameters) throws ModelQueryExecutionException {

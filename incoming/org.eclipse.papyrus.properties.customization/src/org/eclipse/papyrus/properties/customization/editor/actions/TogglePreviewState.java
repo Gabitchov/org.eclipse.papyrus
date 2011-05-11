@@ -19,7 +19,14 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 
-
+/**
+ * A State to determine if the Preview view is opened in the current perspective
+ * The State should listen on the workbench an update itself when the perspective
+ * changes, or when the preview is opened or closed
+ * 
+ * @FIXME : the state is not correctly retrieved
+ * @author Camille Letavernier
+ */
 public class TogglePreviewState extends State implements IWindowListener, IPartListener {
 
 	private boolean isPreviewOpen;

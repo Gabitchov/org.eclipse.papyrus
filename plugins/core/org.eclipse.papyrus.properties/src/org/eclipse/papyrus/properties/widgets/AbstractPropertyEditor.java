@@ -77,6 +77,9 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 */
 	protected boolean showLabel = true;
 
+	/**
+	 * The maximum number of characters per line for wrapping descriptions
+	 */
 	public static int descriptionMaxCharPerLine = 200;
 
 	/**
@@ -128,8 +131,9 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 		editor.addDisposeListener(new DisposeListener() {
 
 			public void widgetDisposed(DisposeEvent e) {
-				if(input != null)
+				if(input != null) {
 					input.removeChangeListener(AbstractPropertyEditor.this);
+				}
 			}
 		});
 	}
@@ -157,14 +161,16 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 		if(listEditor != null) {
 			IObservableList inputObservableList = getInputObservableList();
 
-			if(inputObservableList != null)
+			if(inputObservableList != null) {
 				listEditor.setModelObservable(inputObservableList);
+			}
 
 		} else if(valueEditor != null) {
 			IObservableValue inputObservableValue = getInputObservableValue();
 
-			if(inputObservableValue != null)
+			if(inputObservableValue != null) {
 				valueEditor.setModelObservable(inputObservableValue);
+			}
 		}
 
 		applyReadOnly(isReadOnly);
@@ -182,8 +188,9 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 */
 	protected void applyReadOnly(boolean readOnly) {
 		AbstractEditor editor = getEditor();
-		if(editor != null)
+		if(editor != null) {
 			editor.setReadOnly(readOnly);
+		}
 	}
 
 	public void handleChange(ChangeEvent event) {
@@ -254,8 +261,9 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 */
 	protected String getLabel() {
 		Property property = getModelProperty();
-		if(property == null || property.getLabel() == null || property.getLabel().trim().equals("")) //$NON-NLS-1$
+		if(property == null || property.getLabel() == null || property.getLabel().trim().equals("")) { //$NON-NLS-1$
 			return Util.getLabel(getLocalPropertyPath());
+		}
 
 		return property.getLabel();
 	}
@@ -267,8 +275,9 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	protected void updateDescription() {
 		String description = ""; //$NON-NLS-1$
 		Property property = getModelProperty();
-		if(property != null)
+		if(property != null) {
 			description = property.getDescription();
+		}
 
 		if(description == null || description.trim().equals("")) { //$NON-NLS-1$
 			return;
@@ -284,17 +293,19 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	}
 
 	protected Property getModelProperty() {
-		if(propertyPath == null)
+		if(propertyPath == null) {
 			return null;
+		}
 		Context context = getContext();
 		return ConfigurationManager.instance.getProperty(propertyPath, context);
 	}
 
 	private Context getContext() {
-		if(input == null)
+		if(input == null) {
 			return null;
-		else
+		} else {
 			return input.getView().getContext();
+		}
 	}
 
 	/**
@@ -370,15 +381,16 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 * @param data
 	 */
 	public void setLayoutData(Object data) {
-		if(getEditor() != null)
+		if(getEditor() != null) {
 			getEditor().setLayoutData(data);
+		}
 	}
 
 	/**
 	 * Returns the editor's Layout Data
 	 * 
-	 * @param data
 	 * @return
+	 *         The editor's layout data
 	 */
 	public Object getLayoutData() {
 		return getEditor() == null ? null : getEditor().getLayoutData();
@@ -401,6 +413,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 * Indicates whether the editor's label is displayed or not
 	 * 
 	 * @return
+	 *         true if the label should be displayed
 	 */
 	public boolean getShowLabel() {
 		return this.showLabel;

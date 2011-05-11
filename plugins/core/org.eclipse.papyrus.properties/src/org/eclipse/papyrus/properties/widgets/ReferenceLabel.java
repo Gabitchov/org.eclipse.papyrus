@@ -26,6 +26,13 @@ public class ReferenceLabel extends AbstractPropertyEditor {
 
 	private StringLabel editor;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param parent
+	 * @param style
+	 */
 	public ReferenceLabel(Composite parent, int style) {
 		editor = new StringLabel(parent, style);
 		setEditor(editor);
@@ -34,8 +41,9 @@ public class ReferenceLabel extends AbstractPropertyEditor {
 	@Override
 	public void doBinding() {
 		ILabelProvider labelProvider = input.getLabelProvider(propertyPath);
-		if(labelProvider != null)
+		if(labelProvider != null) {
 			editor.setLabelProvider(labelProvider);
+		}
 
 		super.doBinding();
 	}

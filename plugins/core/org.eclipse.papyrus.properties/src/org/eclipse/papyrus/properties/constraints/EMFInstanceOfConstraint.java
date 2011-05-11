@@ -14,9 +14,7 @@ package org.eclipse.papyrus.properties.constraints;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.papyrus.properties.contexts.ConfigProperty;
-import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
-import org.eclipse.papyrus.properties.contexts.ValueProperty;
+import org.eclipse.papyrus.properties.contexts.SimpleConstraint;
 import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.papyrus.service.edit.Activator;
 
@@ -36,23 +34,13 @@ public class EMFInstanceOfConstraint extends AbstractConstraint {
 	private EPackage metamodel;
 
 	@Override
-	public void setConstraintDescriptor(ConstraintDescriptor descriptor) {
-		for(ConfigProperty property : descriptor.getProperties()) {
-			if(property.getName().equals("className")) { //$NON-NLS-1$
-				if(property instanceof ValueProperty) {
-					className = ((ValueProperty)property).getValue();
-				}
-			} else if(property.getName().equals("nsUri")) { //$NON-NLS-1$
-				if(property instanceof ValueProperty) {
-					nsUri = ((ValueProperty)property).getValue();
-					metamodel = EPackage.Registry.INSTANCE.getEPackage(nsUri);
-					if(metamodel == null) {
-						Activator.log.warn("Metamodel with nsUri " + nsUri + " not found"); //$NON-NLS-1$ //$NON-NLS-2$
-					}
-				}
-			}
+	protected void setDescriptor(SimpleConstraint descriptor) {
+		className = getValue("className"); //$NON-NLS-1$
+		nsUri = getValue("nsUri"); //$NON-NLS-1$
+		metamodel = EPackage.Registry.INSTANCE.getEPackage(nsUri);
+		if(metamodel == null) {
+			Activator.log.warn("Metamodel with nsUri " + nsUri + " not found"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		super.setConstraintDescriptor(descriptor);
 	}
 
 	/**

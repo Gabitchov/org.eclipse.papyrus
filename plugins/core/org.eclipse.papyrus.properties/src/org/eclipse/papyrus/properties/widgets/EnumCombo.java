@@ -49,7 +49,7 @@ public class EnumCombo extends AbstractPropertyEditor {
 	 */
 	@Override
 	protected void doBinding() {
-		enumCombo.setProviders(input.getContentProvider(propertyPath), null);
+		enumCombo.setProviders(input.getContentProvider(propertyPath), input.getLabelProvider(propertyPath));
 
 		super.doBinding();
 	}

@@ -529,4 +529,9 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		super.setModelObservable(modelProperty);
 		updateControls();
 	}
+	
+	@Override
+	public void refreshValue(){
+		listViewer.refresh();
+	}
 }

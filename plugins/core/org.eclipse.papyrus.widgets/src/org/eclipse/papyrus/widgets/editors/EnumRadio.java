@@ -138,7 +138,7 @@ public class EnumRadio extends AbstractValueEditor {
 	}
 
 	private void updateLabelLayout() {
-		if(label == null)
+		if(label == null || label.isDisposed())
 			return;
 
 		if(numColumns == -1) {
