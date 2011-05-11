@@ -13,6 +13,8 @@ package org.eclipse.papyrus.widgets.selectors;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -112,12 +114,38 @@ public class ReferenceSelector implements IElementSelector {
 	 */
 	public Object[] getSelectedElements() {
 		ISelection selection = fTree.getViewer().getSelection();
+
 		if(selection instanceof IStructuredSelection) {
-			Object[] selectedElements = ((IStructuredSelection)selection).toArray();
-			addSelectedElements(selectedElements);
-			return selectedElements;
+			Object[] elementsToMove = getElementsToMove(((IStructuredSelection)selection).toArray());
+
+			addSelectedElements(elementsToMove);
+			return elementsToMove;
 		}
+
 		return new Object[0];
+	}
+
+	/**
+	 * Filters the selection to return only the objects that can
+	 * be selected, according to the content provider.
+	 * 
+	 * @param selection
+	 *        The input array to filter
+	 * @return
+	 *         The filtered array
+	 * 
+	 * @see org.eclipse.papyrus.widgets.providers.IHierarchicContentProvider#isValidValue(Object)
+	 */
+	protected Object[] getElementsToMove(Object[] selection) {
+		List<Object> elementsToMove = new LinkedList<Object>();
+
+		for(Object element : selection) {
+			if(contentProvider.isValidValue(element)) {
+				elementsToMove.add(element);
+			}
+		}
+
+		return elementsToMove.toArray();
 	}
 
 	/**
@@ -151,9 +179,9 @@ public class ReferenceSelector implements IElementSelector {
 
 		fTree.getViewer().refresh();
 		fTree.getViewer().setSelection(new StructuredSelection(contentProvider.getElements()));
-		Object[] allElements = ((IStructuredSelection)fTree.getViewer().getSelection()).toArray();
-		addSelectedElements(allElements);
-		return allElements;
+		Object[] elementsToMove = getElementsToMove(((IStructuredSelection)fTree.getViewer().getSelection()).toArray());
+		addSelectedElements(elementsToMove);
+		return elementsToMove;
 	}
 
 	/**
@@ -248,6 +276,7 @@ public class ReferenceSelector implements IElementSelector {
 			@Override
 			public boolean select(Viewer viewer, Object parentElement, Object element) {
 				if(unique) {
+					//TODO : check if the selected element has selectable children
 					return !selectedElements.contains(element);
 				} else {
 					return true;
