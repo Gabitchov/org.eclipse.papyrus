@@ -27,4 +27,10 @@
    <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization file="resources/table_Ecore_hideEAnnotationFeature.uiCustom"/>
    </extension>
+   <extension
+         point="org.eclipse.emf.facet.widgets.celleditors.commandFactories">
+      <commandFactory
+            class="org.eclipse.papyrus.table.common.factory.PapyrusCommandFactory">
+      </commandFactory>
+   </extension>
 </plugin>

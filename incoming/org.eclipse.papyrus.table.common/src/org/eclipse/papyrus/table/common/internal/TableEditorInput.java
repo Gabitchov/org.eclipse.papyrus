@@ -22,7 +22,6 @@ import org.eclipse.ui.IPersistableElement;
  * Comes from org.eclipse.emf.facet.widget.nattable.workbench.
  * 
  * This class should not be used by others plugins
- * TODO Should be deleted or merge with an other classe
  */
 public class TableEditorInput implements IEditorInput {
 
@@ -32,7 +31,7 @@ public class TableEditorInput implements IEditorInput {
 	/** A textual description of what is shown in the editor */
 	private final String description;
 
-	private EditingDomain editingDomain;
+	private final EditingDomain editingDomain;
 
 	public TableEditorInput(final PapyrusTableInstance papyrusTable, final EditingDomain editingDomain) {
 		this.tableInstance = papyrusTable;
