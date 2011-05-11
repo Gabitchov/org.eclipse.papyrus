@@ -1,16 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+/**
+ * <copyright>
+ * </copyright>
  *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.constraintwithvsl.editor.xtext.constraintWithVSLl;
 
 import org.eclipse.emf.ecore.EFactory;
@@ -23,41 +16,40 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.papyrus.constraintwithvsl.editor.xtext.constraintWithVSLl.ConstraintWithVSLlPackage
  * @generated
  */
-public interface ConstraintWithVSLlFactory extends EFactory
-{
-  /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  ConstraintWithVSLlFactory eINSTANCE = org.eclipse.papyrus.constraintwithvsl.editor.xtext.constraintWithVSLl.impl.ConstraintWithVSLlFactoryImpl.init();
+public interface ConstraintWithVSLlFactory extends EFactory {
+	/**
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	ConstraintWithVSLlFactory eINSTANCE = org.eclipse.papyrus.constraintwithvsl.editor.xtext.constraintWithVSLl.impl.ConstraintWithVSLlFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>Constraint Rule</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Constraint Rule</em>'.
-   * @generated
-   */
-  ConstraintRule createConstraintRule();
+	/**
+	 * Returns a new object of class '<em>Constraint Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constraint Rule</em>'.
+	 * @generated
+	 */
+	ConstraintRule createConstraintRule();
 
-  /**
-   * Returns a new object of class '<em>Constraint Specification</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Constraint Specification</em>'.
-   * @generated
-   */
-  ConstraintSpecification createConstraintSpecification();
+	/**
+	 * Returns a new object of class '<em>Constraint Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constraint Specification</em>'.
+	 * @generated
+	 */
+	ConstraintSpecification createConstraintSpecification();
 
-  /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
-  ConstraintWithVSLlPackage getConstraintWithVSLlPackage();
+	/**
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
+	ConstraintWithVSLlPackage getConstraintWithVSLlPackage();
 
 } //ConstraintWithVSLlFactory

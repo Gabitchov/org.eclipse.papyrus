@@ -60,7 +60,7 @@ import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.gmf.glue.contentassist.CompletionProposalUtils;
-import org.eclipse.xtext.parsetree.AbstractNode;
+import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
@@ -425,10 +425,10 @@ public class VSLProposalProvider extends AbstractVSLProposalProvider {
 		}
 		Iterable<IEObjectDescription> iterableIEobjectDescription = Scopes.scopedElementsFor(allProperties) ;	
 		IScope scope = new SimpleScope(iterableIEobjectDescription) ;
-		for (IEObjectDescription eobjectDescription : scope.getAllContents()) {
-			if (eobjectDescription.getName().toLowerCase().contains(context.getPrefix().toLowerCase())) {
+		for (IEObjectDescription eobjectDescription : scope.getAllElements()) {
+			if (eobjectDescription.getName().getLastSegment().toLowerCase().contains(context.getPrefix().toLowerCase())) {
 				String displayString = eobjectDescription.getName() + " : " + (((Property)eobjectDescription.getEObjectOrProxy()).getType() != null ? ((Property)eobjectDescription.getEObjectOrProxy()).getType().getName() : "<Undefined>") ;
-				String completionString = eobjectDescription.getName() ;
+				String completionString = eobjectDescription.getName().getLastSegment() ;
 				ICompletionProposal completionProposal = CompletionProposalUtils.createCompletionProposalWithReplacementOfPrefix((NamedElement)eobjectDescription.getEObjectOrProxy(), completionString, displayString, context) ;
 				acceptor.accept(completionProposal) ;
 			}
@@ -479,8 +479,8 @@ public class VSLProposalProvider extends AbstractVSLProposalProvider {
 		}
 		Iterable<IEObjectDescription> iterableIEobjectDescription = Scopes.scopedElementsFor(allOperations) ;	
 		IScope scope = new SimpleScope(iterableIEobjectDescription) ;
-		for (IEObjectDescription eobjectDescription : scope.getAllContents()) {
-			if (eobjectDescription.getName().toLowerCase().contains(context.getPrefix().toLowerCase())) {
+		for (IEObjectDescription eobjectDescription : scope.getAllElements()) {
+			if (eobjectDescription.getName().getLastSegment().toLowerCase().contains(context.getPrefix().toLowerCase())) {
 				Operation calledOperation = (Operation)eobjectDescription.getEObjectOrProxy() ;
 				String displayString = VSLProposalUtils.buildDisplayStringForOperationCall(calledOperation) ;
 				String completionString = VSLProposalUtils.buildCompletionStringForOperationCall(calledOperation) ;
@@ -562,8 +562,8 @@ public class VSLProposalProvider extends AbstractVSLProposalProvider {
 			ICompletionProposalAcceptor acceptor) {
 		if (model instanceof NameOrChoiceOrBehaviorCall  && ((NameOrChoiceOrBehaviorCall)model).getPath() != null) {
 			IScope scope = VSLScopeProvider.eInstance.scope_NameOrChoiceOrBehaviorCall_id((NameOrChoiceOrBehaviorCall)model, VSLPackage.eINSTANCE.getNameOrChoiceOrBehaviorCall_Id()) ;
-			for (IEObjectDescription eobjectDescription : scope.getAllContents()) {
-				if (eobjectDescription.getName().toLowerCase().contains(context.getPrefix().toLowerCase())) {
+			for (IEObjectDescription eobjectDescription : scope.getAllElements()) {
+				if (eobjectDescription.getName().getLastSegment().toLowerCase().contains(context.getPrefix().toLowerCase())) {
 					boolean goOn = true;
 					if (eobjectDescription.getEObjectOrProxy() instanceof Behavior) {
 						Behavior behavior = (Behavior)eobjectDescription.getEObjectOrProxy() ;
@@ -575,8 +575,8 @@ public class VSLProposalProvider extends AbstractVSLProposalProvider {
 						goOn = behaviorHasAReturnType ;
 					}
 					if (goOn) {
-						String displayString = eobjectDescription.getName() ;
-						String completionString = eobjectDescription.getName() ;
+						String displayString = eobjectDescription.getName().getLastSegment() ;
+						String completionString = eobjectDescription.getName().getLastSegment() ;
 						if (eobjectDescription.getEObjectOrProxy() instanceof Behavior) {
 							displayString = VSLProposalUtils.buildDisplayStringForBehaviorCall((Behavior)eobjectDescription.getEObjectOrProxy()) ;
 							completionString = VSLProposalUtils.buildCompletionStringForBehaviorCall((Behavior)eobjectDescription.getEObjectOrProxy()) ;
@@ -657,8 +657,8 @@ public class VSLProposalProvider extends AbstractVSLProposalProvider {
 			ICompletionProposalAcceptor acceptor) {
 		if (model instanceof QualifiedName) {
 			IScope scope = VSLScopeProvider.eInstance.scope_QualifiedName_remaining((QualifiedName)model, VSLPackage.eINSTANCE.getQualifiedName_Remaining()) ;
-			for (IEObjectDescription eobjectDescription : scope.getAllContents()) {
-				if (eobjectDescription.getName().toLowerCase().contains(context.getPrefix().toLowerCase())) {
+			for (IEObjectDescription eobjectDescription : scope.getAllElements()) {
+				if (eobjectDescription.getName().getLastSegment().toLowerCase().contains(context.getPrefix().toLowerCase())) {
 					String displayString = eobjectDescription.getName() + "::";
 					String completionString = eobjectDescription.getName() + "::";
 					ICompletionProposal completionProposal = CompletionProposalUtils.createCompletionProposalWithReplacementOfPrefix((NamedElement)eobjectDescription.getEObjectOrProxy(), completionString, displayString, context) ;
@@ -725,7 +725,7 @@ public class VSLProposalProvider extends AbstractVSLProposalProvider {
 		if (model instanceof OperationCallExpression || model instanceof NameOrChoiceOrBehaviorCall || model instanceof CollectionOrTuple)
 			return ; // already treated by other cases
 		
-		AbstractNode node = context.getCurrentNode() ;
+		INode node = context.getCurrentNode() ;
 		IDocument document = context.getViewer().getDocument() ;
 		char startChar = ' ' ;
 		char openingListChar = ' ';
@@ -891,8 +891,8 @@ public class VSLProposalProvider extends AbstractVSLProposalProvider {
 		// Then builds the proposal list
 		Iterable<IEObjectDescription> iterableIEobjectDescription = Scopes.scopedElementsFor(allProperties) ;	
 		IScope scope = new SimpleScope(iterableIEobjectDescription) ;
-		for (IEObjectDescription eobjectDescription : scope.getAllContents()) {
-			if (eobjectDescription.getName().toLowerCase().contains(context.getPrefix().toLowerCase())) {
+		for (IEObjectDescription eobjectDescription : scope.getAllElements()) {
+			if (eobjectDescription.getName().getLastSegment().toLowerCase().contains(context.getPrefix().toLowerCase())) {
 				String displayString = eobjectDescription.getName() + " = ";
 				String completionString = eobjectDescription.getName() + " = ";
 				ICompletionProposal completionProposal = CompletionProposalUtils.createCompletionProposalWithReplacementOfPrefix((NamedElement)eobjectDescription.getEObjectOrProxy(), completionString, displayString, context) ;
@@ -987,10 +987,10 @@ public class VSLProposalProvider extends AbstractVSLProposalProvider {
 			ICompletionProposalAcceptor acceptor) {
 		if (model instanceof InstantObsName) {
 			IScope scope = VSLScopeProvider.eInstance.scope_InstantObsName_instantId((InstantObsName)model, VSLPackage.eINSTANCE.getInstantObsName_InstantId()) ;
-			for (IEObjectDescription eobjectDescription : scope.getAllContents()) {
-				if (eobjectDescription.getName().toLowerCase().contains(context.getPrefix().toLowerCase())) {
-					String displayString = eobjectDescription.getName() ;
-					String completionString = eobjectDescription.getName() ;
+			for (IEObjectDescription eobjectDescription : scope.getAllElements()) {
+				if (eobjectDescription.getName().getLastSegment().toLowerCase().contains(context.getPrefix().toLowerCase())) {
+					String displayString = eobjectDescription.getName().getLastSegment() ;
+					String completionString = eobjectDescription.getName().getLastSegment() ;
 					ICompletionProposal completionProposal = CompletionProposalUtils.createCompletionProposalWithReplacementOfPrefix((NamedElement)eobjectDescription.getEObjectOrProxy(), completionString, displayString, context) ;
 					acceptor.accept(completionProposal) ;
 				}
@@ -1047,10 +1047,10 @@ public class VSLProposalProvider extends AbstractVSLProposalProvider {
 			ICompletionProposalAcceptor acceptor) {
 		if (model instanceof DurationObsName) {
 			IScope scope = VSLScopeProvider.eInstance.scope_DurationObsName_durationId((DurationObsName)model, VSLPackage.eINSTANCE.getDurationObsName_DurationId()) ;
-			for (IEObjectDescription eobjectDescription : scope.getAllContents()) {
-				if (eobjectDescription.getName().toLowerCase().contains(context.getPrefix().toLowerCase())) {
-					String displayString = eobjectDescription.getName() ;
-					String completionString = eobjectDescription.getName() ;
+			for (IEObjectDescription eobjectDescription : scope.getAllElements()) {
+				if (eobjectDescription.getName().getLastSegment().toLowerCase().contains(context.getPrefix().toLowerCase())) {
+					String displayString = eobjectDescription.getName().getLastSegment() ;
+					String completionString = eobjectDescription.getName().getLastSegment() ;
 					ICompletionProposal completionProposal = CompletionProposalUtils.createCompletionProposalWithReplacementOfPrefix((NamedElement)eobjectDescription.getEObjectOrProxy(), completionString, displayString, context) ;
 					acceptor.accept(completionProposal) ;
 				}

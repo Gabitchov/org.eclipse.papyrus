@@ -9,30 +9,30 @@
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" complianceLevel="5.0"
     copyrightFields="false" editPluginID="org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.edit"
     editorPluginID="org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.editor"
-    usedGenPackages="../../../../../../../../org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.genmodel#//vSL">
+    usedGenPackages="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.genmodel#//vSL">
   <genPackages prefix="StereotypeApplicationWithVSL" basePackage="org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext"
-      resource="XML" disposableProviderFactory="true" ecorePackage="StereotypeApplicationWithVSL.ecore#/">
-    <genClasses ecoreClass="StereotypeApplicationWithVSL.ecore#//StereotypeApplicationsRule">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StereotypeApplicationWithVSL.ecore#//StereotypeApplicationsRule/stereotypeApplications"/>
-      <genOperations ecoreOperation="StereotypeApplicationWithVSL.ecore#//StereotypeApplicationsRule/getExpectedType"/>
-      <genOperations ecoreOperation="StereotypeApplicationWithVSL.ecore#//StereotypeApplicationsRule/getContextElement"/>
+      resource="XML" disposableProviderFactory="true" ecorePackage="platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#/">
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#//StereotypeApplicationsRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#//StereotypeApplicationsRule/stereotypeApplications"/>
+      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#//StereotypeApplicationsRule/getExpectedType"/>
+      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#//StereotypeApplicationsRule/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="StereotypeApplicationWithVSL.ecore#//StereotypeApplicationRule">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StereotypeApplicationWithVSL.ecore#//StereotypeApplicationRule/stereotype"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StereotypeApplicationWithVSL.ecore#//StereotypeApplicationRule/tagSpecification"/>
-      <genOperations ecoreOperation="StereotypeApplicationWithVSL.ecore#//StereotypeApplicationRule/getExpectedType"/>
-      <genOperations ecoreOperation="StereotypeApplicationWithVSL.ecore#//StereotypeApplicationRule/getContextElement"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#//StereotypeApplicationRule">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#//StereotypeApplicationRule/stereotype"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#//StereotypeApplicationRule/tagSpecification"/>
+      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#//StereotypeApplicationRule/getExpectedType"/>
+      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#//StereotypeApplicationRule/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="StereotypeApplicationWithVSL.ecore#//TagSpecificationRule">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StereotypeApplicationWithVSL.ecore#//TagSpecificationRule/property"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StereotypeApplicationWithVSL.ecore#//TagSpecificationRule/value"/>
-      <genOperations ecoreOperation="StereotypeApplicationWithVSL.ecore#//TagSpecificationRule/getExpectedType"/>
-      <genOperations ecoreOperation="StereotypeApplicationWithVSL.ecore#//TagSpecificationRule/getContextElement"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#//TagSpecificationRule">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#//TagSpecificationRule/property"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#//TagSpecificationRule/value"/>
+      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#//TagSpecificationRule/getExpectedType"/>
+      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#//TagSpecificationRule/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="StereotypeApplicationWithVSL.ecore#//ExpressionValueRule">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StereotypeApplicationWithVSL.ecore#//ExpressionValueRule/expression"/>
-      <genOperations ecoreOperation="StereotypeApplicationWithVSL.ecore#//ExpressionValueRule/getExpectedType"/>
-      <genOperations ecoreOperation="StereotypeApplicationWithVSL.ecore#//ExpressionValueRule/getContextElement"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#//ExpressionValueRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#//ExpressionValueRule/expression"/>
+      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#//ExpressionValueRule/getExpectedType"/>
+      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.ecore#//ExpressionValueRule/getContextElement"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

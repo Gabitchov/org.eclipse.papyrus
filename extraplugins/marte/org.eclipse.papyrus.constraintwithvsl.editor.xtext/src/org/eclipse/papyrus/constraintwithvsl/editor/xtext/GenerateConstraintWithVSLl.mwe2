@@ -91,8 +91,7 @@ Workflow {
 			fragment = labeling.LabelProviderFragment {}
 
 			// outline API 
-			fragment = outline.TransformerFragment {}
-			fragment = outline.OutlineNodeAdapterFactoryFragment {}
+			fragment = outline.OutlineTreeProviderFragment {}
 			fragment = outline.QuickOutlineFragment {}
 
 			// quickfix API 
@@ -101,26 +100,14 @@ Workflow {
 			// content assist API  
 			fragment = contentAssist.JavaBasedContentAssistFragment {}
 
-			// the following fragment tries to use the Antlr based content assist 
-			//     fragment which can be downloaded from http://www.itemis.com 
-			//     and will be ignored if it's not available. 
-			fragment = DelegatingGeneratorFragment { 
-				delegate = "de.itemis.xtext.antlr.XtextAntlrUiGeneratorFragment"
-				message="You are generating without ANTLR. It is highly recommended to download and use the plugin \'de.itemis.xtext.antlr\' \n\t using the update site http://download.itemis.com/updates/."
-			}
-
-			fragment = builder.BuilderIntegrationFragment {}
+			// generates a more lightweight Antlr parser and lexer tailored for content assist  
+			fragment = parser.antlr.XtextAntlrUiGeneratorFragment {}
 
 			// project wizard (optional) 
-			/*
-			fragment = projectWizard.SimpleProjectWizardFragment {
-				generatorProjectName = "${projectName}.generator" 
-				modelFileExtension = file.extensions
-			}
-			*/
-			
-			// quickfix API 
-			fragment = quickfix.QuickfixProviderFragment {}
+			// fragment = projectWizard.SimpleProjectWizardFragment {
+			// 		generatorProjectName = "${projectName}.generator" 
+			//		modelFileExtension = file.extensions
+			// }
 		}
 	}
 }

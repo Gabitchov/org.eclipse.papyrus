@@ -87,9 +87,8 @@ Workflow {
 			// labeling API 
 			fragment = labeling.LabelProviderFragment {}
 
-			// outline API 
-			fragment = outline.TransformerFragment {}
-			fragment = outline.OutlineNodeAdapterFactoryFragment {}
+			// outline API
+			fragment = outline.OutlineTreeProviderFragment {}
 			fragment = outline.QuickOutlineFragment {}
 
 			// quickfix API 

@@ -1,30 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.constraintwithvsl.editor.xtext.parser.antlr.internal; 
 
-import java.io.InputStream;
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.parser.*;
 import org.eclipse.xtext.parser.impl.*;
-import org.eclipse.xtext.parsetree.*;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.parser.antlr.AntlrDatatypeRuleToken;
-import org.eclipse.xtext.conversion.ValueConverterException;
 import org.eclipse.papyrus.constraintwithvsl.editor.xtext.services.ConstraintWithVSLlGrammarAccess;
 
 
@@ -39,43 +23,80 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INTEGERLITERAL", "RULE_REALLITERAL", "RULE_DATETIMELITERAL", "RULE_BOOLEANLITERAL", "RULE_NULLLITERAL", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'and'", "'or'", "'xor'", "'=='", "'<>'", "'<'", "'>'", "'<='", "'>='", "'?'", "':'", "'+'", "'-'", "'*'", "'/'", "'mod'", "'not'", "'.'", "'('", "')'", "'::'", "']'", "'['", "'..'", "'{'", "'}'", "','", "'='", "'@'", "'when'", "'&'", "'jitter('", "'$'", "'in'", "'out'", "'inout'"
     };
-    public static final int RULE_NULLLITERAL=9;
     public static final int RULE_DATETIMELITERAL=7;
-    public static final int RULE_BOOLEANLITERAL=8;
     public static final int RULE_ID=4;
-    public static final int RULE_STRING=10;
+    public static final int T__29=29;
+    public static final int T__28=28;
+    public static final int T__27=27;
+    public static final int T__26=26;
+    public static final int T__25=25;
+    public static final int T__24=24;
+    public static final int T__23=23;
+    public static final int T__22=22;
     public static final int RULE_ANY_OTHER=15;
+    public static final int T__21=21;
+    public static final int T__20=20;
     public static final int RULE_REALLITERAL=6;
-    public static final int RULE_INTEGERLITERAL=5;
-    public static final int RULE_INT=11;
-    public static final int RULE_WS=14;
-    public static final int RULE_SL_COMMENT=13;
     public static final int EOF=-1;
+    public static final int RULE_BOOLEANLITERAL=8;
+    public static final int T__19=19;
+    public static final int T__16=16;
+    public static final int T__51=51;
+    public static final int T__18=18;
+    public static final int T__17=17;
+    public static final int RULE_INT=11;
+    public static final int T__50=50;
+    public static final int RULE_NULLLITERAL=9;
+    public static final int T__42=42;
+    public static final int T__43=43;
+    public static final int T__40=40;
+    public static final int T__41=41;
+    public static final int T__46=46;
+    public static final int T__47=47;
+    public static final int T__44=44;
+    public static final int T__45=45;
+    public static final int T__48=48;
+    public static final int T__49=49;
+    public static final int RULE_INTEGERLITERAL=5;
+    public static final int RULE_SL_COMMENT=13;
     public static final int RULE_ML_COMMENT=12;
+    public static final int T__30=30;
+    public static final int T__31=31;
+    public static final int RULE_STRING=10;
+    public static final int T__32=32;
+    public static final int T__33=33;
+    public static final int T__34=34;
+    public static final int T__35=35;
+    public static final int T__36=36;
+    public static final int T__37=37;
+    public static final int T__38=38;
+    public static final int T__39=39;
+    public static final int RULE_WS=14;
+
+    // delegates
+    // delegators
+
 
         public InternalConstraintWithVSLlParser(TokenStream input) {
-            super(input);
+            this(input, new RecognizerSharedState());
+        }
+        public InternalConstraintWithVSLlParser(TokenStream input, RecognizerSharedState state) {
+            super(input, state);
+             
         }
         
 
-    public String[] getTokenNames() { return tokenNames; }
+    public String[] getTokenNames() { return InternalConstraintWithVSLlParser.tokenNames; }
     public String getGrammarFileName() { return "../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g"; }
 
 
 
      	private ConstraintWithVSLlGrammarAccess grammarAccess;
      	
-        public InternalConstraintWithVSLlParser(TokenStream input, IAstFactory factory, ConstraintWithVSLlGrammarAccess grammarAccess) {
+        public InternalConstraintWithVSLlParser(TokenStream input, ConstraintWithVSLlGrammarAccess grammarAccess) {
             this(input);
-            this.factory = factory;
-            registerRules(grammarAccess.getGrammar());
             this.grammarAccess = grammarAccess;
-        }
-        
-        @Override
-        protected InputStream getTokenFile() {
-        	ClassLoader classLoader = getClass().getClassLoader();
-        	return classLoader.getResourceAsStream("org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.tokens");
+            registerRules(grammarAccess.getGrammar());
         }
         
         @Override
@@ -90,8 +111,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
 
-    // $ANTLR start entryRuleConstraintRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:77:1: entryRuleConstraintRule returns [EObject current=null] : iv_ruleConstraintRule= ruleConstraintRule EOF ;
+    // $ANTLR start "entryRuleConstraintRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:67:1: entryRuleConstraintRule returns [EObject current=null] : iv_ruleConstraintRule= ruleConstraintRule EOF ;
     public final EObject entryRuleConstraintRule() throws RecognitionException {
         EObject current = null;
 
@@ -99,13 +120,14 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:78:2: (iv_ruleConstraintRule= ruleConstraintRule EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:79:2: iv_ruleConstraintRule= ruleConstraintRule EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:68:2: (iv_ruleConstraintRule= ruleConstraintRule EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:69:2: iv_ruleConstraintRule= ruleConstraintRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getConstraintRuleRule(), currentNode); 
+             newCompositeNode(grammarAccess.getConstraintRuleRule()); 
             pushFollow(FOLLOW_ruleConstraintRule_in_entryRuleConstraintRule75);
             iv_ruleConstraintRule=ruleConstraintRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleConstraintRule; 
             match(input,EOF,FOLLOW_EOF_in_entryRuleConstraintRule85); 
@@ -122,24 +144,24 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleConstraintRule
+    // $ANTLR end "entryRuleConstraintRule"
 
 
-    // $ANTLR start ruleConstraintRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:86:1: ruleConstraintRule returns [EObject current=null] : ( (lv_specification_0_0= ruleConstraintSpecification ) )? ;
+    // $ANTLR start "ruleConstraintRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:76:1: ruleConstraintRule returns [EObject current=null] : ( (lv_specification_0_0= ruleConstraintSpecification ) )? ;
     public final EObject ruleConstraintRule() throws RecognitionException {
         EObject current = null;
 
         EObject lv_specification_0_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:91:6: ( ( (lv_specification_0_0= ruleConstraintSpecification ) )? )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:92:1: ( (lv_specification_0_0= ruleConstraintSpecification ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:79:28: ( ( (lv_specification_0_0= ruleConstraintSpecification ) )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:80:1: ( (lv_specification_0_0= ruleConstraintSpecification ) )?
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:92:1: ( (lv_specification_0_0= ruleConstraintSpecification ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:80:1: ( (lv_specification_0_0= ruleConstraintSpecification ) )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -148,34 +170,29 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:93:1: (lv_specification_0_0= ruleConstraintSpecification )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:81:1: (lv_specification_0_0= ruleConstraintSpecification )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:93:1: (lv_specification_0_0= ruleConstraintSpecification )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:94:3: lv_specification_0_0= ruleConstraintSpecification
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:81:1: (lv_specification_0_0= ruleConstraintSpecification )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:82:3: lv_specification_0_0= ruleConstraintSpecification
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getConstraintRuleAccess().getSpecificationConstraintSpecificationParserRuleCall_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getConstraintRuleAccess().getSpecificationConstraintSpecificationParserRuleCall_0()); 
                     	    
                     pushFollow(FOLLOW_ruleConstraintSpecification_in_ruleConstraintRule130);
                     lv_specification_0_0=ruleConstraintSpecification();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getConstraintRuleRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getConstraintRuleRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"specification",
-                    	        		lv_specification_0_0, 
-                    	        		"ConstraintSpecification", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"specification",
+                            		lv_specification_0_0, 
+                            		"ConstraintSpecification");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -189,9 +206,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -202,11 +217,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleConstraintRule
+    // $ANTLR end "ruleConstraintRule"
 
 
-    // $ANTLR start entryRuleConstraintSpecification
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:124:1: entryRuleConstraintSpecification returns [EObject current=null] : iv_ruleConstraintSpecification= ruleConstraintSpecification EOF ;
+    // $ANTLR start "entryRuleConstraintSpecification"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:106:1: entryRuleConstraintSpecification returns [EObject current=null] : iv_ruleConstraintSpecification= ruleConstraintSpecification EOF ;
     public final EObject entryRuleConstraintSpecification() throws RecognitionException {
         EObject current = null;
 
@@ -214,13 +229,14 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:125:2: (iv_ruleConstraintSpecification= ruleConstraintSpecification EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:126:2: iv_ruleConstraintSpecification= ruleConstraintSpecification EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:107:2: (iv_ruleConstraintSpecification= ruleConstraintSpecification EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:108:2: iv_ruleConstraintSpecification= ruleConstraintSpecification EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getConstraintSpecificationRule(), currentNode); 
+             newCompositeNode(grammarAccess.getConstraintSpecificationRule()); 
             pushFollow(FOLLOW_ruleConstraintSpecification_in_entryRuleConstraintSpecification166);
             iv_ruleConstraintSpecification=ruleConstraintSpecification();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleConstraintSpecification; 
             match(input,EOF,FOLLOW_EOF_in_entryRuleConstraintSpecification176); 
@@ -237,52 +253,47 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleConstraintSpecification
+    // $ANTLR end "entryRuleConstraintSpecification"
 
 
-    // $ANTLR start ruleConstraintSpecification
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:133:1: ruleConstraintSpecification returns [EObject current=null] : ( (lv_expression_0_0= ruleExpression ) ) ;
+    // $ANTLR start "ruleConstraintSpecification"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:115:1: ruleConstraintSpecification returns [EObject current=null] : ( (lv_expression_0_0= ruleExpression ) ) ;
     public final EObject ruleConstraintSpecification() throws RecognitionException {
         EObject current = null;
 
         EObject lv_expression_0_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:138:6: ( ( (lv_expression_0_0= ruleExpression ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:139:1: ( (lv_expression_0_0= ruleExpression ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:118:28: ( ( (lv_expression_0_0= ruleExpression ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:119:1: ( (lv_expression_0_0= ruleExpression ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:139:1: ( (lv_expression_0_0= ruleExpression ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:140:1: (lv_expression_0_0= ruleExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:119:1: ( (lv_expression_0_0= ruleExpression ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:120:1: (lv_expression_0_0= ruleExpression )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:140:1: (lv_expression_0_0= ruleExpression )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:141:3: lv_expression_0_0= ruleExpression
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:120:1: (lv_expression_0_0= ruleExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:121:3: lv_expression_0_0= ruleExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getConstraintSpecificationAccess().getExpressionExpressionParserRuleCall_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getConstraintSpecificationAccess().getExpressionExpressionParserRuleCall_0()); 
             	    
             pushFollow(FOLLOW_ruleExpression_in_ruleConstraintSpecification221);
             lv_expression_0_0=ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getConstraintSpecificationRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getConstraintSpecificationRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"expression",
-            	        		lv_expression_0_0, 
-            	        		"Expression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"expression",
+                    		lv_expression_0_0, 
+                    		"Expression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -293,9 +304,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -306,11 +315,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleConstraintSpecification
+    // $ANTLR end "ruleConstraintSpecification"
 
 
-    // $ANTLR start entryRuleExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:171:1: entryRuleExpression returns [EObject current=null] : iv_ruleExpression= ruleExpression EOF ;
+    // $ANTLR start "entryRuleExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:145:1: entryRuleExpression returns [EObject current=null] : iv_ruleExpression= ruleExpression EOF ;
     public final EObject entryRuleExpression() throws RecognitionException {
         EObject current = null;
 
@@ -318,13 +327,14 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:172:2: (iv_ruleExpression= ruleExpression EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:173:2: iv_ruleExpression= ruleExpression EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:146:2: (iv_ruleExpression= ruleExpression EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:147:2: iv_ruleExpression= ruleExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getExpressionRule(), currentNode); 
+             newCompositeNode(grammarAccess.getExpressionRule()); 
             pushFollow(FOLLOW_ruleExpression_in_entryRuleExpression256);
             iv_ruleExpression=ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleExpression; 
             match(input,EOF,FOLLOW_EOF_in_entryRuleExpression266); 
@@ -341,52 +351,47 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleExpression
+    // $ANTLR end "entryRuleExpression"
 
 
-    // $ANTLR start ruleExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:180:1: ruleExpression returns [EObject current=null] : ( (lv_exp_0_0= ruleAndOrXorExpression ) ) ;
+    // $ANTLR start "ruleExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:154:1: ruleExpression returns [EObject current=null] : ( (lv_exp_0_0= ruleAndOrXorExpression ) ) ;
     public final EObject ruleExpression() throws RecognitionException {
         EObject current = null;
 
         EObject lv_exp_0_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:185:6: ( ( (lv_exp_0_0= ruleAndOrXorExpression ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:186:1: ( (lv_exp_0_0= ruleAndOrXorExpression ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:157:28: ( ( (lv_exp_0_0= ruleAndOrXorExpression ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:158:1: ( (lv_exp_0_0= ruleAndOrXorExpression ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:186:1: ( (lv_exp_0_0= ruleAndOrXorExpression ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:187:1: (lv_exp_0_0= ruleAndOrXorExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:158:1: ( (lv_exp_0_0= ruleAndOrXorExpression ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:159:1: (lv_exp_0_0= ruleAndOrXorExpression )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:187:1: (lv_exp_0_0= ruleAndOrXorExpression )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:188:3: lv_exp_0_0= ruleAndOrXorExpression
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:159:1: (lv_exp_0_0= ruleAndOrXorExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:160:3: lv_exp_0_0= ruleAndOrXorExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getExpressionAccess().getExpAndOrXorExpressionParserRuleCall_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getExpressionAccess().getExpAndOrXorExpressionParserRuleCall_0()); 
             	    
             pushFollow(FOLLOW_ruleAndOrXorExpression_in_ruleExpression311);
             lv_exp_0_0=ruleAndOrXorExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getExpressionRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"exp",
-            	        		lv_exp_0_0, 
-            	        		"AndOrXorExpression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"exp",
+                    		lv_exp_0_0, 
+                    		"AndOrXorExpression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -397,9 +402,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -410,11 +413,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleExpression
+    // $ANTLR end "ruleExpression"
 
 
-    // $ANTLR start entryRuleAndOrXorExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:218:1: entryRuleAndOrXorExpression returns [EObject current=null] : iv_ruleAndOrXorExpression= ruleAndOrXorExpression EOF ;
+    // $ANTLR start "entryRuleAndOrXorExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:184:1: entryRuleAndOrXorExpression returns [EObject current=null] : iv_ruleAndOrXorExpression= ruleAndOrXorExpression EOF ;
     public final EObject entryRuleAndOrXorExpression() throws RecognitionException {
         EObject current = null;
 
@@ -422,13 +425,14 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:219:2: (iv_ruleAndOrXorExpression= ruleAndOrXorExpression EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:220:2: iv_ruleAndOrXorExpression= ruleAndOrXorExpression EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:185:2: (iv_ruleAndOrXorExpression= ruleAndOrXorExpression EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:186:2: iv_ruleAndOrXorExpression= ruleAndOrXorExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getAndOrXorExpressionRule(), currentNode); 
+             newCompositeNode(grammarAccess.getAndOrXorExpressionRule()); 
             pushFollow(FOLLOW_ruleAndOrXorExpression_in_entryRuleAndOrXorExpression346);
             iv_ruleAndOrXorExpression=ruleAndOrXorExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleAndOrXorExpression; 
             match(input,EOF,FOLLOW_EOF_in_entryRuleAndOrXorExpression356); 
@@ -445,11 +449,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleAndOrXorExpression
+    // $ANTLR end "entryRuleAndOrXorExpression"
 
 
-    // $ANTLR start ruleAndOrXorExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:227:1: ruleAndOrXorExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )* ) ;
+    // $ANTLR start "ruleAndOrXorExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:193:1: ruleAndOrXorExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )* ) ;
     public final EObject ruleAndOrXorExpression() throws RecognitionException {
         EObject current = null;
 
@@ -461,44 +465,39 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         EObject lv_exp_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:232:6: ( ( ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )* ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:233:1: ( ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )* )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:196:28: ( ( ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )* ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:197:1: ( ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )* )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:233:1: ( ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )* )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:233:2: ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )*
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:197:1: ( ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )* )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:197:2: ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )*
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:233:2: ( (lv_exp_0_0= ruleEqualityExpression ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:234:1: (lv_exp_0_0= ruleEqualityExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:197:2: ( (lv_exp_0_0= ruleEqualityExpression ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:198:1: (lv_exp_0_0= ruleEqualityExpression )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:234:1: (lv_exp_0_0= ruleEqualityExpression )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:235:3: lv_exp_0_0= ruleEqualityExpression
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:198:1: (lv_exp_0_0= ruleEqualityExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:199:3: lv_exp_0_0= ruleEqualityExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getAndOrXorExpressionAccess().getExpEqualityExpressionParserRuleCall_0_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getAndOrXorExpressionAccess().getExpEqualityExpressionParserRuleCall_0_0()); 
             	    
             pushFollow(FOLLOW_ruleEqualityExpression_in_ruleAndOrXorExpression402);
             lv_exp_0_0=ruleEqualityExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getAndOrXorExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getAndOrXorExpressionRule());
             	        }
-            	        try {
-            	       		add(
-            	       			current, 
-            	       			"exp",
-            	        		lv_exp_0_0, 
-            	        		"EqualityExpression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		add(
+                   			current, 
+                   			"exp",
+                    		lv_exp_0_0, 
+                    		"EqualityExpression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -506,7 +505,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:257:2: ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )*
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:215:2: ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )*
             loop3:
             do {
                 int alt3=2;
@@ -519,15 +518,15 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:257:3: ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:215:3: ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:257:3: ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:258:1: ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:215:3: ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:216:1: ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:258:1: ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:259:1: (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:216:1: ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:217:1: (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:259:1: (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:217:1: (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' )
             	    int alt2=3;
             	    switch ( input.LA(1) ) {
             	    case 16:
@@ -547,77 +546,56 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             	        break;
             	    default:
             	        NoViableAltException nvae =
-            	            new NoViableAltException("259:1: (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' )", 2, 0, input);
+            	            new NoViableAltException("", 2, 0, input);
 
             	        throw nvae;
             	    }
 
             	    switch (alt2) {
             	        case 1 :
-            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:260:3: lv_op_1_1= 'and'
+            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:218:3: lv_op_1_1= 'and'
             	            {
-            	            lv_op_1_1=(Token)input.LT(1);
-            	            match(input,16,FOLLOW_16_in_ruleAndOrXorExpression423); 
+            	            lv_op_1_1=(Token)match(input,16,FOLLOW_16_in_ruleAndOrXorExpression423); 
 
-            	                    createLeafNode(grammarAccess.getAndOrXorExpressionAccess().getOpAndKeyword_1_0_0_0(), "op"); 
+            	                    newLeafNode(lv_op_1_1, grammarAccess.getAndOrXorExpressionAccess().getOpAndKeyword_1_0_0_0());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getAndOrXorExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getAndOrXorExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_1, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_1, null);
             	            	    
 
             	            }
             	            break;
             	        case 2 :
-            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:278:8: lv_op_1_2= 'or'
+            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:230:8: lv_op_1_2= 'or'
             	            {
-            	            lv_op_1_2=(Token)input.LT(1);
-            	            match(input,17,FOLLOW_17_in_ruleAndOrXorExpression452); 
+            	            lv_op_1_2=(Token)match(input,17,FOLLOW_17_in_ruleAndOrXorExpression452); 
 
-            	                    createLeafNode(grammarAccess.getAndOrXorExpressionAccess().getOpOrKeyword_1_0_0_1(), "op"); 
+            	                    newLeafNode(lv_op_1_2, grammarAccess.getAndOrXorExpressionAccess().getOpOrKeyword_1_0_0_1());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getAndOrXorExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getAndOrXorExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_2, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_2, null);
             	            	    
 
             	            }
             	            break;
             	        case 3 :
-            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:296:8: lv_op_1_3= 'xor'
+            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:242:8: lv_op_1_3= 'xor'
             	            {
-            	            lv_op_1_3=(Token)input.LT(1);
-            	            match(input,18,FOLLOW_18_in_ruleAndOrXorExpression481); 
+            	            lv_op_1_3=(Token)match(input,18,FOLLOW_18_in_ruleAndOrXorExpression481); 
 
-            	                    createLeafNode(grammarAccess.getAndOrXorExpressionAccess().getOpXorKeyword_1_0_0_2(), "op"); 
+            	                    newLeafNode(lv_op_1_3, grammarAccess.getAndOrXorExpressionAccess().getOpXorKeyword_1_0_0_2());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getAndOrXorExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getAndOrXorExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_3, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_3, null);
             	            	    
 
             	            }
@@ -631,35 +609,30 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             	    }
 
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:317:2: ( (lv_exp_2_0= ruleEqualityExpression ) )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:318:1: (lv_exp_2_0= ruleEqualityExpression )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:257:2: ( (lv_exp_2_0= ruleEqualityExpression ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:258:1: (lv_exp_2_0= ruleEqualityExpression )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:318:1: (lv_exp_2_0= ruleEqualityExpression )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:319:3: lv_exp_2_0= ruleEqualityExpression
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:258:1: (lv_exp_2_0= ruleEqualityExpression )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:259:3: lv_exp_2_0= ruleEqualityExpression
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getAndOrXorExpressionAccess().getExpEqualityExpressionParserRuleCall_1_1_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getAndOrXorExpressionAccess().getExpEqualityExpressionParserRuleCall_1_1_0()); 
             	    	    
             	    pushFollow(FOLLOW_ruleEqualityExpression_in_ruleAndOrXorExpression518);
             	    lv_exp_2_0=ruleEqualityExpression();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getAndOrXorExpressionRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getAndOrXorExpressionRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"exp",
-            	    	        		lv_exp_2_0, 
-            	    	        		"EqualityExpression", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"exp",
+            	            		lv_exp_2_0, 
+            	            		"EqualityExpression");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -682,9 +655,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -695,11 +666,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleAndOrXorExpression
+    // $ANTLR end "ruleAndOrXorExpression"
 
 
-    // $ANTLR start entryRuleEqualityExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:349:1: entryRuleEqualityExpression returns [EObject current=null] : iv_ruleEqualityExpression= ruleEqualityExpression EOF ;
+    // $ANTLR start "entryRuleEqualityExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:283:1: entryRuleEqualityExpression returns [EObject current=null] : iv_ruleEqualityExpression= ruleEqualityExpression EOF ;
     public final EObject entryRuleEqualityExpression() throws RecognitionException {
         EObject current = null;
 
@@ -707,13 +678,14 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:350:2: (iv_ruleEqualityExpression= ruleEqualityExpression EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:351:2: iv_ruleEqualityExpression= ruleEqualityExpression EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:284:2: (iv_ruleEqualityExpression= ruleEqualityExpression EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:285:2: iv_ruleEqualityExpression= ruleEqualityExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getEqualityExpressionRule(), currentNode); 
+             newCompositeNode(grammarAccess.getEqualityExpressionRule()); 
             pushFollow(FOLLOW_ruleEqualityExpression_in_entryRuleEqualityExpression556);
             iv_ruleEqualityExpression=ruleEqualityExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleEqualityExpression; 
             match(input,EOF,FOLLOW_EOF_in_entryRuleEqualityExpression566); 
@@ -730,11 +702,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleEqualityExpression
+    // $ANTLR end "entryRuleEqualityExpression"
 
 
-    // $ANTLR start ruleEqualityExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:358:1: ruleEqualityExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )* ) ;
+    // $ANTLR start "ruleEqualityExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:292:1: ruleEqualityExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )* ) ;
     public final EObject ruleEqualityExpression() throws RecognitionException {
         EObject current = null;
 
@@ -745,44 +717,39 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         EObject lv_exp_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:363:6: ( ( ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )* ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:364:1: ( ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )* )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:295:28: ( ( ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )* ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:296:1: ( ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )* )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:364:1: ( ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )* )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:364:2: ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )*
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:296:1: ( ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )* )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:296:2: ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )*
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:364:2: ( (lv_exp_0_0= ruleRelationalExpression ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:365:1: (lv_exp_0_0= ruleRelationalExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:296:2: ( (lv_exp_0_0= ruleRelationalExpression ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:297:1: (lv_exp_0_0= ruleRelationalExpression )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:365:1: (lv_exp_0_0= ruleRelationalExpression )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:366:3: lv_exp_0_0= ruleRelationalExpression
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:297:1: (lv_exp_0_0= ruleRelationalExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:298:3: lv_exp_0_0= ruleRelationalExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getEqualityExpressionAccess().getExpRelationalExpressionParserRuleCall_0_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getEqualityExpressionAccess().getExpRelationalExpressionParserRuleCall_0_0()); 
             	    
             pushFollow(FOLLOW_ruleRelationalExpression_in_ruleEqualityExpression612);
             lv_exp_0_0=ruleRelationalExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getEqualityExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getEqualityExpressionRule());
             	        }
-            	        try {
-            	       		add(
-            	       			current, 
-            	       			"exp",
-            	        		lv_exp_0_0, 
-            	        		"RelationalExpression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		add(
+                   			current, 
+                   			"exp",
+                    		lv_exp_0_0, 
+                    		"RelationalExpression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -790,7 +757,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:388:2: ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )*
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:314:2: ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )*
             loop5:
             do {
                 int alt5=2;
@@ -803,15 +770,15 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
                 switch (alt5) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:388:3: ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:314:3: ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:388:3: ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:389:1: ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:314:3: ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:315:1: ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:389:1: ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:390:1: (lv_op_1_1= '==' | lv_op_1_2= '<>' )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:315:1: ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:316:1: (lv_op_1_1= '==' | lv_op_1_2= '<>' )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:390:1: (lv_op_1_1= '==' | lv_op_1_2= '<>' )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:316:1: (lv_op_1_1= '==' | lv_op_1_2= '<>' )
             	    int alt4=2;
             	    int LA4_0 = input.LA(1);
 
@@ -823,53 +790,39 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             	    }
             	    else {
             	        NoViableAltException nvae =
-            	            new NoViableAltException("390:1: (lv_op_1_1= '==' | lv_op_1_2= '<>' )", 4, 0, input);
+            	            new NoViableAltException("", 4, 0, input);
 
             	        throw nvae;
             	    }
             	    switch (alt4) {
             	        case 1 :
-            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:391:3: lv_op_1_1= '=='
+            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:317:3: lv_op_1_1= '=='
             	            {
-            	            lv_op_1_1=(Token)input.LT(1);
-            	            match(input,19,FOLLOW_19_in_ruleEqualityExpression633); 
+            	            lv_op_1_1=(Token)match(input,19,FOLLOW_19_in_ruleEqualityExpression633); 
 
-            	                    createLeafNode(grammarAccess.getEqualityExpressionAccess().getOpEqualsSignEqualsSignKeyword_1_0_0_0(), "op"); 
+            	                    newLeafNode(lv_op_1_1, grammarAccess.getEqualityExpressionAccess().getOpEqualsSignEqualsSignKeyword_1_0_0_0());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getEqualityExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getEqualityExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_1, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_1, null);
             	            	    
 
             	            }
             	            break;
             	        case 2 :
-            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:409:8: lv_op_1_2= '<>'
+            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:329:8: lv_op_1_2= '<>'
             	            {
-            	            lv_op_1_2=(Token)input.LT(1);
-            	            match(input,20,FOLLOW_20_in_ruleEqualityExpression662); 
+            	            lv_op_1_2=(Token)match(input,20,FOLLOW_20_in_ruleEqualityExpression662); 
 
-            	                    createLeafNode(grammarAccess.getEqualityExpressionAccess().getOpLessThanSignGreaterThanSignKeyword_1_0_0_1(), "op"); 
+            	                    newLeafNode(lv_op_1_2, grammarAccess.getEqualityExpressionAccess().getOpLessThanSignGreaterThanSignKeyword_1_0_0_1());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getEqualityExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getEqualityExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_2, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_2, null);
             	            	    
 
             	            }
@@ -883,35 +836,30 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             	    }
 
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:430:2: ( (lv_exp_2_0= ruleRelationalExpression ) )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:431:1: (lv_exp_2_0= ruleRelationalExpression )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:344:2: ( (lv_exp_2_0= ruleRelationalExpression ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:345:1: (lv_exp_2_0= ruleRelationalExpression )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:431:1: (lv_exp_2_0= ruleRelationalExpression )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:432:3: lv_exp_2_0= ruleRelationalExpression
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:345:1: (lv_exp_2_0= ruleRelationalExpression )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:346:3: lv_exp_2_0= ruleRelationalExpression
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getEqualityExpressionAccess().getExpRelationalExpressionParserRuleCall_1_1_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getEqualityExpressionAccess().getExpRelationalExpressionParserRuleCall_1_1_0()); 
             	    	    
             	    pushFollow(FOLLOW_ruleRelationalExpression_in_ruleEqualityExpression699);
             	    lv_exp_2_0=ruleRelationalExpression();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getEqualityExpressionRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getEqualityExpressionRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"exp",
-            	    	        		lv_exp_2_0, 
-            	    	        		"RelationalExpression", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"exp",
+            	            		lv_exp_2_0, 
+            	            		"RelationalExpression");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -934,9 +882,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -947,11 +893,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleEqualityExpression
+    // $ANTLR end "ruleEqualityExpression"
 
 
-    // $ANTLR start entryRuleRelationalExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:462:1: entryRuleRelationalExpression returns [EObject current=null] : iv_ruleRelationalExpression= ruleRelationalExpression EOF ;
+    // $ANTLR start "entryRuleRelationalExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:370:1: entryRuleRelationalExpression returns [EObject current=null] : iv_ruleRelationalExpression= ruleRelationalExpression EOF ;
     public final EObject entryRuleRelationalExpression() throws RecognitionException {
         EObject current = null;
 
@@ -959,13 +905,14 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:463:2: (iv_ruleRelationalExpression= ruleRelationalExpression EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:464:2: iv_ruleRelationalExpression= ruleRelationalExpression EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:371:2: (iv_ruleRelationalExpression= ruleRelationalExpression EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:372:2: iv_ruleRelationalExpression= ruleRelationalExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getRelationalExpressionRule(), currentNode); 
+             newCompositeNode(grammarAccess.getRelationalExpressionRule()); 
             pushFollow(FOLLOW_ruleRelationalExpression_in_entryRuleRelationalExpression737);
             iv_ruleRelationalExpression=ruleRelationalExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleRelationalExpression; 
             match(input,EOF,FOLLOW_EOF_in_entryRuleRelationalExpression747); 
@@ -982,11 +929,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleRelationalExpression
+    // $ANTLR end "entryRuleRelationalExpression"
 
 
-    // $ANTLR start ruleRelationalExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:471:1: ruleRelationalExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )* ) ;
+    // $ANTLR start "ruleRelationalExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:379:1: ruleRelationalExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )* ) ;
     public final EObject ruleRelationalExpression() throws RecognitionException {
         EObject current = null;
 
@@ -999,44 +946,39 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         EObject lv_exp_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:476:6: ( ( ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )* ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:477:1: ( ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )* )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:382:28: ( ( ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )* ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:383:1: ( ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )* )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:477:1: ( ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )* )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:477:2: ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )*
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:383:1: ( ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )* )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:383:2: ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )*
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:477:2: ( (lv_exp_0_0= ruleConditionalExpression ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:478:1: (lv_exp_0_0= ruleConditionalExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:383:2: ( (lv_exp_0_0= ruleConditionalExpression ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:384:1: (lv_exp_0_0= ruleConditionalExpression )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:478:1: (lv_exp_0_0= ruleConditionalExpression )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:479:3: lv_exp_0_0= ruleConditionalExpression
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:384:1: (lv_exp_0_0= ruleConditionalExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:385:3: lv_exp_0_0= ruleConditionalExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getRelationalExpressionAccess().getExpConditionalExpressionParserRuleCall_0_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getRelationalExpressionAccess().getExpConditionalExpressionParserRuleCall_0_0()); 
             	    
             pushFollow(FOLLOW_ruleConditionalExpression_in_ruleRelationalExpression793);
             lv_exp_0_0=ruleConditionalExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getRelationalExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getRelationalExpressionRule());
             	        }
-            	        try {
-            	       		add(
-            	       			current, 
-            	       			"exp",
-            	        		lv_exp_0_0, 
-            	        		"ConditionalExpression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		add(
+                   			current, 
+                   			"exp",
+                    		lv_exp_0_0, 
+                    		"ConditionalExpression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -1044,7 +986,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:501:2: ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )*
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:401:2: ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )*
             loop7:
             do {
                 int alt7=2;
@@ -1057,15 +999,15 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:501:3: ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:401:3: ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:501:3: ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:502:1: ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:401:3: ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:402:1: ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:502:1: ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:503:1: (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:402:1: ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:403:1: (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:503:1: (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:403:1: (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' )
             	    int alt6=4;
             	    switch ( input.LA(1) ) {
             	    case 21:
@@ -1090,100 +1032,72 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             	        break;
             	    default:
             	        NoViableAltException nvae =
-            	            new NoViableAltException("503:1: (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' )", 6, 0, input);
+            	            new NoViableAltException("", 6, 0, input);
 
             	        throw nvae;
             	    }
 
             	    switch (alt6) {
             	        case 1 :
-            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:504:3: lv_op_1_1= '<'
+            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:404:3: lv_op_1_1= '<'
             	            {
-            	            lv_op_1_1=(Token)input.LT(1);
-            	            match(input,21,FOLLOW_21_in_ruleRelationalExpression814); 
+            	            lv_op_1_1=(Token)match(input,21,FOLLOW_21_in_ruleRelationalExpression814); 
 
-            	                    createLeafNode(grammarAccess.getRelationalExpressionAccess().getOpLessThanSignKeyword_1_0_0_0(), "op"); 
+            	                    newLeafNode(lv_op_1_1, grammarAccess.getRelationalExpressionAccess().getOpLessThanSignKeyword_1_0_0_0());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getRelationalExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getRelationalExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_1, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_1, null);
             	            	    
 
             	            }
             	            break;
             	        case 2 :
-            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:522:8: lv_op_1_2= '>'
+            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:416:8: lv_op_1_2= '>'
             	            {
-            	            lv_op_1_2=(Token)input.LT(1);
-            	            match(input,22,FOLLOW_22_in_ruleRelationalExpression843); 
+            	            lv_op_1_2=(Token)match(input,22,FOLLOW_22_in_ruleRelationalExpression843); 
 
-            	                    createLeafNode(grammarAccess.getRelationalExpressionAccess().getOpGreaterThanSignKeyword_1_0_0_1(), "op"); 
+            	                    newLeafNode(lv_op_1_2, grammarAccess.getRelationalExpressionAccess().getOpGreaterThanSignKeyword_1_0_0_1());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getRelationalExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getRelationalExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_2, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_2, null);
             	            	    
 
             	            }
             	            break;
             	        case 3 :
-            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:540:8: lv_op_1_3= '<='
+            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:428:8: lv_op_1_3= '<='
             	            {
-            	            lv_op_1_3=(Token)input.LT(1);
-            	            match(input,23,FOLLOW_23_in_ruleRelationalExpression872); 
+            	            lv_op_1_3=(Token)match(input,23,FOLLOW_23_in_ruleRelationalExpression872); 
 
-            	                    createLeafNode(grammarAccess.getRelationalExpressionAccess().getOpLessThanSignEqualsSignKeyword_1_0_0_2(), "op"); 
+            	                    newLeafNode(lv_op_1_3, grammarAccess.getRelationalExpressionAccess().getOpLessThanSignEqualsSignKeyword_1_0_0_2());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getRelationalExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getRelationalExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_3, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_3, null);
             	            	    
 
             	            }
             	            break;
             	        case 4 :
-            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:558:8: lv_op_1_4= '>='
+            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:440:8: lv_op_1_4= '>='
             	            {
-            	            lv_op_1_4=(Token)input.LT(1);
-            	            match(input,24,FOLLOW_24_in_ruleRelationalExpression901); 
+            	            lv_op_1_4=(Token)match(input,24,FOLLOW_24_in_ruleRelationalExpression901); 
 
-            	                    createLeafNode(grammarAccess.getRelationalExpressionAccess().getOpGreaterThanSignEqualsSignKeyword_1_0_0_3(), "op"); 
+            	                    newLeafNode(lv_op_1_4, grammarAccess.getRelationalExpressionAccess().getOpGreaterThanSignEqualsSignKeyword_1_0_0_3());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getRelationalExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getRelationalExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_4, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_4, null);
             	            	    
 
             	            }
@@ -1197,35 +1111,30 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             	    }
 
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:579:2: ( (lv_exp_2_0= ruleConditionalExpression ) )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:580:1: (lv_exp_2_0= ruleConditionalExpression )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:455:2: ( (lv_exp_2_0= ruleConditionalExpression ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:456:1: (lv_exp_2_0= ruleConditionalExpression )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:580:1: (lv_exp_2_0= ruleConditionalExpression )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:581:3: lv_exp_2_0= ruleConditionalExpression
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:456:1: (lv_exp_2_0= ruleConditionalExpression )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:457:3: lv_exp_2_0= ruleConditionalExpression
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getRelationalExpressionAccess().getExpConditionalExpressionParserRuleCall_1_1_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getRelationalExpressionAccess().getExpConditionalExpressionParserRuleCall_1_1_0()); 
             	    	    
             	    pushFollow(FOLLOW_ruleConditionalExpression_in_ruleRelationalExpression938);
             	    lv_exp_2_0=ruleConditionalExpression();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getRelationalExpressionRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getRelationalExpressionRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"exp",
-            	    	        		lv_exp_2_0, 
-            	    	        		"ConditionalExpression", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"exp",
+            	            		lv_exp_2_0, 
+            	            		"ConditionalExpression");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -1248,9 +1157,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -1261,11 +1168,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleRelationalExpression
+    // $ANTLR end "ruleRelationalExpression"
 
 
-    // $ANTLR start entryRuleConditionalExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:611:1: entryRuleConditionalExpression returns [EObject current=null] : iv_ruleConditionalExpression= ruleConditionalExpression EOF ;
+    // $ANTLR start "entryRuleConditionalExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:481:1: entryRuleConditionalExpression returns [EObject current=null] : iv_ruleConditionalExpression= ruleConditionalExpression EOF ;
     public final EObject entryRuleConditionalExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1273,13 +1180,14 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:612:2: (iv_ruleConditionalExpression= ruleConditionalExpression EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:613:2: iv_ruleConditionalExpression= ruleConditionalExpression EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:482:2: (iv_ruleConditionalExpression= ruleConditionalExpression EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:483:2: iv_ruleConditionalExpression= ruleConditionalExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getConditionalExpressionRule(), currentNode); 
+             newCompositeNode(grammarAccess.getConditionalExpressionRule()); 
             pushFollow(FOLLOW_ruleConditionalExpression_in_entryRuleConditionalExpression976);
             iv_ruleConditionalExpression=ruleConditionalExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleConditionalExpression; 
             match(input,EOF,FOLLOW_EOF_in_entryRuleConditionalExpression986); 
@@ -1296,15 +1204,16 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleConditionalExpression
+    // $ANTLR end "entryRuleConditionalExpression"
 
 
-    // $ANTLR start ruleConditionalExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:620:1: ruleConditionalExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )? ) ;
+    // $ANTLR start "ruleConditionalExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:490:1: ruleConditionalExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) otherlv_3= ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )? ) ;
     public final EObject ruleConditionalExpression() throws RecognitionException {
         EObject current = null;
 
         Token lv_op_1_0=null;
+        Token otherlv_3=null;
         EObject lv_exp_0_0 = null;
 
         EObject lv_exp_2_0 = null;
@@ -1312,44 +1221,39 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         EObject lv_exp_4_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:625:6: ( ( ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )? ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:626:1: ( ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:493:28: ( ( ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) otherlv_3= ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )? ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:494:1: ( ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) otherlv_3= ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )? )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:626:1: ( ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )? )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:626:2: ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:494:1: ( ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) otherlv_3= ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:494:2: ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) otherlv_3= ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )?
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:626:2: ( (lv_exp_0_0= ruleAdditiveExpression ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:627:1: (lv_exp_0_0= ruleAdditiveExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:494:2: ( (lv_exp_0_0= ruleAdditiveExpression ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:495:1: (lv_exp_0_0= ruleAdditiveExpression )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:627:1: (lv_exp_0_0= ruleAdditiveExpression )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:628:3: lv_exp_0_0= ruleAdditiveExpression
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:495:1: (lv_exp_0_0= ruleAdditiveExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:496:3: lv_exp_0_0= ruleAdditiveExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_0_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_0_0()); 
             	    
             pushFollow(FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1032);
             lv_exp_0_0=ruleAdditiveExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getConditionalExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
             	        }
-            	        try {
-            	       		add(
-            	       			current, 
-            	       			"exp",
-            	        		lv_exp_0_0, 
-            	        		"AdditiveExpression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		add(
+                   			current, 
+                   			"exp",
+                    		lv_exp_0_0, 
+                    		"AdditiveExpression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -1357,7 +1261,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:650:2: ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:512:2: ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) otherlv_3= ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1366,30 +1270,23 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             switch (alt8) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:650:3: ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) ':' ( (lv_exp_4_0= ruleAdditiveExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:512:3: ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) otherlv_3= ':' ( (lv_exp_4_0= ruleAdditiveExpression ) )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:650:3: ( (lv_op_1_0= '?' ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:651:1: (lv_op_1_0= '?' )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:512:3: ( (lv_op_1_0= '?' ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:513:1: (lv_op_1_0= '?' )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:651:1: (lv_op_1_0= '?' )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:652:3: lv_op_1_0= '?'
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:513:1: (lv_op_1_0= '?' )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:514:3: lv_op_1_0= '?'
                     {
-                    lv_op_1_0=(Token)input.LT(1);
-                    match(input,25,FOLLOW_25_in_ruleConditionalExpression1051); 
+                    lv_op_1_0=(Token)match(input,25,FOLLOW_25_in_ruleConditionalExpression1051); 
 
-                            createLeafNode(grammarAccess.getConditionalExpressionAccess().getOpQuestionMarkKeyword_1_0_0(), "op"); 
+                            newLeafNode(lv_op_1_0, grammarAccess.getConditionalExpressionAccess().getOpQuestionMarkKeyword_1_0_0());
                         
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getConditionalExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getConditionalExpressionRule());
                     	        }
-                    	        
-                    	        try {
-                    	       		add(current, "op", lv_op_1_0, "?", lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		addWithLastConsumed(current, "op", lv_op_1_0, "?");
                     	    
 
                     }
@@ -1397,35 +1294,30 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
                     }
 
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:671:2: ( (lv_exp_2_0= ruleAdditiveExpression ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:672:1: (lv_exp_2_0= ruleAdditiveExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:527:2: ( (lv_exp_2_0= ruleAdditiveExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:528:1: (lv_exp_2_0= ruleAdditiveExpression )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:672:1: (lv_exp_2_0= ruleAdditiveExpression )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:673:3: lv_exp_2_0= ruleAdditiveExpression
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:528:1: (lv_exp_2_0= ruleAdditiveExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:529:3: lv_exp_2_0= ruleAdditiveExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_1_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_1_1_0()); 
                     	    
                     pushFollow(FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1085);
                     lv_exp_2_0=ruleAdditiveExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getConditionalExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
                     	        }
-                    	        try {
-                    	       		add(
-                    	       			current, 
-                    	       			"exp",
-                    	        		lv_exp_2_0, 
-                    	        		"AdditiveExpression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		add(
+                           			current, 
+                           			"exp",
+                            		lv_exp_2_0, 
+                            		"AdditiveExpression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -1433,39 +1325,34 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
                     }
 
-                    match(input,26,FOLLOW_26_in_ruleConditionalExpression1095); 
+                    otherlv_3=(Token)match(input,26,FOLLOW_26_in_ruleConditionalExpression1097); 
 
-                            createLeafNode(grammarAccess.getConditionalExpressionAccess().getColonKeyword_1_2(), null); 
+                        	newLeafNode(otherlv_3, grammarAccess.getConditionalExpressionAccess().getColonKeyword_1_2());
                         
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:699:1: ( (lv_exp_4_0= ruleAdditiveExpression ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:700:1: (lv_exp_4_0= ruleAdditiveExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:549:1: ( (lv_exp_4_0= ruleAdditiveExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:550:1: (lv_exp_4_0= ruleAdditiveExpression )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:700:1: (lv_exp_4_0= ruleAdditiveExpression )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:701:3: lv_exp_4_0= ruleAdditiveExpression
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:550:1: (lv_exp_4_0= ruleAdditiveExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:551:3: lv_exp_4_0= ruleAdditiveExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_1_3_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_1_3_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1116);
+                    pushFollow(FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1118);
                     lv_exp_4_0=ruleAdditiveExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getConditionalExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
                     	        }
-                    	        try {
-                    	       		add(
-                    	       			current, 
-                    	       			"exp",
-                    	        		lv_exp_4_0, 
-                    	        		"AdditiveExpression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		add(
+                           			current, 
+                           			"exp",
+                            		lv_exp_4_0, 
+                            		"AdditiveExpression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -1485,9 +1372,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -1498,11 +1383,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleConditionalExpression
+    // $ANTLR end "ruleConditionalExpression"
 
 
-    // $ANTLR start entryRuleAdditiveExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:731:1: entryRuleAdditiveExpression returns [EObject current=null] : iv_ruleAdditiveExpression= ruleAdditiveExpression EOF ;
+    // $ANTLR start "entryRuleAdditiveExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:575:1: entryRuleAdditiveExpression returns [EObject current=null] : iv_ruleAdditiveExpression= ruleAdditiveExpression EOF ;
     public final EObject entryRuleAdditiveExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1510,16 +1395,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:732:2: (iv_ruleAdditiveExpression= ruleAdditiveExpression EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:733:2: iv_ruleAdditiveExpression= ruleAdditiveExpression EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:576:2: (iv_ruleAdditiveExpression= ruleAdditiveExpression EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:577:2: iv_ruleAdditiveExpression= ruleAdditiveExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getAdditiveExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleAdditiveExpression_in_entryRuleAdditiveExpression1154);
+             newCompositeNode(grammarAccess.getAdditiveExpressionRule()); 
+            pushFollow(FOLLOW_ruleAdditiveExpression_in_entryRuleAdditiveExpression1156);
             iv_ruleAdditiveExpression=ruleAdditiveExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleAdditiveExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleAdditiveExpression1164); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleAdditiveExpression1166); 
 
             }
 
@@ -1533,11 +1419,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleAdditiveExpression
+    // $ANTLR end "entryRuleAdditiveExpression"
 
 
-    // $ANTLR start ruleAdditiveExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:740:1: ruleAdditiveExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )* ) ;
+    // $ANTLR start "ruleAdditiveExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:584:1: ruleAdditiveExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )* ) ;
     public final EObject ruleAdditiveExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1548,44 +1434,39 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         EObject lv_exp_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:745:6: ( ( ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )* ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:746:1: ( ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )* )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:587:28: ( ( ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )* ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:588:1: ( ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )* )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:746:1: ( ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )* )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:746:2: ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )*
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:588:1: ( ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )* )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:588:2: ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )*
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:746:2: ( (lv_exp_0_0= ruleMultiplicativeExpression ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:747:1: (lv_exp_0_0= ruleMultiplicativeExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:588:2: ( (lv_exp_0_0= ruleMultiplicativeExpression ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:589:1: (lv_exp_0_0= ruleMultiplicativeExpression )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:747:1: (lv_exp_0_0= ruleMultiplicativeExpression )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:748:3: lv_exp_0_0= ruleMultiplicativeExpression
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:589:1: (lv_exp_0_0= ruleMultiplicativeExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:590:3: lv_exp_0_0= ruleMultiplicativeExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getAdditiveExpressionAccess().getExpMultiplicativeExpressionParserRuleCall_0_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getAdditiveExpressionAccess().getExpMultiplicativeExpressionParserRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression1210);
+            pushFollow(FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression1212);
             lv_exp_0_0=ruleMultiplicativeExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getAdditiveExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getAdditiveExpressionRule());
             	        }
-            	        try {
-            	       		add(
-            	       			current, 
-            	       			"exp",
-            	        		lv_exp_0_0, 
-            	        		"MultiplicativeExpression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		add(
+                   			current, 
+                   			"exp",
+                    		lv_exp_0_0, 
+                    		"MultiplicativeExpression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -1593,7 +1474,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:770:2: ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )*
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:606:2: ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )*
             loop10:
             do {
                 int alt10=2;
@@ -1606,15 +1487,15 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
                 switch (alt10) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:770:3: ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:606:3: ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:770:3: ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:771:1: ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:606:3: ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:607:1: ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:771:1: ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:772:1: (lv_op_1_1= '+' | lv_op_1_2= '-' )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:607:1: ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:608:1: (lv_op_1_1= '+' | lv_op_1_2= '-' )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:772:1: (lv_op_1_1= '+' | lv_op_1_2= '-' )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:608:1: (lv_op_1_1= '+' | lv_op_1_2= '-' )
             	    int alt9=2;
             	    int LA9_0 = input.LA(1);
 
@@ -1626,53 +1507,39 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             	    }
             	    else {
             	        NoViableAltException nvae =
-            	            new NoViableAltException("772:1: (lv_op_1_1= '+' | lv_op_1_2= '-' )", 9, 0, input);
+            	            new NoViableAltException("", 9, 0, input);
 
             	        throw nvae;
             	    }
             	    switch (alt9) {
             	        case 1 :
-            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:773:3: lv_op_1_1= '+'
+            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:609:3: lv_op_1_1= '+'
             	            {
-            	            lv_op_1_1=(Token)input.LT(1);
-            	            match(input,27,FOLLOW_27_in_ruleAdditiveExpression1231); 
+            	            lv_op_1_1=(Token)match(input,27,FOLLOW_27_in_ruleAdditiveExpression1233); 
 
-            	                    createLeafNode(grammarAccess.getAdditiveExpressionAccess().getOpPlusSignKeyword_1_0_0_0(), "op"); 
+            	                    newLeafNode(lv_op_1_1, grammarAccess.getAdditiveExpressionAccess().getOpPlusSignKeyword_1_0_0_0());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getAdditiveExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getAdditiveExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_1, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_1, null);
             	            	    
 
             	            }
             	            break;
             	        case 2 :
-            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:791:8: lv_op_1_2= '-'
+            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:621:8: lv_op_1_2= '-'
             	            {
-            	            lv_op_1_2=(Token)input.LT(1);
-            	            match(input,28,FOLLOW_28_in_ruleAdditiveExpression1260); 
+            	            lv_op_1_2=(Token)match(input,28,FOLLOW_28_in_ruleAdditiveExpression1262); 
 
-            	                    createLeafNode(grammarAccess.getAdditiveExpressionAccess().getOpHyphenMinusKeyword_1_0_0_1(), "op"); 
+            	                    newLeafNode(lv_op_1_2, grammarAccess.getAdditiveExpressionAccess().getOpHyphenMinusKeyword_1_0_0_1());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getAdditiveExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getAdditiveExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_2, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_2, null);
             	            	    
 
             	            }
@@ -1686,35 +1553,30 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             	    }
 
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:812:2: ( (lv_exp_2_0= ruleMultiplicativeExpression ) )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:813:1: (lv_exp_2_0= ruleMultiplicativeExpression )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:636:2: ( (lv_exp_2_0= ruleMultiplicativeExpression ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:637:1: (lv_exp_2_0= ruleMultiplicativeExpression )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:813:1: (lv_exp_2_0= ruleMultiplicativeExpression )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:814:3: lv_exp_2_0= ruleMultiplicativeExpression
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:637:1: (lv_exp_2_0= ruleMultiplicativeExpression )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:638:3: lv_exp_2_0= ruleMultiplicativeExpression
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getAdditiveExpressionAccess().getExpMultiplicativeExpressionParserRuleCall_1_1_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getAdditiveExpressionAccess().getExpMultiplicativeExpressionParserRuleCall_1_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression1297);
+            	    pushFollow(FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression1299);
             	    lv_exp_2_0=ruleMultiplicativeExpression();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getAdditiveExpressionRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getAdditiveExpressionRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"exp",
-            	    	        		lv_exp_2_0, 
-            	    	        		"MultiplicativeExpression", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"exp",
+            	            		lv_exp_2_0, 
+            	            		"MultiplicativeExpression");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -1737,9 +1599,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -1750,11 +1610,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleAdditiveExpression
+    // $ANTLR end "ruleAdditiveExpression"
 
 
-    // $ANTLR start entryRuleMultiplicativeExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:844:1: entryRuleMultiplicativeExpression returns [EObject current=null] : iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF ;
+    // $ANTLR start "entryRuleMultiplicativeExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:662:1: entryRuleMultiplicativeExpression returns [EObject current=null] : iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF ;
     public final EObject entryRuleMultiplicativeExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1762,16 +1622,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:845:2: (iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:846:2: iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:663:2: (iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:664:2: iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getMultiplicativeExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleMultiplicativeExpression_in_entryRuleMultiplicativeExpression1335);
+             newCompositeNode(grammarAccess.getMultiplicativeExpressionRule()); 
+            pushFollow(FOLLOW_ruleMultiplicativeExpression_in_entryRuleMultiplicativeExpression1337);
             iv_ruleMultiplicativeExpression=ruleMultiplicativeExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleMultiplicativeExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleMultiplicativeExpression1345); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMultiplicativeExpression1347); 
 
             }
 
@@ -1785,11 +1646,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleMultiplicativeExpression
+    // $ANTLR end "entryRuleMultiplicativeExpression"
 
 
-    // $ANTLR start ruleMultiplicativeExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:853:1: ruleMultiplicativeExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )* ) ;
+    // $ANTLR start "ruleMultiplicativeExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:671:1: ruleMultiplicativeExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )* ) ;
     public final EObject ruleMultiplicativeExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1801,44 +1662,39 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         EObject lv_exp_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:858:6: ( ( ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )* ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:859:1: ( ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )* )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:674:28: ( ( ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )* ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:675:1: ( ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )* )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:859:1: ( ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )* )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:859:2: ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )*
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:675:1: ( ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )* )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:675:2: ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )*
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:859:2: ( (lv_exp_0_0= ruleUnaryExpression ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:860:1: (lv_exp_0_0= ruleUnaryExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:675:2: ( (lv_exp_0_0= ruleUnaryExpression ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:676:1: (lv_exp_0_0= ruleUnaryExpression )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:860:1: (lv_exp_0_0= ruleUnaryExpression )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:861:3: lv_exp_0_0= ruleUnaryExpression
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:676:1: (lv_exp_0_0= ruleUnaryExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:677:3: lv_exp_0_0= ruleUnaryExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getMultiplicativeExpressionAccess().getExpUnaryExpressionParserRuleCall_0_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getMultiplicativeExpressionAccess().getExpUnaryExpressionParserRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_ruleUnaryExpression_in_ruleMultiplicativeExpression1391);
+            pushFollow(FOLLOW_ruleUnaryExpression_in_ruleMultiplicativeExpression1393);
             lv_exp_0_0=ruleUnaryExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getMultiplicativeExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getMultiplicativeExpressionRule());
             	        }
-            	        try {
-            	       		add(
-            	       			current, 
-            	       			"exp",
-            	        		lv_exp_0_0, 
-            	        		"UnaryExpression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		add(
+                   			current, 
+                   			"exp",
+                    		lv_exp_0_0, 
+                    		"UnaryExpression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -1846,7 +1702,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:883:2: ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )*
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:693:2: ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )*
             loop12:
             do {
                 int alt12=2;
@@ -1859,15 +1715,15 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
                 switch (alt12) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:883:3: ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:693:3: ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:883:3: ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:884:1: ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:693:3: ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:694:1: ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:884:1: ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:885:1: (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:694:1: ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:695:1: (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:885:1: (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:695:1: (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' )
             	    int alt11=3;
             	    switch ( input.LA(1) ) {
             	    case 29:
@@ -1887,77 +1743,56 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             	        break;
             	    default:
             	        NoViableAltException nvae =
-            	            new NoViableAltException("885:1: (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' )", 11, 0, input);
+            	            new NoViableAltException("", 11, 0, input);
 
             	        throw nvae;
             	    }
 
             	    switch (alt11) {
             	        case 1 :
-            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:886:3: lv_op_1_1= '*'
+            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:696:3: lv_op_1_1= '*'
             	            {
-            	            lv_op_1_1=(Token)input.LT(1);
-            	            match(input,29,FOLLOW_29_in_ruleMultiplicativeExpression1412); 
+            	            lv_op_1_1=(Token)match(input,29,FOLLOW_29_in_ruleMultiplicativeExpression1414); 
 
-            	                    createLeafNode(grammarAccess.getMultiplicativeExpressionAccess().getOpAsteriskKeyword_1_0_0_0(), "op"); 
+            	                    newLeafNode(lv_op_1_1, grammarAccess.getMultiplicativeExpressionAccess().getOpAsteriskKeyword_1_0_0_0());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getMultiplicativeExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getMultiplicativeExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_1, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_1, null);
             	            	    
 
             	            }
             	            break;
             	        case 2 :
-            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:904:8: lv_op_1_2= '/'
+            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:708:8: lv_op_1_2= '/'
             	            {
-            	            lv_op_1_2=(Token)input.LT(1);
-            	            match(input,30,FOLLOW_30_in_ruleMultiplicativeExpression1441); 
+            	            lv_op_1_2=(Token)match(input,30,FOLLOW_30_in_ruleMultiplicativeExpression1443); 
 
-            	                    createLeafNode(grammarAccess.getMultiplicativeExpressionAccess().getOpSolidusKeyword_1_0_0_1(), "op"); 
+            	                    newLeafNode(lv_op_1_2, grammarAccess.getMultiplicativeExpressionAccess().getOpSolidusKeyword_1_0_0_1());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getMultiplicativeExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getMultiplicativeExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_2, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_2, null);
             	            	    
 
             	            }
             	            break;
             	        case 3 :
-            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:922:8: lv_op_1_3= 'mod'
+            	            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:720:8: lv_op_1_3= 'mod'
             	            {
-            	            lv_op_1_3=(Token)input.LT(1);
-            	            match(input,31,FOLLOW_31_in_ruleMultiplicativeExpression1470); 
+            	            lv_op_1_3=(Token)match(input,31,FOLLOW_31_in_ruleMultiplicativeExpression1472); 
 
-            	                    createLeafNode(grammarAccess.getMultiplicativeExpressionAccess().getOpModKeyword_1_0_0_2(), "op"); 
+            	                    newLeafNode(lv_op_1_3, grammarAccess.getMultiplicativeExpressionAccess().getOpModKeyword_1_0_0_2());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getMultiplicativeExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getMultiplicativeExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_3, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_3, null);
             	            	    
 
             	            }
@@ -1971,35 +1806,30 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             	    }
 
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:943:2: ( (lv_exp_2_0= ruleUnaryExpression ) )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:944:1: (lv_exp_2_0= ruleUnaryExpression )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:735:2: ( (lv_exp_2_0= ruleUnaryExpression ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:736:1: (lv_exp_2_0= ruleUnaryExpression )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:944:1: (lv_exp_2_0= ruleUnaryExpression )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:945:3: lv_exp_2_0= ruleUnaryExpression
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:736:1: (lv_exp_2_0= ruleUnaryExpression )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:737:3: lv_exp_2_0= ruleUnaryExpression
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getMultiplicativeExpressionAccess().getExpUnaryExpressionParserRuleCall_1_1_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getMultiplicativeExpressionAccess().getExpUnaryExpressionParserRuleCall_1_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleUnaryExpression_in_ruleMultiplicativeExpression1507);
+            	    pushFollow(FOLLOW_ruleUnaryExpression_in_ruleMultiplicativeExpression1509);
             	    lv_exp_2_0=ruleUnaryExpression();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getMultiplicativeExpressionRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getMultiplicativeExpressionRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"exp",
-            	    	        		lv_exp_2_0, 
-            	    	        		"UnaryExpression", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"exp",
+            	            		lv_exp_2_0, 
+            	            		"UnaryExpression");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -2022,9 +1852,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -2035,11 +1863,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleMultiplicativeExpression
+    // $ANTLR end "ruleMultiplicativeExpression"
 
 
-    // $ANTLR start entryRuleUnaryExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:975:1: entryRuleUnaryExpression returns [EObject current=null] : iv_ruleUnaryExpression= ruleUnaryExpression EOF ;
+    // $ANTLR start "entryRuleUnaryExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:761:1: entryRuleUnaryExpression returns [EObject current=null] : iv_ruleUnaryExpression= ruleUnaryExpression EOF ;
     public final EObject entryRuleUnaryExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2047,16 +1875,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:976:2: (iv_ruleUnaryExpression= ruleUnaryExpression EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:977:2: iv_ruleUnaryExpression= ruleUnaryExpression EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:762:2: (iv_ruleUnaryExpression= ruleUnaryExpression EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:763:2: iv_ruleUnaryExpression= ruleUnaryExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getUnaryExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleUnaryExpression_in_entryRuleUnaryExpression1545);
+             newCompositeNode(grammarAccess.getUnaryExpressionRule()); 
+            pushFollow(FOLLOW_ruleUnaryExpression_in_entryRuleUnaryExpression1547);
             iv_ruleUnaryExpression=ruleUnaryExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleUnaryExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleUnaryExpression1555); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleUnaryExpression1557); 
 
             }
 
@@ -2070,11 +1899,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleUnaryExpression
+    // $ANTLR end "entryRuleUnaryExpression"
 
 
-    // $ANTLR start ruleUnaryExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:984:1: ruleUnaryExpression returns [EObject current=null] : ( ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) ) | ( (lv_exp_2_0= rulePrimaryExpression ) ) ) ;
+    // $ANTLR start "ruleUnaryExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:770:1: ruleUnaryExpression returns [EObject current=null] : ( ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) ) | ( (lv_exp_2_0= rulePrimaryExpression ) ) ) ;
     public final EObject ruleUnaryExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2086,13 +1915,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         EObject lv_exp_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:989:6: ( ( ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) ) | ( (lv_exp_2_0= rulePrimaryExpression ) ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:990:1: ( ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) ) | ( (lv_exp_2_0= rulePrimaryExpression ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:773:28: ( ( ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) ) | ( (lv_exp_2_0= rulePrimaryExpression ) ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:774:1: ( ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) ) | ( (lv_exp_2_0= rulePrimaryExpression ) ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:990:1: ( ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) ) | ( (lv_exp_2_0= rulePrimaryExpression ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:774:1: ( ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) ) | ( (lv_exp_2_0= rulePrimaryExpression ) ) )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -2104,24 +1933,24 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("990:1: ( ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) ) | ( (lv_exp_2_0= rulePrimaryExpression ) ) )", 14, 0, input);
+                    new NoViableAltException("", 14, 0, input);
 
                 throw nvae;
             }
             switch (alt14) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:990:2: ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:774:2: ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:990:2: ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:990:3: ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:774:2: ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:774:3: ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:990:3: ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:991:1: ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:774:3: ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:775:1: ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:991:1: ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:992:1: (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:775:1: ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:776:1: (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:992:1: (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:776:1: (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' )
                     int alt13=3;
                     switch ( input.LA(1) ) {
                     case 32:
@@ -2141,77 +1970,56 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("992:1: (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' )", 13, 0, input);
+                            new NoViableAltException("", 13, 0, input);
 
                         throw nvae;
                     }
 
                     switch (alt13) {
                         case 1 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:993:3: lv_op_0_1= 'not'
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:777:3: lv_op_0_1= 'not'
                             {
-                            lv_op_0_1=(Token)input.LT(1);
-                            match(input,32,FOLLOW_32_in_ruleUnaryExpression1601); 
+                            lv_op_0_1=(Token)match(input,32,FOLLOW_32_in_ruleUnaryExpression1603); 
 
-                                    createLeafNode(grammarAccess.getUnaryExpressionAccess().getOpNotKeyword_0_0_0_0(), "op"); 
+                                    newLeafNode(lv_op_0_1, grammarAccess.getUnaryExpressionAccess().getOpNotKeyword_0_0_0_0());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getUnaryExpressionRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getUnaryExpressionRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "op", lv_op_0_1, null, lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "op", lv_op_0_1, null);
                             	    
 
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1011:8: lv_op_0_2= '-'
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:789:8: lv_op_0_2= '-'
                             {
-                            lv_op_0_2=(Token)input.LT(1);
-                            match(input,28,FOLLOW_28_in_ruleUnaryExpression1630); 
+                            lv_op_0_2=(Token)match(input,28,FOLLOW_28_in_ruleUnaryExpression1632); 
 
-                                    createLeafNode(grammarAccess.getUnaryExpressionAccess().getOpHyphenMinusKeyword_0_0_0_1(), "op"); 
+                                    newLeafNode(lv_op_0_2, grammarAccess.getUnaryExpressionAccess().getOpHyphenMinusKeyword_0_0_0_1());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getUnaryExpressionRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getUnaryExpressionRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "op", lv_op_0_2, null, lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "op", lv_op_0_2, null);
                             	    
 
                             }
                             break;
                         case 3 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1029:8: lv_op_0_3= '+'
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:801:8: lv_op_0_3= '+'
                             {
-                            lv_op_0_3=(Token)input.LT(1);
-                            match(input,27,FOLLOW_27_in_ruleUnaryExpression1659); 
+                            lv_op_0_3=(Token)match(input,27,FOLLOW_27_in_ruleUnaryExpression1661); 
 
-                                    createLeafNode(grammarAccess.getUnaryExpressionAccess().getOpPlusSignKeyword_0_0_0_2(), "op"); 
+                                    newLeafNode(lv_op_0_3, grammarAccess.getUnaryExpressionAccess().getOpPlusSignKeyword_0_0_0_2());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getUnaryExpressionRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getUnaryExpressionRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "op", lv_op_0_3, null, lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "op", lv_op_0_3, null);
                             	    
 
                             }
@@ -2225,35 +2033,30 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
                     }
 
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1050:2: ( (lv_unary_1_0= ruleUnaryExpression ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1051:1: (lv_unary_1_0= ruleUnaryExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:816:2: ( (lv_unary_1_0= ruleUnaryExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:817:1: (lv_unary_1_0= ruleUnaryExpression )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1051:1: (lv_unary_1_0= ruleUnaryExpression )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1052:3: lv_unary_1_0= ruleUnaryExpression
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:817:1: (lv_unary_1_0= ruleUnaryExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:818:3: lv_unary_1_0= ruleUnaryExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getUnaryExpressionAccess().getUnaryUnaryExpressionParserRuleCall_0_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getUnaryExpressionAccess().getUnaryUnaryExpressionParserRuleCall_0_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleUnaryExpression_in_ruleUnaryExpression1696);
+                    pushFollow(FOLLOW_ruleUnaryExpression_in_ruleUnaryExpression1698);
                     lv_unary_1_0=ruleUnaryExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getUnaryExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getUnaryExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"unary",
-                    	        		lv_unary_1_0, 
-                    	        		"UnaryExpression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"unary",
+                            		lv_unary_1_0, 
+                            		"UnaryExpression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -2268,37 +2071,32 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1075:6: ( (lv_exp_2_0= rulePrimaryExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:835:6: ( (lv_exp_2_0= rulePrimaryExpression ) )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1075:6: ( (lv_exp_2_0= rulePrimaryExpression ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1076:1: (lv_exp_2_0= rulePrimaryExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:835:6: ( (lv_exp_2_0= rulePrimaryExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:836:1: (lv_exp_2_0= rulePrimaryExpression )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1076:1: (lv_exp_2_0= rulePrimaryExpression )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1077:3: lv_exp_2_0= rulePrimaryExpression
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:836:1: (lv_exp_2_0= rulePrimaryExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:837:3: lv_exp_2_0= rulePrimaryExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getUnaryExpressionAccess().getExpPrimaryExpressionParserRuleCall_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getUnaryExpressionAccess().getExpPrimaryExpressionParserRuleCall_1_0()); 
                     	    
-                    pushFollow(FOLLOW_rulePrimaryExpression_in_ruleUnaryExpression1724);
+                    pushFollow(FOLLOW_rulePrimaryExpression_in_ruleUnaryExpression1726);
                     lv_exp_2_0=rulePrimaryExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getUnaryExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getUnaryExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"exp",
-                    	        		lv_exp_2_0, 
-                    	        		"PrimaryExpression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"exp",
+                            		lv_exp_2_0, 
+                            		"PrimaryExpression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -2315,9 +2113,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -2328,11 +2124,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleUnaryExpression
+    // $ANTLR end "ruleUnaryExpression"
 
 
-    // $ANTLR start entryRulePrimaryExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1107:1: entryRulePrimaryExpression returns [EObject current=null] : iv_rulePrimaryExpression= rulePrimaryExpression EOF ;
+    // $ANTLR start "entryRulePrimaryExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:861:1: entryRulePrimaryExpression returns [EObject current=null] : iv_rulePrimaryExpression= rulePrimaryExpression EOF ;
     public final EObject entryRulePrimaryExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2340,16 +2136,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1108:2: (iv_rulePrimaryExpression= rulePrimaryExpression EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1109:2: iv_rulePrimaryExpression= rulePrimaryExpression EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:862:2: (iv_rulePrimaryExpression= rulePrimaryExpression EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:863:2: iv_rulePrimaryExpression= rulePrimaryExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getPrimaryExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_rulePrimaryExpression_in_entryRulePrimaryExpression1760);
+             newCompositeNode(grammarAccess.getPrimaryExpressionRule()); 
+            pushFollow(FOLLOW_rulePrimaryExpression_in_entryRulePrimaryExpression1762);
             iv_rulePrimaryExpression=rulePrimaryExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_rulePrimaryExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePrimaryExpression1770); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePrimaryExpression1772); 
 
             }
 
@@ -2363,57 +2160,53 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRulePrimaryExpression
+    // $ANTLR end "entryRulePrimaryExpression"
 
 
-    // $ANTLR start rulePrimaryExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1116:1: rulePrimaryExpression returns [EObject current=null] : ( ( (lv_prefix_0_0= ruleValueSpecification ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? ) ;
+    // $ANTLR start "rulePrimaryExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:870:1: rulePrimaryExpression returns [EObject current=null] : ( ( (lv_prefix_0_0= ruleValueSpecification ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? ) ;
     public final EObject rulePrimaryExpression() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
         EObject lv_prefix_0_0 = null;
 
         EObject lv_suffix_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1121:6: ( ( ( (lv_prefix_0_0= ruleValueSpecification ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1122:1: ( ( (lv_prefix_0_0= ruleValueSpecification ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:873:28: ( ( ( (lv_prefix_0_0= ruleValueSpecification ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:874:1: ( ( (lv_prefix_0_0= ruleValueSpecification ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1122:1: ( ( (lv_prefix_0_0= ruleValueSpecification ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1122:2: ( (lv_prefix_0_0= ruleValueSpecification ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:874:1: ( ( (lv_prefix_0_0= ruleValueSpecification ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:874:2: ( (lv_prefix_0_0= ruleValueSpecification ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )?
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1122:2: ( (lv_prefix_0_0= ruleValueSpecification ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1123:1: (lv_prefix_0_0= ruleValueSpecification )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:874:2: ( (lv_prefix_0_0= ruleValueSpecification ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:875:1: (lv_prefix_0_0= ruleValueSpecification )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1123:1: (lv_prefix_0_0= ruleValueSpecification )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1124:3: lv_prefix_0_0= ruleValueSpecification
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:875:1: (lv_prefix_0_0= ruleValueSpecification )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:876:3: lv_prefix_0_0= ruleValueSpecification
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getPrimaryExpressionAccess().getPrefixValueSpecificationParserRuleCall_0_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getPrefixValueSpecificationParserRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_ruleValueSpecification_in_rulePrimaryExpression1816);
+            pushFollow(FOLLOW_ruleValueSpecification_in_rulePrimaryExpression1818);
             lv_prefix_0_0=ruleValueSpecification();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getPrimaryExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"prefix",
-            	        		lv_prefix_0_0, 
-            	        		"ValueSpecification", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"prefix",
+                    		lv_prefix_0_0, 
+                    		"ValueSpecification");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -2421,7 +2214,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1146:2: ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:892:2: (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -2430,41 +2223,36 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             switch (alt15) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1146:4: '.' ( (lv_suffix_2_0= ruleSuffixExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:892:4: otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) )
                     {
-                    match(input,33,FOLLOW_33_in_rulePrimaryExpression1827); 
+                    otherlv_1=(Token)match(input,33,FOLLOW_33_in_rulePrimaryExpression1831); 
 
-                            createLeafNode(grammarAccess.getPrimaryExpressionAccess().getFullStopKeyword_1_0(), null); 
+                        	newLeafNode(otherlv_1, grammarAccess.getPrimaryExpressionAccess().getFullStopKeyword_1_0());
                         
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1150:1: ( (lv_suffix_2_0= ruleSuffixExpression ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1151:1: (lv_suffix_2_0= ruleSuffixExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:896:1: ( (lv_suffix_2_0= ruleSuffixExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:897:1: (lv_suffix_2_0= ruleSuffixExpression )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1151:1: (lv_suffix_2_0= ruleSuffixExpression )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1152:3: lv_suffix_2_0= ruleSuffixExpression
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:897:1: (lv_suffix_2_0= ruleSuffixExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:898:3: lv_suffix_2_0= ruleSuffixExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getPrimaryExpressionAccess().getSuffixSuffixExpressionParserRuleCall_1_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getSuffixSuffixExpressionParserRuleCall_1_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleSuffixExpression_in_rulePrimaryExpression1848);
+                    pushFollow(FOLLOW_ruleSuffixExpression_in_rulePrimaryExpression1852);
                     lv_suffix_2_0=ruleSuffixExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getPrimaryExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"suffix",
-                    	        		lv_suffix_2_0, 
-                    	        		"SuffixExpression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"suffix",
+                            		lv_suffix_2_0, 
+                            		"SuffixExpression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -2484,9 +2272,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -2497,11 +2283,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end rulePrimaryExpression
+    // $ANTLR end "rulePrimaryExpression"
 
 
-    // $ANTLR start entryRuleValueSpecification
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1182:1: entryRuleValueSpecification returns [EObject current=null] : iv_ruleValueSpecification= ruleValueSpecification EOF ;
+    // $ANTLR start "entryRuleValueSpecification"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:922:1: entryRuleValueSpecification returns [EObject current=null] : iv_ruleValueSpecification= ruleValueSpecification EOF ;
     public final EObject entryRuleValueSpecification() throws RecognitionException {
         EObject current = null;
 
@@ -2509,16 +2295,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1183:2: (iv_ruleValueSpecification= ruleValueSpecification EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1184:2: iv_ruleValueSpecification= ruleValueSpecification EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:923:2: (iv_ruleValueSpecification= ruleValueSpecification EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:924:2: iv_ruleValueSpecification= ruleValueSpecification EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getValueSpecificationRule(), currentNode); 
-            pushFollow(FOLLOW_ruleValueSpecification_in_entryRuleValueSpecification1886);
+             newCompositeNode(grammarAccess.getValueSpecificationRule()); 
+            pushFollow(FOLLOW_ruleValueSpecification_in_entryRuleValueSpecification1890);
             iv_ruleValueSpecification=ruleValueSpecification();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleValueSpecification; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleValueSpecification1896); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleValueSpecification1900); 
 
             }
 
@@ -2532,14 +2319,16 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleValueSpecification
+    // $ANTLR end "entryRuleValueSpecification"
 
 
-    // $ANTLR start ruleValueSpecification
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1191:1: ruleValueSpecification returns [EObject current=null] : (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | ( '(' this_Expression_8= ruleExpression ')' ) ) ;
+    // $ANTLR start "ruleValueSpecification"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:931:1: ruleValueSpecification returns [EObject current=null] : (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | (otherlv_7= '(' this_Expression_8= ruleExpression otherlv_9= ')' ) ) ;
     public final EObject ruleValueSpecification() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_7=null;
+        Token otherlv_9=null;
         EObject this_Literal_0 = null;
 
         EObject this_NameOrChoiceOrBehaviorCall_1 = null;
@@ -2557,240 +2346,167 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         EObject this_Expression_8 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1196:6: ( (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | ( '(' this_Expression_8= ruleExpression ')' ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1197:1: (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | ( '(' this_Expression_8= ruleExpression ')' ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:934:28: ( (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | (otherlv_7= '(' this_Expression_8= ruleExpression otherlv_9= ')' ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:935:1: (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | (otherlv_7= '(' this_Expression_8= ruleExpression otherlv_9= ')' ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1197:1: (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | ( '(' this_Expression_8= ruleExpression ')' ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:935:1: (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | (otherlv_7= '(' this_Expression_8= ruleExpression otherlv_9= ')' ) )
             int alt16=8;
-            switch ( input.LA(1) ) {
-            case RULE_INTEGERLITERAL:
-            case RULE_REALLITERAL:
-            case RULE_DATETIMELITERAL:
-            case RULE_BOOLEANLITERAL:
-            case RULE_NULLLITERAL:
-            case RULE_STRING:
-            case 29:
-            case 30:
-                {
-                alt16=1;
-                }
-                break;
-            case RULE_ID:
-                {
-                alt16=2;
-                }
-                break;
-            case 37:
-            case 38:
-                {
-                alt16=3;
-                }
-                break;
-            case 40:
-                {
-                int LA16_4 = input.LA(2);
-
-                if ( ((LA16_4>=RULE_INTEGERLITERAL && LA16_4<=RULE_STRING)||(LA16_4>=27 && LA16_4<=30)||LA16_4==32||LA16_4==34||(LA16_4>=37 && LA16_4<=38)||LA16_4==40||LA16_4==44||(LA16_4>=46 && LA16_4<=51)) ) {
-                    alt16=4;
-                }
-                else if ( (LA16_4==RULE_ID) ) {
-                    int LA16_9 = input.LA(3);
-
-                    if ( (LA16_9==43) ) {
-                        alt16=5;
-                    }
-                    else if ( ((LA16_9>=16 && LA16_9<=25)||(LA16_9>=27 && LA16_9<=31)||(LA16_9>=33 && LA16_9<=34)||LA16_9==36||(LA16_9>=41 && LA16_9<=42)) ) {
-                        alt16=4;
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("1197:1: (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | ( '(' this_Expression_8= ruleExpression ')' ) )", 16, 9, input);
-
-                        throw nvae;
-                    }
-                }
-                else {
-                    NoViableAltException nvae =
-                        new NoViableAltException("1197:1: (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | ( '(' this_Expression_8= ruleExpression ')' ) )", 16, 4, input);
-
-                    throw nvae;
-                }
-                }
-                break;
-            case 44:
-            case 46:
-            case 47:
-                {
-                alt16=6;
-                }
-                break;
-            case 48:
-            case 49:
-            case 50:
-            case 51:
-                {
-                alt16=7;
-                }
-                break;
-            case 34:
-                {
-                alt16=8;
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("1197:1: (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | ( '(' this_Expression_8= ruleExpression ')' ) )", 16, 0, input);
-
-                throw nvae;
-            }
-
+            alt16 = dfa16.predict(input);
             switch (alt16) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1198:5: this_Literal_0= ruleLiteral
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:936:5: this_Literal_0= ruleLiteral
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getValueSpecificationAccess().getLiteralParserRuleCall_0(), currentNode); 
+                            newCompositeNode(grammarAccess.getValueSpecificationAccess().getLiteralParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleLiteral_in_ruleValueSpecification1943);
+                    pushFollow(FOLLOW_ruleLiteral_in_ruleValueSpecification1947);
                     this_Literal_0=ruleLiteral();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_Literal_0; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1208:5: this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:946:5: this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getValueSpecificationAccess().getNameOrChoiceOrBehaviorCallParserRuleCall_1(), currentNode); 
+                            newCompositeNode(grammarAccess.getValueSpecificationAccess().getNameOrChoiceOrBehaviorCallParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_ruleValueSpecification1970);
+                    pushFollow(FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_ruleValueSpecification1974);
                     this_NameOrChoiceOrBehaviorCall_1=ruleNameOrChoiceOrBehaviorCall();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_NameOrChoiceOrBehaviorCall_1; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1218:5: this_Interval_2= ruleInterval
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:956:5: this_Interval_2= ruleInterval
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getValueSpecificationAccess().getIntervalParserRuleCall_2(), currentNode); 
+                            newCompositeNode(grammarAccess.getValueSpecificationAccess().getIntervalParserRuleCall_2()); 
                         
-                    pushFollow(FOLLOW_ruleInterval_in_ruleValueSpecification1997);
+                    pushFollow(FOLLOW_ruleInterval_in_ruleValueSpecification2001);
                     this_Interval_2=ruleInterval();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_Interval_2; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1228:5: this_CollectionOrTuple_3= ruleCollectionOrTuple
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:966:5: this_CollectionOrTuple_3= ruleCollectionOrTuple
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getValueSpecificationAccess().getCollectionOrTupleParserRuleCall_3(), currentNode); 
+                            newCompositeNode(grammarAccess.getValueSpecificationAccess().getCollectionOrTupleParserRuleCall_3()); 
                         
-                    pushFollow(FOLLOW_ruleCollectionOrTuple_in_ruleValueSpecification2024);
+                    pushFollow(FOLLOW_ruleCollectionOrTuple_in_ruleValueSpecification2028);
                     this_CollectionOrTuple_3=ruleCollectionOrTuple();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_CollectionOrTuple_3; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 5 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1238:5: this_Tuple_4= ruleTuple
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:976:5: this_Tuple_4= ruleTuple
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getValueSpecificationAccess().getTupleParserRuleCall_4(), currentNode); 
+                            newCompositeNode(grammarAccess.getValueSpecificationAccess().getTupleParserRuleCall_4()); 
                         
-                    pushFollow(FOLLOW_ruleTuple_in_ruleValueSpecification2051);
+                    pushFollow(FOLLOW_ruleTuple_in_ruleValueSpecification2055);
                     this_Tuple_4=ruleTuple();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_Tuple_4; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 6 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1248:5: this_TimeExpression_5= ruleTimeExpression
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:986:5: this_TimeExpression_5= ruleTimeExpression
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getValueSpecificationAccess().getTimeExpressionParserRuleCall_5(), currentNode); 
+                            newCompositeNode(grammarAccess.getValueSpecificationAccess().getTimeExpressionParserRuleCall_5()); 
                         
-                    pushFollow(FOLLOW_ruleTimeExpression_in_ruleValueSpecification2078);
+                    pushFollow(FOLLOW_ruleTimeExpression_in_ruleValueSpecification2082);
                     this_TimeExpression_5=ruleTimeExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_TimeExpression_5; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 7 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1258:5: this_VariableDeclaration_6= ruleVariableDeclaration
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:996:5: this_VariableDeclaration_6= ruleVariableDeclaration
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getValueSpecificationAccess().getVariableDeclarationParserRuleCall_6(), currentNode); 
+                            newCompositeNode(grammarAccess.getValueSpecificationAccess().getVariableDeclarationParserRuleCall_6()); 
                         
-                    pushFollow(FOLLOW_ruleVariableDeclaration_in_ruleValueSpecification2105);
+                    pushFollow(FOLLOW_ruleVariableDeclaration_in_ruleValueSpecification2109);
                     this_VariableDeclaration_6=ruleVariableDeclaration();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_VariableDeclaration_6; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 8 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1267:6: ( '(' this_Expression_8= ruleExpression ')' )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1005:6: (otherlv_7= '(' this_Expression_8= ruleExpression otherlv_9= ')' )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1267:6: ( '(' this_Expression_8= ruleExpression ')' )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1267:8: '(' this_Expression_8= ruleExpression ')'
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1005:6: (otherlv_7= '(' this_Expression_8= ruleExpression otherlv_9= ')' )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1005:8: otherlv_7= '(' this_Expression_8= ruleExpression otherlv_9= ')'
                     {
-                    match(input,34,FOLLOW_34_in_ruleValueSpecification2121); 
+                    otherlv_7=(Token)match(input,34,FOLLOW_34_in_ruleValueSpecification2127); 
 
-                            createLeafNode(grammarAccess.getValueSpecificationAccess().getLeftParenthesisKeyword_7_0(), null); 
+                        	newLeafNode(otherlv_7, grammarAccess.getValueSpecificationAccess().getLeftParenthesisKeyword_7_0());
                         
                      
-                            currentNode=createCompositeNode(grammarAccess.getValueSpecificationAccess().getExpressionParserRuleCall_7_1(), currentNode); 
+                            newCompositeNode(grammarAccess.getValueSpecificationAccess().getExpressionParserRuleCall_7_1()); 
                         
-                    pushFollow(FOLLOW_ruleExpression_in_ruleValueSpecification2143);
+                    pushFollow(FOLLOW_ruleExpression_in_ruleValueSpecification2149);
                     this_Expression_8=ruleExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_Expression_8; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
-                    match(input,35,FOLLOW_35_in_ruleValueSpecification2152); 
+                    otherlv_9=(Token)match(input,35,FOLLOW_35_in_ruleValueSpecification2160); 
 
-                            createLeafNode(grammarAccess.getValueSpecificationAccess().getRightParenthesisKeyword_7_2(), null); 
+                        	newLeafNode(otherlv_9, grammarAccess.getValueSpecificationAccess().getRightParenthesisKeyword_7_2());
                         
 
                     }
@@ -2804,9 +2520,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -2817,11 +2531,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleValueSpecification
+    // $ANTLR end "ruleValueSpecification"
 
 
-    // $ANTLR start entryRuleSuffixExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1292:1: entryRuleSuffixExpression returns [EObject current=null] : iv_ruleSuffixExpression= ruleSuffixExpression EOF ;
+    // $ANTLR start "entryRuleSuffixExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1030:1: entryRuleSuffixExpression returns [EObject current=null] : iv_ruleSuffixExpression= ruleSuffixExpression EOF ;
     public final EObject entryRuleSuffixExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2829,16 +2543,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1293:2: (iv_ruleSuffixExpression= ruleSuffixExpression EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1294:2: iv_ruleSuffixExpression= ruleSuffixExpression EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1031:2: (iv_ruleSuffixExpression= ruleSuffixExpression EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1032:2: iv_ruleSuffixExpression= ruleSuffixExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getSuffixExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleSuffixExpression_in_entryRuleSuffixExpression2189);
+             newCompositeNode(grammarAccess.getSuffixExpressionRule()); 
+            pushFollow(FOLLOW_ruleSuffixExpression_in_entryRuleSuffixExpression2197);
             iv_ruleSuffixExpression=ruleSuffixExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleSuffixExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleSuffixExpression2199); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleSuffixExpression2207); 
 
             }
 
@@ -2852,11 +2567,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleSuffixExpression
+    // $ANTLR end "entryRuleSuffixExpression"
 
 
-    // $ANTLR start ruleSuffixExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1301:1: ruleSuffixExpression returns [EObject current=null] : (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression ) ;
+    // $ANTLR start "ruleSuffixExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1039:1: ruleSuffixExpression returns [EObject current=null] : (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression ) ;
     public final EObject ruleSuffixExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2865,13 +2580,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         EObject this_OperationCallExpression_1 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1306:6: ( (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1307:1: (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1042:28: ( (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1043:1: (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1307:1: (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1043:1: (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression )
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -2886,48 +2601,50 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("1307:1: (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression )", 17, 1, input);
+                        new NoViableAltException("", 17, 1, input);
 
                     throw nvae;
                 }
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1307:1: (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression )", 17, 0, input);
+                    new NoViableAltException("", 17, 0, input);
 
                 throw nvae;
             }
             switch (alt17) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1308:5: this_PropertyCallExpression_0= rulePropertyCallExpression
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1044:5: this_PropertyCallExpression_0= rulePropertyCallExpression
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getSuffixExpressionAccess().getPropertyCallExpressionParserRuleCall_0(), currentNode); 
+                            newCompositeNode(grammarAccess.getSuffixExpressionAccess().getPropertyCallExpressionParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_rulePropertyCallExpression_in_ruleSuffixExpression2246);
+                    pushFollow(FOLLOW_rulePropertyCallExpression_in_ruleSuffixExpression2254);
                     this_PropertyCallExpression_0=rulePropertyCallExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_PropertyCallExpression_0; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1318:5: this_OperationCallExpression_1= ruleOperationCallExpression
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1054:5: this_OperationCallExpression_1= ruleOperationCallExpression
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getSuffixExpressionAccess().getOperationCallExpressionParserRuleCall_1(), currentNode); 
+                            newCompositeNode(grammarAccess.getSuffixExpressionAccess().getOperationCallExpressionParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleOperationCallExpression_in_ruleSuffixExpression2273);
+                    pushFollow(FOLLOW_ruleOperationCallExpression_in_ruleSuffixExpression2281);
                     this_OperationCallExpression_1=ruleOperationCallExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_OperationCallExpression_1; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
@@ -2938,9 +2655,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -2951,11 +2666,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleSuffixExpression
+    // $ANTLR end "ruleSuffixExpression"
 
 
-    // $ANTLR start entryRulePropertyCallExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1334:1: entryRulePropertyCallExpression returns [EObject current=null] : iv_rulePropertyCallExpression= rulePropertyCallExpression EOF ;
+    // $ANTLR start "entryRulePropertyCallExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1070:1: entryRulePropertyCallExpression returns [EObject current=null] : iv_rulePropertyCallExpression= rulePropertyCallExpression EOF ;
     public final EObject entryRulePropertyCallExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2963,16 +2678,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1335:2: (iv_rulePropertyCallExpression= rulePropertyCallExpression EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1336:2: iv_rulePropertyCallExpression= rulePropertyCallExpression EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1071:2: (iv_rulePropertyCallExpression= rulePropertyCallExpression EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1072:2: iv_rulePropertyCallExpression= rulePropertyCallExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getPropertyCallExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_rulePropertyCallExpression_in_entryRulePropertyCallExpression2308);
+             newCompositeNode(grammarAccess.getPropertyCallExpressionRule()); 
+            pushFollow(FOLLOW_rulePropertyCallExpression_in_entryRulePropertyCallExpression2316);
             iv_rulePropertyCallExpression=rulePropertyCallExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_rulePropertyCallExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePropertyCallExpression2318); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePropertyCallExpression2326); 
 
             }
 
@@ -2986,41 +2702,42 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRulePropertyCallExpression
+    // $ANTLR end "entryRulePropertyCallExpression"
 
 
-    // $ANTLR start rulePropertyCallExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1343:1: rulePropertyCallExpression returns [EObject current=null] : ( ( ( RULE_ID ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? ) ;
+    // $ANTLR start "rulePropertyCallExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1079:1: rulePropertyCallExpression returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? ) ;
     public final EObject rulePropertyCallExpression() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_1=null;
         EObject lv_suffix_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1348:6: ( ( ( ( RULE_ID ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1349:1: ( ( ( RULE_ID ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1082:28: ( ( ( (otherlv_0= RULE_ID ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1083:1: ( ( (otherlv_0= RULE_ID ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1349:1: ( ( ( RULE_ID ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1349:2: ( ( RULE_ID ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1083:1: ( ( (otherlv_0= RULE_ID ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1083:2: ( (otherlv_0= RULE_ID ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )?
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1349:2: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1350:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1083:2: ( (otherlv_0= RULE_ID ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1084:1: (otherlv_0= RULE_ID )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1350:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1351:3: RULE_ID
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1084:1: (otherlv_0= RULE_ID )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1085:3: otherlv_0= RULE_ID
             {
 
             			if (current==null) {
-            	            current = factory.create(grammarAccess.getPropertyCallExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getPropertyCallExpressionRule());
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePropertyCallExpression2361); 
+            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePropertyCallExpression2371); 
 
-            		createLeafNode(grammarAccess.getPropertyCallExpressionAccess().getPropertyPropertyCrossReference_0_0(), "property"); 
+            		newLeafNode(otherlv_0, grammarAccess.getPropertyCallExpressionAccess().getPropertyPropertyCrossReference_0_0()); 
             	
 
             }
@@ -3028,7 +2745,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1363:2: ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1096:2: (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )?
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -3037,41 +2754,36 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             switch (alt18) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1363:4: '.' ( (lv_suffix_2_0= ruleSuffixExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1096:4: otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) )
                     {
-                    match(input,33,FOLLOW_33_in_rulePropertyCallExpression2372); 
+                    otherlv_1=(Token)match(input,33,FOLLOW_33_in_rulePropertyCallExpression2384); 
 
-                            createLeafNode(grammarAccess.getPropertyCallExpressionAccess().getFullStopKeyword_1_0(), null); 
+                        	newLeafNode(otherlv_1, grammarAccess.getPropertyCallExpressionAccess().getFullStopKeyword_1_0());
                         
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1367:1: ( (lv_suffix_2_0= ruleSuffixExpression ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1368:1: (lv_suffix_2_0= ruleSuffixExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1100:1: ( (lv_suffix_2_0= ruleSuffixExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1101:1: (lv_suffix_2_0= ruleSuffixExpression )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1368:1: (lv_suffix_2_0= ruleSuffixExpression )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1369:3: lv_suffix_2_0= ruleSuffixExpression
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1101:1: (lv_suffix_2_0= ruleSuffixExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1102:3: lv_suffix_2_0= ruleSuffixExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getPropertyCallExpressionAccess().getSuffixSuffixExpressionParserRuleCall_1_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getPropertyCallExpressionAccess().getSuffixSuffixExpressionParserRuleCall_1_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleSuffixExpression_in_rulePropertyCallExpression2393);
+                    pushFollow(FOLLOW_ruleSuffixExpression_in_rulePropertyCallExpression2405);
                     lv_suffix_2_0=ruleSuffixExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getPropertyCallExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getPropertyCallExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"suffix",
-                    	        		lv_suffix_2_0, 
-                    	        		"SuffixExpression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"suffix",
+                            		lv_suffix_2_0, 
+                            		"SuffixExpression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -3091,9 +2803,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -3104,11 +2814,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end rulePropertyCallExpression
+    // $ANTLR end "rulePropertyCallExpression"
 
 
-    // $ANTLR start entryRuleOperationCallExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1399:1: entryRuleOperationCallExpression returns [EObject current=null] : iv_ruleOperationCallExpression= ruleOperationCallExpression EOF ;
+    // $ANTLR start "entryRuleOperationCallExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1126:1: entryRuleOperationCallExpression returns [EObject current=null] : iv_ruleOperationCallExpression= ruleOperationCallExpression EOF ;
     public final EObject entryRuleOperationCallExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3116,16 +2826,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1400:2: (iv_ruleOperationCallExpression= ruleOperationCallExpression EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1401:2: iv_ruleOperationCallExpression= ruleOperationCallExpression EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1127:2: (iv_ruleOperationCallExpression= ruleOperationCallExpression EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1128:2: iv_ruleOperationCallExpression= ruleOperationCallExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getOperationCallExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleOperationCallExpression_in_entryRuleOperationCallExpression2431);
+             newCompositeNode(grammarAccess.getOperationCallExpressionRule()); 
+            pushFollow(FOLLOW_ruleOperationCallExpression_in_entryRuleOperationCallExpression2443);
             iv_ruleOperationCallExpression=ruleOperationCallExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleOperationCallExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOperationCallExpression2441); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOperationCallExpression2453); 
 
             }
 
@@ -3139,43 +2850,46 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleOperationCallExpression
+    // $ANTLR end "entryRuleOperationCallExpression"
 
 
-    // $ANTLR start ruleOperationCallExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1408:1: ruleOperationCallExpression returns [EObject current=null] : ( ( ( RULE_ID ) ) '(' ( (lv_arguments_2_0= ruleListOfValues ) )? ')' ( '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )? ) ;
+    // $ANTLR start "ruleOperationCallExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1135:1: ruleOperationCallExpression returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '(' ( (lv_arguments_2_0= ruleListOfValues ) )? otherlv_3= ')' (otherlv_4= '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )? ) ;
     public final EObject ruleOperationCallExpression() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_1=null;
+        Token otherlv_3=null;
+        Token otherlv_4=null;
         EObject lv_arguments_2_0 = null;
 
         EObject lv_suffix_5_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1413:6: ( ( ( ( RULE_ID ) ) '(' ( (lv_arguments_2_0= ruleListOfValues ) )? ')' ( '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )? ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1414:1: ( ( ( RULE_ID ) ) '(' ( (lv_arguments_2_0= ruleListOfValues ) )? ')' ( '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1138:28: ( ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '(' ( (lv_arguments_2_0= ruleListOfValues ) )? otherlv_3= ')' (otherlv_4= '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )? ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1139:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '(' ( (lv_arguments_2_0= ruleListOfValues ) )? otherlv_3= ')' (otherlv_4= '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )? )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1414:1: ( ( ( RULE_ID ) ) '(' ( (lv_arguments_2_0= ruleListOfValues ) )? ')' ( '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )? )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1414:2: ( ( RULE_ID ) ) '(' ( (lv_arguments_2_0= ruleListOfValues ) )? ')' ( '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1139:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '(' ( (lv_arguments_2_0= ruleListOfValues ) )? otherlv_3= ')' (otherlv_4= '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1139:2: ( (otherlv_0= RULE_ID ) ) otherlv_1= '(' ( (lv_arguments_2_0= ruleListOfValues ) )? otherlv_3= ')' (otherlv_4= '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )?
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1414:2: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1415:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1139:2: ( (otherlv_0= RULE_ID ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1140:1: (otherlv_0= RULE_ID )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1415:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1416:3: RULE_ID
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1140:1: (otherlv_0= RULE_ID )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1141:3: otherlv_0= RULE_ID
             {
 
             			if (current==null) {
-            	            current = factory.create(grammarAccess.getOperationCallExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getOperationCallExpressionRule());
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleOperationCallExpression2484); 
+            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleOperationCallExpression2498); 
 
-            		createLeafNode(grammarAccess.getOperationCallExpressionAccess().getOperationOperationCrossReference_0_0(), "operation"); 
+            		newLeafNode(otherlv_0, grammarAccess.getOperationCallExpressionAccess().getOperationOperationCrossReference_0_0()); 
             	
 
             }
@@ -3183,11 +2897,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            match(input,34,FOLLOW_34_in_ruleOperationCallExpression2494); 
+            otherlv_1=(Token)match(input,34,FOLLOW_34_in_ruleOperationCallExpression2510); 
 
-                    createLeafNode(grammarAccess.getOperationCallExpressionAccess().getLeftParenthesisKeyword_1(), null); 
+                	newLeafNode(otherlv_1, grammarAccess.getOperationCallExpressionAccess().getLeftParenthesisKeyword_1());
                 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1432:1: ( (lv_arguments_2_0= ruleListOfValues ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1156:1: ( (lv_arguments_2_0= ruleListOfValues ) )?
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -3196,34 +2910,29 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             switch (alt19) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1433:1: (lv_arguments_2_0= ruleListOfValues )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1157:1: (lv_arguments_2_0= ruleListOfValues )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1433:1: (lv_arguments_2_0= ruleListOfValues )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1434:3: lv_arguments_2_0= ruleListOfValues
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1157:1: (lv_arguments_2_0= ruleListOfValues )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1158:3: lv_arguments_2_0= ruleListOfValues
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getOperationCallExpressionAccess().getArgumentsListOfValuesParserRuleCall_2_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getOperationCallExpressionAccess().getArgumentsListOfValuesParserRuleCall_2_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleListOfValues_in_ruleOperationCallExpression2515);
+                    pushFollow(FOLLOW_ruleListOfValues_in_ruleOperationCallExpression2531);
                     lv_arguments_2_0=ruleListOfValues();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getOperationCallExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getOperationCallExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"arguments",
-                    	        		lv_arguments_2_0, 
-                    	        		"ListOfValues", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"arguments",
+                            		lv_arguments_2_0, 
+                            		"ListOfValues");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -3234,11 +2943,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            match(input,35,FOLLOW_35_in_ruleOperationCallExpression2526); 
+            otherlv_3=(Token)match(input,35,FOLLOW_35_in_ruleOperationCallExpression2544); 
 
-                    createLeafNode(grammarAccess.getOperationCallExpressionAccess().getRightParenthesisKeyword_3(), null); 
+                	newLeafNode(otherlv_3, grammarAccess.getOperationCallExpressionAccess().getRightParenthesisKeyword_3());
                 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1460:1: ( '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1178:1: (otherlv_4= '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )?
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -3247,41 +2956,36 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             switch (alt20) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1460:3: '.' ( (lv_suffix_5_0= ruleSuffixExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1178:3: otherlv_4= '.' ( (lv_suffix_5_0= ruleSuffixExpression ) )
                     {
-                    match(input,33,FOLLOW_33_in_ruleOperationCallExpression2537); 
+                    otherlv_4=(Token)match(input,33,FOLLOW_33_in_ruleOperationCallExpression2557); 
 
-                            createLeafNode(grammarAccess.getOperationCallExpressionAccess().getFullStopKeyword_4_0(), null); 
+                        	newLeafNode(otherlv_4, grammarAccess.getOperationCallExpressionAccess().getFullStopKeyword_4_0());
                         
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1464:1: ( (lv_suffix_5_0= ruleSuffixExpression ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1465:1: (lv_suffix_5_0= ruleSuffixExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1182:1: ( (lv_suffix_5_0= ruleSuffixExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1183:1: (lv_suffix_5_0= ruleSuffixExpression )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1465:1: (lv_suffix_5_0= ruleSuffixExpression )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1466:3: lv_suffix_5_0= ruleSuffixExpression
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1183:1: (lv_suffix_5_0= ruleSuffixExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1184:3: lv_suffix_5_0= ruleSuffixExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getOperationCallExpressionAccess().getSuffixSuffixExpressionParserRuleCall_4_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getOperationCallExpressionAccess().getSuffixSuffixExpressionParserRuleCall_4_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleSuffixExpression_in_ruleOperationCallExpression2558);
+                    pushFollow(FOLLOW_ruleSuffixExpression_in_ruleOperationCallExpression2578);
                     lv_suffix_5_0=ruleSuffixExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getOperationCallExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getOperationCallExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"suffix",
-                    	        		lv_suffix_5_0, 
-                    	        		"SuffixExpression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"suffix",
+                            		lv_suffix_5_0, 
+                            		"SuffixExpression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -3301,9 +3005,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -3314,11 +3016,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleOperationCallExpression
+    // $ANTLR end "ruleOperationCallExpression"
 
 
-    // $ANTLR start entryRuleLiteral
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1496:1: entryRuleLiteral returns [EObject current=null] : iv_ruleLiteral= ruleLiteral EOF ;
+    // $ANTLR start "entryRuleLiteral"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1208:1: entryRuleLiteral returns [EObject current=null] : iv_ruleLiteral= ruleLiteral EOF ;
     public final EObject entryRuleLiteral() throws RecognitionException {
         EObject current = null;
 
@@ -3326,16 +3028,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1497:2: (iv_ruleLiteral= ruleLiteral EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1498:2: iv_ruleLiteral= ruleLiteral EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1209:2: (iv_ruleLiteral= ruleLiteral EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1210:2: iv_ruleLiteral= ruleLiteral EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getLiteralRule(), currentNode); 
-            pushFollow(FOLLOW_ruleLiteral_in_entryRuleLiteral2596);
+             newCompositeNode(grammarAccess.getLiteralRule()); 
+            pushFollow(FOLLOW_ruleLiteral_in_entryRuleLiteral2616);
             iv_ruleLiteral=ruleLiteral();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleLiteral; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleLiteral2606); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleLiteral2626); 
 
             }
 
@@ -3349,11 +3052,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleLiteral
+    // $ANTLR end "entryRuleLiteral"
 
 
-    // $ANTLR start ruleLiteral
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1505:1: ruleLiteral returns [EObject current=null] : (this_NumberLiteralRule_0= ruleNumberLiteralRule | this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule | this_BooleanLiteralRule_2= ruleBooleanLiteralRule | this_NullLiteralRule_3= ruleNullLiteralRule | this_DefaultLiteralRule_4= ruleDefaultLiteralRule | this_StringLiteralRule_5= ruleStringLiteralRule ) ;
+    // $ANTLR start "ruleLiteral"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1217:1: ruleLiteral returns [EObject current=null] : (this_NumberLiteralRule_0= ruleNumberLiteralRule | this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule | this_BooleanLiteralRule_2= ruleBooleanLiteralRule | this_NullLiteralRule_3= ruleNullLiteralRule | this_DefaultLiteralRule_4= ruleDefaultLiteralRule | this_StringLiteralRule_5= ruleStringLiteralRule ) ;
     public final EObject ruleLiteral() throws RecognitionException {
         EObject current = null;
 
@@ -3370,13 +3073,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         EObject this_StringLiteralRule_5 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1510:6: ( (this_NumberLiteralRule_0= ruleNumberLiteralRule | this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule | this_BooleanLiteralRule_2= ruleBooleanLiteralRule | this_NullLiteralRule_3= ruleNullLiteralRule | this_DefaultLiteralRule_4= ruleDefaultLiteralRule | this_StringLiteralRule_5= ruleStringLiteralRule ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1511:1: (this_NumberLiteralRule_0= ruleNumberLiteralRule | this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule | this_BooleanLiteralRule_2= ruleBooleanLiteralRule | this_NullLiteralRule_3= ruleNullLiteralRule | this_DefaultLiteralRule_4= ruleDefaultLiteralRule | this_StringLiteralRule_5= ruleStringLiteralRule )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1220:28: ( (this_NumberLiteralRule_0= ruleNumberLiteralRule | this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule | this_BooleanLiteralRule_2= ruleBooleanLiteralRule | this_NullLiteralRule_3= ruleNullLiteralRule | this_DefaultLiteralRule_4= ruleDefaultLiteralRule | this_StringLiteralRule_5= ruleStringLiteralRule ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1221:1: (this_NumberLiteralRule_0= ruleNumberLiteralRule | this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule | this_BooleanLiteralRule_2= ruleBooleanLiteralRule | this_NullLiteralRule_3= ruleNullLiteralRule | this_DefaultLiteralRule_4= ruleDefaultLiteralRule | this_StringLiteralRule_5= ruleStringLiteralRule )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1511:1: (this_NumberLiteralRule_0= ruleNumberLiteralRule | this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule | this_BooleanLiteralRule_2= ruleBooleanLiteralRule | this_NullLiteralRule_3= ruleNullLiteralRule | this_DefaultLiteralRule_4= ruleDefaultLiteralRule | this_StringLiteralRule_5= ruleStringLiteralRule )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1221:1: (this_NumberLiteralRule_0= ruleNumberLiteralRule | this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule | this_BooleanLiteralRule_2= ruleBooleanLiteralRule | this_NullLiteralRule_3= ruleNullLiteralRule | this_DefaultLiteralRule_4= ruleDefaultLiteralRule | this_StringLiteralRule_5= ruleStringLiteralRule )
             int alt21=6;
             switch ( input.LA(1) ) {
             case RULE_INTEGERLITERAL:
@@ -3413,110 +3116,116 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1511:1: (this_NumberLiteralRule_0= ruleNumberLiteralRule | this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule | this_BooleanLiteralRule_2= ruleBooleanLiteralRule | this_NullLiteralRule_3= ruleNullLiteralRule | this_DefaultLiteralRule_4= ruleDefaultLiteralRule | this_StringLiteralRule_5= ruleStringLiteralRule )", 21, 0, input);
+                    new NoViableAltException("", 21, 0, input);
 
                 throw nvae;
             }
 
             switch (alt21) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1512:5: this_NumberLiteralRule_0= ruleNumberLiteralRule
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1222:5: this_NumberLiteralRule_0= ruleNumberLiteralRule
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getLiteralAccess().getNumberLiteralRuleParserRuleCall_0(), currentNode); 
+                            newCompositeNode(grammarAccess.getLiteralAccess().getNumberLiteralRuleParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleNumberLiteralRule_in_ruleLiteral2653);
+                    pushFollow(FOLLOW_ruleNumberLiteralRule_in_ruleLiteral2673);
                     this_NumberLiteralRule_0=ruleNumberLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_NumberLiteralRule_0; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1522:5: this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1232:5: this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getLiteralAccess().getDateTimeLiteralRuleParserRuleCall_1(), currentNode); 
+                            newCompositeNode(grammarAccess.getLiteralAccess().getDateTimeLiteralRuleParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleDateTimeLiteralRule_in_ruleLiteral2680);
+                    pushFollow(FOLLOW_ruleDateTimeLiteralRule_in_ruleLiteral2700);
                     this_DateTimeLiteralRule_1=ruleDateTimeLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_DateTimeLiteralRule_1; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1532:5: this_BooleanLiteralRule_2= ruleBooleanLiteralRule
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1242:5: this_BooleanLiteralRule_2= ruleBooleanLiteralRule
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getLiteralAccess().getBooleanLiteralRuleParserRuleCall_2(), currentNode); 
+                            newCompositeNode(grammarAccess.getLiteralAccess().getBooleanLiteralRuleParserRuleCall_2()); 
                         
-                    pushFollow(FOLLOW_ruleBooleanLiteralRule_in_ruleLiteral2707);
+                    pushFollow(FOLLOW_ruleBooleanLiteralRule_in_ruleLiteral2727);
                     this_BooleanLiteralRule_2=ruleBooleanLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_BooleanLiteralRule_2; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1542:5: this_NullLiteralRule_3= ruleNullLiteralRule
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1252:5: this_NullLiteralRule_3= ruleNullLiteralRule
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getLiteralAccess().getNullLiteralRuleParserRuleCall_3(), currentNode); 
+                            newCompositeNode(grammarAccess.getLiteralAccess().getNullLiteralRuleParserRuleCall_3()); 
                         
-                    pushFollow(FOLLOW_ruleNullLiteralRule_in_ruleLiteral2734);
+                    pushFollow(FOLLOW_ruleNullLiteralRule_in_ruleLiteral2754);
                     this_NullLiteralRule_3=ruleNullLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_NullLiteralRule_3; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 5 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1552:5: this_DefaultLiteralRule_4= ruleDefaultLiteralRule
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1262:5: this_DefaultLiteralRule_4= ruleDefaultLiteralRule
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getLiteralAccess().getDefaultLiteralRuleParserRuleCall_4(), currentNode); 
+                            newCompositeNode(grammarAccess.getLiteralAccess().getDefaultLiteralRuleParserRuleCall_4()); 
                         
-                    pushFollow(FOLLOW_ruleDefaultLiteralRule_in_ruleLiteral2761);
+                    pushFollow(FOLLOW_ruleDefaultLiteralRule_in_ruleLiteral2781);
                     this_DefaultLiteralRule_4=ruleDefaultLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_DefaultLiteralRule_4; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 6 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1562:5: this_StringLiteralRule_5= ruleStringLiteralRule
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1272:5: this_StringLiteralRule_5= ruleStringLiteralRule
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getLiteralAccess().getStringLiteralRuleParserRuleCall_5(), currentNode); 
+                            newCompositeNode(grammarAccess.getLiteralAccess().getStringLiteralRuleParserRuleCall_5()); 
                         
-                    pushFollow(FOLLOW_ruleStringLiteralRule_in_ruleLiteral2788);
+                    pushFollow(FOLLOW_ruleStringLiteralRule_in_ruleLiteral2808);
                     this_StringLiteralRule_5=ruleStringLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_StringLiteralRule_5; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
@@ -3527,9 +3236,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -3540,11 +3247,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleLiteral
+    // $ANTLR end "ruleLiteral"
 
 
-    // $ANTLR start entryRuleNameOrChoiceOrBehaviorCall
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1578:1: entryRuleNameOrChoiceOrBehaviorCall returns [EObject current=null] : iv_ruleNameOrChoiceOrBehaviorCall= ruleNameOrChoiceOrBehaviorCall EOF ;
+    // $ANTLR start "entryRuleNameOrChoiceOrBehaviorCall"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1288:1: entryRuleNameOrChoiceOrBehaviorCall returns [EObject current=null] : iv_ruleNameOrChoiceOrBehaviorCall= ruleNameOrChoiceOrBehaviorCall EOF ;
     public final EObject entryRuleNameOrChoiceOrBehaviorCall() throws RecognitionException {
         EObject current = null;
 
@@ -3552,16 +3259,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1579:2: (iv_ruleNameOrChoiceOrBehaviorCall= ruleNameOrChoiceOrBehaviorCall EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1580:2: iv_ruleNameOrChoiceOrBehaviorCall= ruleNameOrChoiceOrBehaviorCall EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1289:2: (iv_ruleNameOrChoiceOrBehaviorCall= ruleNameOrChoiceOrBehaviorCall EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1290:2: iv_ruleNameOrChoiceOrBehaviorCall= ruleNameOrChoiceOrBehaviorCall EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getNameOrChoiceOrBehaviorCallRule(), currentNode); 
-            pushFollow(FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_entryRuleNameOrChoiceOrBehaviorCall2823);
+             newCompositeNode(grammarAccess.getNameOrChoiceOrBehaviorCallRule()); 
+            pushFollow(FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_entryRuleNameOrChoiceOrBehaviorCall2843);
             iv_ruleNameOrChoiceOrBehaviorCall=ruleNameOrChoiceOrBehaviorCall();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleNameOrChoiceOrBehaviorCall; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleNameOrChoiceOrBehaviorCall2833); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleNameOrChoiceOrBehaviorCall2853); 
 
             }
 
@@ -3575,29 +3283,32 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleNameOrChoiceOrBehaviorCall
+    // $ANTLR end "entryRuleNameOrChoiceOrBehaviorCall"
 
 
-    // $ANTLR start ruleNameOrChoiceOrBehaviorCall
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1587:1: ruleNameOrChoiceOrBehaviorCall returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ( '(' ( (lv_arguments_3_0= ruleListOfValues ) )? ')' )? ) ;
+    // $ANTLR start "ruleNameOrChoiceOrBehaviorCall"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1297:1: ruleNameOrChoiceOrBehaviorCall returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) (otherlv_2= '(' ( (lv_arguments_3_0= ruleListOfValues ) )? otherlv_4= ')' )? ) ;
     public final EObject ruleNameOrChoiceOrBehaviorCall() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
+        Token otherlv_2=null;
+        Token otherlv_4=null;
         EObject lv_path_0_0 = null;
 
         EObject lv_arguments_3_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1592:6: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ( '(' ( (lv_arguments_3_0= ruleListOfValues ) )? ')' )? ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1593:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ( '(' ( (lv_arguments_3_0= ruleListOfValues ) )? ')' )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1300:28: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) (otherlv_2= '(' ( (lv_arguments_3_0= ruleListOfValues ) )? otherlv_4= ')' )? ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1301:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) (otherlv_2= '(' ( (lv_arguments_3_0= ruleListOfValues ) )? otherlv_4= ')' )? )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1593:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ( '(' ( (lv_arguments_3_0= ruleListOfValues ) )? ')' )? )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1593:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ( '(' ( (lv_arguments_3_0= ruleListOfValues ) )? ')' )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1301:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) (otherlv_2= '(' ( (lv_arguments_3_0= ruleListOfValues ) )? otherlv_4= ')' )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1301:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) (otherlv_2= '(' ( (lv_arguments_3_0= ruleListOfValues ) )? otherlv_4= ')' )?
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1593:2: ( (lv_path_0_0= ruleQualifiedName ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1301:2: ( (lv_path_0_0= ruleQualifiedName ) )?
             int alt22=2;
             int LA22_0 = input.LA(1);
 
@@ -3610,34 +3321,29 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             switch (alt22) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1594:1: (lv_path_0_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1302:1: (lv_path_0_0= ruleQualifiedName )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1594:1: (lv_path_0_0= ruleQualifiedName )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1595:3: lv_path_0_0= ruleQualifiedName
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1302:1: (lv_path_0_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1303:3: lv_path_0_0= ruleQualifiedName
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getPathQualifiedNameParserRuleCall_0_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getPathQualifiedNameParserRuleCall_0_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleNameOrChoiceOrBehaviorCall2879);
+                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleNameOrChoiceOrBehaviorCall2899);
                     lv_path_0_0=ruleQualifiedName();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getNameOrChoiceOrBehaviorCallRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getNameOrChoiceOrBehaviorCallRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"path",
-                    	        		lv_path_0_0, 
-                    	        		"QualifiedName", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"path",
+                            		lv_path_0_0, 
+                            		"QualifiedName");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -3648,21 +3354,20 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1617:3: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1618:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1319:3: ( (otherlv_1= RULE_ID ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1320:1: (otherlv_1= RULE_ID )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1618:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1619:3: RULE_ID
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1320:1: (otherlv_1= RULE_ID )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1321:3: otherlv_1= RULE_ID
             {
 
             			if (current==null) {
-            	            current = factory.create(grammarAccess.getNameOrChoiceOrBehaviorCallRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getNameOrChoiceOrBehaviorCallRule());
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleNameOrChoiceOrBehaviorCall2898); 
+            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleNameOrChoiceOrBehaviorCall2920); 
 
-            		createLeafNode(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getIdNamedElementCrossReference_1_0(), "id"); 
+            		newLeafNode(otherlv_1, grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getIdNamedElementCrossReference_1_0()); 
             	
 
             }
@@ -3670,7 +3375,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1631:2: ( '(' ( (lv_arguments_3_0= ruleListOfValues ) )? ')' )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1332:2: (otherlv_2= '(' ( (lv_arguments_3_0= ruleListOfValues ) )? otherlv_4= ')' )?
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -3679,13 +3384,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             switch (alt24) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1631:4: '(' ( (lv_arguments_3_0= ruleListOfValues ) )? ')'
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1332:4: otherlv_2= '(' ( (lv_arguments_3_0= ruleListOfValues ) )? otherlv_4= ')'
                     {
-                    match(input,34,FOLLOW_34_in_ruleNameOrChoiceOrBehaviorCall2909); 
+                    otherlv_2=(Token)match(input,34,FOLLOW_34_in_ruleNameOrChoiceOrBehaviorCall2933); 
 
-                            createLeafNode(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getLeftParenthesisKeyword_2_0(), null); 
+                        	newLeafNode(otherlv_2, grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getLeftParenthesisKeyword_2_0());
                         
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1635:1: ( (lv_arguments_3_0= ruleListOfValues ) )?
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1336:1: ( (lv_arguments_3_0= ruleListOfValues ) )?
                     int alt23=2;
                     int LA23_0 = input.LA(1);
 
@@ -3694,34 +3399,29 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
                     }
                     switch (alt23) {
                         case 1 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1636:1: (lv_arguments_3_0= ruleListOfValues )
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1337:1: (lv_arguments_3_0= ruleListOfValues )
                             {
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1636:1: (lv_arguments_3_0= ruleListOfValues )
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1637:3: lv_arguments_3_0= ruleListOfValues
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1337:1: (lv_arguments_3_0= ruleListOfValues )
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1338:3: lv_arguments_3_0= ruleListOfValues
                             {
                              
-                            	        currentNode=createCompositeNode(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getArgumentsListOfValuesParserRuleCall_2_1_0(), currentNode); 
+                            	        newCompositeNode(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getArgumentsListOfValuesParserRuleCall_2_1_0()); 
                             	    
-                            pushFollow(FOLLOW_ruleListOfValues_in_ruleNameOrChoiceOrBehaviorCall2930);
+                            pushFollow(FOLLOW_ruleListOfValues_in_ruleNameOrChoiceOrBehaviorCall2954);
                             lv_arguments_3_0=ruleListOfValues();
-                            _fsp--;
+
+                            state._fsp--;
 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getNameOrChoiceOrBehaviorCallRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode.getParent(), current);
+                            	            current = createModelElementForParent(grammarAccess.getNameOrChoiceOrBehaviorCallRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"arguments",
-                            	        		lv_arguments_3_0, 
-                            	        		"ListOfValues", 
-                            	        		currentNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
-                            	        currentNode = currentNode.getParent();
+                                   		set(
+                                   			current, 
+                                   			"arguments",
+                                    		lv_arguments_3_0, 
+                                    		"ListOfValues");
+                            	        afterParserOrEnumRuleCall();
                             	    
 
                             }
@@ -3732,9 +3432,9 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
                     }
 
-                    match(input,35,FOLLOW_35_in_ruleNameOrChoiceOrBehaviorCall2941); 
+                    otherlv_4=(Token)match(input,35,FOLLOW_35_in_ruleNameOrChoiceOrBehaviorCall2967); 
 
-                            createLeafNode(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getRightParenthesisKeyword_2_2(), null); 
+                        	newLeafNode(otherlv_4, grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getRightParenthesisKeyword_2_2());
                         
 
                     }
@@ -3748,9 +3448,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -3761,11 +3459,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleNameOrChoiceOrBehaviorCall
+    // $ANTLR end "ruleNameOrChoiceOrBehaviorCall"
 
 
-    // $ANTLR start entryRuleQualifiedName
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1671:1: entryRuleQualifiedName returns [EObject current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
+    // $ANTLR start "entryRuleQualifiedName"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1366:1: entryRuleQualifiedName returns [EObject current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
     public final EObject entryRuleQualifiedName() throws RecognitionException {
         EObject current = null;
 
@@ -3773,16 +3471,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1672:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1673:2: iv_ruleQualifiedName= ruleQualifiedName EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1367:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1368:2: iv_ruleQualifiedName= ruleQualifiedName EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getQualifiedNameRule(), currentNode); 
-            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName2979);
+             newCompositeNode(grammarAccess.getQualifiedNameRule()); 
+            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName3005);
             iv_ruleQualifiedName=ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleQualifiedName; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName2989); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName3015); 
 
             }
 
@@ -3796,41 +3495,42 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleQualifiedName
+    // $ANTLR end "entryRuleQualifiedName"
 
 
-    // $ANTLR start ruleQualifiedName
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1680:1: ruleQualifiedName returns [EObject current=null] : ( ( ( RULE_ID ) ) '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? ) ;
+    // $ANTLR start "ruleQualifiedName"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1375:1: ruleQualifiedName returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? ) ;
     public final EObject ruleQualifiedName() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_1=null;
         EObject lv_remaining_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1685:6: ( ( ( ( RULE_ID ) ) '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1686:1: ( ( ( RULE_ID ) ) '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1378:28: ( ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1379:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1686:1: ( ( ( RULE_ID ) ) '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1686:2: ( ( RULE_ID ) ) '::' ( (lv_remaining_2_0= ruleQualifiedName ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1379:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1379:2: ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )?
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1686:2: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1687:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1379:2: ( (otherlv_0= RULE_ID ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1380:1: (otherlv_0= RULE_ID )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1687:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1688:3: RULE_ID
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1380:1: (otherlv_0= RULE_ID )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1381:3: otherlv_0= RULE_ID
             {
 
             			if (current==null) {
-            	            current = factory.create(grammarAccess.getQualifiedNameRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getQualifiedNameRule());
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName3032); 
+            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName3060); 
 
-            		createLeafNode(grammarAccess.getQualifiedNameAccess().getPathNamespaceCrossReference_0_0(), "path"); 
+            		newLeafNode(otherlv_0, grammarAccess.getQualifiedNameAccess().getPathNamespaceCrossReference_0_0()); 
             	
 
             }
@@ -3838,11 +3538,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            match(input,36,FOLLOW_36_in_ruleQualifiedName3042); 
+            otherlv_1=(Token)match(input,36,FOLLOW_36_in_ruleQualifiedName3072); 
 
-                    createLeafNode(grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1(), null); 
+                	newLeafNode(otherlv_1, grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1());
                 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1704:1: ( (lv_remaining_2_0= ruleQualifiedName ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1396:1: ( (lv_remaining_2_0= ruleQualifiedName ) )?
             int alt25=2;
             int LA25_0 = input.LA(1);
 
@@ -3855,34 +3555,29 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             switch (alt25) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1705:1: (lv_remaining_2_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1397:1: (lv_remaining_2_0= ruleQualifiedName )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1705:1: (lv_remaining_2_0= ruleQualifiedName )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1706:3: lv_remaining_2_0= ruleQualifiedName
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1397:1: (lv_remaining_2_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1398:3: lv_remaining_2_0= ruleQualifiedName
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getQualifiedNameAccess().getRemainingQualifiedNameParserRuleCall_2_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getQualifiedNameAccess().getRemainingQualifiedNameParserRuleCall_2_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleQualifiedName3063);
+                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleQualifiedName3093);
                     lv_remaining_2_0=ruleQualifiedName();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getQualifiedNameRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getQualifiedNameRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"remaining",
-                    	        		lv_remaining_2_0, 
-                    	        		"QualifiedName", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"remaining",
+                            		lv_remaining_2_0, 
+                            		"QualifiedName");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -3899,9 +3594,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -3912,11 +3605,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleQualifiedName
+    // $ANTLR end "ruleQualifiedName"
 
 
-    // $ANTLR start entryRuleInterval
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1736:1: entryRuleInterval returns [EObject current=null] : iv_ruleInterval= ruleInterval EOF ;
+    // $ANTLR start "entryRuleInterval"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1422:1: entryRuleInterval returns [EObject current=null] : iv_ruleInterval= ruleInterval EOF ;
     public final EObject entryRuleInterval() throws RecognitionException {
         EObject current = null;
 
@@ -3924,16 +3617,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1737:2: (iv_ruleInterval= ruleInterval EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1738:2: iv_ruleInterval= ruleInterval EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1423:2: (iv_ruleInterval= ruleInterval EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1424:2: iv_ruleInterval= ruleInterval EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getIntervalRule(), currentNode); 
-            pushFollow(FOLLOW_ruleInterval_in_entryRuleInterval3100);
+             newCompositeNode(grammarAccess.getIntervalRule()); 
+            pushFollow(FOLLOW_ruleInterval_in_entryRuleInterval3130);
             iv_ruleInterval=ruleInterval();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleInterval; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleInterval3110); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleInterval3140); 
 
             }
 
@@ -3947,31 +3641,34 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleInterval
+    // $ANTLR end "entryRuleInterval"
 
 
-    // $ANTLR start ruleInterval
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1745:1: ruleInterval returns [EObject current=null] : ( ( ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | '[' ) ) ;
+    // $ANTLR start "ruleInterval"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1431:1: ruleInterval returns [EObject current=null] : ( (otherlv_0= ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) otherlv_3= '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | otherlv_6= '[' ) ) ;
     public final EObject ruleInterval() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
         Token lv_isLowerIncluded_1_0=null;
+        Token otherlv_3=null;
         Token lv_isUpperIncluded_5_0=null;
+        Token otherlv_6=null;
         EObject lv_lower_2_0 = null;
 
         EObject lv_upper_4_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1750:6: ( ( ( ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | '[' ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1751:1: ( ( ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | '[' ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1434:28: ( ( (otherlv_0= ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) otherlv_3= '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | otherlv_6= '[' ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1435:1: ( (otherlv_0= ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) otherlv_3= '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | otherlv_6= '[' ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1751:1: ( ( ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | '[' ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1751:2: ( ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | '[' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1435:1: ( (otherlv_0= ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) otherlv_3= '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | otherlv_6= '[' ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1435:2: (otherlv_0= ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) otherlv_3= '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | otherlv_6= '[' )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1751:2: ( ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1435:2: (otherlv_0= ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) )
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -3983,46 +3680,39 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1751:2: ( ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) )", 26, 0, input);
+                    new NoViableAltException("", 26, 0, input);
 
                 throw nvae;
             }
             switch (alt26) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1751:4: ']'
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1435:4: otherlv_0= ']'
                     {
-                    match(input,37,FOLLOW_37_in_ruleInterval3146); 
+                    otherlv_0=(Token)match(input,37,FOLLOW_37_in_ruleInterval3178); 
 
-                            createLeafNode(grammarAccess.getIntervalAccess().getRightSquareBracketKeyword_0_0(), null); 
+                        	newLeafNode(otherlv_0, grammarAccess.getIntervalAccess().getRightSquareBracketKeyword_0_0());
                         
 
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1756:6: ( (lv_isLowerIncluded_1_0= '[' ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1440:6: ( (lv_isLowerIncluded_1_0= '[' ) )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1756:6: ( (lv_isLowerIncluded_1_0= '[' ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1757:1: (lv_isLowerIncluded_1_0= '[' )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1440:6: ( (lv_isLowerIncluded_1_0= '[' ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1441:1: (lv_isLowerIncluded_1_0= '[' )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1757:1: (lv_isLowerIncluded_1_0= '[' )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1758:3: lv_isLowerIncluded_1_0= '['
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1441:1: (lv_isLowerIncluded_1_0= '[' )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1442:3: lv_isLowerIncluded_1_0= '['
                     {
-                    lv_isLowerIncluded_1_0=(Token)input.LT(1);
-                    match(input,38,FOLLOW_38_in_ruleInterval3170); 
+                    lv_isLowerIncluded_1_0=(Token)match(input,38,FOLLOW_38_in_ruleInterval3202); 
 
-                            createLeafNode(grammarAccess.getIntervalAccess().getIsLowerIncludedLeftSquareBracketKeyword_0_1_0(), "isLowerIncluded"); 
+                            newLeafNode(lv_isLowerIncluded_1_0, grammarAccess.getIntervalAccess().getIsLowerIncludedLeftSquareBracketKeyword_0_1_0());
                         
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getIntervalRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getIntervalRule());
                     	        }
-                    	        
-                    	        try {
-                    	       		set(current, "isLowerIncluded", lv_isLowerIncluded_1_0, "[", lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(current, "isLowerIncluded", lv_isLowerIncluded_1_0, "[");
                     	    
 
                     }
@@ -4036,35 +3726,30 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1777:3: ( (lv_lower_2_0= ruleExpression ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1778:1: (lv_lower_2_0= ruleExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1455:3: ( (lv_lower_2_0= ruleExpression ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1456:1: (lv_lower_2_0= ruleExpression )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1778:1: (lv_lower_2_0= ruleExpression )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1779:3: lv_lower_2_0= ruleExpression
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1456:1: (lv_lower_2_0= ruleExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1457:3: lv_lower_2_0= ruleExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getIntervalAccess().getLowerExpressionParserRuleCall_1_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getIntervalAccess().getLowerExpressionParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleExpression_in_ruleInterval3205);
+            pushFollow(FOLLOW_ruleExpression_in_ruleInterval3237);
             lv_lower_2_0=ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getIntervalRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getIntervalRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"lower",
-            	        		lv_lower_2_0, 
-            	        		"Expression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"lower",
+                    		lv_lower_2_0, 
+                    		"Expression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -4072,39 +3757,34 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            match(input,39,FOLLOW_39_in_ruleInterval3215); 
+            otherlv_3=(Token)match(input,39,FOLLOW_39_in_ruleInterval3249); 
 
-                    createLeafNode(grammarAccess.getIntervalAccess().getFullStopFullStopKeyword_2(), null); 
+                	newLeafNode(otherlv_3, grammarAccess.getIntervalAccess().getFullStopFullStopKeyword_2());
                 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1805:1: ( (lv_upper_4_0= ruleExpression ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1806:1: (lv_upper_4_0= ruleExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1477:1: ( (lv_upper_4_0= ruleExpression ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1478:1: (lv_upper_4_0= ruleExpression )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1806:1: (lv_upper_4_0= ruleExpression )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1807:3: lv_upper_4_0= ruleExpression
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1478:1: (lv_upper_4_0= ruleExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1479:3: lv_upper_4_0= ruleExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getIntervalAccess().getUpperExpressionParserRuleCall_3_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getIntervalAccess().getUpperExpressionParserRuleCall_3_0()); 
             	    
-            pushFollow(FOLLOW_ruleExpression_in_ruleInterval3236);
+            pushFollow(FOLLOW_ruleExpression_in_ruleInterval3270);
             lv_upper_4_0=ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getIntervalRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getIntervalRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"upper",
-            	        		lv_upper_4_0, 
-            	        		"Expression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"upper",
+                    		lv_upper_4_0, 
+                    		"Expression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -4112,7 +3792,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1829:2: ( ( (lv_isUpperIncluded_5_0= ']' ) ) | '[' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1495:2: ( ( (lv_isUpperIncluded_5_0= ']' ) ) | otherlv_6= '[' )
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -4124,36 +3804,29 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1829:2: ( ( (lv_isUpperIncluded_5_0= ']' ) ) | '[' )", 27, 0, input);
+                    new NoViableAltException("", 27, 0, input);
 
                 throw nvae;
             }
             switch (alt27) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1829:3: ( (lv_isUpperIncluded_5_0= ']' ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1495:3: ( (lv_isUpperIncluded_5_0= ']' ) )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1829:3: ( (lv_isUpperIncluded_5_0= ']' ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1830:1: (lv_isUpperIncluded_5_0= ']' )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1495:3: ( (lv_isUpperIncluded_5_0= ']' ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1496:1: (lv_isUpperIncluded_5_0= ']' )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1830:1: (lv_isUpperIncluded_5_0= ']' )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1831:3: lv_isUpperIncluded_5_0= ']'
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1496:1: (lv_isUpperIncluded_5_0= ']' )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1497:3: lv_isUpperIncluded_5_0= ']'
                     {
-                    lv_isUpperIncluded_5_0=(Token)input.LT(1);
-                    match(input,37,FOLLOW_37_in_ruleInterval3255); 
+                    lv_isUpperIncluded_5_0=(Token)match(input,37,FOLLOW_37_in_ruleInterval3289); 
 
-                            createLeafNode(grammarAccess.getIntervalAccess().getIsUpperIncludedRightSquareBracketKeyword_4_0_0(), "isUpperIncluded"); 
+                            newLeafNode(lv_isUpperIncluded_5_0, grammarAccess.getIntervalAccess().getIsUpperIncludedRightSquareBracketKeyword_4_0_0());
                         
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getIntervalRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getIntervalRule());
                     	        }
-                    	        
-                    	        try {
-                    	       		set(current, "isUpperIncluded", lv_isUpperIncluded_5_0, "]", lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(current, "isUpperIncluded", lv_isUpperIncluded_5_0, "]");
                     	    
 
                     }
@@ -4165,11 +3838,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1851:7: '['
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1511:7: otherlv_6= '['
                     {
-                    match(input,38,FOLLOW_38_in_ruleInterval3284); 
+                    otherlv_6=(Token)match(input,38,FOLLOW_38_in_ruleInterval3320); 
 
-                            createLeafNode(grammarAccess.getIntervalAccess().getLeftSquareBracketKeyword_4_1(), null); 
+                        	newLeafNode(otherlv_6, grammarAccess.getIntervalAccess().getLeftSquareBracketKeyword_4_1());
                         
 
                     }
@@ -4183,9 +3856,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -4196,11 +3867,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleInterval
+    // $ANTLR end "ruleInterval"
 
 
-    // $ANTLR start entryRuleCollectionOrTuple
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1863:1: entryRuleCollectionOrTuple returns [EObject current=null] : iv_ruleCollectionOrTuple= ruleCollectionOrTuple EOF ;
+    // $ANTLR start "entryRuleCollectionOrTuple"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1523:1: entryRuleCollectionOrTuple returns [EObject current=null] : iv_ruleCollectionOrTuple= ruleCollectionOrTuple EOF ;
     public final EObject entryRuleCollectionOrTuple() throws RecognitionException {
         EObject current = null;
 
@@ -4208,16 +3879,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1864:2: (iv_ruleCollectionOrTuple= ruleCollectionOrTuple EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1865:2: iv_ruleCollectionOrTuple= ruleCollectionOrTuple EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1524:2: (iv_ruleCollectionOrTuple= ruleCollectionOrTuple EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1525:2: iv_ruleCollectionOrTuple= ruleCollectionOrTuple EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getCollectionOrTupleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleCollectionOrTuple_in_entryRuleCollectionOrTuple3321);
+             newCompositeNode(grammarAccess.getCollectionOrTupleRule()); 
+            pushFollow(FOLLOW_ruleCollectionOrTuple_in_entryRuleCollectionOrTuple3357);
             iv_ruleCollectionOrTuple=ruleCollectionOrTuple();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleCollectionOrTuple; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleCollectionOrTuple3331); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleCollectionOrTuple3367); 
 
             }
 
@@ -4231,59 +3903,56 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleCollectionOrTuple
+    // $ANTLR end "entryRuleCollectionOrTuple"
 
 
-    // $ANTLR start ruleCollectionOrTuple
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1872:1: ruleCollectionOrTuple returns [EObject current=null] : ( '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) '}' ) ;
+    // $ANTLR start "ruleCollectionOrTuple"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1532:1: ruleCollectionOrTuple returns [EObject current=null] : (otherlv_0= '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) otherlv_2= '}' ) ;
     public final EObject ruleCollectionOrTuple() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_2=null;
         EObject lv_listOfValues_1_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1877:6: ( ( '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) '}' ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1878:1: ( '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) '}' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1535:28: ( (otherlv_0= '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) otherlv_2= '}' ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1536:1: (otherlv_0= '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) otherlv_2= '}' )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1878:1: ( '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) '}' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1878:3: '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) '}'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1536:1: (otherlv_0= '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) otherlv_2= '}' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1536:3: otherlv_0= '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) otherlv_2= '}'
             {
-            match(input,40,FOLLOW_40_in_ruleCollectionOrTuple3366); 
+            otherlv_0=(Token)match(input,40,FOLLOW_40_in_ruleCollectionOrTuple3404); 
 
-                    createLeafNode(grammarAccess.getCollectionOrTupleAccess().getLeftCurlyBracketKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getCollectionOrTupleAccess().getLeftCurlyBracketKeyword_0());
                 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1882:1: ( (lv_listOfValues_1_0= ruleListOfValues ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1883:1: (lv_listOfValues_1_0= ruleListOfValues )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1540:1: ( (lv_listOfValues_1_0= ruleListOfValues ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1541:1: (lv_listOfValues_1_0= ruleListOfValues )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1883:1: (lv_listOfValues_1_0= ruleListOfValues )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1884:3: lv_listOfValues_1_0= ruleListOfValues
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1541:1: (lv_listOfValues_1_0= ruleListOfValues )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1542:3: lv_listOfValues_1_0= ruleListOfValues
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getCollectionOrTupleAccess().getListOfValuesListOfValuesParserRuleCall_1_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getCollectionOrTupleAccess().getListOfValuesListOfValuesParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleListOfValues_in_ruleCollectionOrTuple3387);
+            pushFollow(FOLLOW_ruleListOfValues_in_ruleCollectionOrTuple3425);
             lv_listOfValues_1_0=ruleListOfValues();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getCollectionOrTupleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getCollectionOrTupleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"listOfValues",
-            	        		lv_listOfValues_1_0, 
-            	        		"ListOfValues", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"listOfValues",
+                    		lv_listOfValues_1_0, 
+                    		"ListOfValues");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -4291,9 +3960,9 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            match(input,41,FOLLOW_41_in_ruleCollectionOrTuple3397); 
+            otherlv_2=(Token)match(input,41,FOLLOW_41_in_ruleCollectionOrTuple3437); 
 
-                    createLeafNode(grammarAccess.getCollectionOrTupleAccess().getRightCurlyBracketKeyword_2(), null); 
+                	newLeafNode(otherlv_2, grammarAccess.getCollectionOrTupleAccess().getRightCurlyBracketKeyword_2());
                 
 
             }
@@ -4301,9 +3970,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -4314,11 +3981,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleCollectionOrTuple
+    // $ANTLR end "ruleCollectionOrTuple"
 
 
-    // $ANTLR start entryRuleTuple
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1918:1: entryRuleTuple returns [EObject current=null] : iv_ruleTuple= ruleTuple EOF ;
+    // $ANTLR start "entryRuleTuple"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1570:1: entryRuleTuple returns [EObject current=null] : iv_ruleTuple= ruleTuple EOF ;
     public final EObject entryRuleTuple() throws RecognitionException {
         EObject current = null;
 
@@ -4326,16 +3993,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1919:2: (iv_ruleTuple= ruleTuple EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1920:2: iv_ruleTuple= ruleTuple EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1571:2: (iv_ruleTuple= ruleTuple EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1572:2: iv_ruleTuple= ruleTuple EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getTupleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleTuple_in_entryRuleTuple3433);
+             newCompositeNode(grammarAccess.getTupleRule()); 
+            pushFollow(FOLLOW_ruleTuple_in_entryRuleTuple3473);
             iv_ruleTuple=ruleTuple();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleTuple; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTuple3443); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTuple3483); 
 
             }
 
@@ -4349,59 +4017,56 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleTuple
+    // $ANTLR end "entryRuleTuple"
 
 
-    // $ANTLR start ruleTuple
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1927:1: ruleTuple returns [EObject current=null] : ( '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) '}' ) ;
+    // $ANTLR start "ruleTuple"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1579:1: ruleTuple returns [EObject current=null] : (otherlv_0= '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) otherlv_2= '}' ) ;
     public final EObject ruleTuple() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_2=null;
         EObject lv_listOfValueNamePairs_1_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1932:6: ( ( '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) '}' ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1933:1: ( '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) '}' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1582:28: ( (otherlv_0= '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) otherlv_2= '}' ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1583:1: (otherlv_0= '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) otherlv_2= '}' )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1933:1: ( '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) '}' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1933:3: '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) '}'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1583:1: (otherlv_0= '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) otherlv_2= '}' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1583:3: otherlv_0= '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) otherlv_2= '}'
             {
-            match(input,40,FOLLOW_40_in_ruleTuple3478); 
+            otherlv_0=(Token)match(input,40,FOLLOW_40_in_ruleTuple3520); 
 
-                    createLeafNode(grammarAccess.getTupleAccess().getLeftCurlyBracketKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getTupleAccess().getLeftCurlyBracketKeyword_0());
                 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1937:1: ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1938:1: (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1587:1: ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1588:1: (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1938:1: (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1939:3: lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1588:1: (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1589:3: lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getTupleAccess().getListOfValueNamePairsListOfValueNamePairsParserRuleCall_1_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getTupleAccess().getListOfValueNamePairsListOfValueNamePairsParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleListOfValueNamePairs_in_ruleTuple3499);
+            pushFollow(FOLLOW_ruleListOfValueNamePairs_in_ruleTuple3541);
             lv_listOfValueNamePairs_1_0=ruleListOfValueNamePairs();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getTupleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getTupleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"listOfValueNamePairs",
-            	        		lv_listOfValueNamePairs_1_0, 
-            	        		"ListOfValueNamePairs", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"listOfValueNamePairs",
+                    		lv_listOfValueNamePairs_1_0, 
+                    		"ListOfValueNamePairs");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -4409,9 +4074,9 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            match(input,41,FOLLOW_41_in_ruleTuple3509); 
+            otherlv_2=(Token)match(input,41,FOLLOW_41_in_ruleTuple3553); 
 
-                    createLeafNode(grammarAccess.getTupleAccess().getRightCurlyBracketKeyword_2(), null); 
+                	newLeafNode(otherlv_2, grammarAccess.getTupleAccess().getRightCurlyBracketKeyword_2());
                 
 
             }
@@ -4419,9 +4084,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -4432,11 +4095,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleTuple
+    // $ANTLR end "ruleTuple"
 
 
-    // $ANTLR start entryRuleListOfValues
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1973:1: entryRuleListOfValues returns [EObject current=null] : iv_ruleListOfValues= ruleListOfValues EOF ;
+    // $ANTLR start "entryRuleListOfValues"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1617:1: entryRuleListOfValues returns [EObject current=null] : iv_ruleListOfValues= ruleListOfValues EOF ;
     public final EObject entryRuleListOfValues() throws RecognitionException {
         EObject current = null;
 
@@ -4444,16 +4107,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1974:2: (iv_ruleListOfValues= ruleListOfValues EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1975:2: iv_ruleListOfValues= ruleListOfValues EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1618:2: (iv_ruleListOfValues= ruleListOfValues EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1619:2: iv_ruleListOfValues= ruleListOfValues EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getListOfValuesRule(), currentNode); 
-            pushFollow(FOLLOW_ruleListOfValues_in_entryRuleListOfValues3545);
+             newCompositeNode(grammarAccess.getListOfValuesRule()); 
+            pushFollow(FOLLOW_ruleListOfValues_in_entryRuleListOfValues3589);
             iv_ruleListOfValues=ruleListOfValues();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleListOfValues; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleListOfValues3555); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleListOfValues3599); 
 
             }
 
@@ -4467,57 +4131,53 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleListOfValues
+    // $ANTLR end "entryRuleListOfValues"
 
 
-    // $ANTLR start ruleListOfValues
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1982:1: ruleListOfValues returns [EObject current=null] : ( ( (lv_values_0_0= ruleExpression ) ) ( ',' ( (lv_values_2_0= ruleExpression ) ) )* ) ;
+    // $ANTLR start "ruleListOfValues"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1626:1: ruleListOfValues returns [EObject current=null] : ( ( (lv_values_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_values_2_0= ruleExpression ) ) )* ) ;
     public final EObject ruleListOfValues() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
         EObject lv_values_0_0 = null;
 
         EObject lv_values_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1987:6: ( ( ( (lv_values_0_0= ruleExpression ) ) ( ',' ( (lv_values_2_0= ruleExpression ) ) )* ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1988:1: ( ( (lv_values_0_0= ruleExpression ) ) ( ',' ( (lv_values_2_0= ruleExpression ) ) )* )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1629:28: ( ( ( (lv_values_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_values_2_0= ruleExpression ) ) )* ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1630:1: ( ( (lv_values_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_values_2_0= ruleExpression ) ) )* )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1988:1: ( ( (lv_values_0_0= ruleExpression ) ) ( ',' ( (lv_values_2_0= ruleExpression ) ) )* )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1988:2: ( (lv_values_0_0= ruleExpression ) ) ( ',' ( (lv_values_2_0= ruleExpression ) ) )*
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1630:1: ( ( (lv_values_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_values_2_0= ruleExpression ) ) )* )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1630:2: ( (lv_values_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_values_2_0= ruleExpression ) ) )*
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1988:2: ( (lv_values_0_0= ruleExpression ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1989:1: (lv_values_0_0= ruleExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1630:2: ( (lv_values_0_0= ruleExpression ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1631:1: (lv_values_0_0= ruleExpression )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1989:1: (lv_values_0_0= ruleExpression )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1990:3: lv_values_0_0= ruleExpression
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1631:1: (lv_values_0_0= ruleExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1632:3: lv_values_0_0= ruleExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getListOfValuesAccess().getValuesExpressionParserRuleCall_0_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getListOfValuesAccess().getValuesExpressionParserRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_ruleExpression_in_ruleListOfValues3601);
+            pushFollow(FOLLOW_ruleExpression_in_ruleListOfValues3645);
             lv_values_0_0=ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getListOfValuesRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getListOfValuesRule());
             	        }
-            	        try {
-            	       		add(
-            	       			current, 
-            	       			"values",
-            	        		lv_values_0_0, 
-            	        		"Expression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		add(
+                   			current, 
+                   			"values",
+                    		lv_values_0_0, 
+                    		"Expression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -4525,7 +4185,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2012:2: ( ',' ( (lv_values_2_0= ruleExpression ) ) )*
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1648:2: (otherlv_1= ',' ( (lv_values_2_0= ruleExpression ) ) )*
             loop28:
             do {
                 int alt28=2;
@@ -4538,41 +4198,36 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
                 switch (alt28) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2012:4: ',' ( (lv_values_2_0= ruleExpression ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1648:4: otherlv_1= ',' ( (lv_values_2_0= ruleExpression ) )
             	    {
-            	    match(input,42,FOLLOW_42_in_ruleListOfValues3612); 
+            	    otherlv_1=(Token)match(input,42,FOLLOW_42_in_ruleListOfValues3658); 
 
-            	            createLeafNode(grammarAccess.getListOfValuesAccess().getCommaKeyword_1_0(), null); 
+            	        	newLeafNode(otherlv_1, grammarAccess.getListOfValuesAccess().getCommaKeyword_1_0());
             	        
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2016:1: ( (lv_values_2_0= ruleExpression ) )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2017:1: (lv_values_2_0= ruleExpression )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1652:1: ( (lv_values_2_0= ruleExpression ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1653:1: (lv_values_2_0= ruleExpression )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2017:1: (lv_values_2_0= ruleExpression )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2018:3: lv_values_2_0= ruleExpression
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1653:1: (lv_values_2_0= ruleExpression )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1654:3: lv_values_2_0= ruleExpression
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getListOfValuesAccess().getValuesExpressionParserRuleCall_1_1_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getListOfValuesAccess().getValuesExpressionParserRuleCall_1_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleExpression_in_ruleListOfValues3633);
+            	    pushFollow(FOLLOW_ruleExpression_in_ruleListOfValues3679);
             	    lv_values_2_0=ruleExpression();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getListOfValuesRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getListOfValuesRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"values",
-            	    	        		lv_values_2_0, 
-            	    	        		"Expression", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"values",
+            	            		lv_values_2_0, 
+            	            		"Expression");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -4595,9 +4250,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -4608,11 +4261,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleListOfValues
+    // $ANTLR end "ruleListOfValues"
 
 
-    // $ANTLR start entryRuleListOfValueNamePairs
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2048:1: entryRuleListOfValueNamePairs returns [EObject current=null] : iv_ruleListOfValueNamePairs= ruleListOfValueNamePairs EOF ;
+    // $ANTLR start "entryRuleListOfValueNamePairs"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1678:1: entryRuleListOfValueNamePairs returns [EObject current=null] : iv_ruleListOfValueNamePairs= ruleListOfValueNamePairs EOF ;
     public final EObject entryRuleListOfValueNamePairs() throws RecognitionException {
         EObject current = null;
 
@@ -4620,16 +4273,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2049:2: (iv_ruleListOfValueNamePairs= ruleListOfValueNamePairs EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2050:2: iv_ruleListOfValueNamePairs= ruleListOfValueNamePairs EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1679:2: (iv_ruleListOfValueNamePairs= ruleListOfValueNamePairs EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1680:2: iv_ruleListOfValueNamePairs= ruleListOfValueNamePairs EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getListOfValueNamePairsRule(), currentNode); 
-            pushFollow(FOLLOW_ruleListOfValueNamePairs_in_entryRuleListOfValueNamePairs3671);
+             newCompositeNode(grammarAccess.getListOfValueNamePairsRule()); 
+            pushFollow(FOLLOW_ruleListOfValueNamePairs_in_entryRuleListOfValueNamePairs3717);
             iv_ruleListOfValueNamePairs=ruleListOfValueNamePairs();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleListOfValueNamePairs; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleListOfValueNamePairs3681); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleListOfValueNamePairs3727); 
 
             }
 
@@ -4643,57 +4297,53 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleListOfValueNamePairs
+    // $ANTLR end "entryRuleListOfValueNamePairs"
 
 
-    // $ANTLR start ruleListOfValueNamePairs
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2057:1: ruleListOfValueNamePairs returns [EObject current=null] : ( ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) ( ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )* ) ;
+    // $ANTLR start "ruleListOfValueNamePairs"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1687:1: ruleListOfValueNamePairs returns [EObject current=null] : ( ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) (otherlv_1= ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )* ) ;
     public final EObject ruleListOfValueNamePairs() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
         EObject lv_valueNamePairs_0_0 = null;
 
         EObject lv_valueNamePairs_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2062:6: ( ( ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) ( ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )* ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2063:1: ( ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) ( ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )* )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1690:28: ( ( ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) (otherlv_1= ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )* ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1691:1: ( ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) (otherlv_1= ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )* )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2063:1: ( ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) ( ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )* )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2063:2: ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) ( ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )*
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1691:1: ( ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) (otherlv_1= ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )* )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1691:2: ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) (otherlv_1= ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )*
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2063:2: ( (lv_valueNamePairs_0_0= ruleValueNamePair ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2064:1: (lv_valueNamePairs_0_0= ruleValueNamePair )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1691:2: ( (lv_valueNamePairs_0_0= ruleValueNamePair ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1692:1: (lv_valueNamePairs_0_0= ruleValueNamePair )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2064:1: (lv_valueNamePairs_0_0= ruleValueNamePair )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2065:3: lv_valueNamePairs_0_0= ruleValueNamePair
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1692:1: (lv_valueNamePairs_0_0= ruleValueNamePair )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1693:3: lv_valueNamePairs_0_0= ruleValueNamePair
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getListOfValueNamePairsAccess().getValueNamePairsValueNamePairParserRuleCall_0_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getListOfValueNamePairsAccess().getValueNamePairsValueNamePairParserRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_ruleValueNamePair_in_ruleListOfValueNamePairs3727);
+            pushFollow(FOLLOW_ruleValueNamePair_in_ruleListOfValueNamePairs3773);
             lv_valueNamePairs_0_0=ruleValueNamePair();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getListOfValueNamePairsRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getListOfValueNamePairsRule());
             	        }
-            	        try {
-            	       		add(
-            	       			current, 
-            	       			"valueNamePairs",
-            	        		lv_valueNamePairs_0_0, 
-            	        		"ValueNamePair", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		add(
+                   			current, 
+                   			"valueNamePairs",
+                    		lv_valueNamePairs_0_0, 
+                    		"ValueNamePair");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -4701,7 +4351,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2087:2: ( ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )*
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1709:2: (otherlv_1= ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )*
             loop29:
             do {
                 int alt29=2;
@@ -4714,41 +4364,36 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
                 switch (alt29) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2087:4: ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1709:4: otherlv_1= ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) )
             	    {
-            	    match(input,42,FOLLOW_42_in_ruleListOfValueNamePairs3738); 
+            	    otherlv_1=(Token)match(input,42,FOLLOW_42_in_ruleListOfValueNamePairs3786); 
 
-            	            createLeafNode(grammarAccess.getListOfValueNamePairsAccess().getCommaKeyword_1_0(), null); 
+            	        	newLeafNode(otherlv_1, grammarAccess.getListOfValueNamePairsAccess().getCommaKeyword_1_0());
             	        
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2091:1: ( (lv_valueNamePairs_2_0= ruleValueNamePair ) )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2092:1: (lv_valueNamePairs_2_0= ruleValueNamePair )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1713:1: ( (lv_valueNamePairs_2_0= ruleValueNamePair ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1714:1: (lv_valueNamePairs_2_0= ruleValueNamePair )
             	    {
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2092:1: (lv_valueNamePairs_2_0= ruleValueNamePair )
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2093:3: lv_valueNamePairs_2_0= ruleValueNamePair
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1714:1: (lv_valueNamePairs_2_0= ruleValueNamePair )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1715:3: lv_valueNamePairs_2_0= ruleValueNamePair
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getListOfValueNamePairsAccess().getValueNamePairsValueNamePairParserRuleCall_1_1_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getListOfValueNamePairsAccess().getValueNamePairsValueNamePairParserRuleCall_1_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleValueNamePair_in_ruleListOfValueNamePairs3759);
+            	    pushFollow(FOLLOW_ruleValueNamePair_in_ruleListOfValueNamePairs3807);
             	    lv_valueNamePairs_2_0=ruleValueNamePair();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getListOfValueNamePairsRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getListOfValueNamePairsRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"valueNamePairs",
-            	    	        		lv_valueNamePairs_2_0, 
-            	    	        		"ValueNamePair", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"valueNamePairs",
+            	            		lv_valueNamePairs_2_0, 
+            	            		"ValueNamePair");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -4771,9 +4416,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -4784,11 +4427,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleListOfValueNamePairs
+    // $ANTLR end "ruleListOfValueNamePairs"
 
 
-    // $ANTLR start entryRuleValueNamePair
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2123:1: entryRuleValueNamePair returns [EObject current=null] : iv_ruleValueNamePair= ruleValueNamePair EOF ;
+    // $ANTLR start "entryRuleValueNamePair"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1739:1: entryRuleValueNamePair returns [EObject current=null] : iv_ruleValueNamePair= ruleValueNamePair EOF ;
     public final EObject entryRuleValueNamePair() throws RecognitionException {
         EObject current = null;
 
@@ -4796,16 +4439,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2124:2: (iv_ruleValueNamePair= ruleValueNamePair EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2125:2: iv_ruleValueNamePair= ruleValueNamePair EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1740:2: (iv_ruleValueNamePair= ruleValueNamePair EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1741:2: iv_ruleValueNamePair= ruleValueNamePair EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getValueNamePairRule(), currentNode); 
-            pushFollow(FOLLOW_ruleValueNamePair_in_entryRuleValueNamePair3797);
+             newCompositeNode(grammarAccess.getValueNamePairRule()); 
+            pushFollow(FOLLOW_ruleValueNamePair_in_entryRuleValueNamePair3845);
             iv_ruleValueNamePair=ruleValueNamePair();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleValueNamePair; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleValueNamePair3807); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleValueNamePair3855); 
 
             }
 
@@ -4819,41 +4463,42 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleValueNamePair
+    // $ANTLR end "entryRuleValueNamePair"
 
 
-    // $ANTLR start ruleValueNamePair
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2132:1: ruleValueNamePair returns [EObject current=null] : ( ( ( RULE_ID ) ) '=' ( (lv_value_2_0= ruleExpression ) ) ) ;
+    // $ANTLR start "ruleValueNamePair"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1748:1: ruleValueNamePair returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleExpression ) ) ) ;
     public final EObject ruleValueNamePair() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_1=null;
         EObject lv_value_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2137:6: ( ( ( ( RULE_ID ) ) '=' ( (lv_value_2_0= ruleExpression ) ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2138:1: ( ( ( RULE_ID ) ) '=' ( (lv_value_2_0= ruleExpression ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1751:28: ( ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleExpression ) ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1752:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleExpression ) ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2138:1: ( ( ( RULE_ID ) ) '=' ( (lv_value_2_0= ruleExpression ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2138:2: ( ( RULE_ID ) ) '=' ( (lv_value_2_0= ruleExpression ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1752:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleExpression ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1752:2: ( (otherlv_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleExpression ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2138:2: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2139:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1752:2: ( (otherlv_0= RULE_ID ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1753:1: (otherlv_0= RULE_ID )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2139:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2140:3: RULE_ID
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1753:1: (otherlv_0= RULE_ID )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1754:3: otherlv_0= RULE_ID
             {
 
             			if (current==null) {
-            	            current = factory.create(grammarAccess.getValueNamePairRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getValueNamePairRule());
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleValueNamePair3850); 
+            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleValueNamePair3900); 
 
-            		createLeafNode(grammarAccess.getValueNamePairAccess().getPropertyPropertyCrossReference_0_0(), "property"); 
+            		newLeafNode(otherlv_0, grammarAccess.getValueNamePairAccess().getPropertyPropertyCrossReference_0_0()); 
             	
 
             }
@@ -4861,39 +4506,34 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            match(input,43,FOLLOW_43_in_ruleValueNamePair3860); 
+            otherlv_1=(Token)match(input,43,FOLLOW_43_in_ruleValueNamePair3912); 
 
-                    createLeafNode(grammarAccess.getValueNamePairAccess().getEqualsSignKeyword_1(), null); 
+                	newLeafNode(otherlv_1, grammarAccess.getValueNamePairAccess().getEqualsSignKeyword_1());
                 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2156:1: ( (lv_value_2_0= ruleExpression ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2157:1: (lv_value_2_0= ruleExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1769:1: ( (lv_value_2_0= ruleExpression ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1770:1: (lv_value_2_0= ruleExpression )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2157:1: (lv_value_2_0= ruleExpression )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2158:3: lv_value_2_0= ruleExpression
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1770:1: (lv_value_2_0= ruleExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1771:3: lv_value_2_0= ruleExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getValueNamePairAccess().getValueExpressionParserRuleCall_2_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getValueNamePairAccess().getValueExpressionParserRuleCall_2_0()); 
             	    
-            pushFollow(FOLLOW_ruleExpression_in_ruleValueNamePair3881);
+            pushFollow(FOLLOW_ruleExpression_in_ruleValueNamePair3933);
             lv_value_2_0=ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getValueNamePairRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getValueNamePairRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"value",
-            	        		lv_value_2_0, 
-            	        		"Expression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"value",
+                    		lv_value_2_0, 
+                    		"Expression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -4907,9 +4547,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -4920,11 +4558,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleValueNamePair
+    // $ANTLR end "ruleValueNamePair"
 
 
-    // $ANTLR start entryRuleTimeExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2188:1: entryRuleTimeExpression returns [EObject current=null] : iv_ruleTimeExpression= ruleTimeExpression EOF ;
+    // $ANTLR start "entryRuleTimeExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1795:1: entryRuleTimeExpression returns [EObject current=null] : iv_ruleTimeExpression= ruleTimeExpression EOF ;
     public final EObject entryRuleTimeExpression() throws RecognitionException {
         EObject current = null;
 
@@ -4932,16 +4570,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2189:2: (iv_ruleTimeExpression= ruleTimeExpression EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2190:2: iv_ruleTimeExpression= ruleTimeExpression EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1796:2: (iv_ruleTimeExpression= ruleTimeExpression EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1797:2: iv_ruleTimeExpression= ruleTimeExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getTimeExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleTimeExpression_in_entryRuleTimeExpression3917);
+             newCompositeNode(grammarAccess.getTimeExpressionRule()); 
+            pushFollow(FOLLOW_ruleTimeExpression_in_entryRuleTimeExpression3969);
             iv_ruleTimeExpression=ruleTimeExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleTimeExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTimeExpression3927); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTimeExpression3979); 
 
             }
 
@@ -4955,11 +4594,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleTimeExpression
+    // $ANTLR end "entryRuleTimeExpression"
 
 
-    // $ANTLR start ruleTimeExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2197:1: ruleTimeExpression returns [EObject current=null] : (this_InstantObsExpression_0= ruleInstantObsExpression | this_DurationObsExpression_1= ruleDurationObsExpression | this_JitterExp_2= ruleJitterExp ) ;
+    // $ANTLR start "ruleTimeExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1804:1: ruleTimeExpression returns [EObject current=null] : (this_InstantObsExpression_0= ruleInstantObsExpression | this_DurationObsExpression_1= ruleDurationObsExpression | this_JitterExp_2= ruleJitterExp ) ;
     public final EObject ruleTimeExpression() throws RecognitionException {
         EObject current = null;
 
@@ -4970,13 +4609,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         EObject this_JitterExp_2 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2202:6: ( (this_InstantObsExpression_0= ruleInstantObsExpression | this_DurationObsExpression_1= ruleDurationObsExpression | this_JitterExp_2= ruleJitterExp ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2203:1: (this_InstantObsExpression_0= ruleInstantObsExpression | this_DurationObsExpression_1= ruleDurationObsExpression | this_JitterExp_2= ruleJitterExp )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1807:28: ( (this_InstantObsExpression_0= ruleInstantObsExpression | this_DurationObsExpression_1= ruleDurationObsExpression | this_JitterExp_2= ruleJitterExp ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1808:1: (this_InstantObsExpression_0= ruleInstantObsExpression | this_DurationObsExpression_1= ruleDurationObsExpression | this_JitterExp_2= ruleJitterExp )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2203:1: (this_InstantObsExpression_0= ruleInstantObsExpression | this_DurationObsExpression_1= ruleDurationObsExpression | this_JitterExp_2= ruleJitterExp )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1808:1: (this_InstantObsExpression_0= ruleInstantObsExpression | this_DurationObsExpression_1= ruleDurationObsExpression | this_JitterExp_2= ruleJitterExp )
             int alt30=3;
             switch ( input.LA(1) ) {
             case 44:
@@ -4996,59 +4635,62 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("2203:1: (this_InstantObsExpression_0= ruleInstantObsExpression | this_DurationObsExpression_1= ruleDurationObsExpression | this_JitterExp_2= ruleJitterExp )", 30, 0, input);
+                    new NoViableAltException("", 30, 0, input);
 
                 throw nvae;
             }
 
             switch (alt30) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2204:5: this_InstantObsExpression_0= ruleInstantObsExpression
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1809:5: this_InstantObsExpression_0= ruleInstantObsExpression
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getTimeExpressionAccess().getInstantObsExpressionParserRuleCall_0(), currentNode); 
+                            newCompositeNode(grammarAccess.getTimeExpressionAccess().getInstantObsExpressionParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleInstantObsExpression_in_ruleTimeExpression3974);
+                    pushFollow(FOLLOW_ruleInstantObsExpression_in_ruleTimeExpression4026);
                     this_InstantObsExpression_0=ruleInstantObsExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_InstantObsExpression_0; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2214:5: this_DurationObsExpression_1= ruleDurationObsExpression
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1819:5: this_DurationObsExpression_1= ruleDurationObsExpression
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getTimeExpressionAccess().getDurationObsExpressionParserRuleCall_1(), currentNode); 
+                            newCompositeNode(grammarAccess.getTimeExpressionAccess().getDurationObsExpressionParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleDurationObsExpression_in_ruleTimeExpression4001);
+                    pushFollow(FOLLOW_ruleDurationObsExpression_in_ruleTimeExpression4053);
                     this_DurationObsExpression_1=ruleDurationObsExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_DurationObsExpression_1; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2224:5: this_JitterExp_2= ruleJitterExp
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1829:5: this_JitterExp_2= ruleJitterExp
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getTimeExpressionAccess().getJitterExpParserRuleCall_2(), currentNode); 
+                            newCompositeNode(grammarAccess.getTimeExpressionAccess().getJitterExpParserRuleCall_2()); 
                         
-                    pushFollow(FOLLOW_ruleJitterExp_in_ruleTimeExpression4028);
+                    pushFollow(FOLLOW_ruleJitterExp_in_ruleTimeExpression4080);
                     this_JitterExp_2=ruleJitterExp();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_JitterExp_2; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
@@ -5059,9 +4701,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -5072,11 +4712,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleTimeExpression
+    // $ANTLR end "ruleTimeExpression"
 
 
-    // $ANTLR start entryRuleInstantObsExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2240:1: entryRuleInstantObsExpression returns [EObject current=null] : iv_ruleInstantObsExpression= ruleInstantObsExpression EOF ;
+    // $ANTLR start "entryRuleInstantObsExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1845:1: entryRuleInstantObsExpression returns [EObject current=null] : iv_ruleInstantObsExpression= ruleInstantObsExpression EOF ;
     public final EObject entryRuleInstantObsExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5084,16 +4724,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2241:2: (iv_ruleInstantObsExpression= ruleInstantObsExpression EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2242:2: iv_ruleInstantObsExpression= ruleInstantObsExpression EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1846:2: (iv_ruleInstantObsExpression= ruleInstantObsExpression EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1847:2: iv_ruleInstantObsExpression= ruleInstantObsExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getInstantObsExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleInstantObsExpression_in_entryRuleInstantObsExpression4063);
+             newCompositeNode(grammarAccess.getInstantObsExpressionRule()); 
+            pushFollow(FOLLOW_ruleInstantObsExpression_in_entryRuleInstantObsExpression4115);
             iv_ruleInstantObsExpression=ruleInstantObsExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleInstantObsExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleInstantObsExpression4073); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleInstantObsExpression4125); 
 
             }
 
@@ -5107,14 +4748,20 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleInstantObsExpression
+    // $ANTLR end "entryRuleInstantObsExpression"
 
 
-    // $ANTLR start ruleInstantObsExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2249:1: ruleInstantObsExpression returns [EObject current=null] : ( '@' ( (lv_id_1_0= ruleInstantObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )? ) ;
+    // $ANTLR start "ruleInstantObsExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1854:1: ruleInstantObsExpression returns [EObject current=null] : (otherlv_0= '@' ( (lv_id_1_0= ruleInstantObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )? ) ;
     public final EObject ruleInstantObsExpression() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_2=null;
+        Token otherlv_4=null;
+        Token otherlv_5=null;
+        Token otherlv_6=null;
+        Token otherlv_8=null;
         EObject lv_id_1_0 = null;
 
         EObject lv_index_3_0 = null;
@@ -5122,48 +4769,43 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         EObject lv_condition_7_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2254:6: ( ( '@' ( (lv_id_1_0= ruleInstantObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )? ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2255:1: ( '@' ( (lv_id_1_0= ruleInstantObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1857:28: ( (otherlv_0= '@' ( (lv_id_1_0= ruleInstantObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )? ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1858:1: (otherlv_0= '@' ( (lv_id_1_0= ruleInstantObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )? )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2255:1: ( '@' ( (lv_id_1_0= ruleInstantObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )? )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2255:3: '@' ( (lv_id_1_0= ruleInstantObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1858:1: (otherlv_0= '@' ( (lv_id_1_0= ruleInstantObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1858:3: otherlv_0= '@' ( (lv_id_1_0= ruleInstantObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )?
             {
-            match(input,44,FOLLOW_44_in_ruleInstantObsExpression4108); 
+            otherlv_0=(Token)match(input,44,FOLLOW_44_in_ruleInstantObsExpression4162); 
 
-                    createLeafNode(grammarAccess.getInstantObsExpressionAccess().getCommercialAtKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getInstantObsExpressionAccess().getCommercialAtKeyword_0());
                 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2259:1: ( (lv_id_1_0= ruleInstantObsName ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2260:1: (lv_id_1_0= ruleInstantObsName )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1862:1: ( (lv_id_1_0= ruleInstantObsName ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1863:1: (lv_id_1_0= ruleInstantObsName )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2260:1: (lv_id_1_0= ruleInstantObsName )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2261:3: lv_id_1_0= ruleInstantObsName
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1863:1: (lv_id_1_0= ruleInstantObsName )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1864:3: lv_id_1_0= ruleInstantObsName
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getInstantObsExpressionAccess().getIdInstantObsNameParserRuleCall_1_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getInstantObsExpressionAccess().getIdInstantObsNameParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleInstantObsName_in_ruleInstantObsExpression4129);
+            pushFollow(FOLLOW_ruleInstantObsName_in_ruleInstantObsExpression4183);
             lv_id_1_0=ruleInstantObsName();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getInstantObsExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getInstantObsExpressionRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"id",
-            	        		lv_id_1_0, 
-            	        		"InstantObsName", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"id",
+                    		lv_id_1_0, 
+                    		"InstantObsName");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -5171,7 +4813,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2283:2: ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1880:2: (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )?
             int alt31=2;
             int LA31_0 = input.LA(1);
 
@@ -5180,41 +4822,36 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             switch (alt31) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2283:4: '(' ( (lv_index_3_0= ruleExpression ) ) ')'
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1880:4: otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')'
                     {
-                    match(input,34,FOLLOW_34_in_ruleInstantObsExpression4140); 
+                    otherlv_2=(Token)match(input,34,FOLLOW_34_in_ruleInstantObsExpression4196); 
 
-                            createLeafNode(grammarAccess.getInstantObsExpressionAccess().getLeftParenthesisKeyword_2_0(), null); 
+                        	newLeafNode(otherlv_2, grammarAccess.getInstantObsExpressionAccess().getLeftParenthesisKeyword_2_0());
                         
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2287:1: ( (lv_index_3_0= ruleExpression ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2288:1: (lv_index_3_0= ruleExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1884:1: ( (lv_index_3_0= ruleExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1885:1: (lv_index_3_0= ruleExpression )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2288:1: (lv_index_3_0= ruleExpression )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2289:3: lv_index_3_0= ruleExpression
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1885:1: (lv_index_3_0= ruleExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1886:3: lv_index_3_0= ruleExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getInstantObsExpressionAccess().getIndexExpressionParserRuleCall_2_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getInstantObsExpressionAccess().getIndexExpressionParserRuleCall_2_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleExpression_in_ruleInstantObsExpression4161);
+                    pushFollow(FOLLOW_ruleExpression_in_ruleInstantObsExpression4217);
                     lv_index_3_0=ruleExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getInstantObsExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getInstantObsExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"index",
-                    	        		lv_index_3_0, 
-                    	        		"Expression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"index",
+                            		lv_index_3_0, 
+                            		"Expression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -5222,9 +4859,9 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
                     }
 
-                    match(input,35,FOLLOW_35_in_ruleInstantObsExpression4171); 
+                    otherlv_4=(Token)match(input,35,FOLLOW_35_in_ruleInstantObsExpression4229); 
 
-                            createLeafNode(grammarAccess.getInstantObsExpressionAccess().getRightParenthesisKeyword_2_2(), null); 
+                        	newLeafNode(otherlv_4, grammarAccess.getInstantObsExpressionAccess().getRightParenthesisKeyword_2_2());
                         
 
                     }
@@ -5232,7 +4869,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2315:3: ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1906:3: (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )?
             int alt32=2;
             int LA32_0 = input.LA(1);
 
@@ -5241,45 +4878,40 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             switch (alt32) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2315:5: 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')'
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1906:5: otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')'
                     {
-                    match(input,45,FOLLOW_45_in_ruleInstantObsExpression4184); 
+                    otherlv_5=(Token)match(input,45,FOLLOW_45_in_ruleInstantObsExpression4244); 
 
-                            createLeafNode(grammarAccess.getInstantObsExpressionAccess().getWhenKeyword_3_0(), null); 
+                        	newLeafNode(otherlv_5, grammarAccess.getInstantObsExpressionAccess().getWhenKeyword_3_0());
                         
-                    match(input,34,FOLLOW_34_in_ruleInstantObsExpression4194); 
+                    otherlv_6=(Token)match(input,34,FOLLOW_34_in_ruleInstantObsExpression4256); 
 
-                            createLeafNode(grammarAccess.getInstantObsExpressionAccess().getLeftParenthesisKeyword_3_1(), null); 
+                        	newLeafNode(otherlv_6, grammarAccess.getInstantObsExpressionAccess().getLeftParenthesisKeyword_3_1());
                         
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2323:1: ( (lv_condition_7_0= ruleExpression ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2324:1: (lv_condition_7_0= ruleExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1914:1: ( (lv_condition_7_0= ruleExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1915:1: (lv_condition_7_0= ruleExpression )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2324:1: (lv_condition_7_0= ruleExpression )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2325:3: lv_condition_7_0= ruleExpression
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1915:1: (lv_condition_7_0= ruleExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1916:3: lv_condition_7_0= ruleExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getInstantObsExpressionAccess().getConditionExpressionParserRuleCall_3_2_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getInstantObsExpressionAccess().getConditionExpressionParserRuleCall_3_2_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleExpression_in_ruleInstantObsExpression4215);
+                    pushFollow(FOLLOW_ruleExpression_in_ruleInstantObsExpression4277);
                     lv_condition_7_0=ruleExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getInstantObsExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getInstantObsExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"condition",
-                    	        		lv_condition_7_0, 
-                    	        		"Expression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"condition",
+                            		lv_condition_7_0, 
+                            		"Expression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -5287,9 +4919,9 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
                     }
 
-                    match(input,35,FOLLOW_35_in_ruleInstantObsExpression4225); 
+                    otherlv_8=(Token)match(input,35,FOLLOW_35_in_ruleInstantObsExpression4289); 
 
-                            createLeafNode(grammarAccess.getInstantObsExpressionAccess().getRightParenthesisKeyword_3_3(), null); 
+                        	newLeafNode(otherlv_8, grammarAccess.getInstantObsExpressionAccess().getRightParenthesisKeyword_3_3());
                         
 
                     }
@@ -5303,9 +4935,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -5316,11 +4946,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleInstantObsExpression
+    // $ANTLR end "ruleInstantObsExpression"
 
 
-    // $ANTLR start entryRuleInstantObsName
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2359:1: entryRuleInstantObsName returns [EObject current=null] : iv_ruleInstantObsName= ruleInstantObsName EOF ;
+    // $ANTLR start "entryRuleInstantObsName"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1944:1: entryRuleInstantObsName returns [EObject current=null] : iv_ruleInstantObsName= ruleInstantObsName EOF ;
     public final EObject entryRuleInstantObsName() throws RecognitionException {
         EObject current = null;
 
@@ -5328,16 +4958,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2360:2: (iv_ruleInstantObsName= ruleInstantObsName EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2361:2: iv_ruleInstantObsName= ruleInstantObsName EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1945:2: (iv_ruleInstantObsName= ruleInstantObsName EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1946:2: iv_ruleInstantObsName= ruleInstantObsName EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getInstantObsNameRule(), currentNode); 
-            pushFollow(FOLLOW_ruleInstantObsName_in_entryRuleInstantObsName4263);
+             newCompositeNode(grammarAccess.getInstantObsNameRule()); 
+            pushFollow(FOLLOW_ruleInstantObsName_in_entryRuleInstantObsName4327);
             iv_ruleInstantObsName=ruleInstantObsName();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleInstantObsName; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleInstantObsName4273); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleInstantObsName4337); 
 
             }
 
@@ -5351,27 +4982,28 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleInstantObsName
+    // $ANTLR end "entryRuleInstantObsName"
 
 
-    // $ANTLR start ruleInstantObsName
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2368:1: ruleInstantObsName returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ) ;
+    // $ANTLR start "ruleInstantObsName"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1953:1: ruleInstantObsName returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) ;
     public final EObject ruleInstantObsName() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
         EObject lv_path_0_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2373:6: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2374:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1956:28: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1957:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2374:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2374:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1957:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1957:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2374:2: ( (lv_path_0_0= ruleQualifiedName ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1957:2: ( (lv_path_0_0= ruleQualifiedName ) )?
             int alt33=2;
             int LA33_0 = input.LA(1);
 
@@ -5384,34 +5016,29 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             switch (alt33) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2375:1: (lv_path_0_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1958:1: (lv_path_0_0= ruleQualifiedName )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2375:1: (lv_path_0_0= ruleQualifiedName )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2376:3: lv_path_0_0= ruleQualifiedName
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1958:1: (lv_path_0_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1959:3: lv_path_0_0= ruleQualifiedName
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getInstantObsNameAccess().getPathQualifiedNameParserRuleCall_0_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getInstantObsNameAccess().getPathQualifiedNameParserRuleCall_0_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleInstantObsName4319);
+                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleInstantObsName4383);
                     lv_path_0_0=ruleQualifiedName();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getInstantObsNameRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getInstantObsNameRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"path",
-                    	        		lv_path_0_0, 
-                    	        		"QualifiedName", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"path",
+                            		lv_path_0_0, 
+                            		"QualifiedName");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -5422,21 +5049,20 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2398:3: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2399:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1975:3: ( (otherlv_1= RULE_ID ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1976:1: (otherlv_1= RULE_ID )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2399:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2400:3: RULE_ID
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1976:1: (otherlv_1= RULE_ID )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1977:3: otherlv_1= RULE_ID
             {
 
             			if (current==null) {
-            	            current = factory.create(grammarAccess.getInstantObsNameRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getInstantObsNameRule());
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleInstantObsName4338); 
+            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleInstantObsName4404); 
 
-            		createLeafNode(grammarAccess.getInstantObsNameAccess().getInstantIdTimeObservationCrossReference_1_0(), "instantId"); 
+            		newLeafNode(otherlv_1, grammarAccess.getInstantObsNameAccess().getInstantIdTimeObservationCrossReference_1_0()); 
             	
 
             }
@@ -5450,9 +5076,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -5463,11 +5087,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleInstantObsName
+    // $ANTLR end "ruleInstantObsName"
 
 
-    // $ANTLR start entryRuleDurationObsExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2420:1: entryRuleDurationObsExpression returns [EObject current=null] : iv_ruleDurationObsExpression= ruleDurationObsExpression EOF ;
+    // $ANTLR start "entryRuleDurationObsExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1996:1: entryRuleDurationObsExpression returns [EObject current=null] : iv_ruleDurationObsExpression= ruleDurationObsExpression EOF ;
     public final EObject entryRuleDurationObsExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5475,16 +5099,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2421:2: (iv_ruleDurationObsExpression= ruleDurationObsExpression EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2422:2: iv_ruleDurationObsExpression= ruleDurationObsExpression EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1997:2: (iv_ruleDurationObsExpression= ruleDurationObsExpression EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:1998:2: iv_ruleDurationObsExpression= ruleDurationObsExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getDurationObsExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleDurationObsExpression_in_entryRuleDurationObsExpression4374);
+             newCompositeNode(grammarAccess.getDurationObsExpressionRule()); 
+            pushFollow(FOLLOW_ruleDurationObsExpression_in_entryRuleDurationObsExpression4440);
             iv_ruleDurationObsExpression=ruleDurationObsExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleDurationObsExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDurationObsExpression4384); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDurationObsExpression4450); 
 
             }
 
@@ -5498,14 +5123,20 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleDurationObsExpression
+    // $ANTLR end "entryRuleDurationObsExpression"
 
 
-    // $ANTLR start ruleDurationObsExpression
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2429:1: ruleDurationObsExpression returns [EObject current=null] : ( '&' ( (lv_id_1_0= ruleDurationObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )? ) ;
+    // $ANTLR start "ruleDurationObsExpression"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2005:1: ruleDurationObsExpression returns [EObject current=null] : (otherlv_0= '&' ( (lv_id_1_0= ruleDurationObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )? ) ;
     public final EObject ruleDurationObsExpression() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_2=null;
+        Token otherlv_4=null;
+        Token otherlv_5=null;
+        Token otherlv_6=null;
+        Token otherlv_8=null;
         EObject lv_id_1_0 = null;
 
         EObject lv_index_3_0 = null;
@@ -5513,48 +5144,43 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         EObject lv_condition_7_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2434:6: ( ( '&' ( (lv_id_1_0= ruleDurationObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )? ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2435:1: ( '&' ( (lv_id_1_0= ruleDurationObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2008:28: ( (otherlv_0= '&' ( (lv_id_1_0= ruleDurationObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )? ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2009:1: (otherlv_0= '&' ( (lv_id_1_0= ruleDurationObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )? )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2435:1: ( '&' ( (lv_id_1_0= ruleDurationObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )? )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2435:3: '&' ( (lv_id_1_0= ruleDurationObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2009:1: (otherlv_0= '&' ( (lv_id_1_0= ruleDurationObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2009:3: otherlv_0= '&' ( (lv_id_1_0= ruleDurationObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )?
             {
-            match(input,46,FOLLOW_46_in_ruleDurationObsExpression4419); 
+            otherlv_0=(Token)match(input,46,FOLLOW_46_in_ruleDurationObsExpression4487); 
 
-                    createLeafNode(grammarAccess.getDurationObsExpressionAccess().getAmpersandKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getDurationObsExpressionAccess().getAmpersandKeyword_0());
                 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2439:1: ( (lv_id_1_0= ruleDurationObsName ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2440:1: (lv_id_1_0= ruleDurationObsName )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2013:1: ( (lv_id_1_0= ruleDurationObsName ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2014:1: (lv_id_1_0= ruleDurationObsName )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2440:1: (lv_id_1_0= ruleDurationObsName )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2441:3: lv_id_1_0= ruleDurationObsName
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2014:1: (lv_id_1_0= ruleDurationObsName )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2015:3: lv_id_1_0= ruleDurationObsName
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getDurationObsExpressionAccess().getIdDurationObsNameParserRuleCall_1_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getDurationObsExpressionAccess().getIdDurationObsNameParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleDurationObsName_in_ruleDurationObsExpression4440);
+            pushFollow(FOLLOW_ruleDurationObsName_in_ruleDurationObsExpression4508);
             lv_id_1_0=ruleDurationObsName();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getDurationObsExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getDurationObsExpressionRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"id",
-            	        		lv_id_1_0, 
-            	        		"DurationObsName", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"id",
+                    		lv_id_1_0, 
+                    		"DurationObsName");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -5562,7 +5188,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2463:2: ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2031:2: (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )?
             int alt34=2;
             int LA34_0 = input.LA(1);
 
@@ -5571,41 +5197,36 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             switch (alt34) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2463:4: '(' ( (lv_index_3_0= ruleExpression ) ) ')'
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2031:4: otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')'
                     {
-                    match(input,34,FOLLOW_34_in_ruleDurationObsExpression4451); 
+                    otherlv_2=(Token)match(input,34,FOLLOW_34_in_ruleDurationObsExpression4521); 
 
-                            createLeafNode(grammarAccess.getDurationObsExpressionAccess().getLeftParenthesisKeyword_2_0(), null); 
+                        	newLeafNode(otherlv_2, grammarAccess.getDurationObsExpressionAccess().getLeftParenthesisKeyword_2_0());
                         
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2467:1: ( (lv_index_3_0= ruleExpression ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2468:1: (lv_index_3_0= ruleExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2035:1: ( (lv_index_3_0= ruleExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2036:1: (lv_index_3_0= ruleExpression )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2468:1: (lv_index_3_0= ruleExpression )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2469:3: lv_index_3_0= ruleExpression
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2036:1: (lv_index_3_0= ruleExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2037:3: lv_index_3_0= ruleExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getDurationObsExpressionAccess().getIndexExpressionParserRuleCall_2_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getDurationObsExpressionAccess().getIndexExpressionParserRuleCall_2_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleExpression_in_ruleDurationObsExpression4472);
+                    pushFollow(FOLLOW_ruleExpression_in_ruleDurationObsExpression4542);
                     lv_index_3_0=ruleExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getDurationObsExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getDurationObsExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"index",
-                    	        		lv_index_3_0, 
-                    	        		"Expression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"index",
+                            		lv_index_3_0, 
+                            		"Expression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -5613,9 +5234,9 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
                     }
 
-                    match(input,35,FOLLOW_35_in_ruleDurationObsExpression4482); 
+                    otherlv_4=(Token)match(input,35,FOLLOW_35_in_ruleDurationObsExpression4554); 
 
-                            createLeafNode(grammarAccess.getDurationObsExpressionAccess().getRightParenthesisKeyword_2_2(), null); 
+                        	newLeafNode(otherlv_4, grammarAccess.getDurationObsExpressionAccess().getRightParenthesisKeyword_2_2());
                         
 
                     }
@@ -5623,7 +5244,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2495:3: ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2057:3: (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )?
             int alt35=2;
             int LA35_0 = input.LA(1);
 
@@ -5632,45 +5253,40 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             switch (alt35) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2495:5: 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')'
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2057:5: otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')'
                     {
-                    match(input,45,FOLLOW_45_in_ruleDurationObsExpression4495); 
+                    otherlv_5=(Token)match(input,45,FOLLOW_45_in_ruleDurationObsExpression4569); 
 
-                            createLeafNode(grammarAccess.getDurationObsExpressionAccess().getWhenKeyword_3_0(), null); 
+                        	newLeafNode(otherlv_5, grammarAccess.getDurationObsExpressionAccess().getWhenKeyword_3_0());
                         
-                    match(input,34,FOLLOW_34_in_ruleDurationObsExpression4505); 
+                    otherlv_6=(Token)match(input,34,FOLLOW_34_in_ruleDurationObsExpression4581); 
 
-                            createLeafNode(grammarAccess.getDurationObsExpressionAccess().getLeftParenthesisKeyword_3_1(), null); 
+                        	newLeafNode(otherlv_6, grammarAccess.getDurationObsExpressionAccess().getLeftParenthesisKeyword_3_1());
                         
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2503:1: ( (lv_condition_7_0= ruleExpression ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2504:1: (lv_condition_7_0= ruleExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2065:1: ( (lv_condition_7_0= ruleExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2066:1: (lv_condition_7_0= ruleExpression )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2504:1: (lv_condition_7_0= ruleExpression )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2505:3: lv_condition_7_0= ruleExpression
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2066:1: (lv_condition_7_0= ruleExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2067:3: lv_condition_7_0= ruleExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getDurationObsExpressionAccess().getConditionExpressionParserRuleCall_3_2_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getDurationObsExpressionAccess().getConditionExpressionParserRuleCall_3_2_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleExpression_in_ruleDurationObsExpression4526);
+                    pushFollow(FOLLOW_ruleExpression_in_ruleDurationObsExpression4602);
                     lv_condition_7_0=ruleExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getDurationObsExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getDurationObsExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"condition",
-                    	        		lv_condition_7_0, 
-                    	        		"Expression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"condition",
+                            		lv_condition_7_0, 
+                            		"Expression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -5678,9 +5294,9 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
                     }
 
-                    match(input,35,FOLLOW_35_in_ruleDurationObsExpression4536); 
+                    otherlv_8=(Token)match(input,35,FOLLOW_35_in_ruleDurationObsExpression4614); 
 
-                            createLeafNode(grammarAccess.getDurationObsExpressionAccess().getRightParenthesisKeyword_3_3(), null); 
+                        	newLeafNode(otherlv_8, grammarAccess.getDurationObsExpressionAccess().getRightParenthesisKeyword_3_3());
                         
 
                     }
@@ -5694,9 +5310,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -5707,11 +5321,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleDurationObsExpression
+    // $ANTLR end "ruleDurationObsExpression"
 
 
-    // $ANTLR start entryRuleDurationObsName
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2539:1: entryRuleDurationObsName returns [EObject current=null] : iv_ruleDurationObsName= ruleDurationObsName EOF ;
+    // $ANTLR start "entryRuleDurationObsName"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2095:1: entryRuleDurationObsName returns [EObject current=null] : iv_ruleDurationObsName= ruleDurationObsName EOF ;
     public final EObject entryRuleDurationObsName() throws RecognitionException {
         EObject current = null;
 
@@ -5719,16 +5333,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2540:2: (iv_ruleDurationObsName= ruleDurationObsName EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2541:2: iv_ruleDurationObsName= ruleDurationObsName EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2096:2: (iv_ruleDurationObsName= ruleDurationObsName EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2097:2: iv_ruleDurationObsName= ruleDurationObsName EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getDurationObsNameRule(), currentNode); 
-            pushFollow(FOLLOW_ruleDurationObsName_in_entryRuleDurationObsName4574);
+             newCompositeNode(grammarAccess.getDurationObsNameRule()); 
+            pushFollow(FOLLOW_ruleDurationObsName_in_entryRuleDurationObsName4652);
             iv_ruleDurationObsName=ruleDurationObsName();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleDurationObsName; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDurationObsName4584); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDurationObsName4662); 
 
             }
 
@@ -5742,27 +5357,28 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleDurationObsName
+    // $ANTLR end "entryRuleDurationObsName"
 
 
-    // $ANTLR start ruleDurationObsName
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2548:1: ruleDurationObsName returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ) ;
+    // $ANTLR start "ruleDurationObsName"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2104:1: ruleDurationObsName returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) ;
     public final EObject ruleDurationObsName() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
         EObject lv_path_0_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2553:6: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2554:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2107:28: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2108:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2554:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2554:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2108:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2108:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2554:2: ( (lv_path_0_0= ruleQualifiedName ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2108:2: ( (lv_path_0_0= ruleQualifiedName ) )?
             int alt36=2;
             int LA36_0 = input.LA(1);
 
@@ -5775,34 +5391,29 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             switch (alt36) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2555:1: (lv_path_0_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2109:1: (lv_path_0_0= ruleQualifiedName )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2555:1: (lv_path_0_0= ruleQualifiedName )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2556:3: lv_path_0_0= ruleQualifiedName
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2109:1: (lv_path_0_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2110:3: lv_path_0_0= ruleQualifiedName
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getDurationObsNameAccess().getPathQualifiedNameParserRuleCall_0_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getDurationObsNameAccess().getPathQualifiedNameParserRuleCall_0_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleDurationObsName4630);
+                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleDurationObsName4708);
                     lv_path_0_0=ruleQualifiedName();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getDurationObsNameRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getDurationObsNameRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"path",
-                    	        		lv_path_0_0, 
-                    	        		"QualifiedName", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"path",
+                            		lv_path_0_0, 
+                            		"QualifiedName");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -5813,21 +5424,20 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2578:3: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2579:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2126:3: ( (otherlv_1= RULE_ID ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2127:1: (otherlv_1= RULE_ID )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2579:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2580:3: RULE_ID
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2127:1: (otherlv_1= RULE_ID )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2128:3: otherlv_1= RULE_ID
             {
 
             			if (current==null) {
-            	            current = factory.create(grammarAccess.getDurationObsNameRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getDurationObsNameRule());
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleDurationObsName4649); 
+            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleDurationObsName4729); 
 
-            		createLeafNode(grammarAccess.getDurationObsNameAccess().getDurationIdDurationObservationCrossReference_1_0(), "durationId"); 
+            		newLeafNode(otherlv_1, grammarAccess.getDurationObsNameAccess().getDurationIdDurationObservationCrossReference_1_0()); 
             	
 
             }
@@ -5841,9 +5451,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -5854,11 +5462,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleDurationObsName
+    // $ANTLR end "ruleDurationObsName"
 
 
-    // $ANTLR start entryRuleJitterExp
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2600:1: entryRuleJitterExp returns [EObject current=null] : iv_ruleJitterExp= ruleJitterExp EOF ;
+    // $ANTLR start "entryRuleJitterExp"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2147:1: entryRuleJitterExp returns [EObject current=null] : iv_ruleJitterExp= ruleJitterExp EOF ;
     public final EObject entryRuleJitterExp() throws RecognitionException {
         EObject current = null;
 
@@ -5866,16 +5474,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2601:2: (iv_ruleJitterExp= ruleJitterExp EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2602:2: iv_ruleJitterExp= ruleJitterExp EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2148:2: (iv_ruleJitterExp= ruleJitterExp EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2149:2: iv_ruleJitterExp= ruleJitterExp EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getJitterExpRule(), currentNode); 
-            pushFollow(FOLLOW_ruleJitterExp_in_entryRuleJitterExp4685);
+             newCompositeNode(grammarAccess.getJitterExpRule()); 
+            pushFollow(FOLLOW_ruleJitterExp_in_entryRuleJitterExp4765);
             iv_ruleJitterExp=ruleJitterExp();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleJitterExp; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleJitterExp4695); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleJitterExp4775); 
 
             }
 
@@ -5889,61 +5498,59 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleJitterExp
+    // $ANTLR end "entryRuleJitterExp"
 
 
-    // $ANTLR start ruleJitterExp
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2609:1: ruleJitterExp returns [EObject current=null] : ( 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) ( '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? ')' ) ;
+    // $ANTLR start "ruleJitterExp"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2156:1: ruleJitterExp returns [EObject current=null] : (otherlv_0= 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) (otherlv_2= '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? otherlv_4= ')' ) ;
     public final EObject ruleJitterExp() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_2=null;
+        Token otherlv_4=null;
         EObject lv_firstInstant_1_0 = null;
 
         EObject lv_secondInstant_3_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2614:6: ( ( 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) ( '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? ')' ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2615:1: ( 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) ( '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? ')' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2159:28: ( (otherlv_0= 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) (otherlv_2= '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? otherlv_4= ')' ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2160:1: (otherlv_0= 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) (otherlv_2= '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? otherlv_4= ')' )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2615:1: ( 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) ( '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? ')' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2615:3: 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) ( '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? ')'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2160:1: (otherlv_0= 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) (otherlv_2= '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? otherlv_4= ')' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2160:3: otherlv_0= 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) (otherlv_2= '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? otherlv_4= ')'
             {
-            match(input,47,FOLLOW_47_in_ruleJitterExp4730); 
+            otherlv_0=(Token)match(input,47,FOLLOW_47_in_ruleJitterExp4812); 
 
-                    createLeafNode(grammarAccess.getJitterExpAccess().getJitterKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getJitterExpAccess().getJitterKeyword_0());
                 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2619:1: ( (lv_firstInstant_1_0= ruleInstantObsExpression ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2620:1: (lv_firstInstant_1_0= ruleInstantObsExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2164:1: ( (lv_firstInstant_1_0= ruleInstantObsExpression ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2165:1: (lv_firstInstant_1_0= ruleInstantObsExpression )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2620:1: (lv_firstInstant_1_0= ruleInstantObsExpression )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2621:3: lv_firstInstant_1_0= ruleInstantObsExpression
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2165:1: (lv_firstInstant_1_0= ruleInstantObsExpression )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2166:3: lv_firstInstant_1_0= ruleInstantObsExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getJitterExpAccess().getFirstInstantInstantObsExpressionParserRuleCall_1_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getJitterExpAccess().getFirstInstantInstantObsExpressionParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleInstantObsExpression_in_ruleJitterExp4751);
+            pushFollow(FOLLOW_ruleInstantObsExpression_in_ruleJitterExp4833);
             lv_firstInstant_1_0=ruleInstantObsExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getJitterExpRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getJitterExpRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"firstInstant",
-            	        		lv_firstInstant_1_0, 
-            	        		"InstantObsExpression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"firstInstant",
+                    		lv_firstInstant_1_0, 
+                    		"InstantObsExpression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -5951,7 +5558,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2643:2: ( '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2182:2: (otherlv_2= '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )?
             int alt37=2;
             int LA37_0 = input.LA(1);
 
@@ -5960,41 +5567,36 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             switch (alt37) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2643:4: '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2182:4: otherlv_2= '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) )
                     {
-                    match(input,28,FOLLOW_28_in_ruleJitterExp4762); 
+                    otherlv_2=(Token)match(input,28,FOLLOW_28_in_ruleJitterExp4846); 
 
-                            createLeafNode(grammarAccess.getJitterExpAccess().getHyphenMinusKeyword_2_0(), null); 
+                        	newLeafNode(otherlv_2, grammarAccess.getJitterExpAccess().getHyphenMinusKeyword_2_0());
                         
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2647:1: ( (lv_secondInstant_3_0= ruleInstantObsExpression ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2648:1: (lv_secondInstant_3_0= ruleInstantObsExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2186:1: ( (lv_secondInstant_3_0= ruleInstantObsExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2187:1: (lv_secondInstant_3_0= ruleInstantObsExpression )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2648:1: (lv_secondInstant_3_0= ruleInstantObsExpression )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2649:3: lv_secondInstant_3_0= ruleInstantObsExpression
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2187:1: (lv_secondInstant_3_0= ruleInstantObsExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2188:3: lv_secondInstant_3_0= ruleInstantObsExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getJitterExpAccess().getSecondInstantInstantObsExpressionParserRuleCall_2_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getJitterExpAccess().getSecondInstantInstantObsExpressionParserRuleCall_2_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleInstantObsExpression_in_ruleJitterExp4783);
+                    pushFollow(FOLLOW_ruleInstantObsExpression_in_ruleJitterExp4867);
                     lv_secondInstant_3_0=ruleInstantObsExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getJitterExpRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getJitterExpRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"secondInstant",
-                    	        		lv_secondInstant_3_0, 
-                    	        		"InstantObsExpression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"secondInstant",
+                            		lv_secondInstant_3_0, 
+                            		"InstantObsExpression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -6008,9 +5610,9 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            match(input,35,FOLLOW_35_in_ruleJitterExp4795); 
+            otherlv_4=(Token)match(input,35,FOLLOW_35_in_ruleJitterExp4881); 
 
-                    createLeafNode(grammarAccess.getJitterExpAccess().getRightParenthesisKeyword_3(), null); 
+                	newLeafNode(otherlv_4, grammarAccess.getJitterExpAccess().getRightParenthesisKeyword_3());
                 
 
             }
@@ -6018,9 +5620,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -6031,11 +5631,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleJitterExp
+    // $ANTLR end "ruleJitterExp"
 
 
-    // $ANTLR start entryRuleVariableDeclaration
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2683:1: entryRuleVariableDeclaration returns [EObject current=null] : iv_ruleVariableDeclaration= ruleVariableDeclaration EOF ;
+    // $ANTLR start "entryRuleVariableDeclaration"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2216:1: entryRuleVariableDeclaration returns [EObject current=null] : iv_ruleVariableDeclaration= ruleVariableDeclaration EOF ;
     public final EObject entryRuleVariableDeclaration() throws RecognitionException {
         EObject current = null;
 
@@ -6043,16 +5643,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2684:2: (iv_ruleVariableDeclaration= ruleVariableDeclaration EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2685:2: iv_ruleVariableDeclaration= ruleVariableDeclaration EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2217:2: (iv_ruleVariableDeclaration= ruleVariableDeclaration EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2218:2: iv_ruleVariableDeclaration= ruleVariableDeclaration EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getVariableDeclarationRule(), currentNode); 
-            pushFollow(FOLLOW_ruleVariableDeclaration_in_entryRuleVariableDeclaration4831);
+             newCompositeNode(grammarAccess.getVariableDeclarationRule()); 
+            pushFollow(FOLLOW_ruleVariableDeclaration_in_entryRuleVariableDeclaration4917);
             iv_ruleVariableDeclaration=ruleVariableDeclaration();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleVariableDeclaration; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleVariableDeclaration4841); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleVariableDeclaration4927); 
 
             }
 
@@ -6066,15 +5667,23 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleVariableDeclaration
+    // $ANTLR end "entryRuleVariableDeclaration"
 
 
-    // $ANTLR start ruleVariableDeclaration
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2692:1: ruleVariableDeclaration returns [EObject current=null] : ( ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? '$' ( (lv_name_2_0= RULE_ID ) ) ( ( ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )? ) | ( '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')' ) ) ) ;
+    // $ANTLR start "ruleVariableDeclaration"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2225:1: ruleVariableDeclaration returns [EObject current=null] : ( ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? otherlv_1= '$' ( (lv_name_2_0= RULE_ID ) ) ( (otherlv_3= ':' ( (lv_type_4_0= ruleDataTypeName ) ) (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )? ) | (otherlv_9= '=' otherlv_10= '(' ( (lv_initValue_11_0= ruleExpression ) ) otherlv_12= ')' ) ) ) ;
     public final EObject ruleVariableDeclaration() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
         Token lv_name_2_0=null;
+        Token otherlv_3=null;
+        Token otherlv_5=null;
+        Token otherlv_6=null;
+        Token otherlv_8=null;
+        Token otherlv_9=null;
+        Token otherlv_10=null;
+        Token otherlv_12=null;
         AntlrDatatypeRuleToken lv_variableDeclaration_0_0 = null;
 
         EObject lv_type_4_0 = null;
@@ -6084,16 +5693,16 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         EObject lv_initValue_11_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2697:6: ( ( ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? '$' ( (lv_name_2_0= RULE_ID ) ) ( ( ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )? ) | ( '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')' ) ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2698:1: ( ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? '$' ( (lv_name_2_0= RULE_ID ) ) ( ( ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )? ) | ( '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')' ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2228:28: ( ( ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? otherlv_1= '$' ( (lv_name_2_0= RULE_ID ) ) ( (otherlv_3= ':' ( (lv_type_4_0= ruleDataTypeName ) ) (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )? ) | (otherlv_9= '=' otherlv_10= '(' ( (lv_initValue_11_0= ruleExpression ) ) otherlv_12= ')' ) ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2229:1: ( ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? otherlv_1= '$' ( (lv_name_2_0= RULE_ID ) ) ( (otherlv_3= ':' ( (lv_type_4_0= ruleDataTypeName ) ) (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )? ) | (otherlv_9= '=' otherlv_10= '(' ( (lv_initValue_11_0= ruleExpression ) ) otherlv_12= ')' ) ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2698:1: ( ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? '$' ( (lv_name_2_0= RULE_ID ) ) ( ( ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )? ) | ( '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')' ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2698:2: ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? '$' ( (lv_name_2_0= RULE_ID ) ) ( ( ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )? ) | ( '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')' ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2229:1: ( ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? otherlv_1= '$' ( (lv_name_2_0= RULE_ID ) ) ( (otherlv_3= ':' ( (lv_type_4_0= ruleDataTypeName ) ) (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )? ) | (otherlv_9= '=' otherlv_10= '(' ( (lv_initValue_11_0= ruleExpression ) ) otherlv_12= ')' ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2229:2: ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? otherlv_1= '$' ( (lv_name_2_0= RULE_ID ) ) ( (otherlv_3= ':' ( (lv_type_4_0= ruleDataTypeName ) ) (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )? ) | (otherlv_9= '=' otherlv_10= '(' ( (lv_initValue_11_0= ruleExpression ) ) otherlv_12= ')' ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2698:2: ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2229:2: ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )?
             int alt38=2;
             int LA38_0 = input.LA(1);
 
@@ -6102,34 +5711,29 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             switch (alt38) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2699:1: (lv_variableDeclaration_0_0= ruleVariableDirectionKind )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2230:1: (lv_variableDeclaration_0_0= ruleVariableDirectionKind )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2699:1: (lv_variableDeclaration_0_0= ruleVariableDirectionKind )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2700:3: lv_variableDeclaration_0_0= ruleVariableDirectionKind
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2230:1: (lv_variableDeclaration_0_0= ruleVariableDirectionKind )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2231:3: lv_variableDeclaration_0_0= ruleVariableDirectionKind
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getVariableDeclarationAccess().getVariableDeclarationVariableDirectionKindParserRuleCall_0_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getVariableDeclarationAccess().getVariableDeclarationVariableDirectionKindParserRuleCall_0_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleVariableDirectionKind_in_ruleVariableDeclaration4887);
+                    pushFollow(FOLLOW_ruleVariableDirectionKind_in_ruleVariableDeclaration4973);
                     lv_variableDeclaration_0_0=ruleVariableDirectionKind();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getVariableDeclarationRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getVariableDeclarationRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"variableDeclaration",
-                    	        		lv_variableDeclaration_0_0, 
-                    	        		"VariableDirectionKind", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"variableDeclaration",
+                            		lv_variableDeclaration_0_0, 
+                            		"VariableDirectionKind");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -6140,36 +5744,29 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            match(input,48,FOLLOW_48_in_ruleVariableDeclaration4898); 
+            otherlv_1=(Token)match(input,48,FOLLOW_48_in_ruleVariableDeclaration4986); 
 
-                    createLeafNode(grammarAccess.getVariableDeclarationAccess().getDollarSignKeyword_1(), null); 
+                	newLeafNode(otherlv_1, grammarAccess.getVariableDeclarationAccess().getDollarSignKeyword_1());
                 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2726:1: ( (lv_name_2_0= RULE_ID ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2727:1: (lv_name_2_0= RULE_ID )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2251:1: ( (lv_name_2_0= RULE_ID ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2252:1: (lv_name_2_0= RULE_ID )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2727:1: (lv_name_2_0= RULE_ID )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2728:3: lv_name_2_0= RULE_ID
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2252:1: (lv_name_2_0= RULE_ID )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2253:3: lv_name_2_0= RULE_ID
             {
-            lv_name_2_0=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleVariableDeclaration4915); 
+            lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleVariableDeclaration5003); 
 
-            			createLeafNode(grammarAccess.getVariableDeclarationAccess().getNameIDTerminalRuleCall_2_0(), "name"); 
+            			newLeafNode(lv_name_2_0, grammarAccess.getVariableDeclarationAccess().getNameIDTerminalRuleCall_2_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getVariableDeclarationRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getVariableDeclarationRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"name",
-            	        		lv_name_2_0, 
-            	        		"ID", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"name",
+                    		lv_name_2_0, 
+                    		"ID");
             	    
 
             }
@@ -6177,7 +5774,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2750:2: ( ( ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )? ) | ( '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')' ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2269:2: ( (otherlv_3= ':' ( (lv_type_4_0= ruleDataTypeName ) ) (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )? ) | (otherlv_9= '=' otherlv_10= '(' ( (lv_initValue_11_0= ruleExpression ) ) otherlv_12= ')' ) )
             int alt40=2;
             int LA40_0 = input.LA(1);
 
@@ -6189,50 +5786,45 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("2750:2: ( ( ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )? ) | ( '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')' ) )", 40, 0, input);
+                    new NoViableAltException("", 40, 0, input);
 
                 throw nvae;
             }
             switch (alt40) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2750:3: ( ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )? )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2269:3: (otherlv_3= ':' ( (lv_type_4_0= ruleDataTypeName ) ) (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )? )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2750:3: ( ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )? )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2750:5: ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )?
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2269:3: (otherlv_3= ':' ( (lv_type_4_0= ruleDataTypeName ) ) (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )? )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2269:5: otherlv_3= ':' ( (lv_type_4_0= ruleDataTypeName ) ) (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )?
                     {
-                    match(input,26,FOLLOW_26_in_ruleVariableDeclaration4932); 
+                    otherlv_3=(Token)match(input,26,FOLLOW_26_in_ruleVariableDeclaration5022); 
 
-                            createLeafNode(grammarAccess.getVariableDeclarationAccess().getColonKeyword_3_0_0(), null); 
+                        	newLeafNode(otherlv_3, grammarAccess.getVariableDeclarationAccess().getColonKeyword_3_0_0());
                         
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2754:1: ( (lv_type_4_0= ruleDataTypeName ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2755:1: (lv_type_4_0= ruleDataTypeName )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2273:1: ( (lv_type_4_0= ruleDataTypeName ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2274:1: (lv_type_4_0= ruleDataTypeName )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2755:1: (lv_type_4_0= ruleDataTypeName )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2756:3: lv_type_4_0= ruleDataTypeName
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2274:1: (lv_type_4_0= ruleDataTypeName )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2275:3: lv_type_4_0= ruleDataTypeName
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getVariableDeclarationAccess().getTypeDataTypeNameParserRuleCall_3_0_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getVariableDeclarationAccess().getTypeDataTypeNameParserRuleCall_3_0_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleDataTypeName_in_ruleVariableDeclaration4953);
+                    pushFollow(FOLLOW_ruleDataTypeName_in_ruleVariableDeclaration5043);
                     lv_type_4_0=ruleDataTypeName();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getVariableDeclarationRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getVariableDeclarationRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"type",
-                    	        		lv_type_4_0, 
-                    	        		"DataTypeName", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"type",
+                            		lv_type_4_0, 
+                            		"DataTypeName");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -6240,7 +5832,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
                     }
 
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2778:2: ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )?
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2291:2: (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )?
                     int alt39=2;
                     int LA39_0 = input.LA(1);
 
@@ -6249,45 +5841,40 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
                     }
                     switch (alt39) {
                         case 1 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2778:4: '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')'
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2291:4: otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')'
                             {
-                            match(input,43,FOLLOW_43_in_ruleVariableDeclaration4964); 
+                            otherlv_5=(Token)match(input,43,FOLLOW_43_in_ruleVariableDeclaration5056); 
 
-                                    createLeafNode(grammarAccess.getVariableDeclarationAccess().getEqualsSignKeyword_3_0_2_0(), null); 
+                                	newLeafNode(otherlv_5, grammarAccess.getVariableDeclarationAccess().getEqualsSignKeyword_3_0_2_0());
                                 
-                            match(input,34,FOLLOW_34_in_ruleVariableDeclaration4974); 
+                            otherlv_6=(Token)match(input,34,FOLLOW_34_in_ruleVariableDeclaration5068); 
 
-                                    createLeafNode(grammarAccess.getVariableDeclarationAccess().getLeftParenthesisKeyword_3_0_2_1(), null); 
+                                	newLeafNode(otherlv_6, grammarAccess.getVariableDeclarationAccess().getLeftParenthesisKeyword_3_0_2_1());
                                 
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2786:1: ( (lv_initValue_7_0= ruleExpression ) )
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2787:1: (lv_initValue_7_0= ruleExpression )
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2299:1: ( (lv_initValue_7_0= ruleExpression ) )
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2300:1: (lv_initValue_7_0= ruleExpression )
                             {
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2787:1: (lv_initValue_7_0= ruleExpression )
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2788:3: lv_initValue_7_0= ruleExpression
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2300:1: (lv_initValue_7_0= ruleExpression )
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2301:3: lv_initValue_7_0= ruleExpression
                             {
                              
-                            	        currentNode=createCompositeNode(grammarAccess.getVariableDeclarationAccess().getInitValueExpressionParserRuleCall_3_0_2_2_0(), currentNode); 
+                            	        newCompositeNode(grammarAccess.getVariableDeclarationAccess().getInitValueExpressionParserRuleCall_3_0_2_2_0()); 
                             	    
-                            pushFollow(FOLLOW_ruleExpression_in_ruleVariableDeclaration4995);
+                            pushFollow(FOLLOW_ruleExpression_in_ruleVariableDeclaration5089);
                             lv_initValue_7_0=ruleExpression();
-                            _fsp--;
+
+                            state._fsp--;
 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getVariableDeclarationRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode.getParent(), current);
+                            	            current = createModelElementForParent(grammarAccess.getVariableDeclarationRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"initValue",
-                            	        		lv_initValue_7_0, 
-                            	        		"Expression", 
-                            	        		currentNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
-                            	        currentNode = currentNode.getParent();
+                                   		set(
+                                   			current, 
+                                   			"initValue",
+                                    		lv_initValue_7_0, 
+                                    		"Expression");
+                            	        afterParserOrEnumRuleCall();
                             	    
 
                             }
@@ -6295,9 +5882,9 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
                             }
 
-                            match(input,35,FOLLOW_35_in_ruleVariableDeclaration5005); 
+                            otherlv_8=(Token)match(input,35,FOLLOW_35_in_ruleVariableDeclaration5101); 
 
-                                    createLeafNode(grammarAccess.getVariableDeclarationAccess().getRightParenthesisKeyword_3_0_2_3(), null); 
+                                	newLeafNode(otherlv_8, grammarAccess.getVariableDeclarationAccess().getRightParenthesisKeyword_3_0_2_3());
                                 
 
                             }
@@ -6312,48 +5899,43 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2815:6: ( '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')' )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2322:6: (otherlv_9= '=' otherlv_10= '(' ( (lv_initValue_11_0= ruleExpression ) ) otherlv_12= ')' )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2815:6: ( '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')' )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2815:8: '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')'
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2322:6: (otherlv_9= '=' otherlv_10= '(' ( (lv_initValue_11_0= ruleExpression ) ) otherlv_12= ')' )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2322:8: otherlv_9= '=' otherlv_10= '(' ( (lv_initValue_11_0= ruleExpression ) ) otherlv_12= ')'
                     {
-                    match(input,43,FOLLOW_43_in_ruleVariableDeclaration5025); 
+                    otherlv_9=(Token)match(input,43,FOLLOW_43_in_ruleVariableDeclaration5123); 
 
-                            createLeafNode(grammarAccess.getVariableDeclarationAccess().getEqualsSignKeyword_3_1_0(), null); 
+                        	newLeafNode(otherlv_9, grammarAccess.getVariableDeclarationAccess().getEqualsSignKeyword_3_1_0());
                         
-                    match(input,34,FOLLOW_34_in_ruleVariableDeclaration5035); 
+                    otherlv_10=(Token)match(input,34,FOLLOW_34_in_ruleVariableDeclaration5135); 
 
-                            createLeafNode(grammarAccess.getVariableDeclarationAccess().getLeftParenthesisKeyword_3_1_1(), null); 
+                        	newLeafNode(otherlv_10, grammarAccess.getVariableDeclarationAccess().getLeftParenthesisKeyword_3_1_1());
                         
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2823:1: ( (lv_initValue_11_0= ruleExpression ) )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2824:1: (lv_initValue_11_0= ruleExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2330:1: ( (lv_initValue_11_0= ruleExpression ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2331:1: (lv_initValue_11_0= ruleExpression )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2824:1: (lv_initValue_11_0= ruleExpression )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2825:3: lv_initValue_11_0= ruleExpression
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2331:1: (lv_initValue_11_0= ruleExpression )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2332:3: lv_initValue_11_0= ruleExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getVariableDeclarationAccess().getInitValueExpressionParserRuleCall_3_1_2_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getVariableDeclarationAccess().getInitValueExpressionParserRuleCall_3_1_2_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleExpression_in_ruleVariableDeclaration5056);
+                    pushFollow(FOLLOW_ruleExpression_in_ruleVariableDeclaration5156);
                     lv_initValue_11_0=ruleExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getVariableDeclarationRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getVariableDeclarationRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"initValue",
-                    	        		lv_initValue_11_0, 
-                    	        		"Expression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"initValue",
+                            		lv_initValue_11_0, 
+                            		"Expression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -6361,9 +5943,9 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
                     }
 
-                    match(input,35,FOLLOW_35_in_ruleVariableDeclaration5066); 
+                    otherlv_12=(Token)match(input,35,FOLLOW_35_in_ruleVariableDeclaration5168); 
 
-                            createLeafNode(grammarAccess.getVariableDeclarationAccess().getRightParenthesisKeyword_3_1_3(), null); 
+                        	newLeafNode(otherlv_12, grammarAccess.getVariableDeclarationAccess().getRightParenthesisKeyword_3_1_3());
                         
 
                     }
@@ -6380,9 +5962,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -6393,11 +5973,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleVariableDeclaration
+    // $ANTLR end "ruleVariableDeclaration"
 
 
-    // $ANTLR start entryRuleVariableDirectionKind
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2859:1: entryRuleVariableDirectionKind returns [String current=null] : iv_ruleVariableDirectionKind= ruleVariableDirectionKind EOF ;
+    // $ANTLR start "entryRuleVariableDirectionKind"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2360:1: entryRuleVariableDirectionKind returns [String current=null] : iv_ruleVariableDirectionKind= ruleVariableDirectionKind EOF ;
     public final String entryRuleVariableDirectionKind() throws RecognitionException {
         String current = null;
 
@@ -6405,16 +5985,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2860:2: (iv_ruleVariableDirectionKind= ruleVariableDirectionKind EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2861:2: iv_ruleVariableDirectionKind= ruleVariableDirectionKind EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2361:2: (iv_ruleVariableDirectionKind= ruleVariableDirectionKind EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2362:2: iv_ruleVariableDirectionKind= ruleVariableDirectionKind EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getVariableDirectionKindRule(), currentNode); 
-            pushFollow(FOLLOW_ruleVariableDirectionKind_in_entryRuleVariableDirectionKind5105);
+             newCompositeNode(grammarAccess.getVariableDirectionKindRule()); 
+            pushFollow(FOLLOW_ruleVariableDirectionKind_in_entryRuleVariableDirectionKind5207);
             iv_ruleVariableDirectionKind=ruleVariableDirectionKind();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleVariableDirectionKind.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleVariableDirectionKind5116); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleVariableDirectionKind5218); 
 
             }
 
@@ -6428,23 +6009,23 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleVariableDirectionKind
+    // $ANTLR end "entryRuleVariableDirectionKind"
 
 
-    // $ANTLR start ruleVariableDirectionKind
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2868:1: ruleVariableDirectionKind returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'in' | kw= 'out' | kw= 'inout' ) ;
+    // $ANTLR start "ruleVariableDirectionKind"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2369:1: ruleVariableDirectionKind returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'in' | kw= 'out' | kw= 'inout' ) ;
     public final AntlrDatatypeRuleToken ruleVariableDirectionKind() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
         Token kw=null;
 
-         setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2873:6: ( (kw= 'in' | kw= 'out' | kw= 'inout' ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2874:1: (kw= 'in' | kw= 'out' | kw= 'inout' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2372:28: ( (kw= 'in' | kw= 'out' | kw= 'inout' ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2373:1: (kw= 'in' | kw= 'out' | kw= 'inout' )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2874:1: (kw= 'in' | kw= 'out' | kw= 'inout' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2373:1: (kw= 'in' | kw= 'out' | kw= 'inout' )
             int alt41=3;
             switch ( input.LA(1) ) {
             case 49:
@@ -6464,44 +6045,41 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("2874:1: (kw= 'in' | kw= 'out' | kw= 'inout' )", 41, 0, input);
+                    new NoViableAltException("", 41, 0, input);
 
                 throw nvae;
             }
 
             switch (alt41) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2875:2: kw= 'in'
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2374:2: kw= 'in'
                     {
-                    kw=(Token)input.LT(1);
-                    match(input,49,FOLLOW_49_in_ruleVariableDirectionKind5154); 
+                    kw=(Token)match(input,49,FOLLOW_49_in_ruleVariableDirectionKind5256); 
 
                             current.merge(kw);
-                            createLeafNode(grammarAccess.getVariableDirectionKindAccess().getInKeyword_0(), null); 
+                            newLeafNode(kw, grammarAccess.getVariableDirectionKindAccess().getInKeyword_0()); 
                         
 
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2882:2: kw= 'out'
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2381:2: kw= 'out'
                     {
-                    kw=(Token)input.LT(1);
-                    match(input,50,FOLLOW_50_in_ruleVariableDirectionKind5173); 
+                    kw=(Token)match(input,50,FOLLOW_50_in_ruleVariableDirectionKind5275); 
 
                             current.merge(kw);
-                            createLeafNode(grammarAccess.getVariableDirectionKindAccess().getOutKeyword_1(), null); 
+                            newLeafNode(kw, grammarAccess.getVariableDirectionKindAccess().getOutKeyword_1()); 
                         
 
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2889:2: kw= 'inout'
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2388:2: kw= 'inout'
                     {
-                    kw=(Token)input.LT(1);
-                    match(input,51,FOLLOW_51_in_ruleVariableDirectionKind5192); 
+                    kw=(Token)match(input,51,FOLLOW_51_in_ruleVariableDirectionKind5294); 
 
                             current.merge(kw);
-                            createLeafNode(grammarAccess.getVariableDirectionKindAccess().getInoutKeyword_2(), null); 
+                            newLeafNode(kw, grammarAccess.getVariableDirectionKindAccess().getInoutKeyword_2()); 
                         
 
                     }
@@ -6512,9 +6090,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-            	    lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -6525,11 +6101,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleVariableDirectionKind
+    // $ANTLR end "ruleVariableDirectionKind"
 
 
-    // $ANTLR start entryRuleDataTypeName
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2902:1: entryRuleDataTypeName returns [EObject current=null] : iv_ruleDataTypeName= ruleDataTypeName EOF ;
+    // $ANTLR start "entryRuleDataTypeName"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2401:1: entryRuleDataTypeName returns [EObject current=null] : iv_ruleDataTypeName= ruleDataTypeName EOF ;
     public final EObject entryRuleDataTypeName() throws RecognitionException {
         EObject current = null;
 
@@ -6537,16 +6113,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2903:2: (iv_ruleDataTypeName= ruleDataTypeName EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2904:2: iv_ruleDataTypeName= ruleDataTypeName EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2402:2: (iv_ruleDataTypeName= ruleDataTypeName EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2403:2: iv_ruleDataTypeName= ruleDataTypeName EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getDataTypeNameRule(), currentNode); 
-            pushFollow(FOLLOW_ruleDataTypeName_in_entryRuleDataTypeName5232);
+             newCompositeNode(grammarAccess.getDataTypeNameRule()); 
+            pushFollow(FOLLOW_ruleDataTypeName_in_entryRuleDataTypeName5334);
             iv_ruleDataTypeName=ruleDataTypeName();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleDataTypeName; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDataTypeName5242); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDataTypeName5344); 
 
             }
 
@@ -6560,27 +6137,28 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleDataTypeName
+    // $ANTLR end "entryRuleDataTypeName"
 
 
-    // $ANTLR start ruleDataTypeName
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2911:1: ruleDataTypeName returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ) ;
+    // $ANTLR start "ruleDataTypeName"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2410:1: ruleDataTypeName returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) ;
     public final EObject ruleDataTypeName() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
         EObject lv_path_0_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2916:6: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2917:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2413:28: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2414:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2917:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2917:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2414:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2414:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2917:2: ( (lv_path_0_0= ruleQualifiedName ) )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2414:2: ( (lv_path_0_0= ruleQualifiedName ) )?
             int alt42=2;
             int LA42_0 = input.LA(1);
 
@@ -6593,34 +6171,29 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
             }
             switch (alt42) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2918:1: (lv_path_0_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2415:1: (lv_path_0_0= ruleQualifiedName )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2918:1: (lv_path_0_0= ruleQualifiedName )
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2919:3: lv_path_0_0= ruleQualifiedName
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2415:1: (lv_path_0_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2416:3: lv_path_0_0= ruleQualifiedName
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getDataTypeNameAccess().getPathQualifiedNameParserRuleCall_0_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getDataTypeNameAccess().getPathQualifiedNameParserRuleCall_0_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleDataTypeName5288);
+                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleDataTypeName5390);
                     lv_path_0_0=ruleQualifiedName();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getDataTypeNameRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getDataTypeNameRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"path",
-                    	        		lv_path_0_0, 
-                    	        		"QualifiedName", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"path",
+                            		lv_path_0_0, 
+                            		"QualifiedName");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -6631,21 +6204,20 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2941:3: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2942:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2432:3: ( (otherlv_1= RULE_ID ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2433:1: (otherlv_1= RULE_ID )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2942:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2943:3: RULE_ID
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2433:1: (otherlv_1= RULE_ID )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2434:3: otherlv_1= RULE_ID
             {
 
             			if (current==null) {
-            	            current = factory.create(grammarAccess.getDataTypeNameRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getDataTypeNameRule());
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleDataTypeName5307); 
+            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleDataTypeName5411); 
 
-            		createLeafNode(grammarAccess.getDataTypeNameAccess().getTypeDataTypeCrossReference_1_0(), "type"); 
+            		newLeafNode(otherlv_1, grammarAccess.getDataTypeNameAccess().getTypeDataTypeCrossReference_1_0()); 
             	
 
             }
@@ -6659,9 +6231,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -6672,11 +6242,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleDataTypeName
+    // $ANTLR end "ruleDataTypeName"
 
 
-    // $ANTLR start entryRuleNumberLiteralRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2963:1: entryRuleNumberLiteralRule returns [EObject current=null] : iv_ruleNumberLiteralRule= ruleNumberLiteralRule EOF ;
+    // $ANTLR start "entryRuleNumberLiteralRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2453:1: entryRuleNumberLiteralRule returns [EObject current=null] : iv_ruleNumberLiteralRule= ruleNumberLiteralRule EOF ;
     public final EObject entryRuleNumberLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -6684,16 +6254,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2964:2: (iv_ruleNumberLiteralRule= ruleNumberLiteralRule EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2965:2: iv_ruleNumberLiteralRule= ruleNumberLiteralRule EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2454:2: (iv_ruleNumberLiteralRule= ruleNumberLiteralRule EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2455:2: iv_ruleNumberLiteralRule= ruleNumberLiteralRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getNumberLiteralRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleNumberLiteralRule_in_entryRuleNumberLiteralRule5343);
+             newCompositeNode(grammarAccess.getNumberLiteralRuleRule()); 
+            pushFollow(FOLLOW_ruleNumberLiteralRule_in_entryRuleNumberLiteralRule5447);
             iv_ruleNumberLiteralRule=ruleNumberLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleNumberLiteralRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleNumberLiteralRule5353); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleNumberLiteralRule5457); 
 
             }
 
@@ -6707,11 +6278,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleNumberLiteralRule
+    // $ANTLR end "entryRuleNumberLiteralRule"
 
 
-    // $ANTLR start ruleNumberLiteralRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2972:1: ruleNumberLiteralRule returns [EObject current=null] : (this_IntegerLiteralRule_0= ruleIntegerLiteralRule | this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule | this_RealLiteralRule_2= ruleRealLiteralRule ) ;
+    // $ANTLR start "ruleNumberLiteralRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2462:1: ruleNumberLiteralRule returns [EObject current=null] : (this_IntegerLiteralRule_0= ruleIntegerLiteralRule | this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule | this_RealLiteralRule_2= ruleRealLiteralRule ) ;
     public final EObject ruleNumberLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -6722,13 +6293,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         EObject this_RealLiteralRule_2 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2977:6: ( (this_IntegerLiteralRule_0= ruleIntegerLiteralRule | this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule | this_RealLiteralRule_2= ruleRealLiteralRule ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2978:1: (this_IntegerLiteralRule_0= ruleIntegerLiteralRule | this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule | this_RealLiteralRule_2= ruleRealLiteralRule )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2465:28: ( (this_IntegerLiteralRule_0= ruleIntegerLiteralRule | this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule | this_RealLiteralRule_2= ruleRealLiteralRule ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2466:1: (this_IntegerLiteralRule_0= ruleIntegerLiteralRule | this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule | this_RealLiteralRule_2= ruleRealLiteralRule )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2978:1: (this_IntegerLiteralRule_0= ruleIntegerLiteralRule | this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule | this_RealLiteralRule_2= ruleRealLiteralRule )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2466:1: (this_IntegerLiteralRule_0= ruleIntegerLiteralRule | this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule | this_RealLiteralRule_2= ruleRealLiteralRule )
             int alt43=3;
             switch ( input.LA(1) ) {
             case RULE_INTEGERLITERAL:
@@ -6748,59 +6319,62 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("2978:1: (this_IntegerLiteralRule_0= ruleIntegerLiteralRule | this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule | this_RealLiteralRule_2= ruleRealLiteralRule )", 43, 0, input);
+                    new NoViableAltException("", 43, 0, input);
 
                 throw nvae;
             }
 
             switch (alt43) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2979:5: this_IntegerLiteralRule_0= ruleIntegerLiteralRule
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2467:5: this_IntegerLiteralRule_0= ruleIntegerLiteralRule
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getNumberLiteralRuleAccess().getIntegerLiteralRuleParserRuleCall_0(), currentNode); 
+                            newCompositeNode(grammarAccess.getNumberLiteralRuleAccess().getIntegerLiteralRuleParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleIntegerLiteralRule_in_ruleNumberLiteralRule5400);
+                    pushFollow(FOLLOW_ruleIntegerLiteralRule_in_ruleNumberLiteralRule5504);
                     this_IntegerLiteralRule_0=ruleIntegerLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_IntegerLiteralRule_0; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2989:5: this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2477:5: this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getNumberLiteralRuleAccess().getUnlimitedLiteralRuleParserRuleCall_1(), currentNode); 
+                            newCompositeNode(grammarAccess.getNumberLiteralRuleAccess().getUnlimitedLiteralRuleParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleUnlimitedLiteralRule_in_ruleNumberLiteralRule5427);
+                    pushFollow(FOLLOW_ruleUnlimitedLiteralRule_in_ruleNumberLiteralRule5531);
                     this_UnlimitedLiteralRule_1=ruleUnlimitedLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_UnlimitedLiteralRule_1; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2999:5: this_RealLiteralRule_2= ruleRealLiteralRule
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2487:5: this_RealLiteralRule_2= ruleRealLiteralRule
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getNumberLiteralRuleAccess().getRealLiteralRuleParserRuleCall_2(), currentNode); 
+                            newCompositeNode(grammarAccess.getNumberLiteralRuleAccess().getRealLiteralRuleParserRuleCall_2()); 
                         
-                    pushFollow(FOLLOW_ruleRealLiteralRule_in_ruleNumberLiteralRule5454);
+                    pushFollow(FOLLOW_ruleRealLiteralRule_in_ruleNumberLiteralRule5558);
                     this_RealLiteralRule_2=ruleRealLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_RealLiteralRule_2; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
@@ -6811,9 +6385,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -6824,11 +6396,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleNumberLiteralRule
+    // $ANTLR end "ruleNumberLiteralRule"
 
 
-    // $ANTLR start entryRuleIntegerLiteralRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3015:1: entryRuleIntegerLiteralRule returns [EObject current=null] : iv_ruleIntegerLiteralRule= ruleIntegerLiteralRule EOF ;
+    // $ANTLR start "entryRuleIntegerLiteralRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2503:1: entryRuleIntegerLiteralRule returns [EObject current=null] : iv_ruleIntegerLiteralRule= ruleIntegerLiteralRule EOF ;
     public final EObject entryRuleIntegerLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -6836,16 +6408,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3016:2: (iv_ruleIntegerLiteralRule= ruleIntegerLiteralRule EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3017:2: iv_ruleIntegerLiteralRule= ruleIntegerLiteralRule EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2504:2: (iv_ruleIntegerLiteralRule= ruleIntegerLiteralRule EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2505:2: iv_ruleIntegerLiteralRule= ruleIntegerLiteralRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getIntegerLiteralRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleIntegerLiteralRule_in_entryRuleIntegerLiteralRule5489);
+             newCompositeNode(grammarAccess.getIntegerLiteralRuleRule()); 
+            pushFollow(FOLLOW_ruleIntegerLiteralRule_in_entryRuleIntegerLiteralRule5593);
             iv_ruleIntegerLiteralRule=ruleIntegerLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleIntegerLiteralRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleIntegerLiteralRule5499); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleIntegerLiteralRule5603); 
 
             }
 
@@ -6859,48 +6432,41 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleIntegerLiteralRule
+    // $ANTLR end "entryRuleIntegerLiteralRule"
 
 
-    // $ANTLR start ruleIntegerLiteralRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3024:1: ruleIntegerLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_INTEGERLITERAL ) ) ;
+    // $ANTLR start "ruleIntegerLiteralRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2512:1: ruleIntegerLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_INTEGERLITERAL ) ) ;
     public final EObject ruleIntegerLiteralRule() throws RecognitionException {
         EObject current = null;
 
         Token lv_value_0_0=null;
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3029:6: ( ( (lv_value_0_0= RULE_INTEGERLITERAL ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3030:1: ( (lv_value_0_0= RULE_INTEGERLITERAL ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2515:28: ( ( (lv_value_0_0= RULE_INTEGERLITERAL ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2516:1: ( (lv_value_0_0= RULE_INTEGERLITERAL ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3030:1: ( (lv_value_0_0= RULE_INTEGERLITERAL ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3031:1: (lv_value_0_0= RULE_INTEGERLITERAL )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2516:1: ( (lv_value_0_0= RULE_INTEGERLITERAL ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2517:1: (lv_value_0_0= RULE_INTEGERLITERAL )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3031:1: (lv_value_0_0= RULE_INTEGERLITERAL )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3032:3: lv_value_0_0= RULE_INTEGERLITERAL
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2517:1: (lv_value_0_0= RULE_INTEGERLITERAL )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2518:3: lv_value_0_0= RULE_INTEGERLITERAL
             {
-            lv_value_0_0=(Token)input.LT(1);
-            match(input,RULE_INTEGERLITERAL,FOLLOW_RULE_INTEGERLITERAL_in_ruleIntegerLiteralRule5540); 
+            lv_value_0_0=(Token)match(input,RULE_INTEGERLITERAL,FOLLOW_RULE_INTEGERLITERAL_in_ruleIntegerLiteralRule5644); 
 
-            			createLeafNode(grammarAccess.getIntegerLiteralRuleAccess().getValueIntegerLiteralTerminalRuleCall_0(), "value"); 
+            			newLeafNode(lv_value_0_0, grammarAccess.getIntegerLiteralRuleAccess().getValueIntegerLiteralTerminalRuleCall_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getIntegerLiteralRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getIntegerLiteralRuleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"value",
-            	        		lv_value_0_0, 
-            	        		"IntegerLiteral", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"value",
+                    		lv_value_0_0, 
+                    		"IntegerLiteral");
             	    
 
             }
@@ -6911,9 +6477,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -6924,11 +6488,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleIntegerLiteralRule
+    // $ANTLR end "ruleIntegerLiteralRule"
 
 
-    // $ANTLR start entryRuleUnlimitedLiteralRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3062:1: entryRuleUnlimitedLiteralRule returns [EObject current=null] : iv_ruleUnlimitedLiteralRule= ruleUnlimitedLiteralRule EOF ;
+    // $ANTLR start "entryRuleUnlimitedLiteralRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2542:1: entryRuleUnlimitedLiteralRule returns [EObject current=null] : iv_ruleUnlimitedLiteralRule= ruleUnlimitedLiteralRule EOF ;
     public final EObject entryRuleUnlimitedLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -6936,16 +6500,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3063:2: (iv_ruleUnlimitedLiteralRule= ruleUnlimitedLiteralRule EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3064:2: iv_ruleUnlimitedLiteralRule= ruleUnlimitedLiteralRule EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2543:2: (iv_ruleUnlimitedLiteralRule= ruleUnlimitedLiteralRule EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2544:2: iv_ruleUnlimitedLiteralRule= ruleUnlimitedLiteralRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getUnlimitedLiteralRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleUnlimitedLiteralRule_in_entryRuleUnlimitedLiteralRule5580);
+             newCompositeNode(grammarAccess.getUnlimitedLiteralRuleRule()); 
+            pushFollow(FOLLOW_ruleUnlimitedLiteralRule_in_entryRuleUnlimitedLiteralRule5684);
             iv_ruleUnlimitedLiteralRule=ruleUnlimitedLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleUnlimitedLiteralRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleUnlimitedLiteralRule5590); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleUnlimitedLiteralRule5694); 
 
             }
 
@@ -6959,44 +6524,37 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleUnlimitedLiteralRule
+    // $ANTLR end "entryRuleUnlimitedLiteralRule"
 
 
-    // $ANTLR start ruleUnlimitedLiteralRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3071:1: ruleUnlimitedLiteralRule returns [EObject current=null] : ( (lv_value_0_0= '*' ) ) ;
+    // $ANTLR start "ruleUnlimitedLiteralRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2551:1: ruleUnlimitedLiteralRule returns [EObject current=null] : ( (lv_value_0_0= '*' ) ) ;
     public final EObject ruleUnlimitedLiteralRule() throws RecognitionException {
         EObject current = null;
 
         Token lv_value_0_0=null;
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3076:6: ( ( (lv_value_0_0= '*' ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3077:1: ( (lv_value_0_0= '*' ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2554:28: ( ( (lv_value_0_0= '*' ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2555:1: ( (lv_value_0_0= '*' ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3077:1: ( (lv_value_0_0= '*' ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3078:1: (lv_value_0_0= '*' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2555:1: ( (lv_value_0_0= '*' ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2556:1: (lv_value_0_0= '*' )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3078:1: (lv_value_0_0= '*' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3079:3: lv_value_0_0= '*'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2556:1: (lv_value_0_0= '*' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2557:3: lv_value_0_0= '*'
             {
-            lv_value_0_0=(Token)input.LT(1);
-            match(input,29,FOLLOW_29_in_ruleUnlimitedLiteralRule5632); 
+            lv_value_0_0=(Token)match(input,29,FOLLOW_29_in_ruleUnlimitedLiteralRule5736); 
 
-                    createLeafNode(grammarAccess.getUnlimitedLiteralRuleAccess().getValueAsteriskKeyword_0(), "value"); 
+                    newLeafNode(lv_value_0_0, grammarAccess.getUnlimitedLiteralRuleAccess().getValueAsteriskKeyword_0());
                 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getUnlimitedLiteralRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getUnlimitedLiteralRuleRule());
             	        }
-            	        
-            	        try {
-            	       		set(current, "value", lv_value_0_0, "*", lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(current, "value", lv_value_0_0, "*");
             	    
 
             }
@@ -7007,9 +6565,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -7020,11 +6576,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleUnlimitedLiteralRule
+    // $ANTLR end "ruleUnlimitedLiteralRule"
 
 
-    // $ANTLR start entryRuleRealLiteralRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3106:1: entryRuleRealLiteralRule returns [EObject current=null] : iv_ruleRealLiteralRule= ruleRealLiteralRule EOF ;
+    // $ANTLR start "entryRuleRealLiteralRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2578:1: entryRuleRealLiteralRule returns [EObject current=null] : iv_ruleRealLiteralRule= ruleRealLiteralRule EOF ;
     public final EObject entryRuleRealLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -7032,16 +6588,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3107:2: (iv_ruleRealLiteralRule= ruleRealLiteralRule EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3108:2: iv_ruleRealLiteralRule= ruleRealLiteralRule EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2579:2: (iv_ruleRealLiteralRule= ruleRealLiteralRule EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2580:2: iv_ruleRealLiteralRule= ruleRealLiteralRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getRealLiteralRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleRealLiteralRule_in_entryRuleRealLiteralRule5680);
+             newCompositeNode(grammarAccess.getRealLiteralRuleRule()); 
+            pushFollow(FOLLOW_ruleRealLiteralRule_in_entryRuleRealLiteralRule5784);
             iv_ruleRealLiteralRule=ruleRealLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleRealLiteralRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleRealLiteralRule5690); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleRealLiteralRule5794); 
 
             }
 
@@ -7055,48 +6612,41 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleRealLiteralRule
+    // $ANTLR end "entryRuleRealLiteralRule"
 
 
-    // $ANTLR start ruleRealLiteralRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3115:1: ruleRealLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_REALLITERAL ) ) ;
+    // $ANTLR start "ruleRealLiteralRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2587:1: ruleRealLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_REALLITERAL ) ) ;
     public final EObject ruleRealLiteralRule() throws RecognitionException {
         EObject current = null;
 
         Token lv_value_0_0=null;
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3120:6: ( ( (lv_value_0_0= RULE_REALLITERAL ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3121:1: ( (lv_value_0_0= RULE_REALLITERAL ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2590:28: ( ( (lv_value_0_0= RULE_REALLITERAL ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2591:1: ( (lv_value_0_0= RULE_REALLITERAL ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3121:1: ( (lv_value_0_0= RULE_REALLITERAL ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3122:1: (lv_value_0_0= RULE_REALLITERAL )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2591:1: ( (lv_value_0_0= RULE_REALLITERAL ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2592:1: (lv_value_0_0= RULE_REALLITERAL )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3122:1: (lv_value_0_0= RULE_REALLITERAL )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3123:3: lv_value_0_0= RULE_REALLITERAL
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2592:1: (lv_value_0_0= RULE_REALLITERAL )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2593:3: lv_value_0_0= RULE_REALLITERAL
             {
-            lv_value_0_0=(Token)input.LT(1);
-            match(input,RULE_REALLITERAL,FOLLOW_RULE_REALLITERAL_in_ruleRealLiteralRule5731); 
+            lv_value_0_0=(Token)match(input,RULE_REALLITERAL,FOLLOW_RULE_REALLITERAL_in_ruleRealLiteralRule5835); 
 
-            			createLeafNode(grammarAccess.getRealLiteralRuleAccess().getValueRealLiteralTerminalRuleCall_0(), "value"); 
+            			newLeafNode(lv_value_0_0, grammarAccess.getRealLiteralRuleAccess().getValueRealLiteralTerminalRuleCall_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getRealLiteralRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getRealLiteralRuleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"value",
-            	        		lv_value_0_0, 
-            	        		"RealLiteral", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"value",
+                    		lv_value_0_0, 
+                    		"RealLiteral");
             	    
 
             }
@@ -7107,9 +6657,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -7120,11 +6668,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleRealLiteralRule
+    // $ANTLR end "ruleRealLiteralRule"
 
 
-    // $ANTLR start entryRuleDateTimeLiteralRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3153:1: entryRuleDateTimeLiteralRule returns [EObject current=null] : iv_ruleDateTimeLiteralRule= ruleDateTimeLiteralRule EOF ;
+    // $ANTLR start "entryRuleDateTimeLiteralRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2617:1: entryRuleDateTimeLiteralRule returns [EObject current=null] : iv_ruleDateTimeLiteralRule= ruleDateTimeLiteralRule EOF ;
     public final EObject entryRuleDateTimeLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -7132,16 +6680,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3154:2: (iv_ruleDateTimeLiteralRule= ruleDateTimeLiteralRule EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3155:2: iv_ruleDateTimeLiteralRule= ruleDateTimeLiteralRule EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2618:2: (iv_ruleDateTimeLiteralRule= ruleDateTimeLiteralRule EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2619:2: iv_ruleDateTimeLiteralRule= ruleDateTimeLiteralRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getDateTimeLiteralRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleDateTimeLiteralRule_in_entryRuleDateTimeLiteralRule5771);
+             newCompositeNode(grammarAccess.getDateTimeLiteralRuleRule()); 
+            pushFollow(FOLLOW_ruleDateTimeLiteralRule_in_entryRuleDateTimeLiteralRule5875);
             iv_ruleDateTimeLiteralRule=ruleDateTimeLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleDateTimeLiteralRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDateTimeLiteralRule5781); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDateTimeLiteralRule5885); 
 
             }
 
@@ -7155,48 +6704,41 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleDateTimeLiteralRule
+    // $ANTLR end "entryRuleDateTimeLiteralRule"
 
 
-    // $ANTLR start ruleDateTimeLiteralRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3162:1: ruleDateTimeLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_DATETIMELITERAL ) ) ;
+    // $ANTLR start "ruleDateTimeLiteralRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2626:1: ruleDateTimeLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_DATETIMELITERAL ) ) ;
     public final EObject ruleDateTimeLiteralRule() throws RecognitionException {
         EObject current = null;
 
         Token lv_value_0_0=null;
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3167:6: ( ( (lv_value_0_0= RULE_DATETIMELITERAL ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3168:1: ( (lv_value_0_0= RULE_DATETIMELITERAL ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2629:28: ( ( (lv_value_0_0= RULE_DATETIMELITERAL ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2630:1: ( (lv_value_0_0= RULE_DATETIMELITERAL ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3168:1: ( (lv_value_0_0= RULE_DATETIMELITERAL ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3169:1: (lv_value_0_0= RULE_DATETIMELITERAL )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2630:1: ( (lv_value_0_0= RULE_DATETIMELITERAL ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2631:1: (lv_value_0_0= RULE_DATETIMELITERAL )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3169:1: (lv_value_0_0= RULE_DATETIMELITERAL )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3170:3: lv_value_0_0= RULE_DATETIMELITERAL
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2631:1: (lv_value_0_0= RULE_DATETIMELITERAL )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2632:3: lv_value_0_0= RULE_DATETIMELITERAL
             {
-            lv_value_0_0=(Token)input.LT(1);
-            match(input,RULE_DATETIMELITERAL,FOLLOW_RULE_DATETIMELITERAL_in_ruleDateTimeLiteralRule5822); 
+            lv_value_0_0=(Token)match(input,RULE_DATETIMELITERAL,FOLLOW_RULE_DATETIMELITERAL_in_ruleDateTimeLiteralRule5926); 
 
-            			createLeafNode(grammarAccess.getDateTimeLiteralRuleAccess().getValueDateTimeLiteralTerminalRuleCall_0(), "value"); 
+            			newLeafNode(lv_value_0_0, grammarAccess.getDateTimeLiteralRuleAccess().getValueDateTimeLiteralTerminalRuleCall_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getDateTimeLiteralRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getDateTimeLiteralRuleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"value",
-            	        		lv_value_0_0, 
-            	        		"DateTimeLiteral", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"value",
+                    		lv_value_0_0, 
+                    		"DateTimeLiteral");
             	    
 
             }
@@ -7207,9 +6749,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -7220,11 +6760,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleDateTimeLiteralRule
+    // $ANTLR end "ruleDateTimeLiteralRule"
 
 
-    // $ANTLR start entryRuleBooleanLiteralRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3200:1: entryRuleBooleanLiteralRule returns [EObject current=null] : iv_ruleBooleanLiteralRule= ruleBooleanLiteralRule EOF ;
+    // $ANTLR start "entryRuleBooleanLiteralRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2656:1: entryRuleBooleanLiteralRule returns [EObject current=null] : iv_ruleBooleanLiteralRule= ruleBooleanLiteralRule EOF ;
     public final EObject entryRuleBooleanLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -7232,16 +6772,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3201:2: (iv_ruleBooleanLiteralRule= ruleBooleanLiteralRule EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3202:2: iv_ruleBooleanLiteralRule= ruleBooleanLiteralRule EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2657:2: (iv_ruleBooleanLiteralRule= ruleBooleanLiteralRule EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2658:2: iv_ruleBooleanLiteralRule= ruleBooleanLiteralRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getBooleanLiteralRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleBooleanLiteralRule_in_entryRuleBooleanLiteralRule5862);
+             newCompositeNode(grammarAccess.getBooleanLiteralRuleRule()); 
+            pushFollow(FOLLOW_ruleBooleanLiteralRule_in_entryRuleBooleanLiteralRule5966);
             iv_ruleBooleanLiteralRule=ruleBooleanLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleBooleanLiteralRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleBooleanLiteralRule5872); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleBooleanLiteralRule5976); 
 
             }
 
@@ -7255,48 +6796,41 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleBooleanLiteralRule
+    // $ANTLR end "entryRuleBooleanLiteralRule"
 
 
-    // $ANTLR start ruleBooleanLiteralRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3209:1: ruleBooleanLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_BOOLEANLITERAL ) ) ;
+    // $ANTLR start "ruleBooleanLiteralRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2665:1: ruleBooleanLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_BOOLEANLITERAL ) ) ;
     public final EObject ruleBooleanLiteralRule() throws RecognitionException {
         EObject current = null;
 
         Token lv_value_0_0=null;
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3214:6: ( ( (lv_value_0_0= RULE_BOOLEANLITERAL ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3215:1: ( (lv_value_0_0= RULE_BOOLEANLITERAL ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2668:28: ( ( (lv_value_0_0= RULE_BOOLEANLITERAL ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2669:1: ( (lv_value_0_0= RULE_BOOLEANLITERAL ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3215:1: ( (lv_value_0_0= RULE_BOOLEANLITERAL ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3216:1: (lv_value_0_0= RULE_BOOLEANLITERAL )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2669:1: ( (lv_value_0_0= RULE_BOOLEANLITERAL ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2670:1: (lv_value_0_0= RULE_BOOLEANLITERAL )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3216:1: (lv_value_0_0= RULE_BOOLEANLITERAL )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3217:3: lv_value_0_0= RULE_BOOLEANLITERAL
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2670:1: (lv_value_0_0= RULE_BOOLEANLITERAL )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2671:3: lv_value_0_0= RULE_BOOLEANLITERAL
             {
-            lv_value_0_0=(Token)input.LT(1);
-            match(input,RULE_BOOLEANLITERAL,FOLLOW_RULE_BOOLEANLITERAL_in_ruleBooleanLiteralRule5913); 
+            lv_value_0_0=(Token)match(input,RULE_BOOLEANLITERAL,FOLLOW_RULE_BOOLEANLITERAL_in_ruleBooleanLiteralRule6017); 
 
-            			createLeafNode(grammarAccess.getBooleanLiteralRuleAccess().getValueBooleanLiteralTerminalRuleCall_0(), "value"); 
+            			newLeafNode(lv_value_0_0, grammarAccess.getBooleanLiteralRuleAccess().getValueBooleanLiteralTerminalRuleCall_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getBooleanLiteralRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getBooleanLiteralRuleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"value",
-            	        		lv_value_0_0, 
-            	        		"BooleanLiteral", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"value",
+                    		lv_value_0_0, 
+                    		"BooleanLiteral");
             	    
 
             }
@@ -7307,9 +6841,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -7320,11 +6852,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleBooleanLiteralRule
+    // $ANTLR end "ruleBooleanLiteralRule"
 
 
-    // $ANTLR start entryRuleNullLiteralRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3247:1: entryRuleNullLiteralRule returns [EObject current=null] : iv_ruleNullLiteralRule= ruleNullLiteralRule EOF ;
+    // $ANTLR start "entryRuleNullLiteralRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2695:1: entryRuleNullLiteralRule returns [EObject current=null] : iv_ruleNullLiteralRule= ruleNullLiteralRule EOF ;
     public final EObject entryRuleNullLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -7332,16 +6864,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3248:2: (iv_ruleNullLiteralRule= ruleNullLiteralRule EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3249:2: iv_ruleNullLiteralRule= ruleNullLiteralRule EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2696:2: (iv_ruleNullLiteralRule= ruleNullLiteralRule EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2697:2: iv_ruleNullLiteralRule= ruleNullLiteralRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getNullLiteralRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleNullLiteralRule_in_entryRuleNullLiteralRule5953);
+             newCompositeNode(grammarAccess.getNullLiteralRuleRule()); 
+            pushFollow(FOLLOW_ruleNullLiteralRule_in_entryRuleNullLiteralRule6057);
             iv_ruleNullLiteralRule=ruleNullLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleNullLiteralRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleNullLiteralRule5963); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleNullLiteralRule6067); 
 
             }
 
@@ -7355,48 +6888,41 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleNullLiteralRule
+    // $ANTLR end "entryRuleNullLiteralRule"
 
 
-    // $ANTLR start ruleNullLiteralRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3256:1: ruleNullLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_NULLLITERAL ) ) ;
+    // $ANTLR start "ruleNullLiteralRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2704:1: ruleNullLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_NULLLITERAL ) ) ;
     public final EObject ruleNullLiteralRule() throws RecognitionException {
         EObject current = null;
 
         Token lv_value_0_0=null;
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3261:6: ( ( (lv_value_0_0= RULE_NULLLITERAL ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3262:1: ( (lv_value_0_0= RULE_NULLLITERAL ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2707:28: ( ( (lv_value_0_0= RULE_NULLLITERAL ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2708:1: ( (lv_value_0_0= RULE_NULLLITERAL ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3262:1: ( (lv_value_0_0= RULE_NULLLITERAL ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3263:1: (lv_value_0_0= RULE_NULLLITERAL )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2708:1: ( (lv_value_0_0= RULE_NULLLITERAL ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2709:1: (lv_value_0_0= RULE_NULLLITERAL )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3263:1: (lv_value_0_0= RULE_NULLLITERAL )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3264:3: lv_value_0_0= RULE_NULLLITERAL
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2709:1: (lv_value_0_0= RULE_NULLLITERAL )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2710:3: lv_value_0_0= RULE_NULLLITERAL
             {
-            lv_value_0_0=(Token)input.LT(1);
-            match(input,RULE_NULLLITERAL,FOLLOW_RULE_NULLLITERAL_in_ruleNullLiteralRule6004); 
+            lv_value_0_0=(Token)match(input,RULE_NULLLITERAL,FOLLOW_RULE_NULLLITERAL_in_ruleNullLiteralRule6108); 
 
-            			createLeafNode(grammarAccess.getNullLiteralRuleAccess().getValueNullLiteralTerminalRuleCall_0(), "value"); 
+            			newLeafNode(lv_value_0_0, grammarAccess.getNullLiteralRuleAccess().getValueNullLiteralTerminalRuleCall_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getNullLiteralRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getNullLiteralRuleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"value",
-            	        		lv_value_0_0, 
-            	        		"NullLiteral", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"value",
+                    		lv_value_0_0, 
+                    		"NullLiteral");
             	    
 
             }
@@ -7407,9 +6933,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -7420,11 +6944,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleNullLiteralRule
+    // $ANTLR end "ruleNullLiteralRule"
 
 
-    // $ANTLR start entryRuleDefaultLiteralRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3294:1: entryRuleDefaultLiteralRule returns [EObject current=null] : iv_ruleDefaultLiteralRule= ruleDefaultLiteralRule EOF ;
+    // $ANTLR start "entryRuleDefaultLiteralRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2734:1: entryRuleDefaultLiteralRule returns [EObject current=null] : iv_ruleDefaultLiteralRule= ruleDefaultLiteralRule EOF ;
     public final EObject entryRuleDefaultLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -7432,16 +6956,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3295:2: (iv_ruleDefaultLiteralRule= ruleDefaultLiteralRule EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3296:2: iv_ruleDefaultLiteralRule= ruleDefaultLiteralRule EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2735:2: (iv_ruleDefaultLiteralRule= ruleDefaultLiteralRule EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2736:2: iv_ruleDefaultLiteralRule= ruleDefaultLiteralRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getDefaultLiteralRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleDefaultLiteralRule_in_entryRuleDefaultLiteralRule6044);
+             newCompositeNode(grammarAccess.getDefaultLiteralRuleRule()); 
+            pushFollow(FOLLOW_ruleDefaultLiteralRule_in_entryRuleDefaultLiteralRule6148);
             iv_ruleDefaultLiteralRule=ruleDefaultLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleDefaultLiteralRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDefaultLiteralRule6054); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDefaultLiteralRule6158); 
 
             }
 
@@ -7455,44 +6980,37 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleDefaultLiteralRule
+    // $ANTLR end "entryRuleDefaultLiteralRule"
 
 
-    // $ANTLR start ruleDefaultLiteralRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3303:1: ruleDefaultLiteralRule returns [EObject current=null] : ( (lv_value_0_0= '/' ) ) ;
+    // $ANTLR start "ruleDefaultLiteralRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2743:1: ruleDefaultLiteralRule returns [EObject current=null] : ( (lv_value_0_0= '/' ) ) ;
     public final EObject ruleDefaultLiteralRule() throws RecognitionException {
         EObject current = null;
 
         Token lv_value_0_0=null;
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3308:6: ( ( (lv_value_0_0= '/' ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3309:1: ( (lv_value_0_0= '/' ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2746:28: ( ( (lv_value_0_0= '/' ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2747:1: ( (lv_value_0_0= '/' ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3309:1: ( (lv_value_0_0= '/' ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3310:1: (lv_value_0_0= '/' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2747:1: ( (lv_value_0_0= '/' ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2748:1: (lv_value_0_0= '/' )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3310:1: (lv_value_0_0= '/' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3311:3: lv_value_0_0= '/'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2748:1: (lv_value_0_0= '/' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2749:3: lv_value_0_0= '/'
             {
-            lv_value_0_0=(Token)input.LT(1);
-            match(input,30,FOLLOW_30_in_ruleDefaultLiteralRule6096); 
+            lv_value_0_0=(Token)match(input,30,FOLLOW_30_in_ruleDefaultLiteralRule6200); 
 
-                    createLeafNode(grammarAccess.getDefaultLiteralRuleAccess().getValueSolidusKeyword_0(), "value"); 
+                    newLeafNode(lv_value_0_0, grammarAccess.getDefaultLiteralRuleAccess().getValueSolidusKeyword_0());
                 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getDefaultLiteralRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getDefaultLiteralRuleRule());
             	        }
-            	        
-            	        try {
-            	       		set(current, "value", lv_value_0_0, "/", lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(current, "value", lv_value_0_0, "/");
             	    
 
             }
@@ -7503,9 +7021,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -7516,11 +7032,11 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleDefaultLiteralRule
+    // $ANTLR end "ruleDefaultLiteralRule"
 
 
-    // $ANTLR start entryRuleStringLiteralRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3338:1: entryRuleStringLiteralRule returns [EObject current=null] : iv_ruleStringLiteralRule= ruleStringLiteralRule EOF ;
+    // $ANTLR start "entryRuleStringLiteralRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2770:1: entryRuleStringLiteralRule returns [EObject current=null] : iv_ruleStringLiteralRule= ruleStringLiteralRule EOF ;
     public final EObject entryRuleStringLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -7528,16 +7044,17 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3339:2: (iv_ruleStringLiteralRule= ruleStringLiteralRule EOF )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3340:2: iv_ruleStringLiteralRule= ruleStringLiteralRule EOF
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2771:2: (iv_ruleStringLiteralRule= ruleStringLiteralRule EOF )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2772:2: iv_ruleStringLiteralRule= ruleStringLiteralRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getStringLiteralRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleStringLiteralRule_in_entryRuleStringLiteralRule6144);
+             newCompositeNode(grammarAccess.getStringLiteralRuleRule()); 
+            pushFollow(FOLLOW_ruleStringLiteralRule_in_entryRuleStringLiteralRule6248);
             iv_ruleStringLiteralRule=ruleStringLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleStringLiteralRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStringLiteralRule6154); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStringLiteralRule6258); 
 
             }
 
@@ -7551,48 +7068,41 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end entryRuleStringLiteralRule
+    // $ANTLR end "entryRuleStringLiteralRule"
 
 
-    // $ANTLR start ruleStringLiteralRule
-    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3347:1: ruleStringLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING ) ) ;
+    // $ANTLR start "ruleStringLiteralRule"
+    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2779:1: ruleStringLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING ) ) ;
     public final EObject ruleStringLiteralRule() throws RecognitionException {
         EObject current = null;
 
         Token lv_value_0_0=null;
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3352:6: ( ( (lv_value_0_0= RULE_STRING ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3353:1: ( (lv_value_0_0= RULE_STRING ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2782:28: ( ( (lv_value_0_0= RULE_STRING ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2783:1: ( (lv_value_0_0= RULE_STRING ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3353:1: ( (lv_value_0_0= RULE_STRING ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3354:1: (lv_value_0_0= RULE_STRING )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2783:1: ( (lv_value_0_0= RULE_STRING ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2784:1: (lv_value_0_0= RULE_STRING )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3354:1: (lv_value_0_0= RULE_STRING )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:3355:3: lv_value_0_0= RULE_STRING
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2784:1: (lv_value_0_0= RULE_STRING )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/parser/antlr/internal/InternalConstraintWithVSLl.g:2785:3: lv_value_0_0= RULE_STRING
             {
-            lv_value_0_0=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStringLiteralRule6195); 
+            lv_value_0_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStringLiteralRule6299); 
 
-            			createLeafNode(grammarAccess.getStringLiteralRuleAccess().getValueSTRINGTerminalRuleCall_0(), "value"); 
+            			newLeafNode(lv_value_0_0, grammarAccess.getStringLiteralRuleAccess().getValueSTRINGTerminalRuleCall_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getStringLiteralRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getStringLiteralRuleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"value",
-            	        		lv_value_0_0, 
-            	        		"STRING", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"value",
+                    		lv_value_0_0, 
+                    		"STRING");
             	    
 
             }
@@ -7603,9 +7113,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -7616,9 +7124,74 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end ruleStringLiteralRule
+    // $ANTLR end "ruleStringLiteralRule"
+
+    // Delegated rules
 
 
+    protected DFA16 dfa16 = new DFA16(this);
+    static final String DFA16_eotS =
+        "\13\uffff";
+    static final String DFA16_eofS =
+        "\13\uffff";
+    static final String DFA16_minS =
+        "\1\4\3\uffff\1\4\4\uffff\1\20\1\uffff";
+    static final String DFA16_maxS =
+        "\1\63\3\uffff\1\63\4\uffff\1\53\1\uffff";
+    static final String DFA16_acceptS =
+        "\1\uffff\1\1\1\2\1\3\1\uffff\1\6\1\7\1\10\1\4\1\uffff\1\5";
+    static final String DFA16_specialS =
+        "\13\uffff}>";
+    static final String[] DFA16_transitionS = {
+            "\1\2\6\1\22\uffff\2\1\3\uffff\1\7\2\uffff\2\3\1\uffff\1\4\3"+
+            "\uffff\1\5\1\uffff\2\5\4\6",
+            "",
+            "",
+            "",
+            "\1\11\6\10\20\uffff\4\10\1\uffff\1\10\1\uffff\1\10\2\uffff"+
+            "\2\10\1\uffff\1\10\3\uffff\1\10\1\uffff\6\10",
+            "",
+            "",
+            "",
+            "",
+            "\12\10\1\uffff\5\10\1\uffff\2\10\1\uffff\1\10\4\uffff\2\10"+
+            "\1\12",
+            ""
+    };
+
+    static final short[] DFA16_eot = DFA.unpackEncodedString(DFA16_eotS);
+    static final short[] DFA16_eof = DFA.unpackEncodedString(DFA16_eofS);
+    static final char[] DFA16_min = DFA.unpackEncodedStringToUnsignedChars(DFA16_minS);
+    static final char[] DFA16_max = DFA.unpackEncodedStringToUnsignedChars(DFA16_maxS);
+    static final short[] DFA16_accept = DFA.unpackEncodedString(DFA16_acceptS);
+    static final short[] DFA16_special = DFA.unpackEncodedString(DFA16_specialS);
+    static final short[][] DFA16_transition;
+
+    static {
+        int numStates = DFA16_transitionS.length;
+        DFA16_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA16_transition[i] = DFA.unpackEncodedString(DFA16_transitionS[i]);
+        }
+    }
+
+    class DFA16 extends DFA {
+
+        public DFA16(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 16;
+            this.eot = DFA16_eot;
+            this.eof = DFA16_eof;
+            this.min = DFA16_min;
+            this.max = DFA16_max;
+            this.accept = DFA16_accept;
+            this.special = DFA16_special;
+            this.transition = DFA16_transition;
+        }
+        public String getDescription() {
+            return "935:1: (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | (otherlv_7= '(' this_Expression_8= ruleExpression otherlv_9= ')' ) )";
+        }
+    }
  
 
     public static final BitSet FOLLOW_ruleConstraintRule_in_entryRuleConstraintRule75 = new BitSet(new long[]{0x0000000000000000L});
@@ -7656,210 +7229,210 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1032 = new BitSet(new long[]{0x0000000002000002L});
     public static final BitSet FOLLOW_25_in_ruleConditionalExpression1051 = new BitSet(new long[]{0x000FD165780007F0L});
     public static final BitSet FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1085 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_ruleConditionalExpression1095 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1116 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAdditiveExpression_in_entryRuleAdditiveExpression1154 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleAdditiveExpression1164 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression1210 = new BitSet(new long[]{0x0000000018000002L});
-    public static final BitSet FOLLOW_27_in_ruleAdditiveExpression1231 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_28_in_ruleAdditiveExpression1260 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression1297 = new BitSet(new long[]{0x0000000018000002L});
-    public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_entryRuleMultiplicativeExpression1335 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleMultiplicativeExpression1345 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnaryExpression_in_ruleMultiplicativeExpression1391 = new BitSet(new long[]{0x00000000E0000002L});
-    public static final BitSet FOLLOW_29_in_ruleMultiplicativeExpression1412 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_30_in_ruleMultiplicativeExpression1441 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_31_in_ruleMultiplicativeExpression1470 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_ruleUnaryExpression_in_ruleMultiplicativeExpression1507 = new BitSet(new long[]{0x00000000E0000002L});
-    public static final BitSet FOLLOW_ruleUnaryExpression_in_entryRuleUnaryExpression1545 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleUnaryExpression1555 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_ruleUnaryExpression1601 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_28_in_ruleUnaryExpression1630 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_27_in_ruleUnaryExpression1659 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_ruleUnaryExpression_in_ruleUnaryExpression1696 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePrimaryExpression_in_ruleUnaryExpression1724 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePrimaryExpression_in_entryRulePrimaryExpression1760 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePrimaryExpression1770 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValueSpecification_in_rulePrimaryExpression1816 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_33_in_rulePrimaryExpression1827 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleSuffixExpression_in_rulePrimaryExpression1848 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValueSpecification_in_entryRuleValueSpecification1886 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleValueSpecification1896 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLiteral_in_ruleValueSpecification1943 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_ruleValueSpecification1970 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInterval_in_ruleValueSpecification1997 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCollectionOrTuple_in_ruleValueSpecification2024 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTuple_in_ruleValueSpecification2051 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTimeExpression_in_ruleValueSpecification2078 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableDeclaration_in_ruleValueSpecification2105 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_ruleValueSpecification2121 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleValueSpecification2143 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_ruleValueSpecification2152 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSuffixExpression_in_entryRuleSuffixExpression2189 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleSuffixExpression2199 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePropertyCallExpression_in_ruleSuffixExpression2246 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOperationCallExpression_in_ruleSuffixExpression2273 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePropertyCallExpression_in_entryRulePropertyCallExpression2308 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePropertyCallExpression2318 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rulePropertyCallExpression2361 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_33_in_rulePropertyCallExpression2372 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleSuffixExpression_in_rulePropertyCallExpression2393 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOperationCallExpression_in_entryRuleOperationCallExpression2431 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOperationCallExpression2441 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleOperationCallExpression2484 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_ruleOperationCallExpression2494 = new BitSet(new long[]{0x000FD16D780007F0L});
-    public static final BitSet FOLLOW_ruleListOfValues_in_ruleOperationCallExpression2515 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_ruleOperationCallExpression2526 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_33_in_ruleOperationCallExpression2537 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleSuffixExpression_in_ruleOperationCallExpression2558 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLiteral_in_entryRuleLiteral2596 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleLiteral2606 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNumberLiteralRule_in_ruleLiteral2653 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDateTimeLiteralRule_in_ruleLiteral2680 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBooleanLiteralRule_in_ruleLiteral2707 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNullLiteralRule_in_ruleLiteral2734 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDefaultLiteralRule_in_ruleLiteral2761 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStringLiteralRule_in_ruleLiteral2788 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_entryRuleNameOrChoiceOrBehaviorCall2823 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleNameOrChoiceOrBehaviorCall2833 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleNameOrChoiceOrBehaviorCall2879 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleNameOrChoiceOrBehaviorCall2898 = new BitSet(new long[]{0x0000000400000002L});
-    public static final BitSet FOLLOW_34_in_ruleNameOrChoiceOrBehaviorCall2909 = new BitSet(new long[]{0x000FD16D780007F0L});
-    public static final BitSet FOLLOW_ruleListOfValues_in_ruleNameOrChoiceOrBehaviorCall2930 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_ruleNameOrChoiceOrBehaviorCall2941 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName2979 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName2989 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName3032 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_36_in_ruleQualifiedName3042 = new BitSet(new long[]{0x0000000000000012L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedName3063 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInterval_in_entryRuleInterval3100 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleInterval3110 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_ruleInterval3146 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_38_in_ruleInterval3170 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleInterval3205 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_ruleInterval3215 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleInterval3236 = new BitSet(new long[]{0x0000006000000000L});
-    public static final BitSet FOLLOW_37_in_ruleInterval3255 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_ruleInterval3284 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCollectionOrTuple_in_entryRuleCollectionOrTuple3321 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleCollectionOrTuple3331 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_ruleCollectionOrTuple3366 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_ruleListOfValues_in_ruleCollectionOrTuple3387 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_41_in_ruleCollectionOrTuple3397 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTuple_in_entryRuleTuple3433 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTuple3443 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_ruleTuple3478 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleListOfValueNamePairs_in_ruleTuple3499 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_41_in_ruleTuple3509 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleListOfValues_in_entryRuleListOfValues3545 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleListOfValues3555 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleListOfValues3601 = new BitSet(new long[]{0x0000040000000002L});
-    public static final BitSet FOLLOW_42_in_ruleListOfValues3612 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleListOfValues3633 = new BitSet(new long[]{0x0000040000000002L});
-    public static final BitSet FOLLOW_ruleListOfValueNamePairs_in_entryRuleListOfValueNamePairs3671 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleListOfValueNamePairs3681 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValueNamePair_in_ruleListOfValueNamePairs3727 = new BitSet(new long[]{0x0000040000000002L});
-    public static final BitSet FOLLOW_42_in_ruleListOfValueNamePairs3738 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleValueNamePair_in_ruleListOfValueNamePairs3759 = new BitSet(new long[]{0x0000040000000002L});
-    public static final BitSet FOLLOW_ruleValueNamePair_in_entryRuleValueNamePair3797 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleValueNamePair3807 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleValueNamePair3850 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_43_in_ruleValueNamePair3860 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleValueNamePair3881 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTimeExpression_in_entryRuleTimeExpression3917 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTimeExpression3927 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInstantObsExpression_in_ruleTimeExpression3974 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDurationObsExpression_in_ruleTimeExpression4001 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJitterExp_in_ruleTimeExpression4028 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInstantObsExpression_in_entryRuleInstantObsExpression4063 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleInstantObsExpression4073 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_ruleInstantObsExpression4108 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleInstantObsName_in_ruleInstantObsExpression4129 = new BitSet(new long[]{0x0000200400000002L});
-    public static final BitSet FOLLOW_34_in_ruleInstantObsExpression4140 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleInstantObsExpression4161 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_ruleInstantObsExpression4171 = new BitSet(new long[]{0x0000200000000002L});
-    public static final BitSet FOLLOW_45_in_ruleInstantObsExpression4184 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_ruleInstantObsExpression4194 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleInstantObsExpression4215 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_ruleInstantObsExpression4225 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInstantObsName_in_entryRuleInstantObsName4263 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleInstantObsName4273 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleInstantObsName4319 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleInstantObsName4338 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDurationObsExpression_in_entryRuleDurationObsExpression4374 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDurationObsExpression4384 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_ruleDurationObsExpression4419 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleDurationObsName_in_ruleDurationObsExpression4440 = new BitSet(new long[]{0x0000200400000002L});
-    public static final BitSet FOLLOW_34_in_ruleDurationObsExpression4451 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleDurationObsExpression4472 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_ruleDurationObsExpression4482 = new BitSet(new long[]{0x0000200000000002L});
-    public static final BitSet FOLLOW_45_in_ruleDurationObsExpression4495 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_ruleDurationObsExpression4505 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleDurationObsExpression4526 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_ruleDurationObsExpression4536 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDurationObsName_in_entryRuleDurationObsName4574 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDurationObsName4584 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleDurationObsName4630 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleDurationObsName4649 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJitterExp_in_entryRuleJitterExp4685 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleJitterExp4695 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_ruleJitterExp4730 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_ruleInstantObsExpression_in_ruleJitterExp4751 = new BitSet(new long[]{0x0000000810000000L});
-    public static final BitSet FOLLOW_28_in_ruleJitterExp4762 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_ruleInstantObsExpression_in_ruleJitterExp4783 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_ruleJitterExp4795 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableDeclaration_in_entryRuleVariableDeclaration4831 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleVariableDeclaration4841 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableDirectionKind_in_ruleVariableDeclaration4887 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_ruleVariableDeclaration4898 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleVariableDeclaration4915 = new BitSet(new long[]{0x0000080004000000L});
-    public static final BitSet FOLLOW_26_in_ruleVariableDeclaration4932 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleDataTypeName_in_ruleVariableDeclaration4953 = new BitSet(new long[]{0x0000080000000002L});
-    public static final BitSet FOLLOW_43_in_ruleVariableDeclaration4964 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_ruleVariableDeclaration4974 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleVariableDeclaration4995 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_ruleVariableDeclaration5005 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_43_in_ruleVariableDeclaration5025 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_ruleVariableDeclaration5035 = new BitSet(new long[]{0x000FD165780007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleVariableDeclaration5056 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_ruleVariableDeclaration5066 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableDirectionKind_in_entryRuleVariableDirectionKind5105 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleVariableDirectionKind5116 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_ruleVariableDirectionKind5154 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_ruleVariableDirectionKind5173 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_ruleVariableDirectionKind5192 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeName_in_entryRuleDataTypeName5232 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDataTypeName5242 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleDataTypeName5288 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleDataTypeName5307 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNumberLiteralRule_in_entryRuleNumberLiteralRule5343 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleNumberLiteralRule5353 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIntegerLiteralRule_in_ruleNumberLiteralRule5400 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnlimitedLiteralRule_in_ruleNumberLiteralRule5427 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRealLiteralRule_in_ruleNumberLiteralRule5454 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIntegerLiteralRule_in_entryRuleIntegerLiteralRule5489 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleIntegerLiteralRule5499 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INTEGERLITERAL_in_ruleIntegerLiteralRule5540 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnlimitedLiteralRule_in_entryRuleUnlimitedLiteralRule5580 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleUnlimitedLiteralRule5590 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_ruleUnlimitedLiteralRule5632 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRealLiteralRule_in_entryRuleRealLiteralRule5680 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleRealLiteralRule5690 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_REALLITERAL_in_ruleRealLiteralRule5731 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDateTimeLiteralRule_in_entryRuleDateTimeLiteralRule5771 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDateTimeLiteralRule5781 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_DATETIMELITERAL_in_ruleDateTimeLiteralRule5822 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBooleanLiteralRule_in_entryRuleBooleanLiteralRule5862 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleBooleanLiteralRule5872 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_BOOLEANLITERAL_in_ruleBooleanLiteralRule5913 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNullLiteralRule_in_entryRuleNullLiteralRule5953 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleNullLiteralRule5963 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_NULLLITERAL_in_ruleNullLiteralRule6004 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDefaultLiteralRule_in_entryRuleDefaultLiteralRule6044 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDefaultLiteralRule6054 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_ruleDefaultLiteralRule6096 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStringLiteralRule_in_entryRuleStringLiteralRule6144 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStringLiteralRule6154 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleStringLiteralRule6195 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_ruleConditionalExpression1097 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1118 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAdditiveExpression_in_entryRuleAdditiveExpression1156 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleAdditiveExpression1166 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression1212 = new BitSet(new long[]{0x0000000018000002L});
+    public static final BitSet FOLLOW_27_in_ruleAdditiveExpression1233 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_28_in_ruleAdditiveExpression1262 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression1299 = new BitSet(new long[]{0x0000000018000002L});
+    public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_entryRuleMultiplicativeExpression1337 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMultiplicativeExpression1347 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnaryExpression_in_ruleMultiplicativeExpression1393 = new BitSet(new long[]{0x00000000E0000002L});
+    public static final BitSet FOLLOW_29_in_ruleMultiplicativeExpression1414 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_30_in_ruleMultiplicativeExpression1443 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_31_in_ruleMultiplicativeExpression1472 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_ruleUnaryExpression_in_ruleMultiplicativeExpression1509 = new BitSet(new long[]{0x00000000E0000002L});
+    public static final BitSet FOLLOW_ruleUnaryExpression_in_entryRuleUnaryExpression1547 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleUnaryExpression1557 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_ruleUnaryExpression1603 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_28_in_ruleUnaryExpression1632 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_27_in_ruleUnaryExpression1661 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_ruleUnaryExpression_in_ruleUnaryExpression1698 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePrimaryExpression_in_ruleUnaryExpression1726 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePrimaryExpression_in_entryRulePrimaryExpression1762 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePrimaryExpression1772 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValueSpecification_in_rulePrimaryExpression1818 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_33_in_rulePrimaryExpression1831 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleSuffixExpression_in_rulePrimaryExpression1852 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValueSpecification_in_entryRuleValueSpecification1890 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleValueSpecification1900 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLiteral_in_ruleValueSpecification1947 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_ruleValueSpecification1974 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInterval_in_ruleValueSpecification2001 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCollectionOrTuple_in_ruleValueSpecification2028 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTuple_in_ruleValueSpecification2055 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTimeExpression_in_ruleValueSpecification2082 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariableDeclaration_in_ruleValueSpecification2109 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_ruleValueSpecification2127 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleValueSpecification2149 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_ruleValueSpecification2160 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSuffixExpression_in_entryRuleSuffixExpression2197 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleSuffixExpression2207 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePropertyCallExpression_in_ruleSuffixExpression2254 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOperationCallExpression_in_ruleSuffixExpression2281 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePropertyCallExpression_in_entryRulePropertyCallExpression2316 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePropertyCallExpression2326 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rulePropertyCallExpression2371 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_33_in_rulePropertyCallExpression2384 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleSuffixExpression_in_rulePropertyCallExpression2405 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOperationCallExpression_in_entryRuleOperationCallExpression2443 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOperationCallExpression2453 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleOperationCallExpression2498 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_ruleOperationCallExpression2510 = new BitSet(new long[]{0x000FD16D780007F0L});
+    public static final BitSet FOLLOW_ruleListOfValues_in_ruleOperationCallExpression2531 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_ruleOperationCallExpression2544 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_33_in_ruleOperationCallExpression2557 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleSuffixExpression_in_ruleOperationCallExpression2578 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLiteral_in_entryRuleLiteral2616 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleLiteral2626 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNumberLiteralRule_in_ruleLiteral2673 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDateTimeLiteralRule_in_ruleLiteral2700 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBooleanLiteralRule_in_ruleLiteral2727 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNullLiteralRule_in_ruleLiteral2754 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDefaultLiteralRule_in_ruleLiteral2781 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStringLiteralRule_in_ruleLiteral2808 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_entryRuleNameOrChoiceOrBehaviorCall2843 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleNameOrChoiceOrBehaviorCall2853 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleNameOrChoiceOrBehaviorCall2899 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleNameOrChoiceOrBehaviorCall2920 = new BitSet(new long[]{0x0000000400000002L});
+    public static final BitSet FOLLOW_34_in_ruleNameOrChoiceOrBehaviorCall2933 = new BitSet(new long[]{0x000FD16D780007F0L});
+    public static final BitSet FOLLOW_ruleListOfValues_in_ruleNameOrChoiceOrBehaviorCall2954 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_ruleNameOrChoiceOrBehaviorCall2967 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName3005 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName3015 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName3060 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_36_in_ruleQualifiedName3072 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedName3093 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInterval_in_entryRuleInterval3130 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleInterval3140 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_ruleInterval3178 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_38_in_ruleInterval3202 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleInterval3237 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_ruleInterval3249 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleInterval3270 = new BitSet(new long[]{0x0000006000000000L});
+    public static final BitSet FOLLOW_37_in_ruleInterval3289 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_ruleInterval3320 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCollectionOrTuple_in_entryRuleCollectionOrTuple3357 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleCollectionOrTuple3367 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_ruleCollectionOrTuple3404 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_ruleListOfValues_in_ruleCollectionOrTuple3425 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_41_in_ruleCollectionOrTuple3437 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTuple_in_entryRuleTuple3473 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTuple3483 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_ruleTuple3520 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleListOfValueNamePairs_in_ruleTuple3541 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_41_in_ruleTuple3553 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleListOfValues_in_entryRuleListOfValues3589 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleListOfValues3599 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleListOfValues3645 = new BitSet(new long[]{0x0000040000000002L});
+    public static final BitSet FOLLOW_42_in_ruleListOfValues3658 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleListOfValues3679 = new BitSet(new long[]{0x0000040000000002L});
+    public static final BitSet FOLLOW_ruleListOfValueNamePairs_in_entryRuleListOfValueNamePairs3717 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleListOfValueNamePairs3727 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValueNamePair_in_ruleListOfValueNamePairs3773 = new BitSet(new long[]{0x0000040000000002L});
+    public static final BitSet FOLLOW_42_in_ruleListOfValueNamePairs3786 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleValueNamePair_in_ruleListOfValueNamePairs3807 = new BitSet(new long[]{0x0000040000000002L});
+    public static final BitSet FOLLOW_ruleValueNamePair_in_entryRuleValueNamePair3845 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleValueNamePair3855 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleValueNamePair3900 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_43_in_ruleValueNamePair3912 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleValueNamePair3933 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTimeExpression_in_entryRuleTimeExpression3969 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTimeExpression3979 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInstantObsExpression_in_ruleTimeExpression4026 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDurationObsExpression_in_ruleTimeExpression4053 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJitterExp_in_ruleTimeExpression4080 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInstantObsExpression_in_entryRuleInstantObsExpression4115 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleInstantObsExpression4125 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_ruleInstantObsExpression4162 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleInstantObsName_in_ruleInstantObsExpression4183 = new BitSet(new long[]{0x0000200400000002L});
+    public static final BitSet FOLLOW_34_in_ruleInstantObsExpression4196 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleInstantObsExpression4217 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_ruleInstantObsExpression4229 = new BitSet(new long[]{0x0000200000000002L});
+    public static final BitSet FOLLOW_45_in_ruleInstantObsExpression4244 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_ruleInstantObsExpression4256 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleInstantObsExpression4277 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_ruleInstantObsExpression4289 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInstantObsName_in_entryRuleInstantObsName4327 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleInstantObsName4337 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleInstantObsName4383 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleInstantObsName4404 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDurationObsExpression_in_entryRuleDurationObsExpression4440 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDurationObsExpression4450 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_ruleDurationObsExpression4487 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleDurationObsName_in_ruleDurationObsExpression4508 = new BitSet(new long[]{0x0000200400000002L});
+    public static final BitSet FOLLOW_34_in_ruleDurationObsExpression4521 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleDurationObsExpression4542 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_ruleDurationObsExpression4554 = new BitSet(new long[]{0x0000200000000002L});
+    public static final BitSet FOLLOW_45_in_ruleDurationObsExpression4569 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_ruleDurationObsExpression4581 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleDurationObsExpression4602 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_ruleDurationObsExpression4614 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDurationObsName_in_entryRuleDurationObsName4652 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDurationObsName4662 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleDurationObsName4708 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleDurationObsName4729 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJitterExp_in_entryRuleJitterExp4765 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleJitterExp4775 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_ruleJitterExp4812 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_ruleInstantObsExpression_in_ruleJitterExp4833 = new BitSet(new long[]{0x0000000810000000L});
+    public static final BitSet FOLLOW_28_in_ruleJitterExp4846 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_ruleInstantObsExpression_in_ruleJitterExp4867 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_ruleJitterExp4881 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariableDeclaration_in_entryRuleVariableDeclaration4917 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleVariableDeclaration4927 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariableDirectionKind_in_ruleVariableDeclaration4973 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_ruleVariableDeclaration4986 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleVariableDeclaration5003 = new BitSet(new long[]{0x0000080004000000L});
+    public static final BitSet FOLLOW_26_in_ruleVariableDeclaration5022 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleDataTypeName_in_ruleVariableDeclaration5043 = new BitSet(new long[]{0x0000080000000002L});
+    public static final BitSet FOLLOW_43_in_ruleVariableDeclaration5056 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_ruleVariableDeclaration5068 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleVariableDeclaration5089 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_ruleVariableDeclaration5101 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_43_in_ruleVariableDeclaration5123 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_ruleVariableDeclaration5135 = new BitSet(new long[]{0x000FD165780007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleVariableDeclaration5156 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_ruleVariableDeclaration5168 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariableDirectionKind_in_entryRuleVariableDirectionKind5207 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleVariableDirectionKind5218 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_ruleVariableDirectionKind5256 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_ruleVariableDirectionKind5275 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_ruleVariableDirectionKind5294 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeName_in_entryRuleDataTypeName5334 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDataTypeName5344 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleDataTypeName5390 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleDataTypeName5411 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNumberLiteralRule_in_entryRuleNumberLiteralRule5447 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleNumberLiteralRule5457 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIntegerLiteralRule_in_ruleNumberLiteralRule5504 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnlimitedLiteralRule_in_ruleNumberLiteralRule5531 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRealLiteralRule_in_ruleNumberLiteralRule5558 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIntegerLiteralRule_in_entryRuleIntegerLiteralRule5593 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleIntegerLiteralRule5603 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INTEGERLITERAL_in_ruleIntegerLiteralRule5644 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnlimitedLiteralRule_in_entryRuleUnlimitedLiteralRule5684 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleUnlimitedLiteralRule5694 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_ruleUnlimitedLiteralRule5736 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRealLiteralRule_in_entryRuleRealLiteralRule5784 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleRealLiteralRule5794 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_REALLITERAL_in_ruleRealLiteralRule5835 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDateTimeLiteralRule_in_entryRuleDateTimeLiteralRule5875 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDateTimeLiteralRule5885 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DATETIMELITERAL_in_ruleDateTimeLiteralRule5926 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBooleanLiteralRule_in_entryRuleBooleanLiteralRule5966 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleBooleanLiteralRule5976 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_BOOLEANLITERAL_in_ruleBooleanLiteralRule6017 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNullLiteralRule_in_entryRuleNullLiteralRule6057 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleNullLiteralRule6067 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_NULLLITERAL_in_ruleNullLiteralRule6108 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDefaultLiteralRule_in_entryRuleDefaultLiteralRule6148 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDefaultLiteralRule6158 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_ruleDefaultLiteralRule6200 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStringLiteralRule_in_entryRuleStringLiteralRule6248 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStringLiteralRule6258 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleStringLiteralRule6299 = new BitSet(new long[]{0x0000000000000002L});
 
 }

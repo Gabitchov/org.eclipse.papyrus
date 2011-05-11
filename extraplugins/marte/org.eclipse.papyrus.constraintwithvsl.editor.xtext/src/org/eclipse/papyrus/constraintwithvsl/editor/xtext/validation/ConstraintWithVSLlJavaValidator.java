@@ -78,8 +78,9 @@ public class ConstraintWithVSLlJavaValidator extends AbstractConstraintWithVSLlJ
 				String inferedTypeName = validationResult.inferedType() != null ? validationResult.inferedType().getName() : "null" ;
 				if (! inferedTypeName.equals("Boolean")) {
 					error("Expecting an expression of type Boolean. Found an expression of type " + inferedTypeName,
-							constraintSpecificationRule.getExpression(),
-							ConstraintWithVSLlPackage.CONSTRAINT_SPECIFICATION__EXPRESSION) ;
+							constraintSpecificationRule,
+							ConstraintWithVSLlPackage.eINSTANCE.getConstraintSpecification_Expression(),
+							INSIGNIFICANT_INDEX) ;
 					valid_Expression = false ;
 				}
 				else {
@@ -89,7 +90,8 @@ public class ConstraintWithVSLlJavaValidator extends AbstractConstraintWithVSLlJ
 			else {
 				error(validationResult.errorMessage(),
 						validationResult.validatedRule(),
-						validationResult.validatedFeature()) ;
+						validationResult.validatedFeature(),
+						INSIGNIFICANT_INDEX) ;
 				valid_Expression = false ;
 			}
 		}

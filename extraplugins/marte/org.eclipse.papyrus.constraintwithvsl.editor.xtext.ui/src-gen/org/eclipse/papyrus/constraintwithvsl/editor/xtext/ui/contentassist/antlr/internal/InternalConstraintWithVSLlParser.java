@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui.contentassist.antlr.internal; 
 
 import java.io.InputStream;
@@ -38,26 +25,70 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INTEGERLITERAL", "RULE_REALLITERAL", "RULE_DATETIMELITERAL", "RULE_BOOLEANLITERAL", "RULE_NULLLITERAL", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'and'", "'or'", "'xor'", "'=='", "'<>'", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'mod'", "'not'", "']'", "'['", "'in'", "'out'", "'inout'", "':'", "'.'", "'('", "')'", "'::'", "'..'", "'{'", "'}'", "','", "'='", "'@'", "'when'", "'&'", "'jitter('", "'$'", "'?'"
     };
-    public static final int RULE_NULLLITERAL=9;
     public static final int RULE_DATETIMELITERAL=7;
-    public static final int RULE_BOOLEANLITERAL=8;
     public static final int RULE_ID=4;
-    public static final int RULE_STRING=10;
+    public static final int T__29=29;
+    public static final int T__28=28;
+    public static final int T__27=27;
+    public static final int T__26=26;
+    public static final int T__25=25;
+    public static final int T__24=24;
+    public static final int T__23=23;
+    public static final int T__22=22;
     public static final int RULE_ANY_OTHER=15;
+    public static final int T__21=21;
+    public static final int T__20=20;
     public static final int RULE_REALLITERAL=6;
-    public static final int RULE_INTEGERLITERAL=5;
-    public static final int RULE_INT=11;
-    public static final int RULE_WS=14;
-    public static final int RULE_SL_COMMENT=13;
     public static final int EOF=-1;
+    public static final int RULE_BOOLEANLITERAL=8;
+    public static final int T__19=19;
+    public static final int T__16=16;
+    public static final int T__51=51;
+    public static final int T__18=18;
+    public static final int T__17=17;
+    public static final int RULE_INT=11;
+    public static final int T__50=50;
+    public static final int RULE_NULLLITERAL=9;
+    public static final int T__42=42;
+    public static final int T__43=43;
+    public static final int T__40=40;
+    public static final int T__41=41;
+    public static final int T__46=46;
+    public static final int T__47=47;
+    public static final int T__44=44;
+    public static final int T__45=45;
+    public static final int T__48=48;
+    public static final int T__49=49;
+    public static final int RULE_INTEGERLITERAL=5;
+    public static final int RULE_SL_COMMENT=13;
     public static final int RULE_ML_COMMENT=12;
+    public static final int T__30=30;
+    public static final int T__31=31;
+    public static final int RULE_STRING=10;
+    public static final int T__32=32;
+    public static final int T__33=33;
+    public static final int T__34=34;
+    public static final int T__35=35;
+    public static final int T__36=36;
+    public static final int T__37=37;
+    public static final int T__38=38;
+    public static final int T__39=39;
+    public static final int RULE_WS=14;
+
+    // delegates
+    // delegators
+
 
         public InternalConstraintWithVSLlParser(TokenStream input) {
-            super(input);
+            this(input, new RecognizerSharedState());
+        }
+        public InternalConstraintWithVSLlParser(TokenStream input, RecognizerSharedState state) {
+            super(input, state);
+             
         }
         
 
-    public String[] getTokenNames() { return tokenNames; }
+    public String[] getTokenNames() { return InternalConstraintWithVSLlParser.tokenNames; }
     public String getGrammarFileName() { return "../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g"; }
 
 
@@ -81,7 +112,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
 
 
 
-    // $ANTLR start entryRuleConstraintRule
+    // $ANTLR start "entryRuleConstraintRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:61:1: entryRuleConstraintRule : ruleConstraintRule EOF ;
     public final void entryRuleConstraintRule() throws RecognitionException {
         try {
@@ -91,7 +122,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getConstraintRuleRule()); 
             pushFollow(FOLLOW_ruleConstraintRule_in_entryRuleConstraintRule61);
             ruleConstraintRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getConstraintRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleConstraintRule68); 
@@ -107,10 +139,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleConstraintRule
+    // $ANTLR end "entryRuleConstraintRule"
 
 
-    // $ANTLR start ruleConstraintRule
+    // $ANTLR start "ruleConstraintRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:70:1: ruleConstraintRule : ( ( rule__ConstraintRule__SpecificationAssignment )? ) ;
     public final void ruleConstraintRule() throws RecognitionException {
 
@@ -137,7 +169,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__ConstraintRule__SpecificationAssignment_in_ruleConstraintRule94);
                     rule__ConstraintRule__SpecificationAssignment();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -164,10 +197,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleConstraintRule
+    // $ANTLR end "ruleConstraintRule"
 
 
-    // $ANTLR start entryRuleConstraintSpecification
+    // $ANTLR start "entryRuleConstraintSpecification"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:89:1: entryRuleConstraintSpecification : ruleConstraintSpecification EOF ;
     public final void entryRuleConstraintSpecification() throws RecognitionException {
         try {
@@ -177,7 +210,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getConstraintSpecificationRule()); 
             pushFollow(FOLLOW_ruleConstraintSpecification_in_entryRuleConstraintSpecification122);
             ruleConstraintSpecification();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getConstraintSpecificationRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleConstraintSpecification129); 
@@ -193,10 +227,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleConstraintSpecification
+    // $ANTLR end "entryRuleConstraintSpecification"
 
 
-    // $ANTLR start ruleConstraintSpecification
+    // $ANTLR start "ruleConstraintSpecification"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:98:1: ruleConstraintSpecification : ( ( rule__ConstraintSpecification__ExpressionAssignment ) ) ;
     public final void ruleConstraintSpecification() throws RecognitionException {
 
@@ -215,7 +249,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ConstraintSpecification__ExpressionAssignment_in_ruleConstraintSpecification155);
             rule__ConstraintSpecification__ExpressionAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -239,10 +274,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleConstraintSpecification
+    // $ANTLR end "ruleConstraintSpecification"
 
 
-    // $ANTLR start entryRuleExpression
+    // $ANTLR start "entryRuleExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:117:1: entryRuleExpression : ruleExpression EOF ;
     public final void entryRuleExpression() throws RecognitionException {
         try {
@@ -252,7 +287,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getExpressionRule()); 
             pushFollow(FOLLOW_ruleExpression_in_entryRuleExpression182);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleExpression189); 
@@ -268,10 +304,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleExpression
+    // $ANTLR end "entryRuleExpression"
 
 
-    // $ANTLR start ruleExpression
+    // $ANTLR start "ruleExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:126:1: ruleExpression : ( ( rule__Expression__ExpAssignment ) ) ;
     public final void ruleExpression() throws RecognitionException {
 
@@ -290,7 +326,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__Expression__ExpAssignment_in_ruleExpression215);
             rule__Expression__ExpAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -314,10 +351,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleExpression
+    // $ANTLR end "ruleExpression"
 
 
-    // $ANTLR start entryRuleAndOrXorExpression
+    // $ANTLR start "entryRuleAndOrXorExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:145:1: entryRuleAndOrXorExpression : ruleAndOrXorExpression EOF ;
     public final void entryRuleAndOrXorExpression() throws RecognitionException {
         try {
@@ -327,7 +364,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getAndOrXorExpressionRule()); 
             pushFollow(FOLLOW_ruleAndOrXorExpression_in_entryRuleAndOrXorExpression242);
             ruleAndOrXorExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getAndOrXorExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleAndOrXorExpression249); 
@@ -343,10 +381,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleAndOrXorExpression
+    // $ANTLR end "entryRuleAndOrXorExpression"
 
 
-    // $ANTLR start ruleAndOrXorExpression
+    // $ANTLR start "ruleAndOrXorExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:154:1: ruleAndOrXorExpression : ( ( rule__AndOrXorExpression__Group__0 ) ) ;
     public final void ruleAndOrXorExpression() throws RecognitionException {
 
@@ -365,7 +403,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__AndOrXorExpression__Group__0_in_ruleAndOrXorExpression275);
             rule__AndOrXorExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -389,10 +428,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleAndOrXorExpression
+    // $ANTLR end "ruleAndOrXorExpression"
 
 
-    // $ANTLR start entryRuleEqualityExpression
+    // $ANTLR start "entryRuleEqualityExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:173:1: entryRuleEqualityExpression : ruleEqualityExpression EOF ;
     public final void entryRuleEqualityExpression() throws RecognitionException {
         try {
@@ -402,7 +441,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getEqualityExpressionRule()); 
             pushFollow(FOLLOW_ruleEqualityExpression_in_entryRuleEqualityExpression302);
             ruleEqualityExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getEqualityExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleEqualityExpression309); 
@@ -418,10 +458,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleEqualityExpression
+    // $ANTLR end "entryRuleEqualityExpression"
 
 
-    // $ANTLR start ruleEqualityExpression
+    // $ANTLR start "ruleEqualityExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:182:1: ruleEqualityExpression : ( ( rule__EqualityExpression__Group__0 ) ) ;
     public final void ruleEqualityExpression() throws RecognitionException {
 
@@ -440,7 +480,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__EqualityExpression__Group__0_in_ruleEqualityExpression335);
             rule__EqualityExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -464,10 +505,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleEqualityExpression
+    // $ANTLR end "ruleEqualityExpression"
 
 
-    // $ANTLR start entryRuleRelationalExpression
+    // $ANTLR start "entryRuleRelationalExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:201:1: entryRuleRelationalExpression : ruleRelationalExpression EOF ;
     public final void entryRuleRelationalExpression() throws RecognitionException {
         try {
@@ -477,7 +518,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getRelationalExpressionRule()); 
             pushFollow(FOLLOW_ruleRelationalExpression_in_entryRuleRelationalExpression362);
             ruleRelationalExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getRelationalExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleRelationalExpression369); 
@@ -493,10 +535,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleRelationalExpression
+    // $ANTLR end "entryRuleRelationalExpression"
 
 
-    // $ANTLR start ruleRelationalExpression
+    // $ANTLR start "ruleRelationalExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:210:1: ruleRelationalExpression : ( ( rule__RelationalExpression__Group__0 ) ) ;
     public final void ruleRelationalExpression() throws RecognitionException {
 
@@ -515,7 +557,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__RelationalExpression__Group__0_in_ruleRelationalExpression395);
             rule__RelationalExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -539,10 +582,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleRelationalExpression
+    // $ANTLR end "ruleRelationalExpression"
 
 
-    // $ANTLR start entryRuleConditionalExpression
+    // $ANTLR start "entryRuleConditionalExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:229:1: entryRuleConditionalExpression : ruleConditionalExpression EOF ;
     public final void entryRuleConditionalExpression() throws RecognitionException {
         try {
@@ -552,7 +595,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getConditionalExpressionRule()); 
             pushFollow(FOLLOW_ruleConditionalExpression_in_entryRuleConditionalExpression422);
             ruleConditionalExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getConditionalExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleConditionalExpression429); 
@@ -568,10 +612,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleConditionalExpression
+    // $ANTLR end "entryRuleConditionalExpression"
 
 
-    // $ANTLR start ruleConditionalExpression
+    // $ANTLR start "ruleConditionalExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:238:1: ruleConditionalExpression : ( ( rule__ConditionalExpression__Group__0 ) ) ;
     public final void ruleConditionalExpression() throws RecognitionException {
 
@@ -590,7 +634,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__Group__0_in_ruleConditionalExpression455);
             rule__ConditionalExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -614,10 +659,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleConditionalExpression
+    // $ANTLR end "ruleConditionalExpression"
 
 
-    // $ANTLR start entryRuleAdditiveExpression
+    // $ANTLR start "entryRuleAdditiveExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:257:1: entryRuleAdditiveExpression : ruleAdditiveExpression EOF ;
     public final void entryRuleAdditiveExpression() throws RecognitionException {
         try {
@@ -627,7 +672,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getAdditiveExpressionRule()); 
             pushFollow(FOLLOW_ruleAdditiveExpression_in_entryRuleAdditiveExpression482);
             ruleAdditiveExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getAdditiveExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleAdditiveExpression489); 
@@ -643,10 +689,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleAdditiveExpression
+    // $ANTLR end "entryRuleAdditiveExpression"
 
 
-    // $ANTLR start ruleAdditiveExpression
+    // $ANTLR start "ruleAdditiveExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:266:1: ruleAdditiveExpression : ( ( rule__AdditiveExpression__Group__0 ) ) ;
     public final void ruleAdditiveExpression() throws RecognitionException {
 
@@ -665,7 +711,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__AdditiveExpression__Group__0_in_ruleAdditiveExpression515);
             rule__AdditiveExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -689,10 +736,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleAdditiveExpression
+    // $ANTLR end "ruleAdditiveExpression"
 
 
-    // $ANTLR start entryRuleMultiplicativeExpression
+    // $ANTLR start "entryRuleMultiplicativeExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:285:1: entryRuleMultiplicativeExpression : ruleMultiplicativeExpression EOF ;
     public final void entryRuleMultiplicativeExpression() throws RecognitionException {
         try {
@@ -702,7 +749,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getMultiplicativeExpressionRule()); 
             pushFollow(FOLLOW_ruleMultiplicativeExpression_in_entryRuleMultiplicativeExpression542);
             ruleMultiplicativeExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMultiplicativeExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleMultiplicativeExpression549); 
@@ -718,10 +766,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleMultiplicativeExpression
+    // $ANTLR end "entryRuleMultiplicativeExpression"
 
 
-    // $ANTLR start ruleMultiplicativeExpression
+    // $ANTLR start "ruleMultiplicativeExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:294:1: ruleMultiplicativeExpression : ( ( rule__MultiplicativeExpression__Group__0 ) ) ;
     public final void ruleMultiplicativeExpression() throws RecognitionException {
 
@@ -740,7 +788,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__MultiplicativeExpression__Group__0_in_ruleMultiplicativeExpression575);
             rule__MultiplicativeExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -764,10 +813,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleMultiplicativeExpression
+    // $ANTLR end "ruleMultiplicativeExpression"
 
 
-    // $ANTLR start entryRuleUnaryExpression
+    // $ANTLR start "entryRuleUnaryExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:313:1: entryRuleUnaryExpression : ruleUnaryExpression EOF ;
     public final void entryRuleUnaryExpression() throws RecognitionException {
         try {
@@ -777,7 +826,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getUnaryExpressionRule()); 
             pushFollow(FOLLOW_ruleUnaryExpression_in_entryRuleUnaryExpression602);
             ruleUnaryExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getUnaryExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleUnaryExpression609); 
@@ -793,10 +843,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleUnaryExpression
+    // $ANTLR end "entryRuleUnaryExpression"
 
 
-    // $ANTLR start ruleUnaryExpression
+    // $ANTLR start "ruleUnaryExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:322:1: ruleUnaryExpression : ( ( rule__UnaryExpression__Alternatives ) ) ;
     public final void ruleUnaryExpression() throws RecognitionException {
 
@@ -815,7 +865,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__UnaryExpression__Alternatives_in_ruleUnaryExpression635);
             rule__UnaryExpression__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -839,10 +890,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleUnaryExpression
+    // $ANTLR end "ruleUnaryExpression"
 
 
-    // $ANTLR start entryRulePrimaryExpression
+    // $ANTLR start "entryRulePrimaryExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:341:1: entryRulePrimaryExpression : rulePrimaryExpression EOF ;
     public final void entryRulePrimaryExpression() throws RecognitionException {
         try {
@@ -852,7 +903,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getPrimaryExpressionRule()); 
             pushFollow(FOLLOW_rulePrimaryExpression_in_entryRulePrimaryExpression662);
             rulePrimaryExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getPrimaryExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRulePrimaryExpression669); 
@@ -868,10 +920,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRulePrimaryExpression
+    // $ANTLR end "entryRulePrimaryExpression"
 
 
-    // $ANTLR start rulePrimaryExpression
+    // $ANTLR start "rulePrimaryExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:350:1: rulePrimaryExpression : ( ( rule__PrimaryExpression__Group__0 ) ) ;
     public final void rulePrimaryExpression() throws RecognitionException {
 
@@ -890,7 +942,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__PrimaryExpression__Group__0_in_rulePrimaryExpression695);
             rule__PrimaryExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -914,10 +967,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rulePrimaryExpression
+    // $ANTLR end "rulePrimaryExpression"
 
 
-    // $ANTLR start entryRuleValueSpecification
+    // $ANTLR start "entryRuleValueSpecification"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:369:1: entryRuleValueSpecification : ruleValueSpecification EOF ;
     public final void entryRuleValueSpecification() throws RecognitionException {
         try {
@@ -927,7 +980,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getValueSpecificationRule()); 
             pushFollow(FOLLOW_ruleValueSpecification_in_entryRuleValueSpecification722);
             ruleValueSpecification();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getValueSpecificationRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleValueSpecification729); 
@@ -943,10 +997,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleValueSpecification
+    // $ANTLR end "entryRuleValueSpecification"
 
 
-    // $ANTLR start ruleValueSpecification
+    // $ANTLR start "ruleValueSpecification"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:378:1: ruleValueSpecification : ( ( rule__ValueSpecification__Alternatives ) ) ;
     public final void ruleValueSpecification() throws RecognitionException {
 
@@ -965,7 +1019,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ValueSpecification__Alternatives_in_ruleValueSpecification755);
             rule__ValueSpecification__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -989,10 +1044,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleValueSpecification
+    // $ANTLR end "ruleValueSpecification"
 
 
-    // $ANTLR start entryRuleSuffixExpression
+    // $ANTLR start "entryRuleSuffixExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:397:1: entryRuleSuffixExpression : ruleSuffixExpression EOF ;
     public final void entryRuleSuffixExpression() throws RecognitionException {
         try {
@@ -1002,7 +1057,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getSuffixExpressionRule()); 
             pushFollow(FOLLOW_ruleSuffixExpression_in_entryRuleSuffixExpression782);
             ruleSuffixExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getSuffixExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleSuffixExpression789); 
@@ -1018,10 +1074,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleSuffixExpression
+    // $ANTLR end "entryRuleSuffixExpression"
 
 
-    // $ANTLR start ruleSuffixExpression
+    // $ANTLR start "ruleSuffixExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:406:1: ruleSuffixExpression : ( ( rule__SuffixExpression__Alternatives ) ) ;
     public final void ruleSuffixExpression() throws RecognitionException {
 
@@ -1040,7 +1096,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__SuffixExpression__Alternatives_in_ruleSuffixExpression815);
             rule__SuffixExpression__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1064,10 +1121,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleSuffixExpression
+    // $ANTLR end "ruleSuffixExpression"
 
 
-    // $ANTLR start entryRulePropertyCallExpression
+    // $ANTLR start "entryRulePropertyCallExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:425:1: entryRulePropertyCallExpression : rulePropertyCallExpression EOF ;
     public final void entryRulePropertyCallExpression() throws RecognitionException {
         try {
@@ -1077,7 +1134,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getPropertyCallExpressionRule()); 
             pushFollow(FOLLOW_rulePropertyCallExpression_in_entryRulePropertyCallExpression842);
             rulePropertyCallExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getPropertyCallExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRulePropertyCallExpression849); 
@@ -1093,10 +1151,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRulePropertyCallExpression
+    // $ANTLR end "entryRulePropertyCallExpression"
 
 
-    // $ANTLR start rulePropertyCallExpression
+    // $ANTLR start "rulePropertyCallExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:434:1: rulePropertyCallExpression : ( ( rule__PropertyCallExpression__Group__0 ) ) ;
     public final void rulePropertyCallExpression() throws RecognitionException {
 
@@ -1115,7 +1173,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__PropertyCallExpression__Group__0_in_rulePropertyCallExpression875);
             rule__PropertyCallExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1139,10 +1198,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rulePropertyCallExpression
+    // $ANTLR end "rulePropertyCallExpression"
 
 
-    // $ANTLR start entryRuleOperationCallExpression
+    // $ANTLR start "entryRuleOperationCallExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:453:1: entryRuleOperationCallExpression : ruleOperationCallExpression EOF ;
     public final void entryRuleOperationCallExpression() throws RecognitionException {
         try {
@@ -1152,7 +1211,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getOperationCallExpressionRule()); 
             pushFollow(FOLLOW_ruleOperationCallExpression_in_entryRuleOperationCallExpression902);
             ruleOperationCallExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getOperationCallExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleOperationCallExpression909); 
@@ -1168,10 +1228,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleOperationCallExpression
+    // $ANTLR end "entryRuleOperationCallExpression"
 
 
-    // $ANTLR start ruleOperationCallExpression
+    // $ANTLR start "ruleOperationCallExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:462:1: ruleOperationCallExpression : ( ( rule__OperationCallExpression__Group__0 ) ) ;
     public final void ruleOperationCallExpression() throws RecognitionException {
 
@@ -1190,7 +1250,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__0_in_ruleOperationCallExpression935);
             rule__OperationCallExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1214,10 +1275,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleOperationCallExpression
+    // $ANTLR end "ruleOperationCallExpression"
 
 
-    // $ANTLR start entryRuleLiteral
+    // $ANTLR start "entryRuleLiteral"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:481:1: entryRuleLiteral : ruleLiteral EOF ;
     public final void entryRuleLiteral() throws RecognitionException {
         try {
@@ -1227,7 +1288,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getLiteralRule()); 
             pushFollow(FOLLOW_ruleLiteral_in_entryRuleLiteral962);
             ruleLiteral();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getLiteralRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleLiteral969); 
@@ -1243,10 +1305,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleLiteral
+    // $ANTLR end "entryRuleLiteral"
 
 
-    // $ANTLR start ruleLiteral
+    // $ANTLR start "ruleLiteral"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:490:1: ruleLiteral : ( ( rule__Literal__Alternatives ) ) ;
     public final void ruleLiteral() throws RecognitionException {
 
@@ -1265,7 +1327,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__Literal__Alternatives_in_ruleLiteral995);
             rule__Literal__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1289,10 +1352,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleLiteral
+    // $ANTLR end "ruleLiteral"
 
 
-    // $ANTLR start entryRuleNameOrChoiceOrBehaviorCall
+    // $ANTLR start "entryRuleNameOrChoiceOrBehaviorCall"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:509:1: entryRuleNameOrChoiceOrBehaviorCall : ruleNameOrChoiceOrBehaviorCall EOF ;
     public final void entryRuleNameOrChoiceOrBehaviorCall() throws RecognitionException {
         try {
@@ -1302,7 +1365,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getNameOrChoiceOrBehaviorCallRule()); 
             pushFollow(FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_entryRuleNameOrChoiceOrBehaviorCall1022);
             ruleNameOrChoiceOrBehaviorCall();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getNameOrChoiceOrBehaviorCallRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleNameOrChoiceOrBehaviorCall1029); 
@@ -1318,10 +1382,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleNameOrChoiceOrBehaviorCall
+    // $ANTLR end "entryRuleNameOrChoiceOrBehaviorCall"
 
 
-    // $ANTLR start ruleNameOrChoiceOrBehaviorCall
+    // $ANTLR start "ruleNameOrChoiceOrBehaviorCall"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:518:1: ruleNameOrChoiceOrBehaviorCall : ( ( rule__NameOrChoiceOrBehaviorCall__Group__0 ) ) ;
     public final void ruleNameOrChoiceOrBehaviorCall() throws RecognitionException {
 
@@ -1340,7 +1404,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__0_in_ruleNameOrChoiceOrBehaviorCall1055);
             rule__NameOrChoiceOrBehaviorCall__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1364,10 +1429,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleNameOrChoiceOrBehaviorCall
+    // $ANTLR end "ruleNameOrChoiceOrBehaviorCall"
 
 
-    // $ANTLR start entryRuleQualifiedName
+    // $ANTLR start "entryRuleQualifiedName"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:537:1: entryRuleQualifiedName : ruleQualifiedName EOF ;
     public final void entryRuleQualifiedName() throws RecognitionException {
         try {
@@ -1377,7 +1442,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getQualifiedNameRule()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName1082);
             ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getQualifiedNameRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName1089); 
@@ -1393,10 +1459,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleQualifiedName
+    // $ANTLR end "entryRuleQualifiedName"
 
 
-    // $ANTLR start ruleQualifiedName
+    // $ANTLR start "ruleQualifiedName"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:546:1: ruleQualifiedName : ( ( rule__QualifiedName__Group__0 ) ) ;
     public final void ruleQualifiedName() throws RecognitionException {
 
@@ -1415,7 +1481,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__0_in_ruleQualifiedName1115);
             rule__QualifiedName__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1439,10 +1506,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleQualifiedName
+    // $ANTLR end "ruleQualifiedName"
 
 
-    // $ANTLR start entryRuleInterval
+    // $ANTLR start "entryRuleInterval"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:565:1: entryRuleInterval : ruleInterval EOF ;
     public final void entryRuleInterval() throws RecognitionException {
         try {
@@ -1452,7 +1519,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getIntervalRule()); 
             pushFollow(FOLLOW_ruleInterval_in_entryRuleInterval1142);
             ruleInterval();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getIntervalRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleInterval1149); 
@@ -1468,10 +1536,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleInterval
+    // $ANTLR end "entryRuleInterval"
 
 
-    // $ANTLR start ruleInterval
+    // $ANTLR start "ruleInterval"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:574:1: ruleInterval : ( ( rule__Interval__Group__0 ) ) ;
     public final void ruleInterval() throws RecognitionException {
 
@@ -1490,7 +1558,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__Interval__Group__0_in_ruleInterval1175);
             rule__Interval__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1514,10 +1583,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleInterval
+    // $ANTLR end "ruleInterval"
 
 
-    // $ANTLR start entryRuleCollectionOrTuple
+    // $ANTLR start "entryRuleCollectionOrTuple"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:593:1: entryRuleCollectionOrTuple : ruleCollectionOrTuple EOF ;
     public final void entryRuleCollectionOrTuple() throws RecognitionException {
         try {
@@ -1527,7 +1596,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getCollectionOrTupleRule()); 
             pushFollow(FOLLOW_ruleCollectionOrTuple_in_entryRuleCollectionOrTuple1202);
             ruleCollectionOrTuple();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getCollectionOrTupleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleCollectionOrTuple1209); 
@@ -1543,10 +1613,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleCollectionOrTuple
+    // $ANTLR end "entryRuleCollectionOrTuple"
 
 
-    // $ANTLR start ruleCollectionOrTuple
+    // $ANTLR start "ruleCollectionOrTuple"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:602:1: ruleCollectionOrTuple : ( ( rule__CollectionOrTuple__Group__0 ) ) ;
     public final void ruleCollectionOrTuple() throws RecognitionException {
 
@@ -1565,7 +1635,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__CollectionOrTuple__Group__0_in_ruleCollectionOrTuple1235);
             rule__CollectionOrTuple__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1589,10 +1660,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleCollectionOrTuple
+    // $ANTLR end "ruleCollectionOrTuple"
 
 
-    // $ANTLR start entryRuleTuple
+    // $ANTLR start "entryRuleTuple"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:621:1: entryRuleTuple : ruleTuple EOF ;
     public final void entryRuleTuple() throws RecognitionException {
         try {
@@ -1602,7 +1673,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getTupleRule()); 
             pushFollow(FOLLOW_ruleTuple_in_entryRuleTuple1262);
             ruleTuple();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getTupleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleTuple1269); 
@@ -1618,10 +1690,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleTuple
+    // $ANTLR end "entryRuleTuple"
 
 
-    // $ANTLR start ruleTuple
+    // $ANTLR start "ruleTuple"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:630:1: ruleTuple : ( ( rule__Tuple__Group__0 ) ) ;
     public final void ruleTuple() throws RecognitionException {
 
@@ -1640,7 +1712,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__Tuple__Group__0_in_ruleTuple1295);
             rule__Tuple__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1664,10 +1737,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleTuple
+    // $ANTLR end "ruleTuple"
 
 
-    // $ANTLR start entryRuleListOfValues
+    // $ANTLR start "entryRuleListOfValues"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:649:1: entryRuleListOfValues : ruleListOfValues EOF ;
     public final void entryRuleListOfValues() throws RecognitionException {
         try {
@@ -1677,7 +1750,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getListOfValuesRule()); 
             pushFollow(FOLLOW_ruleListOfValues_in_entryRuleListOfValues1322);
             ruleListOfValues();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getListOfValuesRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleListOfValues1329); 
@@ -1693,10 +1767,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleListOfValues
+    // $ANTLR end "entryRuleListOfValues"
 
 
-    // $ANTLR start ruleListOfValues
+    // $ANTLR start "ruleListOfValues"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:658:1: ruleListOfValues : ( ( rule__ListOfValues__Group__0 ) ) ;
     public final void ruleListOfValues() throws RecognitionException {
 
@@ -1715,7 +1789,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ListOfValues__Group__0_in_ruleListOfValues1355);
             rule__ListOfValues__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1739,10 +1814,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleListOfValues
+    // $ANTLR end "ruleListOfValues"
 
 
-    // $ANTLR start entryRuleListOfValueNamePairs
+    // $ANTLR start "entryRuleListOfValueNamePairs"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:677:1: entryRuleListOfValueNamePairs : ruleListOfValueNamePairs EOF ;
     public final void entryRuleListOfValueNamePairs() throws RecognitionException {
         try {
@@ -1752,7 +1827,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getListOfValueNamePairsRule()); 
             pushFollow(FOLLOW_ruleListOfValueNamePairs_in_entryRuleListOfValueNamePairs1382);
             ruleListOfValueNamePairs();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getListOfValueNamePairsRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleListOfValueNamePairs1389); 
@@ -1768,10 +1844,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleListOfValueNamePairs
+    // $ANTLR end "entryRuleListOfValueNamePairs"
 
 
-    // $ANTLR start ruleListOfValueNamePairs
+    // $ANTLR start "ruleListOfValueNamePairs"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:686:1: ruleListOfValueNamePairs : ( ( rule__ListOfValueNamePairs__Group__0 ) ) ;
     public final void ruleListOfValueNamePairs() throws RecognitionException {
 
@@ -1790,7 +1866,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ListOfValueNamePairs__Group__0_in_ruleListOfValueNamePairs1415);
             rule__ListOfValueNamePairs__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1814,10 +1891,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleListOfValueNamePairs
+    // $ANTLR end "ruleListOfValueNamePairs"
 
 
-    // $ANTLR start entryRuleValueNamePair
+    // $ANTLR start "entryRuleValueNamePair"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:705:1: entryRuleValueNamePair : ruleValueNamePair EOF ;
     public final void entryRuleValueNamePair() throws RecognitionException {
         try {
@@ -1827,7 +1904,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getValueNamePairRule()); 
             pushFollow(FOLLOW_ruleValueNamePair_in_entryRuleValueNamePair1442);
             ruleValueNamePair();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getValueNamePairRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleValueNamePair1449); 
@@ -1843,10 +1921,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleValueNamePair
+    // $ANTLR end "entryRuleValueNamePair"
 
 
-    // $ANTLR start ruleValueNamePair
+    // $ANTLR start "ruleValueNamePair"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:714:1: ruleValueNamePair : ( ( rule__ValueNamePair__Group__0 ) ) ;
     public final void ruleValueNamePair() throws RecognitionException {
 
@@ -1865,7 +1943,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ValueNamePair__Group__0_in_ruleValueNamePair1475);
             rule__ValueNamePair__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1889,10 +1968,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleValueNamePair
+    // $ANTLR end "ruleValueNamePair"
 
 
-    // $ANTLR start entryRuleTimeExpression
+    // $ANTLR start "entryRuleTimeExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:733:1: entryRuleTimeExpression : ruleTimeExpression EOF ;
     public final void entryRuleTimeExpression() throws RecognitionException {
         try {
@@ -1902,7 +1981,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getTimeExpressionRule()); 
             pushFollow(FOLLOW_ruleTimeExpression_in_entryRuleTimeExpression1502);
             ruleTimeExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getTimeExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleTimeExpression1509); 
@@ -1918,10 +1998,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleTimeExpression
+    // $ANTLR end "entryRuleTimeExpression"
 
 
-    // $ANTLR start ruleTimeExpression
+    // $ANTLR start "ruleTimeExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:742:1: ruleTimeExpression : ( ( rule__TimeExpression__Alternatives ) ) ;
     public final void ruleTimeExpression() throws RecognitionException {
 
@@ -1940,7 +2020,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__TimeExpression__Alternatives_in_ruleTimeExpression1535);
             rule__TimeExpression__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1964,10 +2045,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleTimeExpression
+    // $ANTLR end "ruleTimeExpression"
 
 
-    // $ANTLR start entryRuleInstantObsExpression
+    // $ANTLR start "entryRuleInstantObsExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:761:1: entryRuleInstantObsExpression : ruleInstantObsExpression EOF ;
     public final void entryRuleInstantObsExpression() throws RecognitionException {
         try {
@@ -1977,7 +2058,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getInstantObsExpressionRule()); 
             pushFollow(FOLLOW_ruleInstantObsExpression_in_entryRuleInstantObsExpression1562);
             ruleInstantObsExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getInstantObsExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleInstantObsExpression1569); 
@@ -1993,10 +2075,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleInstantObsExpression
+    // $ANTLR end "entryRuleInstantObsExpression"
 
 
-    // $ANTLR start ruleInstantObsExpression
+    // $ANTLR start "ruleInstantObsExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:770:1: ruleInstantObsExpression : ( ( rule__InstantObsExpression__Group__0 ) ) ;
     public final void ruleInstantObsExpression() throws RecognitionException {
 
@@ -2015,7 +2097,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group__0_in_ruleInstantObsExpression1595);
             rule__InstantObsExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2039,10 +2122,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleInstantObsExpression
+    // $ANTLR end "ruleInstantObsExpression"
 
 
-    // $ANTLR start entryRuleInstantObsName
+    // $ANTLR start "entryRuleInstantObsName"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:789:1: entryRuleInstantObsName : ruleInstantObsName EOF ;
     public final void entryRuleInstantObsName() throws RecognitionException {
         try {
@@ -2052,7 +2135,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getInstantObsNameRule()); 
             pushFollow(FOLLOW_ruleInstantObsName_in_entryRuleInstantObsName1622);
             ruleInstantObsName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getInstantObsNameRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleInstantObsName1629); 
@@ -2068,10 +2152,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleInstantObsName
+    // $ANTLR end "entryRuleInstantObsName"
 
 
-    // $ANTLR start ruleInstantObsName
+    // $ANTLR start "ruleInstantObsName"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:798:1: ruleInstantObsName : ( ( rule__InstantObsName__Group__0 ) ) ;
     public final void ruleInstantObsName() throws RecognitionException {
 
@@ -2090,7 +2174,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsName__Group__0_in_ruleInstantObsName1655);
             rule__InstantObsName__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2114,10 +2199,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleInstantObsName
+    // $ANTLR end "ruleInstantObsName"
 
 
-    // $ANTLR start entryRuleDurationObsExpression
+    // $ANTLR start "entryRuleDurationObsExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:817:1: entryRuleDurationObsExpression : ruleDurationObsExpression EOF ;
     public final void entryRuleDurationObsExpression() throws RecognitionException {
         try {
@@ -2127,7 +2212,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getDurationObsExpressionRule()); 
             pushFollow(FOLLOW_ruleDurationObsExpression_in_entryRuleDurationObsExpression1682);
             ruleDurationObsExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDurationObsExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleDurationObsExpression1689); 
@@ -2143,10 +2229,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleDurationObsExpression
+    // $ANTLR end "entryRuleDurationObsExpression"
 
 
-    // $ANTLR start ruleDurationObsExpression
+    // $ANTLR start "ruleDurationObsExpression"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:826:1: ruleDurationObsExpression : ( ( rule__DurationObsExpression__Group__0 ) ) ;
     public final void ruleDurationObsExpression() throws RecognitionException {
 
@@ -2165,7 +2251,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group__0_in_ruleDurationObsExpression1715);
             rule__DurationObsExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2189,10 +2276,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleDurationObsExpression
+    // $ANTLR end "ruleDurationObsExpression"
 
 
-    // $ANTLR start entryRuleDurationObsName
+    // $ANTLR start "entryRuleDurationObsName"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:845:1: entryRuleDurationObsName : ruleDurationObsName EOF ;
     public final void entryRuleDurationObsName() throws RecognitionException {
         try {
@@ -2202,7 +2289,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getDurationObsNameRule()); 
             pushFollow(FOLLOW_ruleDurationObsName_in_entryRuleDurationObsName1742);
             ruleDurationObsName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDurationObsNameRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleDurationObsName1749); 
@@ -2218,10 +2306,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleDurationObsName
+    // $ANTLR end "entryRuleDurationObsName"
 
 
-    // $ANTLR start ruleDurationObsName
+    // $ANTLR start "ruleDurationObsName"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:854:1: ruleDurationObsName : ( ( rule__DurationObsName__Group__0 ) ) ;
     public final void ruleDurationObsName() throws RecognitionException {
 
@@ -2240,7 +2328,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsName__Group__0_in_ruleDurationObsName1775);
             rule__DurationObsName__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2264,10 +2353,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleDurationObsName
+    // $ANTLR end "ruleDurationObsName"
 
 
-    // $ANTLR start entryRuleJitterExp
+    // $ANTLR start "entryRuleJitterExp"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:873:1: entryRuleJitterExp : ruleJitterExp EOF ;
     public final void entryRuleJitterExp() throws RecognitionException {
         try {
@@ -2277,7 +2366,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getJitterExpRule()); 
             pushFollow(FOLLOW_ruleJitterExp_in_entryRuleJitterExp1802);
             ruleJitterExp();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getJitterExpRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleJitterExp1809); 
@@ -2293,10 +2383,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleJitterExp
+    // $ANTLR end "entryRuleJitterExp"
 
 
-    // $ANTLR start ruleJitterExp
+    // $ANTLR start "ruleJitterExp"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:882:1: ruleJitterExp : ( ( rule__JitterExp__Group__0 ) ) ;
     public final void ruleJitterExp() throws RecognitionException {
 
@@ -2315,7 +2405,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__JitterExp__Group__0_in_ruleJitterExp1835);
             rule__JitterExp__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2339,10 +2430,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleJitterExp
+    // $ANTLR end "ruleJitterExp"
 
 
-    // $ANTLR start entryRuleVariableDeclaration
+    // $ANTLR start "entryRuleVariableDeclaration"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:901:1: entryRuleVariableDeclaration : ruleVariableDeclaration EOF ;
     public final void entryRuleVariableDeclaration() throws RecognitionException {
         try {
@@ -2352,7 +2443,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getVariableDeclarationRule()); 
             pushFollow(FOLLOW_ruleVariableDeclaration_in_entryRuleVariableDeclaration1862);
             ruleVariableDeclaration();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getVariableDeclarationRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleVariableDeclaration1869); 
@@ -2368,10 +2460,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleVariableDeclaration
+    // $ANTLR end "entryRuleVariableDeclaration"
 
 
-    // $ANTLR start ruleVariableDeclaration
+    // $ANTLR start "ruleVariableDeclaration"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:910:1: ruleVariableDeclaration : ( ( rule__VariableDeclaration__Group__0 ) ) ;
     public final void ruleVariableDeclaration() throws RecognitionException {
 
@@ -2390,7 +2482,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group__0_in_ruleVariableDeclaration1895);
             rule__VariableDeclaration__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2414,10 +2507,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleVariableDeclaration
+    // $ANTLR end "ruleVariableDeclaration"
 
 
-    // $ANTLR start entryRuleVariableDirectionKind
+    // $ANTLR start "entryRuleVariableDirectionKind"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:929:1: entryRuleVariableDirectionKind : ruleVariableDirectionKind EOF ;
     public final void entryRuleVariableDirectionKind() throws RecognitionException {
         try {
@@ -2427,7 +2520,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getVariableDirectionKindRule()); 
             pushFollow(FOLLOW_ruleVariableDirectionKind_in_entryRuleVariableDirectionKind1922);
             ruleVariableDirectionKind();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getVariableDirectionKindRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleVariableDirectionKind1929); 
@@ -2443,10 +2537,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleVariableDirectionKind
+    // $ANTLR end "entryRuleVariableDirectionKind"
 
 
-    // $ANTLR start ruleVariableDirectionKind
+    // $ANTLR start "ruleVariableDirectionKind"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:938:1: ruleVariableDirectionKind : ( ( rule__VariableDirectionKind__Alternatives ) ) ;
     public final void ruleVariableDirectionKind() throws RecognitionException {
 
@@ -2465,7 +2559,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDirectionKind__Alternatives_in_ruleVariableDirectionKind1955);
             rule__VariableDirectionKind__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2489,10 +2584,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleVariableDirectionKind
+    // $ANTLR end "ruleVariableDirectionKind"
 
 
-    // $ANTLR start entryRuleDataTypeName
+    // $ANTLR start "entryRuleDataTypeName"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:957:1: entryRuleDataTypeName : ruleDataTypeName EOF ;
     public final void entryRuleDataTypeName() throws RecognitionException {
         try {
@@ -2502,7 +2597,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getDataTypeNameRule()); 
             pushFollow(FOLLOW_ruleDataTypeName_in_entryRuleDataTypeName1982);
             ruleDataTypeName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDataTypeNameRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleDataTypeName1989); 
@@ -2518,10 +2614,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleDataTypeName
+    // $ANTLR end "entryRuleDataTypeName"
 
 
-    // $ANTLR start ruleDataTypeName
+    // $ANTLR start "ruleDataTypeName"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:966:1: ruleDataTypeName : ( ( rule__DataTypeName__Group__0 ) ) ;
     public final void ruleDataTypeName() throws RecognitionException {
 
@@ -2540,7 +2636,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DataTypeName__Group__0_in_ruleDataTypeName2015);
             rule__DataTypeName__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2564,10 +2661,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleDataTypeName
+    // $ANTLR end "ruleDataTypeName"
 
 
-    // $ANTLR start entryRuleNumberLiteralRule
+    // $ANTLR start "entryRuleNumberLiteralRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:985:1: entryRuleNumberLiteralRule : ruleNumberLiteralRule EOF ;
     public final void entryRuleNumberLiteralRule() throws RecognitionException {
         try {
@@ -2577,7 +2674,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getNumberLiteralRuleRule()); 
             pushFollow(FOLLOW_ruleNumberLiteralRule_in_entryRuleNumberLiteralRule2042);
             ruleNumberLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getNumberLiteralRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleNumberLiteralRule2049); 
@@ -2593,10 +2691,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleNumberLiteralRule
+    // $ANTLR end "entryRuleNumberLiteralRule"
 
 
-    // $ANTLR start ruleNumberLiteralRule
+    // $ANTLR start "ruleNumberLiteralRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:994:1: ruleNumberLiteralRule : ( ( rule__NumberLiteralRule__Alternatives ) ) ;
     public final void ruleNumberLiteralRule() throws RecognitionException {
 
@@ -2615,7 +2713,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__NumberLiteralRule__Alternatives_in_ruleNumberLiteralRule2075);
             rule__NumberLiteralRule__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2639,10 +2738,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleNumberLiteralRule
+    // $ANTLR end "ruleNumberLiteralRule"
 
 
-    // $ANTLR start entryRuleIntegerLiteralRule
+    // $ANTLR start "entryRuleIntegerLiteralRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1013:1: entryRuleIntegerLiteralRule : ruleIntegerLiteralRule EOF ;
     public final void entryRuleIntegerLiteralRule() throws RecognitionException {
         try {
@@ -2652,7 +2751,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getIntegerLiteralRuleRule()); 
             pushFollow(FOLLOW_ruleIntegerLiteralRule_in_entryRuleIntegerLiteralRule2102);
             ruleIntegerLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getIntegerLiteralRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleIntegerLiteralRule2109); 
@@ -2668,10 +2768,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleIntegerLiteralRule
+    // $ANTLR end "entryRuleIntegerLiteralRule"
 
 
-    // $ANTLR start ruleIntegerLiteralRule
+    // $ANTLR start "ruleIntegerLiteralRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1022:1: ruleIntegerLiteralRule : ( ( rule__IntegerLiteralRule__ValueAssignment ) ) ;
     public final void ruleIntegerLiteralRule() throws RecognitionException {
 
@@ -2690,7 +2790,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__IntegerLiteralRule__ValueAssignment_in_ruleIntegerLiteralRule2135);
             rule__IntegerLiteralRule__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2714,10 +2815,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleIntegerLiteralRule
+    // $ANTLR end "ruleIntegerLiteralRule"
 
 
-    // $ANTLR start entryRuleUnlimitedLiteralRule
+    // $ANTLR start "entryRuleUnlimitedLiteralRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1041:1: entryRuleUnlimitedLiteralRule : ruleUnlimitedLiteralRule EOF ;
     public final void entryRuleUnlimitedLiteralRule() throws RecognitionException {
         try {
@@ -2727,7 +2828,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getUnlimitedLiteralRuleRule()); 
             pushFollow(FOLLOW_ruleUnlimitedLiteralRule_in_entryRuleUnlimitedLiteralRule2162);
             ruleUnlimitedLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getUnlimitedLiteralRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleUnlimitedLiteralRule2169); 
@@ -2743,10 +2845,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleUnlimitedLiteralRule
+    // $ANTLR end "entryRuleUnlimitedLiteralRule"
 
 
-    // $ANTLR start ruleUnlimitedLiteralRule
+    // $ANTLR start "ruleUnlimitedLiteralRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1050:1: ruleUnlimitedLiteralRule : ( ( rule__UnlimitedLiteralRule__ValueAssignment ) ) ;
     public final void ruleUnlimitedLiteralRule() throws RecognitionException {
 
@@ -2765,7 +2867,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__UnlimitedLiteralRule__ValueAssignment_in_ruleUnlimitedLiteralRule2195);
             rule__UnlimitedLiteralRule__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2789,10 +2892,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleUnlimitedLiteralRule
+    // $ANTLR end "ruleUnlimitedLiteralRule"
 
 
-    // $ANTLR start entryRuleRealLiteralRule
+    // $ANTLR start "entryRuleRealLiteralRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1069:1: entryRuleRealLiteralRule : ruleRealLiteralRule EOF ;
     public final void entryRuleRealLiteralRule() throws RecognitionException {
         try {
@@ -2802,7 +2905,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getRealLiteralRuleRule()); 
             pushFollow(FOLLOW_ruleRealLiteralRule_in_entryRuleRealLiteralRule2222);
             ruleRealLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getRealLiteralRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleRealLiteralRule2229); 
@@ -2818,10 +2922,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleRealLiteralRule
+    // $ANTLR end "entryRuleRealLiteralRule"
 
 
-    // $ANTLR start ruleRealLiteralRule
+    // $ANTLR start "ruleRealLiteralRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1078:1: ruleRealLiteralRule : ( ( rule__RealLiteralRule__ValueAssignment ) ) ;
     public final void ruleRealLiteralRule() throws RecognitionException {
 
@@ -2840,7 +2944,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__RealLiteralRule__ValueAssignment_in_ruleRealLiteralRule2255);
             rule__RealLiteralRule__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2864,10 +2969,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleRealLiteralRule
+    // $ANTLR end "ruleRealLiteralRule"
 
 
-    // $ANTLR start entryRuleDateTimeLiteralRule
+    // $ANTLR start "entryRuleDateTimeLiteralRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1097:1: entryRuleDateTimeLiteralRule : ruleDateTimeLiteralRule EOF ;
     public final void entryRuleDateTimeLiteralRule() throws RecognitionException {
         try {
@@ -2877,7 +2982,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getDateTimeLiteralRuleRule()); 
             pushFollow(FOLLOW_ruleDateTimeLiteralRule_in_entryRuleDateTimeLiteralRule2282);
             ruleDateTimeLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDateTimeLiteralRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleDateTimeLiteralRule2289); 
@@ -2893,10 +2999,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleDateTimeLiteralRule
+    // $ANTLR end "entryRuleDateTimeLiteralRule"
 
 
-    // $ANTLR start ruleDateTimeLiteralRule
+    // $ANTLR start "ruleDateTimeLiteralRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1106:1: ruleDateTimeLiteralRule : ( ( rule__DateTimeLiteralRule__ValueAssignment ) ) ;
     public final void ruleDateTimeLiteralRule() throws RecognitionException {
 
@@ -2915,7 +3021,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DateTimeLiteralRule__ValueAssignment_in_ruleDateTimeLiteralRule2315);
             rule__DateTimeLiteralRule__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2939,10 +3046,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleDateTimeLiteralRule
+    // $ANTLR end "ruleDateTimeLiteralRule"
 
 
-    // $ANTLR start entryRuleBooleanLiteralRule
+    // $ANTLR start "entryRuleBooleanLiteralRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1125:1: entryRuleBooleanLiteralRule : ruleBooleanLiteralRule EOF ;
     public final void entryRuleBooleanLiteralRule() throws RecognitionException {
         try {
@@ -2952,7 +3059,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getBooleanLiteralRuleRule()); 
             pushFollow(FOLLOW_ruleBooleanLiteralRule_in_entryRuleBooleanLiteralRule2342);
             ruleBooleanLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getBooleanLiteralRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleBooleanLiteralRule2349); 
@@ -2968,10 +3076,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleBooleanLiteralRule
+    // $ANTLR end "entryRuleBooleanLiteralRule"
 
 
-    // $ANTLR start ruleBooleanLiteralRule
+    // $ANTLR start "ruleBooleanLiteralRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1134:1: ruleBooleanLiteralRule : ( ( rule__BooleanLiteralRule__ValueAssignment ) ) ;
     public final void ruleBooleanLiteralRule() throws RecognitionException {
 
@@ -2990,7 +3098,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__BooleanLiteralRule__ValueAssignment_in_ruleBooleanLiteralRule2375);
             rule__BooleanLiteralRule__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3014,10 +3123,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleBooleanLiteralRule
+    // $ANTLR end "ruleBooleanLiteralRule"
 
 
-    // $ANTLR start entryRuleNullLiteralRule
+    // $ANTLR start "entryRuleNullLiteralRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1153:1: entryRuleNullLiteralRule : ruleNullLiteralRule EOF ;
     public final void entryRuleNullLiteralRule() throws RecognitionException {
         try {
@@ -3027,7 +3136,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getNullLiteralRuleRule()); 
             pushFollow(FOLLOW_ruleNullLiteralRule_in_entryRuleNullLiteralRule2402);
             ruleNullLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getNullLiteralRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleNullLiteralRule2409); 
@@ -3043,10 +3153,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleNullLiteralRule
+    // $ANTLR end "entryRuleNullLiteralRule"
 
 
-    // $ANTLR start ruleNullLiteralRule
+    // $ANTLR start "ruleNullLiteralRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1162:1: ruleNullLiteralRule : ( ( rule__NullLiteralRule__ValueAssignment ) ) ;
     public final void ruleNullLiteralRule() throws RecognitionException {
 
@@ -3065,7 +3175,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__NullLiteralRule__ValueAssignment_in_ruleNullLiteralRule2435);
             rule__NullLiteralRule__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3089,10 +3200,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleNullLiteralRule
+    // $ANTLR end "ruleNullLiteralRule"
 
 
-    // $ANTLR start entryRuleDefaultLiteralRule
+    // $ANTLR start "entryRuleDefaultLiteralRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1181:1: entryRuleDefaultLiteralRule : ruleDefaultLiteralRule EOF ;
     public final void entryRuleDefaultLiteralRule() throws RecognitionException {
         try {
@@ -3102,7 +3213,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getDefaultLiteralRuleRule()); 
             pushFollow(FOLLOW_ruleDefaultLiteralRule_in_entryRuleDefaultLiteralRule2462);
             ruleDefaultLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDefaultLiteralRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleDefaultLiteralRule2469); 
@@ -3118,10 +3230,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleDefaultLiteralRule
+    // $ANTLR end "entryRuleDefaultLiteralRule"
 
 
-    // $ANTLR start ruleDefaultLiteralRule
+    // $ANTLR start "ruleDefaultLiteralRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1190:1: ruleDefaultLiteralRule : ( ( rule__DefaultLiteralRule__ValueAssignment ) ) ;
     public final void ruleDefaultLiteralRule() throws RecognitionException {
 
@@ -3140,7 +3252,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DefaultLiteralRule__ValueAssignment_in_ruleDefaultLiteralRule2495);
             rule__DefaultLiteralRule__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3164,10 +3277,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleDefaultLiteralRule
+    // $ANTLR end "ruleDefaultLiteralRule"
 
 
-    // $ANTLR start entryRuleStringLiteralRule
+    // $ANTLR start "entryRuleStringLiteralRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1209:1: entryRuleStringLiteralRule : ruleStringLiteralRule EOF ;
     public final void entryRuleStringLiteralRule() throws RecognitionException {
         try {
@@ -3177,7 +3290,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getStringLiteralRuleRule()); 
             pushFollow(FOLLOW_ruleStringLiteralRule_in_entryRuleStringLiteralRule2522);
             ruleStringLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getStringLiteralRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleStringLiteralRule2529); 
@@ -3193,10 +3307,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end entryRuleStringLiteralRule
+    // $ANTLR end "entryRuleStringLiteralRule"
 
 
-    // $ANTLR start ruleStringLiteralRule
+    // $ANTLR start "ruleStringLiteralRule"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1218:1: ruleStringLiteralRule : ( ( rule__StringLiteralRule__ValueAssignment ) ) ;
     public final void ruleStringLiteralRule() throws RecognitionException {
 
@@ -3215,7 +3329,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__StringLiteralRule__ValueAssignment_in_ruleStringLiteralRule2555);
             rule__StringLiteralRule__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3239,10 +3354,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end ruleStringLiteralRule
+    // $ANTLR end "ruleStringLiteralRule"
 
 
-    // $ANTLR start rule__AndOrXorExpression__OpAlternatives_1_0_0
+    // $ANTLR start "rule__AndOrXorExpression__OpAlternatives_1_0_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1237:1: rule__AndOrXorExpression__OpAlternatives_1_0_0 : ( ( 'and' ) | ( 'or' ) | ( 'xor' ) );
     public final void rule__AndOrXorExpression__OpAlternatives_1_0_0() throws RecognitionException {
 
@@ -3269,7 +3384,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1237:1: rule__AndOrXorExpression__OpAlternatives_1_0_0 : ( ( 'and' ) | ( 'or' ) | ( 'xor' ) );", 2, 0, input);
+                    new NoViableAltException("", 2, 0, input);
 
                 throw nvae;
             }
@@ -3334,10 +3449,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__OpAlternatives_1_0_0
+    // $ANTLR end "rule__AndOrXorExpression__OpAlternatives_1_0_0"
 
 
-    // $ANTLR start rule__EqualityExpression__OpAlternatives_1_0_0
+    // $ANTLR start "rule__EqualityExpression__OpAlternatives_1_0_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1271:1: rule__EqualityExpression__OpAlternatives_1_0_0 : ( ( '==' ) | ( '<>' ) );
     public final void rule__EqualityExpression__OpAlternatives_1_0_0() throws RecognitionException {
 
@@ -3356,7 +3471,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1271:1: rule__EqualityExpression__OpAlternatives_1_0_0 : ( ( '==' ) | ( '<>' ) );", 3, 0, input);
+                    new NoViableAltException("", 3, 0, input);
 
                 throw nvae;
             }
@@ -3405,10 +3520,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__OpAlternatives_1_0_0
+    // $ANTLR end "rule__EqualityExpression__OpAlternatives_1_0_0"
 
 
-    // $ANTLR start rule__RelationalExpression__OpAlternatives_1_0_0
+    // $ANTLR start "rule__RelationalExpression__OpAlternatives_1_0_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1297:1: rule__RelationalExpression__OpAlternatives_1_0_0 : ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) );
     public final void rule__RelationalExpression__OpAlternatives_1_0_0() throws RecognitionException {
 
@@ -3440,7 +3555,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1297:1: rule__RelationalExpression__OpAlternatives_1_0_0 : ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) );", 4, 0, input);
+                    new NoViableAltException("", 4, 0, input);
 
                 throw nvae;
             }
@@ -3520,10 +3635,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__OpAlternatives_1_0_0
+    // $ANTLR end "rule__RelationalExpression__OpAlternatives_1_0_0"
 
 
-    // $ANTLR start rule__AdditiveExpression__OpAlternatives_1_0_0
+    // $ANTLR start "rule__AdditiveExpression__OpAlternatives_1_0_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1339:1: rule__AdditiveExpression__OpAlternatives_1_0_0 : ( ( '+' ) | ( '-' ) );
     public final void rule__AdditiveExpression__OpAlternatives_1_0_0() throws RecognitionException {
 
@@ -3542,7 +3657,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1339:1: rule__AdditiveExpression__OpAlternatives_1_0_0 : ( ( '+' ) | ( '-' ) );", 5, 0, input);
+                    new NoViableAltException("", 5, 0, input);
 
                 throw nvae;
             }
@@ -3591,10 +3706,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__OpAlternatives_1_0_0
+    // $ANTLR end "rule__AdditiveExpression__OpAlternatives_1_0_0"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__OpAlternatives_1_0_0
+    // $ANTLR start "rule__MultiplicativeExpression__OpAlternatives_1_0_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1365:1: rule__MultiplicativeExpression__OpAlternatives_1_0_0 : ( ( '*' ) | ( '/' ) | ( 'mod' ) );
     public final void rule__MultiplicativeExpression__OpAlternatives_1_0_0() throws RecognitionException {
 
@@ -3621,7 +3736,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1365:1: rule__MultiplicativeExpression__OpAlternatives_1_0_0 : ( ( '*' ) | ( '/' ) | ( 'mod' ) );", 6, 0, input);
+                    new NoViableAltException("", 6, 0, input);
 
                 throw nvae;
             }
@@ -3686,10 +3801,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__OpAlternatives_1_0_0
+    // $ANTLR end "rule__MultiplicativeExpression__OpAlternatives_1_0_0"
 
 
-    // $ANTLR start rule__UnaryExpression__Alternatives
+    // $ANTLR start "rule__UnaryExpression__Alternatives"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1399:1: rule__UnaryExpression__Alternatives : ( ( ( rule__UnaryExpression__Group_0__0 ) ) | ( ( rule__UnaryExpression__ExpAssignment_1 ) ) );
     public final void rule__UnaryExpression__Alternatives() throws RecognitionException {
 
@@ -3708,7 +3823,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1399:1: rule__UnaryExpression__Alternatives : ( ( ( rule__UnaryExpression__Group_0__0 ) ) | ( ( rule__UnaryExpression__ExpAssignment_1 ) ) );", 7, 0, input);
+                    new NoViableAltException("", 7, 0, input);
 
                 throw nvae;
             }
@@ -3725,7 +3840,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__UnaryExpression__Group_0__0_in_rule__UnaryExpression__Alternatives2946);
                     rule__UnaryExpression__Group_0__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -3749,7 +3865,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__UnaryExpression__ExpAssignment_1_in_rule__UnaryExpression__Alternatives2964);
                     rule__UnaryExpression__ExpAssignment_1();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -3775,10 +3892,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__UnaryExpression__Alternatives
+    // $ANTLR end "rule__UnaryExpression__Alternatives"
 
 
-    // $ANTLR start rule__UnaryExpression__OpAlternatives_0_0_0
+    // $ANTLR start "rule__UnaryExpression__OpAlternatives_0_0_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1421:1: rule__UnaryExpression__OpAlternatives_0_0_0 : ( ( 'not' ) | ( '-' ) | ( '+' ) );
     public final void rule__UnaryExpression__OpAlternatives_0_0_0() throws RecognitionException {
 
@@ -3805,7 +3922,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1421:1: rule__UnaryExpression__OpAlternatives_0_0_0 : ( ( 'not' ) | ( '-' ) | ( '+' ) );", 8, 0, input);
+                    new NoViableAltException("", 8, 0, input);
 
                 throw nvae;
             }
@@ -3870,10 +3987,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__UnaryExpression__OpAlternatives_0_0_0
+    // $ANTLR end "rule__UnaryExpression__OpAlternatives_0_0_0"
 
 
-    // $ANTLR start rule__ValueSpecification__Alternatives
+    // $ANTLR start "rule__ValueSpecification__Alternatives"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1455:1: rule__ValueSpecification__Alternatives : ( ( ruleLiteral ) | ( ruleNameOrChoiceOrBehaviorCall ) | ( ruleInterval ) | ( ruleCollectionOrTuple ) | ( ruleTuple ) | ( ruleTimeExpression ) | ( ruleVariableDeclaration ) | ( ( rule__ValueSpecification__Group_7__0 ) ) );
     public final void rule__ValueSpecification__Alternatives() throws RecognitionException {
 
@@ -3882,88 +3999,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         try {
             // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1459:1: ( ( ruleLiteral ) | ( ruleNameOrChoiceOrBehaviorCall ) | ( ruleInterval ) | ( ruleCollectionOrTuple ) | ( ruleTuple ) | ( ruleTimeExpression ) | ( ruleVariableDeclaration ) | ( ( rule__ValueSpecification__Group_7__0 ) ) )
             int alt9=8;
-            switch ( input.LA(1) ) {
-            case RULE_INTEGERLITERAL:
-            case RULE_REALLITERAL:
-            case RULE_DATETIMELITERAL:
-            case RULE_BOOLEANLITERAL:
-            case RULE_NULLLITERAL:
-            case RULE_STRING:
-            case 27:
-            case 28:
-                {
-                alt9=1;
-                }
-                break;
-            case RULE_ID:
-                {
-                alt9=2;
-                }
-                break;
-            case 31:
-            case 32:
-                {
-                alt9=3;
-                }
-                break;
-            case 42:
-                {
-                int LA9_4 = input.LA(2);
-
-                if ( ((LA9_4>=RULE_INTEGERLITERAL && LA9_4<=RULE_STRING)||(LA9_4>=25 && LA9_4<=28)||(LA9_4>=30 && LA9_4<=35)||LA9_4==38||LA9_4==42||LA9_4==46||(LA9_4>=48 && LA9_4<=50)) ) {
-                    alt9=4;
-                }
-                else if ( (LA9_4==RULE_ID) ) {
-                    int LA9_9 = input.LA(3);
-
-                    if ( ((LA9_9>=16 && LA9_9<=29)||(LA9_9>=37 && LA9_9<=38)||LA9_9==40||(LA9_9>=43 && LA9_9<=44)||LA9_9==51) ) {
-                        alt9=4;
-                    }
-                    else if ( (LA9_9==45) ) {
-                        alt9=5;
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("1455:1: rule__ValueSpecification__Alternatives : ( ( ruleLiteral ) | ( ruleNameOrChoiceOrBehaviorCall ) | ( ruleInterval ) | ( ruleCollectionOrTuple ) | ( ruleTuple ) | ( ruleTimeExpression ) | ( ruleVariableDeclaration ) | ( ( rule__ValueSpecification__Group_7__0 ) ) );", 9, 9, input);
-
-                        throw nvae;
-                    }
-                }
-                else {
-                    NoViableAltException nvae =
-                        new NoViableAltException("1455:1: rule__ValueSpecification__Alternatives : ( ( ruleLiteral ) | ( ruleNameOrChoiceOrBehaviorCall ) | ( ruleInterval ) | ( ruleCollectionOrTuple ) | ( ruleTuple ) | ( ruleTimeExpression ) | ( ruleVariableDeclaration ) | ( ( rule__ValueSpecification__Group_7__0 ) ) );", 9, 4, input);
-
-                    throw nvae;
-                }
-                }
-                break;
-            case 46:
-            case 48:
-            case 49:
-                {
-                alt9=6;
-                }
-                break;
-            case 33:
-            case 34:
-            case 35:
-            case 50:
-                {
-                alt9=7;
-                }
-                break;
-            case 38:
-                {
-                alt9=8;
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("1455:1: rule__ValueSpecification__Alternatives : ( ( ruleLiteral ) | ( ruleNameOrChoiceOrBehaviorCall ) | ( ruleInterval ) | ( ruleCollectionOrTuple ) | ( ruleTuple ) | ( ruleTimeExpression ) | ( ruleVariableDeclaration ) | ( ( rule__ValueSpecification__Group_7__0 ) ) );", 9, 0, input);
-
-                throw nvae;
-            }
-
+            alt9 = dfa9.predict(input);
             switch (alt9) {
                 case 1 :
                     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1460:1: ( ruleLiteral )
@@ -3974,7 +4010,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getValueSpecificationAccess().getLiteralParserRuleCall_0()); 
                     pushFollow(FOLLOW_ruleLiteral_in_rule__ValueSpecification__Alternatives3072);
                     ruleLiteral();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueSpecificationAccess().getLiteralParserRuleCall_0()); 
 
@@ -3992,7 +4029,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getValueSpecificationAccess().getNameOrChoiceOrBehaviorCallParserRuleCall_1()); 
                     pushFollow(FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_rule__ValueSpecification__Alternatives3089);
                     ruleNameOrChoiceOrBehaviorCall();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueSpecificationAccess().getNameOrChoiceOrBehaviorCallParserRuleCall_1()); 
 
@@ -4010,7 +4048,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getValueSpecificationAccess().getIntervalParserRuleCall_2()); 
                     pushFollow(FOLLOW_ruleInterval_in_rule__ValueSpecification__Alternatives3106);
                     ruleInterval();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueSpecificationAccess().getIntervalParserRuleCall_2()); 
 
@@ -4028,7 +4067,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getValueSpecificationAccess().getCollectionOrTupleParserRuleCall_3()); 
                     pushFollow(FOLLOW_ruleCollectionOrTuple_in_rule__ValueSpecification__Alternatives3123);
                     ruleCollectionOrTuple();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueSpecificationAccess().getCollectionOrTupleParserRuleCall_3()); 
 
@@ -4046,7 +4086,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getValueSpecificationAccess().getTupleParserRuleCall_4()); 
                     pushFollow(FOLLOW_ruleTuple_in_rule__ValueSpecification__Alternatives3140);
                     ruleTuple();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueSpecificationAccess().getTupleParserRuleCall_4()); 
 
@@ -4064,7 +4105,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getValueSpecificationAccess().getTimeExpressionParserRuleCall_5()); 
                     pushFollow(FOLLOW_ruleTimeExpression_in_rule__ValueSpecification__Alternatives3157);
                     ruleTimeExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueSpecificationAccess().getTimeExpressionParserRuleCall_5()); 
 
@@ -4082,7 +4124,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getValueSpecificationAccess().getVariableDeclarationParserRuleCall_6()); 
                     pushFollow(FOLLOW_ruleVariableDeclaration_in_rule__ValueSpecification__Alternatives3174);
                     ruleVariableDeclaration();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueSpecificationAccess().getVariableDeclarationParserRuleCall_6()); 
 
@@ -4103,7 +4146,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__ValueSpecification__Group_7__0_in_rule__ValueSpecification__Alternatives3191);
                     rule__ValueSpecification__Group_7__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -4129,10 +4173,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ValueSpecification__Alternatives
+    // $ANTLR end "rule__ValueSpecification__Alternatives"
 
 
-    // $ANTLR start rule__SuffixExpression__Alternatives
+    // $ANTLR start "rule__SuffixExpression__Alternatives"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1513:1: rule__SuffixExpression__Alternatives : ( ( rulePropertyCallExpression ) | ( ruleOperationCallExpression ) );
     public final void rule__SuffixExpression__Alternatives() throws RecognitionException {
 
@@ -4154,14 +4198,14 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("1513:1: rule__SuffixExpression__Alternatives : ( ( rulePropertyCallExpression ) | ( ruleOperationCallExpression ) );", 10, 1, input);
+                        new NoViableAltException("", 10, 1, input);
 
                     throw nvae;
                 }
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1513:1: rule__SuffixExpression__Alternatives : ( ( rulePropertyCallExpression ) | ( ruleOperationCallExpression ) );", 10, 0, input);
+                    new NoViableAltException("", 10, 0, input);
 
                 throw nvae;
             }
@@ -4175,7 +4219,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getSuffixExpressionAccess().getPropertyCallExpressionParserRuleCall_0()); 
                     pushFollow(FOLLOW_rulePropertyCallExpression_in_rule__SuffixExpression__Alternatives3224);
                     rulePropertyCallExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getSuffixExpressionAccess().getPropertyCallExpressionParserRuleCall_0()); 
 
@@ -4193,7 +4238,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getSuffixExpressionAccess().getOperationCallExpressionParserRuleCall_1()); 
                     pushFollow(FOLLOW_ruleOperationCallExpression_in_rule__SuffixExpression__Alternatives3241);
                     ruleOperationCallExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getSuffixExpressionAccess().getOperationCallExpressionParserRuleCall_1()); 
 
@@ -4216,10 +4262,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__SuffixExpression__Alternatives
+    // $ANTLR end "rule__SuffixExpression__Alternatives"
 
 
-    // $ANTLR start rule__Literal__Alternatives
+    // $ANTLR start "rule__Literal__Alternatives"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1535:1: rule__Literal__Alternatives : ( ( ruleNumberLiteralRule ) | ( ruleDateTimeLiteralRule ) | ( ruleBooleanLiteralRule ) | ( ruleNullLiteralRule ) | ( ruleDefaultLiteralRule ) | ( ruleStringLiteralRule ) );
     public final void rule__Literal__Alternatives() throws RecognitionException {
 
@@ -4263,7 +4309,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1535:1: rule__Literal__Alternatives : ( ( ruleNumberLiteralRule ) | ( ruleDateTimeLiteralRule ) | ( ruleBooleanLiteralRule ) | ( ruleNullLiteralRule ) | ( ruleDefaultLiteralRule ) | ( ruleStringLiteralRule ) );", 11, 0, input);
+                    new NoViableAltException("", 11, 0, input);
 
                 throw nvae;
             }
@@ -4278,7 +4324,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getLiteralAccess().getNumberLiteralRuleParserRuleCall_0()); 
                     pushFollow(FOLLOW_ruleNumberLiteralRule_in_rule__Literal__Alternatives3273);
                     ruleNumberLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getLiteralAccess().getNumberLiteralRuleParserRuleCall_0()); 
 
@@ -4296,7 +4343,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getLiteralAccess().getDateTimeLiteralRuleParserRuleCall_1()); 
                     pushFollow(FOLLOW_ruleDateTimeLiteralRule_in_rule__Literal__Alternatives3290);
                     ruleDateTimeLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getLiteralAccess().getDateTimeLiteralRuleParserRuleCall_1()); 
 
@@ -4314,7 +4362,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getLiteralAccess().getBooleanLiteralRuleParserRuleCall_2()); 
                     pushFollow(FOLLOW_ruleBooleanLiteralRule_in_rule__Literal__Alternatives3307);
                     ruleBooleanLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getLiteralAccess().getBooleanLiteralRuleParserRuleCall_2()); 
 
@@ -4332,7 +4381,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getLiteralAccess().getNullLiteralRuleParserRuleCall_3()); 
                     pushFollow(FOLLOW_ruleNullLiteralRule_in_rule__Literal__Alternatives3324);
                     ruleNullLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getLiteralAccess().getNullLiteralRuleParserRuleCall_3()); 
 
@@ -4350,7 +4400,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getLiteralAccess().getDefaultLiteralRuleParserRuleCall_4()); 
                     pushFollow(FOLLOW_ruleDefaultLiteralRule_in_rule__Literal__Alternatives3341);
                     ruleDefaultLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getLiteralAccess().getDefaultLiteralRuleParserRuleCall_4()); 
 
@@ -4368,7 +4419,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getLiteralAccess().getStringLiteralRuleParserRuleCall_5()); 
                     pushFollow(FOLLOW_ruleStringLiteralRule_in_rule__Literal__Alternatives3358);
                     ruleStringLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getLiteralAccess().getStringLiteralRuleParserRuleCall_5()); 
 
@@ -4391,10 +4443,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Literal__Alternatives
+    // $ANTLR end "rule__Literal__Alternatives"
 
 
-    // $ANTLR start rule__Interval__Alternatives_0
+    // $ANTLR start "rule__Interval__Alternatives_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1581:1: rule__Interval__Alternatives_0 : ( ( ']' ) | ( ( rule__Interval__IsLowerIncludedAssignment_0_1 ) ) );
     public final void rule__Interval__Alternatives_0() throws RecognitionException {
 
@@ -4413,7 +4465,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1581:1: rule__Interval__Alternatives_0 : ( ( ']' ) | ( ( rule__Interval__IsLowerIncludedAssignment_0_1 ) ) );", 12, 0, input);
+                    new NoViableAltException("", 12, 0, input);
 
                 throw nvae;
             }
@@ -4445,7 +4497,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__Interval__IsLowerIncludedAssignment_0_1_in_rule__Interval__Alternatives_03410);
                     rule__Interval__IsLowerIncludedAssignment_0_1();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -4471,10 +4524,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Alternatives_0
+    // $ANTLR end "rule__Interval__Alternatives_0"
 
 
-    // $ANTLR start rule__Interval__Alternatives_4
+    // $ANTLR start "rule__Interval__Alternatives_4"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1605:1: rule__Interval__Alternatives_4 : ( ( ( rule__Interval__IsUpperIncludedAssignment_4_0 ) ) | ( '[' ) );
     public final void rule__Interval__Alternatives_4() throws RecognitionException {
 
@@ -4493,7 +4546,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1605:1: rule__Interval__Alternatives_4 : ( ( ( rule__Interval__IsUpperIncludedAssignment_4_0 ) ) | ( '[' ) );", 13, 0, input);
+                    new NoViableAltException("", 13, 0, input);
 
                 throw nvae;
             }
@@ -4510,7 +4563,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__Interval__IsUpperIncludedAssignment_4_0_in_rule__Interval__Alternatives_43443);
                     rule__Interval__IsUpperIncludedAssignment_4_0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -4551,10 +4605,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Alternatives_4
+    // $ANTLR end "rule__Interval__Alternatives_4"
 
 
-    // $ANTLR start rule__TimeExpression__Alternatives
+    // $ANTLR start "rule__TimeExpression__Alternatives"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1629:1: rule__TimeExpression__Alternatives : ( ( ruleInstantObsExpression ) | ( ruleDurationObsExpression ) | ( ruleJitterExp ) );
     public final void rule__TimeExpression__Alternatives() throws RecognitionException {
 
@@ -4581,7 +4635,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1629:1: rule__TimeExpression__Alternatives : ( ( ruleInstantObsExpression ) | ( ruleDurationObsExpression ) | ( ruleJitterExp ) );", 14, 0, input);
+                    new NoViableAltException("", 14, 0, input);
 
                 throw nvae;
             }
@@ -4596,7 +4650,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getTimeExpressionAccess().getInstantObsExpressionParserRuleCall_0()); 
                     pushFollow(FOLLOW_ruleInstantObsExpression_in_rule__TimeExpression__Alternatives3496);
                     ruleInstantObsExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getTimeExpressionAccess().getInstantObsExpressionParserRuleCall_0()); 
 
@@ -4614,7 +4669,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getTimeExpressionAccess().getDurationObsExpressionParserRuleCall_1()); 
                     pushFollow(FOLLOW_ruleDurationObsExpression_in_rule__TimeExpression__Alternatives3513);
                     ruleDurationObsExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getTimeExpressionAccess().getDurationObsExpressionParserRuleCall_1()); 
 
@@ -4632,7 +4688,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getTimeExpressionAccess().getJitterExpParserRuleCall_2()); 
                     pushFollow(FOLLOW_ruleJitterExp_in_rule__TimeExpression__Alternatives3530);
                     ruleJitterExp();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getTimeExpressionAccess().getJitterExpParserRuleCall_2()); 
 
@@ -4655,10 +4712,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__TimeExpression__Alternatives
+    // $ANTLR end "rule__TimeExpression__Alternatives"
 
 
-    // $ANTLR start rule__VariableDeclaration__Alternatives_3
+    // $ANTLR start "rule__VariableDeclaration__Alternatives_3"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1657:1: rule__VariableDeclaration__Alternatives_3 : ( ( ( rule__VariableDeclaration__Group_3_0__0 ) ) | ( ( rule__VariableDeclaration__Group_3_1__0 ) ) );
     public final void rule__VariableDeclaration__Alternatives_3() throws RecognitionException {
 
@@ -4677,7 +4734,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1657:1: rule__VariableDeclaration__Alternatives_3 : ( ( ( rule__VariableDeclaration__Group_3_0__0 ) ) | ( ( rule__VariableDeclaration__Group_3_1__0 ) ) );", 15, 0, input);
+                    new NoViableAltException("", 15, 0, input);
 
                 throw nvae;
             }
@@ -4694,7 +4751,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0__0_in_rule__VariableDeclaration__Alternatives_33562);
                     rule__VariableDeclaration__Group_3_0__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -4718,7 +4776,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_1__0_in_rule__VariableDeclaration__Alternatives_33580);
                     rule__VariableDeclaration__Group_3_1__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -4744,10 +4803,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Alternatives_3
+    // $ANTLR end "rule__VariableDeclaration__Alternatives_3"
 
 
-    // $ANTLR start rule__VariableDirectionKind__Alternatives
+    // $ANTLR start "rule__VariableDirectionKind__Alternatives"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1679:1: rule__VariableDirectionKind__Alternatives : ( ( 'in' ) | ( 'out' ) | ( 'inout' ) );
     public final void rule__VariableDirectionKind__Alternatives() throws RecognitionException {
 
@@ -4774,7 +4833,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1679:1: rule__VariableDirectionKind__Alternatives : ( ( 'in' ) | ( 'out' ) | ( 'inout' ) );", 16, 0, input);
+                    new NoViableAltException("", 16, 0, input);
 
                 throw nvae;
             }
@@ -4839,10 +4898,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDirectionKind__Alternatives
+    // $ANTLR end "rule__VariableDirectionKind__Alternatives"
 
 
-    // $ANTLR start rule__NumberLiteralRule__Alternatives
+    // $ANTLR start "rule__NumberLiteralRule__Alternatives"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1713:1: rule__NumberLiteralRule__Alternatives : ( ( ruleIntegerLiteralRule ) | ( ruleUnlimitedLiteralRule ) | ( ruleRealLiteralRule ) );
     public final void rule__NumberLiteralRule__Alternatives() throws RecognitionException {
 
@@ -4869,7 +4928,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1713:1: rule__NumberLiteralRule__Alternatives : ( ( ruleIntegerLiteralRule ) | ( ruleUnlimitedLiteralRule ) | ( ruleRealLiteralRule ) );", 17, 0, input);
+                    new NoViableAltException("", 17, 0, input);
 
                 throw nvae;
             }
@@ -4884,7 +4943,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getNumberLiteralRuleAccess().getIntegerLiteralRuleParserRuleCall_0()); 
                     pushFollow(FOLLOW_ruleIntegerLiteralRule_in_rule__NumberLiteralRule__Alternatives3688);
                     ruleIntegerLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getNumberLiteralRuleAccess().getIntegerLiteralRuleParserRuleCall_0()); 
 
@@ -4902,7 +4962,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getNumberLiteralRuleAccess().getUnlimitedLiteralRuleParserRuleCall_1()); 
                     pushFollow(FOLLOW_ruleUnlimitedLiteralRule_in_rule__NumberLiteralRule__Alternatives3705);
                     ruleUnlimitedLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getNumberLiteralRuleAccess().getUnlimitedLiteralRuleParserRuleCall_1()); 
 
@@ -4920,7 +4981,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                      before(grammarAccess.getNumberLiteralRuleAccess().getRealLiteralRuleParserRuleCall_2()); 
                     pushFollow(FOLLOW_ruleRealLiteralRule_in_rule__NumberLiteralRule__Alternatives3722);
                     ruleRealLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getNumberLiteralRuleAccess().getRealLiteralRuleParserRuleCall_2()); 
 
@@ -4943,10 +5005,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__NumberLiteralRule__Alternatives
+    // $ANTLR end "rule__NumberLiteralRule__Alternatives"
 
 
-    // $ANTLR start rule__AndOrXorExpression__Group__0
+    // $ANTLR start "rule__AndOrXorExpression__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1743:1: rule__AndOrXorExpression__Group__0 : rule__AndOrXorExpression__Group__0__Impl rule__AndOrXorExpression__Group__1 ;
     public final void rule__AndOrXorExpression__Group__0() throws RecognitionException {
 
@@ -4958,11 +5020,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__AndOrXorExpression__Group__0__Impl_in_rule__AndOrXorExpression__Group__03752);
             rule__AndOrXorExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__AndOrXorExpression__Group__1_in_rule__AndOrXorExpression__Group__03755);
             rule__AndOrXorExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -4979,10 +5043,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__Group__0
+    // $ANTLR end "rule__AndOrXorExpression__Group__0"
 
 
-    // $ANTLR start rule__AndOrXorExpression__Group__0__Impl
+    // $ANTLR start "rule__AndOrXorExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1755:1: rule__AndOrXorExpression__Group__0__Impl : ( ( rule__AndOrXorExpression__ExpAssignment_0 ) ) ;
     public final void rule__AndOrXorExpression__Group__0__Impl() throws RecognitionException {
 
@@ -5001,7 +5065,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__AndOrXorExpression__ExpAssignment_0_in_rule__AndOrXorExpression__Group__0__Impl3782);
             rule__AndOrXorExpression__ExpAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5025,10 +5090,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__Group__0__Impl
+    // $ANTLR end "rule__AndOrXorExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__AndOrXorExpression__Group__1
+    // $ANTLR start "rule__AndOrXorExpression__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1772:1: rule__AndOrXorExpression__Group__1 : rule__AndOrXorExpression__Group__1__Impl ;
     public final void rule__AndOrXorExpression__Group__1() throws RecognitionException {
 
@@ -5040,7 +5105,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__AndOrXorExpression__Group__1__Impl_in_rule__AndOrXorExpression__Group__13812);
             rule__AndOrXorExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5057,10 +5123,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__Group__1
+    // $ANTLR end "rule__AndOrXorExpression__Group__1"
 
 
-    // $ANTLR start rule__AndOrXorExpression__Group__1__Impl
+    // $ANTLR start "rule__AndOrXorExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1783:1: rule__AndOrXorExpression__Group__1__Impl : ( ( rule__AndOrXorExpression__Group_1__0 )* ) ;
     public final void rule__AndOrXorExpression__Group__1__Impl() throws RecognitionException {
 
@@ -5091,7 +5157,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             	    {
             	    pushFollow(FOLLOW_rule__AndOrXorExpression__Group_1__0_in_rule__AndOrXorExpression__Group__1__Impl3839);
             	    rule__AndOrXorExpression__Group_1__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -5121,10 +5188,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__Group__1__Impl
+    // $ANTLR end "rule__AndOrXorExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__AndOrXorExpression__Group_1__0
+    // $ANTLR start "rule__AndOrXorExpression__Group_1__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1804:1: rule__AndOrXorExpression__Group_1__0 : rule__AndOrXorExpression__Group_1__0__Impl rule__AndOrXorExpression__Group_1__1 ;
     public final void rule__AndOrXorExpression__Group_1__0() throws RecognitionException {
 
@@ -5136,11 +5203,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__AndOrXorExpression__Group_1__0__Impl_in_rule__AndOrXorExpression__Group_1__03874);
             rule__AndOrXorExpression__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__AndOrXorExpression__Group_1__1_in_rule__AndOrXorExpression__Group_1__03877);
             rule__AndOrXorExpression__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5157,10 +5226,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__Group_1__0
+    // $ANTLR end "rule__AndOrXorExpression__Group_1__0"
 
 
-    // $ANTLR start rule__AndOrXorExpression__Group_1__0__Impl
+    // $ANTLR start "rule__AndOrXorExpression__Group_1__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1816:1: rule__AndOrXorExpression__Group_1__0__Impl : ( ( rule__AndOrXorExpression__OpAssignment_1_0 ) ) ;
     public final void rule__AndOrXorExpression__Group_1__0__Impl() throws RecognitionException {
 
@@ -5179,7 +5248,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__AndOrXorExpression__OpAssignment_1_0_in_rule__AndOrXorExpression__Group_1__0__Impl3904);
             rule__AndOrXorExpression__OpAssignment_1_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5203,10 +5273,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__Group_1__0__Impl
+    // $ANTLR end "rule__AndOrXorExpression__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__AndOrXorExpression__Group_1__1
+    // $ANTLR start "rule__AndOrXorExpression__Group_1__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1833:1: rule__AndOrXorExpression__Group_1__1 : rule__AndOrXorExpression__Group_1__1__Impl ;
     public final void rule__AndOrXorExpression__Group_1__1() throws RecognitionException {
 
@@ -5218,7 +5288,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__AndOrXorExpression__Group_1__1__Impl_in_rule__AndOrXorExpression__Group_1__13934);
             rule__AndOrXorExpression__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5235,10 +5306,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__Group_1__1
+    // $ANTLR end "rule__AndOrXorExpression__Group_1__1"
 
 
-    // $ANTLR start rule__AndOrXorExpression__Group_1__1__Impl
+    // $ANTLR start "rule__AndOrXorExpression__Group_1__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1844:1: rule__AndOrXorExpression__Group_1__1__Impl : ( ( rule__AndOrXorExpression__ExpAssignment_1_1 ) ) ;
     public final void rule__AndOrXorExpression__Group_1__1__Impl() throws RecognitionException {
 
@@ -5257,7 +5328,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__AndOrXorExpression__ExpAssignment_1_1_in_rule__AndOrXorExpression__Group_1__1__Impl3961);
             rule__AndOrXorExpression__ExpAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5281,10 +5353,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__Group_1__1__Impl
+    // $ANTLR end "rule__AndOrXorExpression__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__EqualityExpression__Group__0
+    // $ANTLR start "rule__EqualityExpression__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1865:1: rule__EqualityExpression__Group__0 : rule__EqualityExpression__Group__0__Impl rule__EqualityExpression__Group__1 ;
     public final void rule__EqualityExpression__Group__0() throws RecognitionException {
 
@@ -5296,11 +5368,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__EqualityExpression__Group__0__Impl_in_rule__EqualityExpression__Group__03995);
             rule__EqualityExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__EqualityExpression__Group__1_in_rule__EqualityExpression__Group__03998);
             rule__EqualityExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5317,10 +5391,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__Group__0
+    // $ANTLR end "rule__EqualityExpression__Group__0"
 
 
-    // $ANTLR start rule__EqualityExpression__Group__0__Impl
+    // $ANTLR start "rule__EqualityExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1877:1: rule__EqualityExpression__Group__0__Impl : ( ( rule__EqualityExpression__ExpAssignment_0 ) ) ;
     public final void rule__EqualityExpression__Group__0__Impl() throws RecognitionException {
 
@@ -5339,7 +5413,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__EqualityExpression__ExpAssignment_0_in_rule__EqualityExpression__Group__0__Impl4025);
             rule__EqualityExpression__ExpAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5363,10 +5438,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__Group__0__Impl
+    // $ANTLR end "rule__EqualityExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__EqualityExpression__Group__1
+    // $ANTLR start "rule__EqualityExpression__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1894:1: rule__EqualityExpression__Group__1 : rule__EqualityExpression__Group__1__Impl ;
     public final void rule__EqualityExpression__Group__1() throws RecognitionException {
 
@@ -5378,7 +5453,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__EqualityExpression__Group__1__Impl_in_rule__EqualityExpression__Group__14055);
             rule__EqualityExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5395,10 +5471,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__Group__1
+    // $ANTLR end "rule__EqualityExpression__Group__1"
 
 
-    // $ANTLR start rule__EqualityExpression__Group__1__Impl
+    // $ANTLR start "rule__EqualityExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1905:1: rule__EqualityExpression__Group__1__Impl : ( ( rule__EqualityExpression__Group_1__0 )* ) ;
     public final void rule__EqualityExpression__Group__1__Impl() throws RecognitionException {
 
@@ -5429,7 +5505,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             	    {
             	    pushFollow(FOLLOW_rule__EqualityExpression__Group_1__0_in_rule__EqualityExpression__Group__1__Impl4082);
             	    rule__EqualityExpression__Group_1__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -5459,10 +5536,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__Group__1__Impl
+    // $ANTLR end "rule__EqualityExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__EqualityExpression__Group_1__0
+    // $ANTLR start "rule__EqualityExpression__Group_1__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1926:1: rule__EqualityExpression__Group_1__0 : rule__EqualityExpression__Group_1__0__Impl rule__EqualityExpression__Group_1__1 ;
     public final void rule__EqualityExpression__Group_1__0() throws RecognitionException {
 
@@ -5474,11 +5551,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__EqualityExpression__Group_1__0__Impl_in_rule__EqualityExpression__Group_1__04117);
             rule__EqualityExpression__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__EqualityExpression__Group_1__1_in_rule__EqualityExpression__Group_1__04120);
             rule__EqualityExpression__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5495,10 +5574,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__Group_1__0
+    // $ANTLR end "rule__EqualityExpression__Group_1__0"
 
 
-    // $ANTLR start rule__EqualityExpression__Group_1__0__Impl
+    // $ANTLR start "rule__EqualityExpression__Group_1__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1938:1: rule__EqualityExpression__Group_1__0__Impl : ( ( rule__EqualityExpression__OpAssignment_1_0 ) ) ;
     public final void rule__EqualityExpression__Group_1__0__Impl() throws RecognitionException {
 
@@ -5517,7 +5596,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__EqualityExpression__OpAssignment_1_0_in_rule__EqualityExpression__Group_1__0__Impl4147);
             rule__EqualityExpression__OpAssignment_1_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5541,10 +5621,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__Group_1__0__Impl
+    // $ANTLR end "rule__EqualityExpression__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__EqualityExpression__Group_1__1
+    // $ANTLR start "rule__EqualityExpression__Group_1__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1955:1: rule__EqualityExpression__Group_1__1 : rule__EqualityExpression__Group_1__1__Impl ;
     public final void rule__EqualityExpression__Group_1__1() throws RecognitionException {
 
@@ -5556,7 +5636,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__EqualityExpression__Group_1__1__Impl_in_rule__EqualityExpression__Group_1__14177);
             rule__EqualityExpression__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5573,10 +5654,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__Group_1__1
+    // $ANTLR end "rule__EqualityExpression__Group_1__1"
 
 
-    // $ANTLR start rule__EqualityExpression__Group_1__1__Impl
+    // $ANTLR start "rule__EqualityExpression__Group_1__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1966:1: rule__EqualityExpression__Group_1__1__Impl : ( ( rule__EqualityExpression__ExpAssignment_1_1 ) ) ;
     public final void rule__EqualityExpression__Group_1__1__Impl() throws RecognitionException {
 
@@ -5595,7 +5676,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__EqualityExpression__ExpAssignment_1_1_in_rule__EqualityExpression__Group_1__1__Impl4204);
             rule__EqualityExpression__ExpAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5619,10 +5701,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__Group_1__1__Impl
+    // $ANTLR end "rule__EqualityExpression__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__RelationalExpression__Group__0
+    // $ANTLR start "rule__RelationalExpression__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1987:1: rule__RelationalExpression__Group__0 : rule__RelationalExpression__Group__0__Impl rule__RelationalExpression__Group__1 ;
     public final void rule__RelationalExpression__Group__0() throws RecognitionException {
 
@@ -5634,11 +5716,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__RelationalExpression__Group__0__Impl_in_rule__RelationalExpression__Group__04238);
             rule__RelationalExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__RelationalExpression__Group__1_in_rule__RelationalExpression__Group__04241);
             rule__RelationalExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5655,10 +5739,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__Group__0
+    // $ANTLR end "rule__RelationalExpression__Group__0"
 
 
-    // $ANTLR start rule__RelationalExpression__Group__0__Impl
+    // $ANTLR start "rule__RelationalExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1999:1: rule__RelationalExpression__Group__0__Impl : ( ( rule__RelationalExpression__ExpAssignment_0 ) ) ;
     public final void rule__RelationalExpression__Group__0__Impl() throws RecognitionException {
 
@@ -5677,7 +5761,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__RelationalExpression__ExpAssignment_0_in_rule__RelationalExpression__Group__0__Impl4268);
             rule__RelationalExpression__ExpAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5701,10 +5786,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__Group__0__Impl
+    // $ANTLR end "rule__RelationalExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__RelationalExpression__Group__1
+    // $ANTLR start "rule__RelationalExpression__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2016:1: rule__RelationalExpression__Group__1 : rule__RelationalExpression__Group__1__Impl ;
     public final void rule__RelationalExpression__Group__1() throws RecognitionException {
 
@@ -5716,7 +5801,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__RelationalExpression__Group__1__Impl_in_rule__RelationalExpression__Group__14298);
             rule__RelationalExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5733,10 +5819,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__Group__1
+    // $ANTLR end "rule__RelationalExpression__Group__1"
 
 
-    // $ANTLR start rule__RelationalExpression__Group__1__Impl
+    // $ANTLR start "rule__RelationalExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2027:1: rule__RelationalExpression__Group__1__Impl : ( ( rule__RelationalExpression__Group_1__0 )* ) ;
     public final void rule__RelationalExpression__Group__1__Impl() throws RecognitionException {
 
@@ -5767,7 +5853,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             	    {
             	    pushFollow(FOLLOW_rule__RelationalExpression__Group_1__0_in_rule__RelationalExpression__Group__1__Impl4325);
             	    rule__RelationalExpression__Group_1__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -5797,10 +5884,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__Group__1__Impl
+    // $ANTLR end "rule__RelationalExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__RelationalExpression__Group_1__0
+    // $ANTLR start "rule__RelationalExpression__Group_1__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2048:1: rule__RelationalExpression__Group_1__0 : rule__RelationalExpression__Group_1__0__Impl rule__RelationalExpression__Group_1__1 ;
     public final void rule__RelationalExpression__Group_1__0() throws RecognitionException {
 
@@ -5812,11 +5899,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__RelationalExpression__Group_1__0__Impl_in_rule__RelationalExpression__Group_1__04360);
             rule__RelationalExpression__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__RelationalExpression__Group_1__1_in_rule__RelationalExpression__Group_1__04363);
             rule__RelationalExpression__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5833,10 +5922,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__Group_1__0
+    // $ANTLR end "rule__RelationalExpression__Group_1__0"
 
 
-    // $ANTLR start rule__RelationalExpression__Group_1__0__Impl
+    // $ANTLR start "rule__RelationalExpression__Group_1__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2060:1: rule__RelationalExpression__Group_1__0__Impl : ( ( rule__RelationalExpression__OpAssignment_1_0 ) ) ;
     public final void rule__RelationalExpression__Group_1__0__Impl() throws RecognitionException {
 
@@ -5855,7 +5944,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__RelationalExpression__OpAssignment_1_0_in_rule__RelationalExpression__Group_1__0__Impl4390);
             rule__RelationalExpression__OpAssignment_1_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5879,10 +5969,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__Group_1__0__Impl
+    // $ANTLR end "rule__RelationalExpression__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__RelationalExpression__Group_1__1
+    // $ANTLR start "rule__RelationalExpression__Group_1__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2077:1: rule__RelationalExpression__Group_1__1 : rule__RelationalExpression__Group_1__1__Impl ;
     public final void rule__RelationalExpression__Group_1__1() throws RecognitionException {
 
@@ -5894,7 +5984,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__RelationalExpression__Group_1__1__Impl_in_rule__RelationalExpression__Group_1__14420);
             rule__RelationalExpression__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5911,10 +6002,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__Group_1__1
+    // $ANTLR end "rule__RelationalExpression__Group_1__1"
 
 
-    // $ANTLR start rule__RelationalExpression__Group_1__1__Impl
+    // $ANTLR start "rule__RelationalExpression__Group_1__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2088:1: rule__RelationalExpression__Group_1__1__Impl : ( ( rule__RelationalExpression__ExpAssignment_1_1 ) ) ;
     public final void rule__RelationalExpression__Group_1__1__Impl() throws RecognitionException {
 
@@ -5933,7 +6024,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__RelationalExpression__ExpAssignment_1_1_in_rule__RelationalExpression__Group_1__1__Impl4447);
             rule__RelationalExpression__ExpAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5957,10 +6049,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__Group_1__1__Impl
+    // $ANTLR end "rule__RelationalExpression__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group__0
+    // $ANTLR start "rule__ConditionalExpression__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2109:1: rule__ConditionalExpression__Group__0 : rule__ConditionalExpression__Group__0__Impl rule__ConditionalExpression__Group__1 ;
     public final void rule__ConditionalExpression__Group__0() throws RecognitionException {
 
@@ -5972,11 +6064,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__Group__0__Impl_in_rule__ConditionalExpression__Group__04481);
             rule__ConditionalExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ConditionalExpression__Group__1_in_rule__ConditionalExpression__Group__04484);
             rule__ConditionalExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5993,10 +6087,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group__0
+    // $ANTLR end "rule__ConditionalExpression__Group__0"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group__0__Impl
+    // $ANTLR start "rule__ConditionalExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2121:1: rule__ConditionalExpression__Group__0__Impl : ( ( rule__ConditionalExpression__ExpAssignment_0 ) ) ;
     public final void rule__ConditionalExpression__Group__0__Impl() throws RecognitionException {
 
@@ -6015,7 +6109,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__ExpAssignment_0_in_rule__ConditionalExpression__Group__0__Impl4511);
             rule__ConditionalExpression__ExpAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6039,10 +6134,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group__0__Impl
+    // $ANTLR end "rule__ConditionalExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group__1
+    // $ANTLR start "rule__ConditionalExpression__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2138:1: rule__ConditionalExpression__Group__1 : rule__ConditionalExpression__Group__1__Impl ;
     public final void rule__ConditionalExpression__Group__1() throws RecognitionException {
 
@@ -6054,7 +6149,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__Group__1__Impl_in_rule__ConditionalExpression__Group__14541);
             rule__ConditionalExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6071,10 +6167,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group__1
+    // $ANTLR end "rule__ConditionalExpression__Group__1"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group__1__Impl
+    // $ANTLR start "rule__ConditionalExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2149:1: rule__ConditionalExpression__Group__1__Impl : ( ( rule__ConditionalExpression__Group_1__0 )? ) ;
     public final void rule__ConditionalExpression__Group__1__Impl() throws RecognitionException {
 
@@ -6101,7 +6197,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__ConditionalExpression__Group_1__0_in_rule__ConditionalExpression__Group__1__Impl4568);
                     rule__ConditionalExpression__Group_1__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -6128,10 +6225,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group__1__Impl
+    // $ANTLR end "rule__ConditionalExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group_1__0
+    // $ANTLR start "rule__ConditionalExpression__Group_1__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2170:1: rule__ConditionalExpression__Group_1__0 : rule__ConditionalExpression__Group_1__0__Impl rule__ConditionalExpression__Group_1__1 ;
     public final void rule__ConditionalExpression__Group_1__0() throws RecognitionException {
 
@@ -6143,11 +6240,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__Group_1__0__Impl_in_rule__ConditionalExpression__Group_1__04603);
             rule__ConditionalExpression__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ConditionalExpression__Group_1__1_in_rule__ConditionalExpression__Group_1__04606);
             rule__ConditionalExpression__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6164,10 +6263,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group_1__0
+    // $ANTLR end "rule__ConditionalExpression__Group_1__0"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group_1__0__Impl
+    // $ANTLR start "rule__ConditionalExpression__Group_1__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2182:1: rule__ConditionalExpression__Group_1__0__Impl : ( ( rule__ConditionalExpression__OpAssignment_1_0 ) ) ;
     public final void rule__ConditionalExpression__Group_1__0__Impl() throws RecognitionException {
 
@@ -6186,7 +6285,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__OpAssignment_1_0_in_rule__ConditionalExpression__Group_1__0__Impl4633);
             rule__ConditionalExpression__OpAssignment_1_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6210,10 +6310,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group_1__0__Impl
+    // $ANTLR end "rule__ConditionalExpression__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group_1__1
+    // $ANTLR start "rule__ConditionalExpression__Group_1__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2199:1: rule__ConditionalExpression__Group_1__1 : rule__ConditionalExpression__Group_1__1__Impl rule__ConditionalExpression__Group_1__2 ;
     public final void rule__ConditionalExpression__Group_1__1() throws RecognitionException {
 
@@ -6225,11 +6325,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__Group_1__1__Impl_in_rule__ConditionalExpression__Group_1__14663);
             rule__ConditionalExpression__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ConditionalExpression__Group_1__2_in_rule__ConditionalExpression__Group_1__14666);
             rule__ConditionalExpression__Group_1__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6246,10 +6348,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group_1__1
+    // $ANTLR end "rule__ConditionalExpression__Group_1__1"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group_1__1__Impl
+    // $ANTLR start "rule__ConditionalExpression__Group_1__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2211:1: rule__ConditionalExpression__Group_1__1__Impl : ( ( rule__ConditionalExpression__ExpAssignment_1_1 ) ) ;
     public final void rule__ConditionalExpression__Group_1__1__Impl() throws RecognitionException {
 
@@ -6268,7 +6370,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__ExpAssignment_1_1_in_rule__ConditionalExpression__Group_1__1__Impl4693);
             rule__ConditionalExpression__ExpAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6292,10 +6395,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group_1__1__Impl
+    // $ANTLR end "rule__ConditionalExpression__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group_1__2
+    // $ANTLR start "rule__ConditionalExpression__Group_1__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2228:1: rule__ConditionalExpression__Group_1__2 : rule__ConditionalExpression__Group_1__2__Impl rule__ConditionalExpression__Group_1__3 ;
     public final void rule__ConditionalExpression__Group_1__2() throws RecognitionException {
 
@@ -6307,11 +6410,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__Group_1__2__Impl_in_rule__ConditionalExpression__Group_1__24723);
             rule__ConditionalExpression__Group_1__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ConditionalExpression__Group_1__3_in_rule__ConditionalExpression__Group_1__24726);
             rule__ConditionalExpression__Group_1__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6328,10 +6433,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group_1__2
+    // $ANTLR end "rule__ConditionalExpression__Group_1__2"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group_1__2__Impl
+    // $ANTLR start "rule__ConditionalExpression__Group_1__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2240:1: rule__ConditionalExpression__Group_1__2__Impl : ( ':' ) ;
     public final void rule__ConditionalExpression__Group_1__2__Impl() throws RecognitionException {
 
@@ -6365,10 +6470,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group_1__2__Impl
+    // $ANTLR end "rule__ConditionalExpression__Group_1__2__Impl"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group_1__3
+    // $ANTLR start "rule__ConditionalExpression__Group_1__3"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2259:1: rule__ConditionalExpression__Group_1__3 : rule__ConditionalExpression__Group_1__3__Impl ;
     public final void rule__ConditionalExpression__Group_1__3() throws RecognitionException {
 
@@ -6380,7 +6485,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__Group_1__3__Impl_in_rule__ConditionalExpression__Group_1__34785);
             rule__ConditionalExpression__Group_1__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6397,10 +6503,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group_1__3
+    // $ANTLR end "rule__ConditionalExpression__Group_1__3"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group_1__3__Impl
+    // $ANTLR start "rule__ConditionalExpression__Group_1__3__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2270:1: rule__ConditionalExpression__Group_1__3__Impl : ( ( rule__ConditionalExpression__ExpAssignment_1_3 ) ) ;
     public final void rule__ConditionalExpression__Group_1__3__Impl() throws RecognitionException {
 
@@ -6419,7 +6525,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__ExpAssignment_1_3_in_rule__ConditionalExpression__Group_1__3__Impl4812);
             rule__ConditionalExpression__ExpAssignment_1_3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6443,10 +6550,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group_1__3__Impl
+    // $ANTLR end "rule__ConditionalExpression__Group_1__3__Impl"
 
 
-    // $ANTLR start rule__AdditiveExpression__Group__0
+    // $ANTLR start "rule__AdditiveExpression__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2295:1: rule__AdditiveExpression__Group__0 : rule__AdditiveExpression__Group__0__Impl rule__AdditiveExpression__Group__1 ;
     public final void rule__AdditiveExpression__Group__0() throws RecognitionException {
 
@@ -6458,11 +6565,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__AdditiveExpression__Group__0__Impl_in_rule__AdditiveExpression__Group__04850);
             rule__AdditiveExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__AdditiveExpression__Group__1_in_rule__AdditiveExpression__Group__04853);
             rule__AdditiveExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6479,10 +6588,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__Group__0
+    // $ANTLR end "rule__AdditiveExpression__Group__0"
 
 
-    // $ANTLR start rule__AdditiveExpression__Group__0__Impl
+    // $ANTLR start "rule__AdditiveExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2307:1: rule__AdditiveExpression__Group__0__Impl : ( ( rule__AdditiveExpression__ExpAssignment_0 ) ) ;
     public final void rule__AdditiveExpression__Group__0__Impl() throws RecognitionException {
 
@@ -6501,7 +6610,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__AdditiveExpression__ExpAssignment_0_in_rule__AdditiveExpression__Group__0__Impl4880);
             rule__AdditiveExpression__ExpAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6525,10 +6635,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__Group__0__Impl
+    // $ANTLR end "rule__AdditiveExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__AdditiveExpression__Group__1
+    // $ANTLR start "rule__AdditiveExpression__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2324:1: rule__AdditiveExpression__Group__1 : rule__AdditiveExpression__Group__1__Impl ;
     public final void rule__AdditiveExpression__Group__1() throws RecognitionException {
 
@@ -6540,7 +6650,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__AdditiveExpression__Group__1__Impl_in_rule__AdditiveExpression__Group__14910);
             rule__AdditiveExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6557,10 +6668,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__Group__1
+    // $ANTLR end "rule__AdditiveExpression__Group__1"
 
 
-    // $ANTLR start rule__AdditiveExpression__Group__1__Impl
+    // $ANTLR start "rule__AdditiveExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2335:1: rule__AdditiveExpression__Group__1__Impl : ( ( rule__AdditiveExpression__Group_1__0 )* ) ;
     public final void rule__AdditiveExpression__Group__1__Impl() throws RecognitionException {
 
@@ -6591,7 +6702,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             	    {
             	    pushFollow(FOLLOW_rule__AdditiveExpression__Group_1__0_in_rule__AdditiveExpression__Group__1__Impl4937);
             	    rule__AdditiveExpression__Group_1__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -6621,10 +6733,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__Group__1__Impl
+    // $ANTLR end "rule__AdditiveExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__AdditiveExpression__Group_1__0
+    // $ANTLR start "rule__AdditiveExpression__Group_1__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2356:1: rule__AdditiveExpression__Group_1__0 : rule__AdditiveExpression__Group_1__0__Impl rule__AdditiveExpression__Group_1__1 ;
     public final void rule__AdditiveExpression__Group_1__0() throws RecognitionException {
 
@@ -6636,11 +6748,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__AdditiveExpression__Group_1__0__Impl_in_rule__AdditiveExpression__Group_1__04972);
             rule__AdditiveExpression__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__AdditiveExpression__Group_1__1_in_rule__AdditiveExpression__Group_1__04975);
             rule__AdditiveExpression__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6657,10 +6771,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__Group_1__0
+    // $ANTLR end "rule__AdditiveExpression__Group_1__0"
 
 
-    // $ANTLR start rule__AdditiveExpression__Group_1__0__Impl
+    // $ANTLR start "rule__AdditiveExpression__Group_1__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2368:1: rule__AdditiveExpression__Group_1__0__Impl : ( ( rule__AdditiveExpression__OpAssignment_1_0 ) ) ;
     public final void rule__AdditiveExpression__Group_1__0__Impl() throws RecognitionException {
 
@@ -6679,7 +6793,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__AdditiveExpression__OpAssignment_1_0_in_rule__AdditiveExpression__Group_1__0__Impl5002);
             rule__AdditiveExpression__OpAssignment_1_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6703,10 +6818,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__Group_1__0__Impl
+    // $ANTLR end "rule__AdditiveExpression__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__AdditiveExpression__Group_1__1
+    // $ANTLR start "rule__AdditiveExpression__Group_1__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2385:1: rule__AdditiveExpression__Group_1__1 : rule__AdditiveExpression__Group_1__1__Impl ;
     public final void rule__AdditiveExpression__Group_1__1() throws RecognitionException {
 
@@ -6718,7 +6833,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__AdditiveExpression__Group_1__1__Impl_in_rule__AdditiveExpression__Group_1__15032);
             rule__AdditiveExpression__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6735,10 +6851,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__Group_1__1
+    // $ANTLR end "rule__AdditiveExpression__Group_1__1"
 
 
-    // $ANTLR start rule__AdditiveExpression__Group_1__1__Impl
+    // $ANTLR start "rule__AdditiveExpression__Group_1__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2396:1: rule__AdditiveExpression__Group_1__1__Impl : ( ( rule__AdditiveExpression__ExpAssignment_1_1 ) ) ;
     public final void rule__AdditiveExpression__Group_1__1__Impl() throws RecognitionException {
 
@@ -6757,7 +6873,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__AdditiveExpression__ExpAssignment_1_1_in_rule__AdditiveExpression__Group_1__1__Impl5059);
             rule__AdditiveExpression__ExpAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6781,10 +6898,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__Group_1__1__Impl
+    // $ANTLR end "rule__AdditiveExpression__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__Group__0
+    // $ANTLR start "rule__MultiplicativeExpression__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2417:1: rule__MultiplicativeExpression__Group__0 : rule__MultiplicativeExpression__Group__0__Impl rule__MultiplicativeExpression__Group__1 ;
     public final void rule__MultiplicativeExpression__Group__0() throws RecognitionException {
 
@@ -6796,11 +6913,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__MultiplicativeExpression__Group__0__Impl_in_rule__MultiplicativeExpression__Group__05093);
             rule__MultiplicativeExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__MultiplicativeExpression__Group__1_in_rule__MultiplicativeExpression__Group__05096);
             rule__MultiplicativeExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6817,10 +6936,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__Group__0
+    // $ANTLR end "rule__MultiplicativeExpression__Group__0"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__Group__0__Impl
+    // $ANTLR start "rule__MultiplicativeExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2429:1: rule__MultiplicativeExpression__Group__0__Impl : ( ( rule__MultiplicativeExpression__ExpAssignment_0 ) ) ;
     public final void rule__MultiplicativeExpression__Group__0__Impl() throws RecognitionException {
 
@@ -6839,7 +6958,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__MultiplicativeExpression__ExpAssignment_0_in_rule__MultiplicativeExpression__Group__0__Impl5123);
             rule__MultiplicativeExpression__ExpAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6863,10 +6983,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__Group__0__Impl
+    // $ANTLR end "rule__MultiplicativeExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__Group__1
+    // $ANTLR start "rule__MultiplicativeExpression__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2446:1: rule__MultiplicativeExpression__Group__1 : rule__MultiplicativeExpression__Group__1__Impl ;
     public final void rule__MultiplicativeExpression__Group__1() throws RecognitionException {
 
@@ -6878,7 +6998,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__MultiplicativeExpression__Group__1__Impl_in_rule__MultiplicativeExpression__Group__15153);
             rule__MultiplicativeExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6895,10 +7016,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__Group__1
+    // $ANTLR end "rule__MultiplicativeExpression__Group__1"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__Group__1__Impl
+    // $ANTLR start "rule__MultiplicativeExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2457:1: rule__MultiplicativeExpression__Group__1__Impl : ( ( rule__MultiplicativeExpression__Group_1__0 )* ) ;
     public final void rule__MultiplicativeExpression__Group__1__Impl() throws RecognitionException {
 
@@ -6929,7 +7050,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             	    {
             	    pushFollow(FOLLOW_rule__MultiplicativeExpression__Group_1__0_in_rule__MultiplicativeExpression__Group__1__Impl5180);
             	    rule__MultiplicativeExpression__Group_1__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -6959,10 +7081,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__Group__1__Impl
+    // $ANTLR end "rule__MultiplicativeExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__Group_1__0
+    // $ANTLR start "rule__MultiplicativeExpression__Group_1__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2478:1: rule__MultiplicativeExpression__Group_1__0 : rule__MultiplicativeExpression__Group_1__0__Impl rule__MultiplicativeExpression__Group_1__1 ;
     public final void rule__MultiplicativeExpression__Group_1__0() throws RecognitionException {
 
@@ -6974,11 +7096,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__MultiplicativeExpression__Group_1__0__Impl_in_rule__MultiplicativeExpression__Group_1__05215);
             rule__MultiplicativeExpression__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__MultiplicativeExpression__Group_1__1_in_rule__MultiplicativeExpression__Group_1__05218);
             rule__MultiplicativeExpression__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6995,10 +7119,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__Group_1__0
+    // $ANTLR end "rule__MultiplicativeExpression__Group_1__0"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__Group_1__0__Impl
+    // $ANTLR start "rule__MultiplicativeExpression__Group_1__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2490:1: rule__MultiplicativeExpression__Group_1__0__Impl : ( ( rule__MultiplicativeExpression__OpAssignment_1_0 ) ) ;
     public final void rule__MultiplicativeExpression__Group_1__0__Impl() throws RecognitionException {
 
@@ -7017,7 +7141,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__MultiplicativeExpression__OpAssignment_1_0_in_rule__MultiplicativeExpression__Group_1__0__Impl5245);
             rule__MultiplicativeExpression__OpAssignment_1_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7041,10 +7166,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__Group_1__0__Impl
+    // $ANTLR end "rule__MultiplicativeExpression__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__Group_1__1
+    // $ANTLR start "rule__MultiplicativeExpression__Group_1__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2507:1: rule__MultiplicativeExpression__Group_1__1 : rule__MultiplicativeExpression__Group_1__1__Impl ;
     public final void rule__MultiplicativeExpression__Group_1__1() throws RecognitionException {
 
@@ -7056,7 +7181,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__MultiplicativeExpression__Group_1__1__Impl_in_rule__MultiplicativeExpression__Group_1__15275);
             rule__MultiplicativeExpression__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7073,10 +7199,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__Group_1__1
+    // $ANTLR end "rule__MultiplicativeExpression__Group_1__1"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__Group_1__1__Impl
+    // $ANTLR start "rule__MultiplicativeExpression__Group_1__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2518:1: rule__MultiplicativeExpression__Group_1__1__Impl : ( ( rule__MultiplicativeExpression__ExpAssignment_1_1 ) ) ;
     public final void rule__MultiplicativeExpression__Group_1__1__Impl() throws RecognitionException {
 
@@ -7095,7 +7221,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__MultiplicativeExpression__ExpAssignment_1_1_in_rule__MultiplicativeExpression__Group_1__1__Impl5302);
             rule__MultiplicativeExpression__ExpAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7119,10 +7246,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__Group_1__1__Impl
+    // $ANTLR end "rule__MultiplicativeExpression__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__UnaryExpression__Group_0__0
+    // $ANTLR start "rule__UnaryExpression__Group_0__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2539:1: rule__UnaryExpression__Group_0__0 : rule__UnaryExpression__Group_0__0__Impl rule__UnaryExpression__Group_0__1 ;
     public final void rule__UnaryExpression__Group_0__0() throws RecognitionException {
 
@@ -7134,11 +7261,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__UnaryExpression__Group_0__0__Impl_in_rule__UnaryExpression__Group_0__05336);
             rule__UnaryExpression__Group_0__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__UnaryExpression__Group_0__1_in_rule__UnaryExpression__Group_0__05339);
             rule__UnaryExpression__Group_0__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7155,10 +7284,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__UnaryExpression__Group_0__0
+    // $ANTLR end "rule__UnaryExpression__Group_0__0"
 
 
-    // $ANTLR start rule__UnaryExpression__Group_0__0__Impl
+    // $ANTLR start "rule__UnaryExpression__Group_0__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2551:1: rule__UnaryExpression__Group_0__0__Impl : ( ( rule__UnaryExpression__OpAssignment_0_0 ) ) ;
     public final void rule__UnaryExpression__Group_0__0__Impl() throws RecognitionException {
 
@@ -7177,7 +7306,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__UnaryExpression__OpAssignment_0_0_in_rule__UnaryExpression__Group_0__0__Impl5366);
             rule__UnaryExpression__OpAssignment_0_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7201,10 +7331,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__UnaryExpression__Group_0__0__Impl
+    // $ANTLR end "rule__UnaryExpression__Group_0__0__Impl"
 
 
-    // $ANTLR start rule__UnaryExpression__Group_0__1
+    // $ANTLR start "rule__UnaryExpression__Group_0__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2568:1: rule__UnaryExpression__Group_0__1 : rule__UnaryExpression__Group_0__1__Impl ;
     public final void rule__UnaryExpression__Group_0__1() throws RecognitionException {
 
@@ -7216,7 +7346,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__UnaryExpression__Group_0__1__Impl_in_rule__UnaryExpression__Group_0__15396);
             rule__UnaryExpression__Group_0__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7233,10 +7364,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__UnaryExpression__Group_0__1
+    // $ANTLR end "rule__UnaryExpression__Group_0__1"
 
 
-    // $ANTLR start rule__UnaryExpression__Group_0__1__Impl
+    // $ANTLR start "rule__UnaryExpression__Group_0__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2579:1: rule__UnaryExpression__Group_0__1__Impl : ( ( rule__UnaryExpression__UnaryAssignment_0_1 ) ) ;
     public final void rule__UnaryExpression__Group_0__1__Impl() throws RecognitionException {
 
@@ -7255,7 +7386,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__UnaryExpression__UnaryAssignment_0_1_in_rule__UnaryExpression__Group_0__1__Impl5423);
             rule__UnaryExpression__UnaryAssignment_0_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7279,10 +7411,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__UnaryExpression__Group_0__1__Impl
+    // $ANTLR end "rule__UnaryExpression__Group_0__1__Impl"
 
 
-    // $ANTLR start rule__PrimaryExpression__Group__0
+    // $ANTLR start "rule__PrimaryExpression__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2600:1: rule__PrimaryExpression__Group__0 : rule__PrimaryExpression__Group__0__Impl rule__PrimaryExpression__Group__1 ;
     public final void rule__PrimaryExpression__Group__0() throws RecognitionException {
 
@@ -7294,11 +7426,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__PrimaryExpression__Group__0__Impl_in_rule__PrimaryExpression__Group__05457);
             rule__PrimaryExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__PrimaryExpression__Group__1_in_rule__PrimaryExpression__Group__05460);
             rule__PrimaryExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7315,10 +7449,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__Group__0
+    // $ANTLR end "rule__PrimaryExpression__Group__0"
 
 
-    // $ANTLR start rule__PrimaryExpression__Group__0__Impl
+    // $ANTLR start "rule__PrimaryExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2612:1: rule__PrimaryExpression__Group__0__Impl : ( ( rule__PrimaryExpression__PrefixAssignment_0 ) ) ;
     public final void rule__PrimaryExpression__Group__0__Impl() throws RecognitionException {
 
@@ -7337,7 +7471,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__PrimaryExpression__PrefixAssignment_0_in_rule__PrimaryExpression__Group__0__Impl5487);
             rule__PrimaryExpression__PrefixAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7361,10 +7496,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__Group__0__Impl
+    // $ANTLR end "rule__PrimaryExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__PrimaryExpression__Group__1
+    // $ANTLR start "rule__PrimaryExpression__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2629:1: rule__PrimaryExpression__Group__1 : rule__PrimaryExpression__Group__1__Impl ;
     public final void rule__PrimaryExpression__Group__1() throws RecognitionException {
 
@@ -7376,7 +7511,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__PrimaryExpression__Group__1__Impl_in_rule__PrimaryExpression__Group__15517);
             rule__PrimaryExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7393,10 +7529,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__Group__1
+    // $ANTLR end "rule__PrimaryExpression__Group__1"
 
 
-    // $ANTLR start rule__PrimaryExpression__Group__1__Impl
+    // $ANTLR start "rule__PrimaryExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2640:1: rule__PrimaryExpression__Group__1__Impl : ( ( rule__PrimaryExpression__Group_1__0 )? ) ;
     public final void rule__PrimaryExpression__Group__1__Impl() throws RecognitionException {
 
@@ -7423,7 +7559,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__PrimaryExpression__Group_1__0_in_rule__PrimaryExpression__Group__1__Impl5544);
                     rule__PrimaryExpression__Group_1__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -7450,10 +7587,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__Group__1__Impl
+    // $ANTLR end "rule__PrimaryExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__PrimaryExpression__Group_1__0
+    // $ANTLR start "rule__PrimaryExpression__Group_1__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2661:1: rule__PrimaryExpression__Group_1__0 : rule__PrimaryExpression__Group_1__0__Impl rule__PrimaryExpression__Group_1__1 ;
     public final void rule__PrimaryExpression__Group_1__0() throws RecognitionException {
 
@@ -7465,11 +7602,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__PrimaryExpression__Group_1__0__Impl_in_rule__PrimaryExpression__Group_1__05579);
             rule__PrimaryExpression__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__PrimaryExpression__Group_1__1_in_rule__PrimaryExpression__Group_1__05582);
             rule__PrimaryExpression__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7486,10 +7625,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__Group_1__0
+    // $ANTLR end "rule__PrimaryExpression__Group_1__0"
 
 
-    // $ANTLR start rule__PrimaryExpression__Group_1__0__Impl
+    // $ANTLR start "rule__PrimaryExpression__Group_1__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2673:1: rule__PrimaryExpression__Group_1__0__Impl : ( '.' ) ;
     public final void rule__PrimaryExpression__Group_1__0__Impl() throws RecognitionException {
 
@@ -7523,10 +7662,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__Group_1__0__Impl
+    // $ANTLR end "rule__PrimaryExpression__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__PrimaryExpression__Group_1__1
+    // $ANTLR start "rule__PrimaryExpression__Group_1__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2692:1: rule__PrimaryExpression__Group_1__1 : rule__PrimaryExpression__Group_1__1__Impl ;
     public final void rule__PrimaryExpression__Group_1__1() throws RecognitionException {
 
@@ -7538,7 +7677,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__PrimaryExpression__Group_1__1__Impl_in_rule__PrimaryExpression__Group_1__15641);
             rule__PrimaryExpression__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7555,10 +7695,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__Group_1__1
+    // $ANTLR end "rule__PrimaryExpression__Group_1__1"
 
 
-    // $ANTLR start rule__PrimaryExpression__Group_1__1__Impl
+    // $ANTLR start "rule__PrimaryExpression__Group_1__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2703:1: rule__PrimaryExpression__Group_1__1__Impl : ( ( rule__PrimaryExpression__SuffixAssignment_1_1 ) ) ;
     public final void rule__PrimaryExpression__Group_1__1__Impl() throws RecognitionException {
 
@@ -7577,7 +7717,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__PrimaryExpression__SuffixAssignment_1_1_in_rule__PrimaryExpression__Group_1__1__Impl5668);
             rule__PrimaryExpression__SuffixAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7601,10 +7742,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__Group_1__1__Impl
+    // $ANTLR end "rule__PrimaryExpression__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__ValueSpecification__Group_7__0
+    // $ANTLR start "rule__ValueSpecification__Group_7__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2724:1: rule__ValueSpecification__Group_7__0 : rule__ValueSpecification__Group_7__0__Impl rule__ValueSpecification__Group_7__1 ;
     public final void rule__ValueSpecification__Group_7__0() throws RecognitionException {
 
@@ -7616,11 +7757,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ValueSpecification__Group_7__0__Impl_in_rule__ValueSpecification__Group_7__05702);
             rule__ValueSpecification__Group_7__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ValueSpecification__Group_7__1_in_rule__ValueSpecification__Group_7__05705);
             rule__ValueSpecification__Group_7__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7637,10 +7780,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ValueSpecification__Group_7__0
+    // $ANTLR end "rule__ValueSpecification__Group_7__0"
 
 
-    // $ANTLR start rule__ValueSpecification__Group_7__0__Impl
+    // $ANTLR start "rule__ValueSpecification__Group_7__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2736:1: rule__ValueSpecification__Group_7__0__Impl : ( '(' ) ;
     public final void rule__ValueSpecification__Group_7__0__Impl() throws RecognitionException {
 
@@ -7674,10 +7817,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ValueSpecification__Group_7__0__Impl
+    // $ANTLR end "rule__ValueSpecification__Group_7__0__Impl"
 
 
-    // $ANTLR start rule__ValueSpecification__Group_7__1
+    // $ANTLR start "rule__ValueSpecification__Group_7__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2755:1: rule__ValueSpecification__Group_7__1 : rule__ValueSpecification__Group_7__1__Impl rule__ValueSpecification__Group_7__2 ;
     public final void rule__ValueSpecification__Group_7__1() throws RecognitionException {
 
@@ -7689,11 +7832,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ValueSpecification__Group_7__1__Impl_in_rule__ValueSpecification__Group_7__15764);
             rule__ValueSpecification__Group_7__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ValueSpecification__Group_7__2_in_rule__ValueSpecification__Group_7__15767);
             rule__ValueSpecification__Group_7__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7710,10 +7855,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ValueSpecification__Group_7__1
+    // $ANTLR end "rule__ValueSpecification__Group_7__1"
 
 
-    // $ANTLR start rule__ValueSpecification__Group_7__1__Impl
+    // $ANTLR start "rule__ValueSpecification__Group_7__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2767:1: rule__ValueSpecification__Group_7__1__Impl : ( ruleExpression ) ;
     public final void rule__ValueSpecification__Group_7__1__Impl() throws RecognitionException {
 
@@ -7729,7 +7874,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getValueSpecificationAccess().getExpressionParserRuleCall_7_1()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__ValueSpecification__Group_7__1__Impl5794);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getValueSpecificationAccess().getExpressionParserRuleCall_7_1()); 
 
@@ -7750,10 +7896,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ValueSpecification__Group_7__1__Impl
+    // $ANTLR end "rule__ValueSpecification__Group_7__1__Impl"
 
 
-    // $ANTLR start rule__ValueSpecification__Group_7__2
+    // $ANTLR start "rule__ValueSpecification__Group_7__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2784:1: rule__ValueSpecification__Group_7__2 : rule__ValueSpecification__Group_7__2__Impl ;
     public final void rule__ValueSpecification__Group_7__2() throws RecognitionException {
 
@@ -7765,7 +7911,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ValueSpecification__Group_7__2__Impl_in_rule__ValueSpecification__Group_7__25823);
             rule__ValueSpecification__Group_7__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7782,10 +7929,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ValueSpecification__Group_7__2
+    // $ANTLR end "rule__ValueSpecification__Group_7__2"
 
 
-    // $ANTLR start rule__ValueSpecification__Group_7__2__Impl
+    // $ANTLR start "rule__ValueSpecification__Group_7__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2795:1: rule__ValueSpecification__Group_7__2__Impl : ( ')' ) ;
     public final void rule__ValueSpecification__Group_7__2__Impl() throws RecognitionException {
 
@@ -7819,10 +7966,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ValueSpecification__Group_7__2__Impl
+    // $ANTLR end "rule__ValueSpecification__Group_7__2__Impl"
 
 
-    // $ANTLR start rule__PropertyCallExpression__Group__0
+    // $ANTLR start "rule__PropertyCallExpression__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2820:1: rule__PropertyCallExpression__Group__0 : rule__PropertyCallExpression__Group__0__Impl rule__PropertyCallExpression__Group__1 ;
     public final void rule__PropertyCallExpression__Group__0() throws RecognitionException {
 
@@ -7834,11 +7981,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__PropertyCallExpression__Group__0__Impl_in_rule__PropertyCallExpression__Group__05888);
             rule__PropertyCallExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__PropertyCallExpression__Group__1_in_rule__PropertyCallExpression__Group__05891);
             rule__PropertyCallExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7855,10 +8004,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__Group__0
+    // $ANTLR end "rule__PropertyCallExpression__Group__0"
 
 
-    // $ANTLR start rule__PropertyCallExpression__Group__0__Impl
+    // $ANTLR start "rule__PropertyCallExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2832:1: rule__PropertyCallExpression__Group__0__Impl : ( ( rule__PropertyCallExpression__PropertyAssignment_0 ) ) ;
     public final void rule__PropertyCallExpression__Group__0__Impl() throws RecognitionException {
 
@@ -7877,7 +8026,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__PropertyCallExpression__PropertyAssignment_0_in_rule__PropertyCallExpression__Group__0__Impl5918);
             rule__PropertyCallExpression__PropertyAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7901,10 +8051,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__Group__0__Impl
+    // $ANTLR end "rule__PropertyCallExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__PropertyCallExpression__Group__1
+    // $ANTLR start "rule__PropertyCallExpression__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2849:1: rule__PropertyCallExpression__Group__1 : rule__PropertyCallExpression__Group__1__Impl ;
     public final void rule__PropertyCallExpression__Group__1() throws RecognitionException {
 
@@ -7916,7 +8066,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__PropertyCallExpression__Group__1__Impl_in_rule__PropertyCallExpression__Group__15948);
             rule__PropertyCallExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7933,10 +8084,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__Group__1
+    // $ANTLR end "rule__PropertyCallExpression__Group__1"
 
 
-    // $ANTLR start rule__PropertyCallExpression__Group__1__Impl
+    // $ANTLR start "rule__PropertyCallExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2860:1: rule__PropertyCallExpression__Group__1__Impl : ( ( rule__PropertyCallExpression__Group_1__0 )? ) ;
     public final void rule__PropertyCallExpression__Group__1__Impl() throws RecognitionException {
 
@@ -7963,7 +8114,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__PropertyCallExpression__Group_1__0_in_rule__PropertyCallExpression__Group__1__Impl5975);
                     rule__PropertyCallExpression__Group_1__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -7990,10 +8142,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__Group__1__Impl
+    // $ANTLR end "rule__PropertyCallExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__PropertyCallExpression__Group_1__0
+    // $ANTLR start "rule__PropertyCallExpression__Group_1__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2881:1: rule__PropertyCallExpression__Group_1__0 : rule__PropertyCallExpression__Group_1__0__Impl rule__PropertyCallExpression__Group_1__1 ;
     public final void rule__PropertyCallExpression__Group_1__0() throws RecognitionException {
 
@@ -8005,11 +8157,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__PropertyCallExpression__Group_1__0__Impl_in_rule__PropertyCallExpression__Group_1__06010);
             rule__PropertyCallExpression__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__PropertyCallExpression__Group_1__1_in_rule__PropertyCallExpression__Group_1__06013);
             rule__PropertyCallExpression__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8026,10 +8180,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__Group_1__0
+    // $ANTLR end "rule__PropertyCallExpression__Group_1__0"
 
 
-    // $ANTLR start rule__PropertyCallExpression__Group_1__0__Impl
+    // $ANTLR start "rule__PropertyCallExpression__Group_1__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2893:1: rule__PropertyCallExpression__Group_1__0__Impl : ( '.' ) ;
     public final void rule__PropertyCallExpression__Group_1__0__Impl() throws RecognitionException {
 
@@ -8063,10 +8217,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__Group_1__0__Impl
+    // $ANTLR end "rule__PropertyCallExpression__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__PropertyCallExpression__Group_1__1
+    // $ANTLR start "rule__PropertyCallExpression__Group_1__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2912:1: rule__PropertyCallExpression__Group_1__1 : rule__PropertyCallExpression__Group_1__1__Impl ;
     public final void rule__PropertyCallExpression__Group_1__1() throws RecognitionException {
 
@@ -8078,7 +8232,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__PropertyCallExpression__Group_1__1__Impl_in_rule__PropertyCallExpression__Group_1__16072);
             rule__PropertyCallExpression__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8095,10 +8250,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__Group_1__1
+    // $ANTLR end "rule__PropertyCallExpression__Group_1__1"
 
 
-    // $ANTLR start rule__PropertyCallExpression__Group_1__1__Impl
+    // $ANTLR start "rule__PropertyCallExpression__Group_1__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2923:1: rule__PropertyCallExpression__Group_1__1__Impl : ( ( rule__PropertyCallExpression__SuffixAssignment_1_1 ) ) ;
     public final void rule__PropertyCallExpression__Group_1__1__Impl() throws RecognitionException {
 
@@ -8117,7 +8272,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__PropertyCallExpression__SuffixAssignment_1_1_in_rule__PropertyCallExpression__Group_1__1__Impl6099);
             rule__PropertyCallExpression__SuffixAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8141,10 +8297,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__Group_1__1__Impl
+    // $ANTLR end "rule__PropertyCallExpression__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__0
+    // $ANTLR start "rule__OperationCallExpression__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2944:1: rule__OperationCallExpression__Group__0 : rule__OperationCallExpression__Group__0__Impl rule__OperationCallExpression__Group__1 ;
     public final void rule__OperationCallExpression__Group__0() throws RecognitionException {
 
@@ -8156,11 +8312,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__0__Impl_in_rule__OperationCallExpression__Group__06133);
             rule__OperationCallExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__1_in_rule__OperationCallExpression__Group__06136);
             rule__OperationCallExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8177,10 +8335,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__0
+    // $ANTLR end "rule__OperationCallExpression__Group__0"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__0__Impl
+    // $ANTLR start "rule__OperationCallExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2956:1: rule__OperationCallExpression__Group__0__Impl : ( ( rule__OperationCallExpression__OperationAssignment_0 ) ) ;
     public final void rule__OperationCallExpression__Group__0__Impl() throws RecognitionException {
 
@@ -8199,7 +8357,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__OperationAssignment_0_in_rule__OperationCallExpression__Group__0__Impl6163);
             rule__OperationCallExpression__OperationAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8223,10 +8382,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__0__Impl
+    // $ANTLR end "rule__OperationCallExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__1
+    // $ANTLR start "rule__OperationCallExpression__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2973:1: rule__OperationCallExpression__Group__1 : rule__OperationCallExpression__Group__1__Impl rule__OperationCallExpression__Group__2 ;
     public final void rule__OperationCallExpression__Group__1() throws RecognitionException {
 
@@ -8238,11 +8397,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__1__Impl_in_rule__OperationCallExpression__Group__16193);
             rule__OperationCallExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__2_in_rule__OperationCallExpression__Group__16196);
             rule__OperationCallExpression__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8259,10 +8420,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__1
+    // $ANTLR end "rule__OperationCallExpression__Group__1"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__1__Impl
+    // $ANTLR start "rule__OperationCallExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:2985:1: rule__OperationCallExpression__Group__1__Impl : ( '(' ) ;
     public final void rule__OperationCallExpression__Group__1__Impl() throws RecognitionException {
 
@@ -8296,10 +8457,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__1__Impl
+    // $ANTLR end "rule__OperationCallExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__2
+    // $ANTLR start "rule__OperationCallExpression__Group__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3004:1: rule__OperationCallExpression__Group__2 : rule__OperationCallExpression__Group__2__Impl rule__OperationCallExpression__Group__3 ;
     public final void rule__OperationCallExpression__Group__2() throws RecognitionException {
 
@@ -8311,11 +8472,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__2__Impl_in_rule__OperationCallExpression__Group__26255);
             rule__OperationCallExpression__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__3_in_rule__OperationCallExpression__Group__26258);
             rule__OperationCallExpression__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8332,10 +8495,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__2
+    // $ANTLR end "rule__OperationCallExpression__Group__2"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__2__Impl
+    // $ANTLR start "rule__OperationCallExpression__Group__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3016:1: rule__OperationCallExpression__Group__2__Impl : ( ( rule__OperationCallExpression__ArgumentsAssignment_2 )? ) ;
     public final void rule__OperationCallExpression__Group__2__Impl() throws RecognitionException {
 
@@ -8362,7 +8525,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__OperationCallExpression__ArgumentsAssignment_2_in_rule__OperationCallExpression__Group__2__Impl6285);
                     rule__OperationCallExpression__ArgumentsAssignment_2();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -8389,10 +8553,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__2__Impl
+    // $ANTLR end "rule__OperationCallExpression__Group__2__Impl"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__3
+    // $ANTLR start "rule__OperationCallExpression__Group__3"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3033:1: rule__OperationCallExpression__Group__3 : rule__OperationCallExpression__Group__3__Impl rule__OperationCallExpression__Group__4 ;
     public final void rule__OperationCallExpression__Group__3() throws RecognitionException {
 
@@ -8404,11 +8568,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__3__Impl_in_rule__OperationCallExpression__Group__36316);
             rule__OperationCallExpression__Group__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__4_in_rule__OperationCallExpression__Group__36319);
             rule__OperationCallExpression__Group__4();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8425,10 +8591,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__3
+    // $ANTLR end "rule__OperationCallExpression__Group__3"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__3__Impl
+    // $ANTLR start "rule__OperationCallExpression__Group__3__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3045:1: rule__OperationCallExpression__Group__3__Impl : ( ')' ) ;
     public final void rule__OperationCallExpression__Group__3__Impl() throws RecognitionException {
 
@@ -8462,10 +8628,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__3__Impl
+    // $ANTLR end "rule__OperationCallExpression__Group__3__Impl"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__4
+    // $ANTLR start "rule__OperationCallExpression__Group__4"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3064:1: rule__OperationCallExpression__Group__4 : rule__OperationCallExpression__Group__4__Impl ;
     public final void rule__OperationCallExpression__Group__4() throws RecognitionException {
 
@@ -8477,7 +8643,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__4__Impl_in_rule__OperationCallExpression__Group__46378);
             rule__OperationCallExpression__Group__4__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8494,10 +8661,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__4
+    // $ANTLR end "rule__OperationCallExpression__Group__4"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__4__Impl
+    // $ANTLR start "rule__OperationCallExpression__Group__4__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3075:1: rule__OperationCallExpression__Group__4__Impl : ( ( rule__OperationCallExpression__Group_4__0 )? ) ;
     public final void rule__OperationCallExpression__Group__4__Impl() throws RecognitionException {
 
@@ -8524,7 +8691,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__OperationCallExpression__Group_4__0_in_rule__OperationCallExpression__Group__4__Impl6405);
                     rule__OperationCallExpression__Group_4__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -8551,10 +8719,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__4__Impl
+    // $ANTLR end "rule__OperationCallExpression__Group__4__Impl"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group_4__0
+    // $ANTLR start "rule__OperationCallExpression__Group_4__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3102:1: rule__OperationCallExpression__Group_4__0 : rule__OperationCallExpression__Group_4__0__Impl rule__OperationCallExpression__Group_4__1 ;
     public final void rule__OperationCallExpression__Group_4__0() throws RecognitionException {
 
@@ -8566,11 +8734,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__Group_4__0__Impl_in_rule__OperationCallExpression__Group_4__06446);
             rule__OperationCallExpression__Group_4__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__OperationCallExpression__Group_4__1_in_rule__OperationCallExpression__Group_4__06449);
             rule__OperationCallExpression__Group_4__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8587,10 +8757,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group_4__0
+    // $ANTLR end "rule__OperationCallExpression__Group_4__0"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group_4__0__Impl
+    // $ANTLR start "rule__OperationCallExpression__Group_4__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3114:1: rule__OperationCallExpression__Group_4__0__Impl : ( '.' ) ;
     public final void rule__OperationCallExpression__Group_4__0__Impl() throws RecognitionException {
 
@@ -8624,10 +8794,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group_4__0__Impl
+    // $ANTLR end "rule__OperationCallExpression__Group_4__0__Impl"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group_4__1
+    // $ANTLR start "rule__OperationCallExpression__Group_4__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3133:1: rule__OperationCallExpression__Group_4__1 : rule__OperationCallExpression__Group_4__1__Impl ;
     public final void rule__OperationCallExpression__Group_4__1() throws RecognitionException {
 
@@ -8639,7 +8809,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__Group_4__1__Impl_in_rule__OperationCallExpression__Group_4__16508);
             rule__OperationCallExpression__Group_4__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8656,10 +8827,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group_4__1
+    // $ANTLR end "rule__OperationCallExpression__Group_4__1"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group_4__1__Impl
+    // $ANTLR start "rule__OperationCallExpression__Group_4__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3144:1: rule__OperationCallExpression__Group_4__1__Impl : ( ( rule__OperationCallExpression__SuffixAssignment_4_1 ) ) ;
     public final void rule__OperationCallExpression__Group_4__1__Impl() throws RecognitionException {
 
@@ -8678,7 +8849,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__SuffixAssignment_4_1_in_rule__OperationCallExpression__Group_4__1__Impl6535);
             rule__OperationCallExpression__SuffixAssignment_4_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8702,10 +8874,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group_4__1__Impl
+    // $ANTLR end "rule__OperationCallExpression__Group_4__1__Impl"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group__0
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3165:1: rule__NameOrChoiceOrBehaviorCall__Group__0 : rule__NameOrChoiceOrBehaviorCall__Group__0__Impl rule__NameOrChoiceOrBehaviorCall__Group__1 ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group__0() throws RecognitionException {
 
@@ -8717,11 +8889,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__0__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group__06569);
             rule__NameOrChoiceOrBehaviorCall__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__1_in_rule__NameOrChoiceOrBehaviorCall__Group__06572);
             rule__NameOrChoiceOrBehaviorCall__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8738,10 +8912,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group__0
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group__0"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group__0__Impl
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3177:1: rule__NameOrChoiceOrBehaviorCall__Group__0__Impl : ( ( rule__NameOrChoiceOrBehaviorCall__PathAssignment_0 )? ) ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group__0__Impl() throws RecognitionException {
 
@@ -8772,7 +8946,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__PathAssignment_0_in_rule__NameOrChoiceOrBehaviorCall__Group__0__Impl6599);
                     rule__NameOrChoiceOrBehaviorCall__PathAssignment_0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -8799,10 +8974,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group__0__Impl
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group__0__Impl"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group__1
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3194:1: rule__NameOrChoiceOrBehaviorCall__Group__1 : rule__NameOrChoiceOrBehaviorCall__Group__1__Impl rule__NameOrChoiceOrBehaviorCall__Group__2 ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group__1() throws RecognitionException {
 
@@ -8814,11 +8989,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__1__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group__16630);
             rule__NameOrChoiceOrBehaviorCall__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__2_in_rule__NameOrChoiceOrBehaviorCall__Group__16633);
             rule__NameOrChoiceOrBehaviorCall__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8835,10 +9012,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group__1
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group__1"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group__1__Impl
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3206:1: rule__NameOrChoiceOrBehaviorCall__Group__1__Impl : ( ( rule__NameOrChoiceOrBehaviorCall__IdAssignment_1 ) ) ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group__1__Impl() throws RecognitionException {
 
@@ -8857,7 +9034,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__IdAssignment_1_in_rule__NameOrChoiceOrBehaviorCall__Group__1__Impl6660);
             rule__NameOrChoiceOrBehaviorCall__IdAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8881,10 +9059,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group__1__Impl
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group__1__Impl"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group__2
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3223:1: rule__NameOrChoiceOrBehaviorCall__Group__2 : rule__NameOrChoiceOrBehaviorCall__Group__2__Impl ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group__2() throws RecognitionException {
 
@@ -8896,7 +9074,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__2__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group__26690);
             rule__NameOrChoiceOrBehaviorCall__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8913,10 +9092,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group__2
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group__2"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group__2__Impl
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3234:1: rule__NameOrChoiceOrBehaviorCall__Group__2__Impl : ( ( rule__NameOrChoiceOrBehaviorCall__Group_2__0 )? ) ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group__2__Impl() throws RecognitionException {
 
@@ -8943,7 +9122,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__0_in_rule__NameOrChoiceOrBehaviorCall__Group__2__Impl6717);
                     rule__NameOrChoiceOrBehaviorCall__Group_2__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -8970,10 +9150,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group__2__Impl
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group__2__Impl"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group_2__0
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group_2__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3257:1: rule__NameOrChoiceOrBehaviorCall__Group_2__0 : rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl rule__NameOrChoiceOrBehaviorCall__Group_2__1 ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group_2__0() throws RecognitionException {
 
@@ -8985,11 +9165,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group_2__06754);
             rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__1_in_rule__NameOrChoiceOrBehaviorCall__Group_2__06757);
             rule__NameOrChoiceOrBehaviorCall__Group_2__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9006,10 +9188,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group_2__0
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group_2__0"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3269:1: rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl : ( '(' ) ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl() throws RecognitionException {
 
@@ -9043,10 +9225,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group_2__1
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group_2__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3288:1: rule__NameOrChoiceOrBehaviorCall__Group_2__1 : rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl rule__NameOrChoiceOrBehaviorCall__Group_2__2 ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group_2__1() throws RecognitionException {
 
@@ -9058,11 +9240,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group_2__16816);
             rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__2_in_rule__NameOrChoiceOrBehaviorCall__Group_2__16819);
             rule__NameOrChoiceOrBehaviorCall__Group_2__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9079,10 +9263,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group_2__1
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group_2__1"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3300:1: rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl : ( ( rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1 )? ) ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl() throws RecognitionException {
 
@@ -9109,7 +9293,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1_in_rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl6846);
                     rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -9136,10 +9321,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group_2__2
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group_2__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3317:1: rule__NameOrChoiceOrBehaviorCall__Group_2__2 : rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group_2__2() throws RecognitionException {
 
@@ -9151,7 +9336,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group_2__26877);
             rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9168,10 +9354,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group_2__2
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group_2__2"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3328:1: rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl : ( ')' ) ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl() throws RecognitionException {
 
@@ -9205,10 +9391,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl"
 
 
-    // $ANTLR start rule__QualifiedName__Group__0
+    // $ANTLR start "rule__QualifiedName__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3353:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
     public final void rule__QualifiedName__Group__0() throws RecognitionException {
 
@@ -9220,11 +9406,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__06942);
             rule__QualifiedName__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__06945);
             rule__QualifiedName__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9241,10 +9429,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__0
+    // $ANTLR end "rule__QualifiedName__Group__0"
 
 
-    // $ANTLR start rule__QualifiedName__Group__0__Impl
+    // $ANTLR start "rule__QualifiedName__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3365:1: rule__QualifiedName__Group__0__Impl : ( ( rule__QualifiedName__PathAssignment_0 ) ) ;
     public final void rule__QualifiedName__Group__0__Impl() throws RecognitionException {
 
@@ -9263,7 +9451,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__QualifiedName__PathAssignment_0_in_rule__QualifiedName__Group__0__Impl6972);
             rule__QualifiedName__PathAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9287,10 +9476,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__0__Impl
+    // $ANTLR end "rule__QualifiedName__Group__0__Impl"
 
 
-    // $ANTLR start rule__QualifiedName__Group__1
+    // $ANTLR start "rule__QualifiedName__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3382:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl rule__QualifiedName__Group__2 ;
     public final void rule__QualifiedName__Group__1() throws RecognitionException {
 
@@ -9302,11 +9491,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__17002);
             rule__QualifiedName__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__QualifiedName__Group__2_in_rule__QualifiedName__Group__17005);
             rule__QualifiedName__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9323,10 +9514,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__1
+    // $ANTLR end "rule__QualifiedName__Group__1"
 
 
-    // $ANTLR start rule__QualifiedName__Group__1__Impl
+    // $ANTLR start "rule__QualifiedName__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3394:1: rule__QualifiedName__Group__1__Impl : ( '::' ) ;
     public final void rule__QualifiedName__Group__1__Impl() throws RecognitionException {
 
@@ -9360,10 +9551,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__1__Impl
+    // $ANTLR end "rule__QualifiedName__Group__1__Impl"
 
 
-    // $ANTLR start rule__QualifiedName__Group__2
+    // $ANTLR start "rule__QualifiedName__Group__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3413:1: rule__QualifiedName__Group__2 : rule__QualifiedName__Group__2__Impl ;
     public final void rule__QualifiedName__Group__2() throws RecognitionException {
 
@@ -9375,7 +9566,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__2__Impl_in_rule__QualifiedName__Group__27064);
             rule__QualifiedName__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9392,10 +9584,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__2
+    // $ANTLR end "rule__QualifiedName__Group__2"
 
 
-    // $ANTLR start rule__QualifiedName__Group__2__Impl
+    // $ANTLR start "rule__QualifiedName__Group__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3424:1: rule__QualifiedName__Group__2__Impl : ( ( rule__QualifiedName__RemainingAssignment_2 )? ) ;
     public final void rule__QualifiedName__Group__2__Impl() throws RecognitionException {
 
@@ -9426,7 +9618,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__QualifiedName__RemainingAssignment_2_in_rule__QualifiedName__Group__2__Impl7091);
                     rule__QualifiedName__RemainingAssignment_2();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -9453,10 +9646,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__2__Impl
+    // $ANTLR end "rule__QualifiedName__Group__2__Impl"
 
 
-    // $ANTLR start rule__Interval__Group__0
+    // $ANTLR start "rule__Interval__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3447:1: rule__Interval__Group__0 : rule__Interval__Group__0__Impl rule__Interval__Group__1 ;
     public final void rule__Interval__Group__0() throws RecognitionException {
 
@@ -9468,11 +9661,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__Interval__Group__0__Impl_in_rule__Interval__Group__07128);
             rule__Interval__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__Interval__Group__1_in_rule__Interval__Group__07131);
             rule__Interval__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9489,10 +9684,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__0
+    // $ANTLR end "rule__Interval__Group__0"
 
 
-    // $ANTLR start rule__Interval__Group__0__Impl
+    // $ANTLR start "rule__Interval__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3459:1: rule__Interval__Group__0__Impl : ( ( rule__Interval__Alternatives_0 ) ) ;
     public final void rule__Interval__Group__0__Impl() throws RecognitionException {
 
@@ -9511,7 +9706,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__Interval__Alternatives_0_in_rule__Interval__Group__0__Impl7158);
             rule__Interval__Alternatives_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9535,10 +9731,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__0__Impl
+    // $ANTLR end "rule__Interval__Group__0__Impl"
 
 
-    // $ANTLR start rule__Interval__Group__1
+    // $ANTLR start "rule__Interval__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3476:1: rule__Interval__Group__1 : rule__Interval__Group__1__Impl rule__Interval__Group__2 ;
     public final void rule__Interval__Group__1() throws RecognitionException {
 
@@ -9550,11 +9746,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__Interval__Group__1__Impl_in_rule__Interval__Group__17188);
             rule__Interval__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__Interval__Group__2_in_rule__Interval__Group__17191);
             rule__Interval__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9571,10 +9769,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__1
+    // $ANTLR end "rule__Interval__Group__1"
 
 
-    // $ANTLR start rule__Interval__Group__1__Impl
+    // $ANTLR start "rule__Interval__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3488:1: rule__Interval__Group__1__Impl : ( ( rule__Interval__LowerAssignment_1 ) ) ;
     public final void rule__Interval__Group__1__Impl() throws RecognitionException {
 
@@ -9593,7 +9791,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__Interval__LowerAssignment_1_in_rule__Interval__Group__1__Impl7218);
             rule__Interval__LowerAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9617,10 +9816,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__1__Impl
+    // $ANTLR end "rule__Interval__Group__1__Impl"
 
 
-    // $ANTLR start rule__Interval__Group__2
+    // $ANTLR start "rule__Interval__Group__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3505:1: rule__Interval__Group__2 : rule__Interval__Group__2__Impl rule__Interval__Group__3 ;
     public final void rule__Interval__Group__2() throws RecognitionException {
 
@@ -9632,11 +9831,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__Interval__Group__2__Impl_in_rule__Interval__Group__27248);
             rule__Interval__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__Interval__Group__3_in_rule__Interval__Group__27251);
             rule__Interval__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9653,10 +9854,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__2
+    // $ANTLR end "rule__Interval__Group__2"
 
 
-    // $ANTLR start rule__Interval__Group__2__Impl
+    // $ANTLR start "rule__Interval__Group__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3517:1: rule__Interval__Group__2__Impl : ( '..' ) ;
     public final void rule__Interval__Group__2__Impl() throws RecognitionException {
 
@@ -9690,10 +9891,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__2__Impl
+    // $ANTLR end "rule__Interval__Group__2__Impl"
 
 
-    // $ANTLR start rule__Interval__Group__3
+    // $ANTLR start "rule__Interval__Group__3"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3536:1: rule__Interval__Group__3 : rule__Interval__Group__3__Impl rule__Interval__Group__4 ;
     public final void rule__Interval__Group__3() throws RecognitionException {
 
@@ -9705,11 +9906,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__Interval__Group__3__Impl_in_rule__Interval__Group__37310);
             rule__Interval__Group__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__Interval__Group__4_in_rule__Interval__Group__37313);
             rule__Interval__Group__4();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9726,10 +9929,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__3
+    // $ANTLR end "rule__Interval__Group__3"
 
 
-    // $ANTLR start rule__Interval__Group__3__Impl
+    // $ANTLR start "rule__Interval__Group__3__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3548:1: rule__Interval__Group__3__Impl : ( ( rule__Interval__UpperAssignment_3 ) ) ;
     public final void rule__Interval__Group__3__Impl() throws RecognitionException {
 
@@ -9748,7 +9951,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__Interval__UpperAssignment_3_in_rule__Interval__Group__3__Impl7340);
             rule__Interval__UpperAssignment_3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9772,10 +9976,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__3__Impl
+    // $ANTLR end "rule__Interval__Group__3__Impl"
 
 
-    // $ANTLR start rule__Interval__Group__4
+    // $ANTLR start "rule__Interval__Group__4"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3565:1: rule__Interval__Group__4 : rule__Interval__Group__4__Impl ;
     public final void rule__Interval__Group__4() throws RecognitionException {
 
@@ -9787,7 +9991,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__Interval__Group__4__Impl_in_rule__Interval__Group__47370);
             rule__Interval__Group__4__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9804,10 +10009,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__4
+    // $ANTLR end "rule__Interval__Group__4"
 
 
-    // $ANTLR start rule__Interval__Group__4__Impl
+    // $ANTLR start "rule__Interval__Group__4__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3576:1: rule__Interval__Group__4__Impl : ( ( rule__Interval__Alternatives_4 ) ) ;
     public final void rule__Interval__Group__4__Impl() throws RecognitionException {
 
@@ -9826,7 +10031,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__Interval__Alternatives_4_in_rule__Interval__Group__4__Impl7397);
             rule__Interval__Alternatives_4();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9850,10 +10056,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__4__Impl
+    // $ANTLR end "rule__Interval__Group__4__Impl"
 
 
-    // $ANTLR start rule__CollectionOrTuple__Group__0
+    // $ANTLR start "rule__CollectionOrTuple__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3603:1: rule__CollectionOrTuple__Group__0 : rule__CollectionOrTuple__Group__0__Impl rule__CollectionOrTuple__Group__1 ;
     public final void rule__CollectionOrTuple__Group__0() throws RecognitionException {
 
@@ -9865,11 +10071,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__CollectionOrTuple__Group__0__Impl_in_rule__CollectionOrTuple__Group__07437);
             rule__CollectionOrTuple__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__CollectionOrTuple__Group__1_in_rule__CollectionOrTuple__Group__07440);
             rule__CollectionOrTuple__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9886,10 +10094,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__CollectionOrTuple__Group__0
+    // $ANTLR end "rule__CollectionOrTuple__Group__0"
 
 
-    // $ANTLR start rule__CollectionOrTuple__Group__0__Impl
+    // $ANTLR start "rule__CollectionOrTuple__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3615:1: rule__CollectionOrTuple__Group__0__Impl : ( '{' ) ;
     public final void rule__CollectionOrTuple__Group__0__Impl() throws RecognitionException {
 
@@ -9923,10 +10131,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__CollectionOrTuple__Group__0__Impl
+    // $ANTLR end "rule__CollectionOrTuple__Group__0__Impl"
 
 
-    // $ANTLR start rule__CollectionOrTuple__Group__1
+    // $ANTLR start "rule__CollectionOrTuple__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3634:1: rule__CollectionOrTuple__Group__1 : rule__CollectionOrTuple__Group__1__Impl rule__CollectionOrTuple__Group__2 ;
     public final void rule__CollectionOrTuple__Group__1() throws RecognitionException {
 
@@ -9938,11 +10146,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__CollectionOrTuple__Group__1__Impl_in_rule__CollectionOrTuple__Group__17499);
             rule__CollectionOrTuple__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__CollectionOrTuple__Group__2_in_rule__CollectionOrTuple__Group__17502);
             rule__CollectionOrTuple__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9959,10 +10169,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__CollectionOrTuple__Group__1
+    // $ANTLR end "rule__CollectionOrTuple__Group__1"
 
 
-    // $ANTLR start rule__CollectionOrTuple__Group__1__Impl
+    // $ANTLR start "rule__CollectionOrTuple__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3646:1: rule__CollectionOrTuple__Group__1__Impl : ( ( rule__CollectionOrTuple__ListOfValuesAssignment_1 ) ) ;
     public final void rule__CollectionOrTuple__Group__1__Impl() throws RecognitionException {
 
@@ -9981,7 +10191,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__CollectionOrTuple__ListOfValuesAssignment_1_in_rule__CollectionOrTuple__Group__1__Impl7529);
             rule__CollectionOrTuple__ListOfValuesAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10005,10 +10216,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__CollectionOrTuple__Group__1__Impl
+    // $ANTLR end "rule__CollectionOrTuple__Group__1__Impl"
 
 
-    // $ANTLR start rule__CollectionOrTuple__Group__2
+    // $ANTLR start "rule__CollectionOrTuple__Group__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3663:1: rule__CollectionOrTuple__Group__2 : rule__CollectionOrTuple__Group__2__Impl ;
     public final void rule__CollectionOrTuple__Group__2() throws RecognitionException {
 
@@ -10020,7 +10231,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__CollectionOrTuple__Group__2__Impl_in_rule__CollectionOrTuple__Group__27559);
             rule__CollectionOrTuple__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10037,10 +10249,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__CollectionOrTuple__Group__2
+    // $ANTLR end "rule__CollectionOrTuple__Group__2"
 
 
-    // $ANTLR start rule__CollectionOrTuple__Group__2__Impl
+    // $ANTLR start "rule__CollectionOrTuple__Group__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3674:1: rule__CollectionOrTuple__Group__2__Impl : ( '}' ) ;
     public final void rule__CollectionOrTuple__Group__2__Impl() throws RecognitionException {
 
@@ -10074,10 +10286,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__CollectionOrTuple__Group__2__Impl
+    // $ANTLR end "rule__CollectionOrTuple__Group__2__Impl"
 
 
-    // $ANTLR start rule__Tuple__Group__0
+    // $ANTLR start "rule__Tuple__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3699:1: rule__Tuple__Group__0 : rule__Tuple__Group__0__Impl rule__Tuple__Group__1 ;
     public final void rule__Tuple__Group__0() throws RecognitionException {
 
@@ -10089,11 +10301,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__Tuple__Group__0__Impl_in_rule__Tuple__Group__07624);
             rule__Tuple__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__Tuple__Group__1_in_rule__Tuple__Group__07627);
             rule__Tuple__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10110,10 +10324,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Tuple__Group__0
+    // $ANTLR end "rule__Tuple__Group__0"
 
 
-    // $ANTLR start rule__Tuple__Group__0__Impl
+    // $ANTLR start "rule__Tuple__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3711:1: rule__Tuple__Group__0__Impl : ( '{' ) ;
     public final void rule__Tuple__Group__0__Impl() throws RecognitionException {
 
@@ -10147,10 +10361,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Tuple__Group__0__Impl
+    // $ANTLR end "rule__Tuple__Group__0__Impl"
 
 
-    // $ANTLR start rule__Tuple__Group__1
+    // $ANTLR start "rule__Tuple__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3730:1: rule__Tuple__Group__1 : rule__Tuple__Group__1__Impl rule__Tuple__Group__2 ;
     public final void rule__Tuple__Group__1() throws RecognitionException {
 
@@ -10162,11 +10376,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__Tuple__Group__1__Impl_in_rule__Tuple__Group__17686);
             rule__Tuple__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__Tuple__Group__2_in_rule__Tuple__Group__17689);
             rule__Tuple__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10183,10 +10399,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Tuple__Group__1
+    // $ANTLR end "rule__Tuple__Group__1"
 
 
-    // $ANTLR start rule__Tuple__Group__1__Impl
+    // $ANTLR start "rule__Tuple__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3742:1: rule__Tuple__Group__1__Impl : ( ( rule__Tuple__ListOfValueNamePairsAssignment_1 ) ) ;
     public final void rule__Tuple__Group__1__Impl() throws RecognitionException {
 
@@ -10205,7 +10421,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__Tuple__ListOfValueNamePairsAssignment_1_in_rule__Tuple__Group__1__Impl7716);
             rule__Tuple__ListOfValueNamePairsAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10229,10 +10446,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Tuple__Group__1__Impl
+    // $ANTLR end "rule__Tuple__Group__1__Impl"
 
 
-    // $ANTLR start rule__Tuple__Group__2
+    // $ANTLR start "rule__Tuple__Group__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3759:1: rule__Tuple__Group__2 : rule__Tuple__Group__2__Impl ;
     public final void rule__Tuple__Group__2() throws RecognitionException {
 
@@ -10244,7 +10461,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__Tuple__Group__2__Impl_in_rule__Tuple__Group__27746);
             rule__Tuple__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10261,10 +10479,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Tuple__Group__2
+    // $ANTLR end "rule__Tuple__Group__2"
 
 
-    // $ANTLR start rule__Tuple__Group__2__Impl
+    // $ANTLR start "rule__Tuple__Group__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3770:1: rule__Tuple__Group__2__Impl : ( '}' ) ;
     public final void rule__Tuple__Group__2__Impl() throws RecognitionException {
 
@@ -10298,10 +10516,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Tuple__Group__2__Impl
+    // $ANTLR end "rule__Tuple__Group__2__Impl"
 
 
-    // $ANTLR start rule__ListOfValues__Group__0
+    // $ANTLR start "rule__ListOfValues__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3795:1: rule__ListOfValues__Group__0 : rule__ListOfValues__Group__0__Impl rule__ListOfValues__Group__1 ;
     public final void rule__ListOfValues__Group__0() throws RecognitionException {
 
@@ -10313,11 +10531,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ListOfValues__Group__0__Impl_in_rule__ListOfValues__Group__07811);
             rule__ListOfValues__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ListOfValues__Group__1_in_rule__ListOfValues__Group__07814);
             rule__ListOfValues__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10334,10 +10554,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__Group__0
+    // $ANTLR end "rule__ListOfValues__Group__0"
 
 
-    // $ANTLR start rule__ListOfValues__Group__0__Impl
+    // $ANTLR start "rule__ListOfValues__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3807:1: rule__ListOfValues__Group__0__Impl : ( ( rule__ListOfValues__ValuesAssignment_0 ) ) ;
     public final void rule__ListOfValues__Group__0__Impl() throws RecognitionException {
 
@@ -10356,7 +10576,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ListOfValues__ValuesAssignment_0_in_rule__ListOfValues__Group__0__Impl7841);
             rule__ListOfValues__ValuesAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10380,10 +10601,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__Group__0__Impl
+    // $ANTLR end "rule__ListOfValues__Group__0__Impl"
 
 
-    // $ANTLR start rule__ListOfValues__Group__1
+    // $ANTLR start "rule__ListOfValues__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3824:1: rule__ListOfValues__Group__1 : rule__ListOfValues__Group__1__Impl ;
     public final void rule__ListOfValues__Group__1() throws RecognitionException {
 
@@ -10395,7 +10616,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ListOfValues__Group__1__Impl_in_rule__ListOfValues__Group__17871);
             rule__ListOfValues__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10412,10 +10634,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__Group__1
+    // $ANTLR end "rule__ListOfValues__Group__1"
 
 
-    // $ANTLR start rule__ListOfValues__Group__1__Impl
+    // $ANTLR start "rule__ListOfValues__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3835:1: rule__ListOfValues__Group__1__Impl : ( ( rule__ListOfValues__Group_1__0 )* ) ;
     public final void rule__ListOfValues__Group__1__Impl() throws RecognitionException {
 
@@ -10446,7 +10668,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             	    {
             	    pushFollow(FOLLOW_rule__ListOfValues__Group_1__0_in_rule__ListOfValues__Group__1__Impl7898);
             	    rule__ListOfValues__Group_1__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -10476,10 +10699,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__Group__1__Impl
+    // $ANTLR end "rule__ListOfValues__Group__1__Impl"
 
 
-    // $ANTLR start rule__ListOfValues__Group_1__0
+    // $ANTLR start "rule__ListOfValues__Group_1__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3856:1: rule__ListOfValues__Group_1__0 : rule__ListOfValues__Group_1__0__Impl rule__ListOfValues__Group_1__1 ;
     public final void rule__ListOfValues__Group_1__0() throws RecognitionException {
 
@@ -10491,11 +10714,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ListOfValues__Group_1__0__Impl_in_rule__ListOfValues__Group_1__07933);
             rule__ListOfValues__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ListOfValues__Group_1__1_in_rule__ListOfValues__Group_1__07936);
             rule__ListOfValues__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10512,10 +10737,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__Group_1__0
+    // $ANTLR end "rule__ListOfValues__Group_1__0"
 
 
-    // $ANTLR start rule__ListOfValues__Group_1__0__Impl
+    // $ANTLR start "rule__ListOfValues__Group_1__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3868:1: rule__ListOfValues__Group_1__0__Impl : ( ',' ) ;
     public final void rule__ListOfValues__Group_1__0__Impl() throws RecognitionException {
 
@@ -10549,10 +10774,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__Group_1__0__Impl
+    // $ANTLR end "rule__ListOfValues__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__ListOfValues__Group_1__1
+    // $ANTLR start "rule__ListOfValues__Group_1__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3887:1: rule__ListOfValues__Group_1__1 : rule__ListOfValues__Group_1__1__Impl ;
     public final void rule__ListOfValues__Group_1__1() throws RecognitionException {
 
@@ -10564,7 +10789,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ListOfValues__Group_1__1__Impl_in_rule__ListOfValues__Group_1__17995);
             rule__ListOfValues__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10581,10 +10807,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__Group_1__1
+    // $ANTLR end "rule__ListOfValues__Group_1__1"
 
 
-    // $ANTLR start rule__ListOfValues__Group_1__1__Impl
+    // $ANTLR start "rule__ListOfValues__Group_1__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3898:1: rule__ListOfValues__Group_1__1__Impl : ( ( rule__ListOfValues__ValuesAssignment_1_1 ) ) ;
     public final void rule__ListOfValues__Group_1__1__Impl() throws RecognitionException {
 
@@ -10603,7 +10829,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ListOfValues__ValuesAssignment_1_1_in_rule__ListOfValues__Group_1__1__Impl8022);
             rule__ListOfValues__ValuesAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10627,10 +10854,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__Group_1__1__Impl
+    // $ANTLR end "rule__ListOfValues__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__Group__0
+    // $ANTLR start "rule__ListOfValueNamePairs__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3919:1: rule__ListOfValueNamePairs__Group__0 : rule__ListOfValueNamePairs__Group__0__Impl rule__ListOfValueNamePairs__Group__1 ;
     public final void rule__ListOfValueNamePairs__Group__0() throws RecognitionException {
 
@@ -10642,11 +10869,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ListOfValueNamePairs__Group__0__Impl_in_rule__ListOfValueNamePairs__Group__08056);
             rule__ListOfValueNamePairs__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ListOfValueNamePairs__Group__1_in_rule__ListOfValueNamePairs__Group__08059);
             rule__ListOfValueNamePairs__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10663,10 +10892,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__Group__0
+    // $ANTLR end "rule__ListOfValueNamePairs__Group__0"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__Group__0__Impl
+    // $ANTLR start "rule__ListOfValueNamePairs__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3931:1: rule__ListOfValueNamePairs__Group__0__Impl : ( ( rule__ListOfValueNamePairs__ValueNamePairsAssignment_0 ) ) ;
     public final void rule__ListOfValueNamePairs__Group__0__Impl() throws RecognitionException {
 
@@ -10685,7 +10914,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ListOfValueNamePairs__ValueNamePairsAssignment_0_in_rule__ListOfValueNamePairs__Group__0__Impl8086);
             rule__ListOfValueNamePairs__ValueNamePairsAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10709,10 +10939,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__Group__0__Impl
+    // $ANTLR end "rule__ListOfValueNamePairs__Group__0__Impl"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__Group__1
+    // $ANTLR start "rule__ListOfValueNamePairs__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3948:1: rule__ListOfValueNamePairs__Group__1 : rule__ListOfValueNamePairs__Group__1__Impl ;
     public final void rule__ListOfValueNamePairs__Group__1() throws RecognitionException {
 
@@ -10724,7 +10954,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ListOfValueNamePairs__Group__1__Impl_in_rule__ListOfValueNamePairs__Group__18116);
             rule__ListOfValueNamePairs__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10741,10 +10972,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__Group__1
+    // $ANTLR end "rule__ListOfValueNamePairs__Group__1"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__Group__1__Impl
+    // $ANTLR start "rule__ListOfValueNamePairs__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3959:1: rule__ListOfValueNamePairs__Group__1__Impl : ( ( rule__ListOfValueNamePairs__Group_1__0 )* ) ;
     public final void rule__ListOfValueNamePairs__Group__1__Impl() throws RecognitionException {
 
@@ -10775,7 +11006,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             	    {
             	    pushFollow(FOLLOW_rule__ListOfValueNamePairs__Group_1__0_in_rule__ListOfValueNamePairs__Group__1__Impl8143);
             	    rule__ListOfValueNamePairs__Group_1__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -10805,10 +11037,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__Group__1__Impl
+    // $ANTLR end "rule__ListOfValueNamePairs__Group__1__Impl"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__Group_1__0
+    // $ANTLR start "rule__ListOfValueNamePairs__Group_1__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3980:1: rule__ListOfValueNamePairs__Group_1__0 : rule__ListOfValueNamePairs__Group_1__0__Impl rule__ListOfValueNamePairs__Group_1__1 ;
     public final void rule__ListOfValueNamePairs__Group_1__0() throws RecognitionException {
 
@@ -10820,11 +11052,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ListOfValueNamePairs__Group_1__0__Impl_in_rule__ListOfValueNamePairs__Group_1__08178);
             rule__ListOfValueNamePairs__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ListOfValueNamePairs__Group_1__1_in_rule__ListOfValueNamePairs__Group_1__08181);
             rule__ListOfValueNamePairs__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10841,10 +11075,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__Group_1__0
+    // $ANTLR end "rule__ListOfValueNamePairs__Group_1__0"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__Group_1__0__Impl
+    // $ANTLR start "rule__ListOfValueNamePairs__Group_1__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:3992:1: rule__ListOfValueNamePairs__Group_1__0__Impl : ( ',' ) ;
     public final void rule__ListOfValueNamePairs__Group_1__0__Impl() throws RecognitionException {
 
@@ -10878,10 +11112,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__Group_1__0__Impl
+    // $ANTLR end "rule__ListOfValueNamePairs__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__Group_1__1
+    // $ANTLR start "rule__ListOfValueNamePairs__Group_1__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4011:1: rule__ListOfValueNamePairs__Group_1__1 : rule__ListOfValueNamePairs__Group_1__1__Impl ;
     public final void rule__ListOfValueNamePairs__Group_1__1() throws RecognitionException {
 
@@ -10893,7 +11127,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ListOfValueNamePairs__Group_1__1__Impl_in_rule__ListOfValueNamePairs__Group_1__18240);
             rule__ListOfValueNamePairs__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10910,10 +11145,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__Group_1__1
+    // $ANTLR end "rule__ListOfValueNamePairs__Group_1__1"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__Group_1__1__Impl
+    // $ANTLR start "rule__ListOfValueNamePairs__Group_1__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4022:1: rule__ListOfValueNamePairs__Group_1__1__Impl : ( ( rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_1 ) ) ;
     public final void rule__ListOfValueNamePairs__Group_1__1__Impl() throws RecognitionException {
 
@@ -10932,7 +11167,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_1_in_rule__ListOfValueNamePairs__Group_1__1__Impl8267);
             rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10956,10 +11192,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__Group_1__1__Impl
+    // $ANTLR end "rule__ListOfValueNamePairs__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__ValueNamePair__Group__0
+    // $ANTLR start "rule__ValueNamePair__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4043:1: rule__ValueNamePair__Group__0 : rule__ValueNamePair__Group__0__Impl rule__ValueNamePair__Group__1 ;
     public final void rule__ValueNamePair__Group__0() throws RecognitionException {
 
@@ -10971,11 +11207,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ValueNamePair__Group__0__Impl_in_rule__ValueNamePair__Group__08301);
             rule__ValueNamePair__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ValueNamePair__Group__1_in_rule__ValueNamePair__Group__08304);
             rule__ValueNamePair__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10992,10 +11230,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ValueNamePair__Group__0
+    // $ANTLR end "rule__ValueNamePair__Group__0"
 
 
-    // $ANTLR start rule__ValueNamePair__Group__0__Impl
+    // $ANTLR start "rule__ValueNamePair__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4055:1: rule__ValueNamePair__Group__0__Impl : ( ( rule__ValueNamePair__PropertyAssignment_0 ) ) ;
     public final void rule__ValueNamePair__Group__0__Impl() throws RecognitionException {
 
@@ -11014,7 +11252,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ValueNamePair__PropertyAssignment_0_in_rule__ValueNamePair__Group__0__Impl8331);
             rule__ValueNamePair__PropertyAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11038,10 +11277,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ValueNamePair__Group__0__Impl
+    // $ANTLR end "rule__ValueNamePair__Group__0__Impl"
 
 
-    // $ANTLR start rule__ValueNamePair__Group__1
+    // $ANTLR start "rule__ValueNamePair__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4072:1: rule__ValueNamePair__Group__1 : rule__ValueNamePair__Group__1__Impl rule__ValueNamePair__Group__2 ;
     public final void rule__ValueNamePair__Group__1() throws RecognitionException {
 
@@ -11053,11 +11292,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ValueNamePair__Group__1__Impl_in_rule__ValueNamePair__Group__18361);
             rule__ValueNamePair__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ValueNamePair__Group__2_in_rule__ValueNamePair__Group__18364);
             rule__ValueNamePair__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11074,10 +11315,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ValueNamePair__Group__1
+    // $ANTLR end "rule__ValueNamePair__Group__1"
 
 
-    // $ANTLR start rule__ValueNamePair__Group__1__Impl
+    // $ANTLR start "rule__ValueNamePair__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4084:1: rule__ValueNamePair__Group__1__Impl : ( '=' ) ;
     public final void rule__ValueNamePair__Group__1__Impl() throws RecognitionException {
 
@@ -11111,10 +11352,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ValueNamePair__Group__1__Impl
+    // $ANTLR end "rule__ValueNamePair__Group__1__Impl"
 
 
-    // $ANTLR start rule__ValueNamePair__Group__2
+    // $ANTLR start "rule__ValueNamePair__Group__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4103:1: rule__ValueNamePair__Group__2 : rule__ValueNamePair__Group__2__Impl ;
     public final void rule__ValueNamePair__Group__2() throws RecognitionException {
 
@@ -11126,7 +11367,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ValueNamePair__Group__2__Impl_in_rule__ValueNamePair__Group__28423);
             rule__ValueNamePair__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11143,10 +11385,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ValueNamePair__Group__2
+    // $ANTLR end "rule__ValueNamePair__Group__2"
 
 
-    // $ANTLR start rule__ValueNamePair__Group__2__Impl
+    // $ANTLR start "rule__ValueNamePair__Group__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4114:1: rule__ValueNamePair__Group__2__Impl : ( ( rule__ValueNamePair__ValueAssignment_2 ) ) ;
     public final void rule__ValueNamePair__Group__2__Impl() throws RecognitionException {
 
@@ -11165,7 +11407,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__ValueNamePair__ValueAssignment_2_in_rule__ValueNamePair__Group__2__Impl8450);
             rule__ValueNamePair__ValueAssignment_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11189,10 +11432,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ValueNamePair__Group__2__Impl
+    // $ANTLR end "rule__ValueNamePair__Group__2__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group__0
+    // $ANTLR start "rule__InstantObsExpression__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4137:1: rule__InstantObsExpression__Group__0 : rule__InstantObsExpression__Group__0__Impl rule__InstantObsExpression__Group__1 ;
     public final void rule__InstantObsExpression__Group__0() throws RecognitionException {
 
@@ -11204,11 +11447,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group__0__Impl_in_rule__InstantObsExpression__Group__08486);
             rule__InstantObsExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__InstantObsExpression__Group__1_in_rule__InstantObsExpression__Group__08489);
             rule__InstantObsExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11225,10 +11470,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group__0
+    // $ANTLR end "rule__InstantObsExpression__Group__0"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group__0__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4149:1: rule__InstantObsExpression__Group__0__Impl : ( '@' ) ;
     public final void rule__InstantObsExpression__Group__0__Impl() throws RecognitionException {
 
@@ -11262,10 +11507,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group__0__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group__1
+    // $ANTLR start "rule__InstantObsExpression__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4168:1: rule__InstantObsExpression__Group__1 : rule__InstantObsExpression__Group__1__Impl rule__InstantObsExpression__Group__2 ;
     public final void rule__InstantObsExpression__Group__1() throws RecognitionException {
 
@@ -11277,11 +11522,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group__1__Impl_in_rule__InstantObsExpression__Group__18548);
             rule__InstantObsExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__InstantObsExpression__Group__2_in_rule__InstantObsExpression__Group__18551);
             rule__InstantObsExpression__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11298,10 +11545,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group__1
+    // $ANTLR end "rule__InstantObsExpression__Group__1"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group__1__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4180:1: rule__InstantObsExpression__Group__1__Impl : ( ( rule__InstantObsExpression__IdAssignment_1 ) ) ;
     public final void rule__InstantObsExpression__Group__1__Impl() throws RecognitionException {
 
@@ -11320,7 +11567,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__IdAssignment_1_in_rule__InstantObsExpression__Group__1__Impl8578);
             rule__InstantObsExpression__IdAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11344,10 +11592,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group__1__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group__2
+    // $ANTLR start "rule__InstantObsExpression__Group__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4197:1: rule__InstantObsExpression__Group__2 : rule__InstantObsExpression__Group__2__Impl rule__InstantObsExpression__Group__3 ;
     public final void rule__InstantObsExpression__Group__2() throws RecognitionException {
 
@@ -11359,11 +11607,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group__2__Impl_in_rule__InstantObsExpression__Group__28608);
             rule__InstantObsExpression__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__InstantObsExpression__Group__3_in_rule__InstantObsExpression__Group__28611);
             rule__InstantObsExpression__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11380,10 +11630,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group__2
+    // $ANTLR end "rule__InstantObsExpression__Group__2"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group__2__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4209:1: rule__InstantObsExpression__Group__2__Impl : ( ( rule__InstantObsExpression__Group_2__0 )? ) ;
     public final void rule__InstantObsExpression__Group__2__Impl() throws RecognitionException {
 
@@ -11410,7 +11660,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__InstantObsExpression__Group_2__0_in_rule__InstantObsExpression__Group__2__Impl8638);
                     rule__InstantObsExpression__Group_2__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -11437,10 +11688,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group__2__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group__2__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group__3
+    // $ANTLR start "rule__InstantObsExpression__Group__3"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4226:1: rule__InstantObsExpression__Group__3 : rule__InstantObsExpression__Group__3__Impl ;
     public final void rule__InstantObsExpression__Group__3() throws RecognitionException {
 
@@ -11452,7 +11703,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group__3__Impl_in_rule__InstantObsExpression__Group__38669);
             rule__InstantObsExpression__Group__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11469,10 +11721,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group__3
+    // $ANTLR end "rule__InstantObsExpression__Group__3"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group__3__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group__3__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4237:1: rule__InstantObsExpression__Group__3__Impl : ( ( rule__InstantObsExpression__Group_3__0 )? ) ;
     public final void rule__InstantObsExpression__Group__3__Impl() throws RecognitionException {
 
@@ -11499,7 +11751,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__InstantObsExpression__Group_3__0_in_rule__InstantObsExpression__Group__3__Impl8696);
                     rule__InstantObsExpression__Group_3__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -11526,10 +11779,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group__3__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group__3__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_2__0
+    // $ANTLR start "rule__InstantObsExpression__Group_2__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4262:1: rule__InstantObsExpression__Group_2__0 : rule__InstantObsExpression__Group_2__0__Impl rule__InstantObsExpression__Group_2__1 ;
     public final void rule__InstantObsExpression__Group_2__0() throws RecognitionException {
 
@@ -11541,11 +11794,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_2__0__Impl_in_rule__InstantObsExpression__Group_2__08735);
             rule__InstantObsExpression__Group_2__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_2__1_in_rule__InstantObsExpression__Group_2__08738);
             rule__InstantObsExpression__Group_2__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11562,10 +11817,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_2__0
+    // $ANTLR end "rule__InstantObsExpression__Group_2__0"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_2__0__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group_2__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4274:1: rule__InstantObsExpression__Group_2__0__Impl : ( '(' ) ;
     public final void rule__InstantObsExpression__Group_2__0__Impl() throws RecognitionException {
 
@@ -11599,10 +11854,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_2__0__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group_2__0__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_2__1
+    // $ANTLR start "rule__InstantObsExpression__Group_2__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4293:1: rule__InstantObsExpression__Group_2__1 : rule__InstantObsExpression__Group_2__1__Impl rule__InstantObsExpression__Group_2__2 ;
     public final void rule__InstantObsExpression__Group_2__1() throws RecognitionException {
 
@@ -11614,11 +11869,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_2__1__Impl_in_rule__InstantObsExpression__Group_2__18797);
             rule__InstantObsExpression__Group_2__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_2__2_in_rule__InstantObsExpression__Group_2__18800);
             rule__InstantObsExpression__Group_2__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11635,10 +11892,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_2__1
+    // $ANTLR end "rule__InstantObsExpression__Group_2__1"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_2__1__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group_2__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4305:1: rule__InstantObsExpression__Group_2__1__Impl : ( ( rule__InstantObsExpression__IndexAssignment_2_1 ) ) ;
     public final void rule__InstantObsExpression__Group_2__1__Impl() throws RecognitionException {
 
@@ -11657,7 +11914,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__IndexAssignment_2_1_in_rule__InstantObsExpression__Group_2__1__Impl8827);
             rule__InstantObsExpression__IndexAssignment_2_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11681,10 +11939,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_2__1__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group_2__1__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_2__2
+    // $ANTLR start "rule__InstantObsExpression__Group_2__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4322:1: rule__InstantObsExpression__Group_2__2 : rule__InstantObsExpression__Group_2__2__Impl ;
     public final void rule__InstantObsExpression__Group_2__2() throws RecognitionException {
 
@@ -11696,7 +11954,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_2__2__Impl_in_rule__InstantObsExpression__Group_2__28857);
             rule__InstantObsExpression__Group_2__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11713,10 +11972,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_2__2
+    // $ANTLR end "rule__InstantObsExpression__Group_2__2"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_2__2__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group_2__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4333:1: rule__InstantObsExpression__Group_2__2__Impl : ( ')' ) ;
     public final void rule__InstantObsExpression__Group_2__2__Impl() throws RecognitionException {
 
@@ -11750,10 +12009,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_2__2__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group_2__2__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_3__0
+    // $ANTLR start "rule__InstantObsExpression__Group_3__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4358:1: rule__InstantObsExpression__Group_3__0 : rule__InstantObsExpression__Group_3__0__Impl rule__InstantObsExpression__Group_3__1 ;
     public final void rule__InstantObsExpression__Group_3__0() throws RecognitionException {
 
@@ -11765,11 +12024,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_3__0__Impl_in_rule__InstantObsExpression__Group_3__08922);
             rule__InstantObsExpression__Group_3__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_3__1_in_rule__InstantObsExpression__Group_3__08925);
             rule__InstantObsExpression__Group_3__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11786,10 +12047,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_3__0
+    // $ANTLR end "rule__InstantObsExpression__Group_3__0"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_3__0__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group_3__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4370:1: rule__InstantObsExpression__Group_3__0__Impl : ( 'when' ) ;
     public final void rule__InstantObsExpression__Group_3__0__Impl() throws RecognitionException {
 
@@ -11823,10 +12084,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_3__0__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group_3__0__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_3__1
+    // $ANTLR start "rule__InstantObsExpression__Group_3__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4389:1: rule__InstantObsExpression__Group_3__1 : rule__InstantObsExpression__Group_3__1__Impl rule__InstantObsExpression__Group_3__2 ;
     public final void rule__InstantObsExpression__Group_3__1() throws RecognitionException {
 
@@ -11838,11 +12099,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_3__1__Impl_in_rule__InstantObsExpression__Group_3__18984);
             rule__InstantObsExpression__Group_3__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_3__2_in_rule__InstantObsExpression__Group_3__18987);
             rule__InstantObsExpression__Group_3__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11859,10 +12122,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_3__1
+    // $ANTLR end "rule__InstantObsExpression__Group_3__1"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_3__1__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group_3__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4401:1: rule__InstantObsExpression__Group_3__1__Impl : ( '(' ) ;
     public final void rule__InstantObsExpression__Group_3__1__Impl() throws RecognitionException {
 
@@ -11896,10 +12159,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_3__1__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group_3__1__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_3__2
+    // $ANTLR start "rule__InstantObsExpression__Group_3__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4420:1: rule__InstantObsExpression__Group_3__2 : rule__InstantObsExpression__Group_3__2__Impl rule__InstantObsExpression__Group_3__3 ;
     public final void rule__InstantObsExpression__Group_3__2() throws RecognitionException {
 
@@ -11911,11 +12174,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_3__2__Impl_in_rule__InstantObsExpression__Group_3__29046);
             rule__InstantObsExpression__Group_3__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_3__3_in_rule__InstantObsExpression__Group_3__29049);
             rule__InstantObsExpression__Group_3__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11932,10 +12197,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_3__2
+    // $ANTLR end "rule__InstantObsExpression__Group_3__2"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_3__2__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group_3__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4432:1: rule__InstantObsExpression__Group_3__2__Impl : ( ( rule__InstantObsExpression__ConditionAssignment_3_2 ) ) ;
     public final void rule__InstantObsExpression__Group_3__2__Impl() throws RecognitionException {
 
@@ -11954,7 +12219,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__ConditionAssignment_3_2_in_rule__InstantObsExpression__Group_3__2__Impl9076);
             rule__InstantObsExpression__ConditionAssignment_3_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11978,10 +12244,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_3__2__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group_3__2__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_3__3
+    // $ANTLR start "rule__InstantObsExpression__Group_3__3"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4449:1: rule__InstantObsExpression__Group_3__3 : rule__InstantObsExpression__Group_3__3__Impl ;
     public final void rule__InstantObsExpression__Group_3__3() throws RecognitionException {
 
@@ -11993,7 +12259,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_3__3__Impl_in_rule__InstantObsExpression__Group_3__39106);
             rule__InstantObsExpression__Group_3__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12010,10 +12277,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_3__3
+    // $ANTLR end "rule__InstantObsExpression__Group_3__3"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_3__3__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group_3__3__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4460:1: rule__InstantObsExpression__Group_3__3__Impl : ( ')' ) ;
     public final void rule__InstantObsExpression__Group_3__3__Impl() throws RecognitionException {
 
@@ -12047,10 +12314,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_3__3__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group_3__3__Impl"
 
 
-    // $ANTLR start rule__InstantObsName__Group__0
+    // $ANTLR start "rule__InstantObsName__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4487:1: rule__InstantObsName__Group__0 : rule__InstantObsName__Group__0__Impl rule__InstantObsName__Group__1 ;
     public final void rule__InstantObsName__Group__0() throws RecognitionException {
 
@@ -12062,11 +12329,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsName__Group__0__Impl_in_rule__InstantObsName__Group__09173);
             rule__InstantObsName__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__InstantObsName__Group__1_in_rule__InstantObsName__Group__09176);
             rule__InstantObsName__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12083,10 +12352,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsName__Group__0
+    // $ANTLR end "rule__InstantObsName__Group__0"
 
 
-    // $ANTLR start rule__InstantObsName__Group__0__Impl
+    // $ANTLR start "rule__InstantObsName__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4499:1: rule__InstantObsName__Group__0__Impl : ( ( rule__InstantObsName__PathAssignment_0 )? ) ;
     public final void rule__InstantObsName__Group__0__Impl() throws RecognitionException {
 
@@ -12117,7 +12386,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__InstantObsName__PathAssignment_0_in_rule__InstantObsName__Group__0__Impl9203);
                     rule__InstantObsName__PathAssignment_0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -12144,10 +12414,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsName__Group__0__Impl
+    // $ANTLR end "rule__InstantObsName__Group__0__Impl"
 
 
-    // $ANTLR start rule__InstantObsName__Group__1
+    // $ANTLR start "rule__InstantObsName__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4516:1: rule__InstantObsName__Group__1 : rule__InstantObsName__Group__1__Impl ;
     public final void rule__InstantObsName__Group__1() throws RecognitionException {
 
@@ -12159,7 +12429,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsName__Group__1__Impl_in_rule__InstantObsName__Group__19234);
             rule__InstantObsName__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12176,10 +12447,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsName__Group__1
+    // $ANTLR end "rule__InstantObsName__Group__1"
 
 
-    // $ANTLR start rule__InstantObsName__Group__1__Impl
+    // $ANTLR start "rule__InstantObsName__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4527:1: rule__InstantObsName__Group__1__Impl : ( ( rule__InstantObsName__InstantIdAssignment_1 ) ) ;
     public final void rule__InstantObsName__Group__1__Impl() throws RecognitionException {
 
@@ -12198,7 +12469,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__InstantObsName__InstantIdAssignment_1_in_rule__InstantObsName__Group__1__Impl9261);
             rule__InstantObsName__InstantIdAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12222,10 +12494,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsName__Group__1__Impl
+    // $ANTLR end "rule__InstantObsName__Group__1__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group__0
+    // $ANTLR start "rule__DurationObsExpression__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4548:1: rule__DurationObsExpression__Group__0 : rule__DurationObsExpression__Group__0__Impl rule__DurationObsExpression__Group__1 ;
     public final void rule__DurationObsExpression__Group__0() throws RecognitionException {
 
@@ -12237,11 +12509,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group__0__Impl_in_rule__DurationObsExpression__Group__09295);
             rule__DurationObsExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DurationObsExpression__Group__1_in_rule__DurationObsExpression__Group__09298);
             rule__DurationObsExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12258,10 +12532,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group__0
+    // $ANTLR end "rule__DurationObsExpression__Group__0"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group__0__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4560:1: rule__DurationObsExpression__Group__0__Impl : ( '&' ) ;
     public final void rule__DurationObsExpression__Group__0__Impl() throws RecognitionException {
 
@@ -12295,10 +12569,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group__0__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group__1
+    // $ANTLR start "rule__DurationObsExpression__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4579:1: rule__DurationObsExpression__Group__1 : rule__DurationObsExpression__Group__1__Impl rule__DurationObsExpression__Group__2 ;
     public final void rule__DurationObsExpression__Group__1() throws RecognitionException {
 
@@ -12310,11 +12584,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group__1__Impl_in_rule__DurationObsExpression__Group__19357);
             rule__DurationObsExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DurationObsExpression__Group__2_in_rule__DurationObsExpression__Group__19360);
             rule__DurationObsExpression__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12331,10 +12607,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group__1
+    // $ANTLR end "rule__DurationObsExpression__Group__1"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group__1__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4591:1: rule__DurationObsExpression__Group__1__Impl : ( ( rule__DurationObsExpression__IdAssignment_1 ) ) ;
     public final void rule__DurationObsExpression__Group__1__Impl() throws RecognitionException {
 
@@ -12353,7 +12629,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__IdAssignment_1_in_rule__DurationObsExpression__Group__1__Impl9387);
             rule__DurationObsExpression__IdAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12377,10 +12654,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group__1__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group__2
+    // $ANTLR start "rule__DurationObsExpression__Group__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4608:1: rule__DurationObsExpression__Group__2 : rule__DurationObsExpression__Group__2__Impl rule__DurationObsExpression__Group__3 ;
     public final void rule__DurationObsExpression__Group__2() throws RecognitionException {
 
@@ -12392,11 +12669,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group__2__Impl_in_rule__DurationObsExpression__Group__29417);
             rule__DurationObsExpression__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DurationObsExpression__Group__3_in_rule__DurationObsExpression__Group__29420);
             rule__DurationObsExpression__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12413,10 +12692,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group__2
+    // $ANTLR end "rule__DurationObsExpression__Group__2"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group__2__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4620:1: rule__DurationObsExpression__Group__2__Impl : ( ( rule__DurationObsExpression__Group_2__0 )? ) ;
     public final void rule__DurationObsExpression__Group__2__Impl() throws RecognitionException {
 
@@ -12443,7 +12722,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__DurationObsExpression__Group_2__0_in_rule__DurationObsExpression__Group__2__Impl9447);
                     rule__DurationObsExpression__Group_2__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -12470,10 +12750,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group__2__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group__2__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group__3
+    // $ANTLR start "rule__DurationObsExpression__Group__3"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4637:1: rule__DurationObsExpression__Group__3 : rule__DurationObsExpression__Group__3__Impl ;
     public final void rule__DurationObsExpression__Group__3() throws RecognitionException {
 
@@ -12485,7 +12765,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group__3__Impl_in_rule__DurationObsExpression__Group__39478);
             rule__DurationObsExpression__Group__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12502,10 +12783,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group__3
+    // $ANTLR end "rule__DurationObsExpression__Group__3"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group__3__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group__3__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4648:1: rule__DurationObsExpression__Group__3__Impl : ( ( rule__DurationObsExpression__Group_3__0 )? ) ;
     public final void rule__DurationObsExpression__Group__3__Impl() throws RecognitionException {
 
@@ -12532,7 +12813,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__DurationObsExpression__Group_3__0_in_rule__DurationObsExpression__Group__3__Impl9505);
                     rule__DurationObsExpression__Group_3__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -12559,10 +12841,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group__3__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group__3__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_2__0
+    // $ANTLR start "rule__DurationObsExpression__Group_2__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4673:1: rule__DurationObsExpression__Group_2__0 : rule__DurationObsExpression__Group_2__0__Impl rule__DurationObsExpression__Group_2__1 ;
     public final void rule__DurationObsExpression__Group_2__0() throws RecognitionException {
 
@@ -12574,11 +12856,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_2__0__Impl_in_rule__DurationObsExpression__Group_2__09544);
             rule__DurationObsExpression__Group_2__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_2__1_in_rule__DurationObsExpression__Group_2__09547);
             rule__DurationObsExpression__Group_2__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12595,10 +12879,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_2__0
+    // $ANTLR end "rule__DurationObsExpression__Group_2__0"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_2__0__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group_2__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4685:1: rule__DurationObsExpression__Group_2__0__Impl : ( '(' ) ;
     public final void rule__DurationObsExpression__Group_2__0__Impl() throws RecognitionException {
 
@@ -12632,10 +12916,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_2__0__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group_2__0__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_2__1
+    // $ANTLR start "rule__DurationObsExpression__Group_2__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4704:1: rule__DurationObsExpression__Group_2__1 : rule__DurationObsExpression__Group_2__1__Impl rule__DurationObsExpression__Group_2__2 ;
     public final void rule__DurationObsExpression__Group_2__1() throws RecognitionException {
 
@@ -12647,11 +12931,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_2__1__Impl_in_rule__DurationObsExpression__Group_2__19606);
             rule__DurationObsExpression__Group_2__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_2__2_in_rule__DurationObsExpression__Group_2__19609);
             rule__DurationObsExpression__Group_2__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12668,10 +12954,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_2__1
+    // $ANTLR end "rule__DurationObsExpression__Group_2__1"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_2__1__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group_2__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4716:1: rule__DurationObsExpression__Group_2__1__Impl : ( ( rule__DurationObsExpression__IndexAssignment_2_1 ) ) ;
     public final void rule__DurationObsExpression__Group_2__1__Impl() throws RecognitionException {
 
@@ -12690,7 +12976,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__IndexAssignment_2_1_in_rule__DurationObsExpression__Group_2__1__Impl9636);
             rule__DurationObsExpression__IndexAssignment_2_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12714,10 +13001,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_2__1__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group_2__1__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_2__2
+    // $ANTLR start "rule__DurationObsExpression__Group_2__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4733:1: rule__DurationObsExpression__Group_2__2 : rule__DurationObsExpression__Group_2__2__Impl ;
     public final void rule__DurationObsExpression__Group_2__2() throws RecognitionException {
 
@@ -12729,7 +13016,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_2__2__Impl_in_rule__DurationObsExpression__Group_2__29666);
             rule__DurationObsExpression__Group_2__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12746,10 +13034,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_2__2
+    // $ANTLR end "rule__DurationObsExpression__Group_2__2"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_2__2__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group_2__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4744:1: rule__DurationObsExpression__Group_2__2__Impl : ( ')' ) ;
     public final void rule__DurationObsExpression__Group_2__2__Impl() throws RecognitionException {
 
@@ -12783,10 +13071,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_2__2__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group_2__2__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_3__0
+    // $ANTLR start "rule__DurationObsExpression__Group_3__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4769:1: rule__DurationObsExpression__Group_3__0 : rule__DurationObsExpression__Group_3__0__Impl rule__DurationObsExpression__Group_3__1 ;
     public final void rule__DurationObsExpression__Group_3__0() throws RecognitionException {
 
@@ -12798,11 +13086,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_3__0__Impl_in_rule__DurationObsExpression__Group_3__09731);
             rule__DurationObsExpression__Group_3__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_3__1_in_rule__DurationObsExpression__Group_3__09734);
             rule__DurationObsExpression__Group_3__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12819,10 +13109,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_3__0
+    // $ANTLR end "rule__DurationObsExpression__Group_3__0"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_3__0__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group_3__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4781:1: rule__DurationObsExpression__Group_3__0__Impl : ( 'when' ) ;
     public final void rule__DurationObsExpression__Group_3__0__Impl() throws RecognitionException {
 
@@ -12856,10 +13146,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_3__0__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group_3__0__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_3__1
+    // $ANTLR start "rule__DurationObsExpression__Group_3__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4800:1: rule__DurationObsExpression__Group_3__1 : rule__DurationObsExpression__Group_3__1__Impl rule__DurationObsExpression__Group_3__2 ;
     public final void rule__DurationObsExpression__Group_3__1() throws RecognitionException {
 
@@ -12871,11 +13161,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_3__1__Impl_in_rule__DurationObsExpression__Group_3__19793);
             rule__DurationObsExpression__Group_3__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_3__2_in_rule__DurationObsExpression__Group_3__19796);
             rule__DurationObsExpression__Group_3__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12892,10 +13184,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_3__1
+    // $ANTLR end "rule__DurationObsExpression__Group_3__1"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_3__1__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group_3__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4812:1: rule__DurationObsExpression__Group_3__1__Impl : ( '(' ) ;
     public final void rule__DurationObsExpression__Group_3__1__Impl() throws RecognitionException {
 
@@ -12929,10 +13221,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_3__1__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group_3__1__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_3__2
+    // $ANTLR start "rule__DurationObsExpression__Group_3__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4831:1: rule__DurationObsExpression__Group_3__2 : rule__DurationObsExpression__Group_3__2__Impl rule__DurationObsExpression__Group_3__3 ;
     public final void rule__DurationObsExpression__Group_3__2() throws RecognitionException {
 
@@ -12944,11 +13236,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_3__2__Impl_in_rule__DurationObsExpression__Group_3__29855);
             rule__DurationObsExpression__Group_3__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_3__3_in_rule__DurationObsExpression__Group_3__29858);
             rule__DurationObsExpression__Group_3__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12965,10 +13259,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_3__2
+    // $ANTLR end "rule__DurationObsExpression__Group_3__2"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_3__2__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group_3__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4843:1: rule__DurationObsExpression__Group_3__2__Impl : ( ( rule__DurationObsExpression__ConditionAssignment_3_2 ) ) ;
     public final void rule__DurationObsExpression__Group_3__2__Impl() throws RecognitionException {
 
@@ -12987,7 +13281,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__ConditionAssignment_3_2_in_rule__DurationObsExpression__Group_3__2__Impl9885);
             rule__DurationObsExpression__ConditionAssignment_3_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13011,10 +13306,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_3__2__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group_3__2__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_3__3
+    // $ANTLR start "rule__DurationObsExpression__Group_3__3"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4860:1: rule__DurationObsExpression__Group_3__3 : rule__DurationObsExpression__Group_3__3__Impl ;
     public final void rule__DurationObsExpression__Group_3__3() throws RecognitionException {
 
@@ -13026,7 +13321,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_3__3__Impl_in_rule__DurationObsExpression__Group_3__39915);
             rule__DurationObsExpression__Group_3__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13043,10 +13339,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_3__3
+    // $ANTLR end "rule__DurationObsExpression__Group_3__3"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_3__3__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group_3__3__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4871:1: rule__DurationObsExpression__Group_3__3__Impl : ( ')' ) ;
     public final void rule__DurationObsExpression__Group_3__3__Impl() throws RecognitionException {
 
@@ -13080,10 +13376,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_3__3__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group_3__3__Impl"
 
 
-    // $ANTLR start rule__DurationObsName__Group__0
+    // $ANTLR start "rule__DurationObsName__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4898:1: rule__DurationObsName__Group__0 : rule__DurationObsName__Group__0__Impl rule__DurationObsName__Group__1 ;
     public final void rule__DurationObsName__Group__0() throws RecognitionException {
 
@@ -13095,11 +13391,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsName__Group__0__Impl_in_rule__DurationObsName__Group__09982);
             rule__DurationObsName__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DurationObsName__Group__1_in_rule__DurationObsName__Group__09985);
             rule__DurationObsName__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13116,10 +13414,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsName__Group__0
+    // $ANTLR end "rule__DurationObsName__Group__0"
 
 
-    // $ANTLR start rule__DurationObsName__Group__0__Impl
+    // $ANTLR start "rule__DurationObsName__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4910:1: rule__DurationObsName__Group__0__Impl : ( ( rule__DurationObsName__PathAssignment_0 )? ) ;
     public final void rule__DurationObsName__Group__0__Impl() throws RecognitionException {
 
@@ -13150,7 +13448,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__DurationObsName__PathAssignment_0_in_rule__DurationObsName__Group__0__Impl10012);
                     rule__DurationObsName__PathAssignment_0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -13177,10 +13476,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsName__Group__0__Impl
+    // $ANTLR end "rule__DurationObsName__Group__0__Impl"
 
 
-    // $ANTLR start rule__DurationObsName__Group__1
+    // $ANTLR start "rule__DurationObsName__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4927:1: rule__DurationObsName__Group__1 : rule__DurationObsName__Group__1__Impl ;
     public final void rule__DurationObsName__Group__1() throws RecognitionException {
 
@@ -13192,7 +13491,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsName__Group__1__Impl_in_rule__DurationObsName__Group__110043);
             rule__DurationObsName__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13209,10 +13509,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsName__Group__1
+    // $ANTLR end "rule__DurationObsName__Group__1"
 
 
-    // $ANTLR start rule__DurationObsName__Group__1__Impl
+    // $ANTLR start "rule__DurationObsName__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4938:1: rule__DurationObsName__Group__1__Impl : ( ( rule__DurationObsName__DurationIdAssignment_1 ) ) ;
     public final void rule__DurationObsName__Group__1__Impl() throws RecognitionException {
 
@@ -13231,7 +13531,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DurationObsName__DurationIdAssignment_1_in_rule__DurationObsName__Group__1__Impl10070);
             rule__DurationObsName__DurationIdAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13255,10 +13556,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsName__Group__1__Impl
+    // $ANTLR end "rule__DurationObsName__Group__1__Impl"
 
 
-    // $ANTLR start rule__JitterExp__Group__0
+    // $ANTLR start "rule__JitterExp__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4959:1: rule__JitterExp__Group__0 : rule__JitterExp__Group__0__Impl rule__JitterExp__Group__1 ;
     public final void rule__JitterExp__Group__0() throws RecognitionException {
 
@@ -13270,11 +13571,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__JitterExp__Group__0__Impl_in_rule__JitterExp__Group__010104);
             rule__JitterExp__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__JitterExp__Group__1_in_rule__JitterExp__Group__010107);
             rule__JitterExp__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13291,10 +13594,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group__0
+    // $ANTLR end "rule__JitterExp__Group__0"
 
 
-    // $ANTLR start rule__JitterExp__Group__0__Impl
+    // $ANTLR start "rule__JitterExp__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4971:1: rule__JitterExp__Group__0__Impl : ( 'jitter(' ) ;
     public final void rule__JitterExp__Group__0__Impl() throws RecognitionException {
 
@@ -13328,10 +13631,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group__0__Impl
+    // $ANTLR end "rule__JitterExp__Group__0__Impl"
 
 
-    // $ANTLR start rule__JitterExp__Group__1
+    // $ANTLR start "rule__JitterExp__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:4990:1: rule__JitterExp__Group__1 : rule__JitterExp__Group__1__Impl rule__JitterExp__Group__2 ;
     public final void rule__JitterExp__Group__1() throws RecognitionException {
 
@@ -13343,11 +13646,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__JitterExp__Group__1__Impl_in_rule__JitterExp__Group__110166);
             rule__JitterExp__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__JitterExp__Group__2_in_rule__JitterExp__Group__110169);
             rule__JitterExp__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13364,10 +13669,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group__1
+    // $ANTLR end "rule__JitterExp__Group__1"
 
 
-    // $ANTLR start rule__JitterExp__Group__1__Impl
+    // $ANTLR start "rule__JitterExp__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5002:1: rule__JitterExp__Group__1__Impl : ( ( rule__JitterExp__FirstInstantAssignment_1 ) ) ;
     public final void rule__JitterExp__Group__1__Impl() throws RecognitionException {
 
@@ -13386,7 +13691,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__JitterExp__FirstInstantAssignment_1_in_rule__JitterExp__Group__1__Impl10196);
             rule__JitterExp__FirstInstantAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13410,10 +13716,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group__1__Impl
+    // $ANTLR end "rule__JitterExp__Group__1__Impl"
 
 
-    // $ANTLR start rule__JitterExp__Group__2
+    // $ANTLR start "rule__JitterExp__Group__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5019:1: rule__JitterExp__Group__2 : rule__JitterExp__Group__2__Impl rule__JitterExp__Group__3 ;
     public final void rule__JitterExp__Group__2() throws RecognitionException {
 
@@ -13425,11 +13731,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__JitterExp__Group__2__Impl_in_rule__JitterExp__Group__210226);
             rule__JitterExp__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__JitterExp__Group__3_in_rule__JitterExp__Group__210229);
             rule__JitterExp__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13446,10 +13754,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group__2
+    // $ANTLR end "rule__JitterExp__Group__2"
 
 
-    // $ANTLR start rule__JitterExp__Group__2__Impl
+    // $ANTLR start "rule__JitterExp__Group__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5031:1: rule__JitterExp__Group__2__Impl : ( ( rule__JitterExp__Group_2__0 )? ) ;
     public final void rule__JitterExp__Group__2__Impl() throws RecognitionException {
 
@@ -13476,7 +13784,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__JitterExp__Group_2__0_in_rule__JitterExp__Group__2__Impl10256);
                     rule__JitterExp__Group_2__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -13503,10 +13812,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group__2__Impl
+    // $ANTLR end "rule__JitterExp__Group__2__Impl"
 
 
-    // $ANTLR start rule__JitterExp__Group__3
+    // $ANTLR start "rule__JitterExp__Group__3"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5048:1: rule__JitterExp__Group__3 : rule__JitterExp__Group__3__Impl ;
     public final void rule__JitterExp__Group__3() throws RecognitionException {
 
@@ -13518,7 +13827,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__JitterExp__Group__3__Impl_in_rule__JitterExp__Group__310287);
             rule__JitterExp__Group__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13535,10 +13845,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group__3
+    // $ANTLR end "rule__JitterExp__Group__3"
 
 
-    // $ANTLR start rule__JitterExp__Group__3__Impl
+    // $ANTLR start "rule__JitterExp__Group__3__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5059:1: rule__JitterExp__Group__3__Impl : ( ')' ) ;
     public final void rule__JitterExp__Group__3__Impl() throws RecognitionException {
 
@@ -13572,10 +13882,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group__3__Impl
+    // $ANTLR end "rule__JitterExp__Group__3__Impl"
 
 
-    // $ANTLR start rule__JitterExp__Group_2__0
+    // $ANTLR start "rule__JitterExp__Group_2__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5086:1: rule__JitterExp__Group_2__0 : rule__JitterExp__Group_2__0__Impl rule__JitterExp__Group_2__1 ;
     public final void rule__JitterExp__Group_2__0() throws RecognitionException {
 
@@ -13587,11 +13897,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__JitterExp__Group_2__0__Impl_in_rule__JitterExp__Group_2__010354);
             rule__JitterExp__Group_2__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__JitterExp__Group_2__1_in_rule__JitterExp__Group_2__010357);
             rule__JitterExp__Group_2__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13608,10 +13920,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group_2__0
+    // $ANTLR end "rule__JitterExp__Group_2__0"
 
 
-    // $ANTLR start rule__JitterExp__Group_2__0__Impl
+    // $ANTLR start "rule__JitterExp__Group_2__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5098:1: rule__JitterExp__Group_2__0__Impl : ( '-' ) ;
     public final void rule__JitterExp__Group_2__0__Impl() throws RecognitionException {
 
@@ -13645,10 +13957,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group_2__0__Impl
+    // $ANTLR end "rule__JitterExp__Group_2__0__Impl"
 
 
-    // $ANTLR start rule__JitterExp__Group_2__1
+    // $ANTLR start "rule__JitterExp__Group_2__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5117:1: rule__JitterExp__Group_2__1 : rule__JitterExp__Group_2__1__Impl ;
     public final void rule__JitterExp__Group_2__1() throws RecognitionException {
 
@@ -13660,7 +13972,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__JitterExp__Group_2__1__Impl_in_rule__JitterExp__Group_2__110416);
             rule__JitterExp__Group_2__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13677,10 +13990,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group_2__1
+    // $ANTLR end "rule__JitterExp__Group_2__1"
 
 
-    // $ANTLR start rule__JitterExp__Group_2__1__Impl
+    // $ANTLR start "rule__JitterExp__Group_2__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5128:1: rule__JitterExp__Group_2__1__Impl : ( ( rule__JitterExp__SecondInstantAssignment_2_1 ) ) ;
     public final void rule__JitterExp__Group_2__1__Impl() throws RecognitionException {
 
@@ -13699,7 +14012,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__JitterExp__SecondInstantAssignment_2_1_in_rule__JitterExp__Group_2__1__Impl10443);
             rule__JitterExp__SecondInstantAssignment_2_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13723,10 +14037,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group_2__1__Impl
+    // $ANTLR end "rule__JitterExp__Group_2__1__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group__0
+    // $ANTLR start "rule__VariableDeclaration__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5149:1: rule__VariableDeclaration__Group__0 : rule__VariableDeclaration__Group__0__Impl rule__VariableDeclaration__Group__1 ;
     public final void rule__VariableDeclaration__Group__0() throws RecognitionException {
 
@@ -13738,11 +14052,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group__0__Impl_in_rule__VariableDeclaration__Group__010477);
             rule__VariableDeclaration__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group__1_in_rule__VariableDeclaration__Group__010480);
             rule__VariableDeclaration__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13759,10 +14075,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group__0
+    // $ANTLR end "rule__VariableDeclaration__Group__0"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group__0__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5161:1: rule__VariableDeclaration__Group__0__Impl : ( ( rule__VariableDeclaration__VariableDeclarationAssignment_0 )? ) ;
     public final void rule__VariableDeclaration__Group__0__Impl() throws RecognitionException {
 
@@ -13789,7 +14105,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__VariableDeclaration__VariableDeclarationAssignment_0_in_rule__VariableDeclaration__Group__0__Impl10507);
                     rule__VariableDeclaration__VariableDeclarationAssignment_0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -13816,10 +14133,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group__0__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group__0__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group__1
+    // $ANTLR start "rule__VariableDeclaration__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5178:1: rule__VariableDeclaration__Group__1 : rule__VariableDeclaration__Group__1__Impl rule__VariableDeclaration__Group__2 ;
     public final void rule__VariableDeclaration__Group__1() throws RecognitionException {
 
@@ -13831,11 +14148,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group__1__Impl_in_rule__VariableDeclaration__Group__110538);
             rule__VariableDeclaration__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group__2_in_rule__VariableDeclaration__Group__110541);
             rule__VariableDeclaration__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13852,10 +14171,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group__1
+    // $ANTLR end "rule__VariableDeclaration__Group__1"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group__1__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5190:1: rule__VariableDeclaration__Group__1__Impl : ( '$' ) ;
     public final void rule__VariableDeclaration__Group__1__Impl() throws RecognitionException {
 
@@ -13889,10 +14208,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group__1__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group__1__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group__2
+    // $ANTLR start "rule__VariableDeclaration__Group__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5209:1: rule__VariableDeclaration__Group__2 : rule__VariableDeclaration__Group__2__Impl rule__VariableDeclaration__Group__3 ;
     public final void rule__VariableDeclaration__Group__2() throws RecognitionException {
 
@@ -13904,11 +14223,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group__2__Impl_in_rule__VariableDeclaration__Group__210600);
             rule__VariableDeclaration__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group__3_in_rule__VariableDeclaration__Group__210603);
             rule__VariableDeclaration__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13925,10 +14246,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group__2
+    // $ANTLR end "rule__VariableDeclaration__Group__2"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group__2__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5221:1: rule__VariableDeclaration__Group__2__Impl : ( ( rule__VariableDeclaration__NameAssignment_2 ) ) ;
     public final void rule__VariableDeclaration__Group__2__Impl() throws RecognitionException {
 
@@ -13947,7 +14268,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__NameAssignment_2_in_rule__VariableDeclaration__Group__2__Impl10630);
             rule__VariableDeclaration__NameAssignment_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13971,10 +14293,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group__2__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group__2__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group__3
+    // $ANTLR start "rule__VariableDeclaration__Group__3"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5238:1: rule__VariableDeclaration__Group__3 : rule__VariableDeclaration__Group__3__Impl ;
     public final void rule__VariableDeclaration__Group__3() throws RecognitionException {
 
@@ -13986,7 +14308,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group__3__Impl_in_rule__VariableDeclaration__Group__310660);
             rule__VariableDeclaration__Group__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14003,10 +14326,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group__3
+    // $ANTLR end "rule__VariableDeclaration__Group__3"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group__3__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group__3__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5249:1: rule__VariableDeclaration__Group__3__Impl : ( ( rule__VariableDeclaration__Alternatives_3 ) ) ;
     public final void rule__VariableDeclaration__Group__3__Impl() throws RecognitionException {
 
@@ -14025,7 +14348,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Alternatives_3_in_rule__VariableDeclaration__Group__3__Impl10687);
             rule__VariableDeclaration__Alternatives_3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14049,10 +14373,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group__3__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group__3__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0__0
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5274:1: rule__VariableDeclaration__Group_3_0__0 : rule__VariableDeclaration__Group_3_0__0__Impl rule__VariableDeclaration__Group_3_0__1 ;
     public final void rule__VariableDeclaration__Group_3_0__0() throws RecognitionException {
 
@@ -14064,11 +14388,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0__0__Impl_in_rule__VariableDeclaration__Group_3_0__010725);
             rule__VariableDeclaration__Group_3_0__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0__1_in_rule__VariableDeclaration__Group_3_0__010728);
             rule__VariableDeclaration__Group_3_0__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14085,10 +14411,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0__0
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0__0"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0__0__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5286:1: rule__VariableDeclaration__Group_3_0__0__Impl : ( ':' ) ;
     public final void rule__VariableDeclaration__Group_3_0__0__Impl() throws RecognitionException {
 
@@ -14122,10 +14448,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0__0__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0__0__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0__1
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5305:1: rule__VariableDeclaration__Group_3_0__1 : rule__VariableDeclaration__Group_3_0__1__Impl rule__VariableDeclaration__Group_3_0__2 ;
     public final void rule__VariableDeclaration__Group_3_0__1() throws RecognitionException {
 
@@ -14137,11 +14463,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0__1__Impl_in_rule__VariableDeclaration__Group_3_0__110787);
             rule__VariableDeclaration__Group_3_0__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0__2_in_rule__VariableDeclaration__Group_3_0__110790);
             rule__VariableDeclaration__Group_3_0__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14158,10 +14486,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0__1
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0__1"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0__1__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5317:1: rule__VariableDeclaration__Group_3_0__1__Impl : ( ( rule__VariableDeclaration__TypeAssignment_3_0_1 ) ) ;
     public final void rule__VariableDeclaration__Group_3_0__1__Impl() throws RecognitionException {
 
@@ -14180,7 +14508,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__TypeAssignment_3_0_1_in_rule__VariableDeclaration__Group_3_0__1__Impl10817);
             rule__VariableDeclaration__TypeAssignment_3_0_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14204,10 +14533,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0__1__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0__1__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0__2
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5334:1: rule__VariableDeclaration__Group_3_0__2 : rule__VariableDeclaration__Group_3_0__2__Impl ;
     public final void rule__VariableDeclaration__Group_3_0__2() throws RecognitionException {
 
@@ -14219,7 +14548,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0__2__Impl_in_rule__VariableDeclaration__Group_3_0__210847);
             rule__VariableDeclaration__Group_3_0__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14236,10 +14566,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0__2
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0__2"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0__2__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5345:1: rule__VariableDeclaration__Group_3_0__2__Impl : ( ( rule__VariableDeclaration__Group_3_0_2__0 )? ) ;
     public final void rule__VariableDeclaration__Group_3_0__2__Impl() throws RecognitionException {
 
@@ -14266,7 +14596,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0_2__0_in_rule__VariableDeclaration__Group_3_0__2__Impl10874);
                     rule__VariableDeclaration__Group_3_0_2__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -14293,10 +14624,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0__2__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0__2__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0_2__0
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0_2__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5368:1: rule__VariableDeclaration__Group_3_0_2__0 : rule__VariableDeclaration__Group_3_0_2__0__Impl rule__VariableDeclaration__Group_3_0_2__1 ;
     public final void rule__VariableDeclaration__Group_3_0_2__0() throws RecognitionException {
 
@@ -14308,11 +14639,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0_2__0__Impl_in_rule__VariableDeclaration__Group_3_0_2__010911);
             rule__VariableDeclaration__Group_3_0_2__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0_2__1_in_rule__VariableDeclaration__Group_3_0_2__010914);
             rule__VariableDeclaration__Group_3_0_2__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14329,10 +14662,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0_2__0
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0_2__0"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0_2__0__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0_2__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5380:1: rule__VariableDeclaration__Group_3_0_2__0__Impl : ( '=' ) ;
     public final void rule__VariableDeclaration__Group_3_0_2__0__Impl() throws RecognitionException {
 
@@ -14366,10 +14699,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0_2__0__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0_2__0__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0_2__1
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0_2__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5399:1: rule__VariableDeclaration__Group_3_0_2__1 : rule__VariableDeclaration__Group_3_0_2__1__Impl rule__VariableDeclaration__Group_3_0_2__2 ;
     public final void rule__VariableDeclaration__Group_3_0_2__1() throws RecognitionException {
 
@@ -14381,11 +14714,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0_2__1__Impl_in_rule__VariableDeclaration__Group_3_0_2__110973);
             rule__VariableDeclaration__Group_3_0_2__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0_2__2_in_rule__VariableDeclaration__Group_3_0_2__110976);
             rule__VariableDeclaration__Group_3_0_2__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14402,10 +14737,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0_2__1
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0_2__1"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0_2__1__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0_2__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5411:1: rule__VariableDeclaration__Group_3_0_2__1__Impl : ( '(' ) ;
     public final void rule__VariableDeclaration__Group_3_0_2__1__Impl() throws RecognitionException {
 
@@ -14439,10 +14774,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0_2__1__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0_2__1__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0_2__2
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0_2__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5430:1: rule__VariableDeclaration__Group_3_0_2__2 : rule__VariableDeclaration__Group_3_0_2__2__Impl rule__VariableDeclaration__Group_3_0_2__3 ;
     public final void rule__VariableDeclaration__Group_3_0_2__2() throws RecognitionException {
 
@@ -14454,11 +14789,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0_2__2__Impl_in_rule__VariableDeclaration__Group_3_0_2__211035);
             rule__VariableDeclaration__Group_3_0_2__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0_2__3_in_rule__VariableDeclaration__Group_3_0_2__211038);
             rule__VariableDeclaration__Group_3_0_2__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14475,10 +14812,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0_2__2
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0_2__2"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0_2__2__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0_2__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5442:1: rule__VariableDeclaration__Group_3_0_2__2__Impl : ( ( rule__VariableDeclaration__InitValueAssignment_3_0_2_2 ) ) ;
     public final void rule__VariableDeclaration__Group_3_0_2__2__Impl() throws RecognitionException {
 
@@ -14497,7 +14834,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__InitValueAssignment_3_0_2_2_in_rule__VariableDeclaration__Group_3_0_2__2__Impl11065);
             rule__VariableDeclaration__InitValueAssignment_3_0_2_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14521,10 +14859,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0_2__2__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0_2__2__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0_2__3
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0_2__3"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5459:1: rule__VariableDeclaration__Group_3_0_2__3 : rule__VariableDeclaration__Group_3_0_2__3__Impl ;
     public final void rule__VariableDeclaration__Group_3_0_2__3() throws RecognitionException {
 
@@ -14536,7 +14874,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0_2__3__Impl_in_rule__VariableDeclaration__Group_3_0_2__311095);
             rule__VariableDeclaration__Group_3_0_2__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14553,10 +14892,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0_2__3
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0_2__3"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0_2__3__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0_2__3__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5470:1: rule__VariableDeclaration__Group_3_0_2__3__Impl : ( ')' ) ;
     public final void rule__VariableDeclaration__Group_3_0_2__3__Impl() throws RecognitionException {
 
@@ -14590,10 +14929,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0_2__3__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0_2__3__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_1__0
+    // $ANTLR start "rule__VariableDeclaration__Group_3_1__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5497:1: rule__VariableDeclaration__Group_3_1__0 : rule__VariableDeclaration__Group_3_1__0__Impl rule__VariableDeclaration__Group_3_1__1 ;
     public final void rule__VariableDeclaration__Group_3_1__0() throws RecognitionException {
 
@@ -14605,11 +14944,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_1__0__Impl_in_rule__VariableDeclaration__Group_3_1__011162);
             rule__VariableDeclaration__Group_3_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_1__1_in_rule__VariableDeclaration__Group_3_1__011165);
             rule__VariableDeclaration__Group_3_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14626,10 +14967,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_1__0
+    // $ANTLR end "rule__VariableDeclaration__Group_3_1__0"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_1__0__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_1__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5509:1: rule__VariableDeclaration__Group_3_1__0__Impl : ( '=' ) ;
     public final void rule__VariableDeclaration__Group_3_1__0__Impl() throws RecognitionException {
 
@@ -14663,10 +15004,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_1__0__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_1__0__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_1__1
+    // $ANTLR start "rule__VariableDeclaration__Group_3_1__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5528:1: rule__VariableDeclaration__Group_3_1__1 : rule__VariableDeclaration__Group_3_1__1__Impl rule__VariableDeclaration__Group_3_1__2 ;
     public final void rule__VariableDeclaration__Group_3_1__1() throws RecognitionException {
 
@@ -14678,11 +15019,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_1__1__Impl_in_rule__VariableDeclaration__Group_3_1__111224);
             rule__VariableDeclaration__Group_3_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_1__2_in_rule__VariableDeclaration__Group_3_1__111227);
             rule__VariableDeclaration__Group_3_1__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14699,10 +15042,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_1__1
+    // $ANTLR end "rule__VariableDeclaration__Group_3_1__1"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_1__1__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_1__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5540:1: rule__VariableDeclaration__Group_3_1__1__Impl : ( '(' ) ;
     public final void rule__VariableDeclaration__Group_3_1__1__Impl() throws RecognitionException {
 
@@ -14736,10 +15079,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_1__1__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_1__1__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_1__2
+    // $ANTLR start "rule__VariableDeclaration__Group_3_1__2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5559:1: rule__VariableDeclaration__Group_3_1__2 : rule__VariableDeclaration__Group_3_1__2__Impl rule__VariableDeclaration__Group_3_1__3 ;
     public final void rule__VariableDeclaration__Group_3_1__2() throws RecognitionException {
 
@@ -14751,11 +15094,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_1__2__Impl_in_rule__VariableDeclaration__Group_3_1__211286);
             rule__VariableDeclaration__Group_3_1__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_1__3_in_rule__VariableDeclaration__Group_3_1__211289);
             rule__VariableDeclaration__Group_3_1__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14772,10 +15117,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_1__2
+    // $ANTLR end "rule__VariableDeclaration__Group_3_1__2"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_1__2__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_1__2__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5571:1: rule__VariableDeclaration__Group_3_1__2__Impl : ( ( rule__VariableDeclaration__InitValueAssignment_3_1_2 ) ) ;
     public final void rule__VariableDeclaration__Group_3_1__2__Impl() throws RecognitionException {
 
@@ -14794,7 +15139,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__InitValueAssignment_3_1_2_in_rule__VariableDeclaration__Group_3_1__2__Impl11316);
             rule__VariableDeclaration__InitValueAssignment_3_1_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14818,10 +15164,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_1__2__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_1__2__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_1__3
+    // $ANTLR start "rule__VariableDeclaration__Group_3_1__3"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5588:1: rule__VariableDeclaration__Group_3_1__3 : rule__VariableDeclaration__Group_3_1__3__Impl ;
     public final void rule__VariableDeclaration__Group_3_1__3() throws RecognitionException {
 
@@ -14833,7 +15179,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_1__3__Impl_in_rule__VariableDeclaration__Group_3_1__311346);
             rule__VariableDeclaration__Group_3_1__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14850,10 +15197,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_1__3
+    // $ANTLR end "rule__VariableDeclaration__Group_3_1__3"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_1__3__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_1__3__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5599:1: rule__VariableDeclaration__Group_3_1__3__Impl : ( ')' ) ;
     public final void rule__VariableDeclaration__Group_3_1__3__Impl() throws RecognitionException {
 
@@ -14887,10 +15234,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_1__3__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_1__3__Impl"
 
 
-    // $ANTLR start rule__DataTypeName__Group__0
+    // $ANTLR start "rule__DataTypeName__Group__0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5626:1: rule__DataTypeName__Group__0 : rule__DataTypeName__Group__0__Impl rule__DataTypeName__Group__1 ;
     public final void rule__DataTypeName__Group__0() throws RecognitionException {
 
@@ -14902,11 +15249,13 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DataTypeName__Group__0__Impl_in_rule__DataTypeName__Group__011413);
             rule__DataTypeName__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DataTypeName__Group__1_in_rule__DataTypeName__Group__011416);
             rule__DataTypeName__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14923,10 +15272,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DataTypeName__Group__0
+    // $ANTLR end "rule__DataTypeName__Group__0"
 
 
-    // $ANTLR start rule__DataTypeName__Group__0__Impl
+    // $ANTLR start "rule__DataTypeName__Group__0__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5638:1: rule__DataTypeName__Group__0__Impl : ( ( rule__DataTypeName__PathAssignment_0 )? ) ;
     public final void rule__DataTypeName__Group__0__Impl() throws RecognitionException {
 
@@ -14957,7 +15306,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
                     {
                     pushFollow(FOLLOW_rule__DataTypeName__PathAssignment_0_in_rule__DataTypeName__Group__0__Impl11443);
                     rule__DataTypeName__PathAssignment_0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -14984,10 +15334,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DataTypeName__Group__0__Impl
+    // $ANTLR end "rule__DataTypeName__Group__0__Impl"
 
 
-    // $ANTLR start rule__DataTypeName__Group__1
+    // $ANTLR start "rule__DataTypeName__Group__1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5655:1: rule__DataTypeName__Group__1 : rule__DataTypeName__Group__1__Impl ;
     public final void rule__DataTypeName__Group__1() throws RecognitionException {
 
@@ -14999,7 +15349,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DataTypeName__Group__1__Impl_in_rule__DataTypeName__Group__111474);
             rule__DataTypeName__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -15016,10 +15367,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DataTypeName__Group__1
+    // $ANTLR end "rule__DataTypeName__Group__1"
 
 
-    // $ANTLR start rule__DataTypeName__Group__1__Impl
+    // $ANTLR start "rule__DataTypeName__Group__1__Impl"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5666:1: rule__DataTypeName__Group__1__Impl : ( ( rule__DataTypeName__TypeAssignment_1 ) ) ;
     public final void rule__DataTypeName__Group__1__Impl() throws RecognitionException {
 
@@ -15038,7 +15389,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__DataTypeName__TypeAssignment_1_in_rule__DataTypeName__Group__1__Impl11501);
             rule__DataTypeName__TypeAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -15062,10 +15414,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DataTypeName__Group__1__Impl
+    // $ANTLR end "rule__DataTypeName__Group__1__Impl"
 
 
-    // $ANTLR start rule__ConstraintRule__SpecificationAssignment
+    // $ANTLR start "rule__ConstraintRule__SpecificationAssignment"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5688:1: rule__ConstraintRule__SpecificationAssignment : ( ruleConstraintSpecification ) ;
     public final void rule__ConstraintRule__SpecificationAssignment() throws RecognitionException {
 
@@ -15081,7 +15433,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getConstraintRuleAccess().getSpecificationConstraintSpecificationParserRuleCall_0()); 
             pushFollow(FOLLOW_ruleConstraintSpecification_in_rule__ConstraintRule__SpecificationAssignment11540);
             ruleConstraintSpecification();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getConstraintRuleAccess().getSpecificationConstraintSpecificationParserRuleCall_0()); 
 
@@ -15102,10 +15455,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ConstraintRule__SpecificationAssignment
+    // $ANTLR end "rule__ConstraintRule__SpecificationAssignment"
 
 
-    // $ANTLR start rule__ConstraintSpecification__ExpressionAssignment
+    // $ANTLR start "rule__ConstraintSpecification__ExpressionAssignment"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5703:1: rule__ConstraintSpecification__ExpressionAssignment : ( ruleExpression ) ;
     public final void rule__ConstraintSpecification__ExpressionAssignment() throws RecognitionException {
 
@@ -15121,7 +15474,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getConstraintSpecificationAccess().getExpressionExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__ConstraintSpecification__ExpressionAssignment11571);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getConstraintSpecificationAccess().getExpressionExpressionParserRuleCall_0()); 
 
@@ -15142,10 +15496,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ConstraintSpecification__ExpressionAssignment
+    // $ANTLR end "rule__ConstraintSpecification__ExpressionAssignment"
 
 
-    // $ANTLR start rule__Expression__ExpAssignment
+    // $ANTLR start "rule__Expression__ExpAssignment"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5718:1: rule__Expression__ExpAssignment : ( ruleAndOrXorExpression ) ;
     public final void rule__Expression__ExpAssignment() throws RecognitionException {
 
@@ -15161,7 +15515,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getExpressionAccess().getExpAndOrXorExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_ruleAndOrXorExpression_in_rule__Expression__ExpAssignment11602);
             ruleAndOrXorExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getExpressionAccess().getExpAndOrXorExpressionParserRuleCall_0()); 
 
@@ -15182,10 +15537,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Expression__ExpAssignment
+    // $ANTLR end "rule__Expression__ExpAssignment"
 
 
-    // $ANTLR start rule__AndOrXorExpression__ExpAssignment_0
+    // $ANTLR start "rule__AndOrXorExpression__ExpAssignment_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5733:1: rule__AndOrXorExpression__ExpAssignment_0 : ( ruleEqualityExpression ) ;
     public final void rule__AndOrXorExpression__ExpAssignment_0() throws RecognitionException {
 
@@ -15201,7 +15556,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getAndOrXorExpressionAccess().getExpEqualityExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleEqualityExpression_in_rule__AndOrXorExpression__ExpAssignment_011633);
             ruleEqualityExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getAndOrXorExpressionAccess().getExpEqualityExpressionParserRuleCall_0_0()); 
 
@@ -15222,10 +15578,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__ExpAssignment_0
+    // $ANTLR end "rule__AndOrXorExpression__ExpAssignment_0"
 
 
-    // $ANTLR start rule__AndOrXorExpression__OpAssignment_1_0
+    // $ANTLR start "rule__AndOrXorExpression__OpAssignment_1_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5748:1: rule__AndOrXorExpression__OpAssignment_1_0 : ( ( rule__AndOrXorExpression__OpAlternatives_1_0_0 ) ) ;
     public final void rule__AndOrXorExpression__OpAssignment_1_0() throws RecognitionException {
 
@@ -15244,7 +15600,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__AndOrXorExpression__OpAlternatives_1_0_0_in_rule__AndOrXorExpression__OpAssignment_1_011664);
             rule__AndOrXorExpression__OpAlternatives_1_0_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -15268,10 +15625,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__OpAssignment_1_0
+    // $ANTLR end "rule__AndOrXorExpression__OpAssignment_1_0"
 
 
-    // $ANTLR start rule__AndOrXorExpression__ExpAssignment_1_1
+    // $ANTLR start "rule__AndOrXorExpression__ExpAssignment_1_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5764:1: rule__AndOrXorExpression__ExpAssignment_1_1 : ( ruleEqualityExpression ) ;
     public final void rule__AndOrXorExpression__ExpAssignment_1_1() throws RecognitionException {
 
@@ -15287,7 +15644,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getAndOrXorExpressionAccess().getExpEqualityExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleEqualityExpression_in_rule__AndOrXorExpression__ExpAssignment_1_111697);
             ruleEqualityExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getAndOrXorExpressionAccess().getExpEqualityExpressionParserRuleCall_1_1_0()); 
 
@@ -15308,10 +15666,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__ExpAssignment_1_1
+    // $ANTLR end "rule__AndOrXorExpression__ExpAssignment_1_1"
 
 
-    // $ANTLR start rule__EqualityExpression__ExpAssignment_0
+    // $ANTLR start "rule__EqualityExpression__ExpAssignment_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5779:1: rule__EqualityExpression__ExpAssignment_0 : ( ruleRelationalExpression ) ;
     public final void rule__EqualityExpression__ExpAssignment_0() throws RecognitionException {
 
@@ -15327,7 +15685,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getEqualityExpressionAccess().getExpRelationalExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleRelationalExpression_in_rule__EqualityExpression__ExpAssignment_011728);
             ruleRelationalExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getEqualityExpressionAccess().getExpRelationalExpressionParserRuleCall_0_0()); 
 
@@ -15348,10 +15707,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__ExpAssignment_0
+    // $ANTLR end "rule__EqualityExpression__ExpAssignment_0"
 
 
-    // $ANTLR start rule__EqualityExpression__OpAssignment_1_0
+    // $ANTLR start "rule__EqualityExpression__OpAssignment_1_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5794:1: rule__EqualityExpression__OpAssignment_1_0 : ( ( rule__EqualityExpression__OpAlternatives_1_0_0 ) ) ;
     public final void rule__EqualityExpression__OpAssignment_1_0() throws RecognitionException {
 
@@ -15370,7 +15729,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__EqualityExpression__OpAlternatives_1_0_0_in_rule__EqualityExpression__OpAssignment_1_011759);
             rule__EqualityExpression__OpAlternatives_1_0_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -15394,10 +15754,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__OpAssignment_1_0
+    // $ANTLR end "rule__EqualityExpression__OpAssignment_1_0"
 
 
-    // $ANTLR start rule__EqualityExpression__ExpAssignment_1_1
+    // $ANTLR start "rule__EqualityExpression__ExpAssignment_1_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5810:1: rule__EqualityExpression__ExpAssignment_1_1 : ( ruleRelationalExpression ) ;
     public final void rule__EqualityExpression__ExpAssignment_1_1() throws RecognitionException {
 
@@ -15413,7 +15773,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getEqualityExpressionAccess().getExpRelationalExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleRelationalExpression_in_rule__EqualityExpression__ExpAssignment_1_111792);
             ruleRelationalExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getEqualityExpressionAccess().getExpRelationalExpressionParserRuleCall_1_1_0()); 
 
@@ -15434,10 +15795,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__ExpAssignment_1_1
+    // $ANTLR end "rule__EqualityExpression__ExpAssignment_1_1"
 
 
-    // $ANTLR start rule__RelationalExpression__ExpAssignment_0
+    // $ANTLR start "rule__RelationalExpression__ExpAssignment_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5825:1: rule__RelationalExpression__ExpAssignment_0 : ( ruleConditionalExpression ) ;
     public final void rule__RelationalExpression__ExpAssignment_0() throws RecognitionException {
 
@@ -15453,7 +15814,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getRelationalExpressionAccess().getExpConditionalExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleConditionalExpression_in_rule__RelationalExpression__ExpAssignment_011823);
             ruleConditionalExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getRelationalExpressionAccess().getExpConditionalExpressionParserRuleCall_0_0()); 
 
@@ -15474,10 +15836,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__ExpAssignment_0
+    // $ANTLR end "rule__RelationalExpression__ExpAssignment_0"
 
 
-    // $ANTLR start rule__RelationalExpression__OpAssignment_1_0
+    // $ANTLR start "rule__RelationalExpression__OpAssignment_1_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5840:1: rule__RelationalExpression__OpAssignment_1_0 : ( ( rule__RelationalExpression__OpAlternatives_1_0_0 ) ) ;
     public final void rule__RelationalExpression__OpAssignment_1_0() throws RecognitionException {
 
@@ -15496,7 +15858,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__RelationalExpression__OpAlternatives_1_0_0_in_rule__RelationalExpression__OpAssignment_1_011854);
             rule__RelationalExpression__OpAlternatives_1_0_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -15520,10 +15883,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__OpAssignment_1_0
+    // $ANTLR end "rule__RelationalExpression__OpAssignment_1_0"
 
 
-    // $ANTLR start rule__RelationalExpression__ExpAssignment_1_1
+    // $ANTLR start "rule__RelationalExpression__ExpAssignment_1_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5856:1: rule__RelationalExpression__ExpAssignment_1_1 : ( ruleConditionalExpression ) ;
     public final void rule__RelationalExpression__ExpAssignment_1_1() throws RecognitionException {
 
@@ -15539,7 +15902,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getRelationalExpressionAccess().getExpConditionalExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleConditionalExpression_in_rule__RelationalExpression__ExpAssignment_1_111887);
             ruleConditionalExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getRelationalExpressionAccess().getExpConditionalExpressionParserRuleCall_1_1_0()); 
 
@@ -15560,10 +15924,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__ExpAssignment_1_1
+    // $ANTLR end "rule__RelationalExpression__ExpAssignment_1_1"
 
 
-    // $ANTLR start rule__ConditionalExpression__ExpAssignment_0
+    // $ANTLR start "rule__ConditionalExpression__ExpAssignment_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5871:1: rule__ConditionalExpression__ExpAssignment_0 : ( ruleAdditiveExpression ) ;
     public final void rule__ConditionalExpression__ExpAssignment_0() throws RecognitionException {
 
@@ -15579,7 +15943,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleAdditiveExpression_in_rule__ConditionalExpression__ExpAssignment_011918);
             ruleAdditiveExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_0_0()); 
 
@@ -15600,10 +15965,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__ExpAssignment_0
+    // $ANTLR end "rule__ConditionalExpression__ExpAssignment_0"
 
 
-    // $ANTLR start rule__ConditionalExpression__OpAssignment_1_0
+    // $ANTLR start "rule__ConditionalExpression__OpAssignment_1_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5886:1: rule__ConditionalExpression__OpAssignment_1_0 : ( ( '?' ) ) ;
     public final void rule__ConditionalExpression__OpAssignment_1_0() throws RecognitionException {
 
@@ -15645,10 +16010,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__OpAssignment_1_0
+    // $ANTLR end "rule__ConditionalExpression__OpAssignment_1_0"
 
 
-    // $ANTLR start rule__ConditionalExpression__ExpAssignment_1_1
+    // $ANTLR start "rule__ConditionalExpression__ExpAssignment_1_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5909:1: rule__ConditionalExpression__ExpAssignment_1_1 : ( ruleAdditiveExpression ) ;
     public final void rule__ConditionalExpression__ExpAssignment_1_1() throws RecognitionException {
 
@@ -15664,7 +16029,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleAdditiveExpression_in_rule__ConditionalExpression__ExpAssignment_1_111993);
             ruleAdditiveExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_1_1_0()); 
 
@@ -15685,10 +16051,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__ExpAssignment_1_1
+    // $ANTLR end "rule__ConditionalExpression__ExpAssignment_1_1"
 
 
-    // $ANTLR start rule__ConditionalExpression__ExpAssignment_1_3
+    // $ANTLR start "rule__ConditionalExpression__ExpAssignment_1_3"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5924:1: rule__ConditionalExpression__ExpAssignment_1_3 : ( ruleAdditiveExpression ) ;
     public final void rule__ConditionalExpression__ExpAssignment_1_3() throws RecognitionException {
 
@@ -15704,7 +16070,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_1_3_0()); 
             pushFollow(FOLLOW_ruleAdditiveExpression_in_rule__ConditionalExpression__ExpAssignment_1_312024);
             ruleAdditiveExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_1_3_0()); 
 
@@ -15725,10 +16092,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__ExpAssignment_1_3
+    // $ANTLR end "rule__ConditionalExpression__ExpAssignment_1_3"
 
 
-    // $ANTLR start rule__AdditiveExpression__ExpAssignment_0
+    // $ANTLR start "rule__AdditiveExpression__ExpAssignment_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5939:1: rule__AdditiveExpression__ExpAssignment_0 : ( ruleMultiplicativeExpression ) ;
     public final void rule__AdditiveExpression__ExpAssignment_0() throws RecognitionException {
 
@@ -15744,7 +16111,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getAdditiveExpressionAccess().getExpMultiplicativeExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleMultiplicativeExpression_in_rule__AdditiveExpression__ExpAssignment_012055);
             ruleMultiplicativeExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getAdditiveExpressionAccess().getExpMultiplicativeExpressionParserRuleCall_0_0()); 
 
@@ -15765,10 +16133,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__ExpAssignment_0
+    // $ANTLR end "rule__AdditiveExpression__ExpAssignment_0"
 
 
-    // $ANTLR start rule__AdditiveExpression__OpAssignment_1_0
+    // $ANTLR start "rule__AdditiveExpression__OpAssignment_1_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5954:1: rule__AdditiveExpression__OpAssignment_1_0 : ( ( rule__AdditiveExpression__OpAlternatives_1_0_0 ) ) ;
     public final void rule__AdditiveExpression__OpAssignment_1_0() throws RecognitionException {
 
@@ -15787,7 +16155,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__AdditiveExpression__OpAlternatives_1_0_0_in_rule__AdditiveExpression__OpAssignment_1_012086);
             rule__AdditiveExpression__OpAlternatives_1_0_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -15811,10 +16180,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__OpAssignment_1_0
+    // $ANTLR end "rule__AdditiveExpression__OpAssignment_1_0"
 
 
-    // $ANTLR start rule__AdditiveExpression__ExpAssignment_1_1
+    // $ANTLR start "rule__AdditiveExpression__ExpAssignment_1_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5970:1: rule__AdditiveExpression__ExpAssignment_1_1 : ( ruleMultiplicativeExpression ) ;
     public final void rule__AdditiveExpression__ExpAssignment_1_1() throws RecognitionException {
 
@@ -15830,7 +16199,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getAdditiveExpressionAccess().getExpMultiplicativeExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleMultiplicativeExpression_in_rule__AdditiveExpression__ExpAssignment_1_112119);
             ruleMultiplicativeExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getAdditiveExpressionAccess().getExpMultiplicativeExpressionParserRuleCall_1_1_0()); 
 
@@ -15851,10 +16221,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__ExpAssignment_1_1
+    // $ANTLR end "rule__AdditiveExpression__ExpAssignment_1_1"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__ExpAssignment_0
+    // $ANTLR start "rule__MultiplicativeExpression__ExpAssignment_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:5985:1: rule__MultiplicativeExpression__ExpAssignment_0 : ( ruleUnaryExpression ) ;
     public final void rule__MultiplicativeExpression__ExpAssignment_0() throws RecognitionException {
 
@@ -15870,7 +16240,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getMultiplicativeExpressionAccess().getExpUnaryExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleUnaryExpression_in_rule__MultiplicativeExpression__ExpAssignment_012150);
             ruleUnaryExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMultiplicativeExpressionAccess().getExpUnaryExpressionParserRuleCall_0_0()); 
 
@@ -15891,10 +16262,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__ExpAssignment_0
+    // $ANTLR end "rule__MultiplicativeExpression__ExpAssignment_0"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__OpAssignment_1_0
+    // $ANTLR start "rule__MultiplicativeExpression__OpAssignment_1_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6000:1: rule__MultiplicativeExpression__OpAssignment_1_0 : ( ( rule__MultiplicativeExpression__OpAlternatives_1_0_0 ) ) ;
     public final void rule__MultiplicativeExpression__OpAssignment_1_0() throws RecognitionException {
 
@@ -15913,7 +16284,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__MultiplicativeExpression__OpAlternatives_1_0_0_in_rule__MultiplicativeExpression__OpAssignment_1_012181);
             rule__MultiplicativeExpression__OpAlternatives_1_0_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -15937,10 +16309,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__OpAssignment_1_0
+    // $ANTLR end "rule__MultiplicativeExpression__OpAssignment_1_0"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__ExpAssignment_1_1
+    // $ANTLR start "rule__MultiplicativeExpression__ExpAssignment_1_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6016:1: rule__MultiplicativeExpression__ExpAssignment_1_1 : ( ruleUnaryExpression ) ;
     public final void rule__MultiplicativeExpression__ExpAssignment_1_1() throws RecognitionException {
 
@@ -15956,7 +16328,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getMultiplicativeExpressionAccess().getExpUnaryExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleUnaryExpression_in_rule__MultiplicativeExpression__ExpAssignment_1_112214);
             ruleUnaryExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMultiplicativeExpressionAccess().getExpUnaryExpressionParserRuleCall_1_1_0()); 
 
@@ -15977,10 +16350,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__ExpAssignment_1_1
+    // $ANTLR end "rule__MultiplicativeExpression__ExpAssignment_1_1"
 
 
-    // $ANTLR start rule__UnaryExpression__OpAssignment_0_0
+    // $ANTLR start "rule__UnaryExpression__OpAssignment_0_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6031:1: rule__UnaryExpression__OpAssignment_0_0 : ( ( rule__UnaryExpression__OpAlternatives_0_0_0 ) ) ;
     public final void rule__UnaryExpression__OpAssignment_0_0() throws RecognitionException {
 
@@ -15999,7 +16372,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
             {
             pushFollow(FOLLOW_rule__UnaryExpression__OpAlternatives_0_0_0_in_rule__UnaryExpression__OpAssignment_0_012245);
             rule__UnaryExpression__OpAlternatives_0_0_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -16023,10 +16397,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__UnaryExpression__OpAssignment_0_0
+    // $ANTLR end "rule__UnaryExpression__OpAssignment_0_0"
 
 
-    // $ANTLR start rule__UnaryExpression__UnaryAssignment_0_1
+    // $ANTLR start "rule__UnaryExpression__UnaryAssignment_0_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6047:1: rule__UnaryExpression__UnaryAssignment_0_1 : ( ruleUnaryExpression ) ;
     public final void rule__UnaryExpression__UnaryAssignment_0_1() throws RecognitionException {
 
@@ -16042,7 +16416,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getUnaryExpressionAccess().getUnaryUnaryExpressionParserRuleCall_0_1_0()); 
             pushFollow(FOLLOW_ruleUnaryExpression_in_rule__UnaryExpression__UnaryAssignment_0_112278);
             ruleUnaryExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getUnaryExpressionAccess().getUnaryUnaryExpressionParserRuleCall_0_1_0()); 
 
@@ -16063,10 +16438,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__UnaryExpression__UnaryAssignment_0_1
+    // $ANTLR end "rule__UnaryExpression__UnaryAssignment_0_1"
 
 
-    // $ANTLR start rule__UnaryExpression__ExpAssignment_1
+    // $ANTLR start "rule__UnaryExpression__ExpAssignment_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6062:1: rule__UnaryExpression__ExpAssignment_1 : ( rulePrimaryExpression ) ;
     public final void rule__UnaryExpression__ExpAssignment_1() throws RecognitionException {
 
@@ -16082,7 +16457,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getUnaryExpressionAccess().getExpPrimaryExpressionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_rulePrimaryExpression_in_rule__UnaryExpression__ExpAssignment_112309);
             rulePrimaryExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getUnaryExpressionAccess().getExpPrimaryExpressionParserRuleCall_1_0()); 
 
@@ -16103,10 +16479,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__UnaryExpression__ExpAssignment_1
+    // $ANTLR end "rule__UnaryExpression__ExpAssignment_1"
 
 
-    // $ANTLR start rule__PrimaryExpression__PrefixAssignment_0
+    // $ANTLR start "rule__PrimaryExpression__PrefixAssignment_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6077:1: rule__PrimaryExpression__PrefixAssignment_0 : ( ruleValueSpecification ) ;
     public final void rule__PrimaryExpression__PrefixAssignment_0() throws RecognitionException {
 
@@ -16122,7 +16498,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getPrimaryExpressionAccess().getPrefixValueSpecificationParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleValueSpecification_in_rule__PrimaryExpression__PrefixAssignment_012340);
             ruleValueSpecification();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getPrimaryExpressionAccess().getPrefixValueSpecificationParserRuleCall_0_0()); 
 
@@ -16143,10 +16520,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__PrefixAssignment_0
+    // $ANTLR end "rule__PrimaryExpression__PrefixAssignment_0"
 
 
-    // $ANTLR start rule__PrimaryExpression__SuffixAssignment_1_1
+    // $ANTLR start "rule__PrimaryExpression__SuffixAssignment_1_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6092:1: rule__PrimaryExpression__SuffixAssignment_1_1 : ( ruleSuffixExpression ) ;
     public final void rule__PrimaryExpression__SuffixAssignment_1_1() throws RecognitionException {
 
@@ -16162,7 +16539,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getPrimaryExpressionAccess().getSuffixSuffixExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleSuffixExpression_in_rule__PrimaryExpression__SuffixAssignment_1_112371);
             ruleSuffixExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getPrimaryExpressionAccess().getSuffixSuffixExpressionParserRuleCall_1_1_0()); 
 
@@ -16183,10 +16561,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__SuffixAssignment_1_1
+    // $ANTLR end "rule__PrimaryExpression__SuffixAssignment_1_1"
 
 
-    // $ANTLR start rule__PropertyCallExpression__PropertyAssignment_0
+    // $ANTLR start "rule__PropertyCallExpression__PropertyAssignment_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6107:1: rule__PropertyCallExpression__PropertyAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__PropertyCallExpression__PropertyAssignment_0() throws RecognitionException {
 
@@ -16228,10 +16606,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__PropertyAssignment_0
+    // $ANTLR end "rule__PropertyCallExpression__PropertyAssignment_0"
 
 
-    // $ANTLR start rule__PropertyCallExpression__SuffixAssignment_1_1
+    // $ANTLR start "rule__PropertyCallExpression__SuffixAssignment_1_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6126:1: rule__PropertyCallExpression__SuffixAssignment_1_1 : ( ruleSuffixExpression ) ;
     public final void rule__PropertyCallExpression__SuffixAssignment_1_1() throws RecognitionException {
 
@@ -16247,7 +16625,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getPropertyCallExpressionAccess().getSuffixSuffixExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleSuffixExpression_in_rule__PropertyCallExpression__SuffixAssignment_1_112441);
             ruleSuffixExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getPropertyCallExpressionAccess().getSuffixSuffixExpressionParserRuleCall_1_1_0()); 
 
@@ -16268,10 +16647,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__SuffixAssignment_1_1
+    // $ANTLR end "rule__PropertyCallExpression__SuffixAssignment_1_1"
 
 
-    // $ANTLR start rule__OperationCallExpression__OperationAssignment_0
+    // $ANTLR start "rule__OperationCallExpression__OperationAssignment_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6141:1: rule__OperationCallExpression__OperationAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__OperationCallExpression__OperationAssignment_0() throws RecognitionException {
 
@@ -16313,10 +16692,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__OperationAssignment_0
+    // $ANTLR end "rule__OperationCallExpression__OperationAssignment_0"
 
 
-    // $ANTLR start rule__OperationCallExpression__ArgumentsAssignment_2
+    // $ANTLR start "rule__OperationCallExpression__ArgumentsAssignment_2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6160:1: rule__OperationCallExpression__ArgumentsAssignment_2 : ( ruleListOfValues ) ;
     public final void rule__OperationCallExpression__ArgumentsAssignment_2() throws RecognitionException {
 
@@ -16332,7 +16711,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getOperationCallExpressionAccess().getArgumentsListOfValuesParserRuleCall_2_0()); 
             pushFollow(FOLLOW_ruleListOfValues_in_rule__OperationCallExpression__ArgumentsAssignment_212511);
             ruleListOfValues();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getOperationCallExpressionAccess().getArgumentsListOfValuesParserRuleCall_2_0()); 
 
@@ -16353,10 +16733,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__ArgumentsAssignment_2
+    // $ANTLR end "rule__OperationCallExpression__ArgumentsAssignment_2"
 
 
-    // $ANTLR start rule__OperationCallExpression__SuffixAssignment_4_1
+    // $ANTLR start "rule__OperationCallExpression__SuffixAssignment_4_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6175:1: rule__OperationCallExpression__SuffixAssignment_4_1 : ( ruleSuffixExpression ) ;
     public final void rule__OperationCallExpression__SuffixAssignment_4_1() throws RecognitionException {
 
@@ -16372,7 +16752,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getOperationCallExpressionAccess().getSuffixSuffixExpressionParserRuleCall_4_1_0()); 
             pushFollow(FOLLOW_ruleSuffixExpression_in_rule__OperationCallExpression__SuffixAssignment_4_112542);
             ruleSuffixExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getOperationCallExpressionAccess().getSuffixSuffixExpressionParserRuleCall_4_1_0()); 
 
@@ -16393,10 +16774,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__SuffixAssignment_4_1
+    // $ANTLR end "rule__OperationCallExpression__SuffixAssignment_4_1"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__PathAssignment_0
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__PathAssignment_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6190:1: rule__NameOrChoiceOrBehaviorCall__PathAssignment_0 : ( ruleQualifiedName ) ;
     public final void rule__NameOrChoiceOrBehaviorCall__PathAssignment_0() throws RecognitionException {
 
@@ -16412,7 +16793,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getPathQualifiedNameParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__NameOrChoiceOrBehaviorCall__PathAssignment_012573);
             ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getPathQualifiedNameParserRuleCall_0_0()); 
 
@@ -16433,10 +16815,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__PathAssignment_0
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__PathAssignment_0"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__IdAssignment_1
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__IdAssignment_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6205:1: rule__NameOrChoiceOrBehaviorCall__IdAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__NameOrChoiceOrBehaviorCall__IdAssignment_1() throws RecognitionException {
 
@@ -16478,10 +16860,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__IdAssignment_1
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__IdAssignment_1"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6224:1: rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1 : ( ruleListOfValues ) ;
     public final void rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1() throws RecognitionException {
 
@@ -16497,7 +16879,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getArgumentsListOfValuesParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_ruleListOfValues_in_rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_112643);
             ruleListOfValues();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getArgumentsListOfValuesParserRuleCall_2_1_0()); 
 
@@ -16518,10 +16901,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1"
 
 
-    // $ANTLR start rule__QualifiedName__PathAssignment_0
+    // $ANTLR start "rule__QualifiedName__PathAssignment_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6239:1: rule__QualifiedName__PathAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__QualifiedName__PathAssignment_0() throws RecognitionException {
 
@@ -16563,10 +16946,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__PathAssignment_0
+    // $ANTLR end "rule__QualifiedName__PathAssignment_0"
 
 
-    // $ANTLR start rule__QualifiedName__RemainingAssignment_2
+    // $ANTLR start "rule__QualifiedName__RemainingAssignment_2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6258:1: rule__QualifiedName__RemainingAssignment_2 : ( ruleQualifiedName ) ;
     public final void rule__QualifiedName__RemainingAssignment_2() throws RecognitionException {
 
@@ -16582,7 +16965,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getQualifiedNameAccess().getRemainingQualifiedNameParserRuleCall_2_0()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__QualifiedName__RemainingAssignment_212713);
             ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getQualifiedNameAccess().getRemainingQualifiedNameParserRuleCall_2_0()); 
 
@@ -16603,10 +16987,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__RemainingAssignment_2
+    // $ANTLR end "rule__QualifiedName__RemainingAssignment_2"
 
 
-    // $ANTLR start rule__Interval__IsLowerIncludedAssignment_0_1
+    // $ANTLR start "rule__Interval__IsLowerIncludedAssignment_0_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6273:1: rule__Interval__IsLowerIncludedAssignment_0_1 : ( ( '[' ) ) ;
     public final void rule__Interval__IsLowerIncludedAssignment_0_1() throws RecognitionException {
 
@@ -16648,10 +17032,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Interval__IsLowerIncludedAssignment_0_1
+    // $ANTLR end "rule__Interval__IsLowerIncludedAssignment_0_1"
 
 
-    // $ANTLR start rule__Interval__LowerAssignment_1
+    // $ANTLR start "rule__Interval__LowerAssignment_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6296:1: rule__Interval__LowerAssignment_1 : ( ruleExpression ) ;
     public final void rule__Interval__LowerAssignment_1() throws RecognitionException {
 
@@ -16667,7 +17051,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getIntervalAccess().getLowerExpressionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__Interval__LowerAssignment_112788);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getIntervalAccess().getLowerExpressionParserRuleCall_1_0()); 
 
@@ -16688,10 +17073,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Interval__LowerAssignment_1
+    // $ANTLR end "rule__Interval__LowerAssignment_1"
 
 
-    // $ANTLR start rule__Interval__UpperAssignment_3
+    // $ANTLR start "rule__Interval__UpperAssignment_3"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6311:1: rule__Interval__UpperAssignment_3 : ( ruleExpression ) ;
     public final void rule__Interval__UpperAssignment_3() throws RecognitionException {
 
@@ -16707,7 +17092,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getIntervalAccess().getUpperExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__Interval__UpperAssignment_312819);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getIntervalAccess().getUpperExpressionParserRuleCall_3_0()); 
 
@@ -16728,10 +17114,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Interval__UpperAssignment_3
+    // $ANTLR end "rule__Interval__UpperAssignment_3"
 
 
-    // $ANTLR start rule__Interval__IsUpperIncludedAssignment_4_0
+    // $ANTLR start "rule__Interval__IsUpperIncludedAssignment_4_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6326:1: rule__Interval__IsUpperIncludedAssignment_4_0 : ( ( ']' ) ) ;
     public final void rule__Interval__IsUpperIncludedAssignment_4_0() throws RecognitionException {
 
@@ -16773,10 +17159,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Interval__IsUpperIncludedAssignment_4_0
+    // $ANTLR end "rule__Interval__IsUpperIncludedAssignment_4_0"
 
 
-    // $ANTLR start rule__CollectionOrTuple__ListOfValuesAssignment_1
+    // $ANTLR start "rule__CollectionOrTuple__ListOfValuesAssignment_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6349:1: rule__CollectionOrTuple__ListOfValuesAssignment_1 : ( ruleListOfValues ) ;
     public final void rule__CollectionOrTuple__ListOfValuesAssignment_1() throws RecognitionException {
 
@@ -16792,7 +17178,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getCollectionOrTupleAccess().getListOfValuesListOfValuesParserRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleListOfValues_in_rule__CollectionOrTuple__ListOfValuesAssignment_112894);
             ruleListOfValues();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getCollectionOrTupleAccess().getListOfValuesListOfValuesParserRuleCall_1_0()); 
 
@@ -16813,10 +17200,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__CollectionOrTuple__ListOfValuesAssignment_1
+    // $ANTLR end "rule__CollectionOrTuple__ListOfValuesAssignment_1"
 
 
-    // $ANTLR start rule__Tuple__ListOfValueNamePairsAssignment_1
+    // $ANTLR start "rule__Tuple__ListOfValueNamePairsAssignment_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6364:1: rule__Tuple__ListOfValueNamePairsAssignment_1 : ( ruleListOfValueNamePairs ) ;
     public final void rule__Tuple__ListOfValueNamePairsAssignment_1() throws RecognitionException {
 
@@ -16832,7 +17219,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getTupleAccess().getListOfValueNamePairsListOfValueNamePairsParserRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleListOfValueNamePairs_in_rule__Tuple__ListOfValueNamePairsAssignment_112925);
             ruleListOfValueNamePairs();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getTupleAccess().getListOfValueNamePairsListOfValueNamePairsParserRuleCall_1_0()); 
 
@@ -16853,10 +17241,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__Tuple__ListOfValueNamePairsAssignment_1
+    // $ANTLR end "rule__Tuple__ListOfValueNamePairsAssignment_1"
 
 
-    // $ANTLR start rule__ListOfValues__ValuesAssignment_0
+    // $ANTLR start "rule__ListOfValues__ValuesAssignment_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6379:1: rule__ListOfValues__ValuesAssignment_0 : ( ruleExpression ) ;
     public final void rule__ListOfValues__ValuesAssignment_0() throws RecognitionException {
 
@@ -16872,7 +17260,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getListOfValuesAccess().getValuesExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__ListOfValues__ValuesAssignment_012956);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getListOfValuesAccess().getValuesExpressionParserRuleCall_0_0()); 
 
@@ -16893,10 +17282,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__ValuesAssignment_0
+    // $ANTLR end "rule__ListOfValues__ValuesAssignment_0"
 
 
-    // $ANTLR start rule__ListOfValues__ValuesAssignment_1_1
+    // $ANTLR start "rule__ListOfValues__ValuesAssignment_1_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6394:1: rule__ListOfValues__ValuesAssignment_1_1 : ( ruleExpression ) ;
     public final void rule__ListOfValues__ValuesAssignment_1_1() throws RecognitionException {
 
@@ -16912,7 +17301,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getListOfValuesAccess().getValuesExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__ListOfValues__ValuesAssignment_1_112987);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getListOfValuesAccess().getValuesExpressionParserRuleCall_1_1_0()); 
 
@@ -16933,10 +17323,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__ValuesAssignment_1_1
+    // $ANTLR end "rule__ListOfValues__ValuesAssignment_1_1"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__ValueNamePairsAssignment_0
+    // $ANTLR start "rule__ListOfValueNamePairs__ValueNamePairsAssignment_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6409:1: rule__ListOfValueNamePairs__ValueNamePairsAssignment_0 : ( ruleValueNamePair ) ;
     public final void rule__ListOfValueNamePairs__ValueNamePairsAssignment_0() throws RecognitionException {
 
@@ -16952,7 +17342,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getListOfValueNamePairsAccess().getValueNamePairsValueNamePairParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleValueNamePair_in_rule__ListOfValueNamePairs__ValueNamePairsAssignment_013018);
             ruleValueNamePair();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getListOfValueNamePairsAccess().getValueNamePairsValueNamePairParserRuleCall_0_0()); 
 
@@ -16973,10 +17364,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__ValueNamePairsAssignment_0
+    // $ANTLR end "rule__ListOfValueNamePairs__ValueNamePairsAssignment_0"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_1
+    // $ANTLR start "rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6424:1: rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_1 : ( ruleValueNamePair ) ;
     public final void rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_1() throws RecognitionException {
 
@@ -16992,7 +17383,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getListOfValueNamePairsAccess().getValueNamePairsValueNamePairParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleValueNamePair_in_rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_113049);
             ruleValueNamePair();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getListOfValueNamePairsAccess().getValueNamePairsValueNamePairParserRuleCall_1_1_0()); 
 
@@ -17013,10 +17405,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_1
+    // $ANTLR end "rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_1"
 
 
-    // $ANTLR start rule__ValueNamePair__PropertyAssignment_0
+    // $ANTLR start "rule__ValueNamePair__PropertyAssignment_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6439:1: rule__ValueNamePair__PropertyAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__ValueNamePair__PropertyAssignment_0() throws RecognitionException {
 
@@ -17058,10 +17450,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ValueNamePair__PropertyAssignment_0
+    // $ANTLR end "rule__ValueNamePair__PropertyAssignment_0"
 
 
-    // $ANTLR start rule__ValueNamePair__ValueAssignment_2
+    // $ANTLR start "rule__ValueNamePair__ValueAssignment_2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6458:1: rule__ValueNamePair__ValueAssignment_2 : ( ruleExpression ) ;
     public final void rule__ValueNamePair__ValueAssignment_2() throws RecognitionException {
 
@@ -17077,7 +17469,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getValueNamePairAccess().getValueExpressionParserRuleCall_2_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__ValueNamePair__ValueAssignment_213119);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getValueNamePairAccess().getValueExpressionParserRuleCall_2_0()); 
 
@@ -17098,10 +17491,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__ValueNamePair__ValueAssignment_2
+    // $ANTLR end "rule__ValueNamePair__ValueAssignment_2"
 
 
-    // $ANTLR start rule__InstantObsExpression__IdAssignment_1
+    // $ANTLR start "rule__InstantObsExpression__IdAssignment_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6473:1: rule__InstantObsExpression__IdAssignment_1 : ( ruleInstantObsName ) ;
     public final void rule__InstantObsExpression__IdAssignment_1() throws RecognitionException {
 
@@ -17117,7 +17510,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getInstantObsExpressionAccess().getIdInstantObsNameParserRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleInstantObsName_in_rule__InstantObsExpression__IdAssignment_113150);
             ruleInstantObsName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getInstantObsExpressionAccess().getIdInstantObsNameParserRuleCall_1_0()); 
 
@@ -17138,10 +17532,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__IdAssignment_1
+    // $ANTLR end "rule__InstantObsExpression__IdAssignment_1"
 
 
-    // $ANTLR start rule__InstantObsExpression__IndexAssignment_2_1
+    // $ANTLR start "rule__InstantObsExpression__IndexAssignment_2_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6488:1: rule__InstantObsExpression__IndexAssignment_2_1 : ( ruleExpression ) ;
     public final void rule__InstantObsExpression__IndexAssignment_2_1() throws RecognitionException {
 
@@ -17157,7 +17551,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getInstantObsExpressionAccess().getIndexExpressionParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__InstantObsExpression__IndexAssignment_2_113181);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getInstantObsExpressionAccess().getIndexExpressionParserRuleCall_2_1_0()); 
 
@@ -17178,10 +17573,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__IndexAssignment_2_1
+    // $ANTLR end "rule__InstantObsExpression__IndexAssignment_2_1"
 
 
-    // $ANTLR start rule__InstantObsExpression__ConditionAssignment_3_2
+    // $ANTLR start "rule__InstantObsExpression__ConditionAssignment_3_2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6503:1: rule__InstantObsExpression__ConditionAssignment_3_2 : ( ruleExpression ) ;
     public final void rule__InstantObsExpression__ConditionAssignment_3_2() throws RecognitionException {
 
@@ -17197,7 +17592,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getInstantObsExpressionAccess().getConditionExpressionParserRuleCall_3_2_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__InstantObsExpression__ConditionAssignment_3_213212);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getInstantObsExpressionAccess().getConditionExpressionParserRuleCall_3_2_0()); 
 
@@ -17218,10 +17614,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__ConditionAssignment_3_2
+    // $ANTLR end "rule__InstantObsExpression__ConditionAssignment_3_2"
 
 
-    // $ANTLR start rule__InstantObsName__PathAssignment_0
+    // $ANTLR start "rule__InstantObsName__PathAssignment_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6518:1: rule__InstantObsName__PathAssignment_0 : ( ruleQualifiedName ) ;
     public final void rule__InstantObsName__PathAssignment_0() throws RecognitionException {
 
@@ -17237,7 +17633,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getInstantObsNameAccess().getPathQualifiedNameParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__InstantObsName__PathAssignment_013243);
             ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getInstantObsNameAccess().getPathQualifiedNameParserRuleCall_0_0()); 
 
@@ -17258,10 +17655,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsName__PathAssignment_0
+    // $ANTLR end "rule__InstantObsName__PathAssignment_0"
 
 
-    // $ANTLR start rule__InstantObsName__InstantIdAssignment_1
+    // $ANTLR start "rule__InstantObsName__InstantIdAssignment_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6533:1: rule__InstantObsName__InstantIdAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__InstantObsName__InstantIdAssignment_1() throws RecognitionException {
 
@@ -17303,10 +17700,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsName__InstantIdAssignment_1
+    // $ANTLR end "rule__InstantObsName__InstantIdAssignment_1"
 
 
-    // $ANTLR start rule__DurationObsExpression__IdAssignment_1
+    // $ANTLR start "rule__DurationObsExpression__IdAssignment_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6552:1: rule__DurationObsExpression__IdAssignment_1 : ( ruleDurationObsName ) ;
     public final void rule__DurationObsExpression__IdAssignment_1() throws RecognitionException {
 
@@ -17322,7 +17719,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getDurationObsExpressionAccess().getIdDurationObsNameParserRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleDurationObsName_in_rule__DurationObsExpression__IdAssignment_113313);
             ruleDurationObsName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDurationObsExpressionAccess().getIdDurationObsNameParserRuleCall_1_0()); 
 
@@ -17343,10 +17741,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__IdAssignment_1
+    // $ANTLR end "rule__DurationObsExpression__IdAssignment_1"
 
 
-    // $ANTLR start rule__DurationObsExpression__IndexAssignment_2_1
+    // $ANTLR start "rule__DurationObsExpression__IndexAssignment_2_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6567:1: rule__DurationObsExpression__IndexAssignment_2_1 : ( ruleExpression ) ;
     public final void rule__DurationObsExpression__IndexAssignment_2_1() throws RecognitionException {
 
@@ -17362,7 +17760,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getDurationObsExpressionAccess().getIndexExpressionParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__DurationObsExpression__IndexAssignment_2_113344);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDurationObsExpressionAccess().getIndexExpressionParserRuleCall_2_1_0()); 
 
@@ -17383,10 +17782,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__IndexAssignment_2_1
+    // $ANTLR end "rule__DurationObsExpression__IndexAssignment_2_1"
 
 
-    // $ANTLR start rule__DurationObsExpression__ConditionAssignment_3_2
+    // $ANTLR start "rule__DurationObsExpression__ConditionAssignment_3_2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6582:1: rule__DurationObsExpression__ConditionAssignment_3_2 : ( ruleExpression ) ;
     public final void rule__DurationObsExpression__ConditionAssignment_3_2() throws RecognitionException {
 
@@ -17402,7 +17801,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getDurationObsExpressionAccess().getConditionExpressionParserRuleCall_3_2_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__DurationObsExpression__ConditionAssignment_3_213375);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDurationObsExpressionAccess().getConditionExpressionParserRuleCall_3_2_0()); 
 
@@ -17423,10 +17823,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__ConditionAssignment_3_2
+    // $ANTLR end "rule__DurationObsExpression__ConditionAssignment_3_2"
 
 
-    // $ANTLR start rule__DurationObsName__PathAssignment_0
+    // $ANTLR start "rule__DurationObsName__PathAssignment_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6597:1: rule__DurationObsName__PathAssignment_0 : ( ruleQualifiedName ) ;
     public final void rule__DurationObsName__PathAssignment_0() throws RecognitionException {
 
@@ -17442,7 +17842,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getDurationObsNameAccess().getPathQualifiedNameParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__DurationObsName__PathAssignment_013406);
             ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDurationObsNameAccess().getPathQualifiedNameParserRuleCall_0_0()); 
 
@@ -17463,10 +17864,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsName__PathAssignment_0
+    // $ANTLR end "rule__DurationObsName__PathAssignment_0"
 
 
-    // $ANTLR start rule__DurationObsName__DurationIdAssignment_1
+    // $ANTLR start "rule__DurationObsName__DurationIdAssignment_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6612:1: rule__DurationObsName__DurationIdAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__DurationObsName__DurationIdAssignment_1() throws RecognitionException {
 
@@ -17508,10 +17909,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsName__DurationIdAssignment_1
+    // $ANTLR end "rule__DurationObsName__DurationIdAssignment_1"
 
 
-    // $ANTLR start rule__JitterExp__FirstInstantAssignment_1
+    // $ANTLR start "rule__JitterExp__FirstInstantAssignment_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6631:1: rule__JitterExp__FirstInstantAssignment_1 : ( ruleInstantObsExpression ) ;
     public final void rule__JitterExp__FirstInstantAssignment_1() throws RecognitionException {
 
@@ -17527,7 +17928,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getJitterExpAccess().getFirstInstantInstantObsExpressionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleInstantObsExpression_in_rule__JitterExp__FirstInstantAssignment_113476);
             ruleInstantObsExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getJitterExpAccess().getFirstInstantInstantObsExpressionParserRuleCall_1_0()); 
 
@@ -17548,10 +17950,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__FirstInstantAssignment_1
+    // $ANTLR end "rule__JitterExp__FirstInstantAssignment_1"
 
 
-    // $ANTLR start rule__JitterExp__SecondInstantAssignment_2_1
+    // $ANTLR start "rule__JitterExp__SecondInstantAssignment_2_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6646:1: rule__JitterExp__SecondInstantAssignment_2_1 : ( ruleInstantObsExpression ) ;
     public final void rule__JitterExp__SecondInstantAssignment_2_1() throws RecognitionException {
 
@@ -17567,7 +17969,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getJitterExpAccess().getSecondInstantInstantObsExpressionParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_ruleInstantObsExpression_in_rule__JitterExp__SecondInstantAssignment_2_113507);
             ruleInstantObsExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getJitterExpAccess().getSecondInstantInstantObsExpressionParserRuleCall_2_1_0()); 
 
@@ -17588,10 +17991,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__SecondInstantAssignment_2_1
+    // $ANTLR end "rule__JitterExp__SecondInstantAssignment_2_1"
 
 
-    // $ANTLR start rule__VariableDeclaration__VariableDeclarationAssignment_0
+    // $ANTLR start "rule__VariableDeclaration__VariableDeclarationAssignment_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6661:1: rule__VariableDeclaration__VariableDeclarationAssignment_0 : ( ruleVariableDirectionKind ) ;
     public final void rule__VariableDeclaration__VariableDeclarationAssignment_0() throws RecognitionException {
 
@@ -17607,7 +18010,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getVariableDeclarationAccess().getVariableDeclarationVariableDirectionKindParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleVariableDirectionKind_in_rule__VariableDeclaration__VariableDeclarationAssignment_013538);
             ruleVariableDirectionKind();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getVariableDeclarationAccess().getVariableDeclarationVariableDirectionKindParserRuleCall_0_0()); 
 
@@ -17628,10 +18032,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__VariableDeclarationAssignment_0
+    // $ANTLR end "rule__VariableDeclaration__VariableDeclarationAssignment_0"
 
 
-    // $ANTLR start rule__VariableDeclaration__NameAssignment_2
+    // $ANTLR start "rule__VariableDeclaration__NameAssignment_2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6676:1: rule__VariableDeclaration__NameAssignment_2 : ( RULE_ID ) ;
     public final void rule__VariableDeclaration__NameAssignment_2() throws RecognitionException {
 
@@ -17665,10 +18069,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__NameAssignment_2
+    // $ANTLR end "rule__VariableDeclaration__NameAssignment_2"
 
 
-    // $ANTLR start rule__VariableDeclaration__TypeAssignment_3_0_1
+    // $ANTLR start "rule__VariableDeclaration__TypeAssignment_3_0_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6691:1: rule__VariableDeclaration__TypeAssignment_3_0_1 : ( ruleDataTypeName ) ;
     public final void rule__VariableDeclaration__TypeAssignment_3_0_1() throws RecognitionException {
 
@@ -17684,7 +18088,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getVariableDeclarationAccess().getTypeDataTypeNameParserRuleCall_3_0_1_0()); 
             pushFollow(FOLLOW_ruleDataTypeName_in_rule__VariableDeclaration__TypeAssignment_3_0_113600);
             ruleDataTypeName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getVariableDeclarationAccess().getTypeDataTypeNameParserRuleCall_3_0_1_0()); 
 
@@ -17705,10 +18110,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__TypeAssignment_3_0_1
+    // $ANTLR end "rule__VariableDeclaration__TypeAssignment_3_0_1"
 
 
-    // $ANTLR start rule__VariableDeclaration__InitValueAssignment_3_0_2_2
+    // $ANTLR start "rule__VariableDeclaration__InitValueAssignment_3_0_2_2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6706:1: rule__VariableDeclaration__InitValueAssignment_3_0_2_2 : ( ruleExpression ) ;
     public final void rule__VariableDeclaration__InitValueAssignment_3_0_2_2() throws RecognitionException {
 
@@ -17724,7 +18129,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getVariableDeclarationAccess().getInitValueExpressionParserRuleCall_3_0_2_2_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__VariableDeclaration__InitValueAssignment_3_0_2_213631);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getVariableDeclarationAccess().getInitValueExpressionParserRuleCall_3_0_2_2_0()); 
 
@@ -17745,10 +18151,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__InitValueAssignment_3_0_2_2
+    // $ANTLR end "rule__VariableDeclaration__InitValueAssignment_3_0_2_2"
 
 
-    // $ANTLR start rule__VariableDeclaration__InitValueAssignment_3_1_2
+    // $ANTLR start "rule__VariableDeclaration__InitValueAssignment_3_1_2"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6721:1: rule__VariableDeclaration__InitValueAssignment_3_1_2 : ( ruleExpression ) ;
     public final void rule__VariableDeclaration__InitValueAssignment_3_1_2() throws RecognitionException {
 
@@ -17764,7 +18170,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getVariableDeclarationAccess().getInitValueExpressionParserRuleCall_3_1_2_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__VariableDeclaration__InitValueAssignment_3_1_213662);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getVariableDeclarationAccess().getInitValueExpressionParserRuleCall_3_1_2_0()); 
 
@@ -17785,10 +18192,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__InitValueAssignment_3_1_2
+    // $ANTLR end "rule__VariableDeclaration__InitValueAssignment_3_1_2"
 
 
-    // $ANTLR start rule__DataTypeName__PathAssignment_0
+    // $ANTLR start "rule__DataTypeName__PathAssignment_0"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6736:1: rule__DataTypeName__PathAssignment_0 : ( ruleQualifiedName ) ;
     public final void rule__DataTypeName__PathAssignment_0() throws RecognitionException {
 
@@ -17804,7 +18211,8 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
              before(grammarAccess.getDataTypeNameAccess().getPathQualifiedNameParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__DataTypeName__PathAssignment_013693);
             ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDataTypeNameAccess().getPathQualifiedNameParserRuleCall_0_0()); 
 
@@ -17825,10 +18233,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DataTypeName__PathAssignment_0
+    // $ANTLR end "rule__DataTypeName__PathAssignment_0"
 
 
-    // $ANTLR start rule__DataTypeName__TypeAssignment_1
+    // $ANTLR start "rule__DataTypeName__TypeAssignment_1"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6751:1: rule__DataTypeName__TypeAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__DataTypeName__TypeAssignment_1() throws RecognitionException {
 
@@ -17870,10 +18278,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DataTypeName__TypeAssignment_1
+    // $ANTLR end "rule__DataTypeName__TypeAssignment_1"
 
 
-    // $ANTLR start rule__IntegerLiteralRule__ValueAssignment
+    // $ANTLR start "rule__IntegerLiteralRule__ValueAssignment"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6770:1: rule__IntegerLiteralRule__ValueAssignment : ( RULE_INTEGERLITERAL ) ;
     public final void rule__IntegerLiteralRule__ValueAssignment() throws RecognitionException {
 
@@ -17907,10 +18315,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__IntegerLiteralRule__ValueAssignment
+    // $ANTLR end "rule__IntegerLiteralRule__ValueAssignment"
 
 
-    // $ANTLR start rule__UnlimitedLiteralRule__ValueAssignment
+    // $ANTLR start "rule__UnlimitedLiteralRule__ValueAssignment"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6785:1: rule__UnlimitedLiteralRule__ValueAssignment : ( ( '*' ) ) ;
     public final void rule__UnlimitedLiteralRule__ValueAssignment() throws RecognitionException {
 
@@ -17952,10 +18360,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__UnlimitedLiteralRule__ValueAssignment
+    // $ANTLR end "rule__UnlimitedLiteralRule__ValueAssignment"
 
 
-    // $ANTLR start rule__RealLiteralRule__ValueAssignment
+    // $ANTLR start "rule__RealLiteralRule__ValueAssignment"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6808:1: rule__RealLiteralRule__ValueAssignment : ( RULE_REALLITERAL ) ;
     public final void rule__RealLiteralRule__ValueAssignment() throws RecognitionException {
 
@@ -17989,10 +18397,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__RealLiteralRule__ValueAssignment
+    // $ANTLR end "rule__RealLiteralRule__ValueAssignment"
 
 
-    // $ANTLR start rule__DateTimeLiteralRule__ValueAssignment
+    // $ANTLR start "rule__DateTimeLiteralRule__ValueAssignment"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6823:1: rule__DateTimeLiteralRule__ValueAssignment : ( RULE_DATETIMELITERAL ) ;
     public final void rule__DateTimeLiteralRule__ValueAssignment() throws RecognitionException {
 
@@ -18026,10 +18434,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DateTimeLiteralRule__ValueAssignment
+    // $ANTLR end "rule__DateTimeLiteralRule__ValueAssignment"
 
 
-    // $ANTLR start rule__BooleanLiteralRule__ValueAssignment
+    // $ANTLR start "rule__BooleanLiteralRule__ValueAssignment"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6838:1: rule__BooleanLiteralRule__ValueAssignment : ( RULE_BOOLEANLITERAL ) ;
     public final void rule__BooleanLiteralRule__ValueAssignment() throws RecognitionException {
 
@@ -18063,10 +18471,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__BooleanLiteralRule__ValueAssignment
+    // $ANTLR end "rule__BooleanLiteralRule__ValueAssignment"
 
 
-    // $ANTLR start rule__NullLiteralRule__ValueAssignment
+    // $ANTLR start "rule__NullLiteralRule__ValueAssignment"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6853:1: rule__NullLiteralRule__ValueAssignment : ( RULE_NULLLITERAL ) ;
     public final void rule__NullLiteralRule__ValueAssignment() throws RecognitionException {
 
@@ -18100,10 +18508,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__NullLiteralRule__ValueAssignment
+    // $ANTLR end "rule__NullLiteralRule__ValueAssignment"
 
 
-    // $ANTLR start rule__DefaultLiteralRule__ValueAssignment
+    // $ANTLR start "rule__DefaultLiteralRule__ValueAssignment"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6868:1: rule__DefaultLiteralRule__ValueAssignment : ( ( '/' ) ) ;
     public final void rule__DefaultLiteralRule__ValueAssignment() throws RecognitionException {
 
@@ -18145,10 +18553,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__DefaultLiteralRule__ValueAssignment
+    // $ANTLR end "rule__DefaultLiteralRule__ValueAssignment"
 
 
-    // $ANTLR start rule__StringLiteralRule__ValueAssignment
+    // $ANTLR start "rule__StringLiteralRule__ValueAssignment"
     // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6891:1: rule__StringLiteralRule__ValueAssignment : ( RULE_STRING ) ;
     public final void rule__StringLiteralRule__ValueAssignment() throws RecognitionException {
 
@@ -18182,9 +18590,74 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
         }
         return ;
     }
-    // $ANTLR end rule__StringLiteralRule__ValueAssignment
+    // $ANTLR end "rule__StringLiteralRule__ValueAssignment"
+
+    // Delegated rules
 
 
+    protected DFA9 dfa9 = new DFA9(this);
+    static final String DFA9_eotS =
+        "\13\uffff";
+    static final String DFA9_eofS =
+        "\13\uffff";
+    static final String DFA9_minS =
+        "\1\4\3\uffff\1\4\4\uffff\1\20\1\uffff";
+    static final String DFA9_maxS =
+        "\1\62\3\uffff\1\62\4\uffff\1\63\1\uffff";
+    static final String DFA9_acceptS =
+        "\1\uffff\1\1\1\2\1\3\1\uffff\1\6\1\7\1\10\1\4\1\uffff\1\5";
+    static final String DFA9_specialS =
+        "\13\uffff}>";
+    static final String[] DFA9_transitionS = {
+            "\1\2\6\1\20\uffff\2\1\2\uffff\2\3\3\6\2\uffff\1\7\3\uffff\1"+
+            "\4\3\uffff\1\5\1\uffff\2\5\1\6",
+            "",
+            "",
+            "",
+            "\1\11\6\10\16\uffff\4\10\1\uffff\6\10\2\uffff\1\10\3\uffff"+
+            "\1\10\3\uffff\1\10\1\uffff\3\10",
+            "",
+            "",
+            "",
+            "",
+            "\16\10\7\uffff\2\10\1\uffff\1\10\2\uffff\2\10\1\12\5\uffff"+
+            "\1\10",
+            ""
+    };
+
+    static final short[] DFA9_eot = DFA.unpackEncodedString(DFA9_eotS);
+    static final short[] DFA9_eof = DFA.unpackEncodedString(DFA9_eofS);
+    static final char[] DFA9_min = DFA.unpackEncodedStringToUnsignedChars(DFA9_minS);
+    static final char[] DFA9_max = DFA.unpackEncodedStringToUnsignedChars(DFA9_maxS);
+    static final short[] DFA9_accept = DFA.unpackEncodedString(DFA9_acceptS);
+    static final short[] DFA9_special = DFA.unpackEncodedString(DFA9_specialS);
+    static final short[][] DFA9_transition;
+
+    static {
+        int numStates = DFA9_transitionS.length;
+        DFA9_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA9_transition[i] = DFA.unpackEncodedString(DFA9_transitionS[i]);
+        }
+    }
+
+    class DFA9 extends DFA {
+
+        public DFA9(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 9;
+            this.eot = DFA9_eot;
+            this.eof = DFA9_eof;
+            this.min = DFA9_min;
+            this.max = DFA9_max;
+            this.accept = DFA9_accept;
+            this.special = DFA9_special;
+            this.transition = DFA9_transition;
+        }
+        public String getDescription() {
+            return "1455:1: rule__ValueSpecification__Alternatives : ( ( ruleLiteral ) | ( ruleNameOrChoiceOrBehaviorCall ) | ( ruleInterval ) | ( ruleCollectionOrTuple ) | ( ruleTuple ) | ( ruleTimeExpression ) | ( ruleVariableDeclaration ) | ( ( rule__ValueSpecification__Group_7__0 ) ) );";
+        }
+    }
  
 
     public static final BitSet FOLLOW_ruleConstraintRule_in_entryRuleConstraintRule61 = new BitSet(new long[]{0x0000000000000000L});
@@ -18363,7 +18836,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_ruleIntegerLiteralRule_in_rule__NumberLiteralRule__Alternatives3688 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnlimitedLiteralRule_in_rule__NumberLiteralRule__Alternatives3705 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRealLiteralRule_in_rule__NumberLiteralRule__Alternatives3722 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AndOrXorExpression__Group__0__Impl_in_rule__AndOrXorExpression__Group__03752 = new BitSet(new long[]{0x0000000000070002L});
+    public static final BitSet FOLLOW_rule__AndOrXorExpression__Group__0__Impl_in_rule__AndOrXorExpression__Group__03752 = new BitSet(new long[]{0x0000000000070000L});
     public static final BitSet FOLLOW_rule__AndOrXorExpression__Group__1_in_rule__AndOrXorExpression__Group__03755 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AndOrXorExpression__ExpAssignment_0_in_rule__AndOrXorExpression__Group__0__Impl3782 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AndOrXorExpression__Group__1__Impl_in_rule__AndOrXorExpression__Group__13812 = new BitSet(new long[]{0x0000000000000002L});
@@ -18373,7 +18846,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_rule__AndOrXorExpression__OpAssignment_1_0_in_rule__AndOrXorExpression__Group_1__0__Impl3904 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AndOrXorExpression__Group_1__1__Impl_in_rule__AndOrXorExpression__Group_1__13934 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AndOrXorExpression__ExpAssignment_1_1_in_rule__AndOrXorExpression__Group_1__1__Impl3961 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EqualityExpression__Group__0__Impl_in_rule__EqualityExpression__Group__03995 = new BitSet(new long[]{0x0000000000180002L});
+    public static final BitSet FOLLOW_rule__EqualityExpression__Group__0__Impl_in_rule__EqualityExpression__Group__03995 = new BitSet(new long[]{0x0000000000180000L});
     public static final BitSet FOLLOW_rule__EqualityExpression__Group__1_in_rule__EqualityExpression__Group__03998 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__EqualityExpression__ExpAssignment_0_in_rule__EqualityExpression__Group__0__Impl4025 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__EqualityExpression__Group__1__Impl_in_rule__EqualityExpression__Group__14055 = new BitSet(new long[]{0x0000000000000002L});
@@ -18383,7 +18856,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_rule__EqualityExpression__OpAssignment_1_0_in_rule__EqualityExpression__Group_1__0__Impl4147 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__EqualityExpression__Group_1__1__Impl_in_rule__EqualityExpression__Group_1__14177 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__EqualityExpression__ExpAssignment_1_1_in_rule__EqualityExpression__Group_1__1__Impl4204 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RelationalExpression__Group__0__Impl_in_rule__RelationalExpression__Group__04238 = new BitSet(new long[]{0x0000000001E00002L});
+    public static final BitSet FOLLOW_rule__RelationalExpression__Group__0__Impl_in_rule__RelationalExpression__Group__04238 = new BitSet(new long[]{0x0000000001E00000L});
     public static final BitSet FOLLOW_rule__RelationalExpression__Group__1_in_rule__RelationalExpression__Group__04241 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RelationalExpression__ExpAssignment_0_in_rule__RelationalExpression__Group__0__Impl4268 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RelationalExpression__Group__1__Impl_in_rule__RelationalExpression__Group__14298 = new BitSet(new long[]{0x0000000000000002L});
@@ -18393,7 +18866,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_rule__RelationalExpression__OpAssignment_1_0_in_rule__RelationalExpression__Group_1__0__Impl4390 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RelationalExpression__Group_1__1__Impl_in_rule__RelationalExpression__Group_1__14420 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RelationalExpression__ExpAssignment_1_1_in_rule__RelationalExpression__Group_1__1__Impl4447 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConditionalExpression__Group__0__Impl_in_rule__ConditionalExpression__Group__04481 = new BitSet(new long[]{0x0008000000000002L});
+    public static final BitSet FOLLOW_rule__ConditionalExpression__Group__0__Impl_in_rule__ConditionalExpression__Group__04481 = new BitSet(new long[]{0x0008000000000000L});
     public static final BitSet FOLLOW_rule__ConditionalExpression__Group__1_in_rule__ConditionalExpression__Group__04484 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConditionalExpression__ExpAssignment_0_in_rule__ConditionalExpression__Group__0__Impl4511 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConditionalExpression__Group__1__Impl_in_rule__ConditionalExpression__Group__14541 = new BitSet(new long[]{0x0000000000000002L});
@@ -18409,7 +18882,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_36_in_rule__ConditionalExpression__Group_1__2__Impl4754 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConditionalExpression__Group_1__3__Impl_in_rule__ConditionalExpression__Group_1__34785 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConditionalExpression__ExpAssignment_1_3_in_rule__ConditionalExpression__Group_1__3__Impl4812 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AdditiveExpression__Group__0__Impl_in_rule__AdditiveExpression__Group__04850 = new BitSet(new long[]{0x0000000006000002L});
+    public static final BitSet FOLLOW_rule__AdditiveExpression__Group__0__Impl_in_rule__AdditiveExpression__Group__04850 = new BitSet(new long[]{0x0000000006000000L});
     public static final BitSet FOLLOW_rule__AdditiveExpression__Group__1_in_rule__AdditiveExpression__Group__04853 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AdditiveExpression__ExpAssignment_0_in_rule__AdditiveExpression__Group__0__Impl4880 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AdditiveExpression__Group__1__Impl_in_rule__AdditiveExpression__Group__14910 = new BitSet(new long[]{0x0000000000000002L});
@@ -18419,7 +18892,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_rule__AdditiveExpression__OpAssignment_1_0_in_rule__AdditiveExpression__Group_1__0__Impl5002 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AdditiveExpression__Group_1__1__Impl_in_rule__AdditiveExpression__Group_1__15032 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AdditiveExpression__ExpAssignment_1_1_in_rule__AdditiveExpression__Group_1__1__Impl5059 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MultiplicativeExpression__Group__0__Impl_in_rule__MultiplicativeExpression__Group__05093 = new BitSet(new long[]{0x0000000038000002L});
+    public static final BitSet FOLLOW_rule__MultiplicativeExpression__Group__0__Impl_in_rule__MultiplicativeExpression__Group__05093 = new BitSet(new long[]{0x0000000038000000L});
     public static final BitSet FOLLOW_rule__MultiplicativeExpression__Group__1_in_rule__MultiplicativeExpression__Group__05096 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MultiplicativeExpression__ExpAssignment_0_in_rule__MultiplicativeExpression__Group__0__Impl5123 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MultiplicativeExpression__Group__1__Impl_in_rule__MultiplicativeExpression__Group__15153 = new BitSet(new long[]{0x0000000000000002L});
@@ -18434,7 +18907,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_rule__UnaryExpression__OpAssignment_0_0_in_rule__UnaryExpression__Group_0__0__Impl5366 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__UnaryExpression__Group_0__1__Impl_in_rule__UnaryExpression__Group_0__15396 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__UnaryExpression__UnaryAssignment_0_1_in_rule__UnaryExpression__Group_0__1__Impl5423 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PrimaryExpression__Group__0__Impl_in_rule__PrimaryExpression__Group__05457 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_rule__PrimaryExpression__Group__0__Impl_in_rule__PrimaryExpression__Group__05457 = new BitSet(new long[]{0x0000002000000000L});
     public static final BitSet FOLLOW_rule__PrimaryExpression__Group__1_in_rule__PrimaryExpression__Group__05460 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PrimaryExpression__PrefixAssignment_0_in_rule__PrimaryExpression__Group__0__Impl5487 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PrimaryExpression__Group__1__Impl_in_rule__PrimaryExpression__Group__15517 = new BitSet(new long[]{0x0000000000000002L});
@@ -18452,7 +18925,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_ruleExpression_in_rule__ValueSpecification__Group_7__1__Impl5794 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ValueSpecification__Group_7__2__Impl_in_rule__ValueSpecification__Group_7__25823 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_39_in_rule__ValueSpecification__Group_7__2__Impl5851 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyCallExpression__Group__0__Impl_in_rule__PropertyCallExpression__Group__05888 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_rule__PropertyCallExpression__Group__0__Impl_in_rule__PropertyCallExpression__Group__05888 = new BitSet(new long[]{0x0000002000000000L});
     public static final BitSet FOLLOW_rule__PropertyCallExpression__Group__1_in_rule__PropertyCallExpression__Group__05891 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PropertyCallExpression__PropertyAssignment_0_in_rule__PropertyCallExpression__Group__0__Impl5918 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PropertyCallExpression__Group__1__Impl_in_rule__PropertyCallExpression__Group__15948 = new BitSet(new long[]{0x0000000000000002L});
@@ -18468,10 +18941,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_rule__OperationCallExpression__Group__1__Impl_in_rule__OperationCallExpression__Group__16193 = new BitSet(new long[]{0x000744CFDE0007F0L});
     public static final BitSet FOLLOW_rule__OperationCallExpression__Group__2_in_rule__OperationCallExpression__Group__16196 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_38_in_rule__OperationCallExpression__Group__1__Impl6224 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__OperationCallExpression__Group__2__Impl_in_rule__OperationCallExpression__Group__26255 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_rule__OperationCallExpression__Group__2__Impl_in_rule__OperationCallExpression__Group__26255 = new BitSet(new long[]{0x000744CFDE0007F0L});
     public static final BitSet FOLLOW_rule__OperationCallExpression__Group__3_in_rule__OperationCallExpression__Group__26258 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__OperationCallExpression__ArgumentsAssignment_2_in_rule__OperationCallExpression__Group__2__Impl6285 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__OperationCallExpression__Group__3__Impl_in_rule__OperationCallExpression__Group__36316 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_rule__OperationCallExpression__Group__3__Impl_in_rule__OperationCallExpression__Group__36316 = new BitSet(new long[]{0x0000002000000000L});
     public static final BitSet FOLLOW_rule__OperationCallExpression__Group__4_in_rule__OperationCallExpression__Group__36319 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_39_in_rule__OperationCallExpression__Group__3__Impl6347 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__OperationCallExpression__Group__4__Impl_in_rule__OperationCallExpression__Group__46378 = new BitSet(new long[]{0x0000000000000002L});
@@ -18484,7 +18957,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__0__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group__06569 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__1_in_rule__NameOrChoiceOrBehaviorCall__Group__06572 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__PathAssignment_0_in_rule__NameOrChoiceOrBehaviorCall__Group__0__Impl6599 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__1__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group__16630 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__1__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group__16630 = new BitSet(new long[]{0x0000004000000000L});
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__2_in_rule__NameOrChoiceOrBehaviorCall__Group__16633 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__IdAssignment_1_in_rule__NameOrChoiceOrBehaviorCall__Group__1__Impl6660 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__2__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group__26690 = new BitSet(new long[]{0x0000000000000002L});
@@ -18492,7 +18965,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group_2__06754 = new BitSet(new long[]{0x000744CFDE0007F0L});
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__1_in_rule__NameOrChoiceOrBehaviorCall__Group_2__06757 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_38_in_rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl6785 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group_2__16816 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group_2__16816 = new BitSet(new long[]{0x000744CFDE0007F0L});
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__2_in_rule__NameOrChoiceOrBehaviorCall__Group_2__16819 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1_in_rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl6846 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group_2__26877 = new BitSet(new long[]{0x0000000000000002L});
@@ -18500,7 +18973,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__06942 = new BitSet(new long[]{0x0000010000000000L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__06945 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__PathAssignment_0_in_rule__QualifiedName__Group__0__Impl6972 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__17002 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__17002 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__2_in_rule__QualifiedName__Group__17005 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_40_in_rule__QualifiedName__Group__1__Impl7033 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__2__Impl_in_rule__QualifiedName__Group__27064 = new BitSet(new long[]{0x0000000000000002L});
@@ -18535,7 +19008,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_rule__Tuple__ListOfValueNamePairsAssignment_1_in_rule__Tuple__Group__1__Impl7716 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Tuple__Group__2__Impl_in_rule__Tuple__Group__27746 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_43_in_rule__Tuple__Group__2__Impl7774 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ListOfValues__Group__0__Impl_in_rule__ListOfValues__Group__07811 = new BitSet(new long[]{0x0000100000000002L});
+    public static final BitSet FOLLOW_rule__ListOfValues__Group__0__Impl_in_rule__ListOfValues__Group__07811 = new BitSet(new long[]{0x0000100000000000L});
     public static final BitSet FOLLOW_rule__ListOfValues__Group__1_in_rule__ListOfValues__Group__07814 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ListOfValues__ValuesAssignment_0_in_rule__ListOfValues__Group__0__Impl7841 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ListOfValues__Group__1__Impl_in_rule__ListOfValues__Group__17871 = new BitSet(new long[]{0x0000000000000002L});
@@ -18545,7 +19018,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_44_in_rule__ListOfValues__Group_1__0__Impl7964 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ListOfValues__Group_1__1__Impl_in_rule__ListOfValues__Group_1__17995 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ListOfValues__ValuesAssignment_1_1_in_rule__ListOfValues__Group_1__1__Impl8022 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ListOfValueNamePairs__Group__0__Impl_in_rule__ListOfValueNamePairs__Group__08056 = new BitSet(new long[]{0x0000100000000002L});
+    public static final BitSet FOLLOW_rule__ListOfValueNamePairs__Group__0__Impl_in_rule__ListOfValueNamePairs__Group__08056 = new BitSet(new long[]{0x0000100000000000L});
     public static final BitSet FOLLOW_rule__ListOfValueNamePairs__Group__1_in_rule__ListOfValueNamePairs__Group__08059 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ListOfValueNamePairs__ValueNamePairsAssignment_0_in_rule__ListOfValueNamePairs__Group__0__Impl8086 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ListOfValueNamePairs__Group__1__Impl_in_rule__ListOfValueNamePairs__Group__18116 = new BitSet(new long[]{0x0000000000000002L});
@@ -18566,10 +19039,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_rule__InstantObsExpression__Group__0__Impl_in_rule__InstantObsExpression__Group__08486 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__InstantObsExpression__Group__1_in_rule__InstantObsExpression__Group__08489 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_46_in_rule__InstantObsExpression__Group__0__Impl8517 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstantObsExpression__Group__1__Impl_in_rule__InstantObsExpression__Group__18548 = new BitSet(new long[]{0x0000804000000002L});
+    public static final BitSet FOLLOW_rule__InstantObsExpression__Group__1__Impl_in_rule__InstantObsExpression__Group__18548 = new BitSet(new long[]{0x0000804000000000L});
     public static final BitSet FOLLOW_rule__InstantObsExpression__Group__2_in_rule__InstantObsExpression__Group__18551 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__InstantObsExpression__IdAssignment_1_in_rule__InstantObsExpression__Group__1__Impl8578 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstantObsExpression__Group__2__Impl_in_rule__InstantObsExpression__Group__28608 = new BitSet(new long[]{0x0000800000000002L});
+    public static final BitSet FOLLOW_rule__InstantObsExpression__Group__2__Impl_in_rule__InstantObsExpression__Group__28608 = new BitSet(new long[]{0x0000804000000000L});
     public static final BitSet FOLLOW_rule__InstantObsExpression__Group__3_in_rule__InstantObsExpression__Group__28611 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__InstantObsExpression__Group_2__0_in_rule__InstantObsExpression__Group__2__Impl8638 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__InstantObsExpression__Group__3__Impl_in_rule__InstantObsExpression__Group__38669 = new BitSet(new long[]{0x0000000000000002L});
@@ -18601,10 +19074,10 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_rule__DurationObsExpression__Group__0__Impl_in_rule__DurationObsExpression__Group__09295 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__DurationObsExpression__Group__1_in_rule__DurationObsExpression__Group__09298 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_48_in_rule__DurationObsExpression__Group__0__Impl9326 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DurationObsExpression__Group__1__Impl_in_rule__DurationObsExpression__Group__19357 = new BitSet(new long[]{0x0000804000000002L});
+    public static final BitSet FOLLOW_rule__DurationObsExpression__Group__1__Impl_in_rule__DurationObsExpression__Group__19357 = new BitSet(new long[]{0x0000804000000000L});
     public static final BitSet FOLLOW_rule__DurationObsExpression__Group__2_in_rule__DurationObsExpression__Group__19360 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DurationObsExpression__IdAssignment_1_in_rule__DurationObsExpression__Group__1__Impl9387 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DurationObsExpression__Group__2__Impl_in_rule__DurationObsExpression__Group__29417 = new BitSet(new long[]{0x0000800000000002L});
+    public static final BitSet FOLLOW_rule__DurationObsExpression__Group__2__Impl_in_rule__DurationObsExpression__Group__29417 = new BitSet(new long[]{0x0000804000000000L});
     public static final BitSet FOLLOW_rule__DurationObsExpression__Group__3_in_rule__DurationObsExpression__Group__29420 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DurationObsExpression__Group_2__0_in_rule__DurationObsExpression__Group__2__Impl9447 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DurationObsExpression__Group__3__Impl_in_rule__DurationObsExpression__Group__39478 = new BitSet(new long[]{0x0000000000000002L});
@@ -18639,7 +19112,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_rule__JitterExp__Group__1__Impl_in_rule__JitterExp__Group__110166 = new BitSet(new long[]{0x0000008004000000L});
     public static final BitSet FOLLOW_rule__JitterExp__Group__2_in_rule__JitterExp__Group__110169 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__JitterExp__FirstInstantAssignment_1_in_rule__JitterExp__Group__1__Impl10196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__JitterExp__Group__2__Impl_in_rule__JitterExp__Group__210226 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_rule__JitterExp__Group__2__Impl_in_rule__JitterExp__Group__210226 = new BitSet(new long[]{0x0000008004000000L});
     public static final BitSet FOLLOW_rule__JitterExp__Group__3_in_rule__JitterExp__Group__210229 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__JitterExp__Group_2__0_in_rule__JitterExp__Group__2__Impl10256 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__JitterExp__Group__3__Impl_in_rule__JitterExp__Group__310287 = new BitSet(new long[]{0x0000000000000002L});
@@ -18649,7 +19122,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_26_in_rule__JitterExp__Group_2__0__Impl10385 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__JitterExp__Group_2__1__Impl_in_rule__JitterExp__Group_2__110416 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__JitterExp__SecondInstantAssignment_2_1_in_rule__JitterExp__Group_2__1__Impl10443 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableDeclaration__Group__0__Impl_in_rule__VariableDeclaration__Group__010477 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_rule__VariableDeclaration__Group__0__Impl_in_rule__VariableDeclaration__Group__010477 = new BitSet(new long[]{0x0004000E00000000L});
     public static final BitSet FOLLOW_rule__VariableDeclaration__Group__1_in_rule__VariableDeclaration__Group__010480 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__VariableDeclaration__VariableDeclarationAssignment_0_in_rule__VariableDeclaration__Group__0__Impl10507 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__VariableDeclaration__Group__1__Impl_in_rule__VariableDeclaration__Group__110538 = new BitSet(new long[]{0x0000000000000010L});
@@ -18663,7 +19136,7 @@ public class InternalConstraintWithVSLlParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_rule__VariableDeclaration__Group_3_0__0__Impl_in_rule__VariableDeclaration__Group_3_0__010725 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__VariableDeclaration__Group_3_0__1_in_rule__VariableDeclaration__Group_3_0__010728 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_36_in_rule__VariableDeclaration__Group_3_0__0__Impl10756 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableDeclaration__Group_3_0__1__Impl_in_rule__VariableDeclaration__Group_3_0__110787 = new BitSet(new long[]{0x0000200000000002L});
+    public static final BitSet FOLLOW_rule__VariableDeclaration__Group_3_0__1__Impl_in_rule__VariableDeclaration__Group_3_0__110787 = new BitSet(new long[]{0x0000200000000000L});
     public static final BitSet FOLLOW_rule__VariableDeclaration__Group_3_0__2_in_rule__VariableDeclaration__Group_3_0__110790 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__VariableDeclaration__TypeAssignment_3_0_1_in_rule__VariableDeclaration__Group_3_0__1__Impl10817 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__VariableDeclaration__Group_3_0__2__Impl_in_rule__VariableDeclaration__Group_3_0__210847 = new BitSet(new long[]{0x0000000000000002L});

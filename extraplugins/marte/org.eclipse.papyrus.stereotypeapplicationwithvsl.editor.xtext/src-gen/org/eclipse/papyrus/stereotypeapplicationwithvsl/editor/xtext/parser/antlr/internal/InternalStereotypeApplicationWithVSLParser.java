@@ -1,30 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.parser.antlr.internal; 
 
-import java.io.InputStream;
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.parser.*;
 import org.eclipse.xtext.parser.impl.*;
-import org.eclipse.xtext.parsetree.*;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.parser.antlr.AntlrDatatypeRuleToken;
-import org.eclipse.xtext.conversion.ValueConverterException;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.services.StereotypeApplicationWithVSLGrammarAccess;
 
 
@@ -39,43 +23,82 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INTEGERLITERAL", "RULE_REALLITERAL", "RULE_DATETIMELITERAL", "RULE_BOOLEANLITERAL", "RULE_NULLLITERAL", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'<<'", "'>>'", "','", "'='", "'and'", "'or'", "'xor'", "'=='", "'<>'", "'<'", "'>'", "'<='", "'>='", "'?'", "':'", "'+'", "'-'", "'*'", "'/'", "'mod'", "'not'", "'.'", "'('", "')'", "'::'", "']'", "'['", "'..'", "'{'", "'}'", "'@'", "'when'", "'&'", "'jitter('", "'$'", "'in'", "'out'", "'inout'"
     };
-    public static final int RULE_NULLLITERAL=9;
     public static final int RULE_DATETIMELITERAL=7;
-    public static final int RULE_BOOLEANLITERAL=8;
     public static final int RULE_ID=4;
-    public static final int RULE_STRING=10;
+    public static final int T__29=29;
+    public static final int T__28=28;
+    public static final int T__27=27;
+    public static final int T__26=26;
+    public static final int T__25=25;
+    public static final int T__24=24;
+    public static final int T__23=23;
+    public static final int T__22=22;
     public static final int RULE_ANY_OTHER=15;
+    public static final int T__21=21;
+    public static final int T__20=20;
     public static final int RULE_REALLITERAL=6;
-    public static final int RULE_INTEGERLITERAL=5;
-    public static final int RULE_INT=11;
-    public static final int RULE_WS=14;
-    public static final int RULE_SL_COMMENT=13;
     public static final int EOF=-1;
+    public static final int RULE_BOOLEANLITERAL=8;
+    public static final int T__19=19;
+    public static final int T__16=16;
+    public static final int T__51=51;
+    public static final int T__52=52;
+    public static final int T__18=18;
+    public static final int T__53=53;
+    public static final int T__17=17;
+    public static final int RULE_INT=11;
+    public static final int T__50=50;
+    public static final int RULE_NULLLITERAL=9;
+    public static final int T__42=42;
+    public static final int T__43=43;
+    public static final int T__40=40;
+    public static final int T__41=41;
+    public static final int T__46=46;
+    public static final int T__47=47;
+    public static final int T__44=44;
+    public static final int T__45=45;
+    public static final int T__48=48;
+    public static final int T__49=49;
+    public static final int RULE_INTEGERLITERAL=5;
+    public static final int RULE_SL_COMMENT=13;
     public static final int RULE_ML_COMMENT=12;
+    public static final int T__30=30;
+    public static final int T__31=31;
+    public static final int RULE_STRING=10;
+    public static final int T__32=32;
+    public static final int T__33=33;
+    public static final int T__34=34;
+    public static final int T__35=35;
+    public static final int T__36=36;
+    public static final int T__37=37;
+    public static final int T__38=38;
+    public static final int T__39=39;
+    public static final int RULE_WS=14;
+
+    // delegates
+    // delegators
+
 
         public InternalStereotypeApplicationWithVSLParser(TokenStream input) {
-            super(input);
+            this(input, new RecognizerSharedState());
+        }
+        public InternalStereotypeApplicationWithVSLParser(TokenStream input, RecognizerSharedState state) {
+            super(input, state);
+             
         }
         
 
-    public String[] getTokenNames() { return tokenNames; }
+    public String[] getTokenNames() { return InternalStereotypeApplicationWithVSLParser.tokenNames; }
     public String getGrammarFileName() { return "../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g"; }
 
 
 
      	private StereotypeApplicationWithVSLGrammarAccess grammarAccess;
      	
-        public InternalStereotypeApplicationWithVSLParser(TokenStream input, IAstFactory factory, StereotypeApplicationWithVSLGrammarAccess grammarAccess) {
+        public InternalStereotypeApplicationWithVSLParser(TokenStream input, StereotypeApplicationWithVSLGrammarAccess grammarAccess) {
             this(input);
-            this.factory = factory;
-            registerRules(grammarAccess.getGrammar());
             this.grammarAccess = grammarAccess;
-        }
-        
-        @Override
-        protected InputStream getTokenFile() {
-        	ClassLoader classLoader = getClass().getClassLoader();
-        	return classLoader.getResourceAsStream("org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.tokens");
+            registerRules(grammarAccess.getGrammar());
         }
         
         @Override
@@ -90,8 +113,8 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
 
-    // $ANTLR start entryRuleStereotypeApplicationsRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:77:1: entryRuleStereotypeApplicationsRule returns [EObject current=null] : iv_ruleStereotypeApplicationsRule= ruleStereotypeApplicationsRule EOF ;
+    // $ANTLR start "entryRuleStereotypeApplicationsRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:67:1: entryRuleStereotypeApplicationsRule returns [EObject current=null] : iv_ruleStereotypeApplicationsRule= ruleStereotypeApplicationsRule EOF ;
     public final EObject entryRuleStereotypeApplicationsRule() throws RecognitionException {
         EObject current = null;
 
@@ -99,13 +122,14 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:78:2: (iv_ruleStereotypeApplicationsRule= ruleStereotypeApplicationsRule EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:79:2: iv_ruleStereotypeApplicationsRule= ruleStereotypeApplicationsRule EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:68:2: (iv_ruleStereotypeApplicationsRule= ruleStereotypeApplicationsRule EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:69:2: iv_ruleStereotypeApplicationsRule= ruleStereotypeApplicationsRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getStereotypeApplicationsRuleRule(), currentNode); 
+             newCompositeNode(grammarAccess.getStereotypeApplicationsRuleRule()); 
             pushFollow(FOLLOW_ruleStereotypeApplicationsRule_in_entryRuleStereotypeApplicationsRule75);
             iv_ruleStereotypeApplicationsRule=ruleStereotypeApplicationsRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleStereotypeApplicationsRule; 
             match(input,EOF,FOLLOW_EOF_in_entryRuleStereotypeApplicationsRule85); 
@@ -122,24 +146,24 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleStereotypeApplicationsRule
+    // $ANTLR end "entryRuleStereotypeApplicationsRule"
 
 
-    // $ANTLR start ruleStereotypeApplicationsRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:86:1: ruleStereotypeApplicationsRule returns [EObject current=null] : ( (lv_stereotypeApplications_0_0= ruleStereotypeApplicationRule ) )* ;
+    // $ANTLR start "ruleStereotypeApplicationsRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:76:1: ruleStereotypeApplicationsRule returns [EObject current=null] : ( (lv_stereotypeApplications_0_0= ruleStereotypeApplicationRule ) )* ;
     public final EObject ruleStereotypeApplicationsRule() throws RecognitionException {
         EObject current = null;
 
         EObject lv_stereotypeApplications_0_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:91:6: ( ( (lv_stereotypeApplications_0_0= ruleStereotypeApplicationRule ) )* )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:92:1: ( (lv_stereotypeApplications_0_0= ruleStereotypeApplicationRule ) )*
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:79:28: ( ( (lv_stereotypeApplications_0_0= ruleStereotypeApplicationRule ) )* )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:80:1: ( (lv_stereotypeApplications_0_0= ruleStereotypeApplicationRule ) )*
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:92:1: ( (lv_stereotypeApplications_0_0= ruleStereotypeApplicationRule ) )*
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:80:1: ( (lv_stereotypeApplications_0_0= ruleStereotypeApplicationRule ) )*
             loop1:
             do {
                 int alt1=2;
@@ -152,34 +176,29 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                 switch (alt1) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:93:1: (lv_stereotypeApplications_0_0= ruleStereotypeApplicationRule )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:81:1: (lv_stereotypeApplications_0_0= ruleStereotypeApplicationRule )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:93:1: (lv_stereotypeApplications_0_0= ruleStereotypeApplicationRule )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:94:3: lv_stereotypeApplications_0_0= ruleStereotypeApplicationRule
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:81:1: (lv_stereotypeApplications_0_0= ruleStereotypeApplicationRule )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:82:3: lv_stereotypeApplications_0_0= ruleStereotypeApplicationRule
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getStereotypeApplicationsRuleAccess().getStereotypeApplicationsStereotypeApplicationRuleParserRuleCall_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getStereotypeApplicationsRuleAccess().getStereotypeApplicationsStereotypeApplicationRuleParserRuleCall_0()); 
             	    	    
             	    pushFollow(FOLLOW_ruleStereotypeApplicationRule_in_ruleStereotypeApplicationsRule130);
             	    lv_stereotypeApplications_0_0=ruleStereotypeApplicationRule();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getStereotypeApplicationsRuleRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getStereotypeApplicationsRuleRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"stereotypeApplications",
-            	    	        		lv_stereotypeApplications_0_0, 
-            	    	        		"StereotypeApplicationRule", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"stereotypeApplications",
+            	            		lv_stereotypeApplications_0_0, 
+            	            		"StereotypeApplicationRule");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -196,9 +215,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -209,11 +226,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleStereotypeApplicationsRule
+    // $ANTLR end "ruleStereotypeApplicationsRule"
 
 
-    // $ANTLR start entryRuleStereotypeApplicationRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:124:1: entryRuleStereotypeApplicationRule returns [EObject current=null] : iv_ruleStereotypeApplicationRule= ruleStereotypeApplicationRule EOF ;
+    // $ANTLR start "entryRuleStereotypeApplicationRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:106:1: entryRuleStereotypeApplicationRule returns [EObject current=null] : iv_ruleStereotypeApplicationRule= ruleStereotypeApplicationRule EOF ;
     public final EObject entryRuleStereotypeApplicationRule() throws RecognitionException {
         EObject current = null;
 
@@ -221,13 +238,14 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:125:2: (iv_ruleStereotypeApplicationRule= ruleStereotypeApplicationRule EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:126:2: iv_ruleStereotypeApplicationRule= ruleStereotypeApplicationRule EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:107:2: (iv_ruleStereotypeApplicationRule= ruleStereotypeApplicationRule EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:108:2: iv_ruleStereotypeApplicationRule= ruleStereotypeApplicationRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getStereotypeApplicationRuleRule(), currentNode); 
+             newCompositeNode(grammarAccess.getStereotypeApplicationRuleRule()); 
             pushFollow(FOLLOW_ruleStereotypeApplicationRule_in_entryRuleStereotypeApplicationRule166);
             iv_ruleStereotypeApplicationRule=ruleStereotypeApplicationRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleStereotypeApplicationRule; 
             match(input,EOF,FOLLOW_EOF_in_entryRuleStereotypeApplicationRule176); 
@@ -244,47 +262,50 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleStereotypeApplicationRule
+    // $ANTLR end "entryRuleStereotypeApplicationRule"
 
 
-    // $ANTLR start ruleStereotypeApplicationRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:133:1: ruleStereotypeApplicationRule returns [EObject current=null] : ( '<<' ( ( RULE_ID ) ) '>>' ( ( (lv_tagSpecification_3_0= ruleTagSpecificationRule ) ) ( ',' ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) ) )* )? ) ;
+    // $ANTLR start "ruleStereotypeApplicationRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:115:1: ruleStereotypeApplicationRule returns [EObject current=null] : (otherlv_0= '<<' ( (otherlv_1= RULE_ID ) ) otherlv_2= '>>' ( ( (lv_tagSpecification_3_0= ruleTagSpecificationRule ) ) (otherlv_4= ',' ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) ) )* )? ) ;
     public final EObject ruleStereotypeApplicationRule() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_1=null;
+        Token otherlv_2=null;
+        Token otherlv_4=null;
         EObject lv_tagSpecification_3_0 = null;
 
         EObject lv_tagSpecification_5_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:138:6: ( ( '<<' ( ( RULE_ID ) ) '>>' ( ( (lv_tagSpecification_3_0= ruleTagSpecificationRule ) ) ( ',' ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) ) )* )? ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:139:1: ( '<<' ( ( RULE_ID ) ) '>>' ( ( (lv_tagSpecification_3_0= ruleTagSpecificationRule ) ) ( ',' ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) ) )* )? )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:118:28: ( (otherlv_0= '<<' ( (otherlv_1= RULE_ID ) ) otherlv_2= '>>' ( ( (lv_tagSpecification_3_0= ruleTagSpecificationRule ) ) (otherlv_4= ',' ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) ) )* )? ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:119:1: (otherlv_0= '<<' ( (otherlv_1= RULE_ID ) ) otherlv_2= '>>' ( ( (lv_tagSpecification_3_0= ruleTagSpecificationRule ) ) (otherlv_4= ',' ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) ) )* )? )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:139:1: ( '<<' ( ( RULE_ID ) ) '>>' ( ( (lv_tagSpecification_3_0= ruleTagSpecificationRule ) ) ( ',' ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) ) )* )? )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:139:3: '<<' ( ( RULE_ID ) ) '>>' ( ( (lv_tagSpecification_3_0= ruleTagSpecificationRule ) ) ( ',' ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) ) )* )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:119:1: (otherlv_0= '<<' ( (otherlv_1= RULE_ID ) ) otherlv_2= '>>' ( ( (lv_tagSpecification_3_0= ruleTagSpecificationRule ) ) (otherlv_4= ',' ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) ) )* )? )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:119:3: otherlv_0= '<<' ( (otherlv_1= RULE_ID ) ) otherlv_2= '>>' ( ( (lv_tagSpecification_3_0= ruleTagSpecificationRule ) ) (otherlv_4= ',' ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) ) )* )?
             {
-            match(input,16,FOLLOW_16_in_ruleStereotypeApplicationRule211); 
+            otherlv_0=(Token)match(input,16,FOLLOW_16_in_ruleStereotypeApplicationRule213); 
 
-                    createLeafNode(grammarAccess.getStereotypeApplicationRuleAccess().getLessThanSignLessThanSignKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getStereotypeApplicationRuleAccess().getLessThanSignLessThanSignKeyword_0());
                 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:143:1: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:144:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:123:1: ( (otherlv_1= RULE_ID ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:124:1: (otherlv_1= RULE_ID )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:144:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:145:3: RULE_ID
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:124:1: (otherlv_1= RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:125:3: otherlv_1= RULE_ID
             {
 
             			if (current==null) {
-            	            current = factory.create(grammarAccess.getStereotypeApplicationRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getStereotypeApplicationRuleRule());
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleStereotypeApplicationRule229); 
+            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleStereotypeApplicationRule233); 
 
-            		createLeafNode(grammarAccess.getStereotypeApplicationRuleAccess().getStereotypeStereotypeCrossReference_1_0(), "stereotype"); 
+            		newLeafNode(otherlv_1, grammarAccess.getStereotypeApplicationRuleAccess().getStereotypeStereotypeCrossReference_1_0()); 
             	
 
             }
@@ -292,11 +313,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            match(input,17,FOLLOW_17_in_ruleStereotypeApplicationRule239); 
+            otherlv_2=(Token)match(input,17,FOLLOW_17_in_ruleStereotypeApplicationRule245); 
 
-                    createLeafNode(grammarAccess.getStereotypeApplicationRuleAccess().getGreaterThanSignGreaterThanSignKeyword_2(), null); 
+                	newLeafNode(otherlv_2, grammarAccess.getStereotypeApplicationRuleAccess().getGreaterThanSignGreaterThanSignKeyword_2());
                 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:161:1: ( ( (lv_tagSpecification_3_0= ruleTagSpecificationRule ) ) ( ',' ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) ) )* )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:140:1: ( ( (lv_tagSpecification_3_0= ruleTagSpecificationRule ) ) (otherlv_4= ',' ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) ) )* )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -305,37 +326,32 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:161:2: ( (lv_tagSpecification_3_0= ruleTagSpecificationRule ) ) ( ',' ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) ) )*
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:140:2: ( (lv_tagSpecification_3_0= ruleTagSpecificationRule ) ) (otherlv_4= ',' ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) ) )*
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:161:2: ( (lv_tagSpecification_3_0= ruleTagSpecificationRule ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:162:1: (lv_tagSpecification_3_0= ruleTagSpecificationRule )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:140:2: ( (lv_tagSpecification_3_0= ruleTagSpecificationRule ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:141:1: (lv_tagSpecification_3_0= ruleTagSpecificationRule )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:162:1: (lv_tagSpecification_3_0= ruleTagSpecificationRule )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:163:3: lv_tagSpecification_3_0= ruleTagSpecificationRule
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:141:1: (lv_tagSpecification_3_0= ruleTagSpecificationRule )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:142:3: lv_tagSpecification_3_0= ruleTagSpecificationRule
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getStereotypeApplicationRuleAccess().getTagSpecificationTagSpecificationRuleParserRuleCall_3_0_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getStereotypeApplicationRuleAccess().getTagSpecificationTagSpecificationRuleParserRuleCall_3_0_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleTagSpecificationRule_in_ruleStereotypeApplicationRule261);
+                    pushFollow(FOLLOW_ruleTagSpecificationRule_in_ruleStereotypeApplicationRule267);
                     lv_tagSpecification_3_0=ruleTagSpecificationRule();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getStereotypeApplicationRuleRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getStereotypeApplicationRuleRule());
                     	        }
-                    	        try {
-                    	       		add(
-                    	       			current, 
-                    	       			"tagSpecification",
-                    	        		lv_tagSpecification_3_0, 
-                    	        		"TagSpecificationRule", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		add(
+                           			current, 
+                           			"tagSpecification",
+                            		lv_tagSpecification_3_0, 
+                            		"TagSpecificationRule");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -343,7 +359,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                     }
 
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:185:2: ( ',' ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) ) )*
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:158:2: (otherlv_4= ',' ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) ) )*
                     loop2:
                     do {
                         int alt2=2;
@@ -356,41 +372,36 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                         switch (alt2) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:185:4: ',' ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) )
+                    	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:158:4: otherlv_4= ',' ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) )
                     	    {
-                    	    match(input,18,FOLLOW_18_in_ruleStereotypeApplicationRule272); 
+                    	    otherlv_4=(Token)match(input,18,FOLLOW_18_in_ruleStereotypeApplicationRule280); 
 
-                    	            createLeafNode(grammarAccess.getStereotypeApplicationRuleAccess().getCommaKeyword_3_1_0(), null); 
+                    	        	newLeafNode(otherlv_4, grammarAccess.getStereotypeApplicationRuleAccess().getCommaKeyword_3_1_0());
                     	        
-                    	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:189:1: ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) )
-                    	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:190:1: (lv_tagSpecification_5_0= ruleTagSpecificationRule )
+                    	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:162:1: ( (lv_tagSpecification_5_0= ruleTagSpecificationRule ) )
+                    	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:163:1: (lv_tagSpecification_5_0= ruleTagSpecificationRule )
                     	    {
-                    	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:190:1: (lv_tagSpecification_5_0= ruleTagSpecificationRule )
-                    	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:191:3: lv_tagSpecification_5_0= ruleTagSpecificationRule
+                    	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:163:1: (lv_tagSpecification_5_0= ruleTagSpecificationRule )
+                    	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:164:3: lv_tagSpecification_5_0= ruleTagSpecificationRule
                     	    {
                     	     
-                    	    	        currentNode=createCompositeNode(grammarAccess.getStereotypeApplicationRuleAccess().getTagSpecificationTagSpecificationRuleParserRuleCall_3_1_1_0(), currentNode); 
+                    	    	        newCompositeNode(grammarAccess.getStereotypeApplicationRuleAccess().getTagSpecificationTagSpecificationRuleParserRuleCall_3_1_1_0()); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleTagSpecificationRule_in_ruleStereotypeApplicationRule293);
+                    	    pushFollow(FOLLOW_ruleTagSpecificationRule_in_ruleStereotypeApplicationRule301);
                     	    lv_tagSpecification_5_0=ruleTagSpecificationRule();
-                    	    _fsp--;
+
+                    	    state._fsp--;
 
 
                     	    	        if (current==null) {
-                    	    	            current = factory.create(grammarAccess.getStereotypeApplicationRuleRule().getType().getClassifier());
-                    	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	    	            current = createModelElementForParent(grammarAccess.getStereotypeApplicationRuleRule());
                     	    	        }
-                    	    	        try {
-                    	    	       		add(
-                    	    	       			current, 
-                    	    	       			"tagSpecification",
-                    	    	        		lv_tagSpecification_5_0, 
-                    	    	        		"TagSpecificationRule", 
-                    	    	        		currentNode);
-                    	    	        } catch (ValueConverterException vce) {
-                    	    				handleValueConverterException(vce);
-                    	    	        }
-                    	    	        currentNode = currentNode.getParent();
+                    	           		add(
+                    	           			current, 
+                    	           			"tagSpecification",
+                    	            		lv_tagSpecification_5_0, 
+                    	            		"TagSpecificationRule");
+                    	    	        afterParserOrEnumRuleCall();
                     	    	    
 
                     	    }
@@ -419,9 +430,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -432,11 +441,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleStereotypeApplicationRule
+    // $ANTLR end "ruleStereotypeApplicationRule"
 
 
-    // $ANTLR start entryRuleTagSpecificationRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:221:1: entryRuleTagSpecificationRule returns [EObject current=null] : iv_ruleTagSpecificationRule= ruleTagSpecificationRule EOF ;
+    // $ANTLR start "entryRuleTagSpecificationRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:188:1: entryRuleTagSpecificationRule returns [EObject current=null] : iv_ruleTagSpecificationRule= ruleTagSpecificationRule EOF ;
     public final EObject entryRuleTagSpecificationRule() throws RecognitionException {
         EObject current = null;
 
@@ -444,16 +453,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:222:2: (iv_ruleTagSpecificationRule= ruleTagSpecificationRule EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:223:2: iv_ruleTagSpecificationRule= ruleTagSpecificationRule EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:189:2: (iv_ruleTagSpecificationRule= ruleTagSpecificationRule EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:190:2: iv_ruleTagSpecificationRule= ruleTagSpecificationRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getTagSpecificationRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleTagSpecificationRule_in_entryRuleTagSpecificationRule333);
+             newCompositeNode(grammarAccess.getTagSpecificationRuleRule()); 
+            pushFollow(FOLLOW_ruleTagSpecificationRule_in_entryRuleTagSpecificationRule341);
             iv_ruleTagSpecificationRule=ruleTagSpecificationRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleTagSpecificationRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTagSpecificationRule343); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTagSpecificationRule351); 
 
             }
 
@@ -467,41 +477,41 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleTagSpecificationRule
+    // $ANTLR end "entryRuleTagSpecificationRule"
 
 
-    // $ANTLR start ruleTagSpecificationRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:230:1: ruleTagSpecificationRule returns [EObject current=null] : ( ( ( RULE_ID ) ) ( (lv_value_1_0= ruleExpressionValueRule ) ) ) ;
+    // $ANTLR start "ruleTagSpecificationRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:197:1: ruleTagSpecificationRule returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) ( (lv_value_1_0= ruleExpressionValueRule ) ) ) ;
     public final EObject ruleTagSpecificationRule() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
         EObject lv_value_1_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:235:6: ( ( ( ( RULE_ID ) ) ( (lv_value_1_0= ruleExpressionValueRule ) ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:236:1: ( ( ( RULE_ID ) ) ( (lv_value_1_0= ruleExpressionValueRule ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:200:28: ( ( ( (otherlv_0= RULE_ID ) ) ( (lv_value_1_0= ruleExpressionValueRule ) ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:201:1: ( ( (otherlv_0= RULE_ID ) ) ( (lv_value_1_0= ruleExpressionValueRule ) ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:236:1: ( ( ( RULE_ID ) ) ( (lv_value_1_0= ruleExpressionValueRule ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:236:2: ( ( RULE_ID ) ) ( (lv_value_1_0= ruleExpressionValueRule ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:201:1: ( ( (otherlv_0= RULE_ID ) ) ( (lv_value_1_0= ruleExpressionValueRule ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:201:2: ( (otherlv_0= RULE_ID ) ) ( (lv_value_1_0= ruleExpressionValueRule ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:236:2: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:237:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:201:2: ( (otherlv_0= RULE_ID ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:202:1: (otherlv_0= RULE_ID )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:237:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:238:3: RULE_ID
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:202:1: (otherlv_0= RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:203:3: otherlv_0= RULE_ID
             {
 
             			if (current==null) {
-            	            current = factory.create(grammarAccess.getTagSpecificationRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getTagSpecificationRuleRule());
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleTagSpecificationRule386); 
+            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleTagSpecificationRule396); 
 
-            		createLeafNode(grammarAccess.getTagSpecificationRuleAccess().getPropertyPropertyCrossReference_0_0(), "property"); 
+            		newLeafNode(otherlv_0, grammarAccess.getTagSpecificationRuleAccess().getPropertyPropertyCrossReference_0_0()); 
             	
 
             }
@@ -509,35 +519,30 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:250:2: ( (lv_value_1_0= ruleExpressionValueRule ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:251:1: (lv_value_1_0= ruleExpressionValueRule )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:214:2: ( (lv_value_1_0= ruleExpressionValueRule ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:215:1: (lv_value_1_0= ruleExpressionValueRule )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:251:1: (lv_value_1_0= ruleExpressionValueRule )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:252:3: lv_value_1_0= ruleExpressionValueRule
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:215:1: (lv_value_1_0= ruleExpressionValueRule )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:216:3: lv_value_1_0= ruleExpressionValueRule
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getTagSpecificationRuleAccess().getValueExpressionValueRuleParserRuleCall_1_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getTagSpecificationRuleAccess().getValueExpressionValueRuleParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleExpressionValueRule_in_ruleTagSpecificationRule407);
+            pushFollow(FOLLOW_ruleExpressionValueRule_in_ruleTagSpecificationRule417);
             lv_value_1_0=ruleExpressionValueRule();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getTagSpecificationRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getTagSpecificationRuleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"value",
-            	        		lv_value_1_0, 
-            	        		"ExpressionValueRule", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"value",
+                    		lv_value_1_0, 
+                    		"ExpressionValueRule");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -551,9 +556,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -564,11 +567,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleTagSpecificationRule
+    // $ANTLR end "ruleTagSpecificationRule"
 
 
-    // $ANTLR start entryRuleExpressionValueRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:282:1: entryRuleExpressionValueRule returns [EObject current=null] : iv_ruleExpressionValueRule= ruleExpressionValueRule EOF ;
+    // $ANTLR start "entryRuleExpressionValueRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:240:1: entryRuleExpressionValueRule returns [EObject current=null] : iv_ruleExpressionValueRule= ruleExpressionValueRule EOF ;
     public final EObject entryRuleExpressionValueRule() throws RecognitionException {
         EObject current = null;
 
@@ -576,16 +579,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:283:2: (iv_ruleExpressionValueRule= ruleExpressionValueRule EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:284:2: iv_ruleExpressionValueRule= ruleExpressionValueRule EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:241:2: (iv_ruleExpressionValueRule= ruleExpressionValueRule EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:242:2: iv_ruleExpressionValueRule= ruleExpressionValueRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getExpressionValueRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleExpressionValueRule_in_entryRuleExpressionValueRule443);
+             newCompositeNode(grammarAccess.getExpressionValueRuleRule()); 
+            pushFollow(FOLLOW_ruleExpressionValueRule_in_entryRuleExpressionValueRule453);
             iv_ruleExpressionValueRule=ruleExpressionValueRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleExpressionValueRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleExpressionValueRule453); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleExpressionValueRule463); 
 
             }
 
@@ -599,59 +603,55 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleExpressionValueRule
+    // $ANTLR end "entryRuleExpressionValueRule"
 
 
-    // $ANTLR start ruleExpressionValueRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:291:1: ruleExpressionValueRule returns [EObject current=null] : ( '=' ( (lv_expression_1_0= ruleExpression ) ) ) ;
+    // $ANTLR start "ruleExpressionValueRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:249:1: ruleExpressionValueRule returns [EObject current=null] : (otherlv_0= '=' ( (lv_expression_1_0= ruleExpression ) ) ) ;
     public final EObject ruleExpressionValueRule() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
         EObject lv_expression_1_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:296:6: ( ( '=' ( (lv_expression_1_0= ruleExpression ) ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:297:1: ( '=' ( (lv_expression_1_0= ruleExpression ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:252:28: ( (otherlv_0= '=' ( (lv_expression_1_0= ruleExpression ) ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:253:1: (otherlv_0= '=' ( (lv_expression_1_0= ruleExpression ) ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:297:1: ( '=' ( (lv_expression_1_0= ruleExpression ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:297:3: '=' ( (lv_expression_1_0= ruleExpression ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:253:1: (otherlv_0= '=' ( (lv_expression_1_0= ruleExpression ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:253:3: otherlv_0= '=' ( (lv_expression_1_0= ruleExpression ) )
             {
-            match(input,19,FOLLOW_19_in_ruleExpressionValueRule488); 
+            otherlv_0=(Token)match(input,19,FOLLOW_19_in_ruleExpressionValueRule500); 
 
-                    createLeafNode(grammarAccess.getExpressionValueRuleAccess().getEqualsSignKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getExpressionValueRuleAccess().getEqualsSignKeyword_0());
                 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:301:1: ( (lv_expression_1_0= ruleExpression ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:302:1: (lv_expression_1_0= ruleExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:257:1: ( (lv_expression_1_0= ruleExpression ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:258:1: (lv_expression_1_0= ruleExpression )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:302:1: (lv_expression_1_0= ruleExpression )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:303:3: lv_expression_1_0= ruleExpression
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:258:1: (lv_expression_1_0= ruleExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:259:3: lv_expression_1_0= ruleExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getExpressionValueRuleAccess().getExpressionExpressionParserRuleCall_1_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getExpressionValueRuleAccess().getExpressionExpressionParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleExpression_in_ruleExpressionValueRule509);
+            pushFollow(FOLLOW_ruleExpression_in_ruleExpressionValueRule521);
             lv_expression_1_0=ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getExpressionValueRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getExpressionValueRuleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"expression",
-            	        		lv_expression_1_0, 
-            	        		"Expression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"expression",
+                    		lv_expression_1_0, 
+                    		"Expression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -665,9 +665,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -678,11 +676,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleExpressionValueRule
+    // $ANTLR end "ruleExpressionValueRule"
 
 
-    // $ANTLR start entryRuleExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:333:1: entryRuleExpression returns [EObject current=null] : iv_ruleExpression= ruleExpression EOF ;
+    // $ANTLR start "entryRuleExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:283:1: entryRuleExpression returns [EObject current=null] : iv_ruleExpression= ruleExpression EOF ;
     public final EObject entryRuleExpression() throws RecognitionException {
         EObject current = null;
 
@@ -690,16 +688,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:334:2: (iv_ruleExpression= ruleExpression EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:335:2: iv_ruleExpression= ruleExpression EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:284:2: (iv_ruleExpression= ruleExpression EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:285:2: iv_ruleExpression= ruleExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleExpression_in_entryRuleExpression545);
+             newCompositeNode(grammarAccess.getExpressionRule()); 
+            pushFollow(FOLLOW_ruleExpression_in_entryRuleExpression557);
             iv_ruleExpression=ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleExpression555); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleExpression567); 
 
             }
 
@@ -713,52 +712,47 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleExpression
+    // $ANTLR end "entryRuleExpression"
 
 
-    // $ANTLR start ruleExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:342:1: ruleExpression returns [EObject current=null] : ( (lv_exp_0_0= ruleAndOrXorExpression ) ) ;
+    // $ANTLR start "ruleExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:292:1: ruleExpression returns [EObject current=null] : ( (lv_exp_0_0= ruleAndOrXorExpression ) ) ;
     public final EObject ruleExpression() throws RecognitionException {
         EObject current = null;
 
         EObject lv_exp_0_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:347:6: ( ( (lv_exp_0_0= ruleAndOrXorExpression ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:348:1: ( (lv_exp_0_0= ruleAndOrXorExpression ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:295:28: ( ( (lv_exp_0_0= ruleAndOrXorExpression ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:296:1: ( (lv_exp_0_0= ruleAndOrXorExpression ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:348:1: ( (lv_exp_0_0= ruleAndOrXorExpression ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:349:1: (lv_exp_0_0= ruleAndOrXorExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:296:1: ( (lv_exp_0_0= ruleAndOrXorExpression ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:297:1: (lv_exp_0_0= ruleAndOrXorExpression )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:349:1: (lv_exp_0_0= ruleAndOrXorExpression )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:350:3: lv_exp_0_0= ruleAndOrXorExpression
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:297:1: (lv_exp_0_0= ruleAndOrXorExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:298:3: lv_exp_0_0= ruleAndOrXorExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getExpressionAccess().getExpAndOrXorExpressionParserRuleCall_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getExpressionAccess().getExpAndOrXorExpressionParserRuleCall_0()); 
             	    
-            pushFollow(FOLLOW_ruleAndOrXorExpression_in_ruleExpression600);
+            pushFollow(FOLLOW_ruleAndOrXorExpression_in_ruleExpression612);
             lv_exp_0_0=ruleAndOrXorExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getExpressionRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"exp",
-            	        		lv_exp_0_0, 
-            	        		"AndOrXorExpression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"exp",
+                    		lv_exp_0_0, 
+                    		"AndOrXorExpression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -769,9 +763,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -782,11 +774,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleExpression
+    // $ANTLR end "ruleExpression"
 
 
-    // $ANTLR start entryRuleAndOrXorExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:380:1: entryRuleAndOrXorExpression returns [EObject current=null] : iv_ruleAndOrXorExpression= ruleAndOrXorExpression EOF ;
+    // $ANTLR start "entryRuleAndOrXorExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:322:1: entryRuleAndOrXorExpression returns [EObject current=null] : iv_ruleAndOrXorExpression= ruleAndOrXorExpression EOF ;
     public final EObject entryRuleAndOrXorExpression() throws RecognitionException {
         EObject current = null;
 
@@ -794,16 +786,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:381:2: (iv_ruleAndOrXorExpression= ruleAndOrXorExpression EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:382:2: iv_ruleAndOrXorExpression= ruleAndOrXorExpression EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:323:2: (iv_ruleAndOrXorExpression= ruleAndOrXorExpression EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:324:2: iv_ruleAndOrXorExpression= ruleAndOrXorExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getAndOrXorExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleAndOrXorExpression_in_entryRuleAndOrXorExpression635);
+             newCompositeNode(grammarAccess.getAndOrXorExpressionRule()); 
+            pushFollow(FOLLOW_ruleAndOrXorExpression_in_entryRuleAndOrXorExpression647);
             iv_ruleAndOrXorExpression=ruleAndOrXorExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleAndOrXorExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleAndOrXorExpression645); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleAndOrXorExpression657); 
 
             }
 
@@ -817,11 +810,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleAndOrXorExpression
+    // $ANTLR end "entryRuleAndOrXorExpression"
 
 
-    // $ANTLR start ruleAndOrXorExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:389:1: ruleAndOrXorExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )* ) ;
+    // $ANTLR start "ruleAndOrXorExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:331:1: ruleAndOrXorExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )* ) ;
     public final EObject ruleAndOrXorExpression() throws RecognitionException {
         EObject current = null;
 
@@ -833,44 +826,39 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         EObject lv_exp_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:394:6: ( ( ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )* ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:395:1: ( ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )* )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:334:28: ( ( ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )* ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:335:1: ( ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )* )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:395:1: ( ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )* )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:395:2: ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )*
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:335:1: ( ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )* )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:335:2: ( (lv_exp_0_0= ruleEqualityExpression ) ) ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )*
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:395:2: ( (lv_exp_0_0= ruleEqualityExpression ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:396:1: (lv_exp_0_0= ruleEqualityExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:335:2: ( (lv_exp_0_0= ruleEqualityExpression ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:336:1: (lv_exp_0_0= ruleEqualityExpression )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:396:1: (lv_exp_0_0= ruleEqualityExpression )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:397:3: lv_exp_0_0= ruleEqualityExpression
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:336:1: (lv_exp_0_0= ruleEqualityExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:337:3: lv_exp_0_0= ruleEqualityExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getAndOrXorExpressionAccess().getExpEqualityExpressionParserRuleCall_0_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getAndOrXorExpressionAccess().getExpEqualityExpressionParserRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_ruleEqualityExpression_in_ruleAndOrXorExpression691);
+            pushFollow(FOLLOW_ruleEqualityExpression_in_ruleAndOrXorExpression703);
             lv_exp_0_0=ruleEqualityExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getAndOrXorExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getAndOrXorExpressionRule());
             	        }
-            	        try {
-            	       		add(
-            	       			current, 
-            	       			"exp",
-            	        		lv_exp_0_0, 
-            	        		"EqualityExpression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		add(
+                   			current, 
+                   			"exp",
+                    		lv_exp_0_0, 
+                    		"EqualityExpression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -878,7 +866,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:419:2: ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )*
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:353:2: ( ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) ) )*
             loop5:
             do {
                 int alt5=2;
@@ -891,15 +879,15 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                 switch (alt5) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:419:3: ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:353:3: ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) ) ( (lv_exp_2_0= ruleEqualityExpression ) )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:419:3: ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:420:1: ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:353:3: ( ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:354:1: ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:420:1: ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:421:1: (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:354:1: ( (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:355:1: (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:421:1: (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:355:1: (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' )
             	    int alt4=3;
             	    switch ( input.LA(1) ) {
             	    case 20:
@@ -919,77 +907,56 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             	        break;
             	    default:
             	        NoViableAltException nvae =
-            	            new NoViableAltException("421:1: (lv_op_1_1= 'and' | lv_op_1_2= 'or' | lv_op_1_3= 'xor' )", 4, 0, input);
+            	            new NoViableAltException("", 4, 0, input);
 
             	        throw nvae;
             	    }
 
             	    switch (alt4) {
             	        case 1 :
-            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:422:3: lv_op_1_1= 'and'
+            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:356:3: lv_op_1_1= 'and'
             	            {
-            	            lv_op_1_1=(Token)input.LT(1);
-            	            match(input,20,FOLLOW_20_in_ruleAndOrXorExpression712); 
+            	            lv_op_1_1=(Token)match(input,20,FOLLOW_20_in_ruleAndOrXorExpression724); 
 
-            	                    createLeafNode(grammarAccess.getAndOrXorExpressionAccess().getOpAndKeyword_1_0_0_0(), "op"); 
+            	                    newLeafNode(lv_op_1_1, grammarAccess.getAndOrXorExpressionAccess().getOpAndKeyword_1_0_0_0());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getAndOrXorExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getAndOrXorExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_1, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_1, null);
             	            	    
 
             	            }
             	            break;
             	        case 2 :
-            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:440:8: lv_op_1_2= 'or'
+            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:368:8: lv_op_1_2= 'or'
             	            {
-            	            lv_op_1_2=(Token)input.LT(1);
-            	            match(input,21,FOLLOW_21_in_ruleAndOrXorExpression741); 
+            	            lv_op_1_2=(Token)match(input,21,FOLLOW_21_in_ruleAndOrXorExpression753); 
 
-            	                    createLeafNode(grammarAccess.getAndOrXorExpressionAccess().getOpOrKeyword_1_0_0_1(), "op"); 
+            	                    newLeafNode(lv_op_1_2, grammarAccess.getAndOrXorExpressionAccess().getOpOrKeyword_1_0_0_1());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getAndOrXorExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getAndOrXorExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_2, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_2, null);
             	            	    
 
             	            }
             	            break;
             	        case 3 :
-            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:458:8: lv_op_1_3= 'xor'
+            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:380:8: lv_op_1_3= 'xor'
             	            {
-            	            lv_op_1_3=(Token)input.LT(1);
-            	            match(input,22,FOLLOW_22_in_ruleAndOrXorExpression770); 
+            	            lv_op_1_3=(Token)match(input,22,FOLLOW_22_in_ruleAndOrXorExpression782); 
 
-            	                    createLeafNode(grammarAccess.getAndOrXorExpressionAccess().getOpXorKeyword_1_0_0_2(), "op"); 
+            	                    newLeafNode(lv_op_1_3, grammarAccess.getAndOrXorExpressionAccess().getOpXorKeyword_1_0_0_2());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getAndOrXorExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getAndOrXorExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_3, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_3, null);
             	            	    
 
             	            }
@@ -1003,35 +970,30 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             	    }
 
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:479:2: ( (lv_exp_2_0= ruleEqualityExpression ) )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:480:1: (lv_exp_2_0= ruleEqualityExpression )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:395:2: ( (lv_exp_2_0= ruleEqualityExpression ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:396:1: (lv_exp_2_0= ruleEqualityExpression )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:480:1: (lv_exp_2_0= ruleEqualityExpression )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:481:3: lv_exp_2_0= ruleEqualityExpression
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:396:1: (lv_exp_2_0= ruleEqualityExpression )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:397:3: lv_exp_2_0= ruleEqualityExpression
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getAndOrXorExpressionAccess().getExpEqualityExpressionParserRuleCall_1_1_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getAndOrXorExpressionAccess().getExpEqualityExpressionParserRuleCall_1_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleEqualityExpression_in_ruleAndOrXorExpression807);
+            	    pushFollow(FOLLOW_ruleEqualityExpression_in_ruleAndOrXorExpression819);
             	    lv_exp_2_0=ruleEqualityExpression();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getAndOrXorExpressionRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getAndOrXorExpressionRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"exp",
-            	    	        		lv_exp_2_0, 
-            	    	        		"EqualityExpression", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"exp",
+            	            		lv_exp_2_0, 
+            	            		"EqualityExpression");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -1054,9 +1016,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -1067,11 +1027,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleAndOrXorExpression
+    // $ANTLR end "ruleAndOrXorExpression"
 
 
-    // $ANTLR start entryRuleEqualityExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:511:1: entryRuleEqualityExpression returns [EObject current=null] : iv_ruleEqualityExpression= ruleEqualityExpression EOF ;
+    // $ANTLR start "entryRuleEqualityExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:421:1: entryRuleEqualityExpression returns [EObject current=null] : iv_ruleEqualityExpression= ruleEqualityExpression EOF ;
     public final EObject entryRuleEqualityExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1079,16 +1039,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:512:2: (iv_ruleEqualityExpression= ruleEqualityExpression EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:513:2: iv_ruleEqualityExpression= ruleEqualityExpression EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:422:2: (iv_ruleEqualityExpression= ruleEqualityExpression EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:423:2: iv_ruleEqualityExpression= ruleEqualityExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getEqualityExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleEqualityExpression_in_entryRuleEqualityExpression845);
+             newCompositeNode(grammarAccess.getEqualityExpressionRule()); 
+            pushFollow(FOLLOW_ruleEqualityExpression_in_entryRuleEqualityExpression857);
             iv_ruleEqualityExpression=ruleEqualityExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleEqualityExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleEqualityExpression855); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleEqualityExpression867); 
 
             }
 
@@ -1102,11 +1063,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleEqualityExpression
+    // $ANTLR end "entryRuleEqualityExpression"
 
 
-    // $ANTLR start ruleEqualityExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:520:1: ruleEqualityExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )* ) ;
+    // $ANTLR start "ruleEqualityExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:430:1: ruleEqualityExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )* ) ;
     public final EObject ruleEqualityExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1117,44 +1078,39 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         EObject lv_exp_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:525:6: ( ( ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )* ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:526:1: ( ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )* )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:433:28: ( ( ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )* ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:434:1: ( ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )* )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:526:1: ( ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )* )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:526:2: ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )*
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:434:1: ( ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )* )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:434:2: ( (lv_exp_0_0= ruleRelationalExpression ) ) ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )*
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:526:2: ( (lv_exp_0_0= ruleRelationalExpression ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:527:1: (lv_exp_0_0= ruleRelationalExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:434:2: ( (lv_exp_0_0= ruleRelationalExpression ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:435:1: (lv_exp_0_0= ruleRelationalExpression )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:527:1: (lv_exp_0_0= ruleRelationalExpression )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:528:3: lv_exp_0_0= ruleRelationalExpression
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:435:1: (lv_exp_0_0= ruleRelationalExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:436:3: lv_exp_0_0= ruleRelationalExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getEqualityExpressionAccess().getExpRelationalExpressionParserRuleCall_0_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getEqualityExpressionAccess().getExpRelationalExpressionParserRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_ruleRelationalExpression_in_ruleEqualityExpression901);
+            pushFollow(FOLLOW_ruleRelationalExpression_in_ruleEqualityExpression913);
             lv_exp_0_0=ruleRelationalExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getEqualityExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getEqualityExpressionRule());
             	        }
-            	        try {
-            	       		add(
-            	       			current, 
-            	       			"exp",
-            	        		lv_exp_0_0, 
-            	        		"RelationalExpression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		add(
+                   			current, 
+                   			"exp",
+                    		lv_exp_0_0, 
+                    		"RelationalExpression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -1162,7 +1118,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:550:2: ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )*
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:452:2: ( ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) ) )*
             loop7:
             do {
                 int alt7=2;
@@ -1175,15 +1131,15 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:550:3: ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:452:3: ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) ) ( (lv_exp_2_0= ruleRelationalExpression ) )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:550:3: ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:551:1: ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:452:3: ( ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:453:1: ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:551:1: ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:552:1: (lv_op_1_1= '==' | lv_op_1_2= '<>' )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:453:1: ( (lv_op_1_1= '==' | lv_op_1_2= '<>' ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:454:1: (lv_op_1_1= '==' | lv_op_1_2= '<>' )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:552:1: (lv_op_1_1= '==' | lv_op_1_2= '<>' )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:454:1: (lv_op_1_1= '==' | lv_op_1_2= '<>' )
             	    int alt6=2;
             	    int LA6_0 = input.LA(1);
 
@@ -1195,53 +1151,39 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             	    }
             	    else {
             	        NoViableAltException nvae =
-            	            new NoViableAltException("552:1: (lv_op_1_1= '==' | lv_op_1_2= '<>' )", 6, 0, input);
+            	            new NoViableAltException("", 6, 0, input);
 
             	        throw nvae;
             	    }
             	    switch (alt6) {
             	        case 1 :
-            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:553:3: lv_op_1_1= '=='
+            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:455:3: lv_op_1_1= '=='
             	            {
-            	            lv_op_1_1=(Token)input.LT(1);
-            	            match(input,23,FOLLOW_23_in_ruleEqualityExpression922); 
+            	            lv_op_1_1=(Token)match(input,23,FOLLOW_23_in_ruleEqualityExpression934); 
 
-            	                    createLeafNode(grammarAccess.getEqualityExpressionAccess().getOpEqualsSignEqualsSignKeyword_1_0_0_0(), "op"); 
+            	                    newLeafNode(lv_op_1_1, grammarAccess.getEqualityExpressionAccess().getOpEqualsSignEqualsSignKeyword_1_0_0_0());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getEqualityExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getEqualityExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_1, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_1, null);
             	            	    
 
             	            }
             	            break;
             	        case 2 :
-            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:571:8: lv_op_1_2= '<>'
+            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:467:8: lv_op_1_2= '<>'
             	            {
-            	            lv_op_1_2=(Token)input.LT(1);
-            	            match(input,24,FOLLOW_24_in_ruleEqualityExpression951); 
+            	            lv_op_1_2=(Token)match(input,24,FOLLOW_24_in_ruleEqualityExpression963); 
 
-            	                    createLeafNode(grammarAccess.getEqualityExpressionAccess().getOpLessThanSignGreaterThanSignKeyword_1_0_0_1(), "op"); 
+            	                    newLeafNode(lv_op_1_2, grammarAccess.getEqualityExpressionAccess().getOpLessThanSignGreaterThanSignKeyword_1_0_0_1());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getEqualityExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getEqualityExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_2, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_2, null);
             	            	    
 
             	            }
@@ -1255,35 +1197,30 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             	    }
 
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:592:2: ( (lv_exp_2_0= ruleRelationalExpression ) )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:593:1: (lv_exp_2_0= ruleRelationalExpression )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:482:2: ( (lv_exp_2_0= ruleRelationalExpression ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:483:1: (lv_exp_2_0= ruleRelationalExpression )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:593:1: (lv_exp_2_0= ruleRelationalExpression )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:594:3: lv_exp_2_0= ruleRelationalExpression
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:483:1: (lv_exp_2_0= ruleRelationalExpression )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:484:3: lv_exp_2_0= ruleRelationalExpression
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getEqualityExpressionAccess().getExpRelationalExpressionParserRuleCall_1_1_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getEqualityExpressionAccess().getExpRelationalExpressionParserRuleCall_1_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleRelationalExpression_in_ruleEqualityExpression988);
+            	    pushFollow(FOLLOW_ruleRelationalExpression_in_ruleEqualityExpression1000);
             	    lv_exp_2_0=ruleRelationalExpression();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getEqualityExpressionRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getEqualityExpressionRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"exp",
-            	    	        		lv_exp_2_0, 
-            	    	        		"RelationalExpression", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"exp",
+            	            		lv_exp_2_0, 
+            	            		"RelationalExpression");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -1306,9 +1243,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -1319,11 +1254,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleEqualityExpression
+    // $ANTLR end "ruleEqualityExpression"
 
 
-    // $ANTLR start entryRuleRelationalExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:624:1: entryRuleRelationalExpression returns [EObject current=null] : iv_ruleRelationalExpression= ruleRelationalExpression EOF ;
+    // $ANTLR start "entryRuleRelationalExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:508:1: entryRuleRelationalExpression returns [EObject current=null] : iv_ruleRelationalExpression= ruleRelationalExpression EOF ;
     public final EObject entryRuleRelationalExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1331,16 +1266,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:625:2: (iv_ruleRelationalExpression= ruleRelationalExpression EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:626:2: iv_ruleRelationalExpression= ruleRelationalExpression EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:509:2: (iv_ruleRelationalExpression= ruleRelationalExpression EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:510:2: iv_ruleRelationalExpression= ruleRelationalExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getRelationalExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleRelationalExpression_in_entryRuleRelationalExpression1026);
+             newCompositeNode(grammarAccess.getRelationalExpressionRule()); 
+            pushFollow(FOLLOW_ruleRelationalExpression_in_entryRuleRelationalExpression1038);
             iv_ruleRelationalExpression=ruleRelationalExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleRelationalExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleRelationalExpression1036); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleRelationalExpression1048); 
 
             }
 
@@ -1354,11 +1290,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleRelationalExpression
+    // $ANTLR end "entryRuleRelationalExpression"
 
 
-    // $ANTLR start ruleRelationalExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:633:1: ruleRelationalExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )* ) ;
+    // $ANTLR start "ruleRelationalExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:517:1: ruleRelationalExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )* ) ;
     public final EObject ruleRelationalExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1371,44 +1307,39 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         EObject lv_exp_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:638:6: ( ( ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )* ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:639:1: ( ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )* )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:520:28: ( ( ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )* ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:521:1: ( ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )* )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:639:1: ( ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )* )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:639:2: ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )*
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:521:1: ( ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )* )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:521:2: ( (lv_exp_0_0= ruleConditionalExpression ) ) ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )*
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:639:2: ( (lv_exp_0_0= ruleConditionalExpression ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:640:1: (lv_exp_0_0= ruleConditionalExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:521:2: ( (lv_exp_0_0= ruleConditionalExpression ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:522:1: (lv_exp_0_0= ruleConditionalExpression )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:640:1: (lv_exp_0_0= ruleConditionalExpression )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:641:3: lv_exp_0_0= ruleConditionalExpression
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:522:1: (lv_exp_0_0= ruleConditionalExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:523:3: lv_exp_0_0= ruleConditionalExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getRelationalExpressionAccess().getExpConditionalExpressionParserRuleCall_0_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getRelationalExpressionAccess().getExpConditionalExpressionParserRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_ruleConditionalExpression_in_ruleRelationalExpression1082);
+            pushFollow(FOLLOW_ruleConditionalExpression_in_ruleRelationalExpression1094);
             lv_exp_0_0=ruleConditionalExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getRelationalExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getRelationalExpressionRule());
             	        }
-            	        try {
-            	       		add(
-            	       			current, 
-            	       			"exp",
-            	        		lv_exp_0_0, 
-            	        		"ConditionalExpression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		add(
+                   			current, 
+                   			"exp",
+                    		lv_exp_0_0, 
+                    		"ConditionalExpression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -1416,7 +1347,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:663:2: ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )*
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:539:2: ( ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) ) )*
             loop9:
             do {
                 int alt9=2;
@@ -1429,15 +1360,15 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                 switch (alt9) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:663:3: ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:539:3: ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) ) ( (lv_exp_2_0= ruleConditionalExpression ) )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:663:3: ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:664:1: ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:539:3: ( ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:540:1: ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:664:1: ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:665:1: (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:540:1: ( (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:541:1: (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:665:1: (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:541:1: (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' )
             	    int alt8=4;
             	    switch ( input.LA(1) ) {
             	    case 25:
@@ -1462,100 +1393,72 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             	        break;
             	    default:
             	        NoViableAltException nvae =
-            	            new NoViableAltException("665:1: (lv_op_1_1= '<' | lv_op_1_2= '>' | lv_op_1_3= '<=' | lv_op_1_4= '>=' )", 8, 0, input);
+            	            new NoViableAltException("", 8, 0, input);
 
             	        throw nvae;
             	    }
 
             	    switch (alt8) {
             	        case 1 :
-            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:666:3: lv_op_1_1= '<'
+            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:542:3: lv_op_1_1= '<'
             	            {
-            	            lv_op_1_1=(Token)input.LT(1);
-            	            match(input,25,FOLLOW_25_in_ruleRelationalExpression1103); 
+            	            lv_op_1_1=(Token)match(input,25,FOLLOW_25_in_ruleRelationalExpression1115); 
 
-            	                    createLeafNode(grammarAccess.getRelationalExpressionAccess().getOpLessThanSignKeyword_1_0_0_0(), "op"); 
+            	                    newLeafNode(lv_op_1_1, grammarAccess.getRelationalExpressionAccess().getOpLessThanSignKeyword_1_0_0_0());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getRelationalExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getRelationalExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_1, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_1, null);
             	            	    
 
             	            }
             	            break;
             	        case 2 :
-            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:684:8: lv_op_1_2= '>'
+            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:554:8: lv_op_1_2= '>'
             	            {
-            	            lv_op_1_2=(Token)input.LT(1);
-            	            match(input,26,FOLLOW_26_in_ruleRelationalExpression1132); 
+            	            lv_op_1_2=(Token)match(input,26,FOLLOW_26_in_ruleRelationalExpression1144); 
 
-            	                    createLeafNode(grammarAccess.getRelationalExpressionAccess().getOpGreaterThanSignKeyword_1_0_0_1(), "op"); 
+            	                    newLeafNode(lv_op_1_2, grammarAccess.getRelationalExpressionAccess().getOpGreaterThanSignKeyword_1_0_0_1());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getRelationalExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getRelationalExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_2, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_2, null);
             	            	    
 
             	            }
             	            break;
             	        case 3 :
-            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:702:8: lv_op_1_3= '<='
+            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:566:8: lv_op_1_3= '<='
             	            {
-            	            lv_op_1_3=(Token)input.LT(1);
-            	            match(input,27,FOLLOW_27_in_ruleRelationalExpression1161); 
+            	            lv_op_1_3=(Token)match(input,27,FOLLOW_27_in_ruleRelationalExpression1173); 
 
-            	                    createLeafNode(grammarAccess.getRelationalExpressionAccess().getOpLessThanSignEqualsSignKeyword_1_0_0_2(), "op"); 
+            	                    newLeafNode(lv_op_1_3, grammarAccess.getRelationalExpressionAccess().getOpLessThanSignEqualsSignKeyword_1_0_0_2());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getRelationalExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getRelationalExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_3, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_3, null);
             	            	    
 
             	            }
             	            break;
             	        case 4 :
-            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:720:8: lv_op_1_4= '>='
+            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:578:8: lv_op_1_4= '>='
             	            {
-            	            lv_op_1_4=(Token)input.LT(1);
-            	            match(input,28,FOLLOW_28_in_ruleRelationalExpression1190); 
+            	            lv_op_1_4=(Token)match(input,28,FOLLOW_28_in_ruleRelationalExpression1202); 
 
-            	                    createLeafNode(grammarAccess.getRelationalExpressionAccess().getOpGreaterThanSignEqualsSignKeyword_1_0_0_3(), "op"); 
+            	                    newLeafNode(lv_op_1_4, grammarAccess.getRelationalExpressionAccess().getOpGreaterThanSignEqualsSignKeyword_1_0_0_3());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getRelationalExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getRelationalExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_4, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_4, null);
             	            	    
 
             	            }
@@ -1569,35 +1472,30 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             	    }
 
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:741:2: ( (lv_exp_2_0= ruleConditionalExpression ) )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:742:1: (lv_exp_2_0= ruleConditionalExpression )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:593:2: ( (lv_exp_2_0= ruleConditionalExpression ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:594:1: (lv_exp_2_0= ruleConditionalExpression )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:742:1: (lv_exp_2_0= ruleConditionalExpression )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:743:3: lv_exp_2_0= ruleConditionalExpression
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:594:1: (lv_exp_2_0= ruleConditionalExpression )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:595:3: lv_exp_2_0= ruleConditionalExpression
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getRelationalExpressionAccess().getExpConditionalExpressionParserRuleCall_1_1_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getRelationalExpressionAccess().getExpConditionalExpressionParserRuleCall_1_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleConditionalExpression_in_ruleRelationalExpression1227);
+            	    pushFollow(FOLLOW_ruleConditionalExpression_in_ruleRelationalExpression1239);
             	    lv_exp_2_0=ruleConditionalExpression();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getRelationalExpressionRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getRelationalExpressionRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"exp",
-            	    	        		lv_exp_2_0, 
-            	    	        		"ConditionalExpression", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"exp",
+            	            		lv_exp_2_0, 
+            	            		"ConditionalExpression");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -1620,9 +1518,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -1633,11 +1529,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleRelationalExpression
+    // $ANTLR end "ruleRelationalExpression"
 
 
-    // $ANTLR start entryRuleConditionalExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:773:1: entryRuleConditionalExpression returns [EObject current=null] : iv_ruleConditionalExpression= ruleConditionalExpression EOF ;
+    // $ANTLR start "entryRuleConditionalExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:619:1: entryRuleConditionalExpression returns [EObject current=null] : iv_ruleConditionalExpression= ruleConditionalExpression EOF ;
     public final EObject entryRuleConditionalExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1645,16 +1541,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:774:2: (iv_ruleConditionalExpression= ruleConditionalExpression EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:775:2: iv_ruleConditionalExpression= ruleConditionalExpression EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:620:2: (iv_ruleConditionalExpression= ruleConditionalExpression EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:621:2: iv_ruleConditionalExpression= ruleConditionalExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getConditionalExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleConditionalExpression_in_entryRuleConditionalExpression1265);
+             newCompositeNode(grammarAccess.getConditionalExpressionRule()); 
+            pushFollow(FOLLOW_ruleConditionalExpression_in_entryRuleConditionalExpression1277);
             iv_ruleConditionalExpression=ruleConditionalExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleConditionalExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleConditionalExpression1275); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleConditionalExpression1287); 
 
             }
 
@@ -1668,15 +1565,16 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleConditionalExpression
+    // $ANTLR end "entryRuleConditionalExpression"
 
 
-    // $ANTLR start ruleConditionalExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:782:1: ruleConditionalExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )? ) ;
+    // $ANTLR start "ruleConditionalExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:628:1: ruleConditionalExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) otherlv_3= ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )? ) ;
     public final EObject ruleConditionalExpression() throws RecognitionException {
         EObject current = null;
 
         Token lv_op_1_0=null;
+        Token otherlv_3=null;
         EObject lv_exp_0_0 = null;
 
         EObject lv_exp_2_0 = null;
@@ -1684,44 +1582,39 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         EObject lv_exp_4_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:787:6: ( ( ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )? ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:788:1: ( ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )? )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:631:28: ( ( ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) otherlv_3= ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )? ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:632:1: ( ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) otherlv_3= ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )? )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:788:1: ( ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )? )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:788:2: ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:632:1: ( ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) otherlv_3= ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )? )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:632:2: ( (lv_exp_0_0= ruleAdditiveExpression ) ) ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) otherlv_3= ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )?
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:788:2: ( (lv_exp_0_0= ruleAdditiveExpression ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:789:1: (lv_exp_0_0= ruleAdditiveExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:632:2: ( (lv_exp_0_0= ruleAdditiveExpression ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:633:1: (lv_exp_0_0= ruleAdditiveExpression )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:789:1: (lv_exp_0_0= ruleAdditiveExpression )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:790:3: lv_exp_0_0= ruleAdditiveExpression
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:633:1: (lv_exp_0_0= ruleAdditiveExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:634:3: lv_exp_0_0= ruleAdditiveExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_0_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1321);
+            pushFollow(FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1333);
             lv_exp_0_0=ruleAdditiveExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getConditionalExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
             	        }
-            	        try {
-            	       		add(
-            	       			current, 
-            	       			"exp",
-            	        		lv_exp_0_0, 
-            	        		"AdditiveExpression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		add(
+                   			current, 
+                   			"exp",
+                    		lv_exp_0_0, 
+                    		"AdditiveExpression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -1729,7 +1622,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:812:2: ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:650:2: ( ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) otherlv_3= ':' ( (lv_exp_4_0= ruleAdditiveExpression ) ) )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1738,30 +1631,23 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             switch (alt10) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:812:3: ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) ':' ( (lv_exp_4_0= ruleAdditiveExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:650:3: ( (lv_op_1_0= '?' ) ) ( (lv_exp_2_0= ruleAdditiveExpression ) ) otherlv_3= ':' ( (lv_exp_4_0= ruleAdditiveExpression ) )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:812:3: ( (lv_op_1_0= '?' ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:813:1: (lv_op_1_0= '?' )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:650:3: ( (lv_op_1_0= '?' ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:651:1: (lv_op_1_0= '?' )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:813:1: (lv_op_1_0= '?' )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:814:3: lv_op_1_0= '?'
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:651:1: (lv_op_1_0= '?' )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:652:3: lv_op_1_0= '?'
                     {
-                    lv_op_1_0=(Token)input.LT(1);
-                    match(input,29,FOLLOW_29_in_ruleConditionalExpression1340); 
+                    lv_op_1_0=(Token)match(input,29,FOLLOW_29_in_ruleConditionalExpression1352); 
 
-                            createLeafNode(grammarAccess.getConditionalExpressionAccess().getOpQuestionMarkKeyword_1_0_0(), "op"); 
+                            newLeafNode(lv_op_1_0, grammarAccess.getConditionalExpressionAccess().getOpQuestionMarkKeyword_1_0_0());
                         
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getConditionalExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getConditionalExpressionRule());
                     	        }
-                    	        
-                    	        try {
-                    	       		add(current, "op", lv_op_1_0, "?", lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		addWithLastConsumed(current, "op", lv_op_1_0, "?");
                     	    
 
                     }
@@ -1769,35 +1655,30 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                     }
 
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:833:2: ( (lv_exp_2_0= ruleAdditiveExpression ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:834:1: (lv_exp_2_0= ruleAdditiveExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:665:2: ( (lv_exp_2_0= ruleAdditiveExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:666:1: (lv_exp_2_0= ruleAdditiveExpression )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:834:1: (lv_exp_2_0= ruleAdditiveExpression )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:835:3: lv_exp_2_0= ruleAdditiveExpression
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:666:1: (lv_exp_2_0= ruleAdditiveExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:667:3: lv_exp_2_0= ruleAdditiveExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_1_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_1_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1374);
+                    pushFollow(FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1386);
                     lv_exp_2_0=ruleAdditiveExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getConditionalExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
                     	        }
-                    	        try {
-                    	       		add(
-                    	       			current, 
-                    	       			"exp",
-                    	        		lv_exp_2_0, 
-                    	        		"AdditiveExpression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		add(
+                           			current, 
+                           			"exp",
+                            		lv_exp_2_0, 
+                            		"AdditiveExpression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -1805,39 +1686,34 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                     }
 
-                    match(input,30,FOLLOW_30_in_ruleConditionalExpression1384); 
+                    otherlv_3=(Token)match(input,30,FOLLOW_30_in_ruleConditionalExpression1398); 
 
-                            createLeafNode(grammarAccess.getConditionalExpressionAccess().getColonKeyword_1_2(), null); 
+                        	newLeafNode(otherlv_3, grammarAccess.getConditionalExpressionAccess().getColonKeyword_1_2());
                         
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:861:1: ( (lv_exp_4_0= ruleAdditiveExpression ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:862:1: (lv_exp_4_0= ruleAdditiveExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:687:1: ( (lv_exp_4_0= ruleAdditiveExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:688:1: (lv_exp_4_0= ruleAdditiveExpression )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:862:1: (lv_exp_4_0= ruleAdditiveExpression )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:863:3: lv_exp_4_0= ruleAdditiveExpression
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:688:1: (lv_exp_4_0= ruleAdditiveExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:689:3: lv_exp_4_0= ruleAdditiveExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_1_3_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_1_3_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1405);
+                    pushFollow(FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1419);
                     lv_exp_4_0=ruleAdditiveExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getConditionalExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
                     	        }
-                    	        try {
-                    	       		add(
-                    	       			current, 
-                    	       			"exp",
-                    	        		lv_exp_4_0, 
-                    	        		"AdditiveExpression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		add(
+                           			current, 
+                           			"exp",
+                            		lv_exp_4_0, 
+                            		"AdditiveExpression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -1857,9 +1733,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -1870,11 +1744,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleConditionalExpression
+    // $ANTLR end "ruleConditionalExpression"
 
 
-    // $ANTLR start entryRuleAdditiveExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:893:1: entryRuleAdditiveExpression returns [EObject current=null] : iv_ruleAdditiveExpression= ruleAdditiveExpression EOF ;
+    // $ANTLR start "entryRuleAdditiveExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:713:1: entryRuleAdditiveExpression returns [EObject current=null] : iv_ruleAdditiveExpression= ruleAdditiveExpression EOF ;
     public final EObject entryRuleAdditiveExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1882,16 +1756,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:894:2: (iv_ruleAdditiveExpression= ruleAdditiveExpression EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:895:2: iv_ruleAdditiveExpression= ruleAdditiveExpression EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:714:2: (iv_ruleAdditiveExpression= ruleAdditiveExpression EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:715:2: iv_ruleAdditiveExpression= ruleAdditiveExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getAdditiveExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleAdditiveExpression_in_entryRuleAdditiveExpression1443);
+             newCompositeNode(grammarAccess.getAdditiveExpressionRule()); 
+            pushFollow(FOLLOW_ruleAdditiveExpression_in_entryRuleAdditiveExpression1457);
             iv_ruleAdditiveExpression=ruleAdditiveExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleAdditiveExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleAdditiveExpression1453); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleAdditiveExpression1467); 
 
             }
 
@@ -1905,11 +1780,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleAdditiveExpression
+    // $ANTLR end "entryRuleAdditiveExpression"
 
 
-    // $ANTLR start ruleAdditiveExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:902:1: ruleAdditiveExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )* ) ;
+    // $ANTLR start "ruleAdditiveExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:722:1: ruleAdditiveExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )* ) ;
     public final EObject ruleAdditiveExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1920,44 +1795,39 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         EObject lv_exp_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:907:6: ( ( ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )* ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:908:1: ( ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )* )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:725:28: ( ( ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )* ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:726:1: ( ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )* )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:908:1: ( ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )* )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:908:2: ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )*
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:726:1: ( ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )* )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:726:2: ( (lv_exp_0_0= ruleMultiplicativeExpression ) ) ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )*
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:908:2: ( (lv_exp_0_0= ruleMultiplicativeExpression ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:909:1: (lv_exp_0_0= ruleMultiplicativeExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:726:2: ( (lv_exp_0_0= ruleMultiplicativeExpression ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:727:1: (lv_exp_0_0= ruleMultiplicativeExpression )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:909:1: (lv_exp_0_0= ruleMultiplicativeExpression )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:910:3: lv_exp_0_0= ruleMultiplicativeExpression
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:727:1: (lv_exp_0_0= ruleMultiplicativeExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:728:3: lv_exp_0_0= ruleMultiplicativeExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getAdditiveExpressionAccess().getExpMultiplicativeExpressionParserRuleCall_0_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getAdditiveExpressionAccess().getExpMultiplicativeExpressionParserRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression1499);
+            pushFollow(FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression1513);
             lv_exp_0_0=ruleMultiplicativeExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getAdditiveExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getAdditiveExpressionRule());
             	        }
-            	        try {
-            	       		add(
-            	       			current, 
-            	       			"exp",
-            	        		lv_exp_0_0, 
-            	        		"MultiplicativeExpression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		add(
+                   			current, 
+                   			"exp",
+                    		lv_exp_0_0, 
+                    		"MultiplicativeExpression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -1965,7 +1835,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:932:2: ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )*
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:744:2: ( ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) ) )*
             loop12:
             do {
                 int alt12=2;
@@ -1978,15 +1848,15 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                 switch (alt12) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:932:3: ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:744:3: ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) ) ( (lv_exp_2_0= ruleMultiplicativeExpression ) )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:932:3: ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:933:1: ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:744:3: ( ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:745:1: ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:933:1: ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:934:1: (lv_op_1_1= '+' | lv_op_1_2= '-' )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:745:1: ( (lv_op_1_1= '+' | lv_op_1_2= '-' ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:746:1: (lv_op_1_1= '+' | lv_op_1_2= '-' )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:934:1: (lv_op_1_1= '+' | lv_op_1_2= '-' )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:746:1: (lv_op_1_1= '+' | lv_op_1_2= '-' )
             	    int alt11=2;
             	    int LA11_0 = input.LA(1);
 
@@ -1998,53 +1868,39 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             	    }
             	    else {
             	        NoViableAltException nvae =
-            	            new NoViableAltException("934:1: (lv_op_1_1= '+' | lv_op_1_2= '-' )", 11, 0, input);
+            	            new NoViableAltException("", 11, 0, input);
 
             	        throw nvae;
             	    }
             	    switch (alt11) {
             	        case 1 :
-            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:935:3: lv_op_1_1= '+'
+            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:747:3: lv_op_1_1= '+'
             	            {
-            	            lv_op_1_1=(Token)input.LT(1);
-            	            match(input,31,FOLLOW_31_in_ruleAdditiveExpression1520); 
+            	            lv_op_1_1=(Token)match(input,31,FOLLOW_31_in_ruleAdditiveExpression1534); 
 
-            	                    createLeafNode(grammarAccess.getAdditiveExpressionAccess().getOpPlusSignKeyword_1_0_0_0(), "op"); 
+            	                    newLeafNode(lv_op_1_1, grammarAccess.getAdditiveExpressionAccess().getOpPlusSignKeyword_1_0_0_0());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getAdditiveExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getAdditiveExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_1, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_1, null);
             	            	    
 
             	            }
             	            break;
             	        case 2 :
-            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:953:8: lv_op_1_2= '-'
+            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:759:8: lv_op_1_2= '-'
             	            {
-            	            lv_op_1_2=(Token)input.LT(1);
-            	            match(input,32,FOLLOW_32_in_ruleAdditiveExpression1549); 
+            	            lv_op_1_2=(Token)match(input,32,FOLLOW_32_in_ruleAdditiveExpression1563); 
 
-            	                    createLeafNode(grammarAccess.getAdditiveExpressionAccess().getOpHyphenMinusKeyword_1_0_0_1(), "op"); 
+            	                    newLeafNode(lv_op_1_2, grammarAccess.getAdditiveExpressionAccess().getOpHyphenMinusKeyword_1_0_0_1());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getAdditiveExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getAdditiveExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_2, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_2, null);
             	            	    
 
             	            }
@@ -2058,35 +1914,30 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             	    }
 
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:974:2: ( (lv_exp_2_0= ruleMultiplicativeExpression ) )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:975:1: (lv_exp_2_0= ruleMultiplicativeExpression )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:774:2: ( (lv_exp_2_0= ruleMultiplicativeExpression ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:775:1: (lv_exp_2_0= ruleMultiplicativeExpression )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:975:1: (lv_exp_2_0= ruleMultiplicativeExpression )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:976:3: lv_exp_2_0= ruleMultiplicativeExpression
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:775:1: (lv_exp_2_0= ruleMultiplicativeExpression )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:776:3: lv_exp_2_0= ruleMultiplicativeExpression
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getAdditiveExpressionAccess().getExpMultiplicativeExpressionParserRuleCall_1_1_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getAdditiveExpressionAccess().getExpMultiplicativeExpressionParserRuleCall_1_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression1586);
+            	    pushFollow(FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression1600);
             	    lv_exp_2_0=ruleMultiplicativeExpression();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getAdditiveExpressionRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getAdditiveExpressionRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"exp",
-            	    	        		lv_exp_2_0, 
-            	    	        		"MultiplicativeExpression", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"exp",
+            	            		lv_exp_2_0, 
+            	            		"MultiplicativeExpression");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -2109,9 +1960,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -2122,11 +1971,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleAdditiveExpression
+    // $ANTLR end "ruleAdditiveExpression"
 
 
-    // $ANTLR start entryRuleMultiplicativeExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1006:1: entryRuleMultiplicativeExpression returns [EObject current=null] : iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF ;
+    // $ANTLR start "entryRuleMultiplicativeExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:800:1: entryRuleMultiplicativeExpression returns [EObject current=null] : iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF ;
     public final EObject entryRuleMultiplicativeExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2134,16 +1983,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1007:2: (iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1008:2: iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:801:2: (iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:802:2: iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getMultiplicativeExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleMultiplicativeExpression_in_entryRuleMultiplicativeExpression1624);
+             newCompositeNode(grammarAccess.getMultiplicativeExpressionRule()); 
+            pushFollow(FOLLOW_ruleMultiplicativeExpression_in_entryRuleMultiplicativeExpression1638);
             iv_ruleMultiplicativeExpression=ruleMultiplicativeExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleMultiplicativeExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleMultiplicativeExpression1634); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMultiplicativeExpression1648); 
 
             }
 
@@ -2157,11 +2007,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleMultiplicativeExpression
+    // $ANTLR end "entryRuleMultiplicativeExpression"
 
 
-    // $ANTLR start ruleMultiplicativeExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1015:1: ruleMultiplicativeExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )* ) ;
+    // $ANTLR start "ruleMultiplicativeExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:809:1: ruleMultiplicativeExpression returns [EObject current=null] : ( ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )* ) ;
     public final EObject ruleMultiplicativeExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2173,44 +2023,39 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         EObject lv_exp_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1020:6: ( ( ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )* ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1021:1: ( ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )* )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:812:28: ( ( ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )* ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:813:1: ( ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )* )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1021:1: ( ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )* )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1021:2: ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )*
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:813:1: ( ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )* )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:813:2: ( (lv_exp_0_0= ruleUnaryExpression ) ) ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )*
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1021:2: ( (lv_exp_0_0= ruleUnaryExpression ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1022:1: (lv_exp_0_0= ruleUnaryExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:813:2: ( (lv_exp_0_0= ruleUnaryExpression ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:814:1: (lv_exp_0_0= ruleUnaryExpression )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1022:1: (lv_exp_0_0= ruleUnaryExpression )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1023:3: lv_exp_0_0= ruleUnaryExpression
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:814:1: (lv_exp_0_0= ruleUnaryExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:815:3: lv_exp_0_0= ruleUnaryExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getMultiplicativeExpressionAccess().getExpUnaryExpressionParserRuleCall_0_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getMultiplicativeExpressionAccess().getExpUnaryExpressionParserRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_ruleUnaryExpression_in_ruleMultiplicativeExpression1680);
+            pushFollow(FOLLOW_ruleUnaryExpression_in_ruleMultiplicativeExpression1694);
             lv_exp_0_0=ruleUnaryExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getMultiplicativeExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getMultiplicativeExpressionRule());
             	        }
-            	        try {
-            	       		add(
-            	       			current, 
-            	       			"exp",
-            	        		lv_exp_0_0, 
-            	        		"UnaryExpression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		add(
+                   			current, 
+                   			"exp",
+                    		lv_exp_0_0, 
+                    		"UnaryExpression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -2218,7 +2063,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1045:2: ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )*
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:831:2: ( ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) ) )*
             loop14:
             do {
                 int alt14=2;
@@ -2231,15 +2076,15 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                 switch (alt14) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1045:3: ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:831:3: ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) ) ( (lv_exp_2_0= ruleUnaryExpression ) )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1045:3: ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1046:1: ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:831:3: ( ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:832:1: ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1046:1: ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1047:1: (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:832:1: ( (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:833:1: (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1047:1: (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:833:1: (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' )
             	    int alt13=3;
             	    switch ( input.LA(1) ) {
             	    case 33:
@@ -2259,77 +2104,56 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             	        break;
             	    default:
             	        NoViableAltException nvae =
-            	            new NoViableAltException("1047:1: (lv_op_1_1= '*' | lv_op_1_2= '/' | lv_op_1_3= 'mod' )", 13, 0, input);
+            	            new NoViableAltException("", 13, 0, input);
 
             	        throw nvae;
             	    }
 
             	    switch (alt13) {
             	        case 1 :
-            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1048:3: lv_op_1_1= '*'
+            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:834:3: lv_op_1_1= '*'
             	            {
-            	            lv_op_1_1=(Token)input.LT(1);
-            	            match(input,33,FOLLOW_33_in_ruleMultiplicativeExpression1701); 
+            	            lv_op_1_1=(Token)match(input,33,FOLLOW_33_in_ruleMultiplicativeExpression1715); 
 
-            	                    createLeafNode(grammarAccess.getMultiplicativeExpressionAccess().getOpAsteriskKeyword_1_0_0_0(), "op"); 
+            	                    newLeafNode(lv_op_1_1, grammarAccess.getMultiplicativeExpressionAccess().getOpAsteriskKeyword_1_0_0_0());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getMultiplicativeExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getMultiplicativeExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_1, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_1, null);
             	            	    
 
             	            }
             	            break;
             	        case 2 :
-            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1066:8: lv_op_1_2= '/'
+            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:846:8: lv_op_1_2= '/'
             	            {
-            	            lv_op_1_2=(Token)input.LT(1);
-            	            match(input,34,FOLLOW_34_in_ruleMultiplicativeExpression1730); 
+            	            lv_op_1_2=(Token)match(input,34,FOLLOW_34_in_ruleMultiplicativeExpression1744); 
 
-            	                    createLeafNode(grammarAccess.getMultiplicativeExpressionAccess().getOpSolidusKeyword_1_0_0_1(), "op"); 
+            	                    newLeafNode(lv_op_1_2, grammarAccess.getMultiplicativeExpressionAccess().getOpSolidusKeyword_1_0_0_1());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getMultiplicativeExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getMultiplicativeExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_2, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_2, null);
             	            	    
 
             	            }
             	            break;
             	        case 3 :
-            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1084:8: lv_op_1_3= 'mod'
+            	            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:858:8: lv_op_1_3= 'mod'
             	            {
-            	            lv_op_1_3=(Token)input.LT(1);
-            	            match(input,35,FOLLOW_35_in_ruleMultiplicativeExpression1759); 
+            	            lv_op_1_3=(Token)match(input,35,FOLLOW_35_in_ruleMultiplicativeExpression1773); 
 
-            	                    createLeafNode(grammarAccess.getMultiplicativeExpressionAccess().getOpModKeyword_1_0_0_2(), "op"); 
+            	                    newLeafNode(lv_op_1_3, grammarAccess.getMultiplicativeExpressionAccess().getOpModKeyword_1_0_0_2());
             	                
 
             	            	        if (current==null) {
-            	            	            current = factory.create(grammarAccess.getMultiplicativeExpressionRule().getType().getClassifier());
-            	            	            associateNodeWithAstElement(currentNode, current);
+            	            	            current = createModelElement(grammarAccess.getMultiplicativeExpressionRule());
             	            	        }
-            	            	        
-            	            	        try {
-            	            	       		add(current, "op", lv_op_1_3, null, lastConsumedNode);
-            	            	        } catch (ValueConverterException vce) {
-            	            				handleValueConverterException(vce);
-            	            	        }
+            	                   		addWithLastConsumed(current, "op", lv_op_1_3, null);
             	            	    
 
             	            }
@@ -2343,35 +2167,30 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             	    }
 
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1105:2: ( (lv_exp_2_0= ruleUnaryExpression ) )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1106:1: (lv_exp_2_0= ruleUnaryExpression )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:873:2: ( (lv_exp_2_0= ruleUnaryExpression ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:874:1: (lv_exp_2_0= ruleUnaryExpression )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1106:1: (lv_exp_2_0= ruleUnaryExpression )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1107:3: lv_exp_2_0= ruleUnaryExpression
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:874:1: (lv_exp_2_0= ruleUnaryExpression )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:875:3: lv_exp_2_0= ruleUnaryExpression
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getMultiplicativeExpressionAccess().getExpUnaryExpressionParserRuleCall_1_1_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getMultiplicativeExpressionAccess().getExpUnaryExpressionParserRuleCall_1_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleUnaryExpression_in_ruleMultiplicativeExpression1796);
+            	    pushFollow(FOLLOW_ruleUnaryExpression_in_ruleMultiplicativeExpression1810);
             	    lv_exp_2_0=ruleUnaryExpression();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getMultiplicativeExpressionRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getMultiplicativeExpressionRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"exp",
-            	    	        		lv_exp_2_0, 
-            	    	        		"UnaryExpression", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"exp",
+            	            		lv_exp_2_0, 
+            	            		"UnaryExpression");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -2394,9 +2213,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -2407,11 +2224,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleMultiplicativeExpression
+    // $ANTLR end "ruleMultiplicativeExpression"
 
 
-    // $ANTLR start entryRuleUnaryExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1137:1: entryRuleUnaryExpression returns [EObject current=null] : iv_ruleUnaryExpression= ruleUnaryExpression EOF ;
+    // $ANTLR start "entryRuleUnaryExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:899:1: entryRuleUnaryExpression returns [EObject current=null] : iv_ruleUnaryExpression= ruleUnaryExpression EOF ;
     public final EObject entryRuleUnaryExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2419,16 +2236,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1138:2: (iv_ruleUnaryExpression= ruleUnaryExpression EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1139:2: iv_ruleUnaryExpression= ruleUnaryExpression EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:900:2: (iv_ruleUnaryExpression= ruleUnaryExpression EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:901:2: iv_ruleUnaryExpression= ruleUnaryExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getUnaryExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleUnaryExpression_in_entryRuleUnaryExpression1834);
+             newCompositeNode(grammarAccess.getUnaryExpressionRule()); 
+            pushFollow(FOLLOW_ruleUnaryExpression_in_entryRuleUnaryExpression1848);
             iv_ruleUnaryExpression=ruleUnaryExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleUnaryExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleUnaryExpression1844); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleUnaryExpression1858); 
 
             }
 
@@ -2442,11 +2260,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleUnaryExpression
+    // $ANTLR end "entryRuleUnaryExpression"
 
 
-    // $ANTLR start ruleUnaryExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1146:1: ruleUnaryExpression returns [EObject current=null] : ( ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) ) | ( (lv_exp_2_0= rulePrimaryExpression ) ) ) ;
+    // $ANTLR start "ruleUnaryExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:908:1: ruleUnaryExpression returns [EObject current=null] : ( ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) ) | ( (lv_exp_2_0= rulePrimaryExpression ) ) ) ;
     public final EObject ruleUnaryExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2458,13 +2276,13 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         EObject lv_exp_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1151:6: ( ( ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) ) | ( (lv_exp_2_0= rulePrimaryExpression ) ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1152:1: ( ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) ) | ( (lv_exp_2_0= rulePrimaryExpression ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:911:28: ( ( ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) ) | ( (lv_exp_2_0= rulePrimaryExpression ) ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:912:1: ( ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) ) | ( (lv_exp_2_0= rulePrimaryExpression ) ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1152:1: ( ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) ) | ( (lv_exp_2_0= rulePrimaryExpression ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:912:1: ( ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) ) | ( (lv_exp_2_0= rulePrimaryExpression ) ) )
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -2476,24 +2294,24 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1152:1: ( ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) ) | ( (lv_exp_2_0= rulePrimaryExpression ) ) )", 16, 0, input);
+                    new NoViableAltException("", 16, 0, input);
 
                 throw nvae;
             }
             switch (alt16) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1152:2: ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:912:2: ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1152:2: ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1152:3: ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:912:2: ( ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:912:3: ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) ) ( (lv_unary_1_0= ruleUnaryExpression ) )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1152:3: ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1153:1: ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:912:3: ( ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:913:1: ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1153:1: ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1154:1: (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:913:1: ( (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:914:1: (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1154:1: (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:914:1: (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' )
                     int alt15=3;
                     switch ( input.LA(1) ) {
                     case 36:
@@ -2513,77 +2331,56 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("1154:1: (lv_op_0_1= 'not' | lv_op_0_2= '-' | lv_op_0_3= '+' )", 15, 0, input);
+                            new NoViableAltException("", 15, 0, input);
 
                         throw nvae;
                     }
 
                     switch (alt15) {
                         case 1 :
-                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1155:3: lv_op_0_1= 'not'
+                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:915:3: lv_op_0_1= 'not'
                             {
-                            lv_op_0_1=(Token)input.LT(1);
-                            match(input,36,FOLLOW_36_in_ruleUnaryExpression1890); 
+                            lv_op_0_1=(Token)match(input,36,FOLLOW_36_in_ruleUnaryExpression1904); 
 
-                                    createLeafNode(grammarAccess.getUnaryExpressionAccess().getOpNotKeyword_0_0_0_0(), "op"); 
+                                    newLeafNode(lv_op_0_1, grammarAccess.getUnaryExpressionAccess().getOpNotKeyword_0_0_0_0());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getUnaryExpressionRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getUnaryExpressionRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "op", lv_op_0_1, null, lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "op", lv_op_0_1, null);
                             	    
 
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1173:8: lv_op_0_2= '-'
+                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:927:8: lv_op_0_2= '-'
                             {
-                            lv_op_0_2=(Token)input.LT(1);
-                            match(input,32,FOLLOW_32_in_ruleUnaryExpression1919); 
+                            lv_op_0_2=(Token)match(input,32,FOLLOW_32_in_ruleUnaryExpression1933); 
 
-                                    createLeafNode(grammarAccess.getUnaryExpressionAccess().getOpHyphenMinusKeyword_0_0_0_1(), "op"); 
+                                    newLeafNode(lv_op_0_2, grammarAccess.getUnaryExpressionAccess().getOpHyphenMinusKeyword_0_0_0_1());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getUnaryExpressionRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getUnaryExpressionRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "op", lv_op_0_2, null, lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "op", lv_op_0_2, null);
                             	    
 
                             }
                             break;
                         case 3 :
-                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1191:8: lv_op_0_3= '+'
+                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:939:8: lv_op_0_3= '+'
                             {
-                            lv_op_0_3=(Token)input.LT(1);
-                            match(input,31,FOLLOW_31_in_ruleUnaryExpression1948); 
+                            lv_op_0_3=(Token)match(input,31,FOLLOW_31_in_ruleUnaryExpression1962); 
 
-                                    createLeafNode(grammarAccess.getUnaryExpressionAccess().getOpPlusSignKeyword_0_0_0_2(), "op"); 
+                                    newLeafNode(lv_op_0_3, grammarAccess.getUnaryExpressionAccess().getOpPlusSignKeyword_0_0_0_2());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getUnaryExpressionRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getUnaryExpressionRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "op", lv_op_0_3, null, lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "op", lv_op_0_3, null);
                             	    
 
                             }
@@ -2597,35 +2394,30 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                     }
 
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1212:2: ( (lv_unary_1_0= ruleUnaryExpression ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1213:1: (lv_unary_1_0= ruleUnaryExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:954:2: ( (lv_unary_1_0= ruleUnaryExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:955:1: (lv_unary_1_0= ruleUnaryExpression )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1213:1: (lv_unary_1_0= ruleUnaryExpression )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1214:3: lv_unary_1_0= ruleUnaryExpression
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:955:1: (lv_unary_1_0= ruleUnaryExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:956:3: lv_unary_1_0= ruleUnaryExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getUnaryExpressionAccess().getUnaryUnaryExpressionParserRuleCall_0_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getUnaryExpressionAccess().getUnaryUnaryExpressionParserRuleCall_0_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleUnaryExpression_in_ruleUnaryExpression1985);
+                    pushFollow(FOLLOW_ruleUnaryExpression_in_ruleUnaryExpression1999);
                     lv_unary_1_0=ruleUnaryExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getUnaryExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getUnaryExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"unary",
-                    	        		lv_unary_1_0, 
-                    	        		"UnaryExpression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"unary",
+                            		lv_unary_1_0, 
+                            		"UnaryExpression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -2640,37 +2432,32 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1237:6: ( (lv_exp_2_0= rulePrimaryExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:973:6: ( (lv_exp_2_0= rulePrimaryExpression ) )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1237:6: ( (lv_exp_2_0= rulePrimaryExpression ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1238:1: (lv_exp_2_0= rulePrimaryExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:973:6: ( (lv_exp_2_0= rulePrimaryExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:974:1: (lv_exp_2_0= rulePrimaryExpression )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1238:1: (lv_exp_2_0= rulePrimaryExpression )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1239:3: lv_exp_2_0= rulePrimaryExpression
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:974:1: (lv_exp_2_0= rulePrimaryExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:975:3: lv_exp_2_0= rulePrimaryExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getUnaryExpressionAccess().getExpPrimaryExpressionParserRuleCall_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getUnaryExpressionAccess().getExpPrimaryExpressionParserRuleCall_1_0()); 
                     	    
-                    pushFollow(FOLLOW_rulePrimaryExpression_in_ruleUnaryExpression2013);
+                    pushFollow(FOLLOW_rulePrimaryExpression_in_ruleUnaryExpression2027);
                     lv_exp_2_0=rulePrimaryExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getUnaryExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getUnaryExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"exp",
-                    	        		lv_exp_2_0, 
-                    	        		"PrimaryExpression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"exp",
+                            		lv_exp_2_0, 
+                            		"PrimaryExpression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -2687,9 +2474,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -2700,11 +2485,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleUnaryExpression
+    // $ANTLR end "ruleUnaryExpression"
 
 
-    // $ANTLR start entryRulePrimaryExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1269:1: entryRulePrimaryExpression returns [EObject current=null] : iv_rulePrimaryExpression= rulePrimaryExpression EOF ;
+    // $ANTLR start "entryRulePrimaryExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:999:1: entryRulePrimaryExpression returns [EObject current=null] : iv_rulePrimaryExpression= rulePrimaryExpression EOF ;
     public final EObject entryRulePrimaryExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2712,16 +2497,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1270:2: (iv_rulePrimaryExpression= rulePrimaryExpression EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1271:2: iv_rulePrimaryExpression= rulePrimaryExpression EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1000:2: (iv_rulePrimaryExpression= rulePrimaryExpression EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1001:2: iv_rulePrimaryExpression= rulePrimaryExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getPrimaryExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_rulePrimaryExpression_in_entryRulePrimaryExpression2049);
+             newCompositeNode(grammarAccess.getPrimaryExpressionRule()); 
+            pushFollow(FOLLOW_rulePrimaryExpression_in_entryRulePrimaryExpression2063);
             iv_rulePrimaryExpression=rulePrimaryExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_rulePrimaryExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePrimaryExpression2059); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePrimaryExpression2073); 
 
             }
 
@@ -2735,57 +2521,53 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRulePrimaryExpression
+    // $ANTLR end "entryRulePrimaryExpression"
 
 
-    // $ANTLR start rulePrimaryExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1278:1: rulePrimaryExpression returns [EObject current=null] : ( ( (lv_prefix_0_0= ruleValueSpecification ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? ) ;
+    // $ANTLR start "rulePrimaryExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1008:1: rulePrimaryExpression returns [EObject current=null] : ( ( (lv_prefix_0_0= ruleValueSpecification ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? ) ;
     public final EObject rulePrimaryExpression() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
         EObject lv_prefix_0_0 = null;
 
         EObject lv_suffix_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1283:6: ( ( ( (lv_prefix_0_0= ruleValueSpecification ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1284:1: ( ( (lv_prefix_0_0= ruleValueSpecification ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1011:28: ( ( ( (lv_prefix_0_0= ruleValueSpecification ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1012:1: ( ( (lv_prefix_0_0= ruleValueSpecification ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1284:1: ( ( (lv_prefix_0_0= ruleValueSpecification ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1284:2: ( (lv_prefix_0_0= ruleValueSpecification ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1012:1: ( ( (lv_prefix_0_0= ruleValueSpecification ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1012:2: ( (lv_prefix_0_0= ruleValueSpecification ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )?
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1284:2: ( (lv_prefix_0_0= ruleValueSpecification ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1285:1: (lv_prefix_0_0= ruleValueSpecification )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1012:2: ( (lv_prefix_0_0= ruleValueSpecification ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1013:1: (lv_prefix_0_0= ruleValueSpecification )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1285:1: (lv_prefix_0_0= ruleValueSpecification )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1286:3: lv_prefix_0_0= ruleValueSpecification
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1013:1: (lv_prefix_0_0= ruleValueSpecification )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1014:3: lv_prefix_0_0= ruleValueSpecification
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getPrimaryExpressionAccess().getPrefixValueSpecificationParserRuleCall_0_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getPrefixValueSpecificationParserRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_ruleValueSpecification_in_rulePrimaryExpression2105);
+            pushFollow(FOLLOW_ruleValueSpecification_in_rulePrimaryExpression2119);
             lv_prefix_0_0=ruleValueSpecification();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getPrimaryExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"prefix",
-            	        		lv_prefix_0_0, 
-            	        		"ValueSpecification", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"prefix",
+                    		lv_prefix_0_0, 
+                    		"ValueSpecification");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -2793,7 +2575,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1308:2: ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1030:2: (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -2802,41 +2584,36 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             switch (alt17) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1308:4: '.' ( (lv_suffix_2_0= ruleSuffixExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1030:4: otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) )
                     {
-                    match(input,37,FOLLOW_37_in_rulePrimaryExpression2116); 
+                    otherlv_1=(Token)match(input,37,FOLLOW_37_in_rulePrimaryExpression2132); 
 
-                            createLeafNode(grammarAccess.getPrimaryExpressionAccess().getFullStopKeyword_1_0(), null); 
+                        	newLeafNode(otherlv_1, grammarAccess.getPrimaryExpressionAccess().getFullStopKeyword_1_0());
                         
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1312:1: ( (lv_suffix_2_0= ruleSuffixExpression ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1313:1: (lv_suffix_2_0= ruleSuffixExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1034:1: ( (lv_suffix_2_0= ruleSuffixExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1035:1: (lv_suffix_2_0= ruleSuffixExpression )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1313:1: (lv_suffix_2_0= ruleSuffixExpression )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1314:3: lv_suffix_2_0= ruleSuffixExpression
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1035:1: (lv_suffix_2_0= ruleSuffixExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1036:3: lv_suffix_2_0= ruleSuffixExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getPrimaryExpressionAccess().getSuffixSuffixExpressionParserRuleCall_1_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getSuffixSuffixExpressionParserRuleCall_1_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleSuffixExpression_in_rulePrimaryExpression2137);
+                    pushFollow(FOLLOW_ruleSuffixExpression_in_rulePrimaryExpression2153);
                     lv_suffix_2_0=ruleSuffixExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getPrimaryExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"suffix",
-                    	        		lv_suffix_2_0, 
-                    	        		"SuffixExpression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"suffix",
+                            		lv_suffix_2_0, 
+                            		"SuffixExpression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -2856,9 +2633,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -2869,11 +2644,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end rulePrimaryExpression
+    // $ANTLR end "rulePrimaryExpression"
 
 
-    // $ANTLR start entryRuleValueSpecification
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1344:1: entryRuleValueSpecification returns [EObject current=null] : iv_ruleValueSpecification= ruleValueSpecification EOF ;
+    // $ANTLR start "entryRuleValueSpecification"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1060:1: entryRuleValueSpecification returns [EObject current=null] : iv_ruleValueSpecification= ruleValueSpecification EOF ;
     public final EObject entryRuleValueSpecification() throws RecognitionException {
         EObject current = null;
 
@@ -2881,16 +2656,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1345:2: (iv_ruleValueSpecification= ruleValueSpecification EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1346:2: iv_ruleValueSpecification= ruleValueSpecification EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1061:2: (iv_ruleValueSpecification= ruleValueSpecification EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1062:2: iv_ruleValueSpecification= ruleValueSpecification EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getValueSpecificationRule(), currentNode); 
-            pushFollow(FOLLOW_ruleValueSpecification_in_entryRuleValueSpecification2175);
+             newCompositeNode(grammarAccess.getValueSpecificationRule()); 
+            pushFollow(FOLLOW_ruleValueSpecification_in_entryRuleValueSpecification2191);
             iv_ruleValueSpecification=ruleValueSpecification();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleValueSpecification; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleValueSpecification2185); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleValueSpecification2201); 
 
             }
 
@@ -2904,14 +2680,16 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleValueSpecification
+    // $ANTLR end "entryRuleValueSpecification"
 
 
-    // $ANTLR start ruleValueSpecification
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1353:1: ruleValueSpecification returns [EObject current=null] : (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | ( '(' this_Expression_8= ruleExpression ')' ) ) ;
+    // $ANTLR start "ruleValueSpecification"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1069:1: ruleValueSpecification returns [EObject current=null] : (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | (otherlv_7= '(' this_Expression_8= ruleExpression otherlv_9= ')' ) ) ;
     public final EObject ruleValueSpecification() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_7=null;
+        Token otherlv_9=null;
         EObject this_Literal_0 = null;
 
         EObject this_NameOrChoiceOrBehaviorCall_1 = null;
@@ -2929,240 +2707,167 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         EObject this_Expression_8 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1358:6: ( (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | ( '(' this_Expression_8= ruleExpression ')' ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1359:1: (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | ( '(' this_Expression_8= ruleExpression ')' ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1072:28: ( (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | (otherlv_7= '(' this_Expression_8= ruleExpression otherlv_9= ')' ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1073:1: (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | (otherlv_7= '(' this_Expression_8= ruleExpression otherlv_9= ')' ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1359:1: (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | ( '(' this_Expression_8= ruleExpression ')' ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1073:1: (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | (otherlv_7= '(' this_Expression_8= ruleExpression otherlv_9= ')' ) )
             int alt18=8;
-            switch ( input.LA(1) ) {
-            case RULE_INTEGERLITERAL:
-            case RULE_REALLITERAL:
-            case RULE_DATETIMELITERAL:
-            case RULE_BOOLEANLITERAL:
-            case RULE_NULLLITERAL:
-            case RULE_STRING:
-            case 33:
-            case 34:
-                {
-                alt18=1;
-                }
-                break;
-            case RULE_ID:
-                {
-                alt18=2;
-                }
-                break;
-            case 41:
-            case 42:
-                {
-                alt18=3;
-                }
-                break;
-            case 44:
-                {
-                int LA18_4 = input.LA(2);
-
-                if ( ((LA18_4>=RULE_INTEGERLITERAL && LA18_4<=RULE_STRING)||(LA18_4>=31 && LA18_4<=34)||LA18_4==36||LA18_4==38||(LA18_4>=41 && LA18_4<=42)||LA18_4==44||LA18_4==46||(LA18_4>=48 && LA18_4<=53)) ) {
-                    alt18=4;
-                }
-                else if ( (LA18_4==RULE_ID) ) {
-                    int LA18_9 = input.LA(3);
-
-                    if ( (LA18_9==18||(LA18_9>=20 && LA18_9<=29)||(LA18_9>=31 && LA18_9<=35)||(LA18_9>=37 && LA18_9<=38)||LA18_9==40||LA18_9==45) ) {
-                        alt18=4;
-                    }
-                    else if ( (LA18_9==19) ) {
-                        alt18=5;
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("1359:1: (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | ( '(' this_Expression_8= ruleExpression ')' ) )", 18, 9, input);
-
-                        throw nvae;
-                    }
-                }
-                else {
-                    NoViableAltException nvae =
-                        new NoViableAltException("1359:1: (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | ( '(' this_Expression_8= ruleExpression ')' ) )", 18, 4, input);
-
-                    throw nvae;
-                }
-                }
-                break;
-            case 46:
-            case 48:
-            case 49:
-                {
-                alt18=6;
-                }
-                break;
-            case 50:
-            case 51:
-            case 52:
-            case 53:
-                {
-                alt18=7;
-                }
-                break;
-            case 38:
-                {
-                alt18=8;
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("1359:1: (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | ( '(' this_Expression_8= ruleExpression ')' ) )", 18, 0, input);
-
-                throw nvae;
-            }
-
+            alt18 = dfa18.predict(input);
             switch (alt18) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1360:5: this_Literal_0= ruleLiteral
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1074:5: this_Literal_0= ruleLiteral
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getValueSpecificationAccess().getLiteralParserRuleCall_0(), currentNode); 
+                            newCompositeNode(grammarAccess.getValueSpecificationAccess().getLiteralParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleLiteral_in_ruleValueSpecification2232);
+                    pushFollow(FOLLOW_ruleLiteral_in_ruleValueSpecification2248);
                     this_Literal_0=ruleLiteral();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_Literal_0; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1370:5: this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1084:5: this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getValueSpecificationAccess().getNameOrChoiceOrBehaviorCallParserRuleCall_1(), currentNode); 
+                            newCompositeNode(grammarAccess.getValueSpecificationAccess().getNameOrChoiceOrBehaviorCallParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_ruleValueSpecification2259);
+                    pushFollow(FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_ruleValueSpecification2275);
                     this_NameOrChoiceOrBehaviorCall_1=ruleNameOrChoiceOrBehaviorCall();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_NameOrChoiceOrBehaviorCall_1; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1380:5: this_Interval_2= ruleInterval
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1094:5: this_Interval_2= ruleInterval
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getValueSpecificationAccess().getIntervalParserRuleCall_2(), currentNode); 
+                            newCompositeNode(grammarAccess.getValueSpecificationAccess().getIntervalParserRuleCall_2()); 
                         
-                    pushFollow(FOLLOW_ruleInterval_in_ruleValueSpecification2286);
+                    pushFollow(FOLLOW_ruleInterval_in_ruleValueSpecification2302);
                     this_Interval_2=ruleInterval();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_Interval_2; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1390:5: this_CollectionOrTuple_3= ruleCollectionOrTuple
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1104:5: this_CollectionOrTuple_3= ruleCollectionOrTuple
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getValueSpecificationAccess().getCollectionOrTupleParserRuleCall_3(), currentNode); 
+                            newCompositeNode(grammarAccess.getValueSpecificationAccess().getCollectionOrTupleParserRuleCall_3()); 
                         
-                    pushFollow(FOLLOW_ruleCollectionOrTuple_in_ruleValueSpecification2313);
+                    pushFollow(FOLLOW_ruleCollectionOrTuple_in_ruleValueSpecification2329);
                     this_CollectionOrTuple_3=ruleCollectionOrTuple();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_CollectionOrTuple_3; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 5 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1400:5: this_Tuple_4= ruleTuple
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1114:5: this_Tuple_4= ruleTuple
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getValueSpecificationAccess().getTupleParserRuleCall_4(), currentNode); 
+                            newCompositeNode(grammarAccess.getValueSpecificationAccess().getTupleParserRuleCall_4()); 
                         
-                    pushFollow(FOLLOW_ruleTuple_in_ruleValueSpecification2340);
+                    pushFollow(FOLLOW_ruleTuple_in_ruleValueSpecification2356);
                     this_Tuple_4=ruleTuple();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_Tuple_4; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 6 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1410:5: this_TimeExpression_5= ruleTimeExpression
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1124:5: this_TimeExpression_5= ruleTimeExpression
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getValueSpecificationAccess().getTimeExpressionParserRuleCall_5(), currentNode); 
+                            newCompositeNode(grammarAccess.getValueSpecificationAccess().getTimeExpressionParserRuleCall_5()); 
                         
-                    pushFollow(FOLLOW_ruleTimeExpression_in_ruleValueSpecification2367);
+                    pushFollow(FOLLOW_ruleTimeExpression_in_ruleValueSpecification2383);
                     this_TimeExpression_5=ruleTimeExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_TimeExpression_5; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 7 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1420:5: this_VariableDeclaration_6= ruleVariableDeclaration
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1134:5: this_VariableDeclaration_6= ruleVariableDeclaration
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getValueSpecificationAccess().getVariableDeclarationParserRuleCall_6(), currentNode); 
+                            newCompositeNode(grammarAccess.getValueSpecificationAccess().getVariableDeclarationParserRuleCall_6()); 
                         
-                    pushFollow(FOLLOW_ruleVariableDeclaration_in_ruleValueSpecification2394);
+                    pushFollow(FOLLOW_ruleVariableDeclaration_in_ruleValueSpecification2410);
                     this_VariableDeclaration_6=ruleVariableDeclaration();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_VariableDeclaration_6; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 8 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1429:6: ( '(' this_Expression_8= ruleExpression ')' )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1143:6: (otherlv_7= '(' this_Expression_8= ruleExpression otherlv_9= ')' )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1429:6: ( '(' this_Expression_8= ruleExpression ')' )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1429:8: '(' this_Expression_8= ruleExpression ')'
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1143:6: (otherlv_7= '(' this_Expression_8= ruleExpression otherlv_9= ')' )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1143:8: otherlv_7= '(' this_Expression_8= ruleExpression otherlv_9= ')'
                     {
-                    match(input,38,FOLLOW_38_in_ruleValueSpecification2410); 
+                    otherlv_7=(Token)match(input,38,FOLLOW_38_in_ruleValueSpecification2428); 
 
-                            createLeafNode(grammarAccess.getValueSpecificationAccess().getLeftParenthesisKeyword_7_0(), null); 
+                        	newLeafNode(otherlv_7, grammarAccess.getValueSpecificationAccess().getLeftParenthesisKeyword_7_0());
                         
                      
-                            currentNode=createCompositeNode(grammarAccess.getValueSpecificationAccess().getExpressionParserRuleCall_7_1(), currentNode); 
+                            newCompositeNode(grammarAccess.getValueSpecificationAccess().getExpressionParserRuleCall_7_1()); 
                         
-                    pushFollow(FOLLOW_ruleExpression_in_ruleValueSpecification2432);
+                    pushFollow(FOLLOW_ruleExpression_in_ruleValueSpecification2450);
                     this_Expression_8=ruleExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_Expression_8; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
-                    match(input,39,FOLLOW_39_in_ruleValueSpecification2441); 
+                    otherlv_9=(Token)match(input,39,FOLLOW_39_in_ruleValueSpecification2461); 
 
-                            createLeafNode(grammarAccess.getValueSpecificationAccess().getRightParenthesisKeyword_7_2(), null); 
+                        	newLeafNode(otherlv_9, grammarAccess.getValueSpecificationAccess().getRightParenthesisKeyword_7_2());
                         
 
                     }
@@ -3176,9 +2881,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -3189,11 +2892,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleValueSpecification
+    // $ANTLR end "ruleValueSpecification"
 
 
-    // $ANTLR start entryRuleSuffixExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1454:1: entryRuleSuffixExpression returns [EObject current=null] : iv_ruleSuffixExpression= ruleSuffixExpression EOF ;
+    // $ANTLR start "entryRuleSuffixExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1168:1: entryRuleSuffixExpression returns [EObject current=null] : iv_ruleSuffixExpression= ruleSuffixExpression EOF ;
     public final EObject entryRuleSuffixExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3201,16 +2904,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1455:2: (iv_ruleSuffixExpression= ruleSuffixExpression EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1456:2: iv_ruleSuffixExpression= ruleSuffixExpression EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1169:2: (iv_ruleSuffixExpression= ruleSuffixExpression EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1170:2: iv_ruleSuffixExpression= ruleSuffixExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getSuffixExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleSuffixExpression_in_entryRuleSuffixExpression2478);
+             newCompositeNode(grammarAccess.getSuffixExpressionRule()); 
+            pushFollow(FOLLOW_ruleSuffixExpression_in_entryRuleSuffixExpression2498);
             iv_ruleSuffixExpression=ruleSuffixExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleSuffixExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleSuffixExpression2488); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleSuffixExpression2508); 
 
             }
 
@@ -3224,11 +2928,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleSuffixExpression
+    // $ANTLR end "entryRuleSuffixExpression"
 
 
-    // $ANTLR start ruleSuffixExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1463:1: ruleSuffixExpression returns [EObject current=null] : (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression ) ;
+    // $ANTLR start "ruleSuffixExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1177:1: ruleSuffixExpression returns [EObject current=null] : (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression ) ;
     public final EObject ruleSuffixExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3237,69 +2941,71 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         EObject this_OperationCallExpression_1 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1468:6: ( (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1469:1: (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1180:28: ( (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1181:1: (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1469:1: (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1181:1: (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression )
             int alt19=2;
             int LA19_0 = input.LA(1);
 
             if ( (LA19_0==RULE_ID) ) {
                 int LA19_1 = input.LA(2);
 
-                if ( (LA19_1==38) ) {
-                    alt19=2;
-                }
-                else if ( (LA19_1==EOF||LA19_1==16||LA19_1==18||(LA19_1>=20 && LA19_1<=35)||LA19_1==37||LA19_1==39||(LA19_1>=41 && LA19_1<=43)||LA19_1==45) ) {
+                if ( (LA19_1==EOF||LA19_1==16||LA19_1==18||(LA19_1>=20 && LA19_1<=35)||LA19_1==37||LA19_1==39||(LA19_1>=41 && LA19_1<=43)||LA19_1==45) ) {
                     alt19=1;
+                }
+                else if ( (LA19_1==38) ) {
+                    alt19=2;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("1469:1: (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression )", 19, 1, input);
+                        new NoViableAltException("", 19, 1, input);
 
                     throw nvae;
                 }
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1469:1: (this_PropertyCallExpression_0= rulePropertyCallExpression | this_OperationCallExpression_1= ruleOperationCallExpression )", 19, 0, input);
+                    new NoViableAltException("", 19, 0, input);
 
                 throw nvae;
             }
             switch (alt19) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1470:5: this_PropertyCallExpression_0= rulePropertyCallExpression
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1182:5: this_PropertyCallExpression_0= rulePropertyCallExpression
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getSuffixExpressionAccess().getPropertyCallExpressionParserRuleCall_0(), currentNode); 
+                            newCompositeNode(grammarAccess.getSuffixExpressionAccess().getPropertyCallExpressionParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_rulePropertyCallExpression_in_ruleSuffixExpression2535);
+                    pushFollow(FOLLOW_rulePropertyCallExpression_in_ruleSuffixExpression2555);
                     this_PropertyCallExpression_0=rulePropertyCallExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_PropertyCallExpression_0; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1480:5: this_OperationCallExpression_1= ruleOperationCallExpression
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1192:5: this_OperationCallExpression_1= ruleOperationCallExpression
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getSuffixExpressionAccess().getOperationCallExpressionParserRuleCall_1(), currentNode); 
+                            newCompositeNode(grammarAccess.getSuffixExpressionAccess().getOperationCallExpressionParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleOperationCallExpression_in_ruleSuffixExpression2562);
+                    pushFollow(FOLLOW_ruleOperationCallExpression_in_ruleSuffixExpression2582);
                     this_OperationCallExpression_1=ruleOperationCallExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_OperationCallExpression_1; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
@@ -3310,9 +3016,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -3323,11 +3027,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleSuffixExpression
+    // $ANTLR end "ruleSuffixExpression"
 
 
-    // $ANTLR start entryRulePropertyCallExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1496:1: entryRulePropertyCallExpression returns [EObject current=null] : iv_rulePropertyCallExpression= rulePropertyCallExpression EOF ;
+    // $ANTLR start "entryRulePropertyCallExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1208:1: entryRulePropertyCallExpression returns [EObject current=null] : iv_rulePropertyCallExpression= rulePropertyCallExpression EOF ;
     public final EObject entryRulePropertyCallExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3335,16 +3039,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1497:2: (iv_rulePropertyCallExpression= rulePropertyCallExpression EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1498:2: iv_rulePropertyCallExpression= rulePropertyCallExpression EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1209:2: (iv_rulePropertyCallExpression= rulePropertyCallExpression EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1210:2: iv_rulePropertyCallExpression= rulePropertyCallExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getPropertyCallExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_rulePropertyCallExpression_in_entryRulePropertyCallExpression2597);
+             newCompositeNode(grammarAccess.getPropertyCallExpressionRule()); 
+            pushFollow(FOLLOW_rulePropertyCallExpression_in_entryRulePropertyCallExpression2617);
             iv_rulePropertyCallExpression=rulePropertyCallExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_rulePropertyCallExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePropertyCallExpression2607); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePropertyCallExpression2627); 
 
             }
 
@@ -3358,41 +3063,42 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRulePropertyCallExpression
+    // $ANTLR end "entryRulePropertyCallExpression"
 
 
-    // $ANTLR start rulePropertyCallExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1505:1: rulePropertyCallExpression returns [EObject current=null] : ( ( ( RULE_ID ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? ) ;
+    // $ANTLR start "rulePropertyCallExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1217:1: rulePropertyCallExpression returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? ) ;
     public final EObject rulePropertyCallExpression() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_1=null;
         EObject lv_suffix_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1510:6: ( ( ( ( RULE_ID ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1511:1: ( ( ( RULE_ID ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1220:28: ( ( ( (otherlv_0= RULE_ID ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1221:1: ( ( (otherlv_0= RULE_ID ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1511:1: ( ( ( RULE_ID ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1511:2: ( ( RULE_ID ) ) ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1221:1: ( ( (otherlv_0= RULE_ID ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )? )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1221:2: ( (otherlv_0= RULE_ID ) ) (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )?
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1511:2: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1512:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1221:2: ( (otherlv_0= RULE_ID ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1222:1: (otherlv_0= RULE_ID )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1512:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1513:3: RULE_ID
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1222:1: (otherlv_0= RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1223:3: otherlv_0= RULE_ID
             {
 
             			if (current==null) {
-            	            current = factory.create(grammarAccess.getPropertyCallExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getPropertyCallExpressionRule());
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePropertyCallExpression2650); 
+            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePropertyCallExpression2672); 
 
-            		createLeafNode(grammarAccess.getPropertyCallExpressionAccess().getPropertyPropertyCrossReference_0_0(), "property"); 
+            		newLeafNode(otherlv_0, grammarAccess.getPropertyCallExpressionAccess().getPropertyPropertyCrossReference_0_0()); 
             	
 
             }
@@ -3400,7 +3106,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1525:2: ( '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1234:2: (otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) ) )?
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -3409,41 +3115,36 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             switch (alt20) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1525:4: '.' ( (lv_suffix_2_0= ruleSuffixExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1234:4: otherlv_1= '.' ( (lv_suffix_2_0= ruleSuffixExpression ) )
                     {
-                    match(input,37,FOLLOW_37_in_rulePropertyCallExpression2661); 
+                    otherlv_1=(Token)match(input,37,FOLLOW_37_in_rulePropertyCallExpression2685); 
 
-                            createLeafNode(grammarAccess.getPropertyCallExpressionAccess().getFullStopKeyword_1_0(), null); 
+                        	newLeafNode(otherlv_1, grammarAccess.getPropertyCallExpressionAccess().getFullStopKeyword_1_0());
                         
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1529:1: ( (lv_suffix_2_0= ruleSuffixExpression ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1530:1: (lv_suffix_2_0= ruleSuffixExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1238:1: ( (lv_suffix_2_0= ruleSuffixExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1239:1: (lv_suffix_2_0= ruleSuffixExpression )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1530:1: (lv_suffix_2_0= ruleSuffixExpression )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1531:3: lv_suffix_2_0= ruleSuffixExpression
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1239:1: (lv_suffix_2_0= ruleSuffixExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1240:3: lv_suffix_2_0= ruleSuffixExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getPropertyCallExpressionAccess().getSuffixSuffixExpressionParserRuleCall_1_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getPropertyCallExpressionAccess().getSuffixSuffixExpressionParserRuleCall_1_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleSuffixExpression_in_rulePropertyCallExpression2682);
+                    pushFollow(FOLLOW_ruleSuffixExpression_in_rulePropertyCallExpression2706);
                     lv_suffix_2_0=ruleSuffixExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getPropertyCallExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getPropertyCallExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"suffix",
-                    	        		lv_suffix_2_0, 
-                    	        		"SuffixExpression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"suffix",
+                            		lv_suffix_2_0, 
+                            		"SuffixExpression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -3463,9 +3164,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -3476,11 +3175,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end rulePropertyCallExpression
+    // $ANTLR end "rulePropertyCallExpression"
 
 
-    // $ANTLR start entryRuleOperationCallExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1561:1: entryRuleOperationCallExpression returns [EObject current=null] : iv_ruleOperationCallExpression= ruleOperationCallExpression EOF ;
+    // $ANTLR start "entryRuleOperationCallExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1264:1: entryRuleOperationCallExpression returns [EObject current=null] : iv_ruleOperationCallExpression= ruleOperationCallExpression EOF ;
     public final EObject entryRuleOperationCallExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3488,16 +3187,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1562:2: (iv_ruleOperationCallExpression= ruleOperationCallExpression EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1563:2: iv_ruleOperationCallExpression= ruleOperationCallExpression EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1265:2: (iv_ruleOperationCallExpression= ruleOperationCallExpression EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1266:2: iv_ruleOperationCallExpression= ruleOperationCallExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getOperationCallExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleOperationCallExpression_in_entryRuleOperationCallExpression2720);
+             newCompositeNode(grammarAccess.getOperationCallExpressionRule()); 
+            pushFollow(FOLLOW_ruleOperationCallExpression_in_entryRuleOperationCallExpression2744);
             iv_ruleOperationCallExpression=ruleOperationCallExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleOperationCallExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOperationCallExpression2730); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOperationCallExpression2754); 
 
             }
 
@@ -3511,43 +3211,46 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleOperationCallExpression
+    // $ANTLR end "entryRuleOperationCallExpression"
 
 
-    // $ANTLR start ruleOperationCallExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1570:1: ruleOperationCallExpression returns [EObject current=null] : ( ( ( RULE_ID ) ) '(' ( (lv_arguments_2_0= ruleListOfValues ) )? ')' ( '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )? ) ;
+    // $ANTLR start "ruleOperationCallExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1273:1: ruleOperationCallExpression returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '(' ( (lv_arguments_2_0= ruleListOfValues ) )? otherlv_3= ')' (otherlv_4= '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )? ) ;
     public final EObject ruleOperationCallExpression() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_1=null;
+        Token otherlv_3=null;
+        Token otherlv_4=null;
         EObject lv_arguments_2_0 = null;
 
         EObject lv_suffix_5_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1575:6: ( ( ( ( RULE_ID ) ) '(' ( (lv_arguments_2_0= ruleListOfValues ) )? ')' ( '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )? ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1576:1: ( ( ( RULE_ID ) ) '(' ( (lv_arguments_2_0= ruleListOfValues ) )? ')' ( '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )? )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1276:28: ( ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '(' ( (lv_arguments_2_0= ruleListOfValues ) )? otherlv_3= ')' (otherlv_4= '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )? ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1277:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '(' ( (lv_arguments_2_0= ruleListOfValues ) )? otherlv_3= ')' (otherlv_4= '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )? )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1576:1: ( ( ( RULE_ID ) ) '(' ( (lv_arguments_2_0= ruleListOfValues ) )? ')' ( '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )? )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1576:2: ( ( RULE_ID ) ) '(' ( (lv_arguments_2_0= ruleListOfValues ) )? ')' ( '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1277:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '(' ( (lv_arguments_2_0= ruleListOfValues ) )? otherlv_3= ')' (otherlv_4= '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )? )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1277:2: ( (otherlv_0= RULE_ID ) ) otherlv_1= '(' ( (lv_arguments_2_0= ruleListOfValues ) )? otherlv_3= ')' (otherlv_4= '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )?
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1576:2: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1577:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1277:2: ( (otherlv_0= RULE_ID ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1278:1: (otherlv_0= RULE_ID )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1577:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1578:3: RULE_ID
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1278:1: (otherlv_0= RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1279:3: otherlv_0= RULE_ID
             {
 
             			if (current==null) {
-            	            current = factory.create(grammarAccess.getOperationCallExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getOperationCallExpressionRule());
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleOperationCallExpression2773); 
+            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleOperationCallExpression2799); 
 
-            		createLeafNode(grammarAccess.getOperationCallExpressionAccess().getOperationOperationCrossReference_0_0(), "operation"); 
+            		newLeafNode(otherlv_0, grammarAccess.getOperationCallExpressionAccess().getOperationOperationCrossReference_0_0()); 
             	
 
             }
@@ -3555,11 +3258,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            match(input,38,FOLLOW_38_in_ruleOperationCallExpression2783); 
+            otherlv_1=(Token)match(input,38,FOLLOW_38_in_ruleOperationCallExpression2811); 
 
-                    createLeafNode(grammarAccess.getOperationCallExpressionAccess().getLeftParenthesisKeyword_1(), null); 
+                	newLeafNode(otherlv_1, grammarAccess.getOperationCallExpressionAccess().getLeftParenthesisKeyword_1());
                 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1594:1: ( (lv_arguments_2_0= ruleListOfValues ) )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1294:1: ( (lv_arguments_2_0= ruleListOfValues ) )?
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -3568,34 +3271,29 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             switch (alt21) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1595:1: (lv_arguments_2_0= ruleListOfValues )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1295:1: (lv_arguments_2_0= ruleListOfValues )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1595:1: (lv_arguments_2_0= ruleListOfValues )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1596:3: lv_arguments_2_0= ruleListOfValues
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1295:1: (lv_arguments_2_0= ruleListOfValues )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1296:3: lv_arguments_2_0= ruleListOfValues
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getOperationCallExpressionAccess().getArgumentsListOfValuesParserRuleCall_2_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getOperationCallExpressionAccess().getArgumentsListOfValuesParserRuleCall_2_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleListOfValues_in_ruleOperationCallExpression2804);
+                    pushFollow(FOLLOW_ruleListOfValues_in_ruleOperationCallExpression2832);
                     lv_arguments_2_0=ruleListOfValues();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getOperationCallExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getOperationCallExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"arguments",
-                    	        		lv_arguments_2_0, 
-                    	        		"ListOfValues", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"arguments",
+                            		lv_arguments_2_0, 
+                            		"ListOfValues");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -3606,11 +3304,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            match(input,39,FOLLOW_39_in_ruleOperationCallExpression2815); 
+            otherlv_3=(Token)match(input,39,FOLLOW_39_in_ruleOperationCallExpression2845); 
 
-                    createLeafNode(grammarAccess.getOperationCallExpressionAccess().getRightParenthesisKeyword_3(), null); 
+                	newLeafNode(otherlv_3, grammarAccess.getOperationCallExpressionAccess().getRightParenthesisKeyword_3());
                 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1622:1: ( '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1316:1: (otherlv_4= '.' ( (lv_suffix_5_0= ruleSuffixExpression ) ) )?
             int alt22=2;
             int LA22_0 = input.LA(1);
 
@@ -3619,41 +3317,36 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             switch (alt22) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1622:3: '.' ( (lv_suffix_5_0= ruleSuffixExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1316:3: otherlv_4= '.' ( (lv_suffix_5_0= ruleSuffixExpression ) )
                     {
-                    match(input,37,FOLLOW_37_in_ruleOperationCallExpression2826); 
+                    otherlv_4=(Token)match(input,37,FOLLOW_37_in_ruleOperationCallExpression2858); 
 
-                            createLeafNode(grammarAccess.getOperationCallExpressionAccess().getFullStopKeyword_4_0(), null); 
+                        	newLeafNode(otherlv_4, grammarAccess.getOperationCallExpressionAccess().getFullStopKeyword_4_0());
                         
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1626:1: ( (lv_suffix_5_0= ruleSuffixExpression ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1627:1: (lv_suffix_5_0= ruleSuffixExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1320:1: ( (lv_suffix_5_0= ruleSuffixExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1321:1: (lv_suffix_5_0= ruleSuffixExpression )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1627:1: (lv_suffix_5_0= ruleSuffixExpression )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1628:3: lv_suffix_5_0= ruleSuffixExpression
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1321:1: (lv_suffix_5_0= ruleSuffixExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1322:3: lv_suffix_5_0= ruleSuffixExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getOperationCallExpressionAccess().getSuffixSuffixExpressionParserRuleCall_4_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getOperationCallExpressionAccess().getSuffixSuffixExpressionParserRuleCall_4_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleSuffixExpression_in_ruleOperationCallExpression2847);
+                    pushFollow(FOLLOW_ruleSuffixExpression_in_ruleOperationCallExpression2879);
                     lv_suffix_5_0=ruleSuffixExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getOperationCallExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getOperationCallExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"suffix",
-                    	        		lv_suffix_5_0, 
-                    	        		"SuffixExpression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"suffix",
+                            		lv_suffix_5_0, 
+                            		"SuffixExpression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -3673,9 +3366,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -3686,11 +3377,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleOperationCallExpression
+    // $ANTLR end "ruleOperationCallExpression"
 
 
-    // $ANTLR start entryRuleLiteral
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1658:1: entryRuleLiteral returns [EObject current=null] : iv_ruleLiteral= ruleLiteral EOF ;
+    // $ANTLR start "entryRuleLiteral"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1346:1: entryRuleLiteral returns [EObject current=null] : iv_ruleLiteral= ruleLiteral EOF ;
     public final EObject entryRuleLiteral() throws RecognitionException {
         EObject current = null;
 
@@ -3698,16 +3389,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1659:2: (iv_ruleLiteral= ruleLiteral EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1660:2: iv_ruleLiteral= ruleLiteral EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1347:2: (iv_ruleLiteral= ruleLiteral EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1348:2: iv_ruleLiteral= ruleLiteral EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getLiteralRule(), currentNode); 
-            pushFollow(FOLLOW_ruleLiteral_in_entryRuleLiteral2885);
+             newCompositeNode(grammarAccess.getLiteralRule()); 
+            pushFollow(FOLLOW_ruleLiteral_in_entryRuleLiteral2917);
             iv_ruleLiteral=ruleLiteral();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleLiteral; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleLiteral2895); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleLiteral2927); 
 
             }
 
@@ -3721,11 +3413,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleLiteral
+    // $ANTLR end "entryRuleLiteral"
 
 
-    // $ANTLR start ruleLiteral
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1667:1: ruleLiteral returns [EObject current=null] : (this_NumberLiteralRule_0= ruleNumberLiteralRule | this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule | this_BooleanLiteralRule_2= ruleBooleanLiteralRule | this_NullLiteralRule_3= ruleNullLiteralRule | this_DefaultLiteralRule_4= ruleDefaultLiteralRule | this_StringLiteralRule_5= ruleStringLiteralRule ) ;
+    // $ANTLR start "ruleLiteral"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1355:1: ruleLiteral returns [EObject current=null] : (this_NumberLiteralRule_0= ruleNumberLiteralRule | this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule | this_BooleanLiteralRule_2= ruleBooleanLiteralRule | this_NullLiteralRule_3= ruleNullLiteralRule | this_DefaultLiteralRule_4= ruleDefaultLiteralRule | this_StringLiteralRule_5= ruleStringLiteralRule ) ;
     public final EObject ruleLiteral() throws RecognitionException {
         EObject current = null;
 
@@ -3742,13 +3434,13 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         EObject this_StringLiteralRule_5 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1672:6: ( (this_NumberLiteralRule_0= ruleNumberLiteralRule | this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule | this_BooleanLiteralRule_2= ruleBooleanLiteralRule | this_NullLiteralRule_3= ruleNullLiteralRule | this_DefaultLiteralRule_4= ruleDefaultLiteralRule | this_StringLiteralRule_5= ruleStringLiteralRule ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1673:1: (this_NumberLiteralRule_0= ruleNumberLiteralRule | this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule | this_BooleanLiteralRule_2= ruleBooleanLiteralRule | this_NullLiteralRule_3= ruleNullLiteralRule | this_DefaultLiteralRule_4= ruleDefaultLiteralRule | this_StringLiteralRule_5= ruleStringLiteralRule )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1358:28: ( (this_NumberLiteralRule_0= ruleNumberLiteralRule | this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule | this_BooleanLiteralRule_2= ruleBooleanLiteralRule | this_NullLiteralRule_3= ruleNullLiteralRule | this_DefaultLiteralRule_4= ruleDefaultLiteralRule | this_StringLiteralRule_5= ruleStringLiteralRule ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1359:1: (this_NumberLiteralRule_0= ruleNumberLiteralRule | this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule | this_BooleanLiteralRule_2= ruleBooleanLiteralRule | this_NullLiteralRule_3= ruleNullLiteralRule | this_DefaultLiteralRule_4= ruleDefaultLiteralRule | this_StringLiteralRule_5= ruleStringLiteralRule )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1673:1: (this_NumberLiteralRule_0= ruleNumberLiteralRule | this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule | this_BooleanLiteralRule_2= ruleBooleanLiteralRule | this_NullLiteralRule_3= ruleNullLiteralRule | this_DefaultLiteralRule_4= ruleDefaultLiteralRule | this_StringLiteralRule_5= ruleStringLiteralRule )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1359:1: (this_NumberLiteralRule_0= ruleNumberLiteralRule | this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule | this_BooleanLiteralRule_2= ruleBooleanLiteralRule | this_NullLiteralRule_3= ruleNullLiteralRule | this_DefaultLiteralRule_4= ruleDefaultLiteralRule | this_StringLiteralRule_5= ruleStringLiteralRule )
             int alt23=6;
             switch ( input.LA(1) ) {
             case RULE_INTEGERLITERAL:
@@ -3785,110 +3477,116 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1673:1: (this_NumberLiteralRule_0= ruleNumberLiteralRule | this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule | this_BooleanLiteralRule_2= ruleBooleanLiteralRule | this_NullLiteralRule_3= ruleNullLiteralRule | this_DefaultLiteralRule_4= ruleDefaultLiteralRule | this_StringLiteralRule_5= ruleStringLiteralRule )", 23, 0, input);
+                    new NoViableAltException("", 23, 0, input);
 
                 throw nvae;
             }
 
             switch (alt23) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1674:5: this_NumberLiteralRule_0= ruleNumberLiteralRule
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1360:5: this_NumberLiteralRule_0= ruleNumberLiteralRule
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getLiteralAccess().getNumberLiteralRuleParserRuleCall_0(), currentNode); 
+                            newCompositeNode(grammarAccess.getLiteralAccess().getNumberLiteralRuleParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleNumberLiteralRule_in_ruleLiteral2942);
+                    pushFollow(FOLLOW_ruleNumberLiteralRule_in_ruleLiteral2974);
                     this_NumberLiteralRule_0=ruleNumberLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_NumberLiteralRule_0; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1684:5: this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1370:5: this_DateTimeLiteralRule_1= ruleDateTimeLiteralRule
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getLiteralAccess().getDateTimeLiteralRuleParserRuleCall_1(), currentNode); 
+                            newCompositeNode(grammarAccess.getLiteralAccess().getDateTimeLiteralRuleParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleDateTimeLiteralRule_in_ruleLiteral2969);
+                    pushFollow(FOLLOW_ruleDateTimeLiteralRule_in_ruleLiteral3001);
                     this_DateTimeLiteralRule_1=ruleDateTimeLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_DateTimeLiteralRule_1; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1694:5: this_BooleanLiteralRule_2= ruleBooleanLiteralRule
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1380:5: this_BooleanLiteralRule_2= ruleBooleanLiteralRule
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getLiteralAccess().getBooleanLiteralRuleParserRuleCall_2(), currentNode); 
+                            newCompositeNode(grammarAccess.getLiteralAccess().getBooleanLiteralRuleParserRuleCall_2()); 
                         
-                    pushFollow(FOLLOW_ruleBooleanLiteralRule_in_ruleLiteral2996);
+                    pushFollow(FOLLOW_ruleBooleanLiteralRule_in_ruleLiteral3028);
                     this_BooleanLiteralRule_2=ruleBooleanLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_BooleanLiteralRule_2; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1704:5: this_NullLiteralRule_3= ruleNullLiteralRule
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1390:5: this_NullLiteralRule_3= ruleNullLiteralRule
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getLiteralAccess().getNullLiteralRuleParserRuleCall_3(), currentNode); 
+                            newCompositeNode(grammarAccess.getLiteralAccess().getNullLiteralRuleParserRuleCall_3()); 
                         
-                    pushFollow(FOLLOW_ruleNullLiteralRule_in_ruleLiteral3023);
+                    pushFollow(FOLLOW_ruleNullLiteralRule_in_ruleLiteral3055);
                     this_NullLiteralRule_3=ruleNullLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_NullLiteralRule_3; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 5 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1714:5: this_DefaultLiteralRule_4= ruleDefaultLiteralRule
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1400:5: this_DefaultLiteralRule_4= ruleDefaultLiteralRule
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getLiteralAccess().getDefaultLiteralRuleParserRuleCall_4(), currentNode); 
+                            newCompositeNode(grammarAccess.getLiteralAccess().getDefaultLiteralRuleParserRuleCall_4()); 
                         
-                    pushFollow(FOLLOW_ruleDefaultLiteralRule_in_ruleLiteral3050);
+                    pushFollow(FOLLOW_ruleDefaultLiteralRule_in_ruleLiteral3082);
                     this_DefaultLiteralRule_4=ruleDefaultLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_DefaultLiteralRule_4; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 6 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1724:5: this_StringLiteralRule_5= ruleStringLiteralRule
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1410:5: this_StringLiteralRule_5= ruleStringLiteralRule
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getLiteralAccess().getStringLiteralRuleParserRuleCall_5(), currentNode); 
+                            newCompositeNode(grammarAccess.getLiteralAccess().getStringLiteralRuleParserRuleCall_5()); 
                         
-                    pushFollow(FOLLOW_ruleStringLiteralRule_in_ruleLiteral3077);
+                    pushFollow(FOLLOW_ruleStringLiteralRule_in_ruleLiteral3109);
                     this_StringLiteralRule_5=ruleStringLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_StringLiteralRule_5; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
@@ -3899,9 +3597,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -3912,11 +3608,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleLiteral
+    // $ANTLR end "ruleLiteral"
 
 
-    // $ANTLR start entryRuleNameOrChoiceOrBehaviorCall
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1740:1: entryRuleNameOrChoiceOrBehaviorCall returns [EObject current=null] : iv_ruleNameOrChoiceOrBehaviorCall= ruleNameOrChoiceOrBehaviorCall EOF ;
+    // $ANTLR start "entryRuleNameOrChoiceOrBehaviorCall"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1426:1: entryRuleNameOrChoiceOrBehaviorCall returns [EObject current=null] : iv_ruleNameOrChoiceOrBehaviorCall= ruleNameOrChoiceOrBehaviorCall EOF ;
     public final EObject entryRuleNameOrChoiceOrBehaviorCall() throws RecognitionException {
         EObject current = null;
 
@@ -3924,16 +3620,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1741:2: (iv_ruleNameOrChoiceOrBehaviorCall= ruleNameOrChoiceOrBehaviorCall EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1742:2: iv_ruleNameOrChoiceOrBehaviorCall= ruleNameOrChoiceOrBehaviorCall EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1427:2: (iv_ruleNameOrChoiceOrBehaviorCall= ruleNameOrChoiceOrBehaviorCall EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1428:2: iv_ruleNameOrChoiceOrBehaviorCall= ruleNameOrChoiceOrBehaviorCall EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getNameOrChoiceOrBehaviorCallRule(), currentNode); 
-            pushFollow(FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_entryRuleNameOrChoiceOrBehaviorCall3112);
+             newCompositeNode(grammarAccess.getNameOrChoiceOrBehaviorCallRule()); 
+            pushFollow(FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_entryRuleNameOrChoiceOrBehaviorCall3144);
             iv_ruleNameOrChoiceOrBehaviorCall=ruleNameOrChoiceOrBehaviorCall();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleNameOrChoiceOrBehaviorCall; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleNameOrChoiceOrBehaviorCall3122); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleNameOrChoiceOrBehaviorCall3154); 
 
             }
 
@@ -3947,29 +3644,32 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleNameOrChoiceOrBehaviorCall
+    // $ANTLR end "entryRuleNameOrChoiceOrBehaviorCall"
 
 
-    // $ANTLR start ruleNameOrChoiceOrBehaviorCall
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1749:1: ruleNameOrChoiceOrBehaviorCall returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ( '(' ( (lv_arguments_3_0= ruleListOfValues ) )? ')' )? ) ;
+    // $ANTLR start "ruleNameOrChoiceOrBehaviorCall"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1435:1: ruleNameOrChoiceOrBehaviorCall returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) (otherlv_2= '(' ( (lv_arguments_3_0= ruleListOfValues ) )? otherlv_4= ')' )? ) ;
     public final EObject ruleNameOrChoiceOrBehaviorCall() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
+        Token otherlv_2=null;
+        Token otherlv_4=null;
         EObject lv_path_0_0 = null;
 
         EObject lv_arguments_3_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1754:6: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ( '(' ( (lv_arguments_3_0= ruleListOfValues ) )? ')' )? ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1755:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ( '(' ( (lv_arguments_3_0= ruleListOfValues ) )? ')' )? )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1438:28: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) (otherlv_2= '(' ( (lv_arguments_3_0= ruleListOfValues ) )? otherlv_4= ')' )? ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1439:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) (otherlv_2= '(' ( (lv_arguments_3_0= ruleListOfValues ) )? otherlv_4= ')' )? )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1755:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ( '(' ( (lv_arguments_3_0= ruleListOfValues ) )? ')' )? )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1755:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ( '(' ( (lv_arguments_3_0= ruleListOfValues ) )? ')' )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1439:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) (otherlv_2= '(' ( (lv_arguments_3_0= ruleListOfValues ) )? otherlv_4= ')' )? )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1439:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) (otherlv_2= '(' ( (lv_arguments_3_0= ruleListOfValues ) )? otherlv_4= ')' )?
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1755:2: ( (lv_path_0_0= ruleQualifiedName ) )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1439:2: ( (lv_path_0_0= ruleQualifiedName ) )?
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -3982,34 +3682,29 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             switch (alt24) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1756:1: (lv_path_0_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1440:1: (lv_path_0_0= ruleQualifiedName )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1756:1: (lv_path_0_0= ruleQualifiedName )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1757:3: lv_path_0_0= ruleQualifiedName
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1440:1: (lv_path_0_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1441:3: lv_path_0_0= ruleQualifiedName
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getPathQualifiedNameParserRuleCall_0_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getPathQualifiedNameParserRuleCall_0_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleNameOrChoiceOrBehaviorCall3168);
+                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleNameOrChoiceOrBehaviorCall3200);
                     lv_path_0_0=ruleQualifiedName();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getNameOrChoiceOrBehaviorCallRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getNameOrChoiceOrBehaviorCallRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"path",
-                    	        		lv_path_0_0, 
-                    	        		"QualifiedName", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"path",
+                            		lv_path_0_0, 
+                            		"QualifiedName");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -4020,21 +3715,20 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1779:3: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1780:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1457:3: ( (otherlv_1= RULE_ID ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1458:1: (otherlv_1= RULE_ID )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1780:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1781:3: RULE_ID
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1458:1: (otherlv_1= RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1459:3: otherlv_1= RULE_ID
             {
 
             			if (current==null) {
-            	            current = factory.create(grammarAccess.getNameOrChoiceOrBehaviorCallRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getNameOrChoiceOrBehaviorCallRule());
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleNameOrChoiceOrBehaviorCall3187); 
+            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleNameOrChoiceOrBehaviorCall3221); 
 
-            		createLeafNode(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getIdNamedElementCrossReference_1_0(), "id"); 
+            		newLeafNode(otherlv_1, grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getIdNamedElementCrossReference_1_0()); 
             	
 
             }
@@ -4042,7 +3736,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1793:2: ( '(' ( (lv_arguments_3_0= ruleListOfValues ) )? ')' )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1470:2: (otherlv_2= '(' ( (lv_arguments_3_0= ruleListOfValues ) )? otherlv_4= ')' )?
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -4051,13 +3745,13 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             switch (alt26) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1793:4: '(' ( (lv_arguments_3_0= ruleListOfValues ) )? ')'
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1470:4: otherlv_2= '(' ( (lv_arguments_3_0= ruleListOfValues ) )? otherlv_4= ')'
                     {
-                    match(input,38,FOLLOW_38_in_ruleNameOrChoiceOrBehaviorCall3198); 
+                    otherlv_2=(Token)match(input,38,FOLLOW_38_in_ruleNameOrChoiceOrBehaviorCall3234); 
 
-                            createLeafNode(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getLeftParenthesisKeyword_2_0(), null); 
+                        	newLeafNode(otherlv_2, grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getLeftParenthesisKeyword_2_0());
                         
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1797:1: ( (lv_arguments_3_0= ruleListOfValues ) )?
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1474:1: ( (lv_arguments_3_0= ruleListOfValues ) )?
                     int alt25=2;
                     int LA25_0 = input.LA(1);
 
@@ -4066,34 +3760,29 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
                     }
                     switch (alt25) {
                         case 1 :
-                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1798:1: (lv_arguments_3_0= ruleListOfValues )
+                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1475:1: (lv_arguments_3_0= ruleListOfValues )
                             {
-                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1798:1: (lv_arguments_3_0= ruleListOfValues )
-                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1799:3: lv_arguments_3_0= ruleListOfValues
+                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1475:1: (lv_arguments_3_0= ruleListOfValues )
+                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1476:3: lv_arguments_3_0= ruleListOfValues
                             {
                              
-                            	        currentNode=createCompositeNode(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getArgumentsListOfValuesParserRuleCall_2_1_0(), currentNode); 
+                            	        newCompositeNode(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getArgumentsListOfValuesParserRuleCall_2_1_0()); 
                             	    
-                            pushFollow(FOLLOW_ruleListOfValues_in_ruleNameOrChoiceOrBehaviorCall3219);
+                            pushFollow(FOLLOW_ruleListOfValues_in_ruleNameOrChoiceOrBehaviorCall3255);
                             lv_arguments_3_0=ruleListOfValues();
-                            _fsp--;
+
+                            state._fsp--;
 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getNameOrChoiceOrBehaviorCallRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode.getParent(), current);
+                            	            current = createModelElementForParent(grammarAccess.getNameOrChoiceOrBehaviorCallRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"arguments",
-                            	        		lv_arguments_3_0, 
-                            	        		"ListOfValues", 
-                            	        		currentNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
-                            	        currentNode = currentNode.getParent();
+                                   		set(
+                                   			current, 
+                                   			"arguments",
+                                    		lv_arguments_3_0, 
+                                    		"ListOfValues");
+                            	        afterParserOrEnumRuleCall();
                             	    
 
                             }
@@ -4104,9 +3793,9 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                     }
 
-                    match(input,39,FOLLOW_39_in_ruleNameOrChoiceOrBehaviorCall3230); 
+                    otherlv_4=(Token)match(input,39,FOLLOW_39_in_ruleNameOrChoiceOrBehaviorCall3268); 
 
-                            createLeafNode(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getRightParenthesisKeyword_2_2(), null); 
+                        	newLeafNode(otherlv_4, grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getRightParenthesisKeyword_2_2());
                         
 
                     }
@@ -4120,9 +3809,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -4133,11 +3820,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleNameOrChoiceOrBehaviorCall
+    // $ANTLR end "ruleNameOrChoiceOrBehaviorCall"
 
 
-    // $ANTLR start entryRuleQualifiedName
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1833:1: entryRuleQualifiedName returns [EObject current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
+    // $ANTLR start "entryRuleQualifiedName"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1504:1: entryRuleQualifiedName returns [EObject current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
     public final EObject entryRuleQualifiedName() throws RecognitionException {
         EObject current = null;
 
@@ -4145,16 +3832,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1834:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1835:2: iv_ruleQualifiedName= ruleQualifiedName EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1505:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1506:2: iv_ruleQualifiedName= ruleQualifiedName EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getQualifiedNameRule(), currentNode); 
-            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName3268);
+             newCompositeNode(grammarAccess.getQualifiedNameRule()); 
+            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName3306);
             iv_ruleQualifiedName=ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleQualifiedName; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName3278); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName3316); 
 
             }
 
@@ -4168,41 +3856,42 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleQualifiedName
+    // $ANTLR end "entryRuleQualifiedName"
 
 
-    // $ANTLR start ruleQualifiedName
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1842:1: ruleQualifiedName returns [EObject current=null] : ( ( ( RULE_ID ) ) '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? ) ;
+    // $ANTLR start "ruleQualifiedName"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1513:1: ruleQualifiedName returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? ) ;
     public final EObject ruleQualifiedName() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_1=null;
         EObject lv_remaining_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1847:6: ( ( ( ( RULE_ID ) ) '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1848:1: ( ( ( RULE_ID ) ) '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1516:28: ( ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1517:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1848:1: ( ( ( RULE_ID ) ) '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1848:2: ( ( RULE_ID ) ) '::' ( (lv_remaining_2_0= ruleQualifiedName ) )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1517:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1517:2: ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )?
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1848:2: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1849:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1517:2: ( (otherlv_0= RULE_ID ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1518:1: (otherlv_0= RULE_ID )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1849:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1850:3: RULE_ID
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1518:1: (otherlv_0= RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1519:3: otherlv_0= RULE_ID
             {
 
             			if (current==null) {
-            	            current = factory.create(grammarAccess.getQualifiedNameRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getQualifiedNameRule());
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName3321); 
+            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName3361); 
 
-            		createLeafNode(grammarAccess.getQualifiedNameAccess().getPathNamespaceCrossReference_0_0(), "path"); 
+            		newLeafNode(otherlv_0, grammarAccess.getQualifiedNameAccess().getPathNamespaceCrossReference_0_0()); 
             	
 
             }
@@ -4210,11 +3899,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            match(input,40,FOLLOW_40_in_ruleQualifiedName3331); 
+            otherlv_1=(Token)match(input,40,FOLLOW_40_in_ruleQualifiedName3373); 
 
-                    createLeafNode(grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1(), null); 
+                	newLeafNode(otherlv_1, grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1());
                 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1866:1: ( (lv_remaining_2_0= ruleQualifiedName ) )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1534:1: ( (lv_remaining_2_0= ruleQualifiedName ) )?
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -4227,34 +3916,29 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             switch (alt27) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1867:1: (lv_remaining_2_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1535:1: (lv_remaining_2_0= ruleQualifiedName )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1867:1: (lv_remaining_2_0= ruleQualifiedName )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1868:3: lv_remaining_2_0= ruleQualifiedName
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1535:1: (lv_remaining_2_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1536:3: lv_remaining_2_0= ruleQualifiedName
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getQualifiedNameAccess().getRemainingQualifiedNameParserRuleCall_2_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getQualifiedNameAccess().getRemainingQualifiedNameParserRuleCall_2_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleQualifiedName3352);
+                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleQualifiedName3394);
                     lv_remaining_2_0=ruleQualifiedName();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getQualifiedNameRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getQualifiedNameRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"remaining",
-                    	        		lv_remaining_2_0, 
-                    	        		"QualifiedName", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"remaining",
+                            		lv_remaining_2_0, 
+                            		"QualifiedName");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -4271,9 +3955,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -4284,11 +3966,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleQualifiedName
+    // $ANTLR end "ruleQualifiedName"
 
 
-    // $ANTLR start entryRuleInterval
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1898:1: entryRuleInterval returns [EObject current=null] : iv_ruleInterval= ruleInterval EOF ;
+    // $ANTLR start "entryRuleInterval"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1560:1: entryRuleInterval returns [EObject current=null] : iv_ruleInterval= ruleInterval EOF ;
     public final EObject entryRuleInterval() throws RecognitionException {
         EObject current = null;
 
@@ -4296,16 +3978,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1899:2: (iv_ruleInterval= ruleInterval EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1900:2: iv_ruleInterval= ruleInterval EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1561:2: (iv_ruleInterval= ruleInterval EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1562:2: iv_ruleInterval= ruleInterval EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getIntervalRule(), currentNode); 
-            pushFollow(FOLLOW_ruleInterval_in_entryRuleInterval3389);
+             newCompositeNode(grammarAccess.getIntervalRule()); 
+            pushFollow(FOLLOW_ruleInterval_in_entryRuleInterval3431);
             iv_ruleInterval=ruleInterval();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleInterval; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleInterval3399); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleInterval3441); 
 
             }
 
@@ -4319,31 +4002,34 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleInterval
+    // $ANTLR end "entryRuleInterval"
 
 
-    // $ANTLR start ruleInterval
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1907:1: ruleInterval returns [EObject current=null] : ( ( ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | '[' ) ) ;
+    // $ANTLR start "ruleInterval"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1569:1: ruleInterval returns [EObject current=null] : ( (otherlv_0= ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) otherlv_3= '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | otherlv_6= '[' ) ) ;
     public final EObject ruleInterval() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
         Token lv_isLowerIncluded_1_0=null;
+        Token otherlv_3=null;
         Token lv_isUpperIncluded_5_0=null;
+        Token otherlv_6=null;
         EObject lv_lower_2_0 = null;
 
         EObject lv_upper_4_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1912:6: ( ( ( ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | '[' ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1913:1: ( ( ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | '[' ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1572:28: ( ( (otherlv_0= ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) otherlv_3= '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | otherlv_6= '[' ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1573:1: ( (otherlv_0= ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) otherlv_3= '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | otherlv_6= '[' ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1913:1: ( ( ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | '[' ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1913:2: ( ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | '[' )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1573:1: ( (otherlv_0= ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) otherlv_3= '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | otherlv_6= '[' ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1573:2: (otherlv_0= ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) ) ( (lv_lower_2_0= ruleExpression ) ) otherlv_3= '..' ( (lv_upper_4_0= ruleExpression ) ) ( ( (lv_isUpperIncluded_5_0= ']' ) ) | otherlv_6= '[' )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1913:2: ( ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1573:2: (otherlv_0= ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) )
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -4355,46 +4041,39 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1913:2: ( ']' | ( (lv_isLowerIncluded_1_0= '[' ) ) )", 28, 0, input);
+                    new NoViableAltException("", 28, 0, input);
 
                 throw nvae;
             }
             switch (alt28) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1913:4: ']'
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1573:4: otherlv_0= ']'
                     {
-                    match(input,41,FOLLOW_41_in_ruleInterval3435); 
+                    otherlv_0=(Token)match(input,41,FOLLOW_41_in_ruleInterval3479); 
 
-                            createLeafNode(grammarAccess.getIntervalAccess().getRightSquareBracketKeyword_0_0(), null); 
+                        	newLeafNode(otherlv_0, grammarAccess.getIntervalAccess().getRightSquareBracketKeyword_0_0());
                         
 
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1918:6: ( (lv_isLowerIncluded_1_0= '[' ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1578:6: ( (lv_isLowerIncluded_1_0= '[' ) )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1918:6: ( (lv_isLowerIncluded_1_0= '[' ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1919:1: (lv_isLowerIncluded_1_0= '[' )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1578:6: ( (lv_isLowerIncluded_1_0= '[' ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1579:1: (lv_isLowerIncluded_1_0= '[' )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1919:1: (lv_isLowerIncluded_1_0= '[' )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1920:3: lv_isLowerIncluded_1_0= '['
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1579:1: (lv_isLowerIncluded_1_0= '[' )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1580:3: lv_isLowerIncluded_1_0= '['
                     {
-                    lv_isLowerIncluded_1_0=(Token)input.LT(1);
-                    match(input,42,FOLLOW_42_in_ruleInterval3459); 
+                    lv_isLowerIncluded_1_0=(Token)match(input,42,FOLLOW_42_in_ruleInterval3503); 
 
-                            createLeafNode(grammarAccess.getIntervalAccess().getIsLowerIncludedLeftSquareBracketKeyword_0_1_0(), "isLowerIncluded"); 
+                            newLeafNode(lv_isLowerIncluded_1_0, grammarAccess.getIntervalAccess().getIsLowerIncludedLeftSquareBracketKeyword_0_1_0());
                         
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getIntervalRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getIntervalRule());
                     	        }
-                    	        
-                    	        try {
-                    	       		set(current, "isLowerIncluded", lv_isLowerIncluded_1_0, "[", lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(current, "isLowerIncluded", lv_isLowerIncluded_1_0, "[");
                     	    
 
                     }
@@ -4408,35 +4087,30 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1939:3: ( (lv_lower_2_0= ruleExpression ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1940:1: (lv_lower_2_0= ruleExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1593:3: ( (lv_lower_2_0= ruleExpression ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1594:1: (lv_lower_2_0= ruleExpression )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1940:1: (lv_lower_2_0= ruleExpression )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1941:3: lv_lower_2_0= ruleExpression
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1594:1: (lv_lower_2_0= ruleExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1595:3: lv_lower_2_0= ruleExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getIntervalAccess().getLowerExpressionParserRuleCall_1_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getIntervalAccess().getLowerExpressionParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleExpression_in_ruleInterval3494);
+            pushFollow(FOLLOW_ruleExpression_in_ruleInterval3538);
             lv_lower_2_0=ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getIntervalRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getIntervalRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"lower",
-            	        		lv_lower_2_0, 
-            	        		"Expression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"lower",
+                    		lv_lower_2_0, 
+                    		"Expression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -4444,39 +4118,34 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            match(input,43,FOLLOW_43_in_ruleInterval3504); 
+            otherlv_3=(Token)match(input,43,FOLLOW_43_in_ruleInterval3550); 
 
-                    createLeafNode(grammarAccess.getIntervalAccess().getFullStopFullStopKeyword_2(), null); 
+                	newLeafNode(otherlv_3, grammarAccess.getIntervalAccess().getFullStopFullStopKeyword_2());
                 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1967:1: ( (lv_upper_4_0= ruleExpression ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1968:1: (lv_upper_4_0= ruleExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1615:1: ( (lv_upper_4_0= ruleExpression ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1616:1: (lv_upper_4_0= ruleExpression )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1968:1: (lv_upper_4_0= ruleExpression )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1969:3: lv_upper_4_0= ruleExpression
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1616:1: (lv_upper_4_0= ruleExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1617:3: lv_upper_4_0= ruleExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getIntervalAccess().getUpperExpressionParserRuleCall_3_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getIntervalAccess().getUpperExpressionParserRuleCall_3_0()); 
             	    
-            pushFollow(FOLLOW_ruleExpression_in_ruleInterval3525);
+            pushFollow(FOLLOW_ruleExpression_in_ruleInterval3571);
             lv_upper_4_0=ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getIntervalRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getIntervalRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"upper",
-            	        		lv_upper_4_0, 
-            	        		"Expression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"upper",
+                    		lv_upper_4_0, 
+                    		"Expression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -4484,7 +4153,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1991:2: ( ( (lv_isUpperIncluded_5_0= ']' ) ) | '[' )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1633:2: ( ( (lv_isUpperIncluded_5_0= ']' ) ) | otherlv_6= '[' )
             int alt29=2;
             int LA29_0 = input.LA(1);
 
@@ -4496,36 +4165,29 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1991:2: ( ( (lv_isUpperIncluded_5_0= ']' ) ) | '[' )", 29, 0, input);
+                    new NoViableAltException("", 29, 0, input);
 
                 throw nvae;
             }
             switch (alt29) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1991:3: ( (lv_isUpperIncluded_5_0= ']' ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1633:3: ( (lv_isUpperIncluded_5_0= ']' ) )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1991:3: ( (lv_isUpperIncluded_5_0= ']' ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1992:1: (lv_isUpperIncluded_5_0= ']' )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1633:3: ( (lv_isUpperIncluded_5_0= ']' ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1634:1: (lv_isUpperIncluded_5_0= ']' )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1992:1: (lv_isUpperIncluded_5_0= ']' )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1993:3: lv_isUpperIncluded_5_0= ']'
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1634:1: (lv_isUpperIncluded_5_0= ']' )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1635:3: lv_isUpperIncluded_5_0= ']'
                     {
-                    lv_isUpperIncluded_5_0=(Token)input.LT(1);
-                    match(input,41,FOLLOW_41_in_ruleInterval3544); 
+                    lv_isUpperIncluded_5_0=(Token)match(input,41,FOLLOW_41_in_ruleInterval3590); 
 
-                            createLeafNode(grammarAccess.getIntervalAccess().getIsUpperIncludedRightSquareBracketKeyword_4_0_0(), "isUpperIncluded"); 
+                            newLeafNode(lv_isUpperIncluded_5_0, grammarAccess.getIntervalAccess().getIsUpperIncludedRightSquareBracketKeyword_4_0_0());
                         
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getIntervalRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getIntervalRule());
                     	        }
-                    	        
-                    	        try {
-                    	       		set(current, "isUpperIncluded", lv_isUpperIncluded_5_0, "]", lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(current, "isUpperIncluded", lv_isUpperIncluded_5_0, "]");
                     	    
 
                     }
@@ -4537,11 +4199,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2013:7: '['
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1649:7: otherlv_6= '['
                     {
-                    match(input,42,FOLLOW_42_in_ruleInterval3573); 
+                    otherlv_6=(Token)match(input,42,FOLLOW_42_in_ruleInterval3621); 
 
-                            createLeafNode(grammarAccess.getIntervalAccess().getLeftSquareBracketKeyword_4_1(), null); 
+                        	newLeafNode(otherlv_6, grammarAccess.getIntervalAccess().getLeftSquareBracketKeyword_4_1());
                         
 
                     }
@@ -4555,9 +4217,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -4568,11 +4228,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleInterval
+    // $ANTLR end "ruleInterval"
 
 
-    // $ANTLR start entryRuleCollectionOrTuple
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2025:1: entryRuleCollectionOrTuple returns [EObject current=null] : iv_ruleCollectionOrTuple= ruleCollectionOrTuple EOF ;
+    // $ANTLR start "entryRuleCollectionOrTuple"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1661:1: entryRuleCollectionOrTuple returns [EObject current=null] : iv_ruleCollectionOrTuple= ruleCollectionOrTuple EOF ;
     public final EObject entryRuleCollectionOrTuple() throws RecognitionException {
         EObject current = null;
 
@@ -4580,16 +4240,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2026:2: (iv_ruleCollectionOrTuple= ruleCollectionOrTuple EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2027:2: iv_ruleCollectionOrTuple= ruleCollectionOrTuple EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1662:2: (iv_ruleCollectionOrTuple= ruleCollectionOrTuple EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1663:2: iv_ruleCollectionOrTuple= ruleCollectionOrTuple EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getCollectionOrTupleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleCollectionOrTuple_in_entryRuleCollectionOrTuple3610);
+             newCompositeNode(grammarAccess.getCollectionOrTupleRule()); 
+            pushFollow(FOLLOW_ruleCollectionOrTuple_in_entryRuleCollectionOrTuple3658);
             iv_ruleCollectionOrTuple=ruleCollectionOrTuple();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleCollectionOrTuple; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleCollectionOrTuple3620); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleCollectionOrTuple3668); 
 
             }
 
@@ -4603,59 +4264,56 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleCollectionOrTuple
+    // $ANTLR end "entryRuleCollectionOrTuple"
 
 
-    // $ANTLR start ruleCollectionOrTuple
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2034:1: ruleCollectionOrTuple returns [EObject current=null] : ( '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) '}' ) ;
+    // $ANTLR start "ruleCollectionOrTuple"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1670:1: ruleCollectionOrTuple returns [EObject current=null] : (otherlv_0= '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) otherlv_2= '}' ) ;
     public final EObject ruleCollectionOrTuple() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_2=null;
         EObject lv_listOfValues_1_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2039:6: ( ( '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) '}' ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2040:1: ( '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) '}' )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1673:28: ( (otherlv_0= '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) otherlv_2= '}' ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1674:1: (otherlv_0= '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) otherlv_2= '}' )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2040:1: ( '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) '}' )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2040:3: '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) '}'
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1674:1: (otherlv_0= '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) otherlv_2= '}' )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1674:3: otherlv_0= '{' ( (lv_listOfValues_1_0= ruleListOfValues ) ) otherlv_2= '}'
             {
-            match(input,44,FOLLOW_44_in_ruleCollectionOrTuple3655); 
+            otherlv_0=(Token)match(input,44,FOLLOW_44_in_ruleCollectionOrTuple3705); 
 
-                    createLeafNode(grammarAccess.getCollectionOrTupleAccess().getLeftCurlyBracketKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getCollectionOrTupleAccess().getLeftCurlyBracketKeyword_0());
                 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2044:1: ( (lv_listOfValues_1_0= ruleListOfValues ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2045:1: (lv_listOfValues_1_0= ruleListOfValues )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1678:1: ( (lv_listOfValues_1_0= ruleListOfValues ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1679:1: (lv_listOfValues_1_0= ruleListOfValues )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2045:1: (lv_listOfValues_1_0= ruleListOfValues )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2046:3: lv_listOfValues_1_0= ruleListOfValues
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1679:1: (lv_listOfValues_1_0= ruleListOfValues )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1680:3: lv_listOfValues_1_0= ruleListOfValues
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getCollectionOrTupleAccess().getListOfValuesListOfValuesParserRuleCall_1_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getCollectionOrTupleAccess().getListOfValuesListOfValuesParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleListOfValues_in_ruleCollectionOrTuple3676);
+            pushFollow(FOLLOW_ruleListOfValues_in_ruleCollectionOrTuple3726);
             lv_listOfValues_1_0=ruleListOfValues();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getCollectionOrTupleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getCollectionOrTupleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"listOfValues",
-            	        		lv_listOfValues_1_0, 
-            	        		"ListOfValues", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"listOfValues",
+                    		lv_listOfValues_1_0, 
+                    		"ListOfValues");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -4663,9 +4321,9 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            match(input,45,FOLLOW_45_in_ruleCollectionOrTuple3686); 
+            otherlv_2=(Token)match(input,45,FOLLOW_45_in_ruleCollectionOrTuple3738); 
 
-                    createLeafNode(grammarAccess.getCollectionOrTupleAccess().getRightCurlyBracketKeyword_2(), null); 
+                	newLeafNode(otherlv_2, grammarAccess.getCollectionOrTupleAccess().getRightCurlyBracketKeyword_2());
                 
 
             }
@@ -4673,9 +4331,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -4686,11 +4342,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleCollectionOrTuple
+    // $ANTLR end "ruleCollectionOrTuple"
 
 
-    // $ANTLR start entryRuleTuple
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2080:1: entryRuleTuple returns [EObject current=null] : iv_ruleTuple= ruleTuple EOF ;
+    // $ANTLR start "entryRuleTuple"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1708:1: entryRuleTuple returns [EObject current=null] : iv_ruleTuple= ruleTuple EOF ;
     public final EObject entryRuleTuple() throws RecognitionException {
         EObject current = null;
 
@@ -4698,16 +4354,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2081:2: (iv_ruleTuple= ruleTuple EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2082:2: iv_ruleTuple= ruleTuple EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1709:2: (iv_ruleTuple= ruleTuple EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1710:2: iv_ruleTuple= ruleTuple EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getTupleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleTuple_in_entryRuleTuple3722);
+             newCompositeNode(grammarAccess.getTupleRule()); 
+            pushFollow(FOLLOW_ruleTuple_in_entryRuleTuple3774);
             iv_ruleTuple=ruleTuple();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleTuple; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTuple3732); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTuple3784); 
 
             }
 
@@ -4721,59 +4378,56 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleTuple
+    // $ANTLR end "entryRuleTuple"
 
 
-    // $ANTLR start ruleTuple
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2089:1: ruleTuple returns [EObject current=null] : ( '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) '}' ) ;
+    // $ANTLR start "ruleTuple"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1717:1: ruleTuple returns [EObject current=null] : (otherlv_0= '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) otherlv_2= '}' ) ;
     public final EObject ruleTuple() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_2=null;
         EObject lv_listOfValueNamePairs_1_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2094:6: ( ( '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) '}' ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2095:1: ( '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) '}' )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1720:28: ( (otherlv_0= '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) otherlv_2= '}' ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1721:1: (otherlv_0= '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) otherlv_2= '}' )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2095:1: ( '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) '}' )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2095:3: '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) '}'
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1721:1: (otherlv_0= '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) otherlv_2= '}' )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1721:3: otherlv_0= '{' ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) ) otherlv_2= '}'
             {
-            match(input,44,FOLLOW_44_in_ruleTuple3767); 
+            otherlv_0=(Token)match(input,44,FOLLOW_44_in_ruleTuple3821); 
 
-                    createLeafNode(grammarAccess.getTupleAccess().getLeftCurlyBracketKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getTupleAccess().getLeftCurlyBracketKeyword_0());
                 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2099:1: ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2100:1: (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1725:1: ( (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1726:1: (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2100:1: (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2101:3: lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1726:1: (lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1727:3: lv_listOfValueNamePairs_1_0= ruleListOfValueNamePairs
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getTupleAccess().getListOfValueNamePairsListOfValueNamePairsParserRuleCall_1_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getTupleAccess().getListOfValueNamePairsListOfValueNamePairsParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleListOfValueNamePairs_in_ruleTuple3788);
+            pushFollow(FOLLOW_ruleListOfValueNamePairs_in_ruleTuple3842);
             lv_listOfValueNamePairs_1_0=ruleListOfValueNamePairs();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getTupleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getTupleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"listOfValueNamePairs",
-            	        		lv_listOfValueNamePairs_1_0, 
-            	        		"ListOfValueNamePairs", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"listOfValueNamePairs",
+                    		lv_listOfValueNamePairs_1_0, 
+                    		"ListOfValueNamePairs");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -4781,9 +4435,9 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            match(input,45,FOLLOW_45_in_ruleTuple3798); 
+            otherlv_2=(Token)match(input,45,FOLLOW_45_in_ruleTuple3854); 
 
-                    createLeafNode(grammarAccess.getTupleAccess().getRightCurlyBracketKeyword_2(), null); 
+                	newLeafNode(otherlv_2, grammarAccess.getTupleAccess().getRightCurlyBracketKeyword_2());
                 
 
             }
@@ -4791,9 +4445,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -4804,11 +4456,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleTuple
+    // $ANTLR end "ruleTuple"
 
 
-    // $ANTLR start entryRuleListOfValues
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2135:1: entryRuleListOfValues returns [EObject current=null] : iv_ruleListOfValues= ruleListOfValues EOF ;
+    // $ANTLR start "entryRuleListOfValues"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1755:1: entryRuleListOfValues returns [EObject current=null] : iv_ruleListOfValues= ruleListOfValues EOF ;
     public final EObject entryRuleListOfValues() throws RecognitionException {
         EObject current = null;
 
@@ -4816,16 +4468,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2136:2: (iv_ruleListOfValues= ruleListOfValues EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2137:2: iv_ruleListOfValues= ruleListOfValues EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1756:2: (iv_ruleListOfValues= ruleListOfValues EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1757:2: iv_ruleListOfValues= ruleListOfValues EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getListOfValuesRule(), currentNode); 
-            pushFollow(FOLLOW_ruleListOfValues_in_entryRuleListOfValues3834);
+             newCompositeNode(grammarAccess.getListOfValuesRule()); 
+            pushFollow(FOLLOW_ruleListOfValues_in_entryRuleListOfValues3890);
             iv_ruleListOfValues=ruleListOfValues();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleListOfValues; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleListOfValues3844); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleListOfValues3900); 
 
             }
 
@@ -4839,57 +4492,53 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleListOfValues
+    // $ANTLR end "entryRuleListOfValues"
 
 
-    // $ANTLR start ruleListOfValues
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2144:1: ruleListOfValues returns [EObject current=null] : ( ( (lv_values_0_0= ruleExpression ) ) ( ',' ( (lv_values_2_0= ruleExpression ) ) )* ) ;
+    // $ANTLR start "ruleListOfValues"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1764:1: ruleListOfValues returns [EObject current=null] : ( ( (lv_values_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_values_2_0= ruleExpression ) ) )* ) ;
     public final EObject ruleListOfValues() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
         EObject lv_values_0_0 = null;
 
         EObject lv_values_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2149:6: ( ( ( (lv_values_0_0= ruleExpression ) ) ( ',' ( (lv_values_2_0= ruleExpression ) ) )* ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2150:1: ( ( (lv_values_0_0= ruleExpression ) ) ( ',' ( (lv_values_2_0= ruleExpression ) ) )* )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1767:28: ( ( ( (lv_values_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_values_2_0= ruleExpression ) ) )* ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1768:1: ( ( (lv_values_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_values_2_0= ruleExpression ) ) )* )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2150:1: ( ( (lv_values_0_0= ruleExpression ) ) ( ',' ( (lv_values_2_0= ruleExpression ) ) )* )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2150:2: ( (lv_values_0_0= ruleExpression ) ) ( ',' ( (lv_values_2_0= ruleExpression ) ) )*
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1768:1: ( ( (lv_values_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_values_2_0= ruleExpression ) ) )* )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1768:2: ( (lv_values_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_values_2_0= ruleExpression ) ) )*
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2150:2: ( (lv_values_0_0= ruleExpression ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2151:1: (lv_values_0_0= ruleExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1768:2: ( (lv_values_0_0= ruleExpression ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1769:1: (lv_values_0_0= ruleExpression )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2151:1: (lv_values_0_0= ruleExpression )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2152:3: lv_values_0_0= ruleExpression
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1769:1: (lv_values_0_0= ruleExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1770:3: lv_values_0_0= ruleExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getListOfValuesAccess().getValuesExpressionParserRuleCall_0_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getListOfValuesAccess().getValuesExpressionParserRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_ruleExpression_in_ruleListOfValues3890);
+            pushFollow(FOLLOW_ruleExpression_in_ruleListOfValues3946);
             lv_values_0_0=ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getListOfValuesRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getListOfValuesRule());
             	        }
-            	        try {
-            	       		add(
-            	       			current, 
-            	       			"values",
-            	        		lv_values_0_0, 
-            	        		"Expression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		add(
+                   			current, 
+                   			"values",
+                    		lv_values_0_0, 
+                    		"Expression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -4897,7 +4546,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2174:2: ( ',' ( (lv_values_2_0= ruleExpression ) ) )*
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1786:2: (otherlv_1= ',' ( (lv_values_2_0= ruleExpression ) ) )*
             loop30:
             do {
                 int alt30=2;
@@ -4910,41 +4559,36 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                 switch (alt30) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2174:4: ',' ( (lv_values_2_0= ruleExpression ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1786:4: otherlv_1= ',' ( (lv_values_2_0= ruleExpression ) )
             	    {
-            	    match(input,18,FOLLOW_18_in_ruleListOfValues3901); 
+            	    otherlv_1=(Token)match(input,18,FOLLOW_18_in_ruleListOfValues3959); 
 
-            	            createLeafNode(grammarAccess.getListOfValuesAccess().getCommaKeyword_1_0(), null); 
+            	        	newLeafNode(otherlv_1, grammarAccess.getListOfValuesAccess().getCommaKeyword_1_0());
             	        
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2178:1: ( (lv_values_2_0= ruleExpression ) )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2179:1: (lv_values_2_0= ruleExpression )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1790:1: ( (lv_values_2_0= ruleExpression ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1791:1: (lv_values_2_0= ruleExpression )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2179:1: (lv_values_2_0= ruleExpression )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2180:3: lv_values_2_0= ruleExpression
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1791:1: (lv_values_2_0= ruleExpression )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1792:3: lv_values_2_0= ruleExpression
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getListOfValuesAccess().getValuesExpressionParserRuleCall_1_1_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getListOfValuesAccess().getValuesExpressionParserRuleCall_1_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleExpression_in_ruleListOfValues3922);
+            	    pushFollow(FOLLOW_ruleExpression_in_ruleListOfValues3980);
             	    lv_values_2_0=ruleExpression();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getListOfValuesRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getListOfValuesRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"values",
-            	    	        		lv_values_2_0, 
-            	    	        		"Expression", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"values",
+            	            		lv_values_2_0, 
+            	            		"Expression");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -4967,9 +4611,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -4980,11 +4622,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleListOfValues
+    // $ANTLR end "ruleListOfValues"
 
 
-    // $ANTLR start entryRuleListOfValueNamePairs
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2210:1: entryRuleListOfValueNamePairs returns [EObject current=null] : iv_ruleListOfValueNamePairs= ruleListOfValueNamePairs EOF ;
+    // $ANTLR start "entryRuleListOfValueNamePairs"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1816:1: entryRuleListOfValueNamePairs returns [EObject current=null] : iv_ruleListOfValueNamePairs= ruleListOfValueNamePairs EOF ;
     public final EObject entryRuleListOfValueNamePairs() throws RecognitionException {
         EObject current = null;
 
@@ -4992,16 +4634,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2211:2: (iv_ruleListOfValueNamePairs= ruleListOfValueNamePairs EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2212:2: iv_ruleListOfValueNamePairs= ruleListOfValueNamePairs EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1817:2: (iv_ruleListOfValueNamePairs= ruleListOfValueNamePairs EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1818:2: iv_ruleListOfValueNamePairs= ruleListOfValueNamePairs EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getListOfValueNamePairsRule(), currentNode); 
-            pushFollow(FOLLOW_ruleListOfValueNamePairs_in_entryRuleListOfValueNamePairs3960);
+             newCompositeNode(grammarAccess.getListOfValueNamePairsRule()); 
+            pushFollow(FOLLOW_ruleListOfValueNamePairs_in_entryRuleListOfValueNamePairs4018);
             iv_ruleListOfValueNamePairs=ruleListOfValueNamePairs();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleListOfValueNamePairs; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleListOfValueNamePairs3970); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleListOfValueNamePairs4028); 
 
             }
 
@@ -5015,57 +4658,53 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleListOfValueNamePairs
+    // $ANTLR end "entryRuleListOfValueNamePairs"
 
 
-    // $ANTLR start ruleListOfValueNamePairs
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2219:1: ruleListOfValueNamePairs returns [EObject current=null] : ( ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) ( ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )* ) ;
+    // $ANTLR start "ruleListOfValueNamePairs"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1825:1: ruleListOfValueNamePairs returns [EObject current=null] : ( ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) (otherlv_1= ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )* ) ;
     public final EObject ruleListOfValueNamePairs() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
         EObject lv_valueNamePairs_0_0 = null;
 
         EObject lv_valueNamePairs_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2224:6: ( ( ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) ( ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )* ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2225:1: ( ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) ( ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )* )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1828:28: ( ( ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) (otherlv_1= ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )* ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1829:1: ( ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) (otherlv_1= ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )* )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2225:1: ( ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) ( ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )* )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2225:2: ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) ( ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )*
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1829:1: ( ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) (otherlv_1= ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )* )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1829:2: ( (lv_valueNamePairs_0_0= ruleValueNamePair ) ) (otherlv_1= ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )*
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2225:2: ( (lv_valueNamePairs_0_0= ruleValueNamePair ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2226:1: (lv_valueNamePairs_0_0= ruleValueNamePair )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1829:2: ( (lv_valueNamePairs_0_0= ruleValueNamePair ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1830:1: (lv_valueNamePairs_0_0= ruleValueNamePair )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2226:1: (lv_valueNamePairs_0_0= ruleValueNamePair )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2227:3: lv_valueNamePairs_0_0= ruleValueNamePair
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1830:1: (lv_valueNamePairs_0_0= ruleValueNamePair )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1831:3: lv_valueNamePairs_0_0= ruleValueNamePair
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getListOfValueNamePairsAccess().getValueNamePairsValueNamePairParserRuleCall_0_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getListOfValueNamePairsAccess().getValueNamePairsValueNamePairParserRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_ruleValueNamePair_in_ruleListOfValueNamePairs4016);
+            pushFollow(FOLLOW_ruleValueNamePair_in_ruleListOfValueNamePairs4074);
             lv_valueNamePairs_0_0=ruleValueNamePair();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getListOfValueNamePairsRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getListOfValueNamePairsRule());
             	        }
-            	        try {
-            	       		add(
-            	       			current, 
-            	       			"valueNamePairs",
-            	        		lv_valueNamePairs_0_0, 
-            	        		"ValueNamePair", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		add(
+                   			current, 
+                   			"valueNamePairs",
+                    		lv_valueNamePairs_0_0, 
+                    		"ValueNamePair");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -5073,7 +4712,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2249:2: ( ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )*
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1847:2: (otherlv_1= ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) ) )*
             loop31:
             do {
                 int alt31=2;
@@ -5086,41 +4725,36 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                 switch (alt31) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2249:4: ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1847:4: otherlv_1= ',' ( (lv_valueNamePairs_2_0= ruleValueNamePair ) )
             	    {
-            	    match(input,18,FOLLOW_18_in_ruleListOfValueNamePairs4027); 
+            	    otherlv_1=(Token)match(input,18,FOLLOW_18_in_ruleListOfValueNamePairs4087); 
 
-            	            createLeafNode(grammarAccess.getListOfValueNamePairsAccess().getCommaKeyword_1_0(), null); 
+            	        	newLeafNode(otherlv_1, grammarAccess.getListOfValueNamePairsAccess().getCommaKeyword_1_0());
             	        
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2253:1: ( (lv_valueNamePairs_2_0= ruleValueNamePair ) )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2254:1: (lv_valueNamePairs_2_0= ruleValueNamePair )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1851:1: ( (lv_valueNamePairs_2_0= ruleValueNamePair ) )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1852:1: (lv_valueNamePairs_2_0= ruleValueNamePair )
             	    {
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2254:1: (lv_valueNamePairs_2_0= ruleValueNamePair )
-            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2255:3: lv_valueNamePairs_2_0= ruleValueNamePair
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1852:1: (lv_valueNamePairs_2_0= ruleValueNamePair )
+            	    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1853:3: lv_valueNamePairs_2_0= ruleValueNamePair
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getListOfValueNamePairsAccess().getValueNamePairsValueNamePairParserRuleCall_1_1_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getListOfValueNamePairsAccess().getValueNamePairsValueNamePairParserRuleCall_1_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleValueNamePair_in_ruleListOfValueNamePairs4048);
+            	    pushFollow(FOLLOW_ruleValueNamePair_in_ruleListOfValueNamePairs4108);
             	    lv_valueNamePairs_2_0=ruleValueNamePair();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getListOfValueNamePairsRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getListOfValueNamePairsRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"valueNamePairs",
-            	    	        		lv_valueNamePairs_2_0, 
-            	    	        		"ValueNamePair", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"valueNamePairs",
+            	            		lv_valueNamePairs_2_0, 
+            	            		"ValueNamePair");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -5143,9 +4777,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -5156,11 +4788,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleListOfValueNamePairs
+    // $ANTLR end "ruleListOfValueNamePairs"
 
 
-    // $ANTLR start entryRuleValueNamePair
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2285:1: entryRuleValueNamePair returns [EObject current=null] : iv_ruleValueNamePair= ruleValueNamePair EOF ;
+    // $ANTLR start "entryRuleValueNamePair"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1877:1: entryRuleValueNamePair returns [EObject current=null] : iv_ruleValueNamePair= ruleValueNamePair EOF ;
     public final EObject entryRuleValueNamePair() throws RecognitionException {
         EObject current = null;
 
@@ -5168,16 +4800,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2286:2: (iv_ruleValueNamePair= ruleValueNamePair EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2287:2: iv_ruleValueNamePair= ruleValueNamePair EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1878:2: (iv_ruleValueNamePair= ruleValueNamePair EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1879:2: iv_ruleValueNamePair= ruleValueNamePair EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getValueNamePairRule(), currentNode); 
-            pushFollow(FOLLOW_ruleValueNamePair_in_entryRuleValueNamePair4086);
+             newCompositeNode(grammarAccess.getValueNamePairRule()); 
+            pushFollow(FOLLOW_ruleValueNamePair_in_entryRuleValueNamePair4146);
             iv_ruleValueNamePair=ruleValueNamePair();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleValueNamePair; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleValueNamePair4096); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleValueNamePair4156); 
 
             }
 
@@ -5191,41 +4824,42 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleValueNamePair
+    // $ANTLR end "entryRuleValueNamePair"
 
 
-    // $ANTLR start ruleValueNamePair
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2294:1: ruleValueNamePair returns [EObject current=null] : ( ( ( RULE_ID ) ) '=' ( (lv_value_2_0= ruleExpression ) ) ) ;
+    // $ANTLR start "ruleValueNamePair"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1886:1: ruleValueNamePair returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleExpression ) ) ) ;
     public final EObject ruleValueNamePair() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_1=null;
         EObject lv_value_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2299:6: ( ( ( ( RULE_ID ) ) '=' ( (lv_value_2_0= ruleExpression ) ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2300:1: ( ( ( RULE_ID ) ) '=' ( (lv_value_2_0= ruleExpression ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1889:28: ( ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleExpression ) ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1890:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleExpression ) ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2300:1: ( ( ( RULE_ID ) ) '=' ( (lv_value_2_0= ruleExpression ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2300:2: ( ( RULE_ID ) ) '=' ( (lv_value_2_0= ruleExpression ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1890:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleExpression ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1890:2: ( (otherlv_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleExpression ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2300:2: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2301:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1890:2: ( (otherlv_0= RULE_ID ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1891:1: (otherlv_0= RULE_ID )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2301:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2302:3: RULE_ID
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1891:1: (otherlv_0= RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1892:3: otherlv_0= RULE_ID
             {
 
             			if (current==null) {
-            	            current = factory.create(grammarAccess.getValueNamePairRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getValueNamePairRule());
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleValueNamePair4139); 
+            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleValueNamePair4201); 
 
-            		createLeafNode(grammarAccess.getValueNamePairAccess().getPropertyPropertyCrossReference_0_0(), "property"); 
+            		newLeafNode(otherlv_0, grammarAccess.getValueNamePairAccess().getPropertyPropertyCrossReference_0_0()); 
             	
 
             }
@@ -5233,39 +4867,34 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            match(input,19,FOLLOW_19_in_ruleValueNamePair4149); 
+            otherlv_1=(Token)match(input,19,FOLLOW_19_in_ruleValueNamePair4213); 
 
-                    createLeafNode(grammarAccess.getValueNamePairAccess().getEqualsSignKeyword_1(), null); 
+                	newLeafNode(otherlv_1, grammarAccess.getValueNamePairAccess().getEqualsSignKeyword_1());
                 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2318:1: ( (lv_value_2_0= ruleExpression ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2319:1: (lv_value_2_0= ruleExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1907:1: ( (lv_value_2_0= ruleExpression ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1908:1: (lv_value_2_0= ruleExpression )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2319:1: (lv_value_2_0= ruleExpression )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2320:3: lv_value_2_0= ruleExpression
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1908:1: (lv_value_2_0= ruleExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1909:3: lv_value_2_0= ruleExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getValueNamePairAccess().getValueExpressionParserRuleCall_2_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getValueNamePairAccess().getValueExpressionParserRuleCall_2_0()); 
             	    
-            pushFollow(FOLLOW_ruleExpression_in_ruleValueNamePair4170);
+            pushFollow(FOLLOW_ruleExpression_in_ruleValueNamePair4234);
             lv_value_2_0=ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getValueNamePairRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getValueNamePairRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"value",
-            	        		lv_value_2_0, 
-            	        		"Expression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"value",
+                    		lv_value_2_0, 
+                    		"Expression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -5279,9 +4908,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -5292,11 +4919,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleValueNamePair
+    // $ANTLR end "ruleValueNamePair"
 
 
-    // $ANTLR start entryRuleTimeExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2350:1: entryRuleTimeExpression returns [EObject current=null] : iv_ruleTimeExpression= ruleTimeExpression EOF ;
+    // $ANTLR start "entryRuleTimeExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1933:1: entryRuleTimeExpression returns [EObject current=null] : iv_ruleTimeExpression= ruleTimeExpression EOF ;
     public final EObject entryRuleTimeExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5304,16 +4931,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2351:2: (iv_ruleTimeExpression= ruleTimeExpression EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2352:2: iv_ruleTimeExpression= ruleTimeExpression EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1934:2: (iv_ruleTimeExpression= ruleTimeExpression EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1935:2: iv_ruleTimeExpression= ruleTimeExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getTimeExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleTimeExpression_in_entryRuleTimeExpression4206);
+             newCompositeNode(grammarAccess.getTimeExpressionRule()); 
+            pushFollow(FOLLOW_ruleTimeExpression_in_entryRuleTimeExpression4270);
             iv_ruleTimeExpression=ruleTimeExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleTimeExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTimeExpression4216); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTimeExpression4280); 
 
             }
 
@@ -5327,11 +4955,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleTimeExpression
+    // $ANTLR end "entryRuleTimeExpression"
 
 
-    // $ANTLR start ruleTimeExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2359:1: ruleTimeExpression returns [EObject current=null] : (this_InstantObsExpression_0= ruleInstantObsExpression | this_DurationObsExpression_1= ruleDurationObsExpression | this_JitterExp_2= ruleJitterExp ) ;
+    // $ANTLR start "ruleTimeExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1942:1: ruleTimeExpression returns [EObject current=null] : (this_InstantObsExpression_0= ruleInstantObsExpression | this_DurationObsExpression_1= ruleDurationObsExpression | this_JitterExp_2= ruleJitterExp ) ;
     public final EObject ruleTimeExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5342,13 +4970,13 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         EObject this_JitterExp_2 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2364:6: ( (this_InstantObsExpression_0= ruleInstantObsExpression | this_DurationObsExpression_1= ruleDurationObsExpression | this_JitterExp_2= ruleJitterExp ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2365:1: (this_InstantObsExpression_0= ruleInstantObsExpression | this_DurationObsExpression_1= ruleDurationObsExpression | this_JitterExp_2= ruleJitterExp )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1945:28: ( (this_InstantObsExpression_0= ruleInstantObsExpression | this_DurationObsExpression_1= ruleDurationObsExpression | this_JitterExp_2= ruleJitterExp ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1946:1: (this_InstantObsExpression_0= ruleInstantObsExpression | this_DurationObsExpression_1= ruleDurationObsExpression | this_JitterExp_2= ruleJitterExp )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2365:1: (this_InstantObsExpression_0= ruleInstantObsExpression | this_DurationObsExpression_1= ruleDurationObsExpression | this_JitterExp_2= ruleJitterExp )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1946:1: (this_InstantObsExpression_0= ruleInstantObsExpression | this_DurationObsExpression_1= ruleDurationObsExpression | this_JitterExp_2= ruleJitterExp )
             int alt32=3;
             switch ( input.LA(1) ) {
             case 46:
@@ -5368,59 +4996,62 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("2365:1: (this_InstantObsExpression_0= ruleInstantObsExpression | this_DurationObsExpression_1= ruleDurationObsExpression | this_JitterExp_2= ruleJitterExp )", 32, 0, input);
+                    new NoViableAltException("", 32, 0, input);
 
                 throw nvae;
             }
 
             switch (alt32) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2366:5: this_InstantObsExpression_0= ruleInstantObsExpression
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1947:5: this_InstantObsExpression_0= ruleInstantObsExpression
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getTimeExpressionAccess().getInstantObsExpressionParserRuleCall_0(), currentNode); 
+                            newCompositeNode(grammarAccess.getTimeExpressionAccess().getInstantObsExpressionParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleInstantObsExpression_in_ruleTimeExpression4263);
+                    pushFollow(FOLLOW_ruleInstantObsExpression_in_ruleTimeExpression4327);
                     this_InstantObsExpression_0=ruleInstantObsExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_InstantObsExpression_0; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2376:5: this_DurationObsExpression_1= ruleDurationObsExpression
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1957:5: this_DurationObsExpression_1= ruleDurationObsExpression
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getTimeExpressionAccess().getDurationObsExpressionParserRuleCall_1(), currentNode); 
+                            newCompositeNode(grammarAccess.getTimeExpressionAccess().getDurationObsExpressionParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleDurationObsExpression_in_ruleTimeExpression4290);
+                    pushFollow(FOLLOW_ruleDurationObsExpression_in_ruleTimeExpression4354);
                     this_DurationObsExpression_1=ruleDurationObsExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_DurationObsExpression_1; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2386:5: this_JitterExp_2= ruleJitterExp
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1967:5: this_JitterExp_2= ruleJitterExp
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getTimeExpressionAccess().getJitterExpParserRuleCall_2(), currentNode); 
+                            newCompositeNode(grammarAccess.getTimeExpressionAccess().getJitterExpParserRuleCall_2()); 
                         
-                    pushFollow(FOLLOW_ruleJitterExp_in_ruleTimeExpression4317);
+                    pushFollow(FOLLOW_ruleJitterExp_in_ruleTimeExpression4381);
                     this_JitterExp_2=ruleJitterExp();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_JitterExp_2; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
@@ -5431,9 +5062,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -5444,11 +5073,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleTimeExpression
+    // $ANTLR end "ruleTimeExpression"
 
 
-    // $ANTLR start entryRuleInstantObsExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2402:1: entryRuleInstantObsExpression returns [EObject current=null] : iv_ruleInstantObsExpression= ruleInstantObsExpression EOF ;
+    // $ANTLR start "entryRuleInstantObsExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1983:1: entryRuleInstantObsExpression returns [EObject current=null] : iv_ruleInstantObsExpression= ruleInstantObsExpression EOF ;
     public final EObject entryRuleInstantObsExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5456,16 +5085,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2403:2: (iv_ruleInstantObsExpression= ruleInstantObsExpression EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2404:2: iv_ruleInstantObsExpression= ruleInstantObsExpression EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1984:2: (iv_ruleInstantObsExpression= ruleInstantObsExpression EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1985:2: iv_ruleInstantObsExpression= ruleInstantObsExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getInstantObsExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleInstantObsExpression_in_entryRuleInstantObsExpression4352);
+             newCompositeNode(grammarAccess.getInstantObsExpressionRule()); 
+            pushFollow(FOLLOW_ruleInstantObsExpression_in_entryRuleInstantObsExpression4416);
             iv_ruleInstantObsExpression=ruleInstantObsExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleInstantObsExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleInstantObsExpression4362); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleInstantObsExpression4426); 
 
             }
 
@@ -5479,14 +5109,20 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleInstantObsExpression
+    // $ANTLR end "entryRuleInstantObsExpression"
 
 
-    // $ANTLR start ruleInstantObsExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2411:1: ruleInstantObsExpression returns [EObject current=null] : ( '@' ( (lv_id_1_0= ruleInstantObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )? ) ;
+    // $ANTLR start "ruleInstantObsExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1992:1: ruleInstantObsExpression returns [EObject current=null] : (otherlv_0= '@' ( (lv_id_1_0= ruleInstantObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )? ) ;
     public final EObject ruleInstantObsExpression() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_2=null;
+        Token otherlv_4=null;
+        Token otherlv_5=null;
+        Token otherlv_6=null;
+        Token otherlv_8=null;
         EObject lv_id_1_0 = null;
 
         EObject lv_index_3_0 = null;
@@ -5494,48 +5130,43 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         EObject lv_condition_7_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2416:6: ( ( '@' ( (lv_id_1_0= ruleInstantObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )? ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2417:1: ( '@' ( (lv_id_1_0= ruleInstantObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )? )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1995:28: ( (otherlv_0= '@' ( (lv_id_1_0= ruleInstantObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )? ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1996:1: (otherlv_0= '@' ( (lv_id_1_0= ruleInstantObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )? )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2417:1: ( '@' ( (lv_id_1_0= ruleInstantObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )? )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2417:3: '@' ( (lv_id_1_0= ruleInstantObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1996:1: (otherlv_0= '@' ( (lv_id_1_0= ruleInstantObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )? )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:1996:3: otherlv_0= '@' ( (lv_id_1_0= ruleInstantObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )?
             {
-            match(input,46,FOLLOW_46_in_ruleInstantObsExpression4397); 
+            otherlv_0=(Token)match(input,46,FOLLOW_46_in_ruleInstantObsExpression4463); 
 
-                    createLeafNode(grammarAccess.getInstantObsExpressionAccess().getCommercialAtKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getInstantObsExpressionAccess().getCommercialAtKeyword_0());
                 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2421:1: ( (lv_id_1_0= ruleInstantObsName ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2422:1: (lv_id_1_0= ruleInstantObsName )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2000:1: ( (lv_id_1_0= ruleInstantObsName ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2001:1: (lv_id_1_0= ruleInstantObsName )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2422:1: (lv_id_1_0= ruleInstantObsName )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2423:3: lv_id_1_0= ruleInstantObsName
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2001:1: (lv_id_1_0= ruleInstantObsName )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2002:3: lv_id_1_0= ruleInstantObsName
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getInstantObsExpressionAccess().getIdInstantObsNameParserRuleCall_1_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getInstantObsExpressionAccess().getIdInstantObsNameParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleInstantObsName_in_ruleInstantObsExpression4418);
+            pushFollow(FOLLOW_ruleInstantObsName_in_ruleInstantObsExpression4484);
             lv_id_1_0=ruleInstantObsName();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getInstantObsExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getInstantObsExpressionRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"id",
-            	        		lv_id_1_0, 
-            	        		"InstantObsName", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"id",
+                    		lv_id_1_0, 
+                    		"InstantObsName");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -5543,7 +5174,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2445:2: ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2018:2: (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )?
             int alt33=2;
             int LA33_0 = input.LA(1);
 
@@ -5552,41 +5183,36 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             switch (alt33) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2445:4: '(' ( (lv_index_3_0= ruleExpression ) ) ')'
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2018:4: otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')'
                     {
-                    match(input,38,FOLLOW_38_in_ruleInstantObsExpression4429); 
+                    otherlv_2=(Token)match(input,38,FOLLOW_38_in_ruleInstantObsExpression4497); 
 
-                            createLeafNode(grammarAccess.getInstantObsExpressionAccess().getLeftParenthesisKeyword_2_0(), null); 
+                        	newLeafNode(otherlv_2, grammarAccess.getInstantObsExpressionAccess().getLeftParenthesisKeyword_2_0());
                         
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2449:1: ( (lv_index_3_0= ruleExpression ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2450:1: (lv_index_3_0= ruleExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2022:1: ( (lv_index_3_0= ruleExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2023:1: (lv_index_3_0= ruleExpression )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2450:1: (lv_index_3_0= ruleExpression )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2451:3: lv_index_3_0= ruleExpression
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2023:1: (lv_index_3_0= ruleExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2024:3: lv_index_3_0= ruleExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getInstantObsExpressionAccess().getIndexExpressionParserRuleCall_2_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getInstantObsExpressionAccess().getIndexExpressionParserRuleCall_2_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleExpression_in_ruleInstantObsExpression4450);
+                    pushFollow(FOLLOW_ruleExpression_in_ruleInstantObsExpression4518);
                     lv_index_3_0=ruleExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getInstantObsExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getInstantObsExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"index",
-                    	        		lv_index_3_0, 
-                    	        		"Expression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"index",
+                            		lv_index_3_0, 
+                            		"Expression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -5594,9 +5220,9 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                     }
 
-                    match(input,39,FOLLOW_39_in_ruleInstantObsExpression4460); 
+                    otherlv_4=(Token)match(input,39,FOLLOW_39_in_ruleInstantObsExpression4530); 
 
-                            createLeafNode(grammarAccess.getInstantObsExpressionAccess().getRightParenthesisKeyword_2_2(), null); 
+                        	newLeafNode(otherlv_4, grammarAccess.getInstantObsExpressionAccess().getRightParenthesisKeyword_2_2());
                         
 
                     }
@@ -5604,7 +5230,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2477:3: ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2044:3: (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )?
             int alt34=2;
             int LA34_0 = input.LA(1);
 
@@ -5613,45 +5239,40 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             switch (alt34) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2477:5: 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')'
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2044:5: otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')'
                     {
-                    match(input,47,FOLLOW_47_in_ruleInstantObsExpression4473); 
+                    otherlv_5=(Token)match(input,47,FOLLOW_47_in_ruleInstantObsExpression4545); 
 
-                            createLeafNode(grammarAccess.getInstantObsExpressionAccess().getWhenKeyword_3_0(), null); 
+                        	newLeafNode(otherlv_5, grammarAccess.getInstantObsExpressionAccess().getWhenKeyword_3_0());
                         
-                    match(input,38,FOLLOW_38_in_ruleInstantObsExpression4483); 
+                    otherlv_6=(Token)match(input,38,FOLLOW_38_in_ruleInstantObsExpression4557); 
 
-                            createLeafNode(grammarAccess.getInstantObsExpressionAccess().getLeftParenthesisKeyword_3_1(), null); 
+                        	newLeafNode(otherlv_6, grammarAccess.getInstantObsExpressionAccess().getLeftParenthesisKeyword_3_1());
                         
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2485:1: ( (lv_condition_7_0= ruleExpression ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2486:1: (lv_condition_7_0= ruleExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2052:1: ( (lv_condition_7_0= ruleExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2053:1: (lv_condition_7_0= ruleExpression )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2486:1: (lv_condition_7_0= ruleExpression )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2487:3: lv_condition_7_0= ruleExpression
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2053:1: (lv_condition_7_0= ruleExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2054:3: lv_condition_7_0= ruleExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getInstantObsExpressionAccess().getConditionExpressionParserRuleCall_3_2_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getInstantObsExpressionAccess().getConditionExpressionParserRuleCall_3_2_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleExpression_in_ruleInstantObsExpression4504);
+                    pushFollow(FOLLOW_ruleExpression_in_ruleInstantObsExpression4578);
                     lv_condition_7_0=ruleExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getInstantObsExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getInstantObsExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"condition",
-                    	        		lv_condition_7_0, 
-                    	        		"Expression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"condition",
+                            		lv_condition_7_0, 
+                            		"Expression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -5659,9 +5280,9 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                     }
 
-                    match(input,39,FOLLOW_39_in_ruleInstantObsExpression4514); 
+                    otherlv_8=(Token)match(input,39,FOLLOW_39_in_ruleInstantObsExpression4590); 
 
-                            createLeafNode(grammarAccess.getInstantObsExpressionAccess().getRightParenthesisKeyword_3_3(), null); 
+                        	newLeafNode(otherlv_8, grammarAccess.getInstantObsExpressionAccess().getRightParenthesisKeyword_3_3());
                         
 
                     }
@@ -5675,9 +5296,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -5688,11 +5307,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleInstantObsExpression
+    // $ANTLR end "ruleInstantObsExpression"
 
 
-    // $ANTLR start entryRuleInstantObsName
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2521:1: entryRuleInstantObsName returns [EObject current=null] : iv_ruleInstantObsName= ruleInstantObsName EOF ;
+    // $ANTLR start "entryRuleInstantObsName"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2082:1: entryRuleInstantObsName returns [EObject current=null] : iv_ruleInstantObsName= ruleInstantObsName EOF ;
     public final EObject entryRuleInstantObsName() throws RecognitionException {
         EObject current = null;
 
@@ -5700,16 +5319,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2522:2: (iv_ruleInstantObsName= ruleInstantObsName EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2523:2: iv_ruleInstantObsName= ruleInstantObsName EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2083:2: (iv_ruleInstantObsName= ruleInstantObsName EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2084:2: iv_ruleInstantObsName= ruleInstantObsName EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getInstantObsNameRule(), currentNode); 
-            pushFollow(FOLLOW_ruleInstantObsName_in_entryRuleInstantObsName4552);
+             newCompositeNode(grammarAccess.getInstantObsNameRule()); 
+            pushFollow(FOLLOW_ruleInstantObsName_in_entryRuleInstantObsName4628);
             iv_ruleInstantObsName=ruleInstantObsName();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleInstantObsName; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleInstantObsName4562); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleInstantObsName4638); 
 
             }
 
@@ -5723,27 +5343,28 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleInstantObsName
+    // $ANTLR end "entryRuleInstantObsName"
 
 
-    // $ANTLR start ruleInstantObsName
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2530:1: ruleInstantObsName returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ) ;
+    // $ANTLR start "ruleInstantObsName"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2091:1: ruleInstantObsName returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) ;
     public final EObject ruleInstantObsName() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
         EObject lv_path_0_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2535:6: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2536:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2094:28: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2095:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2536:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2536:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2095:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2095:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2536:2: ( (lv_path_0_0= ruleQualifiedName ) )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2095:2: ( (lv_path_0_0= ruleQualifiedName ) )?
             int alt35=2;
             int LA35_0 = input.LA(1);
 
@@ -5756,34 +5377,29 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             switch (alt35) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2537:1: (lv_path_0_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2096:1: (lv_path_0_0= ruleQualifiedName )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2537:1: (lv_path_0_0= ruleQualifiedName )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2538:3: lv_path_0_0= ruleQualifiedName
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2096:1: (lv_path_0_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2097:3: lv_path_0_0= ruleQualifiedName
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getInstantObsNameAccess().getPathQualifiedNameParserRuleCall_0_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getInstantObsNameAccess().getPathQualifiedNameParserRuleCall_0_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleInstantObsName4608);
+                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleInstantObsName4684);
                     lv_path_0_0=ruleQualifiedName();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getInstantObsNameRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getInstantObsNameRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"path",
-                    	        		lv_path_0_0, 
-                    	        		"QualifiedName", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"path",
+                            		lv_path_0_0, 
+                            		"QualifiedName");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -5794,21 +5410,20 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2560:3: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2561:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2113:3: ( (otherlv_1= RULE_ID ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2114:1: (otherlv_1= RULE_ID )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2561:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2562:3: RULE_ID
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2114:1: (otherlv_1= RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2115:3: otherlv_1= RULE_ID
             {
 
             			if (current==null) {
-            	            current = factory.create(grammarAccess.getInstantObsNameRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getInstantObsNameRule());
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleInstantObsName4627); 
+            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleInstantObsName4705); 
 
-            		createLeafNode(grammarAccess.getInstantObsNameAccess().getInstantIdTimeObservationCrossReference_1_0(), "instantId"); 
+            		newLeafNode(otherlv_1, grammarAccess.getInstantObsNameAccess().getInstantIdTimeObservationCrossReference_1_0()); 
             	
 
             }
@@ -5822,9 +5437,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -5835,11 +5448,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleInstantObsName
+    // $ANTLR end "ruleInstantObsName"
 
 
-    // $ANTLR start entryRuleDurationObsExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2582:1: entryRuleDurationObsExpression returns [EObject current=null] : iv_ruleDurationObsExpression= ruleDurationObsExpression EOF ;
+    // $ANTLR start "entryRuleDurationObsExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2134:1: entryRuleDurationObsExpression returns [EObject current=null] : iv_ruleDurationObsExpression= ruleDurationObsExpression EOF ;
     public final EObject entryRuleDurationObsExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5847,16 +5460,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2583:2: (iv_ruleDurationObsExpression= ruleDurationObsExpression EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2584:2: iv_ruleDurationObsExpression= ruleDurationObsExpression EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2135:2: (iv_ruleDurationObsExpression= ruleDurationObsExpression EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2136:2: iv_ruleDurationObsExpression= ruleDurationObsExpression EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getDurationObsExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleDurationObsExpression_in_entryRuleDurationObsExpression4663);
+             newCompositeNode(grammarAccess.getDurationObsExpressionRule()); 
+            pushFollow(FOLLOW_ruleDurationObsExpression_in_entryRuleDurationObsExpression4741);
             iv_ruleDurationObsExpression=ruleDurationObsExpression();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleDurationObsExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDurationObsExpression4673); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDurationObsExpression4751); 
 
             }
 
@@ -5870,14 +5484,20 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleDurationObsExpression
+    // $ANTLR end "entryRuleDurationObsExpression"
 
 
-    // $ANTLR start ruleDurationObsExpression
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2591:1: ruleDurationObsExpression returns [EObject current=null] : ( '&' ( (lv_id_1_0= ruleDurationObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )? ) ;
+    // $ANTLR start "ruleDurationObsExpression"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2143:1: ruleDurationObsExpression returns [EObject current=null] : (otherlv_0= '&' ( (lv_id_1_0= ruleDurationObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )? ) ;
     public final EObject ruleDurationObsExpression() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_2=null;
+        Token otherlv_4=null;
+        Token otherlv_5=null;
+        Token otherlv_6=null;
+        Token otherlv_8=null;
         EObject lv_id_1_0 = null;
 
         EObject lv_index_3_0 = null;
@@ -5885,48 +5505,43 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         EObject lv_condition_7_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2596:6: ( ( '&' ( (lv_id_1_0= ruleDurationObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )? ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2597:1: ( '&' ( (lv_id_1_0= ruleDurationObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )? )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2146:28: ( (otherlv_0= '&' ( (lv_id_1_0= ruleDurationObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )? ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2147:1: (otherlv_0= '&' ( (lv_id_1_0= ruleDurationObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )? )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2597:1: ( '&' ( (lv_id_1_0= ruleDurationObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )? )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2597:3: '&' ( (lv_id_1_0= ruleDurationObsName ) ) ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )? ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2147:1: (otherlv_0= '&' ( (lv_id_1_0= ruleDurationObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )? )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2147:3: otherlv_0= '&' ( (lv_id_1_0= ruleDurationObsName ) ) (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )? (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )?
             {
-            match(input,48,FOLLOW_48_in_ruleDurationObsExpression4708); 
+            otherlv_0=(Token)match(input,48,FOLLOW_48_in_ruleDurationObsExpression4788); 
 
-                    createLeafNode(grammarAccess.getDurationObsExpressionAccess().getAmpersandKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getDurationObsExpressionAccess().getAmpersandKeyword_0());
                 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2601:1: ( (lv_id_1_0= ruleDurationObsName ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2602:1: (lv_id_1_0= ruleDurationObsName )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2151:1: ( (lv_id_1_0= ruleDurationObsName ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2152:1: (lv_id_1_0= ruleDurationObsName )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2602:1: (lv_id_1_0= ruleDurationObsName )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2603:3: lv_id_1_0= ruleDurationObsName
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2152:1: (lv_id_1_0= ruleDurationObsName )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2153:3: lv_id_1_0= ruleDurationObsName
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getDurationObsExpressionAccess().getIdDurationObsNameParserRuleCall_1_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getDurationObsExpressionAccess().getIdDurationObsNameParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleDurationObsName_in_ruleDurationObsExpression4729);
+            pushFollow(FOLLOW_ruleDurationObsName_in_ruleDurationObsExpression4809);
             lv_id_1_0=ruleDurationObsName();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getDurationObsExpressionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getDurationObsExpressionRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"id",
-            	        		lv_id_1_0, 
-            	        		"DurationObsName", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"id",
+                    		lv_id_1_0, 
+                    		"DurationObsName");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -5934,7 +5549,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2625:2: ( '(' ( (lv_index_3_0= ruleExpression ) ) ')' )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2169:2: (otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')' )?
             int alt36=2;
             int LA36_0 = input.LA(1);
 
@@ -5943,41 +5558,36 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             switch (alt36) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2625:4: '(' ( (lv_index_3_0= ruleExpression ) ) ')'
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2169:4: otherlv_2= '(' ( (lv_index_3_0= ruleExpression ) ) otherlv_4= ')'
                     {
-                    match(input,38,FOLLOW_38_in_ruleDurationObsExpression4740); 
+                    otherlv_2=(Token)match(input,38,FOLLOW_38_in_ruleDurationObsExpression4822); 
 
-                            createLeafNode(grammarAccess.getDurationObsExpressionAccess().getLeftParenthesisKeyword_2_0(), null); 
+                        	newLeafNode(otherlv_2, grammarAccess.getDurationObsExpressionAccess().getLeftParenthesisKeyword_2_0());
                         
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2629:1: ( (lv_index_3_0= ruleExpression ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2630:1: (lv_index_3_0= ruleExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2173:1: ( (lv_index_3_0= ruleExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2174:1: (lv_index_3_0= ruleExpression )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2630:1: (lv_index_3_0= ruleExpression )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2631:3: lv_index_3_0= ruleExpression
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2174:1: (lv_index_3_0= ruleExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2175:3: lv_index_3_0= ruleExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getDurationObsExpressionAccess().getIndexExpressionParserRuleCall_2_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getDurationObsExpressionAccess().getIndexExpressionParserRuleCall_2_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleExpression_in_ruleDurationObsExpression4761);
+                    pushFollow(FOLLOW_ruleExpression_in_ruleDurationObsExpression4843);
                     lv_index_3_0=ruleExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getDurationObsExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getDurationObsExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"index",
-                    	        		lv_index_3_0, 
-                    	        		"Expression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"index",
+                            		lv_index_3_0, 
+                            		"Expression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -5985,9 +5595,9 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                     }
 
-                    match(input,39,FOLLOW_39_in_ruleDurationObsExpression4771); 
+                    otherlv_4=(Token)match(input,39,FOLLOW_39_in_ruleDurationObsExpression4855); 
 
-                            createLeafNode(grammarAccess.getDurationObsExpressionAccess().getRightParenthesisKeyword_2_2(), null); 
+                        	newLeafNode(otherlv_4, grammarAccess.getDurationObsExpressionAccess().getRightParenthesisKeyword_2_2());
                         
 
                     }
@@ -5995,7 +5605,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2657:3: ( 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')' )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2195:3: (otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')' )?
             int alt37=2;
             int LA37_0 = input.LA(1);
 
@@ -6004,45 +5614,40 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             switch (alt37) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2657:5: 'when' '(' ( (lv_condition_7_0= ruleExpression ) ) ')'
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2195:5: otherlv_5= 'when' otherlv_6= '(' ( (lv_condition_7_0= ruleExpression ) ) otherlv_8= ')'
                     {
-                    match(input,47,FOLLOW_47_in_ruleDurationObsExpression4784); 
+                    otherlv_5=(Token)match(input,47,FOLLOW_47_in_ruleDurationObsExpression4870); 
 
-                            createLeafNode(grammarAccess.getDurationObsExpressionAccess().getWhenKeyword_3_0(), null); 
+                        	newLeafNode(otherlv_5, grammarAccess.getDurationObsExpressionAccess().getWhenKeyword_3_0());
                         
-                    match(input,38,FOLLOW_38_in_ruleDurationObsExpression4794); 
+                    otherlv_6=(Token)match(input,38,FOLLOW_38_in_ruleDurationObsExpression4882); 
 
-                            createLeafNode(grammarAccess.getDurationObsExpressionAccess().getLeftParenthesisKeyword_3_1(), null); 
+                        	newLeafNode(otherlv_6, grammarAccess.getDurationObsExpressionAccess().getLeftParenthesisKeyword_3_1());
                         
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2665:1: ( (lv_condition_7_0= ruleExpression ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2666:1: (lv_condition_7_0= ruleExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2203:1: ( (lv_condition_7_0= ruleExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2204:1: (lv_condition_7_0= ruleExpression )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2666:1: (lv_condition_7_0= ruleExpression )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2667:3: lv_condition_7_0= ruleExpression
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2204:1: (lv_condition_7_0= ruleExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2205:3: lv_condition_7_0= ruleExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getDurationObsExpressionAccess().getConditionExpressionParserRuleCall_3_2_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getDurationObsExpressionAccess().getConditionExpressionParserRuleCall_3_2_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleExpression_in_ruleDurationObsExpression4815);
+                    pushFollow(FOLLOW_ruleExpression_in_ruleDurationObsExpression4903);
                     lv_condition_7_0=ruleExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getDurationObsExpressionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getDurationObsExpressionRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"condition",
-                    	        		lv_condition_7_0, 
-                    	        		"Expression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"condition",
+                            		lv_condition_7_0, 
+                            		"Expression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -6050,9 +5655,9 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                     }
 
-                    match(input,39,FOLLOW_39_in_ruleDurationObsExpression4825); 
+                    otherlv_8=(Token)match(input,39,FOLLOW_39_in_ruleDurationObsExpression4915); 
 
-                            createLeafNode(grammarAccess.getDurationObsExpressionAccess().getRightParenthesisKeyword_3_3(), null); 
+                        	newLeafNode(otherlv_8, grammarAccess.getDurationObsExpressionAccess().getRightParenthesisKeyword_3_3());
                         
 
                     }
@@ -6066,9 +5671,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -6079,11 +5682,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleDurationObsExpression
+    // $ANTLR end "ruleDurationObsExpression"
 
 
-    // $ANTLR start entryRuleDurationObsName
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2701:1: entryRuleDurationObsName returns [EObject current=null] : iv_ruleDurationObsName= ruleDurationObsName EOF ;
+    // $ANTLR start "entryRuleDurationObsName"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2233:1: entryRuleDurationObsName returns [EObject current=null] : iv_ruleDurationObsName= ruleDurationObsName EOF ;
     public final EObject entryRuleDurationObsName() throws RecognitionException {
         EObject current = null;
 
@@ -6091,16 +5694,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2702:2: (iv_ruleDurationObsName= ruleDurationObsName EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2703:2: iv_ruleDurationObsName= ruleDurationObsName EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2234:2: (iv_ruleDurationObsName= ruleDurationObsName EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2235:2: iv_ruleDurationObsName= ruleDurationObsName EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getDurationObsNameRule(), currentNode); 
-            pushFollow(FOLLOW_ruleDurationObsName_in_entryRuleDurationObsName4863);
+             newCompositeNode(grammarAccess.getDurationObsNameRule()); 
+            pushFollow(FOLLOW_ruleDurationObsName_in_entryRuleDurationObsName4953);
             iv_ruleDurationObsName=ruleDurationObsName();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleDurationObsName; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDurationObsName4873); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDurationObsName4963); 
 
             }
 
@@ -6114,27 +5718,28 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleDurationObsName
+    // $ANTLR end "entryRuleDurationObsName"
 
 
-    // $ANTLR start ruleDurationObsName
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2710:1: ruleDurationObsName returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ) ;
+    // $ANTLR start "ruleDurationObsName"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2242:1: ruleDurationObsName returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) ;
     public final EObject ruleDurationObsName() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
         EObject lv_path_0_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2715:6: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2716:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2245:28: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2246:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2716:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2716:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2246:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2246:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2716:2: ( (lv_path_0_0= ruleQualifiedName ) )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2246:2: ( (lv_path_0_0= ruleQualifiedName ) )?
             int alt38=2;
             int LA38_0 = input.LA(1);
 
@@ -6147,34 +5752,29 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             switch (alt38) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2717:1: (lv_path_0_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2247:1: (lv_path_0_0= ruleQualifiedName )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2717:1: (lv_path_0_0= ruleQualifiedName )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2718:3: lv_path_0_0= ruleQualifiedName
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2247:1: (lv_path_0_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2248:3: lv_path_0_0= ruleQualifiedName
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getDurationObsNameAccess().getPathQualifiedNameParserRuleCall_0_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getDurationObsNameAccess().getPathQualifiedNameParserRuleCall_0_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleDurationObsName4919);
+                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleDurationObsName5009);
                     lv_path_0_0=ruleQualifiedName();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getDurationObsNameRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getDurationObsNameRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"path",
-                    	        		lv_path_0_0, 
-                    	        		"QualifiedName", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"path",
+                            		lv_path_0_0, 
+                            		"QualifiedName");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -6185,21 +5785,20 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2740:3: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2741:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2264:3: ( (otherlv_1= RULE_ID ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2265:1: (otherlv_1= RULE_ID )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2741:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2742:3: RULE_ID
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2265:1: (otherlv_1= RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2266:3: otherlv_1= RULE_ID
             {
 
             			if (current==null) {
-            	            current = factory.create(grammarAccess.getDurationObsNameRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getDurationObsNameRule());
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleDurationObsName4938); 
+            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleDurationObsName5030); 
 
-            		createLeafNode(grammarAccess.getDurationObsNameAccess().getDurationIdDurationObservationCrossReference_1_0(), "durationId"); 
+            		newLeafNode(otherlv_1, grammarAccess.getDurationObsNameAccess().getDurationIdDurationObservationCrossReference_1_0()); 
             	
 
             }
@@ -6213,9 +5812,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -6226,11 +5823,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleDurationObsName
+    // $ANTLR end "ruleDurationObsName"
 
 
-    // $ANTLR start entryRuleJitterExp
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2762:1: entryRuleJitterExp returns [EObject current=null] : iv_ruleJitterExp= ruleJitterExp EOF ;
+    // $ANTLR start "entryRuleJitterExp"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2285:1: entryRuleJitterExp returns [EObject current=null] : iv_ruleJitterExp= ruleJitterExp EOF ;
     public final EObject entryRuleJitterExp() throws RecognitionException {
         EObject current = null;
 
@@ -6238,16 +5835,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2763:2: (iv_ruleJitterExp= ruleJitterExp EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2764:2: iv_ruleJitterExp= ruleJitterExp EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2286:2: (iv_ruleJitterExp= ruleJitterExp EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2287:2: iv_ruleJitterExp= ruleJitterExp EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getJitterExpRule(), currentNode); 
-            pushFollow(FOLLOW_ruleJitterExp_in_entryRuleJitterExp4974);
+             newCompositeNode(grammarAccess.getJitterExpRule()); 
+            pushFollow(FOLLOW_ruleJitterExp_in_entryRuleJitterExp5066);
             iv_ruleJitterExp=ruleJitterExp();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleJitterExp; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleJitterExp4984); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleJitterExp5076); 
 
             }
 
@@ -6261,61 +5859,59 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleJitterExp
+    // $ANTLR end "entryRuleJitterExp"
 
 
-    // $ANTLR start ruleJitterExp
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2771:1: ruleJitterExp returns [EObject current=null] : ( 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) ( '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? ')' ) ;
+    // $ANTLR start "ruleJitterExp"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2294:1: ruleJitterExp returns [EObject current=null] : (otherlv_0= 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) (otherlv_2= '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? otherlv_4= ')' ) ;
     public final EObject ruleJitterExp() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_2=null;
+        Token otherlv_4=null;
         EObject lv_firstInstant_1_0 = null;
 
         EObject lv_secondInstant_3_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2776:6: ( ( 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) ( '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? ')' ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2777:1: ( 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) ( '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? ')' )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2297:28: ( (otherlv_0= 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) (otherlv_2= '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? otherlv_4= ')' ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2298:1: (otherlv_0= 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) (otherlv_2= '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? otherlv_4= ')' )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2777:1: ( 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) ( '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? ')' )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2777:3: 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) ( '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? ')'
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2298:1: (otherlv_0= 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) (otherlv_2= '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? otherlv_4= ')' )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2298:3: otherlv_0= 'jitter(' ( (lv_firstInstant_1_0= ruleInstantObsExpression ) ) (otherlv_2= '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )? otherlv_4= ')'
             {
-            match(input,49,FOLLOW_49_in_ruleJitterExp5019); 
+            otherlv_0=(Token)match(input,49,FOLLOW_49_in_ruleJitterExp5113); 
 
-                    createLeafNode(grammarAccess.getJitterExpAccess().getJitterKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getJitterExpAccess().getJitterKeyword_0());
                 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2781:1: ( (lv_firstInstant_1_0= ruleInstantObsExpression ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2782:1: (lv_firstInstant_1_0= ruleInstantObsExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2302:1: ( (lv_firstInstant_1_0= ruleInstantObsExpression ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2303:1: (lv_firstInstant_1_0= ruleInstantObsExpression )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2782:1: (lv_firstInstant_1_0= ruleInstantObsExpression )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2783:3: lv_firstInstant_1_0= ruleInstantObsExpression
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2303:1: (lv_firstInstant_1_0= ruleInstantObsExpression )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2304:3: lv_firstInstant_1_0= ruleInstantObsExpression
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getJitterExpAccess().getFirstInstantInstantObsExpressionParserRuleCall_1_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getJitterExpAccess().getFirstInstantInstantObsExpressionParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleInstantObsExpression_in_ruleJitterExp5040);
+            pushFollow(FOLLOW_ruleInstantObsExpression_in_ruleJitterExp5134);
             lv_firstInstant_1_0=ruleInstantObsExpression();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getJitterExpRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getJitterExpRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"firstInstant",
-            	        		lv_firstInstant_1_0, 
-            	        		"InstantObsExpression", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"firstInstant",
+                    		lv_firstInstant_1_0, 
+                    		"InstantObsExpression");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -6323,7 +5919,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2805:2: ( '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2320:2: (otherlv_2= '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) ) )?
             int alt39=2;
             int LA39_0 = input.LA(1);
 
@@ -6332,41 +5928,36 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             switch (alt39) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2805:4: '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2320:4: otherlv_2= '-' ( (lv_secondInstant_3_0= ruleInstantObsExpression ) )
                     {
-                    match(input,32,FOLLOW_32_in_ruleJitterExp5051); 
+                    otherlv_2=(Token)match(input,32,FOLLOW_32_in_ruleJitterExp5147); 
 
-                            createLeafNode(grammarAccess.getJitterExpAccess().getHyphenMinusKeyword_2_0(), null); 
+                        	newLeafNode(otherlv_2, grammarAccess.getJitterExpAccess().getHyphenMinusKeyword_2_0());
                         
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2809:1: ( (lv_secondInstant_3_0= ruleInstantObsExpression ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2810:1: (lv_secondInstant_3_0= ruleInstantObsExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2324:1: ( (lv_secondInstant_3_0= ruleInstantObsExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2325:1: (lv_secondInstant_3_0= ruleInstantObsExpression )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2810:1: (lv_secondInstant_3_0= ruleInstantObsExpression )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2811:3: lv_secondInstant_3_0= ruleInstantObsExpression
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2325:1: (lv_secondInstant_3_0= ruleInstantObsExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2326:3: lv_secondInstant_3_0= ruleInstantObsExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getJitterExpAccess().getSecondInstantInstantObsExpressionParserRuleCall_2_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getJitterExpAccess().getSecondInstantInstantObsExpressionParserRuleCall_2_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleInstantObsExpression_in_ruleJitterExp5072);
+                    pushFollow(FOLLOW_ruleInstantObsExpression_in_ruleJitterExp5168);
                     lv_secondInstant_3_0=ruleInstantObsExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getJitterExpRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getJitterExpRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"secondInstant",
-                    	        		lv_secondInstant_3_0, 
-                    	        		"InstantObsExpression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"secondInstant",
+                            		lv_secondInstant_3_0, 
+                            		"InstantObsExpression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -6380,9 +5971,9 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            match(input,39,FOLLOW_39_in_ruleJitterExp5084); 
+            otherlv_4=(Token)match(input,39,FOLLOW_39_in_ruleJitterExp5182); 
 
-                    createLeafNode(grammarAccess.getJitterExpAccess().getRightParenthesisKeyword_3(), null); 
+                	newLeafNode(otherlv_4, grammarAccess.getJitterExpAccess().getRightParenthesisKeyword_3());
                 
 
             }
@@ -6390,9 +5981,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -6403,11 +5992,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleJitterExp
+    // $ANTLR end "ruleJitterExp"
 
 
-    // $ANTLR start entryRuleVariableDeclaration
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2845:1: entryRuleVariableDeclaration returns [EObject current=null] : iv_ruleVariableDeclaration= ruleVariableDeclaration EOF ;
+    // $ANTLR start "entryRuleVariableDeclaration"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2354:1: entryRuleVariableDeclaration returns [EObject current=null] : iv_ruleVariableDeclaration= ruleVariableDeclaration EOF ;
     public final EObject entryRuleVariableDeclaration() throws RecognitionException {
         EObject current = null;
 
@@ -6415,16 +6004,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2846:2: (iv_ruleVariableDeclaration= ruleVariableDeclaration EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2847:2: iv_ruleVariableDeclaration= ruleVariableDeclaration EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2355:2: (iv_ruleVariableDeclaration= ruleVariableDeclaration EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2356:2: iv_ruleVariableDeclaration= ruleVariableDeclaration EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getVariableDeclarationRule(), currentNode); 
-            pushFollow(FOLLOW_ruleVariableDeclaration_in_entryRuleVariableDeclaration5120);
+             newCompositeNode(grammarAccess.getVariableDeclarationRule()); 
+            pushFollow(FOLLOW_ruleVariableDeclaration_in_entryRuleVariableDeclaration5218);
             iv_ruleVariableDeclaration=ruleVariableDeclaration();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleVariableDeclaration; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleVariableDeclaration5130); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleVariableDeclaration5228); 
 
             }
 
@@ -6438,15 +6028,23 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleVariableDeclaration
+    // $ANTLR end "entryRuleVariableDeclaration"
 
 
-    // $ANTLR start ruleVariableDeclaration
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2854:1: ruleVariableDeclaration returns [EObject current=null] : ( ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? '$' ( (lv_name_2_0= RULE_ID ) ) ( ( ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )? ) | ( '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')' ) ) ) ;
+    // $ANTLR start "ruleVariableDeclaration"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2363:1: ruleVariableDeclaration returns [EObject current=null] : ( ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? otherlv_1= '$' ( (lv_name_2_0= RULE_ID ) ) ( (otherlv_3= ':' ( (lv_type_4_0= ruleDataTypeName ) ) (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )? ) | (otherlv_9= '=' otherlv_10= '(' ( (lv_initValue_11_0= ruleExpression ) ) otherlv_12= ')' ) ) ) ;
     public final EObject ruleVariableDeclaration() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
         Token lv_name_2_0=null;
+        Token otherlv_3=null;
+        Token otherlv_5=null;
+        Token otherlv_6=null;
+        Token otherlv_8=null;
+        Token otherlv_9=null;
+        Token otherlv_10=null;
+        Token otherlv_12=null;
         AntlrDatatypeRuleToken lv_variableDeclaration_0_0 = null;
 
         EObject lv_type_4_0 = null;
@@ -6456,16 +6054,16 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         EObject lv_initValue_11_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2859:6: ( ( ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? '$' ( (lv_name_2_0= RULE_ID ) ) ( ( ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )? ) | ( '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')' ) ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2860:1: ( ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? '$' ( (lv_name_2_0= RULE_ID ) ) ( ( ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )? ) | ( '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')' ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2366:28: ( ( ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? otherlv_1= '$' ( (lv_name_2_0= RULE_ID ) ) ( (otherlv_3= ':' ( (lv_type_4_0= ruleDataTypeName ) ) (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )? ) | (otherlv_9= '=' otherlv_10= '(' ( (lv_initValue_11_0= ruleExpression ) ) otherlv_12= ')' ) ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2367:1: ( ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? otherlv_1= '$' ( (lv_name_2_0= RULE_ID ) ) ( (otherlv_3= ':' ( (lv_type_4_0= ruleDataTypeName ) ) (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )? ) | (otherlv_9= '=' otherlv_10= '(' ( (lv_initValue_11_0= ruleExpression ) ) otherlv_12= ')' ) ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2860:1: ( ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? '$' ( (lv_name_2_0= RULE_ID ) ) ( ( ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )? ) | ( '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')' ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2860:2: ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? '$' ( (lv_name_2_0= RULE_ID ) ) ( ( ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )? ) | ( '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')' ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2367:1: ( ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? otherlv_1= '$' ( (lv_name_2_0= RULE_ID ) ) ( (otherlv_3= ':' ( (lv_type_4_0= ruleDataTypeName ) ) (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )? ) | (otherlv_9= '=' otherlv_10= '(' ( (lv_initValue_11_0= ruleExpression ) ) otherlv_12= ')' ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2367:2: ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )? otherlv_1= '$' ( (lv_name_2_0= RULE_ID ) ) ( (otherlv_3= ':' ( (lv_type_4_0= ruleDataTypeName ) ) (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )? ) | (otherlv_9= '=' otherlv_10= '(' ( (lv_initValue_11_0= ruleExpression ) ) otherlv_12= ')' ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2860:2: ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2367:2: ( (lv_variableDeclaration_0_0= ruleVariableDirectionKind ) )?
             int alt40=2;
             int LA40_0 = input.LA(1);
 
@@ -6474,34 +6072,29 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             switch (alt40) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2861:1: (lv_variableDeclaration_0_0= ruleVariableDirectionKind )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2368:1: (lv_variableDeclaration_0_0= ruleVariableDirectionKind )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2861:1: (lv_variableDeclaration_0_0= ruleVariableDirectionKind )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2862:3: lv_variableDeclaration_0_0= ruleVariableDirectionKind
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2368:1: (lv_variableDeclaration_0_0= ruleVariableDirectionKind )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2369:3: lv_variableDeclaration_0_0= ruleVariableDirectionKind
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getVariableDeclarationAccess().getVariableDeclarationVariableDirectionKindParserRuleCall_0_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getVariableDeclarationAccess().getVariableDeclarationVariableDirectionKindParserRuleCall_0_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleVariableDirectionKind_in_ruleVariableDeclaration5176);
+                    pushFollow(FOLLOW_ruleVariableDirectionKind_in_ruleVariableDeclaration5274);
                     lv_variableDeclaration_0_0=ruleVariableDirectionKind();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getVariableDeclarationRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getVariableDeclarationRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"variableDeclaration",
-                    	        		lv_variableDeclaration_0_0, 
-                    	        		"VariableDirectionKind", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"variableDeclaration",
+                            		lv_variableDeclaration_0_0, 
+                            		"VariableDirectionKind");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -6512,36 +6105,29 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            match(input,50,FOLLOW_50_in_ruleVariableDeclaration5187); 
+            otherlv_1=(Token)match(input,50,FOLLOW_50_in_ruleVariableDeclaration5287); 
 
-                    createLeafNode(grammarAccess.getVariableDeclarationAccess().getDollarSignKeyword_1(), null); 
+                	newLeafNode(otherlv_1, grammarAccess.getVariableDeclarationAccess().getDollarSignKeyword_1());
                 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2888:1: ( (lv_name_2_0= RULE_ID ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2889:1: (lv_name_2_0= RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2389:1: ( (lv_name_2_0= RULE_ID ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2390:1: (lv_name_2_0= RULE_ID )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2889:1: (lv_name_2_0= RULE_ID )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2890:3: lv_name_2_0= RULE_ID
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2390:1: (lv_name_2_0= RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2391:3: lv_name_2_0= RULE_ID
             {
-            lv_name_2_0=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleVariableDeclaration5204); 
+            lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleVariableDeclaration5304); 
 
-            			createLeafNode(grammarAccess.getVariableDeclarationAccess().getNameIDTerminalRuleCall_2_0(), "name"); 
+            			newLeafNode(lv_name_2_0, grammarAccess.getVariableDeclarationAccess().getNameIDTerminalRuleCall_2_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getVariableDeclarationRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getVariableDeclarationRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"name",
-            	        		lv_name_2_0, 
-            	        		"ID", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"name",
+                    		lv_name_2_0, 
+                    		"ID");
             	    
 
             }
@@ -6549,7 +6135,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2912:2: ( ( ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )? ) | ( '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')' ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2407:2: ( (otherlv_3= ':' ( (lv_type_4_0= ruleDataTypeName ) ) (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )? ) | (otherlv_9= '=' otherlv_10= '(' ( (lv_initValue_11_0= ruleExpression ) ) otherlv_12= ')' ) )
             int alt42=2;
             int LA42_0 = input.LA(1);
 
@@ -6561,50 +6147,45 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("2912:2: ( ( ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )? ) | ( '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')' ) )", 42, 0, input);
+                    new NoViableAltException("", 42, 0, input);
 
                 throw nvae;
             }
             switch (alt42) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2912:3: ( ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )? )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2407:3: (otherlv_3= ':' ( (lv_type_4_0= ruleDataTypeName ) ) (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )? )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2912:3: ( ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )? )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2912:5: ':' ( (lv_type_4_0= ruleDataTypeName ) ) ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )?
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2407:3: (otherlv_3= ':' ( (lv_type_4_0= ruleDataTypeName ) ) (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )? )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2407:5: otherlv_3= ':' ( (lv_type_4_0= ruleDataTypeName ) ) (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )?
                     {
-                    match(input,30,FOLLOW_30_in_ruleVariableDeclaration5221); 
+                    otherlv_3=(Token)match(input,30,FOLLOW_30_in_ruleVariableDeclaration5323); 
 
-                            createLeafNode(grammarAccess.getVariableDeclarationAccess().getColonKeyword_3_0_0(), null); 
+                        	newLeafNode(otherlv_3, grammarAccess.getVariableDeclarationAccess().getColonKeyword_3_0_0());
                         
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2916:1: ( (lv_type_4_0= ruleDataTypeName ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2917:1: (lv_type_4_0= ruleDataTypeName )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2411:1: ( (lv_type_4_0= ruleDataTypeName ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2412:1: (lv_type_4_0= ruleDataTypeName )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2917:1: (lv_type_4_0= ruleDataTypeName )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2918:3: lv_type_4_0= ruleDataTypeName
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2412:1: (lv_type_4_0= ruleDataTypeName )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2413:3: lv_type_4_0= ruleDataTypeName
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getVariableDeclarationAccess().getTypeDataTypeNameParserRuleCall_3_0_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getVariableDeclarationAccess().getTypeDataTypeNameParserRuleCall_3_0_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleDataTypeName_in_ruleVariableDeclaration5242);
+                    pushFollow(FOLLOW_ruleDataTypeName_in_ruleVariableDeclaration5344);
                     lv_type_4_0=ruleDataTypeName();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getVariableDeclarationRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getVariableDeclarationRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"type",
-                    	        		lv_type_4_0, 
-                    	        		"DataTypeName", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"type",
+                            		lv_type_4_0, 
+                            		"DataTypeName");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -6612,7 +6193,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                     }
 
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2940:2: ( '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')' )?
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2429:2: (otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')' )?
                     int alt41=2;
                     int LA41_0 = input.LA(1);
 
@@ -6621,45 +6202,40 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
                     }
                     switch (alt41) {
                         case 1 :
-                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2940:4: '=' '(' ( (lv_initValue_7_0= ruleExpression ) ) ')'
+                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2429:4: otherlv_5= '=' otherlv_6= '(' ( (lv_initValue_7_0= ruleExpression ) ) otherlv_8= ')'
                             {
-                            match(input,19,FOLLOW_19_in_ruleVariableDeclaration5253); 
+                            otherlv_5=(Token)match(input,19,FOLLOW_19_in_ruleVariableDeclaration5357); 
 
-                                    createLeafNode(grammarAccess.getVariableDeclarationAccess().getEqualsSignKeyword_3_0_2_0(), null); 
+                                	newLeafNode(otherlv_5, grammarAccess.getVariableDeclarationAccess().getEqualsSignKeyword_3_0_2_0());
                                 
-                            match(input,38,FOLLOW_38_in_ruleVariableDeclaration5263); 
+                            otherlv_6=(Token)match(input,38,FOLLOW_38_in_ruleVariableDeclaration5369); 
 
-                                    createLeafNode(grammarAccess.getVariableDeclarationAccess().getLeftParenthesisKeyword_3_0_2_1(), null); 
+                                	newLeafNode(otherlv_6, grammarAccess.getVariableDeclarationAccess().getLeftParenthesisKeyword_3_0_2_1());
                                 
-                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2948:1: ( (lv_initValue_7_0= ruleExpression ) )
-                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2949:1: (lv_initValue_7_0= ruleExpression )
+                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2437:1: ( (lv_initValue_7_0= ruleExpression ) )
+                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2438:1: (lv_initValue_7_0= ruleExpression )
                             {
-                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2949:1: (lv_initValue_7_0= ruleExpression )
-                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2950:3: lv_initValue_7_0= ruleExpression
+                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2438:1: (lv_initValue_7_0= ruleExpression )
+                            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2439:3: lv_initValue_7_0= ruleExpression
                             {
                              
-                            	        currentNode=createCompositeNode(grammarAccess.getVariableDeclarationAccess().getInitValueExpressionParserRuleCall_3_0_2_2_0(), currentNode); 
+                            	        newCompositeNode(grammarAccess.getVariableDeclarationAccess().getInitValueExpressionParserRuleCall_3_0_2_2_0()); 
                             	    
-                            pushFollow(FOLLOW_ruleExpression_in_ruleVariableDeclaration5284);
+                            pushFollow(FOLLOW_ruleExpression_in_ruleVariableDeclaration5390);
                             lv_initValue_7_0=ruleExpression();
-                            _fsp--;
+
+                            state._fsp--;
 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getVariableDeclarationRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode.getParent(), current);
+                            	            current = createModelElementForParent(grammarAccess.getVariableDeclarationRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"initValue",
-                            	        		lv_initValue_7_0, 
-                            	        		"Expression", 
-                            	        		currentNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
-                            	        currentNode = currentNode.getParent();
+                                   		set(
+                                   			current, 
+                                   			"initValue",
+                                    		lv_initValue_7_0, 
+                                    		"Expression");
+                            	        afterParserOrEnumRuleCall();
                             	    
 
                             }
@@ -6667,9 +6243,9 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                             }
 
-                            match(input,39,FOLLOW_39_in_ruleVariableDeclaration5294); 
+                            otherlv_8=(Token)match(input,39,FOLLOW_39_in_ruleVariableDeclaration5402); 
 
-                                    createLeafNode(grammarAccess.getVariableDeclarationAccess().getRightParenthesisKeyword_3_0_2_3(), null); 
+                                	newLeafNode(otherlv_8, grammarAccess.getVariableDeclarationAccess().getRightParenthesisKeyword_3_0_2_3());
                                 
 
                             }
@@ -6684,48 +6260,43 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2977:6: ( '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')' )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2460:6: (otherlv_9= '=' otherlv_10= '(' ( (lv_initValue_11_0= ruleExpression ) ) otherlv_12= ')' )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2977:6: ( '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')' )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2977:8: '=' '(' ( (lv_initValue_11_0= ruleExpression ) ) ')'
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2460:6: (otherlv_9= '=' otherlv_10= '(' ( (lv_initValue_11_0= ruleExpression ) ) otherlv_12= ')' )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2460:8: otherlv_9= '=' otherlv_10= '(' ( (lv_initValue_11_0= ruleExpression ) ) otherlv_12= ')'
                     {
-                    match(input,19,FOLLOW_19_in_ruleVariableDeclaration5314); 
+                    otherlv_9=(Token)match(input,19,FOLLOW_19_in_ruleVariableDeclaration5424); 
 
-                            createLeafNode(grammarAccess.getVariableDeclarationAccess().getEqualsSignKeyword_3_1_0(), null); 
+                        	newLeafNode(otherlv_9, grammarAccess.getVariableDeclarationAccess().getEqualsSignKeyword_3_1_0());
                         
-                    match(input,38,FOLLOW_38_in_ruleVariableDeclaration5324); 
+                    otherlv_10=(Token)match(input,38,FOLLOW_38_in_ruleVariableDeclaration5436); 
 
-                            createLeafNode(grammarAccess.getVariableDeclarationAccess().getLeftParenthesisKeyword_3_1_1(), null); 
+                        	newLeafNode(otherlv_10, grammarAccess.getVariableDeclarationAccess().getLeftParenthesisKeyword_3_1_1());
                         
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2985:1: ( (lv_initValue_11_0= ruleExpression ) )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2986:1: (lv_initValue_11_0= ruleExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2468:1: ( (lv_initValue_11_0= ruleExpression ) )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2469:1: (lv_initValue_11_0= ruleExpression )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2986:1: (lv_initValue_11_0= ruleExpression )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2987:3: lv_initValue_11_0= ruleExpression
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2469:1: (lv_initValue_11_0= ruleExpression )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2470:3: lv_initValue_11_0= ruleExpression
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getVariableDeclarationAccess().getInitValueExpressionParserRuleCall_3_1_2_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getVariableDeclarationAccess().getInitValueExpressionParserRuleCall_3_1_2_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleExpression_in_ruleVariableDeclaration5345);
+                    pushFollow(FOLLOW_ruleExpression_in_ruleVariableDeclaration5457);
                     lv_initValue_11_0=ruleExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getVariableDeclarationRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getVariableDeclarationRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"initValue",
-                    	        		lv_initValue_11_0, 
-                    	        		"Expression", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"initValue",
+                            		lv_initValue_11_0, 
+                            		"Expression");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -6733,9 +6304,9 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
                     }
 
-                    match(input,39,FOLLOW_39_in_ruleVariableDeclaration5355); 
+                    otherlv_12=(Token)match(input,39,FOLLOW_39_in_ruleVariableDeclaration5469); 
 
-                            createLeafNode(grammarAccess.getVariableDeclarationAccess().getRightParenthesisKeyword_3_1_3(), null); 
+                        	newLeafNode(otherlv_12, grammarAccess.getVariableDeclarationAccess().getRightParenthesisKeyword_3_1_3());
                         
 
                     }
@@ -6752,9 +6323,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -6765,11 +6334,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleVariableDeclaration
+    // $ANTLR end "ruleVariableDeclaration"
 
 
-    // $ANTLR start entryRuleVariableDirectionKind
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3021:1: entryRuleVariableDirectionKind returns [String current=null] : iv_ruleVariableDirectionKind= ruleVariableDirectionKind EOF ;
+    // $ANTLR start "entryRuleVariableDirectionKind"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2498:1: entryRuleVariableDirectionKind returns [String current=null] : iv_ruleVariableDirectionKind= ruleVariableDirectionKind EOF ;
     public final String entryRuleVariableDirectionKind() throws RecognitionException {
         String current = null;
 
@@ -6777,16 +6346,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3022:2: (iv_ruleVariableDirectionKind= ruleVariableDirectionKind EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3023:2: iv_ruleVariableDirectionKind= ruleVariableDirectionKind EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2499:2: (iv_ruleVariableDirectionKind= ruleVariableDirectionKind EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2500:2: iv_ruleVariableDirectionKind= ruleVariableDirectionKind EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getVariableDirectionKindRule(), currentNode); 
-            pushFollow(FOLLOW_ruleVariableDirectionKind_in_entryRuleVariableDirectionKind5394);
+             newCompositeNode(grammarAccess.getVariableDirectionKindRule()); 
+            pushFollow(FOLLOW_ruleVariableDirectionKind_in_entryRuleVariableDirectionKind5508);
             iv_ruleVariableDirectionKind=ruleVariableDirectionKind();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleVariableDirectionKind.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleVariableDirectionKind5405); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleVariableDirectionKind5519); 
 
             }
 
@@ -6800,23 +6370,23 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleVariableDirectionKind
+    // $ANTLR end "entryRuleVariableDirectionKind"
 
 
-    // $ANTLR start ruleVariableDirectionKind
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3030:1: ruleVariableDirectionKind returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'in' | kw= 'out' | kw= 'inout' ) ;
+    // $ANTLR start "ruleVariableDirectionKind"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2507:1: ruleVariableDirectionKind returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'in' | kw= 'out' | kw= 'inout' ) ;
     public final AntlrDatatypeRuleToken ruleVariableDirectionKind() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
         Token kw=null;
 
-         setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3035:6: ( (kw= 'in' | kw= 'out' | kw= 'inout' ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3036:1: (kw= 'in' | kw= 'out' | kw= 'inout' )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2510:28: ( (kw= 'in' | kw= 'out' | kw= 'inout' ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2511:1: (kw= 'in' | kw= 'out' | kw= 'inout' )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3036:1: (kw= 'in' | kw= 'out' | kw= 'inout' )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2511:1: (kw= 'in' | kw= 'out' | kw= 'inout' )
             int alt43=3;
             switch ( input.LA(1) ) {
             case 51:
@@ -6836,44 +6406,41 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("3036:1: (kw= 'in' | kw= 'out' | kw= 'inout' )", 43, 0, input);
+                    new NoViableAltException("", 43, 0, input);
 
                 throw nvae;
             }
 
             switch (alt43) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3037:2: kw= 'in'
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2512:2: kw= 'in'
                     {
-                    kw=(Token)input.LT(1);
-                    match(input,51,FOLLOW_51_in_ruleVariableDirectionKind5443); 
+                    kw=(Token)match(input,51,FOLLOW_51_in_ruleVariableDirectionKind5557); 
 
                             current.merge(kw);
-                            createLeafNode(grammarAccess.getVariableDirectionKindAccess().getInKeyword_0(), null); 
+                            newLeafNode(kw, grammarAccess.getVariableDirectionKindAccess().getInKeyword_0()); 
                         
 
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3044:2: kw= 'out'
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2519:2: kw= 'out'
                     {
-                    kw=(Token)input.LT(1);
-                    match(input,52,FOLLOW_52_in_ruleVariableDirectionKind5462); 
+                    kw=(Token)match(input,52,FOLLOW_52_in_ruleVariableDirectionKind5576); 
 
                             current.merge(kw);
-                            createLeafNode(grammarAccess.getVariableDirectionKindAccess().getOutKeyword_1(), null); 
+                            newLeafNode(kw, grammarAccess.getVariableDirectionKindAccess().getOutKeyword_1()); 
                         
 
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3051:2: kw= 'inout'
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2526:2: kw= 'inout'
                     {
-                    kw=(Token)input.LT(1);
-                    match(input,53,FOLLOW_53_in_ruleVariableDirectionKind5481); 
+                    kw=(Token)match(input,53,FOLLOW_53_in_ruleVariableDirectionKind5595); 
 
                             current.merge(kw);
-                            createLeafNode(grammarAccess.getVariableDirectionKindAccess().getInoutKeyword_2(), null); 
+                            newLeafNode(kw, grammarAccess.getVariableDirectionKindAccess().getInoutKeyword_2()); 
                         
 
                     }
@@ -6884,9 +6451,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-            	    lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -6897,11 +6462,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleVariableDirectionKind
+    // $ANTLR end "ruleVariableDirectionKind"
 
 
-    // $ANTLR start entryRuleDataTypeName
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3064:1: entryRuleDataTypeName returns [EObject current=null] : iv_ruleDataTypeName= ruleDataTypeName EOF ;
+    // $ANTLR start "entryRuleDataTypeName"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2539:1: entryRuleDataTypeName returns [EObject current=null] : iv_ruleDataTypeName= ruleDataTypeName EOF ;
     public final EObject entryRuleDataTypeName() throws RecognitionException {
         EObject current = null;
 
@@ -6909,16 +6474,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3065:2: (iv_ruleDataTypeName= ruleDataTypeName EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3066:2: iv_ruleDataTypeName= ruleDataTypeName EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2540:2: (iv_ruleDataTypeName= ruleDataTypeName EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2541:2: iv_ruleDataTypeName= ruleDataTypeName EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getDataTypeNameRule(), currentNode); 
-            pushFollow(FOLLOW_ruleDataTypeName_in_entryRuleDataTypeName5521);
+             newCompositeNode(grammarAccess.getDataTypeNameRule()); 
+            pushFollow(FOLLOW_ruleDataTypeName_in_entryRuleDataTypeName5635);
             iv_ruleDataTypeName=ruleDataTypeName();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleDataTypeName; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDataTypeName5531); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDataTypeName5645); 
 
             }
 
@@ -6932,27 +6498,28 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleDataTypeName
+    // $ANTLR end "entryRuleDataTypeName"
 
 
-    // $ANTLR start ruleDataTypeName
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3073:1: ruleDataTypeName returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ) ;
+    // $ANTLR start "ruleDataTypeName"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2548:1: ruleDataTypeName returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) ;
     public final EObject ruleDataTypeName() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
         EObject lv_path_0_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3078:6: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3079:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2551:28: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2552:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3079:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3079:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( ( RULE_ID ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2552:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2552:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3079:2: ( (lv_path_0_0= ruleQualifiedName ) )?
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2552:2: ( (lv_path_0_0= ruleQualifiedName ) )?
             int alt44=2;
             int LA44_0 = input.LA(1);
 
@@ -6965,34 +6532,29 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
             }
             switch (alt44) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3080:1: (lv_path_0_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2553:1: (lv_path_0_0= ruleQualifiedName )
                     {
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3080:1: (lv_path_0_0= ruleQualifiedName )
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3081:3: lv_path_0_0= ruleQualifiedName
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2553:1: (lv_path_0_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2554:3: lv_path_0_0= ruleQualifiedName
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getDataTypeNameAccess().getPathQualifiedNameParserRuleCall_0_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getDataTypeNameAccess().getPathQualifiedNameParserRuleCall_0_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleDataTypeName5577);
+                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleDataTypeName5691);
                     lv_path_0_0=ruleQualifiedName();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getDataTypeNameRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getDataTypeNameRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"path",
-                    	        		lv_path_0_0, 
-                    	        		"QualifiedName", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"path",
+                            		lv_path_0_0, 
+                            		"QualifiedName");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -7003,21 +6565,20 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3103:3: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3104:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2570:3: ( (otherlv_1= RULE_ID ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2571:1: (otherlv_1= RULE_ID )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3104:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3105:3: RULE_ID
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2571:1: (otherlv_1= RULE_ID )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2572:3: otherlv_1= RULE_ID
             {
 
             			if (current==null) {
-            	            current = factory.create(grammarAccess.getDataTypeNameRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getDataTypeNameRule());
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleDataTypeName5596); 
+            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleDataTypeName5712); 
 
-            		createLeafNode(grammarAccess.getDataTypeNameAccess().getTypeDataTypeCrossReference_1_0(), "type"); 
+            		newLeafNode(otherlv_1, grammarAccess.getDataTypeNameAccess().getTypeDataTypeCrossReference_1_0()); 
             	
 
             }
@@ -7031,9 +6592,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -7044,11 +6603,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleDataTypeName
+    // $ANTLR end "ruleDataTypeName"
 
 
-    // $ANTLR start entryRuleNumberLiteralRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3125:1: entryRuleNumberLiteralRule returns [EObject current=null] : iv_ruleNumberLiteralRule= ruleNumberLiteralRule EOF ;
+    // $ANTLR start "entryRuleNumberLiteralRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2591:1: entryRuleNumberLiteralRule returns [EObject current=null] : iv_ruleNumberLiteralRule= ruleNumberLiteralRule EOF ;
     public final EObject entryRuleNumberLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -7056,16 +6615,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3126:2: (iv_ruleNumberLiteralRule= ruleNumberLiteralRule EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3127:2: iv_ruleNumberLiteralRule= ruleNumberLiteralRule EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2592:2: (iv_ruleNumberLiteralRule= ruleNumberLiteralRule EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2593:2: iv_ruleNumberLiteralRule= ruleNumberLiteralRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getNumberLiteralRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleNumberLiteralRule_in_entryRuleNumberLiteralRule5632);
+             newCompositeNode(grammarAccess.getNumberLiteralRuleRule()); 
+            pushFollow(FOLLOW_ruleNumberLiteralRule_in_entryRuleNumberLiteralRule5748);
             iv_ruleNumberLiteralRule=ruleNumberLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleNumberLiteralRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleNumberLiteralRule5642); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleNumberLiteralRule5758); 
 
             }
 
@@ -7079,11 +6639,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleNumberLiteralRule
+    // $ANTLR end "entryRuleNumberLiteralRule"
 
 
-    // $ANTLR start ruleNumberLiteralRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3134:1: ruleNumberLiteralRule returns [EObject current=null] : (this_IntegerLiteralRule_0= ruleIntegerLiteralRule | this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule | this_RealLiteralRule_2= ruleRealLiteralRule ) ;
+    // $ANTLR start "ruleNumberLiteralRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2600:1: ruleNumberLiteralRule returns [EObject current=null] : (this_IntegerLiteralRule_0= ruleIntegerLiteralRule | this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule | this_RealLiteralRule_2= ruleRealLiteralRule ) ;
     public final EObject ruleNumberLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -7094,13 +6654,13 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         EObject this_RealLiteralRule_2 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3139:6: ( (this_IntegerLiteralRule_0= ruleIntegerLiteralRule | this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule | this_RealLiteralRule_2= ruleRealLiteralRule ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3140:1: (this_IntegerLiteralRule_0= ruleIntegerLiteralRule | this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule | this_RealLiteralRule_2= ruleRealLiteralRule )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2603:28: ( (this_IntegerLiteralRule_0= ruleIntegerLiteralRule | this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule | this_RealLiteralRule_2= ruleRealLiteralRule ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2604:1: (this_IntegerLiteralRule_0= ruleIntegerLiteralRule | this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule | this_RealLiteralRule_2= ruleRealLiteralRule )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3140:1: (this_IntegerLiteralRule_0= ruleIntegerLiteralRule | this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule | this_RealLiteralRule_2= ruleRealLiteralRule )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2604:1: (this_IntegerLiteralRule_0= ruleIntegerLiteralRule | this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule | this_RealLiteralRule_2= ruleRealLiteralRule )
             int alt45=3;
             switch ( input.LA(1) ) {
             case RULE_INTEGERLITERAL:
@@ -7120,59 +6680,62 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("3140:1: (this_IntegerLiteralRule_0= ruleIntegerLiteralRule | this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule | this_RealLiteralRule_2= ruleRealLiteralRule )", 45, 0, input);
+                    new NoViableAltException("", 45, 0, input);
 
                 throw nvae;
             }
 
             switch (alt45) {
                 case 1 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3141:5: this_IntegerLiteralRule_0= ruleIntegerLiteralRule
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2605:5: this_IntegerLiteralRule_0= ruleIntegerLiteralRule
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getNumberLiteralRuleAccess().getIntegerLiteralRuleParserRuleCall_0(), currentNode); 
+                            newCompositeNode(grammarAccess.getNumberLiteralRuleAccess().getIntegerLiteralRuleParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleIntegerLiteralRule_in_ruleNumberLiteralRule5689);
+                    pushFollow(FOLLOW_ruleIntegerLiteralRule_in_ruleNumberLiteralRule5805);
                     this_IntegerLiteralRule_0=ruleIntegerLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_IntegerLiteralRule_0; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3151:5: this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2615:5: this_UnlimitedLiteralRule_1= ruleUnlimitedLiteralRule
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getNumberLiteralRuleAccess().getUnlimitedLiteralRuleParserRuleCall_1(), currentNode); 
+                            newCompositeNode(grammarAccess.getNumberLiteralRuleAccess().getUnlimitedLiteralRuleParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleUnlimitedLiteralRule_in_ruleNumberLiteralRule5716);
+                    pushFollow(FOLLOW_ruleUnlimitedLiteralRule_in_ruleNumberLiteralRule5832);
                     this_UnlimitedLiteralRule_1=ruleUnlimitedLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_UnlimitedLiteralRule_1; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3161:5: this_RealLiteralRule_2= ruleRealLiteralRule
+                    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2625:5: this_RealLiteralRule_2= ruleRealLiteralRule
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getNumberLiteralRuleAccess().getRealLiteralRuleParserRuleCall_2(), currentNode); 
+                            newCompositeNode(grammarAccess.getNumberLiteralRuleAccess().getRealLiteralRuleParserRuleCall_2()); 
                         
-                    pushFollow(FOLLOW_ruleRealLiteralRule_in_ruleNumberLiteralRule5743);
+                    pushFollow(FOLLOW_ruleRealLiteralRule_in_ruleNumberLiteralRule5859);
                     this_RealLiteralRule_2=ruleRealLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_RealLiteralRule_2; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
@@ -7183,9 +6746,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -7196,11 +6757,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleNumberLiteralRule
+    // $ANTLR end "ruleNumberLiteralRule"
 
 
-    // $ANTLR start entryRuleIntegerLiteralRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3177:1: entryRuleIntegerLiteralRule returns [EObject current=null] : iv_ruleIntegerLiteralRule= ruleIntegerLiteralRule EOF ;
+    // $ANTLR start "entryRuleIntegerLiteralRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2641:1: entryRuleIntegerLiteralRule returns [EObject current=null] : iv_ruleIntegerLiteralRule= ruleIntegerLiteralRule EOF ;
     public final EObject entryRuleIntegerLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -7208,16 +6769,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3178:2: (iv_ruleIntegerLiteralRule= ruleIntegerLiteralRule EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3179:2: iv_ruleIntegerLiteralRule= ruleIntegerLiteralRule EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2642:2: (iv_ruleIntegerLiteralRule= ruleIntegerLiteralRule EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2643:2: iv_ruleIntegerLiteralRule= ruleIntegerLiteralRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getIntegerLiteralRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleIntegerLiteralRule_in_entryRuleIntegerLiteralRule5778);
+             newCompositeNode(grammarAccess.getIntegerLiteralRuleRule()); 
+            pushFollow(FOLLOW_ruleIntegerLiteralRule_in_entryRuleIntegerLiteralRule5894);
             iv_ruleIntegerLiteralRule=ruleIntegerLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleIntegerLiteralRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleIntegerLiteralRule5788); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleIntegerLiteralRule5904); 
 
             }
 
@@ -7231,48 +6793,41 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleIntegerLiteralRule
+    // $ANTLR end "entryRuleIntegerLiteralRule"
 
 
-    // $ANTLR start ruleIntegerLiteralRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3186:1: ruleIntegerLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_INTEGERLITERAL ) ) ;
+    // $ANTLR start "ruleIntegerLiteralRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2650:1: ruleIntegerLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_INTEGERLITERAL ) ) ;
     public final EObject ruleIntegerLiteralRule() throws RecognitionException {
         EObject current = null;
 
         Token lv_value_0_0=null;
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3191:6: ( ( (lv_value_0_0= RULE_INTEGERLITERAL ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3192:1: ( (lv_value_0_0= RULE_INTEGERLITERAL ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2653:28: ( ( (lv_value_0_0= RULE_INTEGERLITERAL ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2654:1: ( (lv_value_0_0= RULE_INTEGERLITERAL ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3192:1: ( (lv_value_0_0= RULE_INTEGERLITERAL ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3193:1: (lv_value_0_0= RULE_INTEGERLITERAL )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2654:1: ( (lv_value_0_0= RULE_INTEGERLITERAL ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2655:1: (lv_value_0_0= RULE_INTEGERLITERAL )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3193:1: (lv_value_0_0= RULE_INTEGERLITERAL )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3194:3: lv_value_0_0= RULE_INTEGERLITERAL
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2655:1: (lv_value_0_0= RULE_INTEGERLITERAL )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2656:3: lv_value_0_0= RULE_INTEGERLITERAL
             {
-            lv_value_0_0=(Token)input.LT(1);
-            match(input,RULE_INTEGERLITERAL,FOLLOW_RULE_INTEGERLITERAL_in_ruleIntegerLiteralRule5829); 
+            lv_value_0_0=(Token)match(input,RULE_INTEGERLITERAL,FOLLOW_RULE_INTEGERLITERAL_in_ruleIntegerLiteralRule5945); 
 
-            			createLeafNode(grammarAccess.getIntegerLiteralRuleAccess().getValueIntegerLiteralTerminalRuleCall_0(), "value"); 
+            			newLeafNode(lv_value_0_0, grammarAccess.getIntegerLiteralRuleAccess().getValueIntegerLiteralTerminalRuleCall_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getIntegerLiteralRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getIntegerLiteralRuleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"value",
-            	        		lv_value_0_0, 
-            	        		"IntegerLiteral", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"value",
+                    		lv_value_0_0, 
+                    		"IntegerLiteral");
             	    
 
             }
@@ -7283,9 +6838,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -7296,11 +6849,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleIntegerLiteralRule
+    // $ANTLR end "ruleIntegerLiteralRule"
 
 
-    // $ANTLR start entryRuleUnlimitedLiteralRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3224:1: entryRuleUnlimitedLiteralRule returns [EObject current=null] : iv_ruleUnlimitedLiteralRule= ruleUnlimitedLiteralRule EOF ;
+    // $ANTLR start "entryRuleUnlimitedLiteralRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2680:1: entryRuleUnlimitedLiteralRule returns [EObject current=null] : iv_ruleUnlimitedLiteralRule= ruleUnlimitedLiteralRule EOF ;
     public final EObject entryRuleUnlimitedLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -7308,16 +6861,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3225:2: (iv_ruleUnlimitedLiteralRule= ruleUnlimitedLiteralRule EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3226:2: iv_ruleUnlimitedLiteralRule= ruleUnlimitedLiteralRule EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2681:2: (iv_ruleUnlimitedLiteralRule= ruleUnlimitedLiteralRule EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2682:2: iv_ruleUnlimitedLiteralRule= ruleUnlimitedLiteralRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getUnlimitedLiteralRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleUnlimitedLiteralRule_in_entryRuleUnlimitedLiteralRule5869);
+             newCompositeNode(grammarAccess.getUnlimitedLiteralRuleRule()); 
+            pushFollow(FOLLOW_ruleUnlimitedLiteralRule_in_entryRuleUnlimitedLiteralRule5985);
             iv_ruleUnlimitedLiteralRule=ruleUnlimitedLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleUnlimitedLiteralRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleUnlimitedLiteralRule5879); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleUnlimitedLiteralRule5995); 
 
             }
 
@@ -7331,44 +6885,37 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleUnlimitedLiteralRule
+    // $ANTLR end "entryRuleUnlimitedLiteralRule"
 
 
-    // $ANTLR start ruleUnlimitedLiteralRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3233:1: ruleUnlimitedLiteralRule returns [EObject current=null] : ( (lv_value_0_0= '*' ) ) ;
+    // $ANTLR start "ruleUnlimitedLiteralRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2689:1: ruleUnlimitedLiteralRule returns [EObject current=null] : ( (lv_value_0_0= '*' ) ) ;
     public final EObject ruleUnlimitedLiteralRule() throws RecognitionException {
         EObject current = null;
 
         Token lv_value_0_0=null;
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3238:6: ( ( (lv_value_0_0= '*' ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3239:1: ( (lv_value_0_0= '*' ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2692:28: ( ( (lv_value_0_0= '*' ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2693:1: ( (lv_value_0_0= '*' ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3239:1: ( (lv_value_0_0= '*' ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3240:1: (lv_value_0_0= '*' )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2693:1: ( (lv_value_0_0= '*' ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2694:1: (lv_value_0_0= '*' )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3240:1: (lv_value_0_0= '*' )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3241:3: lv_value_0_0= '*'
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2694:1: (lv_value_0_0= '*' )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2695:3: lv_value_0_0= '*'
             {
-            lv_value_0_0=(Token)input.LT(1);
-            match(input,33,FOLLOW_33_in_ruleUnlimitedLiteralRule5921); 
+            lv_value_0_0=(Token)match(input,33,FOLLOW_33_in_ruleUnlimitedLiteralRule6037); 
 
-                    createLeafNode(grammarAccess.getUnlimitedLiteralRuleAccess().getValueAsteriskKeyword_0(), "value"); 
+                    newLeafNode(lv_value_0_0, grammarAccess.getUnlimitedLiteralRuleAccess().getValueAsteriskKeyword_0());
                 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getUnlimitedLiteralRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getUnlimitedLiteralRuleRule());
             	        }
-            	        
-            	        try {
-            	       		set(current, "value", lv_value_0_0, "*", lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(current, "value", lv_value_0_0, "*");
             	    
 
             }
@@ -7379,9 +6926,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -7392,11 +6937,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleUnlimitedLiteralRule
+    // $ANTLR end "ruleUnlimitedLiteralRule"
 
 
-    // $ANTLR start entryRuleRealLiteralRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3268:1: entryRuleRealLiteralRule returns [EObject current=null] : iv_ruleRealLiteralRule= ruleRealLiteralRule EOF ;
+    // $ANTLR start "entryRuleRealLiteralRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2716:1: entryRuleRealLiteralRule returns [EObject current=null] : iv_ruleRealLiteralRule= ruleRealLiteralRule EOF ;
     public final EObject entryRuleRealLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -7404,16 +6949,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3269:2: (iv_ruleRealLiteralRule= ruleRealLiteralRule EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3270:2: iv_ruleRealLiteralRule= ruleRealLiteralRule EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2717:2: (iv_ruleRealLiteralRule= ruleRealLiteralRule EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2718:2: iv_ruleRealLiteralRule= ruleRealLiteralRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getRealLiteralRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleRealLiteralRule_in_entryRuleRealLiteralRule5969);
+             newCompositeNode(grammarAccess.getRealLiteralRuleRule()); 
+            pushFollow(FOLLOW_ruleRealLiteralRule_in_entryRuleRealLiteralRule6085);
             iv_ruleRealLiteralRule=ruleRealLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleRealLiteralRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleRealLiteralRule5979); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleRealLiteralRule6095); 
 
             }
 
@@ -7427,48 +6973,41 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleRealLiteralRule
+    // $ANTLR end "entryRuleRealLiteralRule"
 
 
-    // $ANTLR start ruleRealLiteralRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3277:1: ruleRealLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_REALLITERAL ) ) ;
+    // $ANTLR start "ruleRealLiteralRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2725:1: ruleRealLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_REALLITERAL ) ) ;
     public final EObject ruleRealLiteralRule() throws RecognitionException {
         EObject current = null;
 
         Token lv_value_0_0=null;
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3282:6: ( ( (lv_value_0_0= RULE_REALLITERAL ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3283:1: ( (lv_value_0_0= RULE_REALLITERAL ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2728:28: ( ( (lv_value_0_0= RULE_REALLITERAL ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2729:1: ( (lv_value_0_0= RULE_REALLITERAL ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3283:1: ( (lv_value_0_0= RULE_REALLITERAL ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3284:1: (lv_value_0_0= RULE_REALLITERAL )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2729:1: ( (lv_value_0_0= RULE_REALLITERAL ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2730:1: (lv_value_0_0= RULE_REALLITERAL )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3284:1: (lv_value_0_0= RULE_REALLITERAL )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3285:3: lv_value_0_0= RULE_REALLITERAL
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2730:1: (lv_value_0_0= RULE_REALLITERAL )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2731:3: lv_value_0_0= RULE_REALLITERAL
             {
-            lv_value_0_0=(Token)input.LT(1);
-            match(input,RULE_REALLITERAL,FOLLOW_RULE_REALLITERAL_in_ruleRealLiteralRule6020); 
+            lv_value_0_0=(Token)match(input,RULE_REALLITERAL,FOLLOW_RULE_REALLITERAL_in_ruleRealLiteralRule6136); 
 
-            			createLeafNode(grammarAccess.getRealLiteralRuleAccess().getValueRealLiteralTerminalRuleCall_0(), "value"); 
+            			newLeafNode(lv_value_0_0, grammarAccess.getRealLiteralRuleAccess().getValueRealLiteralTerminalRuleCall_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getRealLiteralRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getRealLiteralRuleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"value",
-            	        		lv_value_0_0, 
-            	        		"RealLiteral", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"value",
+                    		lv_value_0_0, 
+                    		"RealLiteral");
             	    
 
             }
@@ -7479,9 +7018,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -7492,11 +7029,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleRealLiteralRule
+    // $ANTLR end "ruleRealLiteralRule"
 
 
-    // $ANTLR start entryRuleDateTimeLiteralRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3315:1: entryRuleDateTimeLiteralRule returns [EObject current=null] : iv_ruleDateTimeLiteralRule= ruleDateTimeLiteralRule EOF ;
+    // $ANTLR start "entryRuleDateTimeLiteralRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2755:1: entryRuleDateTimeLiteralRule returns [EObject current=null] : iv_ruleDateTimeLiteralRule= ruleDateTimeLiteralRule EOF ;
     public final EObject entryRuleDateTimeLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -7504,16 +7041,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3316:2: (iv_ruleDateTimeLiteralRule= ruleDateTimeLiteralRule EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3317:2: iv_ruleDateTimeLiteralRule= ruleDateTimeLiteralRule EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2756:2: (iv_ruleDateTimeLiteralRule= ruleDateTimeLiteralRule EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2757:2: iv_ruleDateTimeLiteralRule= ruleDateTimeLiteralRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getDateTimeLiteralRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleDateTimeLiteralRule_in_entryRuleDateTimeLiteralRule6060);
+             newCompositeNode(grammarAccess.getDateTimeLiteralRuleRule()); 
+            pushFollow(FOLLOW_ruleDateTimeLiteralRule_in_entryRuleDateTimeLiteralRule6176);
             iv_ruleDateTimeLiteralRule=ruleDateTimeLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleDateTimeLiteralRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDateTimeLiteralRule6070); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDateTimeLiteralRule6186); 
 
             }
 
@@ -7527,48 +7065,41 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleDateTimeLiteralRule
+    // $ANTLR end "entryRuleDateTimeLiteralRule"
 
 
-    // $ANTLR start ruleDateTimeLiteralRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3324:1: ruleDateTimeLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_DATETIMELITERAL ) ) ;
+    // $ANTLR start "ruleDateTimeLiteralRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2764:1: ruleDateTimeLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_DATETIMELITERAL ) ) ;
     public final EObject ruleDateTimeLiteralRule() throws RecognitionException {
         EObject current = null;
 
         Token lv_value_0_0=null;
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3329:6: ( ( (lv_value_0_0= RULE_DATETIMELITERAL ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3330:1: ( (lv_value_0_0= RULE_DATETIMELITERAL ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2767:28: ( ( (lv_value_0_0= RULE_DATETIMELITERAL ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2768:1: ( (lv_value_0_0= RULE_DATETIMELITERAL ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3330:1: ( (lv_value_0_0= RULE_DATETIMELITERAL ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3331:1: (lv_value_0_0= RULE_DATETIMELITERAL )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2768:1: ( (lv_value_0_0= RULE_DATETIMELITERAL ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2769:1: (lv_value_0_0= RULE_DATETIMELITERAL )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3331:1: (lv_value_0_0= RULE_DATETIMELITERAL )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3332:3: lv_value_0_0= RULE_DATETIMELITERAL
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2769:1: (lv_value_0_0= RULE_DATETIMELITERAL )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2770:3: lv_value_0_0= RULE_DATETIMELITERAL
             {
-            lv_value_0_0=(Token)input.LT(1);
-            match(input,RULE_DATETIMELITERAL,FOLLOW_RULE_DATETIMELITERAL_in_ruleDateTimeLiteralRule6111); 
+            lv_value_0_0=(Token)match(input,RULE_DATETIMELITERAL,FOLLOW_RULE_DATETIMELITERAL_in_ruleDateTimeLiteralRule6227); 
 
-            			createLeafNode(grammarAccess.getDateTimeLiteralRuleAccess().getValueDateTimeLiteralTerminalRuleCall_0(), "value"); 
+            			newLeafNode(lv_value_0_0, grammarAccess.getDateTimeLiteralRuleAccess().getValueDateTimeLiteralTerminalRuleCall_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getDateTimeLiteralRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getDateTimeLiteralRuleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"value",
-            	        		lv_value_0_0, 
-            	        		"DateTimeLiteral", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"value",
+                    		lv_value_0_0, 
+                    		"DateTimeLiteral");
             	    
 
             }
@@ -7579,9 +7110,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -7592,11 +7121,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleDateTimeLiteralRule
+    // $ANTLR end "ruleDateTimeLiteralRule"
 
 
-    // $ANTLR start entryRuleBooleanLiteralRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3362:1: entryRuleBooleanLiteralRule returns [EObject current=null] : iv_ruleBooleanLiteralRule= ruleBooleanLiteralRule EOF ;
+    // $ANTLR start "entryRuleBooleanLiteralRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2794:1: entryRuleBooleanLiteralRule returns [EObject current=null] : iv_ruleBooleanLiteralRule= ruleBooleanLiteralRule EOF ;
     public final EObject entryRuleBooleanLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -7604,16 +7133,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3363:2: (iv_ruleBooleanLiteralRule= ruleBooleanLiteralRule EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3364:2: iv_ruleBooleanLiteralRule= ruleBooleanLiteralRule EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2795:2: (iv_ruleBooleanLiteralRule= ruleBooleanLiteralRule EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2796:2: iv_ruleBooleanLiteralRule= ruleBooleanLiteralRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getBooleanLiteralRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleBooleanLiteralRule_in_entryRuleBooleanLiteralRule6151);
+             newCompositeNode(grammarAccess.getBooleanLiteralRuleRule()); 
+            pushFollow(FOLLOW_ruleBooleanLiteralRule_in_entryRuleBooleanLiteralRule6267);
             iv_ruleBooleanLiteralRule=ruleBooleanLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleBooleanLiteralRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleBooleanLiteralRule6161); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleBooleanLiteralRule6277); 
 
             }
 
@@ -7627,48 +7157,41 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleBooleanLiteralRule
+    // $ANTLR end "entryRuleBooleanLiteralRule"
 
 
-    // $ANTLR start ruleBooleanLiteralRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3371:1: ruleBooleanLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_BOOLEANLITERAL ) ) ;
+    // $ANTLR start "ruleBooleanLiteralRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2803:1: ruleBooleanLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_BOOLEANLITERAL ) ) ;
     public final EObject ruleBooleanLiteralRule() throws RecognitionException {
         EObject current = null;
 
         Token lv_value_0_0=null;
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3376:6: ( ( (lv_value_0_0= RULE_BOOLEANLITERAL ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3377:1: ( (lv_value_0_0= RULE_BOOLEANLITERAL ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2806:28: ( ( (lv_value_0_0= RULE_BOOLEANLITERAL ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2807:1: ( (lv_value_0_0= RULE_BOOLEANLITERAL ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3377:1: ( (lv_value_0_0= RULE_BOOLEANLITERAL ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3378:1: (lv_value_0_0= RULE_BOOLEANLITERAL )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2807:1: ( (lv_value_0_0= RULE_BOOLEANLITERAL ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2808:1: (lv_value_0_0= RULE_BOOLEANLITERAL )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3378:1: (lv_value_0_0= RULE_BOOLEANLITERAL )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3379:3: lv_value_0_0= RULE_BOOLEANLITERAL
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2808:1: (lv_value_0_0= RULE_BOOLEANLITERAL )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2809:3: lv_value_0_0= RULE_BOOLEANLITERAL
             {
-            lv_value_0_0=(Token)input.LT(1);
-            match(input,RULE_BOOLEANLITERAL,FOLLOW_RULE_BOOLEANLITERAL_in_ruleBooleanLiteralRule6202); 
+            lv_value_0_0=(Token)match(input,RULE_BOOLEANLITERAL,FOLLOW_RULE_BOOLEANLITERAL_in_ruleBooleanLiteralRule6318); 
 
-            			createLeafNode(grammarAccess.getBooleanLiteralRuleAccess().getValueBooleanLiteralTerminalRuleCall_0(), "value"); 
+            			newLeafNode(lv_value_0_0, grammarAccess.getBooleanLiteralRuleAccess().getValueBooleanLiteralTerminalRuleCall_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getBooleanLiteralRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getBooleanLiteralRuleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"value",
-            	        		lv_value_0_0, 
-            	        		"BooleanLiteral", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"value",
+                    		lv_value_0_0, 
+                    		"BooleanLiteral");
             	    
 
             }
@@ -7679,9 +7202,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -7692,11 +7213,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleBooleanLiteralRule
+    // $ANTLR end "ruleBooleanLiteralRule"
 
 
-    // $ANTLR start entryRuleNullLiteralRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3409:1: entryRuleNullLiteralRule returns [EObject current=null] : iv_ruleNullLiteralRule= ruleNullLiteralRule EOF ;
+    // $ANTLR start "entryRuleNullLiteralRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2833:1: entryRuleNullLiteralRule returns [EObject current=null] : iv_ruleNullLiteralRule= ruleNullLiteralRule EOF ;
     public final EObject entryRuleNullLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -7704,16 +7225,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3410:2: (iv_ruleNullLiteralRule= ruleNullLiteralRule EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3411:2: iv_ruleNullLiteralRule= ruleNullLiteralRule EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2834:2: (iv_ruleNullLiteralRule= ruleNullLiteralRule EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2835:2: iv_ruleNullLiteralRule= ruleNullLiteralRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getNullLiteralRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleNullLiteralRule_in_entryRuleNullLiteralRule6242);
+             newCompositeNode(grammarAccess.getNullLiteralRuleRule()); 
+            pushFollow(FOLLOW_ruleNullLiteralRule_in_entryRuleNullLiteralRule6358);
             iv_ruleNullLiteralRule=ruleNullLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleNullLiteralRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleNullLiteralRule6252); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleNullLiteralRule6368); 
 
             }
 
@@ -7727,48 +7249,41 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleNullLiteralRule
+    // $ANTLR end "entryRuleNullLiteralRule"
 
 
-    // $ANTLR start ruleNullLiteralRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3418:1: ruleNullLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_NULLLITERAL ) ) ;
+    // $ANTLR start "ruleNullLiteralRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2842:1: ruleNullLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_NULLLITERAL ) ) ;
     public final EObject ruleNullLiteralRule() throws RecognitionException {
         EObject current = null;
 
         Token lv_value_0_0=null;
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3423:6: ( ( (lv_value_0_0= RULE_NULLLITERAL ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3424:1: ( (lv_value_0_0= RULE_NULLLITERAL ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2845:28: ( ( (lv_value_0_0= RULE_NULLLITERAL ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2846:1: ( (lv_value_0_0= RULE_NULLLITERAL ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3424:1: ( (lv_value_0_0= RULE_NULLLITERAL ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3425:1: (lv_value_0_0= RULE_NULLLITERAL )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2846:1: ( (lv_value_0_0= RULE_NULLLITERAL ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2847:1: (lv_value_0_0= RULE_NULLLITERAL )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3425:1: (lv_value_0_0= RULE_NULLLITERAL )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3426:3: lv_value_0_0= RULE_NULLLITERAL
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2847:1: (lv_value_0_0= RULE_NULLLITERAL )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2848:3: lv_value_0_0= RULE_NULLLITERAL
             {
-            lv_value_0_0=(Token)input.LT(1);
-            match(input,RULE_NULLLITERAL,FOLLOW_RULE_NULLLITERAL_in_ruleNullLiteralRule6293); 
+            lv_value_0_0=(Token)match(input,RULE_NULLLITERAL,FOLLOW_RULE_NULLLITERAL_in_ruleNullLiteralRule6409); 
 
-            			createLeafNode(grammarAccess.getNullLiteralRuleAccess().getValueNullLiteralTerminalRuleCall_0(), "value"); 
+            			newLeafNode(lv_value_0_0, grammarAccess.getNullLiteralRuleAccess().getValueNullLiteralTerminalRuleCall_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getNullLiteralRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getNullLiteralRuleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"value",
-            	        		lv_value_0_0, 
-            	        		"NullLiteral", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"value",
+                    		lv_value_0_0, 
+                    		"NullLiteral");
             	    
 
             }
@@ -7779,9 +7294,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -7792,11 +7305,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleNullLiteralRule
+    // $ANTLR end "ruleNullLiteralRule"
 
 
-    // $ANTLR start entryRuleDefaultLiteralRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3456:1: entryRuleDefaultLiteralRule returns [EObject current=null] : iv_ruleDefaultLiteralRule= ruleDefaultLiteralRule EOF ;
+    // $ANTLR start "entryRuleDefaultLiteralRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2872:1: entryRuleDefaultLiteralRule returns [EObject current=null] : iv_ruleDefaultLiteralRule= ruleDefaultLiteralRule EOF ;
     public final EObject entryRuleDefaultLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -7804,16 +7317,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3457:2: (iv_ruleDefaultLiteralRule= ruleDefaultLiteralRule EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3458:2: iv_ruleDefaultLiteralRule= ruleDefaultLiteralRule EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2873:2: (iv_ruleDefaultLiteralRule= ruleDefaultLiteralRule EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2874:2: iv_ruleDefaultLiteralRule= ruleDefaultLiteralRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getDefaultLiteralRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleDefaultLiteralRule_in_entryRuleDefaultLiteralRule6333);
+             newCompositeNode(grammarAccess.getDefaultLiteralRuleRule()); 
+            pushFollow(FOLLOW_ruleDefaultLiteralRule_in_entryRuleDefaultLiteralRule6449);
             iv_ruleDefaultLiteralRule=ruleDefaultLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleDefaultLiteralRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDefaultLiteralRule6343); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDefaultLiteralRule6459); 
 
             }
 
@@ -7827,44 +7341,37 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleDefaultLiteralRule
+    // $ANTLR end "entryRuleDefaultLiteralRule"
 
 
-    // $ANTLR start ruleDefaultLiteralRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3465:1: ruleDefaultLiteralRule returns [EObject current=null] : ( (lv_value_0_0= '/' ) ) ;
+    // $ANTLR start "ruleDefaultLiteralRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2881:1: ruleDefaultLiteralRule returns [EObject current=null] : ( (lv_value_0_0= '/' ) ) ;
     public final EObject ruleDefaultLiteralRule() throws RecognitionException {
         EObject current = null;
 
         Token lv_value_0_0=null;
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3470:6: ( ( (lv_value_0_0= '/' ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3471:1: ( (lv_value_0_0= '/' ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2884:28: ( ( (lv_value_0_0= '/' ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2885:1: ( (lv_value_0_0= '/' ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3471:1: ( (lv_value_0_0= '/' ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3472:1: (lv_value_0_0= '/' )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2885:1: ( (lv_value_0_0= '/' ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2886:1: (lv_value_0_0= '/' )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3472:1: (lv_value_0_0= '/' )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3473:3: lv_value_0_0= '/'
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2886:1: (lv_value_0_0= '/' )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2887:3: lv_value_0_0= '/'
             {
-            lv_value_0_0=(Token)input.LT(1);
-            match(input,34,FOLLOW_34_in_ruleDefaultLiteralRule6385); 
+            lv_value_0_0=(Token)match(input,34,FOLLOW_34_in_ruleDefaultLiteralRule6501); 
 
-                    createLeafNode(grammarAccess.getDefaultLiteralRuleAccess().getValueSolidusKeyword_0(), "value"); 
+                    newLeafNode(lv_value_0_0, grammarAccess.getDefaultLiteralRuleAccess().getValueSolidusKeyword_0());
                 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getDefaultLiteralRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getDefaultLiteralRuleRule());
             	        }
-            	        
-            	        try {
-            	       		set(current, "value", lv_value_0_0, "/", lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(current, "value", lv_value_0_0, "/");
             	    
 
             }
@@ -7875,9 +7382,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -7888,11 +7393,11 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleDefaultLiteralRule
+    // $ANTLR end "ruleDefaultLiteralRule"
 
 
-    // $ANTLR start entryRuleStringLiteralRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3500:1: entryRuleStringLiteralRule returns [EObject current=null] : iv_ruleStringLiteralRule= ruleStringLiteralRule EOF ;
+    // $ANTLR start "entryRuleStringLiteralRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2908:1: entryRuleStringLiteralRule returns [EObject current=null] : iv_ruleStringLiteralRule= ruleStringLiteralRule EOF ;
     public final EObject entryRuleStringLiteralRule() throws RecognitionException {
         EObject current = null;
 
@@ -7900,16 +7405,17 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
 
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3501:2: (iv_ruleStringLiteralRule= ruleStringLiteralRule EOF )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3502:2: iv_ruleStringLiteralRule= ruleStringLiteralRule EOF
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2909:2: (iv_ruleStringLiteralRule= ruleStringLiteralRule EOF )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2910:2: iv_ruleStringLiteralRule= ruleStringLiteralRule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getStringLiteralRuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleStringLiteralRule_in_entryRuleStringLiteralRule6433);
+             newCompositeNode(grammarAccess.getStringLiteralRuleRule()); 
+            pushFollow(FOLLOW_ruleStringLiteralRule_in_entryRuleStringLiteralRule6549);
             iv_ruleStringLiteralRule=ruleStringLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleStringLiteralRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStringLiteralRule6443); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStringLiteralRule6559); 
 
             }
 
@@ -7923,48 +7429,41 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end entryRuleStringLiteralRule
+    // $ANTLR end "entryRuleStringLiteralRule"
 
 
-    // $ANTLR start ruleStringLiteralRule
-    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3509:1: ruleStringLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING ) ) ;
+    // $ANTLR start "ruleStringLiteralRule"
+    // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2917:1: ruleStringLiteralRule returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING ) ) ;
     public final EObject ruleStringLiteralRule() throws RecognitionException {
         EObject current = null;
 
         Token lv_value_0_0=null;
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3514:6: ( ( (lv_value_0_0= RULE_STRING ) ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3515:1: ( (lv_value_0_0= RULE_STRING ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2920:28: ( ( (lv_value_0_0= RULE_STRING ) ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2921:1: ( (lv_value_0_0= RULE_STRING ) )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3515:1: ( (lv_value_0_0= RULE_STRING ) )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3516:1: (lv_value_0_0= RULE_STRING )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2921:1: ( (lv_value_0_0= RULE_STRING ) )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2922:1: (lv_value_0_0= RULE_STRING )
             {
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3516:1: (lv_value_0_0= RULE_STRING )
-            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:3517:3: lv_value_0_0= RULE_STRING
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2922:1: (lv_value_0_0= RULE_STRING )
+            // ../org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/parser/antlr/internal/InternalStereotypeApplicationWithVSL.g:2923:3: lv_value_0_0= RULE_STRING
             {
-            lv_value_0_0=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStringLiteralRule6484); 
+            lv_value_0_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStringLiteralRule6600); 
 
-            			createLeafNode(grammarAccess.getStringLiteralRuleAccess().getValueSTRINGTerminalRuleCall_0(), "value"); 
+            			newLeafNode(lv_value_0_0, grammarAccess.getStringLiteralRuleAccess().getValueSTRINGTerminalRuleCall_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getStringLiteralRuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getStringLiteralRuleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"value",
-            	        		lv_value_0_0, 
-            	        		"STRING", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"value",
+                    		lv_value_0_0, 
+                    		"STRING");
             	    
 
             }
@@ -7975,9 +7474,7 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -7988,9 +7485,74 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
         }
         return current;
     }
-    // $ANTLR end ruleStringLiteralRule
+    // $ANTLR end "ruleStringLiteralRule"
+
+    // Delegated rules
 
 
+    protected DFA18 dfa18 = new DFA18(this);
+    static final String DFA18_eotS =
+        "\13\uffff";
+    static final String DFA18_eofS =
+        "\13\uffff";
+    static final String DFA18_minS =
+        "\1\4\3\uffff\1\4\3\uffff\1\22\2\uffff";
+    static final String DFA18_maxS =
+        "\1\65\3\uffff\1\65\3\uffff\1\55\2\uffff";
+    static final String DFA18_acceptS =
+        "\1\uffff\1\1\1\2\1\3\1\uffff\1\6\1\7\1\10\1\uffff\1\4\1\5";
+    static final String DFA18_specialS =
+        "\13\uffff}>";
+    static final String[] DFA18_transitionS = {
+            "\1\2\6\1\26\uffff\2\1\3\uffff\1\7\2\uffff\2\3\1\uffff\1\4\1"+
+            "\uffff\1\5\1\uffff\2\5\4\6",
+            "",
+            "",
+            "",
+            "\1\10\6\11\24\uffff\4\11\1\uffff\1\11\1\uffff\1\11\2\uffff"+
+            "\2\11\1\uffff\1\11\1\uffff\1\11\1\uffff\6\11",
+            "",
+            "",
+            "",
+            "\1\11\1\12\12\11\1\uffff\5\11\1\uffff\2\11\1\uffff\1\11\4"+
+            "\uffff\1\11",
+            "",
+            ""
+    };
+
+    static final short[] DFA18_eot = DFA.unpackEncodedString(DFA18_eotS);
+    static final short[] DFA18_eof = DFA.unpackEncodedString(DFA18_eofS);
+    static final char[] DFA18_min = DFA.unpackEncodedStringToUnsignedChars(DFA18_minS);
+    static final char[] DFA18_max = DFA.unpackEncodedStringToUnsignedChars(DFA18_maxS);
+    static final short[] DFA18_accept = DFA.unpackEncodedString(DFA18_acceptS);
+    static final short[] DFA18_special = DFA.unpackEncodedString(DFA18_specialS);
+    static final short[][] DFA18_transition;
+
+    static {
+        int numStates = DFA18_transitionS.length;
+        DFA18_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA18_transition[i] = DFA.unpackEncodedString(DFA18_transitionS[i]);
+        }
+    }
+
+    class DFA18 extends DFA {
+
+        public DFA18(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 18;
+            this.eot = DFA18_eot;
+            this.eof = DFA18_eof;
+            this.min = DFA18_min;
+            this.max = DFA18_max;
+            this.accept = DFA18_accept;
+            this.special = DFA18_special;
+            this.transition = DFA18_transition;
+        }
+        public String getDescription() {
+            return "1073:1: (this_Literal_0= ruleLiteral | this_NameOrChoiceOrBehaviorCall_1= ruleNameOrChoiceOrBehaviorCall | this_Interval_2= ruleInterval | this_CollectionOrTuple_3= ruleCollectionOrTuple | this_Tuple_4= ruleTuple | this_TimeExpression_5= ruleTimeExpression | this_VariableDeclaration_6= ruleVariableDeclaration | (otherlv_7= '(' this_Expression_8= ruleExpression otherlv_9= ')' ) )";
+        }
+    }
  
 
     public static final BitSet FOLLOW_ruleStereotypeApplicationsRule_in_entryRuleStereotypeApplicationsRule75 = new BitSet(new long[]{0x0000000000000000L});
@@ -7998,253 +7560,253 @@ public class InternalStereotypeApplicationWithVSLParser extends AbstractInternal
     public static final BitSet FOLLOW_ruleStereotypeApplicationRule_in_ruleStereotypeApplicationsRule130 = new BitSet(new long[]{0x0000000000010002L});
     public static final BitSet FOLLOW_ruleStereotypeApplicationRule_in_entryRuleStereotypeApplicationRule166 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleStereotypeApplicationRule176 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_ruleStereotypeApplicationRule211 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleStereotypeApplicationRule229 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_ruleStereotypeApplicationRule239 = new BitSet(new long[]{0x0000000000000012L});
-    public static final BitSet FOLLOW_ruleTagSpecificationRule_in_ruleStereotypeApplicationRule261 = new BitSet(new long[]{0x0000000000040002L});
-    public static final BitSet FOLLOW_18_in_ruleStereotypeApplicationRule272 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleTagSpecificationRule_in_ruleStereotypeApplicationRule293 = new BitSet(new long[]{0x0000000000040002L});
-    public static final BitSet FOLLOW_ruleTagSpecificationRule_in_entryRuleTagSpecificationRule333 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTagSpecificationRule343 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleTagSpecificationRule386 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_ruleExpressionValueRule_in_ruleTagSpecificationRule407 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpressionValueRule_in_entryRuleExpressionValueRule443 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleExpressionValueRule453 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_ruleExpressionValueRule488 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleExpressionValueRule509 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_entryRuleExpression545 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleExpression555 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAndOrXorExpression_in_ruleExpression600 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAndOrXorExpression_in_entryRuleAndOrXorExpression635 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleAndOrXorExpression645 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEqualityExpression_in_ruleAndOrXorExpression691 = new BitSet(new long[]{0x0000000000700002L});
-    public static final BitSet FOLLOW_20_in_ruleAndOrXorExpression712 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_21_in_ruleAndOrXorExpression741 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_22_in_ruleAndOrXorExpression770 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleEqualityExpression_in_ruleAndOrXorExpression807 = new BitSet(new long[]{0x0000000000700002L});
-    public static final BitSet FOLLOW_ruleEqualityExpression_in_entryRuleEqualityExpression845 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleEqualityExpression855 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRelationalExpression_in_ruleEqualityExpression901 = new BitSet(new long[]{0x0000000001800002L});
-    public static final BitSet FOLLOW_23_in_ruleEqualityExpression922 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_24_in_ruleEqualityExpression951 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleRelationalExpression_in_ruleEqualityExpression988 = new BitSet(new long[]{0x0000000001800002L});
-    public static final BitSet FOLLOW_ruleRelationalExpression_in_entryRuleRelationalExpression1026 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleRelationalExpression1036 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConditionalExpression_in_ruleRelationalExpression1082 = new BitSet(new long[]{0x000000001E000002L});
-    public static final BitSet FOLLOW_25_in_ruleRelationalExpression1103 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_26_in_ruleRelationalExpression1132 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_27_in_ruleRelationalExpression1161 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_28_in_ruleRelationalExpression1190 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleConditionalExpression_in_ruleRelationalExpression1227 = new BitSet(new long[]{0x000000001E000002L});
-    public static final BitSet FOLLOW_ruleConditionalExpression_in_entryRuleConditionalExpression1265 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleConditionalExpression1275 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1321 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_29_in_ruleConditionalExpression1340 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1374 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_ruleConditionalExpression1384 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1405 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAdditiveExpression_in_entryRuleAdditiveExpression1443 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleAdditiveExpression1453 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression1499 = new BitSet(new long[]{0x0000000180000002L});
-    public static final BitSet FOLLOW_31_in_ruleAdditiveExpression1520 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_32_in_ruleAdditiveExpression1549 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression1586 = new BitSet(new long[]{0x0000000180000002L});
-    public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_entryRuleMultiplicativeExpression1624 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleMultiplicativeExpression1634 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnaryExpression_in_ruleMultiplicativeExpression1680 = new BitSet(new long[]{0x0000000E00000002L});
-    public static final BitSet FOLLOW_33_in_ruleMultiplicativeExpression1701 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_34_in_ruleMultiplicativeExpression1730 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_35_in_ruleMultiplicativeExpression1759 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleUnaryExpression_in_ruleMultiplicativeExpression1796 = new BitSet(new long[]{0x0000000E00000002L});
-    public static final BitSet FOLLOW_ruleUnaryExpression_in_entryRuleUnaryExpression1834 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleUnaryExpression1844 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_ruleUnaryExpression1890 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_32_in_ruleUnaryExpression1919 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_31_in_ruleUnaryExpression1948 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleUnaryExpression_in_ruleUnaryExpression1985 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePrimaryExpression_in_ruleUnaryExpression2013 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePrimaryExpression_in_entryRulePrimaryExpression2049 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePrimaryExpression2059 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValueSpecification_in_rulePrimaryExpression2105 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_37_in_rulePrimaryExpression2116 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleSuffixExpression_in_rulePrimaryExpression2137 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValueSpecification_in_entryRuleValueSpecification2175 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleValueSpecification2185 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLiteral_in_ruleValueSpecification2232 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_ruleValueSpecification2259 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInterval_in_ruleValueSpecification2286 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCollectionOrTuple_in_ruleValueSpecification2313 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTuple_in_ruleValueSpecification2340 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTimeExpression_in_ruleValueSpecification2367 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableDeclaration_in_ruleValueSpecification2394 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_ruleValueSpecification2410 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleValueSpecification2432 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_ruleValueSpecification2441 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSuffixExpression_in_entryRuleSuffixExpression2478 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleSuffixExpression2488 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePropertyCallExpression_in_ruleSuffixExpression2535 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOperationCallExpression_in_ruleSuffixExpression2562 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePropertyCallExpression_in_entryRulePropertyCallExpression2597 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePropertyCallExpression2607 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rulePropertyCallExpression2650 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_37_in_rulePropertyCallExpression2661 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleSuffixExpression_in_rulePropertyCallExpression2682 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOperationCallExpression_in_entryRuleOperationCallExpression2720 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOperationCallExpression2730 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleOperationCallExpression2773 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_ruleOperationCallExpression2783 = new BitSet(new long[]{0x003F56D7800007F0L});
-    public static final BitSet FOLLOW_ruleListOfValues_in_ruleOperationCallExpression2804 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_ruleOperationCallExpression2815 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_37_in_ruleOperationCallExpression2826 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleSuffixExpression_in_ruleOperationCallExpression2847 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLiteral_in_entryRuleLiteral2885 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleLiteral2895 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNumberLiteralRule_in_ruleLiteral2942 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDateTimeLiteralRule_in_ruleLiteral2969 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBooleanLiteralRule_in_ruleLiteral2996 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNullLiteralRule_in_ruleLiteral3023 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDefaultLiteralRule_in_ruleLiteral3050 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStringLiteralRule_in_ruleLiteral3077 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_entryRuleNameOrChoiceOrBehaviorCall3112 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleNameOrChoiceOrBehaviorCall3122 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleNameOrChoiceOrBehaviorCall3168 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleNameOrChoiceOrBehaviorCall3187 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_38_in_ruleNameOrChoiceOrBehaviorCall3198 = new BitSet(new long[]{0x003F56D7800007F0L});
-    public static final BitSet FOLLOW_ruleListOfValues_in_ruleNameOrChoiceOrBehaviorCall3219 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_ruleNameOrChoiceOrBehaviorCall3230 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName3268 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName3278 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName3321 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_40_in_ruleQualifiedName3331 = new BitSet(new long[]{0x0000000000000012L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedName3352 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInterval_in_entryRuleInterval3389 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleInterval3399 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_ruleInterval3435 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_42_in_ruleInterval3459 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleInterval3494 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_43_in_ruleInterval3504 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleInterval3525 = new BitSet(new long[]{0x0000060000000000L});
-    public static final BitSet FOLLOW_41_in_ruleInterval3544 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_ruleInterval3573 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCollectionOrTuple_in_entryRuleCollectionOrTuple3610 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleCollectionOrTuple3620 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_ruleCollectionOrTuple3655 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleListOfValues_in_ruleCollectionOrTuple3676 = new BitSet(new long[]{0x0000200000000000L});
-    public static final BitSet FOLLOW_45_in_ruleCollectionOrTuple3686 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTuple_in_entryRuleTuple3722 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTuple3732 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_ruleTuple3767 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleListOfValueNamePairs_in_ruleTuple3788 = new BitSet(new long[]{0x0000200000000000L});
-    public static final BitSet FOLLOW_45_in_ruleTuple3798 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleListOfValues_in_entryRuleListOfValues3834 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleListOfValues3844 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleListOfValues3890 = new BitSet(new long[]{0x0000000000040002L});
-    public static final BitSet FOLLOW_18_in_ruleListOfValues3901 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleListOfValues3922 = new BitSet(new long[]{0x0000000000040002L});
-    public static final BitSet FOLLOW_ruleListOfValueNamePairs_in_entryRuleListOfValueNamePairs3960 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleListOfValueNamePairs3970 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValueNamePair_in_ruleListOfValueNamePairs4016 = new BitSet(new long[]{0x0000000000040002L});
-    public static final BitSet FOLLOW_18_in_ruleListOfValueNamePairs4027 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleValueNamePair_in_ruleListOfValueNamePairs4048 = new BitSet(new long[]{0x0000000000040002L});
-    public static final BitSet FOLLOW_ruleValueNamePair_in_entryRuleValueNamePair4086 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleValueNamePair4096 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleValueNamePair4139 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleValueNamePair4149 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleValueNamePair4170 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTimeExpression_in_entryRuleTimeExpression4206 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTimeExpression4216 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInstantObsExpression_in_ruleTimeExpression4263 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDurationObsExpression_in_ruleTimeExpression4290 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJitterExp_in_ruleTimeExpression4317 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInstantObsExpression_in_entryRuleInstantObsExpression4352 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleInstantObsExpression4362 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_ruleInstantObsExpression4397 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleInstantObsName_in_ruleInstantObsExpression4418 = new BitSet(new long[]{0x0000804000000002L});
-    public static final BitSet FOLLOW_38_in_ruleInstantObsExpression4429 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleInstantObsExpression4450 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_ruleInstantObsExpression4460 = new BitSet(new long[]{0x0000800000000002L});
-    public static final BitSet FOLLOW_47_in_ruleInstantObsExpression4473 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_ruleInstantObsExpression4483 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleInstantObsExpression4504 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_ruleInstantObsExpression4514 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInstantObsName_in_entryRuleInstantObsName4552 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleInstantObsName4562 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleInstantObsName4608 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleInstantObsName4627 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDurationObsExpression_in_entryRuleDurationObsExpression4663 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDurationObsExpression4673 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_ruleDurationObsExpression4708 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleDurationObsName_in_ruleDurationObsExpression4729 = new BitSet(new long[]{0x0000804000000002L});
-    public static final BitSet FOLLOW_38_in_ruleDurationObsExpression4740 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleDurationObsExpression4761 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_ruleDurationObsExpression4771 = new BitSet(new long[]{0x0000800000000002L});
-    public static final BitSet FOLLOW_47_in_ruleDurationObsExpression4784 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_ruleDurationObsExpression4794 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleDurationObsExpression4815 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_ruleDurationObsExpression4825 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDurationObsName_in_entryRuleDurationObsName4863 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDurationObsName4873 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleDurationObsName4919 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleDurationObsName4938 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJitterExp_in_entryRuleJitterExp4974 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleJitterExp4984 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_ruleJitterExp5019 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_ruleInstantObsExpression_in_ruleJitterExp5040 = new BitSet(new long[]{0x0000008100000000L});
-    public static final BitSet FOLLOW_32_in_ruleJitterExp5051 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_ruleInstantObsExpression_in_ruleJitterExp5072 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_ruleJitterExp5084 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableDeclaration_in_entryRuleVariableDeclaration5120 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleVariableDeclaration5130 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableDirectionKind_in_ruleVariableDeclaration5176 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_50_in_ruleVariableDeclaration5187 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleVariableDeclaration5204 = new BitSet(new long[]{0x0000000040080000L});
-    public static final BitSet FOLLOW_30_in_ruleVariableDeclaration5221 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleDataTypeName_in_ruleVariableDeclaration5242 = new BitSet(new long[]{0x0000000000080002L});
-    public static final BitSet FOLLOW_19_in_ruleVariableDeclaration5253 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_ruleVariableDeclaration5263 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleVariableDeclaration5284 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_ruleVariableDeclaration5294 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_ruleVariableDeclaration5314 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_ruleVariableDeclaration5324 = new BitSet(new long[]{0x003F5657800007F0L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleVariableDeclaration5345 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_ruleVariableDeclaration5355 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableDirectionKind_in_entryRuleVariableDirectionKind5394 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleVariableDirectionKind5405 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_ruleVariableDirectionKind5443 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_ruleVariableDirectionKind5462 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_ruleVariableDirectionKind5481 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeName_in_entryRuleDataTypeName5521 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDataTypeName5531 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleDataTypeName5577 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleDataTypeName5596 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNumberLiteralRule_in_entryRuleNumberLiteralRule5632 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleNumberLiteralRule5642 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIntegerLiteralRule_in_ruleNumberLiteralRule5689 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnlimitedLiteralRule_in_ruleNumberLiteralRule5716 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRealLiteralRule_in_ruleNumberLiteralRule5743 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIntegerLiteralRule_in_entryRuleIntegerLiteralRule5778 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleIntegerLiteralRule5788 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INTEGERLITERAL_in_ruleIntegerLiteralRule5829 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnlimitedLiteralRule_in_entryRuleUnlimitedLiteralRule5869 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleUnlimitedLiteralRule5879 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_ruleUnlimitedLiteralRule5921 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRealLiteralRule_in_entryRuleRealLiteralRule5969 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleRealLiteralRule5979 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_REALLITERAL_in_ruleRealLiteralRule6020 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDateTimeLiteralRule_in_entryRuleDateTimeLiteralRule6060 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDateTimeLiteralRule6070 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_DATETIMELITERAL_in_ruleDateTimeLiteralRule6111 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBooleanLiteralRule_in_entryRuleBooleanLiteralRule6151 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleBooleanLiteralRule6161 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_BOOLEANLITERAL_in_ruleBooleanLiteralRule6202 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNullLiteralRule_in_entryRuleNullLiteralRule6242 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleNullLiteralRule6252 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_NULLLITERAL_in_ruleNullLiteralRule6293 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDefaultLiteralRule_in_entryRuleDefaultLiteralRule6333 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDefaultLiteralRule6343 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_ruleDefaultLiteralRule6385 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStringLiteralRule_in_entryRuleStringLiteralRule6433 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStringLiteralRule6443 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleStringLiteralRule6484 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_ruleStereotypeApplicationRule213 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleStereotypeApplicationRule233 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleStereotypeApplicationRule245 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_ruleTagSpecificationRule_in_ruleStereotypeApplicationRule267 = new BitSet(new long[]{0x0000000000040002L});
+    public static final BitSet FOLLOW_18_in_ruleStereotypeApplicationRule280 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleTagSpecificationRule_in_ruleStereotypeApplicationRule301 = new BitSet(new long[]{0x0000000000040002L});
+    public static final BitSet FOLLOW_ruleTagSpecificationRule_in_entryRuleTagSpecificationRule341 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTagSpecificationRule351 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleTagSpecificationRule396 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_ruleExpressionValueRule_in_ruleTagSpecificationRule417 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpressionValueRule_in_entryRuleExpressionValueRule453 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleExpressionValueRule463 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_ruleExpressionValueRule500 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleExpressionValueRule521 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_entryRuleExpression557 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleExpression567 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAndOrXorExpression_in_ruleExpression612 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAndOrXorExpression_in_entryRuleAndOrXorExpression647 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleAndOrXorExpression657 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEqualityExpression_in_ruleAndOrXorExpression703 = new BitSet(new long[]{0x0000000000700002L});
+    public static final BitSet FOLLOW_20_in_ruleAndOrXorExpression724 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_21_in_ruleAndOrXorExpression753 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_22_in_ruleAndOrXorExpression782 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleEqualityExpression_in_ruleAndOrXorExpression819 = new BitSet(new long[]{0x0000000000700002L});
+    public static final BitSet FOLLOW_ruleEqualityExpression_in_entryRuleEqualityExpression857 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleEqualityExpression867 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRelationalExpression_in_ruleEqualityExpression913 = new BitSet(new long[]{0x0000000001800002L});
+    public static final BitSet FOLLOW_23_in_ruleEqualityExpression934 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_24_in_ruleEqualityExpression963 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleRelationalExpression_in_ruleEqualityExpression1000 = new BitSet(new long[]{0x0000000001800002L});
+    public static final BitSet FOLLOW_ruleRelationalExpression_in_entryRuleRelationalExpression1038 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleRelationalExpression1048 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConditionalExpression_in_ruleRelationalExpression1094 = new BitSet(new long[]{0x000000001E000002L});
+    public static final BitSet FOLLOW_25_in_ruleRelationalExpression1115 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_26_in_ruleRelationalExpression1144 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_27_in_ruleRelationalExpression1173 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_28_in_ruleRelationalExpression1202 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleConditionalExpression_in_ruleRelationalExpression1239 = new BitSet(new long[]{0x000000001E000002L});
+    public static final BitSet FOLLOW_ruleConditionalExpression_in_entryRuleConditionalExpression1277 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleConditionalExpression1287 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1333 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_29_in_ruleConditionalExpression1352 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1386 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_ruleConditionalExpression1398 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleAdditiveExpression_in_ruleConditionalExpression1419 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAdditiveExpression_in_entryRuleAdditiveExpression1457 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleAdditiveExpression1467 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression1513 = new BitSet(new long[]{0x0000000180000002L});
+    public static final BitSet FOLLOW_31_in_ruleAdditiveExpression1534 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_32_in_ruleAdditiveExpression1563 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression1600 = new BitSet(new long[]{0x0000000180000002L});
+    public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_entryRuleMultiplicativeExpression1638 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMultiplicativeExpression1648 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnaryExpression_in_ruleMultiplicativeExpression1694 = new BitSet(new long[]{0x0000000E00000002L});
+    public static final BitSet FOLLOW_33_in_ruleMultiplicativeExpression1715 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_34_in_ruleMultiplicativeExpression1744 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_35_in_ruleMultiplicativeExpression1773 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleUnaryExpression_in_ruleMultiplicativeExpression1810 = new BitSet(new long[]{0x0000000E00000002L});
+    public static final BitSet FOLLOW_ruleUnaryExpression_in_entryRuleUnaryExpression1848 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleUnaryExpression1858 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_ruleUnaryExpression1904 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_32_in_ruleUnaryExpression1933 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_31_in_ruleUnaryExpression1962 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleUnaryExpression_in_ruleUnaryExpression1999 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePrimaryExpression_in_ruleUnaryExpression2027 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePrimaryExpression_in_entryRulePrimaryExpression2063 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePrimaryExpression2073 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValueSpecification_in_rulePrimaryExpression2119 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_37_in_rulePrimaryExpression2132 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleSuffixExpression_in_rulePrimaryExpression2153 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValueSpecification_in_entryRuleValueSpecification2191 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleValueSpecification2201 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLiteral_in_ruleValueSpecification2248 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_ruleValueSpecification2275 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInterval_in_ruleValueSpecification2302 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCollectionOrTuple_in_ruleValueSpecification2329 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTuple_in_ruleValueSpecification2356 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTimeExpression_in_ruleValueSpecification2383 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariableDeclaration_in_ruleValueSpecification2410 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_ruleValueSpecification2428 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleValueSpecification2450 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_ruleValueSpecification2461 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSuffixExpression_in_entryRuleSuffixExpression2498 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleSuffixExpression2508 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePropertyCallExpression_in_ruleSuffixExpression2555 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOperationCallExpression_in_ruleSuffixExpression2582 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePropertyCallExpression_in_entryRulePropertyCallExpression2617 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePropertyCallExpression2627 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rulePropertyCallExpression2672 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_37_in_rulePropertyCallExpression2685 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleSuffixExpression_in_rulePropertyCallExpression2706 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOperationCallExpression_in_entryRuleOperationCallExpression2744 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOperationCallExpression2754 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleOperationCallExpression2799 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_ruleOperationCallExpression2811 = new BitSet(new long[]{0x003F56D7800007F0L});
+    public static final BitSet FOLLOW_ruleListOfValues_in_ruleOperationCallExpression2832 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_ruleOperationCallExpression2845 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_37_in_ruleOperationCallExpression2858 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleSuffixExpression_in_ruleOperationCallExpression2879 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLiteral_in_entryRuleLiteral2917 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleLiteral2927 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNumberLiteralRule_in_ruleLiteral2974 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDateTimeLiteralRule_in_ruleLiteral3001 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBooleanLiteralRule_in_ruleLiteral3028 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNullLiteralRule_in_ruleLiteral3055 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDefaultLiteralRule_in_ruleLiteral3082 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStringLiteralRule_in_ruleLiteral3109 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_entryRuleNameOrChoiceOrBehaviorCall3144 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleNameOrChoiceOrBehaviorCall3154 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleNameOrChoiceOrBehaviorCall3200 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleNameOrChoiceOrBehaviorCall3221 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_38_in_ruleNameOrChoiceOrBehaviorCall3234 = new BitSet(new long[]{0x003F56D7800007F0L});
+    public static final BitSet FOLLOW_ruleListOfValues_in_ruleNameOrChoiceOrBehaviorCall3255 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_ruleNameOrChoiceOrBehaviorCall3268 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName3306 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName3316 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName3361 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_40_in_ruleQualifiedName3373 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedName3394 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInterval_in_entryRuleInterval3431 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleInterval3441 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_ruleInterval3479 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_42_in_ruleInterval3503 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleInterval3538 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_43_in_ruleInterval3550 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleInterval3571 = new BitSet(new long[]{0x0000060000000000L});
+    public static final BitSet FOLLOW_41_in_ruleInterval3590 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_ruleInterval3621 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCollectionOrTuple_in_entryRuleCollectionOrTuple3658 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleCollectionOrTuple3668 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_ruleCollectionOrTuple3705 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleListOfValues_in_ruleCollectionOrTuple3726 = new BitSet(new long[]{0x0000200000000000L});
+    public static final BitSet FOLLOW_45_in_ruleCollectionOrTuple3738 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTuple_in_entryRuleTuple3774 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTuple3784 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_ruleTuple3821 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleListOfValueNamePairs_in_ruleTuple3842 = new BitSet(new long[]{0x0000200000000000L});
+    public static final BitSet FOLLOW_45_in_ruleTuple3854 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleListOfValues_in_entryRuleListOfValues3890 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleListOfValues3900 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleListOfValues3946 = new BitSet(new long[]{0x0000000000040002L});
+    public static final BitSet FOLLOW_18_in_ruleListOfValues3959 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleListOfValues3980 = new BitSet(new long[]{0x0000000000040002L});
+    public static final BitSet FOLLOW_ruleListOfValueNamePairs_in_entryRuleListOfValueNamePairs4018 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleListOfValueNamePairs4028 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValueNamePair_in_ruleListOfValueNamePairs4074 = new BitSet(new long[]{0x0000000000040002L});
+    public static final BitSet FOLLOW_18_in_ruleListOfValueNamePairs4087 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleValueNamePair_in_ruleListOfValueNamePairs4108 = new BitSet(new long[]{0x0000000000040002L});
+    public static final BitSet FOLLOW_ruleValueNamePair_in_entryRuleValueNamePair4146 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleValueNamePair4156 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleValueNamePair4201 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_19_in_ruleValueNamePair4213 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleValueNamePair4234 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTimeExpression_in_entryRuleTimeExpression4270 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTimeExpression4280 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInstantObsExpression_in_ruleTimeExpression4327 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDurationObsExpression_in_ruleTimeExpression4354 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJitterExp_in_ruleTimeExpression4381 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInstantObsExpression_in_entryRuleInstantObsExpression4416 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleInstantObsExpression4426 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_ruleInstantObsExpression4463 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleInstantObsName_in_ruleInstantObsExpression4484 = new BitSet(new long[]{0x0000804000000002L});
+    public static final BitSet FOLLOW_38_in_ruleInstantObsExpression4497 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleInstantObsExpression4518 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_ruleInstantObsExpression4530 = new BitSet(new long[]{0x0000800000000002L});
+    public static final BitSet FOLLOW_47_in_ruleInstantObsExpression4545 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_ruleInstantObsExpression4557 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleInstantObsExpression4578 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_ruleInstantObsExpression4590 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInstantObsName_in_entryRuleInstantObsName4628 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleInstantObsName4638 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleInstantObsName4684 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleInstantObsName4705 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDurationObsExpression_in_entryRuleDurationObsExpression4741 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDurationObsExpression4751 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_ruleDurationObsExpression4788 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleDurationObsName_in_ruleDurationObsExpression4809 = new BitSet(new long[]{0x0000804000000002L});
+    public static final BitSet FOLLOW_38_in_ruleDurationObsExpression4822 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleDurationObsExpression4843 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_ruleDurationObsExpression4855 = new BitSet(new long[]{0x0000800000000002L});
+    public static final BitSet FOLLOW_47_in_ruleDurationObsExpression4870 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_ruleDurationObsExpression4882 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleDurationObsExpression4903 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_ruleDurationObsExpression4915 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDurationObsName_in_entryRuleDurationObsName4953 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDurationObsName4963 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleDurationObsName5009 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleDurationObsName5030 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJitterExp_in_entryRuleJitterExp5066 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleJitterExp5076 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_ruleJitterExp5113 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_ruleInstantObsExpression_in_ruleJitterExp5134 = new BitSet(new long[]{0x0000008100000000L});
+    public static final BitSet FOLLOW_32_in_ruleJitterExp5147 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_ruleInstantObsExpression_in_ruleJitterExp5168 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_ruleJitterExp5182 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariableDeclaration_in_entryRuleVariableDeclaration5218 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleVariableDeclaration5228 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariableDirectionKind_in_ruleVariableDeclaration5274 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_50_in_ruleVariableDeclaration5287 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleVariableDeclaration5304 = new BitSet(new long[]{0x0000000040080000L});
+    public static final BitSet FOLLOW_30_in_ruleVariableDeclaration5323 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleDataTypeName_in_ruleVariableDeclaration5344 = new BitSet(new long[]{0x0000000000080002L});
+    public static final BitSet FOLLOW_19_in_ruleVariableDeclaration5357 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_ruleVariableDeclaration5369 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleVariableDeclaration5390 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_ruleVariableDeclaration5402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_ruleVariableDeclaration5424 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_ruleVariableDeclaration5436 = new BitSet(new long[]{0x003F5657800007F0L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleVariableDeclaration5457 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_ruleVariableDeclaration5469 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariableDirectionKind_in_entryRuleVariableDirectionKind5508 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleVariableDirectionKind5519 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_ruleVariableDirectionKind5557 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_ruleVariableDirectionKind5576 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_ruleVariableDirectionKind5595 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeName_in_entryRuleDataTypeName5635 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDataTypeName5645 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleDataTypeName5691 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleDataTypeName5712 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNumberLiteralRule_in_entryRuleNumberLiteralRule5748 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleNumberLiteralRule5758 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIntegerLiteralRule_in_ruleNumberLiteralRule5805 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnlimitedLiteralRule_in_ruleNumberLiteralRule5832 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRealLiteralRule_in_ruleNumberLiteralRule5859 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIntegerLiteralRule_in_entryRuleIntegerLiteralRule5894 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleIntegerLiteralRule5904 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INTEGERLITERAL_in_ruleIntegerLiteralRule5945 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnlimitedLiteralRule_in_entryRuleUnlimitedLiteralRule5985 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleUnlimitedLiteralRule5995 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_ruleUnlimitedLiteralRule6037 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRealLiteralRule_in_entryRuleRealLiteralRule6085 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleRealLiteralRule6095 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_REALLITERAL_in_ruleRealLiteralRule6136 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDateTimeLiteralRule_in_entryRuleDateTimeLiteralRule6176 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDateTimeLiteralRule6186 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DATETIMELITERAL_in_ruleDateTimeLiteralRule6227 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBooleanLiteralRule_in_entryRuleBooleanLiteralRule6267 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleBooleanLiteralRule6277 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_BOOLEANLITERAL_in_ruleBooleanLiteralRule6318 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNullLiteralRule_in_entryRuleNullLiteralRule6358 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleNullLiteralRule6368 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_NULLLITERAL_in_ruleNullLiteralRule6409 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDefaultLiteralRule_in_entryRuleDefaultLiteralRule6449 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDefaultLiteralRule6459 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_ruleDefaultLiteralRule6501 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStringLiteralRule_in_entryRuleStringLiteralRule6549 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStringLiteralRule6559 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleStringLiteralRule6600 = new BitSet(new long[]{0x0000000000000002L});
 
 }

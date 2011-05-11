@@ -35,6 +35,7 @@ import org.eclipse.uml2.uml.Type;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.marte.vsl.extensions.VSLContextUtil;
 import org.eclipse.papyrus.marte.vsl.extensions.VSLTypeInferenceUtil;
 import org.eclipse.papyrus.marte.vsl.scoping.VSLScopeProvider;
@@ -404,11 +405,11 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		private Type inferedType ;
 		private boolean errorFound ;
 		private EObject validatedRule ;
-		private int validatedFeature ;
+		private EStructuralFeature validatedFeature ;
 		private String errorMessage = "" ;
 		
 		public VSLValidationResult(EObject validatedRule,
-									int validatedFeature,
+									EStructuralFeature validatedFeature,
 									Type inferedType, 
 									boolean errorFound,
 									String errorMessage) {
@@ -419,7 +420,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 			this.errorMessage = this.errorMessage + errorMessage ;
 		}
 		public EObject validatedRule() {return this.validatedRule ;}
-		public int validatedFeature() {return this.validatedFeature ;}
+		public EStructuralFeature validatedFeature() {return this.validatedFeature ;}
 		public boolean errorFound() {return this.errorFound ;}
 		public Type inferedType() {return this.inferedType ;}
 		public String errorMessage() {return this.errorMessage;}
@@ -428,31 +429,31 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 	public VSLValidationResult checkBinaryExpression(VSLValidationResult[] validationResults, EList<String> operators) {
 		
 		String operator = operators.get(0) ;
-		Integer potentialErrorFeature = null ;
+		EStructuralFeature potentialErrorFeature = null ;
 		EObject potentialErrorSource = validationResults[1].validatedRule() ;
 		
 		if (operator.equals("+") || operator.equals("-")) { // Additive op
-			potentialErrorFeature = VSLPackage.ADDITIVE_EXPRESSION__OP ;
+			potentialErrorFeature = VSLPackage.eINSTANCE.getAdditiveExpression_Op() ;
 			while (potentialErrorSource != null && ! (potentialErrorSource instanceof AdditiveExpression))
 				potentialErrorSource = potentialErrorSource.eContainer() ;
 		}
 		else if (operator.equals("*") || operator.equals("/") || operator.equals("mod")) { // Multiplicative op
-			potentialErrorFeature = VSLPackage.MULTIPLICATIVE_EXPRESSION__OP ;
+			potentialErrorFeature = VSLPackage.eINSTANCE.getMultiplicativeExpression_Op() ;
 			while (potentialErrorSource != null && ! (potentialErrorSource instanceof MultiplicativeExpression))
 				potentialErrorSource = potentialErrorSource.eContainer() ;
 		}
 		else if (operator.equals("==") || operator.equals("<>") ) { // Equality op
-			potentialErrorFeature = VSLPackage.EQUALITY_EXPRESSION__OP ;
+			potentialErrorFeature = VSLPackage.eINSTANCE.getEqualityExpression_Op() ;
 			while (potentialErrorSource != null && ! (potentialErrorSource instanceof EqualityExpression))
 				potentialErrorSource = potentialErrorSource.eContainer() ;
 		}
 		else if (operator.equals("and") || operator.equals("or") || operator.equals("xor")) { // AndOrXor op
-			potentialErrorFeature = VSLPackage.AND_OR_XOR_EXPRESSION__OP ;
+			potentialErrorFeature = VSLPackage.eINSTANCE.getAndOrXorExpression_Op() ;
 			while (potentialErrorSource != null && ! (potentialErrorSource instanceof AndOrXorExpression))
 				potentialErrorSource = potentialErrorSource.eContainer() ;
 		}
 		else { // Relational op
-			potentialErrorFeature = VSLPackage.RELATIONAL_EXPRESSION__OP ;
+			potentialErrorFeature = VSLPackage.eINSTANCE.getRelationalExpression_Op()  ;
 			while (potentialErrorSource != null && ! (potentialErrorSource instanceof RelationalExpression))
 				potentialErrorSource = potentialErrorSource.eContainer() ;
 		}
@@ -557,7 +558,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		}
 		else if (exp.getExp().size()!=3) {
 			String errorMessage = VSLErrorMessage.getInvalidNumberOfExpressionsInConditionalExpression() ;
-			return new VSLValidationResult(exp, VSLPackage.CONDITIONAL_EXPRESSION, null, true, errorMessage) ;
+			return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getConditionalExpression_Exp(), null, true, errorMessage) ;
 		}
 		else { 
 			// first check the condition
@@ -581,14 +582,14 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 			Type thenType = thenValidationResult.inferedType() ;
 			Type elseType = elseValidationResult.inferedType() ;
 			if (thenType == elseType)
-				return new VSLValidationResult(exp, VSLPackage.CONDITIONAL_EXPRESSION, thenType, false, "") ;
+				return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getConditionalExpression_Exp(), thenType, false, "") ;
 			else if (thenType.conformsTo(elseType))
-				return new VSLValidationResult(exp, VSLPackage.CONDITIONAL_EXPRESSION, elseType, false, "") ;
+				return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getConditionalExpression_Exp(), elseType, false, "") ;
 			else if (elseType.conformsTo(thenType))
-				return new VSLValidationResult(exp, VSLPackage.CONDITIONAL_EXPRESSION, thenType, false, "") ;
+				return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getConditionalExpression_Exp(), thenType, false, "") ;
 			else {
 				String errorMessage = VSLErrorMessage.getInvalidExpressionType(thenType.getName(), elseType.getName()) ;
-				return new VSLValidationResult(exp.getExp().get(2), VSLPackage.ADDITIVE_EXPRESSION, elseType, true, errorMessage) ;
+				return new VSLValidationResult(exp.getExp().get(2), VSLPackage.eINSTANCE.getAdditiveExpression_Exp(), elseType, true, errorMessage) ;
 			}
 		}
 	}
@@ -614,7 +615,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 	
 	public VSLValidationResult checkMultiplicativeExpression(MultiplicativeExpression exp) {
 		if (exp.getExp().size()==0) {
-			return new VSLValidationResult(exp, 0, null, false, "") ;
+			return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getMultiplicativeExpression_Exp(), null, false, "") ;
 		}
 		if (exp.getExp().size()==1) {
 			return eInstance.checkUnaryExpression(exp.getExp().get(0)) ;
@@ -643,7 +644,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 			inferedType = this.findReturnTypeOfUnaryOperator(exp.getOp(), nestedUnaryValidationResult.inferedType()) ;
 			if (inferedType == null) {
 				String errorMessage = "" + VSLErrorMessage.getUndefinedUnaryOperatorSignatureMessage(exp.getOp(), nestedUnaryValidationResult.inferedType.getName()) ;
-				return new VSLValidationResult(exp, VSLPackage.UNARY_EXPRESSION__OP, null, true, errorMessage) ;
+				return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getUnaryExpression_Op(), null, true, errorMessage) ;
 			}
 		}
 		else if (exp.getExp() != null) {
@@ -653,7 +654,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 			else
 				inferedType = nestedPrimaryValidationResult.inferedType() ;
 		}
-		return new VSLValidationResult(exp, 0, inferedType, false, "") ;
+		return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getUnaryExpression_Exp(), inferedType, false, "") ;
 	}
 	
 	public VSLValidationResult checkPrimaryExpression (PrimaryExpression exp) {
@@ -670,30 +671,45 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 			inferedType = suffixValidationResult.inferedType() ;
 		}
 		
-		return new VSLValidationResult(exp, 0, inferedType, false, "") ;
+		return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getPrimaryExpression_Prefix(), inferedType, false, "") ;
 	}
 	
 	public VSLValidationResult checkValueSpecification(ValueSpecification valueSpec) {
 		Type inferedType = null ;
-		if (valueSpec instanceof IntegerLiteralRule)
+		EStructuralFeature feature = null ;
+		if (valueSpec instanceof IntegerLiteralRule) {
 			inferedType = _integer ;
-		else if (valueSpec instanceof UnlimitedLiteralRule)
+			feature = VSLPackage.eINSTANCE.getLiteral_Value() ;
+		}
+		else if (valueSpec instanceof UnlimitedLiteralRule) {
 			inferedType = _unlimitedNatural ;
-		else if (valueSpec instanceof RealLiteralRule)
+			feature = VSLPackage.eINSTANCE.getLiteral_Value() ;
+		}
+		else if (valueSpec instanceof RealLiteralRule) {
 			inferedType = _real ;
-		else if (valueSpec instanceof DateTimeLiteralRule)
+			feature = VSLPackage.eINSTANCE.getLiteral_Value() ;
+		}
+		else if (valueSpec instanceof DateTimeLiteralRule) {
 			inferedType = _datetime ;
-		else if (valueSpec instanceof BooleanLiteralRule)
+			feature = VSLPackage.eINSTANCE.getLiteral_Value() ;
+		}
+		else if (valueSpec instanceof BooleanLiteralRule) {
 			inferedType = _boolean ;
-		else if (valueSpec instanceof StringLiteralRule)
+			feature = VSLPackage.eINSTANCE.getLiteral_Value() ;
+		}
+		else if (valueSpec instanceof StringLiteralRule) {
 			inferedType = _string ;
+			feature = VSLPackage.eINSTANCE.getLiteral_Value() ;
+		}
 		else if (valueSpec instanceof NullLiteralRule) {
 			ScopingHelper scopingHelper = VSLScopeProvider.eInstance.new ScopingHelper(valueSpec) ;
 			inferedType = scopingHelper.getClassifierForScoping() ;
+			feature = VSLPackage.eINSTANCE.getLiteral_Value() ;
 		}
 		else if (valueSpec instanceof DefaultLiteralRule) {
 			ScopingHelper scopingHelper = VSLScopeProvider.eInstance.new ScopingHelper(valueSpec) ;
 			inferedType = scopingHelper.getClassifierForScoping() ;
+			feature = VSLPackage.eINSTANCE.getLiteral_Value() ;
 		}
 		else if (valueSpec instanceof NameOrChoiceOrBehaviorCall) {
 			return checkNameOrChoiceOrBehaviorCall((NameOrChoiceOrBehaviorCall)valueSpec) ;
@@ -716,7 +732,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		else if (valueSpec instanceof Expression) {
 			return checkExpressionRule((Expression)valueSpec) ;
 		}
-		return new VSLValidationResult(valueSpec, 0, inferedType, false, "") ;
+		return new VSLValidationResult(valueSpec, feature, inferedType, false, "") ;
 	}
 	
 	
@@ -729,27 +745,36 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 			return initValidationResult ;
 		if (initValidationResult != null && initValidationResult.inferedType() != inferedType && !((Classifier)initValidationResult.inferedType()).getGenerals().contains(inferedType)) {
 			String errorMessage = VSLErrorMessage.getInvalidExpressionType(inferedType.getName(), initValidationResult.inferedType.getName()) ;
-			return new VSLValidationResult(valueSpec.getInitValue(), VSLPackage.EXPRESSION, initValidationResult.inferedType(), true, errorMessage) ;
+			return new VSLValidationResult(valueSpec, VSLPackage.eINSTANCE.getVariableDeclaration_InitValue(), initValidationResult.inferedType(), true, errorMessage) ;
 		}
 		
-		return new VSLValidationResult(valueSpec, 0, inferedType, false, "");
+		return new VSLValidationResult(valueSpec, VSLPackage.eINSTANCE.getVariableDeclaration_Name(), inferedType, false, "");
 	}
 
 	public VSLValidationResult checkTimeExpression(TimeExpression valueSpec) {
 		Expression index = null ;
 		Expression condition = null ;
 		Type inferedType = _real ;
+		EStructuralFeature mainFeature = null ;
+		EStructuralFeature indexFeature = null ;
+		EStructuralFeature conditionFeature = null ;
 		if (valueSpec instanceof InstantObsExpression) {
+			mainFeature = VSLPackage.eINSTANCE.getInstantObsExpression_Id() ;
 			inferedType = _datetime ;
 			InstantObsExpression instantObs = (InstantObsExpression)valueSpec ;
 			index = instantObs.getIndex() ;
+			indexFeature = VSLPackage.eINSTANCE.getInstantObsExpression_Index() ;
 			condition = instantObs.getCondition() ; 
+			conditionFeature = VSLPackage.eINSTANCE.getInstantObsExpression_Condition() ;
 		}
 		else if (valueSpec instanceof DurationObsExpression) {
+			mainFeature = VSLPackage.eINSTANCE.getDurationObsExpression_Id() ;
 			inferedType = _real ;
 			DurationObsExpression durationObs = (DurationObsExpression)valueSpec ;
 			index = durationObs.getIndex() ;
+			indexFeature = VSLPackage.eINSTANCE.getDurationObsExpression_Index() ;
 			condition = durationObs.getCondition() ;
+			conditionFeature = VSLPackage.eINSTANCE.getDurationObsExpression_Condition() ;
 		}
 		if (index != null) {
 			VSLValidationResult checkIndex = checkExpressionRule(index) ;
@@ -758,7 +783,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 			Classifier locallyInferedType = (Classifier)checkIndex.inferedType() ;
 			if (locallyInferedType != _integer && !locallyInferedType.getGenerals().contains(_integer) && !locallyInferedType.getName().equals(_integer.getName())) {
 				String errorMessage = VSLErrorMessage.getInvalidExpressionType(_integer.getName(), locallyInferedType.getName()) ;
-				return new VSLValidationResult(index, VSLPackage.EXPRESSION, locallyInferedType, true, errorMessage) ;
+				return new VSLValidationResult(valueSpec, indexFeature, locallyInferedType, true, errorMessage) ;
 			}
 		}
 		if (condition != null) {
@@ -768,11 +793,11 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 			Classifier locallyInferedType = (Classifier) checkCondition.inferedType() ;
 			if (locallyInferedType != _boolean && !locallyInferedType.getGenerals().contains(_boolean) && !locallyInferedType.getName().equals(_boolean.getName())) {
 				String errorMessage = VSLErrorMessage.getInvalidExpressionType(_boolean.getName(), locallyInferedType.getName()) ;
-				return new VSLValidationResult(condition, VSLPackage.EXPRESSION, locallyInferedType, true, errorMessage) ;
+				return new VSLValidationResult(valueSpec, conditionFeature, locallyInferedType, true, errorMessage) ;
 			}
 		}
 		
-		return new VSLValidationResult(valueSpec, VSLPackage.TIME_EXPRESSION, inferedType, false, "") ;
+		return new VSLValidationResult(valueSpec, mainFeature, inferedType, false, "") ;
 	}
 
 	public VSLValidationResult checkCollectionOrTuple(CollectionOrTuple valueSpec) {
@@ -796,7 +821,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 					Type locallyExpectedType = ((Property)tupleAttribs.get(i)).getType() ;
 					if (inferedType != locallyExpectedType && !((Classifier)inferedType).getGenerals().contains(locallyExpectedType)) {
 						String errorMessage = "" + VSLErrorMessage.getInvalidExpressionType(locallyExpectedType.getName(), inferedType.getName()) ;
-						return new VSLValidationResult(listOfValidationResults.get(i).validatedRule(), VSLPackage.EXPRESSION, inferedType, true, errorMessage) ;
+						return new VSLValidationResult(listOfValidationResults.get(i).validatedRule(), listOfValidationResults.get(i).validatedFeature(), inferedType, true, errorMessage) ;
 					}
 				}
 			}
@@ -805,7 +830,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 					Type inferedType = validationResult.inferedType() ;
 					if (inferedType != expectedType && ! ((Classifier)expectedType).getGenerals().contains(expectedType)) {
 						String errorMessage = "" + VSLErrorMessage.getInvalidExpressionType(expectedType.getName(), inferedType.getName()) ;
-						return new VSLValidationResult(validationResult.validatedRule(), VSLPackage.EXPRESSION, inferedType, true, errorMessage) ;
+						return new VSLValidationResult(validationResult.validatedRule(), validationResult.validatedFeature(), inferedType, true, errorMessage) ;
 					}
 				}
 			}
@@ -817,12 +842,12 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 				Type inferedType = validationResult.inferedType() ;
 				if (inferedType != locallyExpectedType && ! ((Classifier)locallyExpectedType).getGenerals().contains(locallyExpectedType)) {
 					String errorMessage = "" + VSLErrorMessage.getInvalidExpressionType(expectedType.getName(), inferedType.getName()) ;
-					return new VSLValidationResult(validationResult.validatedRule(), VSLPackage.EXPRESSION, inferedType, true, errorMessage) ;
+					return new VSLValidationResult(validationResult.validatedRule(), validationResult.validatedFeature(), inferedType, true, errorMessage) ;
 				}
 					
 			}
 		}
-		return new VSLValidationResult(valueSpec, 0, expectedType, false, "") ;
+		return new VSLValidationResult(valueSpec, VSLPackage.eINSTANCE.getCollectionOrTuple_ListOfValues(), expectedType, false, "") ;
 	}
 
 	
@@ -840,7 +865,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		Type inferedType = null ;
 		if (p.getType() == null) {
 			String errorMessage = VSLErrorMessage.getUntypedPropertyMessage(p.getName()) ;
-			return new VSLValidationResult(exp, VSLPackage.NAME_OR_CHOICE_OR_BEHAVIOR_CALL__ID, null, true, errorMessage) ;
+			return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getPropertyCallExpression_Property(), null, true, errorMessage) ;
 		}
 		else
 			inferedType = p.getType() ;
@@ -851,7 +876,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 			inferedType = suffixValidationResult.inferedType() ;
 		}
 		 
-		return new VSLValidationResult(exp, VSLPackage.PROPERTY_CALL_EXPRESSION, inferedType, false, "") ;
+		return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getPropertyCallExpression_Property(), inferedType, false, "") ;
 	}
 	
 	public VSLValidationResult checkOperationCallExpression (OperationCallExpression exp) {
@@ -868,19 +893,19 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		}
 		if (returnType == null) {
 			String errorMessage = VSLErrorMessage.getOperationWithoutReturnParameterMessage(b.getName()) ;
-			return new VSLValidationResult(exp, VSLPackage.OPERATION_CALL_EXPRESSION__OPERATION, null, true, errorMessage) ;
+			return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getOperationCallExpression_Operation(), null, true, errorMessage) ;
 		}
 		else {
 			inferedType = returnType ;
 			if (exp.getArguments() == null && (b.getOwnedParameters().size()-1)>0) { // -1 => retrieves the return parameter
 				String errorMessage = VSLErrorMessage.getInvalidNumberOfArgumentsForOperationCall(b.getName(), expectedTypeNames) ;
-				return new VSLValidationResult(exp, VSLPackage.OPERATION_CALL_EXPRESSION__ARGUMENTS, inferedType, true, errorMessage) ;
+				return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getOperationCallExpression_Arguments(), inferedType, true, errorMessage) ;
 			}
 			else {
 				if (exp.getArguments()!=null ) { // -1 => retrieves the return parameter
 					if ((exp.getArguments().getValues().size() != b.getOwnedParameters().size()-1)) {
 						String errorMessage = VSLErrorMessage.getInvalidNumberOfArgumentsForOperationCall(b.getName(), expectedTypeNames) ;
-						return new VSLValidationResult(exp, VSLPackage.OPERATION_CALL_EXPRESSION__ARGUMENTS, inferedType, true, errorMessage) ;
+						return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getOperationCallExpression_Arguments(), inferedType, true, errorMessage) ;
 					}
 					List<Parameter> inOutParameters = new ArrayList<Parameter>() ;
 					for (Parameter p : b.getOwnedParameters())
@@ -918,7 +943,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 					}
 					if (errorFound) {
 						String errorMessage = VSLErrorMessage.getInvalidArgumentsForOperationCall(b.getName(), expectedTypeNames, foundTypeNames) ;
-						return new VSLValidationResult(exp, VSLPackage.OPERATION_CALL_EXPRESSION__ARGUMENTS, inferedType, errorFound, errorMessage) ;
+						return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getOperationCallExpression_Arguments(), inferedType, errorFound, errorMessage) ;
 					}
 				}
 			}
@@ -929,17 +954,17 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 				return suffixValidationResult ;
 			inferedType = suffixValidationResult.inferedType() ;
 		}
-		return new VSLValidationResult(exp, VSLPackage.OPERATION_CALL_EXPRESSION, inferedType, false, "") ;
+		return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getOperationCallExpression_Operation(), inferedType, false, "") ;
 	}
 	
 	public VSLValidationResult checkInterval(Interval interval) {
 		
 		
 		if (interval.getLower() == null) {
-			return new VSLValidationResult(interval, VSLPackage.INTERVAL__LOWER, null, true, "") ;
+			return new VSLValidationResult(interval, VSLPackage.eINSTANCE.getInterval_Lower(), null, true, "") ;
 		}
 		else if (interval.getUpper() == null) {
-			return new VSLValidationResult(interval, VSLPackage.INTERVAL__UPPER, null, true, "") ;
+			return new VSLValidationResult(interval, VSLPackage.eINSTANCE.getInterval_Upper(), null, true, "") ;
 		}	
 		VSLValidationResult lowerValidationResult = checkExpressionRule(interval.getLower()) ;
 		if (lowerValidationResult.errorFound())
@@ -958,15 +983,15 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		Type lowerType = lowerValidationResult.inferedType() ;
 		if (lowerType == null || (lowerType != expectedType && !((Classifier)lowerType).getGenerals().contains(expectedType))) {
 			String errorMessage = VSLErrorMessage.getInvalidExpressionType(expectedType.getName(), lowerType != null ? lowerType.getName() : "NULL") ;
-			return new VSLValidationResult(interval.getLower(), VSLPackage.EXPRESSION, lowerType, true, errorMessage) ;
+			return new VSLValidationResult(interval, VSLPackage.eINSTANCE.getInterval_Lower(), lowerType, true, errorMessage) ;
 		}
 		Type upperType = upperValidationResult.inferedType() ;
 		if (upperType == null || (upperType != expectedType && !((Classifier)upperType).getGenerals().contains(expectedType))) {
 			String errorMessage = VSLErrorMessage.getInvalidExpressionType(expectedType.getName(), upperType != null ? upperType.getName() : "NULL") ;
-			return new VSLValidationResult(interval.getUpper(), VSLPackage.EXPRESSION, upperType, true, errorMessage) ;
+			return new VSLValidationResult(interval, VSLPackage.eINSTANCE.getInterval_Upper(), upperType, true, errorMessage) ;
 		}
 		
-		return new VSLValidationResult(interval, VSLPackage.INTERVAL, expectedType, false, "") ;
+		return new VSLValidationResult(interval, VSLPackage.eINSTANCE.getInterval_Lower(), expectedType, false, "") ;
 	}
 	
 	
@@ -979,30 +1004,30 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 			if (helper.isExpectedTypeAStereotype()) { 
 				// errors are automatically handled by scoping
 				Stereotype expectedStereotype = (Stereotype) helper.getClassifierForScoping() ;
-				return new VSLValidationResult(exp, VSLPackage.NAME_OR_CHOICE_OR_BEHAVIOR_CALL , expectedStereotype, false, "") ;
+				return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getNameOrChoiceOrBehaviorCall_Id(), expectedStereotype, false, "") ;
 			}
 			else if (helper.isExpectedTypeAUMLMetaclass()) {
 				// errors are automatically handled by scoping
 				org.eclipse.uml2.uml.Class expectedMetaclass = (org.eclipse.uml2.uml.Class) helper.getClassifierForScoping() ;
-				return new VSLValidationResult(exp, VSLPackage.NAME_OR_CHOICE_OR_BEHAVIOR_CALL , expectedMetaclass, false, "") ;
+				return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getNameOrChoiceOrBehaviorCall_Id(), expectedMetaclass, false, "") ;
 			}
 			// default cases
 			else if (exp.getId() instanceof Property) {
 				Property p = (Property)exp.getId() ;
 				if (p.getType() == null) {
 					String errorMessage = VSLErrorMessage.getUntypedPropertyMessage(p.getName()) ;
-					return new VSLValidationResult(exp, VSLPackage.NAME_OR_CHOICE_OR_BEHAVIOR_CALL__ID, inferedType, true, errorMessage) ;
+					return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getNameOrChoiceOrBehaviorCall_Id(), inferedType, true, errorMessage) ;
 				}
 				else {
 					inferedType = p.getType() ;
 					if (VSLContextUtil.isAChoiceType((Classifier)p.getOwner())) {
 						if (exp.getArguments() == null || exp.getArguments().getValues().isEmpty()) {
 							String errorMessage = VSLErrorMessage.getMissingArgumentForChosenAlternativeMessage(p.getName(), p.getType().getName()) ;
-							return new VSLValidationResult(exp, VSLPackage.NAME_OR_CHOICE_OR_BEHAVIOR_CALL__ARGUMENTS, null, true, errorMessage) ;
+							return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getNameOrChoiceOrBehaviorCall_Arguments(), null, true, errorMessage) ;
 						}
 						else if (exp.getArguments().getValues().size() > 1) {
 							String errorMessage = VSLErrorMessage.getTooManyArgumentsForChosenAlternativeMessage(p.getName(), p.getType().getName()) ;
-							return new VSLValidationResult(exp, VSLPackage.NAME_OR_CHOICE_OR_BEHAVIOR_CALL__ARGUMENTS, null, true, errorMessage) ;
+							return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getNameOrChoiceOrBehaviorCall_Arguments(), null, true, errorMessage) ;
 						}
 						else { // number of arguments == 1
 							VSLValidationResult nestedArgumentValidationResult = checkExpressionRule(exp.getArguments().getValues().get(0)) ;
@@ -1013,7 +1038,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 								String errorMessage = VSLErrorMessage.getInvalidArgumentForChosenAlternativeMessage(p.getName(), 
 																									scopingHelper.getClassifierForScoping().getName(), 
 																									nestedArgumentValidationResult.inferedType().getName()) ;
-								return new VSLValidationResult(exp.getArguments().getValues().get(0), VSLPackage.EXPRESSION, inferedType, true, errorMessage) ;
+								return new VSLValidationResult(exp.getArguments().getValues().get(0), nestedArgumentValidationResult.validatedFeature(), inferedType, true, errorMessage) ;
 							}
 						}
 					}
@@ -1021,7 +1046,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 			}
 			else if (exp.getId() instanceof EnumerationLiteral) {
 				EnumerationLiteral literal = (EnumerationLiteral)exp.getId() ;
-				return new VSLValidationResult(exp, 0, literal.getEnumeration(), false, "") ;
+				return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getNameOrChoiceOrBehaviorCall_Id(), literal.getEnumeration(), false, "") ;
 			}
 			else if (exp.getId() instanceof Behavior) {
 				Behavior b = (Behavior)exp.getId() ;
@@ -1036,17 +1061,17 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 				}
 				if (returnType == null) {
 					String errorMessage = VSLErrorMessage.getBehaviorWithoutReturnParameterMessage(b.getName()) ;
-					return new VSLValidationResult(exp, VSLPackage.NAME_OR_CHOICE_OR_BEHAVIOR_CALL__ID, inferedType, true, errorMessage) ;
+					return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getNameOrChoiceOrBehaviorCall_Id(), inferedType, true, errorMessage) ;
 				}
 				else {
 					inferedType = returnType ;
 					if (exp.getArguments() == null && expectedTypeNames.size()>0) {
 						String errorMessage = VSLErrorMessage.getMissingArgumentsForBehaviorCall(b.getName(), expectedTypeNames) ;
-						return new VSLValidationResult(exp, VSLPackage.NAME_OR_CHOICE_OR_BEHAVIOR_CALL__ARGUMENTS, inferedType, true, errorMessage) ;
+						return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getNameOrChoiceOrBehaviorCall_Arguments(), inferedType, true, errorMessage) ;
 					}
 					else if (exp.getArguments() != null && exp.getArguments().getValues().size() != b.getOwnedParameters().size()-1) { // -1 => retrieves the return parameter
 						String errorMessage = VSLErrorMessage.getInvalidNumberOfArgumentsForBehaviorCall(b.getName(), expectedTypeNames) ;
-						return new VSLValidationResult(exp, VSLPackage.NAME_OR_CHOICE_OR_BEHAVIOR_CALL__ARGUMENTS, inferedType, true, errorMessage) ;
+						return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getNameOrChoiceOrBehaviorCall_Arguments(), inferedType, true, errorMessage) ;
 					}
 					else {
 						List<Parameter> inOutParameters = new ArrayList<Parameter>() ;
@@ -1077,13 +1102,13 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 						}
 						if (errorFound) {
 							String errorMessage = VSLErrorMessage.getInvalidArgumentsForBehaviorCall(b.getName(), expectedTypeNames, foundTypeNames) ;
-							return new VSLValidationResult(exp, VSLPackage.NAME_OR_CHOICE_OR_BEHAVIOR_CALL__ARGUMENTS, inferedType, errorFound, errorMessage) ;
+							return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getNameOrChoiceOrBehaviorCall_Arguments(), inferedType, errorFound, errorMessage) ;
 						}
 					}
 				}
 			}
 		}
-		return new VSLValidationResult(exp, 0, inferedType, false, "") ;
+		return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getNameOrChoiceOrBehaviorCall_Id(), inferedType, false, "") ;
 	}
 
 	public VSLValidationResult checkTuple(Tuple exp) {
@@ -1095,34 +1120,34 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		}
 		Classifier classifierForScoping = scopingHelper.getClassifierForScoping() ;
 		if (VSLContextUtil.isATupleType(classifierForScoping))
-			return new VSLValidationResult(exp, VSLPackage.TUPLE, classifierForScoping, false, "") ;
+			return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getTuple_ListOfValueNamePairs(), classifierForScoping, false, "") ;
 		else
 			// Temporary solution: We have a tuple expression, and the expected type is not a tuple. The following implementation forces
 			// the type of the expression to be an nfp_duration (which is inline with the temporary implementation of scoping)
 			// TODO : Make it generic, and rely on the stereotype <<Operator>> to infer the type of a tuple expression, 
 			// when it is used as an argument for a binary operator
-			return new VSLValidationResult(exp, VSLPackage.TUPLE, _nfp_duration, false, "") ;
+			return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getTuple_ListOfValueNamePairs(), _nfp_duration, false, "") ;
 	}
 	
 	public VSLValidationResult checkValueNamePair(ValueNamePair exp) {
 		if (exp.getProperty() == null) {
-			return new VSLValidationResult(exp, VSLPackage.VALUE_NAME_PAIR__PROPERTY, null, true, "") ;
+			return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getValueNamePair_Property(), null, true, "") ;
 		}
 		else if (exp.getProperty().getType() == null) {
 			String errorMessage = VSLErrorMessage.getUntypedPropertyMessage(exp.getProperty().getName()) ;
-			return new VSLValidationResult(exp, VSLPackage.VALUE_NAME_PAIR__PROPERTY, null, true, errorMessage) ;
+			return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getValueNamePair_Property(), null, true, errorMessage) ;
 		}	
 		VSLValidationResult valueValidationResult = checkExpressionRule(exp.getValue()) ;
 		if (valueValidationResult.errorFound())
 			return valueValidationResult ;
 		Type inferedType = valueValidationResult.inferedType() ;
 		if (inferedType.getName().equals(exp.getProperty().getType().getName()))
-			return new VSLValidationResult(exp, VSLPackage.VALUE_NAME_PAIR, inferedType, false, "") ;
+			return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getValueNamePair_Property(), inferedType, false, "") ;
 		else if (!inferedType.conformsTo(exp.getProperty().getType())) {
 			String errorMessage = VSLErrorMessage.getInvalidExpressionType(exp.getProperty().getType().getName(), inferedType.getName()) ;
-			return new VSLValidationResult(exp.getValue(), VSLPackage.EXPRESSION, inferedType, true, errorMessage) ;
+			return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getValueNamePair_Value(), inferedType, true, errorMessage) ;
 		}
-		return new VSLValidationResult(exp, VSLPackage.VALUE_NAME_PAIR, inferedType, false, "") ;
+		return new VSLValidationResult(exp, VSLPackage.eINSTANCE.getValueNamePair_Property(), inferedType, false, "") ;
 	}
 	
 	public static CollectionOrTuple isACollection(Expression exp) {

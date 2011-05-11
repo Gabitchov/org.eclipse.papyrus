@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.marte.vsl.ui.contentassist.antlr.internal; 
 
 import java.io.InputStream;
@@ -38,26 +25,70 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INTEGERLITERAL", "RULE_REALLITERAL", "RULE_DATETIMELITERAL", "RULE_BOOLEANLITERAL", "RULE_NULLLITERAL", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'and'", "'or'", "'xor'", "'=='", "'<>'", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'mod'", "'not'", "']'", "'['", "'in'", "'out'", "'inout'", "':'", "'.'", "'('", "')'", "'::'", "'..'", "'{'", "'}'", "','", "'='", "'@'", "'when'", "'&'", "'jitter('", "'$'", "'?'"
     };
-    public static final int RULE_NULLLITERAL=9;
     public static final int RULE_DATETIMELITERAL=7;
-    public static final int RULE_BOOLEANLITERAL=8;
     public static final int RULE_ID=4;
-    public static final int RULE_STRING=10;
+    public static final int T__29=29;
+    public static final int T__28=28;
+    public static final int T__27=27;
+    public static final int T__26=26;
+    public static final int T__25=25;
+    public static final int T__24=24;
+    public static final int T__23=23;
+    public static final int T__22=22;
     public static final int RULE_ANY_OTHER=15;
+    public static final int T__21=21;
+    public static final int T__20=20;
     public static final int RULE_REALLITERAL=6;
-    public static final int RULE_INTEGERLITERAL=5;
-    public static final int RULE_INT=11;
-    public static final int RULE_WS=14;
-    public static final int RULE_SL_COMMENT=13;
     public static final int EOF=-1;
+    public static final int RULE_BOOLEANLITERAL=8;
+    public static final int T__19=19;
+    public static final int T__16=16;
+    public static final int T__51=51;
+    public static final int T__18=18;
+    public static final int T__17=17;
+    public static final int RULE_INT=11;
+    public static final int T__50=50;
+    public static final int RULE_NULLLITERAL=9;
+    public static final int T__42=42;
+    public static final int T__43=43;
+    public static final int T__40=40;
+    public static final int T__41=41;
+    public static final int T__46=46;
+    public static final int T__47=47;
+    public static final int T__44=44;
+    public static final int T__45=45;
+    public static final int T__48=48;
+    public static final int T__49=49;
+    public static final int RULE_INTEGERLITERAL=5;
+    public static final int RULE_SL_COMMENT=13;
     public static final int RULE_ML_COMMENT=12;
+    public static final int T__30=30;
+    public static final int T__31=31;
+    public static final int RULE_STRING=10;
+    public static final int T__32=32;
+    public static final int T__33=33;
+    public static final int T__34=34;
+    public static final int T__35=35;
+    public static final int T__36=36;
+    public static final int T__37=37;
+    public static final int T__38=38;
+    public static final int T__39=39;
+    public static final int RULE_WS=14;
+
+    // delegates
+    // delegators
+
 
         public InternalVSLParser(TokenStream input) {
-            super(input);
+            this(input, new RecognizerSharedState());
+        }
+        public InternalVSLParser(TokenStream input, RecognizerSharedState state) {
+            super(input, state);
+             
         }
         
 
-    public String[] getTokenNames() { return tokenNames; }
+    public String[] getTokenNames() { return InternalVSLParser.tokenNames; }
     public String getGrammarFileName() { return "../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g"; }
 
 
@@ -81,7 +112,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
 
 
 
-    // $ANTLR start entryRuleExpression
+    // $ANTLR start "entryRuleExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:61:1: entryRuleExpression : ruleExpression EOF ;
     public final void entryRuleExpression() throws RecognitionException {
         try {
@@ -91,7 +122,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getExpressionRule()); 
             pushFollow(FOLLOW_ruleExpression_in_entryRuleExpression61);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleExpression68); 
@@ -107,10 +139,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleExpression
+    // $ANTLR end "entryRuleExpression"
 
 
-    // $ANTLR start ruleExpression
+    // $ANTLR start "ruleExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:70:1: ruleExpression : ( ( rule__Expression__ExpAssignment ) ) ;
     public final void ruleExpression() throws RecognitionException {
 
@@ -129,7 +161,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Expression__ExpAssignment_in_ruleExpression94);
             rule__Expression__ExpAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -153,10 +186,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleExpression
+    // $ANTLR end "ruleExpression"
 
 
-    // $ANTLR start entryRuleAndOrXorExpression
+    // $ANTLR start "entryRuleAndOrXorExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:89:1: entryRuleAndOrXorExpression : ruleAndOrXorExpression EOF ;
     public final void entryRuleAndOrXorExpression() throws RecognitionException {
         try {
@@ -166,7 +199,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getAndOrXorExpressionRule()); 
             pushFollow(FOLLOW_ruleAndOrXorExpression_in_entryRuleAndOrXorExpression121);
             ruleAndOrXorExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getAndOrXorExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleAndOrXorExpression128); 
@@ -182,10 +216,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleAndOrXorExpression
+    // $ANTLR end "entryRuleAndOrXorExpression"
 
 
-    // $ANTLR start ruleAndOrXorExpression
+    // $ANTLR start "ruleAndOrXorExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:98:1: ruleAndOrXorExpression : ( ( rule__AndOrXorExpression__Group__0 ) ) ;
     public final void ruleAndOrXorExpression() throws RecognitionException {
 
@@ -204,7 +238,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__AndOrXorExpression__Group__0_in_ruleAndOrXorExpression154);
             rule__AndOrXorExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -228,10 +263,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleAndOrXorExpression
+    // $ANTLR end "ruleAndOrXorExpression"
 
 
-    // $ANTLR start entryRuleEqualityExpression
+    // $ANTLR start "entryRuleEqualityExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:117:1: entryRuleEqualityExpression : ruleEqualityExpression EOF ;
     public final void entryRuleEqualityExpression() throws RecognitionException {
         try {
@@ -241,7 +276,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getEqualityExpressionRule()); 
             pushFollow(FOLLOW_ruleEqualityExpression_in_entryRuleEqualityExpression181);
             ruleEqualityExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getEqualityExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleEqualityExpression188); 
@@ -257,10 +293,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleEqualityExpression
+    // $ANTLR end "entryRuleEqualityExpression"
 
 
-    // $ANTLR start ruleEqualityExpression
+    // $ANTLR start "ruleEqualityExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:126:1: ruleEqualityExpression : ( ( rule__EqualityExpression__Group__0 ) ) ;
     public final void ruleEqualityExpression() throws RecognitionException {
 
@@ -279,7 +315,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__EqualityExpression__Group__0_in_ruleEqualityExpression214);
             rule__EqualityExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -303,10 +340,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleEqualityExpression
+    // $ANTLR end "ruleEqualityExpression"
 
 
-    // $ANTLR start entryRuleRelationalExpression
+    // $ANTLR start "entryRuleRelationalExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:145:1: entryRuleRelationalExpression : ruleRelationalExpression EOF ;
     public final void entryRuleRelationalExpression() throws RecognitionException {
         try {
@@ -316,7 +353,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getRelationalExpressionRule()); 
             pushFollow(FOLLOW_ruleRelationalExpression_in_entryRuleRelationalExpression241);
             ruleRelationalExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getRelationalExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleRelationalExpression248); 
@@ -332,10 +370,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleRelationalExpression
+    // $ANTLR end "entryRuleRelationalExpression"
 
 
-    // $ANTLR start ruleRelationalExpression
+    // $ANTLR start "ruleRelationalExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:154:1: ruleRelationalExpression : ( ( rule__RelationalExpression__Group__0 ) ) ;
     public final void ruleRelationalExpression() throws RecognitionException {
 
@@ -354,7 +392,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__RelationalExpression__Group__0_in_ruleRelationalExpression274);
             rule__RelationalExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -378,10 +417,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleRelationalExpression
+    // $ANTLR end "ruleRelationalExpression"
 
 
-    // $ANTLR start entryRuleConditionalExpression
+    // $ANTLR start "entryRuleConditionalExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:173:1: entryRuleConditionalExpression : ruleConditionalExpression EOF ;
     public final void entryRuleConditionalExpression() throws RecognitionException {
         try {
@@ -391,7 +430,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getConditionalExpressionRule()); 
             pushFollow(FOLLOW_ruleConditionalExpression_in_entryRuleConditionalExpression301);
             ruleConditionalExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getConditionalExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleConditionalExpression308); 
@@ -407,10 +447,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleConditionalExpression
+    // $ANTLR end "entryRuleConditionalExpression"
 
 
-    // $ANTLR start ruleConditionalExpression
+    // $ANTLR start "ruleConditionalExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:182:1: ruleConditionalExpression : ( ( rule__ConditionalExpression__Group__0 ) ) ;
     public final void ruleConditionalExpression() throws RecognitionException {
 
@@ -429,7 +469,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__Group__0_in_ruleConditionalExpression334);
             rule__ConditionalExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -453,10 +494,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleConditionalExpression
+    // $ANTLR end "ruleConditionalExpression"
 
 
-    // $ANTLR start entryRuleAdditiveExpression
+    // $ANTLR start "entryRuleAdditiveExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:201:1: entryRuleAdditiveExpression : ruleAdditiveExpression EOF ;
     public final void entryRuleAdditiveExpression() throws RecognitionException {
         try {
@@ -466,7 +507,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getAdditiveExpressionRule()); 
             pushFollow(FOLLOW_ruleAdditiveExpression_in_entryRuleAdditiveExpression361);
             ruleAdditiveExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getAdditiveExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleAdditiveExpression368); 
@@ -482,10 +524,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleAdditiveExpression
+    // $ANTLR end "entryRuleAdditiveExpression"
 
 
-    // $ANTLR start ruleAdditiveExpression
+    // $ANTLR start "ruleAdditiveExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:210:1: ruleAdditiveExpression : ( ( rule__AdditiveExpression__Group__0 ) ) ;
     public final void ruleAdditiveExpression() throws RecognitionException {
 
@@ -504,7 +546,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__AdditiveExpression__Group__0_in_ruleAdditiveExpression394);
             rule__AdditiveExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -528,10 +571,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleAdditiveExpression
+    // $ANTLR end "ruleAdditiveExpression"
 
 
-    // $ANTLR start entryRuleMultiplicativeExpression
+    // $ANTLR start "entryRuleMultiplicativeExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:229:1: entryRuleMultiplicativeExpression : ruleMultiplicativeExpression EOF ;
     public final void entryRuleMultiplicativeExpression() throws RecognitionException {
         try {
@@ -541,7 +584,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getMultiplicativeExpressionRule()); 
             pushFollow(FOLLOW_ruleMultiplicativeExpression_in_entryRuleMultiplicativeExpression421);
             ruleMultiplicativeExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMultiplicativeExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleMultiplicativeExpression428); 
@@ -557,10 +601,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleMultiplicativeExpression
+    // $ANTLR end "entryRuleMultiplicativeExpression"
 
 
-    // $ANTLR start ruleMultiplicativeExpression
+    // $ANTLR start "ruleMultiplicativeExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:238:1: ruleMultiplicativeExpression : ( ( rule__MultiplicativeExpression__Group__0 ) ) ;
     public final void ruleMultiplicativeExpression() throws RecognitionException {
 
@@ -579,7 +623,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__MultiplicativeExpression__Group__0_in_ruleMultiplicativeExpression454);
             rule__MultiplicativeExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -603,10 +648,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleMultiplicativeExpression
+    // $ANTLR end "ruleMultiplicativeExpression"
 
 
-    // $ANTLR start entryRuleUnaryExpression
+    // $ANTLR start "entryRuleUnaryExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:257:1: entryRuleUnaryExpression : ruleUnaryExpression EOF ;
     public final void entryRuleUnaryExpression() throws RecognitionException {
         try {
@@ -616,7 +661,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getUnaryExpressionRule()); 
             pushFollow(FOLLOW_ruleUnaryExpression_in_entryRuleUnaryExpression481);
             ruleUnaryExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getUnaryExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleUnaryExpression488); 
@@ -632,10 +678,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleUnaryExpression
+    // $ANTLR end "entryRuleUnaryExpression"
 
 
-    // $ANTLR start ruleUnaryExpression
+    // $ANTLR start "ruleUnaryExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:266:1: ruleUnaryExpression : ( ( rule__UnaryExpression__Alternatives ) ) ;
     public final void ruleUnaryExpression() throws RecognitionException {
 
@@ -654,7 +700,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__UnaryExpression__Alternatives_in_ruleUnaryExpression514);
             rule__UnaryExpression__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -678,10 +725,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleUnaryExpression
+    // $ANTLR end "ruleUnaryExpression"
 
 
-    // $ANTLR start entryRulePrimaryExpression
+    // $ANTLR start "entryRulePrimaryExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:285:1: entryRulePrimaryExpression : rulePrimaryExpression EOF ;
     public final void entryRulePrimaryExpression() throws RecognitionException {
         try {
@@ -691,7 +738,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getPrimaryExpressionRule()); 
             pushFollow(FOLLOW_rulePrimaryExpression_in_entryRulePrimaryExpression541);
             rulePrimaryExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getPrimaryExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRulePrimaryExpression548); 
@@ -707,10 +755,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRulePrimaryExpression
+    // $ANTLR end "entryRulePrimaryExpression"
 
 
-    // $ANTLR start rulePrimaryExpression
+    // $ANTLR start "rulePrimaryExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:294:1: rulePrimaryExpression : ( ( rule__PrimaryExpression__Group__0 ) ) ;
     public final void rulePrimaryExpression() throws RecognitionException {
 
@@ -729,7 +777,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__PrimaryExpression__Group__0_in_rulePrimaryExpression574);
             rule__PrimaryExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -753,10 +802,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rulePrimaryExpression
+    // $ANTLR end "rulePrimaryExpression"
 
 
-    // $ANTLR start entryRuleValueSpecification
+    // $ANTLR start "entryRuleValueSpecification"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:313:1: entryRuleValueSpecification : ruleValueSpecification EOF ;
     public final void entryRuleValueSpecification() throws RecognitionException {
         try {
@@ -766,7 +815,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getValueSpecificationRule()); 
             pushFollow(FOLLOW_ruleValueSpecification_in_entryRuleValueSpecification601);
             ruleValueSpecification();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getValueSpecificationRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleValueSpecification608); 
@@ -782,10 +832,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleValueSpecification
+    // $ANTLR end "entryRuleValueSpecification"
 
 
-    // $ANTLR start ruleValueSpecification
+    // $ANTLR start "ruleValueSpecification"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:322:1: ruleValueSpecification : ( ( rule__ValueSpecification__Alternatives ) ) ;
     public final void ruleValueSpecification() throws RecognitionException {
 
@@ -804,7 +854,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ValueSpecification__Alternatives_in_ruleValueSpecification634);
             rule__ValueSpecification__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -828,10 +879,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleValueSpecification
+    // $ANTLR end "ruleValueSpecification"
 
 
-    // $ANTLR start entryRuleSuffixExpression
+    // $ANTLR start "entryRuleSuffixExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:341:1: entryRuleSuffixExpression : ruleSuffixExpression EOF ;
     public final void entryRuleSuffixExpression() throws RecognitionException {
         try {
@@ -841,7 +892,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getSuffixExpressionRule()); 
             pushFollow(FOLLOW_ruleSuffixExpression_in_entryRuleSuffixExpression661);
             ruleSuffixExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getSuffixExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleSuffixExpression668); 
@@ -857,10 +909,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleSuffixExpression
+    // $ANTLR end "entryRuleSuffixExpression"
 
 
-    // $ANTLR start ruleSuffixExpression
+    // $ANTLR start "ruleSuffixExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:350:1: ruleSuffixExpression : ( ( rule__SuffixExpression__Alternatives ) ) ;
     public final void ruleSuffixExpression() throws RecognitionException {
 
@@ -879,7 +931,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SuffixExpression__Alternatives_in_ruleSuffixExpression694);
             rule__SuffixExpression__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -903,10 +956,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleSuffixExpression
+    // $ANTLR end "ruleSuffixExpression"
 
 
-    // $ANTLR start entryRulePropertyCallExpression
+    // $ANTLR start "entryRulePropertyCallExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:369:1: entryRulePropertyCallExpression : rulePropertyCallExpression EOF ;
     public final void entryRulePropertyCallExpression() throws RecognitionException {
         try {
@@ -916,7 +969,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getPropertyCallExpressionRule()); 
             pushFollow(FOLLOW_rulePropertyCallExpression_in_entryRulePropertyCallExpression721);
             rulePropertyCallExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getPropertyCallExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRulePropertyCallExpression728); 
@@ -932,10 +986,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRulePropertyCallExpression
+    // $ANTLR end "entryRulePropertyCallExpression"
 
 
-    // $ANTLR start rulePropertyCallExpression
+    // $ANTLR start "rulePropertyCallExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:378:1: rulePropertyCallExpression : ( ( rule__PropertyCallExpression__Group__0 ) ) ;
     public final void rulePropertyCallExpression() throws RecognitionException {
 
@@ -954,7 +1008,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__PropertyCallExpression__Group__0_in_rulePropertyCallExpression754);
             rule__PropertyCallExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -978,10 +1033,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rulePropertyCallExpression
+    // $ANTLR end "rulePropertyCallExpression"
 
 
-    // $ANTLR start entryRuleOperationCallExpression
+    // $ANTLR start "entryRuleOperationCallExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:397:1: entryRuleOperationCallExpression : ruleOperationCallExpression EOF ;
     public final void entryRuleOperationCallExpression() throws RecognitionException {
         try {
@@ -991,7 +1046,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getOperationCallExpressionRule()); 
             pushFollow(FOLLOW_ruleOperationCallExpression_in_entryRuleOperationCallExpression781);
             ruleOperationCallExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getOperationCallExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleOperationCallExpression788); 
@@ -1007,10 +1063,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleOperationCallExpression
+    // $ANTLR end "entryRuleOperationCallExpression"
 
 
-    // $ANTLR start ruleOperationCallExpression
+    // $ANTLR start "ruleOperationCallExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:406:1: ruleOperationCallExpression : ( ( rule__OperationCallExpression__Group__0 ) ) ;
     public final void ruleOperationCallExpression() throws RecognitionException {
 
@@ -1029,7 +1085,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__0_in_ruleOperationCallExpression814);
             rule__OperationCallExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1053,10 +1110,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleOperationCallExpression
+    // $ANTLR end "ruleOperationCallExpression"
 
 
-    // $ANTLR start entryRuleLiteral
+    // $ANTLR start "entryRuleLiteral"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:425:1: entryRuleLiteral : ruleLiteral EOF ;
     public final void entryRuleLiteral() throws RecognitionException {
         try {
@@ -1066,7 +1123,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getLiteralRule()); 
             pushFollow(FOLLOW_ruleLiteral_in_entryRuleLiteral841);
             ruleLiteral();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getLiteralRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleLiteral848); 
@@ -1082,10 +1140,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleLiteral
+    // $ANTLR end "entryRuleLiteral"
 
 
-    // $ANTLR start ruleLiteral
+    // $ANTLR start "ruleLiteral"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:434:1: ruleLiteral : ( ( rule__Literal__Alternatives ) ) ;
     public final void ruleLiteral() throws RecognitionException {
 
@@ -1104,7 +1162,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Literal__Alternatives_in_ruleLiteral874);
             rule__Literal__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1128,10 +1187,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleLiteral
+    // $ANTLR end "ruleLiteral"
 
 
-    // $ANTLR start entryRuleNameOrChoiceOrBehaviorCall
+    // $ANTLR start "entryRuleNameOrChoiceOrBehaviorCall"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:453:1: entryRuleNameOrChoiceOrBehaviorCall : ruleNameOrChoiceOrBehaviorCall EOF ;
     public final void entryRuleNameOrChoiceOrBehaviorCall() throws RecognitionException {
         try {
@@ -1141,7 +1200,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getNameOrChoiceOrBehaviorCallRule()); 
             pushFollow(FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_entryRuleNameOrChoiceOrBehaviorCall901);
             ruleNameOrChoiceOrBehaviorCall();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getNameOrChoiceOrBehaviorCallRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleNameOrChoiceOrBehaviorCall908); 
@@ -1157,10 +1217,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleNameOrChoiceOrBehaviorCall
+    // $ANTLR end "entryRuleNameOrChoiceOrBehaviorCall"
 
 
-    // $ANTLR start ruleNameOrChoiceOrBehaviorCall
+    // $ANTLR start "ruleNameOrChoiceOrBehaviorCall"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:462:1: ruleNameOrChoiceOrBehaviorCall : ( ( rule__NameOrChoiceOrBehaviorCall__Group__0 ) ) ;
     public final void ruleNameOrChoiceOrBehaviorCall() throws RecognitionException {
 
@@ -1179,7 +1239,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__0_in_ruleNameOrChoiceOrBehaviorCall934);
             rule__NameOrChoiceOrBehaviorCall__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1203,10 +1264,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleNameOrChoiceOrBehaviorCall
+    // $ANTLR end "ruleNameOrChoiceOrBehaviorCall"
 
 
-    // $ANTLR start entryRuleQualifiedName
+    // $ANTLR start "entryRuleQualifiedName"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:481:1: entryRuleQualifiedName : ruleQualifiedName EOF ;
     public final void entryRuleQualifiedName() throws RecognitionException {
         try {
@@ -1216,7 +1277,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getQualifiedNameRule()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName961);
             ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getQualifiedNameRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName968); 
@@ -1232,10 +1294,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleQualifiedName
+    // $ANTLR end "entryRuleQualifiedName"
 
 
-    // $ANTLR start ruleQualifiedName
+    // $ANTLR start "ruleQualifiedName"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:490:1: ruleQualifiedName : ( ( rule__QualifiedName__Group__0 ) ) ;
     public final void ruleQualifiedName() throws RecognitionException {
 
@@ -1254,7 +1316,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__0_in_ruleQualifiedName994);
             rule__QualifiedName__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1278,10 +1341,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleQualifiedName
+    // $ANTLR end "ruleQualifiedName"
 
 
-    // $ANTLR start entryRuleInterval
+    // $ANTLR start "entryRuleInterval"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:509:1: entryRuleInterval : ruleInterval EOF ;
     public final void entryRuleInterval() throws RecognitionException {
         try {
@@ -1291,7 +1354,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getIntervalRule()); 
             pushFollow(FOLLOW_ruleInterval_in_entryRuleInterval1021);
             ruleInterval();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getIntervalRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleInterval1028); 
@@ -1307,10 +1371,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleInterval
+    // $ANTLR end "entryRuleInterval"
 
 
-    // $ANTLR start ruleInterval
+    // $ANTLR start "ruleInterval"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:518:1: ruleInterval : ( ( rule__Interval__Group__0 ) ) ;
     public final void ruleInterval() throws RecognitionException {
 
@@ -1329,7 +1393,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Interval__Group__0_in_ruleInterval1054);
             rule__Interval__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1353,10 +1418,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleInterval
+    // $ANTLR end "ruleInterval"
 
 
-    // $ANTLR start entryRuleCollectionOrTuple
+    // $ANTLR start "entryRuleCollectionOrTuple"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:537:1: entryRuleCollectionOrTuple : ruleCollectionOrTuple EOF ;
     public final void entryRuleCollectionOrTuple() throws RecognitionException {
         try {
@@ -1366,7 +1431,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getCollectionOrTupleRule()); 
             pushFollow(FOLLOW_ruleCollectionOrTuple_in_entryRuleCollectionOrTuple1081);
             ruleCollectionOrTuple();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getCollectionOrTupleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleCollectionOrTuple1088); 
@@ -1382,10 +1448,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleCollectionOrTuple
+    // $ANTLR end "entryRuleCollectionOrTuple"
 
 
-    // $ANTLR start ruleCollectionOrTuple
+    // $ANTLR start "ruleCollectionOrTuple"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:546:1: ruleCollectionOrTuple : ( ( rule__CollectionOrTuple__Group__0 ) ) ;
     public final void ruleCollectionOrTuple() throws RecognitionException {
 
@@ -1404,7 +1470,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__CollectionOrTuple__Group__0_in_ruleCollectionOrTuple1114);
             rule__CollectionOrTuple__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1428,10 +1495,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleCollectionOrTuple
+    // $ANTLR end "ruleCollectionOrTuple"
 
 
-    // $ANTLR start entryRuleTuple
+    // $ANTLR start "entryRuleTuple"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:565:1: entryRuleTuple : ruleTuple EOF ;
     public final void entryRuleTuple() throws RecognitionException {
         try {
@@ -1441,7 +1508,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getTupleRule()); 
             pushFollow(FOLLOW_ruleTuple_in_entryRuleTuple1141);
             ruleTuple();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getTupleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleTuple1148); 
@@ -1457,10 +1525,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleTuple
+    // $ANTLR end "entryRuleTuple"
 
 
-    // $ANTLR start ruleTuple
+    // $ANTLR start "ruleTuple"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:574:1: ruleTuple : ( ( rule__Tuple__Group__0 ) ) ;
     public final void ruleTuple() throws RecognitionException {
 
@@ -1479,7 +1547,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Tuple__Group__0_in_ruleTuple1174);
             rule__Tuple__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1503,10 +1572,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleTuple
+    // $ANTLR end "ruleTuple"
 
 
-    // $ANTLR start entryRuleListOfValues
+    // $ANTLR start "entryRuleListOfValues"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:593:1: entryRuleListOfValues : ruleListOfValues EOF ;
     public final void entryRuleListOfValues() throws RecognitionException {
         try {
@@ -1516,7 +1585,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getListOfValuesRule()); 
             pushFollow(FOLLOW_ruleListOfValues_in_entryRuleListOfValues1201);
             ruleListOfValues();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getListOfValuesRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleListOfValues1208); 
@@ -1532,10 +1602,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleListOfValues
+    // $ANTLR end "entryRuleListOfValues"
 
 
-    // $ANTLR start ruleListOfValues
+    // $ANTLR start "ruleListOfValues"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:602:1: ruleListOfValues : ( ( rule__ListOfValues__Group__0 ) ) ;
     public final void ruleListOfValues() throws RecognitionException {
 
@@ -1554,7 +1624,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ListOfValues__Group__0_in_ruleListOfValues1234);
             rule__ListOfValues__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1578,10 +1649,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleListOfValues
+    // $ANTLR end "ruleListOfValues"
 
 
-    // $ANTLR start entryRuleListOfValueNamePairs
+    // $ANTLR start "entryRuleListOfValueNamePairs"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:621:1: entryRuleListOfValueNamePairs : ruleListOfValueNamePairs EOF ;
     public final void entryRuleListOfValueNamePairs() throws RecognitionException {
         try {
@@ -1591,7 +1662,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getListOfValueNamePairsRule()); 
             pushFollow(FOLLOW_ruleListOfValueNamePairs_in_entryRuleListOfValueNamePairs1261);
             ruleListOfValueNamePairs();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getListOfValueNamePairsRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleListOfValueNamePairs1268); 
@@ -1607,10 +1679,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleListOfValueNamePairs
+    // $ANTLR end "entryRuleListOfValueNamePairs"
 
 
-    // $ANTLR start ruleListOfValueNamePairs
+    // $ANTLR start "ruleListOfValueNamePairs"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:630:1: ruleListOfValueNamePairs : ( ( rule__ListOfValueNamePairs__Group__0 ) ) ;
     public final void ruleListOfValueNamePairs() throws RecognitionException {
 
@@ -1629,7 +1701,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ListOfValueNamePairs__Group__0_in_ruleListOfValueNamePairs1294);
             rule__ListOfValueNamePairs__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1653,10 +1726,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleListOfValueNamePairs
+    // $ANTLR end "ruleListOfValueNamePairs"
 
 
-    // $ANTLR start entryRuleValueNamePair
+    // $ANTLR start "entryRuleValueNamePair"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:649:1: entryRuleValueNamePair : ruleValueNamePair EOF ;
     public final void entryRuleValueNamePair() throws RecognitionException {
         try {
@@ -1666,7 +1739,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getValueNamePairRule()); 
             pushFollow(FOLLOW_ruleValueNamePair_in_entryRuleValueNamePair1321);
             ruleValueNamePair();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getValueNamePairRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleValueNamePair1328); 
@@ -1682,10 +1756,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleValueNamePair
+    // $ANTLR end "entryRuleValueNamePair"
 
 
-    // $ANTLR start ruleValueNamePair
+    // $ANTLR start "ruleValueNamePair"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:658:1: ruleValueNamePair : ( ( rule__ValueNamePair__Group__0 ) ) ;
     public final void ruleValueNamePair() throws RecognitionException {
 
@@ -1704,7 +1778,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ValueNamePair__Group__0_in_ruleValueNamePair1354);
             rule__ValueNamePair__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1728,10 +1803,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleValueNamePair
+    // $ANTLR end "ruleValueNamePair"
 
 
-    // $ANTLR start entryRuleTimeExpression
+    // $ANTLR start "entryRuleTimeExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:677:1: entryRuleTimeExpression : ruleTimeExpression EOF ;
     public final void entryRuleTimeExpression() throws RecognitionException {
         try {
@@ -1741,7 +1816,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getTimeExpressionRule()); 
             pushFollow(FOLLOW_ruleTimeExpression_in_entryRuleTimeExpression1381);
             ruleTimeExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getTimeExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleTimeExpression1388); 
@@ -1757,10 +1833,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleTimeExpression
+    // $ANTLR end "entryRuleTimeExpression"
 
 
-    // $ANTLR start ruleTimeExpression
+    // $ANTLR start "ruleTimeExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:686:1: ruleTimeExpression : ( ( rule__TimeExpression__Alternatives ) ) ;
     public final void ruleTimeExpression() throws RecognitionException {
 
@@ -1779,7 +1855,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__TimeExpression__Alternatives_in_ruleTimeExpression1414);
             rule__TimeExpression__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1803,10 +1880,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleTimeExpression
+    // $ANTLR end "ruleTimeExpression"
 
 
-    // $ANTLR start entryRuleInstantObsExpression
+    // $ANTLR start "entryRuleInstantObsExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:705:1: entryRuleInstantObsExpression : ruleInstantObsExpression EOF ;
     public final void entryRuleInstantObsExpression() throws RecognitionException {
         try {
@@ -1816,7 +1893,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getInstantObsExpressionRule()); 
             pushFollow(FOLLOW_ruleInstantObsExpression_in_entryRuleInstantObsExpression1441);
             ruleInstantObsExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getInstantObsExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleInstantObsExpression1448); 
@@ -1832,10 +1910,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleInstantObsExpression
+    // $ANTLR end "entryRuleInstantObsExpression"
 
 
-    // $ANTLR start ruleInstantObsExpression
+    // $ANTLR start "ruleInstantObsExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:714:1: ruleInstantObsExpression : ( ( rule__InstantObsExpression__Group__0 ) ) ;
     public final void ruleInstantObsExpression() throws RecognitionException {
 
@@ -1854,7 +1932,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group__0_in_ruleInstantObsExpression1474);
             rule__InstantObsExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1878,10 +1957,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleInstantObsExpression
+    // $ANTLR end "ruleInstantObsExpression"
 
 
-    // $ANTLR start entryRuleInstantObsName
+    // $ANTLR start "entryRuleInstantObsName"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:733:1: entryRuleInstantObsName : ruleInstantObsName EOF ;
     public final void entryRuleInstantObsName() throws RecognitionException {
         try {
@@ -1891,7 +1970,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getInstantObsNameRule()); 
             pushFollow(FOLLOW_ruleInstantObsName_in_entryRuleInstantObsName1501);
             ruleInstantObsName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getInstantObsNameRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleInstantObsName1508); 
@@ -1907,10 +1987,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleInstantObsName
+    // $ANTLR end "entryRuleInstantObsName"
 
 
-    // $ANTLR start ruleInstantObsName
+    // $ANTLR start "ruleInstantObsName"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:742:1: ruleInstantObsName : ( ( rule__InstantObsName__Group__0 ) ) ;
     public final void ruleInstantObsName() throws RecognitionException {
 
@@ -1929,7 +2009,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsName__Group__0_in_ruleInstantObsName1534);
             rule__InstantObsName__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1953,10 +2034,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleInstantObsName
+    // $ANTLR end "ruleInstantObsName"
 
 
-    // $ANTLR start entryRuleDurationObsExpression
+    // $ANTLR start "entryRuleDurationObsExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:761:1: entryRuleDurationObsExpression : ruleDurationObsExpression EOF ;
     public final void entryRuleDurationObsExpression() throws RecognitionException {
         try {
@@ -1966,7 +2047,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getDurationObsExpressionRule()); 
             pushFollow(FOLLOW_ruleDurationObsExpression_in_entryRuleDurationObsExpression1561);
             ruleDurationObsExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDurationObsExpressionRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleDurationObsExpression1568); 
@@ -1982,10 +2064,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleDurationObsExpression
+    // $ANTLR end "entryRuleDurationObsExpression"
 
 
-    // $ANTLR start ruleDurationObsExpression
+    // $ANTLR start "ruleDurationObsExpression"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:770:1: ruleDurationObsExpression : ( ( rule__DurationObsExpression__Group__0 ) ) ;
     public final void ruleDurationObsExpression() throws RecognitionException {
 
@@ -2004,7 +2086,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group__0_in_ruleDurationObsExpression1594);
             rule__DurationObsExpression__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2028,10 +2111,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleDurationObsExpression
+    // $ANTLR end "ruleDurationObsExpression"
 
 
-    // $ANTLR start entryRuleDurationObsName
+    // $ANTLR start "entryRuleDurationObsName"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:789:1: entryRuleDurationObsName : ruleDurationObsName EOF ;
     public final void entryRuleDurationObsName() throws RecognitionException {
         try {
@@ -2041,7 +2124,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getDurationObsNameRule()); 
             pushFollow(FOLLOW_ruleDurationObsName_in_entryRuleDurationObsName1621);
             ruleDurationObsName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDurationObsNameRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleDurationObsName1628); 
@@ -2057,10 +2141,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleDurationObsName
+    // $ANTLR end "entryRuleDurationObsName"
 
 
-    // $ANTLR start ruleDurationObsName
+    // $ANTLR start "ruleDurationObsName"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:798:1: ruleDurationObsName : ( ( rule__DurationObsName__Group__0 ) ) ;
     public final void ruleDurationObsName() throws RecognitionException {
 
@@ -2079,7 +2163,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsName__Group__0_in_ruleDurationObsName1654);
             rule__DurationObsName__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2103,10 +2188,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleDurationObsName
+    // $ANTLR end "ruleDurationObsName"
 
 
-    // $ANTLR start entryRuleJitterExp
+    // $ANTLR start "entryRuleJitterExp"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:817:1: entryRuleJitterExp : ruleJitterExp EOF ;
     public final void entryRuleJitterExp() throws RecognitionException {
         try {
@@ -2116,7 +2201,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getJitterExpRule()); 
             pushFollow(FOLLOW_ruleJitterExp_in_entryRuleJitterExp1681);
             ruleJitterExp();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getJitterExpRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleJitterExp1688); 
@@ -2132,10 +2218,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleJitterExp
+    // $ANTLR end "entryRuleJitterExp"
 
 
-    // $ANTLR start ruleJitterExp
+    // $ANTLR start "ruleJitterExp"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:826:1: ruleJitterExp : ( ( rule__JitterExp__Group__0 ) ) ;
     public final void ruleJitterExp() throws RecognitionException {
 
@@ -2154,7 +2240,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__JitterExp__Group__0_in_ruleJitterExp1714);
             rule__JitterExp__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2178,10 +2265,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleJitterExp
+    // $ANTLR end "ruleJitterExp"
 
 
-    // $ANTLR start entryRuleVariableDeclaration
+    // $ANTLR start "entryRuleVariableDeclaration"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:845:1: entryRuleVariableDeclaration : ruleVariableDeclaration EOF ;
     public final void entryRuleVariableDeclaration() throws RecognitionException {
         try {
@@ -2191,7 +2278,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getVariableDeclarationRule()); 
             pushFollow(FOLLOW_ruleVariableDeclaration_in_entryRuleVariableDeclaration1741);
             ruleVariableDeclaration();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getVariableDeclarationRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleVariableDeclaration1748); 
@@ -2207,10 +2295,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleVariableDeclaration
+    // $ANTLR end "entryRuleVariableDeclaration"
 
 
-    // $ANTLR start ruleVariableDeclaration
+    // $ANTLR start "ruleVariableDeclaration"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:854:1: ruleVariableDeclaration : ( ( rule__VariableDeclaration__Group__0 ) ) ;
     public final void ruleVariableDeclaration() throws RecognitionException {
 
@@ -2229,7 +2317,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group__0_in_ruleVariableDeclaration1774);
             rule__VariableDeclaration__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2253,10 +2342,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleVariableDeclaration
+    // $ANTLR end "ruleVariableDeclaration"
 
 
-    // $ANTLR start entryRuleVariableDirectionKind
+    // $ANTLR start "entryRuleVariableDirectionKind"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:873:1: entryRuleVariableDirectionKind : ruleVariableDirectionKind EOF ;
     public final void entryRuleVariableDirectionKind() throws RecognitionException {
         try {
@@ -2266,7 +2355,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getVariableDirectionKindRule()); 
             pushFollow(FOLLOW_ruleVariableDirectionKind_in_entryRuleVariableDirectionKind1801);
             ruleVariableDirectionKind();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getVariableDirectionKindRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleVariableDirectionKind1808); 
@@ -2282,10 +2372,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleVariableDirectionKind
+    // $ANTLR end "entryRuleVariableDirectionKind"
 
 
-    // $ANTLR start ruleVariableDirectionKind
+    // $ANTLR start "ruleVariableDirectionKind"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:882:1: ruleVariableDirectionKind : ( ( rule__VariableDirectionKind__Alternatives ) ) ;
     public final void ruleVariableDirectionKind() throws RecognitionException {
 
@@ -2304,7 +2394,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDirectionKind__Alternatives_in_ruleVariableDirectionKind1834);
             rule__VariableDirectionKind__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2328,10 +2419,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleVariableDirectionKind
+    // $ANTLR end "ruleVariableDirectionKind"
 
 
-    // $ANTLR start entryRuleDataTypeName
+    // $ANTLR start "entryRuleDataTypeName"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:901:1: entryRuleDataTypeName : ruleDataTypeName EOF ;
     public final void entryRuleDataTypeName() throws RecognitionException {
         try {
@@ -2341,7 +2432,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getDataTypeNameRule()); 
             pushFollow(FOLLOW_ruleDataTypeName_in_entryRuleDataTypeName1861);
             ruleDataTypeName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDataTypeNameRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleDataTypeName1868); 
@@ -2357,10 +2449,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleDataTypeName
+    // $ANTLR end "entryRuleDataTypeName"
 
 
-    // $ANTLR start ruleDataTypeName
+    // $ANTLR start "ruleDataTypeName"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:910:1: ruleDataTypeName : ( ( rule__DataTypeName__Group__0 ) ) ;
     public final void ruleDataTypeName() throws RecognitionException {
 
@@ -2379,7 +2471,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DataTypeName__Group__0_in_ruleDataTypeName1894);
             rule__DataTypeName__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2403,10 +2496,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleDataTypeName
+    // $ANTLR end "ruleDataTypeName"
 
 
-    // $ANTLR start entryRuleNumberLiteralRule
+    // $ANTLR start "entryRuleNumberLiteralRule"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:929:1: entryRuleNumberLiteralRule : ruleNumberLiteralRule EOF ;
     public final void entryRuleNumberLiteralRule() throws RecognitionException {
         try {
@@ -2416,7 +2509,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getNumberLiteralRuleRule()); 
             pushFollow(FOLLOW_ruleNumberLiteralRule_in_entryRuleNumberLiteralRule1921);
             ruleNumberLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getNumberLiteralRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleNumberLiteralRule1928); 
@@ -2432,10 +2526,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleNumberLiteralRule
+    // $ANTLR end "entryRuleNumberLiteralRule"
 
 
-    // $ANTLR start ruleNumberLiteralRule
+    // $ANTLR start "ruleNumberLiteralRule"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:938:1: ruleNumberLiteralRule : ( ( rule__NumberLiteralRule__Alternatives ) ) ;
     public final void ruleNumberLiteralRule() throws RecognitionException {
 
@@ -2454,7 +2548,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__NumberLiteralRule__Alternatives_in_ruleNumberLiteralRule1954);
             rule__NumberLiteralRule__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2478,10 +2573,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleNumberLiteralRule
+    // $ANTLR end "ruleNumberLiteralRule"
 
 
-    // $ANTLR start entryRuleIntegerLiteralRule
+    // $ANTLR start "entryRuleIntegerLiteralRule"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:957:1: entryRuleIntegerLiteralRule : ruleIntegerLiteralRule EOF ;
     public final void entryRuleIntegerLiteralRule() throws RecognitionException {
         try {
@@ -2491,7 +2586,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getIntegerLiteralRuleRule()); 
             pushFollow(FOLLOW_ruleIntegerLiteralRule_in_entryRuleIntegerLiteralRule1981);
             ruleIntegerLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getIntegerLiteralRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleIntegerLiteralRule1988); 
@@ -2507,10 +2603,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleIntegerLiteralRule
+    // $ANTLR end "entryRuleIntegerLiteralRule"
 
 
-    // $ANTLR start ruleIntegerLiteralRule
+    // $ANTLR start "ruleIntegerLiteralRule"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:966:1: ruleIntegerLiteralRule : ( ( rule__IntegerLiteralRule__ValueAssignment ) ) ;
     public final void ruleIntegerLiteralRule() throws RecognitionException {
 
@@ -2529,7 +2625,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__IntegerLiteralRule__ValueAssignment_in_ruleIntegerLiteralRule2014);
             rule__IntegerLiteralRule__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2553,10 +2650,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleIntegerLiteralRule
+    // $ANTLR end "ruleIntegerLiteralRule"
 
 
-    // $ANTLR start entryRuleUnlimitedLiteralRule
+    // $ANTLR start "entryRuleUnlimitedLiteralRule"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:985:1: entryRuleUnlimitedLiteralRule : ruleUnlimitedLiteralRule EOF ;
     public final void entryRuleUnlimitedLiteralRule() throws RecognitionException {
         try {
@@ -2566,7 +2663,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getUnlimitedLiteralRuleRule()); 
             pushFollow(FOLLOW_ruleUnlimitedLiteralRule_in_entryRuleUnlimitedLiteralRule2041);
             ruleUnlimitedLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getUnlimitedLiteralRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleUnlimitedLiteralRule2048); 
@@ -2582,10 +2680,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleUnlimitedLiteralRule
+    // $ANTLR end "entryRuleUnlimitedLiteralRule"
 
 
-    // $ANTLR start ruleUnlimitedLiteralRule
+    // $ANTLR start "ruleUnlimitedLiteralRule"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:994:1: ruleUnlimitedLiteralRule : ( ( rule__UnlimitedLiteralRule__ValueAssignment ) ) ;
     public final void ruleUnlimitedLiteralRule() throws RecognitionException {
 
@@ -2604,7 +2702,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__UnlimitedLiteralRule__ValueAssignment_in_ruleUnlimitedLiteralRule2074);
             rule__UnlimitedLiteralRule__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2628,10 +2727,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleUnlimitedLiteralRule
+    // $ANTLR end "ruleUnlimitedLiteralRule"
 
 
-    // $ANTLR start entryRuleRealLiteralRule
+    // $ANTLR start "entryRuleRealLiteralRule"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1013:1: entryRuleRealLiteralRule : ruleRealLiteralRule EOF ;
     public final void entryRuleRealLiteralRule() throws RecognitionException {
         try {
@@ -2641,7 +2740,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getRealLiteralRuleRule()); 
             pushFollow(FOLLOW_ruleRealLiteralRule_in_entryRuleRealLiteralRule2101);
             ruleRealLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getRealLiteralRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleRealLiteralRule2108); 
@@ -2657,10 +2757,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleRealLiteralRule
+    // $ANTLR end "entryRuleRealLiteralRule"
 
 
-    // $ANTLR start ruleRealLiteralRule
+    // $ANTLR start "ruleRealLiteralRule"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1022:1: ruleRealLiteralRule : ( ( rule__RealLiteralRule__ValueAssignment ) ) ;
     public final void ruleRealLiteralRule() throws RecognitionException {
 
@@ -2679,7 +2779,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__RealLiteralRule__ValueAssignment_in_ruleRealLiteralRule2134);
             rule__RealLiteralRule__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2703,10 +2804,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleRealLiteralRule
+    // $ANTLR end "ruleRealLiteralRule"
 
 
-    // $ANTLR start entryRuleDateTimeLiteralRule
+    // $ANTLR start "entryRuleDateTimeLiteralRule"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1041:1: entryRuleDateTimeLiteralRule : ruleDateTimeLiteralRule EOF ;
     public final void entryRuleDateTimeLiteralRule() throws RecognitionException {
         try {
@@ -2716,7 +2817,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getDateTimeLiteralRuleRule()); 
             pushFollow(FOLLOW_ruleDateTimeLiteralRule_in_entryRuleDateTimeLiteralRule2161);
             ruleDateTimeLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDateTimeLiteralRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleDateTimeLiteralRule2168); 
@@ -2732,10 +2834,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleDateTimeLiteralRule
+    // $ANTLR end "entryRuleDateTimeLiteralRule"
 
 
-    // $ANTLR start ruleDateTimeLiteralRule
+    // $ANTLR start "ruleDateTimeLiteralRule"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1050:1: ruleDateTimeLiteralRule : ( ( rule__DateTimeLiteralRule__ValueAssignment ) ) ;
     public final void ruleDateTimeLiteralRule() throws RecognitionException {
 
@@ -2754,7 +2856,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DateTimeLiteralRule__ValueAssignment_in_ruleDateTimeLiteralRule2194);
             rule__DateTimeLiteralRule__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2778,10 +2881,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleDateTimeLiteralRule
+    // $ANTLR end "ruleDateTimeLiteralRule"
 
 
-    // $ANTLR start entryRuleBooleanLiteralRule
+    // $ANTLR start "entryRuleBooleanLiteralRule"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1069:1: entryRuleBooleanLiteralRule : ruleBooleanLiteralRule EOF ;
     public final void entryRuleBooleanLiteralRule() throws RecognitionException {
         try {
@@ -2791,7 +2894,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getBooleanLiteralRuleRule()); 
             pushFollow(FOLLOW_ruleBooleanLiteralRule_in_entryRuleBooleanLiteralRule2221);
             ruleBooleanLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getBooleanLiteralRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleBooleanLiteralRule2228); 
@@ -2807,10 +2911,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleBooleanLiteralRule
+    // $ANTLR end "entryRuleBooleanLiteralRule"
 
 
-    // $ANTLR start ruleBooleanLiteralRule
+    // $ANTLR start "ruleBooleanLiteralRule"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1078:1: ruleBooleanLiteralRule : ( ( rule__BooleanLiteralRule__ValueAssignment ) ) ;
     public final void ruleBooleanLiteralRule() throws RecognitionException {
 
@@ -2829,7 +2933,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__BooleanLiteralRule__ValueAssignment_in_ruleBooleanLiteralRule2254);
             rule__BooleanLiteralRule__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2853,10 +2958,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleBooleanLiteralRule
+    // $ANTLR end "ruleBooleanLiteralRule"
 
 
-    // $ANTLR start entryRuleNullLiteralRule
+    // $ANTLR start "entryRuleNullLiteralRule"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1097:1: entryRuleNullLiteralRule : ruleNullLiteralRule EOF ;
     public final void entryRuleNullLiteralRule() throws RecognitionException {
         try {
@@ -2866,7 +2971,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getNullLiteralRuleRule()); 
             pushFollow(FOLLOW_ruleNullLiteralRule_in_entryRuleNullLiteralRule2281);
             ruleNullLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getNullLiteralRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleNullLiteralRule2288); 
@@ -2882,10 +2988,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleNullLiteralRule
+    // $ANTLR end "entryRuleNullLiteralRule"
 
 
-    // $ANTLR start ruleNullLiteralRule
+    // $ANTLR start "ruleNullLiteralRule"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1106:1: ruleNullLiteralRule : ( ( rule__NullLiteralRule__ValueAssignment ) ) ;
     public final void ruleNullLiteralRule() throws RecognitionException {
 
@@ -2904,7 +3010,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__NullLiteralRule__ValueAssignment_in_ruleNullLiteralRule2314);
             rule__NullLiteralRule__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2928,10 +3035,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleNullLiteralRule
+    // $ANTLR end "ruleNullLiteralRule"
 
 
-    // $ANTLR start entryRuleDefaultLiteralRule
+    // $ANTLR start "entryRuleDefaultLiteralRule"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1125:1: entryRuleDefaultLiteralRule : ruleDefaultLiteralRule EOF ;
     public final void entryRuleDefaultLiteralRule() throws RecognitionException {
         try {
@@ -2941,7 +3048,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getDefaultLiteralRuleRule()); 
             pushFollow(FOLLOW_ruleDefaultLiteralRule_in_entryRuleDefaultLiteralRule2341);
             ruleDefaultLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDefaultLiteralRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleDefaultLiteralRule2348); 
@@ -2957,10 +3065,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleDefaultLiteralRule
+    // $ANTLR end "entryRuleDefaultLiteralRule"
 
 
-    // $ANTLR start ruleDefaultLiteralRule
+    // $ANTLR start "ruleDefaultLiteralRule"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1134:1: ruleDefaultLiteralRule : ( ( rule__DefaultLiteralRule__ValueAssignment ) ) ;
     public final void ruleDefaultLiteralRule() throws RecognitionException {
 
@@ -2979,7 +3087,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DefaultLiteralRule__ValueAssignment_in_ruleDefaultLiteralRule2374);
             rule__DefaultLiteralRule__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3003,10 +3112,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleDefaultLiteralRule
+    // $ANTLR end "ruleDefaultLiteralRule"
 
 
-    // $ANTLR start entryRuleStringLiteralRule
+    // $ANTLR start "entryRuleStringLiteralRule"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1153:1: entryRuleStringLiteralRule : ruleStringLiteralRule EOF ;
     public final void entryRuleStringLiteralRule() throws RecognitionException {
         try {
@@ -3016,7 +3125,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getStringLiteralRuleRule()); 
             pushFollow(FOLLOW_ruleStringLiteralRule_in_entryRuleStringLiteralRule2401);
             ruleStringLiteralRule();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getStringLiteralRuleRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleStringLiteralRule2408); 
@@ -3032,10 +3142,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleStringLiteralRule
+    // $ANTLR end "entryRuleStringLiteralRule"
 
 
-    // $ANTLR start ruleStringLiteralRule
+    // $ANTLR start "ruleStringLiteralRule"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1162:1: ruleStringLiteralRule : ( ( rule__StringLiteralRule__ValueAssignment ) ) ;
     public final void ruleStringLiteralRule() throws RecognitionException {
 
@@ -3054,7 +3164,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__StringLiteralRule__ValueAssignment_in_ruleStringLiteralRule2434);
             rule__StringLiteralRule__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3078,10 +3189,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleStringLiteralRule
+    // $ANTLR end "ruleStringLiteralRule"
 
 
-    // $ANTLR start rule__AndOrXorExpression__OpAlternatives_1_0_0
+    // $ANTLR start "rule__AndOrXorExpression__OpAlternatives_1_0_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1181:1: rule__AndOrXorExpression__OpAlternatives_1_0_0 : ( ( 'and' ) | ( 'or' ) | ( 'xor' ) );
     public final void rule__AndOrXorExpression__OpAlternatives_1_0_0() throws RecognitionException {
 
@@ -3108,7 +3219,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1181:1: rule__AndOrXorExpression__OpAlternatives_1_0_0 : ( ( 'and' ) | ( 'or' ) | ( 'xor' ) );", 1, 0, input);
+                    new NoViableAltException("", 1, 0, input);
 
                 throw nvae;
             }
@@ -3173,10 +3284,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__OpAlternatives_1_0_0
+    // $ANTLR end "rule__AndOrXorExpression__OpAlternatives_1_0_0"
 
 
-    // $ANTLR start rule__EqualityExpression__OpAlternatives_1_0_0
+    // $ANTLR start "rule__EqualityExpression__OpAlternatives_1_0_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1215:1: rule__EqualityExpression__OpAlternatives_1_0_0 : ( ( '==' ) | ( '<>' ) );
     public final void rule__EqualityExpression__OpAlternatives_1_0_0() throws RecognitionException {
 
@@ -3195,7 +3306,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1215:1: rule__EqualityExpression__OpAlternatives_1_0_0 : ( ( '==' ) | ( '<>' ) );", 2, 0, input);
+                    new NoViableAltException("", 2, 0, input);
 
                 throw nvae;
             }
@@ -3244,10 +3355,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__OpAlternatives_1_0_0
+    // $ANTLR end "rule__EqualityExpression__OpAlternatives_1_0_0"
 
 
-    // $ANTLR start rule__RelationalExpression__OpAlternatives_1_0_0
+    // $ANTLR start "rule__RelationalExpression__OpAlternatives_1_0_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1241:1: rule__RelationalExpression__OpAlternatives_1_0_0 : ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) );
     public final void rule__RelationalExpression__OpAlternatives_1_0_0() throws RecognitionException {
 
@@ -3279,7 +3390,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1241:1: rule__RelationalExpression__OpAlternatives_1_0_0 : ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) );", 3, 0, input);
+                    new NoViableAltException("", 3, 0, input);
 
                 throw nvae;
             }
@@ -3359,10 +3470,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__OpAlternatives_1_0_0
+    // $ANTLR end "rule__RelationalExpression__OpAlternatives_1_0_0"
 
 
-    // $ANTLR start rule__AdditiveExpression__OpAlternatives_1_0_0
+    // $ANTLR start "rule__AdditiveExpression__OpAlternatives_1_0_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1283:1: rule__AdditiveExpression__OpAlternatives_1_0_0 : ( ( '+' ) | ( '-' ) );
     public final void rule__AdditiveExpression__OpAlternatives_1_0_0() throws RecognitionException {
 
@@ -3381,7 +3492,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1283:1: rule__AdditiveExpression__OpAlternatives_1_0_0 : ( ( '+' ) | ( '-' ) );", 4, 0, input);
+                    new NoViableAltException("", 4, 0, input);
 
                 throw nvae;
             }
@@ -3430,10 +3541,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__OpAlternatives_1_0_0
+    // $ANTLR end "rule__AdditiveExpression__OpAlternatives_1_0_0"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__OpAlternatives_1_0_0
+    // $ANTLR start "rule__MultiplicativeExpression__OpAlternatives_1_0_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1309:1: rule__MultiplicativeExpression__OpAlternatives_1_0_0 : ( ( '*' ) | ( '/' ) | ( 'mod' ) );
     public final void rule__MultiplicativeExpression__OpAlternatives_1_0_0() throws RecognitionException {
 
@@ -3460,7 +3571,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1309:1: rule__MultiplicativeExpression__OpAlternatives_1_0_0 : ( ( '*' ) | ( '/' ) | ( 'mod' ) );", 5, 0, input);
+                    new NoViableAltException("", 5, 0, input);
 
                 throw nvae;
             }
@@ -3525,10 +3636,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__OpAlternatives_1_0_0
+    // $ANTLR end "rule__MultiplicativeExpression__OpAlternatives_1_0_0"
 
 
-    // $ANTLR start rule__UnaryExpression__Alternatives
+    // $ANTLR start "rule__UnaryExpression__Alternatives"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1343:1: rule__UnaryExpression__Alternatives : ( ( ( rule__UnaryExpression__Group_0__0 ) ) | ( ( rule__UnaryExpression__ExpAssignment_1 ) ) );
     public final void rule__UnaryExpression__Alternatives() throws RecognitionException {
 
@@ -3547,7 +3658,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1343:1: rule__UnaryExpression__Alternatives : ( ( ( rule__UnaryExpression__Group_0__0 ) ) | ( ( rule__UnaryExpression__ExpAssignment_1 ) ) );", 6, 0, input);
+                    new NoViableAltException("", 6, 0, input);
 
                 throw nvae;
             }
@@ -3564,7 +3675,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__UnaryExpression__Group_0__0_in_rule__UnaryExpression__Alternatives2825);
                     rule__UnaryExpression__Group_0__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -3588,7 +3700,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__UnaryExpression__ExpAssignment_1_in_rule__UnaryExpression__Alternatives2843);
                     rule__UnaryExpression__ExpAssignment_1();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -3614,10 +3727,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__UnaryExpression__Alternatives
+    // $ANTLR end "rule__UnaryExpression__Alternatives"
 
 
-    // $ANTLR start rule__UnaryExpression__OpAlternatives_0_0_0
+    // $ANTLR start "rule__UnaryExpression__OpAlternatives_0_0_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1365:1: rule__UnaryExpression__OpAlternatives_0_0_0 : ( ( 'not' ) | ( '-' ) | ( '+' ) );
     public final void rule__UnaryExpression__OpAlternatives_0_0_0() throws RecognitionException {
 
@@ -3644,7 +3757,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1365:1: rule__UnaryExpression__OpAlternatives_0_0_0 : ( ( 'not' ) | ( '-' ) | ( '+' ) );", 7, 0, input);
+                    new NoViableAltException("", 7, 0, input);
 
                 throw nvae;
             }
@@ -3709,10 +3822,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__UnaryExpression__OpAlternatives_0_0_0
+    // $ANTLR end "rule__UnaryExpression__OpAlternatives_0_0_0"
 
 
-    // $ANTLR start rule__ValueSpecification__Alternatives
+    // $ANTLR start "rule__ValueSpecification__Alternatives"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1399:1: rule__ValueSpecification__Alternatives : ( ( ruleLiteral ) | ( ruleNameOrChoiceOrBehaviorCall ) | ( ruleInterval ) | ( ruleCollectionOrTuple ) | ( ruleTuple ) | ( ruleTimeExpression ) | ( ruleVariableDeclaration ) | ( ( rule__ValueSpecification__Group_7__0 ) ) );
     public final void rule__ValueSpecification__Alternatives() throws RecognitionException {
 
@@ -3721,88 +3834,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         try {
             // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1403:1: ( ( ruleLiteral ) | ( ruleNameOrChoiceOrBehaviorCall ) | ( ruleInterval ) | ( ruleCollectionOrTuple ) | ( ruleTuple ) | ( ruleTimeExpression ) | ( ruleVariableDeclaration ) | ( ( rule__ValueSpecification__Group_7__0 ) ) )
             int alt8=8;
-            switch ( input.LA(1) ) {
-            case RULE_INTEGERLITERAL:
-            case RULE_REALLITERAL:
-            case RULE_DATETIMELITERAL:
-            case RULE_BOOLEANLITERAL:
-            case RULE_NULLLITERAL:
-            case RULE_STRING:
-            case 27:
-            case 28:
-                {
-                alt8=1;
-                }
-                break;
-            case RULE_ID:
-                {
-                alt8=2;
-                }
-                break;
-            case 31:
-            case 32:
-                {
-                alt8=3;
-                }
-                break;
-            case 42:
-                {
-                int LA8_4 = input.LA(2);
-
-                if ( ((LA8_4>=RULE_INTEGERLITERAL && LA8_4<=RULE_STRING)||(LA8_4>=25 && LA8_4<=28)||(LA8_4>=30 && LA8_4<=35)||LA8_4==38||LA8_4==42||LA8_4==46||(LA8_4>=48 && LA8_4<=50)) ) {
-                    alt8=4;
-                }
-                else if ( (LA8_4==RULE_ID) ) {
-                    int LA8_9 = input.LA(3);
-
-                    if ( ((LA8_9>=16 && LA8_9<=29)||(LA8_9>=37 && LA8_9<=38)||LA8_9==40||(LA8_9>=43 && LA8_9<=44)||LA8_9==51) ) {
-                        alt8=4;
-                    }
-                    else if ( (LA8_9==45) ) {
-                        alt8=5;
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("1399:1: rule__ValueSpecification__Alternatives : ( ( ruleLiteral ) | ( ruleNameOrChoiceOrBehaviorCall ) | ( ruleInterval ) | ( ruleCollectionOrTuple ) | ( ruleTuple ) | ( ruleTimeExpression ) | ( ruleVariableDeclaration ) | ( ( rule__ValueSpecification__Group_7__0 ) ) );", 8, 9, input);
-
-                        throw nvae;
-                    }
-                }
-                else {
-                    NoViableAltException nvae =
-                        new NoViableAltException("1399:1: rule__ValueSpecification__Alternatives : ( ( ruleLiteral ) | ( ruleNameOrChoiceOrBehaviorCall ) | ( ruleInterval ) | ( ruleCollectionOrTuple ) | ( ruleTuple ) | ( ruleTimeExpression ) | ( ruleVariableDeclaration ) | ( ( rule__ValueSpecification__Group_7__0 ) ) );", 8, 4, input);
-
-                    throw nvae;
-                }
-                }
-                break;
-            case 46:
-            case 48:
-            case 49:
-                {
-                alt8=6;
-                }
-                break;
-            case 33:
-            case 34:
-            case 35:
-            case 50:
-                {
-                alt8=7;
-                }
-                break;
-            case 38:
-                {
-                alt8=8;
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("1399:1: rule__ValueSpecification__Alternatives : ( ( ruleLiteral ) | ( ruleNameOrChoiceOrBehaviorCall ) | ( ruleInterval ) | ( ruleCollectionOrTuple ) | ( ruleTuple ) | ( ruleTimeExpression ) | ( ruleVariableDeclaration ) | ( ( rule__ValueSpecification__Group_7__0 ) ) );", 8, 0, input);
-
-                throw nvae;
-            }
-
+            alt8 = dfa8.predict(input);
             switch (alt8) {
                 case 1 :
                     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1404:1: ( ruleLiteral )
@@ -3813,7 +3845,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getValueSpecificationAccess().getLiteralParserRuleCall_0()); 
                     pushFollow(FOLLOW_ruleLiteral_in_rule__ValueSpecification__Alternatives2951);
                     ruleLiteral();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueSpecificationAccess().getLiteralParserRuleCall_0()); 
 
@@ -3831,7 +3864,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getValueSpecificationAccess().getNameOrChoiceOrBehaviorCallParserRuleCall_1()); 
                     pushFollow(FOLLOW_ruleNameOrChoiceOrBehaviorCall_in_rule__ValueSpecification__Alternatives2968);
                     ruleNameOrChoiceOrBehaviorCall();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueSpecificationAccess().getNameOrChoiceOrBehaviorCallParserRuleCall_1()); 
 
@@ -3849,7 +3883,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getValueSpecificationAccess().getIntervalParserRuleCall_2()); 
                     pushFollow(FOLLOW_ruleInterval_in_rule__ValueSpecification__Alternatives2985);
                     ruleInterval();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueSpecificationAccess().getIntervalParserRuleCall_2()); 
 
@@ -3867,7 +3902,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getValueSpecificationAccess().getCollectionOrTupleParserRuleCall_3()); 
                     pushFollow(FOLLOW_ruleCollectionOrTuple_in_rule__ValueSpecification__Alternatives3002);
                     ruleCollectionOrTuple();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueSpecificationAccess().getCollectionOrTupleParserRuleCall_3()); 
 
@@ -3885,7 +3921,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getValueSpecificationAccess().getTupleParserRuleCall_4()); 
                     pushFollow(FOLLOW_ruleTuple_in_rule__ValueSpecification__Alternatives3019);
                     ruleTuple();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueSpecificationAccess().getTupleParserRuleCall_4()); 
 
@@ -3903,7 +3940,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getValueSpecificationAccess().getTimeExpressionParserRuleCall_5()); 
                     pushFollow(FOLLOW_ruleTimeExpression_in_rule__ValueSpecification__Alternatives3036);
                     ruleTimeExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueSpecificationAccess().getTimeExpressionParserRuleCall_5()); 
 
@@ -3921,7 +3959,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getValueSpecificationAccess().getVariableDeclarationParserRuleCall_6()); 
                     pushFollow(FOLLOW_ruleVariableDeclaration_in_rule__ValueSpecification__Alternatives3053);
                     ruleVariableDeclaration();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueSpecificationAccess().getVariableDeclarationParserRuleCall_6()); 
 
@@ -3942,7 +3981,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__ValueSpecification__Group_7__0_in_rule__ValueSpecification__Alternatives3070);
                     rule__ValueSpecification__Group_7__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -3968,10 +4008,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ValueSpecification__Alternatives
+    // $ANTLR end "rule__ValueSpecification__Alternatives"
 
 
-    // $ANTLR start rule__SuffixExpression__Alternatives
+    // $ANTLR start "rule__SuffixExpression__Alternatives"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1457:1: rule__SuffixExpression__Alternatives : ( ( rulePropertyCallExpression ) | ( ruleOperationCallExpression ) );
     public final void rule__SuffixExpression__Alternatives() throws RecognitionException {
 
@@ -3993,14 +4033,14 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("1457:1: rule__SuffixExpression__Alternatives : ( ( rulePropertyCallExpression ) | ( ruleOperationCallExpression ) );", 9, 1, input);
+                        new NoViableAltException("", 9, 1, input);
 
                     throw nvae;
                 }
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1457:1: rule__SuffixExpression__Alternatives : ( ( rulePropertyCallExpression ) | ( ruleOperationCallExpression ) );", 9, 0, input);
+                    new NoViableAltException("", 9, 0, input);
 
                 throw nvae;
             }
@@ -4014,7 +4054,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getSuffixExpressionAccess().getPropertyCallExpressionParserRuleCall_0()); 
                     pushFollow(FOLLOW_rulePropertyCallExpression_in_rule__SuffixExpression__Alternatives3103);
                     rulePropertyCallExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getSuffixExpressionAccess().getPropertyCallExpressionParserRuleCall_0()); 
 
@@ -4032,7 +4073,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getSuffixExpressionAccess().getOperationCallExpressionParserRuleCall_1()); 
                     pushFollow(FOLLOW_ruleOperationCallExpression_in_rule__SuffixExpression__Alternatives3120);
                     ruleOperationCallExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getSuffixExpressionAccess().getOperationCallExpressionParserRuleCall_1()); 
 
@@ -4055,10 +4097,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SuffixExpression__Alternatives
+    // $ANTLR end "rule__SuffixExpression__Alternatives"
 
 
-    // $ANTLR start rule__Literal__Alternatives
+    // $ANTLR start "rule__Literal__Alternatives"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1479:1: rule__Literal__Alternatives : ( ( ruleNumberLiteralRule ) | ( ruleDateTimeLiteralRule ) | ( ruleBooleanLiteralRule ) | ( ruleNullLiteralRule ) | ( ruleDefaultLiteralRule ) | ( ruleStringLiteralRule ) );
     public final void rule__Literal__Alternatives() throws RecognitionException {
 
@@ -4102,7 +4144,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1479:1: rule__Literal__Alternatives : ( ( ruleNumberLiteralRule ) | ( ruleDateTimeLiteralRule ) | ( ruleBooleanLiteralRule ) | ( ruleNullLiteralRule ) | ( ruleDefaultLiteralRule ) | ( ruleStringLiteralRule ) );", 10, 0, input);
+                    new NoViableAltException("", 10, 0, input);
 
                 throw nvae;
             }
@@ -4117,7 +4159,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getLiteralAccess().getNumberLiteralRuleParserRuleCall_0()); 
                     pushFollow(FOLLOW_ruleNumberLiteralRule_in_rule__Literal__Alternatives3152);
                     ruleNumberLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getLiteralAccess().getNumberLiteralRuleParserRuleCall_0()); 
 
@@ -4135,7 +4178,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getLiteralAccess().getDateTimeLiteralRuleParserRuleCall_1()); 
                     pushFollow(FOLLOW_ruleDateTimeLiteralRule_in_rule__Literal__Alternatives3169);
                     ruleDateTimeLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getLiteralAccess().getDateTimeLiteralRuleParserRuleCall_1()); 
 
@@ -4153,7 +4197,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getLiteralAccess().getBooleanLiteralRuleParserRuleCall_2()); 
                     pushFollow(FOLLOW_ruleBooleanLiteralRule_in_rule__Literal__Alternatives3186);
                     ruleBooleanLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getLiteralAccess().getBooleanLiteralRuleParserRuleCall_2()); 
 
@@ -4171,7 +4216,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getLiteralAccess().getNullLiteralRuleParserRuleCall_3()); 
                     pushFollow(FOLLOW_ruleNullLiteralRule_in_rule__Literal__Alternatives3203);
                     ruleNullLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getLiteralAccess().getNullLiteralRuleParserRuleCall_3()); 
 
@@ -4189,7 +4235,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getLiteralAccess().getDefaultLiteralRuleParserRuleCall_4()); 
                     pushFollow(FOLLOW_ruleDefaultLiteralRule_in_rule__Literal__Alternatives3220);
                     ruleDefaultLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getLiteralAccess().getDefaultLiteralRuleParserRuleCall_4()); 
 
@@ -4207,7 +4254,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getLiteralAccess().getStringLiteralRuleParserRuleCall_5()); 
                     pushFollow(FOLLOW_ruleStringLiteralRule_in_rule__Literal__Alternatives3237);
                     ruleStringLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getLiteralAccess().getStringLiteralRuleParserRuleCall_5()); 
 
@@ -4230,10 +4278,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Literal__Alternatives
+    // $ANTLR end "rule__Literal__Alternatives"
 
 
-    // $ANTLR start rule__Interval__Alternatives_0
+    // $ANTLR start "rule__Interval__Alternatives_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1525:1: rule__Interval__Alternatives_0 : ( ( ']' ) | ( ( rule__Interval__IsLowerIncludedAssignment_0_1 ) ) );
     public final void rule__Interval__Alternatives_0() throws RecognitionException {
 
@@ -4252,7 +4300,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1525:1: rule__Interval__Alternatives_0 : ( ( ']' ) | ( ( rule__Interval__IsLowerIncludedAssignment_0_1 ) ) );", 11, 0, input);
+                    new NoViableAltException("", 11, 0, input);
 
                 throw nvae;
             }
@@ -4284,7 +4332,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__Interval__IsLowerIncludedAssignment_0_1_in_rule__Interval__Alternatives_03289);
                     rule__Interval__IsLowerIncludedAssignment_0_1();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -4310,10 +4359,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Alternatives_0
+    // $ANTLR end "rule__Interval__Alternatives_0"
 
 
-    // $ANTLR start rule__Interval__Alternatives_4
+    // $ANTLR start "rule__Interval__Alternatives_4"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1549:1: rule__Interval__Alternatives_4 : ( ( ( rule__Interval__IsUpperIncludedAssignment_4_0 ) ) | ( '[' ) );
     public final void rule__Interval__Alternatives_4() throws RecognitionException {
 
@@ -4332,7 +4381,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1549:1: rule__Interval__Alternatives_4 : ( ( ( rule__Interval__IsUpperIncludedAssignment_4_0 ) ) | ( '[' ) );", 12, 0, input);
+                    new NoViableAltException("", 12, 0, input);
 
                 throw nvae;
             }
@@ -4349,7 +4398,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__Interval__IsUpperIncludedAssignment_4_0_in_rule__Interval__Alternatives_43322);
                     rule__Interval__IsUpperIncludedAssignment_4_0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -4390,10 +4440,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Alternatives_4
+    // $ANTLR end "rule__Interval__Alternatives_4"
 
 
-    // $ANTLR start rule__TimeExpression__Alternatives
+    // $ANTLR start "rule__TimeExpression__Alternatives"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1573:1: rule__TimeExpression__Alternatives : ( ( ruleInstantObsExpression ) | ( ruleDurationObsExpression ) | ( ruleJitterExp ) );
     public final void rule__TimeExpression__Alternatives() throws RecognitionException {
 
@@ -4420,7 +4470,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1573:1: rule__TimeExpression__Alternatives : ( ( ruleInstantObsExpression ) | ( ruleDurationObsExpression ) | ( ruleJitterExp ) );", 13, 0, input);
+                    new NoViableAltException("", 13, 0, input);
 
                 throw nvae;
             }
@@ -4435,7 +4485,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getTimeExpressionAccess().getInstantObsExpressionParserRuleCall_0()); 
                     pushFollow(FOLLOW_ruleInstantObsExpression_in_rule__TimeExpression__Alternatives3375);
                     ruleInstantObsExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getTimeExpressionAccess().getInstantObsExpressionParserRuleCall_0()); 
 
@@ -4453,7 +4504,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getTimeExpressionAccess().getDurationObsExpressionParserRuleCall_1()); 
                     pushFollow(FOLLOW_ruleDurationObsExpression_in_rule__TimeExpression__Alternatives3392);
                     ruleDurationObsExpression();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getTimeExpressionAccess().getDurationObsExpressionParserRuleCall_1()); 
 
@@ -4471,7 +4523,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getTimeExpressionAccess().getJitterExpParserRuleCall_2()); 
                     pushFollow(FOLLOW_ruleJitterExp_in_rule__TimeExpression__Alternatives3409);
                     ruleJitterExp();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getTimeExpressionAccess().getJitterExpParserRuleCall_2()); 
 
@@ -4494,10 +4547,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__TimeExpression__Alternatives
+    // $ANTLR end "rule__TimeExpression__Alternatives"
 
 
-    // $ANTLR start rule__VariableDeclaration__Alternatives_3
+    // $ANTLR start "rule__VariableDeclaration__Alternatives_3"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1601:1: rule__VariableDeclaration__Alternatives_3 : ( ( ( rule__VariableDeclaration__Group_3_0__0 ) ) | ( ( rule__VariableDeclaration__Group_3_1__0 ) ) );
     public final void rule__VariableDeclaration__Alternatives_3() throws RecognitionException {
 
@@ -4516,7 +4569,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1601:1: rule__VariableDeclaration__Alternatives_3 : ( ( ( rule__VariableDeclaration__Group_3_0__0 ) ) | ( ( rule__VariableDeclaration__Group_3_1__0 ) ) );", 14, 0, input);
+                    new NoViableAltException("", 14, 0, input);
 
                 throw nvae;
             }
@@ -4533,7 +4586,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0__0_in_rule__VariableDeclaration__Alternatives_33441);
                     rule__VariableDeclaration__Group_3_0__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -4557,7 +4611,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_1__0_in_rule__VariableDeclaration__Alternatives_33459);
                     rule__VariableDeclaration__Group_3_1__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -4583,10 +4638,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Alternatives_3
+    // $ANTLR end "rule__VariableDeclaration__Alternatives_3"
 
 
-    // $ANTLR start rule__VariableDirectionKind__Alternatives
+    // $ANTLR start "rule__VariableDirectionKind__Alternatives"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1623:1: rule__VariableDirectionKind__Alternatives : ( ( 'in' ) | ( 'out' ) | ( 'inout' ) );
     public final void rule__VariableDirectionKind__Alternatives() throws RecognitionException {
 
@@ -4613,7 +4668,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1623:1: rule__VariableDirectionKind__Alternatives : ( ( 'in' ) | ( 'out' ) | ( 'inout' ) );", 15, 0, input);
+                    new NoViableAltException("", 15, 0, input);
 
                 throw nvae;
             }
@@ -4678,10 +4733,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDirectionKind__Alternatives
+    // $ANTLR end "rule__VariableDirectionKind__Alternatives"
 
 
-    // $ANTLR start rule__NumberLiteralRule__Alternatives
+    // $ANTLR start "rule__NumberLiteralRule__Alternatives"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1657:1: rule__NumberLiteralRule__Alternatives : ( ( ruleIntegerLiteralRule ) | ( ruleUnlimitedLiteralRule ) | ( ruleRealLiteralRule ) );
     public final void rule__NumberLiteralRule__Alternatives() throws RecognitionException {
 
@@ -4708,7 +4763,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1657:1: rule__NumberLiteralRule__Alternatives : ( ( ruleIntegerLiteralRule ) | ( ruleUnlimitedLiteralRule ) | ( ruleRealLiteralRule ) );", 16, 0, input);
+                    new NoViableAltException("", 16, 0, input);
 
                 throw nvae;
             }
@@ -4723,7 +4778,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getNumberLiteralRuleAccess().getIntegerLiteralRuleParserRuleCall_0()); 
                     pushFollow(FOLLOW_ruleIntegerLiteralRule_in_rule__NumberLiteralRule__Alternatives3567);
                     ruleIntegerLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getNumberLiteralRuleAccess().getIntegerLiteralRuleParserRuleCall_0()); 
 
@@ -4741,7 +4797,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getNumberLiteralRuleAccess().getUnlimitedLiteralRuleParserRuleCall_1()); 
                     pushFollow(FOLLOW_ruleUnlimitedLiteralRule_in_rule__NumberLiteralRule__Alternatives3584);
                     ruleUnlimitedLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getNumberLiteralRuleAccess().getUnlimitedLiteralRuleParserRuleCall_1()); 
 
@@ -4759,7 +4816,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getNumberLiteralRuleAccess().getRealLiteralRuleParserRuleCall_2()); 
                     pushFollow(FOLLOW_ruleRealLiteralRule_in_rule__NumberLiteralRule__Alternatives3601);
                     ruleRealLiteralRule();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getNumberLiteralRuleAccess().getRealLiteralRuleParserRuleCall_2()); 
 
@@ -4782,10 +4840,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__NumberLiteralRule__Alternatives
+    // $ANTLR end "rule__NumberLiteralRule__Alternatives"
 
 
-    // $ANTLR start rule__AndOrXorExpression__Group__0
+    // $ANTLR start "rule__AndOrXorExpression__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1687:1: rule__AndOrXorExpression__Group__0 : rule__AndOrXorExpression__Group__0__Impl rule__AndOrXorExpression__Group__1 ;
     public final void rule__AndOrXorExpression__Group__0() throws RecognitionException {
 
@@ -4797,11 +4855,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__AndOrXorExpression__Group__0__Impl_in_rule__AndOrXorExpression__Group__03631);
             rule__AndOrXorExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__AndOrXorExpression__Group__1_in_rule__AndOrXorExpression__Group__03634);
             rule__AndOrXorExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -4818,10 +4878,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__Group__0
+    // $ANTLR end "rule__AndOrXorExpression__Group__0"
 
 
-    // $ANTLR start rule__AndOrXorExpression__Group__0__Impl
+    // $ANTLR start "rule__AndOrXorExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1699:1: rule__AndOrXorExpression__Group__0__Impl : ( ( rule__AndOrXorExpression__ExpAssignment_0 ) ) ;
     public final void rule__AndOrXorExpression__Group__0__Impl() throws RecognitionException {
 
@@ -4840,7 +4900,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__AndOrXorExpression__ExpAssignment_0_in_rule__AndOrXorExpression__Group__0__Impl3661);
             rule__AndOrXorExpression__ExpAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -4864,10 +4925,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__Group__0__Impl
+    // $ANTLR end "rule__AndOrXorExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__AndOrXorExpression__Group__1
+    // $ANTLR start "rule__AndOrXorExpression__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1716:1: rule__AndOrXorExpression__Group__1 : rule__AndOrXorExpression__Group__1__Impl ;
     public final void rule__AndOrXorExpression__Group__1() throws RecognitionException {
 
@@ -4879,7 +4940,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__AndOrXorExpression__Group__1__Impl_in_rule__AndOrXorExpression__Group__13691);
             rule__AndOrXorExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -4896,10 +4958,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__Group__1
+    // $ANTLR end "rule__AndOrXorExpression__Group__1"
 
 
-    // $ANTLR start rule__AndOrXorExpression__Group__1__Impl
+    // $ANTLR start "rule__AndOrXorExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1727:1: rule__AndOrXorExpression__Group__1__Impl : ( ( rule__AndOrXorExpression__Group_1__0 )* ) ;
     public final void rule__AndOrXorExpression__Group__1__Impl() throws RecognitionException {
 
@@ -4930,7 +4992,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             	    {
             	    pushFollow(FOLLOW_rule__AndOrXorExpression__Group_1__0_in_rule__AndOrXorExpression__Group__1__Impl3718);
             	    rule__AndOrXorExpression__Group_1__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -4960,10 +5023,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__Group__1__Impl
+    // $ANTLR end "rule__AndOrXorExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__AndOrXorExpression__Group_1__0
+    // $ANTLR start "rule__AndOrXorExpression__Group_1__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1748:1: rule__AndOrXorExpression__Group_1__0 : rule__AndOrXorExpression__Group_1__0__Impl rule__AndOrXorExpression__Group_1__1 ;
     public final void rule__AndOrXorExpression__Group_1__0() throws RecognitionException {
 
@@ -4975,11 +5038,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__AndOrXorExpression__Group_1__0__Impl_in_rule__AndOrXorExpression__Group_1__03753);
             rule__AndOrXorExpression__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__AndOrXorExpression__Group_1__1_in_rule__AndOrXorExpression__Group_1__03756);
             rule__AndOrXorExpression__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -4996,10 +5061,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__Group_1__0
+    // $ANTLR end "rule__AndOrXorExpression__Group_1__0"
 
 
-    // $ANTLR start rule__AndOrXorExpression__Group_1__0__Impl
+    // $ANTLR start "rule__AndOrXorExpression__Group_1__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1760:1: rule__AndOrXorExpression__Group_1__0__Impl : ( ( rule__AndOrXorExpression__OpAssignment_1_0 ) ) ;
     public final void rule__AndOrXorExpression__Group_1__0__Impl() throws RecognitionException {
 
@@ -5018,7 +5083,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__AndOrXorExpression__OpAssignment_1_0_in_rule__AndOrXorExpression__Group_1__0__Impl3783);
             rule__AndOrXorExpression__OpAssignment_1_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5042,10 +5108,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__Group_1__0__Impl
+    // $ANTLR end "rule__AndOrXorExpression__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__AndOrXorExpression__Group_1__1
+    // $ANTLR start "rule__AndOrXorExpression__Group_1__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1777:1: rule__AndOrXorExpression__Group_1__1 : rule__AndOrXorExpression__Group_1__1__Impl ;
     public final void rule__AndOrXorExpression__Group_1__1() throws RecognitionException {
 
@@ -5057,7 +5123,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__AndOrXorExpression__Group_1__1__Impl_in_rule__AndOrXorExpression__Group_1__13813);
             rule__AndOrXorExpression__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5074,10 +5141,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__Group_1__1
+    // $ANTLR end "rule__AndOrXorExpression__Group_1__1"
 
 
-    // $ANTLR start rule__AndOrXorExpression__Group_1__1__Impl
+    // $ANTLR start "rule__AndOrXorExpression__Group_1__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1788:1: rule__AndOrXorExpression__Group_1__1__Impl : ( ( rule__AndOrXorExpression__ExpAssignment_1_1 ) ) ;
     public final void rule__AndOrXorExpression__Group_1__1__Impl() throws RecognitionException {
 
@@ -5096,7 +5163,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__AndOrXorExpression__ExpAssignment_1_1_in_rule__AndOrXorExpression__Group_1__1__Impl3840);
             rule__AndOrXorExpression__ExpAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5120,10 +5188,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__Group_1__1__Impl
+    // $ANTLR end "rule__AndOrXorExpression__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__EqualityExpression__Group__0
+    // $ANTLR start "rule__EqualityExpression__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1809:1: rule__EqualityExpression__Group__0 : rule__EqualityExpression__Group__0__Impl rule__EqualityExpression__Group__1 ;
     public final void rule__EqualityExpression__Group__0() throws RecognitionException {
 
@@ -5135,11 +5203,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__EqualityExpression__Group__0__Impl_in_rule__EqualityExpression__Group__03874);
             rule__EqualityExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__EqualityExpression__Group__1_in_rule__EqualityExpression__Group__03877);
             rule__EqualityExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5156,10 +5226,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__Group__0
+    // $ANTLR end "rule__EqualityExpression__Group__0"
 
 
-    // $ANTLR start rule__EqualityExpression__Group__0__Impl
+    // $ANTLR start "rule__EqualityExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1821:1: rule__EqualityExpression__Group__0__Impl : ( ( rule__EqualityExpression__ExpAssignment_0 ) ) ;
     public final void rule__EqualityExpression__Group__0__Impl() throws RecognitionException {
 
@@ -5178,7 +5248,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__EqualityExpression__ExpAssignment_0_in_rule__EqualityExpression__Group__0__Impl3904);
             rule__EqualityExpression__ExpAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5202,10 +5273,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__Group__0__Impl
+    // $ANTLR end "rule__EqualityExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__EqualityExpression__Group__1
+    // $ANTLR start "rule__EqualityExpression__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1838:1: rule__EqualityExpression__Group__1 : rule__EqualityExpression__Group__1__Impl ;
     public final void rule__EqualityExpression__Group__1() throws RecognitionException {
 
@@ -5217,7 +5288,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__EqualityExpression__Group__1__Impl_in_rule__EqualityExpression__Group__13934);
             rule__EqualityExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5234,10 +5306,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__Group__1
+    // $ANTLR end "rule__EqualityExpression__Group__1"
 
 
-    // $ANTLR start rule__EqualityExpression__Group__1__Impl
+    // $ANTLR start "rule__EqualityExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1849:1: rule__EqualityExpression__Group__1__Impl : ( ( rule__EqualityExpression__Group_1__0 )* ) ;
     public final void rule__EqualityExpression__Group__1__Impl() throws RecognitionException {
 
@@ -5268,7 +5340,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             	    {
             	    pushFollow(FOLLOW_rule__EqualityExpression__Group_1__0_in_rule__EqualityExpression__Group__1__Impl3961);
             	    rule__EqualityExpression__Group_1__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -5298,10 +5371,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__Group__1__Impl
+    // $ANTLR end "rule__EqualityExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__EqualityExpression__Group_1__0
+    // $ANTLR start "rule__EqualityExpression__Group_1__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1870:1: rule__EqualityExpression__Group_1__0 : rule__EqualityExpression__Group_1__0__Impl rule__EqualityExpression__Group_1__1 ;
     public final void rule__EqualityExpression__Group_1__0() throws RecognitionException {
 
@@ -5313,11 +5386,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__EqualityExpression__Group_1__0__Impl_in_rule__EqualityExpression__Group_1__03996);
             rule__EqualityExpression__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__EqualityExpression__Group_1__1_in_rule__EqualityExpression__Group_1__03999);
             rule__EqualityExpression__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5334,10 +5409,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__Group_1__0
+    // $ANTLR end "rule__EqualityExpression__Group_1__0"
 
 
-    // $ANTLR start rule__EqualityExpression__Group_1__0__Impl
+    // $ANTLR start "rule__EqualityExpression__Group_1__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1882:1: rule__EqualityExpression__Group_1__0__Impl : ( ( rule__EqualityExpression__OpAssignment_1_0 ) ) ;
     public final void rule__EqualityExpression__Group_1__0__Impl() throws RecognitionException {
 
@@ -5356,7 +5431,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__EqualityExpression__OpAssignment_1_0_in_rule__EqualityExpression__Group_1__0__Impl4026);
             rule__EqualityExpression__OpAssignment_1_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5380,10 +5456,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__Group_1__0__Impl
+    // $ANTLR end "rule__EqualityExpression__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__EqualityExpression__Group_1__1
+    // $ANTLR start "rule__EqualityExpression__Group_1__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1899:1: rule__EqualityExpression__Group_1__1 : rule__EqualityExpression__Group_1__1__Impl ;
     public final void rule__EqualityExpression__Group_1__1() throws RecognitionException {
 
@@ -5395,7 +5471,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__EqualityExpression__Group_1__1__Impl_in_rule__EqualityExpression__Group_1__14056);
             rule__EqualityExpression__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5412,10 +5489,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__Group_1__1
+    // $ANTLR end "rule__EqualityExpression__Group_1__1"
 
 
-    // $ANTLR start rule__EqualityExpression__Group_1__1__Impl
+    // $ANTLR start "rule__EqualityExpression__Group_1__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1910:1: rule__EqualityExpression__Group_1__1__Impl : ( ( rule__EqualityExpression__ExpAssignment_1_1 ) ) ;
     public final void rule__EqualityExpression__Group_1__1__Impl() throws RecognitionException {
 
@@ -5434,7 +5511,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__EqualityExpression__ExpAssignment_1_1_in_rule__EqualityExpression__Group_1__1__Impl4083);
             rule__EqualityExpression__ExpAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5458,10 +5536,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__Group_1__1__Impl
+    // $ANTLR end "rule__EqualityExpression__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__RelationalExpression__Group__0
+    // $ANTLR start "rule__RelationalExpression__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1931:1: rule__RelationalExpression__Group__0 : rule__RelationalExpression__Group__0__Impl rule__RelationalExpression__Group__1 ;
     public final void rule__RelationalExpression__Group__0() throws RecognitionException {
 
@@ -5473,11 +5551,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__RelationalExpression__Group__0__Impl_in_rule__RelationalExpression__Group__04117);
             rule__RelationalExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__RelationalExpression__Group__1_in_rule__RelationalExpression__Group__04120);
             rule__RelationalExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5494,10 +5574,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__Group__0
+    // $ANTLR end "rule__RelationalExpression__Group__0"
 
 
-    // $ANTLR start rule__RelationalExpression__Group__0__Impl
+    // $ANTLR start "rule__RelationalExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1943:1: rule__RelationalExpression__Group__0__Impl : ( ( rule__RelationalExpression__ExpAssignment_0 ) ) ;
     public final void rule__RelationalExpression__Group__0__Impl() throws RecognitionException {
 
@@ -5516,7 +5596,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__RelationalExpression__ExpAssignment_0_in_rule__RelationalExpression__Group__0__Impl4147);
             rule__RelationalExpression__ExpAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5540,10 +5621,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__Group__0__Impl
+    // $ANTLR end "rule__RelationalExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__RelationalExpression__Group__1
+    // $ANTLR start "rule__RelationalExpression__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1960:1: rule__RelationalExpression__Group__1 : rule__RelationalExpression__Group__1__Impl ;
     public final void rule__RelationalExpression__Group__1() throws RecognitionException {
 
@@ -5555,7 +5636,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__RelationalExpression__Group__1__Impl_in_rule__RelationalExpression__Group__14177);
             rule__RelationalExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5572,10 +5654,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__Group__1
+    // $ANTLR end "rule__RelationalExpression__Group__1"
 
 
-    // $ANTLR start rule__RelationalExpression__Group__1__Impl
+    // $ANTLR start "rule__RelationalExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1971:1: rule__RelationalExpression__Group__1__Impl : ( ( rule__RelationalExpression__Group_1__0 )* ) ;
     public final void rule__RelationalExpression__Group__1__Impl() throws RecognitionException {
 
@@ -5606,7 +5688,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             	    {
             	    pushFollow(FOLLOW_rule__RelationalExpression__Group_1__0_in_rule__RelationalExpression__Group__1__Impl4204);
             	    rule__RelationalExpression__Group_1__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -5636,10 +5719,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__Group__1__Impl
+    // $ANTLR end "rule__RelationalExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__RelationalExpression__Group_1__0
+    // $ANTLR start "rule__RelationalExpression__Group_1__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1992:1: rule__RelationalExpression__Group_1__0 : rule__RelationalExpression__Group_1__0__Impl rule__RelationalExpression__Group_1__1 ;
     public final void rule__RelationalExpression__Group_1__0() throws RecognitionException {
 
@@ -5651,11 +5734,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__RelationalExpression__Group_1__0__Impl_in_rule__RelationalExpression__Group_1__04239);
             rule__RelationalExpression__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__RelationalExpression__Group_1__1_in_rule__RelationalExpression__Group_1__04242);
             rule__RelationalExpression__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5672,10 +5757,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__Group_1__0
+    // $ANTLR end "rule__RelationalExpression__Group_1__0"
 
 
-    // $ANTLR start rule__RelationalExpression__Group_1__0__Impl
+    // $ANTLR start "rule__RelationalExpression__Group_1__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2004:1: rule__RelationalExpression__Group_1__0__Impl : ( ( rule__RelationalExpression__OpAssignment_1_0 ) ) ;
     public final void rule__RelationalExpression__Group_1__0__Impl() throws RecognitionException {
 
@@ -5694,7 +5779,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__RelationalExpression__OpAssignment_1_0_in_rule__RelationalExpression__Group_1__0__Impl4269);
             rule__RelationalExpression__OpAssignment_1_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5718,10 +5804,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__Group_1__0__Impl
+    // $ANTLR end "rule__RelationalExpression__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__RelationalExpression__Group_1__1
+    // $ANTLR start "rule__RelationalExpression__Group_1__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2021:1: rule__RelationalExpression__Group_1__1 : rule__RelationalExpression__Group_1__1__Impl ;
     public final void rule__RelationalExpression__Group_1__1() throws RecognitionException {
 
@@ -5733,7 +5819,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__RelationalExpression__Group_1__1__Impl_in_rule__RelationalExpression__Group_1__14299);
             rule__RelationalExpression__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5750,10 +5837,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__Group_1__1
+    // $ANTLR end "rule__RelationalExpression__Group_1__1"
 
 
-    // $ANTLR start rule__RelationalExpression__Group_1__1__Impl
+    // $ANTLR start "rule__RelationalExpression__Group_1__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2032:1: rule__RelationalExpression__Group_1__1__Impl : ( ( rule__RelationalExpression__ExpAssignment_1_1 ) ) ;
     public final void rule__RelationalExpression__Group_1__1__Impl() throws RecognitionException {
 
@@ -5772,7 +5859,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__RelationalExpression__ExpAssignment_1_1_in_rule__RelationalExpression__Group_1__1__Impl4326);
             rule__RelationalExpression__ExpAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5796,10 +5884,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__Group_1__1__Impl
+    // $ANTLR end "rule__RelationalExpression__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group__0
+    // $ANTLR start "rule__ConditionalExpression__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2053:1: rule__ConditionalExpression__Group__0 : rule__ConditionalExpression__Group__0__Impl rule__ConditionalExpression__Group__1 ;
     public final void rule__ConditionalExpression__Group__0() throws RecognitionException {
 
@@ -5811,11 +5899,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__Group__0__Impl_in_rule__ConditionalExpression__Group__04360);
             rule__ConditionalExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ConditionalExpression__Group__1_in_rule__ConditionalExpression__Group__04363);
             rule__ConditionalExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5832,10 +5922,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group__0
+    // $ANTLR end "rule__ConditionalExpression__Group__0"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group__0__Impl
+    // $ANTLR start "rule__ConditionalExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2065:1: rule__ConditionalExpression__Group__0__Impl : ( ( rule__ConditionalExpression__ExpAssignment_0 ) ) ;
     public final void rule__ConditionalExpression__Group__0__Impl() throws RecognitionException {
 
@@ -5854,7 +5944,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__ExpAssignment_0_in_rule__ConditionalExpression__Group__0__Impl4390);
             rule__ConditionalExpression__ExpAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5878,10 +5969,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group__0__Impl
+    // $ANTLR end "rule__ConditionalExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group__1
+    // $ANTLR start "rule__ConditionalExpression__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2082:1: rule__ConditionalExpression__Group__1 : rule__ConditionalExpression__Group__1__Impl ;
     public final void rule__ConditionalExpression__Group__1() throws RecognitionException {
 
@@ -5893,7 +5984,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__Group__1__Impl_in_rule__ConditionalExpression__Group__14420);
             rule__ConditionalExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -5910,10 +6002,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group__1
+    // $ANTLR end "rule__ConditionalExpression__Group__1"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group__1__Impl
+    // $ANTLR start "rule__ConditionalExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2093:1: rule__ConditionalExpression__Group__1__Impl : ( ( rule__ConditionalExpression__Group_1__0 )? ) ;
     public final void rule__ConditionalExpression__Group__1__Impl() throws RecognitionException {
 
@@ -5940,7 +6032,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__ConditionalExpression__Group_1__0_in_rule__ConditionalExpression__Group__1__Impl4447);
                     rule__ConditionalExpression__Group_1__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -5967,10 +6060,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group__1__Impl
+    // $ANTLR end "rule__ConditionalExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group_1__0
+    // $ANTLR start "rule__ConditionalExpression__Group_1__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2114:1: rule__ConditionalExpression__Group_1__0 : rule__ConditionalExpression__Group_1__0__Impl rule__ConditionalExpression__Group_1__1 ;
     public final void rule__ConditionalExpression__Group_1__0() throws RecognitionException {
 
@@ -5982,11 +6075,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__Group_1__0__Impl_in_rule__ConditionalExpression__Group_1__04482);
             rule__ConditionalExpression__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ConditionalExpression__Group_1__1_in_rule__ConditionalExpression__Group_1__04485);
             rule__ConditionalExpression__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6003,10 +6098,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group_1__0
+    // $ANTLR end "rule__ConditionalExpression__Group_1__0"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group_1__0__Impl
+    // $ANTLR start "rule__ConditionalExpression__Group_1__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2126:1: rule__ConditionalExpression__Group_1__0__Impl : ( ( rule__ConditionalExpression__OpAssignment_1_0 ) ) ;
     public final void rule__ConditionalExpression__Group_1__0__Impl() throws RecognitionException {
 
@@ -6025,7 +6120,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__OpAssignment_1_0_in_rule__ConditionalExpression__Group_1__0__Impl4512);
             rule__ConditionalExpression__OpAssignment_1_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6049,10 +6145,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group_1__0__Impl
+    // $ANTLR end "rule__ConditionalExpression__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group_1__1
+    // $ANTLR start "rule__ConditionalExpression__Group_1__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2143:1: rule__ConditionalExpression__Group_1__1 : rule__ConditionalExpression__Group_1__1__Impl rule__ConditionalExpression__Group_1__2 ;
     public final void rule__ConditionalExpression__Group_1__1() throws RecognitionException {
 
@@ -6064,11 +6160,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__Group_1__1__Impl_in_rule__ConditionalExpression__Group_1__14542);
             rule__ConditionalExpression__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ConditionalExpression__Group_1__2_in_rule__ConditionalExpression__Group_1__14545);
             rule__ConditionalExpression__Group_1__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6085,10 +6183,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group_1__1
+    // $ANTLR end "rule__ConditionalExpression__Group_1__1"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group_1__1__Impl
+    // $ANTLR start "rule__ConditionalExpression__Group_1__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2155:1: rule__ConditionalExpression__Group_1__1__Impl : ( ( rule__ConditionalExpression__ExpAssignment_1_1 ) ) ;
     public final void rule__ConditionalExpression__Group_1__1__Impl() throws RecognitionException {
 
@@ -6107,7 +6205,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__ExpAssignment_1_1_in_rule__ConditionalExpression__Group_1__1__Impl4572);
             rule__ConditionalExpression__ExpAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6131,10 +6230,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group_1__1__Impl
+    // $ANTLR end "rule__ConditionalExpression__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group_1__2
+    // $ANTLR start "rule__ConditionalExpression__Group_1__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2172:1: rule__ConditionalExpression__Group_1__2 : rule__ConditionalExpression__Group_1__2__Impl rule__ConditionalExpression__Group_1__3 ;
     public final void rule__ConditionalExpression__Group_1__2() throws RecognitionException {
 
@@ -6146,11 +6245,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__Group_1__2__Impl_in_rule__ConditionalExpression__Group_1__24602);
             rule__ConditionalExpression__Group_1__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ConditionalExpression__Group_1__3_in_rule__ConditionalExpression__Group_1__24605);
             rule__ConditionalExpression__Group_1__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6167,10 +6268,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group_1__2
+    // $ANTLR end "rule__ConditionalExpression__Group_1__2"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group_1__2__Impl
+    // $ANTLR start "rule__ConditionalExpression__Group_1__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2184:1: rule__ConditionalExpression__Group_1__2__Impl : ( ':' ) ;
     public final void rule__ConditionalExpression__Group_1__2__Impl() throws RecognitionException {
 
@@ -6204,10 +6305,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group_1__2__Impl
+    // $ANTLR end "rule__ConditionalExpression__Group_1__2__Impl"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group_1__3
+    // $ANTLR start "rule__ConditionalExpression__Group_1__3"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2203:1: rule__ConditionalExpression__Group_1__3 : rule__ConditionalExpression__Group_1__3__Impl ;
     public final void rule__ConditionalExpression__Group_1__3() throws RecognitionException {
 
@@ -6219,7 +6320,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__Group_1__3__Impl_in_rule__ConditionalExpression__Group_1__34664);
             rule__ConditionalExpression__Group_1__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6236,10 +6338,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group_1__3
+    // $ANTLR end "rule__ConditionalExpression__Group_1__3"
 
 
-    // $ANTLR start rule__ConditionalExpression__Group_1__3__Impl
+    // $ANTLR start "rule__ConditionalExpression__Group_1__3__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2214:1: rule__ConditionalExpression__Group_1__3__Impl : ( ( rule__ConditionalExpression__ExpAssignment_1_3 ) ) ;
     public final void rule__ConditionalExpression__Group_1__3__Impl() throws RecognitionException {
 
@@ -6258,7 +6360,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ConditionalExpression__ExpAssignment_1_3_in_rule__ConditionalExpression__Group_1__3__Impl4691);
             rule__ConditionalExpression__ExpAssignment_1_3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6282,10 +6385,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__Group_1__3__Impl
+    // $ANTLR end "rule__ConditionalExpression__Group_1__3__Impl"
 
 
-    // $ANTLR start rule__AdditiveExpression__Group__0
+    // $ANTLR start "rule__AdditiveExpression__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2239:1: rule__AdditiveExpression__Group__0 : rule__AdditiveExpression__Group__0__Impl rule__AdditiveExpression__Group__1 ;
     public final void rule__AdditiveExpression__Group__0() throws RecognitionException {
 
@@ -6297,11 +6400,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__AdditiveExpression__Group__0__Impl_in_rule__AdditiveExpression__Group__04729);
             rule__AdditiveExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__AdditiveExpression__Group__1_in_rule__AdditiveExpression__Group__04732);
             rule__AdditiveExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6318,10 +6423,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__Group__0
+    // $ANTLR end "rule__AdditiveExpression__Group__0"
 
 
-    // $ANTLR start rule__AdditiveExpression__Group__0__Impl
+    // $ANTLR start "rule__AdditiveExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2251:1: rule__AdditiveExpression__Group__0__Impl : ( ( rule__AdditiveExpression__ExpAssignment_0 ) ) ;
     public final void rule__AdditiveExpression__Group__0__Impl() throws RecognitionException {
 
@@ -6340,7 +6445,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__AdditiveExpression__ExpAssignment_0_in_rule__AdditiveExpression__Group__0__Impl4759);
             rule__AdditiveExpression__ExpAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6364,10 +6470,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__Group__0__Impl
+    // $ANTLR end "rule__AdditiveExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__AdditiveExpression__Group__1
+    // $ANTLR start "rule__AdditiveExpression__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2268:1: rule__AdditiveExpression__Group__1 : rule__AdditiveExpression__Group__1__Impl ;
     public final void rule__AdditiveExpression__Group__1() throws RecognitionException {
 
@@ -6379,7 +6485,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__AdditiveExpression__Group__1__Impl_in_rule__AdditiveExpression__Group__14789);
             rule__AdditiveExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6396,10 +6503,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__Group__1
+    // $ANTLR end "rule__AdditiveExpression__Group__1"
 
 
-    // $ANTLR start rule__AdditiveExpression__Group__1__Impl
+    // $ANTLR start "rule__AdditiveExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2279:1: rule__AdditiveExpression__Group__1__Impl : ( ( rule__AdditiveExpression__Group_1__0 )* ) ;
     public final void rule__AdditiveExpression__Group__1__Impl() throws RecognitionException {
 
@@ -6430,7 +6537,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             	    {
             	    pushFollow(FOLLOW_rule__AdditiveExpression__Group_1__0_in_rule__AdditiveExpression__Group__1__Impl4816);
             	    rule__AdditiveExpression__Group_1__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -6460,10 +6568,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__Group__1__Impl
+    // $ANTLR end "rule__AdditiveExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__AdditiveExpression__Group_1__0
+    // $ANTLR start "rule__AdditiveExpression__Group_1__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2300:1: rule__AdditiveExpression__Group_1__0 : rule__AdditiveExpression__Group_1__0__Impl rule__AdditiveExpression__Group_1__1 ;
     public final void rule__AdditiveExpression__Group_1__0() throws RecognitionException {
 
@@ -6475,11 +6583,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__AdditiveExpression__Group_1__0__Impl_in_rule__AdditiveExpression__Group_1__04851);
             rule__AdditiveExpression__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__AdditiveExpression__Group_1__1_in_rule__AdditiveExpression__Group_1__04854);
             rule__AdditiveExpression__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6496,10 +6606,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__Group_1__0
+    // $ANTLR end "rule__AdditiveExpression__Group_1__0"
 
 
-    // $ANTLR start rule__AdditiveExpression__Group_1__0__Impl
+    // $ANTLR start "rule__AdditiveExpression__Group_1__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2312:1: rule__AdditiveExpression__Group_1__0__Impl : ( ( rule__AdditiveExpression__OpAssignment_1_0 ) ) ;
     public final void rule__AdditiveExpression__Group_1__0__Impl() throws RecognitionException {
 
@@ -6518,7 +6628,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__AdditiveExpression__OpAssignment_1_0_in_rule__AdditiveExpression__Group_1__0__Impl4881);
             rule__AdditiveExpression__OpAssignment_1_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6542,10 +6653,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__Group_1__0__Impl
+    // $ANTLR end "rule__AdditiveExpression__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__AdditiveExpression__Group_1__1
+    // $ANTLR start "rule__AdditiveExpression__Group_1__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2329:1: rule__AdditiveExpression__Group_1__1 : rule__AdditiveExpression__Group_1__1__Impl ;
     public final void rule__AdditiveExpression__Group_1__1() throws RecognitionException {
 
@@ -6557,7 +6668,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__AdditiveExpression__Group_1__1__Impl_in_rule__AdditiveExpression__Group_1__14911);
             rule__AdditiveExpression__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6574,10 +6686,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__Group_1__1
+    // $ANTLR end "rule__AdditiveExpression__Group_1__1"
 
 
-    // $ANTLR start rule__AdditiveExpression__Group_1__1__Impl
+    // $ANTLR start "rule__AdditiveExpression__Group_1__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2340:1: rule__AdditiveExpression__Group_1__1__Impl : ( ( rule__AdditiveExpression__ExpAssignment_1_1 ) ) ;
     public final void rule__AdditiveExpression__Group_1__1__Impl() throws RecognitionException {
 
@@ -6596,7 +6708,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__AdditiveExpression__ExpAssignment_1_1_in_rule__AdditiveExpression__Group_1__1__Impl4938);
             rule__AdditiveExpression__ExpAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6620,10 +6733,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__Group_1__1__Impl
+    // $ANTLR end "rule__AdditiveExpression__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__Group__0
+    // $ANTLR start "rule__MultiplicativeExpression__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2361:1: rule__MultiplicativeExpression__Group__0 : rule__MultiplicativeExpression__Group__0__Impl rule__MultiplicativeExpression__Group__1 ;
     public final void rule__MultiplicativeExpression__Group__0() throws RecognitionException {
 
@@ -6635,11 +6748,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__MultiplicativeExpression__Group__0__Impl_in_rule__MultiplicativeExpression__Group__04972);
             rule__MultiplicativeExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__MultiplicativeExpression__Group__1_in_rule__MultiplicativeExpression__Group__04975);
             rule__MultiplicativeExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6656,10 +6771,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__Group__0
+    // $ANTLR end "rule__MultiplicativeExpression__Group__0"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__Group__0__Impl
+    // $ANTLR start "rule__MultiplicativeExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2373:1: rule__MultiplicativeExpression__Group__0__Impl : ( ( rule__MultiplicativeExpression__ExpAssignment_0 ) ) ;
     public final void rule__MultiplicativeExpression__Group__0__Impl() throws RecognitionException {
 
@@ -6678,7 +6793,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__MultiplicativeExpression__ExpAssignment_0_in_rule__MultiplicativeExpression__Group__0__Impl5002);
             rule__MultiplicativeExpression__ExpAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6702,10 +6818,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__Group__0__Impl
+    // $ANTLR end "rule__MultiplicativeExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__Group__1
+    // $ANTLR start "rule__MultiplicativeExpression__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2390:1: rule__MultiplicativeExpression__Group__1 : rule__MultiplicativeExpression__Group__1__Impl ;
     public final void rule__MultiplicativeExpression__Group__1() throws RecognitionException {
 
@@ -6717,7 +6833,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__MultiplicativeExpression__Group__1__Impl_in_rule__MultiplicativeExpression__Group__15032);
             rule__MultiplicativeExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6734,10 +6851,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__Group__1
+    // $ANTLR end "rule__MultiplicativeExpression__Group__1"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__Group__1__Impl
+    // $ANTLR start "rule__MultiplicativeExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2401:1: rule__MultiplicativeExpression__Group__1__Impl : ( ( rule__MultiplicativeExpression__Group_1__0 )* ) ;
     public final void rule__MultiplicativeExpression__Group__1__Impl() throws RecognitionException {
 
@@ -6768,7 +6885,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             	    {
             	    pushFollow(FOLLOW_rule__MultiplicativeExpression__Group_1__0_in_rule__MultiplicativeExpression__Group__1__Impl5059);
             	    rule__MultiplicativeExpression__Group_1__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -6798,10 +6916,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__Group__1__Impl
+    // $ANTLR end "rule__MultiplicativeExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__Group_1__0
+    // $ANTLR start "rule__MultiplicativeExpression__Group_1__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2422:1: rule__MultiplicativeExpression__Group_1__0 : rule__MultiplicativeExpression__Group_1__0__Impl rule__MultiplicativeExpression__Group_1__1 ;
     public final void rule__MultiplicativeExpression__Group_1__0() throws RecognitionException {
 
@@ -6813,11 +6931,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__MultiplicativeExpression__Group_1__0__Impl_in_rule__MultiplicativeExpression__Group_1__05094);
             rule__MultiplicativeExpression__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__MultiplicativeExpression__Group_1__1_in_rule__MultiplicativeExpression__Group_1__05097);
             rule__MultiplicativeExpression__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6834,10 +6954,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__Group_1__0
+    // $ANTLR end "rule__MultiplicativeExpression__Group_1__0"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__Group_1__0__Impl
+    // $ANTLR start "rule__MultiplicativeExpression__Group_1__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2434:1: rule__MultiplicativeExpression__Group_1__0__Impl : ( ( rule__MultiplicativeExpression__OpAssignment_1_0 ) ) ;
     public final void rule__MultiplicativeExpression__Group_1__0__Impl() throws RecognitionException {
 
@@ -6856,7 +6976,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__MultiplicativeExpression__OpAssignment_1_0_in_rule__MultiplicativeExpression__Group_1__0__Impl5124);
             rule__MultiplicativeExpression__OpAssignment_1_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6880,10 +7001,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__Group_1__0__Impl
+    // $ANTLR end "rule__MultiplicativeExpression__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__Group_1__1
+    // $ANTLR start "rule__MultiplicativeExpression__Group_1__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2451:1: rule__MultiplicativeExpression__Group_1__1 : rule__MultiplicativeExpression__Group_1__1__Impl ;
     public final void rule__MultiplicativeExpression__Group_1__1() throws RecognitionException {
 
@@ -6895,7 +7016,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__MultiplicativeExpression__Group_1__1__Impl_in_rule__MultiplicativeExpression__Group_1__15154);
             rule__MultiplicativeExpression__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6912,10 +7034,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__Group_1__1
+    // $ANTLR end "rule__MultiplicativeExpression__Group_1__1"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__Group_1__1__Impl
+    // $ANTLR start "rule__MultiplicativeExpression__Group_1__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2462:1: rule__MultiplicativeExpression__Group_1__1__Impl : ( ( rule__MultiplicativeExpression__ExpAssignment_1_1 ) ) ;
     public final void rule__MultiplicativeExpression__Group_1__1__Impl() throws RecognitionException {
 
@@ -6934,7 +7056,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__MultiplicativeExpression__ExpAssignment_1_1_in_rule__MultiplicativeExpression__Group_1__1__Impl5181);
             rule__MultiplicativeExpression__ExpAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6958,10 +7081,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__Group_1__1__Impl
+    // $ANTLR end "rule__MultiplicativeExpression__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__UnaryExpression__Group_0__0
+    // $ANTLR start "rule__UnaryExpression__Group_0__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2483:1: rule__UnaryExpression__Group_0__0 : rule__UnaryExpression__Group_0__0__Impl rule__UnaryExpression__Group_0__1 ;
     public final void rule__UnaryExpression__Group_0__0() throws RecognitionException {
 
@@ -6973,11 +7096,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__UnaryExpression__Group_0__0__Impl_in_rule__UnaryExpression__Group_0__05215);
             rule__UnaryExpression__Group_0__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__UnaryExpression__Group_0__1_in_rule__UnaryExpression__Group_0__05218);
             rule__UnaryExpression__Group_0__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -6994,10 +7119,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__UnaryExpression__Group_0__0
+    // $ANTLR end "rule__UnaryExpression__Group_0__0"
 
 
-    // $ANTLR start rule__UnaryExpression__Group_0__0__Impl
+    // $ANTLR start "rule__UnaryExpression__Group_0__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2495:1: rule__UnaryExpression__Group_0__0__Impl : ( ( rule__UnaryExpression__OpAssignment_0_0 ) ) ;
     public final void rule__UnaryExpression__Group_0__0__Impl() throws RecognitionException {
 
@@ -7016,7 +7141,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__UnaryExpression__OpAssignment_0_0_in_rule__UnaryExpression__Group_0__0__Impl5245);
             rule__UnaryExpression__OpAssignment_0_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7040,10 +7166,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__UnaryExpression__Group_0__0__Impl
+    // $ANTLR end "rule__UnaryExpression__Group_0__0__Impl"
 
 
-    // $ANTLR start rule__UnaryExpression__Group_0__1
+    // $ANTLR start "rule__UnaryExpression__Group_0__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2512:1: rule__UnaryExpression__Group_0__1 : rule__UnaryExpression__Group_0__1__Impl ;
     public final void rule__UnaryExpression__Group_0__1() throws RecognitionException {
 
@@ -7055,7 +7181,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__UnaryExpression__Group_0__1__Impl_in_rule__UnaryExpression__Group_0__15275);
             rule__UnaryExpression__Group_0__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7072,10 +7199,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__UnaryExpression__Group_0__1
+    // $ANTLR end "rule__UnaryExpression__Group_0__1"
 
 
-    // $ANTLR start rule__UnaryExpression__Group_0__1__Impl
+    // $ANTLR start "rule__UnaryExpression__Group_0__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2523:1: rule__UnaryExpression__Group_0__1__Impl : ( ( rule__UnaryExpression__UnaryAssignment_0_1 ) ) ;
     public final void rule__UnaryExpression__Group_0__1__Impl() throws RecognitionException {
 
@@ -7094,7 +7221,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__UnaryExpression__UnaryAssignment_0_1_in_rule__UnaryExpression__Group_0__1__Impl5302);
             rule__UnaryExpression__UnaryAssignment_0_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7118,10 +7246,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__UnaryExpression__Group_0__1__Impl
+    // $ANTLR end "rule__UnaryExpression__Group_0__1__Impl"
 
 
-    // $ANTLR start rule__PrimaryExpression__Group__0
+    // $ANTLR start "rule__PrimaryExpression__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2544:1: rule__PrimaryExpression__Group__0 : rule__PrimaryExpression__Group__0__Impl rule__PrimaryExpression__Group__1 ;
     public final void rule__PrimaryExpression__Group__0() throws RecognitionException {
 
@@ -7133,11 +7261,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__PrimaryExpression__Group__0__Impl_in_rule__PrimaryExpression__Group__05336);
             rule__PrimaryExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__PrimaryExpression__Group__1_in_rule__PrimaryExpression__Group__05339);
             rule__PrimaryExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7154,10 +7284,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__Group__0
+    // $ANTLR end "rule__PrimaryExpression__Group__0"
 
 
-    // $ANTLR start rule__PrimaryExpression__Group__0__Impl
+    // $ANTLR start "rule__PrimaryExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2556:1: rule__PrimaryExpression__Group__0__Impl : ( ( rule__PrimaryExpression__PrefixAssignment_0 ) ) ;
     public final void rule__PrimaryExpression__Group__0__Impl() throws RecognitionException {
 
@@ -7176,7 +7306,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__PrimaryExpression__PrefixAssignment_0_in_rule__PrimaryExpression__Group__0__Impl5366);
             rule__PrimaryExpression__PrefixAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7200,10 +7331,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__Group__0__Impl
+    // $ANTLR end "rule__PrimaryExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__PrimaryExpression__Group__1
+    // $ANTLR start "rule__PrimaryExpression__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2573:1: rule__PrimaryExpression__Group__1 : rule__PrimaryExpression__Group__1__Impl ;
     public final void rule__PrimaryExpression__Group__1() throws RecognitionException {
 
@@ -7215,7 +7346,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__PrimaryExpression__Group__1__Impl_in_rule__PrimaryExpression__Group__15396);
             rule__PrimaryExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7232,10 +7364,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__Group__1
+    // $ANTLR end "rule__PrimaryExpression__Group__1"
 
 
-    // $ANTLR start rule__PrimaryExpression__Group__1__Impl
+    // $ANTLR start "rule__PrimaryExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2584:1: rule__PrimaryExpression__Group__1__Impl : ( ( rule__PrimaryExpression__Group_1__0 )? ) ;
     public final void rule__PrimaryExpression__Group__1__Impl() throws RecognitionException {
 
@@ -7262,7 +7394,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__PrimaryExpression__Group_1__0_in_rule__PrimaryExpression__Group__1__Impl5423);
                     rule__PrimaryExpression__Group_1__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -7289,10 +7422,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__Group__1__Impl
+    // $ANTLR end "rule__PrimaryExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__PrimaryExpression__Group_1__0
+    // $ANTLR start "rule__PrimaryExpression__Group_1__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2605:1: rule__PrimaryExpression__Group_1__0 : rule__PrimaryExpression__Group_1__0__Impl rule__PrimaryExpression__Group_1__1 ;
     public final void rule__PrimaryExpression__Group_1__0() throws RecognitionException {
 
@@ -7304,11 +7437,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__PrimaryExpression__Group_1__0__Impl_in_rule__PrimaryExpression__Group_1__05458);
             rule__PrimaryExpression__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__PrimaryExpression__Group_1__1_in_rule__PrimaryExpression__Group_1__05461);
             rule__PrimaryExpression__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7325,10 +7460,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__Group_1__0
+    // $ANTLR end "rule__PrimaryExpression__Group_1__0"
 
 
-    // $ANTLR start rule__PrimaryExpression__Group_1__0__Impl
+    // $ANTLR start "rule__PrimaryExpression__Group_1__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2617:1: rule__PrimaryExpression__Group_1__0__Impl : ( '.' ) ;
     public final void rule__PrimaryExpression__Group_1__0__Impl() throws RecognitionException {
 
@@ -7362,10 +7497,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__Group_1__0__Impl
+    // $ANTLR end "rule__PrimaryExpression__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__PrimaryExpression__Group_1__1
+    // $ANTLR start "rule__PrimaryExpression__Group_1__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2636:1: rule__PrimaryExpression__Group_1__1 : rule__PrimaryExpression__Group_1__1__Impl ;
     public final void rule__PrimaryExpression__Group_1__1() throws RecognitionException {
 
@@ -7377,7 +7512,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__PrimaryExpression__Group_1__1__Impl_in_rule__PrimaryExpression__Group_1__15520);
             rule__PrimaryExpression__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7394,10 +7530,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__Group_1__1
+    // $ANTLR end "rule__PrimaryExpression__Group_1__1"
 
 
-    // $ANTLR start rule__PrimaryExpression__Group_1__1__Impl
+    // $ANTLR start "rule__PrimaryExpression__Group_1__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2647:1: rule__PrimaryExpression__Group_1__1__Impl : ( ( rule__PrimaryExpression__SuffixAssignment_1_1 ) ) ;
     public final void rule__PrimaryExpression__Group_1__1__Impl() throws RecognitionException {
 
@@ -7416,7 +7552,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__PrimaryExpression__SuffixAssignment_1_1_in_rule__PrimaryExpression__Group_1__1__Impl5547);
             rule__PrimaryExpression__SuffixAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7440,10 +7577,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__Group_1__1__Impl
+    // $ANTLR end "rule__PrimaryExpression__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__ValueSpecification__Group_7__0
+    // $ANTLR start "rule__ValueSpecification__Group_7__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2668:1: rule__ValueSpecification__Group_7__0 : rule__ValueSpecification__Group_7__0__Impl rule__ValueSpecification__Group_7__1 ;
     public final void rule__ValueSpecification__Group_7__0() throws RecognitionException {
 
@@ -7455,11 +7592,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ValueSpecification__Group_7__0__Impl_in_rule__ValueSpecification__Group_7__05581);
             rule__ValueSpecification__Group_7__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ValueSpecification__Group_7__1_in_rule__ValueSpecification__Group_7__05584);
             rule__ValueSpecification__Group_7__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7476,10 +7615,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ValueSpecification__Group_7__0
+    // $ANTLR end "rule__ValueSpecification__Group_7__0"
 
 
-    // $ANTLR start rule__ValueSpecification__Group_7__0__Impl
+    // $ANTLR start "rule__ValueSpecification__Group_7__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2680:1: rule__ValueSpecification__Group_7__0__Impl : ( '(' ) ;
     public final void rule__ValueSpecification__Group_7__0__Impl() throws RecognitionException {
 
@@ -7513,10 +7652,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ValueSpecification__Group_7__0__Impl
+    // $ANTLR end "rule__ValueSpecification__Group_7__0__Impl"
 
 
-    // $ANTLR start rule__ValueSpecification__Group_7__1
+    // $ANTLR start "rule__ValueSpecification__Group_7__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2699:1: rule__ValueSpecification__Group_7__1 : rule__ValueSpecification__Group_7__1__Impl rule__ValueSpecification__Group_7__2 ;
     public final void rule__ValueSpecification__Group_7__1() throws RecognitionException {
 
@@ -7528,11 +7667,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ValueSpecification__Group_7__1__Impl_in_rule__ValueSpecification__Group_7__15643);
             rule__ValueSpecification__Group_7__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ValueSpecification__Group_7__2_in_rule__ValueSpecification__Group_7__15646);
             rule__ValueSpecification__Group_7__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7549,10 +7690,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ValueSpecification__Group_7__1
+    // $ANTLR end "rule__ValueSpecification__Group_7__1"
 
 
-    // $ANTLR start rule__ValueSpecification__Group_7__1__Impl
+    // $ANTLR start "rule__ValueSpecification__Group_7__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2711:1: rule__ValueSpecification__Group_7__1__Impl : ( ruleExpression ) ;
     public final void rule__ValueSpecification__Group_7__1__Impl() throws RecognitionException {
 
@@ -7568,7 +7709,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getValueSpecificationAccess().getExpressionParserRuleCall_7_1()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__ValueSpecification__Group_7__1__Impl5673);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getValueSpecificationAccess().getExpressionParserRuleCall_7_1()); 
 
@@ -7589,10 +7731,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ValueSpecification__Group_7__1__Impl
+    // $ANTLR end "rule__ValueSpecification__Group_7__1__Impl"
 
 
-    // $ANTLR start rule__ValueSpecification__Group_7__2
+    // $ANTLR start "rule__ValueSpecification__Group_7__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2728:1: rule__ValueSpecification__Group_7__2 : rule__ValueSpecification__Group_7__2__Impl ;
     public final void rule__ValueSpecification__Group_7__2() throws RecognitionException {
 
@@ -7604,7 +7746,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ValueSpecification__Group_7__2__Impl_in_rule__ValueSpecification__Group_7__25702);
             rule__ValueSpecification__Group_7__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7621,10 +7764,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ValueSpecification__Group_7__2
+    // $ANTLR end "rule__ValueSpecification__Group_7__2"
 
 
-    // $ANTLR start rule__ValueSpecification__Group_7__2__Impl
+    // $ANTLR start "rule__ValueSpecification__Group_7__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2739:1: rule__ValueSpecification__Group_7__2__Impl : ( ')' ) ;
     public final void rule__ValueSpecification__Group_7__2__Impl() throws RecognitionException {
 
@@ -7658,10 +7801,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ValueSpecification__Group_7__2__Impl
+    // $ANTLR end "rule__ValueSpecification__Group_7__2__Impl"
 
 
-    // $ANTLR start rule__PropertyCallExpression__Group__0
+    // $ANTLR start "rule__PropertyCallExpression__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2764:1: rule__PropertyCallExpression__Group__0 : rule__PropertyCallExpression__Group__0__Impl rule__PropertyCallExpression__Group__1 ;
     public final void rule__PropertyCallExpression__Group__0() throws RecognitionException {
 
@@ -7673,11 +7816,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__PropertyCallExpression__Group__0__Impl_in_rule__PropertyCallExpression__Group__05767);
             rule__PropertyCallExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__PropertyCallExpression__Group__1_in_rule__PropertyCallExpression__Group__05770);
             rule__PropertyCallExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7694,10 +7839,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__Group__0
+    // $ANTLR end "rule__PropertyCallExpression__Group__0"
 
 
-    // $ANTLR start rule__PropertyCallExpression__Group__0__Impl
+    // $ANTLR start "rule__PropertyCallExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2776:1: rule__PropertyCallExpression__Group__0__Impl : ( ( rule__PropertyCallExpression__PropertyAssignment_0 ) ) ;
     public final void rule__PropertyCallExpression__Group__0__Impl() throws RecognitionException {
 
@@ -7716,7 +7861,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__PropertyCallExpression__PropertyAssignment_0_in_rule__PropertyCallExpression__Group__0__Impl5797);
             rule__PropertyCallExpression__PropertyAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7740,10 +7886,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__Group__0__Impl
+    // $ANTLR end "rule__PropertyCallExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__PropertyCallExpression__Group__1
+    // $ANTLR start "rule__PropertyCallExpression__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2793:1: rule__PropertyCallExpression__Group__1 : rule__PropertyCallExpression__Group__1__Impl ;
     public final void rule__PropertyCallExpression__Group__1() throws RecognitionException {
 
@@ -7755,7 +7901,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__PropertyCallExpression__Group__1__Impl_in_rule__PropertyCallExpression__Group__15827);
             rule__PropertyCallExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7772,10 +7919,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__Group__1
+    // $ANTLR end "rule__PropertyCallExpression__Group__1"
 
 
-    // $ANTLR start rule__PropertyCallExpression__Group__1__Impl
+    // $ANTLR start "rule__PropertyCallExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2804:1: rule__PropertyCallExpression__Group__1__Impl : ( ( rule__PropertyCallExpression__Group_1__0 )? ) ;
     public final void rule__PropertyCallExpression__Group__1__Impl() throws RecognitionException {
 
@@ -7802,7 +7949,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__PropertyCallExpression__Group_1__0_in_rule__PropertyCallExpression__Group__1__Impl5854);
                     rule__PropertyCallExpression__Group_1__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -7829,10 +7977,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__Group__1__Impl
+    // $ANTLR end "rule__PropertyCallExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__PropertyCallExpression__Group_1__0
+    // $ANTLR start "rule__PropertyCallExpression__Group_1__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2825:1: rule__PropertyCallExpression__Group_1__0 : rule__PropertyCallExpression__Group_1__0__Impl rule__PropertyCallExpression__Group_1__1 ;
     public final void rule__PropertyCallExpression__Group_1__0() throws RecognitionException {
 
@@ -7844,11 +7992,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__PropertyCallExpression__Group_1__0__Impl_in_rule__PropertyCallExpression__Group_1__05889);
             rule__PropertyCallExpression__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__PropertyCallExpression__Group_1__1_in_rule__PropertyCallExpression__Group_1__05892);
             rule__PropertyCallExpression__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7865,10 +8015,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__Group_1__0
+    // $ANTLR end "rule__PropertyCallExpression__Group_1__0"
 
 
-    // $ANTLR start rule__PropertyCallExpression__Group_1__0__Impl
+    // $ANTLR start "rule__PropertyCallExpression__Group_1__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2837:1: rule__PropertyCallExpression__Group_1__0__Impl : ( '.' ) ;
     public final void rule__PropertyCallExpression__Group_1__0__Impl() throws RecognitionException {
 
@@ -7902,10 +8052,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__Group_1__0__Impl
+    // $ANTLR end "rule__PropertyCallExpression__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__PropertyCallExpression__Group_1__1
+    // $ANTLR start "rule__PropertyCallExpression__Group_1__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2856:1: rule__PropertyCallExpression__Group_1__1 : rule__PropertyCallExpression__Group_1__1__Impl ;
     public final void rule__PropertyCallExpression__Group_1__1() throws RecognitionException {
 
@@ -7917,7 +8067,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__PropertyCallExpression__Group_1__1__Impl_in_rule__PropertyCallExpression__Group_1__15951);
             rule__PropertyCallExpression__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7934,10 +8085,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__Group_1__1
+    // $ANTLR end "rule__PropertyCallExpression__Group_1__1"
 
 
-    // $ANTLR start rule__PropertyCallExpression__Group_1__1__Impl
+    // $ANTLR start "rule__PropertyCallExpression__Group_1__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2867:1: rule__PropertyCallExpression__Group_1__1__Impl : ( ( rule__PropertyCallExpression__SuffixAssignment_1_1 ) ) ;
     public final void rule__PropertyCallExpression__Group_1__1__Impl() throws RecognitionException {
 
@@ -7956,7 +8107,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__PropertyCallExpression__SuffixAssignment_1_1_in_rule__PropertyCallExpression__Group_1__1__Impl5978);
             rule__PropertyCallExpression__SuffixAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -7980,10 +8132,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__Group_1__1__Impl
+    // $ANTLR end "rule__PropertyCallExpression__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__0
+    // $ANTLR start "rule__OperationCallExpression__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2888:1: rule__OperationCallExpression__Group__0 : rule__OperationCallExpression__Group__0__Impl rule__OperationCallExpression__Group__1 ;
     public final void rule__OperationCallExpression__Group__0() throws RecognitionException {
 
@@ -7995,11 +8147,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__0__Impl_in_rule__OperationCallExpression__Group__06012);
             rule__OperationCallExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__1_in_rule__OperationCallExpression__Group__06015);
             rule__OperationCallExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8016,10 +8170,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__0
+    // $ANTLR end "rule__OperationCallExpression__Group__0"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__0__Impl
+    // $ANTLR start "rule__OperationCallExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2900:1: rule__OperationCallExpression__Group__0__Impl : ( ( rule__OperationCallExpression__OperationAssignment_0 ) ) ;
     public final void rule__OperationCallExpression__Group__0__Impl() throws RecognitionException {
 
@@ -8038,7 +8192,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__OperationAssignment_0_in_rule__OperationCallExpression__Group__0__Impl6042);
             rule__OperationCallExpression__OperationAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8062,10 +8217,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__0__Impl
+    // $ANTLR end "rule__OperationCallExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__1
+    // $ANTLR start "rule__OperationCallExpression__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2917:1: rule__OperationCallExpression__Group__1 : rule__OperationCallExpression__Group__1__Impl rule__OperationCallExpression__Group__2 ;
     public final void rule__OperationCallExpression__Group__1() throws RecognitionException {
 
@@ -8077,11 +8232,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__1__Impl_in_rule__OperationCallExpression__Group__16072);
             rule__OperationCallExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__2_in_rule__OperationCallExpression__Group__16075);
             rule__OperationCallExpression__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8098,10 +8255,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__1
+    // $ANTLR end "rule__OperationCallExpression__Group__1"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__1__Impl
+    // $ANTLR start "rule__OperationCallExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2929:1: rule__OperationCallExpression__Group__1__Impl : ( '(' ) ;
     public final void rule__OperationCallExpression__Group__1__Impl() throws RecognitionException {
 
@@ -8135,10 +8292,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__1__Impl
+    // $ANTLR end "rule__OperationCallExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__2
+    // $ANTLR start "rule__OperationCallExpression__Group__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2948:1: rule__OperationCallExpression__Group__2 : rule__OperationCallExpression__Group__2__Impl rule__OperationCallExpression__Group__3 ;
     public final void rule__OperationCallExpression__Group__2() throws RecognitionException {
 
@@ -8150,11 +8307,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__2__Impl_in_rule__OperationCallExpression__Group__26134);
             rule__OperationCallExpression__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__3_in_rule__OperationCallExpression__Group__26137);
             rule__OperationCallExpression__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8171,10 +8330,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__2
+    // $ANTLR end "rule__OperationCallExpression__Group__2"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__2__Impl
+    // $ANTLR start "rule__OperationCallExpression__Group__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2960:1: rule__OperationCallExpression__Group__2__Impl : ( ( rule__OperationCallExpression__ArgumentsAssignment_2 )? ) ;
     public final void rule__OperationCallExpression__Group__2__Impl() throws RecognitionException {
 
@@ -8201,7 +8360,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__OperationCallExpression__ArgumentsAssignment_2_in_rule__OperationCallExpression__Group__2__Impl6164);
                     rule__OperationCallExpression__ArgumentsAssignment_2();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -8228,10 +8388,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__2__Impl
+    // $ANTLR end "rule__OperationCallExpression__Group__2__Impl"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__3
+    // $ANTLR start "rule__OperationCallExpression__Group__3"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2977:1: rule__OperationCallExpression__Group__3 : rule__OperationCallExpression__Group__3__Impl rule__OperationCallExpression__Group__4 ;
     public final void rule__OperationCallExpression__Group__3() throws RecognitionException {
 
@@ -8243,11 +8403,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__3__Impl_in_rule__OperationCallExpression__Group__36195);
             rule__OperationCallExpression__Group__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__4_in_rule__OperationCallExpression__Group__36198);
             rule__OperationCallExpression__Group__4();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8264,10 +8426,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__3
+    // $ANTLR end "rule__OperationCallExpression__Group__3"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__3__Impl
+    // $ANTLR start "rule__OperationCallExpression__Group__3__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:2989:1: rule__OperationCallExpression__Group__3__Impl : ( ')' ) ;
     public final void rule__OperationCallExpression__Group__3__Impl() throws RecognitionException {
 
@@ -8301,10 +8463,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__3__Impl
+    // $ANTLR end "rule__OperationCallExpression__Group__3__Impl"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__4
+    // $ANTLR start "rule__OperationCallExpression__Group__4"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3008:1: rule__OperationCallExpression__Group__4 : rule__OperationCallExpression__Group__4__Impl ;
     public final void rule__OperationCallExpression__Group__4() throws RecognitionException {
 
@@ -8316,7 +8478,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__Group__4__Impl_in_rule__OperationCallExpression__Group__46257);
             rule__OperationCallExpression__Group__4__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8333,10 +8496,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__4
+    // $ANTLR end "rule__OperationCallExpression__Group__4"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group__4__Impl
+    // $ANTLR start "rule__OperationCallExpression__Group__4__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3019:1: rule__OperationCallExpression__Group__4__Impl : ( ( rule__OperationCallExpression__Group_4__0 )? ) ;
     public final void rule__OperationCallExpression__Group__4__Impl() throws RecognitionException {
 
@@ -8363,7 +8526,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__OperationCallExpression__Group_4__0_in_rule__OperationCallExpression__Group__4__Impl6284);
                     rule__OperationCallExpression__Group_4__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -8390,10 +8554,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group__4__Impl
+    // $ANTLR end "rule__OperationCallExpression__Group__4__Impl"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group_4__0
+    // $ANTLR start "rule__OperationCallExpression__Group_4__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3046:1: rule__OperationCallExpression__Group_4__0 : rule__OperationCallExpression__Group_4__0__Impl rule__OperationCallExpression__Group_4__1 ;
     public final void rule__OperationCallExpression__Group_4__0() throws RecognitionException {
 
@@ -8405,11 +8569,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__Group_4__0__Impl_in_rule__OperationCallExpression__Group_4__06325);
             rule__OperationCallExpression__Group_4__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__OperationCallExpression__Group_4__1_in_rule__OperationCallExpression__Group_4__06328);
             rule__OperationCallExpression__Group_4__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8426,10 +8592,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group_4__0
+    // $ANTLR end "rule__OperationCallExpression__Group_4__0"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group_4__0__Impl
+    // $ANTLR start "rule__OperationCallExpression__Group_4__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3058:1: rule__OperationCallExpression__Group_4__0__Impl : ( '.' ) ;
     public final void rule__OperationCallExpression__Group_4__0__Impl() throws RecognitionException {
 
@@ -8463,10 +8629,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group_4__0__Impl
+    // $ANTLR end "rule__OperationCallExpression__Group_4__0__Impl"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group_4__1
+    // $ANTLR start "rule__OperationCallExpression__Group_4__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3077:1: rule__OperationCallExpression__Group_4__1 : rule__OperationCallExpression__Group_4__1__Impl ;
     public final void rule__OperationCallExpression__Group_4__1() throws RecognitionException {
 
@@ -8478,7 +8644,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__Group_4__1__Impl_in_rule__OperationCallExpression__Group_4__16387);
             rule__OperationCallExpression__Group_4__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8495,10 +8662,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group_4__1
+    // $ANTLR end "rule__OperationCallExpression__Group_4__1"
 
 
-    // $ANTLR start rule__OperationCallExpression__Group_4__1__Impl
+    // $ANTLR start "rule__OperationCallExpression__Group_4__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3088:1: rule__OperationCallExpression__Group_4__1__Impl : ( ( rule__OperationCallExpression__SuffixAssignment_4_1 ) ) ;
     public final void rule__OperationCallExpression__Group_4__1__Impl() throws RecognitionException {
 
@@ -8517,7 +8684,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__OperationCallExpression__SuffixAssignment_4_1_in_rule__OperationCallExpression__Group_4__1__Impl6414);
             rule__OperationCallExpression__SuffixAssignment_4_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8541,10 +8709,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__Group_4__1__Impl
+    // $ANTLR end "rule__OperationCallExpression__Group_4__1__Impl"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group__0
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3109:1: rule__NameOrChoiceOrBehaviorCall__Group__0 : rule__NameOrChoiceOrBehaviorCall__Group__0__Impl rule__NameOrChoiceOrBehaviorCall__Group__1 ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group__0() throws RecognitionException {
 
@@ -8556,11 +8724,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__0__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group__06448);
             rule__NameOrChoiceOrBehaviorCall__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__1_in_rule__NameOrChoiceOrBehaviorCall__Group__06451);
             rule__NameOrChoiceOrBehaviorCall__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8577,10 +8747,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group__0
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group__0"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group__0__Impl
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3121:1: rule__NameOrChoiceOrBehaviorCall__Group__0__Impl : ( ( rule__NameOrChoiceOrBehaviorCall__PathAssignment_0 )? ) ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group__0__Impl() throws RecognitionException {
 
@@ -8611,7 +8781,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__PathAssignment_0_in_rule__NameOrChoiceOrBehaviorCall__Group__0__Impl6478);
                     rule__NameOrChoiceOrBehaviorCall__PathAssignment_0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -8638,10 +8809,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group__0__Impl
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group__0__Impl"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group__1
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3138:1: rule__NameOrChoiceOrBehaviorCall__Group__1 : rule__NameOrChoiceOrBehaviorCall__Group__1__Impl rule__NameOrChoiceOrBehaviorCall__Group__2 ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group__1() throws RecognitionException {
 
@@ -8653,11 +8824,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__1__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group__16509);
             rule__NameOrChoiceOrBehaviorCall__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__2_in_rule__NameOrChoiceOrBehaviorCall__Group__16512);
             rule__NameOrChoiceOrBehaviorCall__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8674,10 +8847,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group__1
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group__1"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group__1__Impl
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3150:1: rule__NameOrChoiceOrBehaviorCall__Group__1__Impl : ( ( rule__NameOrChoiceOrBehaviorCall__IdAssignment_1 ) ) ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group__1__Impl() throws RecognitionException {
 
@@ -8696,7 +8869,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__IdAssignment_1_in_rule__NameOrChoiceOrBehaviorCall__Group__1__Impl6539);
             rule__NameOrChoiceOrBehaviorCall__IdAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8720,10 +8894,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group__1__Impl
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group__1__Impl"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group__2
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3167:1: rule__NameOrChoiceOrBehaviorCall__Group__2 : rule__NameOrChoiceOrBehaviorCall__Group__2__Impl ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group__2() throws RecognitionException {
 
@@ -8735,7 +8909,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__2__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group__26569);
             rule__NameOrChoiceOrBehaviorCall__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8752,10 +8927,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group__2
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group__2"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group__2__Impl
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3178:1: rule__NameOrChoiceOrBehaviorCall__Group__2__Impl : ( ( rule__NameOrChoiceOrBehaviorCall__Group_2__0 )? ) ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group__2__Impl() throws RecognitionException {
 
@@ -8782,7 +8957,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__0_in_rule__NameOrChoiceOrBehaviorCall__Group__2__Impl6596);
                     rule__NameOrChoiceOrBehaviorCall__Group_2__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -8809,10 +8985,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group__2__Impl
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group__2__Impl"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group_2__0
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group_2__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3201:1: rule__NameOrChoiceOrBehaviorCall__Group_2__0 : rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl rule__NameOrChoiceOrBehaviorCall__Group_2__1 ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group_2__0() throws RecognitionException {
 
@@ -8824,11 +9000,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group_2__06633);
             rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__1_in_rule__NameOrChoiceOrBehaviorCall__Group_2__06636);
             rule__NameOrChoiceOrBehaviorCall__Group_2__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8845,10 +9023,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group_2__0
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group_2__0"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3213:1: rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl : ( '(' ) ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl() throws RecognitionException {
 
@@ -8882,10 +9060,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group_2__1
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group_2__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3232:1: rule__NameOrChoiceOrBehaviorCall__Group_2__1 : rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl rule__NameOrChoiceOrBehaviorCall__Group_2__2 ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group_2__1() throws RecognitionException {
 
@@ -8897,11 +9075,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group_2__16695);
             rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__2_in_rule__NameOrChoiceOrBehaviorCall__Group_2__16698);
             rule__NameOrChoiceOrBehaviorCall__Group_2__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -8918,10 +9098,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group_2__1
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group_2__1"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3244:1: rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl : ( ( rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1 )? ) ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl() throws RecognitionException {
 
@@ -8948,7 +9128,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1_in_rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl6725);
                     rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -8975,10 +9156,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group_2__2
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group_2__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3261:1: rule__NameOrChoiceOrBehaviorCall__Group_2__2 : rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group_2__2() throws RecognitionException {
 
@@ -8990,7 +9171,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group_2__26756);
             rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9007,10 +9189,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group_2__2
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group_2__2"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3272:1: rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl : ( ')' ) ;
     public final void rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl() throws RecognitionException {
 
@@ -9044,10 +9226,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl"
 
 
-    // $ANTLR start rule__QualifiedName__Group__0
+    // $ANTLR start "rule__QualifiedName__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3297:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
     public final void rule__QualifiedName__Group__0() throws RecognitionException {
 
@@ -9059,11 +9241,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__06821);
             rule__QualifiedName__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__06824);
             rule__QualifiedName__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9080,10 +9264,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__0
+    // $ANTLR end "rule__QualifiedName__Group__0"
 
 
-    // $ANTLR start rule__QualifiedName__Group__0__Impl
+    // $ANTLR start "rule__QualifiedName__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3309:1: rule__QualifiedName__Group__0__Impl : ( ( rule__QualifiedName__PathAssignment_0 ) ) ;
     public final void rule__QualifiedName__Group__0__Impl() throws RecognitionException {
 
@@ -9102,7 +9286,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__QualifiedName__PathAssignment_0_in_rule__QualifiedName__Group__0__Impl6851);
             rule__QualifiedName__PathAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9126,10 +9311,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__0__Impl
+    // $ANTLR end "rule__QualifiedName__Group__0__Impl"
 
 
-    // $ANTLR start rule__QualifiedName__Group__1
+    // $ANTLR start "rule__QualifiedName__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3326:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl rule__QualifiedName__Group__2 ;
     public final void rule__QualifiedName__Group__1() throws RecognitionException {
 
@@ -9141,11 +9326,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__16881);
             rule__QualifiedName__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__QualifiedName__Group__2_in_rule__QualifiedName__Group__16884);
             rule__QualifiedName__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9162,10 +9349,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__1
+    // $ANTLR end "rule__QualifiedName__Group__1"
 
 
-    // $ANTLR start rule__QualifiedName__Group__1__Impl
+    // $ANTLR start "rule__QualifiedName__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3338:1: rule__QualifiedName__Group__1__Impl : ( '::' ) ;
     public final void rule__QualifiedName__Group__1__Impl() throws RecognitionException {
 
@@ -9199,10 +9386,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__1__Impl
+    // $ANTLR end "rule__QualifiedName__Group__1__Impl"
 
 
-    // $ANTLR start rule__QualifiedName__Group__2
+    // $ANTLR start "rule__QualifiedName__Group__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3357:1: rule__QualifiedName__Group__2 : rule__QualifiedName__Group__2__Impl ;
     public final void rule__QualifiedName__Group__2() throws RecognitionException {
 
@@ -9214,7 +9401,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__2__Impl_in_rule__QualifiedName__Group__26943);
             rule__QualifiedName__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9231,10 +9419,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__2
+    // $ANTLR end "rule__QualifiedName__Group__2"
 
 
-    // $ANTLR start rule__QualifiedName__Group__2__Impl
+    // $ANTLR start "rule__QualifiedName__Group__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3368:1: rule__QualifiedName__Group__2__Impl : ( ( rule__QualifiedName__RemainingAssignment_2 )? ) ;
     public final void rule__QualifiedName__Group__2__Impl() throws RecognitionException {
 
@@ -9265,7 +9453,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__QualifiedName__RemainingAssignment_2_in_rule__QualifiedName__Group__2__Impl6970);
                     rule__QualifiedName__RemainingAssignment_2();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -9292,10 +9481,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__Group__2__Impl
+    // $ANTLR end "rule__QualifiedName__Group__2__Impl"
 
 
-    // $ANTLR start rule__Interval__Group__0
+    // $ANTLR start "rule__Interval__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3391:1: rule__Interval__Group__0 : rule__Interval__Group__0__Impl rule__Interval__Group__1 ;
     public final void rule__Interval__Group__0() throws RecognitionException {
 
@@ -9307,11 +9496,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Interval__Group__0__Impl_in_rule__Interval__Group__07007);
             rule__Interval__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__Interval__Group__1_in_rule__Interval__Group__07010);
             rule__Interval__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9328,10 +9519,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__0
+    // $ANTLR end "rule__Interval__Group__0"
 
 
-    // $ANTLR start rule__Interval__Group__0__Impl
+    // $ANTLR start "rule__Interval__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3403:1: rule__Interval__Group__0__Impl : ( ( rule__Interval__Alternatives_0 ) ) ;
     public final void rule__Interval__Group__0__Impl() throws RecognitionException {
 
@@ -9350,7 +9541,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Interval__Alternatives_0_in_rule__Interval__Group__0__Impl7037);
             rule__Interval__Alternatives_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9374,10 +9566,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__0__Impl
+    // $ANTLR end "rule__Interval__Group__0__Impl"
 
 
-    // $ANTLR start rule__Interval__Group__1
+    // $ANTLR start "rule__Interval__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3420:1: rule__Interval__Group__1 : rule__Interval__Group__1__Impl rule__Interval__Group__2 ;
     public final void rule__Interval__Group__1() throws RecognitionException {
 
@@ -9389,11 +9581,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Interval__Group__1__Impl_in_rule__Interval__Group__17067);
             rule__Interval__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__Interval__Group__2_in_rule__Interval__Group__17070);
             rule__Interval__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9410,10 +9604,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__1
+    // $ANTLR end "rule__Interval__Group__1"
 
 
-    // $ANTLR start rule__Interval__Group__1__Impl
+    // $ANTLR start "rule__Interval__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3432:1: rule__Interval__Group__1__Impl : ( ( rule__Interval__LowerAssignment_1 ) ) ;
     public final void rule__Interval__Group__1__Impl() throws RecognitionException {
 
@@ -9432,7 +9626,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Interval__LowerAssignment_1_in_rule__Interval__Group__1__Impl7097);
             rule__Interval__LowerAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9456,10 +9651,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__1__Impl
+    // $ANTLR end "rule__Interval__Group__1__Impl"
 
 
-    // $ANTLR start rule__Interval__Group__2
+    // $ANTLR start "rule__Interval__Group__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3449:1: rule__Interval__Group__2 : rule__Interval__Group__2__Impl rule__Interval__Group__3 ;
     public final void rule__Interval__Group__2() throws RecognitionException {
 
@@ -9471,11 +9666,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Interval__Group__2__Impl_in_rule__Interval__Group__27127);
             rule__Interval__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__Interval__Group__3_in_rule__Interval__Group__27130);
             rule__Interval__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9492,10 +9689,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__2
+    // $ANTLR end "rule__Interval__Group__2"
 
 
-    // $ANTLR start rule__Interval__Group__2__Impl
+    // $ANTLR start "rule__Interval__Group__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3461:1: rule__Interval__Group__2__Impl : ( '..' ) ;
     public final void rule__Interval__Group__2__Impl() throws RecognitionException {
 
@@ -9529,10 +9726,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__2__Impl
+    // $ANTLR end "rule__Interval__Group__2__Impl"
 
 
-    // $ANTLR start rule__Interval__Group__3
+    // $ANTLR start "rule__Interval__Group__3"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3480:1: rule__Interval__Group__3 : rule__Interval__Group__3__Impl rule__Interval__Group__4 ;
     public final void rule__Interval__Group__3() throws RecognitionException {
 
@@ -9544,11 +9741,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Interval__Group__3__Impl_in_rule__Interval__Group__37189);
             rule__Interval__Group__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__Interval__Group__4_in_rule__Interval__Group__37192);
             rule__Interval__Group__4();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9565,10 +9764,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__3
+    // $ANTLR end "rule__Interval__Group__3"
 
 
-    // $ANTLR start rule__Interval__Group__3__Impl
+    // $ANTLR start "rule__Interval__Group__3__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3492:1: rule__Interval__Group__3__Impl : ( ( rule__Interval__UpperAssignment_3 ) ) ;
     public final void rule__Interval__Group__3__Impl() throws RecognitionException {
 
@@ -9587,7 +9786,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Interval__UpperAssignment_3_in_rule__Interval__Group__3__Impl7219);
             rule__Interval__UpperAssignment_3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9611,10 +9811,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__3__Impl
+    // $ANTLR end "rule__Interval__Group__3__Impl"
 
 
-    // $ANTLR start rule__Interval__Group__4
+    // $ANTLR start "rule__Interval__Group__4"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3509:1: rule__Interval__Group__4 : rule__Interval__Group__4__Impl ;
     public final void rule__Interval__Group__4() throws RecognitionException {
 
@@ -9626,7 +9826,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Interval__Group__4__Impl_in_rule__Interval__Group__47249);
             rule__Interval__Group__4__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9643,10 +9844,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__4
+    // $ANTLR end "rule__Interval__Group__4"
 
 
-    // $ANTLR start rule__Interval__Group__4__Impl
+    // $ANTLR start "rule__Interval__Group__4__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3520:1: rule__Interval__Group__4__Impl : ( ( rule__Interval__Alternatives_4 ) ) ;
     public final void rule__Interval__Group__4__Impl() throws RecognitionException {
 
@@ -9665,7 +9866,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Interval__Alternatives_4_in_rule__Interval__Group__4__Impl7276);
             rule__Interval__Alternatives_4();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9689,10 +9891,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Interval__Group__4__Impl
+    // $ANTLR end "rule__Interval__Group__4__Impl"
 
 
-    // $ANTLR start rule__CollectionOrTuple__Group__0
+    // $ANTLR start "rule__CollectionOrTuple__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3547:1: rule__CollectionOrTuple__Group__0 : rule__CollectionOrTuple__Group__0__Impl rule__CollectionOrTuple__Group__1 ;
     public final void rule__CollectionOrTuple__Group__0() throws RecognitionException {
 
@@ -9704,11 +9906,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__CollectionOrTuple__Group__0__Impl_in_rule__CollectionOrTuple__Group__07316);
             rule__CollectionOrTuple__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__CollectionOrTuple__Group__1_in_rule__CollectionOrTuple__Group__07319);
             rule__CollectionOrTuple__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9725,10 +9929,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__CollectionOrTuple__Group__0
+    // $ANTLR end "rule__CollectionOrTuple__Group__0"
 
 
-    // $ANTLR start rule__CollectionOrTuple__Group__0__Impl
+    // $ANTLR start "rule__CollectionOrTuple__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3559:1: rule__CollectionOrTuple__Group__0__Impl : ( '{' ) ;
     public final void rule__CollectionOrTuple__Group__0__Impl() throws RecognitionException {
 
@@ -9762,10 +9966,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__CollectionOrTuple__Group__0__Impl
+    // $ANTLR end "rule__CollectionOrTuple__Group__0__Impl"
 
 
-    // $ANTLR start rule__CollectionOrTuple__Group__1
+    // $ANTLR start "rule__CollectionOrTuple__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3578:1: rule__CollectionOrTuple__Group__1 : rule__CollectionOrTuple__Group__1__Impl rule__CollectionOrTuple__Group__2 ;
     public final void rule__CollectionOrTuple__Group__1() throws RecognitionException {
 
@@ -9777,11 +9981,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__CollectionOrTuple__Group__1__Impl_in_rule__CollectionOrTuple__Group__17378);
             rule__CollectionOrTuple__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__CollectionOrTuple__Group__2_in_rule__CollectionOrTuple__Group__17381);
             rule__CollectionOrTuple__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9798,10 +10004,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__CollectionOrTuple__Group__1
+    // $ANTLR end "rule__CollectionOrTuple__Group__1"
 
 
-    // $ANTLR start rule__CollectionOrTuple__Group__1__Impl
+    // $ANTLR start "rule__CollectionOrTuple__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3590:1: rule__CollectionOrTuple__Group__1__Impl : ( ( rule__CollectionOrTuple__ListOfValuesAssignment_1 ) ) ;
     public final void rule__CollectionOrTuple__Group__1__Impl() throws RecognitionException {
 
@@ -9820,7 +10026,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__CollectionOrTuple__ListOfValuesAssignment_1_in_rule__CollectionOrTuple__Group__1__Impl7408);
             rule__CollectionOrTuple__ListOfValuesAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9844,10 +10051,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__CollectionOrTuple__Group__1__Impl
+    // $ANTLR end "rule__CollectionOrTuple__Group__1__Impl"
 
 
-    // $ANTLR start rule__CollectionOrTuple__Group__2
+    // $ANTLR start "rule__CollectionOrTuple__Group__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3607:1: rule__CollectionOrTuple__Group__2 : rule__CollectionOrTuple__Group__2__Impl ;
     public final void rule__CollectionOrTuple__Group__2() throws RecognitionException {
 
@@ -9859,7 +10066,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__CollectionOrTuple__Group__2__Impl_in_rule__CollectionOrTuple__Group__27438);
             rule__CollectionOrTuple__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9876,10 +10084,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__CollectionOrTuple__Group__2
+    // $ANTLR end "rule__CollectionOrTuple__Group__2"
 
 
-    // $ANTLR start rule__CollectionOrTuple__Group__2__Impl
+    // $ANTLR start "rule__CollectionOrTuple__Group__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3618:1: rule__CollectionOrTuple__Group__2__Impl : ( '}' ) ;
     public final void rule__CollectionOrTuple__Group__2__Impl() throws RecognitionException {
 
@@ -9913,10 +10121,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__CollectionOrTuple__Group__2__Impl
+    // $ANTLR end "rule__CollectionOrTuple__Group__2__Impl"
 
 
-    // $ANTLR start rule__Tuple__Group__0
+    // $ANTLR start "rule__Tuple__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3643:1: rule__Tuple__Group__0 : rule__Tuple__Group__0__Impl rule__Tuple__Group__1 ;
     public final void rule__Tuple__Group__0() throws RecognitionException {
 
@@ -9928,11 +10136,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Tuple__Group__0__Impl_in_rule__Tuple__Group__07503);
             rule__Tuple__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__Tuple__Group__1_in_rule__Tuple__Group__07506);
             rule__Tuple__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -9949,10 +10159,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Tuple__Group__0
+    // $ANTLR end "rule__Tuple__Group__0"
 
 
-    // $ANTLR start rule__Tuple__Group__0__Impl
+    // $ANTLR start "rule__Tuple__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3655:1: rule__Tuple__Group__0__Impl : ( '{' ) ;
     public final void rule__Tuple__Group__0__Impl() throws RecognitionException {
 
@@ -9986,10 +10196,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Tuple__Group__0__Impl
+    // $ANTLR end "rule__Tuple__Group__0__Impl"
 
 
-    // $ANTLR start rule__Tuple__Group__1
+    // $ANTLR start "rule__Tuple__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3674:1: rule__Tuple__Group__1 : rule__Tuple__Group__1__Impl rule__Tuple__Group__2 ;
     public final void rule__Tuple__Group__1() throws RecognitionException {
 
@@ -10001,11 +10211,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Tuple__Group__1__Impl_in_rule__Tuple__Group__17565);
             rule__Tuple__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__Tuple__Group__2_in_rule__Tuple__Group__17568);
             rule__Tuple__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10022,10 +10234,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Tuple__Group__1
+    // $ANTLR end "rule__Tuple__Group__1"
 
 
-    // $ANTLR start rule__Tuple__Group__1__Impl
+    // $ANTLR start "rule__Tuple__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3686:1: rule__Tuple__Group__1__Impl : ( ( rule__Tuple__ListOfValueNamePairsAssignment_1 ) ) ;
     public final void rule__Tuple__Group__1__Impl() throws RecognitionException {
 
@@ -10044,7 +10256,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Tuple__ListOfValueNamePairsAssignment_1_in_rule__Tuple__Group__1__Impl7595);
             rule__Tuple__ListOfValueNamePairsAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10068,10 +10281,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Tuple__Group__1__Impl
+    // $ANTLR end "rule__Tuple__Group__1__Impl"
 
 
-    // $ANTLR start rule__Tuple__Group__2
+    // $ANTLR start "rule__Tuple__Group__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3703:1: rule__Tuple__Group__2 : rule__Tuple__Group__2__Impl ;
     public final void rule__Tuple__Group__2() throws RecognitionException {
 
@@ -10083,7 +10296,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Tuple__Group__2__Impl_in_rule__Tuple__Group__27625);
             rule__Tuple__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10100,10 +10314,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Tuple__Group__2
+    // $ANTLR end "rule__Tuple__Group__2"
 
 
-    // $ANTLR start rule__Tuple__Group__2__Impl
+    // $ANTLR start "rule__Tuple__Group__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3714:1: rule__Tuple__Group__2__Impl : ( '}' ) ;
     public final void rule__Tuple__Group__2__Impl() throws RecognitionException {
 
@@ -10137,10 +10351,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Tuple__Group__2__Impl
+    // $ANTLR end "rule__Tuple__Group__2__Impl"
 
 
-    // $ANTLR start rule__ListOfValues__Group__0
+    // $ANTLR start "rule__ListOfValues__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3739:1: rule__ListOfValues__Group__0 : rule__ListOfValues__Group__0__Impl rule__ListOfValues__Group__1 ;
     public final void rule__ListOfValues__Group__0() throws RecognitionException {
 
@@ -10152,11 +10366,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ListOfValues__Group__0__Impl_in_rule__ListOfValues__Group__07690);
             rule__ListOfValues__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ListOfValues__Group__1_in_rule__ListOfValues__Group__07693);
             rule__ListOfValues__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10173,10 +10389,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__Group__0
+    // $ANTLR end "rule__ListOfValues__Group__0"
 
 
-    // $ANTLR start rule__ListOfValues__Group__0__Impl
+    // $ANTLR start "rule__ListOfValues__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3751:1: rule__ListOfValues__Group__0__Impl : ( ( rule__ListOfValues__ValuesAssignment_0 ) ) ;
     public final void rule__ListOfValues__Group__0__Impl() throws RecognitionException {
 
@@ -10195,7 +10411,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ListOfValues__ValuesAssignment_0_in_rule__ListOfValues__Group__0__Impl7720);
             rule__ListOfValues__ValuesAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10219,10 +10436,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__Group__0__Impl
+    // $ANTLR end "rule__ListOfValues__Group__0__Impl"
 
 
-    // $ANTLR start rule__ListOfValues__Group__1
+    // $ANTLR start "rule__ListOfValues__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3768:1: rule__ListOfValues__Group__1 : rule__ListOfValues__Group__1__Impl ;
     public final void rule__ListOfValues__Group__1() throws RecognitionException {
 
@@ -10234,7 +10451,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ListOfValues__Group__1__Impl_in_rule__ListOfValues__Group__17750);
             rule__ListOfValues__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10251,10 +10469,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__Group__1
+    // $ANTLR end "rule__ListOfValues__Group__1"
 
 
-    // $ANTLR start rule__ListOfValues__Group__1__Impl
+    // $ANTLR start "rule__ListOfValues__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3779:1: rule__ListOfValues__Group__1__Impl : ( ( rule__ListOfValues__Group_1__0 )* ) ;
     public final void rule__ListOfValues__Group__1__Impl() throws RecognitionException {
 
@@ -10285,7 +10503,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             	    {
             	    pushFollow(FOLLOW_rule__ListOfValues__Group_1__0_in_rule__ListOfValues__Group__1__Impl7777);
             	    rule__ListOfValues__Group_1__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -10315,10 +10534,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__Group__1__Impl
+    // $ANTLR end "rule__ListOfValues__Group__1__Impl"
 
 
-    // $ANTLR start rule__ListOfValues__Group_1__0
+    // $ANTLR start "rule__ListOfValues__Group_1__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3800:1: rule__ListOfValues__Group_1__0 : rule__ListOfValues__Group_1__0__Impl rule__ListOfValues__Group_1__1 ;
     public final void rule__ListOfValues__Group_1__0() throws RecognitionException {
 
@@ -10330,11 +10549,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ListOfValues__Group_1__0__Impl_in_rule__ListOfValues__Group_1__07812);
             rule__ListOfValues__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ListOfValues__Group_1__1_in_rule__ListOfValues__Group_1__07815);
             rule__ListOfValues__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10351,10 +10572,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__Group_1__0
+    // $ANTLR end "rule__ListOfValues__Group_1__0"
 
 
-    // $ANTLR start rule__ListOfValues__Group_1__0__Impl
+    // $ANTLR start "rule__ListOfValues__Group_1__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3812:1: rule__ListOfValues__Group_1__0__Impl : ( ',' ) ;
     public final void rule__ListOfValues__Group_1__0__Impl() throws RecognitionException {
 
@@ -10388,10 +10609,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__Group_1__0__Impl
+    // $ANTLR end "rule__ListOfValues__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__ListOfValues__Group_1__1
+    // $ANTLR start "rule__ListOfValues__Group_1__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3831:1: rule__ListOfValues__Group_1__1 : rule__ListOfValues__Group_1__1__Impl ;
     public final void rule__ListOfValues__Group_1__1() throws RecognitionException {
 
@@ -10403,7 +10624,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ListOfValues__Group_1__1__Impl_in_rule__ListOfValues__Group_1__17874);
             rule__ListOfValues__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10420,10 +10642,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__Group_1__1
+    // $ANTLR end "rule__ListOfValues__Group_1__1"
 
 
-    // $ANTLR start rule__ListOfValues__Group_1__1__Impl
+    // $ANTLR start "rule__ListOfValues__Group_1__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3842:1: rule__ListOfValues__Group_1__1__Impl : ( ( rule__ListOfValues__ValuesAssignment_1_1 ) ) ;
     public final void rule__ListOfValues__Group_1__1__Impl() throws RecognitionException {
 
@@ -10442,7 +10664,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ListOfValues__ValuesAssignment_1_1_in_rule__ListOfValues__Group_1__1__Impl7901);
             rule__ListOfValues__ValuesAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10466,10 +10689,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__Group_1__1__Impl
+    // $ANTLR end "rule__ListOfValues__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__Group__0
+    // $ANTLR start "rule__ListOfValueNamePairs__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3863:1: rule__ListOfValueNamePairs__Group__0 : rule__ListOfValueNamePairs__Group__0__Impl rule__ListOfValueNamePairs__Group__1 ;
     public final void rule__ListOfValueNamePairs__Group__0() throws RecognitionException {
 
@@ -10481,11 +10704,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ListOfValueNamePairs__Group__0__Impl_in_rule__ListOfValueNamePairs__Group__07935);
             rule__ListOfValueNamePairs__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ListOfValueNamePairs__Group__1_in_rule__ListOfValueNamePairs__Group__07938);
             rule__ListOfValueNamePairs__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10502,10 +10727,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__Group__0
+    // $ANTLR end "rule__ListOfValueNamePairs__Group__0"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__Group__0__Impl
+    // $ANTLR start "rule__ListOfValueNamePairs__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3875:1: rule__ListOfValueNamePairs__Group__0__Impl : ( ( rule__ListOfValueNamePairs__ValueNamePairsAssignment_0 ) ) ;
     public final void rule__ListOfValueNamePairs__Group__0__Impl() throws RecognitionException {
 
@@ -10524,7 +10749,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ListOfValueNamePairs__ValueNamePairsAssignment_0_in_rule__ListOfValueNamePairs__Group__0__Impl7965);
             rule__ListOfValueNamePairs__ValueNamePairsAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10548,10 +10774,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__Group__0__Impl
+    // $ANTLR end "rule__ListOfValueNamePairs__Group__0__Impl"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__Group__1
+    // $ANTLR start "rule__ListOfValueNamePairs__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3892:1: rule__ListOfValueNamePairs__Group__1 : rule__ListOfValueNamePairs__Group__1__Impl ;
     public final void rule__ListOfValueNamePairs__Group__1() throws RecognitionException {
 
@@ -10563,7 +10789,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ListOfValueNamePairs__Group__1__Impl_in_rule__ListOfValueNamePairs__Group__17995);
             rule__ListOfValueNamePairs__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10580,10 +10807,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__Group__1
+    // $ANTLR end "rule__ListOfValueNamePairs__Group__1"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__Group__1__Impl
+    // $ANTLR start "rule__ListOfValueNamePairs__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3903:1: rule__ListOfValueNamePairs__Group__1__Impl : ( ( rule__ListOfValueNamePairs__Group_1__0 )* ) ;
     public final void rule__ListOfValueNamePairs__Group__1__Impl() throws RecognitionException {
 
@@ -10614,7 +10841,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             	    {
             	    pushFollow(FOLLOW_rule__ListOfValueNamePairs__Group_1__0_in_rule__ListOfValueNamePairs__Group__1__Impl8022);
             	    rule__ListOfValueNamePairs__Group_1__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -10644,10 +10872,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__Group__1__Impl
+    // $ANTLR end "rule__ListOfValueNamePairs__Group__1__Impl"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__Group_1__0
+    // $ANTLR start "rule__ListOfValueNamePairs__Group_1__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3924:1: rule__ListOfValueNamePairs__Group_1__0 : rule__ListOfValueNamePairs__Group_1__0__Impl rule__ListOfValueNamePairs__Group_1__1 ;
     public final void rule__ListOfValueNamePairs__Group_1__0() throws RecognitionException {
 
@@ -10659,11 +10887,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ListOfValueNamePairs__Group_1__0__Impl_in_rule__ListOfValueNamePairs__Group_1__08057);
             rule__ListOfValueNamePairs__Group_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ListOfValueNamePairs__Group_1__1_in_rule__ListOfValueNamePairs__Group_1__08060);
             rule__ListOfValueNamePairs__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10680,10 +10910,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__Group_1__0
+    // $ANTLR end "rule__ListOfValueNamePairs__Group_1__0"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__Group_1__0__Impl
+    // $ANTLR start "rule__ListOfValueNamePairs__Group_1__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3936:1: rule__ListOfValueNamePairs__Group_1__0__Impl : ( ',' ) ;
     public final void rule__ListOfValueNamePairs__Group_1__0__Impl() throws RecognitionException {
 
@@ -10717,10 +10947,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__Group_1__0__Impl
+    // $ANTLR end "rule__ListOfValueNamePairs__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__Group_1__1
+    // $ANTLR start "rule__ListOfValueNamePairs__Group_1__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3955:1: rule__ListOfValueNamePairs__Group_1__1 : rule__ListOfValueNamePairs__Group_1__1__Impl ;
     public final void rule__ListOfValueNamePairs__Group_1__1() throws RecognitionException {
 
@@ -10732,7 +10962,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ListOfValueNamePairs__Group_1__1__Impl_in_rule__ListOfValueNamePairs__Group_1__18119);
             rule__ListOfValueNamePairs__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10749,10 +10980,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__Group_1__1
+    // $ANTLR end "rule__ListOfValueNamePairs__Group_1__1"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__Group_1__1__Impl
+    // $ANTLR start "rule__ListOfValueNamePairs__Group_1__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3966:1: rule__ListOfValueNamePairs__Group_1__1__Impl : ( ( rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_1 ) ) ;
     public final void rule__ListOfValueNamePairs__Group_1__1__Impl() throws RecognitionException {
 
@@ -10771,7 +11002,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_1_in_rule__ListOfValueNamePairs__Group_1__1__Impl8146);
             rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10795,10 +11027,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__Group_1__1__Impl
+    // $ANTLR end "rule__ListOfValueNamePairs__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__ValueNamePair__Group__0
+    // $ANTLR start "rule__ValueNamePair__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3987:1: rule__ValueNamePair__Group__0 : rule__ValueNamePair__Group__0__Impl rule__ValueNamePair__Group__1 ;
     public final void rule__ValueNamePair__Group__0() throws RecognitionException {
 
@@ -10810,11 +11042,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ValueNamePair__Group__0__Impl_in_rule__ValueNamePair__Group__08180);
             rule__ValueNamePair__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ValueNamePair__Group__1_in_rule__ValueNamePair__Group__08183);
             rule__ValueNamePair__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10831,10 +11065,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ValueNamePair__Group__0
+    // $ANTLR end "rule__ValueNamePair__Group__0"
 
 
-    // $ANTLR start rule__ValueNamePair__Group__0__Impl
+    // $ANTLR start "rule__ValueNamePair__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:3999:1: rule__ValueNamePair__Group__0__Impl : ( ( rule__ValueNamePair__PropertyAssignment_0 ) ) ;
     public final void rule__ValueNamePair__Group__0__Impl() throws RecognitionException {
 
@@ -10853,7 +11087,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ValueNamePair__PropertyAssignment_0_in_rule__ValueNamePair__Group__0__Impl8210);
             rule__ValueNamePair__PropertyAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10877,10 +11112,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ValueNamePair__Group__0__Impl
+    // $ANTLR end "rule__ValueNamePair__Group__0__Impl"
 
 
-    // $ANTLR start rule__ValueNamePair__Group__1
+    // $ANTLR start "rule__ValueNamePair__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4016:1: rule__ValueNamePair__Group__1 : rule__ValueNamePair__Group__1__Impl rule__ValueNamePair__Group__2 ;
     public final void rule__ValueNamePair__Group__1() throws RecognitionException {
 
@@ -10892,11 +11127,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ValueNamePair__Group__1__Impl_in_rule__ValueNamePair__Group__18240);
             rule__ValueNamePair__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__ValueNamePair__Group__2_in_rule__ValueNamePair__Group__18243);
             rule__ValueNamePair__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10913,10 +11150,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ValueNamePair__Group__1
+    // $ANTLR end "rule__ValueNamePair__Group__1"
 
 
-    // $ANTLR start rule__ValueNamePair__Group__1__Impl
+    // $ANTLR start "rule__ValueNamePair__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4028:1: rule__ValueNamePair__Group__1__Impl : ( '=' ) ;
     public final void rule__ValueNamePair__Group__1__Impl() throws RecognitionException {
 
@@ -10950,10 +11187,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ValueNamePair__Group__1__Impl
+    // $ANTLR end "rule__ValueNamePair__Group__1__Impl"
 
 
-    // $ANTLR start rule__ValueNamePair__Group__2
+    // $ANTLR start "rule__ValueNamePair__Group__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4047:1: rule__ValueNamePair__Group__2 : rule__ValueNamePair__Group__2__Impl ;
     public final void rule__ValueNamePair__Group__2() throws RecognitionException {
 
@@ -10965,7 +11202,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ValueNamePair__Group__2__Impl_in_rule__ValueNamePair__Group__28302);
             rule__ValueNamePair__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -10982,10 +11220,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ValueNamePair__Group__2
+    // $ANTLR end "rule__ValueNamePair__Group__2"
 
 
-    // $ANTLR start rule__ValueNamePair__Group__2__Impl
+    // $ANTLR start "rule__ValueNamePair__Group__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4058:1: rule__ValueNamePair__Group__2__Impl : ( ( rule__ValueNamePair__ValueAssignment_2 ) ) ;
     public final void rule__ValueNamePair__Group__2__Impl() throws RecognitionException {
 
@@ -11004,7 +11242,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__ValueNamePair__ValueAssignment_2_in_rule__ValueNamePair__Group__2__Impl8329);
             rule__ValueNamePair__ValueAssignment_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11028,10 +11267,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ValueNamePair__Group__2__Impl
+    // $ANTLR end "rule__ValueNamePair__Group__2__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group__0
+    // $ANTLR start "rule__InstantObsExpression__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4081:1: rule__InstantObsExpression__Group__0 : rule__InstantObsExpression__Group__0__Impl rule__InstantObsExpression__Group__1 ;
     public final void rule__InstantObsExpression__Group__0() throws RecognitionException {
 
@@ -11043,11 +11282,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group__0__Impl_in_rule__InstantObsExpression__Group__08365);
             rule__InstantObsExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__InstantObsExpression__Group__1_in_rule__InstantObsExpression__Group__08368);
             rule__InstantObsExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11064,10 +11305,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group__0
+    // $ANTLR end "rule__InstantObsExpression__Group__0"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group__0__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4093:1: rule__InstantObsExpression__Group__0__Impl : ( '@' ) ;
     public final void rule__InstantObsExpression__Group__0__Impl() throws RecognitionException {
 
@@ -11101,10 +11342,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group__0__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group__1
+    // $ANTLR start "rule__InstantObsExpression__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4112:1: rule__InstantObsExpression__Group__1 : rule__InstantObsExpression__Group__1__Impl rule__InstantObsExpression__Group__2 ;
     public final void rule__InstantObsExpression__Group__1() throws RecognitionException {
 
@@ -11116,11 +11357,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group__1__Impl_in_rule__InstantObsExpression__Group__18427);
             rule__InstantObsExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__InstantObsExpression__Group__2_in_rule__InstantObsExpression__Group__18430);
             rule__InstantObsExpression__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11137,10 +11380,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group__1
+    // $ANTLR end "rule__InstantObsExpression__Group__1"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group__1__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4124:1: rule__InstantObsExpression__Group__1__Impl : ( ( rule__InstantObsExpression__IdAssignment_1 ) ) ;
     public final void rule__InstantObsExpression__Group__1__Impl() throws RecognitionException {
 
@@ -11159,7 +11402,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__IdAssignment_1_in_rule__InstantObsExpression__Group__1__Impl8457);
             rule__InstantObsExpression__IdAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11183,10 +11427,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group__1__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group__2
+    // $ANTLR start "rule__InstantObsExpression__Group__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4141:1: rule__InstantObsExpression__Group__2 : rule__InstantObsExpression__Group__2__Impl rule__InstantObsExpression__Group__3 ;
     public final void rule__InstantObsExpression__Group__2() throws RecognitionException {
 
@@ -11198,11 +11442,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group__2__Impl_in_rule__InstantObsExpression__Group__28487);
             rule__InstantObsExpression__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__InstantObsExpression__Group__3_in_rule__InstantObsExpression__Group__28490);
             rule__InstantObsExpression__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11219,10 +11465,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group__2
+    // $ANTLR end "rule__InstantObsExpression__Group__2"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group__2__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4153:1: rule__InstantObsExpression__Group__2__Impl : ( ( rule__InstantObsExpression__Group_2__0 )? ) ;
     public final void rule__InstantObsExpression__Group__2__Impl() throws RecognitionException {
 
@@ -11249,7 +11495,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__InstantObsExpression__Group_2__0_in_rule__InstantObsExpression__Group__2__Impl8517);
                     rule__InstantObsExpression__Group_2__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -11276,10 +11523,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group__2__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group__2__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group__3
+    // $ANTLR start "rule__InstantObsExpression__Group__3"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4170:1: rule__InstantObsExpression__Group__3 : rule__InstantObsExpression__Group__3__Impl ;
     public final void rule__InstantObsExpression__Group__3() throws RecognitionException {
 
@@ -11291,7 +11538,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group__3__Impl_in_rule__InstantObsExpression__Group__38548);
             rule__InstantObsExpression__Group__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11308,10 +11556,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group__3
+    // $ANTLR end "rule__InstantObsExpression__Group__3"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group__3__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group__3__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4181:1: rule__InstantObsExpression__Group__3__Impl : ( ( rule__InstantObsExpression__Group_3__0 )? ) ;
     public final void rule__InstantObsExpression__Group__3__Impl() throws RecognitionException {
 
@@ -11338,7 +11586,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__InstantObsExpression__Group_3__0_in_rule__InstantObsExpression__Group__3__Impl8575);
                     rule__InstantObsExpression__Group_3__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -11365,10 +11614,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group__3__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group__3__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_2__0
+    // $ANTLR start "rule__InstantObsExpression__Group_2__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4206:1: rule__InstantObsExpression__Group_2__0 : rule__InstantObsExpression__Group_2__0__Impl rule__InstantObsExpression__Group_2__1 ;
     public final void rule__InstantObsExpression__Group_2__0() throws RecognitionException {
 
@@ -11380,11 +11629,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_2__0__Impl_in_rule__InstantObsExpression__Group_2__08614);
             rule__InstantObsExpression__Group_2__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_2__1_in_rule__InstantObsExpression__Group_2__08617);
             rule__InstantObsExpression__Group_2__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11401,10 +11652,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_2__0
+    // $ANTLR end "rule__InstantObsExpression__Group_2__0"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_2__0__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group_2__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4218:1: rule__InstantObsExpression__Group_2__0__Impl : ( '(' ) ;
     public final void rule__InstantObsExpression__Group_2__0__Impl() throws RecognitionException {
 
@@ -11438,10 +11689,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_2__0__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group_2__0__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_2__1
+    // $ANTLR start "rule__InstantObsExpression__Group_2__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4237:1: rule__InstantObsExpression__Group_2__1 : rule__InstantObsExpression__Group_2__1__Impl rule__InstantObsExpression__Group_2__2 ;
     public final void rule__InstantObsExpression__Group_2__1() throws RecognitionException {
 
@@ -11453,11 +11704,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_2__1__Impl_in_rule__InstantObsExpression__Group_2__18676);
             rule__InstantObsExpression__Group_2__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_2__2_in_rule__InstantObsExpression__Group_2__18679);
             rule__InstantObsExpression__Group_2__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11474,10 +11727,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_2__1
+    // $ANTLR end "rule__InstantObsExpression__Group_2__1"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_2__1__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group_2__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4249:1: rule__InstantObsExpression__Group_2__1__Impl : ( ( rule__InstantObsExpression__IndexAssignment_2_1 ) ) ;
     public final void rule__InstantObsExpression__Group_2__1__Impl() throws RecognitionException {
 
@@ -11496,7 +11749,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__IndexAssignment_2_1_in_rule__InstantObsExpression__Group_2__1__Impl8706);
             rule__InstantObsExpression__IndexAssignment_2_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11520,10 +11774,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_2__1__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group_2__1__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_2__2
+    // $ANTLR start "rule__InstantObsExpression__Group_2__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4266:1: rule__InstantObsExpression__Group_2__2 : rule__InstantObsExpression__Group_2__2__Impl ;
     public final void rule__InstantObsExpression__Group_2__2() throws RecognitionException {
 
@@ -11535,7 +11789,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_2__2__Impl_in_rule__InstantObsExpression__Group_2__28736);
             rule__InstantObsExpression__Group_2__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11552,10 +11807,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_2__2
+    // $ANTLR end "rule__InstantObsExpression__Group_2__2"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_2__2__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group_2__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4277:1: rule__InstantObsExpression__Group_2__2__Impl : ( ')' ) ;
     public final void rule__InstantObsExpression__Group_2__2__Impl() throws RecognitionException {
 
@@ -11589,10 +11844,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_2__2__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group_2__2__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_3__0
+    // $ANTLR start "rule__InstantObsExpression__Group_3__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4302:1: rule__InstantObsExpression__Group_3__0 : rule__InstantObsExpression__Group_3__0__Impl rule__InstantObsExpression__Group_3__1 ;
     public final void rule__InstantObsExpression__Group_3__0() throws RecognitionException {
 
@@ -11604,11 +11859,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_3__0__Impl_in_rule__InstantObsExpression__Group_3__08801);
             rule__InstantObsExpression__Group_3__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_3__1_in_rule__InstantObsExpression__Group_3__08804);
             rule__InstantObsExpression__Group_3__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11625,10 +11882,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_3__0
+    // $ANTLR end "rule__InstantObsExpression__Group_3__0"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_3__0__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group_3__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4314:1: rule__InstantObsExpression__Group_3__0__Impl : ( 'when' ) ;
     public final void rule__InstantObsExpression__Group_3__0__Impl() throws RecognitionException {
 
@@ -11662,10 +11919,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_3__0__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group_3__0__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_3__1
+    // $ANTLR start "rule__InstantObsExpression__Group_3__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4333:1: rule__InstantObsExpression__Group_3__1 : rule__InstantObsExpression__Group_3__1__Impl rule__InstantObsExpression__Group_3__2 ;
     public final void rule__InstantObsExpression__Group_3__1() throws RecognitionException {
 
@@ -11677,11 +11934,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_3__1__Impl_in_rule__InstantObsExpression__Group_3__18863);
             rule__InstantObsExpression__Group_3__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_3__2_in_rule__InstantObsExpression__Group_3__18866);
             rule__InstantObsExpression__Group_3__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11698,10 +11957,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_3__1
+    // $ANTLR end "rule__InstantObsExpression__Group_3__1"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_3__1__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group_3__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4345:1: rule__InstantObsExpression__Group_3__1__Impl : ( '(' ) ;
     public final void rule__InstantObsExpression__Group_3__1__Impl() throws RecognitionException {
 
@@ -11735,10 +11994,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_3__1__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group_3__1__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_3__2
+    // $ANTLR start "rule__InstantObsExpression__Group_3__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4364:1: rule__InstantObsExpression__Group_3__2 : rule__InstantObsExpression__Group_3__2__Impl rule__InstantObsExpression__Group_3__3 ;
     public final void rule__InstantObsExpression__Group_3__2() throws RecognitionException {
 
@@ -11750,11 +12009,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_3__2__Impl_in_rule__InstantObsExpression__Group_3__28925);
             rule__InstantObsExpression__Group_3__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_3__3_in_rule__InstantObsExpression__Group_3__28928);
             rule__InstantObsExpression__Group_3__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11771,10 +12032,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_3__2
+    // $ANTLR end "rule__InstantObsExpression__Group_3__2"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_3__2__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group_3__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4376:1: rule__InstantObsExpression__Group_3__2__Impl : ( ( rule__InstantObsExpression__ConditionAssignment_3_2 ) ) ;
     public final void rule__InstantObsExpression__Group_3__2__Impl() throws RecognitionException {
 
@@ -11793,7 +12054,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__ConditionAssignment_3_2_in_rule__InstantObsExpression__Group_3__2__Impl8955);
             rule__InstantObsExpression__ConditionAssignment_3_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11817,10 +12079,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_3__2__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group_3__2__Impl"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_3__3
+    // $ANTLR start "rule__InstantObsExpression__Group_3__3"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4393:1: rule__InstantObsExpression__Group_3__3 : rule__InstantObsExpression__Group_3__3__Impl ;
     public final void rule__InstantObsExpression__Group_3__3() throws RecognitionException {
 
@@ -11832,7 +12094,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsExpression__Group_3__3__Impl_in_rule__InstantObsExpression__Group_3__38985);
             rule__InstantObsExpression__Group_3__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11849,10 +12112,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_3__3
+    // $ANTLR end "rule__InstantObsExpression__Group_3__3"
 
 
-    // $ANTLR start rule__InstantObsExpression__Group_3__3__Impl
+    // $ANTLR start "rule__InstantObsExpression__Group_3__3__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4404:1: rule__InstantObsExpression__Group_3__3__Impl : ( ')' ) ;
     public final void rule__InstantObsExpression__Group_3__3__Impl() throws RecognitionException {
 
@@ -11886,10 +12149,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__Group_3__3__Impl
+    // $ANTLR end "rule__InstantObsExpression__Group_3__3__Impl"
 
 
-    // $ANTLR start rule__InstantObsName__Group__0
+    // $ANTLR start "rule__InstantObsName__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4431:1: rule__InstantObsName__Group__0 : rule__InstantObsName__Group__0__Impl rule__InstantObsName__Group__1 ;
     public final void rule__InstantObsName__Group__0() throws RecognitionException {
 
@@ -11901,11 +12164,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsName__Group__0__Impl_in_rule__InstantObsName__Group__09052);
             rule__InstantObsName__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__InstantObsName__Group__1_in_rule__InstantObsName__Group__09055);
             rule__InstantObsName__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -11922,10 +12187,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsName__Group__0
+    // $ANTLR end "rule__InstantObsName__Group__0"
 
 
-    // $ANTLR start rule__InstantObsName__Group__0__Impl
+    // $ANTLR start "rule__InstantObsName__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4443:1: rule__InstantObsName__Group__0__Impl : ( ( rule__InstantObsName__PathAssignment_0 )? ) ;
     public final void rule__InstantObsName__Group__0__Impl() throws RecognitionException {
 
@@ -11956,7 +12221,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__InstantObsName__PathAssignment_0_in_rule__InstantObsName__Group__0__Impl9082);
                     rule__InstantObsName__PathAssignment_0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -11983,10 +12249,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsName__Group__0__Impl
+    // $ANTLR end "rule__InstantObsName__Group__0__Impl"
 
 
-    // $ANTLR start rule__InstantObsName__Group__1
+    // $ANTLR start "rule__InstantObsName__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4460:1: rule__InstantObsName__Group__1 : rule__InstantObsName__Group__1__Impl ;
     public final void rule__InstantObsName__Group__1() throws RecognitionException {
 
@@ -11998,7 +12264,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsName__Group__1__Impl_in_rule__InstantObsName__Group__19113);
             rule__InstantObsName__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12015,10 +12282,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsName__Group__1
+    // $ANTLR end "rule__InstantObsName__Group__1"
 
 
-    // $ANTLR start rule__InstantObsName__Group__1__Impl
+    // $ANTLR start "rule__InstantObsName__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4471:1: rule__InstantObsName__Group__1__Impl : ( ( rule__InstantObsName__InstantIdAssignment_1 ) ) ;
     public final void rule__InstantObsName__Group__1__Impl() throws RecognitionException {
 
@@ -12037,7 +12304,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__InstantObsName__InstantIdAssignment_1_in_rule__InstantObsName__Group__1__Impl9140);
             rule__InstantObsName__InstantIdAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12061,10 +12329,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsName__Group__1__Impl
+    // $ANTLR end "rule__InstantObsName__Group__1__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group__0
+    // $ANTLR start "rule__DurationObsExpression__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4492:1: rule__DurationObsExpression__Group__0 : rule__DurationObsExpression__Group__0__Impl rule__DurationObsExpression__Group__1 ;
     public final void rule__DurationObsExpression__Group__0() throws RecognitionException {
 
@@ -12076,11 +12344,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group__0__Impl_in_rule__DurationObsExpression__Group__09174);
             rule__DurationObsExpression__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DurationObsExpression__Group__1_in_rule__DurationObsExpression__Group__09177);
             rule__DurationObsExpression__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12097,10 +12367,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group__0
+    // $ANTLR end "rule__DurationObsExpression__Group__0"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group__0__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4504:1: rule__DurationObsExpression__Group__0__Impl : ( '&' ) ;
     public final void rule__DurationObsExpression__Group__0__Impl() throws RecognitionException {
 
@@ -12134,10 +12404,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group__0__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group__0__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group__1
+    // $ANTLR start "rule__DurationObsExpression__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4523:1: rule__DurationObsExpression__Group__1 : rule__DurationObsExpression__Group__1__Impl rule__DurationObsExpression__Group__2 ;
     public final void rule__DurationObsExpression__Group__1() throws RecognitionException {
 
@@ -12149,11 +12419,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group__1__Impl_in_rule__DurationObsExpression__Group__19236);
             rule__DurationObsExpression__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DurationObsExpression__Group__2_in_rule__DurationObsExpression__Group__19239);
             rule__DurationObsExpression__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12170,10 +12442,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group__1
+    // $ANTLR end "rule__DurationObsExpression__Group__1"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group__1__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4535:1: rule__DurationObsExpression__Group__1__Impl : ( ( rule__DurationObsExpression__IdAssignment_1 ) ) ;
     public final void rule__DurationObsExpression__Group__1__Impl() throws RecognitionException {
 
@@ -12192,7 +12464,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__IdAssignment_1_in_rule__DurationObsExpression__Group__1__Impl9266);
             rule__DurationObsExpression__IdAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12216,10 +12489,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group__1__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group__1__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group__2
+    // $ANTLR start "rule__DurationObsExpression__Group__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4552:1: rule__DurationObsExpression__Group__2 : rule__DurationObsExpression__Group__2__Impl rule__DurationObsExpression__Group__3 ;
     public final void rule__DurationObsExpression__Group__2() throws RecognitionException {
 
@@ -12231,11 +12504,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group__2__Impl_in_rule__DurationObsExpression__Group__29296);
             rule__DurationObsExpression__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DurationObsExpression__Group__3_in_rule__DurationObsExpression__Group__29299);
             rule__DurationObsExpression__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12252,10 +12527,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group__2
+    // $ANTLR end "rule__DurationObsExpression__Group__2"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group__2__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4564:1: rule__DurationObsExpression__Group__2__Impl : ( ( rule__DurationObsExpression__Group_2__0 )? ) ;
     public final void rule__DurationObsExpression__Group__2__Impl() throws RecognitionException {
 
@@ -12282,7 +12557,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__DurationObsExpression__Group_2__0_in_rule__DurationObsExpression__Group__2__Impl9326);
                     rule__DurationObsExpression__Group_2__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -12309,10 +12585,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group__2__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group__2__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group__3
+    // $ANTLR start "rule__DurationObsExpression__Group__3"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4581:1: rule__DurationObsExpression__Group__3 : rule__DurationObsExpression__Group__3__Impl ;
     public final void rule__DurationObsExpression__Group__3() throws RecognitionException {
 
@@ -12324,7 +12600,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group__3__Impl_in_rule__DurationObsExpression__Group__39357);
             rule__DurationObsExpression__Group__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12341,10 +12618,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group__3
+    // $ANTLR end "rule__DurationObsExpression__Group__3"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group__3__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group__3__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4592:1: rule__DurationObsExpression__Group__3__Impl : ( ( rule__DurationObsExpression__Group_3__0 )? ) ;
     public final void rule__DurationObsExpression__Group__3__Impl() throws RecognitionException {
 
@@ -12371,7 +12648,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__DurationObsExpression__Group_3__0_in_rule__DurationObsExpression__Group__3__Impl9384);
                     rule__DurationObsExpression__Group_3__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -12398,10 +12676,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group__3__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group__3__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_2__0
+    // $ANTLR start "rule__DurationObsExpression__Group_2__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4617:1: rule__DurationObsExpression__Group_2__0 : rule__DurationObsExpression__Group_2__0__Impl rule__DurationObsExpression__Group_2__1 ;
     public final void rule__DurationObsExpression__Group_2__0() throws RecognitionException {
 
@@ -12413,11 +12691,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_2__0__Impl_in_rule__DurationObsExpression__Group_2__09423);
             rule__DurationObsExpression__Group_2__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_2__1_in_rule__DurationObsExpression__Group_2__09426);
             rule__DurationObsExpression__Group_2__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12434,10 +12714,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_2__0
+    // $ANTLR end "rule__DurationObsExpression__Group_2__0"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_2__0__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group_2__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4629:1: rule__DurationObsExpression__Group_2__0__Impl : ( '(' ) ;
     public final void rule__DurationObsExpression__Group_2__0__Impl() throws RecognitionException {
 
@@ -12471,10 +12751,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_2__0__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group_2__0__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_2__1
+    // $ANTLR start "rule__DurationObsExpression__Group_2__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4648:1: rule__DurationObsExpression__Group_2__1 : rule__DurationObsExpression__Group_2__1__Impl rule__DurationObsExpression__Group_2__2 ;
     public final void rule__DurationObsExpression__Group_2__1() throws RecognitionException {
 
@@ -12486,11 +12766,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_2__1__Impl_in_rule__DurationObsExpression__Group_2__19485);
             rule__DurationObsExpression__Group_2__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_2__2_in_rule__DurationObsExpression__Group_2__19488);
             rule__DurationObsExpression__Group_2__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12507,10 +12789,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_2__1
+    // $ANTLR end "rule__DurationObsExpression__Group_2__1"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_2__1__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group_2__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4660:1: rule__DurationObsExpression__Group_2__1__Impl : ( ( rule__DurationObsExpression__IndexAssignment_2_1 ) ) ;
     public final void rule__DurationObsExpression__Group_2__1__Impl() throws RecognitionException {
 
@@ -12529,7 +12811,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__IndexAssignment_2_1_in_rule__DurationObsExpression__Group_2__1__Impl9515);
             rule__DurationObsExpression__IndexAssignment_2_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12553,10 +12836,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_2__1__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group_2__1__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_2__2
+    // $ANTLR start "rule__DurationObsExpression__Group_2__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4677:1: rule__DurationObsExpression__Group_2__2 : rule__DurationObsExpression__Group_2__2__Impl ;
     public final void rule__DurationObsExpression__Group_2__2() throws RecognitionException {
 
@@ -12568,7 +12851,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_2__2__Impl_in_rule__DurationObsExpression__Group_2__29545);
             rule__DurationObsExpression__Group_2__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12585,10 +12869,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_2__2
+    // $ANTLR end "rule__DurationObsExpression__Group_2__2"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_2__2__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group_2__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4688:1: rule__DurationObsExpression__Group_2__2__Impl : ( ')' ) ;
     public final void rule__DurationObsExpression__Group_2__2__Impl() throws RecognitionException {
 
@@ -12622,10 +12906,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_2__2__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group_2__2__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_3__0
+    // $ANTLR start "rule__DurationObsExpression__Group_3__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4713:1: rule__DurationObsExpression__Group_3__0 : rule__DurationObsExpression__Group_3__0__Impl rule__DurationObsExpression__Group_3__1 ;
     public final void rule__DurationObsExpression__Group_3__0() throws RecognitionException {
 
@@ -12637,11 +12921,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_3__0__Impl_in_rule__DurationObsExpression__Group_3__09610);
             rule__DurationObsExpression__Group_3__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_3__1_in_rule__DurationObsExpression__Group_3__09613);
             rule__DurationObsExpression__Group_3__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12658,10 +12944,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_3__0
+    // $ANTLR end "rule__DurationObsExpression__Group_3__0"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_3__0__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group_3__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4725:1: rule__DurationObsExpression__Group_3__0__Impl : ( 'when' ) ;
     public final void rule__DurationObsExpression__Group_3__0__Impl() throws RecognitionException {
 
@@ -12695,10 +12981,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_3__0__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group_3__0__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_3__1
+    // $ANTLR start "rule__DurationObsExpression__Group_3__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4744:1: rule__DurationObsExpression__Group_3__1 : rule__DurationObsExpression__Group_3__1__Impl rule__DurationObsExpression__Group_3__2 ;
     public final void rule__DurationObsExpression__Group_3__1() throws RecognitionException {
 
@@ -12710,11 +12996,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_3__1__Impl_in_rule__DurationObsExpression__Group_3__19672);
             rule__DurationObsExpression__Group_3__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_3__2_in_rule__DurationObsExpression__Group_3__19675);
             rule__DurationObsExpression__Group_3__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12731,10 +13019,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_3__1
+    // $ANTLR end "rule__DurationObsExpression__Group_3__1"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_3__1__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group_3__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4756:1: rule__DurationObsExpression__Group_3__1__Impl : ( '(' ) ;
     public final void rule__DurationObsExpression__Group_3__1__Impl() throws RecognitionException {
 
@@ -12768,10 +13056,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_3__1__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group_3__1__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_3__2
+    // $ANTLR start "rule__DurationObsExpression__Group_3__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4775:1: rule__DurationObsExpression__Group_3__2 : rule__DurationObsExpression__Group_3__2__Impl rule__DurationObsExpression__Group_3__3 ;
     public final void rule__DurationObsExpression__Group_3__2() throws RecognitionException {
 
@@ -12783,11 +13071,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_3__2__Impl_in_rule__DurationObsExpression__Group_3__29734);
             rule__DurationObsExpression__Group_3__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_3__3_in_rule__DurationObsExpression__Group_3__29737);
             rule__DurationObsExpression__Group_3__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12804,10 +13094,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_3__2
+    // $ANTLR end "rule__DurationObsExpression__Group_3__2"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_3__2__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group_3__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4787:1: rule__DurationObsExpression__Group_3__2__Impl : ( ( rule__DurationObsExpression__ConditionAssignment_3_2 ) ) ;
     public final void rule__DurationObsExpression__Group_3__2__Impl() throws RecognitionException {
 
@@ -12826,7 +13116,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__ConditionAssignment_3_2_in_rule__DurationObsExpression__Group_3__2__Impl9764);
             rule__DurationObsExpression__ConditionAssignment_3_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12850,10 +13141,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_3__2__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group_3__2__Impl"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_3__3
+    // $ANTLR start "rule__DurationObsExpression__Group_3__3"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4804:1: rule__DurationObsExpression__Group_3__3 : rule__DurationObsExpression__Group_3__3__Impl ;
     public final void rule__DurationObsExpression__Group_3__3() throws RecognitionException {
 
@@ -12865,7 +13156,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsExpression__Group_3__3__Impl_in_rule__DurationObsExpression__Group_3__39794);
             rule__DurationObsExpression__Group_3__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12882,10 +13174,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_3__3
+    // $ANTLR end "rule__DurationObsExpression__Group_3__3"
 
 
-    // $ANTLR start rule__DurationObsExpression__Group_3__3__Impl
+    // $ANTLR start "rule__DurationObsExpression__Group_3__3__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4815:1: rule__DurationObsExpression__Group_3__3__Impl : ( ')' ) ;
     public final void rule__DurationObsExpression__Group_3__3__Impl() throws RecognitionException {
 
@@ -12919,10 +13211,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__Group_3__3__Impl
+    // $ANTLR end "rule__DurationObsExpression__Group_3__3__Impl"
 
 
-    // $ANTLR start rule__DurationObsName__Group__0
+    // $ANTLR start "rule__DurationObsName__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4842:1: rule__DurationObsName__Group__0 : rule__DurationObsName__Group__0__Impl rule__DurationObsName__Group__1 ;
     public final void rule__DurationObsName__Group__0() throws RecognitionException {
 
@@ -12934,11 +13226,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsName__Group__0__Impl_in_rule__DurationObsName__Group__09861);
             rule__DurationObsName__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DurationObsName__Group__1_in_rule__DurationObsName__Group__09864);
             rule__DurationObsName__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -12955,10 +13249,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsName__Group__0
+    // $ANTLR end "rule__DurationObsName__Group__0"
 
 
-    // $ANTLR start rule__DurationObsName__Group__0__Impl
+    // $ANTLR start "rule__DurationObsName__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4854:1: rule__DurationObsName__Group__0__Impl : ( ( rule__DurationObsName__PathAssignment_0 )? ) ;
     public final void rule__DurationObsName__Group__0__Impl() throws RecognitionException {
 
@@ -12989,7 +13283,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__DurationObsName__PathAssignment_0_in_rule__DurationObsName__Group__0__Impl9891);
                     rule__DurationObsName__PathAssignment_0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -13016,10 +13311,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsName__Group__0__Impl
+    // $ANTLR end "rule__DurationObsName__Group__0__Impl"
 
 
-    // $ANTLR start rule__DurationObsName__Group__1
+    // $ANTLR start "rule__DurationObsName__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4871:1: rule__DurationObsName__Group__1 : rule__DurationObsName__Group__1__Impl ;
     public final void rule__DurationObsName__Group__1() throws RecognitionException {
 
@@ -13031,7 +13326,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsName__Group__1__Impl_in_rule__DurationObsName__Group__19922);
             rule__DurationObsName__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13048,10 +13344,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsName__Group__1
+    // $ANTLR end "rule__DurationObsName__Group__1"
 
 
-    // $ANTLR start rule__DurationObsName__Group__1__Impl
+    // $ANTLR start "rule__DurationObsName__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4882:1: rule__DurationObsName__Group__1__Impl : ( ( rule__DurationObsName__DurationIdAssignment_1 ) ) ;
     public final void rule__DurationObsName__Group__1__Impl() throws RecognitionException {
 
@@ -13070,7 +13366,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DurationObsName__DurationIdAssignment_1_in_rule__DurationObsName__Group__1__Impl9949);
             rule__DurationObsName__DurationIdAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13094,10 +13391,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsName__Group__1__Impl
+    // $ANTLR end "rule__DurationObsName__Group__1__Impl"
 
 
-    // $ANTLR start rule__JitterExp__Group__0
+    // $ANTLR start "rule__JitterExp__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4903:1: rule__JitterExp__Group__0 : rule__JitterExp__Group__0__Impl rule__JitterExp__Group__1 ;
     public final void rule__JitterExp__Group__0() throws RecognitionException {
 
@@ -13109,11 +13406,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__JitterExp__Group__0__Impl_in_rule__JitterExp__Group__09983);
             rule__JitterExp__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__JitterExp__Group__1_in_rule__JitterExp__Group__09986);
             rule__JitterExp__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13130,10 +13429,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group__0
+    // $ANTLR end "rule__JitterExp__Group__0"
 
 
-    // $ANTLR start rule__JitterExp__Group__0__Impl
+    // $ANTLR start "rule__JitterExp__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4915:1: rule__JitterExp__Group__0__Impl : ( 'jitter(' ) ;
     public final void rule__JitterExp__Group__0__Impl() throws RecognitionException {
 
@@ -13167,10 +13466,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group__0__Impl
+    // $ANTLR end "rule__JitterExp__Group__0__Impl"
 
 
-    // $ANTLR start rule__JitterExp__Group__1
+    // $ANTLR start "rule__JitterExp__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4934:1: rule__JitterExp__Group__1 : rule__JitterExp__Group__1__Impl rule__JitterExp__Group__2 ;
     public final void rule__JitterExp__Group__1() throws RecognitionException {
 
@@ -13182,11 +13481,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__JitterExp__Group__1__Impl_in_rule__JitterExp__Group__110045);
             rule__JitterExp__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__JitterExp__Group__2_in_rule__JitterExp__Group__110048);
             rule__JitterExp__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13203,10 +13504,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group__1
+    // $ANTLR end "rule__JitterExp__Group__1"
 
 
-    // $ANTLR start rule__JitterExp__Group__1__Impl
+    // $ANTLR start "rule__JitterExp__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4946:1: rule__JitterExp__Group__1__Impl : ( ( rule__JitterExp__FirstInstantAssignment_1 ) ) ;
     public final void rule__JitterExp__Group__1__Impl() throws RecognitionException {
 
@@ -13225,7 +13526,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__JitterExp__FirstInstantAssignment_1_in_rule__JitterExp__Group__1__Impl10075);
             rule__JitterExp__FirstInstantAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13249,10 +13551,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group__1__Impl
+    // $ANTLR end "rule__JitterExp__Group__1__Impl"
 
 
-    // $ANTLR start rule__JitterExp__Group__2
+    // $ANTLR start "rule__JitterExp__Group__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4963:1: rule__JitterExp__Group__2 : rule__JitterExp__Group__2__Impl rule__JitterExp__Group__3 ;
     public final void rule__JitterExp__Group__2() throws RecognitionException {
 
@@ -13264,11 +13566,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__JitterExp__Group__2__Impl_in_rule__JitterExp__Group__210105);
             rule__JitterExp__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__JitterExp__Group__3_in_rule__JitterExp__Group__210108);
             rule__JitterExp__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13285,10 +13589,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group__2
+    // $ANTLR end "rule__JitterExp__Group__2"
 
 
-    // $ANTLR start rule__JitterExp__Group__2__Impl
+    // $ANTLR start "rule__JitterExp__Group__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4975:1: rule__JitterExp__Group__2__Impl : ( ( rule__JitterExp__Group_2__0 )? ) ;
     public final void rule__JitterExp__Group__2__Impl() throws RecognitionException {
 
@@ -13315,7 +13619,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__JitterExp__Group_2__0_in_rule__JitterExp__Group__2__Impl10135);
                     rule__JitterExp__Group_2__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -13342,10 +13647,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group__2__Impl
+    // $ANTLR end "rule__JitterExp__Group__2__Impl"
 
 
-    // $ANTLR start rule__JitterExp__Group__3
+    // $ANTLR start "rule__JitterExp__Group__3"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:4992:1: rule__JitterExp__Group__3 : rule__JitterExp__Group__3__Impl ;
     public final void rule__JitterExp__Group__3() throws RecognitionException {
 
@@ -13357,7 +13662,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__JitterExp__Group__3__Impl_in_rule__JitterExp__Group__310166);
             rule__JitterExp__Group__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13374,10 +13680,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group__3
+    // $ANTLR end "rule__JitterExp__Group__3"
 
 
-    // $ANTLR start rule__JitterExp__Group__3__Impl
+    // $ANTLR start "rule__JitterExp__Group__3__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5003:1: rule__JitterExp__Group__3__Impl : ( ')' ) ;
     public final void rule__JitterExp__Group__3__Impl() throws RecognitionException {
 
@@ -13411,10 +13717,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group__3__Impl
+    // $ANTLR end "rule__JitterExp__Group__3__Impl"
 
 
-    // $ANTLR start rule__JitterExp__Group_2__0
+    // $ANTLR start "rule__JitterExp__Group_2__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5030:1: rule__JitterExp__Group_2__0 : rule__JitterExp__Group_2__0__Impl rule__JitterExp__Group_2__1 ;
     public final void rule__JitterExp__Group_2__0() throws RecognitionException {
 
@@ -13426,11 +13732,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__JitterExp__Group_2__0__Impl_in_rule__JitterExp__Group_2__010233);
             rule__JitterExp__Group_2__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__JitterExp__Group_2__1_in_rule__JitterExp__Group_2__010236);
             rule__JitterExp__Group_2__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13447,10 +13755,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group_2__0
+    // $ANTLR end "rule__JitterExp__Group_2__0"
 
 
-    // $ANTLR start rule__JitterExp__Group_2__0__Impl
+    // $ANTLR start "rule__JitterExp__Group_2__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5042:1: rule__JitterExp__Group_2__0__Impl : ( '-' ) ;
     public final void rule__JitterExp__Group_2__0__Impl() throws RecognitionException {
 
@@ -13484,10 +13792,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group_2__0__Impl
+    // $ANTLR end "rule__JitterExp__Group_2__0__Impl"
 
 
-    // $ANTLR start rule__JitterExp__Group_2__1
+    // $ANTLR start "rule__JitterExp__Group_2__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5061:1: rule__JitterExp__Group_2__1 : rule__JitterExp__Group_2__1__Impl ;
     public final void rule__JitterExp__Group_2__1() throws RecognitionException {
 
@@ -13499,7 +13807,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__JitterExp__Group_2__1__Impl_in_rule__JitterExp__Group_2__110295);
             rule__JitterExp__Group_2__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13516,10 +13825,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group_2__1
+    // $ANTLR end "rule__JitterExp__Group_2__1"
 
 
-    // $ANTLR start rule__JitterExp__Group_2__1__Impl
+    // $ANTLR start "rule__JitterExp__Group_2__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5072:1: rule__JitterExp__Group_2__1__Impl : ( ( rule__JitterExp__SecondInstantAssignment_2_1 ) ) ;
     public final void rule__JitterExp__Group_2__1__Impl() throws RecognitionException {
 
@@ -13538,7 +13847,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__JitterExp__SecondInstantAssignment_2_1_in_rule__JitterExp__Group_2__1__Impl10322);
             rule__JitterExp__SecondInstantAssignment_2_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13562,10 +13872,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__Group_2__1__Impl
+    // $ANTLR end "rule__JitterExp__Group_2__1__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group__0
+    // $ANTLR start "rule__VariableDeclaration__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5093:1: rule__VariableDeclaration__Group__0 : rule__VariableDeclaration__Group__0__Impl rule__VariableDeclaration__Group__1 ;
     public final void rule__VariableDeclaration__Group__0() throws RecognitionException {
 
@@ -13577,11 +13887,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group__0__Impl_in_rule__VariableDeclaration__Group__010356);
             rule__VariableDeclaration__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group__1_in_rule__VariableDeclaration__Group__010359);
             rule__VariableDeclaration__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13598,10 +13910,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group__0
+    // $ANTLR end "rule__VariableDeclaration__Group__0"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group__0__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5105:1: rule__VariableDeclaration__Group__0__Impl : ( ( rule__VariableDeclaration__VariableDeclarationAssignment_0 )? ) ;
     public final void rule__VariableDeclaration__Group__0__Impl() throws RecognitionException {
 
@@ -13628,7 +13940,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__VariableDeclaration__VariableDeclarationAssignment_0_in_rule__VariableDeclaration__Group__0__Impl10386);
                     rule__VariableDeclaration__VariableDeclarationAssignment_0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -13655,10 +13968,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group__0__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group__0__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group__1
+    // $ANTLR start "rule__VariableDeclaration__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5122:1: rule__VariableDeclaration__Group__1 : rule__VariableDeclaration__Group__1__Impl rule__VariableDeclaration__Group__2 ;
     public final void rule__VariableDeclaration__Group__1() throws RecognitionException {
 
@@ -13670,11 +13983,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group__1__Impl_in_rule__VariableDeclaration__Group__110417);
             rule__VariableDeclaration__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group__2_in_rule__VariableDeclaration__Group__110420);
             rule__VariableDeclaration__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13691,10 +14006,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group__1
+    // $ANTLR end "rule__VariableDeclaration__Group__1"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group__1__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5134:1: rule__VariableDeclaration__Group__1__Impl : ( '$' ) ;
     public final void rule__VariableDeclaration__Group__1__Impl() throws RecognitionException {
 
@@ -13728,10 +14043,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group__1__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group__1__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group__2
+    // $ANTLR start "rule__VariableDeclaration__Group__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5153:1: rule__VariableDeclaration__Group__2 : rule__VariableDeclaration__Group__2__Impl rule__VariableDeclaration__Group__3 ;
     public final void rule__VariableDeclaration__Group__2() throws RecognitionException {
 
@@ -13743,11 +14058,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group__2__Impl_in_rule__VariableDeclaration__Group__210479);
             rule__VariableDeclaration__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group__3_in_rule__VariableDeclaration__Group__210482);
             rule__VariableDeclaration__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13764,10 +14081,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group__2
+    // $ANTLR end "rule__VariableDeclaration__Group__2"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group__2__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5165:1: rule__VariableDeclaration__Group__2__Impl : ( ( rule__VariableDeclaration__NameAssignment_2 ) ) ;
     public final void rule__VariableDeclaration__Group__2__Impl() throws RecognitionException {
 
@@ -13786,7 +14103,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__NameAssignment_2_in_rule__VariableDeclaration__Group__2__Impl10509);
             rule__VariableDeclaration__NameAssignment_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13810,10 +14128,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group__2__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group__2__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group__3
+    // $ANTLR start "rule__VariableDeclaration__Group__3"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5182:1: rule__VariableDeclaration__Group__3 : rule__VariableDeclaration__Group__3__Impl ;
     public final void rule__VariableDeclaration__Group__3() throws RecognitionException {
 
@@ -13825,7 +14143,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group__3__Impl_in_rule__VariableDeclaration__Group__310539);
             rule__VariableDeclaration__Group__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13842,10 +14161,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group__3
+    // $ANTLR end "rule__VariableDeclaration__Group__3"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group__3__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group__3__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5193:1: rule__VariableDeclaration__Group__3__Impl : ( ( rule__VariableDeclaration__Alternatives_3 ) ) ;
     public final void rule__VariableDeclaration__Group__3__Impl() throws RecognitionException {
 
@@ -13864,7 +14183,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Alternatives_3_in_rule__VariableDeclaration__Group__3__Impl10566);
             rule__VariableDeclaration__Alternatives_3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13888,10 +14208,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group__3__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group__3__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0__0
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5218:1: rule__VariableDeclaration__Group_3_0__0 : rule__VariableDeclaration__Group_3_0__0__Impl rule__VariableDeclaration__Group_3_0__1 ;
     public final void rule__VariableDeclaration__Group_3_0__0() throws RecognitionException {
 
@@ -13903,11 +14223,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0__0__Impl_in_rule__VariableDeclaration__Group_3_0__010604);
             rule__VariableDeclaration__Group_3_0__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0__1_in_rule__VariableDeclaration__Group_3_0__010607);
             rule__VariableDeclaration__Group_3_0__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13924,10 +14246,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0__0
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0__0"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0__0__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5230:1: rule__VariableDeclaration__Group_3_0__0__Impl : ( ':' ) ;
     public final void rule__VariableDeclaration__Group_3_0__0__Impl() throws RecognitionException {
 
@@ -13961,10 +14283,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0__0__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0__0__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0__1
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5249:1: rule__VariableDeclaration__Group_3_0__1 : rule__VariableDeclaration__Group_3_0__1__Impl rule__VariableDeclaration__Group_3_0__2 ;
     public final void rule__VariableDeclaration__Group_3_0__1() throws RecognitionException {
 
@@ -13976,11 +14298,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0__1__Impl_in_rule__VariableDeclaration__Group_3_0__110666);
             rule__VariableDeclaration__Group_3_0__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0__2_in_rule__VariableDeclaration__Group_3_0__110669);
             rule__VariableDeclaration__Group_3_0__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -13997,10 +14321,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0__1
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0__1"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0__1__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5261:1: rule__VariableDeclaration__Group_3_0__1__Impl : ( ( rule__VariableDeclaration__TypeAssignment_3_0_1 ) ) ;
     public final void rule__VariableDeclaration__Group_3_0__1__Impl() throws RecognitionException {
 
@@ -14019,7 +14343,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__TypeAssignment_3_0_1_in_rule__VariableDeclaration__Group_3_0__1__Impl10696);
             rule__VariableDeclaration__TypeAssignment_3_0_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14043,10 +14368,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0__1__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0__1__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0__2
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5278:1: rule__VariableDeclaration__Group_3_0__2 : rule__VariableDeclaration__Group_3_0__2__Impl ;
     public final void rule__VariableDeclaration__Group_3_0__2() throws RecognitionException {
 
@@ -14058,7 +14383,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0__2__Impl_in_rule__VariableDeclaration__Group_3_0__210726);
             rule__VariableDeclaration__Group_3_0__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14075,10 +14401,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0__2
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0__2"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0__2__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5289:1: rule__VariableDeclaration__Group_3_0__2__Impl : ( ( rule__VariableDeclaration__Group_3_0_2__0 )? ) ;
     public final void rule__VariableDeclaration__Group_3_0__2__Impl() throws RecognitionException {
 
@@ -14105,7 +14431,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0_2__0_in_rule__VariableDeclaration__Group_3_0__2__Impl10753);
                     rule__VariableDeclaration__Group_3_0_2__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -14132,10 +14459,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0__2__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0__2__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0_2__0
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0_2__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5312:1: rule__VariableDeclaration__Group_3_0_2__0 : rule__VariableDeclaration__Group_3_0_2__0__Impl rule__VariableDeclaration__Group_3_0_2__1 ;
     public final void rule__VariableDeclaration__Group_3_0_2__0() throws RecognitionException {
 
@@ -14147,11 +14474,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0_2__0__Impl_in_rule__VariableDeclaration__Group_3_0_2__010790);
             rule__VariableDeclaration__Group_3_0_2__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0_2__1_in_rule__VariableDeclaration__Group_3_0_2__010793);
             rule__VariableDeclaration__Group_3_0_2__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14168,10 +14497,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0_2__0
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0_2__0"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0_2__0__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0_2__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5324:1: rule__VariableDeclaration__Group_3_0_2__0__Impl : ( '=' ) ;
     public final void rule__VariableDeclaration__Group_3_0_2__0__Impl() throws RecognitionException {
 
@@ -14205,10 +14534,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0_2__0__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0_2__0__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0_2__1
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0_2__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5343:1: rule__VariableDeclaration__Group_3_0_2__1 : rule__VariableDeclaration__Group_3_0_2__1__Impl rule__VariableDeclaration__Group_3_0_2__2 ;
     public final void rule__VariableDeclaration__Group_3_0_2__1() throws RecognitionException {
 
@@ -14220,11 +14549,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0_2__1__Impl_in_rule__VariableDeclaration__Group_3_0_2__110852);
             rule__VariableDeclaration__Group_3_0_2__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0_2__2_in_rule__VariableDeclaration__Group_3_0_2__110855);
             rule__VariableDeclaration__Group_3_0_2__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14241,10 +14572,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0_2__1
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0_2__1"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0_2__1__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0_2__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5355:1: rule__VariableDeclaration__Group_3_0_2__1__Impl : ( '(' ) ;
     public final void rule__VariableDeclaration__Group_3_0_2__1__Impl() throws RecognitionException {
 
@@ -14278,10 +14609,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0_2__1__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0_2__1__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0_2__2
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0_2__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5374:1: rule__VariableDeclaration__Group_3_0_2__2 : rule__VariableDeclaration__Group_3_0_2__2__Impl rule__VariableDeclaration__Group_3_0_2__3 ;
     public final void rule__VariableDeclaration__Group_3_0_2__2() throws RecognitionException {
 
@@ -14293,11 +14624,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0_2__2__Impl_in_rule__VariableDeclaration__Group_3_0_2__210914);
             rule__VariableDeclaration__Group_3_0_2__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0_2__3_in_rule__VariableDeclaration__Group_3_0_2__210917);
             rule__VariableDeclaration__Group_3_0_2__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14314,10 +14647,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0_2__2
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0_2__2"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0_2__2__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0_2__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5386:1: rule__VariableDeclaration__Group_3_0_2__2__Impl : ( ( rule__VariableDeclaration__InitValueAssignment_3_0_2_2 ) ) ;
     public final void rule__VariableDeclaration__Group_3_0_2__2__Impl() throws RecognitionException {
 
@@ -14336,7 +14669,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__InitValueAssignment_3_0_2_2_in_rule__VariableDeclaration__Group_3_0_2__2__Impl10944);
             rule__VariableDeclaration__InitValueAssignment_3_0_2_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14360,10 +14694,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0_2__2__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0_2__2__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0_2__3
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0_2__3"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5403:1: rule__VariableDeclaration__Group_3_0_2__3 : rule__VariableDeclaration__Group_3_0_2__3__Impl ;
     public final void rule__VariableDeclaration__Group_3_0_2__3() throws RecognitionException {
 
@@ -14375,7 +14709,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_0_2__3__Impl_in_rule__VariableDeclaration__Group_3_0_2__310974);
             rule__VariableDeclaration__Group_3_0_2__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14392,10 +14727,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0_2__3
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0_2__3"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_0_2__3__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_0_2__3__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5414:1: rule__VariableDeclaration__Group_3_0_2__3__Impl : ( ')' ) ;
     public final void rule__VariableDeclaration__Group_3_0_2__3__Impl() throws RecognitionException {
 
@@ -14429,10 +14764,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_0_2__3__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_0_2__3__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_1__0
+    // $ANTLR start "rule__VariableDeclaration__Group_3_1__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5441:1: rule__VariableDeclaration__Group_3_1__0 : rule__VariableDeclaration__Group_3_1__0__Impl rule__VariableDeclaration__Group_3_1__1 ;
     public final void rule__VariableDeclaration__Group_3_1__0() throws RecognitionException {
 
@@ -14444,11 +14779,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_1__0__Impl_in_rule__VariableDeclaration__Group_3_1__011041);
             rule__VariableDeclaration__Group_3_1__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_1__1_in_rule__VariableDeclaration__Group_3_1__011044);
             rule__VariableDeclaration__Group_3_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14465,10 +14802,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_1__0
+    // $ANTLR end "rule__VariableDeclaration__Group_3_1__0"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_1__0__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_1__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5453:1: rule__VariableDeclaration__Group_3_1__0__Impl : ( '=' ) ;
     public final void rule__VariableDeclaration__Group_3_1__0__Impl() throws RecognitionException {
 
@@ -14502,10 +14839,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_1__0__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_1__0__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_1__1
+    // $ANTLR start "rule__VariableDeclaration__Group_3_1__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5472:1: rule__VariableDeclaration__Group_3_1__1 : rule__VariableDeclaration__Group_3_1__1__Impl rule__VariableDeclaration__Group_3_1__2 ;
     public final void rule__VariableDeclaration__Group_3_1__1() throws RecognitionException {
 
@@ -14517,11 +14854,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_1__1__Impl_in_rule__VariableDeclaration__Group_3_1__111103);
             rule__VariableDeclaration__Group_3_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_1__2_in_rule__VariableDeclaration__Group_3_1__111106);
             rule__VariableDeclaration__Group_3_1__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14538,10 +14877,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_1__1
+    // $ANTLR end "rule__VariableDeclaration__Group_3_1__1"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_1__1__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_1__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5484:1: rule__VariableDeclaration__Group_3_1__1__Impl : ( '(' ) ;
     public final void rule__VariableDeclaration__Group_3_1__1__Impl() throws RecognitionException {
 
@@ -14575,10 +14914,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_1__1__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_1__1__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_1__2
+    // $ANTLR start "rule__VariableDeclaration__Group_3_1__2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5503:1: rule__VariableDeclaration__Group_3_1__2 : rule__VariableDeclaration__Group_3_1__2__Impl rule__VariableDeclaration__Group_3_1__3 ;
     public final void rule__VariableDeclaration__Group_3_1__2() throws RecognitionException {
 
@@ -14590,11 +14929,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_1__2__Impl_in_rule__VariableDeclaration__Group_3_1__211165);
             rule__VariableDeclaration__Group_3_1__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_1__3_in_rule__VariableDeclaration__Group_3_1__211168);
             rule__VariableDeclaration__Group_3_1__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14611,10 +14952,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_1__2
+    // $ANTLR end "rule__VariableDeclaration__Group_3_1__2"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_1__2__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_1__2__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5515:1: rule__VariableDeclaration__Group_3_1__2__Impl : ( ( rule__VariableDeclaration__InitValueAssignment_3_1_2 ) ) ;
     public final void rule__VariableDeclaration__Group_3_1__2__Impl() throws RecognitionException {
 
@@ -14633,7 +14974,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__InitValueAssignment_3_1_2_in_rule__VariableDeclaration__Group_3_1__2__Impl11195);
             rule__VariableDeclaration__InitValueAssignment_3_1_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14657,10 +14999,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_1__2__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_1__2__Impl"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_1__3
+    // $ANTLR start "rule__VariableDeclaration__Group_3_1__3"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5532:1: rule__VariableDeclaration__Group_3_1__3 : rule__VariableDeclaration__Group_3_1__3__Impl ;
     public final void rule__VariableDeclaration__Group_3_1__3() throws RecognitionException {
 
@@ -14672,7 +15014,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__VariableDeclaration__Group_3_1__3__Impl_in_rule__VariableDeclaration__Group_3_1__311225);
             rule__VariableDeclaration__Group_3_1__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14689,10 +15032,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_1__3
+    // $ANTLR end "rule__VariableDeclaration__Group_3_1__3"
 
 
-    // $ANTLR start rule__VariableDeclaration__Group_3_1__3__Impl
+    // $ANTLR start "rule__VariableDeclaration__Group_3_1__3__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5543:1: rule__VariableDeclaration__Group_3_1__3__Impl : ( ')' ) ;
     public final void rule__VariableDeclaration__Group_3_1__3__Impl() throws RecognitionException {
 
@@ -14726,10 +15069,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__Group_3_1__3__Impl
+    // $ANTLR end "rule__VariableDeclaration__Group_3_1__3__Impl"
 
 
-    // $ANTLR start rule__DataTypeName__Group__0
+    // $ANTLR start "rule__DataTypeName__Group__0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5570:1: rule__DataTypeName__Group__0 : rule__DataTypeName__Group__0__Impl rule__DataTypeName__Group__1 ;
     public final void rule__DataTypeName__Group__0() throws RecognitionException {
 
@@ -14741,11 +15084,13 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DataTypeName__Group__0__Impl_in_rule__DataTypeName__Group__011292);
             rule__DataTypeName__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__DataTypeName__Group__1_in_rule__DataTypeName__Group__011295);
             rule__DataTypeName__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14762,10 +15107,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DataTypeName__Group__0
+    // $ANTLR end "rule__DataTypeName__Group__0"
 
 
-    // $ANTLR start rule__DataTypeName__Group__0__Impl
+    // $ANTLR start "rule__DataTypeName__Group__0__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5582:1: rule__DataTypeName__Group__0__Impl : ( ( rule__DataTypeName__PathAssignment_0 )? ) ;
     public final void rule__DataTypeName__Group__0__Impl() throws RecognitionException {
 
@@ -14796,7 +15141,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__DataTypeName__PathAssignment_0_in_rule__DataTypeName__Group__0__Impl11322);
                     rule__DataTypeName__PathAssignment_0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -14823,10 +15169,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DataTypeName__Group__0__Impl
+    // $ANTLR end "rule__DataTypeName__Group__0__Impl"
 
 
-    // $ANTLR start rule__DataTypeName__Group__1
+    // $ANTLR start "rule__DataTypeName__Group__1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5599:1: rule__DataTypeName__Group__1 : rule__DataTypeName__Group__1__Impl ;
     public final void rule__DataTypeName__Group__1() throws RecognitionException {
 
@@ -14838,7 +15184,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DataTypeName__Group__1__Impl_in_rule__DataTypeName__Group__111353);
             rule__DataTypeName__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14855,10 +15202,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DataTypeName__Group__1
+    // $ANTLR end "rule__DataTypeName__Group__1"
 
 
-    // $ANTLR start rule__DataTypeName__Group__1__Impl
+    // $ANTLR start "rule__DataTypeName__Group__1__Impl"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5610:1: rule__DataTypeName__Group__1__Impl : ( ( rule__DataTypeName__TypeAssignment_1 ) ) ;
     public final void rule__DataTypeName__Group__1__Impl() throws RecognitionException {
 
@@ -14877,7 +15224,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__DataTypeName__TypeAssignment_1_in_rule__DataTypeName__Group__1__Impl11380);
             rule__DataTypeName__TypeAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -14901,10 +15249,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DataTypeName__Group__1__Impl
+    // $ANTLR end "rule__DataTypeName__Group__1__Impl"
 
 
-    // $ANTLR start rule__Expression__ExpAssignment
+    // $ANTLR start "rule__Expression__ExpAssignment"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5632:1: rule__Expression__ExpAssignment : ( ruleAndOrXorExpression ) ;
     public final void rule__Expression__ExpAssignment() throws RecognitionException {
 
@@ -14920,7 +15268,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getExpressionAccess().getExpAndOrXorExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_ruleAndOrXorExpression_in_rule__Expression__ExpAssignment11419);
             ruleAndOrXorExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getExpressionAccess().getExpAndOrXorExpressionParserRuleCall_0()); 
 
@@ -14941,10 +15290,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Expression__ExpAssignment
+    // $ANTLR end "rule__Expression__ExpAssignment"
 
 
-    // $ANTLR start rule__AndOrXorExpression__ExpAssignment_0
+    // $ANTLR start "rule__AndOrXorExpression__ExpAssignment_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5647:1: rule__AndOrXorExpression__ExpAssignment_0 : ( ruleEqualityExpression ) ;
     public final void rule__AndOrXorExpression__ExpAssignment_0() throws RecognitionException {
 
@@ -14960,7 +15309,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getAndOrXorExpressionAccess().getExpEqualityExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleEqualityExpression_in_rule__AndOrXorExpression__ExpAssignment_011450);
             ruleEqualityExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getAndOrXorExpressionAccess().getExpEqualityExpressionParserRuleCall_0_0()); 
 
@@ -14981,10 +15331,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__ExpAssignment_0
+    // $ANTLR end "rule__AndOrXorExpression__ExpAssignment_0"
 
 
-    // $ANTLR start rule__AndOrXorExpression__OpAssignment_1_0
+    // $ANTLR start "rule__AndOrXorExpression__OpAssignment_1_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5662:1: rule__AndOrXorExpression__OpAssignment_1_0 : ( ( rule__AndOrXorExpression__OpAlternatives_1_0_0 ) ) ;
     public final void rule__AndOrXorExpression__OpAssignment_1_0() throws RecognitionException {
 
@@ -15003,7 +15353,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__AndOrXorExpression__OpAlternatives_1_0_0_in_rule__AndOrXorExpression__OpAssignment_1_011481);
             rule__AndOrXorExpression__OpAlternatives_1_0_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -15027,10 +15378,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__OpAssignment_1_0
+    // $ANTLR end "rule__AndOrXorExpression__OpAssignment_1_0"
 
 
-    // $ANTLR start rule__AndOrXorExpression__ExpAssignment_1_1
+    // $ANTLR start "rule__AndOrXorExpression__ExpAssignment_1_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5678:1: rule__AndOrXorExpression__ExpAssignment_1_1 : ( ruleEqualityExpression ) ;
     public final void rule__AndOrXorExpression__ExpAssignment_1_1() throws RecognitionException {
 
@@ -15046,7 +15397,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getAndOrXorExpressionAccess().getExpEqualityExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleEqualityExpression_in_rule__AndOrXorExpression__ExpAssignment_1_111514);
             ruleEqualityExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getAndOrXorExpressionAccess().getExpEqualityExpressionParserRuleCall_1_1_0()); 
 
@@ -15067,10 +15419,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AndOrXorExpression__ExpAssignment_1_1
+    // $ANTLR end "rule__AndOrXorExpression__ExpAssignment_1_1"
 
 
-    // $ANTLR start rule__EqualityExpression__ExpAssignment_0
+    // $ANTLR start "rule__EqualityExpression__ExpAssignment_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5693:1: rule__EqualityExpression__ExpAssignment_0 : ( ruleRelationalExpression ) ;
     public final void rule__EqualityExpression__ExpAssignment_0() throws RecognitionException {
 
@@ -15086,7 +15438,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getEqualityExpressionAccess().getExpRelationalExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleRelationalExpression_in_rule__EqualityExpression__ExpAssignment_011545);
             ruleRelationalExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getEqualityExpressionAccess().getExpRelationalExpressionParserRuleCall_0_0()); 
 
@@ -15107,10 +15460,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__ExpAssignment_0
+    // $ANTLR end "rule__EqualityExpression__ExpAssignment_0"
 
 
-    // $ANTLR start rule__EqualityExpression__OpAssignment_1_0
+    // $ANTLR start "rule__EqualityExpression__OpAssignment_1_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5708:1: rule__EqualityExpression__OpAssignment_1_0 : ( ( rule__EqualityExpression__OpAlternatives_1_0_0 ) ) ;
     public final void rule__EqualityExpression__OpAssignment_1_0() throws RecognitionException {
 
@@ -15129,7 +15482,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__EqualityExpression__OpAlternatives_1_0_0_in_rule__EqualityExpression__OpAssignment_1_011576);
             rule__EqualityExpression__OpAlternatives_1_0_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -15153,10 +15507,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__OpAssignment_1_0
+    // $ANTLR end "rule__EqualityExpression__OpAssignment_1_0"
 
 
-    // $ANTLR start rule__EqualityExpression__ExpAssignment_1_1
+    // $ANTLR start "rule__EqualityExpression__ExpAssignment_1_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5724:1: rule__EqualityExpression__ExpAssignment_1_1 : ( ruleRelationalExpression ) ;
     public final void rule__EqualityExpression__ExpAssignment_1_1() throws RecognitionException {
 
@@ -15172,7 +15526,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getEqualityExpressionAccess().getExpRelationalExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleRelationalExpression_in_rule__EqualityExpression__ExpAssignment_1_111609);
             ruleRelationalExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getEqualityExpressionAccess().getExpRelationalExpressionParserRuleCall_1_1_0()); 
 
@@ -15193,10 +15548,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__EqualityExpression__ExpAssignment_1_1
+    // $ANTLR end "rule__EqualityExpression__ExpAssignment_1_1"
 
 
-    // $ANTLR start rule__RelationalExpression__ExpAssignment_0
+    // $ANTLR start "rule__RelationalExpression__ExpAssignment_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5739:1: rule__RelationalExpression__ExpAssignment_0 : ( ruleConditionalExpression ) ;
     public final void rule__RelationalExpression__ExpAssignment_0() throws RecognitionException {
 
@@ -15212,7 +15567,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getRelationalExpressionAccess().getExpConditionalExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleConditionalExpression_in_rule__RelationalExpression__ExpAssignment_011640);
             ruleConditionalExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getRelationalExpressionAccess().getExpConditionalExpressionParserRuleCall_0_0()); 
 
@@ -15233,10 +15589,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__ExpAssignment_0
+    // $ANTLR end "rule__RelationalExpression__ExpAssignment_0"
 
 
-    // $ANTLR start rule__RelationalExpression__OpAssignment_1_0
+    // $ANTLR start "rule__RelationalExpression__OpAssignment_1_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5754:1: rule__RelationalExpression__OpAssignment_1_0 : ( ( rule__RelationalExpression__OpAlternatives_1_0_0 ) ) ;
     public final void rule__RelationalExpression__OpAssignment_1_0() throws RecognitionException {
 
@@ -15255,7 +15611,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__RelationalExpression__OpAlternatives_1_0_0_in_rule__RelationalExpression__OpAssignment_1_011671);
             rule__RelationalExpression__OpAlternatives_1_0_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -15279,10 +15636,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__OpAssignment_1_0
+    // $ANTLR end "rule__RelationalExpression__OpAssignment_1_0"
 
 
-    // $ANTLR start rule__RelationalExpression__ExpAssignment_1_1
+    // $ANTLR start "rule__RelationalExpression__ExpAssignment_1_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5770:1: rule__RelationalExpression__ExpAssignment_1_1 : ( ruleConditionalExpression ) ;
     public final void rule__RelationalExpression__ExpAssignment_1_1() throws RecognitionException {
 
@@ -15298,7 +15655,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getRelationalExpressionAccess().getExpConditionalExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleConditionalExpression_in_rule__RelationalExpression__ExpAssignment_1_111704);
             ruleConditionalExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getRelationalExpressionAccess().getExpConditionalExpressionParserRuleCall_1_1_0()); 
 
@@ -15319,10 +15677,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__RelationalExpression__ExpAssignment_1_1
+    // $ANTLR end "rule__RelationalExpression__ExpAssignment_1_1"
 
 
-    // $ANTLR start rule__ConditionalExpression__ExpAssignment_0
+    // $ANTLR start "rule__ConditionalExpression__ExpAssignment_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5785:1: rule__ConditionalExpression__ExpAssignment_0 : ( ruleAdditiveExpression ) ;
     public final void rule__ConditionalExpression__ExpAssignment_0() throws RecognitionException {
 
@@ -15338,7 +15696,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleAdditiveExpression_in_rule__ConditionalExpression__ExpAssignment_011735);
             ruleAdditiveExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_0_0()); 
 
@@ -15359,10 +15718,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__ExpAssignment_0
+    // $ANTLR end "rule__ConditionalExpression__ExpAssignment_0"
 
 
-    // $ANTLR start rule__ConditionalExpression__OpAssignment_1_0
+    // $ANTLR start "rule__ConditionalExpression__OpAssignment_1_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5800:1: rule__ConditionalExpression__OpAssignment_1_0 : ( ( '?' ) ) ;
     public final void rule__ConditionalExpression__OpAssignment_1_0() throws RecognitionException {
 
@@ -15404,10 +15763,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__OpAssignment_1_0
+    // $ANTLR end "rule__ConditionalExpression__OpAssignment_1_0"
 
 
-    // $ANTLR start rule__ConditionalExpression__ExpAssignment_1_1
+    // $ANTLR start "rule__ConditionalExpression__ExpAssignment_1_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5823:1: rule__ConditionalExpression__ExpAssignment_1_1 : ( ruleAdditiveExpression ) ;
     public final void rule__ConditionalExpression__ExpAssignment_1_1() throws RecognitionException {
 
@@ -15423,7 +15782,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleAdditiveExpression_in_rule__ConditionalExpression__ExpAssignment_1_111810);
             ruleAdditiveExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_1_1_0()); 
 
@@ -15444,10 +15804,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__ExpAssignment_1_1
+    // $ANTLR end "rule__ConditionalExpression__ExpAssignment_1_1"
 
 
-    // $ANTLR start rule__ConditionalExpression__ExpAssignment_1_3
+    // $ANTLR start "rule__ConditionalExpression__ExpAssignment_1_3"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5838:1: rule__ConditionalExpression__ExpAssignment_1_3 : ( ruleAdditiveExpression ) ;
     public final void rule__ConditionalExpression__ExpAssignment_1_3() throws RecognitionException {
 
@@ -15463,7 +15823,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_1_3_0()); 
             pushFollow(FOLLOW_ruleAdditiveExpression_in_rule__ConditionalExpression__ExpAssignment_1_311841);
             ruleAdditiveExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getConditionalExpressionAccess().getExpAdditiveExpressionParserRuleCall_1_3_0()); 
 
@@ -15484,10 +15845,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ConditionalExpression__ExpAssignment_1_3
+    // $ANTLR end "rule__ConditionalExpression__ExpAssignment_1_3"
 
 
-    // $ANTLR start rule__AdditiveExpression__ExpAssignment_0
+    // $ANTLR start "rule__AdditiveExpression__ExpAssignment_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5853:1: rule__AdditiveExpression__ExpAssignment_0 : ( ruleMultiplicativeExpression ) ;
     public final void rule__AdditiveExpression__ExpAssignment_0() throws RecognitionException {
 
@@ -15503,7 +15864,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getAdditiveExpressionAccess().getExpMultiplicativeExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleMultiplicativeExpression_in_rule__AdditiveExpression__ExpAssignment_011872);
             ruleMultiplicativeExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getAdditiveExpressionAccess().getExpMultiplicativeExpressionParserRuleCall_0_0()); 
 
@@ -15524,10 +15886,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__ExpAssignment_0
+    // $ANTLR end "rule__AdditiveExpression__ExpAssignment_0"
 
 
-    // $ANTLR start rule__AdditiveExpression__OpAssignment_1_0
+    // $ANTLR start "rule__AdditiveExpression__OpAssignment_1_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5868:1: rule__AdditiveExpression__OpAssignment_1_0 : ( ( rule__AdditiveExpression__OpAlternatives_1_0_0 ) ) ;
     public final void rule__AdditiveExpression__OpAssignment_1_0() throws RecognitionException {
 
@@ -15546,7 +15908,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__AdditiveExpression__OpAlternatives_1_0_0_in_rule__AdditiveExpression__OpAssignment_1_011903);
             rule__AdditiveExpression__OpAlternatives_1_0_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -15570,10 +15933,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__OpAssignment_1_0
+    // $ANTLR end "rule__AdditiveExpression__OpAssignment_1_0"
 
 
-    // $ANTLR start rule__AdditiveExpression__ExpAssignment_1_1
+    // $ANTLR start "rule__AdditiveExpression__ExpAssignment_1_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5884:1: rule__AdditiveExpression__ExpAssignment_1_1 : ( ruleMultiplicativeExpression ) ;
     public final void rule__AdditiveExpression__ExpAssignment_1_1() throws RecognitionException {
 
@@ -15589,7 +15952,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getAdditiveExpressionAccess().getExpMultiplicativeExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleMultiplicativeExpression_in_rule__AdditiveExpression__ExpAssignment_1_111936);
             ruleMultiplicativeExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getAdditiveExpressionAccess().getExpMultiplicativeExpressionParserRuleCall_1_1_0()); 
 
@@ -15610,10 +15974,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__AdditiveExpression__ExpAssignment_1_1
+    // $ANTLR end "rule__AdditiveExpression__ExpAssignment_1_1"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__ExpAssignment_0
+    // $ANTLR start "rule__MultiplicativeExpression__ExpAssignment_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5899:1: rule__MultiplicativeExpression__ExpAssignment_0 : ( ruleUnaryExpression ) ;
     public final void rule__MultiplicativeExpression__ExpAssignment_0() throws RecognitionException {
 
@@ -15629,7 +15993,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getMultiplicativeExpressionAccess().getExpUnaryExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleUnaryExpression_in_rule__MultiplicativeExpression__ExpAssignment_011967);
             ruleUnaryExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMultiplicativeExpressionAccess().getExpUnaryExpressionParserRuleCall_0_0()); 
 
@@ -15650,10 +16015,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__ExpAssignment_0
+    // $ANTLR end "rule__MultiplicativeExpression__ExpAssignment_0"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__OpAssignment_1_0
+    // $ANTLR start "rule__MultiplicativeExpression__OpAssignment_1_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5914:1: rule__MultiplicativeExpression__OpAssignment_1_0 : ( ( rule__MultiplicativeExpression__OpAlternatives_1_0_0 ) ) ;
     public final void rule__MultiplicativeExpression__OpAssignment_1_0() throws RecognitionException {
 
@@ -15672,7 +16037,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__MultiplicativeExpression__OpAlternatives_1_0_0_in_rule__MultiplicativeExpression__OpAssignment_1_011998);
             rule__MultiplicativeExpression__OpAlternatives_1_0_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -15696,10 +16062,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__OpAssignment_1_0
+    // $ANTLR end "rule__MultiplicativeExpression__OpAssignment_1_0"
 
 
-    // $ANTLR start rule__MultiplicativeExpression__ExpAssignment_1_1
+    // $ANTLR start "rule__MultiplicativeExpression__ExpAssignment_1_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5930:1: rule__MultiplicativeExpression__ExpAssignment_1_1 : ( ruleUnaryExpression ) ;
     public final void rule__MultiplicativeExpression__ExpAssignment_1_1() throws RecognitionException {
 
@@ -15715,7 +16081,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getMultiplicativeExpressionAccess().getExpUnaryExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleUnaryExpression_in_rule__MultiplicativeExpression__ExpAssignment_1_112031);
             ruleUnaryExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMultiplicativeExpressionAccess().getExpUnaryExpressionParserRuleCall_1_1_0()); 
 
@@ -15736,10 +16103,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__MultiplicativeExpression__ExpAssignment_1_1
+    // $ANTLR end "rule__MultiplicativeExpression__ExpAssignment_1_1"
 
 
-    // $ANTLR start rule__UnaryExpression__OpAssignment_0_0
+    // $ANTLR start "rule__UnaryExpression__OpAssignment_0_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5945:1: rule__UnaryExpression__OpAssignment_0_0 : ( ( rule__UnaryExpression__OpAlternatives_0_0_0 ) ) ;
     public final void rule__UnaryExpression__OpAssignment_0_0() throws RecognitionException {
 
@@ -15758,7 +16125,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__UnaryExpression__OpAlternatives_0_0_0_in_rule__UnaryExpression__OpAssignment_0_012062);
             rule__UnaryExpression__OpAlternatives_0_0_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -15782,10 +16150,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__UnaryExpression__OpAssignment_0_0
+    // $ANTLR end "rule__UnaryExpression__OpAssignment_0_0"
 
 
-    // $ANTLR start rule__UnaryExpression__UnaryAssignment_0_1
+    // $ANTLR start "rule__UnaryExpression__UnaryAssignment_0_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5961:1: rule__UnaryExpression__UnaryAssignment_0_1 : ( ruleUnaryExpression ) ;
     public final void rule__UnaryExpression__UnaryAssignment_0_1() throws RecognitionException {
 
@@ -15801,7 +16169,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getUnaryExpressionAccess().getUnaryUnaryExpressionParserRuleCall_0_1_0()); 
             pushFollow(FOLLOW_ruleUnaryExpression_in_rule__UnaryExpression__UnaryAssignment_0_112095);
             ruleUnaryExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getUnaryExpressionAccess().getUnaryUnaryExpressionParserRuleCall_0_1_0()); 
 
@@ -15822,10 +16191,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__UnaryExpression__UnaryAssignment_0_1
+    // $ANTLR end "rule__UnaryExpression__UnaryAssignment_0_1"
 
 
-    // $ANTLR start rule__UnaryExpression__ExpAssignment_1
+    // $ANTLR start "rule__UnaryExpression__ExpAssignment_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5976:1: rule__UnaryExpression__ExpAssignment_1 : ( rulePrimaryExpression ) ;
     public final void rule__UnaryExpression__ExpAssignment_1() throws RecognitionException {
 
@@ -15841,7 +16210,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getUnaryExpressionAccess().getExpPrimaryExpressionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_rulePrimaryExpression_in_rule__UnaryExpression__ExpAssignment_112126);
             rulePrimaryExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getUnaryExpressionAccess().getExpPrimaryExpressionParserRuleCall_1_0()); 
 
@@ -15862,10 +16232,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__UnaryExpression__ExpAssignment_1
+    // $ANTLR end "rule__UnaryExpression__ExpAssignment_1"
 
 
-    // $ANTLR start rule__PrimaryExpression__PrefixAssignment_0
+    // $ANTLR start "rule__PrimaryExpression__PrefixAssignment_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:5991:1: rule__PrimaryExpression__PrefixAssignment_0 : ( ruleValueSpecification ) ;
     public final void rule__PrimaryExpression__PrefixAssignment_0() throws RecognitionException {
 
@@ -15881,7 +16251,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getPrimaryExpressionAccess().getPrefixValueSpecificationParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleValueSpecification_in_rule__PrimaryExpression__PrefixAssignment_012157);
             ruleValueSpecification();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getPrimaryExpressionAccess().getPrefixValueSpecificationParserRuleCall_0_0()); 
 
@@ -15902,10 +16273,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__PrefixAssignment_0
+    // $ANTLR end "rule__PrimaryExpression__PrefixAssignment_0"
 
 
-    // $ANTLR start rule__PrimaryExpression__SuffixAssignment_1_1
+    // $ANTLR start "rule__PrimaryExpression__SuffixAssignment_1_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6006:1: rule__PrimaryExpression__SuffixAssignment_1_1 : ( ruleSuffixExpression ) ;
     public final void rule__PrimaryExpression__SuffixAssignment_1_1() throws RecognitionException {
 
@@ -15921,7 +16292,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getPrimaryExpressionAccess().getSuffixSuffixExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleSuffixExpression_in_rule__PrimaryExpression__SuffixAssignment_1_112188);
             ruleSuffixExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getPrimaryExpressionAccess().getSuffixSuffixExpressionParserRuleCall_1_1_0()); 
 
@@ -15942,10 +16314,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PrimaryExpression__SuffixAssignment_1_1
+    // $ANTLR end "rule__PrimaryExpression__SuffixAssignment_1_1"
 
 
-    // $ANTLR start rule__PropertyCallExpression__PropertyAssignment_0
+    // $ANTLR start "rule__PropertyCallExpression__PropertyAssignment_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6021:1: rule__PropertyCallExpression__PropertyAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__PropertyCallExpression__PropertyAssignment_0() throws RecognitionException {
 
@@ -15987,10 +16359,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__PropertyAssignment_0
+    // $ANTLR end "rule__PropertyCallExpression__PropertyAssignment_0"
 
 
-    // $ANTLR start rule__PropertyCallExpression__SuffixAssignment_1_1
+    // $ANTLR start "rule__PropertyCallExpression__SuffixAssignment_1_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6040:1: rule__PropertyCallExpression__SuffixAssignment_1_1 : ( ruleSuffixExpression ) ;
     public final void rule__PropertyCallExpression__SuffixAssignment_1_1() throws RecognitionException {
 
@@ -16006,7 +16378,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getPropertyCallExpressionAccess().getSuffixSuffixExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleSuffixExpression_in_rule__PropertyCallExpression__SuffixAssignment_1_112258);
             ruleSuffixExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getPropertyCallExpressionAccess().getSuffixSuffixExpressionParserRuleCall_1_1_0()); 
 
@@ -16027,10 +16400,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PropertyCallExpression__SuffixAssignment_1_1
+    // $ANTLR end "rule__PropertyCallExpression__SuffixAssignment_1_1"
 
 
-    // $ANTLR start rule__OperationCallExpression__OperationAssignment_0
+    // $ANTLR start "rule__OperationCallExpression__OperationAssignment_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6055:1: rule__OperationCallExpression__OperationAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__OperationCallExpression__OperationAssignment_0() throws RecognitionException {
 
@@ -16072,10 +16445,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__OperationAssignment_0
+    // $ANTLR end "rule__OperationCallExpression__OperationAssignment_0"
 
 
-    // $ANTLR start rule__OperationCallExpression__ArgumentsAssignment_2
+    // $ANTLR start "rule__OperationCallExpression__ArgumentsAssignment_2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6074:1: rule__OperationCallExpression__ArgumentsAssignment_2 : ( ruleListOfValues ) ;
     public final void rule__OperationCallExpression__ArgumentsAssignment_2() throws RecognitionException {
 
@@ -16091,7 +16464,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getOperationCallExpressionAccess().getArgumentsListOfValuesParserRuleCall_2_0()); 
             pushFollow(FOLLOW_ruleListOfValues_in_rule__OperationCallExpression__ArgumentsAssignment_212328);
             ruleListOfValues();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getOperationCallExpressionAccess().getArgumentsListOfValuesParserRuleCall_2_0()); 
 
@@ -16112,10 +16486,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__ArgumentsAssignment_2
+    // $ANTLR end "rule__OperationCallExpression__ArgumentsAssignment_2"
 
 
-    // $ANTLR start rule__OperationCallExpression__SuffixAssignment_4_1
+    // $ANTLR start "rule__OperationCallExpression__SuffixAssignment_4_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6089:1: rule__OperationCallExpression__SuffixAssignment_4_1 : ( ruleSuffixExpression ) ;
     public final void rule__OperationCallExpression__SuffixAssignment_4_1() throws RecognitionException {
 
@@ -16131,7 +16505,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getOperationCallExpressionAccess().getSuffixSuffixExpressionParserRuleCall_4_1_0()); 
             pushFollow(FOLLOW_ruleSuffixExpression_in_rule__OperationCallExpression__SuffixAssignment_4_112359);
             ruleSuffixExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getOperationCallExpressionAccess().getSuffixSuffixExpressionParserRuleCall_4_1_0()); 
 
@@ -16152,10 +16527,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__OperationCallExpression__SuffixAssignment_4_1
+    // $ANTLR end "rule__OperationCallExpression__SuffixAssignment_4_1"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__PathAssignment_0
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__PathAssignment_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6104:1: rule__NameOrChoiceOrBehaviorCall__PathAssignment_0 : ( ruleQualifiedName ) ;
     public final void rule__NameOrChoiceOrBehaviorCall__PathAssignment_0() throws RecognitionException {
 
@@ -16171,7 +16546,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getPathQualifiedNameParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__NameOrChoiceOrBehaviorCall__PathAssignment_012390);
             ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getPathQualifiedNameParserRuleCall_0_0()); 
 
@@ -16192,10 +16568,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__PathAssignment_0
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__PathAssignment_0"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__IdAssignment_1
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__IdAssignment_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6119:1: rule__NameOrChoiceOrBehaviorCall__IdAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__NameOrChoiceOrBehaviorCall__IdAssignment_1() throws RecognitionException {
 
@@ -16237,10 +16613,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__IdAssignment_1
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__IdAssignment_1"
 
 
-    // $ANTLR start rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1
+    // $ANTLR start "rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6138:1: rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1 : ( ruleListOfValues ) ;
     public final void rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1() throws RecognitionException {
 
@@ -16256,7 +16632,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getArgumentsListOfValuesParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_ruleListOfValues_in_rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_112460);
             ruleListOfValues();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getNameOrChoiceOrBehaviorCallAccess().getArgumentsListOfValuesParserRuleCall_2_1_0()); 
 
@@ -16277,10 +16654,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1
+    // $ANTLR end "rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1"
 
 
-    // $ANTLR start rule__QualifiedName__PathAssignment_0
+    // $ANTLR start "rule__QualifiedName__PathAssignment_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6153:1: rule__QualifiedName__PathAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__QualifiedName__PathAssignment_0() throws RecognitionException {
 
@@ -16322,10 +16699,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__PathAssignment_0
+    // $ANTLR end "rule__QualifiedName__PathAssignment_0"
 
 
-    // $ANTLR start rule__QualifiedName__RemainingAssignment_2
+    // $ANTLR start "rule__QualifiedName__RemainingAssignment_2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6172:1: rule__QualifiedName__RemainingAssignment_2 : ( ruleQualifiedName ) ;
     public final void rule__QualifiedName__RemainingAssignment_2() throws RecognitionException {
 
@@ -16341,7 +16718,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getQualifiedNameAccess().getRemainingQualifiedNameParserRuleCall_2_0()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__QualifiedName__RemainingAssignment_212530);
             ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getQualifiedNameAccess().getRemainingQualifiedNameParserRuleCall_2_0()); 
 
@@ -16362,10 +16740,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__QualifiedName__RemainingAssignment_2
+    // $ANTLR end "rule__QualifiedName__RemainingAssignment_2"
 
 
-    // $ANTLR start rule__Interval__IsLowerIncludedAssignment_0_1
+    // $ANTLR start "rule__Interval__IsLowerIncludedAssignment_0_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6187:1: rule__Interval__IsLowerIncludedAssignment_0_1 : ( ( '[' ) ) ;
     public final void rule__Interval__IsLowerIncludedAssignment_0_1() throws RecognitionException {
 
@@ -16407,10 +16785,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Interval__IsLowerIncludedAssignment_0_1
+    // $ANTLR end "rule__Interval__IsLowerIncludedAssignment_0_1"
 
 
-    // $ANTLR start rule__Interval__LowerAssignment_1
+    // $ANTLR start "rule__Interval__LowerAssignment_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6210:1: rule__Interval__LowerAssignment_1 : ( ruleExpression ) ;
     public final void rule__Interval__LowerAssignment_1() throws RecognitionException {
 
@@ -16426,7 +16804,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getIntervalAccess().getLowerExpressionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__Interval__LowerAssignment_112605);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getIntervalAccess().getLowerExpressionParserRuleCall_1_0()); 
 
@@ -16447,10 +16826,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Interval__LowerAssignment_1
+    // $ANTLR end "rule__Interval__LowerAssignment_1"
 
 
-    // $ANTLR start rule__Interval__UpperAssignment_3
+    // $ANTLR start "rule__Interval__UpperAssignment_3"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6225:1: rule__Interval__UpperAssignment_3 : ( ruleExpression ) ;
     public final void rule__Interval__UpperAssignment_3() throws RecognitionException {
 
@@ -16466,7 +16845,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getIntervalAccess().getUpperExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__Interval__UpperAssignment_312636);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getIntervalAccess().getUpperExpressionParserRuleCall_3_0()); 
 
@@ -16487,10 +16867,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Interval__UpperAssignment_3
+    // $ANTLR end "rule__Interval__UpperAssignment_3"
 
 
-    // $ANTLR start rule__Interval__IsUpperIncludedAssignment_4_0
+    // $ANTLR start "rule__Interval__IsUpperIncludedAssignment_4_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6240:1: rule__Interval__IsUpperIncludedAssignment_4_0 : ( ( ']' ) ) ;
     public final void rule__Interval__IsUpperIncludedAssignment_4_0() throws RecognitionException {
 
@@ -16532,10 +16912,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Interval__IsUpperIncludedAssignment_4_0
+    // $ANTLR end "rule__Interval__IsUpperIncludedAssignment_4_0"
 
 
-    // $ANTLR start rule__CollectionOrTuple__ListOfValuesAssignment_1
+    // $ANTLR start "rule__CollectionOrTuple__ListOfValuesAssignment_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6263:1: rule__CollectionOrTuple__ListOfValuesAssignment_1 : ( ruleListOfValues ) ;
     public final void rule__CollectionOrTuple__ListOfValuesAssignment_1() throws RecognitionException {
 
@@ -16551,7 +16931,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getCollectionOrTupleAccess().getListOfValuesListOfValuesParserRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleListOfValues_in_rule__CollectionOrTuple__ListOfValuesAssignment_112711);
             ruleListOfValues();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getCollectionOrTupleAccess().getListOfValuesListOfValuesParserRuleCall_1_0()); 
 
@@ -16572,10 +16953,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__CollectionOrTuple__ListOfValuesAssignment_1
+    // $ANTLR end "rule__CollectionOrTuple__ListOfValuesAssignment_1"
 
 
-    // $ANTLR start rule__Tuple__ListOfValueNamePairsAssignment_1
+    // $ANTLR start "rule__Tuple__ListOfValueNamePairsAssignment_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6278:1: rule__Tuple__ListOfValueNamePairsAssignment_1 : ( ruleListOfValueNamePairs ) ;
     public final void rule__Tuple__ListOfValueNamePairsAssignment_1() throws RecognitionException {
 
@@ -16591,7 +16972,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getTupleAccess().getListOfValueNamePairsListOfValueNamePairsParserRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleListOfValueNamePairs_in_rule__Tuple__ListOfValueNamePairsAssignment_112742);
             ruleListOfValueNamePairs();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getTupleAccess().getListOfValueNamePairsListOfValueNamePairsParserRuleCall_1_0()); 
 
@@ -16612,10 +16994,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Tuple__ListOfValueNamePairsAssignment_1
+    // $ANTLR end "rule__Tuple__ListOfValueNamePairsAssignment_1"
 
 
-    // $ANTLR start rule__ListOfValues__ValuesAssignment_0
+    // $ANTLR start "rule__ListOfValues__ValuesAssignment_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6293:1: rule__ListOfValues__ValuesAssignment_0 : ( ruleExpression ) ;
     public final void rule__ListOfValues__ValuesAssignment_0() throws RecognitionException {
 
@@ -16631,7 +17013,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getListOfValuesAccess().getValuesExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__ListOfValues__ValuesAssignment_012773);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getListOfValuesAccess().getValuesExpressionParserRuleCall_0_0()); 
 
@@ -16652,10 +17035,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__ValuesAssignment_0
+    // $ANTLR end "rule__ListOfValues__ValuesAssignment_0"
 
 
-    // $ANTLR start rule__ListOfValues__ValuesAssignment_1_1
+    // $ANTLR start "rule__ListOfValues__ValuesAssignment_1_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6308:1: rule__ListOfValues__ValuesAssignment_1_1 : ( ruleExpression ) ;
     public final void rule__ListOfValues__ValuesAssignment_1_1() throws RecognitionException {
 
@@ -16671,7 +17054,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getListOfValuesAccess().getValuesExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__ListOfValues__ValuesAssignment_1_112804);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getListOfValuesAccess().getValuesExpressionParserRuleCall_1_1_0()); 
 
@@ -16692,10 +17076,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValues__ValuesAssignment_1_1
+    // $ANTLR end "rule__ListOfValues__ValuesAssignment_1_1"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__ValueNamePairsAssignment_0
+    // $ANTLR start "rule__ListOfValueNamePairs__ValueNamePairsAssignment_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6323:1: rule__ListOfValueNamePairs__ValueNamePairsAssignment_0 : ( ruleValueNamePair ) ;
     public final void rule__ListOfValueNamePairs__ValueNamePairsAssignment_0() throws RecognitionException {
 
@@ -16711,7 +17095,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getListOfValueNamePairsAccess().getValueNamePairsValueNamePairParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleValueNamePair_in_rule__ListOfValueNamePairs__ValueNamePairsAssignment_012835);
             ruleValueNamePair();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getListOfValueNamePairsAccess().getValueNamePairsValueNamePairParserRuleCall_0_0()); 
 
@@ -16732,10 +17117,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__ValueNamePairsAssignment_0
+    // $ANTLR end "rule__ListOfValueNamePairs__ValueNamePairsAssignment_0"
 
 
-    // $ANTLR start rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_1
+    // $ANTLR start "rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6338:1: rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_1 : ( ruleValueNamePair ) ;
     public final void rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_1() throws RecognitionException {
 
@@ -16751,7 +17136,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getListOfValueNamePairsAccess().getValueNamePairsValueNamePairParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_ruleValueNamePair_in_rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_112866);
             ruleValueNamePair();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getListOfValueNamePairsAccess().getValueNamePairsValueNamePairParserRuleCall_1_1_0()); 
 
@@ -16772,10 +17158,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_1
+    // $ANTLR end "rule__ListOfValueNamePairs__ValueNamePairsAssignment_1_1"
 
 
-    // $ANTLR start rule__ValueNamePair__PropertyAssignment_0
+    // $ANTLR start "rule__ValueNamePair__PropertyAssignment_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6353:1: rule__ValueNamePair__PropertyAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__ValueNamePair__PropertyAssignment_0() throws RecognitionException {
 
@@ -16817,10 +17203,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ValueNamePair__PropertyAssignment_0
+    // $ANTLR end "rule__ValueNamePair__PropertyAssignment_0"
 
 
-    // $ANTLR start rule__ValueNamePair__ValueAssignment_2
+    // $ANTLR start "rule__ValueNamePair__ValueAssignment_2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6372:1: rule__ValueNamePair__ValueAssignment_2 : ( ruleExpression ) ;
     public final void rule__ValueNamePair__ValueAssignment_2() throws RecognitionException {
 
@@ -16836,7 +17222,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getValueNamePairAccess().getValueExpressionParserRuleCall_2_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__ValueNamePair__ValueAssignment_212936);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getValueNamePairAccess().getValueExpressionParserRuleCall_2_0()); 
 
@@ -16857,10 +17244,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ValueNamePair__ValueAssignment_2
+    // $ANTLR end "rule__ValueNamePair__ValueAssignment_2"
 
 
-    // $ANTLR start rule__InstantObsExpression__IdAssignment_1
+    // $ANTLR start "rule__InstantObsExpression__IdAssignment_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6387:1: rule__InstantObsExpression__IdAssignment_1 : ( ruleInstantObsName ) ;
     public final void rule__InstantObsExpression__IdAssignment_1() throws RecognitionException {
 
@@ -16876,7 +17263,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getInstantObsExpressionAccess().getIdInstantObsNameParserRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleInstantObsName_in_rule__InstantObsExpression__IdAssignment_112967);
             ruleInstantObsName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getInstantObsExpressionAccess().getIdInstantObsNameParserRuleCall_1_0()); 
 
@@ -16897,10 +17285,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__IdAssignment_1
+    // $ANTLR end "rule__InstantObsExpression__IdAssignment_1"
 
 
-    // $ANTLR start rule__InstantObsExpression__IndexAssignment_2_1
+    // $ANTLR start "rule__InstantObsExpression__IndexAssignment_2_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6402:1: rule__InstantObsExpression__IndexAssignment_2_1 : ( ruleExpression ) ;
     public final void rule__InstantObsExpression__IndexAssignment_2_1() throws RecognitionException {
 
@@ -16916,7 +17304,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getInstantObsExpressionAccess().getIndexExpressionParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__InstantObsExpression__IndexAssignment_2_112998);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getInstantObsExpressionAccess().getIndexExpressionParserRuleCall_2_1_0()); 
 
@@ -16937,10 +17326,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__IndexAssignment_2_1
+    // $ANTLR end "rule__InstantObsExpression__IndexAssignment_2_1"
 
 
-    // $ANTLR start rule__InstantObsExpression__ConditionAssignment_3_2
+    // $ANTLR start "rule__InstantObsExpression__ConditionAssignment_3_2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6417:1: rule__InstantObsExpression__ConditionAssignment_3_2 : ( ruleExpression ) ;
     public final void rule__InstantObsExpression__ConditionAssignment_3_2() throws RecognitionException {
 
@@ -16956,7 +17345,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getInstantObsExpressionAccess().getConditionExpressionParserRuleCall_3_2_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__InstantObsExpression__ConditionAssignment_3_213029);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getInstantObsExpressionAccess().getConditionExpressionParserRuleCall_3_2_0()); 
 
@@ -16977,10 +17367,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsExpression__ConditionAssignment_3_2
+    // $ANTLR end "rule__InstantObsExpression__ConditionAssignment_3_2"
 
 
-    // $ANTLR start rule__InstantObsName__PathAssignment_0
+    // $ANTLR start "rule__InstantObsName__PathAssignment_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6432:1: rule__InstantObsName__PathAssignment_0 : ( ruleQualifiedName ) ;
     public final void rule__InstantObsName__PathAssignment_0() throws RecognitionException {
 
@@ -16996,7 +17386,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getInstantObsNameAccess().getPathQualifiedNameParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__InstantObsName__PathAssignment_013060);
             ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getInstantObsNameAccess().getPathQualifiedNameParserRuleCall_0_0()); 
 
@@ -17017,10 +17408,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsName__PathAssignment_0
+    // $ANTLR end "rule__InstantObsName__PathAssignment_0"
 
 
-    // $ANTLR start rule__InstantObsName__InstantIdAssignment_1
+    // $ANTLR start "rule__InstantObsName__InstantIdAssignment_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6447:1: rule__InstantObsName__InstantIdAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__InstantObsName__InstantIdAssignment_1() throws RecognitionException {
 
@@ -17062,10 +17453,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__InstantObsName__InstantIdAssignment_1
+    // $ANTLR end "rule__InstantObsName__InstantIdAssignment_1"
 
 
-    // $ANTLR start rule__DurationObsExpression__IdAssignment_1
+    // $ANTLR start "rule__DurationObsExpression__IdAssignment_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6466:1: rule__DurationObsExpression__IdAssignment_1 : ( ruleDurationObsName ) ;
     public final void rule__DurationObsExpression__IdAssignment_1() throws RecognitionException {
 
@@ -17081,7 +17472,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getDurationObsExpressionAccess().getIdDurationObsNameParserRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleDurationObsName_in_rule__DurationObsExpression__IdAssignment_113130);
             ruleDurationObsName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDurationObsExpressionAccess().getIdDurationObsNameParserRuleCall_1_0()); 
 
@@ -17102,10 +17494,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__IdAssignment_1
+    // $ANTLR end "rule__DurationObsExpression__IdAssignment_1"
 
 
-    // $ANTLR start rule__DurationObsExpression__IndexAssignment_2_1
+    // $ANTLR start "rule__DurationObsExpression__IndexAssignment_2_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6481:1: rule__DurationObsExpression__IndexAssignment_2_1 : ( ruleExpression ) ;
     public final void rule__DurationObsExpression__IndexAssignment_2_1() throws RecognitionException {
 
@@ -17121,7 +17513,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getDurationObsExpressionAccess().getIndexExpressionParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__DurationObsExpression__IndexAssignment_2_113161);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDurationObsExpressionAccess().getIndexExpressionParserRuleCall_2_1_0()); 
 
@@ -17142,10 +17535,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__IndexAssignment_2_1
+    // $ANTLR end "rule__DurationObsExpression__IndexAssignment_2_1"
 
 
-    // $ANTLR start rule__DurationObsExpression__ConditionAssignment_3_2
+    // $ANTLR start "rule__DurationObsExpression__ConditionAssignment_3_2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6496:1: rule__DurationObsExpression__ConditionAssignment_3_2 : ( ruleExpression ) ;
     public final void rule__DurationObsExpression__ConditionAssignment_3_2() throws RecognitionException {
 
@@ -17161,7 +17554,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getDurationObsExpressionAccess().getConditionExpressionParserRuleCall_3_2_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__DurationObsExpression__ConditionAssignment_3_213192);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDurationObsExpressionAccess().getConditionExpressionParserRuleCall_3_2_0()); 
 
@@ -17182,10 +17576,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsExpression__ConditionAssignment_3_2
+    // $ANTLR end "rule__DurationObsExpression__ConditionAssignment_3_2"
 
 
-    // $ANTLR start rule__DurationObsName__PathAssignment_0
+    // $ANTLR start "rule__DurationObsName__PathAssignment_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6511:1: rule__DurationObsName__PathAssignment_0 : ( ruleQualifiedName ) ;
     public final void rule__DurationObsName__PathAssignment_0() throws RecognitionException {
 
@@ -17201,7 +17595,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getDurationObsNameAccess().getPathQualifiedNameParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__DurationObsName__PathAssignment_013223);
             ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDurationObsNameAccess().getPathQualifiedNameParserRuleCall_0_0()); 
 
@@ -17222,10 +17617,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsName__PathAssignment_0
+    // $ANTLR end "rule__DurationObsName__PathAssignment_0"
 
 
-    // $ANTLR start rule__DurationObsName__DurationIdAssignment_1
+    // $ANTLR start "rule__DurationObsName__DurationIdAssignment_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6526:1: rule__DurationObsName__DurationIdAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__DurationObsName__DurationIdAssignment_1() throws RecognitionException {
 
@@ -17267,10 +17662,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DurationObsName__DurationIdAssignment_1
+    // $ANTLR end "rule__DurationObsName__DurationIdAssignment_1"
 
 
-    // $ANTLR start rule__JitterExp__FirstInstantAssignment_1
+    // $ANTLR start "rule__JitterExp__FirstInstantAssignment_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6545:1: rule__JitterExp__FirstInstantAssignment_1 : ( ruleInstantObsExpression ) ;
     public final void rule__JitterExp__FirstInstantAssignment_1() throws RecognitionException {
 
@@ -17286,7 +17681,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getJitterExpAccess().getFirstInstantInstantObsExpressionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_ruleInstantObsExpression_in_rule__JitterExp__FirstInstantAssignment_113293);
             ruleInstantObsExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getJitterExpAccess().getFirstInstantInstantObsExpressionParserRuleCall_1_0()); 
 
@@ -17307,10 +17703,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__FirstInstantAssignment_1
+    // $ANTLR end "rule__JitterExp__FirstInstantAssignment_1"
 
 
-    // $ANTLR start rule__JitterExp__SecondInstantAssignment_2_1
+    // $ANTLR start "rule__JitterExp__SecondInstantAssignment_2_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6560:1: rule__JitterExp__SecondInstantAssignment_2_1 : ( ruleInstantObsExpression ) ;
     public final void rule__JitterExp__SecondInstantAssignment_2_1() throws RecognitionException {
 
@@ -17326,7 +17722,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getJitterExpAccess().getSecondInstantInstantObsExpressionParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_ruleInstantObsExpression_in_rule__JitterExp__SecondInstantAssignment_2_113324);
             ruleInstantObsExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getJitterExpAccess().getSecondInstantInstantObsExpressionParserRuleCall_2_1_0()); 
 
@@ -17347,10 +17744,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__JitterExp__SecondInstantAssignment_2_1
+    // $ANTLR end "rule__JitterExp__SecondInstantAssignment_2_1"
 
 
-    // $ANTLR start rule__VariableDeclaration__VariableDeclarationAssignment_0
+    // $ANTLR start "rule__VariableDeclaration__VariableDeclarationAssignment_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6575:1: rule__VariableDeclaration__VariableDeclarationAssignment_0 : ( ruleVariableDirectionKind ) ;
     public final void rule__VariableDeclaration__VariableDeclarationAssignment_0() throws RecognitionException {
 
@@ -17366,7 +17763,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getVariableDeclarationAccess().getVariableDeclarationVariableDirectionKindParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleVariableDirectionKind_in_rule__VariableDeclaration__VariableDeclarationAssignment_013355);
             ruleVariableDirectionKind();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getVariableDeclarationAccess().getVariableDeclarationVariableDirectionKindParserRuleCall_0_0()); 
 
@@ -17387,10 +17785,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__VariableDeclarationAssignment_0
+    // $ANTLR end "rule__VariableDeclaration__VariableDeclarationAssignment_0"
 
 
-    // $ANTLR start rule__VariableDeclaration__NameAssignment_2
+    // $ANTLR start "rule__VariableDeclaration__NameAssignment_2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6590:1: rule__VariableDeclaration__NameAssignment_2 : ( RULE_ID ) ;
     public final void rule__VariableDeclaration__NameAssignment_2() throws RecognitionException {
 
@@ -17424,10 +17822,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__NameAssignment_2
+    // $ANTLR end "rule__VariableDeclaration__NameAssignment_2"
 
 
-    // $ANTLR start rule__VariableDeclaration__TypeAssignment_3_0_1
+    // $ANTLR start "rule__VariableDeclaration__TypeAssignment_3_0_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6605:1: rule__VariableDeclaration__TypeAssignment_3_0_1 : ( ruleDataTypeName ) ;
     public final void rule__VariableDeclaration__TypeAssignment_3_0_1() throws RecognitionException {
 
@@ -17443,7 +17841,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getVariableDeclarationAccess().getTypeDataTypeNameParserRuleCall_3_0_1_0()); 
             pushFollow(FOLLOW_ruleDataTypeName_in_rule__VariableDeclaration__TypeAssignment_3_0_113417);
             ruleDataTypeName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getVariableDeclarationAccess().getTypeDataTypeNameParserRuleCall_3_0_1_0()); 
 
@@ -17464,10 +17863,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__TypeAssignment_3_0_1
+    // $ANTLR end "rule__VariableDeclaration__TypeAssignment_3_0_1"
 
 
-    // $ANTLR start rule__VariableDeclaration__InitValueAssignment_3_0_2_2
+    // $ANTLR start "rule__VariableDeclaration__InitValueAssignment_3_0_2_2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6620:1: rule__VariableDeclaration__InitValueAssignment_3_0_2_2 : ( ruleExpression ) ;
     public final void rule__VariableDeclaration__InitValueAssignment_3_0_2_2() throws RecognitionException {
 
@@ -17483,7 +17882,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getVariableDeclarationAccess().getInitValueExpressionParserRuleCall_3_0_2_2_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__VariableDeclaration__InitValueAssignment_3_0_2_213448);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getVariableDeclarationAccess().getInitValueExpressionParserRuleCall_3_0_2_2_0()); 
 
@@ -17504,10 +17904,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__InitValueAssignment_3_0_2_2
+    // $ANTLR end "rule__VariableDeclaration__InitValueAssignment_3_0_2_2"
 
 
-    // $ANTLR start rule__VariableDeclaration__InitValueAssignment_3_1_2
+    // $ANTLR start "rule__VariableDeclaration__InitValueAssignment_3_1_2"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6635:1: rule__VariableDeclaration__InitValueAssignment_3_1_2 : ( ruleExpression ) ;
     public final void rule__VariableDeclaration__InitValueAssignment_3_1_2() throws RecognitionException {
 
@@ -17523,7 +17923,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getVariableDeclarationAccess().getInitValueExpressionParserRuleCall_3_1_2_0()); 
             pushFollow(FOLLOW_ruleExpression_in_rule__VariableDeclaration__InitValueAssignment_3_1_213479);
             ruleExpression();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getVariableDeclarationAccess().getInitValueExpressionParserRuleCall_3_1_2_0()); 
 
@@ -17544,10 +17945,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__VariableDeclaration__InitValueAssignment_3_1_2
+    // $ANTLR end "rule__VariableDeclaration__InitValueAssignment_3_1_2"
 
 
-    // $ANTLR start rule__DataTypeName__PathAssignment_0
+    // $ANTLR start "rule__DataTypeName__PathAssignment_0"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6650:1: rule__DataTypeName__PathAssignment_0 : ( ruleQualifiedName ) ;
     public final void rule__DataTypeName__PathAssignment_0() throws RecognitionException {
 
@@ -17563,7 +17964,8 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getDataTypeNameAccess().getPathQualifiedNameParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__DataTypeName__PathAssignment_013510);
             ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getDataTypeNameAccess().getPathQualifiedNameParserRuleCall_0_0()); 
 
@@ -17584,10 +17986,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DataTypeName__PathAssignment_0
+    // $ANTLR end "rule__DataTypeName__PathAssignment_0"
 
 
-    // $ANTLR start rule__DataTypeName__TypeAssignment_1
+    // $ANTLR start "rule__DataTypeName__TypeAssignment_1"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6665:1: rule__DataTypeName__TypeAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__DataTypeName__TypeAssignment_1() throws RecognitionException {
 
@@ -17629,10 +18031,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DataTypeName__TypeAssignment_1
+    // $ANTLR end "rule__DataTypeName__TypeAssignment_1"
 
 
-    // $ANTLR start rule__IntegerLiteralRule__ValueAssignment
+    // $ANTLR start "rule__IntegerLiteralRule__ValueAssignment"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6684:1: rule__IntegerLiteralRule__ValueAssignment : ( RULE_INTEGERLITERAL ) ;
     public final void rule__IntegerLiteralRule__ValueAssignment() throws RecognitionException {
 
@@ -17666,10 +18068,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__IntegerLiteralRule__ValueAssignment
+    // $ANTLR end "rule__IntegerLiteralRule__ValueAssignment"
 
 
-    // $ANTLR start rule__UnlimitedLiteralRule__ValueAssignment
+    // $ANTLR start "rule__UnlimitedLiteralRule__ValueAssignment"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6699:1: rule__UnlimitedLiteralRule__ValueAssignment : ( ( '*' ) ) ;
     public final void rule__UnlimitedLiteralRule__ValueAssignment() throws RecognitionException {
 
@@ -17711,10 +18113,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__UnlimitedLiteralRule__ValueAssignment
+    // $ANTLR end "rule__UnlimitedLiteralRule__ValueAssignment"
 
 
-    // $ANTLR start rule__RealLiteralRule__ValueAssignment
+    // $ANTLR start "rule__RealLiteralRule__ValueAssignment"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6722:1: rule__RealLiteralRule__ValueAssignment : ( RULE_REALLITERAL ) ;
     public final void rule__RealLiteralRule__ValueAssignment() throws RecognitionException {
 
@@ -17748,10 +18150,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__RealLiteralRule__ValueAssignment
+    // $ANTLR end "rule__RealLiteralRule__ValueAssignment"
 
 
-    // $ANTLR start rule__DateTimeLiteralRule__ValueAssignment
+    // $ANTLR start "rule__DateTimeLiteralRule__ValueAssignment"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6737:1: rule__DateTimeLiteralRule__ValueAssignment : ( RULE_DATETIMELITERAL ) ;
     public final void rule__DateTimeLiteralRule__ValueAssignment() throws RecognitionException {
 
@@ -17785,10 +18187,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DateTimeLiteralRule__ValueAssignment
+    // $ANTLR end "rule__DateTimeLiteralRule__ValueAssignment"
 
 
-    // $ANTLR start rule__BooleanLiteralRule__ValueAssignment
+    // $ANTLR start "rule__BooleanLiteralRule__ValueAssignment"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6752:1: rule__BooleanLiteralRule__ValueAssignment : ( RULE_BOOLEANLITERAL ) ;
     public final void rule__BooleanLiteralRule__ValueAssignment() throws RecognitionException {
 
@@ -17822,10 +18224,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__BooleanLiteralRule__ValueAssignment
+    // $ANTLR end "rule__BooleanLiteralRule__ValueAssignment"
 
 
-    // $ANTLR start rule__NullLiteralRule__ValueAssignment
+    // $ANTLR start "rule__NullLiteralRule__ValueAssignment"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6767:1: rule__NullLiteralRule__ValueAssignment : ( RULE_NULLLITERAL ) ;
     public final void rule__NullLiteralRule__ValueAssignment() throws RecognitionException {
 
@@ -17859,10 +18261,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__NullLiteralRule__ValueAssignment
+    // $ANTLR end "rule__NullLiteralRule__ValueAssignment"
 
 
-    // $ANTLR start rule__DefaultLiteralRule__ValueAssignment
+    // $ANTLR start "rule__DefaultLiteralRule__ValueAssignment"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6782:1: rule__DefaultLiteralRule__ValueAssignment : ( ( '/' ) ) ;
     public final void rule__DefaultLiteralRule__ValueAssignment() throws RecognitionException {
 
@@ -17904,10 +18306,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DefaultLiteralRule__ValueAssignment
+    // $ANTLR end "rule__DefaultLiteralRule__ValueAssignment"
 
 
-    // $ANTLR start rule__StringLiteralRule__ValueAssignment
+    // $ANTLR start "rule__StringLiteralRule__ValueAssignment"
     // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6805:1: rule__StringLiteralRule__ValueAssignment : ( RULE_STRING ) ;
     public final void rule__StringLiteralRule__ValueAssignment() throws RecognitionException {
 
@@ -17941,9 +18343,74 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__StringLiteralRule__ValueAssignment
+    // $ANTLR end "rule__StringLiteralRule__ValueAssignment"
+
+    // Delegated rules
 
 
+    protected DFA8 dfa8 = new DFA8(this);
+    static final String DFA8_eotS =
+        "\13\uffff";
+    static final String DFA8_eofS =
+        "\13\uffff";
+    static final String DFA8_minS =
+        "\1\4\3\uffff\1\4\4\uffff\1\20\1\uffff";
+    static final String DFA8_maxS =
+        "\1\62\3\uffff\1\62\4\uffff\1\63\1\uffff";
+    static final String DFA8_acceptS =
+        "\1\uffff\1\1\1\2\1\3\1\uffff\1\6\1\7\1\10\1\4\1\uffff\1\5";
+    static final String DFA8_specialS =
+        "\13\uffff}>";
+    static final String[] DFA8_transitionS = {
+            "\1\2\6\1\20\uffff\2\1\2\uffff\2\3\3\6\2\uffff\1\7\3\uffff\1"+
+            "\4\3\uffff\1\5\1\uffff\2\5\1\6",
+            "",
+            "",
+            "",
+            "\1\11\6\10\16\uffff\4\10\1\uffff\6\10\2\uffff\1\10\3\uffff"+
+            "\1\10\3\uffff\1\10\1\uffff\3\10",
+            "",
+            "",
+            "",
+            "",
+            "\16\10\7\uffff\2\10\1\uffff\1\10\2\uffff\2\10\1\12\5\uffff"+
+            "\1\10",
+            ""
+    };
+
+    static final short[] DFA8_eot = DFA.unpackEncodedString(DFA8_eotS);
+    static final short[] DFA8_eof = DFA.unpackEncodedString(DFA8_eofS);
+    static final char[] DFA8_min = DFA.unpackEncodedStringToUnsignedChars(DFA8_minS);
+    static final char[] DFA8_max = DFA.unpackEncodedStringToUnsignedChars(DFA8_maxS);
+    static final short[] DFA8_accept = DFA.unpackEncodedString(DFA8_acceptS);
+    static final short[] DFA8_special = DFA.unpackEncodedString(DFA8_specialS);
+    static final short[][] DFA8_transition;
+
+    static {
+        int numStates = DFA8_transitionS.length;
+        DFA8_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA8_transition[i] = DFA.unpackEncodedString(DFA8_transitionS[i]);
+        }
+    }
+
+    class DFA8 extends DFA {
+
+        public DFA8(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 8;
+            this.eot = DFA8_eot;
+            this.eof = DFA8_eof;
+            this.min = DFA8_min;
+            this.max = DFA8_max;
+            this.accept = DFA8_accept;
+            this.special = DFA8_special;
+            this.transition = DFA8_transition;
+        }
+        public String getDescription() {
+            return "1399:1: rule__ValueSpecification__Alternatives : ( ( ruleLiteral ) | ( ruleNameOrChoiceOrBehaviorCall ) | ( ruleInterval ) | ( ruleCollectionOrTuple ) | ( ruleTuple ) | ( ruleTimeExpression ) | ( ruleVariableDeclaration ) | ( ( rule__ValueSpecification__Group_7__0 ) ) );";
+        }
+    }
  
 
     public static final BitSet FOLLOW_ruleExpression_in_entryRuleExpression61 = new BitSet(new long[]{0x0000000000000000L});
@@ -18116,7 +18583,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleIntegerLiteralRule_in_rule__NumberLiteralRule__Alternatives3567 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnlimitedLiteralRule_in_rule__NumberLiteralRule__Alternatives3584 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRealLiteralRule_in_rule__NumberLiteralRule__Alternatives3601 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AndOrXorExpression__Group__0__Impl_in_rule__AndOrXorExpression__Group__03631 = new BitSet(new long[]{0x0000000000070002L});
+    public static final BitSet FOLLOW_rule__AndOrXorExpression__Group__0__Impl_in_rule__AndOrXorExpression__Group__03631 = new BitSet(new long[]{0x0000000000070000L});
     public static final BitSet FOLLOW_rule__AndOrXorExpression__Group__1_in_rule__AndOrXorExpression__Group__03634 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AndOrXorExpression__ExpAssignment_0_in_rule__AndOrXorExpression__Group__0__Impl3661 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AndOrXorExpression__Group__1__Impl_in_rule__AndOrXorExpression__Group__13691 = new BitSet(new long[]{0x0000000000000002L});
@@ -18126,7 +18593,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__AndOrXorExpression__OpAssignment_1_0_in_rule__AndOrXorExpression__Group_1__0__Impl3783 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AndOrXorExpression__Group_1__1__Impl_in_rule__AndOrXorExpression__Group_1__13813 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AndOrXorExpression__ExpAssignment_1_1_in_rule__AndOrXorExpression__Group_1__1__Impl3840 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EqualityExpression__Group__0__Impl_in_rule__EqualityExpression__Group__03874 = new BitSet(new long[]{0x0000000000180002L});
+    public static final BitSet FOLLOW_rule__EqualityExpression__Group__0__Impl_in_rule__EqualityExpression__Group__03874 = new BitSet(new long[]{0x0000000000180000L});
     public static final BitSet FOLLOW_rule__EqualityExpression__Group__1_in_rule__EqualityExpression__Group__03877 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__EqualityExpression__ExpAssignment_0_in_rule__EqualityExpression__Group__0__Impl3904 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__EqualityExpression__Group__1__Impl_in_rule__EqualityExpression__Group__13934 = new BitSet(new long[]{0x0000000000000002L});
@@ -18136,7 +18603,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__EqualityExpression__OpAssignment_1_0_in_rule__EqualityExpression__Group_1__0__Impl4026 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__EqualityExpression__Group_1__1__Impl_in_rule__EqualityExpression__Group_1__14056 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__EqualityExpression__ExpAssignment_1_1_in_rule__EqualityExpression__Group_1__1__Impl4083 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RelationalExpression__Group__0__Impl_in_rule__RelationalExpression__Group__04117 = new BitSet(new long[]{0x0000000001E00002L});
+    public static final BitSet FOLLOW_rule__RelationalExpression__Group__0__Impl_in_rule__RelationalExpression__Group__04117 = new BitSet(new long[]{0x0000000001E00000L});
     public static final BitSet FOLLOW_rule__RelationalExpression__Group__1_in_rule__RelationalExpression__Group__04120 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RelationalExpression__ExpAssignment_0_in_rule__RelationalExpression__Group__0__Impl4147 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RelationalExpression__Group__1__Impl_in_rule__RelationalExpression__Group__14177 = new BitSet(new long[]{0x0000000000000002L});
@@ -18146,7 +18613,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__RelationalExpression__OpAssignment_1_0_in_rule__RelationalExpression__Group_1__0__Impl4269 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RelationalExpression__Group_1__1__Impl_in_rule__RelationalExpression__Group_1__14299 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RelationalExpression__ExpAssignment_1_1_in_rule__RelationalExpression__Group_1__1__Impl4326 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConditionalExpression__Group__0__Impl_in_rule__ConditionalExpression__Group__04360 = new BitSet(new long[]{0x0008000000000002L});
+    public static final BitSet FOLLOW_rule__ConditionalExpression__Group__0__Impl_in_rule__ConditionalExpression__Group__04360 = new BitSet(new long[]{0x0008000000000000L});
     public static final BitSet FOLLOW_rule__ConditionalExpression__Group__1_in_rule__ConditionalExpression__Group__04363 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConditionalExpression__ExpAssignment_0_in_rule__ConditionalExpression__Group__0__Impl4390 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConditionalExpression__Group__1__Impl_in_rule__ConditionalExpression__Group__14420 = new BitSet(new long[]{0x0000000000000002L});
@@ -18162,7 +18629,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_36_in_rule__ConditionalExpression__Group_1__2__Impl4633 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConditionalExpression__Group_1__3__Impl_in_rule__ConditionalExpression__Group_1__34664 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConditionalExpression__ExpAssignment_1_3_in_rule__ConditionalExpression__Group_1__3__Impl4691 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AdditiveExpression__Group__0__Impl_in_rule__AdditiveExpression__Group__04729 = new BitSet(new long[]{0x0000000006000002L});
+    public static final BitSet FOLLOW_rule__AdditiveExpression__Group__0__Impl_in_rule__AdditiveExpression__Group__04729 = new BitSet(new long[]{0x0000000006000000L});
     public static final BitSet FOLLOW_rule__AdditiveExpression__Group__1_in_rule__AdditiveExpression__Group__04732 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AdditiveExpression__ExpAssignment_0_in_rule__AdditiveExpression__Group__0__Impl4759 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AdditiveExpression__Group__1__Impl_in_rule__AdditiveExpression__Group__14789 = new BitSet(new long[]{0x0000000000000002L});
@@ -18172,7 +18639,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__AdditiveExpression__OpAssignment_1_0_in_rule__AdditiveExpression__Group_1__0__Impl4881 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AdditiveExpression__Group_1__1__Impl_in_rule__AdditiveExpression__Group_1__14911 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AdditiveExpression__ExpAssignment_1_1_in_rule__AdditiveExpression__Group_1__1__Impl4938 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MultiplicativeExpression__Group__0__Impl_in_rule__MultiplicativeExpression__Group__04972 = new BitSet(new long[]{0x0000000038000002L});
+    public static final BitSet FOLLOW_rule__MultiplicativeExpression__Group__0__Impl_in_rule__MultiplicativeExpression__Group__04972 = new BitSet(new long[]{0x0000000038000000L});
     public static final BitSet FOLLOW_rule__MultiplicativeExpression__Group__1_in_rule__MultiplicativeExpression__Group__04975 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MultiplicativeExpression__ExpAssignment_0_in_rule__MultiplicativeExpression__Group__0__Impl5002 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MultiplicativeExpression__Group__1__Impl_in_rule__MultiplicativeExpression__Group__15032 = new BitSet(new long[]{0x0000000000000002L});
@@ -18187,7 +18654,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__UnaryExpression__OpAssignment_0_0_in_rule__UnaryExpression__Group_0__0__Impl5245 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__UnaryExpression__Group_0__1__Impl_in_rule__UnaryExpression__Group_0__15275 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__UnaryExpression__UnaryAssignment_0_1_in_rule__UnaryExpression__Group_0__1__Impl5302 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PrimaryExpression__Group__0__Impl_in_rule__PrimaryExpression__Group__05336 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_rule__PrimaryExpression__Group__0__Impl_in_rule__PrimaryExpression__Group__05336 = new BitSet(new long[]{0x0000002000000000L});
     public static final BitSet FOLLOW_rule__PrimaryExpression__Group__1_in_rule__PrimaryExpression__Group__05339 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PrimaryExpression__PrefixAssignment_0_in_rule__PrimaryExpression__Group__0__Impl5366 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PrimaryExpression__Group__1__Impl_in_rule__PrimaryExpression__Group__15396 = new BitSet(new long[]{0x0000000000000002L});
@@ -18205,7 +18672,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleExpression_in_rule__ValueSpecification__Group_7__1__Impl5673 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ValueSpecification__Group_7__2__Impl_in_rule__ValueSpecification__Group_7__25702 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_39_in_rule__ValueSpecification__Group_7__2__Impl5730 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyCallExpression__Group__0__Impl_in_rule__PropertyCallExpression__Group__05767 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_rule__PropertyCallExpression__Group__0__Impl_in_rule__PropertyCallExpression__Group__05767 = new BitSet(new long[]{0x0000002000000000L});
     public static final BitSet FOLLOW_rule__PropertyCallExpression__Group__1_in_rule__PropertyCallExpression__Group__05770 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PropertyCallExpression__PropertyAssignment_0_in_rule__PropertyCallExpression__Group__0__Impl5797 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PropertyCallExpression__Group__1__Impl_in_rule__PropertyCallExpression__Group__15827 = new BitSet(new long[]{0x0000000000000002L});
@@ -18221,10 +18688,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__OperationCallExpression__Group__1__Impl_in_rule__OperationCallExpression__Group__16072 = new BitSet(new long[]{0x000744CFDE0007F0L});
     public static final BitSet FOLLOW_rule__OperationCallExpression__Group__2_in_rule__OperationCallExpression__Group__16075 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_38_in_rule__OperationCallExpression__Group__1__Impl6103 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__OperationCallExpression__Group__2__Impl_in_rule__OperationCallExpression__Group__26134 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_rule__OperationCallExpression__Group__2__Impl_in_rule__OperationCallExpression__Group__26134 = new BitSet(new long[]{0x000744CFDE0007F0L});
     public static final BitSet FOLLOW_rule__OperationCallExpression__Group__3_in_rule__OperationCallExpression__Group__26137 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__OperationCallExpression__ArgumentsAssignment_2_in_rule__OperationCallExpression__Group__2__Impl6164 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__OperationCallExpression__Group__3__Impl_in_rule__OperationCallExpression__Group__36195 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_rule__OperationCallExpression__Group__3__Impl_in_rule__OperationCallExpression__Group__36195 = new BitSet(new long[]{0x0000002000000000L});
     public static final BitSet FOLLOW_rule__OperationCallExpression__Group__4_in_rule__OperationCallExpression__Group__36198 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_39_in_rule__OperationCallExpression__Group__3__Impl6226 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__OperationCallExpression__Group__4__Impl_in_rule__OperationCallExpression__Group__46257 = new BitSet(new long[]{0x0000000000000002L});
@@ -18237,7 +18704,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__0__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group__06448 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__1_in_rule__NameOrChoiceOrBehaviorCall__Group__06451 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__PathAssignment_0_in_rule__NameOrChoiceOrBehaviorCall__Group__0__Impl6478 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__1__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group__16509 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__1__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group__16509 = new BitSet(new long[]{0x0000004000000000L});
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__2_in_rule__NameOrChoiceOrBehaviorCall__Group__16512 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__IdAssignment_1_in_rule__NameOrChoiceOrBehaviorCall__Group__1__Impl6539 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group__2__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group__26569 = new BitSet(new long[]{0x0000000000000002L});
@@ -18245,7 +18712,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group_2__06633 = new BitSet(new long[]{0x000744CFDE0007F0L});
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__1_in_rule__NameOrChoiceOrBehaviorCall__Group_2__06636 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_38_in_rule__NameOrChoiceOrBehaviorCall__Group_2__0__Impl6664 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group_2__16695 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group_2__16695 = new BitSet(new long[]{0x000744CFDE0007F0L});
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__2_in_rule__NameOrChoiceOrBehaviorCall__Group_2__16698 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__ArgumentsAssignment_2_1_in_rule__NameOrChoiceOrBehaviorCall__Group_2__1__Impl6725 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NameOrChoiceOrBehaviorCall__Group_2__2__Impl_in_rule__NameOrChoiceOrBehaviorCall__Group_2__26756 = new BitSet(new long[]{0x0000000000000002L});
@@ -18253,7 +18720,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__06821 = new BitSet(new long[]{0x0000010000000000L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__06824 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__PathAssignment_0_in_rule__QualifiedName__Group__0__Impl6851 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__16881 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__16881 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__2_in_rule__QualifiedName__Group__16884 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_40_in_rule__QualifiedName__Group__1__Impl6912 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__2__Impl_in_rule__QualifiedName__Group__26943 = new BitSet(new long[]{0x0000000000000002L});
@@ -18288,7 +18755,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__Tuple__ListOfValueNamePairsAssignment_1_in_rule__Tuple__Group__1__Impl7595 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Tuple__Group__2__Impl_in_rule__Tuple__Group__27625 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_43_in_rule__Tuple__Group__2__Impl7653 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ListOfValues__Group__0__Impl_in_rule__ListOfValues__Group__07690 = new BitSet(new long[]{0x0000100000000002L});
+    public static final BitSet FOLLOW_rule__ListOfValues__Group__0__Impl_in_rule__ListOfValues__Group__07690 = new BitSet(new long[]{0x0000100000000000L});
     public static final BitSet FOLLOW_rule__ListOfValues__Group__1_in_rule__ListOfValues__Group__07693 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ListOfValues__ValuesAssignment_0_in_rule__ListOfValues__Group__0__Impl7720 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ListOfValues__Group__1__Impl_in_rule__ListOfValues__Group__17750 = new BitSet(new long[]{0x0000000000000002L});
@@ -18298,7 +18765,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_44_in_rule__ListOfValues__Group_1__0__Impl7843 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ListOfValues__Group_1__1__Impl_in_rule__ListOfValues__Group_1__17874 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ListOfValues__ValuesAssignment_1_1_in_rule__ListOfValues__Group_1__1__Impl7901 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ListOfValueNamePairs__Group__0__Impl_in_rule__ListOfValueNamePairs__Group__07935 = new BitSet(new long[]{0x0000100000000002L});
+    public static final BitSet FOLLOW_rule__ListOfValueNamePairs__Group__0__Impl_in_rule__ListOfValueNamePairs__Group__07935 = new BitSet(new long[]{0x0000100000000000L});
     public static final BitSet FOLLOW_rule__ListOfValueNamePairs__Group__1_in_rule__ListOfValueNamePairs__Group__07938 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ListOfValueNamePairs__ValueNamePairsAssignment_0_in_rule__ListOfValueNamePairs__Group__0__Impl7965 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ListOfValueNamePairs__Group__1__Impl_in_rule__ListOfValueNamePairs__Group__17995 = new BitSet(new long[]{0x0000000000000002L});
@@ -18319,10 +18786,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__InstantObsExpression__Group__0__Impl_in_rule__InstantObsExpression__Group__08365 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__InstantObsExpression__Group__1_in_rule__InstantObsExpression__Group__08368 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_46_in_rule__InstantObsExpression__Group__0__Impl8396 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstantObsExpression__Group__1__Impl_in_rule__InstantObsExpression__Group__18427 = new BitSet(new long[]{0x0000804000000002L});
+    public static final BitSet FOLLOW_rule__InstantObsExpression__Group__1__Impl_in_rule__InstantObsExpression__Group__18427 = new BitSet(new long[]{0x0000804000000000L});
     public static final BitSet FOLLOW_rule__InstantObsExpression__Group__2_in_rule__InstantObsExpression__Group__18430 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__InstantObsExpression__IdAssignment_1_in_rule__InstantObsExpression__Group__1__Impl8457 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstantObsExpression__Group__2__Impl_in_rule__InstantObsExpression__Group__28487 = new BitSet(new long[]{0x0000800000000002L});
+    public static final BitSet FOLLOW_rule__InstantObsExpression__Group__2__Impl_in_rule__InstantObsExpression__Group__28487 = new BitSet(new long[]{0x0000804000000000L});
     public static final BitSet FOLLOW_rule__InstantObsExpression__Group__3_in_rule__InstantObsExpression__Group__28490 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__InstantObsExpression__Group_2__0_in_rule__InstantObsExpression__Group__2__Impl8517 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__InstantObsExpression__Group__3__Impl_in_rule__InstantObsExpression__Group__38548 = new BitSet(new long[]{0x0000000000000002L});
@@ -18354,10 +18821,10 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__DurationObsExpression__Group__0__Impl_in_rule__DurationObsExpression__Group__09174 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__DurationObsExpression__Group__1_in_rule__DurationObsExpression__Group__09177 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_48_in_rule__DurationObsExpression__Group__0__Impl9205 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DurationObsExpression__Group__1__Impl_in_rule__DurationObsExpression__Group__19236 = new BitSet(new long[]{0x0000804000000002L});
+    public static final BitSet FOLLOW_rule__DurationObsExpression__Group__1__Impl_in_rule__DurationObsExpression__Group__19236 = new BitSet(new long[]{0x0000804000000000L});
     public static final BitSet FOLLOW_rule__DurationObsExpression__Group__2_in_rule__DurationObsExpression__Group__19239 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DurationObsExpression__IdAssignment_1_in_rule__DurationObsExpression__Group__1__Impl9266 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DurationObsExpression__Group__2__Impl_in_rule__DurationObsExpression__Group__29296 = new BitSet(new long[]{0x0000800000000002L});
+    public static final BitSet FOLLOW_rule__DurationObsExpression__Group__2__Impl_in_rule__DurationObsExpression__Group__29296 = new BitSet(new long[]{0x0000804000000000L});
     public static final BitSet FOLLOW_rule__DurationObsExpression__Group__3_in_rule__DurationObsExpression__Group__29299 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DurationObsExpression__Group_2__0_in_rule__DurationObsExpression__Group__2__Impl9326 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DurationObsExpression__Group__3__Impl_in_rule__DurationObsExpression__Group__39357 = new BitSet(new long[]{0x0000000000000002L});
@@ -18392,7 +18859,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__JitterExp__Group__1__Impl_in_rule__JitterExp__Group__110045 = new BitSet(new long[]{0x0000008004000000L});
     public static final BitSet FOLLOW_rule__JitterExp__Group__2_in_rule__JitterExp__Group__110048 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__JitterExp__FirstInstantAssignment_1_in_rule__JitterExp__Group__1__Impl10075 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__JitterExp__Group__2__Impl_in_rule__JitterExp__Group__210105 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_rule__JitterExp__Group__2__Impl_in_rule__JitterExp__Group__210105 = new BitSet(new long[]{0x0000008004000000L});
     public static final BitSet FOLLOW_rule__JitterExp__Group__3_in_rule__JitterExp__Group__210108 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__JitterExp__Group_2__0_in_rule__JitterExp__Group__2__Impl10135 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__JitterExp__Group__3__Impl_in_rule__JitterExp__Group__310166 = new BitSet(new long[]{0x0000000000000002L});
@@ -18402,7 +18869,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_26_in_rule__JitterExp__Group_2__0__Impl10264 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__JitterExp__Group_2__1__Impl_in_rule__JitterExp__Group_2__110295 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__JitterExp__SecondInstantAssignment_2_1_in_rule__JitterExp__Group_2__1__Impl10322 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableDeclaration__Group__0__Impl_in_rule__VariableDeclaration__Group__010356 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_rule__VariableDeclaration__Group__0__Impl_in_rule__VariableDeclaration__Group__010356 = new BitSet(new long[]{0x0004000E00000000L});
     public static final BitSet FOLLOW_rule__VariableDeclaration__Group__1_in_rule__VariableDeclaration__Group__010359 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__VariableDeclaration__VariableDeclarationAssignment_0_in_rule__VariableDeclaration__Group__0__Impl10386 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__VariableDeclaration__Group__1__Impl_in_rule__VariableDeclaration__Group__110417 = new BitSet(new long[]{0x0000000000000010L});
@@ -18416,7 +18883,7 @@ public class InternalVSLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__VariableDeclaration__Group_3_0__0__Impl_in_rule__VariableDeclaration__Group_3_0__010604 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__VariableDeclaration__Group_3_0__1_in_rule__VariableDeclaration__Group_3_0__010607 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_36_in_rule__VariableDeclaration__Group_3_0__0__Impl10635 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableDeclaration__Group_3_0__1__Impl_in_rule__VariableDeclaration__Group_3_0__110666 = new BitSet(new long[]{0x0000200000000002L});
+    public static final BitSet FOLLOW_rule__VariableDeclaration__Group_3_0__1__Impl_in_rule__VariableDeclaration__Group_3_0__110666 = new BitSet(new long[]{0x0000200000000000L});
     public static final BitSet FOLLOW_rule__VariableDeclaration__Group_3_0__2_in_rule__VariableDeclaration__Group_3_0__110669 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__VariableDeclaration__TypeAssignment_3_0_1_in_rule__VariableDeclaration__Group_3_0__1__Impl10696 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__VariableDeclaration__Group_3_0__2__Impl_in_rule__VariableDeclaration__Group_3_0__210726 = new BitSet(new long[]{0x0000000000000002L});
