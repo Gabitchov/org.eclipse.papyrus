@@ -22,7 +22,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.facet.infra.browser.custom.AttributeView;
+import org.eclipse.emf.facet.infra.browser.custom.CustomViewFeature;
 import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
+import org.eclipse.emf.facet.infra.browser.custom.ReferenceView;
+import org.eclipse.emf.facet.infra.browser.custom.StaticFeatureValue;
+import org.eclipse.emf.facet.infra.browser.custom.TypeView;
 import org.eclipse.emf.facet.infra.facet.Facet;
 import org.eclipse.emf.facet.widgets.celleditors.internal.DefaultCommandFactory;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Column;
@@ -103,6 +108,16 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 		} else if(owner instanceof Facet) {
 			return true;
 		} else if(owner instanceof Customization) {
+			return true;
+		} else if(owner instanceof TypeView){
+			return true;
+		}else if(owner instanceof ReferenceView){
+			return true;
+		}else if(owner instanceof AttributeView){
+			return true;
+		}else if(owner instanceof CustomViewFeature){
+			return true;
+		}else if(owner instanceof StaticFeatureValue){
 			return true;
 		}
 		//we add this test,because, it is possible that we forget some emf-facet elements
