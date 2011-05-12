@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ASCII"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="papyrustableinstance">
+  <dependencies href="platform:/plugin/org.eclipse.papyrus.properties.table/model/tableinstance2.ctx#/"/>
+  <dependencies href="platform:/plugin/org.eclipse.papyrus.properties.table/model/tableinstance.ctx#/"/>
+  <tabs label="Default" id="default" category="default">
+    <sections name="Single PapyrusTableInstance" sectionFile="ui/SinglePapyrusTableInstance.xwt">
+      <widget href="ui/SinglePapyrusTableInstance.xwt#/"/>
+    </sections>
+    <sections name="Multiple PapyrusTableInstance" sectionFile="ui/MultiplePapyrusTableInstance.xwt">
+      <widget href="ui/MultiplePapyrusTableInstance.xwt#/"/>
+    </sections>
+  </tabs>
+  <views name="Single PapyrusTableInstance" sections="//@tabs.0/@sections.0" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSinglePapyrusTableInstance">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/Papyrus/Table/0.8.0/papyrustableinstance"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PapyrusTableInstance"/>
+    </constraints>
+  </views>
+  <views name="Multiple PapyrusTableInstance" sections="//@tabs.0/@sections.1" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultiplePapyrusTableInstance">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PapyrusTableInstance"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/Papyrus/Table/0.8.0/papyrustableinstance"/>
+    </constraints>
+  </views>
+  <dataContexts name="papyrustableinstance" label="papyrustableinstance">
+    <elements name="PapyrusTableInstance">
+      <properties name="name"/>
+      <properties name="type"/>
+      <properties name="isSynchronized" type="Boolean"/>
+      <properties name="table" type="Reference"/>
+      <properties name="fillingQueries" type="Reference" multiplicity="-1"/>
+    </elements>
+    <modelElementFactory href="../../../plugin/org.eclipse.papyrus.properties.table/model/Environment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+</contexts:Context>
