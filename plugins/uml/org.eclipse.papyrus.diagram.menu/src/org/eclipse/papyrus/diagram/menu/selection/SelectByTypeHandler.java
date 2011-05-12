@@ -60,7 +60,7 @@ public class SelectByTypeHandler extends AbstractHandler {
 					Object[] values = elements.values().toArray();
 
 					ArrayList<Object> listElement = new ArrayList<Object>();
-					listElement.add(part);
+					add(listElement, part);
 
 					for(int i = 0; i < values.length; i++) {
 						if(values[i] instanceof IGraphicalEditPart) {
@@ -68,10 +68,10 @@ public class SelectByTypeHandler extends AbstractHandler {
 							EObject o2 = getEObject(nextPart);
 							if(part instanceof ConnectionEditPart && nextPart instanceof ConnectionEditPart) {
 								if(o1 != o2 && (o1.eClass().equals(o2.eClass()))) {
-									listElement.add(nextPart);
+									add(listElement, nextPart);
 								}
 							} else if(o1 != o2 && (o1.eClass().equals(o2.eClass())) && (isEquivalent(part.getParent(), nextPart.getParent()))) {
-								listElement.add(nextPart);
+								add(listElement, nextPart);
 							}
 						}
 					}
@@ -80,6 +80,14 @@ public class SelectByTypeHandler extends AbstractHandler {
 			}
 		}
 		return null;
+	}
+
+	private void add(ArrayList<Object> listElement,
+			IGraphicalEditPart nextPart) {
+		if (nextPart.isSelectable())
+		{
+			listElement.add(nextPart);
+		}
 	}
 
 	/**
@@ -131,13 +139,14 @@ public class SelectByTypeHandler extends AbstractHandler {
 		if((elems.length == 1) && ((elems[0] instanceof DiagramEditPart))) {
 			return false;
 		}
-
+		boolean selectable = true ;
 		for(int i = 0; i < elems.length - 1; i++) {
 			Object elem1 = elems[i];
 			Object elem2 = elems[i + 1];
 			if((elem1 instanceof IGraphicalEditPart) && (elem2 instanceof IGraphicalEditPart)) {
 				IGraphicalEditPart part1 = (IGraphicalEditPart)elem1;
 				IGraphicalEditPart part2 = (IGraphicalEditPart)elem2;
+				selectable |= (part1.isSelectable() && part2.isSelectable()) ;
 				View view1 = (View)part1.getModel();
 				View view2 = (View)part2.getModel();
 				if((view1 != null) && (view2 != null)) {
@@ -147,6 +156,6 @@ public class SelectByTypeHandler extends AbstractHandler {
 				}
 			}
 		}
-		return true;
+		return selectable ;
 	}
 }
