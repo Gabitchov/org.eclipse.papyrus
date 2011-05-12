@@ -99,6 +99,9 @@ mapping PropertyEditor::toEditorXML() : XML::Element inherits Widget::toWidgetXM
 	if not self.showLabel then
 		children := children->including(createAttribute("showLabel", "false"))
 	endif;
+	if not self.customLabel.oclIsUndefined() and self.customLabel <> '' then
+		children := children->including(createAttribute("customLabel", self.customLabel))
+	endif;
 	
 	addNamespace(self.widgetType.namespace, self);
 }

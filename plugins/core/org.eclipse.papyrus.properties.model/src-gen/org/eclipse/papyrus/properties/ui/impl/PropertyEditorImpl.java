@@ -40,6 +40,7 @@ import org.eclipse.papyrus.properties.ui.UiPackage;
  *   <li>{@link org.eclipse.papyrus.properties.ui.impl.PropertyEditorImpl#getUnresolvedProperty <em>Unresolved Property</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.ui.impl.PropertyEditorImpl#getContentProviderClass <em>Content Provider Class</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.ui.impl.PropertyEditorImpl#isShowLabel <em>Show Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.ui.impl.PropertyEditorImpl#getCustomLabel <em>Custom Label</em>}</li>
  * </ul>
  * </p>
  *
@@ -135,6 +136,26 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * @ordered
 	 */
 	protected boolean showLabel = SHOW_LABEL_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getCustomLabel() <em>Custom Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCustomLabel()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CUSTOM_LABEL_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCustomLabel() <em>Custom Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCustomLabel()
+	 * @generated
+	 * @ordered
+	 */
+	protected String customLabel = CUSTOM_LABEL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -342,6 +363,27 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getCustomLabel() {
+		return customLabel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCustomLabel(String newCustomLabel) {
+		String oldCustomLabel = customLabel;
+		customLabel = newCustomLabel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.PROPERTY_EDITOR__CUSTOM_LABEL, oldCustomLabel, customLabel));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -373,6 +415,8 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 				return getContentProviderClass();
 			case UiPackage.PROPERTY_EDITOR__SHOW_LABEL:
 				return isShowLabel();
+			case UiPackage.PROPERTY_EDITOR__CUSTOM_LABEL:
+				return getCustomLabel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -402,6 +446,9 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 				return;
 			case UiPackage.PROPERTY_EDITOR__SHOW_LABEL:
 				setShowLabel((Boolean)newValue);
+				return;
+			case UiPackage.PROPERTY_EDITOR__CUSTOM_LABEL:
+				setCustomLabel((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -433,6 +480,9 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 			case UiPackage.PROPERTY_EDITOR__SHOW_LABEL:
 				setShowLabel(SHOW_LABEL_EDEFAULT);
 				return;
+			case UiPackage.PROPERTY_EDITOR__CUSTOM_LABEL:
+				setCustomLabel(CUSTOM_LABEL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -457,6 +507,8 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 				return CONTENT_PROVIDER_CLASS_EDEFAULT == null ? contentProviderClass != null : !CONTENT_PROVIDER_CLASS_EDEFAULT.equals(contentProviderClass);
 			case UiPackage.PROPERTY_EDITOR__SHOW_LABEL:
 				return showLabel != SHOW_LABEL_EDEFAULT;
+			case UiPackage.PROPERTY_EDITOR__CUSTOM_LABEL:
+				return CUSTOM_LABEL_EDEFAULT == null ? customLabel != null : !CUSTOM_LABEL_EDEFAULT.equals(customLabel);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -477,6 +529,8 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 		result.append(contentProviderClass);
 		result.append(", showLabel: ");
 		result.append(showLabel);
+		result.append(", customLabel: ");
+		result.append(customLabel);
 		result.append(')');
 		return result.toString();
 	}

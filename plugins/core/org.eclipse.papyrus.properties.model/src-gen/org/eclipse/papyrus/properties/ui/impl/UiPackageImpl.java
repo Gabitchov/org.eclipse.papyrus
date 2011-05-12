@@ -315,6 +315,15 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPropertyEditor_CustomLabel() {
+		return (EAttribute)propertyEditorEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCompositeWidget() {
 		return compositeWidgetEClass;
 	}
@@ -481,6 +490,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 		createEReference(propertyEditorEClass, PROPERTY_EDITOR__UNRESOLVED_PROPERTY);
 		createEAttribute(propertyEditorEClass, PROPERTY_EDITOR__CONTENT_PROVIDER_CLASS);
 		createEAttribute(propertyEditorEClass, PROPERTY_EDITOR__SHOW_LABEL);
+		createEAttribute(propertyEditorEClass, PROPERTY_EDITOR__CUSTOM_LABEL);
 
 		compositeWidgetEClass = createEClass(COMPOSITE_WIDGET);
 		createEReference(compositeWidgetEClass, COMPOSITE_WIDGET__LAYOUT);
@@ -564,6 +574,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 		initEReference(getPropertyEditor_UnresolvedProperty(), theContextsPackage.getUnknownProperty(), null, "unresolvedProperty", null, 0, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPropertyEditor_ContentProviderClass(), ecorePackage.getEString(), "contentProviderClass", null, 0, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPropertyEditor_ShowLabel(), ecorePackage.getEBoolean(), "showLabel", "true", 1, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPropertyEditor_CustomLabel(), ecorePackage.getEString(), "customLabel", null, 0, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeWidgetEClass, CompositeWidget.class, "CompositeWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeWidget_Layout(), this.getLayout(), null, "layout", null, 1, 1, CompositeWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -73,6 +73,7 @@ public class PropertyEditorItemProvider
 			addWidgetTypePropertyDescriptor(object);
 			addContentProviderClassPropertyDescriptor(object);
 			addShowLabelPropertyDescriptor(object);
+			addCustomLabelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -188,6 +189,28 @@ public class PropertyEditorItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Custom Label feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCustomLabelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PropertyEditor_customLabel_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_customLabel_feature", "_UI_PropertyEditor_type"),
+				 UiPackage.Literals.PROPERTY_EDITOR__CUSTOM_LABEL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -255,6 +278,7 @@ public class PropertyEditorItemProvider
 			case UiPackage.PROPERTY_EDITOR__READ_ONLY:
 			case UiPackage.PROPERTY_EDITOR__CONTENT_PROVIDER_CLASS:
 			case UiPackage.PROPERTY_EDITOR__SHOW_LABEL:
+			case UiPackage.PROPERTY_EDITOR__CUSTOM_LABEL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY:

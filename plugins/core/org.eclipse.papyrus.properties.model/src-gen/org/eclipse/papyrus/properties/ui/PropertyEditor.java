@@ -30,6 +30,7 @@ import org.eclipse.papyrus.properties.environment.PropertyEditorType;
  *   <li>{@link org.eclipse.papyrus.properties.ui.PropertyEditor#getUnresolvedProperty <em>Unresolved Property</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.ui.PropertyEditor#getContentProviderClass <em>Content Provider Class</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.ui.PropertyEditor#isShowLabel <em>Show Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.ui.PropertyEditor#getCustomLabel <em>Custom Label</em>}</li>
  * </ul>
  * </p>
  *
@@ -195,5 +196,31 @@ public interface PropertyEditor extends Widget {
 	 * @generated
 	 */
 	void setShowLabel(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Custom Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Custom Label</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Custom Label</em>' attribute.
+	 * @see #setCustomLabel(String)
+	 * @see org.eclipse.papyrus.properties.ui.UiPackage#getPropertyEditor_CustomLabel()
+	 * @model
+	 * @generated
+	 */
+	String getCustomLabel();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.properties.ui.PropertyEditor#getCustomLabel <em>Custom Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Custom Label</em>' attribute.
+	 * @see #getCustomLabel()
+	 * @generated
+	 */
+	void setCustomLabel(String value);
 
 } // PropertyEditor

@@ -250,13 +250,22 @@ public interface UiPackage extends EPackage {
 	int PROPERTY_EDITOR__SHOW_LABEL = WIDGET_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Custom Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_EDITOR__CUSTOM_LABEL = WIDGET_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Property Editor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_EDITOR_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 6;
+	int PROPERTY_EDITOR_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.properties.ui.impl.CompositeWidgetImpl <em>Composite Widget</em>}' class.
@@ -629,6 +638,17 @@ public interface UiPackage extends EPackage {
 	EAttribute getPropertyEditor_ShowLabel();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.properties.ui.PropertyEditor#getCustomLabel <em>Custom Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Custom Label</em>'.
+	 * @see org.eclipse.papyrus.properties.ui.PropertyEditor#getCustomLabel()
+	 * @see #getPropertyEditor()
+	 * @generated
+	 */
+	EAttribute getPropertyEditor_CustomLabel();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.properties.ui.CompositeWidget <em>Composite Widget</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -911,6 +931,14 @@ public interface UiPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROPERTY_EDITOR__SHOW_LABEL = eINSTANCE.getPropertyEditor_ShowLabel();
+
+		/**
+		 * The meta object literal for the '<em><b>Custom Label</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY_EDITOR__CUSTOM_LABEL = eINSTANCE.getPropertyEditor_CustomLabel();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.properties.ui.impl.CompositeWidgetImpl <em>Composite Widget</em>}' class.

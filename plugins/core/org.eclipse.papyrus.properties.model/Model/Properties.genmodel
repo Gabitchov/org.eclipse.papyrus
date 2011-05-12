@@ -171,6 +171,7 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//ui/PropertyEditor/unresolvedProperty"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//ui/PropertyEditor/contentProviderClass"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//ui/PropertyEditor/showLabel"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//ui/PropertyEditor/customLabel"/>
       </genClasses>
       <genClasses ecoreClass="Properties.ecore#//ui/CompositeWidget">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//ui/CompositeWidget/layout"/>

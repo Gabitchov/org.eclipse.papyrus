@@ -861,6 +861,7 @@
         <properties name="readOnly" type="Boolean" description="Indicates if this editor should be read-only. Note that in some cases, the read only state may be applied at runtime, independently of this field's value"/>
         <properties name="widgetType" type="Reference" description="The type of this widget"/>
         <properties name="showLabel" type="Boolean" description="If set to false, the property editor's label won't be displayed"/>
+        <properties name="customLabel" label="Custom label" description="Defines a custom label for this editor. The custom label will replace the property's default label (Only for this property editor)"/>
       </elements>
       <elements name="CompositeWidget" supertypes="//@dataContexts.0/@elements.2/@elements.2">
         <properties name="layout" type="Reference" description="The layout of this widget"/>

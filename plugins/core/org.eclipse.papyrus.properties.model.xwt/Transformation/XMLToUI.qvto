@@ -130,11 +130,13 @@ mapping XML::Element::toPropertyEditor() : PropertyEditor inherits XML::Element:
 	//Avoids dupplication of the attribute
 	var readOnlyAttribute := result.attributes->any(e | e.name = "readOnly");
 	var showLabelAttribute := result.attributes->any(e | e.name = "showLabel");
-	result.attributes := result.attributes->excluding(readOnlyAttribute)->excluding(showLabelAttribute);
+	var customLabelAttribute := result.attributes->any(e | e.name = "customLabel");
+	result.attributes := result.attributes->excluding(readOnlyAttribute)->excluding(showLabelAttribute)->excluding(customLabelAttribute);
 	
 	unresolvedProperty := prop.oclAsType(UnknownProperty);
 	readOnly := self.children->exists(e | e.oclIsKindOf(XML::Attribute) and e.oclAsType(XML::Attribute).name = 'readOnly' and e.oclAsType(XML::Attribute).value='true');
 	showLabel := not self.children->exists(e | e.oclIsKindOf(XML::Attribute) and e.oclAsType(XML::Attribute).name = 'showLabel' and e.oclAsType(XML::Attribute).value='false');
+	customLabel := self.children->any(e | e.oclIsKindOf(XML::Attribute) and e.oclAsType(XML::Attribute).name = 'customLabel').oclAsType(XML::Attribute).value;
 }
 
 query XML::Element::getPropertyName() : String {

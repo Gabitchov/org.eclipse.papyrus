@@ -78,6 +78,11 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	protected boolean showLabel = true;
 
 	/**
+	 * The custom label used by this editor. If set, it replaces the property's default label
+	 */
+	protected String customLabel;
+
+	/**
 	 * The maximum number of characters per line for wrapping descriptions
 	 */
 	public static int descriptionMaxCharPerLine = 200;
@@ -219,7 +224,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 */
 	public void updateLabel() {
 		String label = getLabel();
-		if(input != null && input.isMandatory(propertyPath)) {
+		if(input != null && propertyPath != null && input.isMandatory(propertyPath)) {
 			label += " *"; //$NON-NLS-1$
 		}
 
@@ -260,6 +265,10 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 * @return the formatted property name for this Property Editor
 	 */
 	protected String getLabel() {
+		if(customLabel != null) {
+			return customLabel;
+		}
+
 		Property property = getModelProperty();
 		if(property == null || property.getLabel() == null || property.getLabel().trim().equals("")) { //$NON-NLS-1$
 			return Util.getLabel(getLocalPropertyPath());
@@ -417,5 +426,24 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 */
 	public boolean getShowLabel() {
 		return this.showLabel;
+	}
+
+	/**
+	 * Sets the label for this editor. The label will replace the property's
+	 * default label
+	 * 
+	 * @param customLabel
+	 *        The label to use with this property editor
+	 */
+	public void setCustomLabel(String customLabel) {
+		this.customLabel = customLabel;
+		updateLabel();
+	}
+
+	/**
+	 * @return the custom label used by this property editor. May be null
+	 */
+	public String getCustomLabel() {
+		return this.customLabel;
 	}
 }
