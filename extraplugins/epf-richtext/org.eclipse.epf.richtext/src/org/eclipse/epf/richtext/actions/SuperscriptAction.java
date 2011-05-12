@@ -23,7 +23,7 @@ package org.eclipse.epf.richtext.actions;
 import org.eclipse.epf.richtext.IRichText;
 import org.eclipse.epf.richtext.RichTextCommand;
 import org.eclipse.epf.richtext.RichTextImages;
-import org.eclipse.epf.richtext.RichTextResources;
+import org.eclipse.epf.richtext.Messages;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
@@ -46,7 +46,7 @@ public class SuperscriptAction extends RichTextAction {
 		super(richText, IAction.AS_CHECK_BOX);
 		setImageDescriptor(RichTextImages.IMG_DESC_SUPERSCRIPT);
 		setDisabledImageDescriptor(RichTextImages.DISABLED_IMG_DESC_SUPERSCRIPT);
-		setToolTipText(RichTextResources.superscriptAction_toolTipText);
+		setToolTipText(Messages.superscriptAction_toolTipText);
 		// add listener
 		richText.addListener(SWT.SELECTED, new Listener() {
 			public void handleEvent(Event event) {

@@ -15,7 +15,7 @@ import org.eclipse.epf.richtext.IRichText;
 import org.eclipse.epf.richtext.RichTextCommand;
 import org.eclipse.epf.richtext.RichTextEditor;
 import org.eclipse.epf.richtext.RichTextImages;
-import org.eclipse.epf.richtext.RichTextResources;
+import org.eclipse.epf.richtext.Messages;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.dnd.Clipboard;
 import org.eclipse.swt.dnd.TextTransfer;
@@ -30,7 +30,7 @@ public class PastePlainTextAction extends RichTextAction {
 		super(richText, IAction.AS_PUSH_BUTTON);
 		setImageDescriptor(RichTextImages.IMG_DESC_PASTE_PLAIN_TEXT);
 		setDisabledImageDescriptor(RichTextImages.DISABLED_IMG_DESC_PASTE_PLAIN_TEXT);
-		setToolTipText(RichTextResources.pastePlainTextAction_toolTipText);
+		setToolTipText(Messages.pastePlainTextAction_toolTipText);
 		setEnabled(true);
 	}
 	

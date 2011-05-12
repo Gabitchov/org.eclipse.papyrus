@@ -20,7 +20,7 @@
 //------------------------------------------------------------------------------
 package org.eclipse.epf.richtext.dialogs;
 
-import org.eclipse.epf.richtext.RichTextResources;
+import org.eclipse.epf.richtext.Messages;
 import org.eclipse.epf.richtext.html.Table;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -49,10 +49,10 @@ public class AddTableDialog extends BaseDialog {
 	private static final String DEFAULT_WIDTH = "85%"; //$NON-NLS-1$
 
 	private static final String[] TABLE_STYLE_LABELS = {
-			RichTextResources.tableHeaderNone_text,
-			RichTextResources.tableHeaderCols_text,
-			RichTextResources.tableHeaderRows_text,
-			RichTextResources.tableHeaderBoth_text, };
+			Messages.tableHeaderNone_text,
+			Messages.tableHeaderCols_text,
+			Messages.tableHeaderRows_text,
+			Messages.tableHeaderBoth_text, };
 
 	private Table table = new Table();
 
@@ -99,7 +99,7 @@ public class AddTableDialog extends BaseDialog {
 		Composite composite = (Composite) super.createDialogArea(parent);
 
 		Label rowsLabel = new Label(composite, SWT.NONE);
-		rowsLabel.setText(RichTextResources.rowsLabel_text);
+		rowsLabel.setText(Messages.rowsLabel_text);
 
 		rowsText = new Text(composite, SWT.BORDER);
 		rowsText.setTextLimit(2);
@@ -112,7 +112,7 @@ public class AddTableDialog extends BaseDialog {
 		rowsText.addModifyListener(modifyListener);
 
 		Label colsLabel = new Label(composite, SWT.NONE);
-		colsLabel.setText(RichTextResources.columnsLabel_text);
+		colsLabel.setText(Messages.columnsLabel_text);
 
 		colsText = new Text(composite, SWT.BORDER);
 		colsText.setTextLimit(2);
@@ -125,7 +125,7 @@ public class AddTableDialog extends BaseDialog {
 		colsText.addModifyListener(modifyListener);
 
 		Label widthLabel = new Label(composite, SWT.NONE);
-		widthLabel.setText(RichTextResources.widthLabel_text);
+		widthLabel.setText(Messages.widthLabel_text);
 
 		widthText = new Text(composite, SWT.BORDER);
 		widthText.setText("" + DEFAULT_WIDTH); //$NON-NLS-1$
@@ -137,7 +137,7 @@ public class AddTableDialog extends BaseDialog {
 		widthText.addModifyListener(modifyListener);
 
 		Label headerTypeLabel = new Label(composite, SWT.NONE);
-		headerTypeLabel.setText(RichTextResources.tableStyleLabel_text);
+		headerTypeLabel.setText(Messages.tableStyleLabel_text);
 
 		tableTypeCombo = new Combo(composite, SWT.BORDER | SWT.READ_ONLY);
 		tableTypeCombo.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -145,7 +145,7 @@ public class AddTableDialog extends BaseDialog {
 		tableTypeCombo.setText(TABLE_STYLE_LABELS[0]);
 
 		Label summaryLabel = new Label(composite, SWT.NONE);
-		summaryLabel.setText(RichTextResources.summaryLabel_text);
+		summaryLabel.setText(Messages.summaryLabel_text);
 		summaryText = new Text(composite, SWT.BORDER);
 		{
 			GridData gridData = new GridData(GridData.FILL_HORIZONTAL
@@ -154,7 +154,7 @@ public class AddTableDialog extends BaseDialog {
 		}
 
 		Label captionLabel = new Label(composite, SWT.NONE);
-		captionLabel.setText(RichTextResources.captionLabel_text);
+		captionLabel.setText(Messages.captionLabel_text);
 		captionText = new Text(composite, SWT.BORDER);
 		{
 			GridData gridData = new GridData(GridData.FILL_HORIZONTAL
@@ -162,7 +162,7 @@ public class AddTableDialog extends BaseDialog {
 			captionText.setLayoutData(gridData);
 		}
 
-		super.getShell().setText(RichTextResources.addTableDialog_title);
+		super.getShell().setText(Messages.addTableDialog_title);
 
 		return composite;
 	}

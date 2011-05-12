@@ -22,7 +22,7 @@ package org.eclipse.epf.richtext.dialogs;
 
 import java.io.File;
 
-import org.eclipse.epf.richtext.RichTextResources;
+import org.eclipse.epf.richtext.Messages;
 import org.eclipse.epf.richtext.html.Image;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -100,7 +100,7 @@ public class AddImageDialog extends BaseDialog {
 		layout.numColumns = 3;
 
 		Label urlLabel = new Label(composite, SWT.NONE);
-		urlLabel.setText(RichTextResources.urlLabel_text);
+		urlLabel.setText(Messages.urlLabel_text);
 		urlText = new Text(composite, SWT.BORDER);
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.widthHint = 300;
@@ -108,10 +108,10 @@ public class AddImageDialog extends BaseDialog {
 		urlText.addModifyListener(urlTextListener);
 
 		browseButton = new Button(composite, SWT.NONE);
-		browseButton.setText(RichTextResources.browseButton_text);
+		browseButton.setText(Messages.browseButton_text);
 		browseButton.addSelectionListener(browseSelectionAdapter);
 
-		super.getShell().setText(RichTextResources.addImageDialog_title);
+		super.getShell().setText(Messages.addImageDialog_title);
 
 		return composite;
 	}

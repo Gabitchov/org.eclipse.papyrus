@@ -13,7 +13,7 @@ import org.eclipse.epf.richtext.IRichText;
 import org.eclipse.epf.richtext.RichText;
 import org.eclipse.epf.richtext.RichTextCommand;
 import org.eclipse.epf.richtext.RichTextImages;
-import org.eclipse.epf.richtext.RichTextResources;
+import org.eclipse.epf.richtext.Messages;
 import org.eclipse.epf.richtext.dialogs.AddCodeDialog;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.window.Window;
@@ -25,7 +25,7 @@ public class AddCodeAction extends RichTextAction {
 		super(richText, IAction.AS_PUSH_BUTTON);
 		setImageDescriptor(RichTextImages.IMG_DESC_ADD_CODE);
 		setDisabledImageDescriptor(RichTextImages.DISABLED_IMG_DESC_ADD_CODE);
-		setToolTipText(RichTextResources.addCodeAction_toolTipText); 
+		setToolTipText(Messages.addCodeAction_toolTipText); 
 	}
 
 	public void execute(IRichText richText) {

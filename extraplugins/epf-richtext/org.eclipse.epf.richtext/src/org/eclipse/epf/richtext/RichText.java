@@ -1180,7 +1180,7 @@ public class RichText implements IRichText {
 	 */
 	protected void fillContextMenu(Menu contextMenu) {
 		final MenuItem cutItem = new MenuItem(contextMenu, SWT.PUSH);
-		cutItem.setText(RichTextResources.cutAction_text);
+		cutItem.setText(Messages.cutAction_text);
 		cutItem.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
 				CutAction action = new CutAction(RichText.this);
@@ -1188,7 +1188,7 @@ public class RichText implements IRichText {
 			}
 		});
 		final MenuItem copyItem = new MenuItem(contextMenu, SWT.PUSH);
-		copyItem.setText(RichTextResources.copyAction_text);
+		copyItem.setText(Messages.copyAction_text);
 		copyItem.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
 				CopyAction action = new CopyAction(RichText.this);
@@ -1196,7 +1196,7 @@ public class RichText implements IRichText {
 			}
 		});
 		final MenuItem pasteItem = new MenuItem(contextMenu, SWT.PUSH);
-		pasteItem.setText(RichTextResources.pasteAction_text);
+		pasteItem.setText(Messages.pasteAction_text);
 		pasteItem.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
 				PasteAction action = new PasteAction(RichText.this);
@@ -1205,7 +1205,7 @@ public class RichText implements IRichText {
 		});
 
 		final MenuItem pastePlainTextItem = new MenuItem(contextMenu, SWT.PUSH);
-		pastePlainTextItem.setText(RichTextResources.pastePlainTextAction_text);
+		pastePlainTextItem.setText(Messages.pastePlainTextAction_text);
 		pastePlainTextItem.setImage(RichTextImages.IMG_PASTE_PLAIN_TEXT);
 		pastePlainTextItem.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {

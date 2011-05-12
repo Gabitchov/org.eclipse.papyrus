@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.epf.richtext.RichTextResources;
+import org.eclipse.epf.richtext.Messages;
 
 /**
  * Models a HTML font style.
@@ -35,17 +35,17 @@ import org.eclipse.epf.richtext.RichTextResources;
 public class FontStyle {
 
 	// The user friendly names.
-	private static final String NAME_NORMAL = RichTextResources.fontStyle_normal;
+	private static final String NAME_NORMAL = Messages.fontStyle_normal;
 
-	private static final String NAME_SECTION_HEADING = RichTextResources.fontStyle_sectionHeading;
+	private static final String NAME_SECTION_HEADING = Messages.fontStyle_sectionHeading;
 
-	private static final String NAME_SUBSECTION_HEADING = RichTextResources.fontStyle_subsectionHeading;
+	private static final String NAME_SUBSECTION_HEADING = Messages.fontStyle_subsectionHeading;
 
-	private static final String NAME_SUB_SUBSECTION_HEADING = RichTextResources.fontStyle_subSubsectionHeading;
+	private static final String NAME_SUB_SUBSECTION_HEADING = Messages.fontStyle_subSubsectionHeading;
 
-	private static final String NAME_QUOTE = RichTextResources.fontStyle_quote;
+	private static final String NAME_QUOTE = Messages.fontStyle_quote;
 
-	private static final String NAME_CODE_SAMPLE = RichTextResources.fontStyle_codeSample;
+	private static final String NAME_CODE_SAMPLE = Messages.fontStyle_codeSample;
 
 	// The internal values.
 	private static final String VALUE_NORMAL = "<p>"; //$NON-NLS-1$

@@ -24,7 +24,7 @@ import org.eclipse.epf.richtext.IRichText;
 import org.eclipse.epf.richtext.RichTextCommand;
 import org.eclipse.epf.richtext.RichTextEditor;
 import org.eclipse.epf.richtext.RichTextImages;
-import org.eclipse.epf.richtext.RichTextResources;
+import org.eclipse.epf.richtext.Messages;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.custom.StyledText;
 
@@ -43,7 +43,7 @@ public class CopyAction extends RichTextAction {
 		super(richText, IAction.AS_PUSH_BUTTON);
 		setImageDescriptor(RichTextImages.IMG_DESC_COPY);
 		setDisabledImageDescriptor(RichTextImages.DISABLED_IMG_DESC_COPY);
-		setToolTipText(RichTextResources.copyAction_toolTipText);
+		setToolTipText(Messages.copyAction_toolTipText);
 	}
 
 	/**

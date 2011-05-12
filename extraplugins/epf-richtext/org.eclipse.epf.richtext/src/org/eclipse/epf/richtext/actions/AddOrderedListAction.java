@@ -23,7 +23,7 @@ package org.eclipse.epf.richtext.actions;
 import org.eclipse.epf.richtext.IRichText;
 import org.eclipse.epf.richtext.RichTextCommand;
 import org.eclipse.epf.richtext.RichTextImages;
-import org.eclipse.epf.richtext.RichTextResources;
+import org.eclipse.epf.richtext.Messages;
 import org.eclipse.jface.action.IAction;
 
 /**
@@ -41,7 +41,7 @@ public class AddOrderedListAction extends RichTextAction {
 		super(richText, IAction.AS_PUSH_BUTTON);
 		setImageDescriptor(RichTextImages.IMG_DESC_ADD_ORDERED_LIST);
 		setDisabledImageDescriptor(RichTextImages.DISABLED_IMG_DESC_ADD_ORDERED_LIST);
-		setToolTipText(RichTextResources.addOrderedListAction_toolTipText);
+		setToolTipText(Messages.addOrderedListAction_toolTipText);
 	}
 
 	/**

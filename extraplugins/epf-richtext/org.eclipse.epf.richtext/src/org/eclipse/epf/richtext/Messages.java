@@ -29,9 +29,14 @@ import org.eclipse.osgi.util.NLS;
  * @author Jeff Hardy
  * @since 1.0
  */
-public final class RichTextResources extends NLS {
+public final class Messages extends NLS {
 
-	private static final String BUNDLE_NAME = "org.eclipse.epf.richtext.Resources"; //$NON-NLS-1$
+	static {
+		NLS.initializeMessages("messages", Messages.class); //$NON-NLS-1$
+	}
+
+	private Messages() {
+	}
 
 	public static String fontNameAction_CSS_Default;
 	public static String fontNameAction_CSS_Default_Mozilla;
@@ -137,10 +142,4 @@ public final class RichTextResources extends NLS {
 	public static String addCodeDialog_title;
 	public static String addCodeDialog_Msg;
 
-	static {
-		NLS.initializeMessages(BUNDLE_NAME, RichTextResources.class);
-	}
-	
-	private RichTextResources() {
-	}
 }

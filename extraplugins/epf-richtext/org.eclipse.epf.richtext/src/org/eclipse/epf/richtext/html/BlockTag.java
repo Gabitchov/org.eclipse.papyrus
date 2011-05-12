@@ -23,7 +23,7 @@ package org.eclipse.epf.richtext.html;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.epf.richtext.RichTextResources;
+import org.eclipse.epf.richtext.Messages;
 
 /**
  * Models a HTML block tag.
@@ -34,23 +34,23 @@ import org.eclipse.epf.richtext.RichTextResources;
 public class BlockTag {
 
 	// The user friendly names.
-	private static final String NAME_PARAGRAPH = RichTextResources.blockTag_paragraph;
+	private static final String NAME_PARAGRAPH = Messages.blockTag_paragraph;
 
-	private static final String NAME_HEADING_1 = RichTextResources.blockTag_heading1;
+	private static final String NAME_HEADING_1 = Messages.blockTag_heading1;
 
-	private static final String NAME_HEADING_2 = RichTextResources.blockTag_heading2;
+	private static final String NAME_HEADING_2 = Messages.blockTag_heading2;
 
-	private static final String NAME_HEADING_3 = RichTextResources.blockTag_heading3;
+	private static final String NAME_HEADING_3 = Messages.blockTag_heading3;
 
-	private static final String NAME_HEADING_4 = RichTextResources.blockTag_heading4;
+	private static final String NAME_HEADING_4 = Messages.blockTag_heading4;
 
-	private static final String NAME_HEADING_5 = RichTextResources.blockTag_heading5;
+	private static final String NAME_HEADING_5 = Messages.blockTag_heading5;
 
-	private static final String NAME_HEADING_6 = RichTextResources.blockTag_heading6;
+	private static final String NAME_HEADING_6 = Messages.blockTag_heading6;
 
-	private static final String NAME_ADDRESS = RichTextResources.blockTag_address;
+	private static final String NAME_ADDRESS = Messages.blockTag_address;
 
-	private static final String NAME_PREFORMATTED_TEXT = RichTextResources.blockTag_preformattedText;
+	private static final String NAME_PREFORMATTED_TEXT = Messages.blockTag_preformattedText;
 
 	// The internal values.
 	private static final String VALUE_PARAGRAPH = "<p>"; //$NON-NLS-1$

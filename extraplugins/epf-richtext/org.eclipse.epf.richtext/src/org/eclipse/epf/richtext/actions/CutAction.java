@@ -24,7 +24,7 @@ import org.eclipse.epf.richtext.IRichText;
 import org.eclipse.epf.richtext.RichTextCommand;
 import org.eclipse.epf.richtext.RichTextEditor;
 import org.eclipse.epf.richtext.RichTextImages;
-import org.eclipse.epf.richtext.RichTextResources;
+import org.eclipse.epf.richtext.Messages;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.custom.StyledText;
 
@@ -43,7 +43,7 @@ public class CutAction extends RichTextAction {
 		super(richText, IAction.AS_PUSH_BUTTON);
 		setImageDescriptor(RichTextImages.IMG_DESC_CUT);
 		setDisabledImageDescriptor(RichTextImages.DISABLED_IMG_DESC_CUT);
-		setToolTipText(RichTextResources.cutAction_toolTipText); 
+		setToolTipText(Messages.cutAction_toolTipText); 
 	}
 
 	/**

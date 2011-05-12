@@ -23,7 +23,7 @@ package org.eclipse.epf.richtext.actions;
 import org.eclipse.epf.richtext.IRichText;
 import org.eclipse.epf.richtext.RichTextCommand;
 import org.eclipse.epf.richtext.RichTextImages;
-import org.eclipse.epf.richtext.RichTextResources;
+import org.eclipse.epf.richtext.Messages;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
@@ -44,7 +44,7 @@ public class ItalicAction extends RichTextAction {
 	public ItalicAction(final IRichText richText) {
 		super(richText, IAction.AS_CHECK_BOX);
 		setImageDescriptor(RichTextImages.IMG_DESC_ITALIC);
-		setToolTipText(RichTextResources.italicAction_toolTipText);
+		setToolTipText(Messages.italicAction_toolTipText);
 		// add listener
 		richText.addListener(SWT.SELECTED, new Listener() {
 			public void handleEvent(Event event) {

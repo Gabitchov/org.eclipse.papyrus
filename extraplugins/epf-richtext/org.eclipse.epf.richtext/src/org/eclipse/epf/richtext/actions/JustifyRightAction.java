@@ -23,7 +23,7 @@ package org.eclipse.epf.richtext.actions;
 import org.eclipse.epf.richtext.IRichText;
 import org.eclipse.epf.richtext.RichTextCommand;
 import org.eclipse.epf.richtext.RichTextImages;
-import org.eclipse.epf.richtext.RichTextResources;
+import org.eclipse.epf.richtext.Messages;
 import org.eclipse.jface.action.IAction;
 
 /**
@@ -40,7 +40,7 @@ public class JustifyRightAction extends RichTextAction {
 	public JustifyRightAction(IRichText richText) {
 		super(richText, IAction.AS_PUSH_BUTTON);
 		setImageDescriptor(RichTextImages.IMG_DESC_JUSTIFY_RIGHT);
-		setToolTipText(RichTextResources.justifyRightAction_toolTipText); 
+		setToolTipText(Messages.justifyRightAction_toolTipText); 
 	}
 
 	/**

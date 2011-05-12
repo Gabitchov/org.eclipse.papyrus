@@ -25,7 +25,7 @@ import java.util.Collection;
 
 import org.eclipse.epf.richtext.IRichText;
 import org.eclipse.epf.richtext.RichTextCommand;
-import org.eclipse.epf.richtext.RichTextResources;
+import org.eclipse.epf.richtext.Messages;
 import org.eclipse.epf.richtext.html.BlockTag;
 
 /**
@@ -41,7 +41,7 @@ public class BlockTagAction extends RichTextComboAction {
 	 */
 	public BlockTagAction(final IRichText richText) {
 		super(richText);
-		setToolTipText(RichTextResources.blockTagAction_toolTipText); 
+		setToolTipText(Messages.blockTagAction_toolTipText); 
 	}
 		
 	@Override
