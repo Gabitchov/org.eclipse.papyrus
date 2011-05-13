@@ -310,14 +310,16 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	private void createListSection(Composite parent) {
 
 		selectedElements = new List(parent, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
+		selectedElements.addSelectionListener(this);
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		selectedElements.setLayoutData(data);
 		selectedElementsViewer = new ListViewer(selectedElements);
 
 		selectedElementsViewer.setContentProvider(CollectionContentProvider.instance);
 
-		if(labelProvider != null)
+		if(labelProvider != null) {
 			selectedElementsViewer.setLabelProvider(labelProvider);
+		}
 
 		selectedElementsViewer.setInput(allElements);
 		selector.setSelectedElements(allElements.toArray());
@@ -431,8 +433,9 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		java.util.List<Object> list = new LinkedList<Object>(allElements);
 		for(Object o : selection.toArray()) {
 			int oldIndex = list.indexOf(o);
-			if(oldIndex > 0)
+			if(oldIndex > 0) {
 				move(list, oldIndex, oldIndex - 1);
+			}
 		}
 
 		allElements.clear();
@@ -458,8 +461,9 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		for(int i = selectionArray.length - 1; i >= 0; i--) {
 			Object o = selectionArray[i];
 			int oldIndex = list.indexOf(o);
-			if(oldIndex < maxIndex)
+			if(oldIndex < maxIndex) {
 				move(list, oldIndex, oldIndex + 1);
+			}
 		}
 
 		allElements.clear();
@@ -474,12 +478,14 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	 * Handles the "Create" action
 	 */
 	protected void createAction() {
-		if(factory == null)
+		if(factory == null) {
 			return;
+		}
 
 		Object newObject = factory.createObject(this.create);
-		if(newObject == null)
+		if(newObject == null) {
 			return;
+		}
 
 		newObjects.add(newObject);
 		selector.newObjectCreated(newObject);
@@ -501,10 +507,12 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	private void move(java.util.List<Object> list, int oldIndex, int newIndex) {
 		int size = list.size();
 
-		if(oldIndex < 0 || oldIndex >= size)
+		if(oldIndex < 0 || oldIndex >= size) {
 			throw new IndexOutOfBoundsException("oldIndex: " + oldIndex + ", size:" + size); //$NON-NLS-1$ //$NON-NLS-2$
-		if(newIndex < 0 || newIndex >= size)
+		}
+		if(newIndex < 0 || newIndex >= size) {
 			throw new IndexOutOfBoundsException("newIndex: " + newIndex + ", size:" + size); //$NON-NLS-1$ //$NON-NLS-2$
+		}
 		Object element = list.remove(oldIndex);
 		list.add(newIndex, element);
 	}
@@ -514,8 +522,9 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	 */
 	protected void removeAction() {
 		IStructuredSelection selection = (IStructuredSelection)selectedElementsViewer.getSelection();
-		if(selection.isEmpty())
+		if(selection.isEmpty()) {
 			return;
+		}
 
 		for(Object element : selection.toArray()) {
 			allElements.remove(element);
@@ -583,11 +592,10 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		super.okPressed();
 	}
 
-	/**
-	 * Ignored
-	 */
 	public void widgetDefaultSelected(SelectionEvent e) {
-		//Nothing
+		if(e.widget == selectedElements) {
+			removeAction();
+		}
 	}
 
 	/**
@@ -617,7 +625,8 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	}
 
 	private void updateControl(Control control, boolean enabled) {
-		if(control != null)
+		if(control != null) {
 			control.setEnabled(enabled);
+		}
 	}
 }
