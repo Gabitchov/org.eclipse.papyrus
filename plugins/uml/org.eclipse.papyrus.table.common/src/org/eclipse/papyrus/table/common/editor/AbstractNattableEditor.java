@@ -104,14 +104,29 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.table.c
 				switch(eventType){
 				case Notification.ADD : 
 				case Notification.ADD_MANY:
+					//we execute the queries
 					executeQueries();
 					break;
 				case Notification.MOVE:
-					//TODO?
+					//TODO something to do?
 					break;
 				case Notification.REMOVE:
 				case Notification.REMOVE_MANY:
-					//TODO : currently the Nattable API doesn't allow to delete line programmatically
+					List<EObject> elementsToDelete = new ArrayList<EObject>();
+					Object objectToRemove = msg.getOldValue();
+					if(objectToRemove instanceof EObject){
+						elementsToDelete.add((EObject)objectToRemove);
+					}else if(objectToRemove instanceof Collection<?>){
+						for(Object current : (Collection<?>)objectToRemove){
+							if(current instanceof EObject){
+								elementsToDelete.add((EObject)current);
+							}
+						}
+					}
+					if(!elementsToDelete.isEmpty()){
+						//TODO : currently the Nattable API doesn't allow to delete lines programmatically
+						//						((INatTableWidget2)AbstractNattableEditor.this.natTableWidget).removeRows(elementsToDelete);
+					}
 				}
 			}
 		}	
