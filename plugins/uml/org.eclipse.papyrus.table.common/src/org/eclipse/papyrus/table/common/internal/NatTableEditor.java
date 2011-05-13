@@ -88,7 +88,7 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 
 	private TableEditorInput tableEditorInput;
 
-	private INatTableWidget natTableWidget;
+	protected INatTableWidget natTableWidget;
 
 	private EditingDomain editingDomain;
 
@@ -105,21 +105,6 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 					firePropertyChange(PROP_DIRTY);
 				}
 			});
-		}
-	};
-
-	//this code comes from NatTableWidget
-	//we need to listen change on the context when its a table fillied with queries : 
-	private final Adapter modelChangeAdapter = new AdapterImpl() {
-
-		@Override
-		public void notifyChanged(final Notification msg) {
-			//TODO remove the listener!
-			int eventType = msg.getEventType();
-			if(eventType != Notification.REMOVING_ADAPTER && eventType != Notification.RESOLVE) {
-				// redraw table when model changes
-				//				System.out.println("we listen a change on the context");
-			}
 		}
 	};
 
@@ -239,9 +224,7 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		contextGridData.horizontalAlignment = SWT.FILL;
 		this.contextLabel.setLayoutData(contextGridData);
 
-
 		//we display the description of the table
-
 		final StringEditor descriptionEditor = new StringEditor(editorComposite, SWT.MULTI);
 		descriptionEditor.setLabel(Messages.NatTableEditor_TaleDescriptionLabel);
 		descriptionEditor.setToolTipText(Messages.NatTableEditor_TableDescriptionToolTip);
@@ -282,22 +265,11 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		getSite().setSelectionProvider(this);
 		getSite().registerContextMenu(this.menuMgr, this.natTableWidget);
 
-
-		//we add a listener on the resource in order to be synchronized with queries
-		Resource res = this.tableEditorInput.getPapyrusTableInstance().getTable().getContext().eResource();
-
-
-		res.setTrackingModification(true);
-		if(!res.eAdapters().contains(this.modelChangeAdapter)) {
-			res.eAdapters().add(this.modelChangeAdapter);
-		}
 	}
 
 	@Override
 	public void dispose() {
 		this.natTableWidget.getTableInstance().getContext().eAdapters().remove(this.contextListener);
-		Resource res = this.tableEditorInput.getPapyrusTableInstance().getTable().getContext().eResource();
-		res.eAdapters().remove(this.modelChangeAdapter);
 		super.dispose();
 	}
 
