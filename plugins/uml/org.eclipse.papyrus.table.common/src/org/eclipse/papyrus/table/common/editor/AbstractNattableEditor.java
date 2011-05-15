@@ -40,6 +40,7 @@ import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidgetInternalUti
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.ServiceUtils;
+import org.eclipse.papyrus.table.common.internal.IPapyrusNatTableWidget;
 import org.eclipse.papyrus.table.common.internal.TableEditorInput;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstancePackage;
@@ -126,6 +127,9 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.table.c
 					if(!elementsToDelete.isEmpty()){
 						//TODO : currently the Nattable API doesn't allow to delete lines programmatically
 						//						((INatTableWidget2)AbstractNattableEditor.this.natTableWidget).removeRows(elementsToDelete);
+						if(AbstractNattableEditor.this.natTableWidget instanceof IPapyrusNatTableWidget){
+							((IPapyrusNatTableWidget)AbstractNattableEditor.this.natTableWidget).removeRowsOutOfCommandStack(elementsToDelete);
+						}
 					}
 				}
 			}
@@ -263,7 +267,10 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.table.c
 				}
 			}
 			if(!elementsToAdd.isEmpty()){
-				this.natTableWidget.addRows(elementsToAdd);
+				//				this.natTableWidget.addRows(elementsToAdd);
+				if(this.natTableWidget instanceof IPapyrusNatTableWidget){
+					((IPapyrusNatTableWidget)this.natTableWidget).addRowsOutOfCommandStack(elementsToAdd);
+				}
 			}
 		}
 

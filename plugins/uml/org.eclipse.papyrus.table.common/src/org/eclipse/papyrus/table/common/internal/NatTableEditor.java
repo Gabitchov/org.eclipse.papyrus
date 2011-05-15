@@ -45,11 +45,11 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.facet.widgets.nattable.INatTableWidget;
-import org.eclipse.emf.facet.widgets.nattable.INatTableWidgetFactory;
 import org.eclipse.emf.facet.widgets.nattable.INatTableWidgetProvider;
 import org.eclipse.emf.facet.widgets.nattable.IWorkbenchPartProvider;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ISelection;
@@ -212,10 +212,18 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		compositeTableGridLayout.verticalAlignment = SWT.FILL;
 		tableComposite.setLayoutData(compositeTableGridLayout);
 
-		// the nattable widget itself
-		this.natTableWidget = INatTableWidgetFactory.INSTANCE.createNatTableWidget(tableComposite, this, this.tableEditorInput.getPapyrusTableInstance().getTable(), this.menuMgr);
+		this.natTableWidget = createNattableWidget(tableComposite, this, this.tableEditorInput.getPapyrusTableInstance().getTable(), this.menuMgr);
+
+		getSite().setSelectionProvider(this);
+		getSite().registerContextMenu(this.menuMgr, this.natTableWidget);
+	}
 
 
+	private INatTableWidget createNattableWidget(final Composite tableComposite, final NatTableEditor natTableEditor, final TableInstance2 table, final MenuManager menuMgr2) {
+		//		 the nattable widget itself
+		//old instanciation
+		//		this.natTableWidget = INatTableWidgetFactory.INSTANCE.createNatTableWidget(tableComposite, this, this.tableEditorInput.getPapyrusTableInstance().getTable(), this.menuMgr);
+		this.natTableWidget = new PapyrusNatTableWidget(tableComposite, natTableEditor, table, this.menuMgr); 
 		final GridData tableGridData = new GridData();
 		tableGridData.grabExcessHorizontalSpace = true;
 		tableGridData.grabExcessVerticalSpace = true;
@@ -223,10 +231,8 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		tableGridData.verticalAlignment = SWT.FILL;
 		this.natTableWidget.getComposite().setLayoutData(tableGridData);
 
-		getSite().setSelectionProvider(this);
-		getSite().registerContextMenu(this.menuMgr, this.natTableWidget);
+		return this.natTableWidget;
 	}
-
 
 	private Composite createCompositeCompositeWthTableBorder(final Composite parent){
 		Composite editorComposite = new Composite(parent, SWT.BORDER);
