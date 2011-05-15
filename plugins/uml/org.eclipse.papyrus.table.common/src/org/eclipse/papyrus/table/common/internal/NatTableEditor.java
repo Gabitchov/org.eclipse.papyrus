@@ -60,12 +60,15 @@ import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.properties.databinding.EMFObservableValue;
 import org.eclipse.papyrus.table.common.messages.Messages;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstancePackage;
+import org.eclipse.papyrus.widgets.editors.BooleanRadio;
 import org.eclipse.papyrus.widgets.editors.StringEditor;
 import org.eclipse.papyrus.widgets.editors.StringLabel;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
@@ -193,51 +196,9 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		this.menuMgr.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
 		this.menuMgr.setRemoveAllWhenShown(true);
 
-		final TableInstance table = this.tableEditorInput.getPapyrusTableInstance().getTable();
-		EClass tableEClass = table.eClass();
-
-		final Composite editorComposite = new Composite(parent, SWT.BORDER);
-		final GridLayout editorGridLayout = new GridLayout(1, false);
-		editorGridLayout.marginHeight = 0;
-		editorGridLayout.marginWidth = 0;
-		editorComposite.setLayout(editorGridLayout);
-
-		//we display the context of the table
-		this.contextLabel = new StringLabel(editorComposite, SWT.LEFT);
-		this.contextLabel.setLabel(Messages.NatTableEditor_TableContextLabel);
-		this.contextLabel.setToolTipText(Messages.NatTableEditor_TableContextTollTip);
-
-		//we observe the feature context of the table (and not the name of the context, because the context is not a NamedElement, but an EObject
-		final IObservableValue contextObservable2 = new EObjectObservableValue(table, TableinstancePackage.eINSTANCE.getTableInstance_Context());
-		table.getContext().eAdapters().add(this.contextListener);
-		/*
-		 * we should set the converted before the observable!
-		 */
-		this.contextLabel.setConverters(null, new ContextLabelConverter());
-		this.contextLabel.setLabelProvider(new EditorLabelProvider());
-		this.contextLabel.setModelObservable(contextObservable2);
-
-
-		//set the layout for contextLabel
-		GridData contextGridData = new GridData();
-		contextGridData.grabExcessHorizontalSpace = true;
-		contextGridData.horizontalAlignment = SWT.FILL;
-		this.contextLabel.setLayoutData(contextGridData);
-
-		//we display the description of the table
-		final StringEditor descriptionEditor = new StringEditor(editorComposite, SWT.MULTI);
-		descriptionEditor.setLabel(Messages.NatTableEditor_TaleDescriptionLabel);
-		descriptionEditor.setToolTipText(Messages.NatTableEditor_TableDescriptionToolTip);
-		EStructuralFeature myFeature = tableEClass.getEStructuralFeature(TableinstancePackage.TABLE_INSTANCE__DESCRIPTION);
-		EMFObservableValue observable = new EMFObservableValue(table, myFeature, getEditingDomain());
-		descriptionEditor.setModelObservable(observable);
-
-		//set the layout for the description editor
-		GridData descriptionGridData = new GridData();
-		descriptionGridData.grabExcessHorizontalSpace = true;
-		descriptionGridData.horizontalAlignment = SWT.FILL;
-		descriptionEditor.setLayoutData(descriptionGridData);
-
+		final Composite editorComposite = createCompositeCompositeWthTableBorder(parent);
+		createFirstLine(editorComposite);
+		createDescription(editorComposite);
 
 		// the composite owning the table
 		final Composite tableComposite = new Composite(editorComposite, SWT.NONE);
@@ -264,7 +225,97 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 
 		getSite().setSelectionProvider(this);
 		getSite().registerContextMenu(this.menuMgr, this.natTableWidget);
+	}
 
+
+	private Composite createCompositeCompositeWthTableBorder(final Composite parent){
+		Composite editorComposite = new Composite(parent, SWT.BORDER);
+		final GridLayout editorGridLayout = new GridLayout(1, true);
+		editorGridLayout.marginHeight = 0;
+		editorGridLayout.marginWidth = 0;
+
+		GridData data = new GridData();
+		data.grabExcessHorizontalSpace = true;
+		data.horizontalAlignment = SWT.FILL;
+		editorComposite.setLayoutData(data);
+		editorComposite.setLayout(editorGridLayout);
+		return editorComposite;
+	}
+
+	/**
+	 * 
+	 * @param parent
+	 * the parent composite
+	 */
+	protected void createFirstLine(final Composite parent){
+
+		final TableInstance table = this.tableEditorInput.getPapyrusTableInstance().getTable();
+		Composite firstLineComposite = new Composite(parent,  SWT.NONE);
+		final GridLayout smallGridLayout = new GridLayout(2, true);
+		smallGridLayout.marginHeight = 0;
+		smallGridLayout.marginWidth = 0;
+		smallGridLayout.marginLeft = 0;
+		smallGridLayout.marginRight = 0;
+
+		firstLineComposite.setLayout(smallGridLayout);
+		GridData lineData = new GridData();
+		lineData.horizontalSpan = 1;
+		lineData.horizontalAlignment = SWT.FILL;
+		firstLineComposite.setLayoutData(lineData);
+
+		//we display the context of the table
+		this.contextLabel = new StringLabel(firstLineComposite,SWT.LEFT);
+		this.contextLabel.setLabel(Messages.NatTableEditor_TableContextLabel);
+		this.contextLabel.setToolTipText(Messages.NatTableEditor_TableContextTollTip);
+
+		//we observe the feature context of the table (and not the name of the context, because the context is not a NamedElement, but an EObject
+		final IObservableValue contextObservable = new EObjectObservableValue(table, TableinstancePackage.eINSTANCE.getTableInstance_Context());
+		table.getContext().eAdapters().add(this.contextListener);
+		/*
+		 * we should set the converted before the observable!
+		 */
+		this.contextLabel.setConverters(null, new ContextLabelConverter());
+		this.contextLabel.setLabelProvider(new EditorLabelProvider());
+		this.contextLabel.setModelObservable(contextObservable);
+
+		//set the layout for contextLabel
+		GridData contextGridData = new GridData();
+		contextGridData.grabExcessHorizontalSpace = true;
+		contextGridData.horizontalAlignment = SWT.FILL;
+		contextGridData.horizontalSpan=1;
+		this.contextLabel.setLayoutData(contextGridData);
+
+		BooleanRadio checkbox = new BooleanRadio(firstLineComposite, SWT.NONE, "IsSynchronized :" );
+		checkbox.setToolTipText("Indicates if the table is synchronized with queries");
+		final IObservableValue isSynchronizedObservable = new EMFObservableValue(this.tableEditorInput.getPapyrusTableInstance(), PapyrustableinstancePackage.eINSTANCE.getPapyrusTableInstance_IsSynchronized(), getEditingDomain());
+		checkbox.setModelObservable(isSynchronizedObservable);
+
+		GridData checkboxGridData = new GridData();
+		checkboxGridData.grabExcessHorizontalSpace = true;
+		checkboxGridData.horizontalAlignment = SWT.FILL;
+		checkbox.setLayoutData(checkboxGridData);
+
+	}
+
+	protected void createDescription(final Composite parent){
+		final TableInstance table = this.tableEditorInput.getPapyrusTableInstance().getTable();
+		EClass tableEClass = table.eClass();
+
+		//we display the description of the table
+		final StringEditor descriptionEditor = new StringEditor(parent, SWT.MULTI);
+		descriptionEditor.setLabel(Messages.NatTableEditor_TaleDescriptionLabel);
+		descriptionEditor.setToolTipText(Messages.NatTableEditor_TableDescriptionToolTip);
+
+
+		EStructuralFeature myFeature = tableEClass.getEStructuralFeature(TableinstancePackage.TABLE_INSTANCE__DESCRIPTION);
+		EMFObservableValue observable = new EMFObservableValue(table, myFeature, getEditingDomain());
+		descriptionEditor.setModelObservable(observable);
+
+		//set the layout for the description editor
+		GridData descriptionGridData = new GridData();
+		descriptionGridData.grabExcessHorizontalSpace = true;
+		descriptionGridData.horizontalAlignment = SWT.FILL;
+		descriptionEditor.setLayoutData(descriptionGridData);
 	}
 
 	@Override
@@ -305,11 +356,18 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 	}
 
 	public ISelection getSelection() {
-		ISelection selection = this.natTableWidget.getSelection();
-		if(selection.isEmpty()) {
-			selection = new StructuredSelection(this.tableEditorInput.getPapyrusTableInstance());
+		/*
+		 * if nattable has the focus : we retun the nattable selection
+		 * if not, we return the papyrus table instance
+		 */
+		Control[] children = ((Composite)this.natTableWidget).getChildren();
+		if(children.length!=0){
+			boolean focus = children[0].isFocusControl();
+			if(focus){
+				return this.natTableWidget.getSelection();
+			}
 		}
-		return selection;
+		return new StructuredSelection(this.tableEditorInput.getPapyrusTableInstance());
 	}
 
 	public EditingDomain getEditingDomain() {
