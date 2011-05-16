@@ -115,7 +115,9 @@
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
        
-      <rm:uri format="{0}/tools/orbit/downloads/drops/S20110422041657/repository/">
+      <!--rm:uri format="{0}/tools/orbit/downloads/drops/S20110422041657/repository/"-->
+      <rm:uri format="{0}/tools/orbit/downloads/drops/S20110515001817/repository/">
+      
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -260,7 +262,8 @@
       </rm:uri>
     </rm:provider>
 		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<rm:uri format="{0}/eclipse/updates/3.7milestones/S-3.7M7-201104280848">
+			<!--rm:uri format="{0}/eclipse/updates/3.7milestones/S-3.7M7-201104280848"-->
+			<rm:uri format="{0}/eclipse/updates/3.7milestones/S-3.7RC1-201105122000">
 				<bc:propertyRef key="eclipse.downloads"/>
 			</rm:uri>
 		</rm:provider>
