@@ -19,8 +19,20 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.operations.OperationHistoryFactory;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.alf.alf.AcceptBlock;
 import org.eclipse.papyrus.alf.alf.AcceptStatement;
 import org.eclipse.papyrus.alf.alf.AlfPackage;
@@ -57,6 +69,8 @@ import org.eclipse.papyrus.alf.scoping.AlfPartialScope;
 import org.eclipse.papyrus.alf.scoping.AlfScopeProvider;
 import org.eclipse.papyrus.alf.validation.typing.AssignmentPolicy;
 import org.eclipse.papyrus.alf.validation.typing.ErrorTypeFacade;
+import org.eclipse.papyrus.alf.validation.typing.MultiplicityFacade;
+import org.eclipse.papyrus.alf.validation.typing.MultiplicityFacadeFactory;
 import org.eclipse.papyrus.alf.validation.typing.SignatureFacade;
 import org.eclipse.papyrus.alf.validation.typing.TypeExpression;
 import org.eclipse.papyrus.alf.validation.typing.TypeExpressionFactory;
@@ -64,10 +78,23 @@ import org.eclipse.papyrus.alf.validation.typing.TypeFacade;
 import org.eclipse.papyrus.alf.validation.typing.TypeFacadeFactory;
 import org.eclipse.papyrus.alf.validation.typing.TypeUtils;
 import org.eclipse.papyrus.alf.validation.typing.VoidFacade;
+import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.extensionpoints.uml2.library.RegisteredLibrary;
+import org.eclipse.papyrus.extensionpoints.uml2.utils.Util;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ParameterDirectionKind;
+import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.resource.UMLResource;
+import org.eclipse.uml2.uml.resource.UMLResource.Factory;
+import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.EValidatorRegistrar;
  
@@ -92,16 +119,87 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 	
 	public static void setContextClassifier(Classifier contextClassifier) {
 		AlfJavaValidator.contextClassifier = contextClassifier ;
-		if (alfStandardLibrary == null) { // TODO: this is temporary code. Works only if the model containing the context classifier imports alf::library
+		alfStandardLibrary = null ;
+		//if (alfStandardLibrary == null) {
 			for (PackageImport pImport : contextClassifier.getModel().getPackageImports()) {
 				Package p = pImport.getImportedPackage() ;
-				if (p.getQualifiedName().equals("alf::library"))
-					alfStandardLibrary = p ;
+				if (p.getQualifiedName().equals("Alf")) {
+					alfStandardLibrary = (Package)p.getOwnedMembers().get(0) ;
+				}
 			}
-		}
+		//}
 		if (alfStandardLibrary != null) {
 			predefinedBehaviorsAndTypes = new PredefinedBehaviorsAndTypesUtils() ;
 			predefinedBehaviorsAndTypes.init(alfStandardLibrary) ;
+		}
+		else {
+			
+			String question = "The context model " +
+								contextClassifier.getModel().getName() + 
+								" does not import the standard Alf library. This import is required for static validation of Alf expressions and statements. \n\n Do you want to generate this import?" ;
+			boolean doGenerateImport = MessageDialog.openQuestion(
+					new Shell(),
+					"Alf editor",
+					question);
+			if (doGenerateImport) {
+				RegisteredLibrary[] libraries = RegisteredLibrary.getRegisteredLibraries() ;
+				RegisteredLibrary alfLibrary = null ;
+				for (RegisteredLibrary l : libraries) {
+					if (l.getName().equals("AlfLibrary"))
+						alfLibrary = l ;
+				}
+				if (alfLibrary != null) {
+					// Creates and executes the update command
+					UpdateImportCommand updateCommand = new UpdateImportCommand(contextClassifier.getModel(), alfLibrary);
+					try {
+						OperationHistoryFactory.getOperationHistory().execute(updateCommand, new NullProgressMonitor(), null);
+						setContextClassifier(contextClassifier) ;
+					} catch (ExecutionException e) {
+						org.eclipse.papyrus.properties.runtime.Activator.log.error(e);
+					}
+				}
+				else {
+					MessageDialog.openError(
+							new Shell(), 
+							"Alf editor", 
+							"Could not find standard Alf library") ;
+				}
+			}
+		}
+	}
+	
+	/**
+	 * @author CEA LIST
+	 * 
+	 *         A command for updating the context UML model
+	 */
+	protected static class UpdateImportCommand extends AbstractTransactionalCommand {
+
+		private Model model;
+		private RegisteredLibrary library ;
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor
+		 * , org.eclipse.core.runtime.IAdaptable)
+		 */
+		@Override
+		protected CommandResult doExecuteWithResult(IProgressMonitor arg0, IAdaptable arg1) throws ExecutionException {
+			URI libraryUri = library.uri;
+			ResourceSet resourceSet = Util.getResourceSet(contextClassifier) ;
+			Resource libraryResource = resourceSet.getResource(libraryUri, true) ;
+			Package libraryObject = (Package)libraryResource.getContents().get(0) ;
+			model.createPackageImport(libraryObject) ;
+			return CommandResult.newOKCommandResult(model);
+		}
+
+		public UpdateImportCommand(Model model, RegisteredLibrary library) {
+			super(EditorUtils.getTransactionalEditingDomain(), "Model Update", getWorkspaceFiles(model));
+			this.model = model ;
+			this.library = library ;
+			//this.operation = operation;
 		}
 	}
 	

@@ -349,8 +349,12 @@ public class OperationEditorScopingTool extends AbstractScopingTool{
 				public String getName(EObject element) {
 					if (element instanceof Property)
 						return ((Property)element).getName();
-					else if (element instanceof FormalParameter)
-						return ((FormalParameter)element).getName() ;
+					else if (element instanceof FormalParameter) {
+						String formalParameterName = ((FormalParameter)element).getName() ;
+						if (formalParameterName.startsWith("\'"))
+							formalParameterName = formalParameterName.substring(1, formalParameterName.length()-1) ;
+						return formalParameterName ;
+					}
 					else if (element instanceof LocalNameDeclarationStatement){
 						return ((LocalNameDeclarationStatement)element).getVarName() ;
 					}

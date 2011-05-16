@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.operation.editor.xtext.ui.contributions;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -25,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.papyrus.alf.validation.NamingUtils;
 import org.eclipse.papyrus.alf.validation.typing.MultiplicityFacade;
 import org.eclipse.papyrus.alf.validation.typing.MultiplicityFacadeFactory;
 import org.eclipse.papyrus.alf.validation.typing.TypeExpression;
@@ -37,6 +39,7 @@ import org.eclipse.papyrus.operation.editor.xtext.operation.FormalParameter;
 import org.eclipse.papyrus.operation.editor.xtext.operation.OperationDefinitionOrStub;
 import org.eclipse.papyrus.operation.editor.xtext.operation.TypePart;
 import org.eclipse.papyrus.operation.editor.xtext.ui.internal.OperationActivator;
+import org.eclipse.papyrus.operation.editor.xtext.utils.AlfParsingUtil;
 import org.eclipse.papyrus.operation.editor.xtext.validation.OperationJavaValidator;
 import org.eclipse.papyrus.operation.editor.xtext.validation.OperationSemanticValidator;
 import org.eclipse.uml2.uml.Comment;
@@ -73,7 +76,7 @@ public class OperationPopupEditorConfigurationContribution extends
 		if(!(graphicalEditPart.resolveSemanticElement() instanceof Operation))
 			return null;
 		operation = (Operation)graphicalEditPart.resolveSemanticElement();
-
+		
 		OperationJavaValidator.init(operation) ;
 		
 		// retrieves the XText injector
@@ -92,6 +95,9 @@ public class OperationPopupEditorConfigurationContribution extends
 				OperationDefinitionOrStub xtextOperation = (OperationDefinitionOrStub)xtextObject ;
 				
 				newName = xtextOperation.getDeclaration().getName() ;
+				if (newName.startsWith("\'")) {
+					newName = newName.substring(1, newName.length() - 1) ;
+				}
 				newIsAbstract = xtextOperation.getDeclaration().isAbstract() ;
 				if (xtextOperation.getDeclaration().getVisibilityIndicator() != null) {
 					switch (xtextOperation.getDeclaration().getVisibilityIndicator()) {
@@ -180,7 +186,7 @@ public class OperationPopupEditorConfigurationContribution extends
 			label += "public " ;
 			break;
 		case PRIVATE_LITERAL:
-			label += "private  " ;
+			label += "private " ;
 			break;
 		case PROTECTED_LITERAL:
 			label += "protected " ;
@@ -192,7 +198,12 @@ public class OperationPopupEditorConfigurationContribution extends
 		if (operation.isAbstract()) {
 			label += "abstract " ;
 		}
-		label += "\'" + operation.getName() + "\' (" ;
+		
+		if (NamingUtils.isJavaCompliant(operation.getName()))
+			label += operation.getName();
+		else
+			label += "\'" + operation.getName() + "\'" ;
+		label += " (" ;
 		boolean first = true ;
 		Parameter returnParam = null ;
 		for (Parameter p : operation.getOwnedParameters()) {
@@ -214,9 +225,16 @@ public class OperationPopupEditorConfigurationContribution extends
 				default:
 					break;
 				}
-				label += p.getName() + " : " ;
+				String parameterName = "" ;
+				if (NamingUtils.isJavaCompliant(p.getName()))
+					parameterName += p.getName() ;
+				else
+					parameterName += "\'" + p.getName() + "\'" ;
+				label += parameterName + " : " ;
 				if (p.getType()==null)
 					label += "any " ;
+				else if (NamingUtils.isJavaCompliant(p.getType().getName()))
+					label += p.getType().getName() + " " ;
 				else
 					label += "\'" + p.getType().getName() + "\' ";
 				label += MultiplicityFacadeFactory.eInstance.createMultiplicityFacade(p.getLower(), p.getUpper(), p.isUnique(), p.isOrdered()).getLabel();
@@ -235,10 +253,12 @@ public class OperationPopupEditorConfigurationContribution extends
 		}
 		label += ")" ;
 		if (returnParam != null) {
-			if (operation.getType() != null)
-				label += " \'" + operation.getType().getName() + "\'" ;
-			else
+			if (operation.getType() == null)
 				label += " any" ;
+			else if (NamingUtils.isJavaCompliant(operation.getType().getName()))
+				label += " " + operation.getType().getName() ;
+			else
+				label += " \'" + operation.getType().getName() + "\'" ;
 			label += MultiplicityFacadeFactory.eInstance.createMultiplicityFacade(operation.getLower(), operation.getUpper(), operation.isUnique(), operation.isOrdered()) ;
 		}
 		if (operation.isAbstract())
@@ -273,7 +293,11 @@ public class OperationPopupEditorConfigurationContribution extends
 			
 			for (FormalParameter p : newFormalParameters) {
 				TypeExpression typeExpression = TypeExpressionFactory.eInstance.createTypeExpression(p) ;
-				Parameter newParam = operation.createOwnedParameter(p.getName(), typeExpression.getType().extractActualType(typeExpression.getType())) ;
+				String newParamName = p.getName() ;
+				if (p.getName().startsWith("\'")) {
+					newParamName = newParamName.substring(1, newParamName.length() - 1 ) ;
+				}
+				Parameter newParam = operation.createOwnedParameter(newParamName, typeExpression.getType() != null ? typeExpression.getType().extractActualType(typeExpression.getType()) : null) ;
 				switch (p.getDirection()) {
 				case IN:
 					newParam.setDirection(ParameterDirectionKind.IN_LITERAL) ;
@@ -306,13 +330,15 @@ public class OperationPopupEditorConfigurationContribution extends
 				}
 			}
 			if (newReturnType != null) {
-				TypeFacade returnType = TypeFacadeFactory.eInstance.createVoidFacade(newReturnType.getTypeName().getQualifiedName()) ;
+				TypeFacade returnType = null ;
+				if (newReturnType.getTypeName().getQualifiedName() != null)
+					returnType = TypeFacadeFactory.eInstance.createVoidFacade(newReturnType.getTypeName().getQualifiedName()) ;
 				MultiplicityFacade returnMultiplicity = null ;
 				if (newReturnType.getMultiplicity() != null)
 					returnMultiplicity = MultiplicityFacadeFactory.eInstance.createMultiplicityFacade(newReturnType.getMultiplicity()) ;
 				else
 					returnMultiplicity = MultiplicityFacadeFactory.eInstance.createMultiplicityFacade() ;
-				operation.setType(returnType.extractActualType(returnType)) ;
+				operation.setType(returnType != null ? returnType.extractActualType(returnType) : null) ;
 				operation.setLower(returnMultiplicity.getLowerBound()) ;
 				operation.setUpper(returnMultiplicity.getUpperBound()) ;
 			}

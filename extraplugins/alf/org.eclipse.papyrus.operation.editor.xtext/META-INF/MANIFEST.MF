@@ -23,12 +23,13 @@ Import-Package: org.apache.log4j,
  org.apache.commons.logging
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.operation.editor.xtext,
- org.eclipse.papyrus.operation.editor.xtext.services,
  org.eclipse.papyrus.operation.editor.xtext.operation,
  org.eclipse.papyrus.operation.editor.xtext.operation.impl,
  org.eclipse.papyrus.operation.editor.xtext.operation.util,
  org.eclipse.papyrus.operation.editor.xtext.parseTreeConstruction,
  org.eclipse.papyrus.operation.editor.xtext.parser.antlr,
  org.eclipse.papyrus.operation.editor.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.operation.editor.xtext.services,
+ org.eclipse.papyrus.operation.editor.xtext.utils,
  org.eclipse.papyrus.operation.editor.xtext.validation
 
