@@ -30,6 +30,8 @@ import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.JumpLinkStatus;
 import org.eclipse.gmf.runtime.notation.JumpLinkType;
+import org.eclipse.gmf.runtime.notation.Location;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.Smoothness;
@@ -59,7 +61,7 @@ public class PreferenceInitializerForElementHelper {
 	}
 
 	/**
-	 * init the background for a graphical element
+	 * initialize the background for a graphical element
 	 * 
 	 * @param view
 	 *        the element to initialize
@@ -111,7 +113,7 @@ public class PreferenceInitializerForElementHelper {
 	}
 
 	/**
-	 * init the font for a graphical element
+	 * initialize the font for a graphical element
 	 * 
 	 * @param view
 	 *        the element to initialize
@@ -138,7 +140,7 @@ public class PreferenceInitializerForElementHelper {
 	}
 
 	/**
-	 * init the foreground for a graphical element
+	 * initialize the foreground for a graphical element
 	 * 
 	 * @param view
 	 *        the element to initialize
@@ -154,7 +156,23 @@ public class PreferenceInitializerForElementHelper {
 	}
 
 	/**
-	 * init the routing for a graphical element
+	 * initialize the routing for a graphical element
+	 * 
+	 * @param view
+	 *        the element to initialize
+	 * @param store
+	 *        the preference store
+	 * @param elementName
+	 *        the name to the element
+	 *        
+	 * @deprecated call {@link PreferenceInitializerForElementHelper#initRoutingFromPrefs(View, IPreferenceStore, String)} instead.
+	 */
+	public static void initRountingFromPrefs(View view, final IPreferenceStore store, String elementName) {
+		initRoutingFromPrefs(view, store, elementName);
+	}
+
+	/**
+	 * initialize the routing for a graphical element
 	 * 
 	 * @param view
 	 *        the element to initialize
@@ -163,8 +181,7 @@ public class PreferenceInitializerForElementHelper {
 	 * @param elementName
 	 *        the name to the element
 	 */
-
-	public static void initRountingFromPrefs(View view, final IPreferenceStore store, String elementName) {
+	public static void initRoutingFromPrefs(View view, final IPreferenceStore store, String elementName) {
 		Routing routing = Routing.get(store.getInt(getpreferenceKey(view, elementName, PreferenceConstantHelper.ROUTING_STYLE)));
 		if(routing != null) {
 			ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
@@ -190,14 +207,10 @@ public class PreferenceInitializerForElementHelper {
 
 		boolean routingDistance = store.getBoolean(getpreferenceKey(view, elementName, PreferenceConstantHelper.ROUTING_POLICY_DISTANCE));
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getRoutingStyle_ClosestDistance(), routingDistance);
-
-
-
-
 	}
-
+	
 	/**
-	 * init the status of the compartment for the node (Showed or hidden)
+	 * initialize the status of the compartment for the node (Showed or hidden)
 	 * 
 	 * @param view
 	 *        the element to initialize
@@ -243,7 +256,7 @@ public class PreferenceInitializerForElementHelper {
 	}
 
 	/**
-	 * init the status of each label for the node or for the link (Showed or hidden)
+	 * initialize the status of each label for the node or for the link (Showed or hidden)
 	 * 
 	 * @param view
 	 *        the element to initialize
@@ -270,11 +283,46 @@ public class PreferenceInitializerForElementHelper {
 		}
 	}
 
+	/**
+	 * initialize node dimension.
+	 * 
+	 * @param view
+	 *        the element to initialize
+	 * @param store
+	 *        the preference store
+	 * @param elementName
+	 *        the name to the element
+	 */
 	public static Dimension getDimensionFromPref(View view, final IPreferenceStore store, String elementName) {
 		Dimension dim = new Dimension();
 		String width = getpreferenceKey(view, elementName, PreferenceConstantHelper.WIDTH);
 		String height = getpreferenceKey(view, elementName, PreferenceConstantHelper.HEIGHT);
 		dim = new Dimension(store.getInt(width), store.getInt(height));
 		return dim;
+	}
+	
+	/**
+	 * initialize label location.
+	 * 
+	 * @param view
+	 *        the element to initialize
+	 * @param store
+	 *        the preference store
+	 * @param elementName
+	 *        the name to the element
+	 */
+	public static void initLabelLocationFromPrefs(View view, final IPreferenceStore store, String elementName) {
+		assert (view instanceof Node);
+		
+		Node label = (Node) view;
+		Location location = (Location) label.getLayoutConstraint();
+		
+		String xKey = getpreferenceKey(view, elementName, PreferenceConstantHelper.LOCATION_X);
+		String yKey = getpreferenceKey(view, elementName, PreferenceConstantHelper.LOCATION_Y);
+		
+		location.setX(store.getInt(xKey));
+		location.setY(store.getInt(yKey));
+		
+		label.setLayoutConstraint(location);
 	}
 }

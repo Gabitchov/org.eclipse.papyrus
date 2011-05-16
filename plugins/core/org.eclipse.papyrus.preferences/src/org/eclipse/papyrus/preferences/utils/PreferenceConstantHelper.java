@@ -111,7 +111,9 @@ public class PreferenceConstantHelper {
 
 	private final static String LABEL_VISIBILITY_CONSTANT = "label.visibility"; //$NON-NLS-1$
 
+	private final static String LOCATION_X_CONSTANT = "location_x";//$NON-NLS-1$
 
+	private final static String LOCATION_Y_CONSTANT = "location_y"; //$NON-NLS-1$
 
 	/**
 	 * A preference of type COLOR FILL
@@ -218,7 +220,17 @@ public class PreferenceConstantHelper {
 	 */
 	public static final int LABEL_VISIBILITY = COMPARTMENT_NAME_VISIBILITY + 1;
 
-
+	/**
+	 * A preference for label default location
+	 */
+	public static final int LOCATION_X = LABEL_VISIBILITY + 1;
+	
+	/**
+	 * A preference for label default location
+	 */
+	public static final int LOCATION_Y = LOCATION_X + 1;
+	
+	
 	/**
 	 * Get the preference constant used to store the preference of an element.
 	 * 
@@ -296,6 +308,10 @@ public class PreferenceConstantHelper {
 			break;
 		case LABEL_VISIBILITY:
 			sb.append(LABEL_VISIBILITY_CONSTANT);
+		case LOCATION_X:
+			sb.append(LOCATION_X_CONSTANT);
+		case LOCATION_Y:
+			sb.append(LOCATION_Y_CONSTANT);			
 		default:
 			break;
 		}
