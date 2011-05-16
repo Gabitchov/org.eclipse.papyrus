@@ -15,7 +15,10 @@ import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.widgets.Activator;
 import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 
@@ -72,6 +75,13 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 	public void doBinding() {
 		//We don't do a real databinding here
 		this.modelProperty.addChangeListener(this);
+		valueLabel.addDisposeListener(new DisposeListener() {
+
+			public void widgetDisposed(DisposeEvent e) {
+				dispose();
+			}
+
+		});
 		updateLabel();
 	}
 
@@ -79,7 +89,12 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 	 * Updates the CLabel's display
 	 */
 	protected void updateLabel() {
-		if(this.modelProperty != null && !this.valueLabel.isDisposed()) {
+		if(valueLabel.isDisposed()) {
+			Activator.log.warn("Widget is disposed"); //$NON-NLS-1$
+			return;
+		}
+
+		if(this.modelProperty != null) {
 			String text = this.labelProvider.getText(this.modelProperty.getValue());
 			Image image = this.labelProvider.getImage(this.modelProperty.getValue());
 			this.valueLabel.setText(text);

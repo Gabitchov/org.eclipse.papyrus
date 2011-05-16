@@ -16,7 +16,9 @@ import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.properties.modelelement.AbstractModelElement;
+import org.eclipse.papyrus.properties.notation.Activator;
 import org.eclipse.papyrus.properties.notation.databinding.GradientDataObservableValue;
+import org.eclipse.papyrus.properties.notation.databinding.GradientDataObservableValue.GradientProperty;
 import org.eclipse.papyrus.properties.notation.messages.Messages;
 import org.eclipse.papyrus.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
@@ -76,6 +78,23 @@ public class GradientDataModelElement extends AbstractModelElement {
 		}
 
 		return null;
+	}
+
+	public Object getDefaultValue(String propertyPath) {
+		GradientProperty property = GradientProperty.valueOf(propertyPath);
+		switch(property) {
+		case activate:
+			return false;
+		case gradientColor1:
+			return GradientData.getDefaultGradientData().getGradientColor1();
+		case gradientColor2:
+			return GradientData.getDefaultGradientData().getGradientColor2();
+		case gradientStyle:
+			return GradientData.getDefaultGradientData().getGradientStyle();
+		default:
+			Activator.log.warn("Cannot find a default value for property : " + propertyPath); //$NON-NLS-1$
+			return null;
+		}
 	}
 
 }

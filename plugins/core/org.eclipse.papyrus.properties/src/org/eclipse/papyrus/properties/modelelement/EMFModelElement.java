@@ -261,4 +261,13 @@ public class EMFModelElement extends AbstractModelElement {
 
 		return super.getValueFactory(propertyPath);
 	}
+
+	@Override
+	public Object getDefaultValue(String propertyPath) {
+		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature == null) {
+			return null;
+		}
+		return feature.getDefaultValue();
+	}
 }

@@ -32,7 +32,6 @@ import org.eclipse.papyrus.properties.customization.providers.TabContentProvider
 import org.eclipse.papyrus.properties.environment.EnvironmentPackage;
 import org.eclipse.papyrus.properties.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.properties.modelelement.EMFModelElement;
-import org.eclipse.papyrus.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
@@ -94,8 +93,9 @@ public class CustomizationModelElement extends AbstractModelElement {
 	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		EStructuralFeature feature = delegate.getFeature(propertyPath);
-		if(feature == null)
+		if(feature == null) {
 			return EmptyContentProvider.instance;
+		}
 
 		EClassifier classifier = feature.getEType();
 		if(providers.containsKey(classifier)) {
@@ -116,8 +116,9 @@ public class CustomizationModelElement extends AbstractModelElement {
 	}
 
 	private boolean isDataContextElement(EClassifier classifier) {
-		if(classifier == ContextsPackage.eINSTANCE.getDataContextElement())
+		if(classifier == ContextsPackage.eINSTANCE.getDataContextElement()) {
 			return true;
+		}
 
 		if(classifier instanceof EClass) {
 			EClass eClass = (EClass)classifier;
@@ -149,8 +150,9 @@ public class CustomizationModelElement extends AbstractModelElement {
 
 	@Override
 	public boolean isEditable(String propertyPath) {
-		if(delegate.getFeature(propertyPath) == ContextsPackage.eINSTANCE.getSection_SectionFile())
+		if(delegate.getFeature(propertyPath) == ContextsPackage.eINSTANCE.getSection_SectionFile()) {
 			return false;
+		}
 		return delegate.isEditable(propertyPath);
 	}
 
@@ -162,5 +164,9 @@ public class CustomizationModelElement extends AbstractModelElement {
 	@Override
 	public boolean forceRefresh(String localPropertyPath) {
 		return false;
+	}
+
+	public Object getDefaultValue(String propertyPath) {
+		return delegate.getDefaultValue(propertyPath);
 	}
 }

@@ -16,6 +16,7 @@ import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.FeaturePath;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -40,8 +41,9 @@ public class UMLModelElement extends EMFModelElement {
 	public IObservable getObservable(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(propertyPath);
-		if(feature == null)
+		if(feature == null) {
 			return null;
+		}
 
 		if(feature.getUpperBound() != 1) {
 			IObservableList list = domain == null ? EMFProperties.list(featurePath).observe(source) : new PapyrusObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
@@ -51,9 +53,13 @@ public class UMLModelElement extends EMFModelElement {
 		IObservableValue value = domain == null ? EMFProperties.value(featurePath).observe(source) : new PapyrusObservableValue(getSource(featurePath), feature, domain);
 		return value;
 	}
-	
+
 	@Override
-	public ILabelProvider getLabelProvider(String propertyPath){
+	public ILabelProvider getLabelProvider(String propertyPath) {
+		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature.getEType() instanceof EEnum) {
+			return super.getLabelProvider(propertyPath);
+		}
 		return new EditorLabelProvider();
 	}
 

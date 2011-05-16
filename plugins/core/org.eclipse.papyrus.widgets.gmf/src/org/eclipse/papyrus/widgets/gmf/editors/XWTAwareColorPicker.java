@@ -45,6 +45,15 @@ public class XWTAwareColorPicker extends AbstractPropertyEditor {
 		}
 	}
 
+	@Override
+	protected void doBinding() {
+		super.doBinding();
+		Object defaultValue = input.getDefaultValue(propertyPath);
+		if(defaultValue instanceof Integer) {
+			editor.setDefaultColor((Integer)defaultValue);
+		}
+	}
+
 	public String getImage() {
 		return imagePath;
 	}

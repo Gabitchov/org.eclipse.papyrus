@@ -45,6 +45,8 @@ public class ColorPickerEditor extends AbstractValueEditor implements IChangeLis
 
 	protected Image backgroundImage;
 
+	protected int defaultColor = 0;
+
 	public static final Rectangle defaultColorBoundsWithoutImage = new Rectangle(0, 0, 15, 15);
 
 	public static final Rectangle defaultColorBoundsWithImage = new Rectangle(0, 12, 16, 4);
@@ -99,10 +101,7 @@ public class ColorPickerEditor extends AbstractValueEditor implements IChangeLis
 
 	/** Sets the color & updates the ModelProperty */
 	private void setColor(RGB color) {
-		//"null" is sent when the "Default" color button is pressed
-		//TODO : add support for custom default value 
-		//(Black as default value is not always a good choice)
-		int colorValue = color == null ? 0 : FigureUtilities.RGBToInteger(color);
+		int colorValue = color == null ? defaultColor : FigureUtilities.RGBToInteger(color);
 
 		doSetColor(colorValue);
 
@@ -197,7 +196,11 @@ public class ColorPickerEditor extends AbstractValueEditor implements IChangeLis
 
 	public void handleChange(ChangeEvent event) {
 		if(modelProperty != null) {
-			int value = (Integer)modelProperty.getValue();
+			Integer value = (Integer)modelProperty.getValue();
+			if(value == null) {
+				value = 0;
+			}
+
 			doSetColor(value);
 		}
 	}
@@ -205,6 +208,17 @@ public class ColorPickerEditor extends AbstractValueEditor implements IChangeLis
 	@Override
 	public void refreshValue() {
 		handleChange(null);
+	}
+
+	/**
+	 * Sets the default color for this Editor. The default color
+	 * will be set when the "Default" button is pressed.
+	 * 
+	 * @param color
+	 *        The default color for this editor
+	 */
+	public void setDefaultColor(int color) {
+		this.defaultColor = color;
 	}
 
 }

@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.papyrus.properties.databinding.EMFObservableList;
 import org.eclipse.papyrus.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.properties.notation.databinding.GradientObservableValue;
+import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue;
 
 
@@ -41,16 +41,16 @@ public class GMFModelElement extends EMFModelElement {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(propertyPath);
 
-		if(feature == null)
+		if(feature == null) {
 			return null;
+		}
 
 		if(feature.getEType() == NotationPackage.eINSTANCE.getGradientData()) {
 			return new GradientObservableValue(source, feature, domain);
 		}
 
-		//TODO : PapyrusObservableList (With commit support)
 		if(feature.getUpperBound() != 1) {
-			IObservableList list = domain == null ? EMFProperties.list(featurePath).observe(source) : new EMFObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
+			IObservableList list = domain == null ? EMFProperties.list(featurePath).observe(source) : new PapyrusObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
 			return list;
 		}
 

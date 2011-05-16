@@ -32,7 +32,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.dialogs.ResourceSelectionDialog;
 
-
+/**
+ * A Widget for editing Strings with File paths
+ * The file paths may be absolute (FileSystem paths) or relative to the workspace (Workspace paths)
+ * 
+ * @author Camille Letavernier
+ */
 public class StringFileSelector extends StringEditor {
 
 	private Button browse;
@@ -42,6 +47,10 @@ public class StringFileSelector extends StringEditor {
 	private List<String> filterNames;
 
 	private List<String> filterExtensions;
+
+	private boolean allowWorkspace = true, allowFileSystem = true;
+
+	private boolean readOnly = false;
 
 	public StringFileSelector(Composite parent, int style) {
 		super(parent, style);
@@ -156,20 +165,28 @@ public class StringFileSelector extends StringEditor {
 	@Override
 	public void setReadOnly(boolean readOnly) {
 		super.setReadOnly(readOnly);
-		browse.setEnabled(!readOnly);
-		browseWorkspace.setEnabled(!readOnly);
+		this.readOnly = readOnly;
+		updateButtons();
 	}
 
 	public void setAllowWorkspace(boolean allowWorkspace) {
-		//((GridData)browseWorkspace.getLayoutData()).exclude = !allowWorkspace;
-		browseWorkspace.setEnabled(allowWorkspace);
-		layout();
+		this.allowWorkspace = allowWorkspace;
+		updateButtons();
 	}
 
 	public void setAllowFileSystem(boolean allowFileSystem) {
+
+		this.allowFileSystem = allowFileSystem;
+		updateButtons();
+	}
+
+	private void updateButtons() {
+		boolean enableWorkspace = !readOnly && allowWorkspace;
+		boolean enableFileSystem = !readOnly && allowFileSystem;
+		//((GridData)browseWorkspace.getLayoutData()).exclude = !allowWorkspace;
 		//((GridData)browse.getLayoutData()).exclude = !allowFileSystem;
-		browse.setEnabled(allowFileSystem);
-		layout();
+		browseWorkspace.setEnabled(enableWorkspace);
+		browse.setEnabled(enableFileSystem);
 	}
 
 }

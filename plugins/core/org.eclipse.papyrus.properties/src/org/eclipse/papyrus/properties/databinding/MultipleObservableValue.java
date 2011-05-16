@@ -31,15 +31,6 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 public class MultipleObservableValue extends AbstractObservableValue implements MultipleObservable {
 
 	/**
-	 * 
-	 * Constructor.
-	 * 
-	 */
-	public MultipleObservableValue() {
-
-	}
-
-	/**
 	 * Constructor.
 	 * 
 	 * @param defaultGetValue
@@ -47,17 +38,6 @@ public class MultipleObservableValue extends AbstractObservableValue implements 
 	 */
 	public MultipleObservableValue(Object defaultGetValue) {
 		this(null, defaultGetValue);
-	}
-
-	/**
-	 * 
-	 * Constructor.
-	 * 
-	 * @param values
-	 *        The collection of sub-elements for this MultipleObservableValue
-	 */
-	public MultipleObservableValue(Collection<IObservableValue> values) {
-		this(values, null);
 	}
 
 	/**
@@ -79,8 +59,9 @@ public class MultipleObservableValue extends AbstractObservableValue implements 
 	}
 
 	public Object getValueType() {
-		if(observableValues.isEmpty())
+		if(observableValues.isEmpty()) {
 			return null;
+		}
 		return observableValues.get(0);
 	}
 
@@ -102,8 +83,9 @@ public class MultipleObservableValue extends AbstractObservableValue implements 
 				currentValue = observable.getValue();
 			} else {
 				Object value = observable.getValue();
-				if(equals(value, currentValue))
+				if(equals(value, currentValue)) {
 					continue;
+				}
 				return defaultGetValue;
 			}
 		}
@@ -111,10 +93,12 @@ public class MultipleObservableValue extends AbstractObservableValue implements 
 	}
 
 	private boolean equals(Object value, Object currentValue) {
-		if(value == currentValue)
+		if(value == currentValue) {
 			return true;
-		if(value == null)
+		}
+		if(value == null) {
 			return false;
+		}
 		return value.equals(currentValue);
 	}
 
@@ -131,6 +115,18 @@ public class MultipleObservableValue extends AbstractObservableValue implements 
 			return true;
 		}
 		return false;
+	}
+
+	public List<IObservableValue> getObservableValues() {
+		return observableValues;
+	}
+
+	public List<Object> getObservedValues() {
+		List<Object> result = new LinkedList<Object>();
+		for(IObservableValue value : getObservableValues()) {
+			result.add(value.getValue());
+		}
+		return result;
 	}
 
 	private List<IObservableValue> observableValues = new LinkedList<IObservableValue>();

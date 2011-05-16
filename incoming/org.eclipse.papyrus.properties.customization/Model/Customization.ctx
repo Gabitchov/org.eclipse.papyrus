@@ -280,6 +280,15 @@
       </constraints>
       <widget href="ui/SingleFileSelector.xwt#/"/>
     </sections>
+    <sections name="Single IntegerSpinner" sectionFile="ui/Single IntegerSpinner.xwt">
+      <constraints xsi:type="contexts:SimpleConstraint" name="isIntegerSpinner">
+        <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.2"/>
+        <properties xsi:type="contexts:ReferenceProperty" name="query">
+          <value href="custom.querySet#isIntegerSpinner"/>
+        </properties>
+      </constraints>
+      <widget href="ui/Single IntegerSpinner.xwt#/"/>
+    </sections>
   </tabs>
   <views name="Single Environment" sections="//@tabs.0/@sections.0" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleEnvironment">
@@ -645,7 +654,7 @@
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
     </constraints>
   </views>
-  <views name="Single PropertyEditor" sections="//@tabs.0/@sections.52 //@tabs.0/@sections.73 //@tabs.0/@sections.74" automaticContext="true">
+  <views name="Single PropertyEditor" sections="//@tabs.0/@sections.52 //@tabs.0/@sections.73 //@tabs.0/@sections.74 //@tabs.0/@sections.75" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSinglePropertyEditor">
       <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
@@ -908,6 +917,11 @@
         <properties name="allowWorkspace"/>
         <properties name="allowFileSystem"/>
         <properties name="filteredExtension"/>
+      </elements>
+      <elements name="IntegerSpinner">
+        <properties name="minimum" label="" description="The minimum value that this spinner can return"/>
+        <properties name="maximum" description="The maximum value that this spinner can return"/>
+        <properties name="increment" description="The increment value for this spinner"/>
       </elements>
     </elements>
     <modelElementFactory href="pathmap://PPECustom/CustomizationEnvironment.xmi#//@modelElementFactories.0"/>

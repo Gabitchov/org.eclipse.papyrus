@@ -14,6 +14,7 @@ package org.eclipse.papyrus.properties.widgets;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.list.IObservableList;
@@ -24,6 +25,7 @@ import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.contexts.Section;
 import org.eclipse.papyrus.properties.contexts.View;
+import org.eclipse.papyrus.properties.databinding.MultipleObservableValue;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.properties.runtime.DefaultDisplayEngine;
 import org.eclipse.papyrus.properties.runtime.DisplayEngine;
@@ -132,8 +134,9 @@ public class ViewEditor extends AbstractPropertyEditor {
 		}
 
 		IObservable observable = input.getObservable(propertyPath);
-		if(observable == null)
+		if(observable == null) {
 			return;
+		}
 
 		DisplayEngine display = new DefaultDisplayEngine(true);
 
@@ -141,8 +144,13 @@ public class ViewEditor extends AbstractPropertyEditor {
 
 		if(observable instanceof IObservableValue) {
 			IObservableValue observableValue = (IObservableValue)observable;
-			Object value = observableValue.getValue();
-			display(display, value, view);
+			if(observableValue instanceof MultipleObservableValue) {
+				MultipleObservableValue multipleObservable = (MultipleObservableValue)observableValue;
+				display(display, multipleObservable.getObservedValues(), view);
+			} else {
+				Object value = observableValue.getValue();
+				display(display, value, view);
+			}
 		} else if(observable instanceof IObservableList) {
 			IObservableList observableList = (IObservableList)observable;
 			for(Object value : observableList) {
@@ -166,11 +174,27 @@ public class ViewEditor extends AbstractPropertyEditor {
 	 *        The view to display
 	 */
 	protected void display(DisplayEngine display, Object data, View view) {
+		display(display, Collections.singletonList(data), view);
+	}
+
+	/**
+	 * Displays the given view in the display engine, with the given object.
+	 * 
+	 * @param display
+	 *        The Display engine used to display the view. It should allow duplication,
+	 *        as for list properties, the same section will be displayed for each element
+	 *        in the list.
+	 * @param data
+	 *        The list of objects for which we are displaying the view
+	 * @param view
+	 *        The view to display
+	 */
+	protected void display(DisplayEngine display, List<Object> selectedElements, View view) {
 		for(Section section : view.getSections()) {
 			XWTSection xwtSection = new XWTSection(section, view, display);
 			sections.add(xwtSection);
 
-			ISelection selection = new StructuredSelection(Collections.singletonList(data));
+			ISelection selection = new StructuredSelection(selectedElements);
 
 			xwtSection.createControls(new Composite(self, SWT.NONE), null);
 			xwtSection.setInput(null, selection);
@@ -205,5 +229,10 @@ public class ViewEditor extends AbstractPropertyEditor {
 	@Override
 	protected void doBinding() {
 		//Nothing to do here
+	}
+
+	@Override
+	public Control getControl() {
+		return self;
 	}
 }

@@ -295,4 +295,19 @@ public class DataSource implements IChangeListener {
 		}
 		return element.getValueFactory(getLocalPropertyPath(propertyPath));
 	}
+
+	/**
+	 * Return the default value for the given property path
+	 * 
+	 * @param propertyPath
+	 * @return
+	 *         The default value for the given property
+	 */
+	public Object getDefaultValue(String propertyPath) {
+		ModelElement element = getModelElement(propertyPath);
+		if(element == null) {
+			return null;
+		}
+		return element.getDefaultValue(getLocalPropertyPath(propertyPath));
+	}
 }

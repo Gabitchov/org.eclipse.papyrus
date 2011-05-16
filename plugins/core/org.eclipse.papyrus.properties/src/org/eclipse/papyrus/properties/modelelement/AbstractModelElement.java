@@ -76,4 +76,8 @@ public abstract class AbstractModelElement implements ModelElement {
 		return new PropertyEditorFactory();
 	}
 
+	public Object getDefaultValue(String propertyPath) {
+		return null;
+	}
+
 }

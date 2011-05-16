@@ -24,10 +24,8 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.facet.infra.query.ModelQuery;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.properties.contexts.ConfigProperty;
 import org.eclipse.papyrus.properties.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.properties.providers.EMFObjectLabelProvider;
-import org.eclipse.papyrus.properties.ui.WidgetAttribute;
 import org.eclipse.papyrus.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
@@ -46,7 +44,7 @@ import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
  * In fact, this property is specific to the "GridLayout" and
  * "PropertiesLayout". This property is defined via a key/value pair
  * (i.e. a {@link WidgetAttribute} which name is "numColumns" and the value is the
- * number of columns). However, in the property view, we want a field "Number
+ * number of columns). However, in the property view, we want to display a field "Number
  * of Columns" when we select a GridLayout or PropertiesLayout.
  * 
  * The same goes for Constraints : EMFInstanceOf needs a "nsUri" and
@@ -124,5 +122,9 @@ public class GenericAttributeModelElement extends AbstractModelElement {
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
 		return new EMFObjectLabelProvider();
+	}
+
+	public Object getDefaultValue(String propertyPath) {
+		return ""; //$NON-NLS-1$
 	}
 }

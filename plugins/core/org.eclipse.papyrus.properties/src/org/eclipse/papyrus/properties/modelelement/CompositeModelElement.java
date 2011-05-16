@@ -43,7 +43,7 @@ public class CompositeModelElement extends AbstractModelElement {
 
 			if(observableComposite == null) {
 				if(observable instanceof IObservableValue) {
-					observableComposite = new MultipleObservableValue();
+					observableComposite = new MultipleObservableValue(getDefaultValue(propertyPath));
 				} else {
 					return null; //The support for CompositeObservableList is too complicated. 
 					//There are too many non-trivial choices (Union or Intersection display, 
@@ -72,28 +72,32 @@ public class CompositeModelElement extends AbstractModelElement {
 
 	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
-		if(elements.isEmpty())
+		if(elements.isEmpty()) {
 			return EmptyContentProvider.instance;
+		}
 
 		return elements.get(0).getContentProvider(propertyPath);
 	}
 
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
-		if(elements.isEmpty())
+		if(elements.isEmpty()) {
 			return null;
+		}
 
 		return elements.get(0).getLabelProvider(propertyPath);
 	}
 
 	@Override
 	public boolean isOrdered(String propertyPath) {
-		if(elements.isEmpty())
+		if(elements.isEmpty()) {
 			return false;
+		}
 
 		for(ModelElement element : elements) {
-			if(element.isOrdered(propertyPath))
+			if(element.isOrdered(propertyPath)) {
 				return true;
+			}
 		}
 
 		return false;
@@ -101,12 +105,14 @@ public class CompositeModelElement extends AbstractModelElement {
 
 	@Override
 	public boolean isUnique(String propertyPath) {
-		if(elements.isEmpty())
+		if(elements.isEmpty()) {
 			return false;
+		}
 
 		for(ModelElement element : elements) {
-			if(!element.isUnique(propertyPath))
+			if(!element.isUnique(propertyPath)) {
 				return false;
+			}
 		}
 
 		return true;
@@ -114,12 +120,14 @@ public class CompositeModelElement extends AbstractModelElement {
 
 	@Override
 	public boolean isMandatory(String propertyPath) {
-		if(elements.isEmpty())
+		if(elements.isEmpty()) {
 			return false;
+		}
 
 		for(ModelElement element : elements) {
-			if(!element.isMandatory(propertyPath))
+			if(!element.isMandatory(propertyPath)) {
 				return false;
+			}
 		}
 
 		return true;
@@ -127,12 +135,14 @@ public class CompositeModelElement extends AbstractModelElement {
 
 	@Override
 	public boolean isEditable(String propertyPath) {
-		if(elements.isEmpty())
+		if(elements.isEmpty()) {
 			return false;
+		}
 
 		for(ModelElement element : elements) {
-			if(!element.isEditable(propertyPath))
+			if(!element.isEditable(propertyPath)) {
 				return false;
+			}
 		}
 
 		return true;
@@ -142,14 +152,24 @@ public class CompositeModelElement extends AbstractModelElement {
 
 	@Override
 	public boolean forceRefresh(String propertyPath) {
-		if(elements.isEmpty())
+		if(elements.isEmpty()) {
 			return false;
+		}
 
 		for(ModelElement element : elements) {
-			if(element.forceRefresh(propertyPath))
+			if(element.forceRefresh(propertyPath)) {
 				return true;
+			}
 		}
 
 		return false;
+	}
+
+	@Override
+	public Object getDefaultValue(String propertyPath) {
+		if(elements.isEmpty()) {
+			return null;
+		}
+		return elements.get(0).getDefaultValue(propertyPath);
 	}
 }

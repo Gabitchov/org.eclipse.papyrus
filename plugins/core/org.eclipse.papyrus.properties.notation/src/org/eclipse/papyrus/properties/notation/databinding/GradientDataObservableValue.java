@@ -27,7 +27,7 @@ public class GradientDataObservableValue extends AbstractObservableValue {
 	}
 
 	public Object getValueType() {
-		return Integer.class;
+		return Object.class;
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class GradientDataObservableValue extends AbstractObservableValue {
 		}
 	}
 
-	private static enum GradientProperty {
+	public static enum GradientProperty {
 		gradientColor2, gradientColor1, gradientStyle, activate
 	}
 

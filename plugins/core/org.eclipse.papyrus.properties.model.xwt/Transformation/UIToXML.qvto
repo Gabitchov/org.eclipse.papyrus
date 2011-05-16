@@ -88,7 +88,7 @@ mapping CompositeWidget::toCompositeXML() : XML::Element inherits Widget::toWidg
 mapping PropertyEditor::toEditorXML() : XML::Element inherits Widget::toWidgetXML {
 	var subElements : OrderedSet(UI::Element) := self.attributes;
 	
-	children := (self.attributes->map toXML())->including(self._property.map toXML());
+	children := (self.attributes->map toXML())->including(self._property.map toXML()); //TODO : self._property may be null, which may crash the transformation ?
 	if not self.attributes->exists(e | e.name = 'input') then
 		children := children->including(createAttribute("input", "{Binding}"))
 	endif;

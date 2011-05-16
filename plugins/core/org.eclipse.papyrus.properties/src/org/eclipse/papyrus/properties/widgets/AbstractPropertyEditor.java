@@ -26,6 +26,7 @@ import org.eclipse.papyrus.widgets.editors.AbstractListEditor;
 import org.eclipse.papyrus.widgets.editors.AbstractValueEditor;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.widgets.Control;
 
 /**
  * An Abstract class to factorize code for PropertyEditors. PropertyEditors are
@@ -445,5 +446,15 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 */
 	public String getCustomLabel() {
 		return this.customLabel;
+	}
+
+	/**
+	 * @return the Control defined by this Property Editor
+	 */
+	public Control getControl() {
+		if(valueEditor == null) {
+			return listEditor;
+		}
+		return valueEditor;
 	}
 }

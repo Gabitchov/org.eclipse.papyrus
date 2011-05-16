@@ -14,7 +14,6 @@ package org.eclipse.papyrus.properties.modelelement;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
-import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
 /**
@@ -126,4 +125,10 @@ public interface ModelElement {
 	 *         create or edit a single entry.
 	 */
 	public ReferenceValueFactory getValueFactory(String propertyPath);
+
+	/**
+	 * 
+	 * @return The default value for this element
+	 */
+	public Object getDefaultValue(String propertyPath);
 }
