@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramEditDomain;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.commands.ActionHandler;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.ITextOperationTarget;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
 import org.eclipse.jface.text.source.ISourceViewer;
@@ -232,7 +233,6 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 	 * This element was originally not documented in the XText/GMF integration example
 	 * 
 	 * Changes performed by CEA LIST:
-	 * 		- Now uses the Papyrus IEditorSite 
 	 * 		- adds a focus listener for managing the context eobject and current xtext editor.
 	 * 
 	 * @param editorInput
@@ -241,6 +241,7 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 		diagramShell = diagramEditor.getSite().getShell();
 		xtextEditorComposite = new Shell(SWT.RESIZE) ;
 		xtextEditorComposite.setLayout(new FillLayout());
+	
 		
 		resourceProvider = xtextInjector.getInstance(ISyntheticResourceProvider.class) ;
 		SourceViewerHandleFactory factory = xtextInjector.getInstance(SourceViewerHandleFactory.class) ;
@@ -266,7 +267,9 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 		xtextEditorComposite.setVisible(true);
 		sourceViewerHandle.getViewer().showAnnotationsOverview(true) ;
 		sourceViewerHandle.getViewer().getTextWidget().setFocus() ;
-
+		
+		// This last statement is used to trigger initial validation
+		sourceViewerHandle.getViewer().getTextWidget().append("") ;
 	}
 
 	/**
@@ -280,8 +283,16 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 			// An unwanted closing can be prevented by verifying if the activeShell still points
 			// to the xtextEditorComposite
 			if (xtextEditorComposite.getDisplay().getActiveShell() != xtextEditorComposite) {
-				if (!ignoreFocusLost)
-					closeEditor(true) ;
+				if (!ignoreFocusLost) {
+					//if (MessageDialog.openConfirm(new Shell(), "", ""))
+						closeEditor(true) ;
+					//else {
+						//sourceViewerHandle.getViewer().getTextWidget().setFocus() ;
+						//xtextEditorComposite.setFocus() ;
+					//	xtextEditorComposite.moveAbove(null) ;
+					//	xtextEditorComposite.moveAbove(null) ;
+					//}
+				}
 				else
 					closeEditor(false) ;
 			}

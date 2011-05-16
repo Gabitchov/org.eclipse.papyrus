@@ -73,16 +73,16 @@ public class SourceViewerHandleFactory {
 	 *
 	 */
 	public SourceViewerHandle create(Composite parent, ISyntheticResourceProvider resourceProvider) {
-		/*
-		 * final IVerticalRuler ruler = new VerticalRuler(VERTICAL_RULER_WIDTH, new DefaultMarkerAnnotationAccess());
+		final IVerticalRuler ruler = new VerticalRuler(VERTICAL_RULER_WIDTH, new DefaultMarkerAnnotationAccess());
 		final IOverviewRuler oRuler = new OverviewRuler(new DefaultMarkerAnnotationAccess(), VERTICAL_RULER_WIDTH, getSharedColors());
-		final XtextSourceViewer viewer = sourceViewerFactory.createSourceViewer(parent, ruler, oRuler, true, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
+		//final XtextSourceViewer viewer = sourceViewerFactory.createSourceViewer(parent, ruler, oRuler, true, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
+		final XtextSourceViewer viewer = new CustomXtextSourceViewer(parent, ruler, oRuler, false, SWT.V_SCROLL | SWT.H_SCROLL);
+		/*
+		 * final IVerticalRuler ruler = new VerticalRuler(VERTICAL_RULER_WIDTH, null) ;
+		final XtextSourceViewer viewer = new CustomXtextSourceViewer(parent, ruler, null, true, SWT.None); 
 		 */
 		
-		//final XtextSourceViewer viewer= sourceViewerFactory.createSourceViewer(parent, null, null, false, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
-		final IVerticalRuler ruler = new VerticalRuler(VERTICAL_RULER_WIDTH, null) ;
-		//final XtextSourceViewer viewer = sourceViewerFactory.createSourceViewer(parent, ruler, null, true, SWT.None);
-		final XtextSourceViewer viewer = new CustomXtextSourceViewer(parent, ruler, null, true, SWT.None);
+		
 		XtextSourceViewerConfiguration viewerConfiguration = sourceViewerConfigurationProvider.get();
 		viewer.configure(viewerConfiguration);
 		
