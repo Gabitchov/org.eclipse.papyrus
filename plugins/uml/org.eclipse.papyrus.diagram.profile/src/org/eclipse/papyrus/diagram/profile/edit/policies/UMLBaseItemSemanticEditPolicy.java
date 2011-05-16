@@ -245,11 +245,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			if(provider == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
+
 			// Retrieve create command from the Element Edit service
 			ICommand createGMFCommand = provider.getEditCommand(req);
 
 			return getGEFWrapper(createGMFCommand);
 		}
+
 		return null;
 	}
 
@@ -477,15 +479,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canExistExtension_1013(Package container, Extension linkInstance, Property source, Class target) {
 			try {
 				//ExtensionSource
-				/**
-				 * we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
+				/**we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
 				 * 
 				 * @see org.eclipse.papyrus.diagram.profile.custom.policies.CUMLBaseItemSemanticEditPolicy for the good test!
 				 */
 				//ExtensionTarget
 
-				/**
-				 * we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
+				/**we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
 				 * 
 				 * @see org.eclipse.papyrus.diagram.profile.custom.policies.CUMLBaseItemSemanticEditPolicy for the good test!
 				 */

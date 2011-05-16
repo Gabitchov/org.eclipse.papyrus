@@ -186,10 +186,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		 if (op.getViewKind() == Edge.class)
 		 return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		 */
+
+		// check Diagram Type should be the class diagram
 		String modelID = UMLVisualIDRegistry.getModelID(op.getContainerView());
 		if(!getDiagramProvidedId().equals(modelID)) {
 			return false;
 		}
+
+		int visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
+		if(Node.class.isAssignableFrom(op.getViewKind())) {
+			return UMLVisualIDRegistry.canCreateNode(op.getContainerView(), visualID);
+		}
+
 		return true;
 	}
 
@@ -501,8 +509,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Stereotype");
 
 		Node label1034 = createLabel(node, UMLVisualIDRegistry.getType(StereotypeNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(StereotypeAttributeCompartmentEditPart.VISUAL_ID), true, false, true, true);
-		createCompartment(node, UMLVisualIDRegistry.getType(StereotypeOperationCompartmentEditPart.VISUAL_ID), true, false, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(StereotypeAttributeCompartmentEditPart.VISUAL_ID), true, true, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(StereotypeOperationCompartmentEditPart.VISUAL_ID), true, true, true, true);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Stereotype");
 
@@ -621,7 +629,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Model");
 
 		Node label5020 = createLabel(node, UMLVisualIDRegistry.getType(ModelNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(ModelPackageableElementCompartmentEditPartTN.VISUAL_ID), false, false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(ModelPackageableElementCompartmentEditPartTN.VISUAL_ID), false, true, false, false);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Model");
 
@@ -652,7 +660,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Profile");
 
 		Node label1047 = createLabel(node, UMLVisualIDRegistry.getType(ProfileNameEditPartTN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(ProfilePackageableElementCompartmentEditPartTN.VISUAL_ID), false, false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(ProfilePackageableElementCompartmentEditPartTN.VISUAL_ID), false, true, false, false);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Profile");
 
@@ -683,7 +691,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Package");
 
 		Node label5026 = createLabel(node, UMLVisualIDRegistry.getType(PackageNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(PackagePackageableElementCompartmentEditPart.VISUAL_ID), false, false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(PackagePackageableElementCompartmentEditPart.VISUAL_ID), false, true, false, false);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Package");
 
@@ -714,7 +722,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Enumeration");
 
 		Node label5023 = createLabel(node, UMLVisualIDRegistry.getType(EnumerationNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID), true, false, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID), true, true, true, true);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Enumeration");
 
@@ -774,8 +782,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "DataType");
 
 		Node label5035 = createLabel(node, UMLVisualIDRegistry.getType(DataTypeNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(DataTypeAttributeCompartmentEditPart.VISUAL_ID), true, false, true, true);
-		createCompartment(node, UMLVisualIDRegistry.getType(DataTypeOperationCompartmentEditPart.VISUAL_ID), true, false, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(DataTypeAttributeCompartmentEditPart.VISUAL_ID), true, true, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(DataTypeOperationCompartmentEditPart.VISUAL_ID), true, true, true, true);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "DataType");
 
@@ -967,8 +975,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Stereotype");
 
 		Node label1046 = createLabel(node, UMLVisualIDRegistry.getType(StereotypeNameEditPartCN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(StereotypeAttributeCompartmentEditPartCN.VISUAL_ID), true, false, true, true);
-		createCompartment(node, UMLVisualIDRegistry.getType(StereotypeOperationCompartmentEditPartCN.VISUAL_ID), true, false, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(StereotypeAttributeCompartmentEditPartCN.VISUAL_ID), true, true, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(StereotypeOperationCompartmentEditPartCN.VISUAL_ID), true, true, true, true);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Stereotype");
 
@@ -1054,7 +1062,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Model");
 
 		Node label1056 = createLabel(node, UMLVisualIDRegistry.getType(ModelNameEditPartCN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(ModelPackageableElementCompartmentEditPartCN.VISUAL_ID), false, false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(ModelPackageableElementCompartmentEditPartCN.VISUAL_ID), false, true, false, false);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Model");
 
@@ -1084,7 +1092,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Profile");
 
 		Node label1050 = createLabel(node, UMLVisualIDRegistry.getType(ProfileNameEditPartCN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(ProfilePackageableElementCompartmentEditPartCN.VISUAL_ID), false, false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(ProfilePackageableElementCompartmentEditPartCN.VISUAL_ID), false, true, false, false);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Profile");
 
@@ -1114,7 +1122,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Package");
 
 		Node label1010 = createLabel(node, UMLVisualIDRegistry.getType(PackageNameEditPartCN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(PackagePackageableElementCompartmentEditPartCN.VISUAL_ID), false, false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(PackagePackageableElementCompartmentEditPartCN.VISUAL_ID), false, true, false, false);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Package");
 
@@ -1173,7 +1181,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Enumeration");
 
 		Node label5055 = createLabel(node, UMLVisualIDRegistry.getType(EnumerationNameEditPartCN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID), true, false, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID), true, true, true, true);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Enumeration");
 
@@ -1203,8 +1211,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "DataType");
 
 		Node label5061 = createLabel(node, UMLVisualIDRegistry.getType(DataTypeNameEditPartCN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(DataTypeAttributeCompartmentEditPartCN.VISUAL_ID), true, false, true, true);
-		createCompartment(node, UMLVisualIDRegistry.getType(DataTypeOperationCompartmentEditPartCN.VISUAL_ID), true, false, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(DataTypeAttributeCompartmentEditPartCN.VISUAL_ID), true, true, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(DataTypeOperationCompartmentEditPartCN.VISUAL_ID), true, true, true, true);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "DataType");
 
@@ -1242,6 +1250,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Extension");
+
+
 
 		return edge;
 	}
@@ -1308,6 +1318,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6034 = (Location)label6034.getLayoutConstraint();
 		location6034.setX(0);
 		location6034.setY(-20);
+
+
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Association");
+
 		return edge;
 	}
 
@@ -1342,6 +1356,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "ProfileApplication");
+
+
 
 		return edge;
 	}
@@ -1388,6 +1404,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6035 = (Location)label6035.getLayoutConstraint();
 		location6035.setX(0);
 		location6035.setY(20);
+
+
 		return edge;
 	}
 
@@ -1428,6 +1446,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6007 = (Location)label6007.getLayoutConstraint();
 		location6007.setX(0);
 		location6007.setY(60);
+
+
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Generalization");
+
 		return edge;
 	}
 
@@ -1473,6 +1495,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6027 = (Location)label6027.getLayoutConstraint();
 		location6027.setX(0);
 		location6027.setY(60);
+
+
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Dependency");
+
 		return edge;
 	}
 
@@ -1507,6 +1533,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Dependency");
+
+
 
 		return edge;
 	}
@@ -1553,6 +1581,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6021 = (Location)label6021.getLayoutConstraint();
 		location6021.setX(0);
 		location6021.setY(60);
+
+
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "ElementImport");
+
 		return edge;
 	}
 
@@ -1593,6 +1625,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6022 = (Location)label6022.getLayoutConstraint();
 		location6022.setX(0);
 		location6022.setY(60);
+
+
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "PackageImport");
+
 		return edge;
 	}
 
@@ -1628,6 +1664,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Undefined");
 
+
+
 		return edge;
 	}
 
@@ -1662,6 +1700,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Undefined");
+
+
 
 		return edge;
 	}
