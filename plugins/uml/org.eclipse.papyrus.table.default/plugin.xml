@@ -43,7 +43,7 @@
             locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createtable">
          <command
                commandId="org.eclipse.papyrus.default.table.command"
-               icon="platform:/plugin/org.eclipse.emf.facet.widgets.nattable.workbench/icons/table.png"
+               icon="icons/table.png"
                label="Default Table"
                mnemonic="&amp;D"
                style="push"
@@ -63,7 +63,7 @@
             locationURI="menu:org.eclipse.papyrus.table.ui.menu.tables">
          <command
                commandId="org.eclipse.papyrus.default.table.command"
-               icon="platform:/plugin/org.eclipse.emf.facet.widgets.nattable.workbench/icons/table.png"
+               icon="icons/table.png"
                label="Default Table"
                mnemonic="&amp;D"
                style="push"
@@ -83,7 +83,7 @@
             locationURI="toolbar:org.eclipse.papyrus.table.ui.toolbar">
          <command
                commandId="org.eclipse.papyrus.default.table.command"
-               icon="platform:/plugin/org.eclipse.emf.facet.widgets.nattable.workbench/icons/table.png"
+               icon="icons/table.png"
                label="Default Table"
                mnemonic="&amp;D"
                style="push"
