@@ -118,7 +118,7 @@ import org.eclipse.ui.texteditor.IWorkbenchActionDefinitionIds;
 public class RichTextEditor implements IRichTextEditor {
 
 	// The HTML tab name.
-	protected static final String HTML_TAB_NAME = Messages.htmlTab_text;
+	protected static final String HTML_TAB_NAME = RichTextResources.htmlTab_text;
 
 	// If true, log debugging info.
 	protected boolean debug;
@@ -927,8 +927,8 @@ public class RichTextEditor implements IRichTextEditor {
 		richText.getFindReplaceAction().setRichText(this);
 
 		richTextTab = new CTabItem(folder, SWT.FLAT);
-		richTextTab.setText(Messages.richTextTab_text);
-		richTextTab.setToolTipText(Messages.richTextTab_toolTipText);
+		richTextTab.setText(RichTextResources.richTextTab_text);
+		richTextTab.setToolTipText(RichTextResources.richTextTab_toolTipText);
 		richTextTab.setControl(richTextComposite);
 
 		Composite htmlComposite = new Composite(folder, SWT.FLAT);
@@ -951,7 +951,7 @@ public class RichTextEditor implements IRichTextEditor {
 		
 		htmlTab = new CTabItem(folder, SWT.NONE);
 		htmlTab.setText(HTML_TAB_NAME);
-		htmlTab.setToolTipText(Messages.htmlTab_toolTipText); 
+		htmlTab.setToolTipText(RichTextResources.htmlTab_toolTipText); 
 		htmlTab.setControl(htmlComposite);
 
 		folder.addSelectionListener(new SelectionAdapter() {
@@ -1101,7 +1101,7 @@ public class RichTextEditor implements IRichTextEditor {
 	 */
 	protected void fillContextMenu(Menu contextMenu) {
 		final MenuItem cutItem = new MenuItem(contextMenu, SWT.PUSH);
-		cutItem.setText(Messages.cutAction_text);
+		cutItem.setText(RichTextResources.cutAction_text);
 		cutItem.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
 				CutAction action = new CutAction(RichTextEditor.this);
@@ -1109,7 +1109,7 @@ public class RichTextEditor implements IRichTextEditor {
 			}
 		});
 		final MenuItem copyItem = new MenuItem(contextMenu, SWT.PUSH);
-		copyItem.setText(Messages.copyAction_text); 
+		copyItem.setText(RichTextResources.copyAction_text); 
 		copyItem.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
 				CopyAction action = new CopyAction(RichTextEditor.this);
@@ -1117,7 +1117,7 @@ public class RichTextEditor implements IRichTextEditor {
 			}
 		});
 		final MenuItem pasteItem = new MenuItem(contextMenu, SWT.PUSH);
-		pasteItem.setText(Messages.pasteAction_text); 
+		pasteItem.setText(RichTextResources.pasteAction_text); 
 		pasteItem.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
 				PasteAction action = new PasteAction(RichTextEditor.this);
@@ -1126,7 +1126,7 @@ public class RichTextEditor implements IRichTextEditor {
 		});
 		
 		final MenuItem pastePlainTextItem = new MenuItem(contextMenu, SWT.PUSH);
-		pastePlainTextItem.setText(Messages.pastePlainTextAction_text);
+		pastePlainTextItem.setText(RichTextResources.pastePlainTextAction_text);
 		pastePlainTextItem.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
 				PastePlainTextAction action = new PastePlainTextAction(RichTextEditor.this);

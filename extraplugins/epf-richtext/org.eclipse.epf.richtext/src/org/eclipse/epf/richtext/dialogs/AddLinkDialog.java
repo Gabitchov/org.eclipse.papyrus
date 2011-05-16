@@ -20,7 +20,7 @@
 //------------------------------------------------------------------------------
 package org.eclipse.epf.richtext.dialogs;
 
-import org.eclipse.epf.richtext.Messages;
+import org.eclipse.epf.richtext.RichTextResources;
 import org.eclipse.epf.richtext.html.Link;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -79,7 +79,7 @@ public class AddLinkDialog extends BaseDialog {
 		composite = (Composite) super.createDialogArea(parent);
 
 		urlLabel = new Label(composite, SWT.NONE);
-		urlLabel.setText(Messages.urlLabel_text);
+		urlLabel.setText(RichTextResources.urlLabel_text);
 		urlText = new Text(composite, SWT.BORDER);
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.widthHint = 300;
@@ -87,13 +87,13 @@ public class AddLinkDialog extends BaseDialog {
 		urlText.addModifyListener(urlTextModifyListener);
 
 		urlDisplayNameLabel = new Label(composite, SWT.NONE);
-		urlDisplayNameLabel.setText(Messages.urlDisplayNameLabel_text);
+		urlDisplayNameLabel.setText(RichTextResources.urlDisplayNameLabel_text);
 		urlDisplayNameText = new Text(composite, SWT.BORDER);
 		GridData gridData2 = new GridData(GridData.FILL_HORIZONTAL);
 		gridData2.widthHint = 300;
 		urlDisplayNameText.setLayoutData(gridData2);
 
-		super.getShell().setText(Messages.addLinkDialog_title);
+		super.getShell().setText(RichTextResources.addLinkDialog_title);
 
 		return composite;
 	}

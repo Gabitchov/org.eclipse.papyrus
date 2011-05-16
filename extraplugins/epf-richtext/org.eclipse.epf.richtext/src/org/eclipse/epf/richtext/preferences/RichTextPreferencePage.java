@@ -21,7 +21,7 @@
 package org.eclipse.epf.richtext.preferences;
 
 import org.eclipse.epf.richtext.RichTextPlugin;
-import org.eclipse.epf.richtext.Messages;
+import org.eclipse.epf.richtext.RichTextResources;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.swt.SWT;
@@ -76,7 +76,7 @@ public class RichTextPreferencePage extends PreferencePage implements
 		widthComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		Label lineWidthLabel = new Label(widthComposite, SWT.NONE);
-		lineWidthLabel.setText(Messages.maxCharsPerLineLabel_text); 
+		lineWidthLabel.setText(RichTextResources.maxCharsPerLineLabel_text); 
 
 		lineWidthText = new Text(widthComposite, SWT.BORDER);
 		lineWidthText.setText(store.getString(RichTextPreferences.LINE_WIDTH));
@@ -94,7 +94,7 @@ public class RichTextPreferencePage extends PreferencePage implements
 		indentComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		indentCheckbox = new Button(indentComposite, SWT.CHECK);
-		indentCheckbox.setText(Messages.indentHTMLCheckbox_text); 
+		indentCheckbox.setText(RichTextResources.indentHTMLCheckbox_text); 
 		indentCheckbox.setSelection(store
 				.getBoolean(RichTextPreferences.INDENT));
 
@@ -104,7 +104,7 @@ public class RichTextPreferencePage extends PreferencePage implements
 		gridData = new GridData();
 		gridData.horizontalIndent = 20;
 		indentSizeLabel.setLayoutData(gridData);
-		indentSizeLabel.setText(Messages.indentSizeLabel_text); 
+		indentSizeLabel.setText(RichTextResources.indentSizeLabel_text); 
 
 		indentSizeText = new Text(indentComposite, SWT.BORDER);
 		indentSizeText

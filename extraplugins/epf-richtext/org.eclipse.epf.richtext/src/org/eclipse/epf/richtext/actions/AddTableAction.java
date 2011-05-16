@@ -23,7 +23,7 @@ package org.eclipse.epf.richtext.actions;
 import org.eclipse.epf.richtext.IRichText;
 import org.eclipse.epf.richtext.RichTextCommand;
 import org.eclipse.epf.richtext.RichTextImages;
-import org.eclipse.epf.richtext.Messages;
+import org.eclipse.epf.richtext.RichTextResources;
 import org.eclipse.epf.richtext.dialogs.AddTableDialog;
 import org.eclipse.epf.richtext.html.Table;
 import org.eclipse.jface.action.IAction;
@@ -45,7 +45,7 @@ public class AddTableAction extends RichTextAction {
 		super(richText, IAction.AS_PUSH_BUTTON);
 		setImageDescriptor(RichTextImages.IMG_DESC_ADD_TABLE);
 		setDisabledImageDescriptor(RichTextImages.DISABLED_IMG_DESC_ADD_TABLE);
-		setToolTipText(Messages.addTableAction_toolTipText);
+		setToolTipText(RichTextResources.addTableAction_toolTipText);
 	}
 
 	/**

@@ -9,7 +9,7 @@
 
 package org.eclipse.epf.richtext.dialogs;
 
-import org.eclipse.epf.richtext.Messages;
+import org.eclipse.epf.richtext.RichTextResources;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -32,7 +32,7 @@ public class AddCodeDialog extends BaseDialog {
 		Composite composite = (Composite) super.createDialogArea(parent);
 		
 		Label label = new Label(composite, SWT.NONE);
-		label.setText(Messages.addCodeDialog_Msg);
+		label.setText(RichTextResources.addCodeDialog_Msg);
 		{
 			GridData gd = new GridData(GridData.FILL_HORIZONTAL);
 			gd.horizontalSpan = 2;
@@ -53,7 +53,7 @@ public class AddCodeDialog extends BaseDialog {
 			}			
 		});
 		
-		super.getShell().setText(Messages.addCodeDialog_title);
+		super.getShell().setText(RichTextResources.addCodeDialog_title);
 		
 		return composite;
 	}

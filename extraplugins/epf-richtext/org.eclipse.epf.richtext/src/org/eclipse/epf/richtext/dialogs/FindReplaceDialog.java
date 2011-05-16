@@ -20,7 +20,7 @@
 //------------------------------------------------------------------------------
 package org.eclipse.epf.richtext.dialogs;
 
-import org.eclipse.epf.richtext.Messages;
+import org.eclipse.epf.richtext.RichTextResources;
 import org.eclipse.epf.richtext.actions.FindReplaceAction;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.swt.SWT;
@@ -103,7 +103,7 @@ public class FindReplaceDialog extends BaseDialog {
 		textComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		Label findLabel = new Label(textComposite, SWT.NONE);
-		findLabel.setText(Messages.findLabel_text);
+		findLabel.setText(RichTextResources.findLabel_text);
 		findText = new Text(textComposite, SWT.BORDER);
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.widthHint = 200;
@@ -122,7 +122,7 @@ public class FindReplaceDialog extends BaseDialog {
 		});
 
 		Label replaceLabel = new Label(textComposite, SWT.NONE);
-		replaceLabel.setText(Messages.replaceLabel_text);
+		replaceLabel.setText(RichTextResources.replaceLabel_text);
 		replaceText = new Text(textComposite, SWT.BORDER);
 		replaceText.setLayoutData(gridData);
 		if (findOnly) {
@@ -147,31 +147,31 @@ public class FindReplaceDialog extends BaseDialog {
 		optionsComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		Group directionGroup = new Group(optionsComposite, SWT.NONE);
-		directionGroup.setText(Messages.directionGroup_text);
+		directionGroup.setText(RichTextResources.directionGroup_text);
 		directionGroup.setLayout(new GridLayout(1, false));
 		directionGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		searchForwardRadioButton = new Button(directionGroup, SWT.RADIO);
 		searchForwardRadioButton
-				.setText(Messages.forwardRadioButton_text);
+				.setText(RichTextResources.forwardRadioButton_text);
 		searchForwardRadioButton.setSelection(true);
 		searchBackwardRadioButton = new Button(directionGroup, SWT.RADIO);
 		searchBackwardRadioButton
-				.setText(Messages.backwardRadioButton_text);
+				.setText(RichTextResources.backwardRadioButton_text);
 
 		Group optionsGroup = new Group(optionsComposite, SWT.NONE);
-		optionsGroup.setText(Messages.optionsGroup_text);
+		optionsGroup.setText(RichTextResources.optionsGroup_text);
 		optionsGroup.setLayout(new GridLayout(1, false));
 		optionsGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		caseSensitiveCheckbox = new Button(optionsGroup, SWT.CHECK);
 		caseSensitiveCheckbox
-				.setText(Messages.caseSensitiveCheckbox_text);
+				.setText(RichTextResources.caseSensitiveCheckbox_text);
 		wholeWordCheckbox = new Button(optionsGroup, SWT.CHECK);
-		wholeWordCheckbox.setText(Messages.wholeWordCheckbox_text);
+		wholeWordCheckbox.setText(RichTextResources.wholeWordCheckbox_text);
 
 		statusLabel = new Label(composite, SWT.NONE);
 		statusLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-		super.getShell().setText(Messages.findReplaceDialog_title);
+		super.getShell().setText(RichTextResources.findReplaceDialog_title);
 
 		return composite;
 	}
@@ -179,7 +179,7 @@ public class FindReplaceDialog extends BaseDialog {
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
 		createButton(parent, IDialogConstants.CLIENT_ID + 1,
-				Messages.findButton_text, true);
+				RichTextResources.findButton_text, true);
 		findButton = super.getButton(IDialogConstants.CLIENT_ID + 1);
 		findButton.addSelectionListener(new SelectionListener() {
 			public void widgetSelected(SelectionEvent event) {
@@ -195,7 +195,7 @@ public class FindReplaceDialog extends BaseDialog {
 					statusLabel.setText(""); //$NON-NLS-1$
 				} else {
 					statusLabel
-							.setText(Messages.FindReplace_Status_noMatch_label);
+							.setText(RichTextResources.FindReplace_Status_noMatch_label);
 				}
 				findButton.setFocus();
 			}
@@ -205,7 +205,7 @@ public class FindReplaceDialog extends BaseDialog {
 		});
 
 		createButton(parent, IDialogConstants.CLIENT_ID + 2,
-				Messages.replaceButton_text, false);
+				RichTextResources.replaceButton_text, false);
 		replaceButton = super.getButton(IDialogConstants.CLIENT_ID + 2);
 		if (!findOnly) {
 			replaceButton.addSelectionListener(new SelectionListener() {
@@ -222,7 +222,7 @@ public class FindReplaceDialog extends BaseDialog {
 		}
 
 		createButton(parent, IDialogConstants.CLIENT_ID + 3,
-				Messages.replaceFindButton_text, false);
+				RichTextResources.replaceFindButton_text, false);
 		replaceFindButton = super.getButton(IDialogConstants.CLIENT_ID + 3);
 		if (!findOnly) {
 			replaceFindButton.addSelectionListener(new SelectionListener() {
@@ -242,7 +242,7 @@ public class FindReplaceDialog extends BaseDialog {
 		}
 
 		createButton(parent, IDialogConstants.CLIENT_ID + 4,
-				Messages.replaceallButton_text, false);
+				RichTextResources.replaceallButton_text, false);
 		replaceAllButton = super.getButton(IDialogConstants.CLIENT_ID + 4);
 		if (!findOnly) {
 			replaceAllButton.addSelectionListener(new SelectionListener() {

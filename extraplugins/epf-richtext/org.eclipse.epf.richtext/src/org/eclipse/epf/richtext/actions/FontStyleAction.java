@@ -26,7 +26,7 @@ import java.util.List;
 
 import org.eclipse.epf.richtext.IRichText;
 import org.eclipse.epf.richtext.RichTextCommand;
-import org.eclipse.epf.richtext.Messages;
+import org.eclipse.epf.richtext.RichTextResources;
 import org.eclipse.epf.richtext.html.FontStyle;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
@@ -46,7 +46,7 @@ public class FontStyleAction extends RichTextComboAction {
 	 */
 	public FontStyleAction(final IRichText richText) {
 		super(richText);
-		setToolTipText(Messages.fontStyleAction_toolTipText);
+		setToolTipText(RichTextResources.fontStyleAction_toolTipText);
 		
 		input = new ArrayList<String>();
 		input.add(FontStyle.NORMAL.getName());

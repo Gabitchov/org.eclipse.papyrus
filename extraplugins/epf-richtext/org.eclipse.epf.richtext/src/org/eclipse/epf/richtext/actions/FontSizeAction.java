@@ -25,7 +25,7 @@ import java.util.Collection;
 
 import org.eclipse.epf.richtext.IRichText;
 import org.eclipse.epf.richtext.RichTextCommand;
-import org.eclipse.epf.richtext.Messages;
+import org.eclipse.epf.richtext.RichTextResources;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
@@ -44,7 +44,7 @@ public class FontSizeAction extends RichTextComboAction {
 	 */
 	public FontSizeAction(final IRichText richText) {
 		super(richText);
-		setToolTipText(Messages.fontSizeAction_toolTipText);
+		setToolTipText(RichTextResources.fontSizeAction_toolTipText);
 		input = new ArrayList<String>();
 
 		input.add("Default"); //$NON-NLS-1$

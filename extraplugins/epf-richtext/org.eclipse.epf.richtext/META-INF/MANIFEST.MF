@@ -3,6 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.epf.richtext;singleton:=true
 Bundle-Version: 1.6.0.qualifier
+Bundle-ClassPath: richtext.jar
 Bundle-Activator: org.eclipse.epf.richtext.RichTextPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -12,7 +13,7 @@ Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  org.eclipse.jface.text;visibility:=reexport,
  org.eclipse.ui.workbench.texteditor;visibility:=reexport,
  org.eclipse.epf.common.ui;visibility:=reexport
-Bundle-ActivationPolicy: lazy
+Eclipse-LazyStart: true
 Export-Package: org.eclipse.epf.richtext,
  org.eclipse.epf.richtext.actions,
  org.eclipse.epf.richtext.dialogs,

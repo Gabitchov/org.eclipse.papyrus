@@ -22,7 +22,7 @@ package org.eclipse.epf.richtext.actions;
 
 import org.eclipse.epf.richtext.IRichText;
 import org.eclipse.epf.richtext.RichTextImages;
-import org.eclipse.epf.richtext.Messages;
+import org.eclipse.epf.richtext.RichTextResources;
 import org.eclipse.jface.action.IAction;
 
 /**
@@ -43,7 +43,7 @@ public class TidyActionGroup extends RichTextAction {
 		setImageDescriptor(RichTextImages.IMG_DESC_TIDY);
 		// TODO need image
 //		setDisabledImageDescriptor(RichTextImages.DISABLED_IMG_DESC_PASTE);
-		setToolTipText(Messages.tidy_clean_text);
+		setToolTipText(RichTextResources.tidy_clean_text);
 		
 		createActions();
 		setMenuCreator(menuCreator);
@@ -51,14 +51,14 @@ public class TidyActionGroup extends RichTextAction {
 	
 	private void createActions() {
 		tidyActionDefault = new TidyAction(richText, true, false, false);
-		tidyActionDefault.setText(Messages.tidy_clean_text);
-		tidyActionDefault.setToolTipText(Messages.tidy_clean_toolTipText);
+		tidyActionDefault.setText(RichTextResources.tidy_clean_text);
+		tidyActionDefault.setToolTipText(RichTextResources.tidy_clean_toolTipText);
 		tidyActionCleanMS = new TidyAction(richText, true, true, false);
-		tidyActionCleanMS.setText(Messages.tidy_cleaner_text);
-		tidyActionCleanMS.setToolTipText(Messages.tidy_cleaner_toolTipText);
+		tidyActionCleanMS.setText(RichTextResources.tidy_cleaner_text);
+		tidyActionCleanMS.setToolTipText(RichTextResources.tidy_cleaner_toolTipText);
 		tidyActionCleanWord2000 = new TidyAction(richText, true, true, true);
-		tidyActionCleanWord2000.setText(Messages.tidy_cleanest_text);
-		tidyActionCleanWord2000.setToolTipText(Messages.tidy_cleanest_toolTipText);
+		tidyActionCleanWord2000.setText(RichTextResources.tidy_cleanest_text);
+		tidyActionCleanWord2000.setToolTipText(RichTextResources.tidy_cleanest_toolTipText);
 		addActionToMenu(tidyActionDefault);
 		addActionToMenu(tidyActionCleanMS);
 		addActionToMenu(tidyActionCleanWord2000);

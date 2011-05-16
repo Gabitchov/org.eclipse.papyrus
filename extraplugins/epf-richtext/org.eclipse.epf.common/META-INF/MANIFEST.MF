@@ -3,6 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.epf.common;singleton:=true
 Bundle-Version: 1.5.0.qualifier
+Bundle-ClassPath: common.jar
 Bundle-Activator: org.eclipse.epf.common.CommonPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -10,7 +11,7 @@ Require-Bundle: com.ibm.icu;visibility:=reexport,
  org.eclipse.core.resources;visibility:=reexport,
  org.eclipse.core.runtime;visibility:=reexport,
  org.apache.ant;visibility:=reexport
-Bundle-ActivationPolicy: lazy
+Eclipse-LazyStart: true
 Export-Package: org.eclipse.epf.common,
  org.eclipse.epf.common.preferences,
  org.eclipse.epf.common.serviceability,

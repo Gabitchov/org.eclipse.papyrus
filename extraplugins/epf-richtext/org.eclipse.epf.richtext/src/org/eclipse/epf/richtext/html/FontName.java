@@ -23,7 +23,7 @@ package org.eclipse.epf.richtext.html;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.epf.richtext.Messages;
+import org.eclipse.epf.richtext.RichTextResources;
 
 /**
  * Models a HTML font name.
@@ -34,15 +34,15 @@ import org.eclipse.epf.richtext.Messages;
 public class FontName {
 
 	// The user friendly names.
-	private static final String NAME_DEFAULT = Messages.fontName_default;
+	private static final String NAME_DEFAULT = RichTextResources.fontName_default;
 
-	private static final String NAME_ARIAL = Messages.fontName_arial;
+	private static final String NAME_ARIAL = RichTextResources.fontName_arial;
 
-	private static final String NAME_COURIER_NEW = Messages.fontName_courierNew;
+	private static final String NAME_COURIER_NEW = RichTextResources.fontName_courierNew;
 
-	private static final String NAME_TIMES_NEW_ROMAN = Messages.fontName_timesNewRoman;
+	private static final String NAME_TIMES_NEW_ROMAN = RichTextResources.fontName_timesNewRoman;
 
-	private static final String NAME_VERDANA = Messages.fontName_verdana;
+	private static final String NAME_VERDANA = RichTextResources.fontName_verdana;
 
 	// The internal values.
 	private static final String VALUE_DEFAULT = ""; //$NON-NLS-1$

@@ -35,7 +35,7 @@ import org.eclipse.epf.richtext.RichTextCommand;
 import org.eclipse.epf.richtext.RichTextEditor;
 import org.eclipse.epf.richtext.RichTextImages;
 import org.eclipse.epf.richtext.RichTextPlugin;
-import org.eclipse.epf.richtext.Messages;
+import org.eclipse.epf.richtext.RichTextResources;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.dnd.Clipboard;
@@ -77,7 +77,7 @@ public class PasteAction extends RichTextAction {
 		super(richText, IAction.AS_PUSH_BUTTON);
 		setImageDescriptor(RichTextImages.IMG_DESC_PASTE);
 		setDisabledImageDescriptor(RichTextImages.DISABLED_IMG_DESC_PASTE);
-		setToolTipText(Messages.pasteAction_toolTipText);
+		setToolTipText(RichTextResources.pasteAction_toolTipText);
 		logger = RichTextPlugin.getDefault().getLogger();
 	}
 

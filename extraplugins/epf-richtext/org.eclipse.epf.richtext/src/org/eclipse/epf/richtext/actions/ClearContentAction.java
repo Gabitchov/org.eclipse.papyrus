@@ -24,7 +24,7 @@ import org.eclipse.epf.richtext.IRichText;
 import org.eclipse.epf.richtext.RichTextCommand;
 import org.eclipse.epf.richtext.RichTextImages;
 import org.eclipse.epf.richtext.RichTextPlugin;
-import org.eclipse.epf.richtext.Messages;
+import org.eclipse.epf.richtext.RichTextResources;
 import org.eclipse.jface.action.IAction;
 
 /**
@@ -42,7 +42,7 @@ public class ClearContentAction extends RichTextAction {
 		super(richText, IAction.AS_PUSH_BUTTON);
 		setImageDescriptor(RichTextImages.IMG_DESC_CLEAR_CONTENT);
 		setDisabledImageDescriptor(RichTextImages.DISABLED_IMG_DESC_CLEAR_CONTENT);
-		setToolTipText(Messages.clearContentAction_toolTipText); 
+		setToolTipText(RichTextResources.clearContentAction_toolTipText); 
 	}
 
 	/**
@@ -54,8 +54,8 @@ public class ClearContentAction extends RichTextAction {
 	public void execute(IRichText richText) {
 		if (richText != null) {
 			if (RichTextPlugin.getDefault().getMsgDialog().displayPrompt(
-					Messages.clearContentDialog_title,
-					Messages.clearContentDialog_text)) {
+					RichTextResources.clearContentDialog_title,
+					RichTextResources.clearContentDialog_text)) {
 				richText.executeCommand(RichTextCommand.CLEAR_CONTENT);
 			}
 		}
