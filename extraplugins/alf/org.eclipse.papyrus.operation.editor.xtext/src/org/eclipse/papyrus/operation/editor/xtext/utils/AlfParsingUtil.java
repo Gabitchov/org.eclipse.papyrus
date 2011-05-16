@@ -72,7 +72,17 @@ public class AlfParsingUtil {
 	 */
 	public static void parseTest(String textualRepresentation) {
 		AlfParsingUtil parseAlf = new AlfParsingUtil();
-		XtextResource xtextResource = parseAlf.getXtextResource(textualRepresentation);
+		
+		String actualRepresentation = "" + textualRepresentation ; 
+		
+		// In this version of the Alf editor, the stereotype <<TextualRepresentation>> is not implemented yet
+		// The serialization prefixes the textual representation with the string "<<TextualRepresentation>>"
+		// It must be removed before creating the resource
+		if (actualRepresentation.startsWith("<<TextualRepresentation>>")) {
+			actualRepresentation = actualRepresentation.substring("<<TextualRepresentation>>".length()) ;
+		}
+		
+		XtextResource xtextResource = parseAlf.getXtextResource(actualRepresentation);
 
 		System.out.println("///////////////////////// Test begin") ;
 		
