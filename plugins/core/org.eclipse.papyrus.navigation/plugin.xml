@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="navigationRule" name="navigationRule" schema="schema/navigationRule.exsd"/>
+   <extension-point id="navigationRules" name="navigationRules" schema="schema/navigationRules.exsd"/>
+   <extension-point id="navigationDecoratorRules" name="navigationDecoratorRules" schema="schema/navigationDecoratorRules.exsd"/>
+   <extension-point id="navigationColorProviders" name="navigationColorProviders" schema="schema/navigationColorProviders.exsd"/>
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
@@ -16,6 +18,15 @@
       <initializer
             class="org.eclipse.papyrus.navigation.preference.NavigationPreferenceInitializer">
       </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <decoratorProvider
+            class="org.eclipse.papyrus.navigation.decorator.NavigationDecoratorProvider">
+         <Priority
+               name="Medium">
+         </Priority>
+      </decoratorProvider>
    </extension>
   
 

@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication;
 
-import org.eclipse.papyrus.diagram.common.actions.handlers.CreateDiagramWithNavigationHandler;
+import org.eclipse.papyrus.navigation.CreateDiagramWithNavigationHandler;
 
 
 public class CreateCommunicationDiagramWithNavigationHandler extends CreateDiagramWithNavigationHandler {

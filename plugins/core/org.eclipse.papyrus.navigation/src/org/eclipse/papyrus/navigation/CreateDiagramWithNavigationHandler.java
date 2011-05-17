@@ -11,7 +11,7 @@
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.common.actions.handlers;
+package org.eclipse.papyrus.navigation;
 
 import java.util.Collections;
 import java.util.List;
@@ -27,15 +27,11 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.extension.commands.ICreationCondition;
-import org.eclipse.papyrus.core.ui.InformationDialog;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.navigation.CreatedNavigableElement;
-import org.eclipse.papyrus.navigation.ExistingNavigableElement;
-import org.eclipse.papyrus.navigation.NavigableElement;
-import org.eclipse.papyrus.navigation.NavigationHelper;
+import org.eclipse.papyrus.ui.toolbox.dialog.InformationDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;

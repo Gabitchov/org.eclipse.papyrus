@@ -28,6 +28,7 @@ public class NavigationPreferenceInitializer extends AbstractPreferenceInitializ
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 		store.setDefault(INavigationPreferenceConstant.PAPYRUS_NAVIGATION_DOUBLECLICK_KIND,INavigationPreferenceConstant.EXPLICIT_IMPLICIT_NAVIGATION);
+		store.setDefault(INavigationPreferenceConstant.PAPYRUS_NAVIGATION_DECORATOR_VISIBILITY,INavigationPreferenceConstant.DISPLAY_ONLY);
 	}
 
 	/**

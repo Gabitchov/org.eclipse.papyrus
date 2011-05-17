@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.papyrus.navigation" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.papyrus.navigation" id="navigationRule" name="navigationRule"/>
+         <meta.schema plugin="org.eclipse.papyrus.navigation" id="navigationRules" name="navigationRules"/>
       </appinfo>
       <documentation>
          This extension point allows to register navigation rules so they can be used by the navigation handler.
@@ -48,12 +48,17 @@
    </element>
 
    <element name="navigationRule">
+      <annotation>
+         <documentation>
+            Contribute a navigation rule to the navigation handler.
+see INavigationRule for more informations.
+         </documentation>
+      </annotation>
       <complexType>
          <attribute name="rule" type="string">
             <annotation>
                <documentation>
-                  Contribute a navigation rule to the navigation handler.
-see INavigationRule for more informations.
+                  
                </documentation>
                <appinfo>
                   <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.navigation.INavigationRule"/>

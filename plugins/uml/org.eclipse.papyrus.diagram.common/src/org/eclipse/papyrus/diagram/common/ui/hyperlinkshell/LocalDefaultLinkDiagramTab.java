@@ -29,11 +29,10 @@ import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.diagram.common.dialogs.NavigationCreateDiagramDialog;
-import org.eclipse.papyrus.diagram.common.helper.UMLNavigationHelper;
 import org.eclipse.papyrus.navigation.CreatedNavigableElement;
 import org.eclipse.papyrus.navigation.NavigableElement;
 import org.eclipse.papyrus.navigation.NavigationHelper;
+import org.eclipse.papyrus.navigation.uml.UMLNavigationHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.CTabFolder;
@@ -197,7 +196,12 @@ public class LocalDefaultLinkDiagramTab {
 
 			NavigableGroupKey groupKey = new NavigableGroupKey();
 
-			groupKey.feature = navElement.getFeature();
+			// ignore containing feature if we are on the root element
+			// because it is a direct diagram creation
+			// => the feature has no meaning in this case
+			if (!semanticElement.equals(navElement.getElement())) {
+				groupKey.feature = navElement.getFeature();
+			}
 
 			if(navElement instanceof CreatedNavigableElement) {
 				groupKey.ancestor = ((CreatedNavigableElement)navElement).getPreviousNavigableElement();

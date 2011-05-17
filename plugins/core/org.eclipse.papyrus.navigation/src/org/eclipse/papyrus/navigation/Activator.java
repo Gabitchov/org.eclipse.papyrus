@@ -11,9 +11,9 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  */
 package org.eclipse.papyrus.navigation;
+
 import org.eclipse.papyrus.navigation.preference.NavigationPreferenceInitializer;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
 

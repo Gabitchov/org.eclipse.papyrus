@@ -9,7 +9,7 @@
  * Contributors: Francisco Javier Cano MuÃ±oz (Prodevelop) - initial API implementation
  *
  ******************************************************************************/
-package org.eclipse.papyrus.diagram.common.draw2d;
+package org.eclipse.papyrus.ui.toolbox.draw2d;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Polygon;

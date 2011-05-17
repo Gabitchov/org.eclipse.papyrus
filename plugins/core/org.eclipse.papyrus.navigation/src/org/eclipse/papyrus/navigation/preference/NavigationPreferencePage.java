@@ -13,13 +13,9 @@
 package org.eclipse.papyrus.navigation.preference;
 
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
-import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.preference.RadioGroupFieldEditor;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.navigation.Messages;
 import org.eclipse.papyrus.preferences.Activator;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
@@ -31,25 +27,40 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  */
 public class NavigationPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
-	protected RadioGroupFieldEditor radioGroupFieldEditor;
+	protected RadioGroupFieldEditor dblClkFieldEditor;
+	protected RadioGroupFieldEditor decoratorVisibilityFieldEditor;
+
 	public void init(IWorkbench workbench) {
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());
 	}
 
 	@Override
 	protected void createFieldEditors() {
-		radioGroupFieldEditor = new RadioGroupFieldEditor(
+		dblClkFieldEditor = new RadioGroupFieldEditor(
 			INavigationPreferenceConstant.PAPYRUS_NAVIGATION_DOUBLECLICK_KIND,
-			Messages.DoubleClickNaviagationText,
+			Messages.DoubleClickNavigationText,
 			1,
 			new String[][] {
-				{Messages.No_Naviagation_Text,INavigationPreferenceConstant.NO_NAVIGATION},
+				{Messages.No_Navigation_Text,INavigationPreferenceConstant.NO_NAVIGATION},
 				{Messages.ExplicitNavigation_Text,INavigationPreferenceConstant.EXPLICIT_NAVIGATION},
 				{Messages.Explicit_ImplicitNavigation_Text,INavigationPreferenceConstant.EXPLICIT_IMPLICIT_NAVIGATION}
 			},
 			getFieldEditorParent());
-		addField(radioGroupFieldEditor);
-		radioGroupFieldEditor.setPreferenceStore(Activator.getDefault().getPreferenceStore());
+		addField(dblClkFieldEditor);
+		dblClkFieldEditor.setPreferenceStore(Activator.getDefault().getPreferenceStore());
+		
+		decoratorVisibilityFieldEditor = new RadioGroupFieldEditor(
+				INavigationPreferenceConstant.PAPYRUS_NAVIGATION_DECORATOR_VISIBILITY,
+				Messages.DecoratorVisibilityText,
+				1,
+				new String[][] {
+					{Messages.DecoratorDisabled_Text,INavigationPreferenceConstant.DISABLED},
+					{Messages.DisplayOnly_Text,INavigationPreferenceConstant.DISPLAY_ONLY},
+					{Messages.Everywhere_Text,INavigationPreferenceConstant.EVERYWHERE}
+				},
+				getFieldEditorParent());
+			addField(decoratorVisibilityFieldEditor);
+			decoratorVisibilityFieldEditor.setPreferenceStore(Activator.getDefault().getPreferenceStore());
 	}
 
 }

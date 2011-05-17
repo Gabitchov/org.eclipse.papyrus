@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition;
 
-import org.eclipse.papyrus.diagram.common.actions.handlers.CreateDiagramWithNavigationHandler;
+import org.eclipse.papyrus.navigation.CreateDiagramWithNavigationHandler;
 
 
 public class CreateBlockDefinitionDiagramWithNavigationHandler extends CreateDiagramWithNavigationHandler {

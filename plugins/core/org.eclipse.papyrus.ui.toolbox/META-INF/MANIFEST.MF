@@ -11,6 +11,8 @@ Require-Bundle: org.eclipse.papyrus.core;bundle-version="0.8.0",
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.ui.toolbox,
+ org.eclipse.papyrus.ui.toolbox.dialog,
+ org.eclipse.papyrus.ui.toolbox.draw2d,
  org.eclipse.papyrus.ui.toolbox.notification,
  org.eclipse.papyrus.ui.toolbox.notification.builders,
  org.eclipse.papyrus.ui.toolbox.notification.dialogs,

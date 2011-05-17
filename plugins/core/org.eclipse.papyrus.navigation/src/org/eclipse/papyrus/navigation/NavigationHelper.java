@@ -44,7 +44,9 @@ public class NavigationHelper {
 		return NavigationHelperHolder.instance;
 	}
 
-	private static final String NAVIGATIONRULE_EXTENSION_ID = "org.eclipse.papyrus.navigation.navigationRule";
+	private static final String EXTENSION_ID = "org.eclipse.papyrus.navigation.navigationRules";
+	
+	private static final String NAVIGATIONRULE_ID = "navigationRule";
 
 	private static final String RULE_ID = "rule";
 
@@ -52,15 +54,16 @@ public class NavigationHelper {
 
 	private NavigationHelper() {
 		// Reading data from plugins
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(NAVIGATIONRULE_EXTENSION_ID);
+		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
 		for(IConfigurationElement configElement : configElements) {
-			Object obj;
-			try {
-				obj = configElement.createExecutableExtension(RULE_ID);
-				if(obj instanceof INavigationRule) {
-					navigationRules.add((INavigationRule)obj);
+			if (NAVIGATIONRULE_ID.equals(configElement.getName())) {
+				try {
+					Object obj = configElement.createExecutableExtension(RULE_ID);
+					if(obj instanceof INavigationRule) {
+						navigationRules.add((INavigationRule)obj);
+					}
+				} catch (CoreException e) {
 				}
-			} catch (CoreException e) {
 			}
 		}
 	}

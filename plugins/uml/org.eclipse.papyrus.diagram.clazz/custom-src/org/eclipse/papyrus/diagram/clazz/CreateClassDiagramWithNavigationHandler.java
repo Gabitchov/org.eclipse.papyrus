@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz;
 
-import org.eclipse.papyrus.diagram.common.actions.handlers.CreateDiagramWithNavigationHandler;
+import org.eclipse.papyrus.navigation.CreateDiagramWithNavigationHandler;
 
 
 public class CreateClassDiagramWithNavigationHandler extends CreateDiagramWithNavigationHandler {

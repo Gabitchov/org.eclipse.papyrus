@@ -11,7 +11,7 @@
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.common.helper;
+package org.eclipse.papyrus.navigation.uml;
 
 import java.util.HashMap;
 
@@ -25,6 +25,7 @@ public class UMLNavigationHelper {
 	public static final String BEHAVIORAL_NAVIGATION = "Behavioral";
 	public static final String STRUCTURAL_NAVIGATION = "Structural";
 
+	@SuppressWarnings("serial")
 	private static HashMap<EStructuralFeature, String> featureNavigationTypeMap = new HashMap<EStructuralFeature, String >() {{
 		put(UMLPackage.Literals.BEHAVIORED_CLASSIFIER__CLASSIFIER_BEHAVIOR, BEHAVIORAL_NAVIGATION);
 		put(UMLPackage.Literals.CALL_BEHAVIOR_ACTION__BEHAVIOR, BEHAVIORAL_NAVIGATION);
@@ -44,6 +45,11 @@ public class UMLNavigationHelper {
 	}
 
 	public static String getNavigationTypeFromFeature(EStructuralFeature feature) {
+		if (feature == null) {
+			// no feature specified, report structural
+			// because it is the root element
+			return STRUCTURAL_NAVIGATION;
+		}
 		String result = featureNavigationTypeMap.get(feature);
 		return result == null ? "" : result;
 	}

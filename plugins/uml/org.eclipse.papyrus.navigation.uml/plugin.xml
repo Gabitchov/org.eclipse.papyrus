@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.navigation.navigationRule">
+         point="org.eclipse.papyrus.navigation.navigationRules">
       <navigationRule
             rule="org.eclipse.papyrus.navigation.uml.BehavioredClassifierRule"></navigationRule>
       <navigationRule
@@ -19,6 +19,21 @@
       </navigationRule>
       <navigationRule
             rule="org.eclipse.papyrus.navigation.uml.TransitionRule"></navigationRule>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.navigation.navigationDecoratorRules">
+      <decoratedClass
+            class="org.eclipse.uml2.uml.BehavioredClassifier">
+      </decoratedClass>
+      <decoratedClass
+            class="org.eclipse.uml2.uml.CallBehaviorAction">
+      </decoratedClass>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.navigation.navigationColorProviders">
+      <navigationColorProvider
+            provider="org.eclipse.papyrus.navigation.uml.UMLNavigationColorProvider">
+      </navigationColorProvider>
    </extension>
 
 </plugin>

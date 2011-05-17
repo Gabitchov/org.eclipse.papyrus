@@ -126,11 +126,13 @@ public class CreateCompositeDiagramCommand extends AbstractPapyrusGmfCreateDiagr
 		// Create a view for the canvasDomainElement in the new diagram
 		View view = ViewService.getInstance().createView(Node.class, new EObjectAdapter(canvasDomainElement), diagram, null, ViewUtil.APPEND, true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 
-		// Update the view position and size (should adapt to canvas current size)
-		Bounds viewBounds = (Bounds)((Node)view).getLayoutConstraint();
-		viewBounds.setX(DEFAULT_MARGIN);
-		viewBounds.setY(DEFAULT_MARGIN);
-		viewBounds.setHeight(DEFAULT_HEIGHT);
-		viewBounds.setWidth(DEFAULT_WIDTH);
+		if (view instanceof Node) {
+			// Update the view position and size (should adapt to canvas current size)
+			Bounds viewBounds = (Bounds)((Node)view).getLayoutConstraint();
+			viewBounds.setX(DEFAULT_MARGIN);
+			viewBounds.setY(DEFAULT_MARGIN);
+			viewBounds.setHeight(DEFAULT_HEIGHT);
+			viewBounds.setWidth(DEFAULT_WIDTH);
+		}
 	}
 }
