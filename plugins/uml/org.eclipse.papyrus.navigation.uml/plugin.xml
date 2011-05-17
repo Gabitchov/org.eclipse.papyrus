@@ -28,6 +28,12 @@
       <decoratedClass
             class="org.eclipse.uml2.uml.CallBehaviorAction">
       </decoratedClass>
+      <decoratedClass
+            class="org.eclipse.uml2.uml.Transition">
+      </decoratedClass>
+      <decoratedClass
+            class="org.eclipse.uml2.uml.State">
+      </decoratedClass>
    </extension>
    <extension
          point="org.eclipse.papyrus.navigation.navigationColorProviders">
