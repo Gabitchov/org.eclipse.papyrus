@@ -26,6 +26,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.CreateDecoratorsOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.papyrus.navigation.preference.INavigationPreferenceConstant;
 import org.eclipse.papyrus.preferences.Activator;
 
@@ -67,21 +69,24 @@ public class NavigationDecoratorProvider extends AbstractProvider implements IDe
 			IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation).getDecoratorTarget();
 			EditPart editPart = (EditPart)decoratorTarget.getAdapter(EditPart.class);
 			if(editPart instanceof IGraphicalEditPart) {
-				EObject element = ((IGraphicalEditPart) editPart).resolveSemanticElement();
-				boolean decorate = false;
-				for (Class<?> class_ : decoratedClasses) {
-					if (class_.isInstance(element)) {
-						decorate = true;
-						break;
+				Object notationElement = editPart.getModel();
+				if (notationElement instanceof Shape || notationElement instanceof Edge) {
+					EObject element = ((IGraphicalEditPart) editPart).resolveSemanticElement();
+					boolean decorate = false;
+					for (Class<?> class_ : decoratedClasses) {
+						if (class_.isInstance(element)) {
+							decorate = true;
+							break;
+						}
 					}
-				}
-				for (Class<?> class_ : forbiddenClasses) {
-					if (class_.isInstance(element)) {
-						decorate = false;
-						break;
+					for (Class<?> class_ : forbiddenClasses) {
+						if (class_.isInstance(element)) {
+							decorate = false;
+							break;
+						}
 					}
+					return decorate;
 				}
-				return decorate;
 			}
 		}
 		return false;
