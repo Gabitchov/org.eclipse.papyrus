@@ -14,6 +14,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer.widgets;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -22,6 +24,7 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.modelexplorer.Activator;
 import org.eclipse.papyrus.modelexplorer.MoDiscoLabelProviderWTooltips;
+import org.eclipse.papyrus.modelexplorer.SemanticFromModelExplorer;
 import org.eclipse.papyrus.widgets.editors.TreeSelectorDialog;
 import org.eclipse.swt.widgets.Shell;
 
@@ -54,6 +57,25 @@ public class ModelExplorerBasedTreeSelectorDialog extends TreeSelectorDialog {
 	 */
 	public void setMetaclassLabelProvider(LabelProvider metaclassLabelProvider) {
 		this.metaclassLabelProvider = metaclassLabelProvider;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	
+	protected void setResult(@SuppressWarnings("rawtypes") List newResult) {
+		ArrayList<Object> list= new ArrayList<Object>();
+		SemanticFromModelExplorer bridge= new SemanticFromModelExplorer();
+		Iterator<?> iterator=newResult.iterator();
+		while (iterator.hasNext()) {
+			Object wrappedObject = (Object) iterator.next();
+			Object semantic=bridge.getSemanticElement(wrappedObject);
+			if( semantic!=null){
+				list.add(semantic);
+			}
+		}
+
+		super.setResult(list);
 	}
 
 	/**
