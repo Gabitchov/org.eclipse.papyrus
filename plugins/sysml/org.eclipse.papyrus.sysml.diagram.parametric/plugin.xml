@@ -784,6 +784,15 @@
                </binding>
 
    </extension>
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+   <editpolicyProvider
+         class="org.eclipse.papyrus.sysml.diagram.parametric.providers.CustomEditPolicyProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </editpolicyProvider>
+</extension>
 
    <!-- optionally, specify keybindings -->
 </plugin>

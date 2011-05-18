@@ -16,7 +16,6 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.provider;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelPackageableElementCompartmentEditPartCN;
@@ -62,12 +61,7 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 		super.createEditPolicies(editPart);
 
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
-
-		// Navigation policy temporary disabled (work in progress on decorator service).
-		if (editPart instanceof IPrimaryEditPart) {
-			editPart.removeEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY);
-			editPart.removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
-		}
+		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		
 		if((editPart instanceof PackagePackageableElementCompartmentEditPartCN) || (editPart instanceof PackagePackageableElementCompartmentEditPart)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageCompartmentSemanticEditPolicy());

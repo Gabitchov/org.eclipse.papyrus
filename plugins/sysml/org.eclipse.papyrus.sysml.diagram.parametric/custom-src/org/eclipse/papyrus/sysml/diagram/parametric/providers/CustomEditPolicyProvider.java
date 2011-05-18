@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.clazz.custom.providers;
+package org.eclipse.papyrus.sysml.diagram.parametric.providers;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
@@ -21,12 +21,12 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 
 /**
- * this is an editpolicy provider in charge to install a policy to create a AssociationClass
+ * this is an editpolicy provider in charge to install navigation policies
  * 
  * @author Patrick Tessier
  */
@@ -62,7 +62,7 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 		}
 		GraphicalEditPart gep = (GraphicalEditPart)epOperation.getEditPart();
 		String diagramType = gep.getNotationView().getDiagram().getType();
-		if(ModelEditPart.MODEL_ID.equals(diagramType)) {
+		if(ParametricEditPart.MODEL_ID.equals(diagramType)) {
 			return true;
 		}
 
