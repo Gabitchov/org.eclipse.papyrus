@@ -29,6 +29,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
+import org.eclipse.emf.facet.infra.browser.custom.emf.UicustomFactory;
+import org.eclipse.emf.facet.infra.browser.custom.emf.UicustomPackage;
 import org.eclipse.emf.facet.infra.browser.custom.util.UicustomUtil;
 import org.eclipse.emf.facet.widgets.celleditors.ICommandFactoriesRegistry;
 import org.eclipse.emf.facet.widgets.celleditors.ICommandFactory;
@@ -42,6 +44,7 @@ import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstan
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstanceFactory;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.Tableinstance2Package;
 import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidget;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.swt.widgets.Composite;
@@ -146,9 +149,8 @@ public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNat
 									if (!alreadyDone.contains(container)) {
 										if (UicustomUtil.getMetamodelViewByEPackage(localCustoms,
 											(EPackage) container) == null) {
-											Command cmd = getCreateMetamodelViewCommand(
-												this.tableInstance,
-												((EPackage) container).getNsURI());
+											Command cmd = createMetamodelViewCommand(
+												((EPackage) container).getNsURI(),this);
 											if (cmd.canExecute()) {
 												cmCommand.append(cmd);
 											}
@@ -208,7 +210,7 @@ public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNat
 
 
 	//TODO this method is duplicated from the super class
-	private List<MetamodelView> getLocalCustomizations() {
+	protected  List<MetamodelView> getLocalCustomizations() {
 		List<MetamodelView> locals = new ArrayList<MetamodelView>();
 		if (this.tableInstance.getLocalCustomization() != null) {
 			locals.add(this.tableInstance.getLocalCustomization());
@@ -220,7 +222,7 @@ public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNat
 	}
 
 	//TODO this method is duplicated from the super class
-	private boolean isColumnAlreadyDeclared(final EStructuralFeature eStructuralFeature) {
+	protected boolean isColumnAlreadyDeclared(final EStructuralFeature eStructuralFeature) {
 		if (eStructuralFeature instanceof EReference) {
 			for (Column c : this.tableInstance.getColumns()) {
 				if (c instanceof ReferenceColumn) {
@@ -249,6 +251,50 @@ public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNat
 
 		return false;
 	}
+	
+	private static Command createMetamodelViewCommand(final String nsURI,
+			final PapyrusNatTableWidget natTableWidget) {
+		CompoundCommand compoundCommand = new CompoundCommand();
+		TableInstance tableInstance = natTableWidget.getTableInstance();
+		EditingDomain editingDomain = natTableWidget.getEditingDomain();
+		ICommandFactory commandFactory = natTableWidget.getCommandFactory();
+		MetamodelView newMetamodelView = UicustomFactory.eINSTANCE.createMetamodelView();
+		Command createMetamodelView = commandFactory.createSetCommand(editingDomain,
+				newMetamodelView, UicustomPackage.eINSTANCE.getMetamodelView_MetamodelURI(), nsURI);
+		compoundCommand.append(createMetamodelView);
 
+		if (tableInstance instanceof TableInstance2) {
+			Command setMetamodelViewLocalCmd = commandFactory.createAddCommand(editingDomain,
+					tableInstance,
+					Tableinstance2Package.eINSTANCE.getTableInstance2_LocalCustomizations(),
+					newMetamodelView);
+			compoundCommand.append(setMetamodelViewLocalCmd);
+
+			List<MetamodelView> views = new ArrayList<MetamodelView>();
+			views.addAll(tableInstance.getCustomizations());
+			// we look for the index of the local new custom
+			List<MetamodelView> localCustom = natTableWidget.getLocalCustomizations();
+			int i = 0;
+			for (; i < views.size(); i++) {
+				if (localCustom.contains(views.get(i))) {
+					break;
+				}
+			}
+			views.add(i, newMetamodelView);
+			Command setMetamodelViewCmd = commandFactory.createSetCommand(editingDomain,
+					tableInstance,
+					TableinstancePackage.eINSTANCE.getTableInstance_Customizations(), views);
+			compoundCommand.append(setMetamodelViewCmd);
+
+		} else {
+			// TODO should be removed when all tables will be TableInstance2
+			Command setMetamodelView = commandFactory.createSetCommand(editingDomain,
+					tableInstance,
+					TableinstancePackage.eINSTANCE.getTableInstance_LocalCustomization(),
+					newMetamodelView);
+			compoundCommand.append(setMetamodelView);
+		}
+		return compoundCommand;
+	}
 
 }
