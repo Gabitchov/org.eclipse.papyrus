@@ -135,7 +135,7 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 				if(navElement instanceof ExistingNavigableElement) {
 					EObject eObj = navElement.getElement();
 					Resource res = eObj.eResource();
-					if(res != null && res.getResourceSet() instanceof DiResourceSet) {
+					if(res != null && res.getURI().isPlatformResource() && res.getResourceSet() instanceof DiResourceSet) {
 						Resource notationResource = ((DiResourceSet)res.getResourceSet()).getAssociatedNotationResource(eObj);
 
 						addResourceListener(notationResource);
