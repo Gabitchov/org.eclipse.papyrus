@@ -55,12 +55,13 @@ public class AlfParsingUtil {
 
 		XtextResource xtextResource = (XtextResource)resourceFactory.createResource(
 			URI.createURI(SYNTHETIC_SCHEME + ":/" + grammarAccess.getGrammar().getName() + ".operation"));
-
+		
 		try {
 			xtextResource.load(new StringInputStream(textualRepresentation, xtextResource.getEncoding()), Collections.emptyMap());
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+		
 		return xtextResource;
 	}
 
@@ -83,7 +84,7 @@ public class AlfParsingUtil {
 		}
 		
 		XtextResource xtextResource = parseAlf.getXtextResource(actualRepresentation);
-
+		
 		System.out.println("///////////////////////// Test begin") ;
 		
 		// Display parsing errors

@@ -85,7 +85,7 @@ public class OperationPopupEditorConfigurationContribution extends
 		// builds the text content and extension for a temporary file, to be edited by the xtext editor
 		String textToEdit = "" + this.getTextToEdit(graphicalEditPart.resolveSemanticElement());
 		String fileExtension = "" + ".operation";
-
+		
 		// builds a new IXtextEMFReconciler.
 		// Its purpose is to extract any relevant information from the textual specification,
 		// and then merge it in the context UML model if necessary
