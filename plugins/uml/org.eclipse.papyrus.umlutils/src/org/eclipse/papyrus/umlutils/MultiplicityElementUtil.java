@@ -27,9 +27,12 @@ public class MultiplicityElementUtil {
 	 */
 	public static String getMultiplicityAsString(MultiplicityElement element) {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(" [");
-		buffer.append(getMultiplicityAsStringWithoutSquareBrackets(element));
-		buffer.append("]");
+		String multiplicityStr = getMultiplicityAsStringWithoutSquareBrackets(element);
+		if (multiplicityStr != null && !"".equals(multiplicityStr)) {
+			buffer.append(" [");
+			buffer.append(multiplicityStr);
+			buffer.append("]");
+		}
 		return buffer.toString();
 	}
 
@@ -45,7 +48,9 @@ public class MultiplicityElementUtil {
 		int upper = element.getUpper();
 
 		if(lower == upper) {
-			buffer.append(lower);
+			if (lower != 1) {
+				buffer.append(lower);
+			}
 		} else if((lower == 0) && (upper == -1)) {
 			buffer.append("*");
 		} else if(upper == -1) {
