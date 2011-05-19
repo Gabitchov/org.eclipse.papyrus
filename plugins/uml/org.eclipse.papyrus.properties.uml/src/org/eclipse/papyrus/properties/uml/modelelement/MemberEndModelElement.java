@@ -81,4 +81,9 @@ public class MemberEndModelElement extends AbstractModelElement {
 		}
 		return true;
 	}
+
+	@Override
+	public boolean forceRefresh(String propertyPath) {
+		return propertyPath.equals("navigable") || propertyPath.equals("owner"); //$NON-NLS-1$ //$NON-NLS-2$
+	}
 }

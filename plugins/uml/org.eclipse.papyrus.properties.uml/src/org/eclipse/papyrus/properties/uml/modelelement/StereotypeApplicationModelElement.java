@@ -12,13 +12,16 @@
 package org.eclipse.papyrus.properties.uml.modelelement;
 
 import org.eclipse.core.databinding.observable.IObservable;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.gef.EditPart;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.properties.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.properties.uml.databinding.ProfileApplicationObservableList;
 import org.eclipse.papyrus.properties.uml.databinding.StereotypeApplicationObservableList;
 import org.eclipse.papyrus.properties.uml.providers.ApplicableStereotypeContentProvider;
+import org.eclipse.papyrus.properties.uml.util.UMLUtil;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
@@ -34,8 +37,11 @@ public class StereotypeApplicationModelElement extends AbstractModelElement {
 
 	private EditingDomain domain;
 
-	public StereotypeApplicationModelElement(Element umlSource, EditingDomain domain) {
-		this.umlSource = umlSource;
+	private EditPart sourceElement;
+
+	public StereotypeApplicationModelElement(EditPart sourceElement, EditingDomain domain) {
+		this.umlSource = UMLUtil.resolveUMLElement(sourceElement);
+		this.sourceElement = sourceElement;
 		this.domain = domain;
 	}
 
@@ -67,5 +73,13 @@ public class StereotypeApplicationModelElement extends AbstractModelElement {
 	@Override
 	public boolean isOrdered(String propertyPath) {
 		return false;
+	}
+
+	public EModelElement getEModelElement() {
+		return (EModelElement)sourceElement.getModel();
+	}
+
+	public EditPart getEditPart() {
+		return sourceElement;
 	}
 }

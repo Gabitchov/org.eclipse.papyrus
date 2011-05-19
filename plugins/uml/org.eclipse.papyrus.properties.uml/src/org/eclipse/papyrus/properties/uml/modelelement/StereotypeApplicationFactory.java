@@ -13,6 +13,7 @@ package org.eclipse.papyrus.properties.uml.modelelement;
 
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.gef.EditPart;
 import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.modelelement.ModelElement;
@@ -31,7 +32,7 @@ public class StereotypeApplicationFactory implements ModelElementFactory {
 		}
 
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(umlSource);
-		return new StereotypeApplicationModelElement(umlSource, domain);
+		return new StereotypeApplicationModelElement((EditPart)sourceElement, domain);
 	}
 
 }

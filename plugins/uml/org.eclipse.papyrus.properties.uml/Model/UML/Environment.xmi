@@ -10,5 +10,6 @@
   <propertyEditorTypes label="ExpressionEditor" widgetClass="ExpressionEditor" namespace="//@namespaces.0" multiplicity="-1"/>
   <propertyEditorTypes label="Profile Application Editor" widgetClass="ProfileApplicationPropertyEditor" namespace="//@namespaces.0" type="Reference" multiplicity="-1"/>
   <propertyEditorTypes label="StereotypeDisplayEditor" widgetClass="StereotypeDisplay" namespace="//@namespaces.0" type="Reference"/>
+  <propertyEditorTypes label="Stereotype Application Editor" widgetClass="StereotypeApplication" namespace="//@namespaces.0" type="Reference" multiplicity="-1"/>
   <namespaces prefix="clr-namespace" name="uml" value="org.eclipse.papyrus.properties.uml.widgets"/>
 </environment:Environment>

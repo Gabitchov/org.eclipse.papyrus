@@ -33,6 +33,7 @@ import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -196,7 +197,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 
 		if(CustomizationPreferencePage.askForConfirmation()) {
 			int defaultIndex = CustomizationPreferencePage.openCustomizationPerspective() ? 0 : 1;
-			MessageDialog confirmationDialog = new MessageDialog(getContainer().getShell(), Messages.UIEditor_ChangePerspective, null, Messages.UIEditor_ChangePerspectiveMessage, MessageDialog.QUESTION, new String[]{ Messages.UIEditor_Yes, Messages.UIEditor_No }, defaultIndex);
+			MessageDialog confirmationDialog = new MessageDialog(getContainer().getShell(), Messages.UIEditor_ChangePerspective, null, Messages.UIEditor_ChangePerspectiveMessage, MessageDialog.QUESTION, new String[]{ IDialogConstants.YES_LABEL, IDialogConstants.NO_LABEL }, defaultIndex);
 			confirmationDialog.open();
 			openPerspective = confirmationDialog.getReturnCode() == 0;
 		} else {

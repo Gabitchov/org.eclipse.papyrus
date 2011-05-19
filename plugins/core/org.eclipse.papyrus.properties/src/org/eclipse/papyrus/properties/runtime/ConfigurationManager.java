@@ -15,9 +15,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -33,6 +36,8 @@ import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.contexts.Property;
+import org.eclipse.papyrus.properties.contexts.Section;
+import org.eclipse.papyrus.properties.contexts.Tab;
 import org.eclipse.papyrus.properties.environment.CompositeWidgetType;
 import org.eclipse.papyrus.properties.environment.Environment;
 import org.eclipse.papyrus.properties.environment.EnvironmentPackage;
@@ -277,9 +282,9 @@ public class ConfigurationManager {
 	public void addContext(Context context, boolean apply) {
 		contexts.put(context.eResource().getURI(), context);
 		if(apply) {
-			enableContext(context);
+			enableContext(context, true);
 		} else {
-			disableContext(context);
+			disableContext(context, true);
 		}
 	}
 
@@ -298,8 +303,8 @@ public class ConfigurationManager {
 	 * @see Preferences
 	 * @see #enableContext(Context)
 	 */
-	public void disableContext(Context context) {
-		boolean update = enabledContexts.remove(context);
+	public void disableContext(Context context, boolean update) {
+		update = enabledContexts.remove(context) && update;
 
 		//Update the preferences
 		ContextDescriptor descriptor = findDescriptor(context);
@@ -310,7 +315,7 @@ public class ConfigurationManager {
 
 		if(update) {
 			//Update the Engine
-			constraintEngine.contextChanged();
+			update();
 		}
 	}
 
@@ -322,7 +327,7 @@ public class ConfigurationManager {
 	 * 
 	 * @see #disableContext(Context)
 	 */
-	public void enableContext(Context context) {
+	public void enableContext(Context context, boolean update) {
 
 		enabledContexts.add(context);
 		//root.getContexts().add(context);
@@ -334,8 +339,10 @@ public class ConfigurationManager {
 			savePreferences();
 		}
 
-		//Update the Engine
-		constraintEngine.addContext(context);
+		if(update) {
+			//Update the Engine
+			constraintEngine.addContext(context);
+		}
 	}
 
 	/**
@@ -559,7 +566,7 @@ public class ConfigurationManager {
 	 */
 	public void deleteContext(Context context) {
 		contexts.remove(context.eResource().getURI());
-		disableContext(context);
+		disableContext(context, true);
 		root.getContexts().remove(context);
 	}
 
@@ -605,5 +612,53 @@ public class ConfigurationManager {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Updates the constraint engine to handle changes in the contexts
+	 * activation
+	 */
+	public void update() {
+		constraintEngine.contextChanged();
+	}
+
+	/**
+	 * Checks the conflicts between all applied configurations
+	 * A Conflict may occur when two sections have the same ID : they can't
+	 * be displayed at the same time
+	 * 
+	 * @return
+	 *         The list of conflicts
+	 */
+	public Collection<ConfigurationConflict> checkConflicts() {
+		Map<String, List<Context>> sections = new HashMap<String, List<Context>>();
+		Map<String, ConfigurationConflict> conflicts = new HashMap<String, ConfigurationConflict>();
+
+		for(Context context : getEnabledContexts()) {
+			for(Tab tab : context.getTabs()) {
+				for(Section section : tab.getSections()) {
+					String sectionID = section.getName();
+					List<Context> contexts = sections.get(sectionID);
+					if(contexts == null) {
+						contexts = new LinkedList<Context>();
+						sections.put(sectionID, contexts);
+					} else {
+						ConfigurationConflict conflict = conflicts.get(sectionID);
+						if(conflict == null) {
+							conflict = new ConfigurationConflict(sectionID);
+							conflicts.put(sectionID, conflict);
+
+							conflict.addContext(contexts.get(0));
+						}
+
+						conflict.addContext(context);
+					}
+
+					contexts.add(context);
+				}
+			}
+		}
+
+		return conflicts.values();
 	}
 }

@@ -252,7 +252,7 @@ public class EMFHelper {
 			if(classifier instanceof EClass) {
 				EClass eClass = (EClass)classifier;
 				if(eClass.getEAllSuperTypes().contains(type)) {
-					if(concreteClassesOnly || !eClass.isAbstract()) {
+					if(!concreteClassesOnly || (!eClass.isAbstract() && !eClass.isInterface())) {
 						result.add(eClass);
 					}
 				}

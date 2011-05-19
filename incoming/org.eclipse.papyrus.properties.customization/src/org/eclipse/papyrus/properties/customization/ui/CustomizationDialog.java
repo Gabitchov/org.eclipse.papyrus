@@ -14,6 +14,7 @@ package org.eclipse.papyrus.properties.customization.ui;
 import java.io.IOException;
 import java.util.Collection;
 
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TrayDialog;
@@ -228,7 +229,7 @@ public class CustomizationDialog extends TrayDialog implements SelectionListener
 				return;
 			}
 
-			MessageDialog dialog = new MessageDialog(getShell(), Messages.CustomizationDialog_deleteContext, null, Messages.CustomizationDialog_deleteContextConfirmation1 + sourceContext.getName() + Messages.CustomizationDialog_deleteContextConfirmation2, MessageDialog.CONFIRM, new String[]{ Messages.CustomizationDialog_yes, Messages.CustomizationDialog_no, Messages.CustomizationDialog_cancel }, 2);
+			MessageDialog dialog = new MessageDialog(getShell(), Messages.CustomizationDialog_deleteContext, null, Messages.CustomizationDialog_deleteContextConfirmation1 + sourceContext.getName() + Messages.CustomizationDialog_deleteContextConfirmation2, MessageDialog.CONFIRM, new String[]{ IDialogConstants.YES_LABEL, IDialogConstants.NO_LABEL, IDialogConstants.CANCEL_LABEL }, 2);
 			int result = dialog.open();
 			if(result == 0) { //0 is "Yes" (It is *not* the same 0 as Window.OK)
 				action.removeContext(sourceContext);

@@ -1,11 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:x="http://www.eclipse.org/xwt"
-	xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets" xmlns="http://www.eclipse.org/xwt/presentation"
-	xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
-	xmlns:uml="clr-namespace:org.eclipse.papyrus.properties.uml.widgets">
-	<Composite.layout>
-		<ppel:PropertiesLayout></ppel:PropertiesLayout>
-	</Composite.layout>
-	<uml:StereotypeDisplay input="{Binding}"
-		property="UMLNotation:Element:stereotypeDisplay"></uml:StereotypeDisplay>
-</Composite>
+<Composite xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout" xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets" xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt" xmlns:uml="clr-namespace:org.eclipse.papyrus.properties.uml.widgets"><Composite.layout><ppel:PropertiesLayout></ppel:PropertiesLayout></Composite.layout><uml:StereotypeDisplay input="{Binding}" property="UMLNotation:Element:stereotypeDisplay"></uml:StereotypeDisplay></Composite>

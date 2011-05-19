@@ -310,4 +310,25 @@ public class DataSource implements IChangeListener {
 		}
 		return element.getDefaultValue(getLocalPropertyPath(propertyPath));
 	}
+
+	/**
+	 * Indicates if the widget should be use the direct creation.
+	 * The direct edition will disable the possibility to browse
+	 * existing elements when the "add" button is pressed.
+	 * 
+	 * This is essentially relevant for containment references : this method
+	 * should return false if the widget should only allow creation of new
+	 * elements.
+	 * 
+	 * @param propertyPath
+	 * @return
+	 * 
+	 */
+	public boolean getDirectCreation(String propertyPath) {
+		ModelElement element = getModelElement(propertyPath);
+		if(element == null) {
+			return true;
+		}
+		return element.getDirectCreation(getLocalPropertyPath(propertyPath));
+	}
 }

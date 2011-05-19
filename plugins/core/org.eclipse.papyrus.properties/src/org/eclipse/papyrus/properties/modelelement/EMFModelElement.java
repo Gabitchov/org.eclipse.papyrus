@@ -16,6 +16,7 @@ import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.FeaturePath;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
@@ -269,5 +270,19 @@ public class EMFModelElement extends AbstractModelElement {
 			return null;
 		}
 		return feature.getDefaultValue();
+	}
+
+	@Override
+	public boolean getDirectCreation(String propertyPath) {
+		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature == null) {
+			return false;
+		}
+
+		if(feature instanceof EAttribute) {
+			return false;
+		}
+
+		return ((EReference)feature).isContainment();
 	}
 }

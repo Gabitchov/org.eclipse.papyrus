@@ -131,4 +131,19 @@ public interface ModelElement {
 	 * @return The default value for this element
 	 */
 	public Object getDefaultValue(String propertyPath);
+
+	/**
+	 * Indicates if the widget should be use the direct creation.
+	 * The direct edition will disable the possibility to browse
+	 * existing elements when the "add" button is pressed.
+	 * 
+	 * This is essentially relevant for containment references : this method
+	 * should return false if the widget should only allow creation of new
+	 * elements.
+	 * 
+	 * @param propertyPath
+	 * @return
+	 * 
+	 */
+	public boolean getDirectCreation(String localPropertyPath);
 }

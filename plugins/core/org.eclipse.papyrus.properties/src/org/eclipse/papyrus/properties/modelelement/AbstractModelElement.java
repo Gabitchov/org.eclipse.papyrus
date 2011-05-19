@@ -80,4 +80,8 @@ public abstract class AbstractModelElement implements ModelElement {
 		return null;
 	}
 
+	public boolean getDirectCreation(String propertyPath) {
+		return false;
+	}
+
 }

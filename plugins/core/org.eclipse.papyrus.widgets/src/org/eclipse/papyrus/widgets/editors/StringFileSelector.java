@@ -61,6 +61,9 @@ public class StringFileSelector extends StringEditor {
 		browseWorkspace = factory.createButton(this, Messages.StringFileSelector_BrowseWorkspace, SWT.PUSH);
 		browseWorkspace.setLayoutData(new GridData());
 
+		filterNames = new LinkedList<String>();
+		filterExtensions = new LinkedList<String>();
+
 		browse.addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
@@ -83,14 +86,11 @@ public class StringFileSelector extends StringEditor {
 
 		});
 
-		filterNames = new LinkedList<String>();
-		filterExtensions = new LinkedList<String>();
-
-
 		browseWorkspace.addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
 				IWorkspaceRoot workspace = ResourcesPlugin.getWorkspace().getRoot();
+
 				IFile currentFile = FileUtil.getIFile(text.getText());
 
 				ResourceSelectionDialog dialog = new ResourceSelectionDialog(getShell(), workspace, ""); //$NON-NLS-1$

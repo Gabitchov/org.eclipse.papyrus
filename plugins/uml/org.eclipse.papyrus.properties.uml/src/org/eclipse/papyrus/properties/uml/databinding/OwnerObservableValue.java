@@ -14,8 +14,13 @@ package org.eclipse.papyrus.properties.uml.databinding;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.Diffs;
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -49,6 +54,8 @@ public class OwnerObservableValue extends AbstractObservableValue {
 
 	private EditingDomain domain;
 
+	private String currentValue;
+
 	/**
 	 * Constructor.
 	 * 
@@ -60,6 +67,14 @@ public class OwnerObservableValue extends AbstractObservableValue {
 	public OwnerObservableValue(EObject source, EditingDomain domain) {
 		this.memberEnd = (Property)source;
 		this.domain = domain;
+		IObservableList navigableEndsObservableList = EMFProperties.list(UMLPackage.eINSTANCE.getAssociation_NavigableOwnedEnd()).observe(memberEnd.getAssociation());
+		navigableEndsObservableList.addChangeListener(new IChangeListener() {
+
+			public void handleChange(ChangeEvent event) {
+				fireValueChange(Diffs.createValueDiff(currentValue, doGetValue()));
+			}
+
+		});
 	}
 
 	public Object getValueType() {
@@ -132,8 +147,8 @@ public class OwnerObservableValue extends AbstractObservableValue {
 				}
 			}
 
+			this.currentValue = owner;
 			domain.getCommandStack().execute(command);
 		}
 	}
-
 }

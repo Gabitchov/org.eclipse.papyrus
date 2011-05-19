@@ -26,6 +26,12 @@ public class Messages extends NLS {
 
 	public static String EditionDialog_CreateANewElement;
 
+	public static String Preferences_ConflictWarning1;
+
+	public static String Preferences_ConflictWarning2;
+
+	public static String Preferences_ConflictWarningTitle;
+
 	public static String Preferences_Contexts;
 
 	public static String Preferences_Custom;

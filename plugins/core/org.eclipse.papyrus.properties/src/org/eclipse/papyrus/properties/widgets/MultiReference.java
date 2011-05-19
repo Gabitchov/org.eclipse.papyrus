@@ -67,6 +67,7 @@ public class MultiReference extends AbstractPropertyEditor {
 		} else {
 			editor.setFactory(factory);
 		}
+		editor.setDirectCreation(input.getDirectCreation(propertyPath));
 
 		super.doBinding();
 	}

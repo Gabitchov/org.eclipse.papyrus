@@ -87,8 +87,9 @@ public class CopyContextAction {
 			targetContext.setName(targetName);
 			targetContext.eResource().save(Collections.EMPTY_MAP);
 			ConfigurationManager.instance.addContext(targetContext, activate);
-			if(activate)
-				ConfigurationManager.instance.disableContext(source);
+			if(activate) {
+				ConfigurationManager.instance.disableContext(source, true);
+			}
 			return targetContext;
 		} else {
 			return null;
@@ -130,8 +131,9 @@ public class CopyContextAction {
 							//Copy of the dependent resources which are located in the same folder
 							//(or subfolders)
 							for(Resource resource : source.eResource().getResourceSet().getResources()) {
-								if(monitor.isCanceled())
+								if(monitor.isCanceled()) {
 									return;
+								}
 								if(source.eResource() != resource && isRelative(source, resource)) {
 									copy(resource, targetDirectory, source, targetName);
 								}
@@ -182,8 +184,9 @@ public class CopyContextAction {
 
 	//Strict copy : we read directly the file, instead of interpreting it as a Model
 	private void copy(InputStream source, File target) throws IOException {
-		if(!target.getParentFile().exists())
+		if(!target.getParentFile().exists()) {
 			target.getParentFile().mkdirs();
+		}
 
 		FileWriter out = new FileWriter(target);
 		try {

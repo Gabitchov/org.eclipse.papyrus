@@ -11,13 +11,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.preferences;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.messages.Messages;
+import org.eclipse.papyrus.properties.runtime.ConfigurationConflict;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -38,6 +42,8 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  * @author Camille Letavernier
  */
 public class Preferences extends PreferencePage implements IWorkbenchPreferencePage {
+
+	private boolean changeOccured = false;
 
 	public void init(IWorkbench workbench) {
 		//Nothing
@@ -78,13 +84,14 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 
 			checkboxes.put(context, checkbox);
 		}
+
+		changeOccured = false;
 		return null;
 	}
 
 	@Override
 	public boolean performOk() {
-		contextState.saveContext();
-		return super.performOk();
+		return contextState.saveContext() && super.performOk();
 	}
 
 	@Override
@@ -124,16 +131,38 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 
 		public void setContextState(Context context, boolean applied) {
 			contexts.put(context, applied);
+			changeOccured = true;
 		}
 
-		public void saveContext() {
+		public boolean saveContext() {
 			for(Entry<Context, Boolean> entry : contexts.entrySet()) {
 				if(entry.getValue()) {
-					ConfigurationManager.instance.enableContext(entry.getKey());
+					ConfigurationManager.instance.enableContext(entry.getKey(), false);
 				} else {
-					ConfigurationManager.instance.disableContext(entry.getKey());
+					ConfigurationManager.instance.disableContext(entry.getKey(), false);
 				}
 			}
+
+			ConfigurationManager.instance.update();
+
+			Collection<ConfigurationConflict> conflicts = ConfigurationManager.instance.checkConflicts();
+
+			if(changeOccured && !conflicts.isEmpty()) {
+				String errorMessage = Messages.Preferences_ConflictWarning1;
+				for(ConfigurationConflict conflict : conflicts) {
+					errorMessage += conflict.toString() + "\n"; //$NON-NLS-1$
+				}
+				errorMessage += Messages.Preferences_ConflictWarning2;
+
+				MessageDialog dialog = new MessageDialog(getShell(), Messages.Preferences_ConflictWarningTitle, null, errorMessage, MessageDialog.WARNING, new String[]{ IDialogConstants.YES_LABEL, IDialogConstants.NO_LABEL, IDialogConstants.CANCEL_LABEL }, 1);
+				int result = dialog.open();
+				if(result != 0) {
+					return false;
+				}
+			}
+
+			changeOccured = false;
+			return true;
 		}
 
 		private Map<Context, Boolean> contexts = new HashMap<Context, Boolean>();

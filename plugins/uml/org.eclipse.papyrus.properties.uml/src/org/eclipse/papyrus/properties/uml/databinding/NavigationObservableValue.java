@@ -12,10 +12,16 @@
 package org.eclipse.papyrus.properties.uml.databinding;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.Diffs;
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
-import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -25,14 +31,13 @@ import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrappe
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * An ObservableValue for manipulating the UML Navigable property.
  * The navigable property is a virtual property, represented as a Boolean.
- * This boolean is basically the result of the following query :
- * self.association.navigableOwnedEnd->contains(self)
  * 
  * @author Camille Letavernier
  */
@@ -41,6 +46,8 @@ public class NavigationObservableValue extends AbstractObservableValue {
 	private Property memberEnd;
 
 	private EditingDomain domain;
+
+	private boolean currentValue;
 
 	/**
 	 * Constructor.
@@ -53,6 +60,14 @@ public class NavigationObservableValue extends AbstractObservableValue {
 	public NavigationObservableValue(EObject source, EditingDomain domain) {
 		memberEnd = (Property)source;
 		this.domain = domain;
+		IObservableList ownerObservableList = EMFProperties.list(UMLPackage.eINSTANCE.getAssociation_OwnedEnd()).observe(memberEnd.getAssociation());
+		ownerObservableList.addChangeListener(new IChangeListener() {
+
+			public void handleChange(ChangeEvent event) {
+				fireValueChange(Diffs.createValueDiff(currentValue, doGetValue()));
+			}
+
+		});
 	}
 
 	public Object getValueType() {
@@ -61,37 +76,55 @@ public class NavigationObservableValue extends AbstractObservableValue {
 
 	@Override
 	protected Boolean doGetValue() {
-		return memberEnd.getAssociation().getNavigableOwnedEnds().contains(memberEnd);
+		return memberEnd.isNavigable();
 	}
 
 	@Override
 	protected void doSetValue(Object value) {
 		if(value instanceof Boolean) {
 			boolean isNavigable = (Boolean)value;
-
-			Command command = null;
+			if(memberEnd.isNavigable() == isNavigable) {
+				return;
+			}
 
 			Association association = memberEnd.getAssociation();
 
-			EStructuralFeature navigableFeature = association.eClass().getEStructuralFeature(UMLPackage.ASSOCIATION__NAVIGABLE_OWNED_END);
-
 			List<Property> navigableEnds = new ArrayList<Property>();
 			navigableEnds.addAll(association.getNavigableOwnedEnds());
+
+			List<SetRequest> setRequests = new LinkedList<SetRequest>();
+
 			if(isNavigable) {
 				navigableEnds.add(memberEnd);
 			} else {
-				navigableEnds.remove(memberEnd);
+				if(memberEnd.getOwningAssociation() == null && memberEnd.getOwner() instanceof Classifier) {
+					List<Property> ownedEnds = new LinkedList<Property>();
+					ownedEnds.addAll(association.getOwnedEnds());
+					ownedEnds.add(memberEnd);
+					setRequests.add(new SetRequest(association, UMLPackage.eINSTANCE.getAssociation_OwnedEnd(), ownedEnds));
+				}
+				if(navigableEnds.contains(memberEnd)) {
+					navigableEnds.remove(memberEnd);
+				}
 			}
+
+			EStructuralFeature navigableFeature = UMLPackage.eINSTANCE.getAssociation_NavigableOwnedEnd();
+			setRequests.add(new SetRequest(association, navigableFeature, navigableEnds));
+
+			CompoundCommand command = null;
 
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(association);
 			if(provider != null) {
-				SetRequest request = new SetRequest(association, navigableFeature, navigableEnds);
 
-				ICommand createGMFCommand = provider.getEditCommand(request);
+				command = new CompoundCommand();
 
-				command = new GMFtoEMFCommandWrapper(createGMFCommand);
+				for(SetRequest request : setRequests) {
+					ICommand createGMFCommand = provider.getEditCommand(request);
+					command.append(new GMFtoEMFCommandWrapper(createGMFCommand));
+				}
 			}
 
+			currentValue = isNavigable;
 			domain.getCommandStack().execute(command);
 		}
 	}

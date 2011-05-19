@@ -121,6 +121,8 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 */
 	protected boolean readOnly;
 
+	private boolean directCreation;
+
 	/**
 	 * 
 	 * Constructor.
@@ -163,8 +165,9 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 
 		this.selector = selector;
 		dialog = new MultipleValueSelectorDialog(parent.getShell(), selector, label, unique, ordered);
-		if(label != null)
+		if(label != null) {
 			dialog.setTitle(label);
+		}
 
 		setLabelProvider(new LabelProvider());
 
@@ -174,7 +177,15 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	}
 
 	protected void updateControls() {
-		add.setEnabled(!readOnly);
+
+		boolean enableAddAction = true;
+		if(directCreation) {
+			if(referenceFactory == null || !referenceFactory.canCreateObject()) {
+				enableAddAction = false;
+			}
+		}
+
+		add.setEnabled(!readOnly && enableAddAction);
 		remove.setEnabled(!readOnly);
 		up.setEnabled(ordered && !readOnly);
 		down.setEnabled(ordered && !readOnly);
@@ -288,7 +299,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 
 	protected Button createButton(Image image, String toolTipText) {
 		Button button = new Button(controlsSection, SWT.PUSH);
-		button.setImage(image); //$NON-NLS-1$
+		button.setImage(image);
 		button.addSelectionListener(this);
 		button.setToolTipText(toolTipText);
 		return button;
@@ -307,8 +318,9 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * @param e
 	 */
 	public void widgetSelected(SelectionEvent e) {
-		if(e.widget == null)
+		if(e.widget == null) {
 			return;
+		}
 
 		if(e.widget == add) {
 			addAction();
@@ -327,14 +339,28 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * Handle add Action
 	 */
 	protected void addAction() {
-		if(modelProperty != null)
+		if(directCreation) {
+			if(referenceFactory != null && referenceFactory.canCreateObject()) {
+				Object newElement = referenceFactory.createObject(this);
+				if(newElement != null) {
+					modelProperty.add(newElement);
+					commit();
+				}
+			}
+
+			return;
+		}
+
+		if(modelProperty != null) {
 			dialog.setInitialSelections(modelProperty.toArray());
-		else
+		} else {
 			dialog.setInitialSelections(new Object[0]);
+		}
 
 		int returnCode = dialog.open();
-		if(returnCode == Window.CANCEL)
+		if(returnCode == Window.CANCEL) {
 			return;
+		}
 
 		modelProperty.clear();
 
@@ -379,8 +405,9 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		IStructuredSelection selection = (IStructuredSelection)listViewer.getSelection();
 		for(Object o : selection.toArray()) {
 			int oldIndex = modelProperty.indexOf(o);
-			if(oldIndex > 0)
+			if(oldIndex > 0) {
 				modelProperty.move(oldIndex, oldIndex - 1);
+			}
 		}
 
 		IStructuredSelection selectionCopy = new StructuredSelection(selection.toArray());
@@ -401,8 +428,9 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		for(int i = selectionArray.length - 1; i >= 0; i--) {
 			Object o = selectionArray[i];
 			int oldIndex = modelProperty.indexOf(o);
-			if(oldIndex < maxIndex)
+			if(oldIndex < maxIndex) {
 				modelProperty.move(oldIndex, oldIndex + 1);
+			}
 		}
 
 		IStructuredSelection selectionCopy = new StructuredSelection(selection.toArray());
@@ -529,9 +557,22 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		super.setModelObservable(modelProperty);
 		updateControls();
 	}
-	
+
 	@Override
-	public void refreshValue(){
+	public void refreshValue() {
 		listViewer.refresh();
+	}
+
+	/**
+	 * Sets the direct creation mode.
+	 * If direct creation is set to true, the {@link ReferenceValueFactory#createObject(org.eclipse.swt.widgets.Control)} method will be called when
+	 * to add button is pressed.
+	 * Otherwise, the dialog will be used.
+	 * 
+	 * @param directCreation
+	 */
+	public void setDirectCreation(boolean directCreation) {
+		this.directCreation = directCreation;
+		updateControls();
 	}
 }
