@@ -377,27 +377,36 @@ public class PapyrusNotificationView extends ViewPart implements ICallBack {
 	protected void destroy(Object element) {
 		if(element instanceof AbstractInsideComposite) {
 			AbstractInsideComposite inside = (AbstractInsideComposite)element;
-			if(!inside.isDisposed()) {
+
+			if (inside != null) {
 				Control previous = inside.getPrevious();
 				Control after = inside.getAfter();
-				if(after != null) {
+				
+				if((after != null) && !(after.isDisposed()) 
+					&& ((previous == null) || !(previous.isDisposed()))) {
+				
+					// previous can be null but can not be disposed when not null
+					// after can not be null nor disposed
 					manageComposite(after, previous);
-				} else {
-					if(previous instanceof AbstractInsideComposite) {
+				
+				} else if ((previous instanceof AbstractInsideComposite) && !(previous.isDisposed())) {
 						AbstractInsideComposite compo = (AbstractInsideComposite)previous;
 						compo.setAfter(null);
-						FormData data = new FormData();
-						data.bottom = new FormAttachment(previous, -5);
-						data.left = new FormAttachment(0, 5);
-						data.right = new FormAttachment(100, -5);
-						compo.setLayoutData(data);
-						form.reflow(true);
-					}
+//						FormData data = new FormData();
+//						data.bottom = new FormAttachment(previous, -5);
+//						data.left = new FormAttachment(0, 5);
+//						data.right = new FormAttachment(100, -5);
+//						compo.setLayoutData(data);
+//						form.reflow(true);
 				}
-				inside.dispose();
-				form.getBody().layout(true, true);
-				form.layout(true, true);
 			}
+
+			if(!inside.isDisposed()) {
+				inside.dispose();
+			}
+
+			form.getBody().layout(true, true);
+			form.layout(true, true);
 		}
 	}
 }
