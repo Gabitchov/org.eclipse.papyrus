@@ -7,6 +7,11 @@
  *******************************************************************************/
 package org.eclipse.xtext.gmf.glue.partialEditing;
 
+import java.lang.reflect.Constructor;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.text.source.SourceViewer;
+import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 import org.eclipse.xtext.ui.editor.XtextSourceViewer;
 import org.eclipse.xtext.ui.editor.XtextSourceViewerConfiguration;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
@@ -18,12 +23,16 @@ import com.google.inject.Injector;
  * 
  */
 public class SourceViewerHandle {
-	private IValidationIssueProcessor issueProcessor;
-	private final XtextSourceViewer viewer;
-	private final ISyntheticResourceProvider resourceProvider;
-	private final XtextDocument document;
-	private final XtextSourceViewerConfiguration configuration;
-
+	protected IValidationIssueProcessor issueProcessor;
+	protected final XtextSourceViewer viewer;
+	protected final ISyntheticResourceProvider resourceProvider;
+	protected final XtextDocument document;
+	protected final XtextSourceViewerConfiguration configuration;
+	protected static Class partialModelEditorClass = null ;
+	private Class defaultModelEditorClass = PartialModelEditor.class ;
+	protected EObject semanticElement ;
+	protected IXtextEMFReconciler modelReconciler ;
+	
 	SourceViewerHandle(XtextDocument document, XtextSourceViewer viewer, XtextSourceViewerConfiguration configuration, ISyntheticResourceProvider resourceProvider, Injector xtextInjector) {
 		this.document = document;
 		this.viewer = viewer;
@@ -75,13 +84,41 @@ public class SourceViewerHandle {
 	 * @param prefix 
 	 * @param editablePart 
 	 * @param suffix 
+	 * @param semanticElement 
+	 * @param modelReconciler 
 	 * @return PartialModelEditor
 	 *
 	 */
-	public PartialModelEditor createPartialEditor(String prefix, String editablePart, String suffix) {
-		PartialModelEditor result = new PartialModelEditor(viewer, resourceProvider, false);
-		result.setModel(getDocument(), prefix, editablePart, suffix);
+	public PartialModelEditor createPartialEditor(String prefix, String editablePart, String suffix, EObject semanticElement, IXtextEMFReconciler modelReconciler) {
+		//PartialModelEditor result = new PartialModelEditor(viewer, resourceProvider, false);
+		PartialModelEditor result = null;
+		try {
+			if (partialModelEditorClass == null)
+				partialModelEditorClass = defaultModelEditorClass ;
+			Constructor c = partialModelEditorClass.getConstructor(SourceViewer.class, 
+											   ISyntheticResourceProvider.class,
+											   boolean.class,
+											   EObject.class,
+											   IXtextEMFReconciler.class
+											   ) ;
+			this.semanticElement = semanticElement ;
+			this.modelReconciler = modelReconciler ;
+			result = (PartialModelEditor)c.newInstance(viewer, resourceProvider, false, semanticElement, modelReconciler) ;
+			result.setModel(getDocument(), prefix, editablePart, suffix);
+		}
+		catch (Exception e) {
+			e.printStackTrace() ;
+		}
+		// result.setModel(getDocument(), prefix, editablePart, suffix);
 		return result;
+	}
+	
+	/**
+	 * @param modelEditorClass 
+	 *
+	 */
+	public static void bindPartialModelEditorClass(Class modelEditorClass) {
+		partialModelEditorClass = modelEditorClass ;
 	}
 	
 	/**
@@ -89,6 +126,6 @@ public class SourceViewerHandle {
 	 *
 	 */
 	public PartialModelEditor createPartialEditor() {
-		return createPartialEditor("", "", "");
+		return createPartialEditor("", "", "", null, null);
 	}
 }

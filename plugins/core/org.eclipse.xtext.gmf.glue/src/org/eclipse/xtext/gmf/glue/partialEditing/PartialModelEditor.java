@@ -2,12 +2,14 @@ package org.eclipse.xtext.gmf.glue.partialEditing;
 
 import java.util.Collections;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.ISynchronizable;
 import org.eclipse.jface.text.source.AnnotationModel;
 import org.eclipse.jface.text.source.SourceViewer;
+import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.util.StringInputStream;
@@ -17,22 +19,32 @@ import org.eclipse.xtext.util.StringInputStream;
  */
 public class PartialModelEditor {
 
-	private final SourceViewer viewer;
-	private final boolean insertLineBreaks;
-	private final ISyntheticResourceProvider resourceProvider;
+	protected final SourceViewer viewer;
+	protected final boolean insertLineBreaks;
+	protected final ISyntheticResourceProvider resourceProvider;
+	protected EObject semanticElement ;
+	protected IXtextEMFReconciler modelReconciler ;
 	//private final Injector xtextInjector ;
 
 	/**
 	 * @param viewer 
 	 * @param resourceProvider 
 	 * @param insertLineBreaks 
+	 * @param semanticElement 
+	 * @param modelReconciler 
 	 *
 	 */
-	public PartialModelEditor(SourceViewer viewer, ISyntheticResourceProvider resourceProvider, boolean insertLineBreaks) {
+	public PartialModelEditor(SourceViewer viewer, 
+							  ISyntheticResourceProvider resourceProvider, 
+							  boolean insertLineBreaks,
+							  EObject semanticElement,
+							  IXtextEMFReconciler modelReconciler) {
 		//this.xtextInjector = xtextInjector ;
 		this.viewer = viewer;
 		this.resourceProvider = resourceProvider;
 		this.insertLineBreaks = insertLineBreaks;
+		this.semanticElement = semanticElement ;
+		this.modelReconciler = modelReconciler ;
 	}
 	
 	/**

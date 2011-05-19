@@ -7,20 +7,15 @@
  *******************************************************************************/
 package org.eclipse.xtext.gmf.glue.edit.part;
 
-import java.lang.reflect.Field;
-
 import org.eclipse.jface.text.contentassist.ContentAssistEvent;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
 import org.eclipse.jface.text.contentassist.ICompletionListener;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.jface.text.contentassist.IContentAssistant;
-import org.eclipse.jface.text.source.ContentAssistantFacade;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.VerifyKeyListener;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.VerifyEvent;
-import org.eclipse.xtext.gmf.glue.partialEditing.SourceViewerHandle;
 
 /**
  * @author koehnlein

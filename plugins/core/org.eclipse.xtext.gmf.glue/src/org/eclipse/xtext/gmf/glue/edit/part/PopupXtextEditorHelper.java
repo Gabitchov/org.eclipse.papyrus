@@ -225,8 +225,8 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 			}
 			xtextEditorComposite.setVisible(false);
 			xtextEditorComposite.dispose() ;
-
 		}
+		SourceViewerHandle.bindPartialModelEditorClass(null) ;
 	}
 
 	/**
@@ -246,7 +246,7 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 		resourceProvider = xtextInjector.getInstance(ISyntheticResourceProvider.class) ;
 		SourceViewerHandleFactory factory = xtextInjector.getInstance(SourceViewerHandleFactory.class) ;
 		sourceViewerHandle = factory.create(xtextEditorComposite, resourceProvider) ;
-		partialEditor = sourceViewerHandle.createPartialEditor("", textToEdit, "") ;		
+		partialEditor = sourceViewerHandle.createPartialEditor("", textToEdit, "", semanticElement, modelReconciler) ;		
 		registerKeyListener();
 		setEditorBounds();
 		
@@ -284,14 +284,7 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 			// to the xtextEditorComposite
 			if (xtextEditorComposite.getDisplay().getActiveShell() != xtextEditorComposite) {
 				if (!ignoreFocusLost) {
-					//if (MessageDialog.openConfirm(new Shell(), "", ""))
-						closeEditor(true) ;
-					//else {
-						//sourceViewerHandle.getViewer().getTextWidget().setFocus() ;
-						//xtextEditorComposite.setFocus() ;
-					//	xtextEditorComposite.moveAbove(null) ;
-					//	xtextEditorComposite.moveAbove(null) ;
-					//}
+					closeEditor(true) ;
 				}
 				else
 					closeEditor(false) ;
