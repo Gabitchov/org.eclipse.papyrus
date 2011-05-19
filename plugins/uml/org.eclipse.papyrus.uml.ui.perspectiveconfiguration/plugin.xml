@@ -62,12 +62,12 @@
          <toolbar
                toolbarID="org.eclipse.papyrus.table.ui.toolbar">
          </toolbar>
-         <toolbar
-               toolbarID="org.eclipse.papyrus.table.toolbar">
-         </toolbar>
          <command
                commandID="org.eclipse.ui.window.preferences">
          </command>
+         <toolbar
+               toolbarID="org.eclipse.emf.facet.widgets.nattable.workbench.editor.NatTableEditor.toolbar">
+         </toolbar>
       </configuration>
    </extension>
 
