@@ -719,6 +719,7 @@
          class="org.eclipse.papyrus.modelexplorer.handler.DuplicateDiagramHandler"
          commandId="org.eclipse.papyrus.modelexplorer.duplicate.command">
       <activeWhen>
+      <and>
          <with
                variable="selection">
             <and>
@@ -734,6 +735,15 @@
                </iterate>
             </and>
          </with>
+         <with
+               variable="selection">
+            <test
+                  forcePluginActivation="true"
+                  property="org.eclipse.papyrus.modelexplorer.tester.isDiagram"
+                  value="true">
+            </test>
+         </with>
+         </and>
       </activeWhen>
    </handler>
    <handler
