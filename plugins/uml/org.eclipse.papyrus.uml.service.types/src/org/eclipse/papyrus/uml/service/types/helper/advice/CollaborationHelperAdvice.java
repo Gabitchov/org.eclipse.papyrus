@@ -111,7 +111,7 @@ public class CollaborationHelperAdvice extends AbstractEditHelperAdvice {
 		EObject elementToEdit = request.getElementToEdit();
 
 		// Test if current destroy reference is removing a Role from Collaboration role, and destroy related role bindings
-		if((elementToEdit instanceof Collaboration) && (request.getFeature() == UMLPackage.eINSTANCE.getCollaboration_CollaborationRole())) {
+		if((elementToEdit instanceof Collaboration) && (request.getFeature() == UMLPackage.eINSTANCE.getCollaboration_CollaborationRole()) && (request.getValue() instanceof ConnectableElement)) {
 
 			Collaboration collaboration = (Collaboration)elementToEdit;
 

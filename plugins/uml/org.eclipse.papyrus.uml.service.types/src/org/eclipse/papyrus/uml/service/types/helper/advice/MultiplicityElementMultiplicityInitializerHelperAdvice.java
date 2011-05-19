@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -22,20 +22,14 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.MultiplicityElement;
 
 /**
  * <pre>
- * This is an advice helper used to initialize namedElement.
- * 
- * In particular the name of such elements is initialized in order 
- * to have a unique name for a specific type of element per {@link Namespace}.
- * 
+ * This is an advice helper used to initialize multiplicity in {@link MultiplicityElement}.
  * </pre>
  */
-public class NamedElementInitializerHelperAdvice extends AbstractEditHelperAdvice {
+public class MultiplicityElementMultiplicityInitializerHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * {@inheritDoc}
@@ -46,11 +40,9 @@ public class NamedElementInitializerHelperAdvice extends AbstractEditHelperAdvic
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
-				NamedElement element = (NamedElement)request.getElementToConfigure();
-
-				// Initialize the element name based on the created IElementType
-				String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), element.eClass());
-				element.setName(initializedName);
+				MultiplicityElement element = (MultiplicityElement)request.getElementToConfigure();
+				element.setLower(1);
+				element.setUpper(1);
 
 				return CommandResult.newOKCommandResult(element);
 			}

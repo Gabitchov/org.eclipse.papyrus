@@ -14,6 +14,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
 
+import java.util.Arrays;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -24,10 +26,14 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.IdentityCommand;
+import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.CreateRelationshipCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.uml2.uml.DirectedRelationship;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This abstract helper is used to set the source and the target for a {@link DirectedRelationship}
@@ -47,6 +53,31 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 	 * @return the target EReference
 	 */
 	protected abstract EReference getTargetReference();
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest req) {
+
+		EObject source = req.getSource();
+		EObject target = req.getTarget();
+
+		boolean noSourceOrTarget = (source == null || target == null);
+		boolean noSourceAndTarget = (source == null && target == null);
+
+		if(noSourceOrTarget && !noSourceAndTarget) {
+			// The request isn't complete yet. Return the identity command so
+			// that the create relationship gesture is enabled.
+			return IdentityCommand.INSTANCE;
+		}
+
+		// Propose a container if none is set in request.
+		EObject proposedContainer = EMFCoreUtil.getLeastCommonContainer(Arrays.asList(new EObject[]{source, target}), UMLPackage.eINSTANCE.getPackage());
+		req.setContainer(proposedContainer);
+		
+		return new CreateRelationshipCommand(req);
+	}
 
 	/**
 	 * This method provides the object to be use as source.
@@ -91,7 +122,7 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 	 */
 	@Override
 	protected ICommand getConfigureCommand(final ConfigureRequest req) {
-		
+
 		ICommand configureCommand = new ConfigureElementCommand(req) {
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
@@ -113,7 +144,7 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 		//		ICommand gmfCommand = null;
 		//		EObject container = EMFCoreUtil.getLeastCommonContainer(
 		//			terminals, SemanticPackage.eINSTANCE.getContainerElement());
-		
+
 		return CompositeCommand.compose(configureCommand, super.getConfigureCommand(req));
 	}
 }

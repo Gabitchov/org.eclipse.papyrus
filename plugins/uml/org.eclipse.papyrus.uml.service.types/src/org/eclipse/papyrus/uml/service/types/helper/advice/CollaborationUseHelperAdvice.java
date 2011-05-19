@@ -89,7 +89,12 @@ public class CollaborationUseHelperAdvice extends AbstractEditHelperAdvice {
 			// Removing referenced Dependency from roleBinding should delete the dependency
 			Set<Dependency> roleBindingsToDelete = new HashSet<Dependency>();
 			roleBindingsToDelete.addAll(cUse.getRoleBindings());
-			roleBindingsToDelete.removeAll((List<Dependency>)request.getValue());
+			
+			if(request.getValue() instanceof List<?>) {
+				// request.getValue() is expected to be EList<Dependency> here. 
+				roleBindingsToDelete.removeAll((List<?>)request.getValue());
+			}
+			
 
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(cUse);
 			if(provider != null) {
@@ -109,7 +114,7 @@ public class CollaborationUseHelperAdvice extends AbstractEditHelperAdvice {
 		}
 
 		// Test if current set command is modifying the type of the CollaborationUse
-		if((elementToEdit instanceof CollaborationUse) && (request.getFeature() == UMLPackage.eINSTANCE.getCollaborationUse_Type())) {
+		if((elementToEdit instanceof CollaborationUse) && (request.getFeature() == UMLPackage.eINSTANCE.getCollaborationUse_Type()) && (request.getValue() instanceof Collaboration)) {
 
 			CollaborationUse cUse = (CollaborationUse)elementToEdit;
 

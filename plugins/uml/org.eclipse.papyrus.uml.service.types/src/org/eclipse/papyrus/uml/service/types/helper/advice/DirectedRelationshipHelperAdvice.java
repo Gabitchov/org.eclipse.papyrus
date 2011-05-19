@@ -20,8 +20,8 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.editpolicies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.util.CrossReferencerUtil;
+import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 import org.eclipse.uml2.uml.DirectedRelationship;
 
 /**
@@ -66,7 +66,7 @@ public class DirectedRelationshipHelperAdvice extends AbstractEditHelperAdvice {
 		Set<View> viewsToDestroy = new HashSet<View>();
 
 		// Find Views that are referencing current DirectedRelationship
-		View currentlyReorientedView = (View)request.getParameter(UMLBaseItemSemanticEditPolicy.GRAPHICAL_RECONNECTED_EDGE);
+		View currentlyReorientedView = (View)request.getParameter(RequestParameterConstants.GRAPHICAL_RECONNECTED_EDGE);
 		viewsToDestroy.addAll(CrossReferencerUtil.getCrossReferencingViews(relationship, null));
 		viewsToDestroy.remove(currentlyReorientedView);
 

@@ -35,7 +35,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * Edit helper class for {@link Connector}
+ * Edit helper class for binary {@link Connector}
  */
 public class ConnectorEditHelper extends ElementEditHelper {
 
@@ -48,7 +48,7 @@ public class ConnectorEditHelper extends ElementEditHelper {
 	}
 
 	/**
-	 * This method provides the target role provided as {@link ConfigureRequest} parameter.
+	 * This method provides the source role provided as {@link ConfigureRequest} parameter.
 	 * 
 	 * @return the target role
 	 */
@@ -78,7 +78,7 @@ public class ConnectorEditHelper extends ElementEditHelper {
 	}
 	
 	/**
-	 * This method provides the target partWithPort provided as {@link ConfigureRequest} parameter.
+	 * This method provides the source partWithPort provided as {@link ConfigureRequest} parameter.
 	 * 
 	 * @return the target partWithPort
 	 */

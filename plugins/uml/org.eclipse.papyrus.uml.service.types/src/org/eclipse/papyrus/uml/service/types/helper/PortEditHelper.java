@@ -23,8 +23,11 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.uml2.uml.AggregationKind;
+import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -36,6 +39,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * Expected behavior:
  * - Initialize {@link AggregationKind} on {@link Port} creation.
  * - Forbid aggregation modification during the element life cycle.
+ * - Restrict creation context.
  * 
  * </pre>
  */
@@ -45,8 +49,26 @@ public class PortEditHelper extends ElementEditHelper {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected ICommand getConfigureCommand(final ConfigureRequest req) {
+	protected ICommand getEditContextCommand(GetEditContextRequest req) {
+		
+		// Avoid Port creation is the container is not an EncapsulatedClassifier (return null edit context).
+		if (req.getEditCommandRequest() instanceof CreateElementRequest) {
+			CreateElementRequest createRequest = (CreateElementRequest) req.getEditCommandRequest();
+			if (createRequest.getContainer() instanceof EncapsulatedClassifier) {
+				return super.getEditContextCommand(req);
+			}
+			return null;
+		}
+		
+		return super.getEditContextCommand(req);
+	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected ICommand getConfigureCommand(final ConfigureRequest req) {
+		
 		ICommand configureCommand = new ConfigureElementCommand(req) {
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {

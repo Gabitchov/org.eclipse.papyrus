@@ -23,8 +23,8 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.papyrus.diagram.common.commands.UnapplyAllStereotypesCommand;
 import org.eclipse.papyrus.service.edit.commands.IConfigureCommandFactory;
+import org.eclipse.papyrus.uml.service.types.command.UnapplyAllStereotypesCommand;
 import org.eclipse.uml2.uml.Element;
 
 /**

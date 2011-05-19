@@ -30,7 +30,7 @@ import org.eclipse.uml2.uml.Property;
 
 /**
  * <pre>
- * Re-orient command for {@link Connector}.
+ * Re-orient command for binary {@link Connector}.
  * </pre>
  */
 public class ConnectorReorientCommand extends EditElementCommand {
