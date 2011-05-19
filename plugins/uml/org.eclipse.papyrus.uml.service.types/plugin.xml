@@ -1762,7 +1762,7 @@
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
 
 	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-	
+		
 	<!-- Helper advice for Classifier -->
 	<adviceBinding id="org.eclipse.papyrus.uml.advice.Classifier"
 		class="org.eclipse.papyrus.uml.service.types.helper.advice.ClassifierHelperAdvice"
@@ -1829,6 +1829,12 @@
 		inheritance="all" typeId="org.eclipse.papyrus.uml.MessageEnd">
 	</adviceBinding>
 
+	<!-- Helper advice for MultiplicityElement multiplicity initialization -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.MultiplicityElementMultiplicityInitializer"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.MultiplicityElementMultiplicityInitializerHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.MultiplicityElement">
+	</adviceBinding>
+	
 	<!-- Helper advice for NamedElement -->
 	<adviceBinding id="org.eclipse.papyrus.uml.advice.NamedElement"
 		class="org.eclipse.papyrus.uml.service.types.helper.advice.NamedElementHelperAdvice"
@@ -1862,6 +1868,25 @@
 	</metamodel>
 </extension>
 
+<!-- UML ISpecializationType declarations -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+	
+	<!-- Declaration of ISpecializationType -->
+	
+	<!-- ISpecializationType Trace of UML::Abstraction (from Standard profile) -->
+	<specializationType id="org.eclipse.papyrus.uml.Trace" name="UML::Trace"
+		edithelperadvice="org.eclipse.papyrus.uml.service.types.helper.advice.TraceEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Trace"/>
+		<specializes id="org.eclipse.papyrus.uml.Abstraction" />
+		<matcher class ="org.eclipse.papyrus.uml.service.types.matcher.TraceMatcher" />
+	</specializationType>
+		
+	</metamodel>
+</extension>
+
 <!-- UML ElementType bindings to Papyrus shared IClientContext -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
 
@@ -1880,6 +1905,7 @@
 		<advice ref="org.eclipse.papyrus.uml.advice.Lifeline" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Message" />
 		<advice ref="org.eclipse.papyrus.uml.advice.MessageEnd" />
+		<advice ref="org.eclipse.papyrus.uml.advice.MultiplicityElementMultiplicityInitializer" />
 		<advice ref="org.eclipse.papyrus.uml.advice.NamedElement" />
 		<advice ref="org.eclipse.papyrus.uml.advice.NamedElementNameInitializer" />
 		<advice ref="org.eclipse.papyrus.uml.advice.OccurrenceSpecification" />
