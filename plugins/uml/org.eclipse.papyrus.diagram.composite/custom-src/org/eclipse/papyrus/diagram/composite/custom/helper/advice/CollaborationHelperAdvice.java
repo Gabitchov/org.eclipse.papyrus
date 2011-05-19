@@ -77,7 +77,7 @@ public class CollaborationHelperAdvice extends AbstractEditHelperAdvice {
 		EObject elementToEdit = request.getElementToEdit();
 		Set<View> viewsToDelete = new HashSet<View>();
 
-		if((elementToEdit instanceof Collaboration) && (request.getFeature() == UMLPackage.eINSTANCE.getCollaboration_CollaborationRole())) {
+		if((elementToEdit instanceof Collaboration) && (request.getFeature() == UMLPackage.eINSTANCE.getCollaboration_CollaborationRole()) && (request.getValue() instanceof ConnectableElement)) {
 
 			Collaboration collaborationToEdit = (Collaboration)elementToEdit;
 

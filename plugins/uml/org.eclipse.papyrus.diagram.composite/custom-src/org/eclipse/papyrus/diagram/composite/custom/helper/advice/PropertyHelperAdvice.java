@@ -60,7 +60,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 
 		EObject elementToEdit = request.getElementToEdit();
 		Set<View> viewsToDelete = new HashSet<View>();
-		if((elementToEdit instanceof Property) && (request.getFeature() == UMLPackage.eINSTANCE.getTypedElement_Type())) {
+		if((elementToEdit instanceof Property) && (request.getFeature() == UMLPackage.eINSTANCE.getTypedElement_Type()) && (request.getValue() instanceof Type)) {
 
 			Property propertyToEdit = (Property)elementToEdit;
 			Set<View> propertyToEditViews = CrossReferencerUtil.getCrossReferencingViews(propertyToEdit, CompositeStructureDiagramEditPart.MODEL_ID);
