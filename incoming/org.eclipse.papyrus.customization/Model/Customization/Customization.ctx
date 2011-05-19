@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="ASCII"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="customization">
+  <tabs label="Default" id="default" category="default">
+    <sections name="Single CustomizationConfiguration" sectionFile="ui/SingleCustomizationConfiguration.xwt">
+      <widget href="ui/SingleCustomizationConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Single CustomizableElement" sectionFile="ui/SingleCustomizableElement.xwt">
+      <widget href="ui/SingleCustomizableElement.xwt#/"/>
+    </sections>
+    <sections name="Single FileBasedCustomizableElement" sectionFile="ui/SingleFileBasedCustomizableElement.xwt">
+      <widget href="ui/SingleFileBasedCustomizableElement.xwt#/"/>
+    </sections>
+    <sections name="Single PropertyView" sectionFile="ui/SinglePropertyView.xwt">
+      <widget href="ui/SinglePropertyView.xwt#/"/>
+    </sections>
+    <sections name="Single UICustom" sectionFile="ui/SingleUICustom.xwt">
+      <widget href="ui/SingleUICustom.xwt#/"/>
+    </sections>
+    <sections name="Single ModelTemplate" sectionFile="ui/SingleModelTemplate.xwt">
+      <widget href="ui/SingleModelTemplate.xwt#/"/>
+    </sections>
+    <sections name="Single Palette" sectionFile="ui/SinglePalette.xwt">
+      <widget href="ui/SinglePalette.xwt#/"/>
+    </sections>
+    <sections name="Single Profile" sectionFile="ui/SingleProfile.xwt">
+      <widget href="ui/SingleProfile.xwt#/"/>
+    </sections>
+    <sections name="Single UMLModel" sectionFile="ui/SingleUMLModel.xwt">
+      <widget href="ui/SingleUMLModel.xwt#/"/>
+    </sections>
+    <sections name="Multiple CustomizationConfiguration" sectionFile="ui/MultipleCustomizationConfiguration.xwt">
+      <widget href="ui/MultipleCustomizationConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Multiple CustomizableElement" sectionFile="ui/MultipleCustomizableElement.xwt">
+      <widget href="ui/MultipleCustomizableElement.xwt#/"/>
+    </sections>
+    <sections name="Multiple FileBasedCustomizableElement" sectionFile="ui/MultipleFileBasedCustomizableElement.xwt">
+      <widget href="ui/MultipleFileBasedCustomizableElement.xwt#/"/>
+    </sections>
+    <sections name="Multiple PropertyView" sectionFile="ui/MultiplePropertyView.xwt">
+      <widget href="ui/MultiplePropertyView.xwt#/"/>
+    </sections>
+    <sections name="Multiple UICustom" sectionFile="ui/MultipleUICustom.xwt">
+      <widget href="ui/MultipleUICustom.xwt#/"/>
+    </sections>
+    <sections name="Multiple ModelTemplate" sectionFile="ui/MultipleModelTemplate.xwt">
+      <widget href="ui/MultipleModelTemplate.xwt#/"/>
+    </sections>
+    <sections name="Multiple Palette" sectionFile="ui/MultiplePalette.xwt">
+      <widget href="ui/MultiplePalette.xwt#/"/>
+    </sections>
+    <sections name="Multiple Profile" sectionFile="ui/MultipleProfile.xwt">
+      <widget href="ui/MultipleProfile.xwt#/"/>
+    </sections>
+    <sections name="Multiple UMLModel" sectionFile="ui/MultipleUMLModel.xwt">
+      <widget href="ui/MultipleUMLModel.xwt#/"/>
+    </sections>
+  </tabs>
+  <views name="Single CustomizationConfiguration" sections="//@tabs.0/@sections.0" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleCustomizationConfiguration">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="CustomizationConfiguration"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/customization"/>
+    </constraints>
+  </views>
+  <views name="Single CustomizableElement" sections="//@tabs.0/@sections.1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleCustomizableElement">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/customization"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="CustomizableElement"/>
+    </constraints>
+  </views>
+  <views name="Single FileBasedCustomizableElement" sections="//@tabs.0/@sections.2" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleFileBasedCustomizableElement">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="FileBasedCustomizableElement"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/customization"/>
+    </constraints>
+  </views>
+  <views name="Single PropertyView" sections="//@tabs.0/@sections.3" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSinglePropertyView">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/customization"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PropertyView"/>
+    </constraints>
+  </views>
+  <views name="Single UICustom" sections="//@tabs.0/@sections.4" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleUICustom">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="UICustom"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/customization"/>
+    </constraints>
+  </views>
+  <views name="Single ModelTemplate" sections="//@tabs.0/@sections.5" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleModelTemplate">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/customization"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ModelTemplate"/>
+    </constraints>
+  </views>
+  <views name="Single Palette" sections="//@tabs.0/@sections.6" automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSinglePalette">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/customization"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Palette"/>
+    </constraints>
+  </views>
+  <views name="Single Profile" sections="//@tabs.0/@sections.7" automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleProfile">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Profile"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/customization"/>
+    </constraints>
+  </views>
+  <views name="Single UMLModel" sections="//@tabs.0/@sections.8" automaticContext="true" datacontexts="//@dataContexts.0/@elements.8">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleUMLModel">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/customization"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="UMLModel"/>
+    </constraints>
+  </views>
+  <views name="Multiple CustomizationConfiguration" sections="//@tabs.0/@sections.9" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleCustomizationConfiguration">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="CustomizationConfiguration"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/customization"/>
+    </constraints>
+  </views>
+  <views name="Multiple CustomizableElement" sections="//@tabs.0/@sections.10" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleCustomizableElement">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="CustomizableElement"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/customization"/>
+    </constraints>
+  </views>
+  <views name="Multiple FileBasedCustomizableElement" sections="//@tabs.0/@sections.11" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleFileBasedCustomizableElement">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/customization"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="FileBasedCustomizableElement"/>
+    </constraints>
+  </views>
+  <views name="Multiple PropertyView" sections="//@tabs.0/@sections.12" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultiplePropertyView">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/customization"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PropertyView"/>
+    </constraints>
+  </views>
+  <views name="Multiple UICustom" sections="//@tabs.0/@sections.13" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleUICustom">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="UICustom"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/customization"/>
+    </constraints>
+  </views>
+  <views name="Multiple ModelTemplate" sections="//@tabs.0/@sections.14" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleModelTemplate">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/customization"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ModelTemplate"/>
+    </constraints>
+  </views>
+  <views name="Multiple Palette" sections="//@tabs.0/@sections.15" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultiplePalette">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/customization"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Palette"/>
+    </constraints>
+  </views>
+  <views name="Multiple Profile" sections="//@tabs.0/@sections.16" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleProfile">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/customization"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Profile"/>
+    </constraints>
+  </views>
+  <views name="Multiple UMLModel" sections="//@tabs.0/@sections.17" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.8">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleUMLModel">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="UMLModel"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/customization"/>
+    </constraints>
+  </views>
+  <dataContexts name="customization" label="customization">
+    <elements name="CustomizationConfiguration">
+      <properties name="plugin"/>
+      <properties name="elements" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="CustomizableElement"/>
+    <elements name="FileBasedCustomizableElement">
+      <properties name="file"/>
+    </elements>
+    <elements name="PropertyView"/>
+    <elements name="UICustom">
+      <properties name="loadByDefault" type="Boolean"/>
+    </elements>
+    <elements name="ModelTemplate">
+      <properties name="language"/>
+      <properties name="name"/>
+      <properties name="id"/>
+    </elements>
+    <elements name="Palette"/>
+    <elements name="Profile">
+      <properties name="qualifiednames"/>
+      <properties name="iconpath"/>
+      <properties name="description"/>
+      <properties name="provider"/>
+      <properties name="name"/>
+    </elements>
+    <elements name="UMLModel">
+      <properties name="name"/>
+      <properties name="iconpath"/>
+      <properties name="description"/>
+      <properties name="provider"/>
+    </elements>
+    <modelElementFactory href="pathmap://PPEResources/Environment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+</contexts:Context>
