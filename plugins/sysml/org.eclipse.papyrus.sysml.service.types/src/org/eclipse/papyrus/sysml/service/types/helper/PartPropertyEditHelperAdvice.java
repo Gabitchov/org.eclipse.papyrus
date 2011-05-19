@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.service.types.matcher.BlockMatcher;
-import org.eclipse.papyrus.sysml.service.types.utils.NamedElementHelper;
+import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Element;
@@ -118,7 +118,7 @@ public class PartPropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 					association.getMemberEnds().add(sourcePart);
 					association.getMemberEnds().add(targetProperty);
 					
-					String associationName = NamedElementHelper.EINSTANCE.getNewUMLElementName(associationContainer, "PartAssociation"); //$NON-NLS-1$
+					String associationName = NamedElementHelper.EINSTANCE.getNewUMLElementName(associationContainer, "Association"); //$NON-NLS-1$
 					association.setName(associationName);
 					
 					association.setPackage(associationContainer);

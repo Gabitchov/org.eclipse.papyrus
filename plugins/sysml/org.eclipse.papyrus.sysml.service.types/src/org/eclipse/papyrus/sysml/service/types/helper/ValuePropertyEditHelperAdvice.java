@@ -26,7 +26,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.service.types.matcher.BlockMatcher;
-import org.eclipse.papyrus.sysml.service.types.utils.NamedElementHelper;
+import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;

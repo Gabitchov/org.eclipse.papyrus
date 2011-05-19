@@ -10,8 +10,9 @@
 package org.eclipse.papyrus.sysml.service.types.matcher;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;import org.eclipse.papyrus.sysml.portandflows.ItemFlow;
-import org.eclipse.papyrus.sysml.service.types.utils.ElementUtil;
+import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
+import org.eclipse.papyrus.sysml.portandflows.ItemFlow;
+import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.InformationFlow;
 
 /**

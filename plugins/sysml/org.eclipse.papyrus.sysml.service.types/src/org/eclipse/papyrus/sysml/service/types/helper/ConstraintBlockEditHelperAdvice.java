@@ -23,9 +23,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
-import org.eclipse.papyrus.sysml.service.types.utils.NamedElementHelper;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
+import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 

@@ -10,6 +10,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.service.types.helper;
 
+import javax.swing.text.View;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -18,9 +20,9 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
-import org.eclipse.papyrus.sysml.modelelements.View;
-import org.eclipse.papyrus.sysml.service.types.utils.NamedElementHelper;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
+import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 

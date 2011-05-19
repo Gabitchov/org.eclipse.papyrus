@@ -22,8 +22,9 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
-import org.eclipse.papyrus.sysml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
+import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Port;
 
 /** SysML FlowPort#Out edit helper advice */

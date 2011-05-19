@@ -27,11 +27,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.blocks.ValueType;
+import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.service.types.matcher.BlockMatcher;
-import org.eclipse.papyrus.sysml.service.types.utils.ElementUtil;
-import org.eclipse.papyrus.sysml.service.types.utils.NamedElementHelper;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
+import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
+import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Port;
@@ -109,7 +111,7 @@ public class FlowPortEditHelperAdvice extends AbstractStereotypedElementEditHelp
 	
 	/** 
 	 * Restrict allowed types to 
-	 * 		{@link Block}, {@link Signal}, {@link DataType}, {@link ValueType} 
+	 * 		{@link Block}, {@link Signal}, {@link DataType}, {@link ValueType}, {@link FlowSpecification}
 	 */
 	@Override
 	protected ICommand getBeforeSetCommand(SetRequest request) {
@@ -129,8 +131,9 @@ public class FlowPortEditHelperAdvice extends AbstractStereotypedElementEditHelp
 				
 				ValueType valueType = ElementUtil.getStereotypeApplication(value, ValueType.class);
 				Block block = ElementUtil.getStereotypeApplication(value, Block.class);
+				FlowSpecification flowspecification = ElementUtil.getStereotypeApplication(value, FlowSpecification.class);
 
-				if ((block != null) || (valueType != null)) {
+				if ((block != null) || (valueType != null) || (flowspecification != null)) {
 					return null; // accept these types
 				}
 				

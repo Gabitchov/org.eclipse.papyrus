@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
-import org.eclipse.papyrus.sysml.service.types.utils.ElementUtil;
+import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Port;
 
 /**
