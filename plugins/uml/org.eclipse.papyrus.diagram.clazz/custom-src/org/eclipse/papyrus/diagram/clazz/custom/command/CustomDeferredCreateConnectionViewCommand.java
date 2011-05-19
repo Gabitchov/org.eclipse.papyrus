@@ -12,7 +12,7 @@
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - refactor code in CommonDeferredCreateConnectionViewCommand
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.clazz.custom.providers;
+package org.eclipse.papyrus.diagram.clazz.custom.command;
 
 import java.util.Map;
 
@@ -28,7 +28,6 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.custom.command.AssociationClassViewCreateCommand;
 import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 
 /**

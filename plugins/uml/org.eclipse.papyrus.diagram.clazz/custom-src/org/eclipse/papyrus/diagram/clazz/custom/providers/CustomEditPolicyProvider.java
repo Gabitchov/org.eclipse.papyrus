@@ -14,8 +14,8 @@
 package org.eclipse.papyrus.diagram.clazz.custom.providers;
 
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
-import org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -30,15 +30,8 @@ import org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy;
  * 
  * @author Patrick Tessier
  */
-public class CustomEditPolicyProvider implements IEditPolicyProvider {
+public class CustomEditPolicyProvider extends AbstractProvider implements IEditPolicyProvider {
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public void addProviderChangeListener(IProviderChangeListener listener) {
-
-	}
 
 	/**
 	 * 
@@ -70,12 +63,5 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 		return false;
 	}
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public void removeProviderChangeListener(IProviderChangeListener listener) {
-
-	}
 
 }

@@ -17,6 +17,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationBranchReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.helper.AssociationHelper;
@@ -33,11 +35,13 @@ public class CustomAssociationBranchReorientCommand extends AssociationBranchReo
 	private EObject oldNamedElementEnd;
 
 	private EObject newNamedElementEnd;
+	protected View connection=null;
 
 	public CustomAssociationBranchReorientCommand(ReorientRelationshipRequest request) {
 		super(request);
 		oldNamedElementEnd = request.getOldRelationshipEnd();
 		newNamedElementEnd = request.getNewRelationshipEnd();
+		connection =(View)request.getParameters().get("graphical_edge");
 	}
 
 	/**
@@ -72,13 +76,19 @@ public class CustomAssociationBranchReorientCommand extends AssociationBranchReo
 
 		/* look for end for the given type */
 		int i = 0;
-		Property end = getLink().getMemberEnds().get(i);
-		while(!end.getType().equals(getOldTarget())) {
-			i++;
-			end = getLink().getMemberEnds().get(i);
 
+		Property end =null;
+		if(MultiAssociationHelper.getSemanticBranchEnd(connection)!=null){
+			end=MultiAssociationHelper.getSemanticBranchEnd(connection);
+			i=getLink().getMemberEnds().indexOf(end);
 		}
-
+		else{
+			end= getLink().getMemberEnds().get(i);
+			while(!end.getType().equals(getOldTarget())) {
+				i++;
+				end = getLink().getMemberEnds().get(i);
+			}
+		}
 		return AssociationHelper.reconnect(i, getLink(), getNewTarget());
 
 	}

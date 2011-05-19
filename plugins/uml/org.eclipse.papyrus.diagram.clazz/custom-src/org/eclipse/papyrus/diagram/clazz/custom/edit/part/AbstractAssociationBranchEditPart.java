@@ -95,10 +95,7 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionNodeEd
 				if(target != null && target.getOwner() != null) {
 					int sourceType = 0;
 					int targetType = 0;
-					// owned?
-					if(target.getOwner().equals(resolveSemanticElement())) {
-						targetType += AssociationFigure.owned;
-					}
+					
 					// aggregation?
 					if(target.getAggregation() == AggregationKind.SHARED_LITERAL) {
 						targetType += AssociationFigure.aggregation;

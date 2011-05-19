@@ -13,13 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
-import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationEndSourceLabelHelper;
-import org.eclipse.papyrus.umlutils.ICustomAppearence;
+import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationBranchEndLabelHelper;
 
 /**
- * Mask Managed label edit policy for association ends (source role)
+ * Mask Managed label edit policy for association ends (target role)
  */
-public class DisplayAssociationEndSourceEditPolicy extends DisplayAssociationEndEditPolicy {
+public class DisplayAssociationBranchEndEditPolicy extends DisplayAssociationEndEditPolicy {
 
 	public void addAdditionalListeners() {
 		super.addAdditionalListeners();
@@ -31,12 +30,11 @@ public class DisplayAssociationEndSourceEditPolicy extends DisplayAssociationEnd
 	}
 
 	/**
-	 * Instantiates a new display association end source edit policy.
+	 * Instantiates a new display association end target edit policy.
 	 */
-	public DisplayAssociationEndSourceEditPolicy() {
+	public DisplayAssociationBranchEndEditPolicy() {
 		super();
-		propertyLabelHelper = AssociationEndSourceLabelHelper.getInstance();
+		propertyLabelHelper = AssociationBranchEndLabelHelper.getInstance();
 	}
 
-	
 }

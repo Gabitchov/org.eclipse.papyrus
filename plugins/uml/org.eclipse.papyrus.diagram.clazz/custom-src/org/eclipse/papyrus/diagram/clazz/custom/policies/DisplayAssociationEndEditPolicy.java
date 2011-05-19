@@ -91,7 +91,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	 * {@inheritDoc}
 	 */
 	public int getDefaultDisplayValue() {
-		return ICustomAppearence.DEFAULT_UML_ROLE;
+		return ICustomAppearence.DISP_VISIBILITY | ICustomAppearence.DISP_DERIVE | ICustomAppearence.DISP_NAME;
 	}
 
 	/**

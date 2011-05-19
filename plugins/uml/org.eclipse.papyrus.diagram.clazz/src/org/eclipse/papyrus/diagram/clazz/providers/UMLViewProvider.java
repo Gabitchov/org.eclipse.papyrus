@@ -521,6 +521,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		stampShortcut(containerView, node);
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "AssociationNode");
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "AssociationNode");
 
