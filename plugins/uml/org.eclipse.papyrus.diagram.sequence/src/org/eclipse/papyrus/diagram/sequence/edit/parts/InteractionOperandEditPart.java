@@ -476,14 +476,14 @@ AbstractBorderedShapeEditPart {
 					EList<InteractionOperand> operands = enclosingCF.getOperands();
 					if(InteractionOperatorKind.ALT_LITERAL.equals(cfOperator) && interactionOperand.equals(operands.get(operands.size() - 1))) {
 						specValue = "else";
-					} else {
-						specValue = "true";
 					}
 				}
 
-				sb.append('[');
-				sb.append(specValue);
-				sb.append(']');
+				if (specValue != null) {
+					sb.append('[');
+					sb.append(specValue);
+					sb.append(']');
+				}
 
 				fInteractionConstraintLabel.setText(sb.toString());
 			}
