@@ -22,6 +22,7 @@ import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
 import org.eclipse.papyrus.diagram.common.service.palette.AspectToolService;
 import org.eclipse.papyrus.diagram.common.service.palette.IAspectAction;
 import org.eclipse.papyrus.diagram.common.service.palette.IAspectActionProvider;
+import org.eclipse.papyrus.diagram.common.service.palette.IPaletteAspectToolEntryProxy;
 import org.eclipse.papyrus.diagram.common.service.palette.IPostAction;
 import org.eclipse.papyrus.diagram.common.service.palette.IPreAction;
 import org.eclipse.papyrus.diagram.common.service.palette.StereotypePostAction;
@@ -32,7 +33,7 @@ import org.w3c.dom.NodeList;
 /**
  * Proxy for the aspect tool entries
  */
-public class PaletteAspectToolEntryProxy extends PaletteEntryProxy {
+public class PaletteAspectToolEntryProxy extends PaletteEntryProxy implements IPaletteAspectToolEntryProxy {
 
 	/** list of post actions executed by the tool */
 	protected List<IPostAction> postActions = new ArrayList<IPostAction>();
