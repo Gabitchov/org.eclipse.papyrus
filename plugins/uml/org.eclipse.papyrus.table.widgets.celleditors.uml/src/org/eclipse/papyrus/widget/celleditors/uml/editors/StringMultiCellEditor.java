@@ -15,10 +15,14 @@ package org.eclipse.papyrus.widget.celleditors.uml.editors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.facet.widgets.celleditors.AbstractCellEditorComposite;
+import org.eclipse.emf.facet.widgets.celleditors.ICompositeEditorFactory;
 import org.eclipse.emf.facet.widgets.celleditors.IListener;
 import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditHandler;
 import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditor;
-import org.eclipse.emf.facet.widgets.celleditors.ecore.composite.StringMultiComposite;
+import org.eclipse.emf.facet.widgets.celleditors.core.composite.registries.ICompositeEditorFactoriesRegistry;
+import org.eclipse.papyrus.widget.celleditors.uml.Activator;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
@@ -28,32 +32,36 @@ import org.eclipse.swt.widgets.Control;
 public class StringMultiCellEditor implements IModelCellEditor {
 
 	/**
-	 * The StringMultiComposite
+	 * The boolean composite
 	 */
-	private StringMultiComposite<String> composite = null;
+	private AbstractCellEditorComposite<String> composite = null;
 
 	/**
 	 * 
-	 * @see org.eclipse.emf.facet.widgets.celleditors.IModelCellEditor#activateCell(org.eclipse.swt.widgets.Composite, java.lang.Object,
-	 *      org.eclipse.emf.facet.widgets.celleditors.IModelCellEditHandler, org.eclipse.emf.ecore.EStructuralFeature, org.eclipse.emf.ecore.EObject)
-	 * 
-	 * @param parent
-	 * @param originalValue
-	 * @param editHandler
-	 * @param feature
-	 * @param source
-	 * @return
+	 * @see org.eclipse.emf.facet.widgets.celleditors.IModelCellEditor#activateCell(org.eclipse.swt.widgets.Composite, java.lang.Object, org.eclipse.emf.facet.widgets.celleditors.IModelCellEditHandler, org.eclipse.emf.ecore.EStructuralFeature, org.eclipse.emf.ecore.EObject)
+	 *
+	 *  {@inheritDoc}
 	 */
-	public Control activateCell(final Composite parent, final Object originalValue, final IModelCellEditHandler editHandler, final EStructuralFeature feature, final EObject source) {
-		composite = new StringMultiComposite<String>(parent, originalValue);
-
-		composite.addCommitListener(new IListener() {
-
-			public void handleEvent() {
-				editHandler.commit();
+	public Control activateCell(final Composite parent, final Object originalValue,
+		final IModelCellEditHandler editHandler, final EStructuralFeature feature,
+		final EObject source) {
+		if(this.composite==null){
+			ICompositeEditorFactory<String> compositeEditorFactory = ICompositeEditorFactoriesRegistry.INSTANCE.getCompositeEditorFactory(String.class);
+			this.composite = compositeEditorFactory.createCompositeEditor(parent, SWT.NONE);
+			if (originalValue != null) {
+				if (originalValue instanceof String) {
+					this.composite.setValue((String) originalValue);
+				} else {
+					Activator.log.info("An instance of Integer was expected"); //$NON-NLS-1$
+				}
 			}
-		});
-		return composite;
+			this.composite.addCommitListener(new IListener() {
+				public void handleEvent() {
+					editHandler.commit();
+				}
+			});
+		}
+		return this.composite;
 	}
 
 	/**
@@ -63,6 +71,9 @@ public class StringMultiCellEditor implements IModelCellEditor {
 	 * @return
 	 */
 	public Object getValue() {
-		return composite.getValue();
+		if(this.composite!=null){
+			return this.composite.getValue();
+		}
+		return null;
 	}
 }

@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.widget.celleditors.uml.editors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -26,15 +13,14 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
-/** A cell editor for Boolean */
-public class BooleanCellEditor implements IModelCellEditor {
+public class IntCellEditor implements IModelCellEditor{
 
 
 
 	/**
 	 * The boolean composite
 	 */
-	private AbstractCellEditorComposite<Boolean> composite = null;
+	private AbstractCellEditorComposite<Integer> composite = null;
 
 	/**
 	 * 
@@ -46,11 +32,11 @@ public class BooleanCellEditor implements IModelCellEditor {
 		final IModelCellEditHandler editHandler, final EStructuralFeature feature,
 		final EObject source) {
 		if(this.composite==null){
-			ICompositeEditorFactory<Boolean> compositeEditorFactory = ICompositeEditorFactoriesRegistry.INSTANCE.getCompositeEditorFactory(Boolean.class);
+			ICompositeEditorFactory<Integer> compositeEditorFactory = ICompositeEditorFactoriesRegistry.INSTANCE.getCompositeEditorFactory(Integer.class);
 			this.composite = compositeEditorFactory.createCompositeEditor(parent, SWT.NONE);
 			if (originalValue != null) {
-				if (originalValue instanceof Boolean) {
-					this.composite.setValue((Boolean) originalValue);
+				if (originalValue instanceof Integer) {
+					this.composite.setValue((Integer) originalValue);
 				} else {
 					Activator.log.info("An instance of Integer was expected"); //$NON-NLS-1$
 				}

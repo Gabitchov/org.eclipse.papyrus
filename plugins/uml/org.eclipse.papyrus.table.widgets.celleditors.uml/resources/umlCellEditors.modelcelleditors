@@ -6,4 +6,7 @@
   <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="uml_string_cell_papyrus" basicCellEditorImpl="org.eclipse.papyrus.widget.celleditors.uml.editors.StringMultiCellEditor">
     <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/3.0.0/UML#//String"/>
   </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="uml_int_cell_papyrus" basicCellEditorImpl="org.eclipse.papyrus.widget.celleditors.uml.editors.IntCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/3.0.0/UML#//Integer"/>
+  </modelCellEditors>
 </modelCellEditor:ModelCellEditorDeclarations>
