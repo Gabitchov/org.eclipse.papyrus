@@ -27,6 +27,11 @@ public class LinesBorder extends LineBorder {
 
 	/** The positions where the borders are drawn */
 	private int positions = PositionConstants.NONE;
+	
+	private int leftInset = 0;
+	private int rightInset = 0;
+	private int topInset = 0;
+	private int bottomInset = 0;
 
 	/**
 	 * Constructor.
@@ -84,23 +89,7 @@ public class LinesBorder extends LineBorder {
 	 * @see org.eclipse.draw2d.Border#getInsets(org.eclipse.draw2d.IFigure)
 	 */
 	public Insets getInsets(IFigure figure) {
-		int top = 0;
-		if((positions & PositionConstants.TOP) > 0) {
-			top = getWidth();
-		}
-		int left = 0;
-		if((positions & PositionConstants.LEFT) > 0) {
-			left = getWidth();
-		}
-		int bottom = 0;
-		if((positions & PositionConstants.BOTTOM) > 0) {
-			bottom = getWidth();
-		}
-		int right = 0;
-		if((positions & PositionConstants.RIGHT) > 0) {
-			right = getWidth();
-		}
-		return new Insets(top, left, bottom, right);
+		return new Insets(getTopInset(), getLeftInset(),  getBottomInset(), getRightInset());
 	}
 
 	/**
@@ -143,6 +132,70 @@ public class LinesBorder extends LineBorder {
 			graphics.drawLine(tempRect.getTopRight(), tempRect.getBottomRight());
 		}
 	}
+
+	
+	public int getPositions() {
+		return positions;
+	}
+
+	
+	public void setPositions(int positions) {
+		this.positions = positions;
+	}
+
+	
+	public int getLeftInset() {
+		if (leftInset < getWidth() && (positions & PositionConstants.LEFT) > 0){
+			return getWidth();
+		}
+		return leftInset;
+	}
+
+	
+	public void setLeftInset(int leftInset) {
+		this.leftInset = leftInset;
+	}
+
+	
+	public int getRightInset() {
+		if (rightInset < getWidth() && (positions & PositionConstants.RIGHT) > 0){
+			return getWidth();
+		}
+		return rightInset;
+	}
+
+	
+	public void setRightInset(int rightInset) {
+		this.rightInset = rightInset;
+	}
+
+	
+	public int getTopInset() {
+		if (topInset < getWidth() && (positions & PositionConstants.TOP) > 0){
+			return getWidth();
+		}
+		return topInset;
+	}
+
+	
+	public void setTopInset(int topInset) {
+		this.topInset = topInset;
+	}
+
+	
+	public int getBottomInset() {
+		if (bottomInset < getWidth() && (positions & PositionConstants.TOP) > 0){
+			return getWidth();
+		}
+		return bottomInset;
+	}
+
+	
+	public void setBottomInset(int bottomInset) {
+		this.bottomInset = bottomInset;
+	}
+	
+	
 
 
 }

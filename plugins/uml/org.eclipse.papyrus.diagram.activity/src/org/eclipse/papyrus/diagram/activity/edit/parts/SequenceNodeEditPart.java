@@ -17,10 +17,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.draw2d.Border;
+import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.GridData;
-import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.RoundedRectangle;
@@ -40,6 +41,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.GravityConstrainedFlowLayout;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -47,24 +51,35 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvanced;
+import org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvancedConstraint;
+import org.eclipse.papyrus.diagram.activity.draw2d.GravityConstrainedFlowLayoutConstraint;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.SequenceNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.activity.preferences.IActivityPreferenceConstants;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.draw2d.RoundedRectangleDashedBorder;
+import org.eclipse.papyrus.diagram.common.editparts.IPapyrusEditPart;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
-import org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel;
+import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
+import org.eclipse.papyrus.diagram.common.groups.preferences.OpacityFactoryHelper;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.diagram.common.helper.StereotypeFigureHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
 
 /**
- * @generated
+ * @generated NOT Implements IPapyrusEditPart
  */
 public class SequenceNodeEditPart extends
 
-ShapeNodeEditPart {
+ShapeNodeEditPart implements IPapyrusEditPart {
 
 	/**
 	 * @generated
@@ -97,6 +112,7 @@ ShapeNodeEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -1097,9 +1113,9 @@ ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT Implements IPapyrusNodeUMLElementFigure (Used to apply stereotype)
 	 */
-	public class StructuredActivityNodeDescriptor extends RoundedRectangle {
+	public class StructuredActivityNodeDescriptor extends RoundedRectangle implements IPapyrusNodeUMLElementFigure {
 
 		/**
 		 * @generated
@@ -1109,26 +1125,105 @@ ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		private CenteredWrappedLabel fKeyword;
+		private WrappingLabel fKeyword;
 
 		/**
 		 * @generated
 		 */
+		private RoundedRectangle fFigureCompartmentLabelStructuredActivityNode;
+
+		/**
+		 * Helper to display stereotype
+		 */
+		private StereotypeFigureHelper stereotypeHelper;
+
+		/**
+		 * Preferences Store
+		 */
+		protected IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+
+
+		/**
+		 * @generated NOT Instanciate stereotypeHelper
+		 */
 		public StructuredActivityNodeDescriptor() {
 
-			GridLayout layoutThis = new GridLayout();
-			layoutThis.numColumns = 1;
-			layoutThis.makeColumnsEqualWidth = false;
-			layoutThis.horizontalSpacing = 0;
-			layoutThis.verticalSpacing = 0;
-			layoutThis.marginWidth = 0;
-			layoutThis.marginHeight = 0;
+			FlowLayoutAdvanced layoutThis = new FlowLayoutAdvanced();
+
+
+
+
+			layoutThis.setStretchMinorAxis(true);
+
+
+
+
+			layoutThis.setMinorAlignment(FlowLayout.ALIGN_CENTER);
+
+
+
+
+			layoutThis.setMajorAlignment(FlowLayout.ALIGN_TOPLEFT);
+
+
+
+
+			layoutThis.setMajorSpacing(0);
+
+
+
+
+			layoutThis.setMinorSpacing(0);
+
+
+
+
+			layoutThis.setHorizontal(false);
+
+
 			this.setLayoutManager(layoutThis);
 
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
-			this.setFill(false);
-			this.setLineStyle(Graphics.LINE_DASH);
+			this.setLineWidth(0);
+			this.setOutline(false);
+			this.setBorder(createBorder1());
+			OpacityFactoryHelper.initOpacityPreferences(IActivityPreferenceConstants.PREF_SEQUENCE_NODE_ALPHA, store, this);
 			createContents();
+			/*
+			 * Create the helper which will help to display stereotype
+			 */
+			stereotypeHelper = new StereotypeFigureHelper(getFigureCompartmentLabelStructuredActivityNode()) {
+
+				@Override
+				public IMapMode getMapMode() {
+					return SequenceNodeEditPart.this.getMapMode();
+				}
+
+				@Override
+				public Object getStereotypeRectangleConstraint() {
+					return new Integer(GravityConstrainedFlowLayout.ALIGN_CENTER);
+				}
+			};
+			/*
+			 * Set all the inset to 0
+			 */
+			stereotypeHelper.setBottomInset(0);
+			stereotypeHelper.setLeftInset(0);
+			stereotypeHelper.setTopInset(0);
+			stereotypeHelper.setRightInset(0);
+		}
+
+		/**
+		 * Custom border
+		 * (Used to avoid the alpa setting affect the border)
+		 * 
+		 * @return
+		 */
+		private Border createBorder1() {
+			RoundedRectangleDashedBorder result = new RoundedRectangleDashedBorder(8, 8);
+			result.setWidth(1);
+			result.setStyle(Graphics.LINE_DASH);
+			return result;
 		}
 
 		/**
@@ -1137,22 +1232,37 @@ ShapeNodeEditPart {
 		private void createContents() {
 
 
-			fKeyword = new CenteredWrappedLabel();
+			fFigureCompartmentLabelStructuredActivityNode = new RoundedRectangle();
+			fFigureCompartmentLabelStructuredActivityNode.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
+			fFigureCompartmentLabelStructuredActivityNode.setFill(false);
+			fFigureCompartmentLabelStructuredActivityNode.setOutline(false);
+			fFigureCompartmentLabelStructuredActivityNode.setLineWidth(0);
+
+			this.add(fFigureCompartmentLabelStructuredActivityNode);
+
+			GravityConstrainedFlowLayout layoutFFigureCompartmentLabelStructuredActivityNode = new GravityConstrainedFlowLayout();
+
+
+			fFigureCompartmentLabelStructuredActivityNode.setLayoutManager(layoutFFigureCompartmentLabelStructuredActivityNode);
+
+
+
+			fKeyword = new WrappingLabel();
 
 
 
 			fKeyword.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 
+			GravityConstrainedFlowLayoutConstraint constraintFKeyword = new GravityConstrainedFlowLayoutConstraint();
 
-			GridData constraintFKeyword = new GridData();
-			constraintFKeyword.verticalAlignment = GridData.CENTER;
-			constraintFKeyword.horizontalAlignment = GridData.BEGINNING;
-			constraintFKeyword.horizontalIndent = 0;
-			constraintFKeyword.horizontalSpan = 1;
-			constraintFKeyword.verticalSpan = 1;
-			constraintFKeyword.grabExcessHorizontalSpace = false;
-			constraintFKeyword.grabExcessVerticalSpace = false;
-			this.add(fKeyword, constraintFKeyword);
+
+
+
+			constraintFKeyword.setAlign(GravityConstrainedFlowLayout.ALIGN_TOPLEFT);
+
+
+
+			fFigureCompartmentLabelStructuredActivityNode.add(fKeyword, constraintFKeyword);
 
 
 
@@ -1161,17 +1271,16 @@ ShapeNodeEditPart {
 			fStructuredActivityNodeCompartment.setFill(false);
 			fStructuredActivityNodeCompartment.setOutline(false);
 
+			FlowLayoutAdvancedConstraint constraintFStructuredActivityNodeCompartment = new FlowLayoutAdvancedConstraint();
 
-			GridData constraintFStructuredActivityNodeCompartment = new GridData();
-			constraintFStructuredActivityNodeCompartment.verticalAlignment = GridData.FILL;
-			constraintFStructuredActivityNodeCompartment.horizontalAlignment = GridData.FILL;
-			constraintFStructuredActivityNodeCompartment.horizontalIndent = 0;
-			constraintFStructuredActivityNodeCompartment.horizontalSpan = 1;
-			constraintFStructuredActivityNodeCompartment.verticalSpan = 1;
-			constraintFStructuredActivityNodeCompartment.grabExcessHorizontalSpace = true;
-			constraintFStructuredActivityNodeCompartment.grabExcessVerticalSpace = true;
+
+
+
+			constraintFStructuredActivityNodeCompartment.setFull(true);
+
+
+
 			this.add(fStructuredActivityNodeCompartment, constraintFStructuredActivityNodeCompartment);
-
 
 
 		}
@@ -1186,8 +1295,62 @@ ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		public CenteredWrappedLabel getKeyword() {
+		public WrappingLabel getKeyword() {
 			return fKeyword;
+		}
+
+		/**
+		 * @generated
+		 */
+		public RoundedRectangle getFigureCompartmentLabelStructuredActivityNode() {
+			return fFigureCompartmentLabelStructuredActivityNode;
+		}
+
+		/**
+		 * 
+		 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusUMLElementFigure#setStereotypeDisplay(java.lang.String,
+		 *      org.eclipse.swt.graphics.Image)
+		 * 
+		 * @param stereotypes
+		 * @param image
+		 */
+		public void setStereotypeDisplay(String stereotypes, Image image) {
+			stereotypeHelper.setStereotypeDisplay(stereotypes, image);
+			this.layout();
+		}
+
+		/**
+		 * 
+		 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#setStereotypePropertiesInBrace(java.lang.String)
+		 * 
+		 * @param stereotypeProperties
+		 */
+		public void setStereotypePropertiesInBrace(String stereotypeProperties) {
+			stereotypeHelper.setStereotypePropertiesInBrace(stereotypeProperties);
+			this.layout();
+		}
+
+		/**
+		 * 
+		 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#setStereotypePropertiesInCompartment(java.lang.String)
+		 * 
+		 * @param stereotypeProperties
+		 */
+		public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
+			stereotypeHelper.setStereotypePropertiesInCompartment(stereotypeProperties);
+			this.layout();
+		}
+
+		/**
+		 * 
+		 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#getStereotypesLabel()
+		 * 
+		 * @return
+		 */
+		@Deprecated
+		public Label getStereotypesLabel() {
+
+			return null;
 		}
 
 	}

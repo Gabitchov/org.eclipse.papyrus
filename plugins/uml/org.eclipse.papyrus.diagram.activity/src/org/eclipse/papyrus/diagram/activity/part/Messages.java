@@ -20,6 +20,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS {
 
+
 	/**
 	 * @generated
 	 */
@@ -1893,5 +1894,14 @@ public class Messages extends NLS {
 	 */
 	public static String UMLModelingAssistantProviderMessage;
 
+	/**
+	 * @generated NOT
+	 */
+	public static String SpecificKeywordStructuredActivityNodeVisibility_visibility;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String StructuredActivityNodePreferencePage_showSpecificKeyword;
 	//TODO: put accessor fields manually	
 }

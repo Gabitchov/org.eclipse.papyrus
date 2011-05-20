@@ -614,38 +614,90 @@
       <actualFigure
           xsi:type="gmfgraph:RoundedRectangle"
           name="StructuredActivityNodeFigure"
-          fill="false"
+          outline="false"
+          lineWidth="0"
           lineKind="LINE_DASH">
         <layout
-            xsi:type="gmfgraph:GridLayout"
-            equalWidth="false">
-          <margins/>
-          <spacing/>
+            xsi:type="gmfgraph:CustomLayout"
+            qualifiedClassName="org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvanced">
+          <attributes
+              name="stretchMinorAxis"
+              value="true"/>
+          <attributes
+              name="minorAlignment"
+              value="FlowLayout.ALIGN_CENTER"/>
+          <attributes
+              name="majorAlignment"
+              value="FlowLayout.ALIGN_TOPLEFT"/>
+          <attributes
+              name="majorSpacing"
+              value="0"/>
+          <attributes
+              name="minorSpacing"
+              value="0"/>
+          <attributes
+              name="horizontal"
+              value="false"/>
         </layout>
+        <border
+            xsi:type="gmfgraph:CustomBorder"
+            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.RoundedRectangleDashedBorder">
+          <attributes
+              name="arcWidth"
+              value="8"/>
+          <attributes
+              name="arcHeight"
+              value="8"/>
+        </border>
         <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="StructuredActivityNodeKeyword"
-            qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              horizontalAlignment="BEGINNING"/>
-          <insets
-              top="5"
-              left="5"
-              bottom="5"
-              right="5"/>
+            xsi:type="gmfgraph:RoundedRectangle"
+            name="CompartmentLabelStructuredActivityNode"
+            outline="false"
+            fill="false"
+            lineWidth="0">
+          <layout
+              xsi:type="gmfgraph:CustomLayout"
+              qualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.GravityConstrainedFlowLayout"/>
+          <children
+              xsi:type="gmfgraph:CustomFigure"
+              name="StructuredActivityNodeKeyword"
+              qualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <layoutData
+                xsi:type="gmfgraph:CustomLayoutData"
+                qualifiedClassName="org.eclipse.papyrus.diagram.activity.draw2d.GravityConstrainedFlowLayoutConstraint">
+              <attributes
+                  name="align"
+                  value="GravityConstrainedFlowLayout.ALIGN_TOPLEFT"/>
+            </layoutData>
+            <insets
+                top="5"
+                left="5"
+                bottom="5"
+                right="5"/>
+            <attributes
+                name="textJustification"
+                value="SWT.LEFT"/>
+            <attributes
+                name="textAlignment"
+                value="PositionConstants.LEFT"/>
+            <attributes
+                name="textWrap"
+                value="true"/>
+          </children>
         </children>
         <children
-            xsi:type="gmfgraph:Rectangle"
+            xsi:type="gmfgraph:RoundedRectangle"
             name="StructuredActivityNodeCompartment"
             outline="false"
-            fill="false">
+            fill="false"
+            lineWidth="0">
           <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              grabExcessVerticalSpace="true"
-              verticalAlignment="FILL"
-              horizontalAlignment="FILL"/>
+              xsi:type="gmfgraph:CustomLayoutData"
+              qualifiedClassName="org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvancedConstraint">
+            <attributes
+                name="full"
+                value="true"/>
+          </layoutData>
         </children>
       </actualFigure>
       <accessors
@@ -653,6 +705,9 @@
           figure="//@figures.0/@descriptors.18/@actualFigure/@children.1"/>
       <accessors
           accessor="getKeyword"
+          figure="//@figures.0/@descriptors.18/@actualFigure/@children.0/@children.0"/>
+      <accessors
+          accessor="getFigureCompartmentLabelStructuredActivityNode"
           figure="//@figures.0/@descriptors.18/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
@@ -667,36 +722,85 @@
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
           name="ActivityPartitionFigure"
-          fill="false">
+          outline="false">
         <layout
-            xsi:type="gmfgraph:GridLayout"
-            equalWidth="false">
-          <margins/>
-          <spacing/>
+            xsi:type="gmfgraph:CustomLayout"
+            qualifiedClassName="org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvanced">
+          <attributes
+              name="stretchMinorAxis"
+              value="true"/>
+          <attributes
+              name="minorAlignment"
+              value="FlowLayout.ALIGN_CENTER"/>
+          <attributes
+              name="majorAlignment"
+              value="FlowLayout.ALIGN_TOPLEFT"/>
+          <attributes
+              name="majorSpacing"
+              value="0"/>
+          <attributes
+              name="minorSpacing"
+              value="0"/>
+          <attributes
+              name="horizontal"
+              value="false"/>
         </layout>
+        <border
+            xsi:type="gmfgraph:CustomBorder"
+            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.LinesBorder">
+          <attributes
+              name="sides"
+              value="PositionConstants.TOP | PositionConstants.LEFT | PositionConstants.RIGHT"/>
+        </border>
         <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="ActivityPartitionLabel"
-            qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"/>
-          <insets
-              top="5"
-              left="5"
-              bottom="5"
-              right="5"/>
+            xsi:type="gmfgraph:Rectangle"
+            name="CompartmentLabelActivityPartition"
+            outline="false"
+            lineWidth="0">
+          <layout
+              xsi:type="gmfgraph:FlowLayout"
+              matchMinorSize="true"
+              majorAlignment="CENTER"
+              minorAlignment="CENTER"
+              majorSpacing="0"
+              minorSpacing="0"/>
+          <border
+              xsi:type="gmfgraph:CustomBorder"
+              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.LinesBorder">
+            <attributes
+                name="sides"
+                value="PositionConstants.BOTTOM"/>
+            <attributes
+                name="leftInset"
+                value="5"/>
+            <attributes
+                name="rightInset"
+                value="5"/>
+            <attributes
+                name="topInset"
+                value="5"/>
+            <attributes
+                name="bottomInset"
+                value="5"/>
+          </border>
+          <children
+              xsi:type="gmfgraph:CustomFigure"
+              name="ActivityPartitionLabel"
+              qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel"/>
         </children>
         <children
             xsi:type="gmfgraph:Rectangle"
             name="ActivityPartitionContent"
             outline="false"
-            fill="false">
+            fill="false"
+            lineWidth="0">
           <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              grabExcessVerticalSpace="true"
-              verticalAlignment="FILL"
-              horizontalAlignment="FILL"/>
+              xsi:type="gmfgraph:CustomLayoutData"
+              qualifiedClassName="org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvancedConstraint">
+            <attributes
+                name="fill"
+                value="true"/>
+          </layoutData>
         </children>
       </actualFigure>
       <accessors
@@ -704,6 +808,8 @@
           figure="//@figures.0/@descriptors.20/@actualFigure/@children.1"/>
       <accessors
           accessor="getPartitionLabel"
+          figure="//@figures.0/@descriptors.20/@actualFigure/@children.0/@children.0"/>
+      <accessors
           figure="//@figures.0/@descriptors.20/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors

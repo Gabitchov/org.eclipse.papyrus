@@ -19,8 +19,15 @@ import java.util.TreeMap;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.common.groups.preferences.OpacityFactoryHelper;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
+import org.eclipse.papyrus.preferences.ui.DecorationGroup;
+import org.eclipse.papyrus.preferences.ui.FontGroup;
+import org.eclipse.papyrus.preferences.ui.LabelGroup;
+import org.eclipse.papyrus.preferences.ui.NodeColorGroup;
+import org.eclipse.papyrus.preferences.ui.NodeCompartmentGroup;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.swt.widgets.Composite;
 
 /**
  * @generated
@@ -117,5 +124,29 @@ public class StructuredActivityNodePreferencePage extends AbstractPapyrusNodePre
 	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
 		return getStaticCompartmentTitleVisibilityPreferences();
 	}
+
+	@Override
+	protected void createPageContents(Composite parent) {
+		FontGroup fontGroupComposite = new FontGroup(parent, getPreferenceKey(), this);
+		addAbstractGroup(fontGroupComposite);
+		NodeColorGroup colorGroupForNodeComposite = new NodeColorGroup(parent, getPreferenceKey(), this);
+		addAbstractGroup(colorGroupForNodeComposite);
+		//Add opacity Group
+		addAbstractGroup(OpacityFactoryHelper.getOpacityGroup(parent, getPreferenceKey(), this, IActivityPreferenceConstants.PREF_STRUCTURED_NODE_ALPHA));
+		DecorationGroup decorationGroup = new DecorationGroup(parent, getPreferenceKey(), this);
+		addAbstractGroup(decorationGroup);
+		if(!compartmentsList.isEmpty()) {
+			NodeCompartmentGroup compartmentGroup = new NodeCompartmentGroup(parent, getPreferenceKey(), this, compartmentsList, getCompartmentTitleVisibilityPreferences().keySet(), getPreferenceStore());
+			addAbstractGroup(compartmentGroup);
+		}
+
+		//Label role group
+		if(!getLabelRole().isEmpty()) {
+			LabelGroup compartmentGroup = new LabelGroup(parent, getPreferenceKey(), this, getLabelRole());
+			addAbstractGroup(compartmentGroup);
+		}
+	}
+
+
 
 }

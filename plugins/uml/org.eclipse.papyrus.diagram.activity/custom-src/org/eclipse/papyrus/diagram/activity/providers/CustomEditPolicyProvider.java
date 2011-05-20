@@ -46,7 +46,7 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 */
 	public void createEditPolicies(EditPart editPart) {
 		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
-		if( editPart instanceof IPrimaryEditPart){
+		if(editPart instanceof IPrimaryEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		}
 	}

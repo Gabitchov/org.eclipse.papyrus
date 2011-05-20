@@ -32,7 +32,6 @@ public class DiagramSpecificPreferenceInitializer extends AbstractPreferenceInit
 
 		// preference for showing Activity edge name is common to several pages
 		store.setDefault(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL, true);
-
 		// preferences for keeping user choices are not displayed
 		store.setDefault(IActivityPreferenceConstants.PREF_NEW_CALL_BEHAVIOR_ACTION_SELECT_AS_DEFAULT, false);
 		store.setDefault(IActivityPreferenceConstants.PREF_NEW_CALL_OPERATION_ACTION_SELECT_AS_DEFAULT, true);
@@ -40,6 +39,21 @@ public class DiagramSpecificPreferenceInitializer extends AbstractPreferenceInit
 		store.setDefault(IActivityPreferenceConstants.PREF_NEW_CALL_BEHAVIOR_ACTION_CREATION_OWNER, "");
 		store.setDefault(IActivityPreferenceConstants.PREF_NEW_CALL_OPERATION_ACTION_CREATION_OWNER, "");
 		store.setDefault(IActivityPreferenceConstants.PREF_NEW_SEND_SIGNAL_ACTION_CREATION_OWNER, "");
+
+		//Specific preferences for groups
+		//Opacity Preferences
+		store.setDefault(IActivityPreferenceConstants.PREF_ACTIVITY_PARTITION_ALPHA, 100);
+		store.setDefault(IActivityPreferenceConstants.PREF_CONDITIONAL_NODE_ALPHA, 100);
+		store.setDefault(IActivityPreferenceConstants.PREF_SEQUENCE_NODE_ALPHA, 100);
+		store.setDefault(IActivityPreferenceConstants.PREF_EXPANSION_REGION_ALPHA, 100);
+		store.setDefault(IActivityPreferenceConstants.PREF_STRUCTURED_NODE_ALPHA, 100); //TODO 
+		store.setDefault(IActivityPreferenceConstants.PREF_LOOP_NODE_ALPHA, 100);
+		//Show Specific label preferences
+		store.setDefault(IActivityPreferenceConstants.PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_CONDITIONAL_NODE, true);
+		store.setDefault(IActivityPreferenceConstants.PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_LOOP_NODE, true);
+		store.setDefault(IActivityPreferenceConstants.PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_SEQUENCE_NODE, true);
+		store.setDefault(IActivityPreferenceConstants.PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_STRUCTURED_NODE, true);
+
 	}
 
 	/**

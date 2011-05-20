@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.ScrollPane;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -28,7 +27,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.OneLineBorder;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityPartitionActivityPartitionContentCompartmentItemSemanticEditPolicy;
@@ -74,9 +72,7 @@ extends ShapeCompartmentEditPart
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
 		result.setTitleVisibility(false);
 		// remove the top border
-		OneLineBorder border = new OneLineBorder();
-		border.setPosition(PositionConstants.TOP);
-		result.setBorder(border);
+		result.setBorder(null);
 		// remove scrollbars
 		result.getScrollPane().setEnabled(false);
 		result.getScrollPane().setHorizontalScrollBar(null);

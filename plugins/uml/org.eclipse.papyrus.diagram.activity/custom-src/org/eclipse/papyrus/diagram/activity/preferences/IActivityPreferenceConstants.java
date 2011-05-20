@@ -39,6 +39,56 @@ public interface IActivityPreferenceConstants {
 	public static final String PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL = "org.eclipse.papyrus.diagram.activity.ActivityEdge.showNameLabel"; //$NON-NLS-1$
 
 	/**
+	 * the preference for displaying the specific label of the descent of structured activity node (LoopNode , ConditionalNode ...)
+	 */
+	public static final String PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_LOOP_NODE = "org.eclipse.papyrus.diagram.activity.StructuredActivityNode.specificLabel.loopNode"; //$NON-NLS-1$
+
+	/**
+	 * the preference for displaying the specific label of the descent of structured activity node (LoopNode , ConditionalNode ...)
+	 */
+	public static final String PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_CONDITIONAL_NODE = "org.eclipse.papyrus.diagram.activity.StructuredActivityNode.specificLabel.conditionalNode"; //$NON-NLS-1$
+
+	/**
+	 * the preference for displaying the specific label of the descent of structured activity node (LoopNode , ConditionalNode ...)
+	 */
+	public static final String PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_SEQUENCE_NODE = "org.eclipse.papyrus.diagram.activity.StructuredActivityNode.specificLabel.sequenceNode"; //$NON-NLS-1$
+
+	/**
+	 * the preference for displaying the specific label of the descent of structured activity node (LoopNode , ConditionalNode ...)
+	 */
+	public static final String PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_STRUCTURED_NODE = "org.eclipse.papyrus.diagram.activity.StructuredActivityNode.specificLabel.structuredNode"; //$NON-NLS-1$
+
+	/**
+	 * Alpha of the following figure
+	 */
+	public static final String PREF_ACTIVITY_PARTITION_ALPHA = "org.eclipse.papyrus.diagram.activity.StructuredActivityNode.alpha.activityPartition"; //$NON-NLS-1$
+
+	/**
+	 * Alpha of the following figure
+	 */
+	public static final String PREF_STRUCTURED_NODE_ALPHA = "org.eclipse.papyrus.diagram.activity.StructuredActivityNode.alpha.structuredNode"; //$NON-NLS-1$
+
+	/**
+	 * Alpha of the following figure
+	 */
+	public static final String PREF_LOOP_NODE_ALPHA = "org.eclipse.papyrus.diagram.activity.StructuredActivityNode.alpha.loopNode"; //$NON-NLS-1$
+
+	/**
+	 * Alpha of the following figure
+	 */
+	public static final String PREF_CONDITIONAL_NODE_ALPHA = "org.eclipse.papyrus.diagram.activity.StructuredActivityNode.alpha.conditionalNode"; //$NON-NLS-1$
+
+	/**
+	 * Alpha of the following figure
+	 */
+	public static final String PREF_SEQUENCE_NODE_ALPHA = "org.eclipse.papyrus.diagram.activity.StructuredActivityNode.alpha.sequenceNode"; //$NON-NLS-1$
+
+	/**
+	 * Alpha of the following figure
+	 */
+	public static final String PREF_EXPANSION_REGION_ALPHA = "org.eclipse.papyrus.diagram.activity.StructuredActivityNode.alpha.conditionalNode"; //$NON-NLS-1$
+
+	/**
 	 * the preference for keeping user's choice of whether select or create option is selected in the CallBehaviorAction creation dialog.
 	 */
 	public static final String PREF_NEW_CALL_BEHAVIOR_ACTION_SELECT_AS_DEFAULT = "org.eclipse.papyrus.diagram.activity.CallBehaviorAction.CreateDialog.selectAsDefault"; //$NON-NLS-1$

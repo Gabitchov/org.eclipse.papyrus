@@ -34,6 +34,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.diagram.activity.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.activity.preferences.DiagramPreferenceInitializer;
+import org.eclipse.papyrus.diagram.activity.preferences.DiagramSpecificPreferenceInitializer;
 import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.papyrus.preferences.Activator;
 import org.eclipse.swt.graphics.Image;
@@ -93,7 +94,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT Initialize Specific preferences
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
@@ -102,6 +103,9 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 		adapterFactory = createAdapterFactory();
 		DiagramPreferenceInitializer diagramPreferenceInitializer = new DiagramPreferenceInitializer();
 		diagramPreferenceInitializer.initializeDefaultPreferences();
+		//Initialize Specific preferences
+		DiagramSpecificPreferenceInitializer diagramSpecificPreferenceInitializer = new DiagramSpecificPreferenceInitializer();
+		diagramSpecificPreferenceInitializer.initializeDefaultPreferences();
 	}
 
 	/**

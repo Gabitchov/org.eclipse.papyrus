@@ -46,6 +46,17 @@ public abstract class StereotypeFigureHelper {
 	private boolean stereotypePrinted;
 
 	private IFigure container;
+	/**
+	 * Inset used by then centered wrappe label
+	 */
+	private int topInset = 2;
+	private int leftInset = 5;
+	private int bottomInset = 5;
+	private int rightInset = 5;
+	/**
+	 * True if the container of the stereotype has to be filled
+	 */
+	private boolean isStereotypeContainerFilled = false;
 
 
 	/**
@@ -53,7 +64,13 @@ public abstract class StereotypeFigureHelper {
 	 */
 	public StereotypeFigureHelper(IFigure containingFigure) {
 		container = containingFigure;
+		init();
 		createContents();
+	}
+	/**
+	 * Method use to be override by child class to set the options
+	 */
+	protected void init() {
 	}
 
 	/**
@@ -62,7 +79,7 @@ public abstract class StereotypeFigureHelper {
 	private void createContents() {
 
 		stereotypeRectangle = new RectangleFigure();
-		stereotypeRectangle.setFill(false);
+		stereotypeRectangle.setFill(isStereotypeContainerFilled);
 		stereotypeRectangle.setOutline(false);
 		stereotypeRectangle.setLineWidth(1);
 		stereotypePrinted = false;
@@ -115,7 +132,7 @@ public abstract class StereotypeFigureHelper {
 	protected void createStereotypeLabel() {
 		ensureStereotypeRectanglePrinted();
 		fActionStereotypeLabel = new CenteredWrappedLabel();
-		fActionStereotypeLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
+		fActionStereotypeLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(topInset), getMapMode().DPtoLP(leftInset), getMapMode().DPtoLP(bottomInset ), getMapMode().DPtoLP(rightInset)));
 		// Add the stereotype label to the figure
 		stereotypeRectangle.add(fActionStereotypeLabel, GravityConstrainedFlowLayout.ALIGN_CENTER, 0);
 	}
@@ -140,7 +157,7 @@ public abstract class StereotypeFigureHelper {
 		stereotypePropertiesInBraceContent = new CenteredWrappedLabel();
 		stereotypePropertiesInBraceContent.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 		// Add the stereotype label to the figure
-		stereotypeRectangle.add(stereotypePropertiesInBraceContent, GravityConstrainedFlowLayout.ALIGN_CENTER);
+		stereotypeRectangle.add(stereotypePropertiesInBraceContent, GravityConstrainedFlowLayout.ALIGN_CENTER, -1);
 	}
 
 	/**
@@ -167,7 +184,7 @@ public abstract class StereotypeFigureHelper {
 		stereotypePropertiesContent.setTextWrap(true);
 		stereotypePropertiesContent.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 		// Add the stereotype label to the figure
-		stereotypeRectangle.add(stereotypePropertiesContent, GravityConstrainedFlowLayout.ALIGN_TOPLEFT);
+		stereotypeRectangle.add(stereotypePropertiesContent, GravityConstrainedFlowLayout.ALIGN_TOPLEFT, -1);
 	}
 
 	/**
@@ -283,5 +300,85 @@ public abstract class StereotypeFigureHelper {
 	 * Get the map mode of the corresponding edit part
 	 */
 	public abstract IMapMode getMapMode();
+
+	
+	public int getTopInset() {
+		return topInset;
+	}
+
+	/**
+	 * 
+	 * @param topInset
+	 */
+	public void setTopInset(int topInset) {
+		this.topInset = topInset;
+	}
+
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public int getLeftInset() {
+		return leftInset;
+	}
+
+	/**
+	 * 
+	 * @param leftInset
+	 */
+	public void setLeftInset(int leftInset) {
+		this.leftInset = leftInset;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public int getBottomInset() {
+		return bottomInset;
+	}
+
+	/**
+	 * 
+	 * @param bottomInset
+	 */
+	public void setBottomInset(int bottomInset) {
+		this.bottomInset = bottomInset;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public int getRightInset() {
+		return rightInset;
+	}
+
+	/**
+	 * 
+	 * @param rightInset
+	 */
+	public void setRightInset(int rightInset) {
+		this.rightInset = rightInset;
+	}
+
+	/**
+	 * Return true if the Rectangle containing the the stereotype has to be filled
+	 * @return
+	 */
+	public boolean isStereotypeContainerFilled() {
+		return isStereotypeContainerFilled;
+	}
+
+	/**
+	 * If set to true the rectangle containing the stereotype will be filled
+	 * @param isStereotypeContainerFilled
+	 */
+	public void setStereotypeContainerFilled(boolean isStereotypeContainerFilled) {
+		this.isStereotypeContainerFilled = isStereotypeContainerFilled;
+	}
+	
+	
 
 }
