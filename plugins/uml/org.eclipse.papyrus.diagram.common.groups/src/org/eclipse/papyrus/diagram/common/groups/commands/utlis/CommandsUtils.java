@@ -153,6 +153,7 @@ public class CommandsUtils {
 		}
 		return choiceCommand;
 	}
+
 	/**
 	 * Return the command which create the notification to asked to the user to choose the graphical parent of undetermined element (elements which
 	 * have at least 2 possible graphical parent)

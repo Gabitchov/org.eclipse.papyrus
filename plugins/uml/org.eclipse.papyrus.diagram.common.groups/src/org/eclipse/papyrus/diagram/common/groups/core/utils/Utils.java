@@ -840,42 +840,6 @@ public class Utils {
 		}
 	}
 
-	//
-	//	/**
-	//	 * Construct a map ready to use for ChooseContainedElementsCreator, which indicate children selection state for a group
-	//	 * 
-	//	 * @param group
-	//	 *        the parent group
-	//	 * @param children
-	//	 *        the group children
-	//	 * @return the selection map of children
-	//	 */
-	//	public static Map<IGraphicalEditPart, ChildSelection> contructSelectionMapForGroupChildren(IGraphicalEditPart group, List<IGraphicalEditPart> children) {
-	//		Map<IGraphicalEditPart, ChildSelection> map = new HashMap<IGraphicalEditPart, ChildSelection>(children.size());
-	//		for(IGraphicalEditPart child : children) {
-	//			IGraphicalEditPart oldGraphicalContainer = (IGraphicalEditPart)child.getParent();
-	//			if(!GroupContainmentRegistry.isContainerConcerned(oldGraphicalContainer)) {
-	//				/*
-	//				 * The child is not handled by any group yet :
-	//				 * the group becomes the new parent if it is a model container,
-	//				 * otherwise, the user can decide
-	//				 */
-	//				if(GroupContainmentRegistry.isContainerModel(group)) {
-	//					map.put(child, ChildSelection.ALWAYS_SELECTED);
-	//				} else {
-	//					map.put(child, ChildSelection.SELECTED);
-	//				}
-	//			} else if(group.equals(oldGraphicalContainer)) {
-	//				// Child is already in the group, keep it
-	//				map.put(child, ChildSelection.ALWAYS_SELECTED);
-	//			} else {
-	//				// Child is in another group, let the user decide to take it
-	//				map.put(child, ChildSelection.NOT_SELECTED);
-	//			}
-	//		}
-	//		return map;
-	//	}
-
 	/**
 	 * Get the bounds of an edit part
 	 * 

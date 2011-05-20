@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Composite;
 
 /**
  * Factory Helper used to set the opacity setting on groups ( setAlpha , listenner, preferences etc...)
+ * 
  * @author adaussy
  * 
  */

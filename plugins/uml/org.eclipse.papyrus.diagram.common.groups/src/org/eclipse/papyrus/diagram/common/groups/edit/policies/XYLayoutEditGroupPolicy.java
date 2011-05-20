@@ -60,6 +60,8 @@ import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
  */
 public class XYLayoutEditGroupPolicy extends XYLayoutEditPolicy {
 
+	private static final String IGraphicalEditPart = null;
+
 	/**
 	 * graphical parent of the edit part after moving
 	 */
@@ -214,7 +216,7 @@ public class XYLayoutEditGroupPolicy extends XYLayoutEditPolicy {
 					 * ChooseParentNotificationCommand
 					 */
 					CompositeCommand choiceCommand = CommandsUtils.getChooseParentNotification(editingDomain, request, graphicalParents, modelParents, (IGraphicalEditPart)getHost());
-					if ( choiceCommand != null){
+					if(choiceCommand != null) {
 						commandWrapper.compose(choiceCommand);
 					}
 
