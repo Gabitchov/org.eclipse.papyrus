@@ -38,24 +38,24 @@ public class BooleanCellEditor implements IModelCellEditor {
 
 	/**
 	 * 
-	 * @see org.eclipse.emf.facet.widgets.celleditors.IModelCellEditor#activateCell(org.eclipse.swt.widgets.Composite, java.lang.Object, org.eclipse.emf.facet.widgets.celleditors.IModelCellEditHandler, org.eclipse.emf.ecore.EStructuralFeature, org.eclipse.emf.ecore.EObject)
-	 *
-	 *  {@inheritDoc}
+	 * @see org.eclipse.emf.facet.widgets.celleditors.IModelCellEditor#activateCell(org.eclipse.swt.widgets.Composite, java.lang.Object,
+	 *      org.eclipse.emf.facet.widgets.celleditors.IModelCellEditHandler, org.eclipse.emf.ecore.EStructuralFeature, org.eclipse.emf.ecore.EObject)
+	 * 
+	 *      {@inheritDoc}
 	 */
-	public Control activateCell(final Composite parent, final Object originalValue,
-		final IModelCellEditHandler editHandler, final EStructuralFeature feature,
-		final EObject source) {
-		if(this.composite==null){
+	public Control activateCell(final Composite parent, final Object originalValue, final IModelCellEditHandler editHandler, final EStructuralFeature feature, final EObject source) {
+		if(this.composite == null) {
 			ICompositeEditorFactory<Boolean> compositeEditorFactory = ICompositeEditorFactoriesRegistry.INSTANCE.getCompositeEditorFactory(Boolean.class);
 			this.composite = compositeEditorFactory.createCompositeEditor(parent, SWT.NONE);
-			if (originalValue != null) {
-				if (originalValue instanceof Boolean) {
-					this.composite.setValue((Boolean) originalValue);
+			if(originalValue != null) {
+				if(originalValue instanceof Boolean) {
+					this.composite.setValue((Boolean)originalValue);
 				} else {
 					Activator.log.info("An instance of Integer was expected"); //$NON-NLS-1$
 				}
 			}
 			this.composite.addCommitListener(new IListener() {
+
 				public void handleEvent() {
 					editHandler.commit();
 				}
@@ -71,7 +71,7 @@ public class BooleanCellEditor implements IModelCellEditor {
 	 * @return
 	 */
 	public Object getValue() {
-		if(this.composite!=null){
+		if(this.composite != null) {
 			return this.composite.getValue();
 		}
 		return null;

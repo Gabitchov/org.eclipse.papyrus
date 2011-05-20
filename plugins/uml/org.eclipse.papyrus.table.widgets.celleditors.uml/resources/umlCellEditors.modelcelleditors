@@ -9,4 +9,7 @@
   <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="uml_int_cell_papyrus" basicCellEditorImpl="org.eclipse.papyrus.widget.celleditors.uml.editors.IntCellEditor">
     <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/3.0.0/UML#//Integer"/>
   </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:UnaryReferenceCellEditor" cellId="uml_enumeration_literal_cell_papyrus" unaryReferenceCellEditorImpl="org.eclipse.papyrus.widget.celleditors.uml.editors.EnumerationCellEditor">
+    <cellType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Enumeration"/>
+  </modelCellEditors>
 </modelCellEditor:ModelCellEditorDeclarations>

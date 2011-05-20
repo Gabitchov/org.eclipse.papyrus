@@ -15,26 +15,21 @@ package org.eclipse.papyrus.widget.celleditors.uml.editors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.facet.widgets.celleditors.AbstractCellEditorComposite;
-import org.eclipse.emf.facet.widgets.celleditors.ICompositeEditorFactory;
 import org.eclipse.emf.facet.widgets.celleditors.IListener;
 import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditHandler;
 import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditor;
-import org.eclipse.emf.facet.widgets.celleditors.core.composite.registries.ICompositeEditorFactoriesRegistry;
-import org.eclipse.papyrus.widget.celleditors.uml.Activator;
-import org.eclipse.swt.SWT;
+import org.eclipse.papyrus.widget.celleditors.uml.composite.EnumerationComposite;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.uml2.uml.EnumerationLiteral;
 
 /**
  * A cell editor for String
  */
-public class StringMultiCellEditor implements IModelCellEditor {
+public class EnumerationLiteralCellEditor implements IModelCellEditor {
 
-	/**
-	 * The boolean composite
-	 */
-	private AbstractCellEditorComposite<String> composite = null;
+	/** the composite */
+	private EnumerationComposite composite = null;
 
 	/**
 	 * 
@@ -44,23 +39,16 @@ public class StringMultiCellEditor implements IModelCellEditor {
 	 *      {@inheritDoc}
 	 */
 	public Control activateCell(final Composite parent, final Object originalValue, final IModelCellEditHandler editHandler, final EStructuralFeature feature, final EObject source) {
-		if(this.composite == null) {
-			ICompositeEditorFactory<String> compositeEditorFactory = ICompositeEditorFactoriesRegistry.INSTANCE.getCompositeEditorFactory(String.class);
-			this.composite = compositeEditorFactory.createCompositeEditor(parent, SWT.NONE);
-			if(originalValue != null) {
-				if(originalValue instanceof String) {
-					this.composite.setValue((String)originalValue);
-				} else {
-					Activator.log.info("An instance of Integer was expected"); //$NON-NLS-1$
-				}
-			}
-			this.composite.addCommitListener(new IListener() {
+		// TODO Auto-generated method stub
+		this.composite = new EnumerationComposite(parent);
+		this.composite.setEnumeration(((EnumerationLiteral)originalValue).getEnumeration());
+		this.composite.setValue((EnumerationLiteral)originalValue);
+		this.composite.addCommitListener(new IListener() {
 
-				public void handleEvent() {
-					editHandler.commit();
-				}
-			});
-		}
+			public void handleEvent() {
+				editHandler.commit();
+			}
+		});
 		return this.composite;
 	}
 
@@ -68,7 +56,7 @@ public class StringMultiCellEditor implements IModelCellEditor {
 	 * 
 	 * @see org.eclipse.emf.facet.widgets.celleditors.IModelCellEditor#getValue()
 	 * 
-	 * @return
+	 *      {@inheritDoc}
 	 */
 	public Object getValue() {
 		if(this.composite != null) {
