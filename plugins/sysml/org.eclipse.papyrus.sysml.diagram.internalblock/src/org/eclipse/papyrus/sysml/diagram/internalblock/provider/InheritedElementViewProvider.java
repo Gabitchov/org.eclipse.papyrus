@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
+import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
@@ -43,6 +44,18 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		return createdEdge;
 	}
 
+	@Override
+	protected boolean provides(CreateViewForKindOperation op) {
+	
+		// This provider is registered for Internal Block Diagram only
+		String diagramType = op.getContainerView().getDiagram().getType();
+		if(!InternalBlockDiagramEditPart.DIAGRAM_ID.equals(diagramType)) {
+			return false;
+		} 
+		
+		return true;
+	}
+	
 	@Override
 	protected boolean provides(CreateEdgeViewOperation op) {
 

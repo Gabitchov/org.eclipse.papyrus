@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
+import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -32,7 +33,7 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 
 	/** Local graphical type registry */
 	protected IGraphicalTypeRegistry registry = new GraphicalTypeRegistry();
-
+	
 	@Override
 	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Edge createdEdge = null;
@@ -200,6 +201,18 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 		return null;
 	}
 
+	@Override
+	protected boolean provides(CreateViewForKindOperation op) {
+	
+		// This provider is registered for Package Diagram only
+		String diagramType = op.getContainerView().getDiagram().getType();
+		if(!ElementTypes.DIAGRAM_ID.equals(diagramType)) {
+			return false;
+		} 
+		
+		return true;
+	}
+	
 	@Override
 	protected void stampShortcut(View containerView, Node target) {
 		if(!ElementTypes.DIAGRAM_ID.equals(containerView.getDiagram().getType())) {

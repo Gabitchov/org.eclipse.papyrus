@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
+import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
@@ -35,6 +36,18 @@ import org.eclipse.uml2.uml.NamedElement;
  */
 public class InheritedElementViewProvider extends UMLViewProvider {
 
+	@Override
+	protected boolean provides(CreateViewForKindOperation op) {
+	
+		// This provider is registered for Requirement Diagram only
+		String diagramType = op.getContainerView().getDiagram().getType();
+		if(!RequirementDiagramEditPart.DIAGRAM_ID.equals(diagramType)) {
+			return false;
+		} 
+		
+		return true;
+	}
+	
 	@Override
 	protected boolean provides(CreateEdgeViewOperation op) {
 
