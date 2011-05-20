@@ -74,6 +74,30 @@ public class AssociationBaseEditHelper extends ElementEditHelper {
 	}
 	
 	/**
+	 * Test if the relationship creation is allowed.
+	 * 
+	 * @param source the relationship source can be null
+	 * @param target the relationship target can be null
+	 * @return true if the creation is allowed
+	 */
+	protected boolean canCreate(EObject source, EObject target) {
+
+		if ((source != null) && !(source instanceof Classifier)) {
+			return false;
+		}
+		
+		if ((target != null) && !(target instanceof Classifier)) {
+			return false;
+		}
+		
+		if ((source != null) && (target != null) && (source == target)) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -85,6 +109,11 @@ public class AssociationBaseEditHelper extends ElementEditHelper {
 		boolean noSourceOrTarget = (source == null || target == null);
 		boolean noSourceAndTarget = (source == null && target == null);
 
+		if (!noSourceAndTarget && !canCreate(source, target)) {
+			// Abort creation.
+			return UnexecutableCommand.INSTANCE;
+		}
+		
 		if(noSourceOrTarget && !noSourceAndTarget) {
 			// The request isn't complete yet. Return the identity command so
 			// that the create relationship gesture is enabled.

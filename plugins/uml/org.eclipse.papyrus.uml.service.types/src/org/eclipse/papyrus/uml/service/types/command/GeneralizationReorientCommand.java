@@ -62,7 +62,7 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if(false == getElementToEdit() instanceof Generalization) {
+		if(!(getElementToEdit() instanceof Generalization)) {
 			return false;
 		}
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
@@ -71,6 +71,7 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
+		
 		return false;
 	}
 
@@ -78,9 +79,15 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if(!(oldEnd instanceof Classifier && newEnd instanceof Classifier)) {
+		
+		if(!(newEnd instanceof Classifier)) {
 			return false;
 		}
+		
+		if (newEnd == getLink().getGeneral()) {
+			return false;
+		}
+		
 		if(!(getLink().eContainer() instanceof Classifier)) {
 			return false;
 		}
@@ -91,12 +98,19 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if(!(oldEnd instanceof Classifier && newEnd instanceof Classifier)) {
+		
+		if(!(newEnd instanceof Classifier)) {
 			return false;
 		}
+		
+		if (newEnd == getLink().getSpecific()) {
+			return false;
+		}
+		
 		if(!(getLink().eContainer() instanceof Classifier)) {
 			return false;
 		}
+		
 		return true;
 	}
 

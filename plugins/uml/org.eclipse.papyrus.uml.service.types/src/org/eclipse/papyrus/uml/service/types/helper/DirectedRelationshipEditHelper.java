@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.IdentityCommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateRelationshipCommand;
@@ -55,6 +56,15 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 	protected abstract EReference getTargetReference();
 
 	/**
+	 * Test if the relationship creation is allowed.
+	 * 
+	 * @param source the relationship source can be null
+	 * @param target the relationship target can be null
+	 * @return true if the creation is allowed
+	 */
+	protected abstract boolean canCreate(EObject source, EObject target);
+	
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -66,12 +76,17 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 		boolean noSourceOrTarget = (source == null || target == null);
 		boolean noSourceAndTarget = (source == null && target == null);
 
+		if (!noSourceAndTarget && !canCreate(source, target)) {
+			// Abort creation.
+			return UnexecutableCommand.INSTANCE;
+		}
+		
 		if(noSourceOrTarget && !noSourceAndTarget) {
 			// The request isn't complete yet. Return the identity command so
 			// that the create relationship gesture is enabled.
 			return IdentityCommand.INSTANCE;
 		}
-
+		
 		// Propose a container if none is set in request.
 		EObject proposedContainer = EMFCoreUtil.getLeastCommonContainer(Arrays.asList(new EObject[]{source, target}), UMLPackage.eINSTANCE.getPackage());
 		req.setContainer(proposedContainer);
@@ -140,10 +155,6 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 				return CommandResult.newOKCommandResult(element);
 			}
 		};
-
-		//		ICommand gmfCommand = null;
-		//		EObject container = EMFCoreUtil.getLeastCommonContainer(
-		//			terminals, SemanticPackage.eINSTANCE.getContainerElement());
 
 		return CompositeCommand.compose(configureCommand, super.getConfigureCommand(req));
 	}

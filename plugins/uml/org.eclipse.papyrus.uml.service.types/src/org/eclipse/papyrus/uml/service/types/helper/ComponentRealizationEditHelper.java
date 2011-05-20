@@ -18,22 +18,23 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.papyrus.uml.service.types.command.IncludeReorientCommand;
-import org.eclipse.uml2.uml.Include;
+import org.eclipse.papyrus.uml.service.types.command.ComponentRealizationReorientCommand;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Component;
+import org.eclipse.uml2.uml.ComponentRealization;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.UseCase;
 
 /**
- * This helper provides edit commands for UML {@link Include}.
+ * This helper is used to set the source and the target for a {@link ComponentRealization}
  */
-public class IncludeEditHelper extends DirectedRelationshipEditHelper {
+public class ComponentRealizationEditHelper extends DependencyEditHelper {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected EReference getSourceReference() {
-		return UMLPackage.eINSTANCE.getInclude_IncludingCase();
+		return UMLPackage.eINSTANCE.getComponentRealization_RealizingClassifier();
 	}
 
 	/**
@@ -41,7 +42,7 @@ public class IncludeEditHelper extends DirectedRelationshipEditHelper {
 	 */
 	@Override
 	protected EReference getTargetReference() {
-		return UMLPackage.eINSTANCE.getInclude_Addition();
+		return UMLPackage.eINSTANCE.getComponentRealization_Abstraction();
 	}
 
 	/**
@@ -50,11 +51,11 @@ public class IncludeEditHelper extends DirectedRelationshipEditHelper {
 	@Override
 	protected boolean canCreate(EObject source, EObject target) {
 
-		if ((source != null) && !(source instanceof UseCase)) {
+		if ((source != null) && !(source instanceof Classifier)) {
 			return false;
 		}
 		
-		if ((target != null) && !(target instanceof UseCase)) {
+		if ((target != null) && !(target instanceof Component)) {
 			return false;
 		}
 		
@@ -70,6 +71,6 @@ public class IncludeEditHelper extends DirectedRelationshipEditHelper {
 	 */
 	@Override
 	protected ICommand getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		return new IncludeReorientCommand(req);
+		return new ComponentRealizationReorientCommand(req);
 	}
 }

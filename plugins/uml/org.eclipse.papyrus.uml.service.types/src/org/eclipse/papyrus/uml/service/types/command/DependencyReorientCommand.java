@@ -32,11 +32,11 @@ import org.eclipse.uml2.uml.Package;
  */
 public class DependencyReorientCommand extends EditElementCommand {
 
-	private final int reorientDirection;
+	protected final int reorientDirection;
 
-	private final EObject oldEnd;
+	protected final EObject oldEnd;
 
-	private final EObject newEnd;
+	protected final EObject newEnd;
 
 	/**
 	 * <pre>

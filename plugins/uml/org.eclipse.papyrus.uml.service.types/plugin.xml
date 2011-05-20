@@ -323,7 +323,8 @@
 	
 	<!-- IMetamodelType for ComponentRealization -->
 	<metamodelType id="org.eclipse.papyrus.uml.ComponentRealization" name="UML::ComponentRealization"
-		eclass="ComponentRealization" 
+		eclass="ComponentRealization"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.ComponentRealizationEditHelper"		 
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="UML::ComponentRealization"/>
 	</metamodelType>
@@ -863,7 +864,8 @@
 	
 	<!-- IMetamodelType for InterfaceRealization -->
 	<metamodelType id="org.eclipse.papyrus.uml.InterfaceRealization" name="UML::InterfaceRealization"
-		eclass="InterfaceRealization" 
+		eclass="InterfaceRealization"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.InterfaceRealizationEditHelper"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="UML::InterfaceRealization"/>
 	</metamodelType>
@@ -892,7 +894,6 @@
 	<!-- IMetamodelType for InvocationAction -->
 	<metamodelType id="org.eclipse.papyrus.uml.InvocationAction" name="UML::InvocationAction"
 		eclass="InvocationAction" 
- 
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="UML::InvocationAction"/>
 	</metamodelType>
@@ -1561,7 +1562,8 @@
 	
 	<!-- IMetamodelType for Substitution -->
 	<metamodelType id="org.eclipse.papyrus.uml.Substitution" name="UML::Substitution"
-		eclass="Substitution" 
+		eclass="Substitution"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.SubstitutionEditHelper"		
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="UML::Substitution"/>
 	</metamodelType>
@@ -1912,6 +1914,7 @@
 		<advice ref="org.eclipse.papyrus.uml.advice.DirectedRelationship" />		
 		<advice ref="org.eclipse.papyrus.uml.advice.ExecutionSpecification" />
 		<advice ref="org.eclipse.papyrus.uml.advice.FeatureNameInitializer" />		
+		<advice ref="org.eclipse.papyrus.uml.advice.InterfaceRealization" />		
 		<advice ref="org.eclipse.papyrus.uml.advice.Lifeline" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Message" />
 		<advice ref="org.eclipse.papyrus.uml.advice.MessageEnd" />

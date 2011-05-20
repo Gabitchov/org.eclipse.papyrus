@@ -18,10 +18,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.IdentityCommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateRelationshipCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.uml.service.types.command.GeneralizationReorientCommand;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -50,6 +52,27 @@ public class GeneralizationEditHelper extends DirectedRelationshipEditHelper {
 	 * {@inheritDoc}
 	 */
 	@Override
+	protected boolean canCreate(EObject source, EObject target) {
+
+		if ((source != null) && !(source instanceof Classifier)) {
+			return false;
+		}
+		
+		if ((target != null) && !(target instanceof Classifier)) {
+			return false;
+		}
+		
+		if ((source != null) && (target != null) && (source == target)) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest req) {
 
 		EObject source = req.getSource();
@@ -58,6 +81,11 @@ public class GeneralizationEditHelper extends DirectedRelationshipEditHelper {
 		boolean noSourceOrTarget = (source == null || target == null);
 		boolean noSourceAndTarget = (source == null && target == null);
 
+		if (!noSourceAndTarget && !canCreate(source, target)) {
+			// Abort creation.
+			return UnexecutableCommand.INSTANCE;
+		}
+		
 		if(noSourceOrTarget && !noSourceAndTarget) {
 			// The request isn't complete yet. Return the identity command so
 			// that the create relationship gesture is enabled.

@@ -14,11 +14,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.uml.service.types.command.ProtocolConformanceReorientCommand;
 import org.eclipse.uml2.uml.ProtocolConformance;
+import org.eclipse.uml2.uml.ProtocolStateMachine;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -42,6 +44,27 @@ public class ProtocolConformanceEditHelper extends DirectedRelationshipEditHelpe
 		return UMLPackage.eINSTANCE.getProtocolConformance_GeneralMachine();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected boolean canCreate(EObject source, EObject target) {
+
+		if ((source != null) && !(source instanceof ProtocolStateMachine)) {
+			return false;
+		}
+		
+		if ((target != null) && !(target instanceof ProtocolStateMachine)) {
+			return false;
+		}
+		
+		if ((source != null) && (target != null) && (source == target)) {
+			return false;
+		}
+		
+		return true;
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */

@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.service.types.helper;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
@@ -24,6 +25,7 @@ import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.service.types.command.DependencyReorientCommand;
 import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -47,6 +49,23 @@ public class DependencyEditHelper extends DirectedRelationshipEditHelper {
 		return UMLPackage.eINSTANCE.getDependency_Supplier();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected boolean canCreate(EObject source, EObject target) {
+
+		if ((source != null) && !(source instanceof NamedElement)) {
+			return false;
+		}
+		
+		if ((target != null) && !(target instanceof NamedElement)) {
+			return false;
+		}
+		
+		return true;
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */

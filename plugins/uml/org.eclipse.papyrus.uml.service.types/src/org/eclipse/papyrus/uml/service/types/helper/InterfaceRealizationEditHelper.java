@@ -18,22 +18,23 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.papyrus.uml.service.types.command.IncludeReorientCommand;
-import org.eclipse.uml2.uml.Include;
+import org.eclipse.papyrus.uml.service.types.command.InterfaceRealizationReorientCommand;
+import org.eclipse.uml2.uml.BehavioredClassifier;
+import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.UseCase;
 
 /**
- * This helper provides edit commands for UML {@link Include}.
+ * This helper is used to set the source and the target for a {@link InterfaceRealization}
  */
-public class IncludeEditHelper extends DirectedRelationshipEditHelper {
+public class InterfaceRealizationEditHelper extends DependencyEditHelper {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected EReference getSourceReference() {
-		return UMLPackage.eINSTANCE.getInclude_IncludingCase();
+		return UMLPackage.eINSTANCE.getInterfaceRealization_ImplementingClassifier();
 	}
 
 	/**
@@ -41,7 +42,7 @@ public class IncludeEditHelper extends DirectedRelationshipEditHelper {
 	 */
 	@Override
 	protected EReference getTargetReference() {
-		return UMLPackage.eINSTANCE.getInclude_Addition();
+		return UMLPackage.eINSTANCE.getInterfaceRealization_Contract();
 	}
 
 	/**
@@ -50,11 +51,11 @@ public class IncludeEditHelper extends DirectedRelationshipEditHelper {
 	@Override
 	protected boolean canCreate(EObject source, EObject target) {
 
-		if ((source != null) && !(source instanceof UseCase)) {
+		if ((source != null) && !(source instanceof BehavioredClassifier)) {
 			return false;
 		}
 		
-		if ((target != null) && !(target instanceof UseCase)) {
+		if ((target != null) && !(target instanceof Interface)) {
 			return false;
 		}
 		
@@ -70,6 +71,6 @@ public class IncludeEditHelper extends DirectedRelationshipEditHelper {
 	 */
 	@Override
 	protected ICommand getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		return new IncludeReorientCommand(req);
+		return new InterfaceRealizationReorientCommand(req);
 	}
 }
