@@ -31,10 +31,9 @@ public class Activator extends AbstractUIPlugin {
 	/** The log service */
 	public static LogHelper log;
 
-
 	/** Default constructor */
 	public Activator() {
-
+		
 	}
 
 	/*
@@ -46,7 +45,6 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(plugin);
-
 	}
 
 	/*

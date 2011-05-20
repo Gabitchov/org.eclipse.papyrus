@@ -135,11 +135,12 @@
 			<param name="semanticHint" value="UML::Artifact"/>
 	</metamodelType>
 	
-	<!-- IMetamodelType for Association -->
-	<metamodelType id="org.eclipse.papyrus.uml.Association" name="UML::Association"
-		eclass="Association" 
+	<!-- IMetamodelType for Association (Base IElementType) not directly used (use specializations) -->
+	<metamodelType id="org.eclipse.papyrus.uml.AssociationBase" name="UML::AssociationBase"
+		eclass="Association"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.AssociationBaseEditHelper"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="UML::Association"/>
+			<param name="semanticHint" value="UML::AssociationBase"/>
 	</metamodelType>
 	
 	<!-- IMetamodelType for AssociationClass -->
@@ -1874,6 +1875,15 @@
 	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
 	
 	<!-- Declaration of ISpecializationType -->
+
+	<!-- ISpecializationType UMLAssociation of UML::Association -->
+	<specializationType id="org.eclipse.papyrus.uml.Association" name="UML::Association"
+		edithelperadvice="org.eclipse.papyrus.uml.service.types.helper.advice.AssociationEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Association"/>
+		<specializes id="org.eclipse.papyrus.uml.AssociationBase" />
+		<matcher class ="org.eclipse.papyrus.uml.service.types.matcher.AssociationMatcher" />
+	</specializationType>
 	
 	<!-- ISpecializationType Trace of UML::Abstraction (from Standard profile) -->
 	<specializationType id="org.eclipse.papyrus.uml.Trace" name="UML::Trace"

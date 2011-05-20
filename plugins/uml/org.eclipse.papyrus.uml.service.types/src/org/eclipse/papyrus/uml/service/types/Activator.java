@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.service.types;
 
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.papyrus.log.LogHelper;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -24,11 +25,15 @@ public class Activator extends Plugin {
 	/** Plug-in ID */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.service.types"; //$NON-NLS-1$
 
-	/** Shared instance */
+	/** The plug-in shared instance */
 	private static Activator plugin;
+
+	/** The log service */
+	public static LogHelper log;
 
 	/** Default Constructor */
 	public Activator() {
+		
 	}
 
 	/*
@@ -39,6 +44,7 @@ public class Activator extends Plugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		log = new LogHelper(plugin);
 	}
 
 	/*

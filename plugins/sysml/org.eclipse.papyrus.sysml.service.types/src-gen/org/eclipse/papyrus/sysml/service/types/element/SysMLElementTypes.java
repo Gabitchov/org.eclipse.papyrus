@@ -6,6 +6,30 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 /** Convenient utility class listing IElementType declared in plugin.xml */
 public class SysMLElementTypes extends AbstractElementTypeEnumerator {
 
+	/** Constant for SysML nature */
+	public static final String SYSML_NATURE = "SysML_Nature";
+	
+	/** IElementType for SysML Association (Association with SysML nature) */
+	public static final IHintedType ASSOCIATION = (IHintedType)getElementType("org.eclipse.papyrus.sysml.Association"); //$NON-NLS-1$
+
+	/** IElementType for SysML Association with "aggregation = none" (for creation purpose only) */
+	public static final IHintedType ASSOCIATION_NONE = (IHintedType)getElementType("org.eclipse.papyrus.sysml.AssociationNone"); //$NON-NLS-1$
+
+	/** IElementType for SysML Association with "aggregation = none" and navigable in one-way (for creation purpose only) */
+	public static final IHintedType ASSOCIATION_NONE_DIRECTED = (IHintedType)getElementType("org.eclipse.papyrus.sysml.AssociationNoneDirected"); //$NON-NLS-1$
+
+	/** IElementType for SysML Association with "aggregation = composite" (for creation purpose only) */
+	public static final IHintedType ASSOCIATION_COMPOSITE = (IHintedType)getElementType("org.eclipse.papyrus.sysml.AssociationComposite"); //$NON-NLS-1$
+
+	/** IElementType for SysML Association with "aggregation = composite" and navigable in one-way (for creation purpose only) */
+	public static final IHintedType ASSOCIATION_COMPOSITE_DIRECTED = (IHintedType)getElementType("org.eclipse.papyrus.sysml.AssociationCompositeDirected"); //$NON-NLS-1$
+
+	/** IElementType for SysML Association with "aggregation = shared" (for creation purpose only) */
+	public static final IHintedType ASSOCIATION_SHARED = (IHintedType)getElementType("org.eclipse.papyrus.sysml.AssociationShared"); //$NON-NLS-1$
+
+	/** IElementType for SysML Association with "aggregation = shared" and navigable in one-way (for creation purpose only) */
+	public static final IHintedType ASSOCIATION_SHARED_DIRECTED = (IHintedType)getElementType("org.eclipse.papyrus.sysml.AssociationSharedDirected"); //$NON-NLS-1$
+	
 	/** IElementType for SysML Allocate */
 	public static final IHintedType ALLOCATE = (IHintedType)getElementType("org.eclipse.papyrus.sysml.Allocate"); //$NON-NLS-1$
 	

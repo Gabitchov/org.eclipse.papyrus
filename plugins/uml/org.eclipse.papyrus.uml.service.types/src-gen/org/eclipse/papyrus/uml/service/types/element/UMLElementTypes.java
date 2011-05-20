@@ -20,6 +20,9 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 /** Convenient utility class listing IElementType declared in plugin.xml */
 public class UMLElementTypes extends AbstractElementTypeEnumerator {
 
+	/** Constant for UML nature */
+	public static final String UML_NATURE = "UML_Nature";
+	
 	/** IElementType for UML Abstraction */
 	public static final IHintedType ABSTRACTION = (IHintedType)getElementType("org.eclipse.papyrus.uml.Abstraction"); //$NON-NLS-1$
 	
@@ -74,9 +77,9 @@ public class UMLElementTypes extends AbstractElementTypeEnumerator {
 	/** IElementType for UML Artifact */
 	public static final IHintedType ARTIFACT = (IHintedType)getElementType("org.eclipse.papyrus.uml.Artifact"); //$NON-NLS-1$
 	
-	/** IElementType for UML Association */
+	/** IElementType for UML Association (Association with UML nature) */
 	public static final IHintedType ASSOCIATION = (IHintedType)getElementType("org.eclipse.papyrus.uml.Association"); //$NON-NLS-1$
-	
+
 	/** IElementType for UML AssociationClass */
 	public static final IHintedType ASSOCIATION_CLASS = (IHintedType)getElementType("org.eclipse.papyrus.uml.AssociationClass"); //$NON-NLS-1$
 	

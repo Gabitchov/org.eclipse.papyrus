@@ -298,6 +298,79 @@
 	</metamodel>
 </extension>
 
+<!-- SysML ElementTypes declarations for Association with SysML Nature -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+	
+	<!-- Declaration of IElementTypes -->
+	
+	<!-- ISpecializationType for SysML Association (Association with SysML nature) -->
+	<specializationType id="org.eclipse.papyrus.sysml.Association" name="SysML::Association"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Association"/>
+		<specializes id="org.eclipse.papyrus.uml.AssociationBase" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.AssociationMatcher" />
+	</specializationType>
+	
+	<!-- ISpecializationType for SysML Association with "aggregation = none" (for creation purpose only) -->
+	<specializationType id="org.eclipse.papyrus.sysml.AssociationNone" name="SysML::AssociationNone"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationNoneEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::AssociationNone"/>
+		<specializes id="org.eclipse.papyrus.sysml.Association" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher" />
+	</specializationType>
+	
+	<!-- ISpecializationType for SysML Association with "aggregation = none" and navigable in one-way (for creation purpose only) -->
+	<specializationType id="org.eclipse.papyrus.sysml.AssociationNoneDirected" name="SysML::AssociationNoneDirected"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationNoneDirectedEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::AssociationNoneDirected"/>
+		<specializes id="org.eclipse.papyrus.sysml.Association" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher" />
+	</specializationType>
+			
+	<!-- ISpecializationType for SysML Association with "aggregation = composition" (for creation purpose only) -->
+	<specializationType id="org.eclipse.papyrus.sysml.AssociationComposite" name="SysML::AssociationComposite"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationCompositeEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::AssociationComposite"/>
+		<specializes id="org.eclipse.papyrus.sysml.Association" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher" />
+	</specializationType>
+
+	<!-- ISpecializationType for SysML Association with "aggregation = composite" and navigable in one-way (for creation purpose only) -->
+	<specializationType id="org.eclipse.papyrus.sysml.AssociationCompositeDirected" name="SysML::AssociationCompositeDirected"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationCompositeDirectedEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::AssociationCompositeDirected"/>
+		<specializes id="org.eclipse.papyrus.sysml.Association" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher" />
+	</specializationType>
+
+	<!-- ISpecializationType for SysML Association with "aggregation = shared" (for creation purpose only) -->
+	<specializationType id="org.eclipse.papyrus.sysml.AssociationShared" name="SysML::AssociationShared"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationSharedEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::AssociationShared"/>
+		<specializes id="org.eclipse.papyrus.sysml.Association" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher" />
+	</specializationType>
+
+	<!-- ISpecializationType for SysML Association with "aggregation = shared" and navigable in one-way (for creation purpose only) -->
+	<specializationType id="org.eclipse.papyrus.sysml.AssociationSharedDirected" name="SysML::AssociationSharedDirected"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationSharedDirectedEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::AssociationSharedDirected"/>
+		<specializes id="org.eclipse.papyrus.sysml.Association" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher" />
+	</specializationType>
+		
+	</metamodel>
+</extension>	
+	
 <!-- Additionnal advices ConstraintBlockParameterPropertyEditHelperAdvice -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
 
@@ -318,6 +391,15 @@
 	<!-- Bindings declaration -->
 	<binding context="org.eclipse.papyrus.service.edit.TypeContext">
 	
+		<elementType ref="org.eclipse.papyrus.sysml.Association" />
+		
+		<elementType ref="org.eclipse.papyrus.sysml.AssociationNone" />
+		<elementType ref="org.eclipse.papyrus.sysml.AssociationNoneDirected" />
+		<elementType ref="org.eclipse.papyrus.sysml.AssociationComposite" />
+		<elementType ref="org.eclipse.papyrus.sysml.AssociationCompositeDirected" />
+		<elementType ref="org.eclipse.papyrus.sysml.AssociationShared" />
+		<elementType ref="org.eclipse.papyrus.sysml.AssociationSharedDirected" />
+		
 		<elementType ref="org.eclipse.papyrus.sysml.Allocate" />
 		<elementType ref="org.eclipse.papyrus.sysml.Block" />
 		<elementType ref="org.eclipse.papyrus.sysml.Conform" />
