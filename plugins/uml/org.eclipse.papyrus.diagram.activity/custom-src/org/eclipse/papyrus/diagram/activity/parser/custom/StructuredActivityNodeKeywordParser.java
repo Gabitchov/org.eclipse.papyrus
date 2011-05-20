@@ -22,9 +22,15 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.activity.parsers.MessageFormatParser;
+import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.activity.preferences.IActivityPreferenceConstants;
+import org.eclipse.uml2.uml.ConditionalNode;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExpansionRegion;
+import org.eclipse.uml2.uml.LoopNode;
+import org.eclipse.uml2.uml.SequenceNode;
 import org.eclipse.uml2.uml.StructuredActivityNode;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -39,6 +45,21 @@ public class StructuredActivityNodeKeywordParser extends MessageFormatParser imp
 
 	/** Keyword structured */
 	private static final Object STRUCTURED_KEYWORD = "structured";
+
+	/** Specific loop ode Keyword */
+	private static final Object LOOP_NODE_KEYWORD = "loop node";
+
+	/** Specific conditional node Keyword */
+	private static final Object CONDITIONAL_NODE_KEYWORD = "conditional";
+
+	/** Specific sequence node Keyword */
+	private static final Object SEQUENCE_NODE_KEYWORD = "sequence";
+
+
+	/**
+	 * the preference store
+	 */
+	private final IPreferenceStore preferenceStore = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 
 	public StructuredActivityNodeKeywordParser(EAttribute[] features, EAttribute[] editableFeatures) {
 		super(features, editableFeatures);
@@ -89,9 +110,23 @@ public class StructuredActivityNodeKeywordParser extends MessageFormatParser imp
 			if(obj instanceof ExpansionRegion) {
 				ExpansionRegion region = (ExpansionRegion)obj;
 				return String.format(KEYWORD_FORMAT, region.getMode().getName());
-			} else {
-				return String.format(KEYWORD_FORMAT, STRUCTURED_KEYWORD);
+			} else if(obj instanceof LoopNode) {
+				boolean displayNameName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_LOOP_NODE);
+				if(displayNameName) {
+					return String.format(KEYWORD_FORMAT, LOOP_NODE_KEYWORD);
+				}
+			} else if(obj instanceof ConditionalNode) {
+				boolean displayNameName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_CONDITIONAL_NODE);
+				if(displayNameName) {
+					return String.format(KEYWORD_FORMAT, CONDITIONAL_NODE_KEYWORD);
+				}
+			} else if(obj instanceof SequenceNode) {
+				boolean displayNameName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_SEQUENCE_NODE);
+				if(displayNameName) {
+					return String.format(KEYWORD_FORMAT, SEQUENCE_NODE_KEYWORD);
+				}
 			}
+			return String.format(KEYWORD_FORMAT, STRUCTURED_KEYWORD);
 		}
 		return "";
 	}

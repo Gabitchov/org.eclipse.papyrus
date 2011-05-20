@@ -18,5 +18,6 @@ Export-Package: org.eclipse.papyrus.diagram.common.groups.commands,
  org.eclipse.papyrus.diagram.common.groups.core.utils,
  org.eclipse.papyrus.diagram.common.groups.edit.policies,
  org.eclipse.papyrus.diagram.common.groups.groupcontainment,
+ org.eclipse.papyrus.diagram.common.groups.preferences,
  org.eclipse.papyrus.diagram.common.groups.tabbedproperties.appearance,
  org.eclipse.papyrus.diagram.common.groups.utils
