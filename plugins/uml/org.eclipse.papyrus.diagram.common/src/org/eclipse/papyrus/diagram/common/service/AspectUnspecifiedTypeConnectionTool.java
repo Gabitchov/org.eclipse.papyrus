@@ -604,7 +604,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 				// Pass in the type as the element adapter so that it can be
 				// retrieved in the cases where a popup menu is to appear with a
 				// list of types.
-				ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(type, null, preferencesHint);
+				ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(type, ((IHintedType)type).getSemanticHint(), preferencesHint);
 				return new CreateConnectionViewRequest(viewDescriptor);
 			} else if(type instanceof IHintedType) {
 				return new CreateConnectionViewAndElementRequest(type, ((IHintedType)type).getSemanticHint(), preferencesHint);
