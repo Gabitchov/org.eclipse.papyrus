@@ -33,7 +33,7 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 
 	/** Local graphical type registry */
 	protected IGraphicalTypeRegistry registry = new GraphicalTypeRegistry();
-	
+
 	@Override
 	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Edge createdEdge = null;
@@ -71,6 +71,18 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 		}
 
 		return createdEdge;
+	}
+
+	@Override
+	protected boolean provides(CreateViewForKindOperation op) {
+
+		// This provider is registered for Package Diagram only
+		String diagramType = op.getContainerView().getDiagram().getType();
+		if(!ElementTypes.DIAGRAM_ID.equals(diagramType)) {
+			return false;
+		}
+
+		return true;
 	}
 
 	@Override
@@ -157,6 +169,14 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 				return true;
 			}
 		}
+		if(elementType == ElementTypes.COMMENT_CN) {
+			if(ElementTypes.PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerGraphicalType)) {
+				return true;
+			}
+			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerGraphicalType)) {
+				return true;
+			}
+		}
 
 		// /////////////////////////////////////////////////////////////////////
 		// Test possibility to provide a view based on the semantic nature and its expected container.
@@ -201,18 +221,6 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 		return null;
 	}
 
-	@Override
-	protected boolean provides(CreateViewForKindOperation op) {
-	
-		// This provider is registered for Package Diagram only
-		String diagramType = op.getContainerView().getDiagram().getType();
-		if(!ElementTypes.DIAGRAM_ID.equals(diagramType)) {
-			return false;
-		} 
-		
-		return true;
-	}
-	
 	@Override
 	protected void stampShortcut(View containerView, Node target) {
 		if(!ElementTypes.DIAGRAM_ID.equals(containerView.getDiagram().getType())) {

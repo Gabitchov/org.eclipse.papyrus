@@ -46,6 +46,7 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		knownNodes.add(ElementTypes.PACKAGE.getSemanticHint());
 		knownNodes.add(ElementTypes.PACKAGE_CN.getSemanticHint());
 		knownNodes.add(ElementTypes.COMMENT.getSemanticHint());
+		knownNodes.add(ElementTypes.COMMENT_CN.getSemanticHint());
 
 		// Fill known nodes set (child label nodes)
 	}
@@ -117,6 +118,12 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		if(domainElement instanceof org.eclipse.uml2.uml.Comment) {
 			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Comment TopNode
 				graphicalType = ElementTypes.COMMENT.getSemanticHint();
+			}
+			if(ElementTypes.PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Comment ChildNode
+				graphicalType = ElementTypes.COMMENT_CN.getSemanticHint();
+			}
+			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Comment ChildNode
+				graphicalType = ElementTypes.COMMENT_CN.getSemanticHint();
 			}
 
 		}

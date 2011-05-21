@@ -51,6 +51,9 @@ public class PackageDiagramEditPolicyProvider extends AbstractProvider implement
 		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart) {
 			return true;
 		}
+		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPartCN) {
+			return true;
+		}
 
 		return false;
 	}

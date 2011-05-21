@@ -17,6 +17,9 @@
     <genNodes>
       <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.14"/>
     </genNodes>
+    <genNodes generatePreferencePage="false" generateTool="false">
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.32"/>
+    </genNodes>
     <genLinks>
       <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.11"/>
     </genLinks>

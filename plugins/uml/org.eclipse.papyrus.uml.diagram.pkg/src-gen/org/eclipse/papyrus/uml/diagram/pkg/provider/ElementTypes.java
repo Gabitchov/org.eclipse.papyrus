@@ -52,6 +52,11 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String COMMENT_LABEL_BODY_HINT = "5038"; //$NON-NLS-1$
 
+	/** ClassDiagram :: COMMENT_CN */
+	public static final IHintedType COMMENT_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Comment_3028"); //$NON-NLS-1$
+
+	public static final String COMMENT_CN_LABEL_BODY_HINT = "5063"; //$NON-NLS-1$
+
 
 	/** ClassDiagram :: DEPENDENCY */
 	public static final IHintedType DEPENDENCY = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Dependency_4008"); //$NON-NLS-1$
