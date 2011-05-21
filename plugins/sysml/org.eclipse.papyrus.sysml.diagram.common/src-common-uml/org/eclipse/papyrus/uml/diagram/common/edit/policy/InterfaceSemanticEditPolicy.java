@@ -20,9 +20,15 @@ import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomInte
 
 /**
  * Interface semantic edit policy inherited from class diagram (for correct edge creation).
+ * 
+ * @deprecated - Not use anymore.
  */
 public class InterfaceSemanticEditPolicy extends CustomInterfaceItemSemanticEditPolicy {
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 		return UnexecutableCommand.INSTANCE;
 	}

@@ -14,12 +14,14 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
 
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_DEFAULTVALUE;
+import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY;
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_DERIVE;
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_DIRECTION;
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_MODIFIERS;
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_MULTIPLICITY;
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_NAME;
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_TYPE;
+import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_UNDEFINED_TYPE;
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_VISIBILITY;
 
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -52,12 +54,12 @@ public class FlowPropertyPreferencePage extends BlockDefinitionDiagramNodePrefer
 	/** Default preferences initializer */
 	public static void initDefaults(IPreferenceStore store) {
 		// Start of user code custom default initializations
-		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(prefKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_DIRECTION | DISP_NAME | DISP_TYPE);
+		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(prefKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_DIRECTION | DISP_NAME | DISP_TYPE | DISP_UNDEFINED_TYPE);
 		// End of user code
 	}
 
 	/** buttons to select the display mask of the label */
-	protected Button bttnDirection, bttnVisibility, bttnDerive, bttnName, bttnType, bttnMultiplicity, bttnDefaultValue, bttnModifiers;
+	protected Button bttnDirection, bttnVisibility, bttnDerive, bttnName, bttnType, bttnUndefined_Type, bttnMultiplicity, bttnDefault_Multiplicity, bttnDefaultValue, bttnModifiers;
 
 	public static String prefLabelKey = ElementTypes.DIAGRAM_ID + "_" + SysMLGraphicalTypes.SHAPE_SYSML_FLOWPROPERTY_AS_LABEL_ID; //$NON-NLS-1$	
 
@@ -128,22 +130,34 @@ public class FlowPropertyPreferencePage extends BlockDefinitionDiagramNodePrefer
 		data.top = new FormAttachment(bttnDirection, ITabbedPropertyConstants.HSPACE);
 		bttnType.setLayoutData(data);
 
-		bttnMultiplicity = createCheckButton(group, "Multiplicity", DISP_MULTIPLICITY);
+		bttnUndefined_Type = createCheckButton(group, "Undefined_Type", DISP_UNDEFINED_TYPE);
 		data = new FormData();
 		data.left = new FormAttachment(bttnDirection, 85);
 		data.top = new FormAttachment(bttnDirection, ITabbedPropertyConstants.HSPACE);
-		bttnMultiplicity.setLayoutData(data);
+		bttnUndefined_Type.setLayoutData(data);
 
-		bttnDefaultValue = createCheckButton(group, "DefaultValue", DISP_DEFAULTVALUE);
+		bttnMultiplicity = createCheckButton(group, "Multiplicity", DISP_MULTIPLICITY);
 		data = new FormData();
 		data.left = new FormAttachment(bttnVisibility, 85);
 		data.top = new FormAttachment(bttnDirection, ITabbedPropertyConstants.HSPACE);
+		bttnMultiplicity.setLayoutData(data);
+
+		bttnDefault_Multiplicity = createCheckButton(group, "Default_Multiplicity", DISP_DEFAULT_MULTIPLICITY);
+		data = new FormData();
+		data.left = new FormAttachment(bttnDerive, 85);
+		data.top = new FormAttachment(bttnDirection, ITabbedPropertyConstants.HSPACE);
+		bttnDefault_Multiplicity.setLayoutData(data);
+
+		bttnDefaultValue = createCheckButton(group, "DefaultValue", DISP_DEFAULTVALUE);
+		data = new FormData();
+		data.left = new FormAttachment(0, 0);
+		data.top = new FormAttachment(bttnType, ITabbedPropertyConstants.HSPACE);
 		bttnDefaultValue.setLayoutData(data);
 
 		bttnModifiers = createCheckButton(group, "Modifiers", DISP_MODIFIERS);
 		data = new FormData();
-		data.left = new FormAttachment(bttnDerive, 85);
-		data.top = new FormAttachment(bttnDirection, ITabbedPropertyConstants.HSPACE);
+		data.left = new FormAttachment(bttnDirection, 85);
+		data.top = new FormAttachment(bttnType, ITabbedPropertyConstants.HSPACE);
 		bttnModifiers.setLayoutData(data);
 
 	}
@@ -197,7 +211,9 @@ public class FlowPropertyPreferencePage extends BlockDefinitionDiagramNodePrefer
 		bttnDerive.setSelection((propertyValue & DISP_DERIVE) == DISP_DERIVE);
 		bttnName.setSelection((propertyValue & DISP_NAME) == DISP_NAME);
 		bttnType.setSelection((propertyValue & DISP_TYPE) == DISP_TYPE);
+		bttnUndefined_Type.setSelection((propertyValue & DISP_UNDEFINED_TYPE) == DISP_UNDEFINED_TYPE);
 		bttnMultiplicity.setSelection((propertyValue & DISP_MULTIPLICITY) == DISP_MULTIPLICITY);
+		bttnDefault_Multiplicity.setSelection((propertyValue & DISP_DEFAULT_MULTIPLICITY) == DISP_DEFAULT_MULTIPLICITY);
 		bttnDefaultValue.setSelection((propertyValue & DISP_DEFAULTVALUE) == DISP_DEFAULTVALUE);
 		bttnModifiers.setSelection((propertyValue & DISP_MODIFIERS) == DISP_MODIFIERS);
 

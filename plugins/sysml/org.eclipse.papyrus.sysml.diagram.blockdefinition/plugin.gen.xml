@@ -355,7 +355,135 @@
 			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif"
 			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif">
 		</entry>
+		<!-- Start of user code Custom node button entry  -->
+			
+		<!-- End of user code  -->
 		
+			
+		<!-- blockdefinition.tool.association -->
+		<entry
+			defineOnly="true"
+			description="Create a Association"
+			id="blockdefinition.tool.association"
+			kind="tool"
+			label="Association"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.dependency -->
+		<entry
+			defineOnly="true"
+			description="Create a Dependency"
+			id="blockdefinition.tool.dependency"
+			kind="tool"
+			label="Dependency"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.generalization -->
+		<entry
+			defineOnly="true"
+			description="Create a Generalization"
+			id="blockdefinition.tool.generalization"
+			kind="tool"
+			label="Generalization"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.interfacerealization -->
+		<entry
+			defineOnly="true"
+			description="Create a InterfaceRealization"
+			id="blockdefinition.tool.interfacerealization"
+			kind="tool"
+			label="InterfaceRealization"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.usage -->
+		<entry
+			defineOnly="true"
+			description="Create a Usage"
+			id="blockdefinition.tool.usage"
+			kind="tool"
+			label="Usage"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif">
+		</entry>
+		<!-- Start of user code Custom edge button entry  -->
+			
+		<!-- blockdefinition.tool.association -->
+		<entry
+			defineOnly="true"
+			description="Create an Association"
+			id="blockdefinition.tool.association_none"
+			kind="tool"
+			label="Association"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
+		</entry>
+		
+		<!-- blockdefinition.tool.directedassociation -->
+		<entry
+			defineOnly="true"
+			description="Create a DirectedAssociation"
+			id="blockdefinition.tool.association_none_directed"
+			kind="tool"
+			label="DirectedAssociation"
+			large_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_none_directed.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_none_directed.gif">
+		</entry>
+		
+		<!-- blockdefinition.tool.composition -->
+		<entry
+			defineOnly="true"
+			description="Create a Composition"
+			id="blockdefinition.tool.association_composite"
+			kind="tool"
+			label="Composition"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association_composite.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association_composite.gif">
+		</entry>
+		
+		<!-- blockdefinition.tool.directedcomposition -->
+		<entry
+			defineOnly="true"
+			description="Create a DirectedComposition"
+			id="blockdefinition.tool.association_composite_directed"
+			kind="tool"
+			label="DirectedComposition"
+			large_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_composite_directed.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_composite_directed.gif">
+		</entry>
+		
+		<!-- blockdefinition.tool.aggregation -->
+		<entry
+			defineOnly="true"
+			description="Create an Aggregation"
+			id="blockdefinition.tool.association_shared"
+			kind="tool"
+			label="Aggregation"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association_shared.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association_shared.gif">
+		</entry>
+		
+		<!-- blockdefinition.tool.directedaggregation -->
+		<entry
+			defineOnly="true"
+			description="Create a DirectedAggregation"
+			id="blockdefinition.tool.association_shared_directed"
+			kind="tool"
+			label="DirectedAggregation"
+			large_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_shared_directed.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_shared_directed.gif">
+		</entry>
+				
+		<!-- End of user code  -->
+			
 	</contribution>
 	
 	<!-- Specify diagram this palette tools relate to -->				
@@ -394,7 +522,9 @@
 		<Priority name="Medium"/>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="SysML::ReferenceProperty, UML::EnumerationLiteral, SysML::ConstraintBlock, UML::Signal, UML::Operation, SysML::FlowProperty, UML::PrimitiveType, UML::Port, SysML::ConstraintProperty, SysML::ValueProperty, UML::Reception, UML::Interface, UML::Constraint, UML::DataType, SysML::Unit, UML::Enumeration, SysML::ValueType, UML::Actor, UML::Property, SysML::Dimension, SysML::FlowSpecification, SysML::PartProperty, SysML::Block, SysML::FlowPort"/>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="shape_sysml_block_as_classifier, shape_sysml_part_as_label, shape_uml_reception_as_label, shape_uml_port_as_label, shape_sysml_valuetype_as_classifier, shape_uml_enumerationliteral_as_label, shape_sysml_constraintproperty_as_label, shape_sysml_dimension_as_classifier, shape_sysml_flowspecification_as_classifier, shape_uml_operation_as_label, shape_sysml_reference_as_label, shape_sysml_unit_as_classifier, shape_sysml_flowport_as_affixed, shape_uml_port_as_affixed, shape_uml_property_as_label, shape_uml_signal_as_classifier, shape_uml_enumeration_as_classifier, shape_uml_primitivetype_as_classifier, shape_uml_datatype_as_classifier, shape_uml_interface_as_classifier, shape_sysml_flowproperty_as_label, shape_sysml_constraintblock_as_classifier, shape_sysml_value_as_label, shape_sysml_flowport_as_label, shape_uml_actor_as_classifier, shape_uml_constraint_as_label"/>
-	
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="SysML::AssociationNone, UML::Dependency, SysML::Association, UML::InterfaceRealization, UML::Generalization, SysML::AssociationSharedDirected, SysML::AssociationCompositeDirected, SysML::AssociationComposite, UML::Usage, SysML::AssociationNoneDirected, SysML::AssociationShared"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="link_uml_dependency, link_uml_usage, link_uml_interfacerealization, link_sysml_association, link_uml_generalization"/>
+		
 		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
 		
 		<!-- "uml.Actor" -->
@@ -480,6 +610,37 @@
 			<method name="getProxyClassID()" value="uml.Signal"/>
 		</object>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Signal"/>			
+		
+		<!-- "uml.Association" -->
+		<object id="uml.Association" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Association"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Association"/>			
+		
+		<!-- "uml.Dependency" -->
+		<object id="uml.Dependency" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Dependency"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Dependency"/>			
+		
+		<!-- "uml.Generalization" -->
+		<object id="uml.Generalization" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Generalization"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Generalization"/>			
+		
+		<!-- "uml.InterfaceRealization" -->
+		<object id="uml.InterfaceRealization" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.InterfaceRealization"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.InterfaceRealization"/>			
+		
+		<!-- "uml.Usage" -->
+		<object id="uml.Usage" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Usage"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Usage"/>			
+		
 	</viewProvider>	
 
 	<!-- ViewProvider for inherited elements (from ClassDiagram ViewProvider) -->
@@ -491,7 +652,6 @@
 			"3024" = MODEL_CN
 			"2007" = PACKAGE
 			"3009" = PACKAGE_CN
-			"2013" = ASSOCIATION_CLASS_NODE
 			"2001" = INSTANCE_SPECIFICATION
 			"3020" = INSTANCE_SPECIFICATION_CN
 			"2011" = CONSTRAINT
@@ -499,28 +659,18 @@
 			"2012" = COMMENT
 			"3028" = COMMENT_CN
 		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2005, 3024, 2007, 3009, 2013, 2001, 3020, 2011, 3029, 2012, 3028"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2005, 3024, 2007, 3009, 2001, 3020, 2011, 3029, 2012, 3028"/>
 		
 		<!-- 
-			"3002" = ASSOCIATION_CLASS_NODE_PROPERTY_CLN
-			"3003" = ASSOCIATION_CLASS_NODE_OPERATION_CLN
-			"3004" = ASSOCIATION_CLASS_NODE_CLASS_CLN
 			"3030" = INSTANCE_SPECIFICATION_SLOT_CLN
 		  -->	  
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="3002, 3003, 3004, 3030"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="3030"/>
 		
 		<!-- 
-			"4008" = DEPENDENCY
-			"4002" = GENERALIZATION
-			"4003" = INTERFACE_REALIZATION
-			"4007" = USAGE
-			"4001" = ASSOCIATION
-			"4017" = ASSOCIATION_CLASS
 			"4013" = COMMENT_ANNOTATED_ELEMENT
 			"4014" = CONSTRAINT_CONSTRAINED_ELEMENT
-			"4016" = ASSOCIATION_CLASS_DASHED_LINK
 		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008, 4002, 4003, 4007, 4001, 4017, 4013, 4014, 4016"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4013, 4014"/>
 		
 		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
 		
@@ -532,11 +682,6 @@
 		<!-- "uml.Package" -->
 		<object id="uml.Package" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Package"/>
-		</object>
-		
-		<!-- "uml.AssociationClass" -->
-		<object id="uml.AssociationClass" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
-			<method name="getProxyClassID()" value="uml.AssociationClass"/>
 		</object>
 		
 		<!-- "uml.InstanceSpecification" -->
@@ -554,58 +699,14 @@
 			<method name="getProxyClassID()" value="uml.Comment"/>
 		</object>
 		
-		<!-- "uml.Property" -->
-		<object id="uml.Property" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
-			<method name="getProxyClassID()" value="uml.Property"/>
-		</object>
-		
-		<!-- "uml.Operation" -->
-		<object id="uml.Operation" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
-			<method name="getProxyClassID()" value="uml.Operation"/>
-		</object>
-		
-		<!-- "uml.Class" -->
-		<object id="uml.Class" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
-			<method name="getProxyClassID()" value="uml.Class"/>
-		</object>
-		
 		<!-- "uml.Slot" -->
 		<object id="uml.Slot" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Slot"/>
 		</object>
 		
-		<!-- "uml.Dependency" -->
-		<object id="uml.Dependency" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
-			<method name="getProxyClassID()" value="uml.Dependency"/>
-		</object>
-		
-		<!-- "uml.Generalization" -->
-		<object id="uml.Generalization" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
-			<method name="getProxyClassID()" value="uml.Generalization"/>
-		</object>
-		
-		<!-- "uml.InterfaceRealization" -->
-		<object id="uml.InterfaceRealization" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
-			<method name="getProxyClassID()" value="uml.InterfaceRealization"/>
-		</object>
-		
-		<!-- "uml.Usage" -->
-		<object id="uml.Usage" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
-			<method name="getProxyClassID()" value="uml.Usage"/>
-		</object>
-		
-		<!-- "uml.Association" -->
-		<object id="uml.Association" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
-			<method name="getProxyClassID()" value="uml.Association"/>
-		</object>
-		
 		<!-- Additional activation contexts for nodes semantic objects -->
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node"
-			elements="uml.Model, uml.Package, uml.AssociationClass, uml.InstanceSpecification, uml.Constraint, uml.Comment, uml.Property, uml.Operation, uml.Class, uml.Slot"/>
-		
-		<!-- Additional activation contexts for edges semantic objects -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge"
-			elements="uml.Dependency, uml.Generalization, uml.InterfaceRealization, uml.Usage, uml.Association, uml.AssociationClass"/>
+			elements="uml.Model, uml.Package, uml.InstanceSpecification, uml.Constraint, uml.Comment, uml.Slot"/>
 			
 	</viewProvider>	
 </extension>
@@ -629,19 +730,27 @@
 	
 		<object
 			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
-			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomGraphicalTypes">
+			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomNodeGraphicalTypes">
 			<method name="getType()" value="shape_sysml_block_as_classifier, shape_sysml_part_as_label, shape_uml_reception_as_label, shape_uml_port_as_label, shape_sysml_valuetype_as_classifier, shape_uml_enumerationliteral_as_label, shape_sysml_constraintproperty_as_label, shape_sysml_dimension_as_classifier, shape_sysml_flowspecification_as_classifier, shape_uml_operation_as_label, shape_sysml_reference_as_label, shape_sysml_unit_as_classifier, shape_sysml_flowport_as_affixed, shape_uml_port_as_affixed, shape_uml_property_as_label, shape_uml_signal_as_classifier, shape_uml_enumeration_as_classifier, shape_uml_primitivetype_as_classifier, shape_uml_datatype_as_classifier, shape_uml_interface_as_classifier, shape_sysml_flowproperty_as_label, shape_sysml_constraintblock_as_classifier, shape_sysml_value_as_label, shape_sysml_flowport_as_label, shape_uml_actor_as_classifier, shape_uml_constraint_as_label"/>
 		</object>
 		
 		<object
 			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
 			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomGraphicalTypes_Decorations">
-			<method name="getType()" value="compartment_sysml_reference_as_list, compartment_sysml_value_as_list, label_sysml_flowspecification_name, label_sysml_block_name, compartment_uml_property_as_list, compartment_sysml_flowproperty_as_list, label_sysml_unit_name, affixedlabel_uml_namedelement_name, compartment_uml_port_as_list, label_sysml_constraintblock_name, label_sysml_dimension_name, compartment_sysml_parameter_as_list, compartment_sysml_property_as_list, compartment_uml_enumerationliteral_as_list, label_sysml_valuetype_name, compartment_sysml_constraint_as_list, compartment_sysml_flowport_as_list, compartment_uml_operation_as_list, compartment_sysml_part_as_list, label_uml_namedelement_name"/>
+			<method name="getType()" value="linklabel_uml_association_target_role, compartment_sysml_value_as_list, label_sysml_block_name, compartment_sysml_flowproperty_as_list, linklabel_uml_association_source_multiplicity, label_sysml_dimension_name, linklabel_uml_appliedstereotype, linklabel_uml_association_source_role, linklabel_uml_association_target_multiplicity, compartment_sysml_constraint_as_list, label_sysml_valuetype_name, compartment_sysml_flowport_as_list, linklabel_uml_namedelement_name, compartment_sysml_reference_as_list, label_sysml_flowspecification_name, compartment_uml_property_as_list, label_sysml_unit_name, affixedlabel_uml_namedelement_name, compartment_uml_port_as_list, label_sysml_constraintblock_name, compartment_sysml_parameter_as_list, compartment_sysml_property_as_list, compartment_uml_enumerationliteral_as_list, compartment_uml_operation_as_list, compartment_sysml_part_as_list, label_uml_namedelement_name"/>
 		</object>
 		
-		<context views="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomGraphicalTypes"/>
+		<context views="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomNodeGraphicalTypes"/>
 		<context views="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomGraphicalTypes_Decorations"/>
 	
+		<object
+			class="org.eclipse.gmf.runtime.notation.Edge(org.eclipse.gmf.runtime.notation)"
+			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomEdgeGraphicalTypes">
+			<method name="getType()" value="link_uml_dependency, link_uml_usage, link_uml_interfacerealization, link_sysml_association, link_uml_generalization"/>
+		</object>
+		
+		<context views="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomEdgeGraphicalTypes"/>
+		
 	</editpartProvider>
 	
 	<!-- EditPartProvider for inherited elements (from ClassDiagram) -->
@@ -662,11 +771,6 @@
 			"3009" = PACKAGE_CN
 			"5017" = PACKAGE_CN_LABEL_NAME_HINT
 			"7010" = PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
-			"2013" = ASSOCIATION_CLASS_NODE
-			"5066" = ASSOCIATION_CLASS_NODE_LABEL_ASSOCIATION_CLASS_NAME_HINT
-			"7034" = ASSOCIATION_CLASS_NODE_COMPARTMENT_ATTRIBUTE_HINT
-			"7036" = ASSOCIATION_CLASS_NODE_COMPARTMENT_OPERATION_HINT
-			"7037" = ASSOCIATION_CLASS_NODE_COMPARTMENT_NESTED_CLASSIFIER_HINT
 			"2001" = INSTANCE_SPECIFICATION
 			"5002" = INSTANCE_SPECIFICATION_LABEL_NAME_HINT
 			"7001" = INSTANCE_SPECIFICATION_COMPARTMENT_SLOT_HINT
@@ -705,11 +809,6 @@
 			<method name="getType()" value="3009, 5017, 7010"/>
 		</object>
 		<object
-			id="ASSOCIATION_CLASS_NODE"
-			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="2013, 5066, 7034, 7036, 7037"/>
-		</object>
-		<object
 			id="INSTANCE_SPECIFICATION"
 			class="org.eclipse.gmf.runtime.notation.Node">
 			<method name="getType()" value="2001, 5002, 7001"/>
@@ -741,26 +840,8 @@
 		</object>
 		
 		<!-- 	
-			"3002" = ASSOCIATION_CLASS_NODE_PROPERTY_CLN
-			"3003" = ASSOCIATION_CLASS_NODE_OPERATION_CLN
-			"3004" = ASSOCIATION_CLASS_NODE_CLASS_CLN
 			"3030" = INSTANCE_SPECIFICATION_SLOT_CLN
 		  -->
-		<object
-			id="ASSOCIATION_CLASS_NODE_PROPERTY_CLN"
-			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="3002"/>
-		</object>
-		<object
-			id="ASSOCIATION_CLASS_NODE_OPERATION_CLN"
-			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="3003"/>
-		</object>
-		<object
-			id="ASSOCIATION_CLASS_NODE_CLASS_CLN"
-			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="3004"/>
-		</object>
 		<object
 			id="INSTANCE_SPECIFICATION_SLOT_CLN"
 			class="org.eclipse.gmf.runtime.notation.Node">
@@ -768,61 +849,9 @@
 		</object>
 		
 		<!-- 	
-			"4008" = DEPENDENCY
-			"6026" = DEPENDENCY_LABEL_NAME_HINT
-			"6027" = DEPENDENCY_LABEL_APPLIED_STEREOTYPE_HINT
-			"4002" = GENERALIZATION
-			"6007" = GENERALIZATION_LABEL_APPLIED_STEREOTYPER_HINT
-			"4003" = INTERFACE_REALIZATION
-			"6008" = INTERFACE_REALIZATION_LABEL_APPLIED_STEREOTYPE_HINT
-			"6009" = INTERFACE_REALIZATION_LABEL_NAME2_HINT
-			"4007" = USAGE
-			"6016" = USAGE_LABEL_NAME_HINT
-			"6017" = USAGE_LABEL_APPLIED_STEREOTYPE_HINT
-			"4001" = ASSOCIATION
-			"6001" = ASSOCIATION_LABEL_APPLIED_STEREOTYPE_HINT
-			"6002" = ASSOCIATION_LABEL_NAME_HINT
-			"6003" = ASSOCIATION_LABEL_TARGET_NAME_HINT
-			"6005" = ASSOCIATION_LABEL_SOURCE_NAME_HINT
-			"6033" = ASSOCIATION_LABEL_MULTIPLICITY_SOURCE_HINT
-			"6034" = ASSOCIATION_LABEL_MULTIPLICITY_TARGET_HINT
-			"4017" = ASSOCIATION_CLASS
-			"6031" = ASSOCIATION_CLASS_LABEL_ROLE_SOURCE_HINT
-			"6032" = ASSOCIATION_CLASS_LABEL_ROLE_TARGET_HINT
 			"4013" = COMMENT_ANNOTATED_ELEMENT
 			"4014" = CONSTRAINT_CONSTRAINED_ELEMENT
-			"4016" = ASSOCIATION_CLASS_DASHED_LINK
 		  -->
-		<object
-			id="DEPENDENCY"
-			class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4008, 6026, 6027"/>
-		</object>
-		<object
-			id="GENERALIZATION"
-			class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4002, 6007"/>
-		</object>
-		<object
-			id="INTERFACE_REALIZATION"
-			class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4003, 6008, 6009"/>
-		</object>
-		<object
-			id="USAGE"
-			class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4007, 6016, 6017"/>
-		</object>
-		<object
-			id="ASSOCIATION"
-			class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4001, 6001, 6002, 6003, 6005, 6033, 6034"/>
-		</object>
-		<object
-			id="ASSOCIATION_CLASS"
-			class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4017, 6031, 6032"/>
-		</object>
 		<object
 			id="COMMENT_ANNOTATED_ELEMENT"
 			class="org.eclipse.gmf.runtime.notation.Edge">
@@ -833,15 +862,10 @@
 			class="org.eclipse.gmf.runtime.notation.Edge">
 			<method name="getType()" value="4014"/>
 		</object>
-		<object
-			id="ASSOCIATION_CLASS_DASHED_LINK"
-			class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4016"/>
-		</object>
 		
-		<context views="MODEL, MODEL_CN, PACKAGE, PACKAGE_CN, ASSOCIATION_CLASS, INSTANCE_SPECIFICATION, INSTANCE_SPECIFICATION_CN, CONSTRAINT, CONSTRAINT_CN, COMMENT, COMMENT_CN"/>
-		<context views="ASSOCIATION_CLASS_NODE_PROPERTY_CLN, ASSOCIATION_CLASS_NODE_OPERATION_CLN, ASSOCIATION_CLASS_NODE_CLASS_CLN, INSTANCE_SPECIFICATION_SLOT_CLN"/>
-		<context views="DEPENDENCY, GENERALIZATION, INTERFACE_REALIZATION, USAGE, ASSOCIATION, ASSOCIATION_CLASS, COMMENT_ANNOTATED_ELEMENT, CONSTRAINT_CONSTRAINED_ELEMENT, ASSOCIATION_CLASS_DASHED_LINK"/>
+		<context views="MODEL, MODEL_CN, PACKAGE, PACKAGE_CN, INSTANCE_SPECIFICATION, INSTANCE_SPECIFICATION_CN, CONSTRAINT, CONSTRAINT_CN, COMMENT, COMMENT_CN"/>
+		<context views="INSTANCE_SPECIFICATION_SLOT_CLN"/>
+		<context views="COMMENT_ANNOTATED_ELEMENT, CONSTRAINT_CONSTRAINED_ELEMENT"/>
 		
 	</editpartProvider>
 </extension>
@@ -919,72 +943,10 @@
 	
 	
 	
-	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DependencyPreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DependencyPreferencePage"
-		name="Dependency">
-	</page>
-	
-	
-	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.GeneralizationPreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.GeneralizationPreferencePage"
-		name="Generalization">
-	</page>
-	
-	
-	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InterfaceRealizationPreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InterfaceRealizationPreferencePage"
-		name="InterfaceRealization">
-	</page>
-	
-	
-	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.UsagePreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.UsagePreferencePage"
-		name="Usage">
-	</page>
-	
-	
-	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationPreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationPreferencePage"
-		name="Association">
-	</page>
-	
-	
-	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationClassPreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationClassPreferencePage"
-		name="AssociationClass">
-	</page>
 	
 	
 	
 	
-	
-	
-	
-	
-	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PropertyPreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PropertyPreferencePage"
-		name="Property">
-	</page>
-			
-	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.OperationPreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.OperationPreferencePage"
-		name="Operation">
-	</page>
-			
-	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ClassPreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ClassPreferencePage"
-		name="Class">
-	</page>
-			
 	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
 		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.SlotPreferencePage"
 		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.SlotPreferencePage"
@@ -1137,6 +1099,36 @@
 		name="ValueType">
 	</page>
 		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationPreferencePage"
+		name="Association">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DependencyPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DependencyPreferencePage"
+		name="Dependency">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.GeneralizationPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.GeneralizationPreferencePage"
+		name="Generalization">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InterfaceRealizationPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InterfaceRealizationPreferencePage"
+		name="InterfaceRealization">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.UsagePreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.UsagePreferencePage"
+		name="Usage">
+	</page>
+		
 
 </extension>
 
@@ -1144,21 +1136,6 @@
   -->
 
 <!-- Insert custom extensions here. -->
-
-<!-- Palette tool declaration (declares the real palette containment) -->
-<extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
-	name="SYSML Basic (test)">
-	<paletteDefinition ID="SYSML_Basic_BlockDefinition"
-		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
-		name="SYSML_Basic_BlockDefinition" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
-		path="palettes/blockdefinition.palette.basic.xml"
-		provider="CEA LIST">
-		<Priority name="Low"/>
-
-		<!-- Specify diagram this palette tools relate to -->				
-		<editor id="org.eclipse.papyrus.sysml.diagram.blockdefinition"/>
-	</paletteDefinition>
-</extension>
 
 <!-- Palette tool declaration (declares the real palette containment) -->
 <extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
@@ -1206,7 +1183,6 @@
 </extension>
 
 <!-- Palette tool declaration (declares the real palette containment) -->
-
 <extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
 	name="SysML ModelElements (BDD)">
 	<paletteDefinition ID="SYSML_ModelElements_BlockDefinition"
@@ -1219,6 +1195,21 @@
 		<!-- Specify diagram this palette tools relate to -->				
 		<editor id="org.eclipse.papyrus.sysml.diagram.blockdefinition"/>
 	</paletteDefinition>	
+</extension>
+
+<!-- Palette tool declaration (declares the real palette containment) -->
+<extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
+	name="SysML Associations (BDD)">		
+	<paletteDefinition ID="SYSML_Associations_BlockDefinition"
+		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+		name="SYSML_Associations_BlockDefinition" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		path="palettes/blockdefinition.palette.associations.xml"
+		provider="CEA LIST">
+		<Priority name="Low"/>
+
+		<!-- Specify diagram this palette tools relate to -->				
+		<editor id="org.eclipse.papyrus.sysml.diagram.blockdefinition"/>
+	</paletteDefinition>
 </extension>
 
 <!-- Parser provider declaration -->

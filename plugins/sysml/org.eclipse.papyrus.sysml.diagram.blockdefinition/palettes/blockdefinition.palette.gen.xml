@@ -76,6 +76,21 @@
 			<aspectTool description="Create a new ValueType" id="blockdefinition.tool.valuetype"
 				name="ValueType" refToolId="blockdefinition.tool.valuetype">
 			</aspectTool>
+			<aspectTool description="Create a new Association" id="blockdefinition.tool.association"
+				name="Association" refToolId="blockdefinition.tool.association">
+			</aspectTool>
+			<aspectTool description="Create a new Dependency" id="blockdefinition.tool.dependency"
+				name="Dependency" refToolId="blockdefinition.tool.dependency">
+			</aspectTool>
+			<aspectTool description="Create a new Generalization" id="blockdefinition.tool.generalization"
+				name="Generalization" refToolId="blockdefinition.tool.generalization">
+			</aspectTool>
+			<aspectTool description="Create a new InterfaceRealization" id="blockdefinition.tool.interfacerealization"
+				name="InterfaceRealization" refToolId="blockdefinition.tool.interfacerealization">
+			</aspectTool>
+			<aspectTool description="Create a new Usage" id="blockdefinition.tool.usage"
+				name="Usage" refToolId="blockdefinition.tool.usage">
+			</aspectTool>
 			
 			<aspectTool description="Create a new Comment" id="blockdefinition.tool.comment"
 				name="Comment" refToolId="clazz.tool.comment">
@@ -92,38 +107,11 @@
 			<aspectTool description="Create a new Package" id="blockdefinition.tool.package"
 				name="Package" refToolId="clazz.tool.package">
 			</aspectTool>
-			<aspectTool description="Create a new Class" id="blockdefinition.tool.class"
-				name="Class" refToolId="clazz.tool.class">
-			</aspectTool>
-			<aspectTool description="Create a new Operation" id="blockdefinition.tool.operation"
-				name="Operation" refToolId="clazz.tool.operation">
-			</aspectTool>
-			<aspectTool description="Create a new Property" id="blockdefinition.tool.property"
-				name="Property" refToolId="clazz.tool.property">
-			</aspectTool>
 			<aspectTool description="Create a new Slot" id="blockdefinition.tool.slot"
 				name="Slot" refToolId="clazz.tool.slot">
 			</aspectTool>
-			<aspectTool description="Create a new Association" id="blockdefinition.tool.association"
-				name="Association" refToolId="clazz.tool.association">
-			</aspectTool>
-			<aspectTool description="Create a new AssociationClass" id="blockdefinition.tool.associationclass"
-				name="AssociationClass" refToolId="clazz.tool.associationclass">
-			</aspectTool>
-			<aspectTool description="Create a new Comment / Contraint link" id="blockdefinition.tool.comment / contraint link"
-				name="Comment / Contraint link" refToolId="clazz.tool.link">
-			</aspectTool>
-			<aspectTool description="Create a new Dependency" id="blockdefinition.tool.dependency"
-				name="Dependency" refToolId="clazz.tool.dependency">
-			</aspectTool>
-			<aspectTool description="Create a new Generalization" id="blockdefinition.tool.generalization"
-				name="Generalization" refToolId="clazz.tool.generalization">
-			</aspectTool>
-			<aspectTool description="Create a new InterfaceRealization" id="blockdefinition.tool.interfacerealization"
-				name="InterfaceRealization" refToolId="clazz.tool.interfacerealization">
-			</aspectTool>
-			<aspectTool description="Create a new Usage" id="blockdefinition.tool.usage"
-				name="Usage" refToolId="clazz.tool.usage">
+			<aspectTool description="Create a new Comment / Constraint link" id="blockdefinition.tool.comment / constraint link"
+				name="Comment / Constraint link" refToolId="clazz.tool.link">
 			</aspectTool>
 			
 		</drawer>

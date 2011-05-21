@@ -42,9 +42,6 @@ public class InheritedClassDiagramEditPartProvider extends UMLEditPartProvider {
 			if(eobject instanceof org.eclipse.uml2.uml.Package) {
 				return true;
 			}
-			if(eobject instanceof org.eclipse.uml2.uml.AssociationClass) {
-				return true;
-			}
 			if(eobject instanceof org.eclipse.uml2.uml.InstanceSpecification) {
 				return true;
 			}
@@ -54,38 +51,10 @@ public class InheritedClassDiagramEditPartProvider extends UMLEditPartProvider {
 			if(eobject instanceof org.eclipse.uml2.uml.Comment) {
 				return true;
 			}
-			if(eobject instanceof org.eclipse.uml2.uml.Property) {
-				return true;
-			}
-			if(eobject instanceof org.eclipse.uml2.uml.Operation) {
-				return true;
-			}
-			if(eobject instanceof org.eclipse.uml2.uml.Class) {
-				return true;
-			}
 			if(eobject instanceof org.eclipse.uml2.uml.Slot) {
 				return true;
 			}
 
-			/** Edges *********** */
-			if(eobject instanceof org.eclipse.uml2.uml.Dependency) {
-				return true;
-			}
-			if(eobject instanceof org.eclipse.uml2.uml.Generalization) {
-				return true;
-			}
-			if(eobject instanceof org.eclipse.uml2.uml.InterfaceRealization) {
-				return true;
-			}
-			if(eobject instanceof org.eclipse.uml2.uml.Usage) {
-				return true;
-			}
-			if(eobject instanceof org.eclipse.uml2.uml.Association) {
-				return true;
-			}
-			if(eobject instanceof org.eclipse.uml2.uml.AssociationClass) {
-				return true;
-			}
 
 			// Additional test needed here to decide whether to support Feature type links.
 			// As feature type link are not related to a MetaClass from the domain model
@@ -102,10 +71,6 @@ public class InheritedClassDiagramEditPartProvider extends UMLEditPartProvider {
 				return true;
 			}
 
-			/** Edges (NotationType) : ASSOCIATION_CLASS_DASHED_LINK *********** */
-			if(ElementTypes.ASSOCIATION_CLASS_DASHED_LINK.getSemanticHint().equals(hint)) {
-				return true;
-			}
 
 
 		}

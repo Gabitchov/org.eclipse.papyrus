@@ -22,7 +22,6 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy;
-import org.eclipse.gmf.runtime.emf.type.core.commands.MoveElementsCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
@@ -37,6 +36,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 
 /**
  * Non diagram-specific class replacing UMLBaseItemSemanticEditPolicy generated
@@ -120,14 +121,14 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		return null;
+		return getDefaultSemanticCommand(req, req.getElementType());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		return null;
+		return getDefaultSemanticCommand(req);
 	}
 
 	/**
@@ -148,14 +149,14 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		return null;
+		return getDefaultSemanticCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
-		return null;
+		return getDefaultSemanticCommand(req);
 	}
 
 	/**
@@ -169,9 +170,7 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
-
-		return getGEFWrapper(new MoveElementsCommand(req));
-
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
@@ -185,6 +184,16 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(req.getRelationship());
+		if(commandService == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+
+		ICommand semanticCommand = commandService.getEditCommand(req);
+
+		if((semanticCommand != null) && (semanticCommand.canExecute())) {
+			return getGEFWrapper(semanticCommand);
+		}
 		return UnexecutableCommand.INSTANCE;
 	}
 
@@ -204,4 +213,25 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 		return ((IGraphicalEditPart)getHost()).getEditingDomain();
 	}
 
+	private Command getDefaultSemanticCommand(IEditCommandRequest req) {
+		return getDefaultSemanticCommand(req, null);
+	}
+
+	private Command getDefaultSemanticCommand(IEditCommandRequest req, Object context) {
+		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(((IGraphicalEditPart)getHost()).resolveSemanticElement());
+		if(context != null) {
+			commandService = ElementEditServiceUtils.getCommandProvider(context);
+		}
+
+		if(commandService == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+
+		ICommand semanticCommand = commandService.getEditCommand(req);
+
+		if((semanticCommand != null) && (semanticCommand.canExecute())) {
+			return getGEFWrapper(semanticCommand);
+		}
+		return UnexecutableCommand.INSTANCE;
+	}
 }

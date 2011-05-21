@@ -43,6 +43,10 @@ public class Messages extends NLS {
 
 	public static String NoSelectionFound;
 
+	public static String Notification_Drop_Title;
+	
+	public static String Notification_Drop_UMLAssociationWarning;
+
 	static {
 		NLS.initializeMessages("messages", Messages.class); //$NON-NLS-1$
 	}

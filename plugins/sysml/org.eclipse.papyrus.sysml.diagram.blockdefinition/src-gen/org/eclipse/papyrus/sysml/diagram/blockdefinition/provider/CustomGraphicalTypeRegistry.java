@@ -53,6 +53,11 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 		knownNodes.add(SysMLGraphicalTypes.SHAPE_SYSML_UNIT_AS_CLASSIFIER_ID);
 		knownNodes.add(SysMLGraphicalTypes.SHAPE_SYSML_VALUE_AS_LABEL_ID);
 		knownNodes.add(SysMLGraphicalTypes.SHAPE_SYSML_VALUETYPE_AS_CLASSIFIER_ID);
+		knownNodes.add(UMLGraphicalTypes.LINKLABEL_UML_APPLIEDSTEREOTYPE_ID);
+		knownNodes.add(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_SOURCE_MULTIPLICITY_ID);
+		knownNodes.add(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_SOURCE_ROLE_ID);
+		knownNodes.add(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_TARGET_MULTIPLICITY_ID);
+		knownNodes.add(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_TARGET_ROLE_ID);
 		knownNodes.add(SysMLGraphicalTypes.COMPARTMENT_SYSML_CONSTRAINT_AS_LIST_ID);
 		knownNodes.add(SysMLGraphicalTypes.LABEL_SYSML_BLOCK_NAME_ID);
 		knownNodes.add(SysMLGraphicalTypes.COMPARTMENT_SYSML_PROPERTY_AS_LIST_ID);
@@ -64,6 +69,7 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 		knownNodes.add(SysMLGraphicalTypes.LABEL_SYSML_FLOWSPECIFICATION_NAME_ID);
 		knownNodes.add(UMLGraphicalTypes.AFFIXEDLABEL_UML_NAMEDELEMENT_NAME_ID);
 		knownNodes.add(UMLGraphicalTypes.LABEL_UML_NAMEDELEMENT_NAME_ID);
+		knownNodes.add(UMLGraphicalTypes.LINKLABEL_UML_NAMEDELEMENT_NAME_ID);
 		knownNodes.add(UMLGraphicalTypes.COMPARTMENT_UML_OPERATION_AS_LIST_ID);
 		knownNodes.add(SysMLGraphicalTypes.COMPARTMENT_SYSML_PARAMETER_AS_LIST_ID);
 		knownNodes.add(SysMLGraphicalTypes.COMPARTMENT_SYSML_PART_AS_LIST_ID);
@@ -73,6 +79,12 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 		knownNodes.add(SysMLGraphicalTypes.LABEL_SYSML_UNIT_NAME_ID);
 		knownNodes.add(SysMLGraphicalTypes.COMPARTMENT_SYSML_VALUE_AS_LIST_ID);
 		knownNodes.add(SysMLGraphicalTypes.LABEL_SYSML_VALUETYPE_NAME_ID);
+
+		knownEdges.add(SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID);
+		knownEdges.add(UMLGraphicalTypes.LINK_UML_DEPENDENCY_ID);
+		knownEdges.add(UMLGraphicalTypes.LINK_UML_GENERALIZATION_ID);
+		knownEdges.add(UMLGraphicalTypes.LINK_UML_INTERFACEREALIZATION_ID);
+		knownEdges.add(UMLGraphicalTypes.LINK_UML_USAGE_ID);
 	}
 
 	/**
@@ -730,5 +742,75 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 			return UNDEFINED_TYPE;
 		}
 		return super.getNodeGraphicalType(proposedType, containerType);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getEdgeGraphicalType(EObject domainElement) {
+		// Start of user code getEdgeGraphicalType(EObject domainElement)
+
+		// End of user code
+
+		if(((ISpecializationType)SysMLElementTypes.ASSOCIATION).getMatcher().matches(domainElement)) {
+			return SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID;
+		}
+		if(UMLElementTypes.USAGE.getEClass().isInstance(domainElement)) {
+			return UMLGraphicalTypes.LINK_UML_USAGE_ID;
+		}
+		if(UMLElementTypes.INTERFACE_REALIZATION.getEClass().isInstance(domainElement)) {
+			return UMLGraphicalTypes.LINK_UML_INTERFACEREALIZATION_ID;
+		}
+		if(UMLElementTypes.DEPENDENCY.getEClass().isInstance(domainElement)) {
+			return UMLGraphicalTypes.LINK_UML_DEPENDENCY_ID;
+		}
+		if(UMLElementTypes.GENERALIZATION.getEClass().isInstance(domainElement)) {
+			return UMLGraphicalTypes.LINK_UML_GENERALIZATION_ID;
+		}
+		return super.getEdgeGraphicalType(domainElement);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getEdgeGraphicalType(String proposedType) {
+		// Start of user code getEdgeGraphicalType(String proposedType)
+		if(SysMLElementTypes.ASSOCIATION_NONE.getSemanticHint().equals(proposedType)) {
+			return SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID;
+		}
+		if(SysMLElementTypes.ASSOCIATION_NONE_DIRECTED.getSemanticHint().equals(proposedType)) {
+			return SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID;
+		}
+		if(SysMLElementTypes.ASSOCIATION_COMPOSITE.getSemanticHint().equals(proposedType)) {
+			return SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID;
+		}
+		if(SysMLElementTypes.ASSOCIATION_COMPOSITE_DIRECTED.getSemanticHint().equals(proposedType)) {
+			return SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID;
+		}
+		if(SysMLElementTypes.ASSOCIATION_SHARED.getSemanticHint().equals(proposedType)) {
+			return SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID;
+		}
+		if(SysMLElementTypes.ASSOCIATION_SHARED_DIRECTED.getSemanticHint().equals(proposedType)) {
+			return SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID;
+		}
+		// End of user code
+
+		if(SysMLElementTypes.ASSOCIATION.getSemanticHint().equals(proposedType)) {
+			return SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID;
+		}
+		if(UMLElementTypes.USAGE.getSemanticHint().equals(proposedType)) {
+			return UMLGraphicalTypes.LINK_UML_USAGE_ID;
+		}
+		if(UMLElementTypes.INTERFACE_REALIZATION.getSemanticHint().equals(proposedType)) {
+			return UMLGraphicalTypes.LINK_UML_INTERFACEREALIZATION_ID;
+		}
+		if(UMLElementTypes.DEPENDENCY.getSemanticHint().equals(proposedType)) {
+			return UMLGraphicalTypes.LINK_UML_DEPENDENCY_ID;
+		}
+		if(UMLElementTypes.GENERALIZATION.getSemanticHint().equals(proposedType)) {
+			return UMLGraphicalTypes.LINK_UML_GENERALIZATION_ID;
+		}
+		return super.getEdgeGraphicalType(proposedType);
 	}
 }

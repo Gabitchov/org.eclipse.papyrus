@@ -23,9 +23,11 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.GetParserOperation;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserProvider;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.sysml.diagram.common.parser.FlowPortLabelParser;
 import org.eclipse.papyrus.sysml.diagram.common.parser.FlowPropertyLabelParser;
 import org.eclipse.papyrus.sysml.diagram.common.parser.UnitLabelParser;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.uml.diagram.common.parser.AssociationEndLabelParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.ConstraintLabelParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.NamedElementLabelParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.OperationLabelParser;
@@ -44,7 +46,7 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 	static {
 		graphicalHintToParser.put(UMLGraphicalTypes.LABEL_UML_NAMEDELEMENT_NAME_ID, new NamedElementLabelParser());
 		graphicalHintToParser.put(UMLGraphicalTypes.AFFIXEDLABEL_UML_NAMEDELEMENT_NAME_ID, new NamedElementLabelParser());
-		graphicalHintToParser.put(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_LABEL_ID, new FlowPropertyLabelParser());
+		graphicalHintToParser.put(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_LABEL_ID, new FlowPortLabelParser());
 		graphicalHintToParser.put(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPROPERTY_AS_LABEL_ID, new FlowPropertyLabelParser());
 		graphicalHintToParser.put(SysMLGraphicalTypes.SHAPE_SYSML_CONSTRAINTPROPERTY_AS_LABEL_ID, new PropertyLabelParser());
 		graphicalHintToParser.put(UMLGraphicalTypes.SHAPE_UML_CONSTRAINT_AS_LABEL_ID, new ConstraintLabelParser());
@@ -64,6 +66,13 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 		graphicalHintToParser.put(SysMLGraphicalTypes.LABEL_SYSML_VALUETYPE_NAME_ID, new NamedElementLabelParser());
 
 		graphicalHintToParser.put(SysMLGraphicalTypes.LABEL_SYSML_UNIT_NAME_ID, new UnitLabelParser());
+		
+		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_NAMEDELEMENT_NAME_ID, new NamedElementLabelParser());
+		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_SOURCE_ROLE_ID, new AssociationEndLabelParser());
+		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_SOURCE_MULTIPLICITY_ID, new AssociationEndLabelParser());
+		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_TARGET_ROLE_ID, new AssociationEndLabelParser());
+		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_TARGET_MULTIPLICITY_ID, new AssociationEndLabelParser());
+
 	}
 
 	/**

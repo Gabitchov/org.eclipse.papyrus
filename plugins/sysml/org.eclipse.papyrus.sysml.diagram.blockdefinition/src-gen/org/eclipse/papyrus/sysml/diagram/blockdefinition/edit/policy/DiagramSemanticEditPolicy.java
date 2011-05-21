@@ -100,10 +100,6 @@ public class DiagramSemanticEditPolicy extends DefaultSemanticEditPolicy {
 			CreateElementRequest createRequest = new CreateElementRequest(req.getContainer(), UMLElementTypes.PACKAGE);
 			return new ICommandProxy(commandService.getEditCommand(createRequest));
 		}
-		if(ElementTypes.ASSOCIATION_CLASS_NODE == req.getElementType()) {
-			CreateElementRequest createRequest = new CreateElementRequest(req.getContainer(), UMLElementTypes.ASSOCIATION_CLASS);
-			return new ICommandProxy(commandService.getEditCommand(createRequest));
-		}
 		if(ElementTypes.INSTANCE_SPECIFICATION == req.getElementType()) {
 			CreateElementRequest createRequest = new CreateElementRequest(req.getContainer(), UMLElementTypes.INSTANCE_SPECIFICATION);
 			return new ICommandProxy(commandService.getEditCommand(createRequest));

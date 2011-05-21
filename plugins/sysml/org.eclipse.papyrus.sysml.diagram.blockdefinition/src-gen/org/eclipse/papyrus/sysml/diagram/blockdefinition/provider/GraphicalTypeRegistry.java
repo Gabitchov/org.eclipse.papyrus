@@ -40,19 +40,12 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 	public GraphicalTypeRegistry() {
 
 		// Fill known edges set
-		knownEdges.add(ElementTypes.DEPENDENCY.getSemanticHint());
-		knownEdges.add(ElementTypes.GENERALIZATION.getSemanticHint());
-		knownEdges.add(ElementTypes.INTERFACE_REALIZATION.getSemanticHint());
-		knownEdges.add(ElementTypes.USAGE.getSemanticHint());
-		knownEdges.add(ElementTypes.ASSOCIATION.getSemanticHint());
-		knownEdges.add(ElementTypes.ASSOCIATION_CLASS.getSemanticHint());
 
 		// Fill known nodes set (primary nodes)
 		knownNodes.add(ElementTypes.MODEL.getSemanticHint());
 		knownNodes.add(ElementTypes.MODEL_CN.getSemanticHint());
 		knownNodes.add(ElementTypes.PACKAGE.getSemanticHint());
 		knownNodes.add(ElementTypes.PACKAGE_CN.getSemanticHint());
-		knownNodes.add(ElementTypes.ASSOCIATION_CLASS_NODE.getSemanticHint());
 		knownNodes.add(ElementTypes.INSTANCE_SPECIFICATION.getSemanticHint());
 		knownNodes.add(ElementTypes.INSTANCE_SPECIFICATION_CN.getSemanticHint());
 		knownNodes.add(ElementTypes.CONSTRAINT.getSemanticHint());
@@ -61,9 +54,6 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		knownNodes.add(ElementTypes.COMMENT_CN.getSemanticHint());
 
 		// Fill known nodes set (child label nodes)
-		knownNodes.add(ElementTypes.ASSOCIATION_CLASS_NODE_PROPERTY_CLN.getSemanticHint());
-		knownNodes.add(ElementTypes.ASSOCIATION_CLASS_NODE_OPERATION_CLN.getSemanticHint());
-		knownNodes.add(ElementTypes.ASSOCIATION_CLASS_NODE_CLASS_CLN.getSemanticHint());
 		knownNodes.add(ElementTypes.INSTANCE_SPECIFICATION_SLOT_CLN.getSemanticHint());
 	}
 
@@ -75,24 +65,6 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		String graphicalType = UNDEFINED_TYPE;
 		if(domainElement == null) {
 			return UNDEFINED_TYPE;
-		}
-		if(domainElement instanceof org.eclipse.uml2.uml.Dependency) {
-			graphicalType = ElementTypes.DEPENDENCY.getSemanticHint();
-		}
-		if(domainElement instanceof org.eclipse.uml2.uml.Generalization) {
-			graphicalType = ElementTypes.GENERALIZATION.getSemanticHint();
-		}
-		if(domainElement instanceof org.eclipse.uml2.uml.InterfaceRealization) {
-			graphicalType = ElementTypes.INTERFACE_REALIZATION.getSemanticHint();
-		}
-		if(domainElement instanceof org.eclipse.uml2.uml.Usage) {
-			graphicalType = ElementTypes.USAGE.getSemanticHint();
-		}
-		if(domainElement instanceof org.eclipse.uml2.uml.Association) {
-			graphicalType = ElementTypes.ASSOCIATION.getSemanticHint();
-		}
-		if(domainElement instanceof org.eclipse.uml2.uml.AssociationClass) {
-			graphicalType = ElementTypes.ASSOCIATION_CLASS.getSemanticHint();
 		}
 		return graphicalType;
 	}
@@ -168,13 +140,6 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 
 		}
 
-		if(domainElement instanceof org.eclipse.uml2.uml.AssociationClass) {
-			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // AssociationClass TopNode
-				graphicalType = ElementTypes.ASSOCIATION_CLASS_NODE.getSemanticHint();
-			}
-
-		}
-
 		if(domainElement instanceof org.eclipse.uml2.uml.InstanceSpecification) {
 			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // InstanceSpecification TopNode
 				graphicalType = ElementTypes.INSTANCE_SPECIFICATION.getSemanticHint();
@@ -230,27 +195,6 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 				graphicalType = ElementTypes.COMMENT_CN.getSemanticHint();
 			}
 
-		}
-
-		if(domainElement instanceof org.eclipse.uml2.uml.Property) {
-
-			if(ElementTypes.ASSOCIATION_CLASS_NODE_COMPARTMENT_ATTRIBUTE_HINT.equals(containerType)) { // Property ChildLabelNode
-				graphicalType = ElementTypes.ASSOCIATION_CLASS_NODE_PROPERTY_CLN.getSemanticHint();
-			}
-		}
-
-		if(domainElement instanceof org.eclipse.uml2.uml.Operation) {
-
-			if(ElementTypes.ASSOCIATION_CLASS_NODE_COMPARTMENT_OPERATION_HINT.equals(containerType)) { // Operation ChildLabelNode
-				graphicalType = ElementTypes.ASSOCIATION_CLASS_NODE_OPERATION_CLN.getSemanticHint();
-			}
-		}
-
-		if(domainElement instanceof org.eclipse.uml2.uml.Class) {
-
-			if(ElementTypes.ASSOCIATION_CLASS_NODE_COMPARTMENT_NESTED_CLASSIFIER_HINT.equals(containerType)) { // Class ChildLabelNode
-				graphicalType = ElementTypes.ASSOCIATION_CLASS_NODE_CLASS_CLN.getSemanticHint();
-			}
 		}
 
 		if(domainElement instanceof org.eclipse.uml2.uml.Slot) {

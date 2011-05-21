@@ -77,4 +77,8 @@ public class SysMLGraphicalTypes {
 	public static final String COMPARTMENT_SYSML_REFERENCE_AS_LIST_ID = "compartment_sysml_reference_as_list"; //$NON-NLS-1$
 
 	public static final String COMPARTMENT_SYSML_VALUE_AS_LIST_ID = "compartment_sysml_value_as_list"; //$NON-NLS-1$
+
+	/** Custom links */
+	public static final String LINK_SYSML_ASSOCIATION_ID = "link_sysml_association"; //$NON-NLS-1$
+
 }

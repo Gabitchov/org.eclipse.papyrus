@@ -14,8 +14,10 @@
 package org.eclipse.papyrus.gmf.diagram.common.factory;
 
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
-import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 
 /**
  * Default view Factory for Papyrus custom affixed labels.
@@ -27,9 +29,23 @@ public class AffixedLabelViewFactory extends AbstractLabelViewFactory {
 	 */
 	@Override
 	protected LayoutConstraint createLayoutConstraint() {
-		Location location = NotationFactory.eINSTANCE.createLocation();
-		location.setX(0);
-		location.setY(40);
-		return location;
+		return NotationFactory.eINSTANCE.createLocation();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void initializeFromPreferences(View view) {
+
+		super.initializeFromPreferences(view);
+
+		IPreferenceStore store = (IPreferenceStore)getPreferencesHint().getPreferenceStore();
+		if(store == null) {
+			return;
+		}
+
+		String preferenceKey = view.getType();
+		PreferenceInitializerForElementHelper.initLabelLocationFromPrefs(view, store, preferenceKey);
 	}
 }

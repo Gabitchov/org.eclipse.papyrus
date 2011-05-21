@@ -17,7 +17,16 @@
 			<aspectTool description="Create a new FlowProperty" id="blockdefinition.tool.flowproperty"
 				name="FlowProperty" refToolId="blockdefinition.tool.flowproperty">
 			</aspectTool>
-			
+			<aspectTool description="Create a new Interface" id="blockdefinition.tool.interface"
+				name="Interface" refToolId="blockdefinition.tool.interface">
+			</aspectTool>
+			<aspectTool description="Create a new InterfaceRealization" id="blockdefinition.tool.interfacerealization"
+				name="InterfaceRealization" refToolId="blockdefinition.tool.interfacerealization">
+			</aspectTool>
+			<aspectTool description="Create a new Usage" id="blockdefinition.tool.usage"
+				name="Usage" refToolId="blockdefinition.tool.usage">
+			</aspectTool>
+						
 		</drawer>
 	</content>
 </paletteDefinition>

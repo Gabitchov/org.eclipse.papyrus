@@ -60,18 +60,6 @@ public class BlockDefinitionDiagramEditPolicyProvider extends AbstractProvider i
 		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPartCN) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart) {
-			return true;
-		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassAttributeCompartmentEditPart) {
-			return true;
-		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassOperationCompartmentEditPart) {
-			return true;
-		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassNestedClassifierCompartmentEditPart) {
-			return true;
-		}
 		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart) {
 			return true;
 		}

@@ -13,6 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.diagram.common.factory;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.eclipse.gmf.runtime.notation.NotationFactory;
+import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
@@ -21,6 +26,14 @@ import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElement
  * Default connector view Factory for Papyrus custom edges.
  */
 public class ConnectorViewFactory extends org.eclipse.gmf.runtime.diagram.ui.view.factories.optimal.ConnectorViewFactory {
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected List createStyles(View view) {
+		return Arrays.asList(new Style[]{ NotationFactory.eINSTANCE.createFontStyle() });
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -38,7 +51,8 @@ public class ConnectorViewFactory extends org.eclipse.gmf.runtime.diagram.ui.vie
 		String elementName = view.getType();
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(view, store, elementName);
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(view, store, elementName);
-		PreferenceInitializerForElementHelper.initRountingFromPrefs(view, store, elementName);
+		PreferenceInitializerForElementHelper.initRoutingFromPrefs(view, store, elementName);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(view, store, elementName);
 	}
 
 }

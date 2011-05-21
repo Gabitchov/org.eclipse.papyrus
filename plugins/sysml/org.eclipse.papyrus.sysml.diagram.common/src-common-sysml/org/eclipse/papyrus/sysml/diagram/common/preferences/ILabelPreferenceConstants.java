@@ -77,4 +77,13 @@ public interface ILabelPreferenceConstants {
 
 	/** Style constant for parameter direction display in labels. */
 	public final static int DISP_PARAM_DIRECTION = 1 << 19;
+
+	/** Style constant forcing multiplicity display in labels. */
+	public final static int DISP_DEFAULT_MULTIPLICITY = 1 << 20;
+
+	/** Style constant forcing type display in labels. */
+	public final static int DISP_UNDEFINED_TYPE = 1 << 21;
+
+	/** Style constant forcing name display in labels. */
+	public final static int DISP_NON_NAVIGABLE_ROLE = 1 << 22;
 }

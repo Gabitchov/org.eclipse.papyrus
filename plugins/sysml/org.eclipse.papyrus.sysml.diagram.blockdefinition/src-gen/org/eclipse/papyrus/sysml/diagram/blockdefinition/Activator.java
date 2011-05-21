@@ -17,7 +17,7 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.log.LogHelper;
-import org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.BlockDefinitionDiagramPreferenceInitializer;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.CustomPreferenceInitializer;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -56,7 +56,7 @@ public class Activator extends AbstractUIPlugin {
 		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
 
 		// Preferences initialization
-		BlockDefinitionDiagramPreferenceInitializer diagramPreferenceInitializer = new BlockDefinitionDiagramPreferenceInitializer();
+		CustomPreferenceInitializer diagramPreferenceInitializer = new CustomPreferenceInitializer();
 		diagramPreferenceInitializer.initializeDefaultPreferences();
 	}
 

@@ -148,6 +148,11 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			return getSpecificDropCommand(dropRequest, droppedObject, droppedNodeType, droppedEdgeType);
 		}
 
+		// Decide unknown type handling
+		if(UNDEFINED_TYPE.equals(droppedNodeType) && UNDEFINED_TYPE.equals(droppedEdgeType)) {
+			return getUnknownDropCommand(dropRequest, droppedObject);
+		}
+
 		// The dropped element is a node
 		if(!UNDEFINED_TYPE.equals(droppedNodeType)) {
 
@@ -278,6 +283,20 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	 * </pre>
 	 */
 	protected ICommand getSpecificDropCommand(DropObjectsRequest dropRequest, EObject droppedEObject, String nodeType, String edgeType) {
+		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * <pre>
+	 * Sub-classes have to implement this method in order to provides drop command for
+	 * elements that are not natively known by the diagram.
+	 * 
+	 * @param dropRequest current drop request
+	 * @param droppedEObject the dropped object
+	 * @return the drop command
+	 * </pre>
+	 */
+	protected ICommand getUnknownDropCommand(DropObjectsRequest dropRequest, EObject droppedEObject) {
 		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 	}
 

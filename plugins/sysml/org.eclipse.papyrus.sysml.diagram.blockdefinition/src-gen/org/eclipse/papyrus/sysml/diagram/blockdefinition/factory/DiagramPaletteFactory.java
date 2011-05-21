@@ -54,20 +54,36 @@ public class DiagramPaletteFactory extends PaletteFactory.Adapter {
 			put("blockdefinition.tool.unit", new IElementType[]{ SysMLElementTypes.UNIT });
 			put("blockdefinition.tool.value", new IElementType[]{ SysMLElementTypes.VALUE_PROPERTY });
 			put("blockdefinition.tool.valuetype", new IElementType[]{ SysMLElementTypes.VALUE_TYPE });
+			//Start of user code Custom nodes
+
+			//End of user code
 		}
 	};
 
 	private static HashMap<String, IElementType[]> edgesToolIdTypesMap = new HashMap<String, IElementType[]>() {
 
 		{
-
+			put("blockdefinition.tool.association", new IElementType[]{ SysMLElementTypes.ASSOCIATION });
+			put("blockdefinition.tool.dependency", new IElementType[]{ UMLElementTypes.DEPENDENCY });
+			put("blockdefinition.tool.generalization", new IElementType[]{ UMLElementTypes.GENERALIZATION });
+			put("blockdefinition.tool.interfacerealization", new IElementType[]{ UMLElementTypes.INTERFACE_REALIZATION });
+			put("blockdefinition.tool.usage", new IElementType[]{ UMLElementTypes.USAGE });
+			//Start of user code Custom edges
+			put("blockdefinition.tool.association_none", new IElementType[]{ SysMLElementTypes.ASSOCIATION_NONE });
+			put("blockdefinition.tool.association_none_directed", new IElementType[]{ SysMLElementTypes.ASSOCIATION_NONE_DIRECTED });
+			put("blockdefinition.tool.association_composite", new IElementType[]{ SysMLElementTypes.ASSOCIATION_COMPOSITE });
+			put("blockdefinition.tool.association_composite_directed", new IElementType[]{ SysMLElementTypes.ASSOCIATION_COMPOSITE_DIRECTED });
+			put("blockdefinition.tool.association_shared", new IElementType[]{ SysMLElementTypes.ASSOCIATION_SHARED });
+			put("blockdefinition.tool.association_shared_directed", new IElementType[]{ SysMLElementTypes.ASSOCIATION_SHARED_DIRECTED });
+			//End of user code
 		}
 	};
 
-
 	public Tool createTool(String toolId) {
 
-		IElementType[] types = nodesToolIdTypesMap.get(toolId);
+		IElementType[] types;
+
+		types = nodesToolIdTypesMap.get(toolId);
 		if(types != null) {
 			return new AspectUnspecifiedTypeCreationTool(Arrays.asList(types));
 		}

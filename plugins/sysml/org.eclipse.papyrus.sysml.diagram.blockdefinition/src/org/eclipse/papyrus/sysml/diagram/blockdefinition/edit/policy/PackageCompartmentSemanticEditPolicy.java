@@ -23,6 +23,7 @@ import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.CustomGraphicalTypeRegistry;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.GraphicalTypeRegistry;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 
 /**
@@ -35,24 +36,30 @@ public class PackageCompartmentSemanticEditPolicy extends PackagePackageableElem
 
 	/** Local graphical type registry for graphical element containment management */
 	private IGraphicalTypeRegistry registry = new CustomGraphicalTypeRegistry();
-
+	private IGraphicalTypeRegistry inheritedRegistry = new GraphicalTypeRegistry();
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 
+		String newNodeGraphicalType = registry.getNodeGraphicalType(req.getElementType(), ((View)getHost().getModel()).getType());
+		
+		if (inheritedRegistry.isKnownNodeType(newNodeGraphicalType)) {
+			return super.getCreateCommand(req);
+		}
+		
 		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(UMLElementTypes.PACKAGE);
 		if(commandService == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		String newNodeGraphicalType = registry.getNodeGraphicalType(req.getElementType(), ((View)getHost().getModel()).getType());
 		if(!IGraphicalTypeRegistry.UNDEFINED_TYPE.equals(newNodeGraphicalType)) {
 			CreateElementRequest createRequest = new CreateElementRequest(req.getContainer(), req.getElementType());
 			return new ICommandProxy(commandService.getEditCommand(createRequest));
 		}
 
-		return super.getCreateCommand(req);
+		return UnexecutableCommand.INSTANCE;
 	}
 }

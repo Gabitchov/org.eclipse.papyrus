@@ -20,13 +20,14 @@ import java.util.Map;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 
 public class AssociationPreferencePage extends BlockDefinitionDiagramLinkPreferencePage {
 
 	/** Constant key to access preferences */
-	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_AssociationLink"; //$NON-NLS-1$
+	public static String prefKey = ElementTypes.DIAGRAM_ID + "_" + SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID; //$NON-NLS-1$
 
-	/** The compartments default visibility for preferences */
+	/** The labels default visibility for preferences */
 	public static final Map<String, Boolean> labelDefaultVisibilityMap;
 
 	/** Static attribute initialization */
@@ -34,9 +35,9 @@ public class AssociationPreferencePage extends BlockDefinitionDiagramLinkPrefere
 		labelDefaultVisibilityMap = new LinkedHashMap<String, Boolean>();
 		labelDefaultVisibilityMap.put("Stereotype", Boolean.TRUE); //$NON-NLS-1$	
 		labelDefaultVisibilityMap.put("Name", Boolean.TRUE); //$NON-NLS-1$	
-		labelDefaultVisibilityMap.put("TargetRole", Boolean.TRUE); //$NON-NLS-1$	
 		labelDefaultVisibilityMap.put("SourceRole", Boolean.TRUE); //$NON-NLS-1$	
 		labelDefaultVisibilityMap.put("SourceMultiplicity", Boolean.TRUE); //$NON-NLS-1$	
+		labelDefaultVisibilityMap.put("TargetRole", Boolean.TRUE); //$NON-NLS-1$	
 		labelDefaultVisibilityMap.put("TargetMultiplicity", Boolean.TRUE); //$NON-NLS-1$	
 
 		// Start of user code custom static initializations
@@ -45,22 +46,18 @@ public class AssociationPreferencePage extends BlockDefinitionDiagramLinkPrefere
 		Collections.unmodifiableMap(labelDefaultVisibilityMap);
 	}
 
-	/** Default constructor */
+	/** Constructor */
 	public AssociationPreferencePage() {
 		super();
-		setPreferenceKey(ElementTypes.DIAGRAM_ID + "_AssociationLink"); //$NON-NLS-1$
+		setPreferenceKey(ElementTypes.DIAGRAM_ID + "_" + SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID); //$NON-NLS-1$
 	}
 
-	/**
-	 * Initialize defaults using a specified {@link IPreferenceStore}
-	 * 
-	 * @param store
-	 *        the preference store.
-	 */
+	/** Default preferences initializer */
 	public static void initDefaults(IPreferenceStore store) {
 		// Start of user code custom default initializations
 		// End of user code
 
+		// Initialize default visibility for labels in preference page.
 		for(String labelName : labelDefaultVisibilityMap.keySet()) {
 			String showLabelKey = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, labelName, PreferenceConstantHelper.LABEL_VISIBILITY);
 			store.setDefault(showLabelKey, labelDefaultVisibilityMap.get(labelName));

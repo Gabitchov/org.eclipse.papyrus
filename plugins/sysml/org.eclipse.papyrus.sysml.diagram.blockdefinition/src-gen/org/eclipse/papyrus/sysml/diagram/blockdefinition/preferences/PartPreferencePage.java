@@ -14,8 +14,8 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
 
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_DEFAULTVALUE;
+import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY;
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_DERIVE;
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_DIRECTION;
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_MODIFIERS;
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_MULTIPLICITY;
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_NAME;
@@ -57,7 +57,7 @@ public class PartPreferencePage extends BlockDefinitionDiagramNodePreferencePage
 	}
 
 	/** buttons to select the display mask of the label */
-	protected Button bttnDirection, bttnVisibility, bttnDerive, bttnName, bttnType, bttnMultiplicity, bttnDefaultValue, bttnModifiers;
+	protected Button bttnVisibility, bttnDerive, bttnName, bttnType, bttnMultiplicity, bttnDefault_Multiplicity, bttnDefaultValue, bttnModifiers;
 
 	public static String prefLabelKey = ElementTypes.DIAGRAM_ID + "_" + SysMLGraphicalTypes.SHAPE_SYSML_PART_AS_LABEL_ID; //$NON-NLS-1$	
 
@@ -98,15 +98,9 @@ public class PartPreferencePage extends BlockDefinitionDiagramNodePreferencePage
 
 		FormData data;
 
-		bttnDirection = createCheckButton(group, "Direction", DISP_DIRECTION);
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.top = new FormAttachment(0, 0);
-		bttnDirection.setLayoutData(data);
-
 		bttnVisibility = createCheckButton(group, "Visibility", DISP_VISIBILITY);
 		data = new FormData();
-		data.left = new FormAttachment(bttnDirection, 85);
+		data.left = new FormAttachment(0, 0);
 		data.top = new FormAttachment(0, 0);
 		bttnVisibility.setLayoutData(data);
 
@@ -124,26 +118,32 @@ public class PartPreferencePage extends BlockDefinitionDiagramNodePreferencePage
 
 		bttnType = createCheckButton(group, "Type", DISP_TYPE);
 		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.top = new FormAttachment(bttnDirection, ITabbedPropertyConstants.HSPACE);
+		data.left = new FormAttachment(bttnName, 85);
+		data.top = new FormAttachment(0, 0);
 		bttnType.setLayoutData(data);
 
 		bttnMultiplicity = createCheckButton(group, "Multiplicity", DISP_MULTIPLICITY);
 		data = new FormData();
-		data.left = new FormAttachment(bttnDirection, 85);
-		data.top = new FormAttachment(bttnDirection, ITabbedPropertyConstants.HSPACE);
+		data.left = new FormAttachment(0, 0);
+		data.top = new FormAttachment(bttnVisibility, ITabbedPropertyConstants.HSPACE);
 		bttnMultiplicity.setLayoutData(data);
+
+		bttnDefault_Multiplicity = createCheckButton(group, "Default_Multiplicity", DISP_DEFAULT_MULTIPLICITY);
+		data = new FormData();
+		data.left = new FormAttachment(bttnVisibility, 85);
+		data.top = new FormAttachment(bttnVisibility, ITabbedPropertyConstants.HSPACE);
+		bttnDefault_Multiplicity.setLayoutData(data);
 
 		bttnDefaultValue = createCheckButton(group, "DefaultValue", DISP_DEFAULTVALUE);
 		data = new FormData();
-		data.left = new FormAttachment(bttnVisibility, 85);
-		data.top = new FormAttachment(bttnDirection, ITabbedPropertyConstants.HSPACE);
+		data.left = new FormAttachment(bttnDerive, 85);
+		data.top = new FormAttachment(bttnVisibility, ITabbedPropertyConstants.HSPACE);
 		bttnDefaultValue.setLayoutData(data);
 
 		bttnModifiers = createCheckButton(group, "Modifiers", DISP_MODIFIERS);
 		data = new FormData();
-		data.left = new FormAttachment(bttnDerive, 85);
-		data.top = new FormAttachment(bttnDirection, ITabbedPropertyConstants.HSPACE);
+		data.left = new FormAttachment(bttnName, 85);
+		data.top = new FormAttachment(bttnVisibility, ITabbedPropertyConstants.HSPACE);
 		bttnModifiers.setLayoutData(data);
 
 	}
@@ -192,12 +192,12 @@ public class PartPreferencePage extends BlockDefinitionDiagramNodePreferencePage
 	 */
 	protected void refreshButtons() {
 
-		bttnDirection.setSelection((propertyValue & DISP_DIRECTION) == DISP_DIRECTION);
 		bttnVisibility.setSelection((propertyValue & DISP_VISIBILITY) == DISP_VISIBILITY);
 		bttnDerive.setSelection((propertyValue & DISP_DERIVE) == DISP_DERIVE);
 		bttnName.setSelection((propertyValue & DISP_NAME) == DISP_NAME);
 		bttnType.setSelection((propertyValue & DISP_TYPE) == DISP_TYPE);
 		bttnMultiplicity.setSelection((propertyValue & DISP_MULTIPLICITY) == DISP_MULTIPLICITY);
+		bttnDefault_Multiplicity.setSelection((propertyValue & DISP_DEFAULT_MULTIPLICITY) == DISP_DEFAULT_MULTIPLICITY);
 		bttnDefaultValue.setSelection((propertyValue & DISP_DEFAULTVALUE) == DISP_DEFAULTVALUE);
 		bttnModifiers.setSelection((propertyValue & DISP_MODIFIERS) == DISP_MODIFIERS);
 

@@ -18,17 +18,19 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.DirectEditPolicy;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.gef.ui.internal.parts.TextCellEditorEx;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.gmf.diagram.common.edit.part.ITextAwareEditPart;
 
 /**
  * Overrides {@link org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy} in
  * order to pass parser options to the method that returns the modification command.
  * (always pass 0 - ParserOptions.NONE in the original class).
+ * 
+ * Also this uses (or tries to) the EObject given by {@link org.eclipse.papyrus.gmf.diagram.common.edit.part.ITextAwareEditPart#getParserElement()} to
+ * get the edit command instead of using the EObject associated to the edited edit part.
  */
 public class LabelDirectEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy {
 
@@ -80,14 +82,20 @@ public class LabelDirectEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.ed
 			return null;
 		}
 
+		// Papyrus - using org.eclipse.papyrus.gmf.diagram.common.edit.part.ITextAwareEditPart here
 		ITextAwareEditPart compartment = (ITextAwareEditPart)getHost();
-		EObject model = (EObject)compartment.getModel();
-		EObjectAdapter elementAdapter = null;
-		if(model instanceof View) {
-			View view = (View)model;
-			elementAdapter = new EObjectAdapterEx(ViewUtil.resolveSemanticElement(view), view);
-		} else
-			elementAdapter = new EObjectAdapterEx(model, null);
+		EObjectAdapter elementAdapter = new EObjectAdapterEx(compartment.getParserElement(), null);
+		//
+
+		// Papyrus - elementAdapter created with compartment.getParserElement(), no need to use the view here.
+		//		EObject model = (EObject)compartment.getModel();
+		//		EObjectAdapter elementAdapter = null;
+		//		if(model instanceof View) {
+		//			View view = (View)model;
+		//			elementAdapter = new EObjectAdapterEx(ViewUtil.resolveSemanticElement(view), view);
+		//		} else
+		//			elementAdapter = new EObjectAdapterEx(model, null);
+
 		// check to make sure an edit has occurred before returning a command.
 		String prevText = compartment.getParser().getEditString(elementAdapter, compartment.getParserOptions().intValue());
 		if(!prevText.equals(labelText)) {

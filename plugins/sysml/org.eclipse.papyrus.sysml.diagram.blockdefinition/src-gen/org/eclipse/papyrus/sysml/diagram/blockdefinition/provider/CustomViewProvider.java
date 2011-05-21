@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.factory.AffixedLabelViewFactory;
 import org.eclipse.papyrus.gmf.diagram.common.factory.CompartmentListViewFactory;
+import org.eclipse.papyrus.gmf.diagram.common.factory.ConnectorLabelViewFactory;
 import org.eclipse.papyrus.gmf.diagram.common.factory.InnerLabelViewFactory;
 import org.eclipse.papyrus.gmf.diagram.common.factory.ShapeChildLabelViewFactory;
 import org.eclipse.papyrus.gmf.diagram.common.provider.CustomAbstractViewProvider;
@@ -31,16 +32,24 @@ import org.eclipse.papyrus.sysml.diagram.common.factory.FlowSpecificationClassif
 import org.eclipse.papyrus.sysml.diagram.common.factory.UnitClassifierViewFactory;
 import org.eclipse.papyrus.sysml.diagram.common.factory.ValueTypeClassifierViewFactory;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.uml.diagram.common.factory.AssociationLinkViewFactory;
 import org.eclipse.papyrus.uml.diagram.common.factory.ClassifierViewFactory;
+import org.eclipse.papyrus.uml.diagram.common.factory.DependencyLinkViewFactory;
 import org.eclipse.papyrus.uml.diagram.common.factory.EnumerationClassifierViewFactory;
+import org.eclipse.papyrus.uml.diagram.common.factory.GeneralizationLinkViewFactory;
+import org.eclipse.papyrus.uml.diagram.common.factory.InterfaceRealizationLinkViewFactory;
 import org.eclipse.papyrus.uml.diagram.common.factory.PortAffixedNodeViewFactory;
 import org.eclipse.papyrus.uml.diagram.common.factory.PrimitiveTypeClassifierViewFactory;
+import org.eclipse.papyrus.uml.diagram.common.factory.UsageLinkViewFactory;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
 public class CustomViewProvider extends CustomAbstractViewProvider {
 
 	/** Map containing node view types supported by this provider */
 	protected Map<String, Class<?>> nodeMap = new HashMap<String, Class<?>>();
+
+	/** Map containing edge view types supported by this provider */
+	protected Map<String, Class<?>> edgeMap = new HashMap<String, Class<?>>();
 
 	/** Default constructor */
 	public CustomViewProvider() {
@@ -101,10 +110,36 @@ public class CustomViewProvider extends CustomAbstractViewProvider {
 		nodeMap.put(SysMLGraphicalTypes.COMPARTMENT_SYSML_PROPERTY_AS_LIST_ID, CompartmentListViewFactory.class);
 		// Custom affixed labels
 		nodeMap.put(UMLGraphicalTypes.AFFIXEDLABEL_UML_NAMEDELEMENT_NAME_ID, AffixedLabelViewFactory.class);
+
+		// Custom edges
+		edgeMap.put(UMLGraphicalTypes.LINK_UML_USAGE_ID, UsageLinkViewFactory.class);
+		edgeMap.put(UMLGraphicalTypes.LINK_UML_INTERFACEREALIZATION_ID, InterfaceRealizationLinkViewFactory.class);
+		edgeMap.put(UMLGraphicalTypes.LINK_UML_DEPENDENCY_ID, DependencyLinkViewFactory.class);
+		edgeMap.put(UMLGraphicalTypes.LINK_UML_GENERALIZATION_ID, GeneralizationLinkViewFactory.class);
+		edgeMap.put(SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID, AssociationLinkViewFactory.class);
+
+		// Custom edge labels
+		nodeMap.put(UMLGraphicalTypes.LINKLABEL_UML_APPLIEDSTEREOTYPE_ID, ConnectorLabelViewFactory.class);
+		nodeMap.put(UMLGraphicalTypes.LINKLABEL_UML_NAMEDELEMENT_NAME_ID, ConnectorLabelViewFactory.class);
+		nodeMap.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_SOURCE_MULTIPLICITY_ID, ConnectorLabelViewFactory.class);
+		nodeMap.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_SOURCE_ROLE_ID, ConnectorLabelViewFactory.class);
+		nodeMap.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_TARGET_MULTIPLICITY_ID, ConnectorLabelViewFactory.class);
+		nodeMap.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_TARGET_ROLE_ID, ConnectorLabelViewFactory.class);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Class<?> getNodeViewClass(IAdaptable semanticAdapter, View containerView, String graphicalType) {
 		return nodeMap.get(graphicalType);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Class<?> getEdgeViewClass(IAdaptable semanticAdapter, View containerView, String graphicalType) {
+		return edgeMap.get(graphicalType);
 	}
 }

@@ -20,13 +20,14 @@ import java.util.Map;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
+import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
 public class InterfaceRealizationPreferencePage extends BlockDefinitionDiagramLinkPreferencePage {
 
 	/** Constant key to access preferences */
-	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_InterfaceRealization"; //$NON-NLS-1$
+	public static String prefKey = ElementTypes.DIAGRAM_ID + "_" + UMLGraphicalTypes.LINK_UML_INTERFACEREALIZATION_ID; //$NON-NLS-1$
 
-	/** The compartments default visibility for preferences */
+	/** The labels default visibility for preferences */
 	public static final Map<String, Boolean> labelDefaultVisibilityMap;
 
 	/** Static attribute initialization */
@@ -41,22 +42,18 @@ public class InterfaceRealizationPreferencePage extends BlockDefinitionDiagramLi
 		Collections.unmodifiableMap(labelDefaultVisibilityMap);
 	}
 
-	/** Default constructor */
+	/** Constructor */
 	public InterfaceRealizationPreferencePage() {
 		super();
-		setPreferenceKey(ElementTypes.DIAGRAM_ID + "_InterfaceRealization"); //$NON-NLS-1$
+		setPreferenceKey(ElementTypes.DIAGRAM_ID + "_" + UMLGraphicalTypes.LINK_UML_INTERFACEREALIZATION_ID); //$NON-NLS-1$
 	}
 
-	/**
-	 * Initialize defaults using a specified {@link IPreferenceStore}
-	 * 
-	 * @param store
-	 *        the preference store.
-	 */
+	/** Default preferences initializer */
 	public static void initDefaults(IPreferenceStore store) {
 		// Start of user code custom default initializations
 		// End of user code
 
+		// Initialize default visibility for labels in preference page.
 		for(String labelName : labelDefaultVisibilityMap.keySet()) {
 			String showLabelKey = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, labelName, PreferenceConstantHelper.LABEL_VISIBILITY);
 			store.setDefault(showLabelKey, labelDefaultVisibilityMap.get(labelName));

@@ -11,9 +11,6 @@
 			<aspectTool description="Create a new Block" id="blockdefinition.tool.block"
 				name="Block" refToolId="blockdefinition.tool.block">
 			</aspectTool>
-			<aspectTool description="Create a new Interface" id="blockdefinition.tool.interface"
-				name="Interface" refToolId="blockdefinition.tool.interface">
-			</aspectTool>
 			<aspectTool description="Create a new Signal" id="blockdefinition.tool.signal"
 				name="Signal" refToolId="blockdefinition.tool.signal">
 			</aspectTool>			
@@ -34,7 +31,13 @@
 			</aspectTool>
 			<aspectTool description="Create a new Value" id="blockdefinition.tool.value"
 				name="Value" refToolId="blockdefinition.tool.value">
-			</aspectTool>			
+			</aspectTool>
+			<aspectTool description="Create a new Dependency" id="blockdefinition.tool.dependency"
+				name="Dependency" refToolId="blockdefinition.tool.dependency">
+			</aspectTool>
+			<aspectTool description="Create a new Generalization" id="blockdefinition.tool.generalization"
+				name="Generalization" refToolId="blockdefinition.tool.generalization">
+			</aspectTool>						
 		</drawer>
 	</content>
 </paletteDefinition>

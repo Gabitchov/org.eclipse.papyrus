@@ -29,16 +29,9 @@ public class BlockDefinitionDiagramPreferenceInitializer extends AbstractPrefere
 
 		org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ModelPreferencePage.initDefaults(store);
 		org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PackagePreferencePage.initDefaults(store);
-		org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationClassNodePreferencePage.initDefaults(store);
 		org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InstanceSpecificationPreferencePage.initDefaults(store);
 		org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConstraintPreferencePage.initDefaults(store);
 		org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.CommentPreferencePage.initDefaults(store);
-		org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DependencyPreferencePage.initDefaults(store);
-		org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.GeneralizationPreferencePage.initDefaults(store);
-		org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InterfaceRealizationPreferencePage.initDefaults(store);
-		org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.UsagePreferencePage.initDefaults(store);
-		org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationPreferencePage.initDefaults(store);
-		org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationClassPreferencePage.initDefaults(store);
 		ActorPreferencePage.initDefaults(store);
 		BlockPreferencePage.initDefaults(store);
 		ConstraintPreferencePage.initDefaults(store);
@@ -63,5 +56,12 @@ public class BlockDefinitionDiagramPreferenceInitializer extends AbstractPrefere
 		UnitPreferencePage.initDefaults(store);
 		ValuePreferencePage.initDefaults(store);
 		ValueTypePreferencePage.initDefaults(store);
+		AssociationPreferencePage.initDefaults(store);
+		DependencyPreferencePage.initDefaults(store);
+		GeneralizationPreferencePage.initDefaults(store);
+		InterfaceRealizationPreferencePage.initDefaults(store);
+		UsagePreferencePage.initDefaults(store);
+
+		// DependencyPreferencePage.initDefaults(store);
 	}
 }

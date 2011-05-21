@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
+import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -54,32 +55,11 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 				// Cannot use createEdge from super class as it never take the graphical type (semanticHint) into account.
 				// createdEdge = super.createEdge(semanticAdapter, containerView, domainElementGraphicalType, index, persisted, preferencesHint);
 
-				if(ElementTypes.DEPENDENCY.getSemanticHint().equals(domainElementGraphicalType)) {
-					createdEdge = createDependency_4008(domainElement, containerView, index, persisted, preferencesHint);
-				}
-				if(ElementTypes.GENERALIZATION.getSemanticHint().equals(domainElementGraphicalType)) {
-					createdEdge = createGeneralization_4002(domainElement, containerView, index, persisted, preferencesHint);
-				}
-				if(ElementTypes.INTERFACE_REALIZATION.getSemanticHint().equals(domainElementGraphicalType)) {
-					createdEdge = createInterfaceRealization_4003(domainElement, containerView, index, persisted, preferencesHint);
-				}
-				if(ElementTypes.USAGE.getSemanticHint().equals(domainElementGraphicalType)) {
-					createdEdge = createUsage_4007(domainElement, containerView, index, persisted, preferencesHint);
-				}
-				if(ElementTypes.ASSOCIATION.getSemanticHint().equals(domainElementGraphicalType)) {
-					createdEdge = createAssociation_4001(domainElement, containerView, index, persisted, preferencesHint);
-				}
-				if(ElementTypes.ASSOCIATION_CLASS.getSemanticHint().equals(domainElementGraphicalType)) {
-					createdEdge = createAssociationClass_4017(domainElement, containerView, index, persisted, preferencesHint);
-				}
 				if(ElementTypes.COMMENT_ANNOTATED_ELEMENT.getSemanticHint().equals(domainElementGraphicalType)) {
 					createdEdge = createCommentAnnotatedElement_4013(containerView, index, persisted, preferencesHint);
 				}
 				if(ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint().equals(domainElementGraphicalType)) {
 					createdEdge = createConstraintConstrainedElement_4014(containerView, index, persisted, preferencesHint);
-				}
-				if(ElementTypes.ASSOCIATION_CLASS_DASHED_LINK.getSemanticHint().equals(domainElementGraphicalType)) {
-					createdEdge = createLink_4016(containerView, index, persisted, preferencesHint);
 				}
 			}
 		}
@@ -89,6 +69,18 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 		}
 
 		return createdEdge;
+	}
+
+	@Override
+	protected boolean provides(CreateViewForKindOperation op) {
+
+		// This provider is registered for Internal Block Diagram only
+		String diagramType = op.getContainerView().getDiagram().getType();
+		if(!ElementTypes.DIAGRAM_ID.equals(diagramType)) {
+			return false;
+		}
+
+		return true;
 	}
 
 	@Override
@@ -106,31 +98,10 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 		}
 
 		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
-		if(elementType == ElementTypes.DEPENDENCY) {
-			return true;
-		}
-		if(elementType == ElementTypes.GENERALIZATION) {
-			return true;
-		}
-		if(elementType == ElementTypes.INTERFACE_REALIZATION) {
-			return true;
-		}
-		if(elementType == ElementTypes.USAGE) {
-			return true;
-		}
-		if(elementType == ElementTypes.ASSOCIATION) {
-			return true;
-		}
-		if(elementType == ElementTypes.ASSOCIATION_CLASS) {
-			return true;
-		}
 		if(elementType == ElementTypes.COMMENT_ANNOTATED_ELEMENT) {
 			return true;
 		}
 		if(elementType == ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT) {
-			return true;
-		}
-		if(elementType == ElementTypes.ASSOCIATION_CLASS_DASHED_LINK) {
 			return true;
 		}
 
@@ -213,11 +184,6 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 				return true;
 			}
 		}
-		if(elementType == ElementTypes.ASSOCIATION_CLASS_NODE) {
-			if(ElementTypes.DIAGRAM_ID.equals(containerGraphicalType)) {
-				return true;
-			}
-		}
 		if(elementType == ElementTypes.INSTANCE_SPECIFICATION) {
 			if(ElementTypes.DIAGRAM_ID.equals(containerGraphicalType)) {
 				return true;
@@ -272,21 +238,6 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 				return true;
 			}
 			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerGraphicalType)) {
-				return true;
-			}
-		}
-		if(elementType == ElementTypes.ASSOCIATION_CLASS_NODE_PROPERTY_CLN) {
-			if(ElementTypes.ASSOCIATION_CLASS_NODE_COMPARTMENT_ATTRIBUTE_HINT.equals(containerGraphicalType)) {
-				return true;
-			}
-		}
-		if(elementType == ElementTypes.ASSOCIATION_CLASS_NODE_OPERATION_CLN) {
-			if(ElementTypes.ASSOCIATION_CLASS_NODE_COMPARTMENT_OPERATION_HINT.equals(containerGraphicalType)) {
-				return true;
-			}
-		}
-		if(elementType == ElementTypes.ASSOCIATION_CLASS_NODE_CLASS_CLN) {
-			if(ElementTypes.ASSOCIATION_CLASS_NODE_COMPARTMENT_NESTED_CLASSIFIER_HINT.equals(containerGraphicalType)) {
 				return true;
 			}
 		}

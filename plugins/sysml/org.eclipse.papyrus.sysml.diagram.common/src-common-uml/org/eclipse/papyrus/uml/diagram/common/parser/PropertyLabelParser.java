@@ -49,6 +49,9 @@ public class PropertyLabelParser extends NamedElementLabelParser {
 	/** The String format for displaying a {@link Property} label with multiplicity */
 	protected static final String MULTIPLICITY_FORMAT = "%s [%s..%s]";
 
+	/** The String format for displaying a {@link Property} label with multiplicity */
+	protected static final String MULTIPLICITY_FORMAT_ALT = "%s [%s]";
+
 	/** The String format for displaying a {@link Property} label with default value */
 	protected static final String DEFAULT_VALUE_FORMAT = "%s= %s";
 
@@ -107,14 +110,31 @@ public class PropertyLabelParser extends NamedElementLabelParser {
 				if(property.getType() != null) {
 					type = property.getType().getName();
 				}
-				result = String.format(TYPE_FORMAT, result, type);
+
+				// If type is undefined only show "<Undefined>" when explicitly asked.
+
+				if(((flags & ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) == ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) || (!"<Undefined>".equals(type))) {
+
+					result = String.format(TYPE_FORMAT, result, type);
+				}
 			}
 
 			// manage multiplicity
-			if(((flags & ILabelPreferenceConstants.DISP_MULTIPLICITY) == ILabelPreferenceConstants.DISP_MULTIPLICITY) && (property.getLower() != 1 || property.getUpper() != 1)) {
-				String lower = ValueSpecificationUtil.getSpecificationValue(property.getLowerValue());
-				String upper = ValueSpecificationUtil.getSpecificationValue(property.getUpperValue());
-				result = String.format(MULTIPLICITY_FORMAT, result, lower, upper);
+			if(((flags & ILabelPreferenceConstants.DISP_MULTIPLICITY) == ILabelPreferenceConstants.DISP_MULTIPLICITY)) {
+
+				// If multiplicity is [1] (SysML default), only show when explicitly asked.
+				// TODO : add a case for default with multiplicity not set.
+				if(((flags & ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) == ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) || (property.getLower() != 1 || property.getUpper() != 1)) {
+
+					String lower = ValueSpecificationUtil.getSpecificationValue(property.getLowerValue());
+					String upper = ValueSpecificationUtil.getSpecificationValue(property.getUpperValue());
+
+					if(lower.equals(upper)) {
+						result = String.format(MULTIPLICITY_FORMAT_ALT, result, lower, upper);
+					} else {
+						result = String.format(MULTIPLICITY_FORMAT, result, lower, upper);
+					}
+				}
 			}
 
 			// manage default value
