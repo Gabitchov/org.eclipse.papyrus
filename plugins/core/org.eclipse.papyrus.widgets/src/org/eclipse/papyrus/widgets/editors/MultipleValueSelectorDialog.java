@@ -346,12 +346,12 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		down.setToolTipText(Messages.MultipleValueEditor_MoveSelectedElementsDown);
 
 		create = new Button(rightButtonsSection, SWT.PUSH);
-		create.setImage(Activator.getDefault().getImage("/icons/add_12x12.gif")); //$NON-NLS-1$
+		create.setImage(Activator.getDefault().getImage("/icons/Add_12x12.gif")); //$NON-NLS-1$
 		create.addSelectionListener(this);
 		create.setToolTipText(Messages.MultipleValueSelectorDialog_CreateNewElement);
 
 		delete = new Button(rightButtonsSection, SWT.PUSH);
-		delete.setImage(Activator.getDefault().getImage("/icons/delete_12x12.gif")); //$NON-NLS-1$
+		delete.setImage(Activator.getDefault().getImage("/icons/Delete_12x12.gif")); //$NON-NLS-1$
 		delete.addSelectionListener(this);
 		delete.setToolTipText(Messages.MultipleValueSelectorDialog_DeleteNewElement);
 		delete.setEnabled(false);
