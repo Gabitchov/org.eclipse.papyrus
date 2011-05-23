@@ -428,7 +428,10 @@ public class CommandHelper {
 		// and the packages to signal
 		List<EObject> possiblePackages = mapTypesPossibleParents.get(UMLPackage.eINSTANCE.getSignal());
 		if(possiblePackages != null) {
-			possiblePackages.addAll(ModelSetQuery.getObjectsOfType(type, UMLPackage.eINSTANCE.getPackage()));
+			Package package_ = type.getPackage();
+			possiblePackages.add(package_);
+			// add the owners of the package
+			possiblePackages.addAll(package_.allOwningPackages());
 			existingParent = true;
 		}
 
