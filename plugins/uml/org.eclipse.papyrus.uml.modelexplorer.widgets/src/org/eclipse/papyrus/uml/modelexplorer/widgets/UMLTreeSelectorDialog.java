@@ -23,6 +23,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.modelexplorer.widgets.AdvancedMETreeDialog;
@@ -74,9 +75,9 @@ public class UMLTreeSelectorDialog extends AdvancedMETreeDialog {
 	 * @param metaClassNotWanted
 	 *        list of not wanted metaclass or stereotypes (can be null)
 	 */
-	public UMLTreeSelectorDialog(Shell parentShell, EObject root, EClass wantedEClass, List<Object> metaClassNotWanted) {
+	public UMLTreeSelectorDialog(Shell parentShell, EObject editedEObject, EStructuralFeature feature, EObject root, EClass wantedEClass, List<Object> metaClassNotWanted) {
 		super(parentShell, root, wantedEClass, metaClassNotWanted, UMLPackage.eINSTANCE);
-		init(root, wantedEClass, metaClassNotWanted);
+		init(editedEObject, feature, root, wantedEClass, metaClassNotWanted);
 	}
 
 	/**
@@ -101,9 +102,10 @@ public class UMLTreeSelectorDialog extends AdvancedMETreeDialog {
 	 * @param metaClassNotWanted
 	 *        list of not wanted metaclass or stereotypes (can be null)
 	 */
-	public void init(EObject root, EClass wantedEClass, List<Object> metaClassNotWanted) {
+	public void init(EObject editedEObject, EStructuralFeature feature, EObject root, EClass wantedEClass, List<Object> metaClassNotWanted) {
 		super.init(root, wantedEClass, metaClassNotWanted);
-		contentProvider = new UMLElementMEBContentProvider(root);
+		contentProvider = new ServiceEditFilteredUMLContentProvider(editedEObject, feature, root);
+		//		contentProvider = new UMLElementMEBContentProvider(root);
 		contentProvider.setMetaClassWanted(wantedEClass);
 		contentProvider.setMetaClassNotWanted(metaClassNotWanted);
 		appliedProfiles = getAppliedProfile();
