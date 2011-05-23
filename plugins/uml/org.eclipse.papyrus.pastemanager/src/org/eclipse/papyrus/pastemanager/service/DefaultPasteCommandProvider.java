@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
@@ -34,6 +35,7 @@ import org.eclipse.papyrus.pastemanager.Activator;
 import org.eclipse.papyrus.pastemanager.command.CommentDropCreation;
 import org.eclipse.papyrus.pastemanager.command.PapyrusDuplicateWrapperCommand;
 import org.eclipse.papyrus.pastemanager.request.PasteRequest;
+import org.eclipse.uml2.uml.Element;
 
 /**
  * this provider has the following behavior
@@ -138,12 +140,30 @@ public class DefaultPasteCommandProvider implements IPasteCommandProvider {
 		ArrayList objectToPaste = new ArrayList();
 		if(papyrusCliboard != null && papyrusCliboard.size() >= 1) {
 			objectToPaste.addAll(papyrusCliboard);
+			
+			
 			Iterator iterator = papyrusCliboard.iterator();
 			//in order to paste with model, semantic element has to be put in the list
 			while(iterator.hasNext()) {
 				Object object = (Object)iterator.next();
 				if(object instanceof View) {
 					objectToPaste.add(((View)object).getElement());
+					
+					ArrayList<EObject> stereotypedSelection = new ArrayList<EObject>();
+					EObject semantic =((View)object).getElement();
+					if( semantic instanceof Element){
+						stereotypedSelection.addAll(((Element)semantic).getStereotypeApplications());
+					}
+					//copy stereotype contained into
+					Iterator<EObject> iter=semantic.eAllContents();
+					while (iter.hasNext()) {
+						EObject subeObject = (EObject) iter.next();
+						if( subeObject instanceof Element){
+							stereotypedSelection.addAll(((Element)subeObject).getStereotypeApplications());
+						}
+						
+					}
+					objectToPaste.addAll(stereotypedSelection);
 				}
 
 			}
