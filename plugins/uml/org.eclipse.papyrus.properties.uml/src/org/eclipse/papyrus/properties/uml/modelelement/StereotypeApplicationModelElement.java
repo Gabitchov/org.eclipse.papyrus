@@ -39,9 +39,13 @@ public class StereotypeApplicationModelElement extends AbstractModelElement {
 
 	private EditPart sourceElement;
 
-	public StereotypeApplicationModelElement(EditPart sourceElement, EditingDomain domain) {
-		this.umlSource = UMLUtil.resolveUMLElement(sourceElement);
-		this.sourceElement = sourceElement;
+	public StereotypeApplicationModelElement(EditPart editPart, EditingDomain domain) {
+		this(UMLUtil.resolveUMLElement(editPart), domain);
+		this.sourceElement = editPart;
+	}
+
+	public StereotypeApplicationModelElement(Element umlSource, EditingDomain domain) {
+		this.umlSource = umlSource;
 		this.domain = domain;
 	}
 
@@ -75,11 +79,19 @@ public class StereotypeApplicationModelElement extends AbstractModelElement {
 		return false;
 	}
 
-	public EModelElement getEModelElement() {
+	public EModelElement getGraphicalElement() {
+		if(sourceElement == null) {
+			return null;
+		}
+
 		return (EModelElement)sourceElement.getModel();
 	}
 
 	public EditPart getEditPart() {
 		return sourceElement;
+	}
+
+	public Element getUMLElement() {
+		return umlSource;
 	}
 }

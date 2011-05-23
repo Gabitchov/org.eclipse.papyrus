@@ -188,9 +188,10 @@ public class IntegerMask extends AbstractValueEditor implements SelectionListene
 		commit();
 	}
 
-	protected int getCurrentValue() {
+	protected Integer getCurrentValue() {
 		if(modelProperty != null) {
-			return (Integer)modelProperty.getValue();
+			Object value = modelProperty.getValue();
+			return value == null ? 0 : (Integer)value;
 		} else {
 			return currentValue;
 		}

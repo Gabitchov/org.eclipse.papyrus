@@ -98,9 +98,21 @@ public class DefaultConstraintEngine implements ConstraintEngine {
 			}
 		}
 
-		//		Activator.log.warn("Filtered Constraints : " + matchedConstraints); //$NON-NLS-1$
+		//		String logValue;
+
+		//		logValue = "Filtered Constraints : "; //$NON-NLS-1$
+		//		for(Constraint constraint : matchedConstraints) {
+		//			logValue += constraint.getDescriptor().getName() + ", ";
+		//		}
+		//		Activator.log.warn(logValue);
+
 		resolveConstraintConflicts(matchedConstraints);
-		//		Activator.log.warn("Filtered Constraints : " + matchedConstraints); //$NON-NLS-1$
+
+		//		logValue = "Filtered Constraints : "; //$NON-NLS-1$
+		//		for(Constraint constraint : matchedConstraints) {
+		//			logValue += constraint.getDescriptor().getName() + ", ";
+		//		}
+		//		Activator.log.warn(logValue);
 
 		return matchedConstraints;
 	}

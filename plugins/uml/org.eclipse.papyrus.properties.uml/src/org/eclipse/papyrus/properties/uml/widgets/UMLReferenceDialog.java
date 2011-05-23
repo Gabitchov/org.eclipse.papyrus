@@ -15,6 +15,8 @@ package org.eclipse.papyrus.properties.uml.widgets;
 import java.util.LinkedList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.uml.modelexplorer.widgets.UMLTreeSelectorDialog;
 import org.eclipse.papyrus.umlutils.PackageUtil;
@@ -43,9 +45,11 @@ public class UMLReferenceDialog extends ReferenceDialog {
 	protected void doBinding() {
 		if(modelProperty instanceof PapyrusObservableValue) {
 			PapyrusObservableValue modelObservable = (PapyrusObservableValue)modelProperty;
+			EObject editedEObject = modelObservable.getEObject();
+			EStructuralFeature editedFeature = modelObservable.getEStructuralFeature();
 			UMLTreeSelectorDialog umlDialog = (UMLTreeSelectorDialog)dialog;
 			Package rootPackage = PackageUtil.getRootPackage((Element)modelObservable.getEObject());
-			umlDialog.init(rootPackage, (EClass)modelObservable.getEStructuralFeature().getEType(), new LinkedList<Object>());
+			umlDialog.init(editedEObject, editedFeature, rootPackage, (EClass)modelObservable.getEStructuralFeature().getEType(), new LinkedList<Object>());
 		}
 
 		super.doBinding();

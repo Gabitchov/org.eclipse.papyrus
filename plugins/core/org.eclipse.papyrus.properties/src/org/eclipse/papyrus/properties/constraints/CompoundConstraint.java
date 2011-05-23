@@ -38,8 +38,9 @@ public class CompoundConstraint extends AbstractConstraint {
 	 */
 	public boolean match(Object selection) {
 		for(Constraint constraint : constraints) {
-			if(!constraint.match(selection))
+			if(!constraint.match(selection)) {
 				return false;
+			}
 		}
 		return true;
 	}
@@ -80,8 +81,9 @@ public class CompoundConstraint extends AbstractConstraint {
 			}
 		} else { //At least one of our constraints must override or be equal to the other constraint
 			for(Constraint c : constraints) {
-				if(c.overrides(constraint) || c.equals(constraint))
+				if(c.overrides(constraint) || c.equals(constraint)) {
 					return true;
+				}
 			}
 		}
 

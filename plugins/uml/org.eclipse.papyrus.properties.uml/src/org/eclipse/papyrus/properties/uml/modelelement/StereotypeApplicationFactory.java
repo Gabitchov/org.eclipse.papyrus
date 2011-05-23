@@ -32,7 +32,11 @@ public class StereotypeApplicationFactory implements ModelElementFactory {
 		}
 
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(umlSource);
-		return new StereotypeApplicationModelElement((EditPart)sourceElement, domain);
+		if(sourceElement instanceof EditPart) {
+			return new StereotypeApplicationModelElement((EditPart)sourceElement, domain);
+		} else {
+			return new StereotypeApplicationModelElement(umlSource, domain);
+		}
 	}
 
 }

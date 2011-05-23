@@ -1,10 +1,6 @@
 package org.eclipse.papyrus.properties.uml.widgets;
 
-import java.util.Collections;
-
-import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.profile.tree.objects.StereotypedElementTreeObject;
 import org.eclipse.papyrus.profile.ui.compositeforview.AppliedStereotypeCompositeWithView;
 import org.eclipse.papyrus.profile.ui.compositeforview.AppliedStereotypePropertyCompositeWithView;
@@ -44,11 +40,13 @@ public class StereotypeApplication extends AbstractPropertyEditor {
 		// for editing the data
 		ModelElement element = input.getModelElement(propertyPath);
 		if(element instanceof StereotypeApplicationModelElement) {
-			View diagramElement = (View)((StereotypeApplicationModelElement)element).getEModelElement();
-			EditPart editPart = ((StereotypeApplicationModelElement)element).getEditPart();
-			Element umlElement = (Element)diagramElement.getElement();
+			StereotypeApplicationModelElement modelElement = (StereotypeApplicationModelElement)element;
 
-			stereotypeComposite.setSelection(new StructuredSelection(Collections.singletonList(editPart)));
+			View diagramElement = (View)modelElement.getGraphicalElement();
+			//EditPart editPart = ((StereotypeApplicationModelElement)element).getEditPart();
+			Element umlElement = modelElement.getUMLElement();
+
+			//stereotypeComposite.setSelection(new StructuredSelection(Collections.singletonList(editPart)));
 			stereotypeComposite.setElement(umlElement);
 			stereotypeComposite.setInput(new StereotypedElementTreeObject(umlElement));
 			stereotypeComposite.setDiagramElement(diagramElement);

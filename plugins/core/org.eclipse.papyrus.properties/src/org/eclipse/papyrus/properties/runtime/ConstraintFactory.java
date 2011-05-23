@@ -48,8 +48,10 @@ public class ConstraintFactory {
 		Constraint constraint = null;
 		if(model instanceof CompositeConstraint) {
 			CompoundConstraint cConstraint = new CompoundConstraint();
+			cConstraint.setConstraintDescriptor(model);
 			for(SimpleConstraint descriptor : ((CompositeConstraint)model).getConstraints()) {
-				cConstraint.addConstraint(loadConstraint(descriptor));
+				Constraint subConstraint = loadConstraint(descriptor);
+				cConstraint.addConstraint(subConstraint);
 			}
 
 			constraint = cConstraint;

@@ -32,24 +32,35 @@ public abstract class AbstractConstraint implements Constraint {
 	 * The descriptor used to instantiate this constraint.
 	 * Contains some attributes for this constraint
 	 */
-	protected SimpleConstraint descriptor;
+	protected ConstraintDescriptor descriptor;
 
 	/**
 	 * The display unit (Section or View) associated to this constraint
 	 */
 	protected DisplayUnit display;
 
-	public final void setConstraintDescriptor(SimpleConstraint descriptor) {
+	public final void setConstraintDescriptor(ConstraintDescriptor descriptor) {
 		this.descriptor = descriptor;
-		display = descriptor.getDisplay();
-		setDescriptor(descriptor);
+		display = getDisplay(descriptor);
+		if(descriptor instanceof SimpleConstraint) {
+			setDescriptor((SimpleConstraint)descriptor);
+		}
+	}
+
+	private DisplayUnit getDisplay(ConstraintDescriptor descriptor) {
+		if(descriptor.getDisplay() == null) {
+			if(descriptor.eContainer() instanceof ConstraintDescriptor) {
+				return getDisplay((ConstraintDescriptor)descriptor.eContainer());
+			}
+		}
+		return descriptor.getDisplay();
 	}
 
 	public View getView() {
 		if(display instanceof View) {
 			return (View)display;
 		} else {
-			Activator.log.warn("This constraint isn't owned by a View"); //$NON-NLS-1$
+			Activator.log.warn("The constraint " + descriptor.getName() + " isn't owned by a View"); //$NON-NLS-1$
 			return null;
 		}
 	}
@@ -87,10 +98,10 @@ public abstract class AbstractConstraint implements Constraint {
 	}
 
 	protected ConfigProperty getProperty(String propertyName) {
-		if(descriptor == null) {
+		if(descriptor == null || !(descriptor instanceof SimpleConstraint)) {
 			Activator.log.warn("The constraint descriptor has not been set for this constraint : " + this); //$NON-NLS-1$
 		} else {
-			for(ConfigProperty property : descriptor.getProperties()) {
+			for(ConfigProperty property : ((SimpleConstraint)descriptor).getProperties()) {
 				if(property.getName().equals(propertyName)) {
 					return property;
 				}
