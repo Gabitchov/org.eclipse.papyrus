@@ -48,6 +48,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.PapyrusDuplicateViewsCommand;
 import org.eclipse.papyrus.pastemanager.request.PasteRequest;
+import org.eclipse.uml2.uml.Element;
 
 /**
  * this class has in charge to give a paste command, ie to copy graphically element
@@ -168,7 +169,19 @@ public class DuplicatePasteEditPolicy extends ContainerEditPolicy {
 
 		if(!notationViewsToDuplicate.isEmpty()) {
 			if(!elementsToDuplicate.isEmpty()) {
-				org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest duplicateElementsRequest = new DuplicateElementsRequest(editingDomain, new ArrayList(elementsToDuplicate));
+				ArrayList<EObject> stereotypedSelection = new ArrayList<EObject>();
+				//copy stereotype contained into
+				Iterator<EObject> iter=elementsToDuplicate.iterator();
+				while (iter.hasNext()) {
+					EObject subeObject = (EObject) iter.next();
+					if( subeObject instanceof Element){
+						stereotypedSelection.addAll(((Element)subeObject).getStereotypeApplications());
+					}
+					
+				}
+				ArrayList<EObject> resultToCopy=new ArrayList(elementsToDuplicate);
+				resultToCopy.addAll(stereotypedSelection);
+				org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest duplicateElementsRequest = new DuplicateElementsRequest(editingDomain, new ArrayList(resultToCopy));
 
 				Command duplicateElementsCommand = getHost().getCommand(new EditCommandRequestWrapper(duplicateElementsRequest, request.getExtendedData()));
 				if(duplicateElementsCommand != null && duplicateElementsCommand.canExecute()) {

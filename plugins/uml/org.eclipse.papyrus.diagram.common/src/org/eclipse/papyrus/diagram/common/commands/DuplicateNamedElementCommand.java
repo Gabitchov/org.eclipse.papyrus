@@ -13,19 +13,27 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.commands;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.commands.DuplicateEObjectsCommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.util.UMLUtil;
+import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /**
  * this command is used to prefix element by "Copy_Of" during the duplication
@@ -52,22 +60,24 @@ public class DuplicateNamedElementCommand extends DuplicateEObjectsCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 		super.doExecuteWithResult(progressMonitor, info);
+		ArrayList<EObject> processedData= new ArrayList<EObject>();
 		Iterator iterator = getAllDuplicatedObjectsMap().values().iterator();
+		NamedElement namedElement=null;
 		while(iterator.hasNext()) {
 			Object currentObject = iterator.next();
 			if(currentObject instanceof View) {
 				if(((View)currentObject).getElement() != null && ((View)currentObject).getElement() instanceof NamedElement) {
-					NamedElement namedElement = ((NamedElement)((View)currentObject).getElement());
+					namedElement = ((NamedElement)((View)currentObject).getElement());
 					if(namedElement.getName() != null && !namedElement.getName().startsWith(COPY_OF)) {
 						namedElement.setName(COPY_OF + namedElement.getName());
 					}
 				}
+				
 			}
-
-
+			
 
 			if(currentObject instanceof NamedElement) {
-				NamedElement namedElement = ((NamedElement)currentObject);
+				namedElement = ((NamedElement)currentObject);
 				//some literal has not name
 				if(namedElement.getName() != null && !namedElement.getName().startsWith(COPY_OF)) {
 					namedElement.setName(COPY_OF + namedElement.getName());
@@ -75,7 +85,34 @@ public class DuplicateNamedElementCommand extends DuplicateEObjectsCommand {
 			}
 
 		}
+		
+		 iterator = getAllDuplicatedObjectsMap().values().iterator();
+		while(iterator.hasNext()) {
+			Object currentObject = iterator.next();
+			if((currentObject instanceof EObject)) {
+			System.err.println(currentObject+"-->" + (((EObject) currentObject).eContainer()== null) +" "+(((EObject) currentObject).eResource() ));
+			}
+			if((currentObject instanceof EObject) &&(((EObject) currentObject).eContainer()== null)&&(((EObject) currentObject).eResource()== null))  {
+				namedElement.eResource().getContents().add((EObject)currentObject);
+			}
+		}
+		
 
 		return CommandResult.newOKCommandResult(getAllDuplicatedObjectsMap());
 	}
+	
+	
+
+
+public static Object getKeyByValue(Map map, Object value) {
+     for (Object entry : map.entrySet()) {
+    	 if( entry instanceof Map.Entry )
+         if (((Map.Entry)entry).getValue().equals(value)) {
+            return ((Map.Entry)entry).getKey();
+         }
+     }
+     return null;
+}
+
+
 }
