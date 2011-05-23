@@ -89,9 +89,6 @@ public class DuplicateNamedElementCommand extends DuplicateEObjectsCommand {
 		 iterator = getAllDuplicatedObjectsMap().values().iterator();
 		while(iterator.hasNext()) {
 			Object currentObject = iterator.next();
-			if((currentObject instanceof EObject)) {
-			System.err.println(currentObject+"-->" + (((EObject) currentObject).eContainer()== null) +" "+(((EObject) currentObject).eResource() ));
-			}
 			if((currentObject instanceof EObject) &&(((EObject) currentObject).eContainer()== null)&&(((EObject) currentObject).eResource()== null))  {
 				namedElement.eResource().getContents().add((EObject)currentObject);
 			}
@@ -101,18 +98,8 @@ public class DuplicateNamedElementCommand extends DuplicateEObjectsCommand {
 		return CommandResult.newOKCommandResult(getAllDuplicatedObjectsMap());
 	}
 	
-	
 
 
-public static Object getKeyByValue(Map map, Object value) {
-     for (Object entry : map.entrySet()) {
-    	 if( entry instanceof Map.Entry )
-         if (((Map.Entry)entry).getValue().equals(value)) {
-            return ((Map.Entry)entry).getKey();
-         }
-     }
-     return null;
-}
 
 
 }
