@@ -94,6 +94,15 @@ public class CustomFirstRegionInCompositeStateCreateElementCommand extends Abstr
 		// get state bounds
 		int height = Zone.getHeight(ownerView);
 		int width = Zone.getWidth(ownerView);
+		if(height < Zone.defaultHeight){
+			height = Zone.defaultHeight;
+			Zone.setHeight(ownerView, height);
+		}
+		if(width < Zone.defaultWidth){
+			width = Zone.defaultWidth;
+			Zone.setWidth(ownerView, width);
+		}
+			
 
 		if(adaptableForDropped == null) {
 			Region umlRegion = UMLFactory.eINSTANCE.createRegion();

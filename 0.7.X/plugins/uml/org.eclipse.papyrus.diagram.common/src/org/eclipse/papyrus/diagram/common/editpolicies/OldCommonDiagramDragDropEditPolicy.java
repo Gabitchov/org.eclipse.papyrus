@@ -168,19 +168,26 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 		} else {
 			sourceAdapter = new SemanticAdapter(null, sourceEditPart.getModel());
 		}
-		if(targetEditPart == null) {
-			// creation of the node
-			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(target), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+		//additional check to ensure we do not create twice the same node when links are "loops" on the same element
+		if((target != null) && !target.equals(source)){
+			if(targetEditPart == null) {
+				// creation of the node
+				ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(target), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
 
-			// get the command and execute it.
-			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
-			cc.compose(nodeCreationCommand);
-			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y - 100)); //$NON-NLS-1$
-			cc.compose(setBoundsCommand);
-			targetAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
+				// get the command and execute it.
+				CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
+				cc.compose(nodeCreationCommand);
+				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y - 100)); //$NON-NLS-1$
+				cc.compose(setBoundsCommand);
+				targetAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
 
-		} else {
-			targetAdapter = new SemanticAdapter(null, targetEditPart.getModel());
+			} else {
+				targetAdapter = new SemanticAdapter(null, targetEditPart.getModel());
+			}
+		}
+		//in case of loop links (see above) we pass on the same adapter for both source and target
+		if((target != null) && target.equals(source)){
+			targetAdapter = sourceAdapter;
 		}
 
 		CommonDeferredCreateConnectionViewCommand aLinkCommand = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter, targetAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
