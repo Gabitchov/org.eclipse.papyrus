@@ -35,9 +35,6 @@ import org.eclipse.emf.facet.infra.browser.custom.util.UicustomUtil;
 import org.eclipse.emf.facet.widgets.celleditors.ICommandFactoriesRegistry;
 import org.eclipse.emf.facet.widgets.celleditors.ICommandFactory;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.AttributeColumn;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Column;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.FacetAttributeColumn;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.FacetReferenceColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.ReferenceColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Row;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
@@ -69,16 +66,6 @@ import org.eclipse.swt.widgets.Composite;
 public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNatTableWidget{
 
 	/**
-	 * the editing domain
-	 */
-	private final EditingDomain editingDomain;
-
-	/**
-	 * the table instance
-	 */
-	private final TableInstance tableInstance;
-
-	/**
 	 * 
 	 * Constructor.
 	 *
@@ -89,8 +76,6 @@ public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNat
 	 */
 	public PapyrusNatTableWidget(final Composite parent, final IEditingDomainProvider editingDomainProvider, final TableInstance tableInstanceParam, final MenuManager menuMgr) {
 		super(parent, editingDomainProvider, tableInstanceParam, menuMgr);
-		this.editingDomain = editingDomainProvider.getEditingDomain();
-		this.tableInstance = tableInstanceParam;
 	}
 
 	/**
@@ -101,18 +86,18 @@ public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNat
 	 */
 	public void addRowsOutOfCommandStack(final List<EObject> newElements) {
 		ICommandFactory commandFactory = ICommandFactoriesRegistry.INSTANCE
-			.getCommandFactoryFor(this.editingDomain);
+			.getCommandFactoryFor(getEditingDomain());
 		CompoundCommand cmCommand = new CompoundCommand();
 		// the EPackage for which the MetamodelView has already been created
 		Set<EPackage> alreadyDone = new HashSet<EPackage>();
 		for (EObject eObject : newElements) {
-			if (!this.tableInstance.getElements().contains(eObject)) {
+			if (!getTableInstance().getElements().contains(eObject)) {
 				Row row = TableinstanceFactory.eINSTANCE.createRow();
-				Command cmd2 = commandFactory.createSetCommand(this.editingDomain, row,
+				Command cmd2 = commandFactory.createSetCommand(getEditingDomain(), row,
 					TableinstancePackage.eINSTANCE.getRow_Element(), eObject);
 				cmCommand.append(cmd2);
-				Command cmd1 = commandFactory.createAddCommand(this.editingDomain,
-					this.tableInstance, TableinstancePackage.eINSTANCE.getTableInstance_Rows(),
+				Command cmd1 = commandFactory.createAddCommand(getEditingDomain(),
+					getTableInstance(), TableinstancePackage.eINSTANCE.getTableInstance_Rows(),
 					row);
 				cmCommand.append(cmd1);
 				for (EStructuralFeature eStructuralFeature : eObject.eClass()
@@ -122,8 +107,8 @@ public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNat
 							ReferenceColumn referenceColumn = TableinstanceFactory.eINSTANCE
 								.createReferenceColumn();
 							referenceColumn.setReference((EReference) eStructuralFeature);
-							Command cmd = commandFactory.createAddCommand(this.editingDomain,
-								this.tableInstance,
+							Command cmd = commandFactory.createAddCommand(getEditingDomain(),
+								getTableInstance(),
 								TableinstancePackage.eINSTANCE.getTableInstance_Columns(),
 								referenceColumn);
 							cmCommand.append(cmd);
@@ -132,15 +117,15 @@ public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNat
 							AttributeColumn attributeColumn = TableinstanceFactory.eINSTANCE
 								.createAttributeColumn();
 							attributeColumn.setAttribute((EAttribute) eStructuralFeature);
-							Command cmd = commandFactory.createAddCommand(this.editingDomain,
-								this.tableInstance,
+							Command cmd = commandFactory.createAddCommand(getEditingDomain(),
+								getTableInstance(),
 								TableinstancePackage.eINSTANCE.getTableInstance_Columns(),
 								attributeColumn);
 							cmCommand.append(cmd);
 						}
 
 						// we add the local customization file
-						if (this.tableInstance instanceof TableInstance2) {
+						if (getTableInstance() instanceof TableInstance2) {
 							List<MetamodelView> localCustoms = getLocalCustomizations();
 							EObject container = eStructuralFeature.eContainer();
 							if (container != null) {
@@ -164,17 +149,17 @@ public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNat
 				}
 			}
 		}
-		//		this.editingDomain.getCommandStack().execute(cmCommand);
+		//		getEditingDomain().getCommandStack().execute(cmCommand);
 		cmCommand.execute();
-		if (this.tableInstance instanceof TableInstance2) {
-			TableInstance2 tableInstance2 = (TableInstance2) this.tableInstance;
+		if (getTableInstance() instanceof TableInstance2) {
+			TableInstance2 tableInstance2 = (TableInstance2) getTableInstance();
 			try {
 				setFacets(tableInstance2.getFacets2());
 			} catch (CoreException e) {
 				throw new RuntimeException(e);
 			}
 		}
-		loadCustomizations(this.tableInstance.getCustomizations());
+		loadCustomizations(getTableInstance().getCustomizations());
 	}
 
 	/**
@@ -187,20 +172,20 @@ public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNat
 		//		this.natTable.setRedraw(false);
 		try {
 			ICommandFactory commandFactory = ICommandFactoriesRegistry.INSTANCE
-				.getCommandFactoryFor(this.editingDomain);
+				.getCommandFactoryFor(getEditingDomain());
 			CompoundCommand compoundCommand = new CompoundCommand();
-			for (int i = 0; i < this.tableInstance.getRows().size(); i++) {
-				if (elementsToDelete.contains(this.tableInstance.getRows().get(i).getElement())) {
+			for (int i = 0; i < getTableInstance().getRows().size(); i++) {
+				if (elementsToDelete.contains(getTableInstance().getRows().get(i).getElement())) {
 					Command removeRowCommand = commandFactory.createRemoveCommand(
-						this.editingDomain, this.tableInstance,
+						getEditingDomain(), getTableInstance(),
 						TableinstancePackage.eINSTANCE.getTableInstance_Rows(),
-						this.tableInstance.getRows().get(i));
+						getTableInstance().getRows().get(i));
 					compoundCommand.append(removeRowCommand);
 				}
 			}
 
 			if (!compoundCommand.isEmpty() && compoundCommand.canExecute()) {
-				//				this.editingDomain.getCommandStack().execute(compoundCommand);
+				//				getEditingDomain().getCommandStack().execute(compoundCommand);
 				compoundCommand.execute();
 			}
 		} finally {
@@ -208,66 +193,22 @@ public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNat
 		}
 	}
 
-
-	//TODO this method is duplicated from the super class
-	protected  List<MetamodelView> getLocalCustomizations() {
-		List<MetamodelView> locals = new ArrayList<MetamodelView>();
-		if (this.tableInstance.getLocalCustomization() != null) {
-			locals.add(this.tableInstance.getLocalCustomization());
-		}
-		if (this.tableInstance instanceof TableInstance2) {
-			locals.addAll(((TableInstance2) this.tableInstance).getLocalCustomizations());
-		}
-		return locals;
-	}
-
-	//TODO this method is duplicated from the super class
-	protected boolean isColumnAlreadyDeclared(final EStructuralFeature eStructuralFeature) {
-		if (eStructuralFeature instanceof EReference) {
-			for (Column c : this.tableInstance.getColumns()) {
-				if (c instanceof ReferenceColumn) {
-					if (((ReferenceColumn) c).getReference() == eStructuralFeature) {
-						return true;
-					}
-				} else if (c instanceof FacetReferenceColumn) {
-					if (((FacetReferenceColumn) c).getReference() == eStructuralFeature) {
-						return true;
-					}
-				}
-			}
-		} else if (eStructuralFeature instanceof EAttribute) {
-			for (Column c : this.tableInstance.getColumns()) {
-				if (c instanceof AttributeColumn) {
-					if (((AttributeColumn) c).getAttribute() == eStructuralFeature) {
-						return true;
-					}
-				} else if (c instanceof FacetAttributeColumn) {
-					if (((FacetAttributeColumn) c).getAttribute() == eStructuralFeature) {
-						return true;
-					}
-				}
-			}
-		}
-
-		return false;
-	}
-	
 	private static Command createMetamodelViewCommand(final String nsURI,
-			final PapyrusNatTableWidget natTableWidget) {
+		final PapyrusNatTableWidget natTableWidget) {
 		CompoundCommand compoundCommand = new CompoundCommand();
 		TableInstance tableInstance = natTableWidget.getTableInstance();
 		EditingDomain editingDomain = natTableWidget.getEditingDomain();
 		ICommandFactory commandFactory = natTableWidget.getCommandFactory();
 		MetamodelView newMetamodelView = UicustomFactory.eINSTANCE.createMetamodelView();
 		Command createMetamodelView = commandFactory.createSetCommand(editingDomain,
-				newMetamodelView, UicustomPackage.eINSTANCE.getMetamodelView_MetamodelURI(), nsURI);
+			newMetamodelView, UicustomPackage.eINSTANCE.getMetamodelView_MetamodelURI(), nsURI);
 		compoundCommand.append(createMetamodelView);
 
 		if (tableInstance instanceof TableInstance2) {
 			Command setMetamodelViewLocalCmd = commandFactory.createAddCommand(editingDomain,
-					tableInstance,
-					Tableinstance2Package.eINSTANCE.getTableInstance2_LocalCustomizations(),
-					newMetamodelView);
+				tableInstance,
+				Tableinstance2Package.eINSTANCE.getTableInstance2_LocalCustomizations(),
+				newMetamodelView);
 			compoundCommand.append(setMetamodelViewLocalCmd);
 
 			List<MetamodelView> views = new ArrayList<MetamodelView>();
@@ -282,16 +223,16 @@ public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNat
 			}
 			views.add(i, newMetamodelView);
 			Command setMetamodelViewCmd = commandFactory.createSetCommand(editingDomain,
-					tableInstance,
-					TableinstancePackage.eINSTANCE.getTableInstance_Customizations(), views);
+				tableInstance,
+				TableinstancePackage.eINSTANCE.getTableInstance_Customizations(), views);
 			compoundCommand.append(setMetamodelViewCmd);
 
 		} else {
 			// TODO should be removed when all tables will be TableInstance2
 			Command setMetamodelView = commandFactory.createSetCommand(editingDomain,
-					tableInstance,
-					TableinstancePackage.eINSTANCE.getTableInstance_LocalCustomization(),
-					newMetamodelView);
+				tableInstance,
+				TableinstancePackage.eINSTANCE.getTableInstance_LocalCustomization(),
+				newMetamodelView);
 			compoundCommand.append(setMetamodelView);
 		}
 		return compoundCommand;
