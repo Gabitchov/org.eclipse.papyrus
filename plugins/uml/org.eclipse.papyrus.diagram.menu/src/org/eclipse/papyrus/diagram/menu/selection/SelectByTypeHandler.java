@@ -130,7 +130,7 @@ public class SelectByTypeHandler extends AbstractHandler {
 	 * @return true, if all element selected are the same type
 	 */
 	public static boolean verifySameTypeOfSelectedElements(ISelection selection) {
-		if(selection.isEmpty()) {
+		if(!(selection instanceof StructuredSelection) || selection.isEmpty()) {
 			return false;
 		}
 

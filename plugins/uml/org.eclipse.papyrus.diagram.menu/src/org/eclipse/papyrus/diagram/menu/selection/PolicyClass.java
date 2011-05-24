@@ -23,7 +23,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 public class PolicyClass implements IPopupMenuContributionPolicy {
 
 	public boolean appliesTo(ISelection selection, IConfigurationElement configuration) {
-		if(SelectByTypeHandler.verifySameTypeOfSelectedElements(selection)) {
+		if(selection instanceof StructuredSelection && SelectByTypeHandler.verifySameTypeOfSelectedElements(selection)) {
 			Object elem = ((StructuredSelection)selection).getFirstElement();
 			if(elem instanceof DiagramEditPart) {
 				return false;

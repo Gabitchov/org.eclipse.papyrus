@@ -14,9 +14,7 @@
 package org.eclipse.papyrus.diagram.menu.selection;
 
 import org.eclipse.core.expressions.PropertyTester;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -27,13 +25,10 @@ public class SelectByTypePropertyTester extends PropertyTester {
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
 		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
 
-		if((selection != null) && (SelectByTypeHandler.verifySameTypeOfSelectedElements(selection))) {
+		if(SelectByTypeHandler.verifySameTypeOfSelectedElements(selection)) {
 			return true;
 		}
 
-		if(((StructuredSelection)selection).getFirstElement() instanceof DiagramEditPart) {
-			return false;
-		}
 		return false;
 	}
 
