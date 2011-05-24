@@ -36,14 +36,18 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.statemachine.custom.commands.CreateViewCommand;
 import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomCompositeStateSetBoundsCommand;
@@ -70,6 +74,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
+import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.uml2.uml.ConnectionPointReference;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Pseudostate;
@@ -266,6 +271,8 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 				View stateView = (View)graphicalParentEditPart.getModel();
 
 				// check whether any region is already shown in the state compartment
+				if(stateView.getChildren().size()<2)
+					return UnexecutableCommand.INSTANCE;
 				View compartment = (View)stateView.getChildren().get(1);
 				if(!compartment.getChildren().isEmpty())
 					//then do not allow the drag and drop on state, this forces the drag and drop on an displayed region (see above)
@@ -358,8 +365,15 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 
 			CustomCompositeStateWithDefaultRegionCreateNodeCommand createRegion = new CustomCompositeStateWithDefaultRegionCreateNodeCommand((IAdaptable)createState.getCommandResult().getReturnValue(), ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint(), getEditingDomain(), DiagramUIMessages.CreateCommand_Label, createState.getAffectedFiles());
 
-			CustomCompositeStateSetBoundsCommand setBoundsCommand = new CustomCompositeStateSetBoundsCommand(getEditingDomain(), null, descriptor, new Rectangle(location.x, location.y, -1, -1));
-
+			CustomCompositeStateSetBoundsCommand setBoundsCommand;
+			
+			//take care of the case when a simple state is dropped, then we should provide a reasonable size
+			if(droppedElement.getRegions().isEmpty()){
+				setBoundsCommand = new CustomCompositeStateSetBoundsCommand(getEditingDomain(), null, descriptor, new Rectangle(location.x, location.y, 40, 40), false);
+			}
+			else{
+				setBoundsCommand = new CustomCompositeStateSetBoundsCommand(getEditingDomain(), null, descriptor, new Rectangle(location.x, location.y, -1, -1), true);				
+			}
 			cc.compose(createState);
 			cc.compose(createRegion);
 			cc.compose(setBoundsCommand);
@@ -381,6 +395,12 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 	 * @return the drop command
 	 */
 	protected Command dropTransition(DropObjectsRequest dropRequest, Transition droppedElement, int linkVISUALID) {
+		//we restrict drop to be over the owning region
+		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
+		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
+		if(!(graphicalParentObject instanceof Region) || !((Region)graphicalParentObject).getTransitions().contains(droppedElement)){
+			return UnexecutableCommand.INSTANCE;
+		}
 		Vertex source = droppedElement.getSource();
 		Vertex target = droppedElement.getTarget();
 
@@ -390,16 +410,15 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 			GraphicalEditPart targetEditPart = (GraphicalEditPart)lookForEditPart(target);
 			// when the vertex are not represented on the diagram, we look for their parents.
 			DiagramEditPart diagram = DiagramEditPartsUtil.getDiagramEditPart(getHost());
+			// the parents of the vertex, we use them when the VertexEditPart are not on the diagram
+			EditPart sourceParent = null;
+			EditPart targetParent = null;
 			if(sourceEditPart == null || targetEditPart == null) {
 
 				List<IGraphicalEditPart> AllEP = DiagramEditPartsUtil.getAllEditParts(diagram);
 				EObject srcParent = source.eContainer();
 				EObject tgtParent = target.eContainer();
 
-				// the parents of the vertex, we use them when the VertexEditPart are not on the diagram
-				EditPart sourceParent = null;
-				EditPart targetParent = null;
-				
 				for(IGraphicalEditPart iGraphicalEditPart : AllEP) {
 					EObject object = ViewUtil.resolveSemanticElement((View)(iGraphicalEditPart).getModel());//method getHostObject
 					if(object == srcParent && !(iGraphicalEditPart instanceof CompartmentEditPart)) {
@@ -409,28 +428,112 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 						targetParent = iGraphicalEditPart;
 					}
 					if(targetParent != null && sourceParent != null) {
+						sourceParent = (EditPart)sourceParent.getChildren().get(0);
+						targetParent = (EditPart)targetParent.getChildren().get(0);
 						break;
 					}
 				}
 
 
-				// the parent of the vertex shall be identical otherwise we do not support drag and drop 
-				if((targetParent == null) || (sourceParent == null) || (sourceParent != targetParent)) {
-					return UnexecutableCommand.INSTANCE;
-				}
-				// and neither vertex to be created shall be a composite state
-				if(((sourceEditPart == null) && ((source instanceof State) && !((State)source).getRegions().isEmpty())) || 
-					((targetEditPart == null) && ((target instanceof State) && !((State)target).getRegions().isEmpty()))) {
+				// the parent of the vertex shall be present in the diagram otherwise we do not support drag and drop 
+				if((targetParent == null) || (sourceParent == null)){
 					return UnexecutableCommand.INSTANCE;
 				}
 			}
 
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Transition"), source, target, //$NON-NLS-1$
-				linkVISUALID, dropRequest.getLocation(), droppedElement));
+				linkVISUALID, dropRequest.getLocation(), droppedElement, sourceParent, targetParent));
 		} else {
 			return UnexecutableCommand.INSTANCE;
 		}
 	}
+
+
+
+	/**
+	 * the method provides command to create the binary link into the diagram. If the source and the
+	 * target views do not exist, these views will be created.
+	 * 
+	 * @param cc
+	 *        the composite command that will contain the set of command to create the binary
+	 *        link
+	 * @param source
+	 *        the source the element source of the link
+	 * @param target
+	 *        the target the element target of the link
+	 * @param linkVISUALID
+	 *        the link VISUALID used to create the view
+	 * @param location
+	 *        the location the location where the view will be be created
+	 * @param semanticLink
+	 *        the semantic link that will be attached to the view
+	 * @param sourceParent
+	 *        the editPart of the source parent
+	 * @param targetParent
+	 *        the editPart of the target parent
+	 * 
+	 * @return the composite command
+	 */
+	public CompositeCommand dropBinaryLink(CompositeCommand cc, Element source, Element target, int linkVISUALID, Point location, Element semanticLink, EditPart sourceParent, EditPart targetParent) {
+		// look for editpart
+		GraphicalEditPart sourceEditPart = (GraphicalEditPart)lookForEditPart(source);
+		GraphicalEditPart targetEditPart = (GraphicalEditPart)lookForEditPart(target);
+
+		// descriptor of the link
+		CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(getUMLElementType(linkVISUALID), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), getDiagramPreferencesHint());
+
+		IAdaptable sourceAdapter = null;
+		IAdaptable targetAdapter = null;
+		if(sourceEditPart == null) {
+			// creation of the node
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(source), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+
+			// get the command and execute it.
+			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, (View)sourceParent.getModel());
+			cc.compose(nodeCreationCommand);
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y + 30)); //$NON-NLS-1$
+			cc.compose(setBoundsCommand);
+
+			sourceAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
+		} else {
+			sourceAdapter = new SemanticAdapter(null, sourceEditPart.getModel());
+		}
+		//additional check to ensure we do not create twice the same node when links are "loops" on the same element
+		if((target != null) && !target.equals(source)){
+			if(targetEditPart == null) {
+				// creation of the node
+				ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(target), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+
+				// get the command and execute it.
+				CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)targetParent.getModel()));
+				cc.compose(nodeCreationCommand);
+				//take care of the location for the cases when the target is not in the same container as the source
+				SetBoundsCommand setBoundsCommand;
+				if((targetParent != null) && !targetParent.equals(sourceParent)){
+					setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(10, 10)); //$NON-NLS-1$
+				}
+				else{
+					setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y - 30)); //$NON-NLS-1$
+				}
+				cc.compose(setBoundsCommand);
+				targetAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
+
+			} else {
+				targetAdapter = new SemanticAdapter(null, targetEditPart.getModel());
+			}
+		}
+		//in case of loop links (see above) we pass on the same adapter for both source and target
+		if((target != null) && target.equals(source)){
+			targetAdapter = sourceAdapter;
+		}
+
+		CommonDeferredCreateConnectionViewCommand aLinkCommand = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter, targetAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
+		aLinkCommand.setElement(semanticLink);
+		cc.compose(aLinkCommand);
+		return cc;
+
+	}
+
 
 
 	@Override

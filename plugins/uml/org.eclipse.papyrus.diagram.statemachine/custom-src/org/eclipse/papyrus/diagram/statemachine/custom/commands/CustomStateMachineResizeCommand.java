@@ -71,7 +71,7 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 
 		if(internalResize) {
 			Zone.setHeight(stateMachineLabel, Zone.getHeight(stateMachineLabel) + dy);
-			dy = 0;
+//			dy = 0;
 		}
 		// first resize the state machine node with the constraint provided
 		Zone.setX(stateMachine, newX);

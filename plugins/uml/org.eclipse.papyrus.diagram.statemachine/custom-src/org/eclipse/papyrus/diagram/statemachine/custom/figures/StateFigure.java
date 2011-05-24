@@ -3,6 +3,7 @@ package org.eclipse.papyrus.diagram.statemachine.custom.figures;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
@@ -15,6 +16,7 @@ import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.papyrus.diagram.common.figure.node.AutomaticCompartmentLayoutManager;
 import org.eclipse.papyrus.diagram.common.figure.node.CompartmentFigure;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 
 /**
  * Represents a classifier.

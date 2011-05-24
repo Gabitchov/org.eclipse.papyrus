@@ -81,7 +81,7 @@ public class CustomStateResizeCommand extends AbstractTransactionalCommand {
 
 		if(internalResize) {
 			Zone.setHeight(stateLabel, Zone.getHeight(stateLabel) + dy);
-			dy = 0;
+//			dy = 0;
 		}
 		// first resize the state node with the constraint provided
 		Zone.setBounds(state, bounds);
