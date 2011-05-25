@@ -18,9 +18,14 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.modelexplorer.MoDiscoContentProvider;
+import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.resource.uml.UmlModel;
+import org.eclipse.papyrus.resource.uml.UmlUtils;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This class provides a NavigatorContentProvider used to display tables in the Model Explorer
@@ -73,10 +78,10 @@ public class NavigatorTableContentProvider extends MoDiscoContentProvider {
 
 
 
-		if(pageMngr != null) {
+		if(this.pageMngr != null) {
 
 			// Walk on page (Table) references
-			for(Object page : pageMngr.allPages()) {
+			for(Object page : this.pageMngr.allPages()) {
 				if(!(page instanceof PapyrusTableInstance)) {
 					continue;
 				}
@@ -89,6 +94,37 @@ public class NavigatorTableContentProvider extends MoDiscoContentProvider {
 			}
 		}
 		return tables;
+	}
+
+	/**
+	 * Return the initial values from the input.
+	 * Input should be of type {@link UmlModel}.
+	 * 
+	 * @see org.eclipse.gmt.modisco.infra.browser.uicore.CustomizableModelContentProvider#getRootElements(java.lang.Object)
+	 * 
+	 * @param inputElement
+	 * @return
+	 */
+	//TODO : we should use a customization on the model explorer to hide the Stereotype Application
+	@Override
+	protected EObject[] getRootElements(final ModelSet modelSet) {
+		UmlModel umlModel = (UmlUtils.getUmlModel(modelSet));
+
+		if(umlModel == null) {
+			return null;
+		}
+
+		EList<EObject> contents = umlModel.getResource().getContents();
+		ArrayList<EObject> result = new ArrayList<EObject>();
+		Iterator<EObject> iterator = contents.iterator();
+		while(iterator.hasNext()) {
+			EObject eObject = iterator.next();
+			//functionality that comes from UML2 plugins
+			if(UMLUtil.getStereotype(eObject) == null) {
+				result.add(eObject);
+			}
+		}
+		return result.toArray(new EObject[result.size()]);
 	}
 
 
