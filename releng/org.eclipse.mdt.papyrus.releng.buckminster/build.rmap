@@ -114,9 +114,9 @@
   <rm:searchPath name="orbit">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-       
-      <!--rm:uri format="{0}/tools/orbit/downloads/drops/S20110422041657/repository/"-->
-      <rm:uri format="{0}/tools/orbit/downloads/drops/S20110515001817/repository/">
+ 
+      <!--rm:uri format="{0}/tools/orbit/downloads/drops/S20110515001817/repository/"-->
+            <rm:uri format="{0}/tools/orbit/downloads/drops/S20110523182458/repository/">
       
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
