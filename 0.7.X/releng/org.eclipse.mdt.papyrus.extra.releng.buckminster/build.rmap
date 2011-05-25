@@ -7,6 +7,7 @@
   <rm:locator pattern="^org\.eclipse\.papyrus\.constraintwithvsl.*" searchPathRef="sources"/>
   <rm:locator pattern="^org\.eclipse\.papyrus\.properties\.tabbed\.marte" searchPathRef="sources"/>
   <rm:locator pattern="^org\.eclipse\.papyrus\.stereotypeapplicationwithvsl.*" searchPathRef="sources"/>
+  <rm:locator pattern="^org\.eclipse\.papyrus\.conversion.*" searchPathRef="sources"/>  
   <rm:locator searchPathRef="orbit" failOnError="false"/>
   <rm:locator searchPathRef="platform.binaries"/>
   <rm:searchPath name="releng">
@@ -32,6 +33,12 @@
   <rm:searchPath name="sources">
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/extraplugins/marte/{1}?moduleAfterTag&amp;moduleAfterBranch">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/extraplugins/conversion/{1}?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
@@ -74,6 +81,12 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature" readerType="svn">
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/extraplugins/marte/{1}-feature?moduleAfterTag&amp;moduleAfterBranch">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="eclipse.feature" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/extraplugins/conversion/{1}-feature?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
