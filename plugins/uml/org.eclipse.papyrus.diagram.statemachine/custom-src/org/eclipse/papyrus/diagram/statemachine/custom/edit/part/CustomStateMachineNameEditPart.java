@@ -48,6 +48,13 @@ public class CustomStateMachineNameEditPart extends StateMachineNameEditPart {
 		// TODO Auto-generated method stub
 		super.handleNotificationEvent(notification);
 
+		refreshVisuals();
+	}
+
+	@Override
+	protected void refreshVisuals() {
+		// TODO Auto-generated method stub
+		super.refreshVisuals();
 		int height = 0;
 		int width = 0;
 		Iterator<IFigure> it = (Iterator<IFigure>)getFigure().getParent().getChildren().iterator();
@@ -91,12 +98,5 @@ public class CustomStateMachineNameEditPart extends StateMachineNameEditPart {
 			}
 
 		}
-		refreshVisuals();
-	}
-
-	@Override
-	protected void refreshVisuals() {
-		// TODO Auto-generated method stub
-		super.refreshVisuals();
 	}
 }

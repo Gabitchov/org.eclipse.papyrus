@@ -87,6 +87,14 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 		// TODO Auto-generated method stub
 		super.handleNotificationEvent(notification);
 		
+		refreshVisuals();
+	}
+
+	@Override
+	protected void refreshVisuals() {
+		// TODO Auto-generated method stub
+		super.refreshVisuals();
+
 		StateFigure stateFigure = ((StateEditPart)getParent()).getPrimaryShape();
 		State state = (State)((View)getModel()).getElement();
 
@@ -101,9 +109,16 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 
 		stateFigure.fillInformation(getInformationFromState(state));
 
+		if (state.isSubmachineState()) {
+			stateFigure.setSubmachineStateName(state.getName()+" : " + state.getSubmachine().getQualifiedName()) ;
+			stateFigure.setIsSubmachineState(true);
+		}
+		else
+			stateFigure.setIsSubmachineState(false);
 
-		int height = 5;
-		int width = 15;
+
+		int height = 0;
+		int width = 0;
 		Iterator<IFigure> it = (Iterator<IFigure>)getFigure().getParent().getChildren().iterator();
 		while(it.hasNext()){
 			IFigure current = it.next();
@@ -114,14 +129,8 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 			}
 		}
 
-//		WrappingLabel stateLabel = (WrappingLabel)getFigure();
-//		WrappingLabel infoLabel = stateFigure.getInformationLabel();
-//
-//		Dimension infoLabelBounds = infoLabel.getPreferredSize().getCopy();
-//		Dimension stateLabelBounds = stateLabel.getPreferredSize().getCopy();
-//		stateLabelBounds.expand(15, 5);
-//		stateLabelBounds.width = Math.max(stateLabelBounds.width, infoLabelBounds.width);
-//		stateLabelBounds.height = stateLabelBounds.height + infoLabelBounds.height;
+		width += 10;
+		
 		int stateHeight = Zone.getHeight(stateView);
 		int stateWidth = Zone.getWidth(stateView);
 
@@ -151,25 +160,7 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 			}				
 
 		}
-		refreshVisuals();
-	}
 
-	@Override
-	protected void refreshVisuals() {
-		// TODO Auto-generated method stub
-		super.refreshVisuals();
-
-		StateFigure stateFigure = ((StateEditPart)getParent()).getPrimaryShape();
-		State state = (State)((View)getModel()).getElement();
-
-		stateFigure.fillInformation(getInformationFromState(state));
-
-		if (state.isSubmachineState()) {
-			stateFigure.setSubmachineStateName(state.getName()+" : " + state.getSubmachine().getQualifiedName()) ;
-			stateFigure.setIsSubmachineState(true);
-		}
-		else
-			stateFigure.setIsSubmachineState(false);
 
 	}
 }
