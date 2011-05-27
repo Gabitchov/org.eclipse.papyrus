@@ -32,7 +32,8 @@
 «REM»YT (not used): «EXPAND fileTypes-»«ENDREM»
 «REM»YT (not used): «EXPAND extension_parser-»«ENDREM»
 «EXPAND xpt::editor::extensions::extensions FOR editorGen-»
-«EXPAND xpt::plugin::plugin::menu-»
+«REM» global actions handled in the diagram.common plugin
+«EXPAND xpt::plugin::plugin::menu-»«ENDREM»
 «EXPAND xpt::plugin::plugin::validation FOR editorGen.diagram-»
 «EXPAND xpt::plugin::plugin::metrics FOR editorGen.metrics-»
 «REM»RS: redefine palette generation«ENDREM»

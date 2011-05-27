@@ -76,44 +76,6 @@
       </objectContribution-->
    </extension>
 	
-   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
-      <?gmfgen generated="true"?>
-      <GlobalActionHandlerProvider
-         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
-         id="ParametricPresentation">
-         <Priority name="Lowest"/>
-         <ViewId id="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorID">
-            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
-               <GlobalActionId actionId="delete"/>
-            </ElementType>
-            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
-               <GlobalActionId actionId="save"/>
-            </ElementType>
-         </ViewId>
-      </GlobalActionHandlerProvider>
-      <GlobalActionHandlerProvider
-         class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
-         id="ParametricPresentationIDE">
-         <Priority name="Lowest"/>
-         <ViewId id="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorID">
-            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
-               <GlobalActionId actionId="bookmark"/>
-            </ElementType>
-         </ViewId>
-      </GlobalActionHandlerProvider>
-      <GlobalActionHandlerProvider
-            class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
-            id="ParametricRender">
-         <Priority name="Lowest"/>
-         <ViewId id="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorID">
-            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
-               <GlobalActionId actionId="cut"/>
-               <GlobalActionId actionId="copy"/>
-               <GlobalActionId actionId="paste"/>
-            </ElementType>
-         </ViewId>
-      </GlobalActionHandlerProvider>
-   </extension>
    
    <extension
 		id="Sysml Plugin.palettedefinition"

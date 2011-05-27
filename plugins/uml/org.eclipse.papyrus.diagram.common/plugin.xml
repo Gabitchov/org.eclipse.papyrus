@@ -512,4 +512,67 @@
          type="org.eclipse.ui.IEditorPart">
    </propertyTester>
 </extension>
+<extension
+      point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders">
+   <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.printing.providers.DiagramWithPrintGlobalActionHandlerProvider"
+         id="GenericDiagramActionHandlerProvider">
+      <Priority
+            name="Low">
+      </Priority>
+      <ViewId
+            id="org.eclipse.papyrus.core.papyrusEditor">
+         <ElementType
+               class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+            <GlobalActionId
+                  actionId="save">
+            </GlobalActionId>
+            <GlobalActionId
+                  actionId="print">
+            </GlobalActionId>
+         </ElementType>
+      </ViewId>
+   </GlobalActionHandlerProvider>
+   <GlobalActionHandlerProvider
+         class="org.eclipse.papyrus.diagram.common.providers.PapyrusGlobalActionHandlerProvider"
+         id="PapyrusDiagramActionHandlerProvider">
+      <Priority
+            name="Low">
+      </Priority>
+      <ViewId
+            id="org.eclipse.papyrus.core.papyrusEditor">
+         <ElementType
+               class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+            <GlobalActionId
+                  actionId="delete">
+            </GlobalActionId>
+            <GlobalActionId
+                  actionId="cut">
+            </GlobalActionId>
+            <GlobalActionId
+                  actionId="copy">
+            </GlobalActionId>
+            <GlobalActionId
+                  actionId="paste">
+            </GlobalActionId>
+         </ElementType>
+      </ViewId>
+   </GlobalActionHandlerProvider>
+   <GlobalActionHandlerProvider
+         class="org.eclipse.papyrus.diagram.common.GlobalActionHandlerProvider4"
+         id="IDEDiagramActionHandlerProvider">
+      <Priority
+            name="Low">
+      </Priority>
+      <ViewId
+            id="org.eclipse.papyrus.core.papyrusEditor">
+         <ElementType
+               class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+            <GlobalActionId
+                  actionId="bookmark">
+            </GlobalActionId>
+         </ElementType>
+      </ViewId>
+   </GlobalActionHandlerProvider>
+</extension>
 </plugin>
