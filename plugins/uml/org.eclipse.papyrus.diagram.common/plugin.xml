@@ -559,7 +559,7 @@
       </ViewId>
    </GlobalActionHandlerProvider>
    <GlobalActionHandlerProvider
-         class="org.eclipse.papyrus.diagram.common.GlobalActionHandlerProvider4"
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
          id="IDEDiagramActionHandlerProvider">
       <Priority
             name="Low">
