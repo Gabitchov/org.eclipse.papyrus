@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.widgets.editors;
 
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
@@ -59,7 +60,7 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	/**
 	 * The Button used to browse the available values
 	 */
-	protected Button browseValuesButton;
+	protected Button browseValuesButton; 
 
 	/**
 	 * The Button used to create a new instance
@@ -91,7 +92,7 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	/**
 	 * The dialog used to select the value
 	 */
-	protected final TreeSelectorDialog dialog;
+	protected final ITreeSelectorDialog dialog;
 
 	/**
 	 * The current value for this editor
@@ -144,7 +145,7 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 		updateControls();
 	}
 
-	protected TreeSelectorDialog createDialog(Shell shell) {
+	protected ITreeSelectorDialog createDialog(Shell shell) {
 		return new TreeSelectorDialog(shell);
 	}
 
@@ -175,7 +176,7 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	 * from a selection of already created objects
 	 */
 	protected void browseAction() {
-		dialog.setInitialElementSelections(Collections.singletonList(getValue()));
+		setInitialSelection(Collections.singletonList(getValue()));
 		int result = dialog.open();
 		if(result == Window.OK) {
 			Object[] newValue = dialog.getResult();
@@ -264,7 +265,7 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	public void setContentProvider(IStaticContentProvider provider) {
 		dialog.setContentProvider(new EncapsulatedContentProvider(provider));
 		if(getValue() != null) {
-			dialog.setInitialElementSelections(Collections.singletonList(getValue()));
+			setInitialSelection(Collections.singletonList(getValue()));
 		}
 
 		this.contentProvider = provider;
@@ -361,9 +362,13 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	public void handleChange(ChangeEvent event) {
 		if(modelProperty != null) {
 			this.value = modelProperty.getValue();
-			dialog.setInitialElementSelections(Collections.singletonList(getValue()));
+			setInitialSelection(Collections.singletonList(getValue()));
 			updateLabel();
 		}
+	}
+
+	protected void setInitialSelection(List<?> initialValues) {
+		dialog.setInitialElementSelections(initialValues);
 	}
 
 	public void widgetDisposed(DisposeEvent e) {

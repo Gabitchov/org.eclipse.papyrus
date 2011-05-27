@@ -42,7 +42,7 @@ import org.eclipse.ui.dialogs.SelectionDialog;
  * @author Camille Letavernier
  * 
  */
-public class TreeSelectorDialog extends SelectionDialog {
+public class TreeSelectorDialog extends SelectionDialog implements ITreeSelectorDialog {
 
 	private ILabelProvider labelProvider;
 
@@ -185,7 +185,7 @@ public class TreeSelectorDialog extends SelectionDialog {
 	 * @return
 	 *         The TreeViewer associated to this dialog
 	 */
-	public TreeViewer getViewer() {
+	protected TreeViewer getViewer() {
 		return fTree.getViewer();
 	}
 
