@@ -10,30 +10,27 @@
       <menuContribution allPopups="false" locationURI="toolbar:org.eclipse.papyrus.table.ui.toolbar">
          <command commandId="org.eclipse.papyrus.sysml.table.allocation.create.table.command" icon="icons/table_SysML_Allocation.png" id="org.eclipse.papyrus.table.ui.toolbar.allocation.table" style="push" tooltip="Create a new SysML Allocation table">
             <visibleWhen>
-               <with variable="activeEditorId">
-                  <equals value="org.eclipse.papyrus.core.papyrusEditor">
-                  </equals>
-               </with>
+               <reference
+                     definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML">
+               </reference>
             </visibleWhen>
          </command>
       </menuContribution>
       <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createtable">
        <command commandId="org.eclipse.papyrus.sysml.table.allocation.create.table.command" icon="icons/table_SysML_Allocation.png" id="org.eclipse.papyrus.modelexplorer.popupmenu.createtable.allocation.table" style="push" tooltip="Create a new SysML Allocation table">
             <visibleWhen>
-               <with variable="activeEditorId">
-                  <equals value="org.eclipse.papyrus.core.papyrusEditor">
-                  </equals>
-               </with>
+               <reference
+                     definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML">
+               </reference>
             </visibleWhen>
          </command>
       </menuContribution>
       <menuContribution allPopups="false" locationURI="menu:org.eclipse.papyrus.table.ui.menu.tables">
        <command commandId="org.eclipse.papyrus.sysml.table.allocation.create.table.command" icon="icons/table_SysML_Allocation.png" id="org.eclipse.papyrus.table.ui.menu.tables.allocation.table" style="push" tooltip="Create a new SysML Allocation table">
             <visibleWhen>
-               <with variable="activeEditorId">
-                  <equals value="org.eclipse.papyrus.core.papyrusEditor">
-                  </equals>
-               </with>
+               <reference
+                     definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML">
+               </reference>
             </visibleWhen>
          </command>
          </menuContribution>
