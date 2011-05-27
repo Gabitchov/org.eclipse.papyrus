@@ -311,7 +311,11 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 
 	protected Command dropTopLevelNodeWithContainmentLink(DropObjectsRequest dropRequest, Element semanticObject, int nodeVISUALID) {
 		ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
+		
 		Element owner = (Element)semanticObject.getOwner();
+		if( owner==null){
+			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticObject));
+		}
 		EditPart ownerEditPart = containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), owner);
 		if(ownerEditPart != null) {
 			return containmentHelper.outlineDropContainedClass((PackageableElement)semanticObject, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
@@ -337,8 +341,13 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 		CompositeCommand cc = new CompositeCommand(CONTAINED_CLASS_DROP_TO_COMPARTMENT);
 		cc.add(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), droppedElement));
 
-		if((View)containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), droppedElement) != null) {
-			View droppedView = (View)containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), droppedElement).getModel();
+		EObject graphicalParent = ((GraphicalEditPart)getHost()).resolveSemanticElement();
+		if(!((droppedElement instanceof Element) && ((Element)graphicalParent).getOwnedElements().contains(droppedElement))) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		if(containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), droppedElement) != null) {
+			EditPart editpart=containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), droppedElement);
+			View droppedView = (View)(editpart.getModel());
 
 			containmentHelper.deleteIncomingContainmentLinksFor(cc, droppedView);
 
