@@ -225,9 +225,9 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 */
 	public void updateLabel() {
 		String label = getLabel();
-		if(input != null && propertyPath != null && input.isMandatory(propertyPath)) {
-			label += " *"; //$NON-NLS-1$
-		}
+		//		if(input != null && propertyPath != null && input.isMandatory(propertyPath)) {
+		//			label += " *"; //$NON-NLS-1$
+		//		}
 
 		if(showLabel) {
 			if(valueEditor != null) {

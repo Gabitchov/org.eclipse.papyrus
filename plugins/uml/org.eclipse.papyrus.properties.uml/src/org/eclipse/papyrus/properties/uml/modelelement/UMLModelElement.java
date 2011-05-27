@@ -25,6 +25,7 @@ import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue;
+import org.eclipse.uml2.uml.UMLPackage;
 
 
 public class UMLModelElement extends EMFModelElement {
@@ -61,6 +62,15 @@ public class UMLModelElement extends EMFModelElement {
 			return super.getLabelProvider(propertyPath);
 		}
 		return new EditorLabelProvider();
+	}
+
+	@Override
+	public boolean isOrdered(String propertyPath) {
+		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature == UMLPackage.eINSTANCE.getStereotype_Icon()) {
+			return true;
+		}
+		return super.isOrdered(propertyPath);
 	}
 
 }

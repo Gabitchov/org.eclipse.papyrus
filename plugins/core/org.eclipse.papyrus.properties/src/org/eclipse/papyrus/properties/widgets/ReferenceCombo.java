@@ -48,6 +48,7 @@ public class ReferenceCombo extends AbstractPropertyEditor {
 		ILabelProvider labelProvider = input.getLabelProvider(propertyPath);
 
 		combo.setProviders(contentProvider, labelProvider);
+		combo.setUnsettable(!input.isMandatory(propertyPath));
 
 		super.doBinding();
 	}

@@ -214,6 +214,7 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 			if(newValue != currentValue) {
 				modelProperty.setValue(value);
 			}
+			updateLabel();
 		}
 	}
 

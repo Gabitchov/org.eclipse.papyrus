@@ -69,6 +69,8 @@ public class EnumRadio extends AbstractPropertyEditor {
 	protected void doBinding() {
 		enumRadio.setProviders(input.getContentProvider(propertyPath), input.getLabelProvider(propertyPath));
 
+		//enumRadio.setUnsettable(! input.isMandatory(propertyPath));
+
 		super.doBinding();
 	}
 }

@@ -166,6 +166,7 @@ public class CustomizationModelElement extends AbstractModelElement {
 		return false;
 	}
 
+	@Override
 	public Object getDefaultValue(String propertyPath) {
 		return delegate.getDefaultValue(propertyPath);
 	}

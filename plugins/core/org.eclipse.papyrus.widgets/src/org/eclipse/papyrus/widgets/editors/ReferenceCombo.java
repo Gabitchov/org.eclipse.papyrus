@@ -16,11 +16,17 @@ import org.eclipse.jface.databinding.viewers.ViewerProperties;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.widgets.Activator;
 import org.eclipse.papyrus.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
 
@@ -32,7 +38,7 @@ import org.eclipse.swt.widgets.Composite;
  * @author Camille Letavernier
  * 
  */
-public class ReferenceCombo extends AbstractValueEditor {
+public class ReferenceCombo extends AbstractValueEditor implements SelectionListener {
 
 	/**
 	 * The viewer displaying the available values from the model
@@ -43,6 +49,10 @@ public class ReferenceCombo extends AbstractValueEditor {
 	 * The combo used to select the reference
 	 */
 	private CCombo combo;
+
+	private boolean unsettable;
+
+	protected Button unset;
 
 	/**
 	 * 
@@ -71,11 +81,19 @@ public class ReferenceCombo extends AbstractValueEditor {
 	public ReferenceCombo(Composite parent, int style, String label) {
 		super(parent, label);
 
+		((GridLayout)getLayout()).numColumns = 3;
+
 		combo = factory.createCCombo(this, style | SWT.BORDER);
 		combo.setBackground(new Color(combo.getDisplay(), 255, 255, 255));
 		combo.setLayoutData(getDefaultLayoutData());
 		combo.setEditable(false);
+
 		viewer = new ComboViewer(combo);
+
+		unset = new Button(this, SWT.PUSH);
+		unset.setImage(Activator.getDefault().getImage("/icons/Delete_12x12.gif")); //$NON-NLS-1$
+		unset.setToolTipText("Unset the current value");
+		unset.addSelectionListener(this);
 
 		setCommitOnFocusLost(combo);
 	}
@@ -91,8 +109,9 @@ public class ReferenceCombo extends AbstractValueEditor {
 		Assert.isNotNull(contentProvider, "The content provider should not be null"); //$NON-NLS-1$
 		setContentProvider(contentProvider);
 
-		if(labelProvider != null)
+		if(labelProvider != null) {
 			setLabelProvider(labelProvider);
+		}
 	}
 
 	/**
@@ -141,14 +160,16 @@ public class ReferenceCombo extends AbstractValueEditor {
 	@Override
 	public Object getValue() {
 		IStructuredSelection selection = (IStructuredSelection)viewer.getSelection();
-		if(selection.isEmpty())
+		if(selection.isEmpty()) {
 			return null;
+		}
 		return selection.getFirstElement();
 	}
 
 	@Override
 	public void setReadOnly(boolean readOnly) {
 		combo.setEnabled(!readOnly);
+		updateControls();
 	}
 
 	@Override
@@ -160,5 +181,30 @@ public class ReferenceCombo extends AbstractValueEditor {
 	public void setToolTipText(String text) {
 		combo.setToolTipText(text);
 		super.setLabelToolTipText(text);
+	}
+
+	public void setUnsettable(boolean unsettable) {
+		this.unsettable = unsettable;
+	}
+
+	protected void updateControls() {
+		unset.setEnabled(unsettable && !isReadOnly());
+	}
+
+	protected void unsetAction() {
+		viewer.setSelection(StructuredSelection.EMPTY);
+		//		if (modelProperty != null){
+		//			modelProperty.setValue(null);
+		//		}
+	}
+
+	public void widgetSelected(SelectionEvent e) {
+		if(e.widget == unset) {
+			unsetAction();
+		}
+	}
+
+	public void widgetDefaultSelected(SelectionEvent e) {
+		//Nothing
 	}
 }

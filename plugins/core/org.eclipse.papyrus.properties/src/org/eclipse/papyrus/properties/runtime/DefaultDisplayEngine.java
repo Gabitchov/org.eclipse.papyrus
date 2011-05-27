@@ -82,8 +82,9 @@ public class DefaultDisplayEngine implements DisplayEngine {
 
 		for(View view : views) {
 			for(Section section : view.getSections()) {
-				if(selectedSections.contains(section.getName()))
+				if(selectedSections.contains(section.getName())) {
 					continue;
+				}
 
 				Tab tab = section.getTab();
 
@@ -129,8 +130,9 @@ public class DefaultDisplayEngine implements DisplayEngine {
 
 		Control control = createSection(parent, section, loadXWTFile(section), source);
 
+		displayedSections.add(section.getName());
+
 		if(control != null) {
-			displayedSections.add(section.getName());
 			controls.add(control);
 		}
 

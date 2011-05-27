@@ -51,6 +51,8 @@ public class EnumCombo extends AbstractPropertyEditor {
 	protected void doBinding() {
 		enumCombo.setProviders(input.getContentProvider(propertyPath), input.getLabelProvider(propertyPath));
 
+		enumCombo.setUnsettable(!input.isMandatory(propertyPath));
+
 		super.doBinding();
 	}
 }
