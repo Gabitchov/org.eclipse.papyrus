@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.papyrus.modelexplorer.widgets.EclassModelExplorerBasedContentProvider;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.Stereotype;
 
 

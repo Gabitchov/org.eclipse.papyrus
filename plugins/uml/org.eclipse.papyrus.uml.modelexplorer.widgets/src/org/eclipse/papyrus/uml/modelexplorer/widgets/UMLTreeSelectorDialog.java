@@ -24,10 +24,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.modelexplorer.widgets.AdvancedMETreeDialog;
 import org.eclipse.papyrus.modelexplorer.widgets.EclassComparator;
+import org.eclipse.papyrus.modelexplorer.widgets.HierarchicViewerFilter;
 import org.eclipse.papyrus.modelexplorer.widgets.MetaclassLabelProvider;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.ModelUtils;
@@ -155,6 +157,9 @@ public class UMLTreeSelectorDialog extends AdvancedMETreeDialog {
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		});
+		
+		ViewerFilter[] filters = { new UMLHierarchicViewerFilter(contentProvider) };
+		getViewer().setFilters(filters);
 		getShell().pack();
 
 
