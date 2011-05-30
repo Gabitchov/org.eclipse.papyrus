@@ -77,8 +77,9 @@ public class EnumRadio extends AbstractValueEditor {
 	 */
 	public void setProviders(IStaticContentProvider contentProvider, ILabelProvider labelProvider) {
 		this.contentProvider = contentProvider;
-		if(labelProvider != null)
+		if(labelProvider != null) {
 			this.labelProvider = labelProvider;
+		}
 		doBinding();
 	}
 
@@ -99,8 +100,8 @@ public class EnumRadio extends AbstractValueEditor {
 		if(modelProperty != null && contentProvider != null) {
 			SelectObservableValue observable = new SelectObservableValue();
 			for(Object value : contentProvider.getElements()) {
-				Button button = new Button(buttonsArea, SWT.RADIO);
-				button.setText(labelProvider.getText(value));
+				Button button = factory.createButton(buttonsArea, labelProvider.getText(value), SWT.RADIO);
+				button.setBackground(buttonsArea.getBackground()); //For Radio buttons, we need to force the color
 				button.setData(value);
 				button.setToolTipText(toolTipText);
 				IObservableValue buttonObservable = WidgetProperties.selection().observe(button);
@@ -138,8 +139,9 @@ public class EnumRadio extends AbstractValueEditor {
 	}
 
 	private void updateLabelLayout() {
-		if(label == null || label.isDisposed())
+		if(label == null || label.isDisposed()) {
 			return;
+		}
 
 		if(numColumns == -1) {
 			((GridData)label.getLayoutData()).verticalAlignment = SWT.CENTER;

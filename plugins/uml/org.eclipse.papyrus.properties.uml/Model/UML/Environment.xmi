@@ -6,6 +6,7 @@
   <modelElementFactories name="Stereotype Application Factory" factoryClass="org.eclipse.papyrus.properties.uml.modelelement.StereotypeApplicationFactory"/>
   <modelElementFactories name="UML Notation Factory" factoryClass="org.eclipse.papyrus.properties.uml.modelelement.UMLNotationFactory"/>
   <modelElementFactories name="Custom Image Factory" factoryClass="org.eclipse.papyrus.properties.uml.modelelement.CustomImageModelElementFactory"/>
+  <modelElementFactories name="Stereotype Appearance Factory" factoryClass="org.eclipse.papyrus.properties.uml.modelelement.StereotypeAppearanceFactory"/>
   <constraintTypes label="UML Instance Of" constraintClass="org.eclipse.papyrus.properties.uml.constraints.UmlInstanceOfConstraint"/>
   <constraintTypes label="Has Stereotype" constraintClass="org.eclipse.papyrus.properties.uml.constraints.HasStereotypeConstraint"/>
   <propertyEditorTypes label="ExpressionEditor" widgetClass="ExpressionEditor" namespace="//@namespaces.0" multiplicity="-1"/>

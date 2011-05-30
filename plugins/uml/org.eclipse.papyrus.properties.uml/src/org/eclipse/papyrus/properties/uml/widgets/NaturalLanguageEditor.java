@@ -36,7 +36,7 @@ public class NaturalLanguageEditor implements BodyEditor {
 	private String currentValue;
 
 	public void createWidget(Composite parent, int style) {
-		editor = new StringEditor(parent, style | SWT.MULTI) {
+		editor = new StringEditor(parent, style | SWT.MULTI | SWT.WRAP) {
 
 			@Override
 			protected GridData getDefaultLayoutData() {

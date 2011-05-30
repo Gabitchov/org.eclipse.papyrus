@@ -72,10 +72,12 @@ public class BooleanRadio extends AbstractValueEditor {
 		//trueRadio = new Button(this, SWT.RADIO);
 		//trueRadio.setText("true");
 		trueRadio = factory.createButton(this, "true", style | SWT.RADIO); //$NON-NLS-1$
+		trueRadio.setBackground(this.getBackground()); //For Radio buttons, we need to force the color
 
 		//		falseRadio = new Button(this, SWT.RADIO);
 		//		falseRadio.setText("false");
 		falseRadio = factory.createButton(this, "false", style | SWT.RADIO); //$NON-NLS-1$
+		falseRadio.setBackground(this.getBackground()); //For Radio buttons, we need to force the color
 
 		setWidgetObservable(getObservable(), true);
 	}

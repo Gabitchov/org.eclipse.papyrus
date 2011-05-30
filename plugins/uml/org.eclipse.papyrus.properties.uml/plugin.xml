@@ -38,7 +38,10 @@
          </context>
       </extension>
 
-   <extension point="org.eclipse.gmt.modisco.infra.query.registration">
-      <modelqueryset file="Model/UML/uml.querySet"/>
+   <extension
+         point="org.eclipse.emf.facet.infra.query.registration">
+      <modelqueryset
+            file="Model/UML/uml.querySet">
+      </modelqueryset>
    </extension>
 </plugin>

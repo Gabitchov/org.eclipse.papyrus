@@ -32,7 +32,7 @@ public class StringMultiline extends AbstractPropertyEditor {
 	 *        The style for the widget
 	 */
 	public StringMultiline(Composite parent, int style) {
-		super(new org.eclipse.papyrus.widgets.editors.StringEditor(parent, style | SWT.MULTI | SWT.V_SCROLL));
+		super(new org.eclipse.papyrus.widgets.editors.StringEditor(parent, style | SWT.MULTI | SWT.V_SCROLL | SWT.WRAP));
 	}
 
 }

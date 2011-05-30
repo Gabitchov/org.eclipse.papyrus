@@ -70,6 +70,7 @@ public abstract class AbstractEditor extends Composite {
 
 	static {
 		factory.setBackground(null);
+		factory.setBorderStyle(SWT.BORDER); //This seems to be used only by the FormToolKit factory, we still need to force it for the CLabel or CCombo widgets
 	}
 
 	/**
@@ -293,14 +294,16 @@ public abstract class AbstractEditor extends Composite {
 	 * Forces the refresh of the widget's value
 	 */
 	public void refreshValue() {
-		if(binding != null)
+		if(binding != null) {
 			binding.updateModelToTarget();
+		}
 	}
 
 	protected void setLabelToolTipText(String text) {
 		toolTipText = text;
-		if(label != null)
+		if(label != null) {
 			label.setToolTipText(text);
+		}
 	}
 
 	@Override
