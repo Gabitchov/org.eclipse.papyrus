@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Bug fix
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
 
 import java.net.URL;
@@ -94,7 +106,7 @@ public class BundleIconExplorerDialog extends SelectionStatusDialog {
 	 *        the parent shell for the dialog
 	 */
 	public BundleIconExplorerDialog(Shell parentShell, String initialValue) {
-		this(parentShell, false, initialValue, retrieveBundleId(initialValue));//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		this(parentShell, false, initialValue, retrieveBundleId(initialValue));
 	}
 
 	/**
@@ -243,6 +255,7 @@ public class BundleIconExplorerDialog extends SelectionStatusDialog {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void computeResult() {
 		List<Object> proxies = Arrays.asList(getSelectedElements());
 		List<String> results = new ArrayList<String>(proxies.size());
@@ -422,7 +435,7 @@ public class BundleIconExplorerDialog extends SelectionStatusDialog {
 		public ImageProxy(URL url) {
 			localPath = url.getPath();
 			path = PLUGIN_PROTOCOL + getCurrentBundleName() + localPath;
-			image = org.eclipse.papyrus.diagram.common.Activator.getImage(path, getCurrentBundleName());
+			image = org.eclipse.papyrus.diagram.common.Activator.getImage(path, ""); //$NON-NLS-1$
 			int index = localPath.lastIndexOf('/');
 			if(index > 0 && index < localPath.length()) {
 				fileName = localPath.substring(index + 1, localPath.length() - GIF_EXTENSION_LENGTH);

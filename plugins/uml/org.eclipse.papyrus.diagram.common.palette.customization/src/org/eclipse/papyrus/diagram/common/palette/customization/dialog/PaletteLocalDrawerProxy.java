@@ -1,3 +1,14 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
 
 import java.beans.PropertyChangeListener;
@@ -49,6 +60,7 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	 *        the PropertyChangeListener that is to be notified of changes
 	 * @see java.beans.PropertyChangeSupport#addPropertyChangeListener(java.beans.PropertyChangeListener)
 	 */
+	@Override
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
 		drawerListener.removePropertyChangeListener(listener);
 		drawerListener.addPropertyChangeListener(listener);
@@ -60,6 +72,7 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	 *        the PropertyChangeListener that is not to be notified anymore
 	 * @see java.beans.PropertyChangeSupport#removePropertyChangeListener(java.beans.PropertyChangeListener)
 	 */
+	@Override
 	public void removePropertyChangeListener(PropertyChangeListener listener) {
 		drawerListener.removePropertyChangeListener(listener);
 		super.removePropertyChangeListener(listener);
@@ -92,6 +105,7 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Image getImage() {
 		return Activator.getPluginIconImage(Activator.ID, imagePath);
 	}
@@ -101,6 +115,7 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	 * 
 	 * @return the image path
 	 */
+	@Override
 	public String getImagePath() {
 		return imagePath;
 	}
@@ -111,6 +126,7 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	 * @param label
 	 *        the label to set
 	 */
+	@Override
 	public void setLabel(String label) {
 		String oldValue = this.label;
 		this.label = label;
@@ -153,6 +169,7 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	 * @param description
 	 *        the description to set
 	 */
+	@Override
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -162,6 +179,7 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	 * 
 	 * @return the description of the drawer
 	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
