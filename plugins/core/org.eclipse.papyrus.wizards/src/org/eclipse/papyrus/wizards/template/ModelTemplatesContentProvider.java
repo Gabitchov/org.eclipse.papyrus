@@ -9,12 +9,14 @@
  *
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
- *
+ *	Saadia Dhouib (CEA LIST) - Implementation of loading diagrams from template files  (.uml, .di , .notation)
  *****************************************************************************/
 package org.eclipse.papyrus.wizards.template;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -24,6 +26,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 
 /**
  * The Class ModelTemplatesContentProvider.
@@ -37,7 +40,13 @@ public class ModelTemplatesContentProvider implements IStructuredContentProvider
 	private static final String ATTRIBUTE_NAME = "name"; //$NON-NLS-1$
 
 	/** The Constant ATTRIBUTE_FILE. */
-	private static final String ATTRIBUTE_FILE = "file"; //$NON-NLS-1$
+	private static final String ATTRIBUTE_UML_FILE = "file"; //$NON-NLS-1$
+	
+	/** The Constant ATTRIBUTE_NOTATION_FILE. */
+	private static final String ATTRIBUTE_NOTATION_FILE = "notation_file"; //$NON-NLS-1$
+	
+	/** The Constant ATTRIBUTE_DI_FILE. */
+	private static final String ATTRIBUTE_DI_FILE = "di_file"; //$NON-NLS-1$
 
 	/** The Constant ATTRIBUTE_LANGUAGE. */
 	private static final String ATTRIBUTE_LANGUAGE = "language"; //$NON-NLS-1$
@@ -70,7 +79,6 @@ public class ModelTemplatesContentProvider implements IStructuredContentProvider
 			for(IExtension extension : extensions) {
 				templates.addAll(processExtension(extension));
 			}
-
 			myTemplateDescriptions = templates.toArray(new ModelTemplateDescription[templates.size()]);
 		}
 		return myTemplateDescriptions;
@@ -85,7 +93,7 @@ public class ModelTemplatesContentProvider implements IStructuredContentProvider
 	private Collection<ModelTemplateDescription> processExtension(IExtension extension) {
 		List<ModelTemplateDescription> templates = new ArrayList<ModelTemplateDescription>();
 		for(IConfigurationElement configElement : extension.getConfigurationElements()) {
-			ModelTemplateDescription template = new ModelTemplateDescription(configElement.getAttribute(ATTRIBUTE_NAME), extension.getContributor().getName(), configElement.getAttribute(ATTRIBUTE_FILE));
+			ModelTemplateDescription template = new ModelTemplateDescription(configElement.getAttribute(ATTRIBUTE_NAME), extension.getContributor().getName(), configElement.getAttribute(ATTRIBUTE_UML_FILE),configElement.getAttribute(ATTRIBUTE_NOTATION_FILE),configElement.getAttribute(ATTRIBUTE_DI_FILE));
 			template.setLanguage(configElement.getAttribute(ATTRIBUTE_LANGUAGE));
 			templates.add(template);
 		}
@@ -100,16 +108,23 @@ public class ModelTemplatesContentProvider implements IStructuredContentProvider
 	 * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
 	 */
 	public Object[] getElements(Object inputElement) {
-		if(inputElement instanceof String) {
-			List<ModelTemplateDescription> result = new ArrayList<ModelTemplateDescription>();
-			String diagramCategory = (String)inputElement;
-			for(ModelTemplateDescription template : getTemplatesDescription()) {
-				if(diagramCategory == null || diagramCategory.equals(template.getLanguage())) {
-					result.add(template);
+		
+		if(inputElement instanceof Object[]) {		
+			List<ModelTemplateDescription> result = new ArrayList<ModelTemplateDescription>();			
+			
+			for (Object next: (Object[])inputElement) {
+				if (next instanceof String) {
+					String diagramCategory = (String)next;
+					for(ModelTemplateDescription template : getTemplatesDescription()) {						
+						if(diagramCategory == null || diagramCategory.equals(template.getLanguage())) {
+							result.add(template);
+						}
+					}
 				}
 			}
 			return result.toArray();
 		}
+		
 		return new Object[0];
 	}
 

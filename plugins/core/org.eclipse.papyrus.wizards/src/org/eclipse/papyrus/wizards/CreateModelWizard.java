@@ -8,6 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *     Tatiana Fesenko(CEA) - [313179] Refactor CreateModelWizard
+ *     Saadia Dhouib (CEA LIST) - Implementation of loading diagrams from template files  (.uml, .di , .notation)
  *******************************************************************************/
 package org.eclipse.papyrus.wizards;
 
@@ -283,7 +284,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 * @param diResourceSet the di resource set
 	 */
 	protected void initDomainModelFromTemplate(DiResourceSet diResourceSet) {
-		getCommandStack(diResourceSet).execute(new InitFromTemplateCommand(diResourceSet.getTransactionalEditingDomain(), diResourceSet.getModelResource(), selectDiagramKindPage.getTemplatePluginId(), selectDiagramKindPage.getTemplatePath()));
+		//getCommandStack(diResourceSet).execute(new InitFromTemplateCommand(diResourceSet.getTransactionalEditingDomain(), diResourceSet.getModelResource(), diResourceSet.getDiResource(), diResourceSet.getNotationResource(), selectDiagramKindPage.getTemplatePluginId(), selectDiagramKindPage.getTemplatePath(),selectDiagramKindPage.getNotationTemplatePath(),selectDiagramKindPage.getDiTemplatePath()));
+		getCommandStack(diResourceSet).execute(new InitFromTemplateCommand(diResourceSet.getTransactionalEditingDomain(), diResourceSet, selectDiagramKindPage.getTemplatePluginId(), selectDiagramKindPage.getTemplatePath(),selectDiagramKindPage.getNotationTemplatePath(),selectDiagramKindPage.getDiTemplatePath()));
 	}
 
 	/**

@@ -9,9 +9,11 @@
  *
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
- *
+ *	Saadia Dhouib (CEA LIST) - Implementation of loading diagrams from template files  (.uml, .di , .notation)
  *****************************************************************************/
 package org.eclipse.papyrus.wizards.template;
+
+import org.eclipse.papyrus.wizards.utils.WizardsHelper;
 
 /**
  * The Class ModelTemplateDescription.
@@ -21,9 +23,17 @@ public class ModelTemplateDescription {
 	/** The name. */
 	private String name;
 
-	// private String metamodelURI;
-	/** The path. */
-	private String path;
+
+
+	
+	/** The uml_path. */
+	private String uml_path;
+	
+	/** The di_path. */
+	private String di_path;
+	
+	/** The notation_path. */
+	private String notation_path;
 
 	/** The plugin id. */
 	private String pluginId;
@@ -36,13 +46,18 @@ public class ModelTemplateDescription {
 	 *
 	 * @param name the name
 	 * @param pluginId the plugin id
-	 * @param path the path
+	 * @param uml_path the uml_path
+	 * @param notation_path the notation_path
+	 * @param di_path the di_path
 	 */
-	public ModelTemplateDescription(String name, String pluginId, String path) {
+	public ModelTemplateDescription(String name, String pluginId,  String uml_path, String notation_path, String di_path) {
 		super();
 		this.name = name;
 		// this.e = metamodelURI;
-		this.path = path;
+		
+		this.setDi_path(di_path);
+		this.setNotation_path(notation_path);
+		this.setUml_path(uml_path);
 		this.pluginId = pluginId;
 	}
 
@@ -76,9 +91,7 @@ public class ModelTemplateDescription {
 	 *
 	 * @return the path
 	 */
-	public String getPath() {
-		return path;
-	}
+	
 
 	/**
 	 * Gets the file name.
@@ -86,8 +99,9 @@ public class ModelTemplateDescription {
 	 * @return the file name
 	 */
 	public String getFileName() {
-		String[] pathParts = path.split("/"); //$NON-NLS-1$
-		return pathParts[pathParts.length - 1];
+//		String[] pathParts = uml_path.split("/"); //$NON-NLS-1$
+//		return pathParts[pathParts.length - 1];
+		return WizardsHelper.getFileNameWithoutExtension(uml_path);
 	}
 
 	/**
@@ -106,6 +120,60 @@ public class ModelTemplateDescription {
 	 */
 	public String getLanguage() {
 		return language;
+	}
+
+	/**
+	 * Gets the uml_path.
+	 *
+	 * @return the uml_path
+	 */
+	public String getUml_path() {
+		return uml_path;
+	}
+
+	/**
+	 * Sets the uml_path.
+	 *
+	 * @param uml_path the new uml_path
+	 */
+	public void setUml_path(String uml_path) {
+		this.uml_path = uml_path;
+	}
+
+	/**
+	 * Gets the di_path.
+	 *
+	 * @return the di_path
+	 */
+	public String getDi_path() {
+		return di_path;
+	}
+
+	/**
+	 * Sets the di_path.
+	 *
+	 * @param di_path the new di_path
+	 */
+	public void setDi_path(String di_path) {
+		this.di_path = di_path;
+	}
+
+	/**
+	 * Gets the notation_path.
+	 *
+	 * @return the notation_path
+	 */
+	public String getNotation_path() {
+		return notation_path;
+	}
+
+	/**
+	 * Sets the notation_path.
+	 *
+	 * @param notation_path the new notation_path
+	 */
+	public void setNotation_path(String notation_path) {
+		this.notation_path = notation_path;
 	}
 
 }

@@ -8,6 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *     Tatiana Fesenko(CEA) - improved look&feel
+ *     Saadia Dhouib (CEA LIST) - Implementation of loading diagrams from template files  (.uml, .di , .notation)
  *******************************************************************************/
 package org.eclipse.papyrus.wizards.pages;
 
@@ -88,7 +89,7 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Instantiates a new select diagram kind page.
-	 *
+	 * 
 	 * @param categoryProvider the category provider
 	 */
 	public SelectDiagramKindPage(CategoryProvider categoryProvider) {
@@ -133,7 +134,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		diagramKindTableViewer.setInput(categories);
 
 		createModelTemplateComposite(plate);
-
+		
 		createRememberCurrentSelectionForm(plate);
 
 		fillInTables(categories);
@@ -194,12 +195,29 @@ public class SelectDiagramKindPage extends WizardPage {
 
 
 	/**
-	 * Gets the template path.
+	 * Gets the uml model template path.
 	 *
 	 * @return the template path
 	 */
 	public String getTemplatePath() {
 		return selectTemplateComposite.getTemplatePath();
+	}
+	
+	/**
+	 * Gets the notation model template path.
+	 *
+	 * @return the notation template path
+	 */
+	public String getNotationTemplatePath() {
+		return selectTemplateComposite.getNotationTemplatePath();
+	}
+	/**
+	 * Gets the di model template path.
+	 *
+	 * @return the di template path
+	 */
+	public String getDiTemplatePath() {
+		return selectTemplateComposite.getDiTemplatePath();
 	}
 
 	/**
@@ -537,12 +555,14 @@ public class SelectDiagramKindPage extends WizardPage {
 		}
 		for(Object next : availableTemplates) {
 			ModelTemplateDescription desc = (ModelTemplateDescription)next;
-			if(defaultTemplates.contains(desc.getPath())) {
+			
+			if(defaultTemplates.contains(desc.getUml_path())) {
 				selectTemplateComposite.selectElement(desc);
 				return;
 			}
 		}
 	}
+
 
 	/**
 	 * Gets the creation command registry.

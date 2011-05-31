@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
- *
+ *	Saadia Dhouib (CEA LIST) - Implementation of loading diagrams from template files  (.uml, .di , .notation)
  *****************************************************************************/
 package org.eclipse.papyrus.wizards.template;
 
@@ -62,6 +62,7 @@ public class SelectModelTemplateComposite extends Composite {
 		templateTableViewer = CheckboxTableViewer.newCheckList(composite, SWT.NO_BACKGROUND);
 		templateTableViewer.getTable().setBackground(composite.getBackground());
 		templateTableViewer.getTable().setLayoutData(data);
+		templateTableViewer.getTable().setEnabled(true);
 
 		templateTableViewer.setContentProvider(new ModelTemplatesContentProvider());
 		templateTableViewer.setLabelProvider(new ModelTemplatesLabelProvider());
@@ -71,18 +72,43 @@ public class SelectModelTemplateComposite extends Composite {
 	}
 
 	/**
-	 * Gets the template path.
+	 * Gets the uml model template path.
 	 * 
-	 * @return the template path
+	 * @return the uml model template path
 	 */
 	public String getTemplatePath() {
 		Object[] selected = templateTableViewer.getCheckedElements();
 		if (selected.length > 0) {
-			return ((ModelTemplateDescription)selected[0]).getPath();
+			return ((ModelTemplateDescription)selected[0]).getUml_path();
+		}
+		return null;
+	}
+	
+	/**
+	 * Gets the di file template path.
+	 * 
+	 * @return the di file template path
+	 */
+	public String getDiTemplatePath() {
+		Object[] selected = templateTableViewer.getCheckedElements();
+		if (selected.length > 0) {
+			return ((ModelTemplateDescription)selected[0]).getDi_path();
 		}
 		return null;
 	}
 
+	/**
+	 * Gets the notation template path.
+	 * 
+	 * @return the notation template path
+	 */
+	public String getNotationTemplatePath() {
+		Object[] selected = templateTableViewer.getCheckedElements();
+		if (selected.length > 0) {
+			return ((ModelTemplateDescription)selected[0]).getNotation_path();
+		}
+		return null;
+	}
 	/**
 	 * Gets the template plugin id.
 	 * 

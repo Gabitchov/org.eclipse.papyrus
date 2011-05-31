@@ -128,6 +128,8 @@ public class InitModelWizard extends CreateModelWizard {
 	 * @return true, if is supported domain model file
 	 */
 	public static boolean isSupportedDomainModelFile(IFile file) {
+//		if(file != null && UmlModel.UML_FILE_EXTENSION.equals(file.getFileExtension())){System.err.println("is SupportedDomainModelFile");}
+//		else {System.err.println("not SupportedDomainModelFile");}
 		return file != null && UmlModel.UML_FILE_EXTENSION.equals(file.getFileExtension());
 	}
 
@@ -140,6 +142,7 @@ public class InitModelWizard extends CreateModelWizard {
 	 */
 	public static boolean isSupportedDomainModelFile(IStructuredSelection sselection) {
 		IFile file = getSelectedFile(sselection);
+//		if(!isSupportedDomainModelFile(file)){System.err.println("not SupportedDomainModelFile");}
 		return isSupportedDomainModelFile(file);
 	}
 
