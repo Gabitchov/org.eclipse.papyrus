@@ -5,7 +5,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.FigureUtilities;
 import org.eclipse.draw2d.Graphics;
@@ -17,13 +19,16 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.SetPropertyCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
@@ -39,6 +44,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.emf.core.util.PackageUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
@@ -46,6 +52,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.diagram.common.commands.ShowHideCompartmentRequest;
 import org.eclipse.papyrus.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
@@ -366,17 +373,36 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 			CustomCompositeStateWithDefaultRegionCreateNodeCommand createRegion = new CustomCompositeStateWithDefaultRegionCreateNodeCommand((IAdaptable)createState.getCommandResult().getReturnValue(), ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint(), getEditingDomain(), DiagramUIMessages.CreateCommand_Label, createState.getAffectedFiles());
 
 			CustomCompositeStateSetBoundsCommand setBoundsCommand;
-			
+
+			cc.compose(createState);
+			cc.compose(createRegion);
+
 			//take care of the case when a simple state is dropped, then we should provide a reasonable size
 			if(droppedElement.getRegions().isEmpty()){
 				setBoundsCommand = new CustomCompositeStateSetBoundsCommand(getEditingDomain(), null, descriptor, new Rectangle(location.x, location.y, 40, 40), false);
+				cc.compose(setBoundsCommand);
 			}
 			else{
 				setBoundsCommand = new CustomCompositeStateSetBoundsCommand(getEditingDomain(), null, descriptor, new Rectangle(location.x, location.y, -1, -1), true);				
+				cc.compose(setBoundsCommand);
+				//force compartment to be shown
+				SetPropertyCommand showCompartment = new SetPropertyCommand(getEditingDomain(), (IAdaptable)createState.getCommandResult().getReturnValue(), "notation.View.visible", "Visibility", true){
+					protected CommandResult doExecuteWithResult(
+			            IProgressMonitor progressMonitor, IAdaptable info)
+			        throws ExecutionException {
+			        
+					View view = (View) getViewAdapter().getAdapter(View.class);
+					if ((view != null) && (view.getChildren().size() >= 2) && (view.getChildren().get(1) != null)){
+						ENamedElement namedElement =  PackageUtil.getElement((String)getPropertyId());
+						if (namedElement instanceof EStructuralFeature)
+							ViewUtil.setStructuralFeatureValue((View)view.getChildren().get(1),(EStructuralFeature)namedElement, getNewValue());
+					}
+					return CommandResult.newOKCommandResult();
+				}
+
+				};
+				cc.compose(showCompartment);
 			}
-			cc.compose(createState);
-			cc.compose(createRegion);
-			cc.compose(setBoundsCommand);
 			return new ICommandProxy(cc.reduce());
 		}
 
