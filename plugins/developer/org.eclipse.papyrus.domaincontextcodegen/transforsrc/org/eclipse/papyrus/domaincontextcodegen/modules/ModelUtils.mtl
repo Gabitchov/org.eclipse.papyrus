@@ -6,8 +6,8 @@
 [query public getCommandID(type : ElementType) : String = type.owner.domain.handlerProjectName + '.' + type.name + 'CreateCommand'/]
 [query public getCommandHandler(type : ElementType) : String = type.owner.domain.handlerProjectName + '.handler.' + type.name + 'Handler'/]
 
-[query public formatUpperWithSep(str : String) : String = invoke('org.eclipse.papyrus.domaincontextcodegen.utils.StringUtils', 'formatUpperWithSep(java.lang.String)', Sequence{str})/]
+[query public formatUpperWithSep(str : String) : String = invoke('org.eclipse.papyrus.domaincontextcodegen.modules.utils.StringUtils', 'formatUpperWithSep(java.lang.String)', Sequence{str})/]
 
-[query public isAbstract(type : ElementType) : Boolean = invoke('org.eclipse.papyrus.domaincontextcodegen.utils.ModelUtils', 'isAbstract(org.eclipse.papyrus.domaincontextcodegen.ElementType)', Sequence{type})/]
+[query public isAbstract(type : ElementType) : Boolean = invoke('org.eclipse.papyrus.domaincontextcodegen.modules.utils.ModelUtils', 'isAbstract(org.eclipse.papyrus.domaincontextcodegen.ElementType)', Sequence{type})/]
 
  

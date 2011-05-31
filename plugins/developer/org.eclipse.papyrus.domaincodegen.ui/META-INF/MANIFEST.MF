@@ -7,14 +7,14 @@ Bundle-Activator: org.eclipse.papyrus.domaincodegen.ui.Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.core.resources, 
- org.eclipse.papyrus.domaincontextcodegen,
+ org.eclipse.core.resources,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.ocl,
  org.eclipse.ocl.ecore,
  org.eclipse.acceleo.model,
- org.eclipse.acceleo.engine
+ org.eclipse.acceleo.engine,
+ org.eclipse.papyrus.domaincontextcodegen;bundle-version="0.8.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true

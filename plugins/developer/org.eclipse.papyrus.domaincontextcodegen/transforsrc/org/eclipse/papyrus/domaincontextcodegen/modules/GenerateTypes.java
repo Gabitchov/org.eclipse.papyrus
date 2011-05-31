@@ -8,7 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.eclipse.papyrus.domaincontextcodegen;
+package org.eclipse.papyrus.domaincontextcodegen.modules;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,38 +25,40 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
- * Entry point of the 'GenerateXMLElementHandlers' generation module.
- * 
+ * Entry point of the 'GenerateTypes' generation module.
+ *
  * @generated
  */
-public class GenerateXMLElementHandler extends AbstractAcceleoGenerator {
-
+public class GenerateTypes extends AbstractAcceleoGenerator {
 	/**
 	 * The name of the module.
-	 * 
+	 *
 	 * @generated
 	 */
-	public static final String MODULE_FILE_NAME = "generateXMLElementHandler";
-
+	public static final String MODULE_FILE_NAME = "generateTypes";
+	
 	/**
 	 * The name of the templates that are to be generated.
-	 * 
+	 *
 	 * @generated
 	 */
-	public static final String[] TEMPLATE_NAMES = { "generateXMLElementHandler", };
+	public static final String[] TEMPLATE_NAMES = { "generate", };
 
 	/**
 	 * Allows the public constructor to be used. Note that a generator created
-	 * this way cannot be used to launch generations before one of {@link #initialize(EObject, File, List)} or {@link #initialize(URI, File, List)} is
-	 * called.
+	 * this way cannot be used to launch generations before one of
+	 * {@link #initialize(EObject, File, List)} or
+	 * {@link #initialize(URI, File, List)} is called.
 	 * <p>
-	 * The main reason for this constructor is to allow clients of this generation to call it from another Java file, as it allows for the retrieval
-	 * of {@link #getProperties()} and {@link #getGenerationListeners()}.
+	 * The main reason for this constructor is to allow clients of this
+	 * generation to call it from another Java file, as it allows for the
+	 * retrieval of {@link #getProperties()} and
+	 * {@link #getGenerationListeners()}.
 	 * </p>
-	 * 
+	 *
 	 * @generated
 	 */
-	public GenerateXMLElementHandler() {
+	public GenerateTypes() {
     // Empty implementation
   }
 
@@ -64,19 +66,20 @@ public class GenerateXMLElementHandler extends AbstractAcceleoGenerator {
 	 * This allows clients to instantiates a generator with all required information.
 	 * 
 	 * @param modelURI
-	 *        URI where the model on which this generator will be used is located.
+	 *            URI where the model on which this generator will be used is located.
 	 * @param targetFolder
-	 *        This will be used as the output folder for this generation : it will be the base path
-	 *        against which all file block URLs will be resolved.
+	 *            This will be used as the output folder for this generation : it will be the base path
+	 *            against which all file block URLs will be resolved.
 	 * @param arguments
-	 *        If the template which will be called requires more than one argument taken from the model,
-	 *        pass them here.
+	 *            If the template which will be called requires more than one argument taken from the model,
+	 *            pass them here.
 	 * @throws IOException
-	 *         This can be thrown in three scenarios : the module cannot be found, it cannot be loaded, or
-	 *         the model cannot be loaded.
+	 *             This can be thrown in three scenarios : the module cannot be found, it cannot be loaded, or
+	 *             the model cannot be loaded.
 	 * @generated
 	 */
-	public GenerateXMLElementHandler(URI modelURI, File targetFolder, List<? extends Object> arguments) throws IOException {
+	public GenerateTypes(URI modelURI, File targetFolder,
+			List<? extends Object> arguments) throws IOException {
     initialize(modelURI, targetFolder, arguments);
   }
 
@@ -84,27 +87,28 @@ public class GenerateXMLElementHandler extends AbstractAcceleoGenerator {
 	 * This allows clients to instantiates a generator with all required information.
 	 * 
 	 * @param model
-	 *        We'll iterate over the content of this element to find Objects matching the first parameter
-	 *        of the template we need to call.
+	 *            We'll iterate over the content of this element to find Objects matching the first parameter
+	 *            of the template we need to call.
 	 * @param targetFolder
-	 *        This will be used as the output folder for this generation : it will be the base path
-	 *        against which all file block URLs will be resolved.
+	 *            This will be used as the output folder for this generation : it will be the base path
+	 *            against which all file block URLs will be resolved.
 	 * @param arguments
-	 *        If the template which will be called requires more than one argument taken from the model,
-	 *        pass them here.
+	 *            If the template which will be called requires more than one argument taken from the model,
+	 *            pass them here.
 	 * @throws IOException
-	 *         This can be thrown in two scenarios : the module cannot be found, or it cannot be loaded.
+	 *             This can be thrown in two scenarios : the module cannot be found, or it cannot be loaded.
 	 * @generated
 	 */
-	public GenerateXMLElementHandler(EObject model, File targetFolder, List<? extends Object> arguments) throws IOException {
+	public GenerateTypes(EObject model, File targetFolder,
+			List<? extends Object> arguments) throws IOException {
     initialize(model, targetFolder, arguments);
   }
-
+	
 	/**
 	 * This can be used to launch the generation from a standalone application.
 	 * 
 	 * @param args
-	 *        Arguments of the generation.
+	 *            Arguments of the generation.
 	 * @generated
 	 */
 	public static void main(String[] args) {
@@ -118,7 +122,7 @@ public class GenerateXMLElementHandler extends AbstractAcceleoGenerator {
         for (int i = 2; i < args.length; i++) {
           arguments.add(args[i]);
         }
-        GenerateXMLElementHandler generator = new GenerateXMLElementHandler(modelURI, folder, arguments);
+        GenerateTypes generator = new GenerateTypes(modelURI, folder, arguments);
         generator.doGenerate(new BasicMonitor());
       }
     } catch (IOException e) {
@@ -130,9 +134,9 @@ public class GenerateXMLElementHandler extends AbstractAcceleoGenerator {
 	 * Launches the generation described by this instance.
 	 * 
 	 * @param monitor
-	 *        This will be used to display progress information to the user.
+	 *            This will be used to display progress information to the user.
 	 * @throws IOException
-	 *         This will be thrown if any of the output files cannot be saved to disk.
+	 *             This will be thrown if any of the output files cannot be saved to disk.
 	 * @generated
 	 */
 	@Override
@@ -143,7 +147,7 @@ public class GenerateXMLElementHandler extends AbstractAcceleoGenerator {
      */
     super.doGenerate(monitor);
   }
-
+	
 	/**
 	 * If this generator needs to listen to text generation events, listeners can be returned from here.
 	 * 
@@ -156,19 +160,20 @@ public class GenerateXMLElementHandler extends AbstractAcceleoGenerator {
     // TODO if you need to listen to generation event, add listeners to the list here
     return listeners;
   }
-
+	
 	/**
 	 * If you need to change the way files are generated, this is your entry point.
 	 * <p>
-	 * The default is {@link org.eclipse.acceleo.engine.generation.strategy.DefaultStrategy}; it generates files on the fly. If you only need to
-	 * preview the results, return a new {@link org.eclipse.acceleo.engine.generation.strategy.PreviewStrategy}. Both of these aren't aware of the
-	 * running Eclipse and can be used standalone.
+	 * The default is {@link org.eclipse.acceleo.engine.generation.strategy.DefaultStrategy}; it generates
+	 * files on the fly. If you only need to preview the results, return a new
+	 * {@link org.eclipse.acceleo.engine.generation.strategy.PreviewStrategy}. Both of these aren't aware of
+	 * the running Eclipse and can be used standalone.
 	 * </p>
 	 * <p>
-	 * If you need the file generation to be aware of the workspace (A typical example is when you wanna override files that are under clear case or
-	 * any other VCS that could forbid the overriding), then return a new
-	 * {@link org.eclipse.acceleo.engine.generation.strategy.WorkspaceAwareStrategy}. <b>Note</b>, however, that this <b>cannot</b> be used
-	 * standalone.
+	 * If you need the file generation to be aware of the workspace (A typical example is when you wanna
+	 * override files that are under clear case or any other VCS that could forbid the overriding), then
+	 * return a new {@link org.eclipse.acceleo.engine.generation.strategy.WorkspaceAwareStrategy}.
+	 * <b>Note</b>, however, that this <b>cannot</b> be used standalone.
 	 * </p>
 	 * <p>
 	 * All three of these default strategies support merging through JMerge.
@@ -180,7 +185,7 @@ public class GenerateXMLElementHandler extends AbstractAcceleoGenerator {
 	public IAcceleoGenerationStrategy getGenerationStrategy() {
     return super.getGenerationStrategy();
   }
-
+	
 	/**
 	 * This will be called in order to find and load the module that will be launched through this launcher.
 	 * We expect this name not to contain file extension, and the module to be located beside the launcher.
@@ -192,15 +197,16 @@ public class GenerateXMLElementHandler extends AbstractAcceleoGenerator {
 	public String getModuleName() {
     return MODULE_FILE_NAME;
   }
-
+	
 	/**
 	 * If the module(s) called by this launcher require properties files, return their qualified path from
 	 * here.Take note that the first added properties files will take precedence over subsequent ones if they
 	 * contain conflicting keys.
 	 * <p>
-	 * Properties need to be in source folders, the path that we expect to get as a result of this call are of the form &lt;package>.&lt;properties
-	 * file name without extension>. For example, if you have a file named "messages.properties" in package "org.eclipse.acceleo.sample", the path
-	 * that needs be returned by a call to {@link #getProperties()} is "org.eclipse.acceleo.sample.messages".
+	 * Properties need to be in source folders, the path that we expect to get as a result of this call are of
+	 * the form &lt;package>.&lt;properties file name without extension>. For example, if you have a file
+	 * named "messages.properties" in package "org.eclipse.acceleo.sample", the path that needs be returned by
+	 * a call to {@link #getProperties()} is "org.eclipse.acceleo.sample.messages".
 	 * </p>
 	 * 
 	 * @return The list of properties file we need to add to the generation context.
@@ -221,7 +227,7 @@ public class GenerateXMLElementHandler extends AbstractAcceleoGenerator {
      */
     return propertiesFiles;
   }
-
+	
 	/**
 	 * This will be used to get the list of templates that are to be launched by this launcher.
 	 * 
@@ -232,17 +238,18 @@ public class GenerateXMLElementHandler extends AbstractAcceleoGenerator {
 	public String[] getTemplateNames() {
     return TEMPLATE_NAMES;
   }
-
+	
 	/**
 	 * This can be used to update the resource set's package registry with all needed EPackages.
 	 * 
 	 * @param resourceSet
-	 *        The resource set which registry has to be updated.
+	 *            The resource set which registry has to be updated.
 	 * @generated
 	 */
 	@Override
 	public void registerPackages(ResourceSet resourceSet) {
     super.registerPackages(resourceSet);
+    resourceSet.getPackageRegistry().put(org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage.eINSTANCE.getNsURI(), org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage.eINSTANCE);
     resourceSet.getPackageRegistry().put(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getNsURI(), org.eclipse.emf.ecore.EcorePackage.eINSTANCE);
     // TODO If you need additional package registrations, do them here. The following line is an example for UML.
     // resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
@@ -252,7 +259,7 @@ public class GenerateXMLElementHandler extends AbstractAcceleoGenerator {
 	 * This can be used to update the resource set's resource factory registry with all needed factories.
 	 * 
 	 * @param resourceSet
-	 *        The resource set which registry has to be updated.
+	 *            The resource set which registry has to be updated.
 	 * @generated
 	 */
 	@Override
@@ -261,5 +268,5 @@ public class GenerateXMLElementHandler extends AbstractAcceleoGenerator {
     // TODO If you need additional resource factories registrations, do them here. The following line is an example for UML.
     // resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
   }
-
+	
 }

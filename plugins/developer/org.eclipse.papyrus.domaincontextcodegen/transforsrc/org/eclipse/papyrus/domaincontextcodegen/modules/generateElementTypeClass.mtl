@@ -1,11 +1,10 @@
 [comment encoding = UTF-8 /]
 [module generateElementTypeClass('http://www.eclipse.org/papyrus/2010/domaincontextcodegen','http://www.eclipse.org/emf/2002/Ecore')/]
 
-[import org::eclipse::papyrus::domaincontextcodegen::ModelUtils /]
+[import org::eclipse::papyrus::domaincontextcodegen::modules::ModelUtils /]
 
 [template public generateElementTypeClass(domain : DomainContext)]
 
-	[comment @main /]
 	[comment this template is used to generate an enumeration of all elementtypes/]
 	
 [file (domain.typeProjectName+'/'+domain.generatedSourceFolder+'/'+domain.typeProjectName.substituteAll('.', '/').concat('/element/'+domain.elementTypeNamePrefix.concat('ElementTypes.java')), false, 'UTF-8')]

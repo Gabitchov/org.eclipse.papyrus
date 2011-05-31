@@ -1,10 +1,9 @@
 [comment encoding = UTF-8 /]
 [module generateXMLElementHandler('http://www.eclipse.org/papyrus/2010/domaincontextcodegen','http://www.eclipse.org/emf/2002/Ecore')/]
 
-[import org::eclipse::papyrus::domaincontextcodegen::ModelUtils /]
+[import org::eclipse::papyrus::domaincontextcodegen::modules::ModelUtils /]
 
 [template public generateXMLElementHandler(domain : DomainContext)]
-	[comment @main /]
 	[comment this template is used to generate the plugin.xml /]
 	
 [file (domain.handlerProjectName+'/'+'xmlElementHandlers.xml', false, 'UTF-8')]
@@ -37,7 +36,7 @@
 		<!-- Creation menu action for [type.name/] -->
 		<command commandId="[type.getCommandID()/]"
 			label="Create a new [type.name/]" tooltip="Create a new [type.name/]" style="push"		
-			icon="[type.icon/]" >
+			icon="[type.getIcon()/]" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
@@ -46,7 +45,7 @@
 		<!-- Creation menu action for [type.name/] -->
 		<command commandId="[type.getCommandID()/]"
 			label="Create a new [type.name/]" tooltip="Create a new [type.name/]" style="push"		
-			icon="[type.icon/]" >
+			icon="[type.getIcon()/]" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
@@ -58,3 +57,16 @@
 [/file]
 
 [/template]
+
+[query public getIcon(type : ElementType) : String = 
+	if type.oclIsTypeOf(MetaClassType) then
+		type.icon
+	else if type.oclIsTypeOf(SpecializationType) then 
+		if not type.icon.oclIsUndefined() then
+			type.icon
+		else 
+			type.oclAsType(SpecializationType).ref.getIcon()
+		endif
+	else
+		'undefined_icon'
+	endif endif/]

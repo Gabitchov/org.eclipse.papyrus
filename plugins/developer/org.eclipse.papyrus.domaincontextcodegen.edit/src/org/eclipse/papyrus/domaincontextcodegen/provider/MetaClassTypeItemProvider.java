@@ -78,6 +78,9 @@ public class MetaClassTypeItemProvider extends ElementTypeItemProvider implement
 	 */
 	@Override
 	public Object getImage(Object object) {
+		if (((MetaClassType)object).getHelper() != null) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/MetaClassType_Modified"));
+		}
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/MetaClassType"));
 	}
 
@@ -91,7 +94,11 @@ public class MetaClassTypeItemProvider extends ElementTypeItemProvider implement
 	@Override
 	public String getText(Object object) {
 		String label = ((MetaClassType)object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_MetaClassType_type") : getString("_UI_MetaClassType_type") + " " + label;
+		String prefix = getString("_UI_MetaClassType_type");
+		if (((MetaClassType)object).getHelper() != null) {
+			prefix = "* "+prefix;
+		}
+		return label == null || label.length() == 0 ? prefix : prefix + " " + label;
 	}
 
 	/**

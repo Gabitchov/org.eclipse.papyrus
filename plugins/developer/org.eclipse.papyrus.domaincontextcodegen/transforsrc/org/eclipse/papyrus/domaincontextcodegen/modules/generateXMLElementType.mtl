@@ -1,11 +1,10 @@
 [comment encoding = UTF-8 /]
 [module generateXMLElementType('http://www.eclipse.org/papyrus/2010/domaincontextcodegen','http://www.eclipse.org/emf/2002/Ecore')/]
 
-[import org::eclipse::papyrus::domaincontextcodegen::ModelUtils
+[import org::eclipse::papyrus::domaincontextcodegen::modules::ModelUtils
  /]
 
 [template public generateXMLElementType(domain : DomainContext)]
-	[comment @main /]
 	[comment this template is used to generate the plugin.xml /]
 	
 [file (domain.typeProjectName+'/'+'xmlElementTypes.xml', false, 'UTF-8')]
@@ -24,8 +23,10 @@
 [for (type : MetaClassType | domain.elementTypes.types->select(oclIsTypeOf(MetaClassType)))]
 	<!-- IMetamodelType for [type.name/] -->
 	<metamodelType id="[type.getElementTypeID()/]" name="[type.getSemanticHint()/]"
-		eclass="[type.metaClass.name/]" 
+		eclass="[type.metaClass.name/]"
+[if (not type.helper.oclIsUndefined())]
 		edithelper="[type.helper/]"
+[/if]
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="[type.getSemanticHint()/]"/>
 	</metamodelType>
@@ -35,6 +36,9 @@
 	<!-- ISpecializationType [type.name/] of [type.ref.getSemanticHint() /] -->
 	<specializationType id="[type.getElementTypeID()/]" name="[type.getSemanticHint()/]"
 		edithelperadvice="[type.helper/]"
+[if (not type.icon.oclIsUndefined())]
+		icon="[type.icon/]"
+[/if]
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="[type.getSemanticHint()/]"/>
 		<specializes id="[type.ref.getElementTypeID()/]" />
@@ -89,11 +93,9 @@
 [/template]
 
 [template private GenBinding(binding : ElementTypeBinding)]
-[if (not binding.ref.oclIsUndefined())]<elementType ref="[binding.ref.getElementTypeID()/]" />[/if]
-[if (not binding.pattern.oclIsUndefined())]<elementType pattern="[binding.pattern/]" />[/if]
+[if (not binding.ref.oclIsUndefined())]<elementType ref="[binding.ref.getElementTypeID()/]" />[/if][if (not binding.pattern.oclIsUndefined())]<elementType pattern="[binding.pattern/]" />[/if]
 [/template]
 
 [template private GenBinding(binding : AdviceBinding)]
-[if (not binding.ref.oclIsUndefined())]<advice ref="[binding.ref.adviceID/]" />[/if]
-[if (not binding.pattern.oclIsUndefined())]<advice pattern="[binding.pattern/]" />[/if]
+[if (not binding.ref.oclIsUndefined())]<advice ref="[binding.ref.adviceID/]" />[/if][if (not binding.pattern.oclIsUndefined())]<advice pattern="[binding.pattern/]" />[/if]
 [/template]

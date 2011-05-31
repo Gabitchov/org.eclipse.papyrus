@@ -254,6 +254,7 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 		// Mark meta-data to indicate it can't be changed
 		theDomaincontextcodegenPackage.freeze();
 
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(DomaincontextcodegenPackage.eNS_URI, theDomaincontextcodegenPackage);
 		return theDomaincontextcodegenPackage;

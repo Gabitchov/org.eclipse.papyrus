@@ -9,6 +9,8 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.domaincontextcodegen,
  org.eclipse.papyrus.domaincontextcodegen.impl,
+ org.eclipse.papyrus.domaincontextcodegen.modules,
+ org.eclipse.papyrus.domaincontextcodegen.modules.utils,
  org.eclipse.papyrus.domaincontextcodegen.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,

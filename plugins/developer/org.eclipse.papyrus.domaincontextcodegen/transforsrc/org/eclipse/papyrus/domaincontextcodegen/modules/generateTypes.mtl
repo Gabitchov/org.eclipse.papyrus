@@ -1,11 +1,11 @@
 [comment encoding = UTF-8 /]
 [module generateTypes('http://www.eclipse.org/papyrus/2010/domaincontextcodegen','http://www.eclipse.org/emf/2002/Ecore')/]
 
-[import org::eclipse::papyrus::domaincontextcodegen::generateElementTypeClass/]
-[import org::eclipse::papyrus::domaincontextcodegen::generateContextTypeClass /]
-[import org::eclipse::papyrus::domaincontextcodegen::generateElementHandler/]
-[import org::eclipse::papyrus::domaincontextcodegen::generateHideDomainContext/]
-[import org::eclipse::papyrus::domaincontextcodegen::generateXMLElementType/]
+[import org::eclipse::papyrus::domaincontextcodegen::modules::generateElementTypeClass/]
+[import org::eclipse::papyrus::domaincontextcodegen::modules::generateContextTypeClass /]
+[import org::eclipse::papyrus::domaincontextcodegen::modules::generateElementHandler/]
+[import org::eclipse::papyrus::domaincontextcodegen::modules::generateHideDomainContext/]
+[import org::eclipse::papyrus::domaincontextcodegen::modules::generateXMLElementType/]
 
 
 [template public generate(domain : DomainContext)]

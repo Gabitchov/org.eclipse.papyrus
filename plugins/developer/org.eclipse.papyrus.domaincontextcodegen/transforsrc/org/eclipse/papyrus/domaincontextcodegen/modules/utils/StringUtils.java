@@ -7,7 +7,7 @@
  * Contributors:
  *    CEA LIST - initial API and implementation
  *******************************************************************************/
-package org.eclipse.papyrus.domaincontextcodegen.utils;
+package org.eclipse.papyrus.domaincontextcodegen.modules.utils;
 
 import org.eclipse.emf.codegen.util.CodeGenUtil;
 

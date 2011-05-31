@@ -53,7 +53,7 @@ public class GenerateElementTypeModelAction implements IObjectActionDelegate {
 					EClassifier eClassifier = (EClassifier)iterClass.next();
 					if(eClassifier instanceof EClass) {
 						MetaClassType elemenType = DomaincontextcodegenFactory.eINSTANCE.createMetaClassType();
-						elemenType.setHelper(selectedContext.getDefaultHelperPath());
+						//elemenType.setHelper(selectedContext.getDefaultHelperPath());
 						elemenType.setMetaClass((EClass)eClassifier);
 						elemenType.setIcon("platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/" + eClassifier.getName() + ".gif");
 
