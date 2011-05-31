@@ -26,15 +26,16 @@ public class WizardsHelper {
 	 * @return the file name without extension
 	 */
 	public static String getFileNameWithoutExtension(String path) {
-		String[] pathParts = path.split("/"); //$NON-NLS-1$
-		String fileName= pathParts[pathParts.length - 1];
-		 int index = fileName.lastIndexOf('.');
-		 if (index > 0 && index <= fileName.length() - 2) {
-             System.out.println("Filename without Extension: "
-                             + fileName.substring(0, index));
-             return fileName.substring(0, index);
-     }
-
+		if( path!= null){
+			String[] pathParts = path.split("/"); //$NON-NLS-1$
+			String fileName= pathParts[pathParts.length - 1];
+			int index = fileName.lastIndexOf('.');
+			if (index > 0 && index <= fileName.length() - 2) {
+				System.out.println("Filename without Extension: "
+						+ fileName.substring(0, index));
+				return fileName.substring(0, index);
+			}
+		}
 		return null;
 	}
 }
