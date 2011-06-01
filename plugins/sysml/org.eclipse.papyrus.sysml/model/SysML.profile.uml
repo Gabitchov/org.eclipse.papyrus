@@ -96,12 +96,22 @@
         <ownedAttribute xmi:id="_9cxv0LU9Edu2ieF4ON8UjA" name="base_Dependency" isUnique="false" association="_9csQQLU9Edu2ieF4ON8UjA">
           <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Dependency"/>
         </ownedAttribute>
+        <icon xmi:id="_K8KhEIxREeCeve9iisDgtA" content="" location="icons/modelelements/Conform.gif" format="">
+          <eAnnotations xmi:id="_K8KhEYxREeCeve9iisDgtA" source="image_papyrus">
+            <details xmi:id="_K8KhEoxREeCeve9iisDgtA" key="image_kind_key" value="icon"/>
+          </eAnnotations>
+        </icon>
       </packagedElement>
       <packagedElement xmi:type="uml:Stereotype" xmi:id="_mPGvULU9Edu2ieF4ON8UjA" name="View">
         <ownedAttribute xmi:id="_3Qho8LU9Edu2ieF4ON8UjA" name="viewPoint" type="_mhSEcLU9Edu2ieF4ON8UjA" isUnique="false" isReadOnly="true" isDerived="true"/>
         <ownedAttribute xmi:id="_9HrpkLU9Edu2ieF4ON8UjA" name="base_Package" isUnique="false" association="_9Hn_MLU9Edu2ieF4ON8UjA">
           <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
         </ownedAttribute>
+        <icon xmi:id="_HbhE0IxREeCeve9iisDgtA" content="" location="icons/modelelements/View.gif" format="">
+          <eAnnotations xmi:id="_HbhE0YxREeCeve9iisDgtA" source="image_papyrus">
+            <details xmi:id="_HbhE0oxREeCeve9iisDgtA" key="image_kind_key" value="icon"/>
+          </eAnnotations>
+        </icon>
       </packagedElement>
       <packagedElement xmi:type="uml:Stereotype" xmi:id="_mhSEcLU9Edu2ieF4ON8UjA" name="ViewPoint">
         <ownedAttribute xmi:id="_89GKMLU9Edu2ieF4ON8UjA" name="base_Class" isUnique="false" association="_889AQLU9Edu2ieF4ON8UjA">
@@ -132,6 +142,11 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NyTz0LU-Edu2ieF4ON8UjA" value="*"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NyO7ULU-Edu2ieF4ON8UjA"/>
         </ownedAttribute>
+        <icon xmi:id="__ZyqEIxQEeCeve9iisDgtA" content="" location="icons/modelelements/Viewpoint.gif" format="">
+          <eAnnotations xmi:id="__ZyqEYxQEeCeve9iisDgtA" source="image_papyrus">
+            <details xmi:id="__ZyqEoxQEeCeve9iisDgtA" key="image_kind_key" value="icon"/>
+          </eAnnotations>
+        </icon>
       </packagedElement>
       <packagedElement xmi:type="uml:Stereotype" xmi:id="_mwAc8LU9Edu2ieF4ON8UjA" name="Rationale">
         <ownedAttribute xmi:id="_8w124LU9Edu2ieF4ON8UjA" name="base_Comment" isUnique="false" association="_8wOy4LU9Edu2ieF4ON8UjA">
