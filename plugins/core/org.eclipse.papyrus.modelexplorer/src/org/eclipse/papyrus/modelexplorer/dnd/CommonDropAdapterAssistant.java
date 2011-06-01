@@ -16,6 +16,7 @@ package org.eclipse.papyrus.modelexplorer.dnd;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,17 +30,14 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.command.RemoveCommand;
-import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -139,6 +137,11 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		ArrayList<Command> commandList= new ArrayList<Command>();
 		ArrayList<EStructuralFeature> possibleEFeatures= new ArrayList<EStructuralFeature>();
 		EList<EStructuralFeature> featureList=targetOwner.eClass().getEAllStructuralFeatures();
+
+		// Abort when trying to change order moving the element in one of its children
+		if (EcoreUtil.isAncestor(newElement, targetOwner)) {
+			return Collections.emptyList();
+		}
 
 		//find the feature between childreen and owner
 		Iterator<EStructuralFeature> iterator= featureList.iterator();

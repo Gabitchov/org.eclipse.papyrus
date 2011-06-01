@@ -73,7 +73,7 @@ public class DeleteViewDuringMoveHelperAdvice extends AbstractEditHelperAdvice {
 		while(viewIt.hasNext()) {
 			View view = (View)viewIt.next();
 
-			String containerType = ViewUtil.getViewContainer(view).getType();
+			String containerType = ViewUtil.getViewContainer(view) != null ? ViewUtil.getViewContainer(view).getType() : null;
 
 			if(!ElementTypes.DIAGRAM_ID.equals(containerType)) {
 				viewsToDestroy.add(view);
