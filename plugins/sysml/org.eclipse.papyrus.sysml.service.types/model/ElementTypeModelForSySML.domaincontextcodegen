@@ -3,13 +3,22 @@
   <metamodel href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#/"/>
   <specializationOf href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#/"/>
   <elementTypes>
-    <types xsi:type="domaincontextcodegen:SpecializationType" name="Allocate" helper="org.eclipse.papyrus.sysml.service.types.helper.AllocateEditHelperAdvice" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.AllocateMatcher">
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="Allocate" helper="org.eclipse.papyrus.sysml.service.types.helper.AllocateEditHelperAdvice" matcher="org.eclipse.papyrus.sysml.service.types.matcher.AllocateMatcher">
       <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.0"/>
     </types>
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="Association" helper="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationEditHelperAdvice" matcher="org.eclipse.papyrus.sysml.service.types.matcher.AssociationMatcher">
+      <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.18"/>
+    </types>
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="AssociationComposite" helper="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationCompositeEditHelperAdvice" ref="//@elementTypes/@types.1" matcher="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher"/>
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="AssociationCompositeDirected" helper="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationCompositeDirectedEditHelperAdvice" ref="//@elementTypes/@types.1" matcher="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher"/>
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="AssociationNone" helper="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationNoneEditHelperAdvice" ref="//@elementTypes/@types.1" matcher="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher"/>
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="AssociationNoneDirected" helper="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationNoneDirectedEditHelperAdvice" ref="//@elementTypes/@types.1" matcher="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher"/>
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="AssociationShared" helper="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationSharedEditHelperAdvice" ref="//@elementTypes/@types.1" matcher="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher"/>
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="AssociationSharedDirected" helper="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationSharedDirectedEditHelperAdvice" ref="//@elementTypes/@types.1" matcher="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher"/>
     <types xsi:type="domaincontextcodegen:SpecializationType" name="Block" helper="org.eclipse.papyrus.sysml.service.types.helper.BlockEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.BlockMatcher">
       <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.31"/>
     </types>
-    <types xsi:type="domaincontextcodegen:SpecializationType" name="Conform" helper="org.eclipse.papyrus.sysml.service.types.helper.ConformEditHelperAdvice" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.ConformMatcher">
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="Conform" helper="org.eclipse.papyrus.sysml.service.types.helper.ConformEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Conform.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.ConformMatcher">
       <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.63"/>
     </types>
     <types xsi:type="domaincontextcodegen:SpecializationType" name="ConstraintBlock" helper="org.eclipse.papyrus.sysml.service.types.helper.ConstraintBlockEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintBlock.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.ConstraintBlockMatcher">
@@ -27,13 +36,13 @@
     <types xsi:type="domaincontextcodegen:SpecializationType" name="Dimension" helper="org.eclipse.papyrus.sysml.service.types.helper.DimensionEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Dimension.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.DimensionMatcher">
       <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.112"/>
     </types>
-    <types xsi:type="domaincontextcodegen:SpecializationType" name="FlowPort" helper="org.eclipse.papyrus.sysml.service.types.helper.FlowPortEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT_A.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.FlowPortMatcher">
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="FlowPort" helper="org.eclipse.papyrus.sysml.service.types.helper.FlowPortEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.FlowPortMatcher">
       <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.168"/>
     </types>
-    <types xsi:type="domaincontextcodegen:SpecializationType" name="FlowPort_InOut" helper="org.eclipse.papyrus.sysml.service.types.helper.FlowPortInOutEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT_A.gif" ref="//@elementTypes/@types.8" matcher="org.eclipse.papyrus.sysml.service.types.matcher.FlowPortInOutMatcher"/>
-    <types xsi:type="domaincontextcodegen:SpecializationType" name="FlowPort_In" helper="org.eclipse.papyrus.sysml.service.types.helper.FlowPortInEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN_A.gif" ref="//@elementTypes/@types.8" matcher="org.eclipse.papyrus.sysml.service.types.matcher.FlowPortInMatcher"/>
-    <types xsi:type="domaincontextcodegen:SpecializationType" name="FlowPort_Out" helper="org.eclipse.papyrus.sysml.service.types.helper.FlowPortOutEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_OUT_A.gif" ref="//@elementTypes/@types.8" matcher="org.eclipse.papyrus.sysml.service.types.matcher.FlowPortOutMatcher"/>
-    <types xsi:type="domaincontextcodegen:SpecializationType" name="FlowProperty" helper="org.eclipse.papyrus.sysml.service.types.helper.FlowPropertyEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowProperty_INOUT.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.FlowPropertyMatcher">
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="FlowPort_InOut" helper="org.eclipse.papyrus.sysml.service.types.helper.FlowPortInOutEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT_A.gif" ref="//@elementTypes/@types.15" matcher="org.eclipse.papyrus.sysml.service.types.matcher.FlowPortInOutMatcher"/>
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="FlowPort_In" helper="org.eclipse.papyrus.sysml.service.types.helper.FlowPortInEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN_A.gif" ref="//@elementTypes/@types.15" matcher="org.eclipse.papyrus.sysml.service.types.matcher.FlowPortInMatcher"/>
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="FlowPort_Out" helper="org.eclipse.papyrus.sysml.service.types.helper.FlowPortOutEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_OUT_A.gif" ref="//@elementTypes/@types.15" matcher="org.eclipse.papyrus.sysml.service.types.matcher.FlowPortOutMatcher"/>
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="FlowProperty" helper="org.eclipse.papyrus.sysml.service.types.helper.FlowPropertyEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowProperty.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.FlowPropertyMatcher">
       <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.172"/>
     </types>
     <types xsi:type="domaincontextcodegen:SpecializationType" name="FlowSpecification" helper="org.eclipse.papyrus.sysml.service.types.helper.FlowSpecificationEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowSpecification.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.FlowSpecificationMatcher">
@@ -42,17 +51,29 @@
     <types xsi:type="domaincontextcodegen:SpecializationType" name="ItemFlow" helper="org.eclipse.papyrus.sysml.service.types.helper.ItemFlowEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/ItemFlow.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.ItemFlowMatcher">
       <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.108"/>
     </types>
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="PartProperty" helper="org.eclipse.papyrus.sysml.service.types.helper.PartPropertyEditHelperAdvice" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.PartPropertyMatcher">
+      <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.172"/>
+    </types>
     <types xsi:type="domaincontextcodegen:SpecializationType" name="Problem" helper="org.eclipse.papyrus.sysml.service.types.helper.ProblemEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Problem.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.ProblemMatcher">
       <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.41"/>
     </types>
     <types xsi:type="domaincontextcodegen:SpecializationType" name="Rationale" helper="org.eclipse.papyrus.sysml.service.types.helper.RationaleEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Rationale.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.RationaleMatcher">
       <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.41"/>
     </types>
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="ReferenceProperty" helper="org.eclipse.papyrus.sysml.service.types.helper.ReferencePropertyEditHelperAdvice" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.ReferencePropertyMatcher">
+      <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.172"/>
+    </types>
     <types xsi:type="domaincontextcodegen:SpecializationType" name="Requirement" helper="org.eclipse.papyrus.sysml.service.types.helper.RequirementEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Requirement.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.RequirementMatcher">
       <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.31"/>
     </types>
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="Satisfy" helper="org.eclipse.papyrus.sysml.service.types.helper.SatisfyEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Satisfy.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.SatisfyMatcher">
+      <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.0"/>
+    </types>
     <types xsi:type="domaincontextcodegen:SpecializationType" name="Unit" helper="org.eclipse.papyrus.sysml.service.types.helper.UnitEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Unit.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.UnitMatcher">
       <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.112"/>
+    </types>
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="ValueProperty" helper="org.eclipse.papyrus.sysml.service.types.helper.ValuePropertyEditHelperAdvice" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.ValuePropertyMatcher">
+      <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.172"/>
     </types>
     <types xsi:type="domaincontextcodegen:SpecializationType" name="ValueType" helper="org.eclipse.papyrus.sysml.service.types.helper.ValueTypeEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.ValueTypeMatcher">
       <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.61"/>
@@ -66,17 +87,18 @@
     <types xsi:type="domaincontextcodegen:SpecializationType" name="Verify" helper="org.eclipse.papyrus.sysml.service.types.helper.VerifyEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Verify.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.VerifyMatcher">
       <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.0"/>
     </types>
-    <types xsi:type="domaincontextcodegen:SpecializationType" name="View" helper="org.eclipse.papyrus.sysml.service.types.helper.ViewEditHelperAdvice" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.ViewMatcher">
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="View" helper="org.eclipse.papyrus.sysml.service.types.helper.ViewEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/View.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.ViewMatcher">
       <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.159"/>
     </types>
-    <types xsi:type="domaincontextcodegen:SpecializationType" name="ViewPoint" helper="org.eclipse.papyrus.sysml.service.types.helper.ViewPointEditHelperAdvice" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.ViewPointMatcher">
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="ViewPoint" helper="org.eclipse.papyrus.sysml.service.types.helper.ViewPointEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Viewpoint.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.ViewPointMatcher">
       <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.31"/>
     </types>
-    <types xsi:type="domaincontextcodegen:SpecializationType" name="Satisfy" helper="org.eclipse.papyrus.sysml.service.types.helper.SatisfyEditHelperAdvice" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Satisfy.gif" matcher="org.eclipse.papyrus.sysml.service.types.matcher.SatisfyMatcher">
-      <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.0"/>
-    </types>
   </elementTypes>
+  <advices adviceID="org.eclipse.papyrus.sysml.advice.ConstraintBlockPropertyHelperAdvice" advicePath="org.eclipse.papyrus.sysml.service.types.helper.ConstraintBlockPropertyEditHelperAdvice" inheritance="all">
+    <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.172"/>
+  </advices>
   <bindings clientContextID="org.eclipse.papyrus.service.edit.TypeContext">
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.0"/>
     <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.1"/>
     <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.2"/>
     <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.3"/>
@@ -102,6 +124,17 @@
     <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.23"/>
     <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.24"/>
     <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.25"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.26"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.27"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.28"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.29"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.30"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.31"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.32"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.33"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.34"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.35"/>
+    <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.0"/>
   </bindings>
-  <genHandlers handlerPackage="org.eclipse.papyrus.sysml.modelexplorer.handler" superClass="CreateCommandHandler" superClassPackage="org.eclipse.papyrus.sysml.modelexplorer.handler" elementTypeEnumerator="SysMLElementTypes" elementTypeEnumeratorPackage="org.eclipse.papyrus.sysml.service.types.element" visibleCreateChildHandlers="//@elementTypes/@types.1 //@elementTypes/@types.3 //@elementTypes/@types.4 //@elementTypes/@types.7 //@elementTypes/@types.8 //@elementTypes/@types.10 //@elementTypes/@types.9 //@elementTypes/@types.11 //@elementTypes/@types.12 //@elementTypes/@types.13 //@elementTypes/@types.15 //@elementTypes/@types.16 //@elementTypes/@types.17 //@elementTypes/@types.18 //@elementTypes/@types.19 //@elementTypes/@types.23 //@elementTypes/@types.24" createChildMenuLocationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createsysmlchild"/>
+  <genHandlers handlerPackage="org.eclipse.papyrus.sysml.modelexplorer.handler" superClass="CreateCommandHandler" superClassPackage="org.eclipse.papyrus.sysml.modelexplorer.handler" elementTypeEnumerator="SysMLElementTypes" elementTypeEnumeratorPackage="org.eclipse.papyrus.sysml.service.types.element" visibleCreateChildHandlers="//@elementTypes/@types.8 //@elementTypes/@types.10 //@elementTypes/@types.11 //@elementTypes/@types.14 //@elementTypes/@types.15 //@elementTypes/@types.17 //@elementTypes/@types.16 //@elementTypes/@types.18 //@elementTypes/@types.19 //@elementTypes/@types.20 //@elementTypes/@types.22 //@elementTypes/@types.23 //@elementTypes/@types.24 //@elementTypes/@types.25 //@elementTypes/@types.26 //@elementTypes/@types.28 //@elementTypes/@types.29 //@elementTypes/@types.30 //@elementTypes/@types.34 //@elementTypes/@types.35" createChildMenuLocationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createsysmlchild"/>
 </domaincontextcodegen:DomainContext>

@@ -28,6 +28,55 @@
 		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.AllocateHandler">
 	</command>
 	
+	<!-- Creation command for Association -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.sysml.modelexplorer.AssociationCreateCommand"
+		name="Create a new Association" description="Create a new Association"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationHandler">
+	</command>
+	
+	<!-- Creation command for AssociationComposite -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.sysml.modelexplorer.AssociationCompositeCreateCommand"
+		name="Create a new AssociationComposite" description="Create a new AssociationComposite"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationCompositeHandler">
+	</command>
+	
+	<!-- Creation command for AssociationCompositeDirected -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.sysml.modelexplorer.AssociationCompositeDirectedCreateCommand"
+		name="Create a new AssociationCompositeDirected" description="Create a new AssociationCompositeDirected"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationCompositeDirectedHandler">
+	</command>
+	
+	<!-- Creation command for AssociationNone -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.sysml.modelexplorer.AssociationNoneCreateCommand"
+		name="Create a new AssociationNone" description="Create a new AssociationNone"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationNoneHandler">
+	</command>
+	
+	<!-- Creation command for AssociationNoneDirected -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.sysml.modelexplorer.AssociationNoneDirectedCreateCommand"
+		name="Create a new AssociationNoneDirected" description="Create a new AssociationNoneDirected"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationNoneDirectedHandler">
+	</command>
+	
+	<!-- Creation command for AssociationShared -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.sysml.modelexplorer.AssociationSharedCreateCommand"
+		name="Create a new AssociationShared" description="Create a new AssociationShared"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationSharedHandler">
+	</command>
+	
+	<!-- Creation command for AssociationSharedDirected -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.sysml.modelexplorer.AssociationSharedDirectedCreateCommand"
+		name="Create a new AssociationSharedDirected" description="Create a new AssociationSharedDirected"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationSharedDirectedHandler">
+	</command>
+	
 	<!-- Creation command for Block -->
 	<command categoryId="org.eclipse.papyrus.editor.category"
 		id="org.eclipse.papyrus.sysml.modelexplorer.BlockCreateCommand"
@@ -49,7 +98,7 @@
 		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ConstraintBlockHandler">
 	</command>
 
-	<!-- Creation command for Conform -->
+	<!-- Creation command for ConstraintBlockParameter -->
 	<command categoryId="org.eclipse.papyrus.editor.category"
 		id="org.eclipse.papyrus.sysml.modelexplorer.ConstraintBlockParameterCreateCommand"
 		name="Create a new Parameter" description="Create a new Parameter"
@@ -168,6 +217,13 @@
 		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.RequirementHandler">
 	</command>
 	
+	<!-- Creation command for Satisfy -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.sysml.modelexplorer.SatisfyCreateCommand"
+		name="Create a new Satisfy" description="Create a new Satisfy"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.SatisfyHandler">
+	</command>
+	
 	<!-- Creation command for Unit -->
 	<command categoryId="org.eclipse.papyrus.editor.category"
 		id="org.eclipse.papyrus.sysml.modelexplorer.UnitCreateCommand"
@@ -224,13 +280,6 @@
 		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ViewPointHandler">
 	</command>
 	
-	<!-- Creation command for Satisfy -->
-	<command categoryId="org.eclipse.papyrus.editor.category"
-		id="org.eclipse.papyrus.sysml.modelexplorer.SatisfyCreateCommand"
-		name="Create a new Satisfy" description="Create a new Satisfy"
-		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.SatisfyHandler">
-	</command>
-	
 </extension>
 
 	
@@ -251,6 +300,55 @@
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AllocateCreateCommand"
 			label="Create a new Allocate" tooltip="Create a new Allocate" style="push"		
 			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Association -->
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AssociationCreateCommand"
+			label="Create a new Association" tooltip="Create a new Association" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for AssociationComposite -->
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AssociationCompositeCreateCommand"
+			label="Create a new AssociationComposite" tooltip="Create a new AssociationComposite" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for AssociationCompositeDirected -->
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AssociationCompositeDirectedCreateCommand"
+			label="Create a new AssociationCompositeDirected" tooltip="Create a new AssociationCompositeDirected" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for AssociationNone -->
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AssociationNoneCreateCommand"
+			label="Create a new AssociationNone" tooltip="Create a new AssociationNone" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for AssociationNoneDirected -->
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AssociationNoneDirectedCreateCommand"
+			label="Create a new AssociationNoneDirected" tooltip="Create a new AssociationNoneDirected" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for AssociationShared -->
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AssociationSharedCreateCommand"
+			label="Create a new AssociationShared" tooltip="Create a new AssociationShared" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for AssociationSharedDirected -->
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AssociationSharedDirectedCreateCommand"
+			label="Create a new AssociationSharedDirected" tooltip="Create a new AssociationSharedDirected" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
@@ -359,7 +457,7 @@
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
-		<!-- Creation menu action for Part -->
+		<!-- Creation menu action for PartProperty -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.PartPropertyCreateCommand"
 			label="Create a new Part" tooltip="Create a new Part" style="push"		
 			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" >
@@ -380,7 +478,7 @@
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
-		<!-- Creation menu action for Reference -->
+		<!-- Creation menu action for ReferenceProperty -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ReferencePropertyCreateCommand"
 			label="Create a new Reference" tooltip="Create a new Reference" style="push"		
 			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" >
@@ -391,6 +489,13 @@
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.RequirementCreateCommand"
 			label="Create a new Requirement" tooltip="Create a new Requirement" style="push"		
 			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Requirement.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Satisfy -->
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.SatisfyCreateCommand"
+			label="Create a new Satisfy" tooltip="Create a new Satisfy" style="push"		
+			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Satisfy.gif" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
@@ -446,14 +551,7 @@
 		<!-- Creation menu action for ViewPoint -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ViewPointCreateCommand"
 			label="Create a new ViewPoint" tooltip="Create a new ViewPoint" style="push"		
-			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/ViewPoint.gif" >
-			<visibleWhen checkEnabled="true"/>
-		</command>
-		
-		<!-- Creation menu action for Satisfy -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.SatisfyCreateCommand"
-			label="Create a new Satisfy" tooltip="Create a new Satisfy" style="push"		
-			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Satisfy.gif" >
+			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Viewpoint.gif" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		

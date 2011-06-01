@@ -102,11 +102,11 @@
 		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ArtifactHandler">
 	</command>
 	
-	<!-- Creation command for Association -->
+	<!-- Creation command for AssociationBase -->
 	<command categoryId="org.eclipse.papyrus.editor.category"
-		id="org.eclipse.papyrus.uml.modelexplorer.AssociationCreateCommand"
-		name="Create a new Association" description="Create a new Association"
-		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.AssociationHandler">
+		id="org.eclipse.papyrus.uml.modelexplorer.AssociationBaseCreateCommand"
+		name="Create a new AssociationBase" description="Create a new AssociationBase"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.AssociationBaseHandler">
 	</command>
 	
 	<!-- Creation command for AssociationClass -->
@@ -1397,6 +1397,20 @@
 		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.VariableHandler">
 	</command>
 	
+	<!-- Creation command for Association -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.AssociationCreateCommand"
+		name="Create a new Association" description="Create a new Association"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.AssociationHandler">
+	</command>
+	
+	<!-- Creation command for Trace -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.TraceCreateCommand"
+		name="Create a new Trace" description="Create a new Trace"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.TraceHandler">
+	</command>
+	
 </extension>
 
 	
@@ -1503,9 +1517,9 @@
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
-		<!-- Creation menu action for Association -->
-		<command commandId="org.eclipse.papyrus.uml.modelexplorer.AssociationCreateCommand"
-			label="Create a new Association" tooltip="Create a new Association" style="push"		
+		<!-- Creation menu action for AssociationBase -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.AssociationBaseCreateCommand"
+			label="Create a new AssociationBase" tooltip="Create a new AssociationBase" style="push"		
 			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
@@ -2795,6 +2809,20 @@
 		<command commandId="org.eclipse.papyrus.uml.modelexplorer.VariableCreateCommand"
 			label="Create a new Variable" tooltip="Create a new Variable" style="push"		
 			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Variable.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Association -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.AssociationCreateCommand"
+			label="Create a new Association" tooltip="Create a new Association" style="push"		
+			icon="" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Trace -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.TraceCreateCommand"
+			label="Create a new Trace" tooltip="Create a new Trace" style="push"		
+			icon="" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		

@@ -77,9 +77,9 @@ public class UMLElementTypes extends AbstractElementTypeEnumerator {
 	/** IElementType for UML Artifact */
 	public static final IHintedType ARTIFACT = (IHintedType)getElementType("org.eclipse.papyrus.uml.Artifact"); //$NON-NLS-1$
 	
-	/** IElementType for UML Association (Association with UML nature) */
-	public static final IHintedType ASSOCIATION = (IHintedType)getElementType("org.eclipse.papyrus.uml.Association"); //$NON-NLS-1$
-
+	/** IElementType for UML AssociationBase */
+	public static final IHintedType ASSOCIATION_BASE = (IHintedType)getElementType("org.eclipse.papyrus.uml.AssociationBase"); //$NON-NLS-1$
+	
 	/** IElementType for UML AssociationClass */
 	public static final IHintedType ASSOCIATION_CLASS = (IHintedType)getElementType("org.eclipse.papyrus.uml.AssociationClass"); //$NON-NLS-1$
 	
@@ -763,5 +763,11 @@ public class UMLElementTypes extends AbstractElementTypeEnumerator {
 	
 	/** IElementType for UML WriteVariableAction */
 	public static final IHintedType WRITE_VARIABLE_ACTION = (IHintedType)getElementType("org.eclipse.papyrus.uml.WriteVariableAction"); //$NON-NLS-1$
+	
+	/** IElementType for UML Association */
+	public static final IHintedType ASSOCIATION = (IHintedType)getElementType("org.eclipse.papyrus.uml.Association"); //$NON-NLS-1$
+	
+	/** IElementType for UML Trace */
+	public static final IHintedType TRACE = (IHintedType)getElementType("org.eclipse.papyrus.uml.Trace"); //$NON-NLS-1$
 	
 }

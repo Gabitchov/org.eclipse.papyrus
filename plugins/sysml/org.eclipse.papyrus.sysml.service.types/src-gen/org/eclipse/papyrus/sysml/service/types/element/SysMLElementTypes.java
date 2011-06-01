@@ -9,14 +9,11 @@ public class SysMLElementTypes extends AbstractElementTypeEnumerator {
 	/** Constant for SysML nature */
 	public static final String SYSML_NATURE = "SysML_Nature";
 	
+	/** IElementType for SysML Allocate */
+	public static final IHintedType ALLOCATE = (IHintedType)getElementType("org.eclipse.papyrus.sysml.Allocate"); //$NON-NLS-1$
+	
 	/** IElementType for SysML Association (Association with SysML nature) */
 	public static final IHintedType ASSOCIATION = (IHintedType)getElementType("org.eclipse.papyrus.sysml.Association"); //$NON-NLS-1$
-
-	/** IElementType for SysML Association with "aggregation = none" (for creation purpose only) */
-	public static final IHintedType ASSOCIATION_NONE = (IHintedType)getElementType("org.eclipse.papyrus.sysml.AssociationNone"); //$NON-NLS-1$
-
-	/** IElementType for SysML Association with "aggregation = none" and navigable in one-way (for creation purpose only) */
-	public static final IHintedType ASSOCIATION_NONE_DIRECTED = (IHintedType)getElementType("org.eclipse.papyrus.sysml.AssociationNoneDirected"); //$NON-NLS-1$
 
 	/** IElementType for SysML Association with "aggregation = composite" (for creation purpose only) */
 	public static final IHintedType ASSOCIATION_COMPOSITE = (IHintedType)getElementType("org.eclipse.papyrus.sysml.AssociationComposite"); //$NON-NLS-1$
@@ -24,14 +21,17 @@ public class SysMLElementTypes extends AbstractElementTypeEnumerator {
 	/** IElementType for SysML Association with "aggregation = composite" and navigable in one-way (for creation purpose only) */
 	public static final IHintedType ASSOCIATION_COMPOSITE_DIRECTED = (IHintedType)getElementType("org.eclipse.papyrus.sysml.AssociationCompositeDirected"); //$NON-NLS-1$
 
+	/** IElementType for SysML Association with "aggregation = none" (for creation purpose only) */
+	public static final IHintedType ASSOCIATION_NONE = (IHintedType)getElementType("org.eclipse.papyrus.sysml.AssociationNone"); //$NON-NLS-1$
+
+	/** IElementType for SysML Association with "aggregation = none" and navigable in one-way (for creation purpose only) */
+	public static final IHintedType ASSOCIATION_NONE_DIRECTED = (IHintedType)getElementType("org.eclipse.papyrus.sysml.AssociationNoneDirected"); //$NON-NLS-1$
+
 	/** IElementType for SysML Association with "aggregation = shared" (for creation purpose only) */
 	public static final IHintedType ASSOCIATION_SHARED = (IHintedType)getElementType("org.eclipse.papyrus.sysml.AssociationShared"); //$NON-NLS-1$
 
 	/** IElementType for SysML Association with "aggregation = shared" and navigable in one-way (for creation purpose only) */
 	public static final IHintedType ASSOCIATION_SHARED_DIRECTED = (IHintedType)getElementType("org.eclipse.papyrus.sysml.AssociationSharedDirected"); //$NON-NLS-1$
-	
-	/** IElementType for SysML Allocate */
-	public static final IHintedType ALLOCATE = (IHintedType)getElementType("org.eclipse.papyrus.sysml.Allocate"); //$NON-NLS-1$
 	
 	/** IElementType for SysML Block */
 	public static final IHintedType BLOCK = (IHintedType)getElementType("org.eclipse.papyrus.sysml.Block"); //$NON-NLS-1$
@@ -90,6 +90,9 @@ public class SysMLElementTypes extends AbstractElementTypeEnumerator {
 	/** IElementType for SysML Requirement */
 	public static final IHintedType REQUIREMENT = (IHintedType)getElementType("org.eclipse.papyrus.sysml.Requirement"); //$NON-NLS-1$
 	
+	/** IElementType for SysML Satisfy */
+	public static final IHintedType SATISFY = (IHintedType)getElementType("org.eclipse.papyrus.sysml.Satisfy"); //$NON-NLS-1$
+	
 	/** IElementType for SysML Unit */
 	public static final IHintedType UNIT = (IHintedType)getElementType("org.eclipse.papyrus.sysml.Unit"); //$NON-NLS-1$
 	
@@ -113,8 +116,5 @@ public class SysMLElementTypes extends AbstractElementTypeEnumerator {
 	
 	/** IElementType for SysML ViewPoint */
 	public static final IHintedType VIEW_POINT = (IHintedType)getElementType("org.eclipse.papyrus.sysml.ViewPoint"); //$NON-NLS-1$
-	
-	/** IElementType for SysML Satisfy */
-	public static final IHintedType SATISFY = (IHintedType)getElementType("org.eclipse.papyrus.sysml.Satisfy"); //$NON-NLS-1$
 	
 }

@@ -15,6 +15,13 @@ public class CommandFilter {
 			visibleCommands = new ArrayList<IElementType>();
 
 			// visibleCommands.add(SysMLElementTypes.ALLOCATE);
+			// visibleCommands.add(SysMLElementTypes.ASSOCIATION);
+			// visibleCommands.add(SysMLElementTypes.ASSOCIATION_COMPOSITE);
+			// visibleCommands.add(SysMLElementTypes.ASSOCIATION_COMPOSITE_DIRECTED);
+			// visibleCommands.add(SysMLElementTypes.ASSOCIATION_NONE);
+			// visibleCommands.add(SysMLElementTypes.ASSOCIATION_NONE_DIRECTED);
+			// visibleCommands.add(SysMLElementTypes.ASSOCIATION_SHARED);
+			// visibleCommands.add(SysMLElementTypes.ASSOCIATION_SHARED_DIRECTED);
 			visibleCommands.add(SysMLElementTypes.BLOCK);
 			// visibleCommands.add(SysMLElementTypes.CONFORM);
 			visibleCommands.add(SysMLElementTypes.CONSTRAINT_BLOCK);
@@ -34,6 +41,7 @@ public class CommandFilter {
 			visibleCommands.add(SysMLElementTypes.RATIONALE);
 			visibleCommands.add(SysMLElementTypes.REFERENCE_PROPERTY);
 			visibleCommands.add(SysMLElementTypes.REQUIREMENT);
+			// visibleCommands.add(SysMLElementTypes.SATISFY);
 			visibleCommands.add(SysMLElementTypes.UNIT);
 			visibleCommands.add(SysMLElementTypes.VALUE_PROPERTY);
 			visibleCommands.add(SysMLElementTypes.VALUE_TYPE);
@@ -42,7 +50,6 @@ public class CommandFilter {
 			// visibleCommands.add(SysMLElementTypes.VERIFY);
 			visibleCommands.add(SysMLElementTypes.VIEW);
 			visibleCommands.add(SysMLElementTypes.VIEW_POINT);
-			// visibleCommands.add(SysMLElementTypes.SATISFY);
 		}
 
 		return visibleCommands;

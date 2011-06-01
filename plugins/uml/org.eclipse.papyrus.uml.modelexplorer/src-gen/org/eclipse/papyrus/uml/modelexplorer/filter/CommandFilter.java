@@ -28,7 +28,7 @@ public class CommandFilter {
 			visibleCommands.add(UMLElementTypes.ADD_VARIABLE_VALUE_ACTION);
 			visibleCommands.add(UMLElementTypes.ANY_RECEIVE_EVENT);
 			visibleCommands.add(UMLElementTypes.ARTIFACT);
-			// visibleCommands.add(UMLElementTypes.ASSOCIATION);
+			// visibleCommands.add(UMLElementTypes.ASSOCIATION_BASE);
 			// visibleCommands.add(UMLElementTypes.ASSOCIATION_CLASS);
 			visibleCommands.add(UMLElementTypes.BEHAVIOR_EXECUTION_SPECIFICATION);
 			visibleCommands.add(UMLElementTypes.BROADCAST_SIGNAL_ACTION);
@@ -213,6 +213,8 @@ public class CommandFilter {
 			visibleCommands.add(UMLElementTypes.VALUE_PIN);
 			visibleCommands.add(UMLElementTypes.VALUE_SPECIFICATION_ACTION);
 			visibleCommands.add(UMLElementTypes.VARIABLE);
+			// visibleCommands.add(UMLElementTypes.ASSOCIATION);
+			// visibleCommands.add(UMLElementTypes.TRACE);
 		}
 
 		return visibleCommands;

@@ -18,11 +18,74 @@
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.AllocateMatcher" />
 	</specializationType>
 	
+	<!-- ISpecializationType for SysML Association (Association with SysML nature) -->
+	<specializationType id="org.eclipse.papyrus.sysml.Association" name="SysML::Association"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Association"/>
+		<specializes id="org.eclipse.papyrus.uml.AssociationBase" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.AssociationMatcher" />
+	</specializationType>
+	
+	<!-- ISpecializationType for SysML Association with "aggregation = composition" (for creation purpose only) -->
+	<specializationType id="org.eclipse.papyrus.sysml.AssociationComposite" name="SysML::AssociationComposite"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationCompositeEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::AssociationComposite"/>
+		<specializes id="org.eclipse.papyrus.sysml.Association" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher" />
+	</specializationType>
+	
+	<!-- ISpecializationType for SysML Association with "aggregation = composite" and navigable in one-way (for creation purpose only) -->
+	<specializationType id="org.eclipse.papyrus.sysml.AssociationCompositeDirected" name="SysML::AssociationCompositeDirected"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationCompositeDirectedEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::AssociationCompositeDirected"/>
+		<specializes id="org.eclipse.papyrus.sysml.Association" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher" />
+	</specializationType>
+	
+	<!-- ISpecializationType for SysML Association with "aggregation = none" (for creation purpose only) -->
+	<specializationType id="org.eclipse.papyrus.sysml.AssociationNone" name="SysML::AssociationNone"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationNoneEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::AssociationNone"/>
+		<specializes id="org.eclipse.papyrus.sysml.Association" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher" />
+	</specializationType>
+	
+	<!-- ISpecializationType for SysML Association with "aggregation = none" and navigable in one-way (for creation purpose only) -->
+	<specializationType id="org.eclipse.papyrus.sysml.AssociationNoneDirected" name="SysML::AssociationNoneDirected"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationNoneDirectedEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::AssociationNoneDirected"/>
+		<specializes id="org.eclipse.papyrus.sysml.Association" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher" />
+	</specializationType>
+	
+	<!-- ISpecializationType for SysML Association with "aggregation = shared" (for creation purpose only) -->
+	<specializationType id="org.eclipse.papyrus.sysml.AssociationShared" name="SysML::AssociationShared"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationSharedEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::AssociationShared"/>
+		<specializes id="org.eclipse.papyrus.sysml.Association" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher" />
+	</specializationType>
+	
+	<!-- ISpecializationType for SysML Association with "aggregation = shared" and navigable in one-way (for creation purpose only) -->
+	<specializationType id="org.eclipse.papyrus.sysml.AssociationSharedDirected" name="SysML::AssociationSharedDirected"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationSharedDirectedEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::AssociationSharedDirected"/>
+		<specializes id="org.eclipse.papyrus.sysml.Association" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher" />
+	</specializationType>
+	
 	<!-- ISpecializationType Block of UML::Class -->
 	<specializationType id="org.eclipse.papyrus.sysml.Block" name="SysML::Block"
-       edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.BlockEditHelperAdvice"
-       icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif"
-       kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.BlockEditHelperAdvice"
+		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="SysML::Block"/>
 		<specializes id="org.eclipse.papyrus.uml.Class" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.BlockMatcher" />
@@ -41,7 +104,7 @@
 	<!-- ISpecializationType ConstraintBlock of UML::Class -->
 	<specializationType id="org.eclipse.papyrus.sysml.ConstraintBlock" name="SysML::ConstraintBlock"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ConstraintBlockEditHelperAdvice"
-		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintBlock.gif"		
+		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintBlock.gif"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="SysML::ConstraintBlock"/>
 		<specializes id="org.eclipse.papyrus.uml.Class" />
@@ -51,7 +114,7 @@
 	<!-- ISpecializationType ConstraintProperty of UML::Property -->
 	<specializationType id="org.eclipse.papyrus.sysml.ConstraintProperty" name="SysML::ConstraintProperty"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ConstraintPropertyEditHelperAdvice"
-		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintProperty.gif"				
+		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintProperty.gif"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="SysML::ConstraintProperty"/>
 		<specializes id="org.eclipse.papyrus.uml.Property" />
@@ -61,7 +124,7 @@
 	<!-- ISpecializationType Copy of UML::Abstraction -->
 	<specializationType id="org.eclipse.papyrus.sysml.Copy" name="SysML::Copy"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.CopyEditHelperAdvice"
-		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Copy.gif"				
+		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Copy.gif"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="SysML::Copy"/>
 		<specializes id="org.eclipse.papyrus.uml.Abstraction" />
@@ -151,12 +214,13 @@
 	<!-- ISpecializationType ItemFlow of UML::InformationFlow -->
 	<specializationType id="org.eclipse.papyrus.sysml.ItemFlow" name="SysML::ItemFlow"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ItemFlowEditHelperAdvice"
+		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/ItemFlow.gif"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="SysML::ItemFlow"/>
 		<specializes id="org.eclipse.papyrus.uml.InformationFlow" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.ItemFlowMatcher" />
 	</specializationType>
-
+	
 	<!-- ISpecializationType PartProperty of UML::Property -->
 	<specializationType id="org.eclipse.papyrus.sysml.PartProperty" name="SysML::PartProperty"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.PartPropertyEditHelperAdvice"
@@ -166,7 +230,7 @@
 		<specializes id="org.eclipse.papyrus.uml.Property" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.PartPropertyMatcher" />
 	</specializationType>
-		
+	
 	<!-- ISpecializationType Problem of UML::Comment -->
 	<specializationType id="org.eclipse.papyrus.sysml.Problem" name="SysML::Problem"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ProblemEditHelperAdvice"
@@ -176,7 +240,7 @@
 		<specializes id="org.eclipse.papyrus.uml.Comment" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.ProblemMatcher" />
 	</specializationType>
-				
+	
 	<!-- ISpecializationType Rationale of UML::Comment -->
 	<specializationType id="org.eclipse.papyrus.sysml.Rationale" name="SysML::Rationale"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.RationaleEditHelperAdvice"
@@ -186,7 +250,7 @@
 		<specializes id="org.eclipse.papyrus.uml.Comment" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.RationaleMatcher" />
 	</specializationType>
-
+	
 	<!-- ISpecializationType ReferenceProperty of UML::Property -->
 	<specializationType id="org.eclipse.papyrus.sysml.ReferenceProperty" name="SysML::ReferenceProperty"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ReferencePropertyEditHelperAdvice"
@@ -196,7 +260,7 @@
 		<specializes id="org.eclipse.papyrus.uml.Property" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.ReferencePropertyMatcher" />
 	</specializationType>
-		
+	
 	<!-- ISpecializationType Requirement of UML::Class -->
 	<specializationType id="org.eclipse.papyrus.sysml.Requirement" name="SysML::Requirement"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.RequirementEditHelperAdvice"
@@ -205,6 +269,16 @@
 			<param name="semanticHint" value="SysML::Requirement"/>
 		<specializes id="org.eclipse.papyrus.uml.Class" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.RequirementMatcher" />
+	</specializationType>
+	
+	<!-- ISpecializationType Satisfy of UML::Abstraction -->
+	<specializationType id="org.eclipse.papyrus.sysml.Satisfy" name="SysML::Satisfy"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.SatisfyEditHelperAdvice"
+		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Satisfy.gif"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Satisfy"/>
+		<specializes id="org.eclipse.papyrus.uml.Abstraction" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.SatisfyMatcher" />
 	</specializationType>
 	
 	<!-- ISpecializationType Unit of UML::InstanceSpecification -->
@@ -216,7 +290,7 @@
 		<specializes id="org.eclipse.papyrus.uml.InstanceSpecification" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.UnitMatcher" />
 	</specializationType>
-			
+	
 	<!-- ISpecializationType ValueProperty of UML::Property -->
 	<specializationType id="org.eclipse.papyrus.sysml.ValueProperty" name="SysML::ValueProperty"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ValuePropertyEditHelperAdvice"
@@ -226,7 +300,7 @@
 		<specializes id="org.eclipse.papyrus.uml.Property" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.ValuePropertyMatcher" />
 	</specializationType>
-		
+	
 	<!-- ISpecializationType ValueType of UML::DataType -->
 	<specializationType id="org.eclipse.papyrus.sysml.ValueType" name="SysML::ValueType"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ValueTypeEditHelperAdvice"
@@ -240,6 +314,7 @@
 	<!-- ISpecializationType ValueType_Enumeration of UML::Enumeration -->
 	<specializationType id="org.eclipse.papyrus.sysml.ValueType_Enumeration" name="SysML::ValueType_Enumeration"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ValueTypeEditHelperAdvice"
+		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="SysML::ValueType_Enumeration"/>
 		<specializes id="org.eclipse.papyrus.uml.Enumeration" />
@@ -249,6 +324,7 @@
 	<!-- ISpecializationType ValueType_PrimitiveType of UML::PrimitiveType -->
 	<specializationType id="org.eclipse.papyrus.sysml.ValueType_PrimitiveType" name="SysML::ValueType_PrimitiveType"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ValueTypeEditHelperAdvice"
+		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="SysML::ValueType_PrimitiveType"/>
 		<specializes id="org.eclipse.papyrus.uml.PrimitiveType" />
@@ -278,100 +354,17 @@
 	<!-- ISpecializationType ViewPoint of UML::Class -->
 	<specializationType id="org.eclipse.papyrus.sysml.ViewPoint" name="SysML::ViewPoint"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ViewPointEditHelperAdvice"
-		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/ViewPoint.gif"
+		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Viewpoint.gif"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="SysML::ViewPoint"/>
 		<specializes id="org.eclipse.papyrus.uml.Class" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.ViewPointMatcher" />
 	</specializationType>
 	
-	<!-- ISpecializationType Satisfy of UML::Abstraction -->
-	<specializationType id="org.eclipse.papyrus.sysml.Satisfy" name="SysML::Satisfy"
-		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.SatisfyEditHelperAdvice"
-		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Satisfy.gif"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="SysML::Satisfy"/>
-		<specializes id="org.eclipse.papyrus.uml.Abstraction" />
-		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.SatisfyMatcher" />
-	</specializationType>
-	
 	</metamodel>
 </extension>
 
-<!-- SysML ElementTypes declarations for Association with SysML Nature -->
-<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-
-	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-	
-	<!-- Declaration of IElementTypes -->
-	
-	<!-- ISpecializationType for SysML Association (Association with SysML nature) -->
-	<specializationType id="org.eclipse.papyrus.sysml.Association" name="SysML::Association"
-		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationEditHelperAdvice"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="SysML::Association"/>
-		<specializes id="org.eclipse.papyrus.uml.AssociationBase" />
-		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.AssociationMatcher" />
-	</specializationType>
-	
-	<!-- ISpecializationType for SysML Association with "aggregation = none" (for creation purpose only) -->
-	<specializationType id="org.eclipse.papyrus.sysml.AssociationNone" name="SysML::AssociationNone"
-		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationNoneEditHelperAdvice"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="SysML::AssociationNone"/>
-		<specializes id="org.eclipse.papyrus.sysml.Association" />
-		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher" />
-	</specializationType>
-	
-	<!-- ISpecializationType for SysML Association with "aggregation = none" and navigable in one-way (for creation purpose only) -->
-	<specializationType id="org.eclipse.papyrus.sysml.AssociationNoneDirected" name="SysML::AssociationNoneDirected"
-		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationNoneDirectedEditHelperAdvice"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="SysML::AssociationNoneDirected"/>
-		<specializes id="org.eclipse.papyrus.sysml.Association" />
-		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher" />
-	</specializationType>
-			
-	<!-- ISpecializationType for SysML Association with "aggregation = composition" (for creation purpose only) -->
-	<specializationType id="org.eclipse.papyrus.sysml.AssociationComposite" name="SysML::AssociationComposite"
-		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationCompositeEditHelperAdvice"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="SysML::AssociationComposite"/>
-		<specializes id="org.eclipse.papyrus.sysml.Association" />
-		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher" />
-	</specializationType>
-
-	<!-- ISpecializationType for SysML Association with "aggregation = composite" and navigable in one-way (for creation purpose only) -->
-	<specializationType id="org.eclipse.papyrus.sysml.AssociationCompositeDirected" name="SysML::AssociationCompositeDirected"
-		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationCompositeDirectedEditHelperAdvice"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="SysML::AssociationCompositeDirected"/>
-		<specializes id="org.eclipse.papyrus.sysml.Association" />
-		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher" />
-	</specializationType>
-
-	<!-- ISpecializationType for SysML Association with "aggregation = shared" (for creation purpose only) -->
-	<specializationType id="org.eclipse.papyrus.sysml.AssociationShared" name="SysML::AssociationShared"
-		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationSharedEditHelperAdvice"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="SysML::AssociationShared"/>
-		<specializes id="org.eclipse.papyrus.sysml.Association" />
-		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher" />
-	</specializationType>
-
-	<!-- ISpecializationType for SysML Association with "aggregation = shared" and navigable in one-way (for creation purpose only) -->
-	<specializationType id="org.eclipse.papyrus.sysml.AssociationSharedDirected" name="SysML::AssociationSharedDirected"
-		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.advice.AssociationSharedDirectedEditHelperAdvice"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="SysML::AssociationSharedDirected"/>
-		<specializes id="org.eclipse.papyrus.sysml.Association" />
-		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.NoMatcher" />
-	</specializationType>
-		
-	</metamodel>
-</extension>	
-	
-<!-- Additionnal advices ConstraintBlockParameterPropertyEditHelperAdvice -->
+<!-- Helper advice declarations -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
 
 	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
@@ -381,7 +374,7 @@
 		class="org.eclipse.papyrus.sysml.service.types.helper.ConstraintBlockPropertyEditHelperAdvice"
 		inheritance="all" typeId="org.eclipse.papyrus.uml.Property">
 	</adviceBinding>
-
+	
 	</metamodel>
 </extension>
 
@@ -391,16 +384,14 @@
 	<!-- Bindings declaration -->
 	<binding context="org.eclipse.papyrus.service.edit.TypeContext">
 	
+		<elementType ref="org.eclipse.papyrus.sysml.Allocate" />
 		<elementType ref="org.eclipse.papyrus.sysml.Association" />
-		
-		<elementType ref="org.eclipse.papyrus.sysml.AssociationNone" />
-		<elementType ref="org.eclipse.papyrus.sysml.AssociationNoneDirected" />
 		<elementType ref="org.eclipse.papyrus.sysml.AssociationComposite" />
 		<elementType ref="org.eclipse.papyrus.sysml.AssociationCompositeDirected" />
+		<elementType ref="org.eclipse.papyrus.sysml.AssociationNone" />
+		<elementType ref="org.eclipse.papyrus.sysml.AssociationNoneDirected" />
 		<elementType ref="org.eclipse.papyrus.sysml.AssociationShared" />
 		<elementType ref="org.eclipse.papyrus.sysml.AssociationSharedDirected" />
-		
-		<elementType ref="org.eclipse.papyrus.sysml.Allocate" />
 		<elementType ref="org.eclipse.papyrus.sysml.Block" />
 		<elementType ref="org.eclipse.papyrus.sysml.Conform" />
 		<elementType ref="org.eclipse.papyrus.sysml.ConstraintBlock" />
@@ -415,21 +406,20 @@
 		<elementType ref="org.eclipse.papyrus.sysml.FlowProperty" />
 		<elementType ref="org.eclipse.papyrus.sysml.FlowSpecification" />
 		<elementType ref="org.eclipse.papyrus.sysml.ItemFlow" />
-		<elementType ref="org.eclipse.papyrus.sysml.PartProperty" />		
+		<elementType ref="org.eclipse.papyrus.sysml.PartProperty" />
 		<elementType ref="org.eclipse.papyrus.sysml.Problem" />
 		<elementType ref="org.eclipse.papyrus.sysml.Rationale" />
-		<elementType ref="org.eclipse.papyrus.sysml.ReferenceProperty" />				
+		<elementType ref="org.eclipse.papyrus.sysml.ReferenceProperty" />
 		<elementType ref="org.eclipse.papyrus.sysml.Requirement" />
+		<elementType ref="org.eclipse.papyrus.sysml.Satisfy" />
 		<elementType ref="org.eclipse.papyrus.sysml.Unit" />
-		<elementType ref="org.eclipse.papyrus.sysml.ValueProperty" />		
+		<elementType ref="org.eclipse.papyrus.sysml.ValueProperty" />
 		<elementType ref="org.eclipse.papyrus.sysml.ValueType" />
 		<elementType ref="org.eclipse.papyrus.sysml.ValueType_Enumeration" />
 		<elementType ref="org.eclipse.papyrus.sysml.ValueType_PrimitiveType" />
 		<elementType ref="org.eclipse.papyrus.sysml.Verify" />
 		<elementType ref="org.eclipse.papyrus.sysml.View" />
 		<elementType ref="org.eclipse.papyrus.sysml.ViewPoint" />
-		<elementType ref="org.eclipse.papyrus.sysml.Satisfy" />
-		
 		<advice ref="org.eclipse.papyrus.sysml.advice.ConstraintBlockPropertyHelperAdvice" />
 
 	</binding>
