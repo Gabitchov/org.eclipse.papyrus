@@ -9,13 +9,20 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *   
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Modification
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.providers;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
@@ -36,6 +43,7 @@ import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 /**
@@ -167,6 +175,36 @@ public class EditorLabelProvider implements ILabelProvider {
 			}
 			return registry.getEditorIcon(element);
 		}
+
+		//Standard EMF image
+		if(element instanceof EObject) {
+			EObject eObject = (EObject)element;
+			//
+			IItemLabelProvider itemLabelProvider = null;
+			if(eObject != null) {
+				String uri = eObject.eClass().getEPackage().getNsURI();
+				AdapterFactory adapterFactory = null;
+				IConfigurationElement[] extensions = Platform.getExtensionRegistry().getConfigurationElementsFor("org.eclipse.emf.edit.itemProviderAdapterFactories"); //$NON-NLS-1$
+				for(IConfigurationElement e : extensions) {
+					if(uri.equals(e.getAttribute("uri"))) { //$NON-NLS-1$
+						try {
+							adapterFactory = (AdapterFactory)e.createExecutableExtension("class"); //$NON-NLS-1$
+						} catch (CoreException ex) {
+							Activator.log.error(ex);
+						}
+						if(adapterFactory != null) {
+							break;
+						}
+					}
+				}
+				if(adapterFactory != null) {
+					itemLabelProvider = (IItemLabelProvider)adapterFactory.adapt(eObject, IItemLabelProvider.class);
+				}
+			}
+			Object imageObject = itemLabelProvider.getImage(eObject);
+			return ExtendedImageRegistry.getInstance().getImage(imageObject);
+		}
+
 		return null;
 	}
 
@@ -186,7 +224,10 @@ public class EditorLabelProvider implements ILabelProvider {
 		if(element instanceof EditPart) {
 			element = ((View)((EditPart)element).getModel()).getElement();
 		}
-		if(element instanceof NamedElement) {
+
+		if(element instanceof EObject && UMLUtil.getBaseElement((EObject)element) != null) { //Stereotype Application
+			return getText(UMLUtil.getBaseElement((EObject)element));
+		} else if(element instanceof NamedElement) {
 			return ((NamedElement)element).getName();
 		} else if(element instanceof Element) {
 			//when the element is not a NamedElement, we return its Type + a index

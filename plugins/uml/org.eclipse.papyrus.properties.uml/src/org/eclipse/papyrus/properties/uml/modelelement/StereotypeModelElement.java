@@ -14,9 +14,12 @@ package org.eclipse.papyrus.properties.uml.modelelement;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.FeaturePath;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue;
@@ -50,5 +53,14 @@ public class StereotypeModelElement extends EMFModelElement {
 		}
 
 		return new PapyrusObservableValue(getSource(featurePath), feature, domain);
+	}
+
+	@Override
+	public ILabelProvider getLabelProvider(String propertyPath) {
+		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature.getEType() instanceof EEnum) {
+			return super.getLabelProvider(propertyPath);
+		}
+		return new EditorLabelProvider();
 	}
 }
