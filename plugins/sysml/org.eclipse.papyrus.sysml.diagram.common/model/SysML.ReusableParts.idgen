@@ -23,10 +23,9 @@
     <compartments href="UML.ReusableParts.idgen#compartment_uml_operation_as_list"/>
     <compartments href="#compartment_sysml_constraint_as_list"/>
     <compartments href="#compartment_sysml_value_as_list"/>
-    <visibleCompartments href="UML.ReusableParts.idgen#compartment_uml_property_as_list"/>
+    <visibleCompartments href="#compartment_sysml_property_as_list"/>
     <visibleCompartments href="UML.ReusableParts.idgen#compartment_uml_operation_as_list"/>
     <visibleCompartments href="#compartment_sysml_constraint_as_list"/>
-    <visibleCompartments href="#compartment_sysml_value_as_list"/>
   </customNodes>
   <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_dimension_as_classifier" label="Dimension" semanticType="org.eclipse.papyrus.sysml.Dimension" labels="label_sysml_dimension_name"/>
   <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_constraintblock_as_classifier" label="ConstraintBlock" semanticType="org.eclipse.papyrus.sysml.ConstraintBlock" tag="constraint" labels="label_sysml_constraintblock_name" compartments="compartment_sysml_parameter_as_list compartment_sysml_constraint_as_list" visibleCompartments="compartment_sysml_parameter_as_list compartment_sysml_constraint_as_list"/>

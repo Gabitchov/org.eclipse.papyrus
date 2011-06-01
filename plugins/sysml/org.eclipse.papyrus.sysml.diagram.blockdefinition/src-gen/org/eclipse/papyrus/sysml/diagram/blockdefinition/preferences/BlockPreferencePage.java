@@ -36,14 +36,14 @@ public class BlockPreferencePage extends BlockDefinitionDiagramNodePreferencePag
 	/** Static attribute initialization */
 	static {
 		compartmentDefaultVisibilityMap = new LinkedHashMap<String, Boolean>();
-		compartmentDefaultVisibilityMap.put("properties", Boolean.FALSE); //$NON-NLS-1$	
+		compartmentDefaultVisibilityMap.put("properties", Boolean.TRUE); //$NON-NLS-1$	
 		compartmentDefaultVisibilityMap.put("parts", Boolean.FALSE); //$NON-NLS-1$	
 		compartmentDefaultVisibilityMap.put("references", Boolean.FALSE); //$NON-NLS-1$	
 		compartmentDefaultVisibilityMap.put("standard ports", Boolean.FALSE); //$NON-NLS-1$	
 		compartmentDefaultVisibilityMap.put("flow ports", Boolean.FALSE); //$NON-NLS-1$	
 		compartmentDefaultVisibilityMap.put("operations", Boolean.TRUE); //$NON-NLS-1$	
 		compartmentDefaultVisibilityMap.put("constraints", Boolean.TRUE); //$NON-NLS-1$	
-		compartmentDefaultVisibilityMap.put("values", Boolean.TRUE); //$NON-NLS-1$	
+		compartmentDefaultVisibilityMap.put("values", Boolean.FALSE); //$NON-NLS-1$	
 
 		compartmentTitleDefaultVisibilityMap = new LinkedHashMap<String, Boolean>();
 		compartmentTitleDefaultVisibilityMap.put("properties", Boolean.TRUE); //$NON-NLS-1$
