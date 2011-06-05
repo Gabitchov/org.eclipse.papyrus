@@ -26,9 +26,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -97,23 +97,29 @@ public abstract class AbstractParametricHandler extends AbstractHandler implemen
 	protected List<IGraphicalEditPart> getSelectedElements() {
 		List<IGraphicalEditPart> editparts = new ArrayList<IGraphicalEditPart>();
 
-		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		if(selection instanceof IStructuredSelection) {
 
-			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+		// Get current selection
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		Object selection = (activeWorkbenchWindow != null) ? activeWorkbenchWindow.getSelectionService().getSelection() : null;
 
-			Iterator<?> it = structuredSelection.iterator();
-			while(it.hasNext()) {
-				Object object = it.next();
-				if(object instanceof IGraphicalEditPart) {
-					editparts.add((IGraphicalEditPart)object);
+		// Treat non-null selected object (try to adapt and return EObject)
+		if(selection != null) {
+			if(selection instanceof IStructuredSelection) {
+
+				IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+
+				Iterator<?> it = structuredSelection.iterator();
+				while(it.hasNext()) {
+					Object object = it.next();
+					if(object instanceof IGraphicalEditPart) {
+						editparts.add((IGraphicalEditPart)object);
+					}
 				}
+
+			} else if(selection instanceof IGraphicalEditPart) {
+				editparts.add((IGraphicalEditPart)selection);
 			}
-
-		} else if(selection instanceof IGraphicalEditPart) {
-			editparts.add((IGraphicalEditPart)selection);
 		}
-
 		return editparts;
 	}
 
@@ -168,7 +174,16 @@ public abstract class AbstractParametricHandler extends AbstractHandler implemen
 	 * @return The value of the <code>workbenchPart</code> instance variable.
 	 */
 	protected final IWorkbenchPart getWorkbenchPart() {
-		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
+
+		// Get current selection
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+
+		// Treat non-null selected object (try to adapt and return EObject)
+		if((activeWorkbenchWindow != null) && (activeWorkbenchWindow.getActivePage() != null)) {
+			return activeWorkbenchWindow.getActivePage().getActivePart();
+		}
+
+		return null;
 	}
 
 	/**

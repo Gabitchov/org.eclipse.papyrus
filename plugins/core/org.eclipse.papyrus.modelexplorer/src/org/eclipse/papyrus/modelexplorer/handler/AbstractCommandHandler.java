@@ -23,12 +23,12 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.modelexplorer.Activator;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -67,19 +67,20 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 	 */
 	protected EObject getSelectedElement() {
 		EObject eObject = null;
-		Object selection = null;
 
 		// Get current selection
-		selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-
-		// Get first element if the selection is an IStructuredSelection
-		if(selection instanceof IStructuredSelection) {
-			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
-			selection = structuredSelection.getFirstElement();
-		}
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		Object selection = (activeWorkbenchWindow != null) ? activeWorkbenchWindow.getSelectionService().getSelection() : null;
 
 		// Treat non-null selected object (try to adapt and return EObject)
 		if(selection != null) {
+
+			// Get first element if the selection is an IStructuredSelection
+			if(selection instanceof IStructuredSelection) {
+				IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+				selection = structuredSelection.getFirstElement();
+			}
+
 			if(selection instanceof IAdaptable) {
 				selection = ((IAdaptable)selection).getAdapter(EObject.class);
 			}
@@ -89,6 +90,7 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 				eObject = (EObject)businessObject;
 			}
 		}
+
 		return eObject;
 	}
 
@@ -108,19 +110,24 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 
 		List<EObject> selectedEObjects = new ArrayList<EObject>();
 
-		// Parse current selection
-		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		if(selection instanceof IStructuredSelection) {
-			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
-			for(Object current : structuredSelection.toArray()) {
-				// Adapt current selection to EObject
-				if(current instanceof IAdaptable) {
-					selectedEObjects.add((EObject)((IAdaptable)current).getAdapter(EObject.class));
+		// Get current selection
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		Object selection = (activeWorkbenchWindow != null) ? activeWorkbenchWindow.getSelectionService().getSelection() : null;
+
+		// Treat non-null selected object (try to adapt and return EObject)
+		if(selection != null) {
+
+			// Parse current selection
+			if(selection instanceof IStructuredSelection) {
+				IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+				for(Object current : structuredSelection.toArray()) {
+					// Adapt current selection to EObject
+					if(current instanceof IAdaptable) {
+						selectedEObjects.add((EObject)((IAdaptable)current).getAdapter(EObject.class));
+					}
 				}
-			}
-		} else { // Not a IStructuredSelection
-			if(selection != null) {
-				// Adapt current selection to EObject
+			} else { // Not a IStructuredSelection
+						// Adapt current selection to EObject
 				if(selection instanceof IAdaptable) {
 					selectedEObjects.add((EObject)((IAdaptable)selection).getAdapter(EObject.class));
 				}

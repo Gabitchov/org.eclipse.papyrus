@@ -23,12 +23,12 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -51,21 +51,28 @@ public abstract class GraphicalCommandHandler extends AbstractHandler {
 	protected List<IGraphicalEditPart> getSelectedElements() {
 		List<IGraphicalEditPart> editparts = new ArrayList<IGraphicalEditPart>();
 
-		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		if(selection instanceof IStructuredSelection) {
+		// Get current selection
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		Object selection = (activeWorkbenchWindow != null) ? activeWorkbenchWindow.getSelectionService().getSelection() : null;
 
-			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+		// Treat non-null selected object (try to adapt and return EObject)
+		if(selection != null) {
 
-			Iterator<?> it = structuredSelection.iterator();
-			while(it.hasNext()) {
-				Object object = it.next();
-				if(object instanceof IGraphicalEditPart) {
-					editparts.add((IGraphicalEditPart)object);
+			if(selection instanceof IStructuredSelection) {
+
+				IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+
+				Iterator<?> it = structuredSelection.iterator();
+				while(it.hasNext()) {
+					Object object = it.next();
+					if(object instanceof IGraphicalEditPart) {
+						editparts.add((IGraphicalEditPart)object);
+					}
 				}
-			}
 
-		} else if(selection instanceof IGraphicalEditPart) {
-			editparts.add((IGraphicalEditPart)selection);
+			} else if(selection instanceof IGraphicalEditPart) {
+				editparts.add((IGraphicalEditPart)selection);
+			}
 		}
 
 		return editparts;

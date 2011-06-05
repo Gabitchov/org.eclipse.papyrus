@@ -25,12 +25,12 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.sysml.modelexplorer.Activator;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -69,20 +69,21 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	 */
 	protected EObject getSelectedElement() {
 		EObject eObject = null;
-		Object selection = null;
 
 		// Get current selection
-		selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-
-		// Get first element if the selection is an IStructuredSelection
-		if(selection instanceof IStructuredSelection) {
-			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
-			selection = structuredSelection.getFirstElement();
-		}
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		Object selection = (activeWorkbenchWindow != null) ? activeWorkbenchWindow.getSelectionService().getSelection() : null;
 
 		// Treat non-null selected object (try to adapt and return EObject)
 		if(selection != null) {
 
+			// Get first element if the selection is an IStructuredSelection
+			if(selection instanceof IStructuredSelection) {
+				IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+				selection = structuredSelection.getFirstElement();
+			}
+
+			// Treat non-null selected object (try to adapt and return EObject)
 			if(selection instanceof IAdaptable) {
 				selection = ((IAdaptable)selection).getAdapter(EObject.class);
 			}
@@ -91,6 +92,7 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 			if(businessObject instanceof EObject) {
 				eObject = (EObject)businessObject;
 			}
+
 		}
 		return eObject;
 	}
@@ -111,19 +113,23 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 
 		List<EObject> selectedEObjects = new ArrayList<EObject>();
 
-		// Parse current selection
-		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		if(selection instanceof IStructuredSelection) {
-			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
-			for(Object current : structuredSelection.toArray()) {
-				// Adapt current selection to EObject
-				if(current instanceof IAdaptable) {
-					selectedEObjects.add((EObject)((IAdaptable)current).getAdapter(EObject.class));
+		// Get current selection
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		Object selection = (activeWorkbenchWindow != null) ? activeWorkbenchWindow.getSelectionService().getSelection() : null;
+
+		// Treat non-null selected object (try to adapt and return EObject)
+		if(selection != null) {
+
+			if(selection instanceof IStructuredSelection) {
+				IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+				for(Object current : structuredSelection.toArray()) {
+					// Adapt current selection to EObject
+					if(current instanceof IAdaptable) {
+						selectedEObjects.add((EObject)((IAdaptable)current).getAdapter(EObject.class));
+					}
 				}
-			}
-		} else { // Not a IStructuredSelection
-			if(selection != null) {
-				// Adapt current selection to EObject
+			} else { // Not a IStructuredSelection
+						// Adapt current selection to EObject
 				if(selection instanceof IAdaptable) {
 					selectedEObjects.add((EObject)((IAdaptable)selection).getAdapter(EObject.class));
 				}
@@ -142,14 +148,14 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	 * @throws ExecutionException
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		
+
 		try {
 
 			ServiceUtilsForActionHandlers util = ServiceUtilsForActionHandlers.getInstance();
 			Command emfCommand = new GMFtoEMFCommandWrapper(getCommand());
-			
+
 			util.getTransactionalEditingDomain().getCommandStack().execute(emfCommand);
-			
+
 			return emfCommand.getResult();
 
 		} catch (ServiceException e) {
@@ -157,7 +163,7 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 			Activator.log.error("Unexpected error while executing command.", e);
 
 		}
-		
+
 		return null;
 	}
 
