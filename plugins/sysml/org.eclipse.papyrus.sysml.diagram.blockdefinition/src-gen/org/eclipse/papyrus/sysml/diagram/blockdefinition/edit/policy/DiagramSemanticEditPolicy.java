@@ -15,6 +15,7 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSemanticEditPolicy;
@@ -26,9 +27,45 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 
 public class DiagramSemanticEditPolicy extends DefaultSemanticEditPolicy {
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Command getReorientRelationshipSourceCommand(ReconnectRequest request) {
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Command getReorientRelationshipTargetCommand(ReconnectRequest request) {
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Command getReorientRefRelationshipSourceCommand(ReconnectRequest request) {
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Command getReorientRefRelationshipTargetCommand(ReconnectRequest request) {
+		return UnexecutableCommand.INSTANCE;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 
-		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(UMLElementTypes.PACKAGE);
+		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(req.getContainer());
 		if(commandService == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
