@@ -1302,7 +1302,48 @@
 		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.advice.DeleteViewDuringMoveHelperAdvice"
 		inheritance="all" typeId="org.eclipse.papyrus.uml.Element">
 	</adviceBinding>
+
+	<!-- Generalization specific advices (remove inconsistent views when a Generalization is deleted) -->		
+	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.blockdefinition.GeneralizationHelperAdvice"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.advice.GeneralizationHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Generalization">
+	</adviceBinding>
+
+	<!-- Part specific advices (remove inconsistent views when a Part aggregation kind changes) -->		
+	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringPartEditHelperAdvice"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.advice.DeleteViewDuringPartEditHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.sysml.PartProperty">
+	</adviceBinding>
+
+	<!-- Reference specific advices (remove inconsistent views when a reference aggregation kind changes) -->		
+	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringReferenceEditHelperAdvice"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.advice.DeleteViewDuringReferenceEditHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.sysml.ReferenceProperty">
+	</adviceBinding>
+	
+	<!-- Value specific advices (remove inconsistent views when a value aggregation or type changes) -->		
+	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringValueEditHelperAdvice"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.advice.DeleteViewDuringValueEditHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.sysml.ValueProperty">
+	</adviceBinding>
+	
+	<!-- Block specific advices (remove inconsistent Part or Ref views when a Block is deleted) 
+	
+		Not used (the property itself is supposed to be deleted during Block delete, no need to create a specific view deletion.
+		 		
+	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringBlockDeleteHelperAdvice"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.advice.DeleteViewDuringBlockDeleteHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.sysml.Block">
+	</adviceBinding>
+	
+	  -->
 		
+	<!-- DataType specific advices (remove inconsistent Value views when a DataType is deleted) -->		
+	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringDataTypeDeleteHelperAdvice"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.advice.DeleteViewDuringDataTypeDeleteHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.sysml.DataType">
+	</adviceBinding>
+	
 	</metamodel>
 </extension>
 	
@@ -1310,8 +1351,13 @@
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
 
 	<!-- Bindings declaration to shared IClientContext -->
-	<binding context="org.eclipse.papyrus.service.edit.TypeContext">	
+	<binding context="org.eclipse.papyrus.service.edit.TypeContext">
+		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.GeneralizationHelperAdvice"/>	
 		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringMoveHelperAdvice"/>
+		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringPartEditHelperAdvice"/>
+		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringReferenceEditHelperAdvice"/>		
+		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringValueEditHelperAdvice"/>
+		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringDataTypeDeleteHelperAdvice"/>
 	</binding>
 		
 </extension>
