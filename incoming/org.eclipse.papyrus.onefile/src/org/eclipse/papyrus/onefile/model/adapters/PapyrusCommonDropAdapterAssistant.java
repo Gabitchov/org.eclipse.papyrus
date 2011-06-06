@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.onefile.model.adapters;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -67,7 +68,9 @@ public class PapyrusCommonDropAdapterAssistant extends
 				Object o = i.next();
 				if (o instanceof IPapyrusFile) {
 					IPapyrusFile papy = (IPapyrusFile) o;
-					elements.add(papy.getMainFile());
+					// TODO if a drop assistant is implemented use previous implementation :
+					// elements.add(papy.getMainFile());
+					elements.addAll(Arrays.asList(papy.getAssociatedResources()));
 				}
 			}
 		}

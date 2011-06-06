@@ -26,6 +26,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.onefile.model.IPapyrusFile;
+import org.eclipse.papyrus.onefile.utils.Utils;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IViewPart;
@@ -37,6 +38,7 @@ import org.eclipse.ui.actions.ActionContext;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.CopyResourceAction;
 import org.eclipse.ui.actions.DeleteResourceAction;
+import org.eclipse.ui.actions.MoveResourceAction;
 import org.eclipse.ui.actions.RefreshAction;
 import org.eclipse.ui.actions.RenameResourceAction;
 import org.eclipse.ui.ide.IDE;
@@ -63,6 +65,7 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 	private Action copyAction;
 	private Action renameAction;
 	private Action refreshAction;
+	private Action moveAction;
 
 	public PapyrusModelActionProvider() {
 
@@ -82,6 +85,8 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 					deleteAction);
 			actionBars.setGlobalActionHandler(ActionFactory.RENAME.getId(),
 					renameAction);
+			actionBars.setGlobalActionHandler(ActionFactory.MOVE.getId(),
+					moveAction);
 			actionBars.setGlobalActionHandler(ActionFactory.COPY.getId(),
 					copyAction);
 			actionBars.setGlobalActionHandler(ActionFactory.REFRESH.getId(),
@@ -96,12 +101,13 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 		super.fillContextMenu(menu);
 		appendToGroup(menu, openAction, ICommonMenuConstants.GROUP_OPEN);
 		appendToGroup(menu, deleteAction, ICommonMenuConstants.GROUP_EDIT);
+		appendToGroup(menu, moveAction, ICommonMenuConstants.GROUP_EDIT);
 		appendToGroup(menu, copyAction, ICommonMenuConstants.GROUP_EDIT);
 		appendToGroup(menu, renameAction, ICommonMenuConstants.GROUP_EDIT);
 		appendToGroup(menu, refreshAction, ICommonMenuConstants.GROUP_EDIT);
 	}
 
-	private void appendToGroup(IMenuManager menu, Action action, String id) {
+	private void appendToGroup(IMenuManager menu, IAction action, String id) {
 		if (action != null && action.isEnabled()) {
 			menu.appendToGroup(id, action);
 		}
@@ -154,6 +160,14 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 		};
 
 		deleteAction = new DeleteResourceAction(provider) {
+			
+			@Override
+			public boolean isEnabled() {
+				return getSelectedResources() != null
+					 && getSelectedResources().size() > 0
+					 && Utils.isDi((IResource) getSelectedResources().get(0));
+					
+			}
 
 			@Override
 			public IStructuredSelection getStructuredSelection() {
@@ -166,6 +180,19 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 			}
 		};
 
+		moveAction = new MoveResourceAction(provider)
+		{
+			@Override
+			public IStructuredSelection getStructuredSelection() {
+				return helper.getStructuredSelection(getContext());
+			}
+
+			@Override
+			protected List getSelectedResources() {
+				return helper.getSelectedResources(getContext());
+			}
+		};
+		
 		copyAction = new CopyResourceAction(provider) {
 			@Override
 			public IStructuredSelection getStructuredSelection() {
@@ -202,6 +229,10 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 		makeAction(deleteAction, IWorkbenchCommandConstants.EDIT_DELETE,
 				ISharedImages.IMG_TOOL_DELETE,
 				ISharedImages.IMG_TOOL_DELETE_DISABLED);
+		makeAction(moveAction, ActionFactory.MOVE.getId(),null,null);
+		makeAction(copyAction, IWorkbenchCommandConstants.EDIT_CUT,
+				ISharedImages.IMG_TOOL_CUT,
+				ISharedImages.IMG_TOOL_CUT_DISABLED);
 		makeAction(copyAction, IWorkbenchCommandConstants.EDIT_COPY,
 				ISharedImages.IMG_TOOL_COPY,
 				ISharedImages.IMG_TOOL_COPY_DISABLED);
