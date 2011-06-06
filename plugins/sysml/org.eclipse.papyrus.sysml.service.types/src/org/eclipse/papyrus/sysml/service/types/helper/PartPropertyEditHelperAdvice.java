@@ -26,7 +26,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.sysml.blocks.Block;
+import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.sysml.service.types.matcher.BlockMatcher;
+import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
@@ -120,6 +122,9 @@ public class PartPropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 					
 					String associationName = NamedElementHelper.EINSTANCE.getNewUMLElementName(associationContainer, "Association"); //$NON-NLS-1$
 					association.setName(associationName);
+					
+					// Add SysML Nature on the new Association
+					ElementUtil.addNature(association, SysMLElementTypes.SYSML_NATURE);
 					
 					association.setPackage(associationContainer);
 				}
