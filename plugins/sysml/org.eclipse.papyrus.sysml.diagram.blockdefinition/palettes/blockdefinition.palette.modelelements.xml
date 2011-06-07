@@ -5,6 +5,9 @@
 			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.SYSML_BlockDefinition__ModelElements" name="ModelElements">
 			
+			<aspectTool description="Create a new Package" id="blockdefinition.tool.package"
+				name="Package" refToolId="blockdefinition.tool.package">
+			</aspectTool>			
 			<aspectTool description="Create a new Actor" id="blockdefinition.tool.actor"
 				name="Actor" refToolId="blockdefinition.tool.actor">
 			</aspectTool>
@@ -31,6 +34,12 @@
 			</aspectTool>
 			<aspectTool description="Create a new Value" id="blockdefinition.tool.value"
 				name="Value" refToolId="blockdefinition.tool.value">
+			</aspectTool>
+			<aspectTool description="Create a new InstanceSpecification" id="blockdefinition.tool.instancespecification"
+				name="InstanceSpecification" refToolId="blockdefinition.tool.instancespecification">
+			</aspectTool>
+			<aspectTool description="Create a new Slot" id="blockdefinition.tool.slot"
+				name="Slot" refToolId="blockdefinition.tool.slot">
 			</aspectTool>
 			<aspectTool description="Create a new Dependency" id="blockdefinition.tool.dependency"
 				name="Dependency" refToolId="blockdefinition.tool.dependency">

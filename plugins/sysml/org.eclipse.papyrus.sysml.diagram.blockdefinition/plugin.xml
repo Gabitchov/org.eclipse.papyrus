@@ -357,7 +357,57 @@
 			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif">
 		</entry>
 		<!-- Start of user code Custom node button entry  -->
-			
+
+		<entry
+			defineOnly="true"
+			description="Create a Model"
+			id="blockdefinition.tool.model"
+			kind="tool"
+			label="Model"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif">
+		</entry>
+
+		<entry
+			defineOnly="true"
+			description="Create a Package"
+			id="blockdefinition.tool.package"
+			kind="tool"
+			label="Package"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif">
+		</entry>
+		
+		<entry
+			defineOnly="true"
+			description="Create an InstanceSpecification"
+			id="blockdefinition.tool.instancespecification"
+			kind="tool"
+			label="InstanceSpecification"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif">
+		</entry>
+		
+		<entry
+			defineOnly="true"
+			description="Create a Slot"
+			id="blockdefinition.tool.slot"
+			kind="tool"
+			label="Slot"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif">
+		</entry>
+		
+		<entry
+			defineOnly="true"
+			description="Create a Comment"
+			id="blockdefinition.tool.comment"
+			kind="tool"
+			label="Comment"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
+		</entry>
+													
 		<!-- End of user code  -->
 		
 			
@@ -483,6 +533,16 @@
 			small_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_shared_directed.gif">
 		</entry>
 				
+		<entry
+			defineOnly="true"
+			description="Create a Comment / Constraint link"
+			id="blockdefinition.tool.comment_constraint_link"
+			kind="tool"
+			label="Comment / Constraint link"
+			large_icon="icons/obj16/Link.gif"
+			small_icon="icons/obj16/Link.gif">
+		</entry>
+						
 		<!-- End of user code  -->
 			
 	</contribution>
@@ -1180,21 +1240,6 @@
 		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
 		name="SYSML_Associations_BlockDefinition" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
 		path="palettes/blockdefinition.palette.associations.xml"
-		provider="CEA LIST">
-		<Priority name="Low"/>
-
-		<!-- Specify diagram this palette tools relate to -->				
-		<editor id="org.eclipse.papyrus.sysml.diagram.blockdefinition"/>
-	</paletteDefinition>
-</extension>
-
-<!-- Palette tool declaration (declares the real palette containment) -->
-<extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
-	name="SysML - Incubation (BDD)">		
-	<paletteDefinition ID="SYSML_Incubation_BlockDefinition"
-		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
-		name="SYSML_Incubation_BlockDefinition" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
-		path="palettes/blockdefinition.palette.incubation.xml"
 		provider="CEA LIST">
 		<Priority name="Low"/>
 

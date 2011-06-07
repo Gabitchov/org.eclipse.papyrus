@@ -23,6 +23,7 @@ import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeConnectio
 import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 
 @SuppressWarnings("serial")
 public class DiagramPaletteFactory extends PaletteFactory.Adapter {
@@ -55,6 +56,16 @@ public class DiagramPaletteFactory extends PaletteFactory.Adapter {
 			put("blockdefinition.tool.value", new IElementType[]{ SysMLElementTypes.VALUE_PROPERTY });
 			put("blockdefinition.tool.valuetype", new IElementType[]{ SysMLElementTypes.VALUE_TYPE });
 			//Start of user code Custom nodes
+			
+			// Constraint button replacement
+			remove("blockdefinition.tool.constraint");
+			put("blockdefinition.tool.constraint", new IElementType[]{ UMLElementTypes.CONSTRAINT, ElementTypes.CONSTRAINT, ElementTypes.CONSTRAINT_CN });
+
+			put("blockdefinition.tool.model", new IElementType[]{ ElementTypes.MODEL, ElementTypes.MODEL_CN });
+			put("blockdefinition.tool.package", new IElementType[]{ ElementTypes.PACKAGE, ElementTypes.PACKAGE_CN });
+			put("blockdefinition.tool.instancespecification", new IElementType[]{ ElementTypes.INSTANCE_SPECIFICATION, ElementTypes.INSTANCE_SPECIFICATION_CN });
+			put("blockdefinition.tool.slot", new IElementType[]{ ElementTypes.INSTANCE_SPECIFICATION_SLOT_CLN });
+			put("blockdefinition.tool.comment", new IElementType[]{ ElementTypes.COMMENT, ElementTypes.COMMENT_CN });
 
 			//End of user code
 		}
@@ -68,13 +79,16 @@ public class DiagramPaletteFactory extends PaletteFactory.Adapter {
 			put("blockdefinition.tool.generalization", new IElementType[]{ UMLElementTypes.GENERALIZATION });
 			put("blockdefinition.tool.interfacerealization", new IElementType[]{ UMLElementTypes.INTERFACE_REALIZATION });
 			put("blockdefinition.tool.usage", new IElementType[]{ UMLElementTypes.USAGE });
-			//Start of user code Custom edges
+			//Start of user code Custom edges			
 			put("blockdefinition.tool.association_none", new IElementType[]{ SysMLElementTypes.ASSOCIATION_NONE });
 			put("blockdefinition.tool.association_none_directed", new IElementType[]{ SysMLElementTypes.ASSOCIATION_NONE_DIRECTED });
 			put("blockdefinition.tool.association_composite", new IElementType[]{ SysMLElementTypes.ASSOCIATION_COMPOSITE });
 			put("blockdefinition.tool.association_composite_directed", new IElementType[]{ SysMLElementTypes.ASSOCIATION_COMPOSITE_DIRECTED });
 			put("blockdefinition.tool.association_shared", new IElementType[]{ SysMLElementTypes.ASSOCIATION_SHARED });
 			put("blockdefinition.tool.association_shared_directed", new IElementType[]{ SysMLElementTypes.ASSOCIATION_SHARED_DIRECTED });
+			
+			put("blockdefinition.tool.comment_constraint_link", new IElementType[]{ ElementTypes.COMMENT_ANNOTATED_ELEMENT, ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT });
+
 			//End of user code
 		}
 	};
