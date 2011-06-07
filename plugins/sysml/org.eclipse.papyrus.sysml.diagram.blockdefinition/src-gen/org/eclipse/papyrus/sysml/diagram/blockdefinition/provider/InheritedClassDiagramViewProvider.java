@@ -261,6 +261,8 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 			String domainElementGraphicalType = op.getSemanticHint();
 			if(domainElementGraphicalType == null) {
 				domainElementGraphicalType = registry.getNodeGraphicalType(domainElement, containerGraphicalType);
+			} else {
+				domainElementGraphicalType = registry.getNodeGraphicalType(domainElementGraphicalType, containerGraphicalType);
 			}
 
 			if((!IGraphicalTypeRegistry.UNDEFINED_TYPE.equals(domainElementGraphicalType)) && (registry.isKnownNodeType(domainElementGraphicalType))) {

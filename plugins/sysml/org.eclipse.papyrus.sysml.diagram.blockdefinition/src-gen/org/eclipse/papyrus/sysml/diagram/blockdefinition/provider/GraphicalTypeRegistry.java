@@ -228,6 +228,54 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 	 * {@inheritDoc}
 	 */
 	public String getNodeGraphicalType(String proposedType, String containerType) {
+		
+		// Explicitly forbid Comment or Constraint creation using ElementType defined in Class Diagram
+		// A better implementation should be provided, this one is not subtle but should have minimal side effect
+		// (see bug #348550)
+		
+		if((ElementTypes.COMMENT.getSemanticHint().equals(proposedType) || (ElementTypes.COMMENT_CN.getSemanticHint().equals(proposedType)))) {
+			
+			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Constraint TopNode
+				return proposedType;
+			}
+			if(ElementTypes.PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return proposedType;
+			}
+			if(ElementTypes.MODEL_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return proposedType;
+			}
+			if(ElementTypes.MODEL_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return proposedType;
+			}
+			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return proposedType;
+			}
+			
+			return UNDEFINED_TYPE;
+		}
+
+		if((ElementTypes.CONSTRAINT.getSemanticHint().equals(proposedType) || (ElementTypes.CONSTRAINT_CN.getSemanticHint().equals(proposedType)))) {
+			
+			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Constraint TopNode
+				return proposedType;
+			}
+			if(ElementTypes.PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return proposedType;
+			}
+			if(ElementTypes.MODEL_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return proposedType;
+			}
+			if(ElementTypes.MODEL_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return proposedType;
+			}
+			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return proposedType;
+			}
+			
+			return UNDEFINED_TYPE;
+		}
+		
+		// Initial implementation (to be improved - see : getNodeGraphicalType(EObject domainElement, String containerType))
 		if(isKnownNodeType(proposedType)) {
 			return proposedType;
 		}
