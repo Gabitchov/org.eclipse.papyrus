@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.core.adaptor.gmf;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -163,8 +164,13 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	 */
 	private long computeModificationStamp(ResourceSetInfo info) {
 		int result = 0;
-		for(Iterator it = info.getResourceSet().getResources().iterator(); it.hasNext();) {
-			Resource nextResource = (Resource)it.next();
+		for(Iterator<Resource> it = info.getResourceSet().getResources().iterator(); it.hasNext();) {
+			Resource nextResource = it.next();
+			
+			// bug 347300: skip faulty URIs
+			if( isBadURI(nextResource)) {
+				continue;
+			}
 			IFile file = WorkspaceSynchronizer.getFile(nextResource);
 			if(file != null) {
 				if(file.getLocation() != null) {
@@ -177,6 +183,27 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		return result;
 	}
 
+	/**
+	 * Return true if the URI is a faulty URI, false otherwise.
+	 * Faulty URI: scheme = pathmap, platform
+	 * @param resource
+	 * @return
+	 */
+	private boolean isBadURI(Resource resource) {
+		try {
+			java.net.URI uri = new java.net.URI(resource.getURI().toString());
+			String scheme = uri.getScheme();
+			if( "pathmap".equals(scheme) || "platform".equals(scheme)) {
+				return true;
+			}
+			
+			// not a bad uri
+			return false;
+		} catch (URISyntaxException e) {
+			return true;
+		}
+	}
+	
 	/**
 	 * @generated
 	 */
