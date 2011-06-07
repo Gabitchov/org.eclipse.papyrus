@@ -24,7 +24,6 @@ import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.CustomGraphicalTypeRegistry;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.GraphicalTypeRegistry;
-import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 
 /**
  * <pre>
@@ -52,7 +51,7 @@ public class ConstraintSemanticEditPolicy extends ConstraintItemSemanticEditPoli
 			return super.getCreateRelationshipCommand(req);
 		}
 
-		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(UMLElementTypes.CONSTRAINT);
+		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(req.getElementType());
 		if(commandService == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
