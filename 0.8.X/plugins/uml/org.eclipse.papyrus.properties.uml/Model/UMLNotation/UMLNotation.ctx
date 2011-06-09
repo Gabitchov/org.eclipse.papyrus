@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ASCII"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="UMLNotation">
+  <dependencies href="../../../../plugin/org.eclipse.papyrus.properties.notation/model/notation.ctx#/"/>
+  <tabs label="Appearance" id="appearance" category="org.eclipse.papyrus">
+    <afterTab href="pathmap://UML_CONTEXT/UML.ctx#//@tabs.1"/>
+    <sections name="Label" sectionFile="ui/Label.xwt">
+      <widget href="ui/Label.xwt#/"/>
+    </sections>
+    <sections name="StereotypeDisplay" sectionFile="ui/StereotypeDisplay.xwt">
+      <widget href="ui/StereotypeDisplay.xwt#/"/>
+    </sections>
+    <sections name="ElementDisplay" sectionFile="ui/ElementDisplay.xwt">
+      <widget href="ui/ElementDisplay.xwt#/"/>
+    </sections>
+    <sections name="NamedElementDisplay" sectionFile="ui/NamedElementDisplay.xwt">
+      <widget href="ui/NamedElementDisplay.xwt#/"/>
+    </sections>
+  </tabs>
+  <views name="Label" sections="//@tabs.0/@sections.0" elementMultiplicity="-1">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isLabel">
+      <constraintType href="../../../../plugin/org.eclipse.papyrus.properties.notation/model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="contexts:ValueProperty" name="editPolicy" value="MaskManagedLabelPolicy"/>
+    </constraints>
+  </views>
+  <views name="StereotypeDisplay" sections="//@tabs.0/@sections.1">
+    <constraints xsi:type="contexts:CompositeConstraint" name="isElementWithEditPart" overrideable="false">
+      <constraints name="isEditPart">
+        <constraintType href="../../../../plugin/org.eclipse.papyrus.properties.notation/model/Environment.xmi#//@constraintTypes.2"/>
+      </constraints>
+      <constraints name="isElement">
+        <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.0"/>
+        <properties xsi:type="contexts:ValueProperty" name="umlClassName" value="Element"/>
+      </constraints>
+    </constraints>
+  </views>
+  <views name="NamedElementDisplay" sections="//@tabs.0/@sections.3">
+    <constraints xsi:type="contexts:CompositeConstraint" name="isNamedElementWithEditPart" overrideable="false">
+      <constraints name="isEditPart">
+        <constraintType href="../../../../plugin/org.eclipse.papyrus.properties.notation/model/Environment.xmi#//@constraintTypes.2"/>
+      </constraints>
+      <constraints name="isElement">
+        <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.0"/>
+        <properties xsi:type="contexts:ValueProperty" name="umlClassName" value="NamedElement"/>
+      </constraints>
+    </constraints>
+  </views>
+  <dataContexts name="UMLNotation" label="UML Notation">
+    <elements name="Property">
+      <properties name="labelCustomization" label="Label customization" type="Integer" description="Define the elements to be displayed in the Property's label"/>
+    </elements>
+    <elements name="Element">
+      <properties name="stereotypeDisplay" label="Stereotype Display" type="Reference" description="Sets the elements you want to display in the Diagram"/>
+      <properties name="elementIcon" label="Element icon" type="Boolean" description="Show the Element icon in the diagram"/>
+      <properties name="shadow" label="Shadow" type="Boolean" description="Display a shadow in the Diagram"/>
+      <properties name="qualifiedName" label="Qualified name depth" type="Enumeration" description="Choose the depth of the qualified name's display"/>
+    </elements>
+    <modelElementFactory href="pathmap://UML_CONTEXT/Environment.xmi#//@modelElementFactories.4"/>
+  </dataContexts>
+  <dataContexts name="StereotypeAppearance">
+    <elements name="StereotypeAppearance">
+      <properties name="stereotypeDisplay" label="Stereotype display" type="Enumeration"/>
+      <properties name="textAlignment" label="Text alignment" type="Enumeration"/>
+      <properties name="displayPlace" label="Display place" type="Enumeration"/>
+    </elements>
+    <modelElementFactory href="../../../../plugin/org.eclipse.papyrus.properties.uml/Model/UML/Environment.xmi#//@modelElementFactories.6"/>
+  </dataContexts>
+</contexts:Context>

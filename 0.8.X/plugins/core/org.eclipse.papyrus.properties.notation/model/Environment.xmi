@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ASCII"?>
+<environment:Environment xmi:version="2.0"
+	xmlns:xmi="http://www.omg.org/XMI" xmlns:environment="http://www.eclipse.org/papyrus/properties/environment">
+	<modelElementFactories name="GMF Notation"
+		factoryClass="org.eclipse.papyrus.properties.notation.modelelement.NotationModelElementFactory" />
+	<constraintTypes label="GMF Notation Constraint"
+		constraintClass="org.eclipse.papyrus.properties.notation.constraint.GMFNotationConstraint" />
+	<constraintTypes label="HasEditPolicy"
+		constraintClass="org.eclipse.papyrus.properties.notation.constraint.HasEditPolicy" />
+	<constraintTypes label="isGMFEditPart"
+		constraintClass="org.eclipse.papyrus.properties.notation.constraint.IsEditPartConstraint" />
+</environment:Environment>

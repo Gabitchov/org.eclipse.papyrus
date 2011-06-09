@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.extendedtypes.presentation.ExtendedtypesModelWizardID"
+            name="%_UI_ExtendedtypesModelWizard_label"
+            class="org.eclipse.papyrus.extendedtypes.presentation.ExtendedtypesModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ExtendedtypesModelFile.gif">
+         <description>%_UI_ExtendedtypesModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.papyrus.extendedtypes.presentation.ExtendedtypesEditorID"
+            name="%_UI_ExtendedtypesEditor_label"
+            icon="icons/full/obj16/ExtendedtypesModelFile.gif"
+            extensions="extendedtypes"
+            class="org.eclipse.papyrus.extendedtypes.presentation.ExtendedtypesEditor"
+            contributorClass="org.eclipse.papyrus.extendedtypes.presentation.ExtendedtypesActionBarContributor">
+      </editor>
+   </extension>
+</plugin>

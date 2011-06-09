@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.eclipse.org/papyrus/alf/Alf" 
+       class = "org.eclipse.papyrus.alf.alf.AlfPackage"
+       genModel = "org/eclipse/papyrus/alf/Alf.genmodel" /> 
+	
+  </extension>
+  <extension
+        point="org.eclipse.papyrus.extensionpoints.uml2.UMLLibrary">
+     <library
+           description="Alf Library (v0.8)"
+           name="AlfLibrary"
+           path="pathmap://Papyrus_Alf_LIBRARIES/alflibrary.uml"
+           provider="CEA LIST">
+     </library>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.uri_mapping">
+     <mapping
+           source="pathmap://Papyrus_Alf_LIBRARIES/"
+           target="platform:/plugin/org.eclipse.papyrus.alf/resources/">
+     </mapping>
+  </extension>
+
+
+
+
+
+</plugin>

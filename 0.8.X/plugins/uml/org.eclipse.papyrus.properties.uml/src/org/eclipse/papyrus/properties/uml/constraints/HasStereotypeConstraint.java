@@ -1,0 +1,86 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
+package org.eclipse.papyrus.properties.uml.constraints;
+
+import org.eclipse.papyrus.properties.constraints.AbstractConstraint;
+import org.eclipse.papyrus.properties.constraints.Constraint;
+import org.eclipse.papyrus.properties.contexts.SimpleConstraint;
+import org.eclipse.papyrus.properties.uml.util.UMLUtil;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Stereotype;
+
+/**
+ * A constraint to test if the given object is a UML Element and
+ * has the given Stereotype
+ * 
+ * @author Camille Letavernier
+ */
+public class HasStereotypeConstraint extends AbstractConstraint {
+
+	protected String stereotypeName;
+
+	protected Element umlElement;
+
+	public boolean match(Object selection) {
+		umlElement = UMLUtil.resolveUMLElement(selection);
+		if(umlElement == null)
+			return false;
+
+		Stereotype stereotype = UMLUtil.getAppliedStereotype(umlElement, stereotypeName, false);
+		return stereotype != null;
+	}
+
+	@Override
+	public void setDescriptor(SimpleConstraint descriptor) {
+		stereotypeName = getValue("stereotypeName"); //$NON-NLS-1$
+	}
+
+	@Override
+	public boolean overrides(Constraint constraint) {
+		boolean overrides = false;
+
+		if(constraint instanceof HasStereotypeConstraint) {
+			HasStereotypeConstraint stereotypeConstraint = (HasStereotypeConstraint)constraint;
+			if(!stereotypeName.equals(stereotypeConstraint.stereotypeName)) {
+				Stereotype thisStereotype = umlElement.getApplicableStereotype(stereotypeName);
+				Stereotype otherStereotype = umlElement.getApplicableStereotype(stereotypeConstraint.stereotypeName);
+				if(UMLUtil.getAllSuperStereotypes(thisStereotype).contains(otherStereotype)) {
+					overrides = true;
+				}
+			}
+		}
+
+		return overrides || super.overrides(constraint);
+	}
+
+	@Override
+	public String toString() {
+		return "HasStereotype " + stereotypeName + " (" + (getView().getElementMultiplicity() == 1 ? "Single" : "Multiple") + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+	}
+
+	@Override
+	protected boolean equivalent(Constraint constraint) {
+		if(this == constraint)
+			return true;
+		if(constraint == null)
+			return false;
+		if(!(constraint instanceof HasStereotypeConstraint))
+			return false;
+		HasStereotypeConstraint other = (HasStereotypeConstraint)constraint;
+		if(stereotypeName == null) {
+			if(other.stereotypeName != null)
+				return false;
+		} else if(!stereotypeName.equals(other.stereotypeName))
+			return false;
+		return true;
+	}
+}

@@ -1,0 +1,111 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Vinent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Add undo
+ *****************************************************************************/
+package org.eclipse.papyrus.pastemanager.command;
+
+import org.eclipse.emf.common.command.AbstractCommand;
+import org.eclipse.gef.commands.Command;
+
+// TODO: Auto-generated Javadoc
+/**
+ * A EMF Command that wraps a GEF command. Each method is redirected to the GEF one.
+ */
+public class GEFtoEMFCommandWrapper extends AbstractCommand {
+
+	/**
+	 * The wrapped GEF Command. Package-level visibility so that the command stack wrapper can
+	 * access the field.
+	 */
+	private final Command gefCommand;
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param gefCommand
+	 *        the gef command
+	 */
+	public GEFtoEMFCommandWrapper(Command gefCommand) {
+		super(gefCommand.getLabel());
+		this.gefCommand = gefCommand;
+	}
+
+	/**
+	 * Returns the wrapped GEF command.
+	 * 
+	 * @return the GEF command
+	 */
+	// @unused
+	public Command getGEFCommand() {
+		return gefCommand;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.emf.common.command.AbstractCommand#canExecute()
+	 */
+	@Override
+	public boolean canExecute() {
+		return gefCommand.canExecute();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.emf.common.command.AbstractCommand#dispose()
+	 */
+	@Override
+	public void dispose() {
+		gefCommand.dispose();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.emf.common.command.AbstractCommand#canUndo()
+	 */
+	@Override
+	public boolean canUndo() {
+		return gefCommand.canUndo();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.emf.common.command.Command#execute()
+	 */
+	public void execute() {
+
+		gefCommand.execute();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.emf.common.command.Command#redo()
+	 */
+	public void redo() {
+
+		gefCommand.redo();
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.emf.common.command.AbstractCommand#undo()
+	 * 
+	 */
+	@Override
+	public void undo() {
+		gefCommand.undo();
+	}
+}

@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:Ecore_1="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+  <uml:Model xmi:id="_NuHhwEJVEd6kIY39uis5Uw" name="di">
+    <packageImport xmi:id="_NuHhwUJVEd6kIY39uis5Uw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:id="_F0PskN5qEd2dfviKlv9PXw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_UiIMMEJVEd6kIY39uis5Uw" name="SashModel">
+      <ownedComment xmi:id="_UyqHoEUrEd6g-YgfS2DHrA" annotatedElement="_UiIMMEJVEd6kIY39uis5Uw">
+        <body>Root node of the model describing the sash windows, panels and pages.&#xD;
+A SashModel can have several windows containing panels separated by sashes. Such panels can be folders &#xD;
+containing pages.</body>
+      </ownedComment>
+      <ownedAttribute xmi:id="_9KYNMEJVEd6kIY39uis5Uw" name="windows" type="_Xa5wIEJVEd6kIY39uis5Uw" aggregation="composite" association="_9JomUEJVEd6kIY39uis5Uw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9KYNMkJVEd6kIY39uis5Uw" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9KYNMUJVEd6kIY39uis5Uw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_mW0_EEJkEd6kIY39uis5Uw" name="currentSelection" type="_fbWYgEJVEd6kIY39uis5Uw" isUnique="false" association="_mT2jkEJkEd6kIY39uis5Uw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mW0_EkJkEd6kIY39uis5Uw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mW0_EUJkEd6kIY39uis5Uw" value="1"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_wdFgUEV4Ed6g-YgfS2DHrA" name="addPage">
+        <ownedParameter xmi:id="_yMF_0EV4Ed6g-YgfS2DHrA" name="pageIdentifier" type="_A-BP8EVhEd6g-YgfS2DHrA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1N0EYUV4Ed6g-YgfS2DHrA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1N0EYEV4Ed6g-YgfS2DHrA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_1N0EYkV4Ed6g-YgfS2DHrA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_m7xPsEa4Ed6g-YgfS2DHrA" name="removePage">
+        <ownedParameter xmi:id="_m7xPsUa4Ed6g-YgfS2DHrA" name="pageIdentifier" type="_A-BP8EVhEd6g-YgfS2DHrA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_m7xPska4Ed6g-YgfS2DHrA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_m7xPs0a4Ed6g-YgfS2DHrA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_m7xPtEa4Ed6g-YgfS2DHrA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_e9ojYEbXEd6g-YgfS2DHrA" name="lookupPage">
+        <ownedComment xmi:id="_hi4uYEbXEd6g-YgfS2DHrA" annotatedElement="_e9ojYEbXEd6g-YgfS2DHrA">
+          <body>Lookup the pageRef identified by the pageIdentifier.&#xD;
+Return the pageRef or null if not found.&#xD;
+Lookup in the entire SashModel structure.</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_e9ojYUbXEd6g-YgfS2DHrA" name="pageIdentifier" type="_A-BP8EVhEd6g-YgfS2DHrA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_e9ojYkbXEd6g-YgfS2DHrA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_e9ojY0bXEd6g-YgfS2DHrA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_e9ojZEbXEd6g-YgfS2DHrA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+        <ownedParameter xmi:id="_UTCMcEbYEd6g-YgfS2DHrA" name="null" type="_h_HVwEJVEd6kIY39uis5Uw" direction="return">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Wg5LIEbYEd6g-YgfS2DHrA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WgwBMEbYEd6g-YgfS2DHrA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_Wg5LIUbYEd6g-YgfS2DHrA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_q8zekEbsEd6g-YgfS2DHrA" name="movePage">
+        <ownedParameter xmi:id="_sQ_qUEbsEd6g-YgfS2DHrA" name="srcParentFolder" type="_fbWYgEJVEd6kIY39uis5Uw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wdW9EEbsEd6g-YgfS2DHrA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wdNzIEbsEd6g-YgfS2DHrA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_wdW9EUbsEd6g-YgfS2DHrA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+        <ownedParameter xmi:id="_q8zekUbsEd6g-YgfS2DHrA" name="srcIndex" type="_Hkk78EVbEd6g-YgfS2DHrA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_q8zekkbsEd6g-YgfS2DHrA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_q8zek0bsEd6g-YgfS2DHrA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_q8zelEbsEd6g-YgfS2DHrA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+        <ownedParameter xmi:id="_wqxuAEbsEd6g-YgfS2DHrA" name="targetParentFolder" type="_fbWYgEJVEd6kIY39uis5Uw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_y6twUUbsEd6g-YgfS2DHrA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_y6twUEbsEd6g-YgfS2DHrA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_y6twUkbsEd6g-YgfS2DHrA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+        <ownedParameter xmi:id="_q8zelUbsEd6g-YgfS2DHrA" name="targetIndex">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_q8zelkbsEd6g-YgfS2DHrA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_q8zel0bsEd6g-YgfS2DHrA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_q8zemEbsEd6g-YgfS2DHrA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_vnqNcEoIEd6ussMWxXGeXg" name="insertFolder">
+        <ownedParameter xmi:id="_vnqNcUoIEd6ussMWxXGeXg" name="folderToInsert" type="_fbWYgEJVEd6kIY39uis5Uw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vnqNckoIEd6ussMWxXGeXg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vnqNc0oIEd6ussMWxXGeXg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_vnqNdEoIEd6ussMWxXGeXg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+        <ownedParameter xmi:id="_vnqNeUoIEd6ussMWxXGeXg" name="refFolder" type="_fbWYgEJVEd6kIY39uis5Uw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vnqNekoIEd6ussMWxXGeXg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vnqNe0oIEd6ussMWxXGeXg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_vnqNfEoIEd6ussMWxXGeXg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+        <ownedParameter xmi:id="_vnqNfUoIEd6ussMWxXGeXg" name="refFolderSide">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vnqNfkoIEd6ussMWxXGeXg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vnqNf0oIEd6ussMWxXGeXg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_vnqNgEoIEd6ussMWxXGeXg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_Kvf9cEoJEd6ussMWxXGeXg" name="movePage">
+        <ownedParameter xmi:id="_Kvf9cUoJEd6ussMWxXGeXg" name="srcParentFolder" type="_fbWYgEJVEd6kIY39uis5Uw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Kvf9ckoJEd6ussMWxXGeXg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Kvf9c0oJEd6ussMWxXGeXg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_Kvf9dEoJEd6ussMWxXGeXg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+        <ownedParameter xmi:id="_Kvf9dUoJEd6ussMWxXGeXg" name="srcIndex" type="_Hkk78EVbEd6g-YgfS2DHrA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Kvf9dkoJEd6ussMWxXGeXg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Kvf9d0oJEd6ussMWxXGeXg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_Kvf9eEoJEd6ussMWxXGeXg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+        <ownedParameter xmi:id="_Kvf9eUoJEd6ussMWxXGeXg" name="targetParentFolder" type="_fbWYgEJVEd6kIY39uis5Uw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Kvf9ekoJEd6ussMWxXGeXg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Kvf9e0oJEd6ussMWxXGeXg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_Kvf9fEoJEd6ussMWxXGeXg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_OoMtUEoJEd6ussMWxXGeXg" name="removeEmptyFolder">
+        <ownedParameter xmi:id="_OoMtUUoJEd6ussMWxXGeXg" name="folder" type="_fbWYgEJVEd6kIY39uis5Uw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OoMtUkoJEd6ussMWxXGeXg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OoMtU0oJEd6ussMWxXGeXg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_OoMtVEoJEd6ussMWxXGeXg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_vaMqoE4OEd-B2uXHu4qMXg" name="removeAllPages">
+        <ownedComment xmi:id="_yKxU0E4OEd-B2uXHu4qMXg" annotatedElement="_vaMqoE4OEd-B2uXHu4qMXg">
+          <body>Remove all pages from the model. Only left one empty top level folder.</body>
+        </ownedComment>
+      </ownedOperation>
+      <ownedOperation xmi:id="_-TkSoE4OEd-B2uXHu4qMXg" name="removeOtherPages">
+        <ownedComment xmi:id="_Ar2_sE4PEd-B2uXHu4qMXg" annotatedElement="_-TkSoE4OEd-B2uXHu4qMXg">
+          <body>Remove pages other than the one specified from the model. Intermediate folders are also removed.</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_-TkSoU4OEd-B2uXHu4qMXg" name="pageIdentifier" type="_A-BP8EVhEd6g-YgfS2DHrA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-TkSok4OEd-B2uXHu4qMXg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-TkSo04OEd-B2uXHu4qMXg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_-TkSpE4OEd-B2uXHu4qMXg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_1jUIgE4PEd-B2uXHu4qMXg" name="lookupFirstWindow">
+        <ownedComment xmi:id="_JhGFkE4QEd-B2uXHu4qMXg" annotatedElement="_1jUIgE4PEd-B2uXHu4qMXg">
+          <body>Get the first available window.</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_9JGOIE4PEd-B2uXHu4qMXg" name="window" type="_Xa5wIEJVEd6kIY39uis5Uw" direction="return">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__PD1EU4PEd-B2uXHu4qMXg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__PD1EE4PEd-B2uXHu4qMXg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="__PD1Ek4PEd-B2uXHu4qMXg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_4qi_ME4PEd-B2uXHu4qMXg" name="lookupFirstFolder">
+        <ownedComment xmi:id="_MKOD8E4QEd-B2uXHu4qMXg" annotatedElement="_4qi_ME4PEd-B2uXHu4qMXg">
+          <body>Lookup the first available folder.</body>
+        </ownedComment>
+        <ownedParameter xmi:id="__o-w8E4PEd-B2uXHu4qMXg" name="folder" type="_fbWYgEJVEd6kIY39uis5Uw" direction="return">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BO6M8E4QEd-B2uXHu4qMXg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BOwb8E4QEd-B2uXHu4qMXg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_BO6M8U4QEd-B2uXHu4qMXg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Xa5wIEJVEd6kIY39uis5Uw" name="Window">
+      <generalization xmi:id="_95DboEJWEd6kIY39uis5Uw" general="_86BAgEJWEd6kIY39uis5Uw"/>
+      <ownedAttribute xmi:id="_yWfIQESDEd6kIY39uis5Uw" name="position" visibility="public" type="_jc9vQESDEd6kIY39uis5Uw" isUnique="false">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zpoyMUSDEd6kIY39uis5Uw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zpoyMESDEd6kIY39uis5Uw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_zpx8IESDEd6kIY39uis5Uw">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_z0glcESDEd6kIY39uis5Uw" name="size" visibility="public" type="_lh4NUESDEd6kIY39uis5Uw" isUnique="false">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1I2iMESDEd6kIY39uis5Uw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1ItYQESDEd6kIY39uis5Uw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_1I2iMUSDEd6kIY39uis5Uw">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_lnNFMEsFEd6MxdnlcgT3eA" name="panel" type="_Zx2ZYEJVEd6kIY39uis5Uw" isUnique="false" isDerived="true" association="_li3-0EsFEd6MxdnlcgT3eA">
+        <ownedComment xmi:id="_xQZ88EsFEd6MxdnlcgT3eA" annotatedElement="_lnNFMEsFEd6MxdnlcgT3eA">
+          <body>Redefine children.</body>
+        </ownedComment>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9Gk5sEsFEd6MxdnlcgT3eA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9GbvwEsFEd6MxdnlcgT3eA" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Zx2ZYEJVEd6kIY39uis5Uw" name="AbstractPanel" isAbstract="true">
+      <ownedAttribute xmi:id="__CoIQEJVEd6kIY39uis5Uw" name="parent" type="_86BAgEJWEd6kIY39uis5Uw" isUnique="false" association="__CVNUEJVEd6kIY39uis5Uw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__CoIQUJVEd6kIY39uis5Uw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__CoIQkJVEd6kIY39uis5Uw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_eE7YIEJVEd6kIY39uis5Uw" name="SashPanel">
+      <generalization xmi:id="_7VZokEJVEd6kIY39uis5Uw" general="_Zx2ZYEJVEd6kIY39uis5Uw"/>
+      <generalization xmi:id="_UH6OsEsDEd6MxdnlcgT3eA" general="_86BAgEJWEd6kIY39uis5Uw"/>
+      <ownedAttribute xmi:id="_8rplQESDEd6kIY39uis5Uw" name="sashPosition" visibility="public" type="_IEBx4EV4Ed6g-YgfS2DHrA" isUnique="false">
+        <ownedComment xmi:id="_AWCzYESEEd6kIY39uis5Uw" annotatedElement="_8rplQESDEd6kIY39uis5Uw">
+          <body>Position of the sash in the panel. The position is in percent. The value should be between 0 and 100.</body>
+        </ownedComment>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__mEH8ESDEd6kIY39uis5Uw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__l6W8ESDEd6kIY39uis5Uw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="__mEH8USDEd6kIY39uis5Uw">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_1nx64EbpEd6g-YgfS2DHrA" name="direction" visibility="public" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4G620EbpEd6g-YgfS2DHrA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4GxF0EbpEd6g-YgfS2DHrA" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_4G620UbpEd6g-YgfS2DHrA">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_eGcSEEoLEd6ussMWxXGeXg" name="setChildren">
+        <ownedParameter xmi:id="_f_4f8EoLEd6ussMWxXGeXg" name="leftChild" type="_Zx2ZYEJVEd6kIY39uis5Uw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jquaAEoLEd6ussMWxXGeXg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jqlQEEoLEd6ussMWxXGeXg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_jquaAUoLEd6ussMWxXGeXg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+        <ownedParameter xmi:id="_j57ToEoLEd6ussMWxXGeXg" name="rightChild" type="_Zx2ZYEJVEd6kIY39uis5Uw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_l57cgEoLEd6ussMWxXGeXg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_l5xrgEoLEd6ussMWxXGeXg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_l57cgUoLEd6ussMWxXGeXg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+        <ownedParameter xmi:id="_mVfXIEoLEd6ussMWxXGeXg" name="direction" type="_Hkk78EVbEd6g-YgfS2DHrA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oo3vAUoLEd6ussMWxXGeXg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oo3vAEoLEd6ussMWxXGeXg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_oo3vAkoLEd6ussMWxXGeXg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_tzrhgEuAEd6kcPOdk0bn7w" name="delete">
+        <ownedParameter xmi:id="_yPQU8EuAEd6kcPOdk0bn7w" name="childToDelete" type="_Zx2ZYEJVEd6kIY39uis5Uw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2M3aAUuAEd6kcPOdk0bn7w" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2M3aAEuAEd6kcPOdk0bn7w" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_2M3aAkuAEd6kcPOdk0bn7w">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_fbWYgEJVEd6kIY39uis5Uw" name="TabFolder">
+      <generalization xmi:id="_71vVgEJVEd6kIY39uis5Uw" general="_Zx2ZYEJVEd6kIY39uis5Uw"/>
+      <ownedAttribute xmi:id="_ANIzkEJWEd6kIY39uis5Uw" name="children" type="_h_HVwEJVEd6kIY39uis5Uw" aggregation="composite" association="_AM_CkEJWEd6kIY39uis5Uw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ANIzkkJWEd6kIY39uis5Uw" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ANIzkUJWEd6kIY39uis5Uw"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_Cqh_oEViEd6g-YgfS2DHrA" name="movePage">
+        <ownedParameter xmi:id="_ETI8MEViEd6g-YgfS2DHrA" name="oldIndex">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_G2wIcUViEd6g-YgfS2DHrA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_G2wIcEViEd6g-YgfS2DHrA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_G2wIckViEd6g-YgfS2DHrA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+        <ownedParameter xmi:id="_X27C4EV4Ed6g-YgfS2DHrA" name="newIndex" type="_Hkk78EVbEd6g-YgfS2DHrA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_amdyUUV4Ed6g-YgfS2DHrA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_amdyUEV4Ed6g-YgfS2DHrA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_amdyUkV4Ed6g-YgfS2DHrA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_oZu3cEWEEd6g-YgfS2DHrA" name="addPage">
+        <ownedParameter xmi:id="_oZu3cUWEEd6g-YgfS2DHrA" name="pageIdentifier" type="_A-BP8EVhEd6g-YgfS2DHrA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oZu3ckWEEd6g-YgfS2DHrA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oZu3c0WEEd6g-YgfS2DHrA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_oZu3dEWEEd6g-YgfS2DHrA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_oEQBQEblEd6g-YgfS2DHrA" name="removePage">
+        <ownedParameter xmi:id="_oEQBQUblEd6g-YgfS2DHrA" name="pageIndex" type="_Hkk78EVbEd6g-YgfS2DHrA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oEQBQkblEd6g-YgfS2DHrA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oEQBQ0blEd6g-YgfS2DHrA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_oEQBREblEd6g-YgfS2DHrA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_h_HVwEJVEd6kIY39uis5Uw" name="PageRef">
+      <ownedAttribute xmi:id="_ANIzk0JWEd6kIY39uis5Uw" name="parent" type="_fbWYgEJVEd6kIY39uis5Uw" isUnique="false" association="_AM_CkEJWEd6kIY39uis5Uw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ANIzlEJWEd6kIY39uis5Uw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ANIzlUJWEd6kIY39uis5Uw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b94xUEnjEd6ussMWxXGeXg" name="emfPageIdentifier" visibility="private" isUnique="false" association="_b3enUEnjEd6ussMWxXGeXg">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EObject"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-CiUUnjEd6ussMWxXGeXg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-CiUEnjEd6ussMWxXGeXg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_GrqUYEnkEd6ussMWxXGeXg" name="pageIdentifier" visibility="public" isLeaf="true" type="_A-BP8EVhEd6g-YgfS2DHrA" isUnique="false" isDerived="true">
+        <ownedComment xmi:id="_YfXUoEnmEd6ussMWxXGeXg" annotatedElement="_GrqUYEnkEd6ussMWxXGeXg">
+          <body>pageIdentifier can be a plain JavaObject or an EObject.&#xD;
+They are not stored in the same place.</body>
+        </ownedComment>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_W-1gkEnnEd6ussMWxXGeXg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_W-rvkEnnEd6ussMWxXGeXg" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_W-1gkUnnEd6ussMWxXGeXg">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_RkM5UEnmEd6ussMWxXGeXg" name="objectPageIdentifier" visibility="private" type="_A-BP8EVhEd6g-YgfS2DHrA" isUnique="false">
+        <ownedComment xmi:id="_UZ2QwEnmEd6ussMWxXGeXg" annotatedElement="_RkM5UEnmEd6ussMWxXGeXg">
+          <body>Storage to store Identifier that are not EObject.</body>
+        </ownedComment>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DXj_AUnnEd6ussMWxXGeXg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DXj_AEnnEd6ussMWxXGeXg" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_DXtI8EnnEd6ussMWxXGeXg">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_BxkKcEbaEd6g-YgfS2DHrA" name="isForIdentifier">
+        <ownedParameter xmi:id="_BxkKcUbaEd6g-YgfS2DHrA" name="pageIdentifier" type="_A-BP8EVhEd6g-YgfS2DHrA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BxkKckbaEd6g-YgfS2DHrA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BxkKc0baEd6g-YgfS2DHrA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_BxkKdEbaEd6g-YgfS2DHrA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+        <ownedParameter xmi:id="_D0_awEbaEd6g-YgfS2DHrA" name="null" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GFO_EUbaEd6g-YgfS2DHrA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GFO_EEbaEd6g-YgfS2DHrA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_GFO_EkbaEd6g-YgfS2DHrA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_zd5g0EJVEd6kIY39uis5Uw" name="AbstractPage">
+      <ownedAttribute xmi:id="_rLVHwEa1Ed6g-YgfS2DHrA" name="pageIdentifier" visibility="public" type="_A-BP8EVhEd6g-YgfS2DHrA" isUnique="false">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rLVHwUa1Ed6g-YgfS2DHrA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rLVHwka1Ed6g-YgfS2DHrA" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_rLVHw0a1Ed6g-YgfS2DHrA">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_9JomUEJVEd6kIY39uis5Uw" name="A_SashWindowsRoot_Window" memberEnd="_9KYNMEJVEd6kIY39uis5Uw _9Kh-MEJVEd6kIY39uis5Uw">
+      <ownedEnd xmi:id="_9Kh-MEJVEd6kIY39uis5Uw" name="sashWindowsRoot" type="_UiIMMEJVEd6kIY39uis5Uw" isUnique="false" association="_9JomUEJVEd6kIY39uis5Uw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9Kh-MUJVEd6kIY39uis5Uw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9Kh-MkJVEd6kIY39uis5Uw"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="__CVNUEJVEd6kIY39uis5Uw" name="A_PanelParent_AbstractPanel" memberEnd="__Ce-UEJVEd6kIY39uis5Uw __CoIQEJVEd6kIY39uis5Uw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_AM_CkEJWEd6kIY39uis5Uw" name="A_TabFolder_AbstractPageRef" memberEnd="_ANIzkEJWEd6kIY39uis5Uw _ANIzk0JWEd6kIY39uis5Uw"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_86BAgEJWEd6kIY39uis5Uw" name="PanelParent" isAbstract="true">
+      <ownedAttribute xmi:id="__Ce-UEJVEd6kIY39uis5Uw" name="children" type="_Zx2ZYEJVEd6kIY39uis5Uw" aggregation="composite" association="__CVNUEJVEd6kIY39uis5Uw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__Ce-UkJVEd6kIY39uis5Uw" value="2"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__Ce-UUJVEd6kIY39uis5Uw" value="2"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_yG3I4EoKEd6ussMWxXGeXg" name="replaceChild">
+        <ownedComment xmi:id="_AxysQEoLEd6ussMWxXGeXg" annotatedElement="_yG3I4EoKEd6ussMWxXGeXg">
+          <body>Replace the specified child by the new value.&#xD;
+Don't need to be implemented in TabFolder.&#xD;
+Used to insert a new SashPanel.</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_zqjwQEoKEd6ussMWxXGeXg" name="oldChild" type="_Zx2ZYEJVEd6kIY39uis5Uw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3Q7aAUoKEd6ussMWxXGeXg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3Q7aAEoKEd6ussMWxXGeXg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_3Q7aAkoKEd6ussMWxXGeXg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+        <ownedParameter xmi:id="_3dJREEoKEd6ussMWxXGeXg" name="newChild" type="_Zx2ZYEJVEd6kIY39uis5Uw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__gbLAUoKEd6ussMWxXGeXg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__gbLAEoKEd6ussMWxXGeXg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="__gbLAkoKEd6ussMWxXGeXg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_viyZUEJZEd6kIY39uis5Uw" name="A_PageList_PageRef" memberEnd="_vjFUQEJZEd6kIY39uis5Uw _vjYPMkJZEd6kIY39uis5Uw">
+      <ownedEnd xmi:id="_vjYPMkJZEd6kIY39uis5Uw" name="sashWindowsRoot" type="_b7a4cEMaEd6kIY39uis5Uw" isUnique="false" association="_viyZUEJZEd6kIY39uis5Uw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vjiAMEJZEd6kIY39uis5Uw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vjiAMUJZEd6kIY39uis5Uw"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_mT2jkEJkEd6kIY39uis5Uw" name="A_SashWindowsRoot_TabFolder" memberEnd="_mW0_EEJkEd6kIY39uis5Uw _mW0_E0JkEd6kIY39uis5Uw">
+      <ownedEnd xmi:id="_mW0_E0JkEd6kIY39uis5Uw" name="sashWindowsRoot" type="_UiIMMEJVEd6kIY39uis5Uw" isUnique="false" association="_mT2jkEJkEd6kIY39uis5Uw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mW-wEEJkEd6kIY39uis5Uw" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mW-wEUJkEd6kIY39uis5Uw"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_b7a4cEMaEd6kIY39uis5Uw" name="PageList">
+      <ownedAttribute xmi:id="_vjFUQEJZEd6kIY39uis5Uw" name="availablePage" type="_h_HVwEJVEd6kIY39uis5Uw" aggregation="composite" association="_viyZUEJZEd6kIY39uis5Uw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vjYPMUJZEd6kIY39uis5Uw" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vjYPMEJZEd6kIY39uis5Uw"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_i92ooEa4Ed6g-YgfS2DHrA" name="addPage">
+        <ownedParameter xmi:id="_i92ooUa4Ed6g-YgfS2DHrA" name="pageIdentifier" type="_A-BP8EVhEd6g-YgfS2DHrA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_i92ooka4Ed6g-YgfS2DHrA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_i92oo0a4Ed6g-YgfS2DHrA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_i92opEa4Ed6g-YgfS2DHrA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ocolgEa4Ed6g-YgfS2DHrA" name="removePage">
+        <ownedParameter xmi:id="_ocolgUa4Ed6g-YgfS2DHrA" name="pageIdentifier" type="_A-BP8EVhEd6g-YgfS2DHrA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ocolgka4Ed6g-YgfS2DHrA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ocolg0a4Ed6g-YgfS2DHrA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_ocolhEa4Ed6g-YgfS2DHrA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_-9vywEMaEd6kIY39uis5Uw" name="SashWindowsMngr">
+      <ownedAttribute xmi:id="_9osO4EMbEd6kIY39uis5Uw" name="pageList" type="_b7a4cEMaEd6kIY39uis5Uw" isUnique="false" aggregation="composite" association="_9k0bgEMbEd6kIY39uis5Uw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9osO4kMbEd6kIY39uis5Uw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9osO4UMbEd6kIY39uis5Uw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_-JenwEMbEd6kIY39uis5Uw" name="sashModel" type="_UiIMMEJVEd6kIY39uis5Uw" isUnique="false" aggregation="composite" association="_-EQwkEMbEd6kIY39uis5Uw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-JnxsUMbEd6kIY39uis5Uw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-JnxsEMbEd6kIY39uis5Uw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_9k0bgEMbEd6kIY39uis5Uw" name="A_MultiPageEditor_PageList" memberEnd="_9osO4EMbEd6kIY39uis5Uw _9osO40MbEd6kIY39uis5Uw">
+      <ownedEnd xmi:id="_9osO40MbEd6kIY39uis5Uw" name="multiPageEditor" type="_-9vywEMaEd6kIY39uis5Uw" isUnique="false" association="_9k0bgEMbEd6kIY39uis5Uw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9o1_4EMbEd6kIY39uis5Uw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9o1_4UMbEd6kIY39uis5Uw"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_-EQwkEMbEd6kIY39uis5Uw" name="A_MultiPageEditor_SashWindowsLayout" memberEnd="_-JenwEMbEd6kIY39uis5Uw _-JnxskMbEd6kIY39uis5Uw">
+      <ownedEnd xmi:id="_-JnxskMbEd6kIY39uis5Uw" name="multiPageEditor" type="_-9vywEMaEd6kIY39uis5Uw" isUnique="false" association="_-EQwkEMbEd6kIY39uis5Uw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-Jnxs0MbEd6kIY39uis5Uw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-JnxtEMbEd6kIY39uis5Uw"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_jc9vQESDEd6kIY39uis5Uw" name="Position">
+      <ownedAttribute xmi:id="_m9q14ESDEd6kIY39uis5Uw" name="x" visibility="public" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pZ1WUUSDEd6kIY39uis5Uw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pZ1WUESDEd6kIY39uis5Uw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_paIRQESDEd6kIY39uis5Uw">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_pmDNYESDEd6kIY39uis5Uw" name="y" visibility="public" type="_Hkk78EVbEd6g-YgfS2DHrA" isUnique="false">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_q5DtYESDEd6kIY39uis5Uw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_q458YESDEd6kIY39uis5Uw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_q5DtYUSDEd6kIY39uis5Uw">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lh4NUESDEd6kIY39uis5Uw" name="Size">
+      <ownedAttribute xmi:id="_s1CR4ESDEd6kIY39uis5Uw" name="width" visibility="public" type="_Hkk78EVbEd6g-YgfS2DHrA" isUnique="false">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_u5NJEESDEd6kIY39uis5Uw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_u5DYEESDEd6kIY39uis5Uw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_u5NJEUSDEd6kIY39uis5Uw">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_vnZr0ESDEd6kIY39uis5Uw" name="length" visibility="public" type="_Hkk78EVbEd6g-YgfS2DHrA" isUnique="false">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_w_dq8ESDEd6kIY39uis5Uw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_w_T58ESDEd6kIY39uis5Uw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_w_dq8USDEd6kIY39uis5Uw">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_Hkk78EVbEd6g-YgfS2DHrA" name="Integer"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_A-BP8EVhEd6g-YgfS2DHrA" name="JavaObject"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_IEBx4EV4Ed6g-YgfS2DHrA" name="Float"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_SNSWAEbaEd6g-YgfS2DHrA" name="boolean"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b3enUEnjEd6ussMWxXGeXg" name="A_PageRef_EObject" memberEnd="_b94xUEnjEd6ussMWxXGeXg _b-CiUknjEd6ussMWxXGeXg">
+      <ownedEnd xmi:id="_b-CiUknjEd6ussMWxXGeXg" name="pageRef" visibility="public" type="_h_HVwEJVEd6kIY39uis5Uw" isUnique="false" association="_b3enUEnjEd6ussMWxXGeXg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-MTUEnjEd6ussMWxXGeXg" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-MTUUnjEd6ussMWxXGeXg"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_li3-0EsFEd6MxdnlcgT3eA" name="A_Window_AbstractPanel" memberEnd="_lnNFMEsFEd6MxdnlcgT3eA _lnWPIksFEd6MxdnlcgT3eA">
+      <ownedEnd xmi:id="_lnWPIksFEd6MxdnlcgT3eA" name="window" type="_Xa5wIEJVEd6kIY39uis5Uw" isUnique="false" association="_li3-0EsFEd6MxdnlcgT3eA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lnWPI0sFEd6MxdnlcgT3eA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lnWPJEsFEd6MxdnlcgT3eA"/>
+      </ownedEnd>
+    </packagedElement>
+    <profileApplication xmi:id="_NuHhwkJVEd6kIY39uis5Uw">
+      <eAnnotations xmi:id="_NuHhw0JVEd6kIY39uis5Uw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/schemas/Standard/1#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_wpAy0EJfEd6kIY39uis5Uw">
+      <eAnnotations xmi:id="_wpJ8wEJfEd6kIY39uis5Uw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <Ecore:EPackage xmi:id="_zLIxUEJfEd6kIY39uis5Uw" nsPrefix="di2" nsURI="http://www.eclipse.org/papyrus/0.7.0/sashdi" basePackage="org.eclipse.papyrus.sashwindows.di"/>
+  <Ecore_1:EPackage xmi:id="_mo48QEJgEd6kIY39uis5Uw" base_Package="_NuHhwEJVEd6kIY39uis5Uw" nsPrefix="di" nsURI="http://www.eclipse.org/papyrus/0.7.0/sashdi" basePackage="org.eclipse.papyrus.sashwindows" prefix="Di">
+    <annotation>resource=XMI</annotation>
+  </Ecore_1:EPackage>
+  <Ecore:EClass xmi:id="_XL4scES1Ed6g-YgfS2DHrA" instanceClassName="java.lang.Integer"/>
+  <Ecore:EAttribute xmi:id="_7fEJYEVfEd6g-YgfS2DHrA"/>
+  <Ecore:EClass xmi:id="_NUMKIEVbEd6g-YgfS2DHrA" instanceClassName="java.lang.Object"/>
+  <Ecore_1:EDataType xmi:id="_6EWpcEVgEd6g-YgfS2DHrA" instanceClassName="int" base_PrimitiveType="_Hkk78EVbEd6g-YgfS2DHrA" dataTypeName="int"/>
+  <Ecore_1:EDataType xmi:id="_DLSYwEVhEd6g-YgfS2DHrA" instanceClassName="java.lang.Object" base_PrimitiveType="_A-BP8EVhEd6g-YgfS2DHrA"/>
+  <Ecore_1:EDataType xmi:id="_MeaSgEV4Ed6g-YgfS2DHrA" instanceClassName="float" base_PrimitiveType="_IEBx4EV4Ed6g-YgfS2DHrA"/>
+  <Ecore_1:EDataType xmi:id="_UtLf4EbaEd6g-YgfS2DHrA" instanceClassName="boolean" base_PrimitiveType="_SNSWAEbaEd6g-YgfS2DHrA"/>
+  <Ecore_1:EAttribute xmi:id="_UVaAMEnnEd6ussMWxXGeXg" isTransient="true" base_Property="_GrqUYEnkEd6ussMWxXGeXg"/>
+  <Ecore_1:EReference xmi:id="_uX7T8EsFEd6MxdnlcgT3eA" isTransient="true" isVolatile="true" base_Property="_lnNFMEsFEd6MxdnlcgT3eA"/>
+</xmi:XMI>

@@ -1,0 +1,92 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
+package org.eclipse.papyrus.properties.customization.editor.actions;
+
+import java.io.IOException;
+import java.util.Collections;
+
+import org.eclipse.emf.common.command.AbstractCommand;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.edit.command.CommandActionDelegate;
+import org.eclipse.papyrus.properties.customization.Activator;
+
+/**
+ * A command to create an EMF resource
+ * 
+ * @author Camille Letavernier
+ */
+public class CreateResourceCommand extends AbstractCommand implements CommandActionDelegate {
+
+	private EObject object;
+
+	private URI uri;
+
+	private ResourceSet resourceSet;
+
+	private Resource resource;
+
+	/**
+	 * 
+	 * Constructor. A Command to create an EMF Resource. The command can be undone.
+	 * 
+	 * @param object
+	 *        The EObject to persist in the resource
+	 * @param uri
+	 *        The location of the resource
+	 * @param resourceSet
+	 *        The resourceSet in which the resource should be created
+	 */
+	public CreateResourceCommand(EObject object, URI uri, ResourceSet resourceSet) {
+		super("Create new " + object.eClass().getName(), "Creates a new " + object.eClass().getName()); //$NON-NLS-1$ //$NON-NLS-2$
+		this.object = object;
+		this.uri = uri;
+		this.resourceSet = resourceSet;
+	}
+
+	public void execute() {
+		resource = resourceSet.createResource(uri);
+		resource.getContents().add(object);
+	}
+
+	public void redo() {
+		execute();
+	}
+
+	@Override
+	public void undo() {
+		try {
+			resource.delete(Collections.EMPTY_MAP);
+		} catch (IOException ex) {
+			Activator.log.error(ex);
+		}
+	}
+
+	public Object getImage() {
+		return null;
+	}
+
+	public String getText() {
+		return getLabel();
+	}
+
+	public String getToolTipText() {
+		return getDescription();
+	}
+
+	@Override
+	protected boolean prepare() {
+		return true;
+	}
+}

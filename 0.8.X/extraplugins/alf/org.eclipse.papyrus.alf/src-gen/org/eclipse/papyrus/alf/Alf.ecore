@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="alf"
+    nsURI="http://www.eclipse.org/papyrus/alf/Alf" nsPrefix="alf">
+  <eClassifiers xsi:type="ecore:EClass" name="Test">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignExpression" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//AssignmentCompletion"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Block"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LITERAL" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ValueSpecification">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuffixExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BOOLEAN_LITERAL" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//LITERAL">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EEnum platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//BooleanValue"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BooleanValue">
+    <eLiterals name="TRUE" literal="true"/>
+    <eLiterals name="FALSE" value="1" literal="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NUMBER_LITERAL" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//LITERAL">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="INTEGER_LITERAL" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//NUMBER_LITERAL"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UNLIMITED_LITERAL" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//NUMBER_LITERAL"/>
+  <eClassifiers xsi:type="ecore:EClass" name="STRING_LITERAL" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//LITERAL">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NameExpression" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ValueSpecification platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//NonLiteralValueSpecification">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefixOp" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//QualifiedNamePath"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="invocationCompletion" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Tuple"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceConstructionCompletion"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SequenceConstructionOrAccessCompletion"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="postfixOp" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuffixExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QualifiedNamePath">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//UnqualifiedName"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnqualifiedName">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="templateBinding" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//TemplateBinding"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateBinding">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//NamedTemplateBinding"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedTemplateBinding">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="formal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actual" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//QualifiedNameWithBinding"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QualifiedNameWithBinding">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="binding" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//TemplateBinding"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="remaining" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//QualifiedNameWithBinding"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tuple">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tupleElements" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//TupleElement"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TupleElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="argument" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SequenceElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionalTestExpression" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ConditionalOrExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="whenTrue" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ConditionalTestExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="whenFalse" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ConditionalTestExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionalOrExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" upperBound="-1" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ConditionalAndExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionalAndExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" upperBound="-1" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//InclusiveOrExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InclusiveOrExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" upperBound="-1" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ExclusiveOrExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExclusiveOrExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" upperBound="-1" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//AndExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AndExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" upperBound="-1" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//EqualityExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EqualityExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" upperBound="-1" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ClassificationExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassificationExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//RelationalExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeName" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//NameExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RelationalExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ShiftExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ShiftExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ShiftExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" upperBound="-1" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//AdditiveExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AdditiveExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" upperBound="-1" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//MultiplicativeExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiplicativeExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" upperBound="-1" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//UnaryExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//PrimaryExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimaryExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prefix" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ValueSpecification"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SuffixExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationCallExpression" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuffixExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operationName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tuple" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Tuple"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuffixExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationCallExpressionWithoutDot">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operationName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tuple" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Tuple"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuffixExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyCallExpression" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuffixExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuffixExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LinkOperationExpression" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuffixExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="ecore:EEnum platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//LinkOperationKind"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tuple" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//LinkOperationTuple"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LinkOperationTuple">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkOperationTupleElement"
+        upperBound="-1" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//LinkOperationTupleElement"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LinkOperationTupleElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectOrRole" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roleIndex" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="object" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="LinkOperationKind">
+    <eLiterals name="CREATE" literal="createLink"/>
+    <eLiterals name="DESTROY" value="1" literal="destroyLink"/>
+    <eLiterals name="CLEAR" value="2" literal="clearAssoc"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SequenceOperationExpression" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuffixExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operationName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tuple" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Tuple"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuffixExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SequenceReductionExpression" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuffixExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOrdered" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="behavior" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//QualifiedNameWithBinding"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuffixExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SequenceExpansionExpression" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuffixExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuffixExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SelectOrRejectOperation" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SequenceExpansionExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EEnum platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SelectOrRejectOperator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SelectOrRejectOperator">
+    <eLiterals name="SELECT" literal="select"/>
+    <eLiterals name="REJECT" value="1" literal="reject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CollectOrIterateOperation" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SequenceExpansionExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EEnum platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//CollectOrIterateOperator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CollectOrIterateOperator">
+    <eLiterals name="COLLECT" literal="collect"/>
+    <eLiterals name="ITERATE" value="1" literal="iterate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ForAllOrExistsOrOneOperation" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SequenceExpansionExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EEnum platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ForAllOrExistsOrOneOperator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ForAllOrExistsOrOneOperator">
+    <eLiterals name="FORALL" literal="forAll"/>
+    <eLiterals name="EXISTS" value="1" literal="exists"/>
+    <eLiterals name="ONE" value="2" literal="one"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsUniqueOperation" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SequenceExpansionExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ValueSpecification"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NonLiteralValueSpecification"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ParenthesizedExpression" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ValueSpecification platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//NonLiteralValueSpecification">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expOrTypeCast" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="casted" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//NonLiteralValueSpecification"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuffixExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NullExpression" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ValueSpecification"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ThisExpression" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ValueSpecification platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//NonLiteralValueSpecification">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuffixExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SuperInvocationExpression" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ValueSpecification platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//NonLiteralValueSpecification">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operationCallWithoutDot"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//OperationCallExpressionWithoutDot"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operationCall" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//OperationCallExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceCreationExpression" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ValueSpecification platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//NonLiteralValueSpecification">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constructor" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//QualifiedNameWithBinding"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tuple" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Tuple"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceConstuctionCompletion"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SequenceConstructionCompletion"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuffixExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SequenceConstructionOrAccessCompletion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicityIndicator"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="accessCompletion" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//AccessCompletion"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceCompletion" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//PartialSequenceConstructionCompletion"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SequenceConstructionExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AccessCompletion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="accessIndex" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PartialSequenceConstructionCompletion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SequenceConstructionExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SequenceConstructionCompletion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicityIndicator"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SequenceConstructionExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SequenceConstructionExpression" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SequenceElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceElement" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SequenceElement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rangeUpper" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SequenceElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassExtentExpression" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuffixExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Block">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequence" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//StatementSequence"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StatementSequence">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//DocumentedStatement"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InlineStatement" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="langageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AnnotatedStatement" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotation" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Annotation"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Block"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DocumentedStatement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statement" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Annotation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="ecore:EEnum platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//AnnotationKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="args" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AnnotationKind">
+    <eLiterals name="ISOLATED" literal="isolated"/>
+    <eLiterals name="DETERMINED" value="1" literal="determined"/>
+    <eLiterals name="ASSURED" value="2" literal="assured"/>
+    <eLiterals name="PARALLEL" value="3" literal="parallel"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BlockStatement" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Block"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EmptyStatement" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LocalNameDeclarationStatement" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="varName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//QualifiedNameWithBinding"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicityIndicator"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="init" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IfStatement" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequentialClausses" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SequentialClauses"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="finalClause" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//FinalClause"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SequentialClauses">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conccurentClauses" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ConcurrentClauses"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConcurrentClauses">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nonFinalClause" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//NonFinalClause"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NonFinalClause">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Block"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FinalClause">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Block"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SwitchStatement" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="switchClause" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SwitchClause"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultClause" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SwitchDefaultClause"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SwitchClause">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="switchCase" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SwitchCase"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statementSequence" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//NonEmptyStatementSequence"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SwitchCase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SwitchDefaultClause">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statementSequence" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//NonEmptyStatementSequence"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NonEmptyStatementSequence">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statement" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//DocumentedStatement"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WhileStatement" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Block"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DoStatement" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Block"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ForStatement" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="control" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ForControl"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Block"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ForControl">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loopVariableDefinition"
+        upperBound="-1" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//LoopVariableDefinition"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LoopVariableDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression1" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression2" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//QualifiedNameWithBinding"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BreakStatement" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ReturnStatement" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AcceptStatement" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clause" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//AcceptClause"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="simpleAccept" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SimpleAcceptStatementCompletion"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compoundAccept" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//CompoundAcceptStatementCompletion"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleAcceptStatementCompletion"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CompoundAcceptStatementCompletion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Block"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="acceptBlock" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//AcceptBlock"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AcceptBlock">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clause" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//AcceptClause"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Block"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AcceptClause">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="qualifiedNameList" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//QualifiedNameList"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassifyStatement" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clause" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ClassificationClause"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassificationClause">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classifyFromClause" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ClassificationFromClause"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classifyToClause" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ClassificationToClause"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reclassyAllClause" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ReclassifyAllClause"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassificationFromClause">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="qualifiedNameList" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//QualifiedNameList"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassificationToClause">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="qualifiedNameList" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//QualifiedNameList"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReclassifyAllClause"/>
+  <eClassifiers xsi:type="ecore:EClass" name="QualifiedNameList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="qualifiedName" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//QualifiedNameWithBinding"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InvocationOrAssignementOrDeclarationStatement"
+      eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typePart_OR_assignedPart_OR_invocationPart"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//NameExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variableDeclarationCompletion"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//VariableDeclarationCompletion"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignmentCompletion" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//AssignmentCompletion"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SuperInvocationStatement" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="_super" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//SuperInvocationExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ThisInvocationStatement" eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="_this" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//ThisExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignmentCompletion" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//AssignmentCompletion"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceCreationInvocationStatement"
+      eSuperTypes="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="_new" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//InstanceCreationExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableDeclarationCompletion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicityIndicator"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variableName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initValue" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//AssignmentCompletion"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssignmentCompletion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EEnum platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//AssignmentOperator"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rightHandSide" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.ecore#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AssignmentOperator">
+    <eLiterals name="ASSIGN" literal="="/>
+    <eLiterals name="PLUSASSIGN" value="1" literal="+="/>
+    <eLiterals name="MINUSASSIGN" value="2" literal="-="/>
+    <eLiterals name="MULTASSIGN" value="3" literal="*="/>
+    <eLiterals name="MODASSIGN" value="4" literal="%="/>
+    <eLiterals name="DIVASSIGN" value="5" literal="/="/>
+    <eLiterals name="ANDASSIGN" value="6" literal="&amp;="/>
+    <eLiterals name="ORASSIGN" value="7" literal="|="/>
+    <eLiterals name="XORASSIGN" value="8" literal="^="/>
+    <eLiterals name="LSHIFTASSIGN" value="9" literal="&lt;&lt;="/>
+    <eLiterals name="RSHIFTASSIGN" value="10" literal=">>="/>
+    <eLiterals name="URSHIFTASSIGN" value="11" literal=">>>="/>
+  </eClassifiers>
+</ecore:EPackage>

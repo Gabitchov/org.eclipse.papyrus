@@ -1,0 +1,47 @@
+/*
+ * Copyright (c) 2009 Atos Origin
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thibault Landre (Atos Origin) - initial API and implementation
+ */
+«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«IMPORT 'http://www.eclipse.org/emf/2002/Ecore'»
+
+«EXTENSION xpt::diagram::Utils»
+«EXTENSION xpt::preferences::PrefsConstant»
+
+«AROUND extensions FOR gmfgen::GenDiagram-»
+
+«IF preferencePages->size() > 0-»
+   <extension point="org.eclipse.ui.preferencePages" id="prefpages">
+      «EXPAND xpt::Common::xmlGeneratedTag»
+«EXPAND papyrusPreferencePage FOREACH allPreferencePages(self)-»
+   </extension>
+«ENDIF-»
+«ENDAROUND»
+
+«DEFINE papyrusPreferencePage FOR gmfgen::GenStandardPreferencePage-»
+«IF gmfgen::StandardPreferencePages::General = kind -»
+      <page
+            id="«getDiagramPreferencePageCategory()».«getDiagram().editorGen.modelID»"
+            name="«getDiagram().editorGen.modelID» Diagram"
+            category="«getDiagramPreferencePageCategory()»"
+            class="«getQualifiedClassName()»">
+      </page>
+      «ELSEIF gmfgen::StandardPreferencePages::Printing = kind or gmfgen::StandardPreferencePages::RulersAndGrid = kind -»
+      <page
+            id="«getQualifiedClassName()»"
+            name="%prefpage.«iD»"
+            category="«getDiagramPreferencePageCategory()».«getDiagram().editorGen.modelID»"
+            class="«getQualifiedClassName()»">
+      </page>
+«ENDIF»
+«ENDDEFINE»
+
+«DEFINE papyrusPreferencePage FOR gmfgen::GenCustomPreferencePage-»
+«ENDDEFINE»

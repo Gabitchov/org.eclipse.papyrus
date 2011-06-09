@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns:j="clr-namespace:java.lang" xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns:gmf="clr-namespace:org.eclipse.papyrus.widgets.gmf.editors">
+	<Composite.layout>
+		<GridLayout></GridLayout>
+	</Composite.layout>
+	<Group text="Font">
+		<Group.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Group.layout>
+		<gmf:XWTAwareFontEditor input="{Binding}"
+			property="notation:FontStyle:fontName" showLabel="false"></gmf:XWTAwareFontEditor>
+		<ppe:IntegerEditor input="{Binding}"
+			property="notation:FontStyle:fontHeight"></ppe:IntegerEditor>
+		<ppe:BooleanToggle
+			image="/org.eclipse.gmf.runtime.diagram.ui.properties/icons/bold.gif"
+			showLabel="false" input="{Binding}" property="notation:FontStyle:bold"></ppe:BooleanToggle>
+		<gmf:XWTAwareColorPicker property="notation:FontStyle:fontColor"
+			showLabel="false" input="{Binding}"></gmf:XWTAwareColorPicker>
+	</Group>
+</Composite>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/papyrus/diagram/types/applystereotypeactionconfiguration/0.7"
+            class="org.eclipse.papyrus.extendedtypes.uml.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationPackage"
+            genModel="model/ApplyStereotypeActionConfiguration.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="applystereotypeactionconfiguration"
+            class="org.eclipse.papyrus.extendedtypes.uml.applystereotypeactionconfiguration.util.ApplyStereotypeActionConfigurationResourceFactoryImpl"/>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.extendedtypes.extendedElementTypeActionProvider">
+      <extendedElementTypeActionProvider
+            class="org.eclipse.papyrus.extendedtypes.uml.providers.ApplyStereotypeActionProvider"
+            configurationClass="org.eclipse.papyrus.extendedtypes.uml.applystereotypeactionconfiguration.ApplyStereotypeActionConfiguration"
+            description="Post action to apply stereotype on created element"
+            icon="icons/Stereotype.gif"
+            id="org.eclipse.papyrus.extendedtypes.uml.applyStereotypeAction"
+            name="Extended Element Type Apply Stereotype Post Action">
+         <Priority
+               name="Lowest">
+         </Priority>
+      </extendedElementTypeActionProvider>
+   </extension>
+
+</plugin>

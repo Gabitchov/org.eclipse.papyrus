@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.properties/src-gen"
+    editDirectory="/org.eclipse.papyrus.properties.edit/src-gen" editorDirectory="/org.eclipse.papyrus.properties.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.properties" modelName="Preferences" testsDirectory="/org.eclipse.papyrus.properties.tests/src-gen"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false">
+  <foreignModel>Preferences.ecore</foreignModel>
+  <genPackages prefix="Preferences" basePackage="org.eclipse.papyrus.properties.runtime"
+      disposableProviderFactory="true" ecorePackage="Preferences.ecore#/">
+    <genClasses ecoreClass="Preferences.ecore#//ContextDescriptor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Preferences.ecore#//ContextDescriptor/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Preferences.ecore#//ContextDescriptor/applied"/>
+    </genClasses>
+    <genClasses ecoreClass="Preferences.ecore#//Preferences">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Preferences.ecore#//Preferences/contexts"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

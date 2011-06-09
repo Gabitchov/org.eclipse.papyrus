@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.eclipse.papyrus.diagram.common.groups.groupcontainment" name="group containment" schema="schema/org.eclipse.papyrus.diagram.common.groups.groupcontainment.exsd"/>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="TreeOutlinePage">
+         <propertySection
+               class="org.eclipse.papyrus.diagram.common.groups.tabbedproperties.appearance.ChooseGraphicalParentSection"
+               filter="org.eclipse.papyrus.diagram.common.groups.tabbedproperties.appearance.ChooseGraphicalParentSectionFilter"
+               id="org.eclipse.papyrus.tabbedproperties.appearance.chooseGraphicalParentSection"
+               tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
+         </propertySection>
+      </propertySections>
+   </extension>
+
+</plugin>

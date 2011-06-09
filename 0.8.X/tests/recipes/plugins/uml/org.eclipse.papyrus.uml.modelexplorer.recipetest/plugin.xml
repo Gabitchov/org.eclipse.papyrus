@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?>
+
+<plugin>
+   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization file="resource/packageInGreen.uiCustom"/>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization file="resource/packageableElementItemLinkNotVisible.uiCustom"/>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization file="resource/packagedElementsItemLinksWithIcon.uiCustom"/>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.query.registration">
+      <modelqueryset file="resource/umlModelExplorerRecipe.querySet"/>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.facet.registration">
+      <facetset file="resource/umlModelExplorerRecipe.facetSet"/>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization file="resource/LoadRecipeFacet.uiCustom"/>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization file="resource/LoadRecipeAdvancedFacet.uiCustom">
+      </browserCustomization>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization file="resource/overlayFacet.uiCustom"/>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.query.registration">
+      <modelqueryset file="resource/My.querySet"/>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization
+            file="resource/backgroundPackage.uiCustom"
+            loadByDefault="true"/>
+   </extension>
+   <extension
+         point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization
+            file="resource/packageInGreenWithoutPackageableElement.uiCustom">
+      </browserCustomization>
+   </extension>
+</plugin>

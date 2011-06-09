@@ -1,0 +1,13 @@
+grammar org.eclipse.papyrus.collaborationuse.editor.xtext.UmlCollaborationUse with org.eclipse.papyrus.common.editor.xtext.UmlCommon
+
+
+import "http://www.eclipse.org/uml2/3.0.0/UML" as uml
+
+generate umlCollaborationUse "http://www.eclipse.org/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse"
+
+CollaborationUseRule:
+	visibility = VisibilityKind
+	name=ID ':' (type=TypeRule | "<Undefined>");
+
+TypeRule :
+	(path=QualifiedName)? type=[uml::Collaboration] ;

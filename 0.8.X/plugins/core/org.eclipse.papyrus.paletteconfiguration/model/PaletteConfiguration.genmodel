@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.paletteconfiguration/src-gen"
+    editDirectory="/org.eclipse.papyrus.paletteconfiguration.edit/src-gen" editorDirectory="/org.eclipse.papyrus.paletteconfiguration.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.paletteconfiguration" modelName="PaletteConfiguration"
+    modelPluginClass="" editPluginClass="org.eclipse.papyrus.paletteconfiguration.provider.PaletteConfigurationEditPlugin"
+    editorPluginClass="org.eclipse.papyrus.paletteconfiguration.presentation.PaletteConfigurationEditorPlugin"
+    testsDirectory="/org.eclipse.papyrus.paletteconfiguration.tests/src-gen" testSuiteClass="org.eclipse.papyrus.paletteconfiguration.tests.PaletteConfigurationAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    usedGenPackages="platform:/plugin/org.eclipse.papyrus.core.queries.configuration/model/Configuration.genmodel#//configuration platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+  <foreignModel>PaletteConfiguration.ecore</foreignModel>
+  <genPackages prefix="Paletteconfiguration" basePackage="org.eclipse.papyrus" resource="XML"
+      disposableProviderFactory="true" ecorePackage="PaletteConfiguration.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="PaletteConfiguration.ecore#//ToolKind">
+      <genEnumLiterals ecoreEnumLiteral="PaletteConfiguration.ecore#//ToolKind/CreationTool"/>
+      <genEnumLiterals ecoreEnumLiteral="PaletteConfiguration.ecore#//ToolKind/ConnectionTool"/>
+    </genEnums>
+    <genClasses ecoreClass="PaletteConfiguration.ecore#//PaletteConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PaletteConfiguration.ecore#//PaletteConfiguration/drawerConfigurations"/>
+    </genClasses>
+    <genClasses ecoreClass="PaletteConfiguration.ecore#//ToolConfiguration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PaletteConfiguration.ecore#//ToolConfiguration/preValidationQuery"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PaletteConfiguration.ecore#//ToolConfiguration/kind"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PaletteConfiguration.ecore#//ToolConfiguration/elementDescriptors"/>
+    </genClasses>
+    <genClasses ecoreClass="PaletteConfiguration.ecore#//StackConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PaletteConfiguration.ecore#//StackConfiguration/ownedConfigurations"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="PaletteConfiguration.ecore#//ChildConfiguration"/>
+    <genClasses ecoreClass="PaletteConfiguration.ecore#//DrawerConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PaletteConfiguration.ecore#//DrawerConfiguration/ownedConfigurations"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="PaletteConfiguration.ecore#//Configuration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PaletteConfiguration.ecore#//Configuration/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PaletteConfiguration.ecore#//Configuration/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PaletteConfiguration.ecore#//Configuration/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PaletteConfiguration.ecore#//Configuration/icon"/>
+    </genClasses>
+    <genClasses ecoreClass="PaletteConfiguration.ecore#//IconDescriptor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PaletteConfiguration.ecore#//IconDescriptor/pluginID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PaletteConfiguration.ecore#//IconDescriptor/iconPath"/>
+    </genClasses>
+    <genClasses ecoreClass="PaletteConfiguration.ecore#//ElementDescriptor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PaletteConfiguration.ecore#//ElementDescriptor/elementTypeId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PaletteConfiguration.ecore#//ElementDescriptor/graphicalHints"/>
+    </genClasses>
+    <genClasses ecoreClass="PaletteConfiguration.ecore#//SeparatorConfiguration"/>
+    <genClasses image="false" ecoreClass="PaletteConfiguration.ecore#//LeafConfiguration"/>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.layouttool.algorithms">
+      <client
+            class="org.eclipse.papyrus.layouttool.algorithms.verticalsymmetryalgorithm.VerticalSymmetryAlgorithm"
+            icon="icons/vertsym.gif"
+            name="Vertical Symmetry"
+            toolTipText="A vertical symmetry algorithm disposes graph nodes on the other side to the vertical center of the layout area">
+      </client>
+   </extension>
+
+</plugin>

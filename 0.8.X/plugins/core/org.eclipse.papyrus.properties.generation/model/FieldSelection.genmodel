@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.properties.generation/src-gen"
+    editDirectory="/org.eclipse.papyrus.properties.generation.edit/src-gen" editorDirectory="/org.eclipse.papyrus.properties.generation.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.properties.generation" modelName="FieldSelection"
+    testsDirectory="/org.eclipse.papyrus.properties.generation.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false">
+  <foreignModel>FieldSelection.ecore</foreignModel>
+  <genPackages prefix="FieldSelection" basePackage="org.eclipse.papyrus.properties.generation"
+      disposableProviderFactory="true" ecorePackage="FieldSelection.ecore#/">
+    <genDataTypes ecoreDataType="FieldSelection.ecore#//Value"/>
+    <genClasses ecoreClass="FieldSelection.ecore#//FieldSelection">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FieldSelection.ecore#//FieldSelection/fields"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FieldSelection.ecore#//FieldSelection/contextElements"/>
+    </genClasses>
+    <genClasses ecoreClass="FieldSelection.ecore#//PropertyDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FieldSelection.ecore#//PropertyDefinition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FieldSelection.ecore#//PropertyDefinition/valueSingle"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FieldSelection.ecore#//PropertyDefinition/valueMultiple"/>
+    </genClasses>
+    <genClasses ecoreClass="FieldSelection.ecore#//ContextElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FieldSelection.ecore#//ContextElement/elements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FieldSelection.ecore#//ContextElement/properties"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FieldSelection.ecore#//ContextElement/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

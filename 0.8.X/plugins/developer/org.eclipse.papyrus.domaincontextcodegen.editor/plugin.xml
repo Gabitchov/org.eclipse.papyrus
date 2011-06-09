@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.domaincontextcodegen.presentation.DomaincontextcodegenModelWizardID"
+            name="%_UI_DomaincontextcodegenModelWizard_label"
+            class="org.eclipse.papyrus.domaincontextcodegen.presentation.DomaincontextcodegenModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/DomaincontextcodegenModelFile.gif">
+         <description>%_UI_DomaincontextcodegenModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.papyrus.domaincontextcodegen.presentation.DomaincontextcodegenEditorID"
+            name="%_UI_DomaincontextcodegenEditor_label"
+            icon="icons/full/obj16/DomaincontextcodegenModelFile.gif"
+            extensions="domaincontextcodegen"
+            class="org.eclipse.papyrus.domaincontextcodegen.presentation.DomaincontextcodegenEditor"
+            contributorClass="org.eclipse.papyrus.domaincontextcodegen.presentation.DomaincontextcodegenActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

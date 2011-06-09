@@ -1,0 +1,26 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
+
+grammar org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference with org.eclipse.xtext.common.Terminals
+
+import "http://www.eclipse.org/uml2/3.0.0/UML" as uml
+
+generate uMLConnectionPointReference "http://www.eclipse.org/papyrus/connectionpointreference/editor/xtext/UMLConnectionPointReference"
+
+ConnectionPointReferenceRule :
+	(
+		'entry' entry+=[uml::Pseudostate] (',' entry+=[uml::Pseudostate])* 
+		|
+	 	'exit' exit+=[uml::Pseudostate] (',' exit+=[uml::Pseudostate])*
+	 )? ;

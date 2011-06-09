@@ -1,0 +1,335 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.papyrus.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.papyrus.core" id="papyrusDiagram" name="Papyrus Diagram Editor"/>
+      </appInfo>
+      <documentation>
+         &lt;p&gt;
+The &lt;code&gt;org.eclipse.papyrus.core.papyrusDiagram&lt;/code&gt; extension point is used to register a new diagram editor within Papyrus. Once diagram editor is registered it can be used in the Papyrus multi-page diagram editor. The editor can have its own icon, label, a button for the creation action in the toolbar, and the possibility to be created using new Papyrus Model wizard.
+&lt;/p&gt;
+
+&lt;p&gt;Papyrus uses the term &quot;&lt;b&gt;Diagram Category&lt;/b&gt;&quot; to categorize domain models and the term &quot;&lt;b&gt;Diagram Kind&lt;/b&gt;&quot; to specialize a diagram editor for a domain model. Each Diagram Kind belongs to exactly one Diagram Category, Diagram Category can contains many Diagram Kinds. Papyrus supports &lt;b&gt;UML&lt;/b&gt;, &lt;b&gt;Profile&lt;/b&gt; and &lt;b&gt;SysML&lt;/b&gt; diagram categories. 
+&lt;/p&gt;
+
+&lt;p&gt;Besides, for a given diagram category the user can specify template models - a predefined model whose content is copied into a newly created diagram. Templates can be registered using &lt;code&gt;org.eclipse.papyrus.wizards.templates&lt;/code&gt; extension point. Diagram kinds and available templates are filtered in the wizard in accordance with the chosen category. For example, if the user choses &lt;i&gt;Profile&lt;/i&gt; category, then only Profile diagram kind are available on DiagramKindPage and only ProfileWithBasicTypes template is displayed in the list of available templates.
+&lt;/p&gt;
+
+&lt;p&gt;The user is free to use the already existing diagram categories as well as implement his own. 
+&lt;/p&gt;
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="editorDiagram" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="creationCommand" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="actionBarContributor" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="diagramCategory" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="editorDiagram">
+      <annotation>
+         <documentation>
+            A diagram editor that can be used in the Papyrus multi-page diagram editor.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="factoryClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a name of the fully qualified class that implements &lt;samp&gt; org.eclipse.papyrus.sasheditor.extension.IEditorFactory&lt;/samp&gt;. It is used to create an instance of the editor.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.diagrameditor.IPluggableEditorFactory"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="actionBarContributorId" type="string">
+            <annotation>
+               <documentation>
+                  The ID of an ActionBarContributor. If no ID is set, the main ActionBarContributor is used (the one associated to the MultiEditor).
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="icon" type="string">
+            <annotation>
+               <documentation>
+                  a relative path of an icon used to visually represent the diagram  in outline tree. The path is relative to the location of the plugin.xml file of the contributing plug-in.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="resource"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="actionBarContributor">
+      <annotation>
+         <documentation>
+            A ActionBarContributor defines the actions for one or more editors or Views.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a unique identifier used as a reference for this ActionBarContributor. It is used to associate the ActionBarContributor to editors(see &lt;code&gt;actionBarContributorId&lt;/code&gt; attribute of &lt;code&gt;editorDiagram&lt;/code&gt; extension point)
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="implementingClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a name of the fully qualified class that implements &lt;samp&gt;org.eclipse.ui.IEditorActionBarContributor&lt;/samp&gt;.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.ui.part.EditorActionBarContributor:"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="creationCommand">
+      <annotation>
+         <documentation>
+            A &quot;creationCommand&quot; is a command used to create a new diagram.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a unique identifier used as a reference for this creation command.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.ui.commands/command/@id"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="label" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a translatable name of the creation command. It is displayed in the toolbar as a button text of CreateDiagramAction, this label is also i the New Wizard while selecting the Diagram Kind.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="creationCommandClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a name of the fully qualified class that implements &lt;samp&gt;org.eclipse.papyrus.core.extension.commands.ICreationCommand&lt;/samp&gt;.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.commands.ICreationCommand"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="icon" type="string">
+            <annotation>
+               <documentation>
+                  a relative path of an icon used to visually represent the command. The path is relative to the location of the plugin.xml file of the contributing plug-in.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="resource"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="creationCondition" type="string">
+            <annotation>
+               <documentation>
+                  the action in the diagram creation menu is disabled if this condition is evaluated to false.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.commands.ICreationCondition"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="language" type="string" use="required">
+            <annotation>
+               <documentation>
+                  the id of a diagramCategory the creation command belongs to.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.papyrus.core.papyrusDiagram/@id"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="diagramCategory">
+      <annotation>
+         <documentation>
+            The category of a domain model. The registered category is available in New papyrus Model Wizard and it customizes creation of a domain model. It is also used to filter diagram kinds and model templates.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a unique identifier used as a reference for this diagram category. It is used to filter model templates and diagram kinds.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a name of the fully qualified class that implements &lt;samp&gt;org.eclipse.papyrus.core.extension.commands.IModelCreationCommand&lt;/samp&gt;.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.commands.IModelCreationCommand"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="extensionPrefix" type="string">
+            <annotation>
+               <documentation>
+                  the file extension.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="label" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a translatable name of the diagram category, it is displayed in the New Papyrus Model Wizard to select a Diagram Category.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  a description of the diagram category is to be displayed as a tooltip next ti its label.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="icon" type="string">
+            <annotation>
+               <documentation>
+                  a relative path of an icon used to visually represent the diagram category. The path is relative to the location of the plugin.xml file of the contributing plug-in.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="resource"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         0.7
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;pre&gt;
+&lt;extension point=&quot;org.eclipse.papyrus.core.papyrusDiagram&quot;&gt;
+ &lt;diagramCategory
+        id=&quot;sysml&quot;
+     class=&quot;org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand&quot;
+        label=&quot;SysML&quot;
+        description=&quot;SysML diagrams&quot;
+        icon=&quot;icons/category_sysml.gif&quot;&gt;
+ &lt;/diagramCategory&gt; 
+
+ &lt;editorDiagram
+     actionBarContributorId=&quot;org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor&quot;
+        factoryClass=&quot;org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramEditorFactory&quot;
+        icon=&quot;icons/obj16/Diagram_Requirement.gif&quot;&gt;
+ &lt;/editorDiagram&gt;
+
+ &lt;creationCommand
+        id=&quot;org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand&quot;
+     creationCommandClass=&quot;org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand&quot;
+        icon=&quot;icons/obj16/Diagram_Requirement.gif&quot;
+        label=&quot;SysML Requirement Diagram&quot;
+  language=&quot;sysml&quot;&gt;
+ &lt;/creationCommand&gt;
+&lt;/extension&gt;
+&lt;/pre&gt;  
+In this example, a specific editor for SysML Requirement diagram is registered. 
+Besides, a diagram category for SysML diagrams is defined, it has &lt;code&gt;sysml&lt;/code&gt; id. The category specifies a customized creation command &lt;code&gt;org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand&lt;/code&gt; which applies a profile to the newly-created model. In this example, the category &lt;code&gt;sysml&lt;/code&gt; containes only one diagram kind - Requirement diagram created with &lt;code&gt;org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand&lt;/code&gt;, but it can be used by other diagrams as well.  
+As Requirement diagram belongs to SysML category it will be created with a SysML profile applied to its root.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         &lt;p&gt;The value of the &lt;code&gt;class&lt;/code&gt; attribute of &lt;code&gt;diagramCategory&lt;/code&gt; must represent a class that implements the &lt;code&gt;org.eclipse.papyrus.core.extension.commands.IModelCreationCommand&lt;/code&gt; interface. There are a few default implementations of &lt;code&gt;IModelCreationCommand&lt;/code&gt; that may be useful to users of this extension point: 
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.core.extension.commands.ModelCreationCommandBase&lt;/code&gt; - an abstract implementation of a basic &lt;code&gt;IModelCreationCommand&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.diagram.common.commands.CreateUMLModelCommand&lt;/code&gt;&lt;/li&gt; - implementation of IModelCreationCommand that creates a UML model.
+&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.diagram.profile.CreateProfileModelCommand&lt;/code&gt; - a subclass of CreateUMLModelCommand which creates Profile as a root element&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand&lt;/code&gt; - a subclass of CreateUMLModelCommand which applies SysML profile to the root element&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The value of the &lt;code&gt;creationCommandClass&lt;/code&gt; attribute of &lt;code&gt;creationCommand&lt;/code&gt;
+ must represent a class that implements the &lt;code&gt;org.eclipse.papyrus.core.extension.commands.ICreationCommand&lt;/code&gt; interface.
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler&lt;/code&gt; - an abstract implementation of a basic &lt;code&gt;ICreationCommand&lt;/code&gt; for GMF diagrams. All CreationCommands for Papyrus diagrams extend this class.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;
+      </documentation>
+   </annotation>
+
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2008, 2010 CEA List.&lt;br&gt;
+All rights reserved. This program and the accompanying materials are made
+available under the terms of the Eclipse Public License v1.0 which accompanies
+this distribution, and is available at &lt;a 
+href=&quot;http://www.eclipse.org/legal/epl-v10.html&quot;&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;
+      </documentation>
+   </annotation>
+
+</schema>

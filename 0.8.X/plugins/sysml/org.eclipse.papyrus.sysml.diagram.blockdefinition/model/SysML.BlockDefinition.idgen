@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idgen:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" xmlns:idgen="http://www.eclipse.org/papyrus/0.7.0/idgen" name="BlockDefinition" type="BlockDefinition" icon="icons/obj16/Diagram_BlockDefinition.gif" label="SysML Block Definition Diagram" language="sysml" javaPackagePrefix="org.eclipse.papyrus.sysml.diagram.blockdefinition" javaClassPrefix="BlockDefinitionDiagram" createCommandLabel="Create a new Block Definition Diagram">
+  <diagramEditPart name="Diagram edit part">
+    <behaviors javaClassQualifiedName="org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy" key="DuplicatePasteEditPolicy.PASTE_ROLE"/>
+    <behaviors javaClassQualifiedName="org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDiagramDragDropEditPolicy" key="EditPolicyRoles.DRAG_DROP_ROLE"/>
+  </diagramEditPart>
+  <inheritedDiagrams name="ClassDiagram" viewProviderClassQualifiedName="" editPartProviderClassQualifiedName="" dndEditPolicyClassQualifiedName="org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy">
+    <genInheritedEditor href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#PapyrusUMLClassDiagram"/>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.7"/>
+    </genNodes>
+    <genNodes generatePreferencePage="false" generateTool="false">
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.26"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.9"/>
+    </genNodes>
+    <genNodes generatePreferencePage="false" generateTool="false">
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.28"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.3"/>
+    </genNodes>
+    <genNodes generatePreferencePage="false" generateTool="false">
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.22"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.13"/>
+    </genNodes>
+    <genNodes generatePreferencePage="false" generateTool="false">
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.33"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.14"/>
+    </genNodes>
+    <genNodes generatePreferencePage="false" generateTool="false">
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.32"/>
+    </genNodes>
+    <genLinks name="Comment / Constraint link" generatePreferencePage="false">
+      <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.16"/>
+    </genLinks>
+    <genLinks generatePreferencePage="false" generateTool="false">
+      <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.17"/>
+    </genLinks>
+  </inheritedDiagrams>
+  <customJavaClasses customEditPolicyProvider="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.CustomEditPolicyProvider" customPreferenceInitializer="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.CustomPreferenceInitializer"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_constraint_as_label"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_enumerationliteral_as_label"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_operation_as_label"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_flowport_as_label"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_port_as_label"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_constraintproperty_as_label"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_flowproperty_as_label"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_part_as_label"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_reference_as_label"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_value_as_label"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_property_as_label"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_reception_as_label"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_actor_as_classifier"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_enumeration_as_classifier"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_primitivetype_as_classifier"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_valuetype_as_classifier"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_datatype_as_classifier"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_flowspecification_as_classifier"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_interface_as_classifier"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_signal_as_classifier"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_constraintblock_as_classifier"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_block_as_classifier"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_dimension_as_classifier"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_unit_as_classifier"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_flowport_as_affixed"/>
+  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_port_as_affixed"/>
+  <usedCustomEdges href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#link_sysml_association"/>
+  <usedCustomEdges href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#link_uml_usage"/>
+  <usedCustomEdges href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#link_uml_interfacerealization"/>
+  <usedCustomEdges href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#link_uml_dependency"/>
+  <usedCustomEdges href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#link_uml_generalization"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_enumerationliteral_as_list"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_operation_as_list"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_port_as_list"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_property_as_list"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_constraint_as_list"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_flowport_as_list"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_flowproperty_as_list"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_parameter_as_list"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_part_as_list"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_reference_as_list"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_value_as_list"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_property_as_list"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#affixedlabel_uml_namedelement_name"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#label_uml_namedelement_name"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#label_sysml_block_name"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#label_sysml_constraintblock_name"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#label_sysml_dimension_name"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#label_sysml_flowspecification_name"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#label_sysml_unit_name"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#label_sysml_valuetype_name"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#linklabel_uml_appliedstereotype"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#linklabel_uml_namedelement_name"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#linklabel_uml_association_source_multiplicity"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#linklabel_uml_association_source_role"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#linklabel_uml_association_target_multiplicity"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#linklabel_uml_association_target_role"/>
+  <diagramConfig>
+    <contains xsi:type="idgen:GraphicalTypeDiagramRef">
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_block_as_classifier"/>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_flowport_as_affixed"/>
+        </contains>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_port_as_affixed"/>
+        </contains>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_property_as_list"/>
+        </contains>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_part_as_list"/>
+        </contains>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_reference_as_list"/>
+        </contains>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_port_as_list"/>
+        </contains>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_flowport_as_list"/>
+        </contains>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_operation_as_list"/>
+        </contains>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_constraint_as_list"/>
+        </contains>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_value_as_list"/>
+        </contains>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_constraintblock_as_classifier"/>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_parameter_as_list"/>
+        </contains>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_constraint_as_list"/>
+        </contains>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_flowspecification_as_classifier"/>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_flowproperty_as_list"/>
+        </contains>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_dimension_as_classifier"/>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_datatype_as_classifier"/>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_property_as_list"/>
+        </contains>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_operation_as_list"/>
+        </contains>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_unit_as_classifier"/>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_valuetype_as_classifier"/>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_property_as_list"/>
+        </contains>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_operation_as_list"/>
+        </contains>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_actor_as_classifier"/>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_property_as_list"/>
+        </contains>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_operation_as_list"/>
+        </contains>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_enumeration_as_classifier"/>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_enumerationliteral_as_list"/>
+        </contains>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_interface_as_classifier"/>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_property_as_list"/>
+        </contains>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_operation_as_list"/>
+        </contains>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_primitivetype_as_classifier"/>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_signal_as_classifier"/>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_property_as_list"/>
+        </contains>
+        <contains>
+          <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_operation_as_list"/>
+        </contains>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#link_sysml_association"/>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#link_uml_usage"/>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#link_uml_interfacerealization"/>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#link_uml_dependency"/>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#link_uml_generalization"/>
+      </contains>
+      <contains xsi:type="idgen:LegacyTypeRef" legacyRef="//@inheritedDiagrams.0/@genNodes.2">
+        <contains xsi:type="idgen:LegacyCompartmentRef">
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_block_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_constraintblock_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_flowspecification_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_dimension_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_datatype_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_unit_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_valuetype_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_actor_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_enumeration_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_interface_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_primitivetype_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_signal_as_classifier"/>
+          </contains>
+          <legacyRef href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@compartments.31"/>
+        </contains>
+      </contains>
+      <contains xsi:type="idgen:LegacyTypeRef" legacyRef="//@inheritedDiagrams.0/@genNodes.3">
+        <contains xsi:type="idgen:LegacyCompartmentRef">
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_block_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_constraintblock_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_flowspecification_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_dimension_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_datatype_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_unit_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_valuetype_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_actor_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_enumeration_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_interface_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_primitivetype_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_signal_as_classifier"/>
+          </contains>
+          <legacyRef href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@compartments.13"/>
+        </contains>
+      </contains>
+      <contains xsi:type="idgen:LegacyTypeRef" legacyRef="//@inheritedDiagrams.0/@genNodes.0">
+        <contains xsi:type="idgen:LegacyCompartmentRef">
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_block_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_constraintblock_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_flowspecification_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_dimension_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_datatype_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_unit_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_valuetype_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_actor_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_enumeration_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_interface_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_primitivetype_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_signal_as_classifier"/>
+          </contains>
+          <legacyRef href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@compartments.30"/>
+        </contains>
+      </contains>
+      <contains xsi:type="idgen:LegacyTypeRef" legacyRef="//@inheritedDiagrams.0/@genNodes.1">
+        <contains xsi:type="idgen:LegacyCompartmentRef">
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_block_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_constraintblock_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_flowspecification_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_dimension_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_datatype_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_unit_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_valuetype_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_actor_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_enumeration_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_interface_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_primitivetype_as_classifier"/>
+          </contains>
+          <contains>
+            <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_signal_as_classifier"/>
+          </contains>
+          <legacyRef href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@compartments.12"/>
+        </contains>
+      </contains>
+    </contains>
+    <contains>
+      <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_flowproperty_as_list"/>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_flowproperty_as_label"/>
+      </contains>
+    </contains>
+    <contains>
+      <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_property_as_list"/>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_port_as_label"/>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_property_as_label"/>
+      </contains>
+    </contains>
+    <contains>
+      <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_parameter_as_list"/>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_property_as_label"/>
+      </contains>
+    </contains>
+    <contains>
+      <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_port_as_list"/>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_port_as_label"/>
+      </contains>
+    </contains>
+    <contains>
+      <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_flowport_as_list"/>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_flowport_as_label"/>
+      </contains>
+    </contains>
+    <contains>
+      <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_operation_as_list"/>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_operation_as_label"/>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_reception_as_label"/>
+      </contains>
+    </contains>
+    <contains>
+      <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_constraint_as_list"/>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_constraint_as_label"/>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_constraintproperty_as_label"/>
+      </contains>
+    </contains>
+    <contains>
+      <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#compartment_uml_enumerationliteral_as_list"/>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_enumerationliteral_as_label"/>
+      </contains>
+    </contains>
+    <contains>
+      <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_property_as_list"/>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_flowport_as_label"/>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_port_as_label"/>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_property_as_label"/>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_part_as_label"/>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_reference_as_label"/>
+      </contains>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_value_as_label"/>
+      </contains>
+    </contains>
+    <contains>
+      <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_part_as_list"/>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_part_as_label"/>
+      </contains>
+    </contains>
+    <contains>
+      <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_reference_as_list"/>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_reference_as_label"/>
+      </contains>
+    </contains>
+    <contains>
+      <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_value_as_list"/>
+      <contains>
+        <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_value_as_label"/>
+      </contains>
+    </contains>
+  </diagramConfig>
+  <preferences name="DiagramPreferences">
+    <pages name="Dependency"/>
+  </preferences>
+</idgen:Diagram>

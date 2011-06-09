@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<paletteDefinition>
+	<content>
+		<drawer
+			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.SYSML_BlockDefinition__ModelElements" name="ModelElements">
+			
+			<aspectTool description="Create a new Package" id="blockdefinition.tool.package"
+				name="Package" refToolId="blockdefinition.tool.package">
+			</aspectTool>			
+			<aspectTool description="Create a new Actor" id="blockdefinition.tool.actor"
+				name="Actor" refToolId="blockdefinition.tool.actor">
+			</aspectTool>
+			<aspectTool description="Create a new Block" id="blockdefinition.tool.block"
+				name="Block" refToolId="blockdefinition.tool.block">
+			</aspectTool>
+			<aspectTool description="Create a new Signal" id="blockdefinition.tool.signal"
+				name="Signal" refToolId="blockdefinition.tool.signal">
+			</aspectTool>			
+			<aspectTool description="Create a new Operation" id="blockdefinition.tool.operation"
+				name="Operation" refToolId="blockdefinition.tool.operation">
+			</aspectTool>
+			<aspectTool description="Create a new Reception" id="blockdefinition.tool.reception"
+				name="Reception" refToolId="blockdefinition.tool.reception">
+			</aspectTool>
+			<aspectTool description="Create a new Property" id="blockdefinition.tool.property"
+				name="Property" refToolId="blockdefinition.tool.property">
+			</aspectTool>
+			<aspectTool description="Create a new Part" id="blockdefinition.tool.part"
+				name="Part" refToolId="blockdefinition.tool.part">
+			</aspectTool>
+			<aspectTool description="Create a new Reference" id="blockdefinition.tool.reference"
+				name="Reference" refToolId="blockdefinition.tool.reference">
+			</aspectTool>
+			<aspectTool description="Create a new Value" id="blockdefinition.tool.value"
+				name="Value" refToolId="blockdefinition.tool.value">
+			</aspectTool>
+			<aspectTool description="Create a new InstanceSpecification" id="blockdefinition.tool.instancespecification"
+				name="InstanceSpecification" refToolId="blockdefinition.tool.instancespecification">
+			</aspectTool>
+			<aspectTool description="Create a new Slot" id="blockdefinition.tool.slot"
+				name="Slot" refToolId="blockdefinition.tool.slot">
+			</aspectTool>
+			<aspectTool description="Create a new Dependency" id="blockdefinition.tool.dependency"
+				name="Dependency" refToolId="blockdefinition.tool.dependency">
+			</aspectTool>
+			<aspectTool description="Create a new Generalization" id="blockdefinition.tool.generalization"
+				name="Generalization" refToolId="blockdefinition.tool.generalization">
+			</aspectTool>						
+		</drawer>
+	</content>
+</paletteDefinition>

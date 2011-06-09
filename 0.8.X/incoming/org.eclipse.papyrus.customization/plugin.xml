@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/papyrus/customization"
+            class="org.eclipse.papyrus.customization.model.customization.CustomizationPackage"
+            genModel="Model/Customization.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.eclipse.papyrus.wizards.category"
+            class="org.eclipse.papyrus.customization.wizard.CreateNewCustomizationPluginWizard"
+            icon="icons/papyrus.png"
+            id="org.eclipse.papyrus.customization.wizard"
+            name="%wizard.name">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.properties.context">
+      <context
+            contextModel="Model/Customization/Customization.ctx"
+            loadDefault="true">
+      </context>
+   </extension>
+
+</plugin>

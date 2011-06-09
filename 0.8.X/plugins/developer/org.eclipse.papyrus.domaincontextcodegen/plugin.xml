@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/papyrus/2010/domaincontextcodegen"
+            class="org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage"
+            genModel="resource/DomainContext.genmodel"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="org.eclipse.papyrus.domaincontextcodegen.objectContribution"
+            objectClass="org.eclipse.papyrus.domaincontextcodegen.DomainContext">
+         <action
+               class="org.eclipse.papyrus.domaincontextcodegen.GenerateElementTypeModelAction"
+               enablesFor="1"
+               id="org.eclipse.papyrus.domaincontextcodegen.action1"
+               label="Generate All ElementTypes model">
+         </action>
+      </objectContribution>
+      <objectContribution
+            adaptable="true"
+            id="org.eclipse.papyrus.domaincontextcodegen.ElementTypesContribution"
+            objectClass="org.eclipse.papyrus.domaincontextcodegen.ElementTypes">
+         <action
+               class="org.eclipse.papyrus.domaincontextcodegen.AddBindingsAction"
+               enablesFor="1"
+               id="org.eclipse.papyrus.domaincontextcodegen.AddBindingsAction"
+               label="Add bindings for ElementTypes">
+         </action>
+         <action
+               class="org.eclipse.papyrus.domaincontextcodegen.SetUMLIconInElementTypesAction"
+               enablesFor="1"
+               id="org.eclipse.papyrus.domaincontextcodegen.SetUMLIconInElementTypesAction"
+               label="Set UML icon for ElementTypes">
+         </action>
+      </objectContribution>
+      <objectContribution
+            adaptable="true"
+            id="org.eclipse.papyrus.domaincontextcodegen.GenHandlers"
+            objectClass="org.eclipse.papyrus.domaincontextcodegen.GenHandlers">
+         <action
+               class="org.eclipse.papyrus.domaincontextcodegen.AddVisibleCommandForChildrenAction"
+               enablesFor="1"
+               id="org.eclipse.papyrus.domaincontextcodegen.AddVisibleCommandForChildrenAction"
+               label="Add non-abstract ElementTypes in create menu">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>

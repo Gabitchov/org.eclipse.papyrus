@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.layouttool.algorithms">
+      <client
+            class="org.eclipse.papyrus.layouttool.algorithms.horizontaltreealgorithm.HorizontalTreeAlgorithm"
+            icon="icons/HorizontalTree.gif"
+            name="Horizontal tree"
+            toolTipText="A HorizontalTreeLayoutAlgorithm arranges graph nodes in a layered horizontal tree-like layout">
+      </client>
+   </extension>
+
+</plugin>

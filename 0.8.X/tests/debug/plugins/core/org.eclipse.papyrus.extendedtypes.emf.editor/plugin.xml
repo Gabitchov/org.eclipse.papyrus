@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.extendedtypes.emf.modifysemanticvaluesactionconfiguration.presentation.ModifySemanticValuesActionConfigurationModelWizardID"
+            name="%_UI_ModifySemanticValuesActionConfigurationModelWizard_label"
+            class="org.eclipse.papyrus.extendedtypes.emf.modifysemanticvaluesactionconfiguration.presentation.ModifySemanticValuesActionConfigurationModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ModifySemanticValuesActionConfigurationModelFile.gif">
+         <description>%_UI_ModifySemanticValuesActionConfigurationModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.papyrus.extendedtypes.emf.modifysemanticvaluesactionconfiguration.presentation.ModifySemanticValuesActionConfigurationEditorID"
+            name="%_UI_ModifySemanticValuesActionConfigurationEditor_label"
+            icon="icons/full/obj16/ModifySemanticValuesActionConfigurationModelFile.gif"
+            extensions="modifysemanticvaluesactionconfiguration"
+            class="org.eclipse.papyrus.extendedtypes.emf.modifysemanticvaluesactionconfiguration.presentation.ModifySemanticValuesActionConfigurationEditor"
+            contributorClass="org.eclipse.papyrus.extendedtypes.emf.modifysemanticvaluesactionconfiguration.presentation.ModifySemanticValuesActionConfigurationActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

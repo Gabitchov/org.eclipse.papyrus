@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ASCII"?>
+<environment:Environment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:environment="http://www.eclipse.org/papyrus/properties/environment">
+  <modelElementFactories name="UML Specific Factory" factoryClass="org.eclipse.papyrus.properties.uml.modelelement.UMLEditorFactory"/>
+  <modelElementFactories name="UML Factory" factoryClass="org.eclipse.papyrus.properties.uml.modelelement.UMLModelElementFactory"/>
+  <modelElementFactories name="Stereotype Factory" factoryClass="org.eclipse.papyrus.properties.uml.modelelement.StereotypeModelElementFactory"/>
+  <modelElementFactories name="Stereotype Application Factory" factoryClass="org.eclipse.papyrus.properties.uml.modelelement.StereotypeApplicationFactory"/>
+  <modelElementFactories name="UML Notation Factory" factoryClass="org.eclipse.papyrus.properties.uml.modelelement.UMLNotationFactory"/>
+  <modelElementFactories name="Custom Image Factory" factoryClass="org.eclipse.papyrus.properties.uml.modelelement.CustomImageModelElementFactory"/>
+  <modelElementFactories name="Stereotype Appearance Factory" factoryClass="org.eclipse.papyrus.properties.uml.modelelement.StereotypeAppearanceFactory"/>
+  <constraintTypes label="UML Instance Of" constraintClass="org.eclipse.papyrus.properties.uml.constraints.UmlInstanceOfConstraint"/>
+  <constraintTypes label="Has Stereotype" constraintClass="org.eclipse.papyrus.properties.uml.constraints.HasStereotypeConstraint"/>
+  <propertyEditorTypes label="ExpressionEditor" widgetClass="ExpressionEditor" namespace="//@namespaces.0" multiplicity="-1"/>
+  <propertyEditorTypes label="Profile Application Editor" widgetClass="ProfileApplicationPropertyEditor" namespace="//@namespaces.0" type="Reference" multiplicity="-1"/>
+  <propertyEditorTypes label="StereotypeDisplayEditor" widgetClass="StereotypeDisplay" namespace="//@namespaces.0" type="Reference"/>
+  <propertyEditorTypes label="Stereotype Application Editor" widgetClass="StereotypeApplication" namespace="//@namespaces.0" type="Reference" multiplicity="-1"/>
+  <propertyEditorTypes label="Image content Editor" widgetClass="StereotypeImageEditor" namespace="//@namespaces.0"/>
+  <namespaces prefix="clr-namespace" name="uml" value="org.eclipse.papyrus.properties.uml.widgets"/>
+</environment:Environment>

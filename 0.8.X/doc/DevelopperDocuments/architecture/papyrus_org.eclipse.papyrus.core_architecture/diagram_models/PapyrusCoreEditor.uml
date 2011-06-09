@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_ax_1wLlcEd6fI7WKgVDX2A">
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ax_1wblcEd6fI7WKgVDX2A" name="boolean"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ax_1wrlcEd6fI7WKgVDX2A" name="byte"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ax_1w7lcEd6fI7WKgVDX2A" name="char"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ax_1xLlcEd6fI7WKgVDX2A" name="double"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ax_1xblcEd6fI7WKgVDX2A" name="float"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ax_1xrlcEd6fI7WKgVDX2A" name="int"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ax_1x7lcEd6fI7WKgVDX2A" name="long"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ax_1yLlcEd6fI7WKgVDX2A" name="short"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_ax_1yblcEd6fI7WKgVDX2A" name="org">
+    <packagedElement xmi:type="uml:Package" xmi:id="_ax_1yrlcEd6fI7WKgVDX2A" name="eclipse">
+      <packagedElement xmi:type="uml:Package" xmi:id="_ax_1y7lcEd6fI7WKgVDX2A" name="papyrus">
+        <packagedElement xmi:type="uml:Package" xmi:id="_ax_1zLlcEd6fI7WKgVDX2A" name="core">
+          <packagedElement xmi:type="uml:Package" xmi:id="_ax_1zblcEd6fI7WKgVDX2A" name="editor">
+            <packagedElement xmi:type="uml:Class" xmi:id="_ax_1zrlcEd6fI7WKgVDX2A" name="CoreMultiDiagramEditor" clientDependency="_ax_14LlcEd6fI7WKgVDX2A">
+              <generalization xmi:id="_ax_1z7lcEd6fI7WKgVDX2A" general="_ayFVXLlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ax_10LlcEd6fI7WKgVDX2A" name="log" type="_ayFVXblcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ax_10blcEd6fI7WKgVDX2A" name="gefAdaptorDelegate" visibility="private" type="_ayFVXrlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ax_10rlcEd6fI7WKgVDX2A" name="editorRegistry" visibility="private" type="_ayFVX7lcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ax_107lcEd6fI7WKgVDX2A" name="editorContextRegistry" visibility="private" type="_ayFVYLlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ax_11LlcEd6fI7WKgVDX2A" name="contentOutlineRegistry" visibility="private" type="_ayFVYblcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ax_11blcEd6fI7WKgVDX2A" name="servicesRegistry" visibility="private" type="_ayFVYrlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ax_11rlcEd6fI7WKgVDX2A" name="actionBarContributorRegistry" visibility="private" type="_ayFVY7lcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ax_117lcEd6fI7WKgVDX2A" name="sashModelMngr" visibility="protected" type="_ayFVZLlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ax_12LlcEd6fI7WKgVDX2A" name="defaultContext" visibility="private" type="_ayEHQ7lcEd6fI7WKgVDX2A" association="_ayHxsLlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ax_12blcEd6fI7WKgVDX2A" name="tabbedPropertySheetPage" visibility="private" type="_ayFVZblcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ax_12rlcEd6fI7WKgVDX2A" name="toSave" visibility="private" type="_ax_1wblcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ax_127lcEd6fI7WKgVDX2A" name="diagramEditDomain" visibility="private" type="_ayFVZrlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ax_13LlcEd6fI7WKgVDX2A" name="domainProvider" visibility="private" type="_ayFVZ7lcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ax_13blcEd6fI7WKgVDX2A" name="diagramChangeListener" visibility="private" type="_ayHxkLlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ax_13rlcEd6fI7WKgVDX2A" name="contentChangedListener" visibility="private" type="_ayHxkblcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ax_137lcEd6fI7WKgVDX2A" name="commandStackListener" visibility="private" type="_ayHxkrlcEd6fI7WKgVDX2A"/>
+              <interfaceRealization xmi:id="_ax_14LlcEd6fI7WKgVDX2A" name="IMultiDiagramEditor" supplier="_ayEuQLlcEd6fI7WKgVDX2A" client="_ax_1zrlcEd6fI7WKgVDX2A" contract="_ayEuQLlcEd6fI7WKgVDX2A"/>
+              <ownedOperation xmi:id="_ax_14blcEd6fI7WKgVDX2A" name="createPageEditor" visibility="public">
+                <ownedParameter xmi:id="_ax_14rlcEd6fI7WKgVDX2A" name="model" type="_ayHxk7lcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_ax_147lcEd6fI7WKgVDX2A" name="return" type="_ayHxlLlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ax_15LlcEd6fI7WKgVDX2A" name="getActionBarContributor" visibility="public">
+                <ownedParameter xmi:id="_ax_15blcEd6fI7WKgVDX2A" name="editorModel" type="_ayHxk7lcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_ax_15rlcEd6fI7WKgVDX2A" name="return" type="_ayHxlblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ax_157lcEd6fI7WKgVDX2A" name="getContextRegistry" visibility="public">
+                <ownedParameter xmi:id="_ax_16LlcEd6fI7WKgVDX2A" name="return" type="_ayFVYLlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayC5ELlcEd6fI7WKgVDX2A" name="createEditorContextRegistry" visibility="protected">
+                <ownedParameter xmi:id="_ayC5EblcEd6fI7WKgVDX2A" name="return" type="_ayFVYLlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayC5ErlcEd6fI7WKgVDX2A" name="getContentOutlineRegistry" visibility="protected">
+                <ownedParameter xmi:id="_ayC5E7lcEd6fI7WKgVDX2A" name="return" type="_ayFVYblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayC5FLlcEd6fI7WKgVDX2A" name="createContentOutlineRegistry" visibility="private"/>
+              <ownedOperation xmi:id="_ayC5FblcEd6fI7WKgVDX2A" name="getEditorRegistry" visibility="protected">
+                <ownedParameter xmi:id="_ayC5FrlcEd6fI7WKgVDX2A" name="return" type="_ayFVX7lcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayC5F7lcEd6fI7WKgVDX2A" name="createEditorRegistry" visibility="protected">
+                <ownedParameter xmi:id="_ayC5GLlcEd6fI7WKgVDX2A" name="return" type="_ayFVX7lcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayC5GblcEd6fI7WKgVDX2A" name="getServicesRegistry" visibility="protected">
+                <ownedParameter xmi:id="_ayC5GrlcEd6fI7WKgVDX2A" name="return" type="_ayFVYrlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayC5G7lcEd6fI7WKgVDX2A" name="createServicesRegistry" visibility="private">
+                <ownedParameter xmi:id="_ayC5HLlcEd6fI7WKgVDX2A" name="return" type="_ayFVYrlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayC5HblcEd6fI7WKgVDX2A" name="createPageProvider" visibility="protected">
+                <ownedParameter xmi:id="_ayC5HrlcEd6fI7WKgVDX2A" name="return" type="_ayHxlrlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayC5H7lcEd6fI7WKgVDX2A" name="createPageProvider" visibility="protected">
+                <ownedParameter xmi:id="_ayC5ILlcEd6fI7WKgVDX2A" name="pageFactory" type="_ayHxl7lcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_ayC5IblcEd6fI7WKgVDX2A" name="diResource" type="_ayHxmLlcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_ayC5IrlcEd6fI7WKgVDX2A" name="editingDomain" type="_ayHxmblcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_ayC5I7lcEd6fI7WKgVDX2A" name="return" type="_ayHxlrlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayC5JLlcEd6fI7WKgVDX2A" name="getIPageMngr" visibility="protected">
+                <ownedParameter xmi:id="_ayC5JblcEd6fI7WKgVDX2A" name="return" type="_ayHxmrlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayC5JrlcEd6fI7WKgVDX2A" name="getActionBarContributorRegistry" visibility="public">
+                <ownedParameter xmi:id="_ayC5J7lcEd6fI7WKgVDX2A" name="return" type="_ayFVY7lcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayC5KLlcEd6fI7WKgVDX2A" name="createActionBarContributorRegistry" visibility="private">
+                <ownedParameter xmi:id="_ayC5KblcEd6fI7WKgVDX2A" name="return" type="_ayFVY7lcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayC5KrlcEd6fI7WKgVDX2A" name="getAdapter" visibility="public">
+                <ownedParameter xmi:id="_ayC5K7lcEd6fI7WKgVDX2A" name="adapter" type="_ayHxm7lcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_ayC5LLlcEd6fI7WKgVDX2A" name="return" type="_ayHxk7lcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayC5LblcEd6fI7WKgVDX2A" name="init" visibility="public">
+                <ownedParameter xmi:id="_ayC5LrlcEd6fI7WKgVDX2A" name="site" type="_ayHxnLlcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_ayC5L7lcEd6fI7WKgVDX2A" name="input" type="_ayHxnblcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayC5MLlcEd6fI7WKgVDX2A" name="activate" visibility="protected"/>
+              <ownedOperation xmi:id="_ayC5MblcEd6fI7WKgVDX2A" name="deactivate" visibility="protected"/>
+              <ownedOperation xmi:id="_ayC5MrlcEd6fI7WKgVDX2A" name="getPropertySheetPage" visibility="public">
+                <ownedParameter xmi:id="_ayC5M7lcEd6fI7WKgVDX2A" name="return" type="_ayHxnrlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayC5NLlcEd6fI7WKgVDX2A" name="createDefaultContext" visibility="private">
+                <ownedParameter xmi:id="_ayC5NblcEd6fI7WKgVDX2A" name="site" type="_ayHxnLlcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_ayC5NrlcEd6fI7WKgVDX2A" name="input" type="_ayHxnblcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_ayC5N7lcEd6fI7WKgVDX2A" name="return" type="_ayEHQ7lcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayC5OLlcEd6fI7WKgVDX2A" name="doSave" visibility="public">
+                <ownedParameter xmi:id="_ayC5OblcEd6fI7WKgVDX2A" name="monitor" type="_ayHxn7lcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayDgILlcEd6fI7WKgVDX2A" name="markSaveLocation" visibility="protected"/>
+              <ownedOperation xmi:id="_ayDgIblcEd6fI7WKgVDX2A" name="markDirty" visibility="protected"/>
+              <ownedOperation xmi:id="_ayDgIrlcEd6fI7WKgVDX2A" name="isDirty" visibility="public">
+                <ownedParameter xmi:id="_ayDgI7lcEd6fI7WKgVDX2A" name="return" type="_ax_1wblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayDgJLlcEd6fI7WKgVDX2A" name="doSaveAs" visibility="public"/>
+              <ownedOperation xmi:id="_ayDgJblcEd6fI7WKgVDX2A" name="isSaveAsAllowed" visibility="public">
+                <ownedParameter xmi:id="_ayEHMLlcEd6fI7WKgVDX2A" name="return" type="_ax_1wblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHMblcEd6fI7WKgVDX2A" name="getDefaultContext" visibility="public">
+                <ownedParameter xmi:id="_ayEHMrlcEd6fI7WKgVDX2A" name="return" type="_ayEHQ7lcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHM7lcEd6fI7WKgVDX2A" name="getContributorId" visibility="public">
+                <ownedParameter xmi:id="_ayEHNLlcEd6fI7WKgVDX2A" name="return" type="_ayHxoLlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHNblcEd6fI7WKgVDX2A" name="getActiveEditor" visibility="public">
+                <ownedParameter xmi:id="_ayEHNrlcEd6fI7WKgVDX2A" name="return" type="_ayHxlLlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHN7lcEd6fI7WKgVDX2A" name="setDiagramEditDomain" visibility="public">
+                <ownedParameter xmi:id="_ayEHOLlcEd6fI7WKgVDX2A" name="diagramEditDomain" type="_ayFVZrlcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHOblcEd6fI7WKgVDX2A" name="getDiagramEditDomain" visibility="public">
+                <ownedParameter xmi:id="_ayEHOrlcEd6fI7WKgVDX2A" name="return" type="_ayFVZrlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHO7lcEd6fI7WKgVDX2A" name="getDiagram" visibility="public">
+                <ownedParameter xmi:id="_ayEHPLlcEd6fI7WKgVDX2A" name="return" type="_ayHxoblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHPblcEd6fI7WKgVDX2A" name="getDiagramEditPart" visibility="public">
+                <ownedParameter xmi:id="_ayEHPrlcEd6fI7WKgVDX2A" name="return" type="_ayHxorlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHP7lcEd6fI7WKgVDX2A" name="getDiagramGraphicalViewer" visibility="public">
+                <ownedParameter xmi:id="_ayEHQLlcEd6fI7WKgVDX2A" name="return" type="_ayHxo7lcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHQblcEd6fI7WKgVDX2A" name="getEditingDomain" visibility="public">
+                <ownedParameter xmi:id="_ayEHQrlcEd6fI7WKgVDX2A" name="return" type="_ayHxpLlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_ayEHQ7lcEd6fI7WKgVDX2A" name="BackboneContext">
+              <generalization xmi:id="_ayEHRLlcEd6fI7WKgVDX2A" general="_ayHxpblcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ayEHRblcEd6fI7WKgVDX2A" name="BACKBONE_CONTEXT_ID" visibility="public" type="_ayHxk7lcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ayEHRrlcEd6fI7WKgVDX2A" name="resourceSet" visibility="protected" type="_ayHxprlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ayEHR7lcEd6fI7WKgVDX2A" name="modelResolver" visibility="protected" type="_ayHxp7lcEd6fI7WKgVDX2A"/>
+              <ownedOperation xmi:id="_ayEHSLlcEd6fI7WKgVDX2A" name="setInput" visibility="public">
+                <ownedParameter xmi:id="_ayEHSblcEd6fI7WKgVDX2A" name="input" type="_ayHxnblcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHSrlcEd6fI7WKgVDX2A" name="getResourceSet" visibility="public">
+                <ownedParameter xmi:id="_ayEHS7lcEd6fI7WKgVDX2A" name="return" type="_ayHxprlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHTLlcEd6fI7WKgVDX2A" name="load" visibility="public">
+                <ownedParameter xmi:id="_ayEHTblcEd6fI7WKgVDX2A" name="file" type="_ayHxqLlcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHTrlcEd6fI7WKgVDX2A" name="save" visibility="public">
+                <ownedParameter xmi:id="_ayEHT7lcEd6fI7WKgVDX2A" name="monitor" type="_ayHxn7lcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHULlcEd6fI7WKgVDX2A" name="saveAs" visibility="public">
+                <ownedParameter xmi:id="_ayEHUblcEd6fI7WKgVDX2A" name="path" type="_ayHxqblcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHUrlcEd6fI7WKgVDX2A" name="isSaveAsAllowed" visibility="public">
+                <ownedParameter xmi:id="_ayEHU7lcEd6fI7WKgVDX2A" name="return" type="_ax_1wblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHVLlcEd6fI7WKgVDX2A" name="getModelResolver" visibility="public">
+                <ownedParameter xmi:id="_ayEHVblcEd6fI7WKgVDX2A" name="return" type="_ayHxp7lcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHVrlcEd6fI7WKgVDX2A" name="getTransactionalEditingDomain" visibility="public">
+                <ownedParameter xmi:id="_ayEHV7lcEd6fI7WKgVDX2A" name="return" type="_ayHxmblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_ayEHWLlcEd6fI7WKgVDX2A" name="EditingDomainService">
+              <ownedAttribute xmi:id="_ayEHWblcEd6fI7WKgVDX2A" name="undoContext" visibility="private" type="_ayHxqrlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ayEHWrlcEd6fI7WKgVDX2A" name="defaultContext" visibility="private" type="_ayEHQ7lcEd6fI7WKgVDX2A" association="_ayHxsrlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ayEHW7lcEd6fI7WKgVDX2A" name="commandStackListener" visibility="private" type="_ayHxkrlcEd6fI7WKgVDX2A"/>
+              <ownedOperation xmi:id="_ayEHXLlcEd6fI7WKgVDX2A" name="getDiagramEditDomain" visibility="public">
+                <ownedParameter xmi:id="_ayEHXblcEd6fI7WKgVDX2A" name="return" type="_ayFVZrlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHXrlcEd6fI7WKgVDX2A" name="createActionManager" visibility="protected">
+                <ownedParameter xmi:id="_ayEHX7lcEd6fI7WKgVDX2A" name="return" type="_ayHxq7lcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHYLlcEd6fI7WKgVDX2A" name="getActionManager" visibility="protected">
+                <ownedParameter xmi:id="_ayEHYblcEd6fI7WKgVDX2A" name="return" type="_ayHxq7lcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHYrlcEd6fI7WKgVDX2A" name="createOperationHistory" visibility="protected">
+                <ownedParameter xmi:id="_ayEHY7lcEd6fI7WKgVDX2A" name="return" type="_ayHxrLlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHZLlcEd6fI7WKgVDX2A" name="getUndoContext" visibility="protected">
+                <ownedParameter xmi:id="_ayEHZblcEd6fI7WKgVDX2A" name="return" type="_ayHxqrlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHZrlcEd6fI7WKgVDX2A" name="configureDiagramEditDomain" visibility="protected"/>
+              <ownedOperation xmi:id="_ayEHZ7lcEd6fI7WKgVDX2A" name="getOperationHistory" visibility="protected">
+                <ownedParameter xmi:id="_ayEHaLlcEd6fI7WKgVDX2A" name="return" type="_ayHxrLlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHablcEd6fI7WKgVDX2A" name="addCommandStackListener" visibility="public">
+                <ownedParameter xmi:id="_ayEHarlcEd6fI7WKgVDX2A" name="listener" type="_ayHxkrlcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHa7lcEd6fI7WKgVDX2A" name="removeCommandStackListener" visibility="public">
+                <ownedParameter xmi:id="_ayEHbLlcEd6fI7WKgVDX2A" name="listener" type="_ayHxkrlcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEHbblcEd6fI7WKgVDX2A" name="commandStackChanged" visibility="public">
+                <ownedParameter xmi:id="_ayEHbrlcEd6fI7WKgVDX2A" name="event" type="_ayHxrblcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_ayEHb7lcEd6fI7WKgVDX2A" name="BackboneException">
+              <generalization xmi:id="_ayEHcLlcEd6fI7WKgVDX2A" general="_ayHxrrlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ayEHcblcEd6fI7WKgVDX2A" name="serialVersionUID" visibility="private" type="_ax_1x7lcEd6fI7WKgVDX2A"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Interface" xmi:id="_ayEuQLlcEd6fI7WKgVDX2A" name="IMultiDiagramEditor">
+              <generalization xmi:id="_ayEuQblcEd6fI7WKgVDX2A" general="_ayHxlLlcEd6fI7WKgVDX2A"/>
+              <generalization xmi:id="_ayEuQrlcEd6fI7WKgVDX2A" general="_ayFVZ7lcEd6fI7WKgVDX2A"/>
+              <ownedOperation xmi:id="_ayEuQ7lcEd6fI7WKgVDX2A" name="getDefaultContext" visibility="public">
+                <ownedParameter xmi:id="_ayEuRLlcEd6fI7WKgVDX2A" name="return" type="_ayEHQ7lcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEuRblcEd6fI7WKgVDX2A" name="getEditorSite" visibility="public">
+                <ownedParameter xmi:id="_ayEuRrlcEd6fI7WKgVDX2A" name="return" type="_ayHxnLlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEuR7lcEd6fI7WKgVDX2A" name="getEditorInput" visibility="public">
+                <ownedParameter xmi:id="_ayEuSLlcEd6fI7WKgVDX2A" name="return" type="_ayHxnblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEuSblcEd6fI7WKgVDX2A" name="getContextRegistry" visibility="public">
+                <ownedParameter xmi:id="_ayEuSrlcEd6fI7WKgVDX2A" name="return" type="_ayFVYLlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayEuS7lcEd6fI7WKgVDX2A" name="getDiagramEditDomain" visibility="public">
+                <ownedParameter xmi:id="_ayEuTLlcEd6fI7WKgVDX2A" name="return" type="_ayFVZrlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayFVULlcEd6fI7WKgVDX2A" name="getActiveEditor" visibility="public">
+                <ownedParameter xmi:id="_ayFVUblcEd6fI7WKgVDX2A" name="return" type="_ayHxlLlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayFVUrlcEd6fI7WKgVDX2A" name="getActionBarContributorRegistry" visibility="public">
+                <ownedParameter xmi:id="_ayFVU7lcEd6fI7WKgVDX2A" name="return" type="_ayFVY7lcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ayFVVLlcEd6fI7WKgVDX2A" name="getPropertySheetPage" visibility="public">
+                <ownedParameter xmi:id="_ayFVVblcEd6fI7WKgVDX2A" name="return" type="_ayHxnrlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_ayFVVrlcEd6fI7WKgVDX2A" name="PageModelFactory">
+              <ownedAttribute xmi:id="_ayFVV7lcEd6fI7WKgVDX2A" name="editorFactoryRegistry" type="_ayFVX7lcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_ayFVWLlcEd6fI7WKgVDX2A" name="servicesRegistry" type="_ayFVYrlcEd6fI7WKgVDX2A"/>
+              <ownedOperation xmi:id="_ayFVWblcEd6fI7WKgVDX2A" name="createIPageModel" visibility="public">
+                <ownedParameter xmi:id="_ayFVWrlcEd6fI7WKgVDX2A" name="pageIdentifier" type="_ayHxk7lcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_ayFVW7lcEd6fI7WKgVDX2A" name="return" type="_ayHxr7lcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayFVXLlcEd6fI7WKgVDX2A" name="AbstractMultiPageSashEditor"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayFVXblcEd6fI7WKgVDX2A" name="Logger"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayFVXrlcEd6fI7WKgVDX2A" name="MultiDiagramEditorGefDelegate"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayFVX7lcEd6fI7WKgVDX2A" name="IEditorFactoryRegistry"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayFVYLlcEd6fI7WKgVDX2A" name="IEditorContextRegistry"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayFVYblcEd6fI7WKgVDX2A" name="ContentOutlineRegistry"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayFVYrlcEd6fI7WKgVDX2A" name="ServicesRegistry"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayFVY7lcEd6fI7WKgVDX2A" name="ActionBarContributorRegistry"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayFVZLlcEd6fI7WKgVDX2A" name="DiSashModelMngr"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayFVZblcEd6fI7WKgVDX2A" name="TabbedPropertySheetPage"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayFVZrlcEd6fI7WKgVDX2A" name="DiagramEditDomain"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayFVZ7lcEd6fI7WKgVDX2A" name="IEditingDomainProvider"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxkLlcEd6fI7WKgVDX2A" name="PropertyChangeListener"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxkblcEd6fI7WKgVDX2A" name="IContentChangedListener"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxkrlcEd6fI7WKgVDX2A" name="CommandStackListener"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxk7lcEd6fI7WKgVDX2A" name="Object"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxlLlcEd6fI7WKgVDX2A" name="IEditorPart"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxlblcEd6fI7WKgVDX2A" name="EditorActionBarContributor"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxlrlcEd6fI7WKgVDX2A" name="ISashWindowsContentProvider"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxl7lcEd6fI7WKgVDX2A" name="IPageModelFactory"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxmLlcEd6fI7WKgVDX2A" name="Resource"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxmblcEd6fI7WKgVDX2A" name="TransactionalEditingDomain"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxmrlcEd6fI7WKgVDX2A" name="IPageMngr"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxm7lcEd6fI7WKgVDX2A" name="Class"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxnLlcEd6fI7WKgVDX2A" name="IEditorSite"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxnblcEd6fI7WKgVDX2A" name="IEditorInput"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxnrlcEd6fI7WKgVDX2A" name="IPropertySheetPage"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxn7lcEd6fI7WKgVDX2A" name="IProgressMonitor"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxoLlcEd6fI7WKgVDX2A" name="String"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxoblcEd6fI7WKgVDX2A" name="org.eclipse.gmf.runtime.notation.Diagram"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxorlcEd6fI7WKgVDX2A" name="DiagramEditPart"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxo7lcEd6fI7WKgVDX2A" name="IDiagramGraphicalViewer"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxpLlcEd6fI7WKgVDX2A" name="EditingDomain"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxpblcEd6fI7WKgVDX2A" name="AbstractEditorContext"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxprlcEd6fI7WKgVDX2A" name="DiResourceSet"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxp7lcEd6fI7WKgVDX2A" name="BusinessModelResolver"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxqLlcEd6fI7WKgVDX2A" name="IFile"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxqblcEd6fI7WKgVDX2A" name="IPath"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxqrlcEd6fI7WKgVDX2A" name="IUndoContext"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxq7lcEd6fI7WKgVDX2A" name="ActionManager"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxrLlcEd6fI7WKgVDX2A" name="IOperationHistory"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxrblcEd6fI7WKgVDX2A" name="EventObject"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxrrlcEd6fI7WKgVDX2A" name="Exception"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_ayHxr7lcEd6fI7WKgVDX2A" name="IPageModel"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_ayHxsLlcEd6fI7WKgVDX2A" memberEnd="_ax_12LlcEd6fI7WKgVDX2A _ayHxsblcEd6fI7WKgVDX2A">
+              <ownedEnd xmi:id="_ayHxsblcEd6fI7WKgVDX2A" name="target" type="_ax_1zrlcEd6fI7WKgVDX2A" association="_ayHxsLlcEd6fI7WKgVDX2A"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Association" xmi:id="_ayHxsrlcEd6fI7WKgVDX2A" memberEnd="_ayEHWrlcEd6fI7WKgVDX2A _ayIYoLlcEd6fI7WKgVDX2A">
+              <ownedEnd xmi:id="_ayIYoLlcEd6fI7WKgVDX2A" name="target" type="_ayEHWLlcEd6fI7WKgVDX2A" association="_ayHxsrlcEd6fI7WKgVDX2A"/>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

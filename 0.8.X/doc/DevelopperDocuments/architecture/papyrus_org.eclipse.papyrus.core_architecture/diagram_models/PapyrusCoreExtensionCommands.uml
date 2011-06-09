@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_g7_54LlcEd6fI7WKgVDX2A">
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_g7_54blcEd6fI7WKgVDX2A" name="boolean"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_g7_54rlcEd6fI7WKgVDX2A" name="byte"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_g7_547lcEd6fI7WKgVDX2A" name="char"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_g7_55LlcEd6fI7WKgVDX2A" name="double"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_g7_55blcEd6fI7WKgVDX2A" name="float"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_g7_55rlcEd6fI7WKgVDX2A" name="int"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_g7_557lcEd6fI7WKgVDX2A" name="long"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_g7_56LlcEd6fI7WKgVDX2A" name="short"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_g7_56blcEd6fI7WKgVDX2A" name="org">
+    <packagedElement xmi:type="uml:Package" xmi:id="_g7_56rlcEd6fI7WKgVDX2A" name="eclipse">
+      <packagedElement xmi:type="uml:Package" xmi:id="_g7_567lcEd6fI7WKgVDX2A" name="papyrus">
+        <packagedElement xmi:type="uml:Package" xmi:id="_g7_57LlcEd6fI7WKgVDX2A" name="core">
+          <packagedElement xmi:type="uml:Package" xmi:id="_g7_57blcEd6fI7WKgVDX2A" name="extension">
+            <packagedElement xmi:type="uml:Package" xmi:id="_g7_57rlcEd6fI7WKgVDX2A" name="commands">
+              <packagedElement xmi:type="uml:Class" xmi:id="_g7_577lcEd6fI7WKgVDX2A" name="CreationCommandExtensionFactory">
+                <generalization xmi:id="_g7_58LlcEd6fI7WKgVDX2A" general="_g8AhE7lcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_g7_58blcEd6fI7WKgVDX2A" name="eINSTANCE" visibility="public" type="_g7_577lcEd6fI7WKgVDX2A" association="_g8AhHLlcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_g7_58rlcEd6fI7WKgVDX2A" name="CREATION_COMMAND_EXTENSIONPOINT" visibility="public" type="_g8AhFLlcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_g7_587lcEd6fI7WKgVDX2A" name="CREATION_COMMAND_CLASS_ATTR" visibility="public" type="_g8AhFLlcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_g7_59LlcEd6fI7WKgVDX2A" name="LABEL_ATTR" visibility="public" type="_g8AhFLlcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_g7_59blcEd6fI7WKgVDX2A" name="ID_ATTRIBUTE" visibility="public" type="_g8AhFLlcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_g7_59rlcEd6fI7WKgVDX2A" name="ICON_ATTR" visibility="public" type="_g8AhFLlcEd6fI7WKgVDX2A"/>
+                <ownedOperation xmi:id="_g7_597lcEd6fI7WKgVDX2A" name="getInstance" visibility="public" isStatic="true">
+                  <ownedParameter xmi:id="_g7_5-LlcEd6fI7WKgVDX2A" name="return" type="_g7_577lcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+                <ownedOperation xmi:id="_g7_5-blcEd6fI7WKgVDX2A" name="createCreationCommand" visibility="public">
+                  <ownedParameter xmi:id="_g7_5-rlcEd6fI7WKgVDX2A" name="element" type="_g8AhFblcEd6fI7WKgVDX2A"/>
+                  <ownedParameter xmi:id="_g7_5-7lcEd6fI7WKgVDX2A" name="return" type="_g8Ag_rlcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_g7_5_LlcEd6fI7WKgVDX2A" name="CreationCommandRegistry" clientDependency="_g7_6AblcEd6fI7WKgVDX2A">
+                <ownedAttribute xmi:id="_g7_5_blcEd6fI7WKgVDX2A" name="EDITOR_EXTENSION_ID" visibility="public" type="_g8AhFLlcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_g7_5_rlcEd6fI7WKgVDX2A" name="extensionPointNamespace" visibility="protected" type="_g8AhFLlcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_g7_5_7lcEd6fI7WKgVDX2A" name="icon" visibility="private" type="_g8AhFLlcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_g7_6ALlcEd6fI7WKgVDX2A" name="creationCommandDescriptors" visibility="private" type="_g8AhFrlcEd6fI7WKgVDX2A"/>
+                <interfaceRealization xmi:id="_g7_6AblcEd6fI7WKgVDX2A" name="ICreationCommandRegistry" supplier="_g8Ag-LlcEd6fI7WKgVDX2A" client="_g7_5_LlcEd6fI7WKgVDX2A" contract="_g8Ag-LlcEd6fI7WKgVDX2A"/>
+                <ownedOperation xmi:id="_g7_6ArlcEd6fI7WKgVDX2A" name="getCommandDescriptors" visibility="public">
+                  <ownedParameter xmi:id="_g7_6A7lcEd6fI7WKgVDX2A" name="return" type="_g8AhF7lcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+                <ownedOperation xmi:id="_g8Ag8LlcEd6fI7WKgVDX2A" name="getCommand" visibility="public">
+                  <ownedParameter xmi:id="_g8Ag8blcEd6fI7WKgVDX2A" name="commandId" type="_g8AhFLlcEd6fI7WKgVDX2A"/>
+                  <ownedParameter xmi:id="_g8Ag8rlcEd6fI7WKgVDX2A" name="return" type="_g8AhDrlcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+                <ownedOperation xmi:id="_g8Ag87lcEd6fI7WKgVDX2A" name="getIcon" visibility="public">
+                  <ownedParameter xmi:id="_g8Ag9LlcEd6fI7WKgVDX2A" name="return" type="_g8AhFLlcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+                <ownedOperation xmi:id="_g8Ag9blcEd6fI7WKgVDX2A" name="setIcon" visibility="public">
+                  <ownedParameter xmi:id="_g8Ag9rlcEd6fI7WKgVDX2A" name="icon" type="_g8AhFLlcEd6fI7WKgVDX2A"/>
+                </ownedOperation>
+                <ownedOperation xmi:id="_g8Ag97lcEd6fI7WKgVDX2A" name="initializeCreationCommandDescriptors" visibility="private"/>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Interface" xmi:id="_g8Ag-LlcEd6fI7WKgVDX2A" name="ICreationCommandRegistry">
+                <ownedOperation xmi:id="_g8Ag-blcEd6fI7WKgVDX2A" name="getCommandDescriptors" visibility="public">
+                  <ownedParameter xmi:id="_g8Ag-rlcEd6fI7WKgVDX2A" name="return" type="_g8AhF7lcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+                <ownedOperation xmi:id="_g8Ag-7lcEd6fI7WKgVDX2A" name="getCommand">
+                  <ownedParameter xmi:id="_g8Ag_LlcEd6fI7WKgVDX2A" name="commandId" type="_g8AhFLlcEd6fI7WKgVDX2A"/>
+                  <ownedParameter xmi:id="_g8Ag_blcEd6fI7WKgVDX2A" name="return" type="_g8AhDrlcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_g8Ag_rlcEd6fI7WKgVDX2A" name="CreationCommandDescriptor">
+                <ownedAttribute xmi:id="_g8Ag_7lcEd6fI7WKgVDX2A" name="creationCommandClass" visibility="protected" type="_g8AhGLlcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_g8AhALlcEd6fI7WKgVDX2A" name="commandId" visibility="protected" type="_g8AhFLlcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_g8AhAblcEd6fI7WKgVDX2A" name="label" visibility="protected" type="_g8AhFLlcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_g8AhArlcEd6fI7WKgVDX2A" name="icon" visibility="protected" type="_g8AhGblcEd6fI7WKgVDX2A"/>
+                <ownedAttribute xmi:id="_g8AhA7lcEd6fI7WKgVDX2A" name="instance" visibility="protected" type="_g8AhDrlcEd6fI7WKgVDX2A" association="_g8AhHrlcEd6fI7WKgVDX2A"/>
+                <ownedOperation xmi:id="_g8AhBLlcEd6fI7WKgVDX2A" name="getCommandId" visibility="public">
+                  <ownedParameter xmi:id="_g8AhBblcEd6fI7WKgVDX2A" name="return" type="_g8AhFLlcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+                <ownedOperation xmi:id="_g8AhBrlcEd6fI7WKgVDX2A" name="getLabel" visibility="public">
+                  <ownedParameter xmi:id="_g8AhB7lcEd6fI7WKgVDX2A" name="return" type="_g8AhFLlcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+                <ownedOperation xmi:id="_g8AhCLlcEd6fI7WKgVDX2A" name="getIcon" visibility="public">
+                  <ownedParameter xmi:id="_g8AhCblcEd6fI7WKgVDX2A" name="return" type="_g8AhGblcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+                <ownedOperation xmi:id="_g8AhCrlcEd6fI7WKgVDX2A" name="getCommand" visibility="protected">
+                  <ownedParameter xmi:id="_g8AhC7lcEd6fI7WKgVDX2A" name="return" type="_g8AhDrlcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+                <ownedOperation xmi:id="_g8AhDLlcEd6fI7WKgVDX2A" name="createCommand" visibility="private">
+                  <ownedParameter xmi:id="_g8AhDblcEd6fI7WKgVDX2A" name="return" type="_g8AhDrlcEd6fI7WKgVDX2A" direction="return"/>
+                </ownedOperation>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Interface" xmi:id="_g8AhDrlcEd6fI7WKgVDX2A" name="ICreationCommand">
+                <ownedOperation xmi:id="_g8AhD7lcEd6fI7WKgVDX2A" name="createDiagram" visibility="public">
+                  <ownedParameter xmi:id="_g8AhELlcEd6fI7WKgVDX2A" name="diResourceSet" type="_g8AhGrlcEd6fI7WKgVDX2A"/>
+                  <ownedParameter xmi:id="_g8AhEblcEd6fI7WKgVDX2A" name="container" type="_g8AhG7lcEd6fI7WKgVDX2A"/>
+                  <ownedParameter xmi:id="_g8AhErlcEd6fI7WKgVDX2A" name="name" type="_g8AhFLlcEd6fI7WKgVDX2A"/>
+                </ownedOperation>
+              </packagedElement>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_g8AhE7lcEd6fI7WKgVDX2A" name="DescriptorExtensionFactory"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_g8AhFLlcEd6fI7WKgVDX2A" name="String"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_g8AhFblcEd6fI7WKgVDX2A" name="IConfigurationElement"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_g8AhFrlcEd6fI7WKgVDX2A" name="Map"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_g8AhF7lcEd6fI7WKgVDX2A" name="Collection"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_g8AhGLlcEd6fI7WKgVDX2A" name="Class"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_g8AhGblcEd6fI7WKgVDX2A" name="ImageDescriptor"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_g8AhGrlcEd6fI7WKgVDX2A" name="DiResourceSet"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_g8AhG7lcEd6fI7WKgVDX2A" name="EObject"/>
+              <packagedElement xmi:type="uml:Association" xmi:id="_g8AhHLlcEd6fI7WKgVDX2A" memberEnd="_g7_58blcEd6fI7WKgVDX2A _g8AhHblcEd6fI7WKgVDX2A">
+                <ownedEnd xmi:id="_g8AhHblcEd6fI7WKgVDX2A" name="target" type="_g7_577lcEd6fI7WKgVDX2A" association="_g8AhHLlcEd6fI7WKgVDX2A"/>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Association" xmi:id="_g8AhHrlcEd6fI7WKgVDX2A" memberEnd="_g8AhA7lcEd6fI7WKgVDX2A _g8AhH7lcEd6fI7WKgVDX2A">
+                <ownedEnd xmi:id="_g8AhH7lcEd6fI7WKgVDX2A" name="target" type="_g8Ag_rlcEd6fI7WKgVDX2A" association="_g8AhHrlcEd6fI7WKgVDX2A"/>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

@@ -1,0 +1,78 @@
+﻿/*
+ * Copyright (c) 2006, 2009 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Dmitry Stadnik (Borland) - initial API and implementation
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ */
+
+«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
+«EXTENSION xpt::diagram::editparts::Utils»
+«REM»DOCUMENTATION: PapyrusGencode«ENDREM»
+«REM»Dthis template changes only the redefine the superclass and add code to manage the size the and the refresh visual «ENDREM»
+
+
+«AROUND extendsList FOR gmfgen::GenCompartment-»
+
+«REM»BEGIN: PapyrusGenCode«ENDREM»
+«REM»Add own extension«ENDREM»
+«IF papyrusgmfgenextension::ExtendedGenView.allInstances()->select(v:papyrusgmfgenextension::ExtendedGenView|v.genView->includes(self) and v.superOwnedEditPart<>null)->size()<>0»
+	extends «FOREACH papyrusgmfgenextension::ExtendedGenView.allInstances()->select(v:papyrusgmfgenextension::ExtendedGenView|v.genView->includes(self) and v.superOwnedEditPart<>null) AS extendedObject»«EXPAND specifyInheritance FOR extendedObject»«ENDFOREACH-»
+«REM»END: BEGIN: PapyrusGenCode«ENDREM»
+«ELSE»
+  «targetDef.proceed()»
+«ENDIF»
+«ENDAROUND»
+
+«REM»BEGIN: PapyrusGenCode«ENDREM»
+«REM»definition of the inheritance «ENDREM»
+«DEFINE specifyInheritance FOR papyrusgmfgenextension::ExtendedGenView-»«superOwnedEditPart»«ENDDEFINE»
+«REM»END: BEGIN: PapyrusGenCode«ENDREM»
+
+«AROUND additions FOR gmfgen::GenCompartment»
+	«EXPAND handleSize-»
+	«EXPAND refreshbound-»
+	«EXPAND refreshvisual-»
+«ENDAROUND»
+
+«DEFINE handleSize FOR gmfgen::GenCompartment»
+	«EXPAND xpt::Common::generatedMemberComment»
+protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification notification) {
+		Object feature = notification.getFeature();
+		if (org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Width().equals(feature)
+			|| org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Height().equals(feature)
+			|| org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_X().equals(feature)
+			|| org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+			refreshBounds();
+		}
+		super.handleNotificationEvent(notification);
+	} 
+«ENDDEFINE»
+«DEFINE refreshbound FOR gmfgen::GenCompartment»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected void refreshBounds() {
+		int width = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Width())).intValue();
+		int height = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Height())).intValue();
+		org.eclipse.draw2d.geometry.Dimension size = new org.eclipse.draw2d.geometry.Dimension(width, height);
+		int x = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_X())).intValue();
+		int y = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+		org.eclipse.draw2d.geometry.Point loc = new org.eclipse.draw2d.geometry.Point(x, y);
+		((org.eclipse.gef.GraphicalEditPart) getParent()).setLayoutConstraint(
+			this,
+			getFigure(),
+			new org.eclipse.draw2d.geometry.Rectangle(loc, size));
+	}
+«ENDDEFINE»
+«DEFINE refreshvisual FOR gmfgen::GenCompartment»
+	«EXPAND xpt::Common::generatedMemberComment»
+protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshBounds();
+	}
+«ENDDEFINE»

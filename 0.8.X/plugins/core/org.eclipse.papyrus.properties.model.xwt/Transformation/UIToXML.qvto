@@ -1,0 +1,217 @@
+modeltype XML uses "http://www.eclipse.org/MoDisco/Xml/0.1.incubation/XML";
+modeltype UI uses "http://www.eclipse.org/papyrus/properties/ui";
+modeltype Environment uses "http://www.eclipse.org/papyrus/properties/environment";
+modeltype Context uses "http://www.eclipse.org/papyrus/properties/contexts";
+
+transformation UIToXML(in ui : UI, out xml : XML);
+
+-- Adds the given namespace to the widget's root composite
+query addNamespace(namespace : Environment::Namespace, component : UI::UIComponent){
+	var rootComposite := component.findRootComposite();
+	if namespace.oclIsUndefined() then
+		return
+	endif;
+	
+	var nsName := namespace.name;
+	var root := rootComposite.map toRoot();
+	
+	if not root.namespaces->exists(e | e.name = nsName) then
+		root.namespaces := root.namespaces->including(namespace.map toNamespace())
+	endif;
+}
+
+query UI::UIComponent::findRootComposite() : UI::CompositeWidget{
+	return
+		if self.container().oclIsUndefined() then
+			self.oclAsType(UI::CompositeWidget)
+		else
+			self.container().oclAsType(UI::UIComponent).findRootComposite()
+		endif;
+}
+
+main() {
+	ui.rootObjects()[CompositeWidget]->map toRoot()
+}
+
+mapping UI::Element::toXML() : XML::Node 
+	disjuncts Layout::toLayoutXML, Widget::toAbstractWidgetXML,
+	ValueAttribute::toAttributeXML, ReferenceAttribute::toReferenceXML,
+	ValueAttribute::toNamespace{
+}
+
+mapping Layout::toLayoutXML() : XML::Element{
+	name := self.container().oclAsType(UIComponent).getName()+".layout";
+	children := self.map toLayout();
+	addNamespace(self.layoutType.namespace, self);
+}
+
+mapping Layout::toLayout() : XML::Element {
+	name := self.getName();
+	children := self.attributes->map toXML();
+}
+
+mapping Widget::toAbstractWidgetXML() : XML::Element 
+	disjuncts CompositeWidget::toCompositeXML, StandardWidget::toStandardWidgetXML,
+	PropertyEditor::toEditorXML, UnknownComponent::toComponentXML{
+}
+
+abstract mapping Widget::toWidgetXML() : XML::Element {
+	name := self.getName();
+}
+
+mapping CompositeWidget::toRoot() : XML::Root {
+	name := self.getName();
+	
+	namespaces := self.attributes->select(e | e.isNamespace()).oclAsType(UI::ValueAttribute)->map toNamespace();
+	
+	var theChildren : Sequence(XML::Node) := Sequence{};
+	
+	theChildren := self.attributes->select(e | not e.isNamespace())->map toXML();
+	theChildren := theChildren->union(Sequence{self.layout.map toXML()});
+	theChildren := theChildren->union(self.widgets->map toXML());
+	
+	children := theChildren->asOrderedSet();
+	
+	addNamespace(self.widgetType.namespace, self);
+}
+
+mapping CompositeWidget::toCompositeXML() : XML::Element inherits Widget::toWidgetXML{
+	var subElements : Sequence(UI::Element) := Sequence{self.layout};
+	subElements := subElements->union(self.attributes->asSequence());
+	subElements := subElements->union(self.widgets->asSequence());
+	
+	children := subElements->map toXML();
+	
+	addNamespace(self.widgetType.namespace, self); 
+}
+
+mapping PropertyEditor::toEditorXML() : XML::Element inherits Widget::toWidgetXML {
+	var subElements : OrderedSet(UI::Element) := self.attributes;
+	
+	children := (self.attributes->map toXML())->including(self._property.map toXML()); //TODO : self._property may be null, which may crash the transformation ?
+	if not self.attributes->exists(e | e.name = 'input') then
+		children := children->including(createAttribute("input", "{Binding}"))
+	endif;
+	
+	if self.readOnly then
+		children := children->including(createAttribute("readOnly", "true"))
+	endif;
+	if not self.showLabel then
+		children := children->including(createAttribute("showLabel", "false"))
+	endif;
+	if not self.customLabel.oclIsUndefined() and self.customLabel <> '' then
+		children := children->including(createAttribute("customLabel", self.customLabel))
+	endif;
+	
+	addNamespace(self.widgetType.namespace, self);
+}
+
+query createAttribute(name : String, value : String) : XML::Attribute{
+	var attribute := object XML::Attribute {
+	};
+	
+	attribute.name := name;
+	attribute.value := value;
+	
+	return attribute;
+}
+
+mapping StandardWidget::toStandardWidgetXML() : XML::Element inherits Widget::toWidgetXML {
+	children := self.attributes->map toXML();
+	addNamespace(self.widgetType.namespace, self);
+}
+
+mapping UnknownComponent::toComponentXML() : XML::Element inherits Widget::toWidgetXML{
+	children := self.attributes->map toXML();
+}
+
+mapping Property::toXML() : XML::Attribute {
+	name := "property";
+	value := self.contextElement.getQualifiedName()+":"+self.name; 
+}
+
+mapping UnknownProperty::toXML() : XML::Attribute {
+	name := "property";
+	value := self.name;
+}
+
+query DataContextElement::getQualifiedName() : String {
+	if self.package.oclIsUndefined() then
+		return self.name
+	else
+		return self.package.getQualifiedName()+":"+self.name
+	endif;
+	
+	return "";
+}
+
+query WidgetAttribute::isNamespace() : Boolean {
+	var res := false;
+	if self.oclIsKindOf(UI::ValueAttribute) then
+		res := self.name = "xmlns" or self.name.startsWith("xmlns:") 
+	endif;
+	
+	return res;
+}
+
+mapping ValueAttribute::toAttributeXML() : Attribute{
+	name := self.name;
+	value := self.value;
+}
+
+mapping ValueAttribute::toNamespace() : Namespace{
+	name := if self.name = 'xmlns' then '' else self.name.substring('xmlns:'.length()+1, self.name.length()) endif;
+	value := self.value;
+}
+
+mapping Environment::Namespace::toNamespace() : XML::Namespace {
+	name := self.name;
+	value := self.prefix+':'+self.value;
+}
+
+mapping ReferenceAttribute::toReferenceXML() : XML::Element {
+	name := self.container().oclAsType(UIComponent).getName()+"."+self.name;
+	children := self.value.map toXML();
+}
+
+abstract query UI::UIComponent::getName() : String{
+	return "abstract";
+}
+
+query getName(namespace : Environment::Namespace, className : String) : String{
+	if className.oclIsUndefined() then {
+		return 'ppe:InvalidWidget'
+	} endif;
+	
+	var prefixedName :=
+		if not namespace.oclIsUndefined() then
+			namespace.name + ':'
+		else
+			''
+		endif
+	+ className;
+	
+	return prefixedName;
+}
+
+query Layout::getName() : String {
+	if self.layoutType.oclIsUndefined() then return 'ppel:PropertiesLayout' endif;
+	return getName(self.layoutType.namespace, self.layoutType.widgetClass);
+}
+
+query UI::CompositeWidget::getName() : String {
+	if self.widgetType.oclIsUndefined() then return 'Composite' endif;
+	return getName(self.widgetType.namespace, self.widgetType.widgetClass);
+}
+
+query UI::StandardWidget::getName() : String {
+	return getName(self.widgetType.namespace, self.widgetType.widgetClass);
+}
+
+query UI::PropertyEditor::getName() : String {
+	return getName(self.widgetType.namespace, self.widgetType.widgetClass);
+}
+
+query UI::UnknownComponent::getName() : String {
+	return self.typeName;
+}

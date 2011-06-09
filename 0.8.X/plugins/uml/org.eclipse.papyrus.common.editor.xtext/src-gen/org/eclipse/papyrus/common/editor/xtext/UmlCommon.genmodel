@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.common.editor.xtext/src-gen"
+    editDirectory="/org.eclipse.papyrus.common.editor.xtext.edit/src" editorDirectory="/org.eclipse.papyrus.common.editor.xtext.editor/src"
+    modelPluginID="org.eclipse.papyrus.common.editor.xtext" forceOverwrite="true"
+    modelName="UmlCommon" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.common.editor.xtext.edit"
+    editorPluginID="org.eclipse.papyrus.common.editor.xtext.editor" usedGenPackages="platform:/resource/org.eclipse.papyrus.common.editor.xtext/model/UML.genmodel#//uml">
+  <genPackages prefix="UmlCommon" basePackage="org.eclipse.papyrus.common.editor.xtext"
+      resource="XML" disposableProviderFactory="true" ecorePackage="platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//VisibilityKind">
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//VisibilityKind/public"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//VisibilityKind/private"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//VisibilityKind/protected"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//VisibilityKind/package"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//Direction">
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//Direction/IN"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//Direction/OUT"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//Direction/INOUT"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//Direction/RETURN"/>
+    </genEnums>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//QualifiedName">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//QualifiedName/path"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//QualifiedName/remaining"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//TypeRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//TypeRule/path"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//TypeRule/type"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//MultiplicityRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//MultiplicityRule/bounds"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//BoundSpecification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//BoundSpecification/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

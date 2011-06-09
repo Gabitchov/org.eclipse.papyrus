@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+      point="org.eclipse.papyrus.properties.runtime.propertyViewProvider">
+   <propertyViewProvider
+         class="org.eclipse.papyrus.properties.runtime.view.XMLPropertyViewProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+      <PropertyViewContribution
+            description="These are generic fragments for uml elements"
+            id="propertyview.uml.fragments"
+            icon="icons/tool.gif"
+            name="UML Fragments"
+            path="resources/uml_predefined_fragments.xml">
+      </PropertyViewContribution>
+   </propertyViewProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.properties.runtime.propertyEditorControllerProvider">
+   <propertyEditorControllerProvider
+         class="org.eclipse.papyrus.properties.runtime.controller.predefined.PredefinedPropertyControllerProvider"
+         description="this is the basic provider for UML features"
+            id="org.eclipse.papyrus.properties.view.uml.structuralFeaturesEMFTPredefinedControllers">
+      <Priority name="Lowest"/>
+      <PredefinedControllers
+            id="org.eclipse.papyrus.properties.view.uml.structuralFeaturesEMFTPredefinedControllers"
+            name="UML Predefined Controllers for Structural Features"
+            path="resources/uml_predefined_controllers.xml">
+      </PredefinedControllers>
+      
+   </propertyEditorControllerProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.properties.runtime.propertyViewProvider">
+   <propertyViewProvider
+         class="org.eclipse.papyrus.properties.runtime.view.XMLPropertyViewProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+      <PropertyViewContribution
+            description="Basic configuration for UML property dialogs"
+            id="propertyview.uml.dialogs"
+            icon="icons/UMLDialogs.gif"
+            name="UML Dialogs"
+            path="resources/uml_generic_dialogs.xml">
+      </PropertyViewContribution>
+   </propertyViewProvider>
+</extension>
+</plugin>

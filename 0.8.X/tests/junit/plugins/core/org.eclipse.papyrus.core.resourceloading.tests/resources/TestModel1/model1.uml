@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_QsxMkH04Ed-RG-XtCG9Nmw" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_SEFk0H04Ed-RG-XtCG9Nmw" name="Class0"/>
+  <packagedElement xmi:type="uml:Package" href="Package0.uml#_SvAKEH04Ed-RG-XtCG9Nmw"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_O40u4IQsEd-SDs-So_GGkw" name="Class01">
+    <ownedAttribute xmi:id="_RHuPYIQsEd-SDs-So_GGkw" name="Property0" visibility="public" isUnique="false">
+      <type xmi:type="uml:Class" href="Package0.uml#_sRCZ4H04Ed-RG-XtCG9Nmw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SouvIIQsEd-SDs-So_GGkw" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Sok-IIQsEd-SDs-So_GGkw" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_So35EIQsEd-SDs-So_GGkw">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <profileApplication xmi:id="_h_c1UH04Ed-RG-XtCG9Nmw">
+    <eAnnotations xmi:id="_iA8DEH04Ed-RG-XtCG9Nmw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="MyProfile.uml#_G-2QMlEOEd-HP48oAvsvCg"/>
+    </eAnnotations>
+    <appliedProfile href="MyProfile.uml#_XkGiwB07Ed-QQ4mYkrb7Gg"/>
+  </profileApplication>
+  <profileApplication xmi:id="_wmy5MH04Ed-RG-XtCG9Nmw">
+    <eAnnotations xmi:id="_wn2CEH04Ed-RG-XtCG9Nmw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+  </profileApplication>
+</uml:Model>

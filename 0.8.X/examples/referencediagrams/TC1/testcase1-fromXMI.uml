@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_Y10C0B_CEd6KLOscCwv-5A">
+  <packagedElement xmi:type="uml:Package" xmi:id="_hHjPgB_CEd6KLOscCwv-5A" name="package1">
+    <ownedComment xmi:id="_hHjPgR_CEd6KLOscCwv-5A" annotatedElement="_hHjPih_CEd6KLOscCwv-5A">
+      <body>&lt;p>&#xD;
+    Private visibility.&#xD;
+&lt;/p></body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Class" xmi:id="_hHjPgh_CEd6KLOscCwv-5A" name="Class1" isAbstract="true">
+      <ownedAttribute xmi:id="_hHjPgx_CEd6KLOscCwv-5A" name="attribute1" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hHjPhB_CEd6KLOscCwv-5A"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_hHjPhR_CEd6KLOscCwv-5A" name="class3_1" visibility="private" type="_hHjPih_CEd6KLOscCwv-5A" association="_hHjPnB_CEd6KLOscCwv-5A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_hHjPhh_CEd6KLOscCwv-5A" name="Class2">
+      <ownedAttribute xmi:id="_hHjPhx_CEd6KLOscCwv-5A" name="attribute2" visibility="protected">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_hHjPiB_CEd6KLOscCwv-5A" value="true"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_hHjPiR_CEd6KLOscCwv-5A" name="class3_2" visibility="private" type="_hHjPih_CEd6KLOscCwv-5A" association="_hHjPmx_CEd6KLOscCwv-5A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_hHjPih_CEd6KLOscCwv-5A" name="Class3" visibility="private">
+      <generalization xmi:id="_hHjPix_CEd6KLOscCwv-5A" general="_hHjPgh_CEd6KLOscCwv-5A"/>
+      <generalization xmi:id="_hHjPjB_CEd6KLOscCwv-5A" general="_hHjPhh_CEd6KLOscCwv-5A"/>
+      <ownedAttribute xmi:id="_hHjPjR_CEd6KLOscCwv-5A" name="attribute3" visibility="package">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hHjPjh_CEd6KLOscCwv-5A" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hHjPjx_CEd6KLOscCwv-5A"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_hHjPkB_CEd6KLOscCwv-5A" name="class1" visibility="public" type="_hHjPgh_CEd6KLOscCwv-5A" aggregation="shared" association="_hHjPnB_CEd6KLOscCwv-5A">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hHjPkR_CEd6KLOscCwv-5A" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hHjPkh_CEd6KLOscCwv-5A"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_hHjPkx_CEd6KLOscCwv-5A" name="class2" visibility="protected" type="_hHjPhh_CEd6KLOscCwv-5A" aggregation="composite" association="_hHjPmx_CEd6KLOscCwv-5A">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hHjPlB_CEd6KLOscCwv-5A" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_hHjPlR_CEd6KLOscCwv-5A" name="class3" visibility="package" type="_hHjPih_CEd6KLOscCwv-5A" association="_hHjPmB_CEd6KLOscCwv-5A">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hHjPlh_CEd6KLOscCwv-5A" value="3"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hHjPlx_CEd6KLOscCwv-5A" value="2"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_hHjPmB_CEd6KLOscCwv-5A" memberEnd="_hHjPmR_CEd6KLOscCwv-5A _hHjPlR_CEd6KLOscCwv-5A">
+      <ownedEnd xmi:id="_hHjPmR_CEd6KLOscCwv-5A" type="_hHjPih_CEd6KLOscCwv-5A" association="_hHjPmB_CEd6KLOscCwv-5A">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hHjPmh_CEd6KLOscCwv-5A"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_hHjPmx_CEd6KLOscCwv-5A" name="Association2" memberEnd="_hHjPkx_CEd6KLOscCwv-5A _hHjPiR_CEd6KLOscCwv-5A"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_hHjPnB_CEd6KLOscCwv-5A" name="Association1" memberEnd="_hHjPkB_CEd6KLOscCwv-5A _hHjPhR_CEd6KLOscCwv-5A"/>
+  </packagedElement>
+</uml:Model>

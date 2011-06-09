@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.operation.editor.xtext/src-gen"
+    editDirectory="/org.eclipse.papyrus.operation.editor.xtext.edit/src" editorDirectory="/org.eclipse.papyrus.operation.editor.xtext.editor/src"
+    modelPluginID="org.eclipse.papyrus.operation.editor.xtext" forceOverwrite="true"
+    modelName="Operation" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.operation.editor.xtext.edit"
+    editorPluginID="org.eclipse.papyrus.operation.editor.xtext.editor" usedGenPackages="platform:/resource/org.eclipse.papyrus.alf/src-gen/org/eclipse/papyrus/alf/Alf.genmodel#//alf">
+  <genPackages prefix="Operation" basePackage="org.eclipse.papyrus.operation.editor.xtext"
+      disposableProviderFactory="true" ecorePackage="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//VisibilityIndicator">
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//VisibilityIndicator/PUBLIC"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//VisibilityIndicator/PRIVATE"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//VisibilityIndicator/PROTECTED"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//ParameterDirection">
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//ParameterDirection/IN"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//ParameterDirection/OUT"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//ParameterDirection/INOUT"/>
+    </genEnums>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//OperationDefinitionOrStub">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//OperationDefinitionOrStub/declaration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//OperationDefinitionOrStub/body"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//OperationDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//OperationDeclaration/visibilityIndicator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//OperationDeclaration/abstract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//OperationDeclaration/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//OperationDeclaration/formalParameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//OperationDeclaration/returnType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//OperationDeclaration/redefinition"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//FormalParameters">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//FormalParameters/formalParameterList"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//FormalParameterList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//FormalParameterList/formalParameter"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//FormalParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//FormalParameter/direction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//FormalParameter/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//FormalParameter/type"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//TypePart">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//TypePart/typeName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//TypePart/multiplicity"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//Multiplicity">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//Multiplicity/range"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//Multiplicity/ordered"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//Multiplicity/nonUnique"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//Multiplicity/sequence"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//MultiplicityRange">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//MultiplicityRange/lower"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//MultiplicityRange/upper"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//NUMBER_LITERAL_WITHOUT_SUFFIX">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//NUMBER_LITERAL_WITHOUT_SUFFIX/value"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//INTEGER_LITERAL_WITHOUT_SUFFIX"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//UNLIMITED_LITERAL_WITHOUT_SUFFIX"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//TypeName">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//TypeName/qualifiedName"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//RedefinitionClause">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/Operation.ecore#//RedefinitionClause/redefinedOperations"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cs:cspec xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0" name="org.eclipse.mdt.papyrus.releng.buckminster"
+	componentType="buckminster" version="0.7.1.qualifier">
+	<cs:dependencies>
+		<cs:dependency name="org.eclipse.papyrus.build" componentType="eclipse.feature"/>
+		<!--<cs:dependency name="org.eclipse.papyrus.tests" componentType="eclipse.feature"/>-->
+		
+		<cs:dependency name="org.antlr.runtime" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.acceleo.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.emf.cdo.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.emf.compare" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.emf.query.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.emf.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.emf.validation.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.equinox.executable" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.emf.facet.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.jdt" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.jet.core" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.net4j.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.ocl.all.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.pde.core" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.pde.junit.runtime" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.platform" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.rcp" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.uml2.sdk" componentType="eclipse.feature"/>
+		<cs:dependency name="org.junit" componentType="osgi.bundle"/>
+      	<cs:dependency name="org.eclipse.emf.transaction.sdk" componentType="eclipse.feature"/>
+		<cs:dependency name="org.eclipse.gmf.runtime.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.apache.ant" componentType="osgi.bundle"/>
+        <cs:dependency name="org.apache.derby" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.zest.sdk" componentType="eclipse.feature"/>
+        <!--<cs:dependency name="org.eclipse.xtext.sdk" componentType="eclipse.feature" versionDesignator="1.0.2" versionType="OSGi"/>-->
+	</cs:dependencies>
+</cs:cspec>
