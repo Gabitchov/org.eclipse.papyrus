@@ -1,18 +1,26 @@
 package org.eclipse.papyrus.diagram.statemachine.custom.commands;
 
+import java.util.Collections;
 import java.util.Iterator;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.core.commands.SetPropertyCommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.core.util.PackageUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
@@ -71,6 +79,21 @@ public class CustomFirstRegionInCompositeStateCreateElementCommand extends Abstr
 				return true;
 			return false;
 		}
+ // CHECK THIS		
+//		else{
+//			ENamedElement namedElement =  PackageUtil.getElement("notation.View.visible");
+//			if(ViewUtil.getStructuralFeatureValue(compartment, (EStructuralFeature)namedElement).equals(new Boolean(false))){
+//				SetPropertyCommand showCompartment = new SetPropertyCommand(getEditingDomain(), adaptable, "notation.View.visible", "Visibility", true);
+//				showCompartment.setOptions(Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
+//
+//				try {
+//					showCompartment.execute(null, null);
+//				} catch (ExecutionException e) {
+//				}				
+//
+//			}
+//			return false;
+//		}
 		return false;
 	}
 
