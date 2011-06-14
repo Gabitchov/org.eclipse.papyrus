@@ -294,8 +294,8 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 				// do the whole job
 				CustomFirstRegionInCompositeStateCreateElementCommand createNewRegion = new CustomFirstRegionInCompositeStateCreateElementCommand(adaptableForCompartment, adaptableForDroppedRegion, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint(), getEditingDomain(), DiagramUIMessages.CreateCommand_Label, dropLocation);
 				SetPropertyCommand showCompartment = new SetPropertyCommand(getEditingDomain(), adaptableForCompartment, "notation.View.visible", "Visibility", true);
-				cc.compose(showCompartment);
 				cc.compose(createNewRegion);
+				cc.compose(showCompartment);
 
 				return new ICommandProxy(cc.reduce());
 			}
