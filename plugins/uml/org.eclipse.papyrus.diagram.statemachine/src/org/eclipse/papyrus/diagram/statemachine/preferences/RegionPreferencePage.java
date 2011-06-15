@@ -22,11 +22,15 @@ public class RegionPreferencePage extends AbstractPapyrusNodePreferencePage {
 	public static void initDefaults(IPreferenceStore store) {
 
 		String key = PackageEditPart.MODEL_ID + "_Region";
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key,
+				PreferenceConstantHelper.WIDTH), 40);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key,
+				PreferenceConstantHelper.HEIGHT), 40);
 
-		for(String name : compartments) {
-			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+		for (String name : compartments) {
+			String preferenceName = PreferenceConstantHelper
+					.getCompartmentElementConstant(key, name,
+							PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 			store.setDefault(preferenceName, true);
 		}
 
@@ -63,7 +67,7 @@ public class RegionPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	@Override
 	protected void initializeCompartmentsList() {
-		for(String name : compartments) {
+		for (String name : compartments) {
 			this.compartmentsList.add(name);
 		}
 	}

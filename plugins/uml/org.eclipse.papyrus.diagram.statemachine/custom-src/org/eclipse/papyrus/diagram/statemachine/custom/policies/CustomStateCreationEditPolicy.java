@@ -56,7 +56,6 @@ public class CustomStateCreationEditPolicy extends CreationEditPolicy {
 	@Override
 	public Command getCommand(Request request) {
 
-		// CHECK THIS
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain, DiagramUIMessages.AddCommand_Label);
 		if(understandsRequest(request)) {
@@ -78,16 +77,16 @@ public class CustomStateCreationEditPolicy extends CreationEditPolicy {
 
 						if(!stateCompartmentView.getChildren().isEmpty()){
 							// CHECK THIS
-							ENamedElement namedElement =  PackageUtil.getElement("notation.View.visible");
-							if(ViewUtil.getStructuralFeatureValue(stateCompartmentView, (EStructuralFeature)namedElement).equals(new Boolean(false))){
-								SetPropertyCommand showCompartment = new SetPropertyCommand(editingDomain, adaptableForStateCompartmentView, "notation.View.visible", "Visibility", true);
-								showCompartment.setOptions(Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
-
-								try {
-									showCompartment.execute(null, null);
-								} catch (ExecutionException e) {
-								}				
-							}
+//							ENamedElement namedElement =  PackageUtil.getElement("notation.View.visible");
+//							if(ViewUtil.getStructuralFeatureValue(stateCompartmentView, (EStructuralFeature)namedElement).equals(new Boolean(false))){
+//								SetPropertyCommand showCompartment = new SetPropertyCommand(editingDomain, adaptableForStateCompartmentView, "notation.View.visible", "Visibility", true);
+//								showCompartment.setOptions(Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
+//
+//								try {
+//									showCompartment.execute(null, null);
+//								} catch (ExecutionException e) {
+//								}				
+//							}
 							return null;
 						}
 
