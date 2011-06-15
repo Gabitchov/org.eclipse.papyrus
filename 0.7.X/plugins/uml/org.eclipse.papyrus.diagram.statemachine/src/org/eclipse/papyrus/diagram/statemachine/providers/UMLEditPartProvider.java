@@ -52,8 +52,8 @@ public class UMLEditPartProvider extends AbstractEditPartProvider {
 	 */
 	protected IGraphicalEditPart createEditPart(View view) {
 		EditPart part = factory.createEditPart(null, view);
-		if(part instanceof IGraphicalEditPart) {
-			return (IGraphicalEditPart)part;
+		if (part instanceof IGraphicalEditPart) {
+			return (IGraphicalEditPart) part;
 		}
 		return null;
 	}
@@ -62,11 +62,11 @@ public class UMLEditPartProvider extends AbstractEditPartProvider {
 	 * @generated
 	 */
 	public synchronized IGraphicalEditPart createGraphicEditPart(View view) {
-		if(isAllowCaching()) {
+		if (isAllowCaching()) {
 			IGraphicalEditPart part = getCachedPart(view);
 			cachedPart = null;
 			cachedView = null;
-			if(part != null) {
+			if (part != null) {
 				return part;
 			}
 		}
@@ -77,8 +77,8 @@ public class UMLEditPartProvider extends AbstractEditPartProvider {
 	 * @generated
 	 */
 	protected IGraphicalEditPart getCachedPart(View view) {
-		if(cachedView != null && cachedView.get() == view) {
-			return (IGraphicalEditPart)cachedPart.get();
+		if (cachedView != null && cachedView.get() == view) {
+			return (IGraphicalEditPart) cachedPart.get();
 		}
 		return null;
 	}
@@ -101,17 +101,18 @@ public class UMLEditPartProvider extends AbstractEditPartProvider {
 	 * @generated
 	 */
 	public synchronized boolean provides(IOperation operation) {
-		if(operation instanceof CreateGraphicEditPartOperation) {
-			View view = ((IEditPartOperation)operation).getView();
-			if(!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view))) {
+		if (operation instanceof CreateGraphicEditPartOperation) {
+			View view = ((IEditPartOperation) operation).getView();
+			if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry
+					.getModelID(view))) {
 				return false;
 			}
-			if(isAllowCaching() && getCachedPart(view) != null) {
+			if (isAllowCaching() && getCachedPart(view) != null) {
 				return true;
 			}
 			IGraphicalEditPart part = createEditPart(view);
-			if(part != null) {
-				if(isAllowCaching()) {
+			if (part != null) {
+				if (isAllowCaching()) {
 					cachedPart = new WeakReference(part);
 					cachedView = new WeakReference(view);
 				}
@@ -126,7 +127,7 @@ public class UMLEditPartProvider extends AbstractEditPartProvider {
 	 */
 	protected synchronized void setAllowCaching(boolean allowCaching) {
 		this.allowCaching = allowCaching;
-		if(!allowCaching) {
+		if (!allowCaching) {
 			cachedPart = null;
 			cachedView = null;
 		}

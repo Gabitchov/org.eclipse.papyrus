@@ -17,8 +17,8 @@ public class UMLNavigatorSorter extends ViewerSorter {
 	 * @generated
 	 */
 	public int category(Object element) {
-		if(element instanceof UMLNavigatorItem) {
-			UMLNavigatorItem item = (UMLNavigatorItem)element;
+		if (element instanceof UMLNavigatorItem) {
+			UMLNavigatorItem item = (UMLNavigatorItem) element;
 			return UMLVisualIDRegistry.getVisualID(item.getView());
 		}
 		return GROUP_CATEGORY;
