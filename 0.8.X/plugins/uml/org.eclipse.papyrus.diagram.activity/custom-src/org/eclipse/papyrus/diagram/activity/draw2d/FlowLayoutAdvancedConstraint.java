@@ -15,10 +15,14 @@ package org.eclipse.papyrus.diagram.activity.draw2d;
 
 /**
  * Constraint used for FlowAdvancedLayout
+ * 
  * @author Arthur Daussy - arthur.daussy@atosorigin.com
- *
+ * 
  */
 public class FlowLayoutAdvancedConstraint {
+
+
+
 
 	/**
 	 * If true then the figure take all the free space left (divided by the number of fill element (An element is event full or fill)
@@ -29,6 +33,23 @@ public class FlowLayoutAdvancedConstraint {
 	 * If true then the figure take the same size than the parent (An element is event full or fill)
 	 */
 	private boolean full;
+
+	/**
+	 * Has minimum size
+	 */
+	private boolean hasMinsize;
+
+	/**
+	 * 
+	 * Constructor.
+	 * Init all contants to false
+	 */
+	public FlowLayoutAdvancedConstraint() {
+		super();
+		fill = false;
+		full = false;
+		hasMinsize = false;
+	}
 
 	/**
 	 * {@link #fill}
@@ -71,5 +92,25 @@ public class FlowLayoutAdvancedConstraint {
 	public boolean isFill() {
 		return fill;
 	}
+
+	/**
+	 * {@link #hasMinsize}
+	 * 
+	 * @return
+	 */
+	public boolean isHasMinsize() {
+		return hasMinsize;
+	}
+
+	/**
+	 * {@link #hasMinsize}
+	 * 
+	 * @param hasMinsize
+	 */
+	public void setHasMinsize(boolean hasMinsize) {
+		this.hasMinsize = hasMinsize;
+	}
+
+
 
 }

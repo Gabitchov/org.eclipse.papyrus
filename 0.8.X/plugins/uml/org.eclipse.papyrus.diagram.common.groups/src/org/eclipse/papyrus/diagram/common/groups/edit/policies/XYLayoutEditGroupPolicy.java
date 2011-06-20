@@ -60,7 +60,6 @@ import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
  */
 public class XYLayoutEditGroupPolicy extends XYLayoutEditPolicy {
 
-	private static final String IGraphicalEditPart = null;
 
 	/**
 	 * graphical parent of the edit part after moving
@@ -119,7 +118,6 @@ public class XYLayoutEditGroupPolicy extends XYLayoutEditPolicy {
 		}
 		return null;
 	}
-
 
 	/**
 	 * Return the resize command chained with the group-related commands if needed
@@ -375,9 +373,6 @@ public class XYLayoutEditGroupPolicy extends XYLayoutEditPolicy {
 				return null;
 			}
 		}
-
-
-
 		return null;
 	}
 

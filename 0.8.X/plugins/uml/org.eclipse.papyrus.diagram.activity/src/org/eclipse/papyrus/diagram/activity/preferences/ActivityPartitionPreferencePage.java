@@ -128,7 +128,8 @@ public class ActivityPartitionPreferencePage extends AbstractPapyrusNodePreferen
 	/**
 	 * Add the opacity group preference
 	 * Remove the background color group
-	 * @generated not 
+	 * 
+	 * @generated not
 	 * @see org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage#createPageContents(org.eclipse.swt.widgets.Composite)
 	 * 
 	 * @param parent

@@ -298,26 +298,33 @@ public class Utils {
 	 *        if true translate the bound of the element. (used to find the difference between element before and after the command)
 	 * @return The list of {@link IGraphicalEditPart} group that which has their compartment edit part which intersect the compartment of my
 	 */
-	public static List<IGraphicalEditPart> createComputeListsOfAllGroupContainerVisually(IGraphicalEditPart element, ChangeBoundsRequest request, boolean doTranslate) {
+	public static List<IGraphicalEditPart> createComputeListsOfAllGroupContainerVisually(IGraphicalEditPart element, ChangeBoundsRequest request, boolean doTranslate, IGraphicalEditPart movingParent) {
 		List<IGraphicalEditPart> result = new ArrayList<IGraphicalEditPart>();
 		EditPartViewer viewer = element.getViewer();
 		Map editPartRegistry = null;
-		//IF the the viewer is unavailable then is return ull
 		if(viewer != null) {
 			editPartRegistry = viewer.getEditPartRegistry();
 		}
+		// Test on entrances
 		if(editPartRegistry == null || element == null) {
 			return null;
 		}
+		//Get the compartment edit part
 		IGraphicalEditPart myCompartmentEditPart = (IGraphicalEditPart)getCompartementEditPartFromMainEditPart(editPartRegistry, element);
 		Rectangle myBounds = null;
+		/*
+		 * Find the bounds of the compartment if none use the figure bounds
+		 */
 		if(myCompartmentEditPart != null) {
 			myBounds = getAbsoluteBounds(myCompartmentEditPart).getCopy();
 		} else {
 			myBounds = getAbsoluteBounds(element).getCopy();
 		}
+		/*
+		 * If use the translated figure use as bounds for the childs its bounds translated with the delta move
+		 */
 		if(doTranslate) {
-			myBounds = request.getTransformedRectangle(myBounds);
+			myBounds = myBounds.translate(request.getMoveDelta());
 		}
 
 		Collection<View> diagramViews = new ArrayList<View>(editPartRegistry.keySet());
@@ -325,14 +332,15 @@ public class Utils {
 		diagramViews.remove(_elementView);
 		/*
 		 * Withdraw from the collection of element all elements which are graphical child in myGroupView
-		 * TODO see if not needed in createComputedList...
 		 */
 		if(_elementView instanceof View) {
 			View myGroupView = (View)_elementView;
 			withdrawGraphicalSonsOf(diagramViews, myGroupView);
 		}
 
-
+		/*
+		 * For all graphical edits parts try to know if it visually contained the child
+		 */
 		for(Object view : diagramViews) {
 			if(view instanceof View) {
 				Object editpart = editPartRegistry.get(view);
@@ -341,6 +349,9 @@ public class Utils {
 					IGraphicalEditPart partCompartment = (IGraphicalEditPart)getCompartementEditPartFromMainEditPart(editPartRegistry, part);
 					if(GroupContainmentRegistry.isContainerConcerned(part) && partCompartment != null) {
 						Rectangle partBounds = getAbsoluteBounds(partCompartment);
+						if((part.getParent().equals(movingParent) || partCompartment.equals(movingParent)) && doTranslate) {
+							partBounds = request.getTransformedRectangle(partBounds);
+						}
 						if(partBounds.contains(myBounds)) {
 							result.add(part);
 						}
@@ -440,8 +451,11 @@ public class Utils {
 
 		if(child.getParent() instanceof IGraphicalEditPart) {
 			// an edit part is considered the "main" edit part of an element if it is not contained in an edit part of the same element (e.g. not a label nor a compartment)
-			Rectangle bounds = child.getFigure().getBounds().getCopy();
-			child.getFigure().translateToAbsolute(bounds);
+			//			Rectangle bounds = child.getFigure().getBounds().getCopy();
+			//			
+			//			((IGraphicalEditPart)child.getParent()).getFigure().translateToAbsolute(bounds);
+
+			Rectangle bounds = Utils.getAbsoluteBounds(child);
 			if(bounds != null) {
 				if(parentBounds.contains(bounds)) {
 					return true;
