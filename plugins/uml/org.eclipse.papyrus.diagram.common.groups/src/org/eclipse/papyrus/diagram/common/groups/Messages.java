@@ -90,7 +90,10 @@ public class Messages extends NLS {
 	 */
 	public static String ChooseParentNotificationCommand_ChooseModelParent;
 
-
+	/**
+	 * Command label of HandleGraphicalChildrenMovingOut
+	 */
+	public static String CommandsUtils_HandleGraphicalChildrenMovingOut_Label;
 
 
 

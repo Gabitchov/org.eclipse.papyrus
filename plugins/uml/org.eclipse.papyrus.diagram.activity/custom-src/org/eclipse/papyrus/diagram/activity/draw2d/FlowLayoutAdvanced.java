@@ -146,5 +146,31 @@ public class FlowLayoutAdvanced extends FlowLayout {
 	}
 
 
+	@Override
+	public Dimension getMinimumSize(IFigure container, int w, int h) {
+		Dimension minDim = null;
+		for(IFigure figure : constraints.keySet()) {
+			Object _c = constraints.get(figure);
+			if(_c instanceof FlowLayoutAdvancedConstraint) {
+				FlowLayoutAdvancedConstraint constraint = (FlowLayoutAdvancedConstraint)_c;
+				if(constraint.isHasMinsize()) {
+					if(minDim == null) {
+						minDim = figure.getMinimumSize();
+					} else {
+						minDim = Dimension.min(minDim, figure.getMinimumSize());
+					}
+				}
+
+			}
+		}
+		if(minDim == null) {
+			minDim = new Dimension(0, 0);
+		}
+		return minDim;
+	}
+
+
+
+
 
 }

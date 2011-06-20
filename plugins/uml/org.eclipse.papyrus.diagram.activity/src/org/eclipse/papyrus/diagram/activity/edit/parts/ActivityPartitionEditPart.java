@@ -489,7 +489,16 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			fFigureCompartmentLabelActivityPartition.setLineWidth(0);
 			fFigureCompartmentLabelActivityPartition.setBorder(createBorder1());
 
-			this.add(fFigureCompartmentLabelActivityPartition);
+			FlowLayoutAdvancedConstraint constraintFFigureCompartmentLabelActivityPartition = new FlowLayoutAdvancedConstraint();
+
+
+
+
+			constraintFFigureCompartmentLabelActivityPartition.setHasMinsize(true);
+
+
+
+			this.add(fFigureCompartmentLabelActivityPartition, constraintFFigureCompartmentLabelActivityPartition);
 
 			FlowLayout layoutFFigureCompartmentLabelActivityPartition = new FlowLayout();
 			layoutFFigureCompartmentLabelActivityPartition.setStretchMinorAxis(true);

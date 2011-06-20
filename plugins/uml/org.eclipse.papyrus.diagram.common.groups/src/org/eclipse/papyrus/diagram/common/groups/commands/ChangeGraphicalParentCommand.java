@@ -217,62 +217,61 @@ public class ChangeGraphicalParentCommand extends AbstractTransactionalCommand {
 	 */
 	private CommandResult changeCoordinateInNewFather(IGraphicalEditPart oldParentPart, View childView) {
 		/*
-		 * A coordinate changing only if the parent is different from the host
+		 * Deleted because do not find the case where should it should be applied
+		 * if(host != parent) {
 		 */
-		if(host != parent) {
-			if(childView instanceof Node) {
-				IFigure parentCompartmentFigure = ((AbstractGraphicalEditPart)parent).getFigure();
-				/*
-				 * If the change graphical parent come after a move
-				 */
-				if(Mode.MOVE_CHILD.equals(mode) || Mode.MOVE_PARENT.equals(mode)) {
-					Rectangle newDimension = computeDeltaToChangeParent((IGraphicalEditPart)parent);
-					LayoutConstraint layoutConstraint = ((Node)childView).getLayoutConstraint();
-					if(layoutConstraint instanceof Location) {
-						Location location = (Location)layoutConstraint;
-						location.setX(newDimension.x);
-						location.setY(newDimension.y);
-					} else {
-						return CommandResult.newErrorCommandResult("The layoutConstraint is not an instance of Location");
-					}
-					/*
-					 * If the change come after a creation or after nothing
-					 */
-				} else if(Mode.CREATION_CHILD.equals(mode) || Mode.CREATION_PARENT.equals(mode) || Mode.NORMAL.equals(mode)) {
-					/*
-					 * Handle change graphical parent from a create request or with no request
-					 * 1 - If the group in creation is the parent then
-					 * 1.1 Used the Hack to force the figure to draw (in order to have it's position)
-					 * 2 - Compute delta from computeDeltaToChangeParent
-					 * 3 - Translate the location of the constraint
-					 */
-					Dimension newDimension;
-					if(parentCompartmentFigure.getBounds().isEmpty()) {
-						Rectangle oldBounds = parentCompartmentFigure.getBounds().getCopy();
-						Point compLoc = emulateFigureCreation(parentCompartmentFigure);
-						newDimension = Utils.computeDeltaToChangeParent(oldParentPart, (IGraphicalEditPart)parent.getParent());
-						reajustNewDimensionIfNeeded(parentCompartmentFigure, compLoc, newDimension);
-						parentCompartmentFigure.getBounds().setBounds(oldBounds);
-					} else {
-						newDimension = Utils.computeDeltaToChangeParent(oldParentPart, (IGraphicalEditPart)parent);
-					}
-					LayoutConstraint layoutConstraint = ((Node)childView).getLayoutConstraint();
-					if(layoutConstraint instanceof Location) {
-						Location location = (Location)layoutConstraint;
-						Point newLocation = new Point(newDimension.width + location.getX(), newDimension.height + location.getY());
-						location.setX(newLocation.x);
-						location.setY(newLocation.y);
-					} else {
-						return CommandResult.newErrorCommandResult("The layoutConstraint is not an instance of Location");
-					}
+		if(childView instanceof Node) {
+			IFigure parentCompartmentFigure = ((AbstractGraphicalEditPart)parent).getFigure();
+			/*
+			 * If the change graphical parent come after a move
+			 */
+			if(Mode.MOVE_CHILD.equals(mode) || Mode.MOVE_PARENT.equals(mode)) {
+				Rectangle newDimension = computeDeltaToChangeParent((IGraphicalEditPart)parent);
+				LayoutConstraint layoutConstraint = ((Node)childView).getLayoutConstraint();
+				if(layoutConstraint instanceof Location) {
+					Location location = (Location)layoutConstraint;
+					location.setX(newDimension.x);
+					location.setY(newDimension.y);
+				} else {
+					return CommandResult.newErrorCommandResult("The layoutConstraint is not an instance of Location");
 				}
-
-			} else {
 				/*
-				 * Error in group framework usage
+				 * If the change come after a creation or after nothing
 				 */
-				return CommandResult.newErrorCommandResult("The new containing edit part should be compartment node. The extension point org.eclipse.papyrus.diagram.common.groups.groupcontainment may have been incorrectly used.");
+			} else if(Mode.CREATION_CHILD.equals(mode) || Mode.CREATION_PARENT.equals(mode) || Mode.NORMAL.equals(mode)) {
+				/*
+				 * Handle change graphical parent from a create request or with no request
+				 * 1 - If the group in creation is the parent then
+				 * 1.1 Used the Hack to force the figure to draw (in order to have it's position)
+				 * 2 - Compute delta from computeDeltaToChangeParent
+				 * 3 - Translate the location of the constraint
+				 */
+				Dimension newDimension;
+				if(parentCompartmentFigure.getBounds().isEmpty()) {
+					Rectangle oldBounds = parentCompartmentFigure.getBounds().getCopy();
+					Point compLoc = emulateFigureCreation(parentCompartmentFigure);
+					newDimension = Utils.computeDeltaToChangeParent(oldParentPart, (IGraphicalEditPart)parent.getParent());
+					reajustNewDimensionIfNeeded(parentCompartmentFigure, compLoc, newDimension);
+					parentCompartmentFigure.getBounds().setBounds(oldBounds);
+				} else {
+					newDimension = Utils.computeDeltaToChangeParent(oldParentPart, (IGraphicalEditPart)parent);
+				}
+				LayoutConstraint layoutConstraint = ((Node)childView).getLayoutConstraint();
+				if(layoutConstraint instanceof Location) {
+					Location location = (Location)layoutConstraint;
+					Point newLocation = new Point(newDimension.width + location.getX(), newDimension.height + location.getY());
+					location.setX(newLocation.x);
+					location.setY(newLocation.y);
+				} else {
+					return CommandResult.newErrorCommandResult("The layoutConstraint is not an instance of Location");
+				}
 			}
+
+		} else {
+			/*
+			 * Error in group framework usage
+			 */
+			return CommandResult.newErrorCommandResult("The new containing edit part should be compartment node. The extension point org.eclipse.papyrus.diagram.common.groups.groupcontainment may have been incorrectly used.");
 		}
 		return null;
 	}
