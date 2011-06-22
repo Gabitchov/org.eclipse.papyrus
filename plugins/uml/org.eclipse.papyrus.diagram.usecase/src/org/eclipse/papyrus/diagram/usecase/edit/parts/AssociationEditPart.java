@@ -15,9 +15,11 @@ package org.eclipse.papyrus.diagram.usecase.edit.parts;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
@@ -65,10 +67,8 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	 * @generated NOT
 	 */
 	protected void addAssociationEndListeners() {
-		EObject sourceEnd = ((Association)resolveSemanticElement()).getMemberEnds().get(0);
-		EObject targetEnd = ((Association)resolveSemanticElement()).getMemberEnds().get(1);
-		addListenerFilter("AssociationEndListenersSource", this, sourceEnd);
-		addListenerFilter("AssociationEndListenersTarget", this, targetEnd);
+		addListenerFilter("AssociationEndListenersSource", this, getSourceProperty());
+		addListenerFilter("AssociationEndListenersTarget", this, getTargetProperty());
 	}
 
 	/**
@@ -172,20 +172,51 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	 * @generated NOT
 	 */
 	protected void refreshVisuals() {
-		Property source = (Property)((Association)resolveSemanticElement()).getMembers().get(0);
-		Property target = (Property)((Association)resolveSemanticElement()).getMembers().get(1);
+
+		Property source = getSourceProperty();
+		Property target = getTargetProperty();
 		int sourceType = 0;
 		int targetType = 0;
 
 		// navigable?
-		if(source.isNavigable()) {
+		if(source != null && source.isNavigable()) {
 			sourceType += AssociationFigure.navigable;
 		}
-		if(target.isNavigable()) {
+		if(target != null && target.isNavigable()) {
 			targetType += AssociationFigure.navigable;
 		}
 		getPrimaryShape().setEnd(sourceType, targetType);
 		super.refreshVisuals();
 	}
 
+	/**
+	 * @generated NOT
+	 */
+	protected Property getSourceProperty() {
+		return getRelatedProperty(((IGraphicalEditPart)getSource()).resolveSemanticElement());
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected Property getTargetProperty() {
+		return getRelatedProperty(((IGraphicalEditPart)getTarget()).resolveSemanticElement());
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected Property getRelatedProperty(EObject obj) {
+		if (obj != null) {
+			EList<Property> ends = ((Association)resolveSemanticElement()).getMemberEnds();
+
+			for (Property end : ends) {
+				if (obj.equals(end.getType())) {
+					return end;
+				}
+			}
+		}
+
+		return null;
+	}
 }
