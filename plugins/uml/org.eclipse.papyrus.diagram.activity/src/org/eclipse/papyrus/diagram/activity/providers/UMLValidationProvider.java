@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.validation.AbstractModelConstraint;
@@ -183,8 +184,11 @@ public class UMLValidationProvider {
 		// filter for Papyrus editor only
 		if(object instanceof EObject) {
 			EObject eObj = (EObject)object;
-			ResourceSet set = eObj.eResource().getResourceSet();
-			return set instanceof ModelSet;
+			Resource resource = eObj.eResource();
+			if (resource != null) {
+				ResourceSet set = resource.getResourceSet();
+				return set instanceof ModelSet;					
+			}
 		}
 		return false;
 	}
