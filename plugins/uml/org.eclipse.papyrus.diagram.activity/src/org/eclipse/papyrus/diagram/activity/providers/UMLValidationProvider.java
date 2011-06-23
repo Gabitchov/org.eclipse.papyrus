@@ -185,9 +185,9 @@ public class UMLValidationProvider {
 		if(object instanceof EObject) {
 			EObject eObj = (EObject)object;
 			Resource resource = eObj.eResource();
-			if (resource != null) {
+			if(resource != null) {
 				ResourceSet set = resource.getResourceSet();
-				return set instanceof ModelSet;					
+				return set instanceof ModelSet;
 			}
 		}
 		return false;

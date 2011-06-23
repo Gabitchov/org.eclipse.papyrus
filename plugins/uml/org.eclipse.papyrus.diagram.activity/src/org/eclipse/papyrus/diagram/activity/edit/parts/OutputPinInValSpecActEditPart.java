@@ -989,7 +989,7 @@ BorderedBorderItemEditPart {
 	}
 
 	/**
-	 * Registers this editpart to recieve notation and semantic events.
+	 * Registers this editpart to receive notation and semantic events.
 	 * 
 	 * @generated NOT
 	 */

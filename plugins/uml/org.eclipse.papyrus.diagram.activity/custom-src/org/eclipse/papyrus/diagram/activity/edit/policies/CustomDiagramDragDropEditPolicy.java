@@ -59,8 +59,10 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocal
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionEditPart;
 import org.eclipse.papyrus.diagram.activity.helper.ActivityLinkMappingHelper;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
@@ -117,6 +119,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		droppableElementsVisualID.add(ConstraintAsLocalPostcondEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ObjectFlowEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ControlFlowEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ValueSpecificationActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ReadSelfActionEditPart.VISUAL_ID);
 
 		return droppableElementsVisualID;
 	}
@@ -164,6 +168,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		case OpaqueActionEditPart.VISUAL_ID:
 		case CallBehaviorActionEditPart.VISUAL_ID:
 		case CallOperationActionEditPart.VISUAL_ID:
+		case ValueSpecificationActionEditPart.VISUAL_ID:
+		case ReadSelfActionEditPart.VISUAL_ID:
 			return dropAction(dropRequest, semanticElement, nodeVISUALID);
 		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
 		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:

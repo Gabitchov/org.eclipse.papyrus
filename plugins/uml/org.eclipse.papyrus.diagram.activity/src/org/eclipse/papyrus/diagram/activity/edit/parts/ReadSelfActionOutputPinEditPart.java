@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2011 Atos Origin.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Atos Origin - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import java.util.ArrayList;
@@ -5,6 +18,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.draw2d.AbstractPointListShape;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.PositionConstants;
@@ -13,6 +27,7 @@ import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
@@ -38,6 +53,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ReadSelfActionOutputPinItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.activity.helper.ActivityFigureDrawer;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
@@ -922,5 +938,77 @@ BorderedBorderItemEditPart {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
+	}
+
+	/**
+	 * Notifies listeners that a target connection has been added.
+	 * 
+	 * @param connection
+	 *        <code>ConnectionEditPart</code> being added as child.
+	 * @param index
+	 *        Position child is being added into.
+	 * @generated NOT
+	 */
+	@Override
+	protected void fireSourceConnectionAdded(ConnectionEditPart connection, int index) {
+		super.fireSourceConnectionAdded(connection, index);
+		// undraw the pin arrow
+		if(connection instanceof ObjectFlowEditPart || connection instanceof ControlFlowEditPart) {
+			PinDescriptor pinFigure = getPrimaryShape();
+			AbstractPointListShape arrow = ((PinDescriptor)pinFigure).getOptionalArrowFigure();
+			ActivityFigureDrawer.undrawFigure(arrow);
+		}
+	}
+
+	/**
+	 * Notifies listeners that a source connection has been removed.
+	 * 
+	 * @param connection
+	 *        <code>ConnectionEditPart</code> being added as child.
+	 * @param index
+	 *        Position child is being added into.
+	 * @generated NOT
+	 */
+	@Override
+	protected void fireRemovingSourceConnection(ConnectionEditPart connection, int index) {
+		super.fireRemovingSourceConnection(connection, index);
+		// redraw the pin arrow if no other target connection left
+		boolean hasActivityEdge = false;
+		for(Object connect : getSourceConnections()) {
+			if(!connection.equals(connect) && (connect instanceof ObjectFlowEditPart || connect instanceof ControlFlowEditPart)) {
+				hasActivityEdge = true;
+				break;
+			}
+		}
+		if(!hasActivityEdge) {
+			PinDescriptor pinFigure = getPrimaryShape();
+			AbstractPointListShape arrow = pinFigure.getOptionalArrowFigure();
+			int direction = getBorderItemLocator().getCurrentSideOfParent();
+			ActivityFigureDrawer.redrawPinArrow(arrow, getMapMode(), getSize(), direction);
+		}
+	}
+
+	/**
+	 * Registers this editpart to receive notation and semantic events.
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public void activate() {
+		super.activate();
+		// redraw the pin arrow if no connection
+		boolean hasActivityEdge = false;
+		for(Object connection : getSourceConnections()) {
+			if(connection instanceof ObjectFlowEditPart || connection instanceof ControlFlowEditPart) {
+				hasActivityEdge = true;
+				break;
+			}
+		}
+		if(!hasActivityEdge) {
+			PinDescriptor pinFigure = getPrimaryShape();
+			AbstractPointListShape arrow = pinFigure.getOptionalArrowFigure();
+			int direction = getBorderItemLocator().getCurrentSideOfParent();
+			ActivityFigureDrawer.redrawPinArrow(arrow, getMapMode(), getSize(), direction);
+		}
 	}
 }
