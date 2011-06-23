@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.papyrus.documentation.view;singleton:=true
-Bundle-Version: 0.8.0.qualifier
+Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.documentation.view.DocViewPlugin
 Require-Bundle: org.eclipse.core.expressions;visibility:=reexport,
  org.eclipse.ui.editors;visibility:=reexport,
