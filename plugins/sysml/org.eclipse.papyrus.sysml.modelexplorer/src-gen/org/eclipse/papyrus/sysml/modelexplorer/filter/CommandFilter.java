@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 
 public class CommandFilter {
 
@@ -50,6 +51,10 @@ public class CommandFilter {
 			// visibleCommands.add(SysMLElementTypes.VERIFY);
 			visibleCommands.add(SysMLElementTypes.VIEW);
 			visibleCommands.add(SysMLElementTypes.VIEW_POINT);
+			
+			// UMLElementTypes.PROPERTY is required by ConstraintBlock Parameter 
+			visibleCommands.add(UMLElementTypes.PROPERTY);
+			
 		}
 
 		return visibleCommands;
