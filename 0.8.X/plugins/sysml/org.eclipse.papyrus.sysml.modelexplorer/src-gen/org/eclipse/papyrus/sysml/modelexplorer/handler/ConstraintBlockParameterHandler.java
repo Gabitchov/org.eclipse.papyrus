@@ -67,21 +67,5 @@ public class ConstraintBlockParameterHandler extends CreateCommandHandler implem
 
 		return createGMFCommand;
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean isEnabled() {
-		return getCommand().canExecute();
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean isVisible() {
-		return getCommand().canExecute();
-	}
 }
 
