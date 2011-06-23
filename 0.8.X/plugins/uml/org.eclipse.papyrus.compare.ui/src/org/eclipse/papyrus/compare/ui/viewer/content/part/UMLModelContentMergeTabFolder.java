@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) - 349650: [Papyrus Merge] IndexOfBoundException
  *****************************************************************************/
 package org.eclipse.papyrus.compare.ui.viewer.content.part;
 
@@ -100,7 +100,9 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 	protected EObject findMatchFromElement(EObject element) {
 		EObject matchElement = super.findMatchFromElement(element);
 		if(!myUMLViewer.isShowAllProperties() && matchElement instanceof Match2Elements) {
-			return new Match2ElementsWithDiff((Match2Elements)matchElement, myUMLViewer.getCurrentSelection().get(0));
+			if(myUMLViewer.getCurrentSelection().size()!=0){//see bug  349650
+				return new Match2ElementsWithDiff((Match2Elements)matchElement, myUMLViewer.getCurrentSelection().get(0));
+			}
 		}
 		return matchElement;
 	}
