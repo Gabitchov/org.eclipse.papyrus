@@ -5,22 +5,22 @@
 			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.SYSML_BlockDefinition__ContraintTools" name="CommentAndConstraints">
 			
-			<aspectTool description="Create a new ConstraintBlock" id="blockdefinition.tool.constraintblock"
+			<aspectTool description="Create a new ConstraintBlock" id="blockdefinition_constraints.tool.constraintblock"
 				name="ConstraintBlock" refToolId="blockdefinition.tool.constraintblock">
 			</aspectTool>
-			<aspectTool description="Create a new ConstraintProperty" id="blockdefinition.tool.constraintproperty"
+			<aspectTool description="Create a new ConstraintProperty" id="blockdefinition_constraints.tool.constraintproperty"
 				name="ConstraintProperty" refToolId="blockdefinition.tool.constraintproperty">
 			</aspectTool>			
-			<aspectTool description="Create a new Parameter (Property)" id="blockdefinition.tool.property"
+			<aspectTool description="Create a new Parameter (Property)" id="blockdefinition_constraints.tool.property"
 				name="Parameter" refToolId="blockdefinition.tool.property">
 			</aspectTool>			
-			<aspectTool description="Create a new Constraint" id="blockdefinition.tool.constraint"
+			<aspectTool description="Create a new Constraint" id="blockdefinition_constraints.tool.constraint"
 				name="Constraint" refToolId="blockdefinition.tool.constraint">
 			</aspectTool>
-			<aspectTool description="Create a new Comment" id="blockdefinition.tool.comment"
+			<aspectTool description="Create a new Comment" id="blockdefinition_constraints.tool.comment"
 				name="Comment" refToolId="blockdefinition.tool.comment">
 			</aspectTool>				
-			<aspectTool description="Create a new Comment / Constraint link" id="blockdefinition.tool.comment_constraint_link"
+			<aspectTool description="Create a new Comment / Constraint link" id="blockdefinition_constraints.tool.comment_constraint_link"
 				name="Comment / Constraint link" refToolId="blockdefinition.tool.comment_constraint_link">
 			</aspectTool>				
 		</drawer>
