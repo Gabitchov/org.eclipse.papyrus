@@ -5,25 +5,25 @@
 			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.SYSML_BlockDefinition__PortAndFlowTools" name="PortAndFlows">
 			
-			<aspectTool description="Create a new Port" id="blockdefinition.tool.port"
+			<aspectTool description="Create a new Port" id="blockdefinition_portandflows.tool.port"
 				name="Port" refToolId="blockdefinition.tool.port">
 			</aspectTool>
-			<aspectTool description="Create a new FlowPort" id="blockdefinition.tool.flowport"
+			<aspectTool description="Create a new FlowPort" id="blockdefinition_portandflows.tool.flowport"
 				name="FlowPort" refToolId="blockdefinition.tool.flowport">
 			</aspectTool>			
-			<aspectTool description="Create a new FlowSpecification" id="blockdefinition.tool.flowspecification"
+			<aspectTool description="Create a new FlowSpecification" id="blockdefinition_portandflows.tool.flowspecification"
 				name="FlowSpecification" refToolId="blockdefinition.tool.flowspecification">
 			</aspectTool>			
-			<aspectTool description="Create a new FlowProperty" id="blockdefinition.tool.flowproperty"
+			<aspectTool description="Create a new FlowProperty" id="blockdefinition_portandflows.tool.flowproperty"
 				name="FlowProperty" refToolId="blockdefinition.tool.flowproperty">
 			</aspectTool>
-			<aspectTool description="Create a new Interface" id="blockdefinition.tool.interface"
+			<aspectTool description="Create a new Interface" id="blockdefinition_portandflows.tool.interface"
 				name="Interface" refToolId="blockdefinition.tool.interface">
 			</aspectTool>
-			<aspectTool description="Create a new InterfaceRealization" id="blockdefinition.tool.interfacerealization"
+			<aspectTool description="Create a new InterfaceRealization" id="blockdefinition_portandflows.tool.interfacerealization"
 				name="InterfaceRealization" refToolId="blockdefinition.tool.interfacerealization">
 			</aspectTool>
-			<aspectTool description="Create a new Usage" id="blockdefinition.tool.usage"
+			<aspectTool description="Create a new Usage" id="blockdefinition_portandflows.tool.usage"
 				name="Usage" refToolId="blockdefinition.tool.usage">
 			</aspectTool>
 						

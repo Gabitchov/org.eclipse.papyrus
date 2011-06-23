@@ -5,25 +5,25 @@
 			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.SYSML_BlockDefinition__DataTypeTools" name="DataTypes">
 			
-			<aspectTool description="Create a new DataType" id="blockdefinition.tool.datatype"
+			<aspectTool description="Create a new DataType" id="blockdefinition_datatypes.tool.datatype"
 				name="DataType" refToolId="blockdefinition.tool.datatype">
 			</aspectTool>
-			<aspectTool description="Create a new ValueType" id="blockdefinition.tool.valuetype"
+			<aspectTool description="Create a new ValueType" id="blockdefinition_datatypes.tool.valuetype"
 				name="ValueType" refToolId="blockdefinition.tool.valuetype">
 			</aspectTool>
-			<aspectTool description="Create a new PrimitiveType" id="blockdefinition.tool.primitivetype"
+			<aspectTool description="Create a new PrimitiveType" id="blockdefinition_datatypes.tool.primitivetype"
 				name="PrimitiveType" refToolId="blockdefinition.tool.primitivetype">
 			</aspectTool>				
-			<aspectTool description="Create a new Enumeration" id="blockdefinition.tool.enumeration"
+			<aspectTool description="Create a new Enumeration" id="blockdefinition_datatypes.tool.enumeration"
 				name="Enumeration" refToolId="blockdefinition.tool.enumeration">
 			</aspectTool>			
-			<aspectTool description="Create a new EnumerationLiteral" id="blockdefinition.tool.enumerationliteral"
+			<aspectTool description="Create a new EnumerationLiteral" id="blockdefinition_datatypes.tool.enumerationliteral"
 				name="EnumerationLiteral" refToolId="blockdefinition.tool.enumerationliteral">
 			</aspectTool>
-			<aspectTool description="Create a new Dimension" id="blockdefinition.tool.dimension"
+			<aspectTool description="Create a new Dimension" id="blockdefinition_datatypes.tool.dimension"
 				name="Dimension" refToolId="blockdefinition.tool.dimension">
 			</aspectTool>
-			<aspectTool description="Create a new Unit" id="blockdefinition.tool.unit"
+			<aspectTool description="Create a new Unit" id="blockdefinition_datatypes.tool.unit"
 				name="Unit" refToolId="blockdefinition.tool.unit">
 			</aspectTool>			
 		</drawer>

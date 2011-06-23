@@ -5,27 +5,27 @@
 			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.SYSML_BlockDefinition__Associations" name="Associations">
 			
-			<aspectTool description="Create a new Association" id="blockdefinition.tool.association_none"
+			<aspectTool description="Create a new Association" id="blockdefinition_associations.tool.association_none"
 				name="Association" refToolId="blockdefinition.tool.association_none">
 			</aspectTool>
 			
-			<aspectTool description="Create a new DirectedAssociation" id="blockdefinition.tool.association_none_directed"
+			<aspectTool description="Create a new DirectedAssociation" id="blockdefinition_associations.tool.association_none_directed"
 				name="DirectedAssociation" refToolId="blockdefinition.tool.association_none_directed">
 			</aspectTool>
 			
-			<aspectTool description="Create a new Composition" id="blockdefinition.tool.association_composite"
+			<aspectTool description="Create a new Composition" id="blockdefinition_associations.tool.association_composite"
 				name="Composition" refToolId="blockdefinition.tool.association_composite">
 			</aspectTool>
 
-			<aspectTool description="Create a new DirectedComposition" id="blockdefinition.tool.association_composite_directed"
+			<aspectTool description="Create a new DirectedComposition" id="blockdefinition_associations.tool.association_composite_directed"
 				name="DirectedComposition" refToolId="blockdefinition.tool.association_composite_directed">
 			</aspectTool>
 	
-			<aspectTool description="Create a new Aggregation" id="blockdefinition.tool.association_shared"
+			<aspectTool description="Create a new Aggregation" id="blockdefinition_associations.tool.association_shared"
 				name="Aggregation" refToolId="blockdefinition.tool.association_shared">
 			</aspectTool>
 
-			<aspectTool description="Create a new DirectedAggregation" id="blockdefinition.tool.association_shared_directed"
+			<aspectTool description="Create a new DirectedAggregation" id="blockdefinition_associations.tool.association_shared_directed"
 				name="DirectedAggregation" refToolId="blockdefinition.tool.association_shared_directed">
 			</aspectTool>
 											
