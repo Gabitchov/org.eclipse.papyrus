@@ -18,6 +18,8 @@ import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.compare.diff.merge.IMerger;
+import org.eclipse.emf.compare.diff.merge.service.MergeService;
 import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffPackage;
@@ -36,6 +38,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.papyrus.compare.diff.merge.TaggedValueReferenceChangeMerger;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueReferenceChange;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -595,6 +598,21 @@ public class TaggedValueReferenceChangeImpl extends UMLDiffExtensionImpl impleme
 		result.append(')');
 		return result.toString();
 	}
+	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.UMLDiffExtensionImpl#provideMerger()
+	 *@ generated NOT
+	 * @return
+	 */
+	@Override
+	public IMerger provideMerger() {
+		// TODO Auto-generated method stub
+//		return MergeService.
+	return new TaggedValueReferenceChangeMerger();	
+		
+	}
+	
 	
 	
 } //TaggedValueReferenceChangeImpl

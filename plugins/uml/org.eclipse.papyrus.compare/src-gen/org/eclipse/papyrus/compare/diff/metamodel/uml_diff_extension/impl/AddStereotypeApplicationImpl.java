@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.compare.UMLCompareUtils;
+import org.eclipse.papyrus.compare.diff.merge.StereotypeApplicationRightTargetMerger;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.AddStereotypeApplication;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -529,6 +530,17 @@ public class AddStereotypeApplicationImpl extends StereotypeChangeImpl implement
 		result.append(remote);
 		result.append(')');
 		return result.toString();
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public IMerger provideMerger() {
+		return new StereotypeApplicationRightTargetMerger();
 	}
 	
 } //AddStereotypeApplicationImpl
