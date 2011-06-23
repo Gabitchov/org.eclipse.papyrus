@@ -24,7 +24,7 @@ public class SysmlResource {
 
 	public static final String PROFILES_PATHMAP = "pathmap://SysML_PROFILES/"; //$NON-NLS-1$
 
-	public static final String SYSML_PROFILE_NS_URI = SysmlPackage.eNS_URI; 
+	public static final String SYSML_PROFILE_NS_URI = SysmlPackage.eNS_URI;
 
 	public static final String SYSML_PROFILE_URI = PROFILES_PATHMAP + "SysML.profile.uml"; //$NON-NLS-1$
 
@@ -124,28 +124,38 @@ public class SysmlResource {
 	public static String ALLOCATIONS_ID = "SysML::Allocations";
 
 	public static String REQUIREMENTS_ID = "SysML::Requirements";
-	
+
 	// stereotype properties  ids
 	//requirements properties
+	@Deprecated
 	public static String REQUIREMENT_BASE_CLASS_ID = "base_Class"; //$NON-NLS-1$
-	 
+
+	@Deprecated
 	public static String REQUIREMENT_DERIVED_ID = "derived"; //$NON-NLS-1$
-	
+
+	@Deprecated
 	public static String REQUIREMENT_DERIVED_FROM_ID = "derivedFrom";//$NON-NLS-1$
-	
+
+	@Deprecated
 	public static String REQUIREMENT_ID_ID = "id";//$NON-NLS-1$
-	
+
+	@Deprecated
 	public static String REQUIREMENT_MASTER_ID = "master";//$NON-NLS-1$
-	
+
+	@Deprecated
 	public static String REQUIREMENT_REFINED_BY_ID = "refinedBy";//$NON-NLS-1$
-	
+
+	@Deprecated
 	public static String REQUIREMENT_SATISFIED_BY_ID = "satisfiedBy";//$NON-NLS-1$
-	
+
+	@Deprecated
 	public static String REQUIREMENT_TEXT_ID = "text";//$NON-NLS-1$
-	
+
+	@Deprecated
 	public static String REQUIREMENT_TRACED_TO_ID = "tracedTo";//$NON-NLS-1$
-	
+
+	@Deprecated
 	public static String REQUIREMENT_VERIFIED_BY_ID = "verifiedBy";//$NON-NLS-1$
-	
-	
+
+
 }

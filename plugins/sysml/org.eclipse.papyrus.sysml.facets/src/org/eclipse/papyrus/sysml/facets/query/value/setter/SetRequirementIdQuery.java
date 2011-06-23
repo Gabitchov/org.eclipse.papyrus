@@ -13,19 +13,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.facets.query.value.setter;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQueryWithEditingDomain;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
-import org.eclipse.emf.facet.infra.query.runtime.ModelQueryParameterValue;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.sysml.requirements.Requirement;
+import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
+import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Stereotype;
 
 /** Query to set the attribute "id" of the requirement */
 public class SetRequirementIdQuery implements IJavaModelQueryWithEditingDomain<Class, EObject> {
@@ -57,34 +57,30 @@ public class SetRequirementIdQuery implements IJavaModelQueryWithEditingDomain<C
 	 * @throws ModelQueryExecutionException
 	 */
 	public EObject evaluate(final Class context, final ParameterValueList parameter, final EditingDomain editingDomain) throws ModelQueryExecutionException {
-		final Stereotype ste = context.getAppliedStereotype(SysmlResource.REQUIREMENT_ID);
-		if(ste != null) {
-			if(parameter.size() != 0) {
-				final ModelQueryParameterValue newValue = parameter.get(0);
-				if(newValue != null && newValue.getValue() instanceof String) {
-					Command command = null;
-					TransactionalEditingDomain domain = null;
-					if(!(editingDomain instanceof TransactionalEditingDomain)) {
-						//if we work with a uml file, it is possible to get a UML2AdapterFactoryEditingDomain instead of TransactionEditingDomain
-						domain = TransactionUtil.getEditingDomain(context);
-					} else {
-						domain = (TransactionalEditingDomain)editingDomain;
-					}
-					if(domain != null) {
-						command = new RecordingCommand(domain) {
-
-							@Override
-							protected void doExecute() {
-								context.setValue(ste, SysmlResource.REQUIREMENT_ID_ID, newValue.getValue());
-							}
-						};
-					}
-					if(command != null && command.canExecute()) {
-						domain.getCommandStack().execute(command);
-					}
-				}
-			}
+		Requirement requirement = ElementUtil.getStereotypeApplication(context, Requirement.class);
+		
+		if ((requirement == null) || (parameter.isEmpty()) || (parameter.get(0) == null)) {
+			return context; // Abort.
 		}
+		
+		// Retrieve new value from parameter and update if the property value has changed.
+		String newValue = (parameter.get(0).getValue() instanceof String) ? (String) parameter.get(0).getValue() : null;
+		if (newValue != requirement.getId()) {
+			
+			try {
+				
+				TransactionalEditingDomain domain = ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
+				SetCommand command = new SetCommand(domain, requirement, RequirementsPackage.eINSTANCE.getRequirement_Id(), newValue);
+				if (command.canExecute()) {
+					domain.getCommandStack().execute(command);
+				}
+				
+			} catch (ServiceException e) {
+				throw new ModelQueryExecutionException(e);
+			}
+			
+		}
+		
 		return context;
 	}
 

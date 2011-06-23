@@ -13,26 +13,31 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.facets.query.value.getter;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.sysml.requirements.Requirement;
+import org.eclipse.papyrus.sysml.requirements.TestCase;
+import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.Stereotype;
 
 /** Query to get the text of the requirement */
 
 public class GetRequirementVerifiedByQuery implements IJavaModelQuery<Class, Collection<Operation>> {
 
 	public Collection<Operation> evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		Stereotype ste = context.getAppliedStereotype(SysmlResource.REQUIREMENT_ID);
-		if(ste != null) {
-			Object value = context.getValue(ste, SysmlResource.REQUIREMENT_VERIFIED_BY_ID);
-			return (Collection<Operation>)value;
+		Collection<Operation> result = new ArrayList<Operation>();
+		
+		Requirement requirement = ElementUtil.getStereotypeApplication(context, Requirement.class);
+		if (requirement != null) {
+			for(TestCase current : requirement.getVerifiedBy()) {
+				result.add(current.getBase_Operation());
+			}	
 		}
-		return null;
+		return result;
 	}
 }
