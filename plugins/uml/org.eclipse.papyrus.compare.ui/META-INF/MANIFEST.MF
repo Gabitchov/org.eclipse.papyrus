@@ -19,6 +19,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.uml2.uml.edit;bundle-version="3.1.100",
  org.eclipse.emf.edit.ui;bundle-version="2.6.0",
  org.eclipse.papyrus.profile;bundle-version="0.8.0",
+ org.eclipse.papyrus.compare,
  org.eclipse.papyrus.compare
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
