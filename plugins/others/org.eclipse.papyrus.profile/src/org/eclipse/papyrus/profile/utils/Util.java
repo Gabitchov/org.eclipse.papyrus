@@ -10,7 +10,7 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
- *
+ *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - add getNearestProfileApplication
  *****************************************************************************/
 package org.eclipse.papyrus.profile.utils;
 
@@ -616,5 +616,25 @@ public class Util {
 			final String value = annotation.getDetails().get(IPapyrusVersionConstants.PAPYRUS_COPYRIGHT_KEY);
 			return (value != null) ? value : "";
 		}
+	}
+	
+	/**
+	 * We look for the nearest profile application from the Element, owning the stereotype;
+	 * 
+	 * @param stereotype
+	 * @return
+	 *         the nearest profile application owning the stereotype
+	 */
+	public static ProfileApplication getNearestProfileApplicationFor(final Element element, final Stereotype stereotype) {
+		ProfileApplication profileApplication = null;
+		Profile profile = stereotype.getProfile();
+		EObject container = element;
+		while(profileApplication == null && container != null) {
+			if(container instanceof Package) {
+				profileApplication = ((Package)container).getProfileApplication(profile);
+			}
+			container = container.eContainer();
+		}
+		return profileApplication;
 	}
 }
