@@ -22,5 +22,6 @@ Export-Package: org.eclipse.papyrus.compare,
  org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util,
  org.eclipse.papyrus.compare.element,
  org.eclipse.papyrus.compare.match,
- org.eclipse.papyrus.compare.ui
+ org.eclipse.papyrus.compare.ui,
+ org.eclipse.papyrus.compare.utils
 Bundle-ActivationPolicy: lazy
