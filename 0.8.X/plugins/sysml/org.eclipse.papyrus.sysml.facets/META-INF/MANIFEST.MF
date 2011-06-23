@@ -6,8 +6,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.uml2.uml,
  org.eclipse.papyrus.sysml;bundle-version="0.8.0",
  org.eclipse.emf.edit,
- org.eclipse.emf.transaction,
- org.eclipse.uml2.common.edit
+ org.eclipse.uml2.common.edit,
+ org.eclipse.papyrus.core;bundle-version="0.8.0"
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,bin
 Bundle-Version: 0.8.0.qualifier
