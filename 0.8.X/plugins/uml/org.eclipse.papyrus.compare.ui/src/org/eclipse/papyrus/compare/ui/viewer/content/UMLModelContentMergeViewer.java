@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) 342162: [Usability] Papyrus merge shall enable to merge elements with stereotypes.
  *****************************************************************************/
 package org.eclipse.papyrus.compare.ui.viewer.content;
 
@@ -18,7 +18,10 @@ import java.util.List;
 
 import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.ui.ICompareEditorPartListener;
+import org.eclipse.emf.compare.ui.ModelCompareInput;
+import org.eclipse.emf.compare.ui.util.EMFCompareConstants;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
 import org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder;
 import org.eclipse.jface.action.Action;
@@ -27,9 +30,13 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.papyrus.compare.Activator;
 import org.eclipse.papyrus.compare.ui.viewer.content.part.UMLModelContentMergeTabFolder;
+import org.eclipse.papyrus.compare.utils.Utils;
+import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.widgets.Composite;
 
 
@@ -53,6 +60,7 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 	/** The my left part. */
 	private UMLModelContentMergeTabFolder myLeftPart;
 
+	private IPropertyChangeListener propertyChangeListener;
 	/**
 	 * Instantiates a new uML model content merge viewer.
 	 *
@@ -61,6 +69,30 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 	 */
 	public UMLModelContentMergeViewer(Composite parent, CompareConfiguration config) {
 		super(parent, config);
+		
+		//we add a change listener in order to select all the needed elements
+		propertyChangeListener = new IPropertyChangeListener() {
+			
+			public void propertyChange(PropertyChangeEvent event) {
+				if (event.getProperty().equals(EMFCompareConstants.PROPERTY_STRUCTURE_SELECTION)) {
+					final List<?> elements = (List<?>)event.getNewValue();
+					// We'll remove all diffgroups without subDiffs from the selection
+					final List<DiffElement> selectedDiffs = new ArrayList<DiffElement>();
+					for (int i = 0; i < elements.size(); i++) {
+						if (elements.get(i) instanceof DiffElement
+								&& !(elements.get(i) instanceof DiffGroup && ((DiffGroup)elements.get(i))
+										.getSubDiffElements().size() == 0)) {
+							selectedDiffs.add((DiffElement)elements.get(i));
+							ModelCompareInput input2 = (ModelCompareInput)getInput();
+							selectedDiffs.addAll(Utils.getAllAssociatedElement(input2.getDiffAsList(), Utils.getRepresentedElement((DiffElement)elements.get(i))));
+						}
+					}
+					setSelection(selectedDiffs);
+				}
+				
+			}
+		};
+		configuration.addPropertyChangeListener(propertyChangeListener);
 	}
 
 	/* (non-Javadoc)
@@ -185,5 +217,16 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 			// do nothing
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @see org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer#handleDispose(org.eclipse.swt.events.DisposeEvent)
+	 *
+	 * @param event
+	 */
+	@Override
+	protected void handleDispose(DisposeEvent event) {
+		super.handleDispose(event);
+		configuration.removePropertyChangeListener(propertyChangeListener);
+	}
 }

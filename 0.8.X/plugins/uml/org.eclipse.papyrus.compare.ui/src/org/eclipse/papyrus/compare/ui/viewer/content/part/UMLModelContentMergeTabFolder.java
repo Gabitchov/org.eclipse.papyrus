@@ -9,11 +9,19 @@
  *
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
- *  Vincent Lorenzo (CEA LIST) - 349650: [Papyrus Merge] IndexOfBoundException
+ *  Vincent Lorenzo (CEA LIST) - 342162: [Usability] Papyrus merge shall enable to merge elements with stereotypes.
  *****************************************************************************/
 package org.eclipse.papyrus.compare.ui.viewer.content.part;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.match.metamodel.Match2Elements;
+import org.eclipse.emf.compare.ui.ModelCompareInput;
+import org.eclipse.emf.compare.ui.util.EMFCompareConstants;
+import org.eclipse.emf.compare.ui.util.EMFCompareEObjectUtils;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
 import org.eclipse.emf.compare.ui.viewer.content.part.IModelContentMergeViewerTab;
 import org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder;
@@ -28,7 +36,12 @@ import org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewer;
 import org.eclipse.papyrus.compare.ui.viewer.content.part.diff.UMLModelContentMergeDiffTab;
 import org.eclipse.papyrus.compare.ui.viewer.content.part.property.Match2ElementsWithDiff;
 import org.eclipse.papyrus.compare.ui.viewer.content.part.property.UMLPropertyContentProvider;
+import org.eclipse.papyrus.compare.utils.Utils;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Item;
+import org.eclipse.swt.widgets.Tree;
 
 
 /**
@@ -126,5 +139,42 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 		final IModelContentMergeViewerTab currentTab = tabs.get(index);
 		return (currentTab == getPropertyPart());
 	}
+	
+	@Override
+	protected void createContents(Composite composite) {
+		super.createContents(composite);
+		//we replace the selection listener provided by the super class in order to add behavior for the selection
+		((Tree)this.tree.getControl()).addSelectionListener(new SelectionAdapter() {
 
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				List<DiffElement> selectedElements = new ArrayList<DiffElement>();
+				if(tree.getSelectedElements().size() > 0) {
+					final Item selected = tree.getSelectedElements().get(0);
+					//the initial code for this listener
+					for(final DiffElement diff : ((ModelCompareInput)parentViewer.getInput()).getDiffAsList()) {
+						if(!(diff instanceof DiffGroup) && partSide == EMFCompareConstants.LEFT) {
+							if(selected.getData().equals(EMFCompareEObjectUtils.getLeftElement(diff))) {
+								selectedElements.add(diff);
+							}
+						} else if(!(diff instanceof DiffGroup) && partSide == EMFCompareConstants.RIGHT) {
+							if(selected.getData().equals(EMFCompareEObjectUtils.getRightElement(diff))) {
+								selectedElements.add(diff);
+							}
+						}
+					}
+					//we complete the initial code here :
+					Object obj = selected.getData();
+					List<DiffElement> complement = Utils.getAllAssociatedElement(getDiffAsList(), obj);
+					selectedElements.addAll(complement);
+
+					parentViewer.setSelection(selectedElements);
+
+					if(!selected.isDisposed() && selected.getData() instanceof EObject) {
+						properties.setReflectiveInput(findMatchFromElement((EObject)selected.getData()));
+					}
+				}
+			}
+		});
+	}
 }
