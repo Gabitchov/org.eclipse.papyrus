@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.compare.UMLCompareUtils;
+import org.eclipse.papyrus.compare.diff.merge.StereotypeApplicationLeftTargetMerger;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.RemoveStereotypeApplication;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -531,4 +532,14 @@ public class RemoveStereotypeApplicationImpl extends StereotypeChangeImpl implem
 		return result.toString();
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public IMerger provideMerger() {
+		return new StereotypeApplicationLeftTargetMerger();
+	}
 } //RemoveStereotypeApplicationImpl
