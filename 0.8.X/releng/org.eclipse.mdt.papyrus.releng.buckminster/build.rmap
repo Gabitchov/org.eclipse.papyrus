@@ -13,13 +13,13 @@
   <rm:locator searchPathRef="platform.binaries"/>
   <rm:searchPath name="releng">
     <rm:provider componentTypes="buckminster,osgi.bundle" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/releng/{1}">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.8.X/releng/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/releng/{1}-feature">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.8.X/releng/{1}-feature">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
@@ -27,85 +27,85 @@
   </rm:searchPath>
   <rm:searchPath name="sources">
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/{1}">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.8.X/plugins/core/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer/{1}">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.8.X/plugins/developer/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/others/{1}">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.8.X/plugins/others/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/profile-tool/{1}">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.8.X/plugins/profile-tool/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml/{1}">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.8.X/plugins/sysml/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/{1}">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.8.X/plugins/uml/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/extraplugins/autolayout/{1}">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.8.X/extraplugins/autolayout/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/core/{1}">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.8.X/tests/junit/plugins/core/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/developer/{1}">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.8.X/tests/junit/plugins/developer/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/others/{1}">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.8.X/tests/junit/plugins/others/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/profile-tool/{1}">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.8.X/tests/junit/plugins/profile-tool/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/sysml/{1}">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.8.X/tests/junit/plugins/sysml/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/uml/{1}">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.8.X/tests/junit/plugins/uml/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/features/{1}-feature">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.8.X/features/{1}-feature">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
