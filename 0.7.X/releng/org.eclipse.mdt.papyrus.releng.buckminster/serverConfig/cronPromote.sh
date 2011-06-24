@@ -16,7 +16,7 @@ promoteDirNameI=/opt/public/modeling/mdt/papyrus/papyrusBuildPromoteDirNameI
 logFile=/opt/public/modeling/mdt/papyrus/log-cronPromote
 integrationTags=/opt/public/modeling/mdt/papyrus/integrationTags
 
-updates_nightly=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates/nightly/indigo/
+updates_nightly=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates/nightly/helios/
 updates_integration=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates/integration/
 
 #HUDSON_METRICS=/opt/users/hudsonbuild/workspace/papyrus-nightly/metrics.html
