@@ -133,7 +133,7 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/emf/cdo/updates/4.0-milestones">
+      <rm:uri format="{0}/modeling/emf/cdo/updates/releases/4.0">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
