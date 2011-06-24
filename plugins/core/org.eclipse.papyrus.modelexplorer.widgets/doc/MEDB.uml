@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_oIVI8EsZEeCsdNjiLCckhw" name="model">
+  <packagedElement xmi:type="uml:Package" xmi:id="_yl3e0EsZEeCsdNjiLCckhw" name="org.eclipse.papyrus.modelexplorerbasedwidgets">
+    <packagedElement xmi:type="uml:Class" xmi:id="_AMtvAEsaEeCsdNjiLCckhw" name="ModelExplorerBasedContentProvider" clientDependency="_kbJWcEsiEeCsdNjiLCckhw">
+      <ownedComment xmi:id="_0yf00EshEeCsdNjiLCckhw">
+        <body>this is an Encapsulated content provider based on the model explorer on which we can filter wanted meta-classes&#xD;
+ </body>
+      </ownedComment>
+      <generalization xmi:id="_m49WUEsaEeCsdNjiLCckhw" general="_fJ9qUEsaEeCsdNjiLCckhw"/>
+      <ownedAttribute xmi:id="_fJv9AEscEeCsdNjiLCckhw" name="staticContentProvider" type="_ZX7k0EsbEeCsdNjiLCckhw" aggregation="composite" association="_fJv9A0scEeCsdNjiLCckhw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fJv9AUscEeCsdNjiLCckhw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fJv9AkscEeCsdNjiLCckhw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_X_DoMEstEeCT26UdVsfwqQ" name="modelContentProvider" type="_9uZdAEsaEeCsdNjiLCckhw" association="_X_MyIEstEeCT26UdVsfwqQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_X_DoMUstEeCT26UdVsfwqQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_X_DoMkstEeCT26UdVsfwqQ" value="1"/>
+      </ownedAttribute>
+      <interfaceRealization xmi:id="_kbJWcEsiEeCsdNjiLCckhw" name="InterfaceRealization0" supplier="_QaNXsEsiEeCsdNjiLCckhw" client="_AMtvAEsaEeCsdNjiLCckhw" contract="_QaNXsEsiEeCsdNjiLCckhw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1C5sgEsaEeCsdNjiLCckhw" name="ModelExplorerBasedTreeSelectorDialog">
+      <generalization xmi:id="_ZBb68EscEeCsdNjiLCckhw" general="_V5xmcEscEeCsdNjiLCckhw"/>
+      <ownedAttribute xmi:id="_DoIbEEscEeCsdNjiLCckhw" name="modelExplorerBasedContentProvider" type="_QaNXsEsiEeCsdNjiLCckhw" aggregation="composite" association="_DoIbE0scEeCsdNjiLCckhw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DoIbEUscEeCsdNjiLCckhw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DoIbEkscEeCsdNjiLCckhw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_NlZ8gEscEeCsdNjiLCckhw" name="modelExplorerBasedViewerFilter" type="_wr_yIEskEeCsdNjiLCckhw" aggregation="composite" association="_NlZ8g0scEeCsdNjiLCckhw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NlZ8gUscEeCsdNjiLCckhw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NlZ8gkscEeCsdNjiLCckhw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_5j-rAEsaEeCsdNjiLCckhw" name="HierarchicViewerFilter">
+      <generalization xmi:id="_1izwEEskEeCsdNjiLCckhw" general="_wr_yIEskEeCsdNjiLCckhw"/>
+      <ownedAttribute xmi:id="_rsHt4EsbEeCsdNjiLCckhw" name="iHierarchicContentProvider" type="_hjSSIEsaEeCsdNjiLCckhw" association="_rsHt40sbEeCsdNjiLCckhw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rsHt4UsbEeCsdNjiLCckhw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rsHt4ksbEeCsdNjiLCckhw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Pt9SgEseEeCsdNjiLCckhw" name="modelExplorerBasedContentProvider" type="_hjSSIEsaEeCsdNjiLCckhw" association="_Pt9Sg0seEeCsdNjiLCckhw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Pt9SgUseEeCsdNjiLCckhw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Pt9SgkseEeCsdNjiLCckhw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_9uZdAEsaEeCsdNjiLCckhw" name="ModelContentProvider" clientDependency="_ePDEwEsbEeCsdNjiLCckhw _LiOmAEsrEeCT26UdVsfwqQ">
+      <ownedComment xmi:id="_LR7WoEsfEeCsdNjiLCckhw">
+        <body>This is a modisco content provider on which we can parameter the root element</body>
+      </ownedComment>
+      <generalization xmi:id="_KVFQsEsbEeCsdNjiLCckhw" general="_Gpqu4EsbEeCsdNjiLCckhw"/>
+      <interfaceRealization xmi:id="_ePDEwEsbEeCsdNjiLCckhw" name="InterfaceRealization0" supplier="_ZX7k0EsbEeCsdNjiLCckhw" client="_9uZdAEsaEeCsdNjiLCckhw" contract="_ZX7k0EsbEeCsdNjiLCckhw"/>
+      <interfaceRealization xmi:id="_LiOmAEsrEeCT26UdVsfwqQ" name="InterfaceRealization1" supplier="_ZX7k0EsbEeCsdNjiLCckhw" client="_9uZdAEsaEeCsdNjiLCckhw" contract="_ZX7k0EsbEeCsdNjiLCckhw"/>
+      <ownedOperation xmi:id="_rxgAUEsfEeCsdNjiLCckhw" name="getRootElements"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_rsHt40sbEeCsdNjiLCckhw" name="modelExplorerBasedViewerFilter_iHierarchicContentProvider_0" memberEnd="_rsHt5EsbEeCsdNjiLCckhw _rsHt4EsbEeCsdNjiLCckhw">
+      <ownedEnd xmi:id="_rsHt5EsbEeCsdNjiLCckhw" name="modelExplorerBasedViewerFilter" type="_5j-rAEsaEeCsdNjiLCckhw" association="_rsHt40sbEeCsdNjiLCckhw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rsHt5UsbEeCsdNjiLCckhw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rsHt5ksbEeCsdNjiLCckhw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_DoIbE0scEeCsdNjiLCckhw" name="modelExplorerBasedTreeSelectorDialog_modelExplorerBasedContentProvider_0" memberEnd="_DoIbFEscEeCsdNjiLCckhw _DoIbEEscEeCsdNjiLCckhw">
+      <ownedEnd xmi:id="_DoIbFEscEeCsdNjiLCckhw" name="modelExplorerBasedTreeSelectorDialog" type="_1C5sgEsaEeCsdNjiLCckhw" association="_DoIbE0scEeCsdNjiLCckhw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DoIbFUscEeCsdNjiLCckhw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DoIbFkscEeCsdNjiLCckhw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_NlZ8g0scEeCsdNjiLCckhw" name="modelExplorerBasedTreeSelectorDialog_modelExplorerBasedViewerFilter_0" memberEnd="_NlZ8hEscEeCsdNjiLCckhw _NlZ8gEscEeCsdNjiLCckhw">
+      <ownedEnd xmi:id="_NlZ8hEscEeCsdNjiLCckhw" name="modelExplorerBasedTreeSelectorDialog" type="_1C5sgEsaEeCsdNjiLCckhw" association="_NlZ8g0scEeCsdNjiLCckhw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NlZ8hUscEeCsdNjiLCckhw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NlZ8hkscEeCsdNjiLCckhw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Pt9Sg0seEeCsdNjiLCckhw" name="modelExplorerBasedViewerFilter_modelExplorerBasedContentProvider_0" memberEnd="_Pt9ShEseEeCsdNjiLCckhw _Pt9SgEseEeCsdNjiLCckhw">
+      <ownedEnd xmi:id="_Pt9ShEseEeCsdNjiLCckhw" name="modelExplorerBasedViewerFilter" type="_5j-rAEsaEeCsdNjiLCckhw" association="_Pt9Sg0seEeCsdNjiLCckhw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Pt9ShUseEeCsdNjiLCckhw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Pt9ShkseEeCsdNjiLCckhw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_QaNXsEsiEeCsdNjiLCckhw" name="IMetaclassFilteredContentProvider">
+      <generalization xmi:id="_0i9ukEsiEeCsdNjiLCckhw" general="_hjSSIEsaEeCsdNjiLCckhw"/>
+      <ownedOperation xmi:id="_h91_0EsdEeCsdNjiLCckhw" name="setMetaClassNotWanted"/>
+      <ownedOperation xmi:id="_jgooQEsdEeCsdNjiLCckhw" name="setMetaClassWanted">
+        <ownedComment xmi:id="_joiAAEsdEeCsdNjiLCckhw">
+          <body>setMetaClassWanted</body>
+        </ownedComment>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_X_MyIEstEeCT26UdVsfwqQ" name="modelExplorerBasedContentProvider_modelContentProvider_0" memberEnd="_X_MyIUstEeCT26UdVsfwqQ _X_DoMEstEeCT26UdVsfwqQ">
+      <ownedEnd xmi:id="_X_MyIUstEeCT26UdVsfwqQ" name="modelExplorerBasedContentProvider" type="_AMtvAEsaEeCsdNjiLCckhw" association="_X_MyIEstEeCT26UdVsfwqQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_X_MyIkstEeCT26UdVsfwqQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_X_MyI0stEeCT26UdVsfwqQ" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_GyuDgU5YEeCu1u0cVaNn3Q" name="AdvancedMEbasedTreeSelectorDialog">
+      <generalization xmi:id="_8GjBMFF3EeC_fOJUmwB69g" general="_1C5sgEsaEeCsdNjiLCckhw"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_o7LswEsaEeCsdNjiLCckhw" name="org.eclipse.papyrus.widgets">
+    <packagedElement xmi:type="uml:Class" xmi:id="_fJ9qUEsaEeCsdNjiLCckhw" name="EncapsulatedContentProvider" clientDependency="_l4SjgEsaEeCsdNjiLCckhw">
+      <interfaceRealization xmi:id="_l4SjgEsaEeCsdNjiLCckhw" name="InterfaceRealization0" supplier="_hjSSIEsaEeCsdNjiLCckhw" client="_fJ9qUEsaEeCsdNjiLCckhw" contract="_hjSSIEsaEeCsdNjiLCckhw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_hjSSIEsaEeCsdNjiLCckhw" name="IHierarchicContentProvider">
+      <ownedOperation xmi:id="_nmRn8EsdEeCsdNjiLCckhw" name="isValidValue"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_ZX7k0EsbEeCsdNjiLCckhw" name="IStaticContentProvider"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_V5xmcEscEeCsdNjiLCckhw" name="TreeSelectorDialog"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_fJv9A0scEeCsdNjiLCckhw" name="modelExplorerBasedContentProvider_staticContentProvider_0" memberEnd="_fJv9BEscEeCsdNjiLCckhw _fJv9AEscEeCsdNjiLCckhw">
+      <ownedEnd xmi:id="_fJv9BEscEeCsdNjiLCckhw" name="modelExplorerBasedContentProvider" type="_fJ9qUEsaEeCsdNjiLCckhw" association="_fJv9A0scEeCsdNjiLCckhw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fJv9BUscEeCsdNjiLCckhw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fJv9BkscEeCsdNjiLCckhw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_FXRS4EsbEeCsdNjiLCckhw" name="org.eclipse.papyrus.modelexplorer">
+    <packagedElement xmi:type="uml:Class" xmi:id="_Gpqu4EsbEeCsdNjiLCckhw" name="MoDiscoContentProvider"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="__0mr0EsrEeCT26UdVsfwqQ" name="Eclipse">
+    <packagedElement xmi:type="uml:Class" xmi:id="_wr_yIEskEeCsdNjiLCckhw" name="ViewerFilter"/>
+  </packagedElement>
+  <profileApplication xmi:id="_9G-q0FF0EeC_fOJUmwB69g">
+    <eAnnotations xmi:id="_9IBzsFF0EeC_fOJUmwB69g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#/"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_TZ_nULU5EduiKqCzJMWbGw"/>
+  </profileApplication>
+  <profileApplication xmi:id="_9JOGgFF0EeC_fOJUmwB69g">
+    <eAnnotations xmi:id="_9JqycFF0EeC_fOJUmwB69g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//modelelements"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_Gx8MgLX7EduFmqQsrNB9lw"/>
+  </profileApplication>
+  <profileApplication xmi:id="_9Jz8YFF0EeC_fOJUmwB69g">
+    <eAnnotations xmi:id="_9KQoUFF0EeC_fOJUmwB69g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_fSw28LX7EduFmqQsrNB9lw"/>
+  </profileApplication>
+  <profileApplication xmi:id="_9KaZUFF0EeC_fOJUmwB69g">
+    <eAnnotations xmi:id="_9KtUQFF0EeC_fOJUmwB69g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_rpx28LX7EduFmqQsrNB9lw"/>
+  </profileApplication>
+  <profileApplication xmi:id="_9K3FQFF0EeC_fOJUmwB69g">
+    <eAnnotations xmi:id="_9LmsIFF0EeC_fOJUmwB69g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//constraints"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_5WYJ0LX7EduFmqQsrNB9lw"/>
+  </profileApplication>
+  <profileApplication xmi:id="_9Lv2EFF0EeC_fOJUmwB69g">
+    <eAnnotations xmi:id="_9MDYEFF0EeC_fOJUmwB69g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//activities"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_C2zXMLX8EduFmqQsrNB9lw"/>
+  </profileApplication>
+  <profileApplication xmi:id="_9MMiAFF0EeC_fOJUmwB69g">
+    <eAnnotations xmi:id="_9MgEAFF0EeC_fOJUmwB69g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//allocations"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_NxdG4LX8EduFmqQsrNB9lw"/>
+  </profileApplication>
+  <profileApplication xmi:id="_9MpN8FF0EeC_fOJUmwB69g">
+    <eAnnotations xmi:id="_9NF54FF0EeC_fOJUmwB69g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/>
+  </profileApplication>
+  <profileApplication xmi:id="_9NPq4FF0EeC_fOJUmwB69g">
+    <eAnnotations xmi:id="_9NY00FF0EeC_fOJUmwB69g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//interactions"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_meOioLX8EduFmqQsrNB9lw"/>
+  </profileApplication>
+  <profileApplication xmi:id="_9NsW0FF0EeC_fOJUmwB69g">
+    <eAnnotations xmi:id="_9N1gwFF0EeC_fOJUmwB69g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//statemachines"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_nAF5kLX8EduFmqQsrNB9lw"/>
+  </profileApplication>
+  <profileApplication xmi:id="_9OIbsFF0EeC_fOJUmwB69g">
+    <eAnnotations xmi:id="_9Ou4oFF0EeC_fOJUmwB69g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//usecases"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_neZmMLX8EduFmqQsrNB9lw"/>
+  </profileApplication>
+</uml:Model>

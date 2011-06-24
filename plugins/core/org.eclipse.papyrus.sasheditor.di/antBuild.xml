@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+
+<project default="copy-custom-code" basedir=".">
+
+	<property name="srcdir" value="src" />
+	<property name="sparedir" value="src-spare" />
+	<property name="plugin.default.name" value="org.eclipse.papyrus.sasheditor.di" />
+	<property name="plugin.dir" value="../${plugin.default.name}" />
+	<property name="edit.plugin.dir" value="../${plugin.default.name}.edit" />
+	<property name="editor.plugin.dir" value="../${plugin.default.name}.editor" />
+	<property name="tests.plugin.dir" value="../${plugin.default.name}.tests" />
+
+	<!-- -->
+	<target name="init" description="Create the requested directories">
+		<mkdir dir="${sparedir}"/>
+	</target>
+
+	<!-- -->
+	<target name="clean-all" description="clean all" depends="clean-dependent-plugins, clean">
+		<delete>
+			<fileset dir="${srcdir}">
+				<!-- <include name="**/*.java" />-->
+			</fileset>
+		</delete>
+	</target>
+
+	<!-- -->
+	<target name="clean" description="clean src dir">
+		<delete failonerror="false">
+			<fileset dir="${srcdir}">
+				<!-- <include name="**/*.java" />-->
+			</fileset>
+			<fileset dir="${.}">
+				<include name="META-INF/MANIFEST.MF" />
+			</fileset>
+		</delete>
+	</target>
+
+	<!-- -->
+	<target name="clean-dependent-plugins" description="clean editor and edit plugins">
+		<delete failonerror="false">
+			<fileset dir="${edit.plugin.dir}/src">
+				<!-- <include name="**/*.java" />-->
+			</fileset>
+			<fileset dir="${edit.plugin.dir}">
+				<include name="plugin.xml" />
+				<include name="META-INF/MANIFEST.MF" />
+			</fileset>
+		</delete>
+		<delete failonerror="false">
+			<fileset dir="${editor.plugin.dir}/src">
+				<include name="**/*.java" />
+			</fileset>
+			<fileset dir="${edit.plugin.dir}">
+				<include name="plugin.xml" />
+				<include name="META-INF/MANIFEST.MF" />
+			</fileset>
+		</delete>
+		<delete failonerror="false">
+			<fileset dir="${tests.plugin.dir}/src">
+				<include name="**/*.java" />
+			</fileset>
+			<fileset dir="${edit.plugin.dir}">
+				<include name="plugin.xml" />
+				<include name="META-INF/MANIFEST.MF" />
+			</fileset>
+		</delete>
+	</target>
+
+	<!-- -->
+	<target name="copy-custom-code" description="copy custom code to src dir">
+		<copy todir="src" overwrite="true" failonerror="false">
+			<fileset dir="${sparedir}">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- -->
+	<target name="copy-dependant-custom-code" description="copy custom code of dependant plugins">
+		<copy todir="${editor.plugin.dir}/src" overwrite="true" failonerror="false">
+			<fileset dir="${editor.plugin.dir}/${sparedir}">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="${edit.plugin.dir}/src" overwrite="true" failonerror="false">
+			<fileset dir="${edit.plugin.dir}/${sparedir}">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="${tests.plugin.dir}/src" overwrite="true" failonerror="false">
+			<fileset dir="${tests.plugin.dir}/${sparedir}">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="revert" description="clean all and copy custom code back" depends="clean-all, copy-custom-code, copy-dependant-custom-code">
+		<echo message="\n ** Don't forget to refresh (F5) modified plugins. ** \n"/>
+	</target>
+
+	<!-- Do refresh (F5) on specified folders.
+	     This task can be launched only inside a running Eclipse.
+	     To run properly, it require that ant run in the same JVM than Eclipse.
+	     Change setting in Run As ... -> JRE -->
+	<target name="refresh" if="eclipse.running" description="Refresh all plugins.">
+		<eclipse.convertPath fileSystemPath="${plugin.dir}" property="resourcePath"/>
+		   <echo message="\n ** Refresh resource ${resourcePath} ** \n"/>
+		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
+		
+		<eclipse.convertPath fileSystemPath="${edit.plugin.dir}" property="resourcePath"/>
+		   <echo message="\n ** Refresh resource ${resourcePath} ** \n"/>
+		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
+		
+		<eclipse.convertPath fileSystemPath="${editor.plugin.dir}" property="resourcePath"/>
+		   <echo message="\n ** Refresh resource ${resourcePath} ** \n"/>
+		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
+		
+		<eclipse.convertPath fileSystemPath="${tests.plugin.dir}" property="resourcePath"/>
+		   <echo message="\n ** Refresh resource ${resourcePath} ** \n"/>
+		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
+	</target>
+	
+</project>

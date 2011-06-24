@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmfgraph:Canvas xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="uml">
+  <figures
+      name="Default">
+    <descriptors
+        name="ComponentFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="ComponentFigure">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="ComponentNameFigure"
+            text="&lt;...>"/>
+      </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+    </descriptors>
+  </figures>
+  <nodes
+      name="Component"
+      figure="ComponentFigure"/>
+  <labels
+      name="ComponentName"
+      figure="ComponentFigure"
+      accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+</gmfgraph:Canvas>

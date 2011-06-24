@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.gmfgenextension/src"
+    modelPluginID="org.eclipse.papyrus.gmfgenextension" modelName="PapyrusGmfgenExtension"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel#//genmodel platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.genmodel#//gmfgen">
+  <foreignModel>papyrusGmfgenExtension.ecore</foreignModel>
+  <genPackages prefix="Papyrusgmfgenextension" basePackage="org.eclipse.papyrus" disposableProviderFactory="true"
+      ecorePackage="papyrusGmfgenExtension.ecore#/">
+    <genClasses ecoreClass="papyrusGmfgenExtension.ecore#//ExtendedGenNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference papyrusGmfgenExtension.ecore#//ExtendedGenNode/genNode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute papyrusGmfgenExtension.ecore#//ExtendedGenNode/isAbstract"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference papyrusGmfgenExtension.ecore#//ExtendedGenNode/superGenNodes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference papyrusGmfgenExtension.ecore#//ExtendedGenNode/propRefreshHook"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference papyrusGmfgenExtension.ecore#//ExtendedGenNode/nameInitHook"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="papyrusGmfgenExtension.ecore#//CommentedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute papyrusGmfgenExtension.ecore#//CommentedElement/comment"/>
+    </genClasses>
+    <genClasses ecoreClass="papyrusGmfgenExtension.ecore#//PropertyRefreshHook">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute papyrusGmfgenExtension.ecore#//PropertyRefreshHook/triggeringCondition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute papyrusGmfgenExtension.ecore#//PropertyRefreshHook/action"/>
+    </genClasses>
+    <genClasses ecoreClass="papyrusGmfgenExtension.ecore#//ExternalHook">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute papyrusGmfgenExtension.ecore#//ExternalHook/classpath"/>
+    </genClasses>
+    <genClasses ecoreClass="papyrusGmfgenExtension.ecore#//NameInitalizerHook">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute papyrusGmfgenExtension.ecore#//NameInitalizerHook/initAction"/>
+    </genClasses>
+    <genClasses ecoreClass="papyrusGmfgenExtension.ecore#//SpecificLocator">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference papyrusGmfgenExtension.ecore#//SpecificLocator/genChildSideAffixedNode"/>
+    </genClasses>
+    <genClasses ecoreClass="papyrusGmfgenExtension.ecore#//PapyrusExtensionRootNode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference papyrusGmfgenExtension.ecore#//PapyrusExtensionRootNode/extensionNodes"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

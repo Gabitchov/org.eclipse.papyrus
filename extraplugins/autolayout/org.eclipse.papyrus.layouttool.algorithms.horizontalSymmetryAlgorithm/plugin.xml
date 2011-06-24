@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.layouttool.algorithms">
+      <client
+            class="org.eclipse.papyrus.layouttool.algorithms.horizontalsymmetryalgorithm.HorizontalSymmetryAlgorithm"
+            icon="icons/horizsym.gif"
+            name="Horizontal Symmetry"
+            toolTipText="A horizontal symmetry algorithm disposes graph nodes on the other side to the horizontal center of the layout area ">
+      </client>
+   </extension>
+
+</plugin>

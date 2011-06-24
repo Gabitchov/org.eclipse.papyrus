@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.navigation;singleton:=true
+Bundle-Version: 0.8.0.qualifier
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.papyrus.core;bundle-version="0.8.0";visibility:=reexport,
+ org.eclipse.papyrus.preferences;bundle-version="0.8.0",
+ org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.8.0",
+ org.eclipse.papyrus.ui.toolbox;bundle-version="0.8.0"
+Export-Package: org.eclipse.papyrus.navigation,
+ org.eclipse.papyrus.navigation.decorator,
+ org.eclipse.papyrus.navigation.preference
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.eclipse.papyrus.navigation.Activator

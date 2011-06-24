@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_J1ZicOTlEd6E-IWFQ_MzPA" name="Profile" metamodelReference="_Wrz0MOTlEd6E-IWFQ_MzPA">
+  <packageImport xmi:id="_Wrz0MOTlEd6E-IWFQ_MzPA">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:id="_cIW8cOTlEd6E-IWFQ_MzPA">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+</uml:Profile>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+		<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+
+			<adviceBinding
+         class="org.eclipse.papyrus.restrictedservicecreation.FilterClassOnPackage"
+         id="org.eclipse.papyrus.restrictedservicecreation.FilterClassOnPackage"
+         inheritance="all"
+         typeId="org.eclipse.papyrus.uml.Element">
+			</adviceBinding>
+		</metamodel>
+	</extension>
+
+	<!-- Creating a default binding -->
+	<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+
+		<!-- Bindings declaration -->
+		<binding context="org.eclipse.papyrus.uml.service.creation.TypeContext">
+			<elementType pattern="org.eclipse.papyrus.uml.*" />
+			<advice ref="org.eclipse.papyrus.restrictedservicecreation.FilterClassOnPackage" />
+		</binding>
+	</extension>
+	
+
+</plugin>

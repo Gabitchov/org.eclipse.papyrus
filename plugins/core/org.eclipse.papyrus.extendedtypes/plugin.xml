@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+   <extension-point id="extendedTypesSetConfiguration" name="Configuration for registering Extended Element Types Sets" schema="schema/extendedTypesSetConfiguration.exsd"/>
+   <extension-point id="extendedElementTypeActionProvider" name="Extended Element Type Action Provider" schema="schema/extendedElementTypeActionProvider.exsd"/>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/papyrus/diagram/types/extendedtypes/0.7"
+            class="org.eclipse.papyrus.extendedtypes.ExtendedtypesPackage"
+            genModel="model/ExtendedTypes.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="extendedtypes"
+            class="org.eclipse.papyrus.extendedtypes.util.ExtendedtypesResourceFactoryImpl"/>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+      <metamodel
+            nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <adviceBinding
+               class="org.eclipse.papyrus.extendedtypes.advices.ExtendedTypesOwnerAdvice"
+               id="org.eclipse.papyrus.uml.advice.ExtendedTypesOwnerAdvice"
+               inheritance="all"
+               typeId="org.eclipse.papyrus.uml.Element">
+         </adviceBinding>
+      </metamodel>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+      <binding
+            context="org.eclipse.papyrus.service.edit.TypeContext">
+         <elementType
+               pattern="org\.eclipse\.papyrus\.uml\..*">
+         </elementType>
+         <advice
+               ref="org.eclipse.papyrus.uml.advice.ExtendedTypesOwnerAdvice">
+         </advice>
+      </binding>
+   </extension>
+</plugin>

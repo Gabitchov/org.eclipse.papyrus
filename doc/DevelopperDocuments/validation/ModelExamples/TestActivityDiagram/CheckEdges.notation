@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ASCII"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" type="PapyrusUMLActivityDiagram" name="NewDiagram" measurementUnit="Pixel">
+  <children xsi:type="notation:Shape" type="2001" fontHeight="8" lineColor="0">
+    <children xsi:type="notation:DecorationNode" type="5001"/>
+    <children xsi:type="notation:DecorationNode" type="5002"/>
+    <children xsi:type="notation:DecorationNode" type="7001">
+      <styles xsi:type="notation:SortingStyle"/>
+      <styles xsi:type="notation:FilteringStyle"/>
+      <layoutConstraint xsi:type="notation:Bounds"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="7002">
+      <styles xsi:type="notation:SortingStyle"/>
+      <styles xsi:type="notation:FilteringStyle"/>
+      <layoutConstraint xsi:type="notation:Bounds"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="7003">
+      <styles xsi:type="notation:SortingStyle"/>
+      <styles xsi:type="notation:FilteringStyle"/>
+      <layoutConstraint xsi:type="notation:Bounds"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="7004">
+      <children xsi:type="notation:Shape" type="3007" lineColor="0">
+        <children xsi:type="notation:DecorationNode" type="5003"/>
+        <children xsi:type="notation:Shape" type="3014" lineColor="0">
+          <children xsi:type="notation:DecorationNode" type="5010">
+            <layoutConstraint xsi:type="notation:Location" x="36" y="22"/>
+          </children>
+          <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+          <element href="CheckEdges.uml#_QYD9EBJqEd-5NogAXN0hfQ"/>
+          <layoutConstraint xsi:type="notation:Bounds"/>
+        </children>
+        <children xsi:type="notation:Shape" type="3014" lineColor="0">
+          <children xsi:type="notation:DecorationNode" type="5010">
+            <layoutConstraint xsi:type="notation:Location" x="36" y="-20"/>
+          </children>
+          <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+          <element href="CheckEdges.uml#_cLQeUBJqEd-5NogAXN0hfQ"/>
+          <layoutConstraint xsi:type="notation:Bounds"/>
+        </children>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="CheckEdges.uml#_-vbScBJpEd-5NogAXN0hfQ"/>
+        <layoutConstraint xsi:type="notation:Bounds" x="52" y="93" width="151" height="168"/>
+      </children>
+      <children xsi:type="notation:Shape" type="3008" lineColor="0">
+        <children xsi:type="notation:DecorationNode" type="5004"/>
+        <children xsi:type="notation:Shape" type="3019" lineColor="0">
+          <children xsi:type="notation:DecorationNode" type="5015">
+            <layoutConstraint xsi:type="notation:Location" y="5"/>
+          </children>
+          <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+          <element href="CheckEdges.uml#_KvbgoBJqEd-5NogAXN0hfQ"/>
+          <layoutConstraint xsi:type="notation:Bounds"/>
+        </children>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="CheckEdges.uml#_DB50QBJqEd-5NogAXN0hfQ"/>
+        <layoutConstraint xsi:type="notation:Bounds" x="496" y="120" width="203" height="174"/>
+      </children>
+      <children xsi:type="notation:Shape" type="3010" lineColor="0">
+        <children xsi:type="notation:Shape" type="3027" lineColor="0">
+          <children xsi:type="notation:DecorationNode" type="5023">
+            <layoutConstraint xsi:type="notation:Location" y="5"/>
+          </children>
+          <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+          <element href="CheckEdges.uml#_F8UW8RJqEd-5NogAXN0hfQ"/>
+          <layoutConstraint xsi:type="notation:Bounds"/>
+        </children>
+        <children xsi:type="notation:DecorationNode" type="5006"/>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="CheckEdges.uml#_F8UW8BJqEd-5NogAXN0hfQ"/>
+        <layoutConstraint xsi:type="notation:Bounds" x="537" y="393" width="213" height="143"/>
+      </children>
+      <children xsi:type="notation:Shape" type="3007" lineColor="0">
+        <children xsi:type="notation:DecorationNode" type="5003"/>
+        <children xsi:type="notation:Shape" type="3013" lineColor="0">
+          <children xsi:type="notation:DecorationNode" type="5009">
+            <layoutConstraint xsi:type="notation:Location" x="-73" y="-20"/>
+          </children>
+          <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+          <element href="CheckEdges.uml#_bF9qMBJqEd-5NogAXN0hfQ"/>
+          <layoutConstraint xsi:type="notation:Bounds"/>
+        </children>
+        <children xsi:type="notation:Shape" type="3013" lineColor="0">
+          <children xsi:type="notation:DecorationNode" type="5009">
+            <layoutConstraint xsi:type="notation:Location" x="-143" y="22"/>
+          </children>
+          <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+          <element href="CheckEdges.uml#_bxesYBJqEd-5NogAXN0hfQ"/>
+          <layoutConstraint xsi:type="notation:Bounds"/>
+        </children>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="CheckEdges.uml#_YXn0oBJqEd-5NogAXN0hfQ"/>
+        <layoutConstraint xsi:type="notation:Bounds" x="184" y="405" width="200" height="124"/>
+      </children>
+      <layoutConstraint xsi:type="notation:Bounds"/>
+    </children>
+    <element href="CheckEdges.uml#_uv0QkRJoEd-5NogAXN0hfQ"/>
+    <layoutConstraint xsi:type="notation:Bounds"/>
+  </children>
+  <styles xsi:type="notation:DiagramStyle"/>
+  <element href="CheckEdges.uml#_uv0QkRJoEd-5NogAXN0hfQ"/>
+</notation:Diagram>

@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML">
+  <uml:Model xmi:id="_0bBI4Hy5EeCKy5kSqd4eVw" name="Alf">
+    <packageImport xmi:id="_ZasfQH0_EeCKy5kSqd4eVw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:id="_E0bwcH1AEeCKy5kSqd4eVw">
+      <importedPackage xmi:type="uml:Model" href="fUMLlibrary.uml#_QP6hEHyXEeCAIan9YGu1mA"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_6xFuIH09EeCKy5kSqd4eVw" name="Library">
+      <packagedElement xmi:type="uml:Package" xmi:id="_i6NtsH0_EeCKy5kSqd4eVw" name="PrimitiveTypes">
+        <packageImport xmi:id="_tRBwgH0_EeCKy5kSqd4eVw">
+          <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+        </packageImport>
+        <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_6LrzoH1AEeCKy5kSqd4eVw" name="Natural">
+          <generalization xmi:id="_A3WaYH1BEeCKy5kSqd4eVw">
+            <general xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </generalization>
+          <generalization xmi:id="_ClLOIH1BEeCKy5kSqd4eVw">
+            <general xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+          </generalization>
+        </packagedElement>
+        <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_9G_uMH1AEeCKy5kSqd4eVw" name="BitString"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_nVfmMH0_EeCKy5kSqd4eVw" name="PrimitiveBehaviors">
+        <packageImport xmi:id="_wdBLYH0_EeCKy5kSqd4eVw" importedPackage="_i6NtsH0_EeCKy5kSqd4eVw"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="_fRoykH1BEeCKy5kSqd4eVw" name="BooleanFunctions">
+          <elementImport xmi:id="_uQxO4H1CEeCKy5kSqd4eVw" alias="|">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_iJlb4HyYEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_ylLqYH1CEeCKy5kSqd4eVw" alias="^">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#__Mg_kHyYEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_2lL8IH1CEeCKy5kSqd4eVw" alias="&amp;">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_LsHT0HyZEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_6cQUUH1CEeCKy5kSqd4eVw" alias="!">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_VBDp8HyZEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_BqomkH1DEeCKy5kSqd4eVw" alias="Implies">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_sAQwoHyZEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_FIXRsH1DEeCKy5kSqd4eVw" alias="ToString">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_3q4LYHyeEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_JCPtUH1DEeCKy5kSqd4eVw" alias="ToBoolean">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_L9g-IHyfEeCAIan9YGu1mA"/>
+          </elementImport>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_g16owH1BEeCKy5kSqd4eVw" name="IntegerFunctions">
+          <elementImport xmi:id="_0YGmEH-eEeCO_pg6CtXdNg" alias="Neg">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_oeYhIHygEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_38_CEH-eEeCO_pg6CtXdNg" alias="Abs">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_9xT2wHyhEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_6LuxkH-eEeCO_pg6CtXdNg" alias="+">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_96MicHygEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_9B008H-eEeCO_pg6CtXdNg" alias="-">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_KKl9EHyhEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_--_sQH-eEeCO_pg6CtXdNg" alias="*">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_2ff2AHyhEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_BdPQUH-fEeCO_pg6CtXdNg" alias="/">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_aDhIIHyiEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_EFBx8H-fEeCO_pg6CtXdNg" alias="%">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_kIpIkHyjEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_Ir7EkH-fEeCO_pg6CtXdNg" alias="Max">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_tbNgIHyjEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_OFB3QH-fEeCO_pg6CtXdNg" alias="Min">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_2euIAHyjEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_Q2pqUH-fEeCO_pg6CtXdNg" alias="&lt;">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_Gd13IHykEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_SWBLUH-fEeCO_pg6CtXdNg" alias=">">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_R44-IHykEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_T528oH-fEeCO_pg6CtXdNg" alias="&lt;=">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_bUG7YHykEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_VYBjwH-fEeCO_pg6CtXdNg" alias=">=">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_kPAZ0HykEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_XZE1gH-fEeCO_pg6CtXdNg" alias="ToUnlimitedNatural">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_vEQFEHykEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_aJWkwH-fEeCO_pg6CtXdNg" alias="ToInteger">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_xrcw0HykEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_c8A5oH-fEeCO_pg6CtXdNg" alias="ToString">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_tAgrsHykEeCAIan9YGu1mA"/>
+          </elementImport>
+          <packagedElement xmi:type="uml:FunctionBehavior" xmi:id="_o_vxQH-fEeCO_pg6CtXdNg" name="ToNatural">
+            <ownedParameter xmi:id="_rmyE8H-fEeCO_pg6CtXdNg" name="x" visibility="public" effect="create">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_w3QgEH-fEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_w28-EH-fEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_yPKuMH-fEeCO_pg6CtXdNg" name="result" visibility="public" direction="return" effect="create">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3N55EH-fEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3Nm-IH-fEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_jJvskH1BEeCKy5kSqd4eVw" name="StringFunctions">
+          <elementImport xmi:id="_N-y28H-gEeCO_pg6CtXdNg" alias="+">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_jCwzsHylEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_P79uQH-gEeCO_pg6CtXdNg" alias="Size">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_2weUcHylEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_SUQbUH-gEeCO_pg6CtXdNg" alias="Substring">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_EMRyQHymEeCAIan9YGu1mA"/>
+          </elementImport>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_kmbF8H1BEeCKy5kSqd4eVw" name="UnlimitedNaturalFunctions">
+          <elementImport xmi:id="_yAT9YH-gEeCO_pg6CtXdNg" alias="Min">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_lqywcHymEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_zqaHsH-gEeCO_pg6CtXdNg" alias="Max">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_lqywenymEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_1kTokH-gEeCO_pg6CtXdNg" alias=">">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_lqywhHymEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_3ihBsH-gEeCO_pg6CtXdNg" alias=">=">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_lqywjnymEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_5wq7UH-gEeCO_pg6CtXdNg" alias="&lt;">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_lqywmHymEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_7K-WIH-gEeCO_pg6CtXdNg" alias="&lt;=">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_lqywonymEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_85_csH-gEeCO_pg6CtXdNg" alias="ToInteger">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_oj32YHymEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="__QWQEH-gEeCO_pg6CtXdNg" alias="ToUnlimitedNatural">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_oj32Z3ymEeCAIan9YGu1mA"/>
+          </elementImport>
+          <elementImport xmi:id="_Cy2GcH-hEeCO_pg6CtXdNg" alias="ToString">
+            <importedElement xmi:type="uml:FunctionBehavior" href="fUMLlibrary.uml#_oj32bnymEeCAIan9YGu1mA"/>
+          </elementImport>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_nem0AH1BEeCKy5kSqd4eVw" name="BitStringFunctions">
+          <packagedElement xmi:type="uml:FunctionBehavior" xmi:id="_3LVl4H-iEeCO_pg6CtXdNg" name="IsSet">
+            <ownedParameter xmi:id="_JdPP8H-jEeCO_pg6CtXdNg" name="b" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MbOrEH-jEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Ma7wIH-jEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_NyG-cH-jEeCO_pg6CtXdNg" name="n" visibility="public" effect="create">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QKZrgH-jEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QKP6gH-jEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_RcDgoH-jEeCO_pg6CtXdNg" name="result" visibility="public" direction="return" effect="create">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TtpIwH-jEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TtfXwH-jEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+          </packagedElement>
+          <packagedElement xmi:type="uml:FunctionBehavior" xmi:id="_43qk0H-iEeCO_pg6CtXdNg" name="BitLength">
+            <ownedParameter xmi:id="_YMDNwH-jEeCO_pg6CtXdNg" name="result" visibility="public" direction="return" effect="create">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bBP5QH-jEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bA8-UH-jEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+          </packagedElement>
+          <packagedElement xmi:type="uml:FunctionBehavior" xmi:id="_7Q2pwH-iEeCO_pg6CtXdNg" name="ToBitString">
+            <ownedParameter xmi:id="_d3MLoH-jEeCO_pg6CtXdNg" name="n" visibility="public" effect="create">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k4BKEX-jEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k4BKEH-jEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_nWkQIH-jEeCO_pg6CtXdNg" name="result" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" direction="return" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pq-iwH-jEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pq1Y0H-jEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+          </packagedElement>
+          <packagedElement xmi:type="uml:FunctionBehavior" xmi:id="_9pJW0H-iEeCO_pg6CtXdNg" name="ToInteger">
+            <ownedParameter xmi:id="_s3bQoH-jEeCO_pg6CtXdNg" name="b" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vQ5pcH-jEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vQwfgH-jEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_wIL2wH-jEeCO_pg6CtXdNg" name="result" visibility="public" direction="return" effect="create">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yjT1YH-jEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yjKEYH-jEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+          </packagedElement>
+          <packagedElement xmi:type="uml:FunctionBehavior" xmi:id="__06q0H-iEeCO_pg6CtXdNg" name="ToHexString">
+            <ownedParameter xmi:id="_2Hl0cH-jEeCO_pg6CtXdNg" name="b" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3_slkH-jEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3_i0kH-jEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_8fcHUH-jEeCO_pg6CtXdNg" name="result" visibility="public" direction="return" effect="create">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-mcQEH-jEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-mSfEH-jEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+          </packagedElement>
+          <packagedElement xmi:type="uml:FunctionBehavior" xmi:id="_BZ8u8H-jEeCO_pg6CtXdNg" name="ToOctalString">
+            <ownedParameter xmi:id="_Aq6CMH-kEeCO_pg6CtXdNg" name="b" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Cl_O0H-kEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Cl2E4H-kEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_DIamcH-kEeCO_pg6CtXdNg" name="result" visibility="public" direction="return" effect="create">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GWym8H-kEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GWpdAH-kEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+          </packagedElement>
+          <packagedElement xmi:type="uml:FunctionBehavior" xmi:id="_TM4voH-kEeCO_pg6CtXdNg" name="~">
+            <ownedParameter xmi:id="_FKoHEH-qEeCO_pg6CtXdNg" name="b" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HJJCMH-qEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HI_RMH-qEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_H66dYH-qEeCO_pg6CtXdNg" name="result" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" direction="return" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Lcz20H-qEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Lcg74H-qEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+          </packagedElement>
+          <packagedElement xmi:type="uml:FunctionBehavior" xmi:id="_TWuBEH-kEeCO_pg6CtXdNg" name="&amp;">
+            <ownedParameter xmi:id="_OVcQ0H-qEeCO_pg6CtXdNg" name="b1" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QG1V8H-qEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QGibAH-qEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_QmRrAH-qEeCO_pg6CtXdNg" name="b2" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SYIDIH-qEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SX-SIH-qEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_TNxRsH-qEeCO_pg6CtXdNg" name="result" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" direction="return" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VLF6AH-qEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VKyYAH-qEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+          </packagedElement>
+          <packagedElement xmi:type="uml:FunctionBehavior" xmi:id="_TfqhsH-kEeCO_pg6CtXdNg" name="^">
+            <ownedParameter xmi:id="_a4xOgH-qEeCO_pg6CtXdNg" name="b1" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cuVpAH-qEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cuCuEH-qEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_e8fioH-qEeCO_pg6CtXdNg" name="b2" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hEi0QH-qEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hEZDQH-qEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_iDH8YH-qEeCO_pg6CtXdNg" name="result" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" direction="return" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_j9KnMH-qEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_j9BdQH-qEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+          </packagedElement>
+          <packagedElement xmi:type="uml:FunctionBehavior" xmi:id="_Tpo9EH-kEeCO_pg6CtXdNg" name="|">
+            <ownedParameter xmi:id="_meZ04H-qEeCO_pg6CtXdNg" name="b1" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oW8q4H-qEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oWzg8H-qEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_o0T8UH-qEeCO_pg6CtXdNg" name="b2" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qfmZcH-qEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qfS3cH-qEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_rv6x0H-qEeCO_pg6CtXdNg" name="result" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" direction="return" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tnk3AH-qEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tnRVAH-qEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+          </packagedElement>
+          <packagedElement xmi:type="uml:FunctionBehavior" xmi:id="_T6VEcH-kEeCO_pg6CtXdNg" name="&lt;&lt;">
+            <ownedParameter xmi:id="_0iI1YH-qEeCO_pg6CtXdNg" name="b" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2aF1gH-qEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Z8EgH-qEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_3Qob8H-qEeCO_pg6CtXdNg" name="n" visibility="public" effect="create">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6CGeAH-qEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6B8tAH-qEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_73hHgH-qEeCO_pg6CtXdNg" name="result" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" direction="return" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-2GYgH-qEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-1zdkH-qEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+          </packagedElement>
+          <packagedElement xmi:type="uml:FunctionBehavior" xmi:id="_UEUG4H-kEeCO_pg6CtXdNg" name=">>">
+            <ownedParameter xmi:id="_C5risH-rEeCO_pg6CtXdNg" name="b" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_E0wvUH-rEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_E0dNUH-rEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_FS3AkH-rEeCO_pg6CtXdNg" name="n" visibility="public" effect="create">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HEjnsH-rEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HEQFsH-rEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_Icd10H-rEeCO_pg6CtXdNg" name="result" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" direction="return" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KmdBIH-rEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KmTQIH-rEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+          </packagedElement>
+          <packagedElement xmi:type="uml:FunctionBehavior" xmi:id="_UOAOYH-kEeCO_pg6CtXdNg" name=">>>">
+            <ownedParameter xmi:id="_Lb8esH-rEeCO_pg6CtXdNg" name="b" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_O05-kH-rEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_O0wNkH-rEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_PTAP0H-rEeCO_pg6CtXdNg" name="n" visibility="public" effect="create">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Q50coH-rEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Q5hhsH-rEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_RUpXcH-rEeCO_pg6CtXdNg" name="result" visibility="public" type="_9G_uMH1AEeCKy5kSqd4eVw" direction="return" effect="create">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TgHJcH-rEeCO_pg6CtXdNg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Tf0OgH-rEeCO_pg6CtXdNg" value="1"/>
+            </ownedParameter>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_psK3wH1BEeCKy5kSqd4eVw" name="SequenceFunctions"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_OP8BkH1AEeCKy5kSqd4eVw" name="BasicInputOutput">
+        <packageImport xmi:id="_Wb3hMH1AEeCKy5kSqd4eVw">
+          <importedPackage href="fUMLlibrary.uml#_mBev8HyXEeCAIan9YGu1mA"/>
+        </packageImport>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_Y9GH0H1AEeCKy5kSqd4eVw" name="CollectionFunctions"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_dfOPMH1AEeCKy5kSqd4eVw" name="CollectionClasses"/>
+    </packagedElement>
+    <profileApplication xmi:id="_-SwMIH0_EeCKy5kSqd4eVw">
+      <eAnnotations xmi:id="_-Ui74H0_EeCKy5kSqd4eVw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/schemas/Standard/1#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <Standard:ModelLibrary xmi:id="_-7lGsH0_EeCKy5kSqd4eVw" base_Package="_0bBI4Hy5EeCKy5kSqd4eVw"/>
+</xmi:XMI>

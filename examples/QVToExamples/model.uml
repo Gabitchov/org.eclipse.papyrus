@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4IxJoK98Ed-AraimtK_2vA" name="Model">
+  <packageImport xmi:id="_4IxJoa98Ed-AraimtK_2vA">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_zU3vMLBgEd-EL9UfMUyvSg" name="System">
+    <packagedElement xmi:type="uml:Class" xmi:id="_0whN0LBgEd-EL9UfMUyvSg" name="Car">
+      <ownedAttribute xmi:id="_UvWh8LBhEd-EL9UfMUyvSg" name="engine" type="_2TT2QLBgEd-EL9UfMUyvSg" association="_UvgS8LBhEd-EL9UfMUyvSg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UvWh8bBhEd-EL9UfMUyvSg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UvWh8rBhEd-EL9UfMUyvSg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_2TT2QLBgEd-EL9UfMUyvSg" name="Engine"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_UvgS8LBhEd-EL9UfMUyvSg" name="car_engine" memberEnd="_UvgS8bBhEd-EL9UfMUyvSg _UvWh8LBhEd-EL9UfMUyvSg">
+      <ownedEnd xmi:id="_UvgS8bBhEd-EL9UfMUyvSg" name="car" type="_0whN0LBgEd-EL9UfMUyvSg" association="_UvgS8LBhEd-EL9UfMUyvSg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UvgS8rBhEd-EL9UfMUyvSg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UvgS87BhEd-EL9UfMUyvSg" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_3pb7sLBgEd-EL9UfMUyvSg" name="Environment">
+    <packagedElement xmi:type="uml:Class" xmi:id="_6ISjwLBgEd-EL9UfMUyvSg" name="Road">
+      <ownedAttribute xmi:id="_MnS1sLBhEd-EL9UfMUyvSg" name="sign" visibility="public" type="_72tNYLBgEd-EL9UfMUyvSg" association="_MncmsLBhEd-EL9UfMUyvSg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MnS1sbBhEd-EL9UfMUyvSg" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MnS1srBhEd-EL9UfMUyvSg"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_QqSKALBhEd-EL9UfMUyvSg">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_72tNYLBgEd-EL9UfMUyvSg" name="Sign"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_MncmsLBhEd-EL9UfMUyvSg" name="road_sign" memberEnd="_MncmsbBhEd-EL9UfMUyvSg _MnS1sLBhEd-EL9UfMUyvSg">
+      <ownedEnd xmi:id="_MncmsbBhEd-EL9UfMUyvSg" name="road" type="_6ISjwLBgEd-EL9UfMUyvSg" association="_MncmsLBhEd-EL9UfMUyvSg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MncmsrBhEd-EL9UfMUyvSg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Mncms7BhEd-EL9UfMUyvSg" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.navigation.navigationRules">
+      <navigationRule
+            rule="org.eclipse.papyrus.navigation.uml.BehavioredClassifierRule"></navigationRule>
+      <navigationRule
+            rule="org.eclipse.papyrus.navigation.uml.CBARule">
+      </navigationRule>
+      <navigationRule
+            rule="org.eclipse.papyrus.navigation.uml.OperationRule">
+      </navigationRule>
+      <navigationRule
+            rule="org.eclipse.papyrus.navigation.uml.PackageRule">
+      </navigationRule>
+      <navigationRule
+            rule="org.eclipse.papyrus.navigation.uml.StateRule">
+      </navigationRule>
+      <navigationRule
+            rule="org.eclipse.papyrus.navigation.uml.TransitionRule"></navigationRule>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.navigation.navigationDecoratorRules">
+      <decoratedClass
+            class="org.eclipse.uml2.uml.BehavioredClassifier">
+      </decoratedClass>
+      <decoratedClass
+            class="org.eclipse.uml2.uml.CallBehaviorAction">
+      </decoratedClass>
+      <decoratedClass
+            class="org.eclipse.uml2.uml.Transition">
+      </decoratedClass>
+      <decoratedClass
+            class="org.eclipse.uml2.uml.State">
+      </decoratedClass>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.navigation.navigationColorProviders">
+      <navigationColorProvider
+            provider="org.eclipse.papyrus.navigation.uml.UMLNavigationColorProvider">
+      </navigationColorProvider>
+   </extension>
+
+</plugin>

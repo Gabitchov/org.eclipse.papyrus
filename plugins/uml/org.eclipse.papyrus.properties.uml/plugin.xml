@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?>
+
+<plugin>
+   <extension-point id="org.eclipse.papyrus.properties.uml.languageEditor" name="%extension-point.name" schema="schema/org.eclipse.papyrus.properties.uml.languageEditor.exsd"/>
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor contributorId="TreeOutlinePage" labelProvider="org.eclipse.papyrus.properties.providers.EMFObjectLabelProvider" tabDescriptorProvider="org.eclipse.papyrus.properties.xwt.XWTTabDescriptorProvider">
+      </propertyContributor>
+   </extension>
+   <extension point="org.eclipse.papyrus.properties.environment">
+      <environment environmentModel="Model/UML/Environment.xmi">
+      </environment>
+   </extension>
+   <extension point="org.eclipse.papyrus.properties.context">
+      <context contextModel="Model/UML/UML.ctx">
+      </context>
+   </extension>
+      <extension point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping source="pathmap://UML_CONTEXT/" target="platform:/plugin/org.eclipse.papyrus.properties.uml/Model/UML/">
+      </mapping>
+   </extension>
+      <extension point="org.eclipse.papyrus.properties.uml.languageEditor">
+         <editor editor="org.eclipse.papyrus.properties.uml.widgets.NaturalLanguageEditor">
+         </editor>
+         <editor editor="org.eclipse.papyrus.properties.uml.widgets.NaturalLanguageEditor" language="C">
+         </editor>
+         <editor editor="org.eclipse.papyrus.properties.uml.widgets.NaturalLanguageEditor" language="C++">
+         </editor>
+         <editor editor="org.eclipse.papyrus.properties.uml.widgets.NaturalLanguageEditor" language="Java">
+         </editor>
+         <editor editor="org.eclipse.papyrus.properties.uml.widgets.NaturalLanguageEditor" language="Natural language">
+         </editor>
+         <editor editor="org.eclipse.papyrus.properties.uml.widgets.NaturalLanguageEditor" language="OCL">
+         </editor>
+      </extension>
+      <extension point="org.eclipse.papyrus.properties.context">
+         <context contextModel="Model/UMLNotation/UMLNotation.ctx" loadDefault="true">
+         </context>
+      </extension>
+
+   <extension
+         point="org.eclipse.emf.facet.infra.query.registration">
+      <modelqueryset
+            file="Model/UML/uml.querySet">
+      </modelqueryset>
+   </extension>
+</plugin>

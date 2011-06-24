@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tableconfiguration:TableConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" xmlns:tableconfiguration="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableconfiguration">
+  <canBePresentedInTheTable xsi:type="query:JavaModelQuery" href="emffacet:/query/requirementsTable#IsRequirement"/>
+  <defaultFacets href="emffacet:/facet/requirementsFacets#//Requirement"/>
+  <defaultCustomizations href="emffacet:/customization/table_UML_Class_hideAllClassFeatures#/"/>
+  <defaultCustomizations href="emffacet:/customization/table_Ecore_hideEAnnotationFeature#/"/>
+  <instantiationMethod name="Create Requirement" description="This method creates a new Class stereotyped with requirement">
+    <instantiationQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/requirementsTable#CreateRequirements"/>
+  </instantiationMethod>
+</tableconfiguration:TableConfiguration>

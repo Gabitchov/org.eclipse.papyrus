@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ASCII"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" type="PapyrusUMLActivityDiagram" name="ActivityDiagram" measurementUnit="Pixel">
+  <children xsi:type="notation:Shape" type="2001" fontHeight="8" lineColor="0">
+    <children xsi:type="notation:DecorationNode" type="5001"/>
+    <children xsi:type="notation:DecorationNode" type="5002"/>
+    <children xsi:type="notation:DecorationNode" type="7001">
+      <styles xsi:type="notation:SortingStyle"/>
+      <styles xsi:type="notation:FilteringStyle"/>
+      <layoutConstraint xsi:type="notation:Bounds"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="7002">
+      <styles xsi:type="notation:SortingStyle"/>
+      <styles xsi:type="notation:FilteringStyle"/>
+      <layoutConstraint xsi:type="notation:Bounds"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="7003">
+      <styles xsi:type="notation:SortingStyle"/>
+      <styles xsi:type="notation:FilteringStyle"/>
+      <layoutConstraint xsi:type="notation:Bounds"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="7004">
+      <layoutConstraint xsi:type="notation:Bounds"/>
+    </children>
+    <element href="SynchronizePinsAndParameters.uml#_9UHqAATfEd-Zgu2nuGnNfQ"/>
+    <layoutConstraint xsi:type="notation:Bounds"/>
+  </children>
+  <styles xsi:type="notation:DiagramStyle"/>
+  <element href="SynchronizePinsAndParameters.uml#_9UHqAATfEd-Zgu2nuGnNfQ"/>
+</notation:Diagram>

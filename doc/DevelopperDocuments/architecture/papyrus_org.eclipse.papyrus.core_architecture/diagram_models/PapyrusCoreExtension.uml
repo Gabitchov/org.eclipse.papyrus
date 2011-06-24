@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_drUzULlcEd6fI7WKgVDX2A">
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_drUzUblcEd6fI7WKgVDX2A" name="boolean"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_drUzUrlcEd6fI7WKgVDX2A" name="byte"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_drUzU7lcEd6fI7WKgVDX2A" name="char"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_drUzVLlcEd6fI7WKgVDX2A" name="double"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_drUzVblcEd6fI7WKgVDX2A" name="float"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_drUzVrlcEd6fI7WKgVDX2A" name="int"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_drUzV7lcEd6fI7WKgVDX2A" name="long"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_drUzWLlcEd6fI7WKgVDX2A" name="short"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_drUzWblcEd6fI7WKgVDX2A" name="org">
+    <packagedElement xmi:type="uml:Package" xmi:id="_drUzWrlcEd6fI7WKgVDX2A" name="eclipse">
+      <packagedElement xmi:type="uml:Package" xmi:id="_drUzW7lcEd6fI7WKgVDX2A" name="papyrus">
+        <packagedElement xmi:type="uml:Package" xmi:id="_drUzXLlcEd6fI7WKgVDX2A" name="core">
+          <packagedElement xmi:type="uml:Package" xmi:id="_drUzXblcEd6fI7WKgVDX2A" name="extension">
+            <packagedElement xmi:type="uml:Class" xmi:id="_drUzXrlcEd6fI7WKgVDX2A" name="ExtensionException">
+              <generalization xmi:id="_drUzX7lcEd6fI7WKgVDX2A" general="_drUze7lcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_drUzYLlcEd6fI7WKgVDX2A" name="serialVersionUID" visibility="private" type="_drUzV7lcEd6fI7WKgVDX2A"/>
+              <ownedOperation xmi:id="_drUzYblcEd6fI7WKgVDX2A" name="declaringExtensionToString" visibility="protected" isStatic="true">
+                <ownedParameter xmi:id="_drUzYrlcEd6fI7WKgVDX2A" name="element" type="_drUzfLlcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_drUzY7lcEd6fI7WKgVDX2A" name="return" type="_drUzfblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_drUzZLlcEd6fI7WKgVDX2A" name="DescriptorExtensionFactory">
+              <ownedOperation xmi:id="_drUzZblcEd6fI7WKgVDX2A" name="checkTagName" visibility="protected">
+                <ownedParameter xmi:id="_drUzZrlcEd6fI7WKgVDX2A" name="element" type="_drUzfLlcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_drUzZ7lcEd6fI7WKgVDX2A" name="tagName" type="_drUzfblcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_drUzaLlcEd6fI7WKgVDX2A" name="parseClass" visibility="protected">
+                <ownedParameter xmi:id="_drUzablcEd6fI7WKgVDX2A" name="element" type="_drUzfLlcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_drUzarlcEd6fI7WKgVDX2A" name="attributeName" type="_drUzfblcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_drUza7lcEd6fI7WKgVDX2A" name="extensionPointName" type="_drUzfblcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_drUzbLlcEd6fI7WKgVDX2A" name="return" type="_drUzfrlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_drUzbblcEd6fI7WKgVDX2A" name="BadNameExtensionException">
+              <generalization xmi:id="_drUzbrlcEd6fI7WKgVDX2A" general="_drUzXrlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_drUzb7lcEd6fI7WKgVDX2A" name="serialVersionUID" visibility="private" type="_drUzV7lcEd6fI7WKgVDX2A"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_drUzcLlcEd6fI7WKgVDX2A" name="NotFoundException">
+              <generalization xmi:id="_drUzcblcEd6fI7WKgVDX2A" general="_drUzXrlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_drUzcrlcEd6fI7WKgVDX2A" name="serialVersionUID" visibility="private" type="_drUzV7lcEd6fI7WKgVDX2A"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_drUzc7lcEd6fI7WKgVDX2A" name="BadClassNameException">
+              <generalization xmi:id="_drUzdLlcEd6fI7WKgVDX2A" general="_drUzXrlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_drUzdblcEd6fI7WKgVDX2A" name="iconfigurationElementName" visibility="private" type="_drUzfblcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_drUzdrlcEd6fI7WKgVDX2A" name="attributeName" visibility="private" type="_drUzfblcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_drUzd7lcEd6fI7WKgVDX2A" name="e" visibility="private" type="_drUzf7lcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_drUzeLlcEd6fI7WKgVDX2A" name="serialVersionUID" visibility="private" type="_drUzV7lcEd6fI7WKgVDX2A"/>
+              <ownedOperation xmi:id="_drUzeblcEd6fI7WKgVDX2A" name="toString" visibility="public">
+                <ownedParameter xmi:id="_drUzerlcEd6fI7WKgVDX2A" name="return" type="_drUzfblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_drUze7lcEd6fI7WKgVDX2A" name="BackboneException"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_drUzfLlcEd6fI7WKgVDX2A" name="IConfigurationElement"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_drUzfblcEd6fI7WKgVDX2A" name="String"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_drUzfrlcEd6fI7WKgVDX2A" name="Class"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_drUzf7lcEd6fI7WKgVDX2A" name="Exception"/>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

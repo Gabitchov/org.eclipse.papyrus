@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<paletteDefinition>
+	<content>
+		<drawer
+			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.SYSML_BlockDefinition__DataTypeTools" name="DataTypes">
+			
+			<aspectTool description="Create a new DataType" id="blockdefinition.tool.datatype"
+				name="DataType" refToolId="blockdefinition.tool.datatype">
+			</aspectTool>
+			<aspectTool description="Create a new ValueType" id="blockdefinition.tool.valuetype"
+				name="ValueType" refToolId="blockdefinition.tool.valuetype">
+			</aspectTool>
+			<aspectTool description="Create a new PrimitiveType" id="blockdefinition.tool.primitivetype"
+				name="PrimitiveType" refToolId="blockdefinition.tool.primitivetype">
+			</aspectTool>				
+			<aspectTool description="Create a new Enumeration" id="blockdefinition.tool.enumeration"
+				name="Enumeration" refToolId="blockdefinition.tool.enumeration">
+			</aspectTool>			
+			<aspectTool description="Create a new EnumerationLiteral" id="blockdefinition.tool.enumerationliteral"
+				name="EnumerationLiteral" refToolId="blockdefinition.tool.enumerationliteral">
+			</aspectTool>
+			<aspectTool description="Create a new Dimension" id="blockdefinition.tool.dimension"
+				name="Dimension" refToolId="blockdefinition.tool.dimension">
+			</aspectTool>
+			<aspectTool description="Create a new Unit" id="blockdefinition.tool.unit"
+				name="Unit" refToolId="blockdefinition.tool.unit">
+			</aspectTool>			
+		</drawer>
+	</content>
+</paletteDefinition>

@@ -1,0 +1,254 @@
+modeltype XML uses "http://www.eclipse.org/MoDisco/Xml/0.1.incubation/XML";
+modeltype UI uses "http://www.eclipse.org/papyrus/properties/ui";
+modeltype PropertiesRoot uses "http://www.eclipse.org/papyrus/properties/root";
+modeltype Context uses "http://www.eclipse.org/papyrus/properties/contexts";
+modeltype Environment uses "http://www.eclipse.org/papyrus/properties/environment";
+
+transformation XMLToUI(in xml : XML, in root : PropertiesRoot, in ctx : Context, out ui : UI);
+
+main() {
+	xml.rootObjects()[Node]->map toUIElement();
+}
+
+mapping Node::toAttribute() : WidgetAttribute
+	disjuncts
+	Namespace::toValueAttribute, 
+	Attribute::toValueAttribute,
+	XML::Element::toReferenceAttribute{
+}
+
+mapping Attribute::toValueAttribute() : ValueAttribute
+	when {not self.isProperty()} {
+	result.name := self.name;
+	result.value := self.value;
+}
+
+query Attribute::isProperty() : Boolean {
+	return self.parent.isPropertyEditor() and self.name = "property";
+}
+
+mapping XML::Namespace::toValueAttribute() : ValueAttribute{
+	
+	result.name := if self.name.oclIsUndefined() or self.name = "" 
+	then "xmlns" 
+		else "xmlns:"+self.name 
+	endif;
+	
+	result.value := self.value;
+}
+
+//layout is a ReferenceAttribute but is computed differently
+mapping XML::Element::toReferenceAttribute() : ReferenceAttribute 
+	when {self.isReferenceAttribute() and not self.isLayoutAttribute()}{ 
+	result.name := self.getName();
+	result.value := self.children->select(e | e.oclIsKindOf(XML::Element))
+		->first().oclAsType(XML::Element).map toUIComponent();
+}
+
+query XML::Element::isReferenceAttribute() : Boolean {
+	return self.name.startsWith(self.parent.name+".");
+}
+
+query XML::Element::getName() : String {
+	var parentPrefix := self.parent.name+".";
+	if self.name.startsWith(parentPrefix) then
+		return self.name.replace(parentPrefix, "")
+	endif;
+	
+	return self.name;
+}
+
+mapping Node::toUIElement() : UI::Element 
+	disjuncts 
+	XML::Element::toUIComponent,
+	XML::Node::toAttribute {
+}
+
+mapping XML::Element::toUIComponent() : UIComponent 
+	disjuncts
+	XML::Element::toWidget,
+	XML::Element::toLayout{
+}
+
+mapping XML::Element::toWidget() : Widget
+	disjuncts 
+	XML::Element::toComposite,
+	XML::Element::toPropertyEditor,
+	XML::Element::toStandardWidget,
+	XML::Element::toUnknownComponent{
+}
+
+abstract mapping XML::Element::toAbstractUIComponent() : UIComponent {
+	var allChildren : Set(Node) := self.children;
+	if self.oclIsKindOf(Root) then
+		allChildren := allChildren->union(self.oclAsType(Root).namespaces)
+	endif;
+	
+	attributes := allChildren->map toAttribute();
+}
+
+mapping XML::Element::toComposite() : CompositeWidget inherits XML::Element::toAbstractUIComponent
+	when {self.isComposite()} {
+	widgetType := self.getCompositeType();
+	
+	var elements := self.children->select(e | e.oclIsKindOf(XML::Element))
+		.oclAsType(XML::Element);
+		
+	layout := elements->select(e | e.isLayoutAttribute()).children
+		->select(e | e.oclIsKindOf(XML::Element)).oclAsType(XML::Element)
+		->select(e | e.isLayout())->first().map toLayout();
+	widgets := elements->select(e | e.isWidget())->map toWidget();
+}
+
+mapping XML::Element::toLayout() : Layout inherits XML::Element::toAbstractUIComponent
+	when {self.isLayout()} {
+	layoutType := self.getLayoutType();
+}
+
+mapping XML::Element::toStandardWidget() : StandardWidget inherits XML::Element::toAbstractUIComponent
+	when {self.isStandardWidget() and not self.getWidgetType().oclIsUndefined()}{
+	widgetType := self.getWidgetType();
+}
+
+mapping XML::Element::toUnknownComponent() : UnknownComponent inherits XML::Element::toAbstractUIComponent
+	when {self.getWidgetType().oclIsUndefined()}{
+	typeName := self.name;
+}
+
+mapping XML::Element::toPropertyEditor() : PropertyEditor inherits XML::Element::toAbstractUIComponent
+	when {self.isPropertyEditor()}{
+	widgetType := self.getPropertyEditorType();
+	var prop := findProperty(self.getPropertyName());
+	if prop.oclIsUndefined() then
+		prop := object UnknownProperty {
+			name := self.getPropertyName();
+		}
+	endif;
+	_property := prop;
+	
+	//Remove the readOnly and showLabel Attributes, as they are actual properties (i.e. not generic) in the UI Model
+	//Avoids dupplication of the attribute
+	var readOnlyAttribute := result.attributes->any(e | e.name = "readOnly");
+	var showLabelAttribute := result.attributes->any(e | e.name = "showLabel");
+	var customLabelAttribute := result.attributes->any(e | e.name = "customLabel");
+	result.attributes := result.attributes->excluding(readOnlyAttribute)->excluding(showLabelAttribute)->excluding(customLabelAttribute);
+	
+	unresolvedProperty := prop.oclAsType(UnknownProperty);
+	readOnly := self.children->exists(e | e.oclIsKindOf(XML::Attribute) and e.oclAsType(XML::Attribute).name = 'readOnly' and e.oclAsType(XML::Attribute).value='true');
+	showLabel := not self.children->exists(e | e.oclIsKindOf(XML::Attribute) and e.oclAsType(XML::Attribute).name = 'showLabel' and e.oclAsType(XML::Attribute).value='false');
+	customLabel := self.children->any(e | e.oclIsKindOf(XML::Attribute) and e.oclAsType(XML::Attribute).name = 'customLabel').oclAsType(XML::Attribute).value;
+}
+
+query XML::Element::getPropertyName() : String {
+	var attributes := self.children->select(e | e.oclIsKindOf(Attribute)).oclAsType(Attribute);
+	var propertyName := attributes->any(e | e.name = "property").value;
+	
+	return propertyName;
+}
+
+query findProperty(propertyName : String) : Property {
+	var prefix := propertyName.substring(1, propertyName.indexOf(":")-1);
+	var allContexts := ctx.rootObjects()[Context::Context];
+	var validDataContexts := allContexts.dataContexts->select(f | f.name = prefix);
+	var prop := findProperty(propertyName.substring(propertyName.indexOf(":")+1, propertyName.size()), validDataContexts->any(e | true));
+	return prop;
+}
+
+query findProperty(propertyName : String, element : DataContextElement) : Property{
+	if propertyName.indexOf(":") > -1
+	then {
+		var packageName := propertyName.substring(1, propertyName.indexOf(":")-1);
+		var propertyNameSuffix := propertyName.substring(propertyName.indexOf(":")+1, propertyName.size());
+		var package := element.oclAsType(DataContextPackage).elements->any(e | e.name = packageName);	
+		return findProperty(propertyNameSuffix, package);
+	} else {
+		return element.properties->any(e | e.name = propertyName);
+	} endif;
+	
+	return null;
+}
+
+query XML::Element::match(widgetClass : String, namespace : Environment::Namespace) : Boolean{
+	return self.name.getSimpleName() = widgetClass 
+		and ((self.name.getNamespace() = '' and namespace.oclIsUndefined())
+			or self.name.getNamespace() = namespace.name
+		)
+}
+
+query XML::Element::isWidget() : Boolean {
+	return not (self.isLayout() or self.isReferenceAttribute()); 
+}
+
+query XML::Element::isComposite() : Boolean {
+	var composites = root.rootObjects()[PropertiesRoot::PropertiesRoot].environments.compositeWidgetTypes;
+	return composites->exists(e | self.match(e.widgetClass, e.namespace));
+}
+
+query XML::Element::isStandardWidget() : Boolean {
+	var stdWidgets := root.rootObjects()[PropertiesRoot::PropertiesRoot].environments.widgetTypes;
+	return stdWidgets->exists(e | self.match(e.widgetClass, e.namespace));
+}
+
+query XML::Element::isPropertyEditor() : Boolean {
+	var editors := root.rootObjects()[PropertiesRoot::PropertiesRoot].environments.propertyEditorTypes;
+	return editors->exists(e | self.match(e.widgetClass, e.namespace));
+}
+
+query XML::Element::isLayout() : Boolean {
+	var layouts := root.rootObjects()[PropertiesRoot::PropertiesRoot].environments.layoutTypes;
+	return layouts->exists(e | self.match(e.widgetClass, e.namespace));
+}
+
+query XML::Element::isLayoutAttribute() : Boolean {
+	var res := self.name = self.parent.name+".layout";
+	return res;
+}
+
+/*
+	Returns the simple name from the given String	
+	The namespace is truncated
+	ppe:StringEditor -> StringEditor
+*/
+query String::getSimpleName() : String {
+	var simpleName := if self.indexOf(':') < 1 then
+		self
+	else
+		self.substring(self.indexOf(':')+1, self.length())
+	endif;
+	  
+	return simpleName;
+}
+/*
+	Returns the namespace prefix from the given String, if any
+	ppe:StringEditor -> ppe
+*/
+query String::getNamespace() : String {
+	var namespace := if self.indexOf(':') < 1 then 
+		'' 
+	else
+		self.substring(1, self.indexOf(':') - 1)
+	endif;
+	
+	return namespace;
+}
+
+query XML::Element::getWidgetType() : StandardWidgetType {
+	var stdWidgets := root.rootObjects()[PropertiesRoot::PropertiesRoot].environments.widgetTypes;
+	return stdWidgets->any(e | self.match(e.widgetClass, e.namespace));
+}
+
+query XML::Element::getCompositeType() : CompositeWidgetType {
+	var composites := root.rootObjects()[PropertiesRoot::PropertiesRoot].environments.compositeWidgetTypes;
+	return composites->any(e | self.match(e.widgetClass, e.namespace));
+}
+
+query XML::Element::getPropertyEditorType() : PropertyEditorType {
+	var editors := root.rootObjects()[PropertiesRoot::PropertiesRoot].environments.propertyEditorTypes;
+	var type := editors->any(e | self.match(e.widgetClass, e.namespace));
+	return type;
+}
+
+query XML::Element::getLayoutType() : LayoutType {
+	var layouts := root.rootObjects()[PropertiesRoot::PropertiesRoot].environments.layoutTypes;
+	return layouts->any(e | self.match(e.widgetClass, e.namespace));
+}

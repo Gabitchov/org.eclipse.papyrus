@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
+  <notation:Diagram type="PapyrusUMLClassDiagram" name="Analysis Context" measurementUnit="Pixel">
+    <children xsi:type="notation:Shape" type="2008" fontHeight="8" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="5029"/>
+      <children xsi:type="notation:BasicCompartment" type="7017">
+        <children type="3012">
+          <element href="INCOSE.uml#_b7paABSkEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7018">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7019">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="INCOSE.uml#_8QWqyBSUEd-2df7r1H5t5w"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="654" y="39"/>
+    </children>
+    <children xsi:type="notation:Shape" type="2008" fontHeight="8" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="5029"/>
+      <children xsi:type="notation:BasicCompartment" type="7017">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7018">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7019">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="INCOSE.uml#_8K_poBSUEd-2df7r1H5t5w"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="302" y="35"/>
+    </children>
+    <children xsi:type="notation:Shape" type="2008" fontHeight="8" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="5029"/>
+      <children xsi:type="notation:BasicCompartment" type="7017">
+        <children type="3012">
+          <element href="INCOSE.uml#_Z4XToBSkEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <children type="3012">
+          <element href="INCOSE.uml#_eYaXYBSkEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7018">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7019">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="INCOSE.uml#_26emsBSeEd-kvuKPcuJnyA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="-5" y="39"/>
+    </children>
+    <children xsi:type="notation:Shape" type="2008" fontHeight="8" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="5029"/>
+      <children xsi:type="notation:BasicCompartment" type="7017">
+        <children type="3012">
+          <element href="INCOSE.uml#_uKPt4BSjEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <children type="3012">
+          <element href="INCOSE.uml#_vww_wBSjEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <children type="3012">
+          <element href="INCOSE.uml#_xraHgBSjEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7018">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7019">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="INCOSE.uml#_8gyTdBSUEd-2df7r1H5t5w"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="159" y="461" width="161" height="122"/>
+    </children>
+    <children xsi:type="notation:Shape" type="2008" fontHeight="8" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="5029"/>
+      <children xsi:type="notation:BasicCompartment" type="7017">
+        <children type="3012">
+          <element href="INCOSE.uml#_f2IvEBSjEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <children type="3012">
+          <element href="INCOSE.uml#_ij4HsBSjEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <children type="3012">
+          <element href="INCOSE.uml#_kNOrIBSjEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <children type="3012">
+          <element href="INCOSE.uml#_lx90UBSjEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7018">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7019">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="INCOSE.uml#_8Y2feBSUEd-2df7r1H5t5w"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="-8" y="318" width="148" height="134"/>
+    </children>
+    <children xsi:type="notation:Shape" type="2008" fontHeight="8" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="5029"/>
+      <children xsi:type="notation:BasicCompartment" type="7017">
+        <children type="3012">
+          <element href="INCOSE.uml#_98PnABSjEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <children type="3012">
+          <element href="INCOSE.uml#__ShdcBSjEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <children type="3012">
+          <element href="INCOSE.uml#_A2NdwBSkEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7018">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7019">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="INCOSE.uml#_8xUp2BSUEd-2df7r1H5t5w"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="639" y="346" width="115" height="139"/>
+    </children>
+    <children xsi:type="notation:Shape" type="2008" fontHeight="8" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="5029"/>
+      <children xsi:type="notation:BasicCompartment" type="7017">
+        <children type="3012">
+          <element href="INCOSE.uml#_3W2AUBSjEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <children type="3012">
+          <element href="INCOSE.uml#_5FQp8BSjEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <children type="3012">
+          <element href="INCOSE.uml#_62W0IBSjEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7018">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7019">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="INCOSE.uml#_8pRhGBSUEd-2df7r1H5t5w"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="425" y="448" width="117" height="122"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="INCOSE.uml#_w8IxIM37EdqwVrslYOdUDA"/>
+    <edges xsi:type="notation:Connector" type="4001" source="/0/@children.1" target="/0/@children.3" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="6001">
+        <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6002">
+        <layoutConstraint xsi:type="notation:Location" y="20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6003">
+        <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6005">
+        <layoutConstraint xsi:type="notation:Location" y="20"/>
+      </children>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="INCOSE.uml#_afFHoBSfEd-kvuKPcuJnyA"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[-72, 44, 211, -130]$[-231, 142, 52, -32]"/>
+    </edges>
+    <edges xsi:type="notation:Connector" type="4001" source="/0/@children.1" target="/0/@children.4" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="6001">
+        <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6002">
+        <layoutConstraint xsi:type="notation:Location" y="20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6003">
+        <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6005">
+        <layoutConstraint xsi:type="notation:Location" y="20"/>
+      </children>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="INCOSE.uml#_aH1FThSfEd-kvuKPcuJnyA"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[-32, 50, 161, -256]$[-162, 256, 31, -50]"/>
+    </edges>
+    <edges xsi:type="notation:Connector" type="4001" source="/0/@children.1" target="/0/@children.0" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="6001">
+        <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6002">
+        <layoutConstraint xsi:type="notation:Location" y="20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6003">
+        <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6005">
+        <layoutConstraint xsi:type="notation:Location" y="20"/>
+      </children>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="INCOSE.uml#_cHiTOhSfEd-kvuKPcuJnyA"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[72, 3, -212, -12]$[234, 12, -50, -3]"/>
+    </edges>
+    <edges xsi:type="notation:Connector" type="4001" source="/0/@children.1" target="/0/@children.5" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="6001">
+        <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6002">
+        <layoutConstraint xsi:type="notation:Location" y="20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6003">
+        <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6005">
+        <layoutConstraint xsi:type="notation:Location" y="20"/>
+      </children>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="INCOSE.uml#_bOKbOhSfEd-kvuKPcuJnyA"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[4, 50, -22, -261]$[21, 261, -5, -50]"/>
+    </edges>
+    <edges xsi:type="notation:Connector" type="4001" source="/0/@children.1" target="/0/@children.2" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="6001">
+        <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6002">
+        <layoutConstraint xsi:type="notation:Location" y="20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6003">
+        <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6005">
+        <layoutConstraint xsi:type="notation:Location" y="20"/>
+      </children>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="INCOSE.uml#_M_G7jBSfEd-kvuKPcuJnyA"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[-72, 3, 212, -9]$[-234, 9, 50, -3]"/>
+    </edges>
+    <edges xsi:type="notation:Connector" type="4001" source="/0/@children.1" target="/0/@children.6" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="6001">
+        <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6002">
+        <layoutConstraint xsi:type="notation:Location" y="20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6003">
+        <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6005">
+        <layoutConstraint xsi:type="notation:Location" y="20"/>
+      </children>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="INCOSE.uml#_a4RDuhSfEd-kvuKPcuJnyA"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[43, 50, -179, -206]$[178, 206, -44, -50]"/>
+    </edges>
+  </notation:Diagram>
+  <notation:Diagram type="PapyrusUMLClassDiagram" name="Overall Structure" measurementUnit="Pixel">
+    <children xsi:type="notation:Shape" type="2008" fontHeight="8" lineColor="0">
+      <eAnnotations source="Stereotype_Annotation">
+        <details key="StereotypeWithQualifiedNameList" value=""/>
+        <details key="StereotypeList" value="SysML::Blocks::Block"/>
+        <details key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+        <details key="PropStereoDisplay" value=""/>
+        <details key="StereotypePropertyLocation" value="Compartment"/>
+      </eAnnotations>
+      <children xsi:type="notation:DecorationNode" type="5029"/>
+      <children xsi:type="notation:BasicCompartment" type="7017">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7018">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7019">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="INCOSE.uml#_26emsBSeEd-kvuKPcuJnyA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="293" y="48" width="117" height="118"/>
+    </children>
+    <children xsi:type="notation:Shape" type="2008" fontHeight="8" lineColor="0">
+      <eAnnotations source="Stereotype_Annotation">
+        <details key="StereotypeWithQualifiedNameList" value=""/>
+        <details key="StereotypeList" value="SysML::Blocks::Block"/>
+        <details key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+        <details key="PropStereoDisplay" value=""/>
+        <details key="StereotypePropertyLocation" value="Compartment"/>
+      </eAnnotations>
+      <children xsi:type="notation:DecorationNode" type="5029"/>
+      <children xsi:type="notation:BasicCompartment" type="7017">
+        <children type="3012">
+          <element href="INCOSE.uml#_tJSxwBSkEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7018">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7019">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="INCOSE.uml#_qTykQBSkEd-wFOMaETc_Cg"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="47" y="289" width="143" height="141"/>
+    </children>
+    <children xsi:type="notation:Shape" type="2008" fontHeight="8" lineColor="0">
+      <eAnnotations source="Stereotype_Annotation">
+        <details key="StereotypeWithQualifiedNameList" value=""/>
+        <details key="StereotypeList" value="SysML::Blocks::Block"/>
+        <details key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+        <details key="PropStereoDisplay" value=""/>
+        <details key="StereotypePropertyLocation" value="Compartment"/>
+      </eAnnotations>
+      <children xsi:type="notation:DecorationNode" type="5029"/>
+      <children xsi:type="notation:BasicCompartment" type="7017">
+        <children type="3012">
+          <element href="INCOSE.uml#_2gw3cBSkEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7018">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7019">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="INCOSE.uml#_13yL4BSkEd-wFOMaETc_Cg"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="560" y="234"/>
+    </children>
+    <children xsi:type="notation:Shape" type="2008" fontHeight="8" lineColor="0">
+      <eAnnotations source="Stereotype_Annotation">
+        <details key="StereotypeWithQualifiedNameList" value=""/>
+        <details key="StereotypeList" value="SysML::Blocks::Block"/>
+        <details key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+        <details key="PropStereoDisplay" value=""/>
+        <details key="StereotypePropertyLocation" value="Compartment"/>
+      </eAnnotations>
+      <children xsi:type="notation:DecorationNode" type="5029"/>
+      <children xsi:type="notation:BasicCompartment" type="7017">
+        <children type="3012">
+          <element href="INCOSE.uml#_90N28BSkEd-wFOMaETc_Cg"/>
+          <layoutConstraint xsi:type="notation:Location"/>
+        </children>
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7018">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" type="7019">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="INCOSE.uml#_8dpFkBSkEd-wFOMaETc_Cg"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="395" y="427" width="141" height="130"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="INCOSE.uml#_1ZLMARSeEd-kvuKPcuJnyA"/>
+    <edges xsi:type="notation:Connector" type="4001" source="/1/@children.0" target="/1/@children.1" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="6001">
+        <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6002">
+        <layoutConstraint xsi:type="notation:Location" y="20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6003">
+        <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6005">
+        <layoutConstraint xsi:type="notation:Location" y="20"/>
+      </children>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="INCOSE.uml#_C2oDExS0Ed-wFOMaETc_Cg"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[-28, 27, 85, -82]$[-106, 87, 7, -22]"/>
+      <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.23931623931623933,0.7627118644067796)"/>
+      <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.6153846153846154,0.15602836879432624)"/>
+    </edges>
+    <edges xsi:type="notation:Connector" type="4001" source="/1/@children.1" target="/1/@children.3" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="6001">
+        <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6002">
+        <layoutConstraint xsi:type="notation:Location" y="20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6003">
+        <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      </children>
+      <children xsi:type="notation:DecorationNode" type="6005">
+        <layoutConstraint xsi:type="notation:Location" y="20"/>
+      </children>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="INCOSE.uml#_I6gREBS0Ed-wFOMaETc_Cg"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[18, 7, -112, -48]$[121, 25, -9, -30]"/>
+      <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.8741258741258742,0.8936170212765957)"/>
+      <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.4326241134751773,0.23076923076923078)"/>
+    </edges>
+  </notation:Diagram>
+  <notation:Diagram type="Parametric" name="Value Binding" measurementUnit="Pixel">
+    <children xsi:type="notation:Shape" type="2003" fontHeight="8" transparency="0" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="5001"/>
+      <children xsi:type="notation:Shape" type="3002" lineColor="0">
+        <children xsi:type="notation:DecorationNode" type="5003">
+          <layoutConstraint xsi:type="notation:Location" y="5"/>
+        </children>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="INCOSE.uml#_uKPt4BSjEd-wFOMaETc_Cg"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:Shape" type="3002" lineColor="0">
+        <children xsi:type="notation:DecorationNode" type="5003">
+          <layoutConstraint xsi:type="notation:Location" y="5"/>
+        </children>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="INCOSE.uml#_vww_wBSjEd-wFOMaETc_Cg"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:Shape" type="3002" lineColor="0">
+        <children xsi:type="notation:DecorationNode" type="5003">
+          <layoutConstraint xsi:type="notation:Location" y="5"/>
+        </children>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="INCOSE.uml#_xraHgBSjEd-wFOMaETc_Cg"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <element href="INCOSE.uml#_SVlCMBSlEd-wFOMaETc_Cg"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="615" y="75"/>
+    </children>
+    <children xsi:type="notation:Shape" type="2003" fontHeight="8" transparency="0" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="5001"/>
+      <children xsi:type="notation:Shape" type="3002" lineColor="0">
+        <children xsi:type="notation:DecorationNode" type="5003">
+          <layoutConstraint xsi:type="notation:Location" x="-44" y="-20"/>
+        </children>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="INCOSE.uml#_3W2AUBSjEd-wFOMaETc_Cg"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:Shape" type="3002" lineColor="0">
+        <children xsi:type="notation:DecorationNode" type="5003">
+          <layoutConstraint xsi:type="notation:Location" x="-44" y="2"/>
+        </children>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="INCOSE.uml#_5FQp8BSjEd-wFOMaETc_Cg"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:Shape" type="3002" lineColor="0">
+        <children xsi:type="notation:DecorationNode" type="5003">
+          <layoutConstraint xsi:type="notation:Location" x="36" y="22"/>
+        </children>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="INCOSE.uml#_62W0IBSjEd-wFOMaETc_Cg"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <element href="INCOSE.uml#_TBGEYBSlEd-wFOMaETc_Cg"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="492" y="316"/>
+    </children>
+    <children xsi:type="notation:Shape" type="2005" fontHeight="8" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="5002"/>
+      <element href="INCOSE.uml#_b7paABSkEd-wFOMaETc_Cg"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="259" y="498"/>
+    </children>
+    <children xsi:type="notation:Shape" type="2003" fontHeight="8" transparency="0" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="5001"/>
+      <children xsi:type="notation:Shape" type="3002" lineColor="0">
+        <children xsi:type="notation:DecorationNode" type="5003">
+          <layoutConstraint xsi:type="notation:Location" x="-44" y="-20"/>
+        </children>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="INCOSE.uml#_98PnABSjEd-wFOMaETc_Cg"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:Shape" type="3002" lineColor="0">
+        <children xsi:type="notation:DecorationNode" type="5003">
+          <layoutConstraint xsi:type="notation:Location" x="-44" y="-20"/>
+        </children>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="INCOSE.uml#__ShdcBSjEd-wFOMaETc_Cg"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:Shape" type="3002" lineColor="0">
+        <children xsi:type="notation:DecorationNode" type="5003">
+          <layoutConstraint xsi:type="notation:Location" x="-51"/>
+        </children>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="INCOSE.uml#_A2NdwBSkEd-wFOMaETc_Cg"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <element href="INCOSE.uml#_TktHwBSlEd-wFOMaETc_Cg"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="204" y="313"/>
+    </children>
+    <children xsi:type="notation:Shape" type="2003" fontHeight="8" transparency="0" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="5001"/>
+      <children xsi:type="notation:Shape" type="3002" lineColor="0">
+        <children xsi:type="notation:DecorationNode" type="5003">
+          <layoutConstraint xsi:type="notation:Location" y="5"/>
+        </children>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="INCOSE.uml#_f2IvEBSjEd-wFOMaETc_Cg"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:Shape" type="3002" lineColor="0">
+        <children xsi:type="notation:DecorationNode" type="5003">
+          <layoutConstraint xsi:type="notation:Location" y="5"/>
+        </children>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="INCOSE.uml#_ij4HsBSjEd-wFOMaETc_Cg"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:Shape" type="3002" lineColor="0">
+        <children xsi:type="notation:DecorationNode" type="5003">
+          <layoutConstraint xsi:type="notation:Location" y="5"/>
+        </children>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="INCOSE.uml#_kNOrIBSjEd-wFOMaETc_Cg"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <children xsi:type="notation:Shape" type="3002" lineColor="0">
+        <children xsi:type="notation:DecorationNode" type="5003">
+          <layoutConstraint xsi:type="notation:Location" y="5"/>
+        </children>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="INCOSE.uml#_lx90UBSjEd-wFOMaETc_Cg"/>
+        <layoutConstraint xsi:type="notation:Bounds"/>
+      </children>
+      <element href="INCOSE.uml#_RuZGYBSlEd-wFOMaETc_Cg"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="265" y="77"/>
+    </children>
+    <children xsi:type="notation:Shape" type="2005" fontHeight="8" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="5002"/>
+      <element href="INCOSE.uml#_Z4XToBSkEd-wFOMaETc_Cg"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="5" y="347"/>
+    </children>
+    <children xsi:type="notation:Shape" type="2005" fontHeight="8" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="5002"/>
+      <element href="INCOSE.uml#_eYaXYBSkEd-wFOMaETc_Cg"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="504" y="237"/>
+    </children>
+    <children xsi:type="notation:Shape" type="2005" fontHeight="8" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="5002"/>
+      <element href="INCOSE.uml#_90N28BSkEd-wFOMaETc_Cg"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="36" y="77" width="141"/>
+    </children>
+    <children xsi:type="notation:Shape" type="2005" fontHeight="8" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="5002"/>
+      <element href="INCOSE.uml#_tJSxwBSkEd-wFOMaETc_Cg"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="34" y="202" width="129"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="INCOSE.uml#_8K_poBSUEd-2df7r1H5t5w"/>
+    <edges xsi:type="notation:Connector" type="4001" source="/2/@children.3/@children.3" target="/2/@children.2" lineColor="0">
+      <children xsi:type="notation:DecorationNode" visible="false" type="6001">
+        <layoutConstraint xsi:type="notation:Location" y="40"/>
+      </children>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="INCOSE.uml#_XLaTQBSmEd-wFOMaETc_Cg"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[0, 8, -112, -132]$[0, 140, -112, 0]$[62, 140, -50, 0]"/>
+    </edges>
+    <edges xsi:type="notation:Connector" type="4001" source="/2/@children.1/@children.3" target="/2/@children.2" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="6001">
+        <layoutConstraint xsi:type="notation:Location" x="-5" y="-19"/>
+      </children>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="INCOSE.uml#_fh42ABSmEd-wFOMaETc_Cg"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[0, 8, 176, -129]$[0, 137, 176, 0]$[-126, 137, 50, 0]"/>
+    </edges>
+    <edges xsi:type="notation:Connector" type="4001" source="/2/@children.6" target="/2/@children.0/@children.2" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="6001">
+        <layoutConstraint xsi:type="notation:Location" y="40"/>
+      </children>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="INCOSE.uml#_O6V-gBSyEd-wFOMaETc_Cg"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[0, -20, -50, 126]$[0, -146, -50, 0]$[46, -146, -4, 0]"/>
+      <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.25,0.1875)"/>
+    </edges>
+    <edges xsi:type="notation:Connector" type="4001" source="/2/@children.5" target="/2/@children.3/@children.2" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="6001">
+        <layoutConstraint xsi:type="notation:Location" x="-2" y="21"/>
+      </children>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="INCOSE.uml#_RcLCEBSyEd-wFOMaETc_Cg"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[40, 2, -96, -6]$[128, 7, -8, -1]"/>
+      <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.6,0.2)"/>
+    </edges>
+    <edges xsi:type="notation:Connector" type="4001" source="/2/@children.4/@children.3" target="/2/@children.7" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="6001">
+        <layoutConstraint xsi:type="notation:Location" x="8" y="20"/>
+      </children>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="INCOSE.uml#_nfyYUBS0Ed-wFOMaETc_Cg"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[-8, -4, 106, 43]$[-81, -49, 33, -2]"/>
+      <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.7659574468085106,0.45)"/>
+    </edges>
+    <edges xsi:type="notation:Connector" type="4001" source="/2/@children.8" target="/2/@children.4/@children.4" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="6001">
+        <layoutConstraint xsi:type="notation:Location" x="8" y="25"/>
+      </children>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="INCOSE.uml#_qH304BS0Ed-wFOMaETc_Cg"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[55, -20, -105, 36]$[159, -64, -1, -8]"/>
+    </edges>
+    <edges xsi:type="notation:Connector" type="4001" source="/2/@children.4/@children.1" target="/2/@children.0/@children.1" lineColor="0">
+      <children xsi:type="notation:DecorationNode" type="6001">
+        <layoutConstraint xsi:type="notation:Location" x="4" y="12"/>
+      </children>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="INCOSE.uml#_tcNTcBS0Ed-wFOMaETc_Cg"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[0, -3, -348, -6]$[0, -58, -348, -61]$[348, -58, 0, -61]$[348, -5, 0, -8]"/>
+      <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.625,0.1875)"/>
+    </edges>
+  </notation:Diagram>
+</xmi:XMI>

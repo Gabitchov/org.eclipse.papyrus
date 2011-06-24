@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di2="http://www.papyrusuml.org" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML">
+  <di2:Diagram isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="255:255:255" foregroundColor="255:255:255" backgroundColor="255:255:255" borderColor="255:255:255" position="0:0" name="DefaultDiagram">
+    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="428:82" size="100:100">
+      <property key="PropStereoDisplay" value="SysML::PortAndFlows::FlowSpecification"/>
+      <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="20:20" size="100:100"/>
+      <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="20:20" size="100:100"/>
+      <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+        <element xsi:type="uml:Interface" href="SysML_FlowPort_TEST.uml#_g-Er0A_xEd2mbaTvSwUWQw"/>
+      </semanticModel>
+    </contained>
+    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="618:84" size="120:100">
+      <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+        <element xsi:type="uml:PrimitiveType" href="SysML_FlowPort_TEST.uml#_irJ4sA_xEd2mbaTvSwUWQw"/>
+      </semanticModel>
+    </contained>
+    <owner xsi:type="di2:Uml1SemanticModelBridge">
+      <element xsi:type="uml:Model" href="SysML_FlowPort_TEST.uml#_XAwHEA_xEd2mbaTvSwUWQw"/>
+    </owner>
+  </di2:Diagram>
+  <di2:Diagram isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="255:255:255" foregroundColor="255:255:255" backgroundColor="255:255:255" borderColor="255:255:255" position="0:0" name="Composite diagram of SysML_FlowPort_TEST" type="CompositeStructureDiagram">
+    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticChild="/1/@contained.1 /1/@contained.3 /1/@contained.5" position="199:49" size="600:291">
+      <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+        <element xsi:type="uml:Class" href="SysML_FlowPort_TEST.uml#_dtUFsA_xEd2mbaTvSwUWQw"/>
+      </semanticModel>
+    </contained>
+    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticParent="/1/@contained.0" semanticChild="/1/@contained.2" position="789:99" size="20:20">
+      <property key="PropStereoDisplay" value="SysML::PortAndFlows::FlowPort"/>
+      <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+        <element xsi:type="uml:Port" href="SysML_FlowPort_TEST.uml#_eK9rAA_xEd2mbaTvSwUWQw"/>
+      </semanticModel>
+    </contained>
+    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticParent="/1/@contained.1" position="597:80" size="196:15">
+      <property key="custom_disp" value="56"/>
+    </contained>
+    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticParent="/1/@contained.0" semanticChild="/1/@contained.4" position="789:212" size="20:20">
+      <property key="PropStereoDisplay" value="SysML::PortAndFlows::FlowPort"/>
+      <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+        <element xsi:type="uml:Port" href="SysML_FlowPort_TEST.uml#_jzbIUA_xEd2mbaTvSwUWQw"/>
+      </semanticModel>
+    </contained>
+    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticParent="/1/@contained.3" position="605:191" size="186:15">
+      <property key="custom_disp" value="56"/>
+    </contained>
+    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticParent="/1/@contained.0" semanticChild="/1/@contained.6" position="189:160" size="20:20">
+      <property key="PropStereoDisplay" value="SysML::PortAndFlows::FlowPort"/>
+      <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+        <element xsi:type="uml:Port" href="SysML_FlowPort_TEST.uml#_nu9JwA_xEd2mbaTvSwUWQw"/>
+      </semanticModel>
+    </contained>
+    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticParent="/1/@contained.5" position="210:137" size="196:15">
+      <property key="custom_disp" value="56"/>
+    </contained>
+    <owner xsi:type="di2:Uml1SemanticModelBridge">
+      <element xsi:type="uml:Model" href="SysML_FlowPort_TEST.uml#_XAwHEA_xEd2mbaTvSwUWQw"/>
+    </owner>
+  </di2:Diagram>
+</xmi:XMI>

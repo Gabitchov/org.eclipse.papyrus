@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="ASCII"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="Customization">
+  <tabs label="Context" id="context" category="">
+    <sections name="Single Environment" sectionFile="ui/SingleEnvironment.xwt">
+      <widget href="ui/SingleEnvironment.xwt#/"/>
+    </sections>
+    <sections name="Multiple Environment" sectionFile="ui/MultipleEnvironment.xwt">
+      <widget href="ui/MultipleEnvironment.xwt#/"/>
+    </sections>
+    <sections name="Single WidgetType" sectionFile="ui/SingleWidgetType.xwt">
+      <widget href="ui/SingleWidgetType.xwt#/"/>
+    </sections>
+    <sections name="Multiple WidgetType" sectionFile="ui/MultipleWidgetType.xwt">
+      <widget href="ui/MultipleWidgetType.xwt#/"/>
+    </sections>
+    <sections name="Single PropertyEditorType" sectionFile="ui/SinglePropertyEditorType.xwt">
+      <widget href="ui/SinglePropertyEditorType.xwt#/"/>
+    </sections>
+    <sections name="Multiple PropertyEditorType" sectionFile="ui/MultiplePropertyEditorType.xwt">
+      <widget href="ui/MultiplePropertyEditorType.xwt#/"/>
+    </sections>
+    <sections name="Single CompositeWidgetType" sectionFile="ui/SingleCompositeWidgetType.xwt">
+      <widget href="ui/SingleCompositeWidgetType.xwt#/"/>
+    </sections>
+    <sections name="Multiple CompositeWidgetType" sectionFile="ui/MultipleCompositeWidgetType.xwt">
+      <widget href="ui/MultipleCompositeWidgetType.xwt#/"/>
+    </sections>
+    <sections name="Single LayoutType" sectionFile="ui/SingleLayoutType.xwt">
+      <widget href="ui/SingleLayoutType.xwt#/"/>
+    </sections>
+    <sections name="Multiple LayoutType" sectionFile="ui/MultipleLayoutType.xwt">
+      <widget href="ui/MultipleLayoutType.xwt#/"/>
+    </sections>
+    <sections name="Single ConstraintType" sectionFile="ui/SingleConstraintType.xwt">
+      <widget href="ui/SingleConstraintType.xwt#/"/>
+    </sections>
+    <sections name="Multiple ConstraintType" sectionFile="ui/MultipleConstraintType.xwt">
+      <widget href="ui/MultipleConstraintType.xwt#/"/>
+    </sections>
+    <sections name="Single ModelElementFactoryDescriptor" sectionFile="ui/SingleModelElementFactoryDescriptor.xwt">
+      <widget href="ui/SingleModelElementFactoryDescriptor.xwt#/"/>
+    </sections>
+    <sections name="Multiple ModelElementFactoryDescriptor" sectionFile="ui/MultipleModelElementFactoryDescriptor.xwt">
+      <widget href="ui/MultipleModelElementFactoryDescriptor.xwt#/"/>
+    </sections>
+    <sections name="Single StandardWidgetType" sectionFile="ui/SingleStandardWidgetType.xwt">
+      <widget href="ui/SingleStandardWidgetType.xwt#/"/>
+    </sections>
+    <sections name="Multiple StandardWidgetType" sectionFile="ui/MultipleStandardWidgetType.xwt">
+      <widget href="ui/MultipleStandardWidgetType.xwt#/"/>
+    </sections>
+    <sections name="Single Context" sectionFile="ui/SingleContext.xwt">
+      <widget href="ui/SingleContext.xwt#/"/>
+    </sections>
+    <sections name="Multiple Context" sectionFile="ui/MultipleContext.xwt">
+      <widget href="ui/MultipleContext.xwt#/"/>
+    </sections>
+    <sections name="Single DisplayUnit" sectionFile="ui/SingleDisplayUnit.xwt">
+      <widget href="ui/SingleDisplayUnit.xwt#/"/>
+    </sections>
+    <sections name="Multiple DisplayUnit" sectionFile="ui/MultipleDisplayUnit.xwt">
+      <widget href="ui/MultipleDisplayUnit.xwt#/"/>
+    </sections>
+    <sections name="Single View" sectionFile="ui/SingleView.xwt">
+      <widget href="ui/SingleView.xwt#/"/>
+    </sections>
+    <sections name="Multiple View" sectionFile="ui/MultipleView.xwt">
+      <widget href="ui/MultipleView.xwt#/"/>
+    </sections>
+    <sections name="Single Tab" sectionFile="ui/SingleTab.xwt">
+      <widget href="ui/SingleTab.xwt#/"/>
+    </sections>
+    <sections name="Multiple Tab" sectionFile="ui/MultipleTab.xwt">
+      <widget href="ui/MultipleTab.xwt#/"/>
+    </sections>
+    <sections name="Single Section" sectionFile="ui/SingleSection.xwt">
+      <widget href="ui/SingleSection.xwt#/"/>
+    </sections>
+    <sections name="Multiple Section" sectionFile="ui/MultipleSection.xwt">
+      <widget href="ui/MultipleSection.xwt#/"/>
+    </sections>
+    <sections name="Single DataContextElement" sectionFile="ui/SingleDataContextElement.xwt">
+      <widget href="ui/SingleDataContextElement.xwt#/"/>
+    </sections>
+    <sections name="Multiple DataContextElement" sectionFile="ui/MultipleDataContextElement.xwt">
+      <widget href="ui/MultipleDataContextElement.xwt#/"/>
+    </sections>
+    <sections name="Single Property" sectionFile="ui/SingleProperty.xwt">
+      <widget href="ui/SingleProperty.xwt#/"/>
+    </sections>
+    <sections name="Multiple Property" sectionFile="ui/MultipleProperty.xwt">
+      <widget href="ui/MultipleProperty.xwt#/"/>
+    </sections>
+    <sections name="Single UnknownProperty" sectionFile="ui/SingleUnknownProperty.xwt">
+      <widget href="ui/SingleUnknownProperty.xwt#/"/>
+    </sections>
+    <sections name="Multiple UnknownProperty" sectionFile="ui/MultipleUnknownProperty.xwt">
+      <widget href="ui/MultipleUnknownProperty.xwt#/"/>
+    </sections>
+    <sections name="Single DataContextPackage" sectionFile="ui/SingleDataContextPackage.xwt">
+      <widget href="ui/SingleDataContextPackage.xwt#/"/>
+    </sections>
+    <sections name="Multiple DataContextPackage" sectionFile="ui/MultipleDataContextPackage.xwt">
+      <widget href="ui/MultipleDataContextPackage.xwt#/"/>
+    </sections>
+    <sections name="Single DataContextRoot" sectionFile="ui/SingleDataContextRoot.xwt">
+      <widget href="ui/SingleDataContextRoot.xwt#/"/>
+    </sections>
+    <sections name="Multiple DataContextRoot" sectionFile="ui/MultipleDataContextRoot.xwt">
+      <widget href="ui/MultipleDataContextRoot.xwt#/"/>
+    </sections>
+    <sections name="Single ConstraintDescriptor" sectionFile="ui/SingleConstraintDescriptor.xwt">
+      <widget href="ui/SingleConstraintDescriptor.xwt#/"/>
+    </sections>
+    <sections name="Multiple ConstraintDescriptor" sectionFile="ui/MultipleConstraintDescriptor.xwt">
+      <widget href="ui/MultipleConstraintDescriptor.xwt#/"/>
+    </sections>
+    <sections name="Single ConfigProperty" sectionFile="ui/SingleConfigProperty.xwt">
+      <widget href="ui/SingleConfigProperty.xwt#/"/>
+    </sections>
+    <sections name="Multiple ConfigProperty" sectionFile="ui/MultipleConfigProperty.xwt">
+      <widget href="ui/MultipleConfigProperty.xwt#/"/>
+    </sections>
+    <sections name="Single ValueProperty" sectionFile="ui/SingleValueProperty.xwt">
+      <widget href="ui/SingleValueProperty.xwt#/"/>
+    </sections>
+    <sections name="Multiple ValueProperty" sectionFile="ui/MultipleValueProperty.xwt">
+      <widget href="ui/MultipleValueProperty.xwt#/"/>
+    </sections>
+    <sections name="Single ReferenceProperty" sectionFile="ui/SingleReferenceProperty.xwt">
+      <widget href="ui/SingleReferenceProperty.xwt#/"/>
+    </sections>
+    <sections name="Multiple ReferenceProperty" sectionFile="ui/MultipleReferenceProperty.xwt">
+      <widget href="ui/MultipleReferenceProperty.xwt#/"/>
+    </sections>
+    <sections name="Single Element" sectionFile="ui/SingleElement.xwt">
+      <widget href="ui/SingleElement.xwt#/"/>
+    </sections>
+    <sections name="Multiple Element" sectionFile="ui/MultipleElement.xwt">
+      <widget href="ui/MultipleElement.xwt#/"/>
+    </sections>
+    <sections name="Single UIComponent" sectionFile="ui/SingleUIComponent.xwt">
+      <widget href="ui/SingleUIComponent.xwt#/"/>
+    </sections>
+    <sections name="Multiple UIComponent" sectionFile="ui/MultipleUIComponent.xwt">
+      <widget href="ui/MultipleUIComponent.xwt#/"/>
+    </sections>
+    <sections name="Single Widget" sectionFile="ui/SingleWidget.xwt">
+      <widget href="ui/SingleWidget.xwt#/"/>
+    </sections>
+    <sections name="Multiple Widget" sectionFile="ui/MultipleWidget.xwt">
+      <widget href="ui/MultipleWidget.xwt#/"/>
+    </sections>
+    <sections name="Single StandardWidget" sectionFile="ui/SingleStandardWidget.xwt">
+      <widget href="ui/SingleStandardWidget.xwt#/"/>
+    </sections>
+    <sections name="Multiple StandardWidget" sectionFile="ui/MultipleStandardWidget.xwt">
+      <widget href="ui/MultipleStandardWidget.xwt#/"/>
+    </sections>
+    <sections name="Single PropertyEditor" sectionFile="ui/SinglePropertyEditor.xwt">
+      <widget href="ui/SinglePropertyEditor.xwt#/"/>
+    </sections>
+    <sections name="Multiple PropertyEditor" sectionFile="ui/MultiplePropertyEditor.xwt">
+      <widget href="ui/MultiplePropertyEditor.xwt#/"/>
+    </sections>
+    <sections name="Single CompositeWidget" sectionFile="ui/SingleCompositeWidget.xwt">
+      <widget href="ui/SingleCompositeWidget.xwt#/"/>
+    </sections>
+    <sections name="Multiple CompositeWidget" sectionFile="ui/MultipleCompositeWidget.xwt">
+      <widget href="ui/MultipleCompositeWidget.xwt#/"/>
+    </sections>
+    <sections name="Single Layout" sectionFile="ui/SingleLayout.xwt">
+      <widget href="ui/SingleLayout.xwt#/"/>
+    </sections>
+    <sections name="Multiple Layout" sectionFile="ui/MultipleLayout.xwt">
+      <widget href="ui/MultipleLayout.xwt#/"/>
+    </sections>
+    <sections name="Single WidgetAttribute" sectionFile="ui/SingleWidgetAttribute.xwt">
+      <widget href="ui/SingleWidgetAttribute.xwt#/"/>
+    </sections>
+    <sections name="Multiple WidgetAttribute" sectionFile="ui/MultipleWidgetAttribute.xwt">
+      <widget href="ui/MultipleWidgetAttribute.xwt#/"/>
+    </sections>
+    <sections name="Single ValueAttribute" sectionFile="ui/SingleValueAttribute.xwt">
+      <widget href="ui/SingleValueAttribute.xwt#/"/>
+    </sections>
+    <sections name="Multiple ValueAttribute" sectionFile="ui/MultipleValueAttribute.xwt">
+      <widget href="ui/MultipleValueAttribute.xwt#/"/>
+    </sections>
+    <sections name="Single ReferenceAttribute" sectionFile="ui/SingleReferenceAttribute.xwt">
+      <widget href="ui/SingleReferenceAttribute.xwt#/"/>
+    </sections>
+    <sections name="Multiple ReferenceAttribute" sectionFile="ui/MultipleReferenceAttribute.xwt">
+      <widget href="ui/MultipleReferenceAttribute.xwt#/"/>
+    </sections>
+    <sections name="Single UnknownComponent" sectionFile="ui/SingleUnknownComponent.xwt">
+      <widget href="ui/SingleUnknownComponent.xwt#/"/>
+    </sections>
+    <sections name="Multiple UnknownComponent" sectionFile="ui/MultipleUnknownComponent.xwt">
+      <widget href="ui/MultipleUnknownComponent.xwt#/"/>
+    </sections>
+    <sections name="GroupAttributes" sectionFile="ui/GroupAttributes.xwt">
+      <constraints xsi:type="contexts:SimpleConstraint" name="isGroup">
+        <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.2"/>
+        <properties xsi:type="contexts:ReferenceProperty" name="query">
+          <value href="custom.querySet#isGroup"/>
+        </properties>
+      </constraints>
+      <widget href="ui/GroupAttributes.xwt#/"/>
+    </sections>
+    <sections name="EcoreInstanceOf" sectionFile="ui/EcoreInstanceOf.xwt">
+      <constraints xsi:type="contexts:SimpleConstraint" name="isEcoreInstanceOf">
+        <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.2"/>
+        <properties xsi:type="contexts:ReferenceProperty" name="query">
+          <value href="custom.querySet#isEcoreInstanceOf"/>
+        </properties>
+      </constraints>
+      <widget href="ui/EcoreInstanceOf.xwt#/"/>
+    </sections>
+    <sections name="UMLInstanceOf" sectionFile="ui/UMLInstanceOf.xwt">
+      <constraints xsi:type="contexts:SimpleConstraint" name="isUMLInstanceOf">
+        <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.2"/>
+        <properties xsi:type="contexts:ReferenceProperty" name="query">
+          <value href="custom.querySet#isUmlInstanceOf"/>
+        </properties>
+      </constraints>
+      <widget href="ui/UMLInstanceOf.xwt#/"/>
+    </sections>
+    <sections name="OCLQuery" sectionFile="ui/OCLQuery.xwt">
+      <constraints xsi:type="contexts:SimpleConstraint" name="isOCLQueryConstraint">
+        <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.2"/>
+        <properties xsi:type="contexts:ReferenceProperty" name="query">
+          <value href="custom.querySet#isOclQuery"/>
+        </properties>
+      </constraints>
+      <widget href="ui/OCLQuery.xwt#/"/>
+    </sections>
+    <sections name="Stereotype" sectionFile="ui/Stereotype.xwt">
+      <constraints xsi:type="contexts:SimpleConstraint" name="isStereotypeConstraint">
+        <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.2"/>
+        <properties xsi:type="contexts:ReferenceProperty" name="query">
+          <value href="custom.querySet#isStereotype"/>
+        </properties>
+      </constraints>
+      <widget href="ui/Stereotype.xwt#/"/>
+    </sections>
+    <sections name="GridLayout" sectionFile="ui/GridLayout.xwt">
+      <constraints xsi:type="contexts:SimpleConstraint" name="isGridLayout">
+        <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.2"/>
+        <properties xsi:type="contexts:ReferenceProperty" name="query">
+          <value href="custom.querySet#isGridLayout"/>
+        </properties>
+      </constraints>
+      <widget href="ui/GridLayout.xwt#/"/>
+    </sections>
+    <sections name="Label" sectionFile="ui/Label.xwt">
+      <constraints xsi:type="contexts:SimpleConstraint" name="isSWTLabel">
+        <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.2"/>
+        <properties xsi:type="contexts:ReferenceProperty" name="query">
+          <value href="custom.querySet#isLabel"/>
+        </properties>
+      </constraints>
+      <widget href="ui/Label.xwt#/"/>
+    </sections>
+    <sections name="Single ToggleButton" sectionFile="ui/Single ToggleButton.xwt">
+      <constraints xsi:type="contexts:SimpleConstraint" name="isSingleToggleButton">
+        <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.2"/>
+        <properties xsi:type="contexts:ReferenceProperty" name="query">
+          <value href="custom.querySet#isToggleButton"/>
+        </properties>
+      </constraints>
+      <widget href="ui/Single ToggleButton.xwt#/"/>
+    </sections>
+    <sections name="SingleFileSelector" sectionFile="ui/SingleFileSelector.xwt">
+      <constraints xsi:type="contexts:SimpleConstraint" name="isSingleFileSelector">
+        <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.2"/>
+        <properties xsi:type="contexts:ReferenceProperty" name="query">
+          <value href="custom.querySet#isFileSelector"/>
+        </properties>
+      </constraints>
+      <widget href="ui/SingleFileSelector.xwt#/"/>
+    </sections>
+    <sections name="Single IntegerSpinner" sectionFile="ui/Single IntegerSpinner.xwt">
+      <constraints xsi:type="contexts:SimpleConstraint" name="isIntegerSpinner">
+        <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.2"/>
+        <properties xsi:type="contexts:ReferenceProperty" name="query">
+          <value href="custom.querySet#isIntegerSpinner"/>
+        </properties>
+      </constraints>
+      <widget href="ui/Single IntegerSpinner.xwt#/"/>
+    </sections>
+  </tabs>
+  <views name="Single Environment" sections="//@tabs.0/@sections.0" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleEnvironment">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Environment"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/environment"/>
+    </constraints>
+  </views>
+  <views name="Multiple Environment" sections="//@tabs.0/@sections.1" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleEnvironment">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/environment"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Environment"/>
+    </constraints>
+  </views>
+  <views name="Single WidgetType" sections="//@tabs.0/@sections.2" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleWidgetType">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="WidgetType"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/environment"/>
+    </constraints>
+  </views>
+  <views name="Multiple WidgetType" sections="//@tabs.0/@sections.3" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleWidgetType">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/environment"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="WidgetType"/>
+    </constraints>
+  </views>
+  <views name="Single PropertyEditorType" sections="//@tabs.0/@sections.4" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSinglePropertyEditorType">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PropertyEditorType"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/environment"/>
+    </constraints>
+  </views>
+  <views name="Multiple PropertyEditorType" sections="//@tabs.0/@sections.5" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultiplePropertyEditorType">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PropertyEditorType"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/environment"/>
+    </constraints>
+  </views>
+  <views name="Single CompositeWidgetType" sections="//@tabs.0/@sections.6" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleCompositeWidgetType">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/environment"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="CompositeWidgetType"/>
+    </constraints>
+  </views>
+  <views name="Multiple CompositeWidgetType" sections="//@tabs.0/@sections.7" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleCompositeWidgetType">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/environment"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="CompositeWidgetType"/>
+    </constraints>
+  </views>
+  <views name="Single LayoutType" sections="//@tabs.0/@sections.8" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleLayoutType">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="LayoutType"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/environment"/>
+    </constraints>
+  </views>
+  <views name="Multiple LayoutType" sections="//@tabs.0/@sections.9" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleLayoutType">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="LayoutType"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/environment"/>
+    </constraints>
+  </views>
+  <views name="Single ConstraintType" sections="//@tabs.0/@sections.10" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleConstraintType">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/environment"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ConstraintType"/>
+    </constraints>
+  </views>
+  <views name="Multiple ConstraintType" sections="//@tabs.0/@sections.11" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleConstraintType">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ConstraintType"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/environment"/>
+    </constraints>
+  </views>
+  <views name="Single ModelElementFactoryDescriptor" sections="//@tabs.0/@sections.12" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleModelElementFactoryDescriptor">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ModelElementFactoryDescriptor"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/environment"/>
+    </constraints>
+  </views>
+  <views name="Multiple ModelElementFactoryDescriptor" sections="//@tabs.0/@sections.13" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleModelElementFactoryDescriptor">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/environment"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ModelElementFactoryDescriptor"/>
+    </constraints>
+  </views>
+  <views name="Single StandardWidgetType" sections="//@tabs.0/@sections.14" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleStandardWidgetType">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="StandardWidgetType"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/environment"/>
+    </constraints>
+  </views>
+  <views name="Multiple StandardWidgetType" sections="//@tabs.0/@sections.15" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleStandardWidgetType">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="StandardWidgetType"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/environment"/>
+    </constraints>
+  </views>
+  <views name="Single Context" sections="//@tabs.0/@sections.16" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleContext">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Context"/>
+    </constraints>
+  </views>
+  <views name="Multiple Context" sections="//@tabs.0/@sections.17" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleContext">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Context"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+    </constraints>
+  </views>
+  <views name="Single DisplayUnit" sections="//@tabs.0/@sections.18" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDisplayUnit">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DisplayUnit"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+    </constraints>
+  </views>
+  <views name="Multiple DisplayUnit" sections="//@tabs.0/@sections.19" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDisplayUnit">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DisplayUnit"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+    </constraints>
+  </views>
+  <views name="Single View" sections="//@tabs.0/@sections.20" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleView">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="View"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+    </constraints>
+  </views>
+  <views name="Multiple View" sections="//@tabs.0/@sections.21" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleView">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="View"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+    </constraints>
+  </views>
+  <views name="Single Tab" sections="//@tabs.0/@sections.22" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleTab">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Tab"/>
+    </constraints>
+  </views>
+  <views name="Multiple Tab" sections="//@tabs.0/@sections.23" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleTab">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Tab"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+    </constraints>
+  </views>
+  <views name="Single Section" sections="//@tabs.0/@sections.24" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleSection">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Section"/>
+    </constraints>
+  </views>
+  <views name="Multiple Section" sections="//@tabs.0/@sections.25" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleSection">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Section"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+    </constraints>
+  </views>
+  <views name="Single DataContextElement" sections="//@tabs.0/@sections.26" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDataContextElement">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DataContextElement"/>
+    </constraints>
+  </views>
+  <views name="Multiple DataContextElement" sections="//@tabs.0/@sections.27" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDataContextElement">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DataContextElement"/>
+    </constraints>
+  </views>
+  <views name="Single Property" sections="//@tabs.0/@sections.28" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleProperty">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Property"/>
+    </constraints>
+  </views>
+  <views name="Multiple Property" sections="//@tabs.0/@sections.29" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleProperty">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Property"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+    </constraints>
+  </views>
+  <views name="Single UnknownProperty" sections="//@tabs.0/@sections.30" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleUnknownProperty">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="UnknownProperty"/>
+    </constraints>
+  </views>
+  <views name="Multiple UnknownProperty" sections="//@tabs.0/@sections.31" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleUnknownProperty">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="UnknownProperty"/>
+    </constraints>
+  </views>
+  <views name="Single DataContextPackage" sections="//@tabs.0/@sections.32" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDataContextPackage">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DataContextPackage"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+    </constraints>
+  </views>
+  <views name="Multiple DataContextPackage" sections="//@tabs.0/@sections.33" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDataContextPackage">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DataContextPackage"/>
+    </constraints>
+  </views>
+  <views name="Single DataContextRoot" sections="//@tabs.0/@sections.34" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDataContextRoot">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DataContextRoot"/>
+    </constraints>
+  </views>
+  <views name="Multiple DataContextRoot" sections="//@tabs.0/@sections.35" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDataContextRoot">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DataContextRoot"/>
+    </constraints>
+  </views>
+  <views name="Single ConstraintDescriptor" sections="//@tabs.0/@sections.36 //@tabs.0/@sections.67 //@tabs.0/@sections.68 //@tabs.0/@sections.69 //@tabs.0/@sections.70" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleConstraintDescriptor">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ConstraintDescriptor"/>
+    </constraints>
+  </views>
+  <views name="Multiple ConstraintDescriptor" sections="//@tabs.0/@sections.37" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleConstraintDescriptor">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ConstraintDescriptor"/>
+    </constraints>
+  </views>
+  <views name="Single ConfigProperty" sections="//@tabs.0/@sections.38" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleConfigProperty">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ConfigProperty"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+    </constraints>
+  </views>
+  <views name="Multiple ConfigProperty" sections="//@tabs.0/@sections.39" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleConfigProperty">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ConfigProperty"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+    </constraints>
+  </views>
+  <views name="Single ValueProperty" sections="//@tabs.0/@sections.40" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleValueProperty">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ValueProperty"/>
+    </constraints>
+  </views>
+  <views name="Multiple ValueProperty" sections="//@tabs.0/@sections.41" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleValueProperty">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ValueProperty"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+    </constraints>
+  </views>
+  <views name="Single ReferenceProperty" sections="//@tabs.0/@sections.42" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleReferenceProperty">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ReferenceProperty"/>
+    </constraints>
+  </views>
+  <views name="Multiple ReferenceProperty" sections="//@tabs.0/@sections.43" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleReferenceProperty">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ReferenceProperty"/>
+    </constraints>
+  </views>
+  <views name="Single Element" sections="//@tabs.0/@sections.44" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleElement">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Element"/>
+    </constraints>
+  </views>
+  <views name="Multiple Element" sections="//@tabs.0/@sections.45" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleElement">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Element"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+    </constraints>
+  </views>
+  <views name="Single UIComponent" sections="//@tabs.0/@sections.46" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleUIComponent">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="UIComponent"/>
+    </constraints>
+  </views>
+  <views name="Multiple UIComponent" sections="//@tabs.0/@sections.47" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleUIComponent">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="UIComponent"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+    </constraints>
+  </views>
+  <views name="Single Widget" sections="//@tabs.0/@sections.48" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleWidget">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Widget"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+    </constraints>
+  </views>
+  <views name="Multiple Widget" sections="//@tabs.0/@sections.49" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleWidget">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Widget"/>
+    </constraints>
+  </views>
+  <views name="Single StandardWidget" sections="//@tabs.0/@sections.50 //@tabs.0/@sections.72" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleStandardWidget">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="StandardWidget"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+    </constraints>
+  </views>
+  <views name="Multiple StandardWidget" sections="//@tabs.0/@sections.51" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleStandardWidget">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="StandardWidget"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+    </constraints>
+  </views>
+  <views name="Single PropertyEditor" sections="//@tabs.0/@sections.52 //@tabs.0/@sections.73 //@tabs.0/@sections.74 //@tabs.0/@sections.75" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSinglePropertyEditor">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PropertyEditor"/>
+    </constraints>
+  </views>
+  <views name="Multiple PropertyEditor" sections="//@tabs.0/@sections.53" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultiplePropertyEditor">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PropertyEditor"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+    </constraints>
+  </views>
+  <views name="Single CompositeWidget" sections="//@tabs.0/@sections.54 //@tabs.0/@sections.66" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleCompositeWidget">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="CompositeWidget"/>
+    </constraints>
+  </views>
+  <views name="Multiple CompositeWidget" sections="//@tabs.0/@sections.55" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleCompositeWidget">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="CompositeWidget"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+    </constraints>
+  </views>
+  <views name="Single Layout" sections="//@tabs.0/@sections.56 //@tabs.0/@sections.71" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleLayout">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Layout"/>
+    </constraints>
+  </views>
+  <views name="Multiple Layout" sections="//@tabs.0/@sections.57" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleLayout">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Layout"/>
+    </constraints>
+  </views>
+  <views name="Single WidgetAttribute" sections="//@tabs.0/@sections.58" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleWidgetAttribute">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="WidgetAttribute"/>
+    </constraints>
+  </views>
+  <views name="Multiple WidgetAttribute" sections="//@tabs.0/@sections.59" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleWidgetAttribute">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="WidgetAttribute"/>
+    </constraints>
+  </views>
+  <views name="Single ValueAttribute" sections="//@tabs.0/@sections.60" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleValueAttribute">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ValueAttribute"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+    </constraints>
+  </views>
+  <views name="Multiple ValueAttribute" sections="//@tabs.0/@sections.61" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleValueAttribute">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ValueAttribute"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+    </constraints>
+  </views>
+  <views name="Single ReferenceAttribute" sections="//@tabs.0/@sections.62" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleReferenceAttribute">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ReferenceAttribute"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+    </constraints>
+  </views>
+  <views name="Multiple ReferenceAttribute" sections="//@tabs.0/@sections.63" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleReferenceAttribute">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ReferenceAttribute"/>
+    </constraints>
+  </views>
+  <views name="Single UnknownComponent" sections="//@tabs.0/@sections.64" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleUnknownComponent">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="UnknownComponent"/>
+    </constraints>
+  </views>
+  <views name="Multiple UnknownComponent" sections="//@tabs.0/@sections.65" elementMultiplicity="-1" automaticContext="true">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleUnknownComponent">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="UnknownComponent"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/properties/ui"/>
+    </constraints>
+  </views>
+  <dataContexts name="properties" label="properties">
+    <elements xsi:type="contexts:DataContextPackage" name="environment">
+      <elements name="Environment">
+        <properties name="modelElementFactories" type="Reference" multiplicity="-1"/>
+        <properties name="constraintTypes" type="Reference" multiplicity="-1"/>
+        <properties name="widgetTypes" type="Reference" multiplicity="-1"/>
+        <properties name="propertyEditorTypes" type="Reference" multiplicity="-1"/>
+        <properties name="compositeWidgetTypes" type="Reference" multiplicity="-1"/>
+        <properties name="layoutTypes" type="Reference" multiplicity="-1"/>
+      </elements>
+      <elements name="PropertyEditorType" supertypes="//@dataContexts.0/@elements.0/@elements.2">
+        <properties name="type" type="Enumeration"/>
+        <properties name="multiplicity" type="Integer"/>
+      </elements>
+      <elements name="WidgetType">
+        <properties name="label"/>
+        <properties name="widgetClass"/>
+      </elements>
+      <elements name="CompositeWidgetType" supertypes="//@dataContexts.0/@elements.0/@elements.2"/>
+      <elements name="LayoutType" supertypes="//@dataContexts.0/@elements.0/@elements.2"/>
+      <elements name="ConstraintType">
+        <properties name="label"/>
+        <properties name="constraintClass"/>
+      </elements>
+      <elements name="ModelElementFactoryDescriptor">
+        <properties name="name"/>
+        <properties name="factoryClass"/>
+      </elements>
+      <elements name="StandardWidgetType" supertypes="//@dataContexts.0/@elements.0/@elements.2"/>
+    </elements>
+    <elements xsi:type="contexts:DataContextPackage" name="contexts">
+      <elements name="Context">
+        <properties name="name" description="The name of the Configuration"/>
+        <properties name="views" type="Reference" multiplicity="-1" description="The list of views for this Configuration"/>
+        <properties name="tabs" type="Reference" multiplicity="-1" description="The list of tabs for this Configuration"/>
+        <properties name="dataContexts" type="Reference" multiplicity="-1" description="The list of Data Contexts used by this configuration"/>
+        <properties name="dependencies" type="Reference" multiplicity="-1" description="The list of Configurations on which this configuration depends"/>
+      </elements>
+      <elements name="DisplayUnit">
+        <properties name="constraints" type="Reference" multiplicity="-1" description="The constraints associated to this Display Unit. The unit will be displayed only if at least one constraint is matched"/>
+      </elements>
+      <elements name="View" supertypes="//@dataContexts.0/@elements.1/@elements.1">
+        <properties name="name" description="The name of this view"/>
+        <properties name="sections" type="Reference" multiplicity="-1" description="The list of sections for this view"/>
+        <properties name="automaticContext" label="" type="Boolean" description="deprecated"/>
+        <properties name="datacontexts" type="Reference" multiplicity="-1" description="deprecated"/>
+        <properties name="elementMultiplicity" label="" type="Integer" description="The number of selected elements for which this view should be displayed. May be 1 (Single element), -1 (Any number of elements) or any positive integer (For a strict number of elements)"/>
+      </elements>
+      <elements name="Tab">
+        <properties name="label" description="The tab's label"/>
+        <properties name="id" description="The tab's id. The ID should be unique within its category"/>
+        <properties name="category" description="The tab's category"/>
+        <properties name="image" label="" description="The tab's image. The path should be of the form /&lt;plug-in id>/&lt;path to the image>"/>
+        <properties name="afterTab" label="" type="Reference" description="The tab after which this tab will be displayed. The afterTab's category should be the same as this tab's category"/>
+        <properties name="sections" type="Reference" multiplicity="-1" description="The list of sections that can be displayed in this tab"/>
+        <properties name="indented" label="" type="Boolean" description="Indicates if this tab should be indented. The preview isn't available for indentation"/>
+      </elements>
+      <elements name="Section" supertypes="//@dataContexts.0/@elements.1/@elements.1">
+        <properties name="name" description="The section's name. It should be unique within this Configuration"/>
+        <properties name="tab" type="Reference" description="The tab in which this section will be displayed"/>
+        <properties name="sectionFile" description="The XWT file containing this section's UI declaration"/>
+        <properties name="widget" label="" type="Reference" description="The SWT Widget representing this section"/>
+      </elements>
+      <elements name="DataContextElement">
+        <properties name="name" label="" description="The name of this Data Context element"/>
+        <properties name="properties" label="" type="Reference" multiplicity="-1" description="The list of properties of this Element"/>
+        <properties name="package" type="Reference" description="This element's package"/>
+        <properties name="supertypes" type="Reference" multiplicity="-1" description="This element's direct supertypes"/>
+      </elements>
+      <elements name="Property">
+        <properties name="name" label="" description="The name of the property"/>
+        <properties name="label" description="The label of this property"/>
+        <properties name="type" type="Enumeration" description="The type of this property"/>
+        <properties name="contextElement" type="Reference" description="The element to which this property belongs"/>
+        <properties name="multiplicity" type="Integer" description="The multiplicity of this property."/>
+        <properties name="description"/>
+      </elements>
+      <elements name="UnknownProperty" supertypes="//@dataContexts.0/@elements.1/@elements.6"/>
+      <elements name="DataContextPackage" supertypes="//@dataContexts.0/@elements.1/@elements.5">
+        <properties name="elements" type="Reference" multiplicity="-1" description="The list of Data Context elements contained into this package"/>
+      </elements>
+      <elements name="DataContextRoot" supertypes="//@dataContexts.0/@elements.1/@elements.8">
+        <properties name="label" label="" description="The label of this Data Context root"/>
+        <properties name="modelElementFactory" type="Reference" description="The factory used to instantiate to ModelElements associated to all the DataContext Elements inside this DataContext Root"/>
+      </elements>
+      <elements name="ConstraintDescriptor">
+        <properties name="name" description="The name of this constraint descriptor"/>
+        <properties name="display" type="Reference" description="The display unit (View or Section) associated to this constraint."/>
+        <properties name="constraintType" type="Reference" description="The type of this constraint"/>
+        <properties name="constraints" type="Reference" multiplicity="-1" description="The sub-constraints of this constraint (Used for Composite constraints - Not implemented yet)"/>
+        <properties name="properties" label="" type="Reference" multiplicity="-1" description="The list of properties used to instantiate this constraint (key - value pairs)"/>
+        <properties name="overriddenConstraints" type="Reference" multiplicity="-1" description="The constraints overridden by this constraint. If two constraints match a given selection, a constraint may override another one. In such a case, the overridden constraint's displayUnit won't be displayed. This property is dedicated to manual resolution of constraints : the Constraint classes may also implement an automatic resolution of conflicts"/>
+        <properties name="overrideable" type="Boolean" description="If set to false, this constraint cannot be automatically overridden by other constraints. Only constraints which explicitly specify they need to override this constraint (Through the &quot;overriddenConstraints&quot; property) will be able to disable it."/>
+      </elements>
+      <elements name="ConfigProperty">
+        <properties name="name" description="The name of the property"/>
+      </elements>
+      <elements name="ValueProperty" supertypes="//@dataContexts.0/@elements.1/@elements.11">
+        <properties name="value" description="The value of the property"/>
+      </elements>
+      <elements name="ReferenceProperty" supertypes="//@dataContexts.0/@elements.1/@elements.11">
+        <properties name="value" label="" type="Reference" description="The value of the property"/>
+      </elements>
+    </elements>
+    <elements xsi:type="contexts:DataContextPackage" name="ui">
+      <elements name="Element"/>
+      <elements name="UIComponent" supertypes="//@dataContexts.0/@elements.2/@elements.0">
+        <properties name="attributes" type="Reference" multiplicity="-1" description="The attributes used to instantiate this element. Set of key - value pairs."/>
+      </elements>
+      <elements name="Widget" supertypes="//@dataContexts.0/@elements.2/@elements.1"/>
+      <elements name="StandardWidget" supertypes="//@dataContexts.0/@elements.2/@elements.2">
+        <properties name="widgetType" type="Reference" description="The type of this widget"/>
+      </elements>
+      <elements name="PropertyEditor" supertypes="//@dataContexts.0/@elements.2/@elements.2">
+        <properties name="property" type="Reference" description="The property that this editor will edit"/>
+        <properties name="readOnly" type="Boolean" description="Indicates if this editor should be read-only. Note that in some cases, the read only state may be applied at runtime, independently of this field's value"/>
+        <properties name="widgetType" type="Reference" description="The type of this widget"/>
+        <properties name="showLabel" type="Boolean" description="If set to false, the property editor's label won't be displayed"/>
+        <properties name="customLabel" label="Custom label" description="Defines a custom label for this editor. The custom label will replace the property's default label (Only for this property editor)"/>
+      </elements>
+      <elements name="CompositeWidget" supertypes="//@dataContexts.0/@elements.2/@elements.2">
+        <properties name="layout" type="Reference" description="The layout of this widget"/>
+        <properties name="widgets" type="Reference" multiplicity="-1" description="The widgets directly contained into this Composite"/>
+        <properties name="widgetType" type="Reference" description="The type of this Composite widget."/>
+      </elements>
+      <elements name="Layout" supertypes="//@dataContexts.0/@elements.2/@elements.1">
+        <properties name="layoutType" label="" type="Reference" description="The type of this Layout"/>
+      </elements>
+      <elements name="WidgetAttribute" supertypes="//@dataContexts.0/@elements.2/@elements.0">
+        <properties name="name" description="The name of the attribute"/>
+      </elements>
+      <elements name="ValueAttribute" supertypes="//@dataContexts.0/@elements.2/@elements.7">
+        <properties name="value" description="The litteral value of this attribute"/>
+      </elements>
+      <elements name="ReferenceAttribute" supertypes="//@dataContexts.0/@elements.2/@elements.7">
+        <properties name="value" type="Reference" description="The value of this attribute"/>
+      </elements>
+      <elements name="UnknownComponent" supertypes="//@dataContexts.0/@elements.2/@elements.2">
+        <properties name="typeName" description="The fully-qualified name of this element"/>
+      </elements>
+    </elements>
+    <modelElementFactory href="pathmap://PPECustom/CustomizationEnvironment.xmi#//@modelElementFactories.2"/>
+  </dataContexts>
+  <dataContexts name="Custom" label="Custom">
+    <elements xsi:type="contexts:DataContextPackage" name="Attribute">
+      <elements name="GridLayout">
+        <properties name="numColumns" label="" type="Integer" description="The number of columns of this layout"/>
+        <properties name="makeColumnsEqualWidth" description="Indicates if all columns should have the same width"/>
+      </elements>
+      <elements name="Group">
+        <properties name="text" description="The label of this Group container"/>
+      </elements>
+      <elements name="Text">
+        <properties name="text" description="The text to display"/>
+      </elements>
+      <elements name="Label">
+        <properties name="text" label="Text" description="The text to display"/>
+      </elements>
+      <elements name="BooleanToggle">
+        <properties name="image" label="Image"/>
+      </elements>
+      <elements name="FileSelector">
+        <properties name="allowWorkspace"/>
+        <properties name="allowFileSystem"/>
+        <properties name="filteredExtension"/>
+      </elements>
+      <elements name="IntegerSpinner">
+        <properties name="minimum" label="" description="The minimum value that this spinner can return"/>
+        <properties name="maximum" description="The maximum value that this spinner can return"/>
+        <properties name="increment" description="The increment value for this spinner"/>
+      </elements>
+    </elements>
+    <modelElementFactory href="pathmap://PPECustom/CustomizationEnvironment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+  <dataContexts name="Properties" label="Properties">
+    <elements name="EcoreInstanceOf">
+      <properties name="className" label="Class Name" description="The name of the Class"/>
+      <properties name="nsUri" label="NS URI" description="The namespace URI (NsURI) of the EPackage containing the Class"/>
+    </elements>
+    <elements name="UMLInstanceOf">
+      <properties name="umlClassName" label="UML Class name" description="The name of the UML Metaclass"/>
+    </elements>
+    <elements name="OCLQuery">
+      <properties name="query" label="Query" type="Reference" description="The EMF Query"/>
+    </elements>
+    <elements name="Stereotype">
+      <properties name="stereotypeName" label="Stereotype name" description="The fully qualified name of the Stereotype. The separator is &quot;::&quot;. For example : MyProfile::MyPackage::MyStereotype"/>
+    </elements>
+    <modelElementFactory href="pathmap://PPECustom/CustomizationEnvironment.xmi#//@modelElementFactories.1"/>
+  </dataContexts>
+</contexts:Context>

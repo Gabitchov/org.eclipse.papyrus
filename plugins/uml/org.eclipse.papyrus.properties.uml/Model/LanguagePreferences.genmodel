@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.properties.uml/src-gen"
+    editDirectory="/org.eclipse.papyrus.properties.uml.edit/src-gen" editorDirectory="/org.eclipse.papyrus.properties.uml.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.properties.uml" modelName="LanguagePreferences"
+    testsDirectory="/org.eclipse.papyrus.properties.uml.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false">
+  <foreignModel>LanguagePreferences.ecore</foreignModel>
+  <genPackages prefix="languagepreferences" basePackage="org.eclipse.papyrus.properties.uml"
+      disposableProviderFactory="true" ecorePackage="LanguagePreferences.ecore#/">
+    <genClasses ecoreClass="LanguagePreferences.ecore#//Language">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute LanguagePreferences.ecore#//Language/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference LanguagePreferences.ecore#//Language/preferedEditor"/>
+    </genClasses>
+    <genClasses ecoreClass="LanguagePreferences.ecore#//Editor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute LanguagePreferences.ecore#//Editor/class"/>
+    </genClasses>
+    <genClasses ecoreClass="LanguagePreferences.ecore#//Preferences">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference LanguagePreferences.ecore#//Preferences/languages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference LanguagePreferences.ecore#//Preferences/editors"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference LanguagePreferences.ecore#//Preferences/defaultEditor"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_6wZsELlcEd6fI7WKgVDX2A">
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_6wZsEblcEd6fI7WKgVDX2A" name="boolean"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_6wZsErlcEd6fI7WKgVDX2A" name="byte"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_6wZsE7lcEd6fI7WKgVDX2A" name="char"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_6wZsFLlcEd6fI7WKgVDX2A" name="double"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_6wZsFblcEd6fI7WKgVDX2A" name="float"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_6wZsFrlcEd6fI7WKgVDX2A" name="int"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_6wZsF7lcEd6fI7WKgVDX2A" name="long"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_6wZsGLlcEd6fI7WKgVDX2A" name="short"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_6wZsGblcEd6fI7WKgVDX2A" name="org">
+    <packagedElement xmi:type="uml:Package" xmi:id="_6wZsGrlcEd6fI7WKgVDX2A" name="eclipse">
+      <packagedElement xmi:type="uml:Package" xmi:id="_6wZsG7lcEd6fI7WKgVDX2A" name="papyrus">
+        <packagedElement xmi:type="uml:Package" xmi:id="_6wZsHLlcEd6fI7WKgVDX2A" name="core">
+          <packagedElement xmi:type="uml:Package" xmi:id="_6wZsHblcEd6fI7WKgVDX2A" name="services">
+            <packagedElement xmi:type="uml:Class" xmi:id="_6wZsHrlcEd6fI7WKgVDX2A" name="ServiceException">
+              <generalization xmi:id="_6wZsH7lcEd6fI7WKgVDX2A" general="_6wa6T7lcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_6wZsILlcEd6fI7WKgVDX2A" name="serialVersionUID" visibility="private" type="_6wZsF7lcEd6fI7WKgVDX2A"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_6wZsIblcEd6fI7WKgVDX2A" name="ServiceEntry">
+              <generalization xmi:id="_6wZsIrlcEd6fI7WKgVDX2A" general="_6waTNrlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_6wZsI7lcEd6fI7WKgVDX2A" name="serviceInstance" visibility="private" type="_6waTI7lcEd6fI7WKgVDX2A" association="_6wa6VrlcEd6fI7WKgVDX2A"/>
+              <ownedOperation xmi:id="_6wZsJLlcEd6fI7WKgVDX2A" name="startService" visibility="public"/>
+              <ownedOperation xmi:id="_6wZsJblcEd6fI7WKgVDX2A" name="getServiceInstance" visibility="public">
+                <ownedParameter xmi:id="_6wZsJrlcEd6fI7WKgVDX2A" name="return" type="_6wa6ULlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6wZsJ7lcEd6fI7WKgVDX2A" name="disposeService" visibility="public"/>
+              <ownedOperation xmi:id="_6wZsKLlcEd6fI7WKgVDX2A" name="toString" visibility="public">
+                <ownedParameter xmi:id="_6waTILlcEd6fI7WKgVDX2A" name="return" type="_6wa6UblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6waTIblcEd6fI7WKgVDX2A" name="isStarted" visibility="public">
+                <ownedParameter xmi:id="_6waTIrlcEd6fI7WKgVDX2A" name="return" type="_6wZsEblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Interface" xmi:id="_6waTI7lcEd6fI7WKgVDX2A" name="IService">
+              <ownedOperation xmi:id="_6waTJLlcEd6fI7WKgVDX2A" name="initService" visibility="public">
+                <ownedParameter xmi:id="_6waTJblcEd6fI7WKgVDX2A" name="servicesRegistry" type="_6waTY7lcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6waTJrlcEd6fI7WKgVDX2A" name="startService" visibility="public"/>
+              <ownedOperation xmi:id="_6waTJ7lcEd6fI7WKgVDX2A" name="disposeService" visibility="public"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_6waTKLlcEd6fI7WKgVDX2A" name="ExtensionServicesRegistry">
+              <generalization xmi:id="_6waTKblcEd6fI7WKgVDX2A" general="_6waTY7lcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_6waTKrlcEd6fI7WKgVDX2A" name="SERVICE_EXTENSION_ID" visibility="public" type="_6wa6UblcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_6waTK7lcEd6fI7WKgVDX2A" name="extensionPointNamespace" visibility="protected" type="_6wa6UblcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_6waTLLlcEd6fI7WKgVDX2A" name="SERVICE_EXTENSIONPOINT" visibility="public" type="_6wa6UblcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_6waTLblcEd6fI7WKgVDX2A" name="CONTEXTCLASS_ATTRIBUTE" visibility="public" type="_6wa6UblcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_6waTLrlcEd6fI7WKgVDX2A" name="STARTKIND_PROPERTY" visibility="private" type="_6wa6UblcEd6fI7WKgVDX2A"/>
+              <ownedOperation xmi:id="_6waTL7lcEd6fI7WKgVDX2A" name="registerDeclaredExtensions" visibility="private"/>
+              <ownedOperation xmi:id="_6waTMLlcEd6fI7WKgVDX2A" name="readServiceDescriptor" visibility="private">
+                <ownedParameter xmi:id="_6waTMblcEd6fI7WKgVDX2A" name="ele" type="_6wa6UrlcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_6waTMrlcEd6fI7WKgVDX2A" name="return" type="_6waTSLlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_6waTM7lcEd6fI7WKgVDX2A" name="ServiceNotFoundException">
+              <generalization xmi:id="_6waTNLlcEd6fI7WKgVDX2A" general="_6wZsHrlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_6waTNblcEd6fI7WKgVDX2A" name="serialVersionUID" visibility="private" type="_6wZsF7lcEd6fI7WKgVDX2A"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_6waTNrlcEd6fI7WKgVDX2A" name="AbstractServiceEntry">
+              <ownedAttribute xmi:id="_6waTN7lcEd6fI7WKgVDX2A" name="registry" visibility="protected" type="_6waTY7lcEd6fI7WKgVDX2A" association="_6wa6WLlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_6waTOLlcEd6fI7WKgVDX2A" name="serviceDescriptor" visibility="protected" type="_6waTSLlcEd6fI7WKgVDX2A" association="_6wa6WrlcEd6fI7WKgVDX2A"/>
+              <ownedOperation xmi:id="_6waTOblcEd6fI7WKgVDX2A" name="startup" visibility="public"/>
+              <ownedOperation xmi:id="_6waTOrlcEd6fI7WKgVDX2A" name="getDescriptor" visibility="public">
+                <ownedParameter xmi:id="_6waTO7lcEd6fI7WKgVDX2A" name="return" type="_6waTSLlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6waTPLlcEd6fI7WKgVDX2A" name="createService" visibility="protected">
+                <ownedParameter xmi:id="_6waTPblcEd6fI7WKgVDX2A" name="return" type="_6waTI7lcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6waTPrlcEd6fI7WKgVDX2A" name="instanciateService" visibility="protected">
+                <ownedParameter xmi:id="_6waTP7lcEd6fI7WKgVDX2A" name="return" type="_6wa6ULlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6waTQLlcEd6fI7WKgVDX2A" name="loadClass" visibility="private">
+                <ownedParameter xmi:id="_6waTQblcEd6fI7WKgVDX2A" name="return" type="_6wa6U7lcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6waTQrlcEd6fI7WKgVDX2A" name="disposeService" visibility="public"/>
+              <ownedOperation xmi:id="_6waTQ7lcEd6fI7WKgVDX2A" name="getServiceInstance" visibility="public" isAbstract="true">
+                <ownedParameter xmi:id="_6waTRLlcEd6fI7WKgVDX2A" name="return" type="_6wa6ULlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6waTRblcEd6fI7WKgVDX2A" name="isStarted" visibility="public" isAbstract="true">
+                <ownedParameter xmi:id="_6waTRrlcEd6fI7WKgVDX2A" name="return" type="_6wZsEblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6waTR7lcEd6fI7WKgVDX2A" name="startService" visibility="public"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_6waTSLlcEd6fI7WKgVDX2A" name="ServiceDescriptor">
+              <ownedAttribute xmi:id="_6waTSblcEd6fI7WKgVDX2A" name="serviceClassname" visibility="private" type="_6wa6UblcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_6waTSrlcEd6fI7WKgVDX2A" name="serviceStartKind" visibility="private" type="_6wa6RblcEd6fI7WKgVDX2A" association="_6wa6XLlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_6waTS7lcEd6fI7WKgVDX2A" name="priority" visibility="private" type="_6wZsFrlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_6waTTLlcEd6fI7WKgVDX2A" name="key" visibility="private" type="_6wa6ULlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_6waTTblcEd6fI7WKgVDX2A" name="classBundleID" visibility="private" type="_6wa6UblcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_6waTTrlcEd6fI7WKgVDX2A" name="useClassTypeAsKey" visibility="private" type="_6wZsEblcEd6fI7WKgVDX2A"/>
+              <ownedOperation xmi:id="_6waTT7lcEd6fI7WKgVDX2A" name="getServiceStartKind" visibility="public">
+                <ownedParameter xmi:id="_6waTULlcEd6fI7WKgVDX2A" name="return" type="_6wa6RblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6waTUblcEd6fI7WKgVDX2A" name="isStartAtStartup" visibility="public">
+                <ownedParameter xmi:id="_6waTUrlcEd6fI7WKgVDX2A" name="return" type="_6wZsEblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6waTU7lcEd6fI7WKgVDX2A" name="getPriority" visibility="public">
+                <ownedParameter xmi:id="_6waTVLlcEd6fI7WKgVDX2A" name="return" type="_6wZsFrlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6waTVblcEd6fI7WKgVDX2A" name="getKey" visibility="public">
+                <ownedParameter xmi:id="_6waTVrlcEd6fI7WKgVDX2A" name="return" type="_6wa6ULlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6waTV7lcEd6fI7WKgVDX2A" name="getServiceClassname" visibility="public">
+                <ownedParameter xmi:id="_6waTWLlcEd6fI7WKgVDX2A" name="return" type="_6wa6UblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6waTWblcEd6fI7WKgVDX2A" name="getClassBundleID" visibility="public">
+                <ownedParameter xmi:id="_6waTWrlcEd6fI7WKgVDX2A" name="return" type="_6wa6UblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6waTW7lcEd6fI7WKgVDX2A" name="isUseClassTypeAsKey" visibility="public">
+                <ownedParameter xmi:id="_6waTXLlcEd6fI7WKgVDX2A" name="return" type="_6wZsEblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6waTXblcEd6fI7WKgVDX2A" name="setClassBundleID" visibility="public">
+                <ownedParameter xmi:id="_6waTXrlcEd6fI7WKgVDX2A" name="classBundleId" type="_6wa6UblcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6waTX7lcEd6fI7WKgVDX2A" name="setUseClassTypeAsKey" visibility="public">
+                <ownedParameter xmi:id="_6waTYLlcEd6fI7WKgVDX2A" name="useClassTypeAsKey" type="_6wZsEblcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6waTYblcEd6fI7WKgVDX2A" name="toString" visibility="public">
+                <ownedParameter xmi:id="_6waTYrlcEd6fI7WKgVDX2A" name="return" type="_6wa6UblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_6waTY7lcEd6fI7WKgVDX2A" name="ServicesRegistry">
+              <ownedAttribute xmi:id="_6waTZLlcEd6fI7WKgVDX2A" name="log" visibility="protected" type="_6wa6VLlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_6waTZblcEd6fI7WKgVDX2A" name="services" visibility="private" type="_6wa6VblcEd6fI7WKgVDX2A"/>
+              <ownedOperation xmi:id="_6waTZrlcEd6fI7WKgVDX2A" name="add" visibility="public">
+                <ownedParameter xmi:id="_6waTZ7lcEd6fI7WKgVDX2A" name="serviceDescriptor" type="_6waTSLlcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6wa6MLlcEd6fI7WKgVDX2A" name="add" visibility="public">
+                <ownedParameter xmi:id="_6wa6MblcEd6fI7WKgVDX2A" name="key" type="_6wa6ULlcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_6wa6MrlcEd6fI7WKgVDX2A" name="priority" type="_6wZsFrlcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_6wa6M7lcEd6fI7WKgVDX2A" name="serviceInstance" type="_6waTI7lcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6wa6NLlcEd6fI7WKgVDX2A" name="add" visibility="public">
+                <ownedParameter xmi:id="_6wa6NblcEd6fI7WKgVDX2A" name="key" type="_6wa6ULlcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_6wa6NrlcEd6fI7WKgVDX2A" name="priority" type="_6wZsFrlcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_6wa6N7lcEd6fI7WKgVDX2A" name="serviceInstance" type="_6wa6ULlcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6wa6OLlcEd6fI7WKgVDX2A" name="remove" visibility="public">
+                <ownedParameter xmi:id="_6wa6OblcEd6fI7WKgVDX2A" name="serviceDescriptor" type="_6waTSLlcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6wa6OrlcEd6fI7WKgVDX2A" name="remove" visibility="public">
+                <ownedParameter xmi:id="_6wa6O7lcEd6fI7WKgVDX2A" name="key" type="_6wa6ULlcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6wa6PLlcEd6fI7WKgVDX2A" name="getService" visibility="public">
+                <ownedParameter xmi:id="_6wa6PblcEd6fI7WKgVDX2A" name="key" type="_6wa6ULlcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_6wa6PrlcEd6fI7WKgVDX2A" name="return" type="_6wa6ULlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6wa6P7lcEd6fI7WKgVDX2A" name="isStarted" visibility="public">
+                <ownedParameter xmi:id="_6wa6QLlcEd6fI7WKgVDX2A" name="key" type="_6wa6ULlcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_6wa6QblcEd6fI7WKgVDX2A" name="return" type="_6wZsEblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6wa6QrlcEd6fI7WKgVDX2A" name="startRegistry" visibility="public"/>
+              <ownedOperation xmi:id="_6wa6Q7lcEd6fI7WKgVDX2A" name="startServices" visibility="private"/>
+              <ownedOperation xmi:id="_6wa6RLlcEd6fI7WKgVDX2A" name="disposeService" visibility="public"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_6wa6RblcEd6fI7WKgVDX2A" name="ServiceStartKind">
+              <ownedAttribute xmi:id="_6wa6RrlcEd6fI7WKgVDX2A" name="LAZY" type="_6wa6RblcEd6fI7WKgVDX2A" association="_6wa6XrlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_6wa6R7lcEd6fI7WKgVDX2A" name="STARTUP" type="_6wa6RblcEd6fI7WKgVDX2A" association="_6wa6XrlcEd6fI7WKgVDX2A"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_6wa6SLlcEd6fI7WKgVDX2A" name="PojoServiceEntry">
+              <generalization xmi:id="_6wa6SblcEd6fI7WKgVDX2A" general="_6waTNrlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_6wa6SrlcEd6fI7WKgVDX2A" name="serviceInstance" visibility="private" type="_6wa6ULlcEd6fI7WKgVDX2A"/>
+              <ownedOperation xmi:id="_6wa6S7lcEd6fI7WKgVDX2A" name="getServiceInstance" visibility="public">
+                <ownedParameter xmi:id="_6wa6TLlcEd6fI7WKgVDX2A" name="return" type="_6wa6ULlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_6wa6TblcEd6fI7WKgVDX2A" name="isStarted" visibility="public">
+                <ownedParameter xmi:id="_6wa6TrlcEd6fI7WKgVDX2A" name="return" type="_6wZsEblcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_6wa6T7lcEd6fI7WKgVDX2A" name="Exception"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_6wa6ULlcEd6fI7WKgVDX2A" name="Object"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_6wa6UblcEd6fI7WKgVDX2A" name="String"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_6wa6UrlcEd6fI7WKgVDX2A" name="IConfigurationElement"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_6wa6U7lcEd6fI7WKgVDX2A" name="Class"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_6wa6VLlcEd6fI7WKgVDX2A" name="Logger"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_6wa6VblcEd6fI7WKgVDX2A" name="Map"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_6wa6VrlcEd6fI7WKgVDX2A" memberEnd="_6wZsI7lcEd6fI7WKgVDX2A _6wa6V7lcEd6fI7WKgVDX2A">
+              <ownedEnd xmi:id="_6wa6V7lcEd6fI7WKgVDX2A" name="target" type="_6wZsIblcEd6fI7WKgVDX2A" association="_6wa6VrlcEd6fI7WKgVDX2A"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Association" xmi:id="_6wa6WLlcEd6fI7WKgVDX2A" memberEnd="_6waTN7lcEd6fI7WKgVDX2A _6wa6WblcEd6fI7WKgVDX2A">
+              <ownedEnd xmi:id="_6wa6WblcEd6fI7WKgVDX2A" name="target" type="_6waTNrlcEd6fI7WKgVDX2A" association="_6wa6WLlcEd6fI7WKgVDX2A"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Association" xmi:id="_6wa6WrlcEd6fI7WKgVDX2A" memberEnd="_6waTOLlcEd6fI7WKgVDX2A _6wa6W7lcEd6fI7WKgVDX2A">
+              <ownedEnd xmi:id="_6wa6W7lcEd6fI7WKgVDX2A" name="target" type="_6waTNrlcEd6fI7WKgVDX2A" association="_6wa6WrlcEd6fI7WKgVDX2A"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Association" xmi:id="_6wa6XLlcEd6fI7WKgVDX2A" memberEnd="_6waTSrlcEd6fI7WKgVDX2A _6wa6XblcEd6fI7WKgVDX2A">
+              <ownedEnd xmi:id="_6wa6XblcEd6fI7WKgVDX2A" name="target" type="_6waTSLlcEd6fI7WKgVDX2A" association="_6wa6XLlcEd6fI7WKgVDX2A"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Association" xmi:id="_6wa6XrlcEd6fI7WKgVDX2A" memberEnd="_6wa6RrlcEd6fI7WKgVDX2A _6wa6R7lcEd6fI7WKgVDX2A"/>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

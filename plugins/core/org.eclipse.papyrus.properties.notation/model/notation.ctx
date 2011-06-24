@@ -1,0 +1,1595 @@
+<?xml version="1.0" encoding="ASCII"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="notation">
+  <dependencies href="pathmap://UML_CONTEXT/UML.ctx#/"/>
+  <tabs label="Appearance" id="appearance" category="org.eclipse.papyrus">
+    <afterTab href="pathmap://UML_CONTEXT/UML.ctx#//@tabs.1"/>
+    <sections name="Single Edge" sectionFile="ui/SingleEdge.xwt">
+      <widget href="ui/SingleEdge.xwt#/"/>
+    </sections>
+    <sections name="Single Node" sectionFile="ui/SingleNode.xwt">
+      <widget href="ui/SingleNode.xwt#/"/>
+    </sections>
+    <sections name="Single Style" sectionFile="ui/SingleStyle.xwt">
+      <widget href="ui/SingleStyle.xwt#/"/>
+    </sections>
+    <sections name="FillStyle" sectionFile="ui/FillStyle.xwt">
+      <widget href="ui/FillStyle.xwt#/"/>
+    </sections>
+    <sections name="Single LineStyle" sectionFile="ui/LineStyle.xwt">
+      <widget href="ui/LineStyle.xwt#/"/>
+    </sections>
+    <sections name="Single FontStyle" sectionFile="ui/FontStyle.xwt">
+      <widget href="ui/FontStyle.xwt#/"/>
+    </sections>
+    <sections name="Single TitleStyle" sectionFile="ui/SingleTitleStyle.xwt">
+      <widget href="ui/SingleTitleStyle.xwt#/"/>
+    </sections>
+    <sections name="Single SortingStyle" sectionFile="ui/SingleSortingStyle.xwt">
+      <widget href="ui/SingleSortingStyle.xwt#/"/>
+    </sections>
+    <sections name="Single DescriptionStyle" sectionFile="ui/SingleDescriptionStyle.xwt">
+      <widget href="ui/SingleDescriptionStyle.xwt#/"/>
+    </sections>
+    <sections name="Single LayoutConstraint" sectionFile="ui/SingleLayoutConstraint.xwt">
+      <widget href="ui/SingleLayoutConstraint.xwt#/"/>
+    </sections>
+    <sections name="Single Size" sectionFile="ui/SingleSize.xwt">
+      <widget href="ui/SingleSize.xwt#/"/>
+    </sections>
+    <sections name="Single Location" sectionFile="ui/SingleLocation.xwt">
+      <widget href="ui/SingleLocation.xwt#/"/>
+    </sections>
+    <sections name="Single Bounds" sectionFile="ui/SingleBounds.xwt">
+      <widget href="ui/SingleBounds.xwt#/"/>
+    </sections>
+    <sections name="Single Ratio" sectionFile="ui/SingleRatio.xwt">
+      <widget href="ui/SingleRatio.xwt#/"/>
+    </sections>
+    <sections name="Single Anchor" sectionFile="ui/SingleAnchor.xwt">
+      <widget href="ui/SingleAnchor.xwt#/"/>
+    </sections>
+    <sections name="Single Bendpoints" sectionFile="ui/SingleBendpoints.xwt">
+      <widget href="ui/SingleBendpoints.xwt#/"/>
+    </sections>
+    <sections name="Single IdentityAnchor" sectionFile="ui/SingleIdentityAnchor.xwt">
+      <widget href="ui/SingleIdentityAnchor.xwt#/"/>
+    </sections>
+    <sections name="Single RoutingStyle" sectionFile="ui/SingleRoutingStyle.xwt">
+      <widget href="ui/SingleRoutingStyle.xwt#/"/>
+    </sections>
+    <sections name="Single View" sectionFile="ui/SingleView.xwt">
+      <widget href="ui/SingleView.xwt#/"/>
+    </sections>
+    <sections name="Single RelativeBendpoints" sectionFile="ui/SingleRelativeBendpoints.xwt">
+      <widget href="ui/SingleRelativeBendpoints.xwt#/"/>
+    </sections>
+    <sections name="Single Diagram" sectionFile="ui/SingleDiagram.xwt">
+      <widget href="ui/SingleDiagram.xwt#/"/>
+    </sections>
+    <sections name="Single Image" sectionFile="ui/SingleImage.xwt">
+      <widget href="ui/SingleImage.xwt#/"/>
+    </sections>
+    <sections name="Single CanonicalStyle" sectionFile="ui/SingleCanonicalStyle.xwt">
+      <widget href="ui/SingleCanonicalStyle.xwt#/"/>
+    </sections>
+    <sections name="Single ShapeStyle" sectionFile="ui/ShapeStyle.xwt">
+      <widget href="ui/ShapeStyle.xwt#/"/>
+    </sections>
+    <sections name="Single ConnectorStyle" sectionFile="ui/SingleConnectorStyle.xwt">
+      <widget href="ui/SingleConnectorStyle.xwt#/"/>
+    </sections>
+    <sections name="Single PageStyle" sectionFile="ui/SinglePageStyle.xwt">
+      <widget href="ui/SinglePageStyle.xwt#/"/>
+    </sections>
+    <sections name="Single DrawerStyle" sectionFile="ui/SingleDrawerStyle.xwt">
+      <widget href="ui/SingleDrawerStyle.xwt#/"/>
+    </sections>
+    <sections name="Single GuideStyle" sectionFile="ui/SingleGuideStyle.xwt">
+      <widget href="ui/SingleGuideStyle.xwt#/"/>
+    </sections>
+    <sections name="Single Guide" sectionFile="ui/SingleGuide.xwt">
+      <widget href="ui/SingleGuide.xwt#/"/>
+    </sections>
+    <sections name="Single NodeEntry" sectionFile="ui/SingleNodeEntry.xwt">
+      <widget href="ui/SingleNodeEntry.xwt#/"/>
+    </sections>
+    <sections name="Single FilteringStyle" sectionFile="ui/SingleFilteringStyle.xwt">
+      <widget href="ui/SingleFilteringStyle.xwt#/"/>
+    </sections>
+    <sections name="Single DiagramStyle" sectionFile="ui/SingleDiagramStyle.xwt">
+      <widget href="ui/SingleDiagramStyle.xwt#/"/>
+    </sections>
+    <sections name="Single ImageStyle" sectionFile="ui/SingleImageStyle.xwt">
+      <widget href="ui/SingleImageStyle.xwt#/"/>
+    </sections>
+    <sections name="Single ImageBufferStyle" sectionFile="ui/SingleImageBufferStyle.xwt">
+      <widget href="ui/SingleImageBufferStyle.xwt#/"/>
+    </sections>
+    <sections name="Single PropertiesSetStyle" sectionFile="ui/SinglePropertiesSetStyle.xwt">
+      <widget href="ui/SinglePropertiesSetStyle.xwt#/"/>
+    </sections>
+    <sections name="Single StringToPropertyValueMapEntry" sectionFile="ui/SingleStringToPropertyValueMapEntry.xwt">
+      <widget href="ui/SingleStringToPropertyValueMapEntry.xwt#/"/>
+    </sections>
+    <sections name="Single PropertyValue" sectionFile="ui/SinglePropertyValue.xwt">
+      <widget href="ui/SinglePropertyValue.xwt#/"/>
+    </sections>
+    <sections name="Single SingleValueStyle" sectionFile="ui/SingleSingleValueStyle.xwt">
+      <widget href="ui/SingleSingleValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Single ListValueStyle" sectionFile="ui/SingleListValueStyle.xwt">
+      <widget href="ui/SingleListValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Single NamedStyle" sectionFile="ui/SingleNamedStyle.xwt">
+      <widget href="ui/SingleNamedStyle.xwt#/"/>
+    </sections>
+    <sections name="Single StringObjectConverter" sectionFile="ui/SingleStringObjectConverter.xwt">
+      <widget href="ui/SingleStringObjectConverter.xwt#/"/>
+    </sections>
+    <sections name="Single DataTypeStyle" sectionFile="ui/SingleDataTypeStyle.xwt">
+      <widget href="ui/SingleDataTypeStyle.xwt#/"/>
+    </sections>
+    <sections name="Single IntValueStyle" sectionFile="ui/SingleIntValueStyle.xwt">
+      <widget href="ui/SingleIntValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Single IntListValueStyle" sectionFile="ui/SingleIntListValueStyle.xwt">
+      <widget href="ui/SingleIntListValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Single BooleanValueStyle" sectionFile="ui/SingleBooleanValueStyle.xwt">
+      <widget href="ui/SingleBooleanValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Single DoubleValueStyle" sectionFile="ui/SingleDoubleValueStyle.xwt">
+      <widget href="ui/SingleDoubleValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Single DoubleListValueStyle" sectionFile="ui/SingleDoubleListValueStyle.xwt">
+      <widget href="ui/SingleDoubleListValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Single StringValueStyle" sectionFile="ui/SingleStringValueStyle.xwt">
+      <widget href="ui/SingleStringValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Single StringListValueStyle" sectionFile="ui/SingleStringListValueStyle.xwt">
+      <widget href="ui/SingleStringListValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Single EObjectValueStyle" sectionFile="ui/SingleEObjectValueStyle.xwt">
+      <widget href="ui/SingleEObjectValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Single EObjectListValueStyle" sectionFile="ui/SingleEObjectListValueStyle.xwt">
+      <widget href="ui/SingleEObjectListValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Single ByteArrayValueStyle" sectionFile="ui/SingleByteArrayValueStyle.xwt">
+      <widget href="ui/SingleByteArrayValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Single BooleanListValueStyle" sectionFile="ui/SingleBooleanListValueStyle.xwt">
+      <widget href="ui/SingleBooleanListValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Single HintedDiagramLinkStyle" sectionFile="ui/SingleHintedDiagramLinkStyle.xwt">
+      <widget href="ui/SingleHintedDiagramLinkStyle.xwt#/"/>
+    </sections>
+    <sections name="Single DiagramLinkStyle" sectionFile="ui/SingleDiagramLinkStyle.xwt">
+      <widget href="ui/SingleDiagramLinkStyle.xwt#/"/>
+    </sections>
+    <sections name="Single MultiDiagramLinkStyle" sectionFile="ui/SingleMultiDiagramLinkStyle.xwt">
+      <widget href="ui/SingleMultiDiagramLinkStyle.xwt#/"/>
+    </sections>
+    <sections name="Single TextStyle" sectionFile="ui/SingleTextStyle.xwt">
+      <widget href="ui/SingleTextStyle.xwt#/"/>
+    </sections>
+    <sections name="Single LineTypeStyle" sectionFile="ui/SingleLineTypeStyle.xwt">
+      <widget href="ui/SingleLineTypeStyle.xwt#/"/>
+    </sections>
+    <sections name="Single ArrowStyle" sectionFile="ui/SingleArrowStyle.xwt">
+      <widget href="ui/SingleArrowStyle.xwt#/"/>
+    </sections>
+    <sections name="Single Shape" sectionFile="ui/SingleShape.xwt">
+      <widget href="ui/SingleShape.xwt#/"/>
+    </sections>
+    <sections name="Single Compartment" sectionFile="ui/SingleCompartment.xwt">
+      <widget href="ui/SingleCompartment.xwt#/"/>
+    </sections>
+    <sections name="Single ListCompartment" sectionFile="ui/SingleListCompartment.xwt">
+      <widget href="ui/SingleListCompartment.xwt#/"/>
+    </sections>
+    <sections name="Single Connector" sectionFile="ui/SingleConnector.xwt">
+      <widget href="ui/SingleConnector.xwt#/"/>
+    </sections>
+    <sections name="Single StandardDiagram" sectionFile="ui/SingleStandardDiagram.xwt">
+      <widget href="ui/SingleStandardDiagram.xwt#/"/>
+    </sections>
+    <sections name="Single DecorationNode" sectionFile="ui/SingleDecorationNode.xwt">
+      <widget href="ui/SingleDecorationNode.xwt#/"/>
+    </sections>
+    <sections name="Single BasicDecorationNode" sectionFile="ui/SingleBasicDecorationNode.xwt">
+      <widget href="ui/SingleBasicDecorationNode.xwt#/"/>
+    </sections>
+    <sections name="Single BasicCompartment" sectionFile="ui/SingleBasicCompartment.xwt">
+      <widget href="ui/SingleBasicCompartment.xwt#/"/>
+    </sections>
+    <sections name="Single BasicSemanticCompartment" sectionFile="ui/SingleBasicSemanticCompartment.xwt">
+      <widget href="ui/SingleBasicSemanticCompartment.xwt#/"/>
+    </sections>
+    <sections name="Single SemanticListCompartment" sectionFile="ui/SingleSemanticListCompartment.xwt">
+      <widget href="ui/SingleSemanticListCompartment.xwt#/"/>
+    </sections>
+    <sections name="Single RoundedCornersStyle" sectionFile="ui/RoundedCornersStyle.xwt">
+      <widget href="ui/RoundedCornersStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple Edge" sectionFile="ui/MultipleEdge.xwt">
+      <widget href="ui/MultipleEdge.xwt#/"/>
+    </sections>
+    <sections name="Multiple Node" sectionFile="ui/MultipleNode.xwt">
+      <widget href="ui/MultipleNode.xwt#/"/>
+    </sections>
+    <sections name="Multiple Style" sectionFile="ui/MultipleStyle.xwt">
+      <widget href="ui/MultipleStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple TitleStyle" sectionFile="ui/MultipleTitleStyle.xwt">
+      <widget href="ui/MultipleTitleStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple SortingStyle" sectionFile="ui/MultipleSortingStyle.xwt">
+      <widget href="ui/MultipleSortingStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple DescriptionStyle" sectionFile="ui/MultipleDescriptionStyle.xwt">
+      <widget href="ui/MultipleDescriptionStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple LayoutConstraint" sectionFile="ui/MultipleLayoutConstraint.xwt">
+      <widget href="ui/MultipleLayoutConstraint.xwt#/"/>
+    </sections>
+    <sections name="Multiple Size" sectionFile="ui/MultipleSize.xwt">
+      <widget href="ui/MultipleSize.xwt#/"/>
+    </sections>
+    <sections name="Multiple Location" sectionFile="ui/MultipleLocation.xwt">
+      <widget href="ui/MultipleLocation.xwt#/"/>
+    </sections>
+    <sections name="Multiple Bounds" sectionFile="ui/MultipleBounds.xwt">
+      <widget href="ui/MultipleBounds.xwt#/"/>
+    </sections>
+    <sections name="Multiple Ratio" sectionFile="ui/MultipleRatio.xwt">
+      <widget href="ui/MultipleRatio.xwt#/"/>
+    </sections>
+    <sections name="Multiple Anchor" sectionFile="ui/MultipleAnchor.xwt">
+      <widget href="ui/MultipleAnchor.xwt#/"/>
+    </sections>
+    <sections name="Multiple Bendpoints" sectionFile="ui/MultipleBendpoints.xwt">
+      <widget href="ui/MultipleBendpoints.xwt#/"/>
+    </sections>
+    <sections name="Multiple IdentityAnchor" sectionFile="ui/MultipleIdentityAnchor.xwt">
+      <widget href="ui/MultipleIdentityAnchor.xwt#/"/>
+    </sections>
+    <sections name="Multiple RoutingStyle" sectionFile="ui/MultipleRoutingStyle.xwt">
+      <widget href="ui/MultipleRoutingStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple View" sectionFile="ui/MultipleView.xwt">
+      <widget href="ui/MultipleView.xwt#/"/>
+    </sections>
+    <sections name="Multiple RelativeBendpoints" sectionFile="ui/MultipleRelativeBendpoints.xwt">
+      <widget href="ui/MultipleRelativeBendpoints.xwt#/"/>
+    </sections>
+    <sections name="Multiple Diagram" sectionFile="ui/MultipleDiagram.xwt">
+      <widget href="ui/MultipleDiagram.xwt#/"/>
+    </sections>
+    <sections name="Multiple Image" sectionFile="ui/MultipleImage.xwt">
+      <widget href="ui/MultipleImage.xwt#/"/>
+    </sections>
+    <sections name="Multiple CanonicalStyle" sectionFile="ui/MultipleCanonicalStyle.xwt">
+      <widget href="ui/MultipleCanonicalStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple ConnectorStyle" sectionFile="ui/MultipleConnectorStyle.xwt">
+      <widget href="ui/MultipleConnectorStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple PageStyle" sectionFile="ui/MultiplePageStyle.xwt">
+      <widget href="ui/MultiplePageStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple DrawerStyle" sectionFile="ui/MultipleDrawerStyle.xwt">
+      <widget href="ui/MultipleDrawerStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple GuideStyle" sectionFile="ui/MultipleGuideStyle.xwt">
+      <widget href="ui/MultipleGuideStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple Guide" sectionFile="ui/MultipleGuide.xwt">
+      <widget href="ui/MultipleGuide.xwt#/"/>
+    </sections>
+    <sections name="Multiple NodeEntry" sectionFile="ui/MultipleNodeEntry.xwt">
+      <widget href="ui/MultipleNodeEntry.xwt#/"/>
+    </sections>
+    <sections name="Multiple FilteringStyle" sectionFile="ui/MultipleFilteringStyle.xwt">
+      <widget href="ui/MultipleFilteringStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple DiagramStyle" sectionFile="ui/MultipleDiagramStyle.xwt">
+      <widget href="ui/MultipleDiagramStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple ImageStyle" sectionFile="ui/MultipleImageStyle.xwt">
+      <widget href="ui/MultipleImageStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple ImageBufferStyle" sectionFile="ui/MultipleImageBufferStyle.xwt">
+      <widget href="ui/MultipleImageBufferStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple PropertiesSetStyle" sectionFile="ui/MultiplePropertiesSetStyle.xwt">
+      <widget href="ui/MultiplePropertiesSetStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple StringToPropertyValueMapEntry" sectionFile="ui/MultipleStringToPropertyValueMapEntry.xwt">
+      <widget href="ui/MultipleStringToPropertyValueMapEntry.xwt#/"/>
+    </sections>
+    <sections name="Multiple PropertyValue" sectionFile="ui/MultiplePropertyValue.xwt">
+      <widget href="ui/MultiplePropertyValue.xwt#/"/>
+    </sections>
+    <sections name="Multiple SingleValueStyle" sectionFile="ui/MultipleSingleValueStyle.xwt">
+      <widget href="ui/MultipleSingleValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple ListValueStyle" sectionFile="ui/MultipleListValueStyle.xwt">
+      <widget href="ui/MultipleListValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple NamedStyle" sectionFile="ui/MultipleNamedStyle.xwt">
+      <widget href="ui/MultipleNamedStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple StringObjectConverter" sectionFile="ui/MultipleStringObjectConverter.xwt">
+      <widget href="ui/MultipleStringObjectConverter.xwt#/"/>
+    </sections>
+    <sections name="Multiple DataTypeStyle" sectionFile="ui/MultipleDataTypeStyle.xwt">
+      <widget href="ui/MultipleDataTypeStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple IntValueStyle" sectionFile="ui/MultipleIntValueStyle.xwt">
+      <widget href="ui/MultipleIntValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple IntListValueStyle" sectionFile="ui/MultipleIntListValueStyle.xwt">
+      <widget href="ui/MultipleIntListValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple BooleanValueStyle" sectionFile="ui/MultipleBooleanValueStyle.xwt">
+      <widget href="ui/MultipleBooleanValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple DoubleValueStyle" sectionFile="ui/MultipleDoubleValueStyle.xwt">
+      <widget href="ui/MultipleDoubleValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple DoubleListValueStyle" sectionFile="ui/MultipleDoubleListValueStyle.xwt">
+      <widget href="ui/MultipleDoubleListValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple StringValueStyle" sectionFile="ui/MultipleStringValueStyle.xwt">
+      <widget href="ui/MultipleStringValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple StringListValueStyle" sectionFile="ui/MultipleStringListValueStyle.xwt">
+      <widget href="ui/MultipleStringListValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple EObjectValueStyle" sectionFile="ui/MultipleEObjectValueStyle.xwt">
+      <widget href="ui/MultipleEObjectValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple EObjectListValueStyle" sectionFile="ui/MultipleEObjectListValueStyle.xwt">
+      <widget href="ui/MultipleEObjectListValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple ByteArrayValueStyle" sectionFile="ui/MultipleByteArrayValueStyle.xwt">
+      <widget href="ui/MultipleByteArrayValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple BooleanListValueStyle" sectionFile="ui/MultipleBooleanListValueStyle.xwt">
+      <widget href="ui/MultipleBooleanListValueStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple HintedDiagramLinkStyle" sectionFile="ui/MultipleHintedDiagramLinkStyle.xwt">
+      <widget href="ui/MultipleHintedDiagramLinkStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple DiagramLinkStyle" sectionFile="ui/MultipleDiagramLinkStyle.xwt">
+      <widget href="ui/MultipleDiagramLinkStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple MultiDiagramLinkStyle" sectionFile="ui/MultipleMultiDiagramLinkStyle.xwt">
+      <widget href="ui/MultipleMultiDiagramLinkStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple TextStyle" sectionFile="ui/MultipleTextStyle.xwt">
+      <widget href="ui/MultipleTextStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple LineTypeStyle" sectionFile="ui/MultipleLineTypeStyle.xwt">
+      <widget href="ui/MultipleLineTypeStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple ArrowStyle" sectionFile="ui/MultipleArrowStyle.xwt">
+      <widget href="ui/MultipleArrowStyle.xwt#/"/>
+    </sections>
+    <sections name="Multiple Shape" sectionFile="ui/MultipleShape.xwt">
+      <widget href="ui/MultipleShape.xwt#/"/>
+    </sections>
+    <sections name="Multiple Compartment" sectionFile="ui/MultipleCompartment.xwt">
+      <widget href="ui/MultipleCompartment.xwt#/"/>
+    </sections>
+    <sections name="Multiple ListCompartment" sectionFile="ui/MultipleListCompartment.xwt">
+      <widget href="ui/MultipleListCompartment.xwt#/"/>
+    </sections>
+    <sections name="Multiple Connector" sectionFile="ui/MultipleConnector.xwt">
+      <widget href="ui/MultipleConnector.xwt#/"/>
+    </sections>
+    <sections name="Multiple StandardDiagram" sectionFile="ui/MultipleStandardDiagram.xwt">
+      <widget href="ui/MultipleStandardDiagram.xwt#/"/>
+    </sections>
+    <sections name="Multiple DecorationNode" sectionFile="ui/MultipleDecorationNode.xwt">
+      <widget href="ui/MultipleDecorationNode.xwt#/"/>
+    </sections>
+    <sections name="Multiple BasicDecorationNode" sectionFile="ui/MultipleBasicDecorationNode.xwt">
+      <widget href="ui/MultipleBasicDecorationNode.xwt#/"/>
+    </sections>
+    <sections name="Multiple BasicCompartment" sectionFile="ui/MultipleBasicCompartment.xwt">
+      <widget href="ui/MultipleBasicCompartment.xwt#/"/>
+    </sections>
+    <sections name="Multiple BasicSemanticCompartment" sectionFile="ui/MultipleBasicSemanticCompartment.xwt">
+      <widget href="ui/MultipleBasicSemanticCompartment.xwt#/"/>
+    </sections>
+    <sections name="Multiple SemanticListCompartment" sectionFile="ui/MultipleSemanticListCompartment.xwt">
+      <widget href="ui/MultipleSemanticListCompartment.xwt#/"/>
+    </sections>
+    <sections name="SingleGradientData" sectionFile="ui/SingleGradientData.xwt">
+      <widget href="ui/SingleGradientData.xwt#/"/>
+    </sections>
+  </tabs>
+  <views name="Single Edge" sections="//@tabs.0/@sections.0" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleEdge">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Edge"/>
+    </constraints>
+  </views>
+  <views name="Single Node" sections="//@tabs.0/@sections.1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleNode">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Node"/>
+    </constraints>
+  </views>
+  <views name="Single Style" sections="//@tabs.0/@sections.2" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Style"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="FillStyle" sections="//@tabs.0/@sections.3" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isFillStyle" overrideable="false">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="FillStyle"/>
+    </constraints>
+  </views>
+  <views name="LineStyle" sections="//@tabs.0/@sections.4" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isLineStyle" overrideable="false">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="LineStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="FontStyle" sections="//@tabs.0/@sections.5" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isFontStyle" overrideable="false">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="FontStyle"/>
+    </constraints>
+  </views>
+  <views name="Single TitleStyle" sections="//@tabs.0/@sections.6" automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleTitleStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="TitleStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single SortingStyle" sections="//@tabs.0/@sections.7" automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleSortingStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="SortingStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single DescriptionStyle" sections="//@tabs.0/@sections.8" automaticContext="true" datacontexts="//@dataContexts.0/@elements.8">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDescriptionStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DescriptionStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single LayoutConstraint" sections="//@tabs.0/@sections.9" automaticContext="true" datacontexts="//@dataContexts.0/@elements.9">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleLayoutConstraint">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="LayoutConstraint"/>
+    </constraints>
+  </views>
+  <views name="Single Size" sections="//@tabs.0/@sections.10" automaticContext="true" datacontexts="//@dataContexts.0/@elements.10">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleSize">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Size"/>
+    </constraints>
+  </views>
+  <views name="Single Location" sections="//@tabs.0/@sections.11" automaticContext="true" datacontexts="//@dataContexts.0/@elements.11">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleLocation">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Location"/>
+    </constraints>
+  </views>
+  <views name="Single Bounds" sections="//@tabs.0/@sections.12" automaticContext="true" datacontexts="//@dataContexts.0/@elements.12">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleBounds">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Bounds"/>
+    </constraints>
+  </views>
+  <views name="Single Ratio" sections="//@tabs.0/@sections.13" automaticContext="true" datacontexts="//@dataContexts.0/@elements.13">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleRatio">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Ratio"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single Anchor" sections="//@tabs.0/@sections.14" automaticContext="true" datacontexts="//@dataContexts.0/@elements.14">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleAnchor">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Anchor"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single Bendpoints" sections="//@tabs.0/@sections.15" automaticContext="true" datacontexts="//@dataContexts.0/@elements.15">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleBendpoints">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Bendpoints"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single IdentityAnchor" sections="//@tabs.0/@sections.16" automaticContext="true" datacontexts="//@dataContexts.0/@elements.16">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleIdentityAnchor">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="IdentityAnchor"/>
+    </constraints>
+  </views>
+  <views name="Single RoutingStyle" sections="//@tabs.0/@sections.17" automaticContext="true" datacontexts="//@dataContexts.0/@elements.17">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleRoutingStyle" overrideable="false" overriddenConstraints="//@views.84/@constraints.0">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="RoutingStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single View" sections="//@tabs.0/@sections.18" automaticContext="true" datacontexts="//@dataContexts.0/@elements.18">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleView">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="View"/>
+    </constraints>
+  </views>
+  <views name="Single RelativeBendpoints" sections="//@tabs.0/@sections.19" automaticContext="true" datacontexts="//@dataContexts.0/@elements.19">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleRelativeBendpoints">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="RelativeBendpoints"/>
+    </constraints>
+  </views>
+  <views name="Single Diagram" sections="//@tabs.0/@sections.20" automaticContext="true" datacontexts="//@dataContexts.0/@elements.20">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDiagram">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Diagram"/>
+    </constraints>
+  </views>
+  <views name="Single Image" sections="//@tabs.0/@sections.21" automaticContext="true" datacontexts="//@dataContexts.0/@elements.21">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleImage">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Image"/>
+    </constraints>
+  </views>
+  <views name="Single CanonicalStyle" sections="//@tabs.0/@sections.22" automaticContext="true" datacontexts="//@dataContexts.0/@elements.22">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleCanonicalStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="CanonicalStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single ShapeStyle" sections="//@tabs.0/@sections.23" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.23">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isShapeStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ShapeStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single ConnectorStyle" sections="//@tabs.0/@sections.24" automaticContext="true" datacontexts="//@dataContexts.0/@elements.24">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleConnectorStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ConnectorStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single PageStyle" sections="//@tabs.0/@sections.25" automaticContext="true" datacontexts="//@dataContexts.0/@elements.25">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSinglePageStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PageStyle"/>
+    </constraints>
+  </views>
+  <views name="Single DrawerStyle" sections="//@tabs.0/@sections.26" automaticContext="true" datacontexts="//@dataContexts.0/@elements.26">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDrawerStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DrawerStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single GuideStyle" sections="//@tabs.0/@sections.27" automaticContext="true" datacontexts="//@dataContexts.0/@elements.27">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleGuideStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="GuideStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single Guide" sections="//@tabs.0/@sections.28" automaticContext="true" datacontexts="//@dataContexts.0/@elements.28">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleGuide">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Guide"/>
+    </constraints>
+  </views>
+  <views name="Single NodeEntry" sections="//@tabs.0/@sections.29" automaticContext="true" datacontexts="//@dataContexts.0/@elements.29">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleNodeEntry">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="NodeEntry"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single FilteringStyle" sections="//@tabs.0/@sections.30" automaticContext="true" datacontexts="//@dataContexts.0/@elements.30">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleFilteringStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="FilteringStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single DiagramStyle" sections="//@tabs.0/@sections.31" automaticContext="true" datacontexts="//@dataContexts.0/@elements.31">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDiagramStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DiagramStyle"/>
+    </constraints>
+  </views>
+  <views name="Single ImageStyle" sections="//@tabs.0/@sections.32" automaticContext="true" datacontexts="//@dataContexts.0/@elements.32">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleImageStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ImageStyle"/>
+    </constraints>
+  </views>
+  <views name="Single ImageBufferStyle" sections="//@tabs.0/@sections.33" automaticContext="true" datacontexts="//@dataContexts.0/@elements.33">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleImageBufferStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ImageBufferStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single PropertiesSetStyle" sections="//@tabs.0/@sections.34" automaticContext="true" datacontexts="//@dataContexts.0/@elements.34">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSinglePropertiesSetStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PropertiesSetStyle"/>
+    </constraints>
+  </views>
+  <views name="Single StringToPropertyValueMapEntry" sections="//@tabs.0/@sections.35" automaticContext="true" datacontexts="//@dataContexts.0/@elements.35">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleStringToPropertyValueMapEntry">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="StringToPropertyValueMapEntry"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single PropertyValue" sections="//@tabs.0/@sections.36" automaticContext="true" datacontexts="//@dataContexts.0/@elements.36">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSinglePropertyValue">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PropertyValue"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single SingleValueStyle" sections="//@tabs.0/@sections.37" automaticContext="true" datacontexts="//@dataContexts.0/@elements.37">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleSingleValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="SingleValueStyle"/>
+    </constraints>
+  </views>
+  <views name="Single ListValueStyle" sections="//@tabs.0/@sections.38" automaticContext="true" datacontexts="//@dataContexts.0/@elements.38">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleListValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ListValueStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single NamedStyle" sections="//@tabs.0/@sections.39" automaticContext="true" datacontexts="//@dataContexts.0/@elements.39">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleNamedStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="NamedStyle"/>
+    </constraints>
+  </views>
+  <views name="Single StringObjectConverter" sections="//@tabs.0/@sections.40" automaticContext="true" datacontexts="//@dataContexts.0/@elements.40">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleStringObjectConverter">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="StringObjectConverter"/>
+    </constraints>
+  </views>
+  <views name="Single DataTypeStyle" sections="//@tabs.0/@sections.41" automaticContext="true" datacontexts="//@dataContexts.0/@elements.41">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDataTypeStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DataTypeStyle"/>
+    </constraints>
+  </views>
+  <views name="Single IntValueStyle" sections="//@tabs.0/@sections.42" automaticContext="true" datacontexts="//@dataContexts.0/@elements.42">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleIntValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="IntValueStyle"/>
+    </constraints>
+  </views>
+  <views name="Single IntListValueStyle" sections="//@tabs.0/@sections.43" automaticContext="true" datacontexts="//@dataContexts.0/@elements.43">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleIntListValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="IntListValueStyle"/>
+    </constraints>
+  </views>
+  <views name="Single BooleanValueStyle" sections="//@tabs.0/@sections.44" automaticContext="true" datacontexts="//@dataContexts.0/@elements.44">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleBooleanValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="BooleanValueStyle"/>
+    </constraints>
+  </views>
+  <views name="Single DoubleValueStyle" sections="//@tabs.0/@sections.45" automaticContext="true" datacontexts="//@dataContexts.0/@elements.45">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDoubleValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DoubleValueStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single DoubleListValueStyle" sections="//@tabs.0/@sections.46" automaticContext="true" datacontexts="//@dataContexts.0/@elements.46">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDoubleListValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DoubleListValueStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single StringValueStyle" sections="//@tabs.0/@sections.47" automaticContext="true" datacontexts="//@dataContexts.0/@elements.47">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleStringValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="StringValueStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single StringListValueStyle" sections="//@tabs.0/@sections.48" automaticContext="true" datacontexts="//@dataContexts.0/@elements.48">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleStringListValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="StringListValueStyle"/>
+    </constraints>
+  </views>
+  <views name="Single EObjectValueStyle" sections="//@tabs.0/@sections.49" automaticContext="true" datacontexts="//@dataContexts.0/@elements.49">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleEObjectValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="EObjectValueStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single EObjectListValueStyle" sections="//@tabs.0/@sections.50" automaticContext="true" datacontexts="//@dataContexts.0/@elements.50">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleEObjectListValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="EObjectListValueStyle"/>
+    </constraints>
+  </views>
+  <views name="Single ByteArrayValueStyle" sections="//@tabs.0/@sections.51" automaticContext="true" datacontexts="//@dataContexts.0/@elements.51">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleByteArrayValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ByteArrayValueStyle"/>
+    </constraints>
+  </views>
+  <views name="Single BooleanListValueStyle" sections="//@tabs.0/@sections.52" automaticContext="true" datacontexts="//@dataContexts.0/@elements.52">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleBooleanListValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="BooleanListValueStyle"/>
+    </constraints>
+  </views>
+  <views name="Single HintedDiagramLinkStyle" sections="//@tabs.0/@sections.53" automaticContext="true" datacontexts="//@dataContexts.0/@elements.53">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleHintedDiagramLinkStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="HintedDiagramLinkStyle"/>
+    </constraints>
+  </views>
+  <views name="Single DiagramLinkStyle" sections="//@tabs.0/@sections.54" automaticContext="true" datacontexts="//@dataContexts.0/@elements.54">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDiagramLinkStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DiagramLinkStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single MultiDiagramLinkStyle" sections="//@tabs.0/@sections.55" automaticContext="true" datacontexts="//@dataContexts.0/@elements.55">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleMultiDiagramLinkStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="MultiDiagramLinkStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single TextStyle" sections="//@tabs.0/@sections.56" automaticContext="true" datacontexts="//@dataContexts.0/@elements.56">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleTextStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="TextStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single LineTypeStyle" sections="//@tabs.0/@sections.57" automaticContext="true" datacontexts="//@dataContexts.0/@elements.57">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleLineTypeStyle" overrideable="false">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="LineTypeStyle"/>
+    </constraints>
+  </views>
+  <views name="Single ArrowStyle" sections="//@tabs.0/@sections.58" automaticContext="true" datacontexts="//@dataContexts.0/@elements.58">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleArrowStyle" overrideable="false">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ArrowStyle"/>
+    </constraints>
+  </views>
+  <views name="Single Shape" sections="//@tabs.0/@sections.59" automaticContext="true" datacontexts="//@dataContexts.0/@elements.59">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleShape">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Shape"/>
+    </constraints>
+  </views>
+  <views name="Single Compartment" sections="//@tabs.0/@sections.60" automaticContext="true" datacontexts="//@dataContexts.0/@elements.60">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleCompartment">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Compartment"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single ListCompartment" sections="//@tabs.0/@sections.61" automaticContext="true" datacontexts="//@dataContexts.0/@elements.61">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleListCompartment">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ListCompartment"/>
+    </constraints>
+  </views>
+  <views name="Single Connector" sections="//@tabs.0/@sections.62" automaticContext="true" datacontexts="//@dataContexts.0/@elements.62">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleConnector">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Connector"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single StandardDiagram" sections="//@tabs.0/@sections.63" automaticContext="true" datacontexts="//@dataContexts.0/@elements.63">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleStandardDiagram">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="StandardDiagram"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single DecorationNode" sections="//@tabs.0/@sections.64" automaticContext="true" datacontexts="//@dataContexts.0/@elements.64">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDecorationNode">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DecorationNode"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single BasicDecorationNode" sections="//@tabs.0/@sections.65" automaticContext="true" datacontexts="//@dataContexts.0/@elements.65">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleBasicDecorationNode">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="BasicDecorationNode"/>
+    </constraints>
+  </views>
+  <views name="Single BasicCompartment" sections="//@tabs.0/@sections.66" automaticContext="true" datacontexts="//@dataContexts.0/@elements.66">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleBasicCompartment">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="BasicCompartment"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single BasicSemanticCompartment" sections="//@tabs.0/@sections.67" automaticContext="true" datacontexts="//@dataContexts.0/@elements.67">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleBasicSemanticCompartment">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="BasicSemanticCompartment"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single SemanticListCompartment" sections="//@tabs.0/@sections.68" automaticContext="true" datacontexts="//@dataContexts.0/@elements.68">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleSemanticListCompartment">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="SemanticListCompartment"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="RoundedCornersStyle" sections="//@tabs.0/@sections.69" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.69">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isRoundedCornersStyle" overrideable="false">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="RoundedCornersStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple Edge" sections="//@tabs.0/@sections.70" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleEdge">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Edge"/>
+    </constraints>
+  </views>
+  <views name="Multiple Node" sections="//@tabs.0/@sections.71" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleNode">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Node"/>
+    </constraints>
+  </views>
+  <views name="Multiple Style" sections="//@tabs.0/@sections.72" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Style"/>
+    </constraints>
+  </views>
+  <views name="Multiple TitleStyle" sections="//@tabs.0/@sections.73" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleTitleStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="TitleStyle"/>
+    </constraints>
+  </views>
+  <views name="Multiple SortingStyle" sections="//@tabs.0/@sections.74" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleSortingStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="SortingStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple DescriptionStyle" sections="//@tabs.0/@sections.75" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.8">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDescriptionStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DescriptionStyle"/>
+    </constraints>
+  </views>
+  <views name="Multiple LayoutConstraint" sections="//@tabs.0/@sections.76" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.9">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleLayoutConstraint">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="LayoutConstraint"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple Size" sections="//@tabs.0/@sections.77" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.10">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleSize">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Size"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple Location" sections="//@tabs.0/@sections.78" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.11">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleLocation">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Location"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple Bounds" sections="//@tabs.0/@sections.79" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.12">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleBounds">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Bounds"/>
+    </constraints>
+  </views>
+  <views name="Multiple Ratio" sections="//@tabs.0/@sections.80" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.13">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleRatio">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Ratio"/>
+    </constraints>
+  </views>
+  <views name="Multiple Anchor" sections="//@tabs.0/@sections.81" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.14">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleAnchor">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Anchor"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple Bendpoints" sections="//@tabs.0/@sections.82" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.15">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleBendpoints">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Bendpoints"/>
+    </constraints>
+  </views>
+  <views name="Multiple IdentityAnchor" sections="//@tabs.0/@sections.83" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.16">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleIdentityAnchor">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="IdentityAnchor"/>
+    </constraints>
+  </views>
+  <views name="Multiple RoutingStyle" sections="//@tabs.0/@sections.84" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.17">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleRoutingStyle" overrideable="false">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="RoutingStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple View" sections="//@tabs.0/@sections.85" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.18">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleView">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="View"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple RelativeBendpoints" sections="//@tabs.0/@sections.86" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.19">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleRelativeBendpoints">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="RelativeBendpoints"/>
+    </constraints>
+  </views>
+  <views name="Multiple Diagram" sections="//@tabs.0/@sections.87" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.20">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDiagram">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Diagram"/>
+    </constraints>
+  </views>
+  <views name="Multiple Image" sections="//@tabs.0/@sections.88" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.21">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleImage">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Image"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple CanonicalStyle" sections="//@tabs.0/@sections.89" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.22">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleCanonicalStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="CanonicalStyle"/>
+    </constraints>
+  </views>
+  <views name="Multiple ConnectorStyle" sections="//@tabs.0/@sections.90" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.24">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleConnectorStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ConnectorStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple PageStyle" sections="//@tabs.0/@sections.91" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.25">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultiplePageStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PageStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple DrawerStyle" sections="//@tabs.0/@sections.92" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.26">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDrawerStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DrawerStyle"/>
+    </constraints>
+  </views>
+  <views name="Multiple GuideStyle" sections="//@tabs.0/@sections.93" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.27">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleGuideStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="GuideStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple Guide" sections="//@tabs.0/@sections.94" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.28">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleGuide">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Guide"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple NodeEntry" sections="//@tabs.0/@sections.95" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.29">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleNodeEntry">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="NodeEntry"/>
+    </constraints>
+  </views>
+  <views name="Multiple FilteringStyle" sections="//@tabs.0/@sections.96" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.30">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleFilteringStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="FilteringStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple DiagramStyle" sections="//@tabs.0/@sections.97" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.31">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDiagramStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DiagramStyle"/>
+    </constraints>
+  </views>
+  <views name="Multiple ImageStyle" sections="//@tabs.0/@sections.98" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.32">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleImageStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ImageStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple ImageBufferStyle" sections="//@tabs.0/@sections.99" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.33">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleImageBufferStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ImageBufferStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple PropertiesSetStyle" sections="//@tabs.0/@sections.100" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.34">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultiplePropertiesSetStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PropertiesSetStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple StringToPropertyValueMapEntry" sections="//@tabs.0/@sections.101" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.35">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleStringToPropertyValueMapEntry">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="StringToPropertyValueMapEntry"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple PropertyValue" sections="//@tabs.0/@sections.102" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.36">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultiplePropertyValue">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PropertyValue"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple SingleValueStyle" sections="//@tabs.0/@sections.103" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.37">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleSingleValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="SingleValueStyle"/>
+    </constraints>
+  </views>
+  <views name="Multiple ListValueStyle" sections="//@tabs.0/@sections.104" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.38">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleListValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ListValueStyle"/>
+    </constraints>
+  </views>
+  <views name="Multiple NamedStyle" sections="//@tabs.0/@sections.105" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.39">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleNamedStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="NamedStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple StringObjectConverter" sections="//@tabs.0/@sections.106" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.40">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleStringObjectConverter">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="StringObjectConverter"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple DataTypeStyle" sections="//@tabs.0/@sections.107" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.41">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDataTypeStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DataTypeStyle"/>
+    </constraints>
+  </views>
+  <views name="Multiple IntValueStyle" sections="//@tabs.0/@sections.108" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.42">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleIntValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="IntValueStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple IntListValueStyle" sections="//@tabs.0/@sections.109" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.43">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleIntListValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="IntListValueStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple BooleanValueStyle" sections="//@tabs.0/@sections.110" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.44">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleBooleanValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="BooleanValueStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple DoubleValueStyle" sections="//@tabs.0/@sections.111" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.45">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDoubleValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DoubleValueStyle"/>
+    </constraints>
+  </views>
+  <views name="Multiple DoubleListValueStyle" sections="//@tabs.0/@sections.112" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.46">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDoubleListValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DoubleListValueStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple StringValueStyle" sections="//@tabs.0/@sections.113" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.47">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleStringValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="StringValueStyle"/>
+    </constraints>
+  </views>
+  <views name="Multiple StringListValueStyle" sections="//@tabs.0/@sections.114" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.48">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleStringListValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="StringListValueStyle"/>
+    </constraints>
+  </views>
+  <views name="Multiple EObjectValueStyle" sections="//@tabs.0/@sections.115" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.49">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleEObjectValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="EObjectValueStyle"/>
+    </constraints>
+  </views>
+  <views name="Multiple EObjectListValueStyle" sections="//@tabs.0/@sections.116" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.50">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleEObjectListValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="EObjectListValueStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple ByteArrayValueStyle" sections="//@tabs.0/@sections.117" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.51">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleByteArrayValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ByteArrayValueStyle"/>
+    </constraints>
+  </views>
+  <views name="Multiple BooleanListValueStyle" sections="//@tabs.0/@sections.118" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.52">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleBooleanListValueStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="BooleanListValueStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple HintedDiagramLinkStyle" sections="//@tabs.0/@sections.119" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.53">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleHintedDiagramLinkStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="HintedDiagramLinkStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple DiagramLinkStyle" sections="//@tabs.0/@sections.120" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.54">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDiagramLinkStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DiagramLinkStyle"/>
+    </constraints>
+  </views>
+  <views name="Multiple MultiDiagramLinkStyle" sections="//@tabs.0/@sections.121" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.55">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleMultiDiagramLinkStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="MultiDiagramLinkStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple TextStyle" sections="//@tabs.0/@sections.122" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.56">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleTextStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="TextStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple LineTypeStyle" sections="//@tabs.0/@sections.123" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.57">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleLineTypeStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="LineTypeStyle"/>
+    </constraints>
+  </views>
+  <views name="Multiple ArrowStyle" sections="//@tabs.0/@sections.124" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.58">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleArrowStyle">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ArrowStyle"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple Shape" sections="//@tabs.0/@sections.125" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.59">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleShape">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Shape"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple Compartment" sections="//@tabs.0/@sections.126" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.60">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleCompartment">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Compartment"/>
+    </constraints>
+  </views>
+  <views name="Multiple ListCompartment" sections="//@tabs.0/@sections.127" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.61">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleListCompartment">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ListCompartment"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple Connector" sections="//@tabs.0/@sections.128" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.62">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleConnector">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Connector"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple StandardDiagram" sections="//@tabs.0/@sections.129" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.63">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleStandardDiagram">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="StandardDiagram"/>
+    </constraints>
+  </views>
+  <views name="Multiple DecorationNode" sections="//@tabs.0/@sections.130" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.64">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDecorationNode">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DecorationNode"/>
+    </constraints>
+  </views>
+  <views name="Multiple BasicDecorationNode" sections="//@tabs.0/@sections.131" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.65">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleBasicDecorationNode">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="BasicDecorationNode"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple BasicCompartment" sections="//@tabs.0/@sections.132" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.66">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleBasicCompartment">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="BasicCompartment"/>
+    </constraints>
+  </views>
+  <views name="Multiple BasicSemanticCompartment" sections="//@tabs.0/@sections.133" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.67">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleBasicSemanticCompartment">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="BasicSemanticCompartment"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Multiple SemanticListCompartment" sections="//@tabs.0/@sections.134" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.68">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleSemanticListCompartment">
+      <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="SemanticListCompartment"/>
+    </constraints>
+  </views>
+  <views name="SingleGradientData" sections="//@tabs.0/@sections.135">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isGradientData">
+      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="contexts:ValueProperty" name="class" value="org.eclipse.gmf.runtime.notation.datatype.GradientData"/>
+    </constraints>
+  </views>
+  <dataContexts name="notation" label="notation">
+    <elements name="Edge" supertypes="//@dataContexts.0/@elements.18">
+      <properties name="source" type="Reference"/>
+      <properties name="target" type="Reference"/>
+      <properties name="bendpoints" type="Reference"/>
+      <properties name="sourceAnchor" type="Reference"/>
+      <properties name="targetAnchor" type="Reference"/>
+    </elements>
+    <elements name="Node" supertypes="//@dataContexts.0/@elements.18">
+      <properties name="layoutConstraint" type="Reference"/>
+    </elements>
+    <elements name="Style"/>
+    <elements name="FillStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="fillColor" type="Integer"/>
+      <properties name="transparency" type="Integer"/>
+      <properties name="gradient" type="Reference"/>
+    </elements>
+    <elements name="LineStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="lineColor" type="Integer"/>
+      <properties name="lineWidth" type="Integer"/>
+    </elements>
+    <elements name="FontStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="fontColor" type="Integer"/>
+      <properties name="fontName"/>
+      <properties name="fontHeight" type="Integer"/>
+      <properties name="bold" type="Boolean"/>
+      <properties name="italic" type="Boolean"/>
+      <properties name="underline" type="Boolean"/>
+      <properties name="strikeThrough" type="Boolean"/>
+    </elements>
+    <elements name="TitleStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="showTitle" type="Boolean"/>
+    </elements>
+    <elements name="SortingStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="sorting" type="Enumeration"/>
+      <properties name="sortingKeys"/>
+      <properties name="sortedObjects" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="DescriptionStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="description"/>
+    </elements>
+    <elements name="LayoutConstraint"/>
+    <elements name="Size" supertypes="//@dataContexts.0/@elements.9">
+      <properties name="width" type="Integer"/>
+      <properties name="height" type="Integer"/>
+    </elements>
+    <elements name="Location" supertypes="//@dataContexts.0/@elements.9">
+      <properties name="x" type="Integer"/>
+      <properties name="y" type="Integer"/>
+    </elements>
+    <elements name="Bounds" supertypes="//@dataContexts.0/@elements.11 //@dataContexts.0/@elements.10"/>
+    <elements name="Ratio" supertypes="//@dataContexts.0/@elements.9">
+      <properties name="value"/>
+    </elements>
+    <elements name="Anchor"/>
+    <elements name="Bendpoints"/>
+    <elements name="IdentityAnchor" supertypes="//@dataContexts.0/@elements.14">
+      <properties name="id"/>
+    </elements>
+    <elements name="RoutingStyle" supertypes="//@dataContexts.0/@elements.69">
+      <properties name="routing" type="Enumeration"/>
+      <properties name="smoothness" type="Enumeration"/>
+      <properties name="avoidObstructions" type="Boolean"/>
+      <properties name="closestDistance" type="Boolean"/>
+      <properties name="jumpLinkStatus" type="Enumeration"/>
+      <properties name="jumpLinkType" type="Enumeration"/>
+      <properties name="jumpLinksReverse" type="Boolean"/>
+    </elements>
+    <elements name="View">
+      <properties name="visible" type="Boolean"/>
+      <properties name="type"/>
+      <properties name="mutable" type="Boolean"/>
+      <properties name="sourceEdges" type="Reference" multiplicity="-1"/>
+      <properties name="targetEdges" type="Reference" multiplicity="-1"/>
+      <properties name="persistedChildren" type="Reference" multiplicity="-1"/>
+      <properties name="styles" type="Reference" multiplicity="-1"/>
+      <properties name="element" type="Reference"/>
+      <properties name="diagram" type="Reference"/>
+      <properties name="transientChildren" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="RelativeBendpoints" supertypes="//@dataContexts.0/@elements.15">
+      <properties name="points"/>
+    </elements>
+    <elements name="Diagram" supertypes="//@dataContexts.0/@elements.18">
+      <properties name="name" label="Name"/>
+      <properties name="measurementUnit" type="Enumeration"/>
+      <properties name="persistedEdges" type="Reference" multiplicity="-1"/>
+      <properties name="TransientEdges" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="Image">
+      <properties name="data"/>
+    </elements>
+    <elements name="CanonicalStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="canonical" type="Boolean"/>
+    </elements>
+    <elements name="ShapeStyle" supertypes="//@dataContexts.0/@elements.5 //@dataContexts.0/@elements.8 //@dataContexts.0/@elements.3 //@dataContexts.0/@elements.4 //@dataContexts.0/@elements.69"/>
+    <elements name="ConnectorStyle" supertypes="//@dataContexts.0/@elements.17 //@dataContexts.0/@elements.4"/>
+    <elements name="PageStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="pageX" type="Integer"/>
+      <properties name="pageY" type="Integer"/>
+      <properties name="pageWidth" type="Integer"/>
+      <properties name="pageHeight" type="Integer"/>
+    </elements>
+    <elements name="DrawerStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="collapsed" type="Boolean"/>
+    </elements>
+    <elements name="GuideStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="horizontalGuides" type="Reference" multiplicity="-1"/>
+      <properties name="verticalGuides" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="Guide">
+      <properties name="position" type="Integer"/>
+      <properties name="nodeMap" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="NodeEntry">
+      <properties name="value" type="Enumeration"/>
+      <properties name="key" type="Reference"/>
+    </elements>
+    <elements name="FilteringStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="filtering" type="Enumeration"/>
+      <properties name="filteringKeys"/>
+      <properties name="filteredObjects" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="DiagramStyle" supertypes="//@dataContexts.0/@elements.25 //@dataContexts.0/@elements.27 //@dataContexts.0/@elements.8"/>
+    <elements name="ImageStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="antiAlias"/>
+      <properties name="maintainAspectRatio"/>
+      <properties name="cropBound" type="Reference"/>
+    </elements>
+    <elements name="ImageBufferStyle" supertypes="//@dataContexts.0/@elements.32">
+      <properties name="imageBuffer" type="Reference"/>
+    </elements>
+    <elements name="PropertiesSetStyle" supertypes="//@dataContexts.0/@elements.39">
+      <properties name="propertiesMap" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="StringToPropertyValueMapEntry">
+      <properties name="key"/>
+      <properties name="value" type="Reference"/>
+    </elements>
+    <elements name="PropertyValue" supertypes="//@dataContexts.0/@elements.40">
+      <properties name="rawValue"/>
+      <properties name="instanceType" type="Reference"/>
+    </elements>
+    <elements name="SingleValueStyle" supertypes="//@dataContexts.0/@elements.41">
+      <properties name="rawValue"/>
+    </elements>
+    <elements name="ListValueStyle" supertypes="//@dataContexts.0/@elements.41">
+      <properties name="rawValuesList" multiplicity="-1"/>
+    </elements>
+    <elements name="NamedStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="name"/>
+    </elements>
+    <elements name="StringObjectConverter"/>
+    <elements name="DataTypeStyle" supertypes="//@dataContexts.0/@elements.39 //@dataContexts.0/@elements.40">
+      <properties name="instanceType" type="Reference"/>
+    </elements>
+    <elements name="IntValueStyle" supertypes="//@dataContexts.0/@elements.39">
+      <properties name="intValue"/>
+    </elements>
+    <elements name="IntListValueStyle" supertypes="//@dataContexts.0/@elements.39">
+      <properties name="intListValue" multiplicity="-1"/>
+    </elements>
+    <elements name="BooleanValueStyle" supertypes="//@dataContexts.0/@elements.39">
+      <properties name="booleanValue"/>
+    </elements>
+    <elements name="DoubleValueStyle" supertypes="//@dataContexts.0/@elements.39">
+      <properties name="doubleValue"/>
+    </elements>
+    <elements name="DoubleListValueStyle" supertypes="//@dataContexts.0/@elements.39">
+      <properties name="doubleListValue" multiplicity="-1"/>
+    </elements>
+    <elements name="StringValueStyle" supertypes="//@dataContexts.0/@elements.39">
+      <properties name="stringValue"/>
+    </elements>
+    <elements name="StringListValueStyle" supertypes="//@dataContexts.0/@elements.39">
+      <properties name="stringListValue" multiplicity="-1"/>
+    </elements>
+    <elements name="EObjectValueStyle" supertypes="//@dataContexts.0/@elements.39">
+      <properties name="eObjectValue" type="Reference"/>
+    </elements>
+    <elements name="EObjectListValueStyle" supertypes="//@dataContexts.0/@elements.39">
+      <properties name="eObjectListValue" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="ByteArrayValueStyle" supertypes="//@dataContexts.0/@elements.39">
+      <properties name="byteArrayValue"/>
+    </elements>
+    <elements name="BooleanListValueStyle" supertypes="//@dataContexts.0/@elements.39">
+      <properties name="booleanListValue" multiplicity="-1"/>
+    </elements>
+    <elements name="HintedDiagramLinkStyle" supertypes="//@dataContexts.0/@elements.54 //@dataContexts.0/@elements.2">
+      <properties name="hint"/>
+    </elements>
+    <elements name="DiagramLinkStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="diagramLink" type="Reference"/>
+    </elements>
+    <elements name="MultiDiagramLinkStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="diagramLinks" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="TextStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="textAlignment" type="Enumeration"/>
+    </elements>
+    <elements name="LineTypeStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="lineType" type="Enumeration"/>
+    </elements>
+    <elements name="ArrowStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="arrowSource" type="Enumeration"/>
+      <properties name="arrowTarget" type="Enumeration"/>
+    </elements>
+    <elements name="Shape" supertypes="//@dataContexts.0/@elements.1 //@dataContexts.0/@elements.23"/>
+    <elements name="Compartment" supertypes="//@dataContexts.0/@elements.66 //@dataContexts.0/@elements.22 //@dataContexts.0/@elements.6"/>
+    <elements name="ListCompartment" supertypes="//@dataContexts.0/@elements.66 //@dataContexts.0/@elements.7 //@dataContexts.0/@elements.30 //@dataContexts.0/@elements.6"/>
+    <elements name="Connector" supertypes="//@dataContexts.0/@elements.0 //@dataContexts.0/@elements.24"/>
+    <elements name="StandardDiagram" supertypes="//@dataContexts.0/@elements.20 //@dataContexts.0/@elements.31"/>
+    <elements name="DecorationNode" supertypes="//@dataContexts.0/@elements.65"/>
+    <elements name="BasicDecorationNode" supertypes="//@dataContexts.0/@elements.1"/>
+    <elements name="BasicCompartment" supertypes="//@dataContexts.0/@elements.64 //@dataContexts.0/@elements.26"/>
+    <elements name="BasicSemanticCompartment" supertypes="//@dataContexts.0/@elements.65 //@dataContexts.0/@elements.26"/>
+    <elements name="SemanticListCompartment" supertypes="//@dataContexts.0/@elements.67 //@dataContexts.0/@elements.7 //@dataContexts.0/@elements.30 //@dataContexts.0/@elements.6"/>
+    <elements name="RoundedCornersStyle" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="roundedBendpointsRadius" type="Integer"/>
+    </elements>
+    <elements name="GradientData">
+      <properties name="gradientColor1" label="Gradient color" type="Integer"/>
+      <properties name="gradientColor2" label="Gradient color 2" type="Integer"/>
+      <properties name="gradientStyle" type="Enumeration"/>
+      <properties name="activate" label="Activate" type="Boolean"/>
+    </elements>
+    <modelElementFactory href="Environment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+</contexts:Context>

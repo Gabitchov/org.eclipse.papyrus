@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
+  <notation:Diagram type="UseCase" name="TestCreationUseCase" measurementUnit="Pixel">
+    <children type="2018">
+      <children xsi:type="notation:DecorationNode" type="5027"/>
+      <styles xsi:type="notation:DescriptionStyle"/>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+      <element href="UseCaseDiagramTest.uml#_KxXd0Jb5Ed6IEoV1pxdOjw"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="121" y="24" width="800" height="93"/>
+    </children>
+    <children xsi:type="notation:Shape" type="2011" fontHeight="8" lineColor="15060913">
+      <children xsi:type="notation:DecorationNode" type="5014">
+        <layoutConstraint xsi:type="notation:Location" y="5"/>
+      </children>
+      <element href="UseCaseDiagramTest.uml#_UrwJsJcBEd6IEoV1pxdOjw"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="1009" y="335"/>
+    </children>
+    <children type="2015">
+      <children xsi:type="notation:DecorationNode" type="5019"/>
+      <children xsi:type="notation:DecorationNode" type="7011">
+        <children type="2013">
+          <children xsi:type="notation:DecorationNode" type="5016"/>
+          <children xsi:type="notation:DecorationNode" type="7009">
+            <children type="3007">
+              <element href="UseCaseDiagramTest.uml#_tWEHUJcBEd6IEoV1pxdOjw"/>
+              <layoutConstraint xsi:type="notation:Location"/>
+            </children>
+            <styles xsi:type="notation:SortingStyle"/>
+            <styles xsi:type="notation:FilteringStyle"/>
+          </children>
+          <styles xsi:type="notation:DescriptionStyle"/>
+          <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+          <element href="UseCaseDiagramTest.uml#_ruVGwJb8Ed6IEoV1pxdOjw"/>
+          <layoutConstraint xsi:type="notation:Bounds" x="76" y="59"/>
+        </children>
+        <children type="3009">
+          <children xsi:type="notation:DecorationNode" type="5018"/>
+          <children xsi:type="notation:DecorationNode" type="7012">
+            <styles xsi:type="notation:SortingStyle"/>
+            <styles xsi:type="notation:FilteringStyle"/>
+          </children>
+          <styles xsi:type="notation:DescriptionStyle"/>
+          <styles xsi:type="notation:FontStyle"/>
+          <element href="UseCaseDiagramTest.uml#_8GWEwJcBEd6IEoV1pxdOjw"/>
+          <layoutConstraint xsi:type="notation:Bounds" x="13" y="192"/>
+        </children>
+        <children type="3009">
+          <children xsi:type="notation:DecorationNode" type="5018"/>
+          <children xsi:type="notation:DecorationNode" type="7012">
+            <styles xsi:type="notation:SortingStyle"/>
+            <styles xsi:type="notation:FilteringStyle"/>
+          </children>
+          <styles xsi:type="notation:DescriptionStyle"/>
+          <styles xsi:type="notation:FontStyle"/>
+          <element href="UseCaseDiagramTest.uml#_ItGJ4JcCEd6IEoV1pxdOjw"/>
+          <layoutConstraint xsi:type="notation:Bounds" x="286" y="188"/>
+        </children>
+      </children>
+      <styles xsi:type="notation:DescriptionStyle"/>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <styles xsi:type="notation:LineStyle" lineColor="15060913"/>
+      <element href="UseCaseDiagramTest.uml#_Yv7JwJcBEd6IEoV1pxdOjw"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="174" y="142" width="459" height="296"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="UseCaseDiagramTest.uml#_ILqm4Jb5Ed6IEoV1pxdOjw"/>
+    <edges type="4011" source="/0/@children.1" target="/0/@children.2/@children.1/@children.0">
+      <children xsi:type="notation:DecorationNode" type="6008">
+        <layoutConstraint xsi:type="notation:Location" y="40"/>
+      </children>
+      <styles xsi:type="notation:RoutingStyle"/>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="UseCaseDiagramTest.uml#_XA6DMJcBEd6IEoV1pxdOjw"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[-14, 4, 381, -129]$[-347, 130, 48, -3]"/>
+      <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.4666666666666667,0.16)"/>
+      <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.7796610169491526,0.43333333333333335)"/>
+    </edges>
+    <edges type="4008" source="/0/@children.2/@children.1/@children.0" target="/0/@children.2/@children.1/@children.1">
+      <children xsi:type="notation:DecorationNode" type="6006">
+        <eAnnotations source="displayNameLabelIcon">
+          <details key="displayNameLabelIcon_value" value="true"/>
+        </eAnnotations>
+        <eAnnotations source="QualifiedName">
+          <details key="QualifiedNameDepth" value="0"/>
+        </eAnnotations>
+        <layoutConstraint xsi:type="notation:Location" x="-22" y="81"/>
+      </children>
+      <styles xsi:type="notation:RoutingStyle"/>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="UseCaseDiagramTest.uml#_-ywAoJcBEd6IEoV1pxdOjw"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[11, 29, -30, -79]$[34, 95, -7, -13]"/>
+      <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.4482758620689655,0.21666666666666667)"/>
+    </edges>
+    <edges type="4009" source="/0/@children.2/@children.1/@children.0" target="/0/@children.2/@children.1/@children.2">
+      <children xsi:type="notation:DecorationNode" type="6007">
+        <eAnnotations source="displayNameLabelIcon">
+          <details key="displayNameLabelIcon_value" value="false"/>
+        </eAnnotations>
+        <layoutConstraint xsi:type="notation:Location" y="20"/>
+      </children>
+      <styles xsi:type="notation:RoutingStyle"/>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="UseCaseDiagramTest.uml#_L92wAJcCEd6IEoV1pxdOjw"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[44, 23, -159, -84]$[197, 100, -6, -7]"/>
+      <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.39375,0.13333333333333333)"/>
+    </edges>
+  </notation:Diagram>
+  <notation:Diagram type="UseCase" name="DragAndDropTesting" measurementUnit="Pixel">
+    <children xsi:type="notation:Shape" type="2011" fontHeight="8" transparency="0" lineColor="15060913">
+      <eAnnotations source="QualifiedName">
+        <details key="QualifiedNameDepth" value="1"/>
+      </eAnnotations>
+      <eAnnotations source="displayNameLabelIcon">
+        <details key="displayNameLabelIcon_value" value="false"/>
+      </eAnnotations>
+      <eAnnotations source="ShadowFigure">
+        <details key="ShadowFigure_Value" value="false"/>
+      </eAnnotations>
+      <eAnnotations source="Stereotype_Annotation">
+        <details key="StereotypeWithQualifiedNameList" value=""/>
+        <details key="StereotypeList" value="Standard::Realization"/>
+        <details key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+        <details key="PropStereoDisplay" value=""/>
+        <details key="StereotypePropertyLocation" value="Compartment"/>
+      </eAnnotations>
+      <children xsi:type="notation:DecorationNode" type="5014">
+        <layoutConstraint xsi:type="notation:Location" y="5"/>
+      </children>
+      <element href="UseCaseDiagramTest.uml#_UrwJsJcBEd6IEoV1pxdOjw"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="668" y="247"/>
+    </children>
+    <children type="2013">
+      <eAnnotations source="QualifiedName">
+        <details key="QualifiedNameDepth" value="0"/>
+      </eAnnotations>
+      <eAnnotations source="displayNameLabelIcon">
+        <details key="displayNameLabelIcon_value" value="false"/>
+      </eAnnotations>
+      <eAnnotations source="ShadowFigure">
+        <details key="ShadowFigure_Value" value="false"/>
+      </eAnnotations>
+      <eAnnotations source="Stereotype_Annotation">
+        <details key="StereotypeWithQualifiedNameList" value=""/>
+        <details key="StereotypeList" value="Standard::Realization"/>
+        <details key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+        <details key="PropStereoDisplay" value=""/>
+        <details key="StereotypePropertyLocation" value="Compartment"/>
+      </eAnnotations>
+      <children xsi:type="notation:DecorationNode" type="5016"/>
+      <children xsi:type="notation:DecorationNode" type="7009">
+        <styles xsi:type="notation:SortingStyle"/>
+        <styles xsi:type="notation:FilteringStyle"/>
+      </children>
+      <styles xsi:type="notation:DescriptionStyle"/>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="UseCaseDiagramTest.uml#_ruVGwJb8Ed6IEoV1pxdOjw"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="155" y="259"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle"/>
+    <element href="UseCaseDiagramTest.uml#_ILqm4Jb5Ed6IEoV1pxdOjw"/>
+    <edges type="4011" source="/1/@children.0" target="/1/@children.1">
+      <eAnnotations source="Stereotype_Annotation">
+        <details key="StereotypeWithQualifiedNameList" value=""/>
+        <details key="StereotypeList" value="Standard::Specification"/>
+        <details key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+        <details key="PropStereoDisplay" value=""/>
+        <details key="StereotypePropertyLocation" value="Compartment"/>
+      </eAnnotations>
+      <children xsi:type="notation:DecorationNode" type="6008">
+        <layoutConstraint xsi:type="notation:Location" x="21" y="22"/>
+      </children>
+      <styles xsi:type="notation:RoutingStyle"/>
+      <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+      <element href="UseCaseDiagramTest.uml#_XA6DMJcBEd6IEoV1pxdOjw"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" points="[-15, 1, 265, -25]$[-212, 19, 68, -7]"/>
+    </edges>
+  </notation:Diagram>
+</xmi:XMI>

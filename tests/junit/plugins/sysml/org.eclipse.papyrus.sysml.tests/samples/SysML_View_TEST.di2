@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ASCII"?>
+<di2:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di2="http://www.papyrusuml.org" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="255:255:255" foregroundColor="255:255:255" backgroundColor="255:255:255" borderColor="255:255:255" position="0:0" name="DefaultDiagram">
+  <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="649:120" size="100:100">
+    <property key="PropStereoDisplay" value="SysML::ModelElements::ViewPoint"/>
+    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="20:20" size="100:100"/>
+    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="20:20" size="100:100"/>
+    <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+      <element xsi:type="uml:Class" href="SysML_View_TEST.uml#_v9DegA_vEd2uupC7rat70Q"/>
+    </semanticModel>
+    <anchorage position="648:179" graphEdge="//@contained.4"/>
+  </contained>
+  <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="347:120" size="200:100">
+    <property key="PropStereoDisplay" value="SysML::ModelElements::View"/>
+    <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+      <element xsi:type="uml:Package" href="SysML_View_TEST.uml#_xOtToA_vEd2uupC7rat70Q"/>
+    </semanticModel>
+    <anchorage position="547:179" graphEdge="//@contained.4"/>
+  </contained>
+  <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="649:270" size="100:100">
+    <property key="PropStereoDisplay" value="SysML::ModelElements::ViewPoint"/>
+    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="20:20" size="100:100"/>
+    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="20:20" size="100:100"/>
+    <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+      <element xsi:type="uml:Class" href="SysML_View_TEST.uml#_xknSMA_vEd2uupC7rat70Q"/>
+    </semanticModel>
+  </contained>
+  <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="347:270" size="200:100">
+    <property key="PropStereoDisplay" value="SysML::ModelElements::View"/>
+    <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+      <element xsi:type="uml:Package" href="SysML_View_TEST.uml#_yAVk4A_vEd2uupC7rat70Q"/>
+    </semanticModel>
+  </contained>
+  <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.1/@anchorage.0 //@contained.0/@anchorage.0">
+    <property key="PropStereoDisplay" value="SysML::ModelElements::Conform"/>
+    <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:10" size="100:100"/>
+    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="-3:-19" size="75:30"/>
+    <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+      <element xsi:type="uml:Abstraction" href="SysML_View_TEST.uml#_1ofXUA_vEd2uupC7rat70Q"/>
+    </semanticModel>
+  </contained>
+  <owner xsi:type="di2:Uml1SemanticModelBridge">
+    <element xsi:type="uml:Model" href="SysML_View_TEST.uml#_vKPhgA_vEd2uupC7rat70Q"/>
+  </owner>
+</di2:Diagram>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modifysemanticvaluesactionconfiguration="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" label="Test1 Class" id="Test1.class">
+  <featuresToSet featureName="isAbstract">
+    <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
+      <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
+    </value>
+  </featuresToSet>
+  <featuresToSet featureName="visibility">
+    <value xsi:type="modifysemanticvaluesactionconfiguration:DynamicValue"/>
+  </featuresToSet>
+</modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration>

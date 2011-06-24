@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paletteconfiguration:PaletteConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7" id="org.eclipse.papyrus.paletteconfiguration.tests.palettetest1" label="PaletteTest1" description="Test palette for the palette configuration plugin">
+  <icon pluginID="org.eclipse.papyrus.paletteconfiguration" iconPath="/icons/debug.gif"/>
+  <drawerConfigurations id="palettetest1.drawer1" label="Drawer1" description="First drawer for palette configuration test1">
+    <icon pluginID="org.eclipse.papyrus.paletteconfiguration" iconPath="/icons/debug.gif"/>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettetest1.tool0" label="MetaClass" description="Test - Metaclass">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Class.gif"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Class_2008_Metaclass"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Class_3008_Metaclass"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Class_3004_Metaclass"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Class_3010_Metaclass"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Class_3014_Metaclass"/>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="palettetest1.stack1" label="Stack 1" description="test Stack">
+    	<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettetest1.operation" label="Operation" description="Test - UML Operation">
+        <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Operation.gif"/>
+        <elementDescriptors elementTypeId="org.eclipse.papyrus.diagram.clazz.Operation_3003"/>
+        <elementDescriptors elementTypeId="org.eclipse.papyrus.diagram.clazz.Operation_3007"/>
+        <elementDescriptors elementTypeId="org.eclipse.papyrus.diagram.clazz.Operation_3013"/>
+        <elementDescriptors elementTypeId="org.eclipse.papyrus.diagram.clazz.Operation_3019"/>
+      </ownedConfigurations>
+      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"  id="palettetest1.property" label="Property" description="test - UML Property"/>
+      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettetest1.class" label="Class" description="test - UML Class"/>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettetest1.tool3" label="Dependency" description="Test - Simple Dependency">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Dependency.gif"/>
+    </ownedConfigurations>
+  </drawerConfigurations>
+</paletteconfiguration:PaletteConfiguration>

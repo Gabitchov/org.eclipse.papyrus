@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.papyrus.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.papyrus.core" id="org.eclipse.papyrus.core.model" name="model"/>
+      </appInfo>
+      <documentation>
+         A model represent a unit containing model elements.
+A model can be registered and retrieved from the ModelSet.
+This extension allows to register models to the ModelSet.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="model" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="modelSetSnippet" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="model">
+      <annotation>
+         <documentation>
+            A model to be registered to the ModelSet.
+Registered model can be retrieved from the ModelSet.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="modelSnippet"/>
+         </sequence>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  Human readable description for the model.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="classname" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The class implementing the model.
+This is the class that wil be registered in the ModelSet.
+The class will be registered using the key set in the Model.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.resource.IModel"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="modelSnippet">
+      <annotation>
+         <documentation>
+            A model snippet is a piece of code that is executed after the model is loaded.
+A snippet allows to manipulate the model right after it is loaded. 
+&lt;br&gt;
+For example, it is possible to add listeners to the model.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  Human readable description for the model snippet.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="classname" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The class implementing the model snippet.
+The code is executed right after the model is loaded.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.resource.IModelSnippet"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="modelSetSnippet">
+      <annotation>
+         <documentation>
+            A modelSet snippet is a piece of code that is executed after the modelSet is loaded.
+A snippet allows to do post operations after ModelSet is loaded.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  Human readable description for the modelSet snippet.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="classname" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The class implementing the modelSet snippet.
+The code is executed right after the modelSet is loaded.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.resource.IModelSetSnippet"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         0.7.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiinfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

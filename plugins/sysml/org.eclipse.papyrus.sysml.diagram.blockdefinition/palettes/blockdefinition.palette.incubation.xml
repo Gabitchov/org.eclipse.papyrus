@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<paletteDefinition>
+	<content>
+		<drawer
+			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.SYSML_BlockDefinition__Incubation" name="Incubation">
+			
+			<aspectTool description="Create a new Model" id="blockdefinition.tool.model"
+				name="Model" refToolId="clazz.tool.model">
+			</aspectTool>
+			<aspectTool description="Create a new Package" id="blockdefinition.tool.package"
+				name="Package" refToolId="clazz.tool.package">
+			</aspectTool>
+			<aspectTool description="Create a new InstanceSpecification" id="blockdefinition.tool.instancespecification"
+				name="InstanceSpecification" refToolId="clazz.tool.instancespecification">
+			</aspectTool>
+			<aspectTool description="Create a new Slot" id="blockdefinition.tool.slot"
+				name="Slot" refToolId="clazz.tool.slot">
+			</aspectTool>
+			<aspectTool description="Create a new Constraint" id="blockdefinition.tool.constraint"
+				name="Constraint" refToolId="clazz.tool.constraint">
+			</aspectTool>
+			<aspectTool description="Create a new Comment" id="blockdefinition.tool.comment"
+				name="Comment" refToolId="clazz.tool.comment">
+			</aspectTool>		
+			<aspectTool description="Create a new Comment / Contraint link" id="blockdefinition.tool.comment / contraint link"
+				name="Comment / Contraint link" refToolId="clazz.tool.link">
+			</aspectTool>
+
+		</drawer>
+	</content>
+</paletteDefinition>

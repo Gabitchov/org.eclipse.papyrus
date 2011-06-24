@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tableconfiguration:TableConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" xmlns:tableconfiguration="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableconfiguration">
+  <canBePresentedInTheTable xsi:type="query:JavaModelQuery" href="emffacet:/query/allocate#IsAllocateQuery"/>
+  <defaultCustomizations href="emffacet:/customization/table_SysML_Allocation_showOnlyClientAndSupplier#/"/>
+  <defaultCustomizations href="emffacet:/customization/table_Ecore_hideEAnnotationFeature#/"/>
+  <instantiationMethod name="CreateAbstractionQuery" description="Create a new Abstraction">
+    <instantiationQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/allocate#CreateAbstractionQuery"/>
+  </instantiationMethod>
+  <instantiationMethod name="CreateAllocateQuery" description="Create a new Allocate">
+    <instantiationQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/allocate#CreateAllocateQuery"/>
+  </instantiationMethod>
+</tableconfiguration:TableConfiguration>

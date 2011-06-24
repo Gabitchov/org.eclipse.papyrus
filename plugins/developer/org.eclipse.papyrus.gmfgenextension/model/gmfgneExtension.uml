@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_Qh1r8N5PEd2H5qD714qFTA" name="PapyrusGmfgenExtension">
+  <ownedComment xmi:id="_-rSu4N5TEd2H5qD714qFTA" annotatedElement="_YeINEN5PEd2H5qD714qFTA">
+    <body>This element is always linked to a genNode (topLevel, or child)&#xD;
+Used set if an editPart is abstract.&#xD;
+SuperGenNodes is a list of all superEditPart.&#xD;
+&#xD;
+Thanks to this, it is possible to factorize code and to decrease the number of generated classes.</body>
+  </ownedComment>
+  <ownedComment xmi:id="_ngQ9QN5UEd2H5qD714qFTA" annotatedElement="_qPNzoN5QEd2H5qD714qFTA">
+    <body>All extended classes have a comment in order to describe the puprose of this extension</body>
+  </ownedComment>
+  <ownedComment xmi:id="_lxYf8N5cEd2H5qD714qFTA" annotatedElement="_hmemwN5REd2H5qD714qFTA">
+    <body>The purpose of this class is point to an external class (for example java classes).&#xD;
+the classpath is the path to the this extenal class.</body>
+  </ownedComment>
+  <ownedComment xmi:id="_N_m3YN5dEd2H5qD714qFTA" annotatedElement="_8_kJsN5PEd2H5qD714qFTA">
+    <body>This class is used to refresh the figure by taking in account a property of domain element (in the case of Ecore, it can be an Efeature or EReference)&#xD;
+The triggeringCondtion describe the needed condition to launch the action on the figure.  these two properties can be code lines.&#xD;
+&#xD;
+For instance we would like to display active class when the efeature class is &quot;active&quot;. Or display composite kind of the association when the kind of the property end is &quot;composite&quot;.</body>
+  </ownedComment>
+  <ownedComment xmi:id="_WHoR8N5eEd2H5qD714qFTA" annotatedElement="_J6ZzAN5REd2H5qD714qFTA">
+    <body>The purpose of this class is to define our own initializer.&#xD;
+For example in the case of UML, the intialize for name may be &quot;name&quot;_'number&quot;.&#xD;
+The initAction is code that call this helper use to fill static method &quot; String name_Metaclass_VisualID(Metaclass self) &quot;</body>
+  </ownedComment>
+  <ownedComment xmi:id="_jUDagN5fEd2H5qD714qFTA" annotatedElement="_N3We0N5TEd2H5qD714qFTA">
+    <body>This class is used to precise itw own locator used for the border item, like port or template.&#xD;
+&#xD;
+for example, in the case of templateSignature of ClassEditPart in the method protected boolean addFixedChild(EditPart childEditPart):&#xD;
+replacement of the general BorderItemLocator is needed in order to constrain the movement. &#xD;
+&#xD;
+if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {&#xD;
+   // BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.NORTH);&#xD;
+   BorderItemLocator locator = new TemplateClassifierBorderItemLocator(getMainFigure(), PositionConstants.NORTH);&#xD;
+   getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure(), locator);&#xD;
+   return true;&#xD;
+}</body>
+  </ownedComment>
+  <packageImport xmi:id="_Qh1r8d5PEd2H5qD714qFTA">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_RD9hkN5PEd2H5qD714qFTA" name="GenNode"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_YeINEN5PEd2H5qD714qFTA" name="ExtendedGenNode">
+    <generalization xmi:id="_wR5u0N5QEd2H5qD714qFTA" general="_nji3kN5QEd2H5qD714qFTA"/>
+    <ownedAttribute xmi:id="_e-KyoN5PEd2H5qD714qFTA" name="genNode" type="_RD9hkN5PEd2H5qD714qFTA" isUnique="false" association="_e-BosN5PEd2H5qD714qFTA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_e-Ujod5PEd2H5qD714qFTA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_e-UjoN5PEd2H5qD714qFTA" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_id1-gN5PEd2H5qD714qFTA" name="isAbstract" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p9N6Id5PEd2H5qD714qFTA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p9N6IN5PEd2H5qD714qFTA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_p9N6It5PEd2H5qD714qFTA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_wg_wMd5PEd2H5qD714qFTA" name="superGenNodes" type="_RD9hkN5PEd2H5qD714qFTA" isUnique="false" association="_wg_wMN5PEd2H5qD714qFTA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wg_wM95PEd2H5qD714qFTA" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wg_wMt5PEd2H5qD714qFTA"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_IDYccd5QEd2H5qD714qFTA" name="propRefreshHook" type="_8_kJsN5PEd2H5qD714qFTA" isUnique="false" aggregation="composite" association="_IDYccN5QEd2H5qD714qFTA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IDiNcd5QEd2H5qD714qFTA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IDiNcN5QEd2H5qD714qFTA"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_Cj0nAN5REd2H5qD714qFTA" name="intialilization" isUnique="false"/>
+    <ownedAttribute xmi:id="_XxMjsd5REd2H5qD714qFTA" name="nameInitHook" type="_J6ZzAN5REd2H5qD714qFTA" isUnique="false" association="_XxMjsN5REd2H5qD714qFTA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XxVtod5REd2H5qD714qFTA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XxVtoN5REd2H5qD714qFTA"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_e-BosN5PEd2H5qD714qFTA" name="A_ExtendedGenNode_GenNode" memberEnd="_e-KyoN5PEd2H5qD714qFTA _e-Ujot5PEd2H5qD714qFTA">
+    <ownedEnd xmi:id="_e-Ujot5PEd2H5qD714qFTA" name="extendedGenNode" type="_YeINEN5PEd2H5qD714qFTA" isUnique="false" association="_e-BosN5PEd2H5qD714qFTA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_e-Ujo95PEd2H5qD714qFTA" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_e-UjpN5PEd2H5qD714qFTA"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_wg_wMN5PEd2H5qD714qFTA" name="A_ExtendedGenNode_GenNode" memberEnd="_wg_wMd5PEd2H5qD714qFTA _wg_wNN5PEd2H5qD714qFTA">
+    <ownedEnd xmi:id="_wg_wNN5PEd2H5qD714qFTA" name="extendedGenNode" type="_YeINEN5PEd2H5qD714qFTA" isUnique="false" association="_wg_wMN5PEd2H5qD714qFTA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wg_wNd5PEd2H5qD714qFTA" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_whJhMN5PEd2H5qD714qFTA"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_8_kJsN5PEd2H5qD714qFTA" name="PropertyRefreshHook">
+    <generalization xmi:id="_mX9YwN5REd2H5qD714qFTA" general="_hmemwN5REd2H5qD714qFTA"/>
+    <ownedAttribute xmi:id="_0KMK0N5XEd2H5qD714qFTA" name="triggeringCondition" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5N2R8d5XEd2H5qD714qFTA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5N2R8N5XEd2H5qD714qFTA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_5N2R8t5XEd2H5qD714qFTA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_mET_0N5YEd2H5qD714qFTA" name="action" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qv_EwN5YEd2H5qD714qFTA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qv1TwN5YEd2H5qD714qFTA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_qv_Ewd5YEd2H5qD714qFTA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_IDYccN5QEd2H5qD714qFTA" name="A_ExtendedGenNode_FeatureBehaviour" memberEnd="_IDYccd5QEd2H5qD714qFTA _IDiNct5QEd2H5qD714qFTA">
+    <ownedEnd xmi:id="_IDiNct5QEd2H5qD714qFTA" name="extendedGenNode" type="_YeINEN5PEd2H5qD714qFTA" isUnique="false" association="_IDYccN5QEd2H5qD714qFTA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IDiNc95QEd2H5qD714qFTA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IDiNdN5QEd2H5qD714qFTA"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_nji3kN5QEd2H5qD714qFTA" name="CommentedElement">
+    <ownedAttribute xmi:id="_qPNzoN5QEd2H5qD714qFTA" name="comment" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tB4vkN5QEd2H5qD714qFTA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tBu-kN5QEd2H5qD714qFTA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_tB4vkd5QEd2H5qD714qFTA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_J6ZzAN5REd2H5qD714qFTA" name="NameInitalizerHook">
+    <generalization xmi:id="_nBrrMN5REd2H5qD714qFTA" general="_hmemwN5REd2H5qD714qFTA"/>
+    <ownedAttribute xmi:id="_QeekAN5REd2H5qD714qFTA" name="initAction" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_did9wd5cEd2H5qD714qFTA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_did9wN5cEd2H5qD714qFTA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_WZkpcN5REd2H5qD714qFTA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_XxMjsN5REd2H5qD714qFTA" name="A_ExtendedGenNode_NameInitializer" memberEnd="_XxMjsd5REd2H5qD714qFTA _XxVtot5REd2H5qD714qFTA">
+    <ownedEnd xmi:id="_XxVtot5REd2H5qD714qFTA" name="extendedGenNode" type="_YeINEN5PEd2H5qD714qFTA" isUnique="false" association="_XxMjsN5REd2H5qD714qFTA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XxVto95REd2H5qD714qFTA" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XxVtpN5REd2H5qD714qFTA"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_hmemwN5REd2H5qD714qFTA" name="ExternalHook">
+    <generalization xmi:id="_JkuMAN5TEd2H5qD714qFTA" general="_nji3kN5QEd2H5qD714qFTA"/>
+    <ownedAttribute xmi:id="_NrW8IN5REd2H5qD714qFTA" name="classpath" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eud20d5cEd2H5qD714qFTA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eud20N5cEd2H5qD714qFTA"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_Uv7LEd5REd2H5qD714qFTA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_gmqTEN5SEd2H5qD714qFTA" name="GenChildSideAffixedNode">
+    <ownedAttribute xmi:id="_R68QEd5TEd2H5qD714qFTA" name="specificLocator" type="_N3We0N5TEd2H5qD714qFTA" isUnique="false" association="_R68QEN5TEd2H5qD714qFTA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_R7FaAd5TEd2H5qD714qFTA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_R7FaAN5TEd2H5qD714qFTA"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_N3We0N5TEd2H5qD714qFTA" name="SpecificLocator">
+    <generalization xmi:id="_RQxRsN5TEd2H5qD714qFTA" general="_hmemwN5REd2H5qD714qFTA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_R68QEN5TEd2H5qD714qFTA" name="A_GenChildSideAffixedNode_SpecificLocator" memberEnd="_R68QEd5TEd2H5qD714qFTA _R7FaAt5TEd2H5qD714qFTA">
+    <ownedEnd xmi:id="_R7FaAt5TEd2H5qD714qFTA" name="genChildSideAffixedNode" type="_gmqTEN5SEd2H5qD714qFTA" isUnique="false" association="_R68QEN5TEd2H5qD714qFTA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_R7FaA95TEd2H5qD714qFTA" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_R7FaBN5TEd2H5qD714qFTA"/>
+    </ownedEnd>
+  </packagedElement>
+  <profileApplication xmi:id="_Qh1r8t5PEd2H5qD714qFTA">
+    <eAnnotations xmi:id="_Qh1r895PEd2H5qD714qFTA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/schemas/Standard/1#/"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+  </profileApplication>
+</uml:Model>

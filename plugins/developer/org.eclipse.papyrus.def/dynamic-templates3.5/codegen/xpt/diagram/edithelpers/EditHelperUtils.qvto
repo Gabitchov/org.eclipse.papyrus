@@ -1,0 +1,17 @@
+modeltype gmfgen uses "http://www.eclipse.org/gmf/2009/GenModel";
+modeltype gmfgenextension uses "http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension";
+
+library EditHelperUtils;
+
+/*
+ */
+helper getBaseEditHelperFullName(diagram : gmfgen::GenDiagram) : String {
+	if (gmfgenextension::AdditionalEditPartCandies.allInstances()->notEmpty()) then {
+		return gmfgenextension::AdditionalEditPartCandies.allInstances()
+		->asSequence()
+		->first().baseEditHelperPackage + '.' + diagram.baseEditHelperClassName;
+	} endif;
+	
+	return diagram.getBaseEditHelperQualifiedClassName();
+}
+

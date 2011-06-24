@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.papyrus.diagram.common.groups" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.papyrus.diagram.common.groups" id="org.eclipse.papyrus.diagram.common.groups.groupcontainment" name="group containment"/>
+      </appinfo>
+      <documentation>
+         This extension point allows to register group types and their relationship with contained objects, in order to let the group framework handle the graphical parent reassignation.
+
+Diagrams using this extension point must register their diagram part to the group framework.
+This can be achieved calling the code :
+		//configure group framework
+		EditingDomainRegisteringService.addGroupFrameworkForEditingDomain(getEditingDomain(), getDiagramEditPart());
+at the end of the initializeGraphicalViewer() method,
+in the class org.eclipse.papyrus.diagram.***.Uml***DiagramForMultiEditor extending org.eclipse.papyrus.diagram.***.part.UMLDiagramEditor, which itself extends org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor.
+
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+         <documentation>
+            The group containment extension allows to declare a set of group types, which can share the same contained elements.
+
+Node representing instances of these types can all be the graphical parent of a same element.
+
+Declaring them in this extension will let the groups framework handle conflicts for deciding which is the graphical parent.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <choice>
+               <element ref="modelContainer"/>
+               <element ref="referenceContainer"/>
+            </choice>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="modelContainer">
+      <annotation>
+         <documentation>
+            A model container declaration must be used when a group is the model direct parent of its contained elements.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="editPartType" type="string">
+            <annotation>
+               <documentation>
+                  The type of edit part for which we should use this descriptor.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="descriptor" type="string">
+            <annotation>
+               <documentation>
+                  The class describing the group type and how it is related to its contained children.
+This class must implement org.eclipse.papyrus.diagram.common.groups.groupcontainment.IContainerNodeDescriptor
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.diagram.common.groups.groupcontainment.IContainerNodeDescriptor"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="referenceContainer">
+      <annotation>
+         <documentation>
+            A reference container declaration must be used when a group is not the model direct parent of its contained elements, but contains elements through a reference with a specific feature.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="editPartType" type="string">
+            <annotation>
+               <documentation>
+                  The type of edit part for which we should use this descriptor.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="descriptor" type="string">
+            <annotation>
+               <documentation>
+                  The class describing the group type and how it is related to its contained children.
+This class must implement org.eclipse.papyrus.diagram.common.groups.groupcontainment.IContainerNodeDescriptor
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.diagram.common.groups.groupcontainment.IContainerNodeDescriptor"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         0.7.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         &lt;extension
+    point=&quot;org.eclipse.papyrus.diagram.common.groups.groupcontainment&quot;
+    name=&quot;ActivityGroup&quot;
+    id=&quot;org.eclipse.papyrus.diagram.activity.activitygroup&quot;&gt;
+    &lt;modelContainer editPartType=&quot;org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart&quot; descriptor=&quot;org.eclipse.papyrus.diagram.activity.groupcontainment.StructuredActivityNodeContainment&quot;/&gt;
+    &lt;modelContainer descriptor=&quot;org.eclipse.papyrus.diagram.activity.groupcontainment.ConditionalNodeContainment&quot; editPartType=&quot;org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeStructuredActivityNodeContentCompartmentEditPart&quot;&gt;
+    &lt;/modelContainer&gt;
+    &lt;modelContainer descriptor=&quot;org.eclipse.papyrus.diagram.activity.groupcontainment.ExpansionRegionContainment&quot; editPartType=&quot;org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionStructuredActivityNodeContentCompartmentEditPart&quot;&gt;
+    &lt;/modelContainer&gt;
+    &lt;modelContainer descriptor=&quot;org.eclipse.papyrus.diagram.activity.groupcontainment.LoopNodeContainment&quot; editPartType=&quot;org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeStructuredActivityNodeContentCompartmentEditPart&quot;&gt;
+    &lt;/modelContainer&gt;
+    &lt;modelContainer descriptor=&quot;org.eclipse.papyrus.diagram.activity.groupcontainment.SequenceNodeContainment&quot; editPartType=&quot;org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeStructuredActivityNodeContentCompartmentEditPart&quot;&gt;
+    &lt;/modelContainer&gt;
+    &lt;referenceContainer descriptor=&quot;org.eclipse.papyrus.diagram.activity.groupcontainment.InterruptibleActivityRegionContainment&quot; editPartType=&quot;org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart&quot;/&gt;
+    &lt;referenceContainer descriptor=&quot;org.eclipse.papyrus.diagram.activity.groupcontainment.ActivityPartitionContainment&quot; editPartType=&quot;org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart&quot;/&gt;
+&lt;/extension&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         The interface  org.eclipse.papyrus.diagram.common.groups.groupcontainment.IContainerNodeDescriptor must be implemented by classes used in the extensions.
+The interface org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart is used as it is supposed to be implemented by all edit parts in Papyrus.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         The activity diagram provides an extension for this extension point.
+Its usage is described in the example, taken from the org.eclipse.papyrus.diagram.activity plugin.
+
+In this case, all ActivityGroup elements are described :
+ - The StructuredActivityNode and inheriting classes are described by modelContainer nodes. For convenience, the descriptors inherit from a single one.
+ - The InterruptibleActivityRegion are described by a referenceContainer with the InterruptibleActivityRegionContainment class, for the corresponding edit part class.
+ - The ActivityPartition are described by a referenceContainer with the ActivityPartitionDescriptor class, for the corresponding edit part class.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         Copyright (c) 2010 Atos Origin.
+
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+
+ Contributors:
+   Atos Origin - Initial API and implementation
+      </documentation>
+   </annotation>
+
+</schema>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.alf.sdk"
+      label="%featureName"
+      version="0.8.0.qualifier"
+      provider-name="%providerName">
+
+   <description>
+      This feature includes:
+- an implementation of a parser and semantic checker for the OMG standard Alf Beta 1
+- A textual editor for operation signatures and bodies based on the Alf Parser/Semantic checker
+
+Known limitations:
+- Only symbol &apos;::&apos; is available for qualified names
+- No semantic validation for sequence operations
+- No semantic validation for link operations
+- No semantic validation for template bindings
+   </description>
+
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
+      Copyright (c) 2011 CEA LIST 
+All rights reserved.   This program and the accompanying materials
+are made available under the terms of the Eclipse Public License
+v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <plugin
+         id="org.eclipse.papyrus.alf"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.alf.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.operation.editor.xtext"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.operation.editor.xtext.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

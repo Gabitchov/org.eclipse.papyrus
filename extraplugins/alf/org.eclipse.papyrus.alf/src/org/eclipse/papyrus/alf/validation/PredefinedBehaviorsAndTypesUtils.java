@@ -1,0 +1,108 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
+package org.eclipse.papyrus.alf.validation;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.papyrus.alf.validation.typing.SignatureFacade;
+import org.eclipse.papyrus.alf.validation.typing.TypeExpressionFactory;
+import org.eclipse.papyrus.alf.validation.typing.TypeFacade;
+import org.eclipse.papyrus.alf.validation.typing.TypeFacadeFactory;
+import org.eclipse.papyrus.alf.validation.typing.TypeUtils;
+import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.PackageImport;
+
+public class PredefinedBehaviorsAndTypesUtils {
+	
+	private Map<String, List<SignatureFacade>> behaviorMap = new HashMap<String, List<SignatureFacade>>();
+	private Map<String, TypeFacade> typeMap = new HashMap<String, TypeFacade>() ;
+	private List<Behavior> behaviorInsertedAsElementImport = new ArrayList<Behavior>() ;
+	private List<Classifier> classifierInsertedAsElementImport = new ArrayList<Classifier>();
+	
+	public void init(org.eclipse.uml2.uml.Package library) {
+		for (NamedElement n : library.getOwnedMembers()) {
+			if (n instanceof Behavior) {
+				insertSignatureFacade(new SignatureFacade((Behavior)n)) ;
+			}
+			else if (n instanceof Classifier) {
+				insertTypeFacade(TypeFacadeFactory.eInstance.createTypeFacade(n)) ;
+			}
+			else if (n instanceof org.eclipse.uml2.uml.Package) {
+				init((org.eclipse.uml2.uml.Package)n) ;
+			}
+		}
+		for (ElementImport eImport : library.getElementImports()) {
+			if (eImport.getImportedElement() instanceof Behavior) {
+				insertSignatureFacade(new SignatureFacade(eImport)) ;
+				behaviorInsertedAsElementImport.add((Behavior)eImport.getImportedElement()) ;
+			}
+			else if (eImport.getImportedElement() instanceof Classifier) {
+				insertTypeFacade(TypeFacadeFactory.eInstance.createTypeFacade(eImport)) ;
+				classifierInsertedAsElementImport.add((Classifier)eImport.getImportedElement()) ;
+			}
+			else if (eImport.getImportedElement() instanceof org.eclipse.uml2.uml.Package) {
+				init((org.eclipse.uml2.uml.Package)eImport.getImportedElement()) ;
+			}
+		}
+		for (PackageImport pImport : library.getPackageImports()) {
+			init(pImport.getImportedPackage()) ;
+		}
+		// initializes predefined type facades from TypeUtils
+		TypeUtils._bitString = typeMap.get("BitString") ;
+		TypeUtils._boolean = typeMap.get("Boolean") ;
+		TypeUtils._integer = typeMap.get("Integer") ;
+		TypeUtils._natural = typeMap.get("Natural") ;
+		TypeUtils._string = typeMap.get("String") ;
+		TypeUtils._undefined =  new TypeFacade();
+		TypeUtils._unlimited = typeMap.get("UnlimitedNatural") ;
+		TypeUtils._nullExpression = TypeExpressionFactory.eInstance.createTypeExpression(TypeUtils._undefined) ;
+	}
+	
+	public List<SignatureFacade> getSignatures(String name) {
+		return behaviorMap.get(name) ;
+	}
+	
+	public TypeFacade getClassifier(String name) {
+		return typeMap.get(name) ;
+	}
+	
+	private void insertSignatureFacade(SignatureFacade s) {
+		for (Behavior b : behaviorInsertedAsElementImport) {
+			if (s.equals(b))
+				return ;
+		}
+		List<SignatureFacade> l = behaviorMap.get(s.getName()) ;
+		if (l == null) {
+			l = new ArrayList<SignatureFacade>() ;
+			behaviorMap.put(s.getName(), l) ;
+		}
+		l.add(s) ;
+	}
+	
+	private void insertTypeFacade(TypeFacade t) {
+		for (Classifier c : classifierInsertedAsElementImport) {
+			if (t.equals(c))
+				return ;
+		}
+		if (typeMap.get(t.getLabel()) == null)
+			typeMap.put(t.getLabel(), t) ;
+	}
+	
+}

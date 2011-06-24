@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w">
+  <uml:Model xmi:id="_ILqm4Jb5Ed6IEoV1pxdOjw" name="UseCaseDiagramTest">
+    <ownedComment xmi:id="_KxXd0Jb5Ed6IEoV1pxdOjw">
+      <body>&#xD;
+the pupose is to create a use case, an actor , an association between actor and usecase.Create a subsystems. Move usecase into subsystems</body>
+    </ownedComment>
+    <ownedComment xmi:id="_IpCC4Jb6Ed6IEoV1pxdOjw">
+      <body> </body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Class" xmi:id="_H2XP0Jb6Ed6IEoV1pxdOjw" name="Class0"/>
+    <packagedElement xmi:type="uml:Actor" xmi:id="_UrwJsJcBEd6IEoV1pxdOjw" name="myActor"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_XA6DMJcBEd6IEoV1pxdOjw" name="A_myactor_myusecase" memberEnd="_XA6DMZcBEd6IEoV1pxdOjw _XA6DNJcBEd6IEoV1pxdOjw">
+      <ownedEnd xmi:id="_XA6DMZcBEd6IEoV1pxdOjw" name="myactor" type="_UrwJsJcBEd6IEoV1pxdOjw" association="_XA6DMJcBEd6IEoV1pxdOjw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XA6DMpcBEd6IEoV1pxdOjw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XA6DM5cBEd6IEoV1pxdOjw" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_XA6DNJcBEd6IEoV1pxdOjw" name="fdkljgdmkhgdqmhkjhdg" type="_ruVGwJb8Ed6IEoV1pxdOjw" association="_XA6DMJcBEd6IEoV1pxdOjw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XA6DNZcBEd6IEoV1pxdOjw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XA6DNpcBEd6IEoV1pxdOjw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_Yv7JwJcBEd6IEoV1pxdOjw" name="Subsystem" useCase="_8GWEwJcBEd6IEoV1pxdOjw _ItGJ4JcCEd6IEoV1pxdOjw">
+      <ownedUseCase xmi:id="_ruVGwJb8Ed6IEoV1pxdOjw" name="MyUseCase">
+        <include xmi:id="_-ywAoJcBEd6IEoV1pxdOjw" addition="_8GWEwJcBEd6IEoV1pxdOjw"/>
+        <extend xmi:id="_L92wAJcCEd6IEoV1pxdOjw" extendedCase="_ItGJ4JcCEd6IEoV1pxdOjw"/>
+        <extensionPoint xmi:id="_tWEHUJcBEd6IEoV1pxdOjw" name="anExtensionPoint"/>
+      </ownedUseCase>
+      <ownedUseCase xmi:id="_8GWEwJcBEd6IEoV1pxdOjw" name="AnOtherUseCase" subject="_Yv7JwJcBEd6IEoV1pxdOjw"/>
+      <ownedUseCase xmi:id="_ItGJ4JcCEd6IEoV1pxdOjw" name="AThirdUseCase" subject="_Yv7JwJcBEd6IEoV1pxdOjw"/>
+    </packagedElement>
+    <profileApplication xmi:id="_ILqm4Zb5Ed6IEoV1pxdOjw">
+      <eAnnotations xmi:id="_ILqm4pb5Ed6IEoV1pxdOjw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <Standard:Realization xmi:id="_UDOfMJcDEd6IEoV1pxdOjw" base_Classifier="_ruVGwJb8Ed6IEoV1pxdOjw"/>
+  <Standard:Realization xmi:id="_X0xeMJcDEd6IEoV1pxdOjw" base_Classifier="_UrwJsJcBEd6IEoV1pxdOjw"/>
+  <Standard:Specification xmi:id="_ZnXdMJcDEd6IEoV1pxdOjw" base_Classifier="_XA6DMJcBEd6IEoV1pxdOjw"/>
+</xmi:XMI>

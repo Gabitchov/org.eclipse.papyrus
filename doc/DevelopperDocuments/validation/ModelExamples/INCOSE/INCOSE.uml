@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Blocks="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks" xmlns:Constraints="http://www.eclipse.org/papyrus/0.7.0/SysML/Constraints" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks http://www.eclipse.org/papyrus/0.7.0/SysML/Constraints http://www.eclipse.org/papyrus/0.7.0/SysML#//constraints">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="INCOSE">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="EngrAnalysis">
+      <packagedElement xmi:type="uml:Class" xmi:id="_8K_poBSUEd-2df7r1H5t5w" name="Straight Line Vehicle Dynamics">
+        <eAnnotations xmi:id="_Byi_oBSjEd-wFOMaETc_Cg" source="Stereotype_Annotation">
+          <details xmi:id="_Byi_oRSjEd-wFOMaETc_Cg" key="StereotypeWithQualifiedNameList" value=""/>
+          <details xmi:id="_Byi_ohSjEd-wFOMaETc_Cg" key="StereotypeList" value="SysML::Blocks::Block"/>
+          <details xmi:id="_Byi_oxSjEd-wFOMaETc_Cg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+          <details xmi:id="_Byi_pBSjEd-wFOMaETc_Cg" key="PropStereoDisplay" value=""/>
+          <details xmi:id="_Byi_pRSjEd-wFOMaETc_Cg" key="StereotypePropertyLocation" value="Compartment"/>
+        </eAnnotations>
+        <ownedAttribute xmi:id="_aH1FQBSfEd-kvuKPcuJnyA" name="e1" type="_8Y2feBSUEd-2df7r1H5t5w" isUnique="false" aggregation="composite" association="_aH1FThSfEd-kvuKPcuJnyA">
+          <eAnnotations xmi:id="_Ru1yUBSlEd-wFOMaETc_Cg" source="Stereotype_Annotation">
+            <details xmi:id="_Ru1yURSlEd-wFOMaETc_Cg" key="StereotypeWithQualifiedNameList" value=""/>
+            <details xmi:id="_Ru1yUhSlEd-wFOMaETc_Cg" key="StereotypeList" value="SysML::Constraints::ConstraintProperty"/>
+            <details xmi:id="_Ru1yUxSlEd-wFOMaETc_Cg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+            <details xmi:id="_Ru1yVBSlEd-wFOMaETc_Cg" key="PropStereoDisplay" value=""/>
+            <details xmi:id="_Ru1yVRSlEd-wFOMaETc_Cg" key="StereotypePropertyLocation" value="Compartment"/>
+          </eAnnotations>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aH1FQRSfEd-kvuKPcuJnyA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aH1FQhSfEd-kvuKPcuJnyA" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ae7WoBSfEd-kvuKPcuJnyA" name="e2" type="_8gyTdBSUEd-2df7r1H5t5w" isUnique="false" aggregation="composite" association="_afFHoBSfEd-kvuKPcuJnyA">
+          <eAnnotations xmi:id="_SWBuIBSlEd-wFOMaETc_Cg" source="Stereotype_Annotation">
+            <details xmi:id="_SWBuIRSlEd-wFOMaETc_Cg" key="StereotypeWithQualifiedNameList" value=""/>
+            <details xmi:id="_SWBuIhSlEd-wFOMaETc_Cg" key="StereotypeList" value="SysML::Constraints::ConstraintProperty"/>
+            <details xmi:id="_SWBuIxSlEd-wFOMaETc_Cg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+            <details xmi:id="_SWBuJBSlEd-wFOMaETc_Cg" key="PropStereoDisplay" value=""/>
+            <details xmi:id="_SWBuJRSlEd-wFOMaETc_Cg" key="StereotypePropertyLocation" value="Compartment"/>
+          </eAnnotations>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ae7WoRSfEd-kvuKPcuJnyA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ae7WohSfEd-kvuKPcuJnyA" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_a4HSsBSfEd-kvuKPcuJnyA" name="e3" type="_8pRhGBSUEd-2df7r1H5t5w" isUnique="false" aggregation="composite" association="_a4RDuhSfEd-kvuKPcuJnyA">
+          <eAnnotations xmi:id="_TBiwUBSlEd-wFOMaETc_Cg" source="Stereotype_Annotation">
+            <details xmi:id="_TBiwURSlEd-wFOMaETc_Cg" key="StereotypeWithQualifiedNameList" value=""/>
+            <details xmi:id="_TBiwUhSlEd-wFOMaETc_Cg" key="StereotypeList" value="SysML::Constraints::ConstraintProperty"/>
+            <details xmi:id="_TBiwUxSlEd-wFOMaETc_Cg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+            <details xmi:id="_TBiwVBSlEd-wFOMaETc_Cg" key="PropStereoDisplay" value=""/>
+            <details xmi:id="_TBiwVRSlEd-wFOMaETc_Cg" key="StereotypePropertyLocation" value="Compartment"/>
+          </eAnnotations>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_a4HSsRSfEd-kvuKPcuJnyA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_a4HSshSfEd-kvuKPcuJnyA" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_bOBRQBSfEd-kvuKPcuJnyA" name="e4" type="_8xUp2BSUEd-2df7r1H5t5w" isUnique="false" aggregation="composite" association="_bOKbOhSfEd-kvuKPcuJnyA">
+          <eAnnotations xmi:id="_TlJzsBSlEd-wFOMaETc_Cg" source="Stereotype_Annotation">
+            <details xmi:id="_TlJzsRSlEd-wFOMaETc_Cg" key="StereotypeWithQualifiedNameList" value=""/>
+            <details xmi:id="_TlJzshSlEd-wFOMaETc_Cg" key="StereotypeList" value="SysML::Constraints::ConstraintProperty"/>
+            <details xmi:id="_TlJzsxSlEd-wFOMaETc_Cg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+            <details xmi:id="_TlJztBSlEd-wFOMaETc_Cg" key="PropStereoDisplay" value=""/>
+            <details xmi:id="_TlJztRSlEd-wFOMaETc_Cg" key="StereotypePropertyLocation" value="Compartment"/>
+          </eAnnotations>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bOBRQRSfEd-kvuKPcuJnyA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bOBRQhSfEd-kvuKPcuJnyA" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_cHYiMBSfEd-kvuKPcuJnyA" name="clock" type="_8QWqyBSUEd-2df7r1H5t5w" aggregation="composite" association="_cHiTOhSfEd-kvuKPcuJnyA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cHYiMRSfEd-kvuKPcuJnyA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cHYiMhSfEd-kvuKPcuJnyA" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_M_G7kBSfEd-kvuKPcuJnyA" name="v" type="_26emsBSeEd-kvuKPcuJnyA" aggregation="shared" association="_M_G7jBSfEd-kvuKPcuJnyA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_M_G7kRSfEd-kvuKPcuJnyA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_M_G7khSfEd-kvuKPcuJnyA" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_8QWqyBSUEd-2df7r1H5t5w" name="Clock">
+        <eAnnotations xmi:id="_Df6gYBSjEd-wFOMaETc_Cg" source="Stereotype_Annotation">
+          <details xmi:id="_Df6gYRSjEd-wFOMaETc_Cg" key="StereotypeWithQualifiedNameList" value=""/>
+          <details xmi:id="_Df6gYhSjEd-wFOMaETc_Cg" key="StereotypeList" value="SysML::Blocks::Block"/>
+          <details xmi:id="_Df6gYxSjEd-wFOMaETc_Cg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+          <details xmi:id="_Df6gZBSjEd-wFOMaETc_Cg" key="PropStereoDisplay" value=""/>
+          <details xmi:id="_Df6gZRSjEd-wFOMaETc_Cg" key="StereotypePropertyLocation" value="Compartment"/>
+        </eAnnotations>
+        <ownedAttribute xmi:id="_b7paABSkEd-wFOMaETc_Cg" name="time" visibility="public" type="_ilCFoBSgEd-kvuKPcuJnyA" isUnique="false">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_c9qQoRSkEd-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_c9qQoBSkEd-wFOMaETc_Cg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_c9qQohSkEd-wFOMaETc_Cg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_8Y2feBSUEd-2df7r1H5t5w" name="Braking Force Equation">
+        <eAnnotations xmi:id="_HLgBUBSjEd-wFOMaETc_Cg" source="Stereotype_Annotation">
+          <details xmi:id="_HLgBURSjEd-wFOMaETc_Cg" key="StereotypeWithQualifiedNameList" value=""/>
+          <details xmi:id="_HLgBUhSjEd-wFOMaETc_Cg" key="StereotypeList" value="SysML::Constraints::ConstraintBlock"/>
+          <details xmi:id="_HLgBUxSjEd-wFOMaETc_Cg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+          <details xmi:id="_HLgBVBSjEd-wFOMaETc_Cg" key="PropStereoDisplay" value=""/>
+          <details xmi:id="_HLgBVRSjEd-wFOMaETc_Cg" key="StereotypePropertyLocation" value="Compartment"/>
+        </eAnnotations>
+        <ownedAttribute xmi:id="_f2IvEBSjEd-wFOMaETc_Cg" name="f" visibility="public" type="_izpJaBSgEd-kvuKPcuJnyA" isUnique="false">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hpdt4RSjEd-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hpdt4BSjEd-wFOMaETc_Cg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_hpdt4hSjEd-wFOMaETc_Cg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ij4HsBSjEd-wFOMaETc_Cg" name="tf" visibility="public" type="_izpJaBSgEd-kvuKPcuJnyA" isUnique="false">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jw7JoRSjEd-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jw7JoBSjEd-wFOMaETc_Cg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_jw7JohSjEd-wFOMaETc_Cg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_kNOrIBSjEd-wFOMaETc_Cg" name="bf" visibility="public" type="_izpJaBSgEd-kvuKPcuJnyA" isUnique="false">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lSrQQRSjEd-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lSrQQBSjEd-wFOMaETc_Cg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_lSrQQhSjEd-wFOMaETc_Cg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_lx90UBSjEd-wFOMaETc_Cg" name="tl" visibility="public" type="_jEBuyBSgEd-kvuKPcuJnyA" isUnique="false">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qWUJQRSjEd-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qWUJQBSjEd-wFOMaETc_Cg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_qWUJQhSjEd-wFOMaETc_Cg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedConnector xmi:id="_nfyYUBS0Ed-wFOMaETc_Cg" name="c5">
+          <end xmi:id="_nfyYURS0Ed-wFOMaETc_Cg" role="_kNOrIBSjEd-wFOMaETc_Cg"/>
+          <end xmi:id="_nfyYUhS0Ed-wFOMaETc_Cg" role="_90N28BSkEd-wFOMaETc_Cg"/>
+        </ownedConnector>
+        <ownedConnector xmi:id="_tcNTcBS0Ed-wFOMaETc_Cg" name="c7">
+          <end xmi:id="_tcNTcRS0Ed-wFOMaETc_Cg" role="_f2IvEBSjEd-wFOMaETc_Cg"/>
+          <end xmi:id="_tcNTchS0Ed-wFOMaETc_Cg" role="_uKPt4BSjEd-wFOMaETc_Cg"/>
+        </ownedConnector>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_8gyTdBSUEd-2df7r1H5t5w" name="Acceleration Equation">
+        <eAnnotations xmi:id="_GnTIEBSjEd-wFOMaETc_Cg" source="Stereotype_Annotation">
+          <details xmi:id="_GnTIERSjEd-wFOMaETc_Cg" key="StereotypeWithQualifiedNameList" value=""/>
+          <details xmi:id="_GnTIEhSjEd-wFOMaETc_Cg" key="StereotypeList" value="SysML::Constraints::ConstraintBlock"/>
+          <details xmi:id="_GnTIExSjEd-wFOMaETc_Cg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+          <details xmi:id="_GnTIFBSjEd-wFOMaETc_Cg" key="PropStereoDisplay" value=""/>
+          <details xmi:id="_GnTIFRSjEd-wFOMaETc_Cg" key="StereotypePropertyLocation" value="Compartment"/>
+        </eAnnotations>
+        <ownedAttribute xmi:id="_uKPt4BSjEd-wFOMaETc_Cg" name="f" visibility="public" type="_izpJaBSgEd-kvuKPcuJnyA" isUnique="false">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vVWPERSjEd-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vVWPEBSjEd-wFOMaETc_Cg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_vVWPEhSjEd-wFOMaETc_Cg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_vww_wBSjEd-wFOMaETc_Cg" name="m" visibility="public" type="_i6WOWBSgEd-kvuKPcuJnyA" isUnique="false">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_w-G8oRSjEd-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_w-G8oBSjEd-wFOMaETc_Cg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_w-QGkBSjEd-wFOMaETc_Cg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xraHgBSjEd-wFOMaETc_Cg" name="a" visibility="public" type="_isL2iBSgEd-kvuKPcuJnyA" isUnique="false">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0t3L4RSjEd-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0t3L4BSjEd-wFOMaETc_Cg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_0t3L4hSjEd-wFOMaETc_Cg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_8pRhGBSUEd-2df7r1H5t5w" name="Velocity Equation">
+        <eAnnotations xmi:id="_Ib-KsBSjEd-wFOMaETc_Cg" source="Stereotype_Annotation">
+          <details xmi:id="_Ib-KsRSjEd-wFOMaETc_Cg" key="StereotypeWithQualifiedNameList" value=""/>
+          <details xmi:id="_Ib-KshSjEd-wFOMaETc_Cg" key="StereotypeList" value="SysML::Constraints::ConstraintBlock"/>
+          <details xmi:id="_Ib-KsxSjEd-wFOMaETc_Cg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+          <details xmi:id="_Ib-KtBSjEd-wFOMaETc_Cg" key="PropStereoDisplay" value=""/>
+          <details xmi:id="_Ib-KtRSjEd-wFOMaETc_Cg" key="StereotypePropertyLocation" value="Compartment"/>
+        </eAnnotations>
+        <ownedAttribute xmi:id="_3W2AUBSjEd-wFOMaETc_Cg" name="a" visibility="public" type="_isL2iBSgEd-kvuKPcuJnyA" isUnique="false">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4ozXcRSjEd-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4ozXcBSjEd-wFOMaETc_Cg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_4ozXchSjEd-wFOMaETc_Cg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_5FQp8BSjEd-wFOMaETc_Cg" name="v" visibility="public" type="_isL2iBSgEd-kvuKPcuJnyA" isUnique="false">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6SvwwRSjEd-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6SvwwBSjEd-wFOMaETc_Cg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_6S5hwBSjEd-wFOMaETc_Cg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_62W0IBSjEd-wFOMaETc_Cg" name="t" visibility="public" type="_ilCFoBSgEd-kvuKPcuJnyA" isUnique="false">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_76KagBSjEd-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_76ApgBSjEd-wFOMaETc_Cg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_76KagRSjEd-wFOMaETc_Cg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedConnector xmi:id="_fh42ABSmEd-wFOMaETc_Cg" name="c2">
+          <end xmi:id="_fiB_8BSmEd-wFOMaETc_Cg" role="_62W0IBSjEd-wFOMaETc_Cg"/>
+          <end xmi:id="_fiB_8RSmEd-wFOMaETc_Cg" role="_b7paABSkEd-wFOMaETc_Cg"/>
+        </ownedConnector>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_8xUp2BSUEd-2df7r1H5t5w" name="Distance Equation">
+        <eAnnotations xmi:id="_H2kXkBSjEd-wFOMaETc_Cg" source="Stereotype_Annotation">
+          <details xmi:id="_H2uIkBSjEd-wFOMaETc_Cg" key="StereotypeWithQualifiedNameList" value=""/>
+          <details xmi:id="_H2uIkRSjEd-wFOMaETc_Cg" key="StereotypeList" value="SysML::Constraints::ConstraintBlock"/>
+          <details xmi:id="_H2uIkhSjEd-wFOMaETc_Cg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+          <details xmi:id="_H2uIkxSjEd-wFOMaETc_Cg" key="PropStereoDisplay" value=""/>
+          <details xmi:id="_H2uIlBSjEd-wFOMaETc_Cg" key="StereotypePropertyLocation" value="Compartment"/>
+        </eAnnotations>
+        <ownedAttribute xmi:id="_98PnABSjEd-wFOMaETc_Cg" name="v" visibility="public" type="_isL2iBSgEd-kvuKPcuJnyA" isUnique="false">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-9EK0RSjEd-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-9EK0BSjEd-wFOMaETc_Cg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_-9EK0hSjEd-wFOMaETc_Cg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="__ShdcBSjEd-wFOMaETc_Cg" name="x" visibility="public" type="_isL2iBSgEd-kvuKPcuJnyA" isUnique="false">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AhDtIRSkEd-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AhDtIBSkEd-wFOMaETc_Cg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_AhDtIhSkEd-wFOMaETc_Cg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_A2NdwBSkEd-wFOMaETc_Cg" name="t" visibility="public" type="_ilCFoBSgEd-kvuKPcuJnyA" isUnique="false">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FZYuARSkEd-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FZYuABSkEd-wFOMaETc_Cg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_FZYuAhSkEd-wFOMaETc_Cg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedConnector xmi:id="_XLaTQBSmEd-wFOMaETc_Cg" name="c1">
+          <end xmi:id="_XLaTQRSmEd-wFOMaETc_Cg" role="_A2NdwBSkEd-wFOMaETc_Cg"/>
+          <end xmi:id="_XLaTQhSmEd-wFOMaETc_Cg" role="_b7paABSkEd-wFOMaETc_Cg"/>
+        </ownedConnector>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_M_G7jBSfEd-kvuKPcuJnyA" name="A_&lt;straight Line Vehicle Dynamics>_&lt;vehicle>" memberEnd="_M_G7jRSfEd-kvuKPcuJnyA _M_G7kBSfEd-kvuKPcuJnyA">
+        <ownedEnd xmi:id="_M_G7jRSfEd-kvuKPcuJnyA" name="straight Line Vehicle Dynamics" type="_8K_poBSUEd-2df7r1H5t5w" association="_M_G7jBSfEd-kvuKPcuJnyA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_M_G7jhSfEd-kvuKPcuJnyA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_M_G7jxSfEd-kvuKPcuJnyA" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_aH1FThSfEd-kvuKPcuJnyA" name="A_&lt;straight Line Vehicle Dynamics>_&lt;braking Force Equation>" memberEnd="_aH1FTxSfEd-kvuKPcuJnyA _aH1FQBSfEd-kvuKPcuJnyA">
+        <ownedEnd xmi:id="_aH1FTxSfEd-kvuKPcuJnyA" name="straight Line Vehicle Dynamics" type="_8K_poBSUEd-2df7r1H5t5w" association="_aH1FThSfEd-kvuKPcuJnyA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aH1FUBSfEd-kvuKPcuJnyA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aH1FURSfEd-kvuKPcuJnyA" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_afFHoBSfEd-kvuKPcuJnyA" name="A_&lt;straight Line Vehicle Dynamics>_&lt;acceleration Equation>" memberEnd="_afFHoRSfEd-kvuKPcuJnyA _ae7WoBSfEd-kvuKPcuJnyA">
+        <ownedEnd xmi:id="_afFHoRSfEd-kvuKPcuJnyA" name="straight Line Vehicle Dynamics" type="_8K_poBSUEd-2df7r1H5t5w" association="_afFHoBSfEd-kvuKPcuJnyA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_afFHohSfEd-kvuKPcuJnyA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_afFHoxSfEd-kvuKPcuJnyA" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_a4RDuhSfEd-kvuKPcuJnyA" name="A_&lt;straight Line Vehicle Dynamics>_&lt;velocity Equation>" memberEnd="_a4RDuxSfEd-kvuKPcuJnyA _a4HSsBSfEd-kvuKPcuJnyA">
+        <ownedEnd xmi:id="_a4RDuxSfEd-kvuKPcuJnyA" name="straight Line Vehicle Dynamics" type="_8K_poBSUEd-2df7r1H5t5w" association="_a4RDuhSfEd-kvuKPcuJnyA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_a4RDvBSfEd-kvuKPcuJnyA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_a4RDvRSfEd-kvuKPcuJnyA" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_bOKbOhSfEd-kvuKPcuJnyA" name="A_&lt;straight Line Vehicle Dynamics>_&lt;distance Equation>" memberEnd="_bOKbOxSfEd-kvuKPcuJnyA _bOBRQBSfEd-kvuKPcuJnyA">
+        <ownedEnd xmi:id="_bOKbOxSfEd-kvuKPcuJnyA" name="straight Line Vehicle Dynamics" type="_8K_poBSUEd-2df7r1H5t5w" association="_bOKbOhSfEd-kvuKPcuJnyA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bOKbPBSfEd-kvuKPcuJnyA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bOKbPRSfEd-kvuKPcuJnyA" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_cHiTOhSfEd-kvuKPcuJnyA" name="A_&lt;straight Line Vehicle Dynamics>_&lt;clock>" memberEnd="_cHiTOxSfEd-kvuKPcuJnyA _cHYiMBSfEd-kvuKPcuJnyA">
+        <ownedEnd xmi:id="_cHiTOxSfEd-kvuKPcuJnyA" name="straight Line Vehicle Dynamics" type="_8K_poBSUEd-2df7r1H5t5w" association="_cHiTOhSfEd-kvuKPcuJnyA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cHiTPBSfEd-kvuKPcuJnyA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cHiTPRSfEd-kvuKPcuJnyA" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_h7A4SBSgEd-kvuKPcuJnyA" name="m/sec^2"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_ieexuBSgEd-kvuKPcuJnyA" name="m/sec"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_ilCFoBSgEd-kvuKPcuJnyA" name="sec"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_isL2iBSgEd-kvuKPcuJnyA" name="m"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_izpJaBSgEd-kvuKPcuJnyA" name="N"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_i6WOWBSgEd-kvuKPcuJnyA" name="Kg"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_jEBuyBSgEd-kvuKPcuJnyA" name="%"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_1ZLMARSeEd-kvuKPcuJnyA" name="Structure">
+      <packagedElement xmi:type="uml:Class" xmi:id="_qTykQBSkEd-wFOMaETc_Cg" name="Brake Modulator">
+        <ownedAttribute xmi:id="_tJSxwBSkEd-wFOMaETc_Cg" name="duty cycle" type="_jEBuyBSgEd-kvuKPcuJnyA" isUnique="false"/>
+        <ownedAttribute xmi:id="_I6XHIBS0Ed-wFOMaETc_Cg" name="r" type="_8dpFkBSkEd-wFOMaETc_Cg" aggregation="composite" association="_I6gREBS0Ed-wFOMaETc_Cg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_I6XHIRS0Ed-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_I6XHIhS0Ed-wFOMaETc_Cg" value="1"/>
+        </ownedAttribute>
+        <ownedConnector xmi:id="_qH304BS0Ed-wFOMaETc_Cg" name="c6">
+          <end xmi:id="_qH304RS0Ed-wFOMaETc_Cg" role="_tJSxwBSkEd-wFOMaETc_Cg"/>
+          <end xmi:id="_qH304hS0Ed-wFOMaETc_Cg" role="_lx90UBSjEd-wFOMaETc_Cg"/>
+        </ownedConnector>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_13yL4BSkEd-wFOMaETc_Cg" name="Tire">
+        <ownedAttribute xmi:id="_2gw3cBSkEd-wFOMaETc_Cg" name="friction" visibility="public" type="_izpJaBSgEd-kvuKPcuJnyA" isUnique="false">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_36K6YRSkEd-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_36K6YBSkEd-wFOMaETc_Cg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_36K6YhSkEd-wFOMaETc_Cg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_8dpFkBSkEd-wFOMaETc_Cg" name="Rotor">
+        <ownedAttribute xmi:id="_90N28BSkEd-wFOMaETc_Cg" name="braking force" type="_izpJaBSgEd-kvuKPcuJnyA" isUnique="false"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_26emsBSeEd-kvuKPcuJnyA" name="Vehicle">
+        <eAnnotations xmi:id="_EcHp8BSjEd-wFOMaETc_Cg" source="Stereotype_Annotation">
+          <details xmi:id="_EcHp8RSjEd-wFOMaETc_Cg" key="StereotypeWithQualifiedNameList" value=""/>
+          <details xmi:id="_EcHp8hSjEd-wFOMaETc_Cg" key="StereotypeList" value="SysML::Blocks::Block"/>
+          <details xmi:id="_EcHp8xSjEd-wFOMaETc_Cg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+          <details xmi:id="_EcHp9BSjEd-wFOMaETc_Cg" key="PropStereoDisplay" value=""/>
+          <details xmi:id="_EcHp9RSjEd-wFOMaETc_Cg" key="StereotypePropertyLocation" value="Compartment"/>
+        </eAnnotations>
+        <ownedAttribute xmi:id="_Z4XToBSkEd-wFOMaETc_Cg" name="position" visibility="public" type="_isL2iBSgEd-kvuKPcuJnyA" isUnique="false">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bSqucRSkEd-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bSqucBSkEd-wFOMaETc_Cg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_bSquchSkEd-wFOMaETc_Cg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_eYaXYBSkEd-wFOMaETc_Cg" name="mass" visibility="public" type="_i6WOWBSgEd-kvuKPcuJnyA" isUnique="false">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fYoeQRSkEd-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fYoeQBSkEd-wFOMaETc_Cg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_fYoeQhSkEd-wFOMaETc_Cg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_C2oDEBS0Ed-wFOMaETc_Cg" name="b" type="_qTykQBSkEd-wFOMaETc_Cg" aggregation="composite" association="_C2oDExS0Ed-wFOMaETc_Cg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_C2oDERS0Ed-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_C2oDEhS0Ed-wFOMaETc_Cg" value="1"/>
+        </ownedAttribute>
+        <ownedConnector xmi:id="_O6V-gBSyEd-wFOMaETc_Cg" name="c2">
+          <end xmi:id="_O6V-gRSyEd-wFOMaETc_Cg" role="_eYaXYBSkEd-wFOMaETc_Cg"/>
+          <end xmi:id="_O6V-ghSyEd-wFOMaETc_Cg" role="_vww_wBSjEd-wFOMaETc_Cg"/>
+        </ownedConnector>
+        <ownedConnector xmi:id="_RcLCEBSyEd-wFOMaETc_Cg" name="c3">
+          <end xmi:id="_RcLCERSyEd-wFOMaETc_Cg" role="_Z4XToBSkEd-wFOMaETc_Cg"/>
+          <end xmi:id="_RcLCEhSyEd-wFOMaETc_Cg" role="__ShdcBSjEd-wFOMaETc_Cg"/>
+        </ownedConnector>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_C2oDExS0Ed-wFOMaETc_Cg" name="Association0" memberEnd="_C2oDFBS0Ed-wFOMaETc_Cg _C2oDEBS0Ed-wFOMaETc_Cg">
+        <ownedEnd xmi:id="_C2oDFBS0Ed-wFOMaETc_Cg" name="vehicle" type="_26emsBSeEd-kvuKPcuJnyA" association="_C2oDExS0Ed-wFOMaETc_Cg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_C2oDFRS0Ed-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_C2oDFhS0Ed-wFOMaETc_Cg" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_I6gREBS0Ed-wFOMaETc_Cg" name="Association1" memberEnd="_I6gRERS0Ed-wFOMaETc_Cg _I6XHIBS0Ed-wFOMaETc_Cg">
+        <ownedEnd xmi:id="_I6gRERS0Ed-wFOMaETc_Cg" name="brake modulator" type="_qTykQBSkEd-wFOMaETc_Cg" association="_I6gREBS0Ed-wFOMaETc_Cg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_I6gREhS0Ed-wFOMaETc_Cg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_I6gRExS0Ed-wFOMaETc_Cg" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_473S0BSiEd-wFOMaETc_Cg">
+      <eAnnotations xmi:id="_473S0RSiEd-wFOMaETc_Cg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_TZ_nULU5EduiKqCzJMWbGw"/>
+    </profileApplication>
+    <profileApplication xmi:id="_48KNwBSiEd-wFOMaETc_Cg">
+      <eAnnotations xmi:id="_48T-wBSiEd-wFOMaETc_Cg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//modelelements"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_Gx8MgLX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:id="_48m5sBSiEd-wFOMaETc_Cg">
+      <eAnnotations xmi:id="_48m5sRSiEd-wFOMaETc_Cg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_fSw28LX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:id="_49DloBSiEd-wFOMaETc_Cg">
+      <eAnnotations xmi:id="_49DloRSiEd-wFOMaETc_Cg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_rpx28LX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:id="_49WgkBSiEd-wFOMaETc_Cg">
+      <eAnnotations xmi:id="_49WgkRSiEd-wFOMaETc_Cg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//constraints"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_5WYJ0LX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:id="_49pbgBSiEd-wFOMaETc_Cg">
+      <eAnnotations xmi:id="_49pbgRSiEd-wFOMaETc_Cg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//activities"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_C2zXMLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:id="_498WcBSiEd-wFOMaETc_Cg">
+      <eAnnotations xmi:id="_498WcRSiEd-wFOMaETc_Cg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//allocations"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_NxdG4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:id="_4-ZCYBSiEd-wFOMaETc_Cg">
+      <eAnnotations xmi:id="_4-ZCYRSiEd-wFOMaETc_Cg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:id="_4-1uUBSiEd-wFOMaETc_Cg">
+      <eAnnotations xmi:id="_4-_fUBSiEd-wFOMaETc_Cg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//interactions"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_meOioLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:id="_4_cLQBSiEd-wFOMaETc_Cg">
+      <eAnnotations xmi:id="_4_cLQRSiEd-wFOMaETc_Cg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//statemachines"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_nAF5kLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:id="_4_43MBSiEd-wFOMaETc_Cg">
+      <eAnnotations xmi:id="_4_43MRSiEd-wFOMaETc_Cg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//usecases"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_neZmMLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+  </uml:Model>
+  <Blocks:Block xmi:id="_Bx8isBSjEd-wFOMaETc_Cg" base_Class="_8K_poBSUEd-2df7r1H5t5w"/>
+  <Blocks:Block xmi:id="_Dfd0cBSjEd-wFOMaETc_Cg" base_Class="_8QWqyBSUEd-2df7r1H5t5w"/>
+  <Constraints:ConstraintBlock xmi:id="_GmsrIBSjEd-wFOMaETc_Cg" base_Class="_8gyTdBSUEd-2df7r1H5t5w"/>
+  <Constraints:ConstraintBlock xmi:id="_HLD8cBSjEd-wFOMaETc_Cg" base_Class="_8Y2feBSUEd-2df7r1H5t5w"/>
+  <Constraints:ConstraintBlock xmi:id="_H2HroBSjEd-wFOMaETc_Cg" base_Class="_8xUp2BSUEd-2df7r1H5t5w"/>
+  <Constraints:ConstraintBlock xmi:id="_IbhewBSjEd-wFOMaETc_Cg" base_Class="_8pRhGBSUEd-2df7r1H5t5w"/>
+  <Blocks:Block xmi:id="_x-MEIBSkEd-wFOMaETc_Cg" base_Class="_qTykQBSkEd-wFOMaETc_Cg"/>
+  <Blocks:Block xmi:id="_4dx9wBSkEd-wFOMaETc_Cg" base_Class="_13yL4BSkEd-wFOMaETc_Cg"/>
+  <Blocks:Block xmi:id="_CQqNEBSlEd-wFOMaETc_Cg" base_Class="_8dpFkBSkEd-wFOMaETc_Cg"/>
+  <Constraints:ConstraintProperty xmi:id="_RuZGYBSlEd-wFOMaETc_Cg" base_Property="_aH1FQBSfEd-kvuKPcuJnyA"/>
+  <Constraints:ConstraintProperty xmi:id="_SVlCMBSlEd-wFOMaETc_Cg" base_Property="_ae7WoBSfEd-kvuKPcuJnyA"/>
+  <Constraints:ConstraintProperty xmi:id="_TBGEYBSlEd-wFOMaETc_Cg" base_Property="_a4HSsBSfEd-kvuKPcuJnyA"/>
+  <Constraints:ConstraintProperty xmi:id="_TktHwBSlEd-wFOMaETc_Cg" base_Property="_bOBRQBSfEd-kvuKPcuJnyA"/>
+  <Blocks:Block xmi:id="_6Y9lIBSxEd-wFOMaETc_Cg" base_Class="_26emsBSeEd-kvuKPcuJnyA"/>
+</xmi:XMI>

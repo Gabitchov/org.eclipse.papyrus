@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modelCellEditor:ModelCellEditorDeclarations xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:modelCellEditor="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/modelCellEditor">
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="uml_boolean_cell_papyrus" basicCellEditorImpl="org.eclipse.papyrus.widget.celleditors.uml.editors.BooleanCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/3.0.0/UML#//Boolean"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="uml_string_cell_papyrus" basicCellEditorImpl="org.eclipse.papyrus.widget.celleditors.uml.editors.StringMultiCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/3.0.0/UML#//String"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="uml_int_cell_papyrus" basicCellEditorImpl="org.eclipse.papyrus.widget.celleditors.uml.editors.IntCellEditor">
+    <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/3.0.0/UML#//Integer"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:UnaryReferenceCellEditor" cellId="uml_enumeration_literal_cell_papyrus" unaryReferenceCellEditorImpl="org.eclipse.papyrus.widget.celleditors.uml.editors.EnumerationLiteralCellEditor">
+    <cellType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//EnumerationLiteral"/>
+  </modelCellEditors>
+</modelCellEditor:ModelCellEditorDeclarations>

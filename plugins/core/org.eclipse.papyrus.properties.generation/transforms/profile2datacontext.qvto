@@ -1,0 +1,133 @@
+modeltype UML uses "http://www.eclipse.org/uml2/3.0.0/UML";
+modeltype PropertyContext uses "http://www.eclipse.org/papyrus/properties/contexts";
+modeltype PropertyEnvironment uses "http://www.eclipse.org/papyrus/properties/environment";
+modeltype PRoot uses "http://www.eclipse.org/papyrus/properties/root";
+
+transformation stereotype2datacontext(in profile : UML, out context : PropertyContext, in uml : PropertyContext, in pRoot : PRoot);
+
+main() {
+	profile.rootObjects()[Profile]->map toContext();
+}
+
+mapping Profile::toContext() : c:Context, root:DataContextRoot{
+	object c : Context {
+		name := self.name;
+		dataContexts := root;
+		views := self.packagedElement->map toDataContextElement().viewSingle->union(
+			self.packagedElement->map toDataContextElement().viewMultiple
+		);
+		dependencies := uml.rootObjects()[Context];
+	};
+	object root : DataContextRoot{
+		name := self.name;
+		label := self.name;
+		elements := self.packagedElement->select(e | e.oclIsKindOf(Stereotype))->map toDataContextElement().element
+			->union(self.packagedElement->select(e | e.oclIsKindOf(Package))->map toDataContextPackage());
+		modelElementFactory := pRoot.rootObjects()[PropertiesRoot].environments.modelElementFactories
+			->any(e | e.factoryClass = 'org.eclipse.papyrus.properties.uml.modelelement.StereotypeModelElementFactory');
+	};
+}
+
+mapping Element::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View disjuncts 
+	Stereotype::toDataContextElement{
+}
+
+mapping PackageableElement::toDataContextPackage() : DataContextPackage disjuncts
+	Package::toDataContextPackage, Profile::toDataContextPackage{
+	
+}
+
+abstract mapping PackageableElement::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View{
+	element.name := self.name;
+}
+
+mapping Package::toDataContextPackage() : DataContextPackage inherits PackageableElement::toDataContextPackage{
+	name := self.name;
+	elements := self.packagedElement->select(e | e.oclIsKindOf(Stereotype))->map toDataContextElement().element->union(
+		self.packagedElement->select(e | e.oclIsKindOf(Package))->map toDataContextPackage()
+	);
+}
+
+mapping Profile::toDataContextPackage() : DataContextPackage inherits Package::toDataContextPackage{
+	
+}
+
+mapping Stereotype::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View inherits PackageableElement::toDataContextElement{
+	element.properties := self.attribute->select(e | e.isAttribute(self))->map toProperty();
+	element.supertypes := self.generalization.target->map toDataContextElement().element->union(
+		self.ownedAttribute->select(e | not e.isAttribute(self)).getDataContextElement()->asSet()
+	);
+	
+	viewSingle.name := 'Single '+self.name;
+	viewSingle.automaticContext := true;
+	viewSingle.datacontexts := element;
+	viewSingle.elementMultiplicity := 1;
+	viewSingle.constraints := self.map toConstraint(viewSingle);
+	viewSingle.context := self.getContext();
+	
+	viewMultiple.name := 'Multiple '+self.name;
+	viewMultiple.automaticContext := true;
+	viewMultiple.datacontexts := element;
+	viewMultiple.elementMultiplicity := -1;
+	viewMultiple.constraints := self.map toConstraint(viewMultiple);
+	viewMultiple.context := self.getContext();
+}
+
+query Package::getRootPackage() : Package {
+	var package : Package;
+	if self.nestingPackage.oclIsUndefined() then 
+		package := self
+	else
+		package := self.nestingPackage.getRootPackage()
+	endif;
+	return package;
+}
+
+query Stereotype::getRootProfile() : Profile {
+	return self.package.getRootPackage().oclAsType(Profile);
+}
+
+query Stereotype::getContext() : PropertyContext::Context {
+	return self.getRootProfile().map toContext().c;
+}
+
+mapping Stereotype::toConstraint(view : View) : SimpleConstraint{
+	name := "is" + view.name.replace(' ', '');
+	display := view;
+	constraintType := pRoot.objectsOfType(PropertiesRoot).environments.constraintTypes->any(e | e.constraintClass = 'org.eclipse.papyrus.properties.uml.constraints.HasStereotypeConstraint');
+	var stereotypeName := object ValueProperty {
+		name := 'stereotypeName';
+		value := self.qualifiedName;
+	};
+	properties := stereotypeName;
+}
+
+query Property::getDataContextElement() : DataContextElement {
+	var extension := self.association.memberEnd->any(e | not self.association.ownedEnd->includes(e));
+	var metaclassName := extension.type.name;
+	return uml.rootObjects()[Context].dataContexts->any(e | e.name = 'UML').elements->any(e | e.name = metaclassName);
+}
+
+query UML::Property::isAttribute(stereo : Stereotype) : Boolean{
+	return not self.name.startsWith('base_');
+}
+
+mapping UML::Property::toProperty() : PropertyContext::Property {
+	name := self.name;
+	type := self.type.toType();
+}
+
+query UML::Type::toType() : PropertyEnvironment::Type {
+	var type : PropertyEnvironment::Type := PropertyEnvironment::Type::String;
+	switch {
+		case (self.oclIsKindOf(Class)) type := PropertyEnvironment::Type::Reference;
+		case (self.oclIsKindOf(Enumeration)) type := PropertyEnvironment::Type::Enumeration;
+		case (self.oclIsKindOf(PrimitiveType)) switch {
+			case (self.name = "String") type := PropertyEnvironment::Type::String; 
+			case (self.name = "Integer") type := PropertyEnvironment::Type::Integer;
+			case (self.name = "Boolean") type := PropertyEnvironment::Type::Boolean;
+		};
+		
+	};
+	return type;
+}

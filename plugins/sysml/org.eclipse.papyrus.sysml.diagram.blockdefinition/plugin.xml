@@ -1,0 +1,1412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<!-- Diagram declaration -->
+<extension point="org.eclipse.papyrus.core.papyrusDiagram">
+	<creationCommand
+       creationCommandClass="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramCreateCommand"
+       creationCondition="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramCondition"
+       icon="icons/obj16/Diagram_BlockDefinition.gif"
+       id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
+		language="sysml"
+		label="SysML Block Definition Diagram"/>
+	<editorDiagram
+		actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
+		factoryClass="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramEditorFactory"
+		icon="icons/obj16/Diagram_BlockDefinition.gif" />
+</extension>
+
+<!-- Diagram creation command and handler -->
+<extension point="org.eclipse.ui.commands">
+	<command id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
+		name="Create a new Block Definition Diagram"
+		description="Create a new Block Definition Diagram"
+		categoryId="org.eclipse.papyrus.editor.category"/>
+</extension>
+
+<extension point="org.eclipse.ui.handlers">
+	<handler
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramCreateCommand"
+		commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand">
+		<activeWhen>
+			<with variable="activeEditorId">
+				<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+			</with>
+		</activeWhen>
+	</handler>
+</extension>
+
+<!-- Diagram creation command registration in menu and toolbar -->
+<extension point="org.eclipse.ui.menus">
+
+	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
+	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams" label="Diagrams">
+		<command commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
+			icon="icons/obj16/Diagram_BlockDefinition.gif" label="Create a new Block Definition Diagram"
+			style="push" tooltip="Create a new Block Definition Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
+			</visibleWhen>
+					
+		</command>
+	</menu>
+	</menuContribution>
+	
+	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
+	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
+		<command commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
+			icon="icons/obj16/Diagram_BlockDefinition.gif" label="Create a new Block Definition Diagram"
+			style="push" tooltip="Create a new Block Definition Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
+			</visibleWhen>
+				
+		</command>
+	</toolbar>
+	</menuContribution>
+	
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+		<command commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
+			icon="icons/obj16/Diagram_BlockDefinition.gif"
+			label="Create a new Block Definition Diagram"
+			style="push"
+			tooltip="Create a new Block Definition Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
+			</visibleWhen>
+			
+		</command>
+	</menuContribution>
+		
+</extension>
+
+<!-- Palette tool definition (defines tools possibly used by the palette(s)) -->
+<extension point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"
+	name="SYSML_BlockDefinition_Predefined_Entries"
+	id="org.eclipse.papyrus.sysml.diagram.blockdefinition.palettedefinition"> 
+		
+	<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+	<Priority name="Lowest"/> <!-- Lower priority than Palette tool declaration -->
+	
+	<!-- SysML Block Definition Diagram specific tool definition -->
+	<contribution
+		factoryClass="org.eclipse.papyrus.sysml.diagram.blockdefinition.factory.DiagramPaletteFactory">
+			
+		<!-- blockdefinition.tool.actor -->
+		<entry
+			defineOnly="true"
+			description="Create a Actor"
+			id="blockdefinition.tool.actor"
+			kind="tool"
+			label="Actor"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Actor.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Actor.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.block -->
+		<entry
+			defineOnly="true"
+			description="Create a Block"
+			id="blockdefinition.tool.block"
+			kind="tool"
+			label="Block"
+			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.constraint -->
+		<entry
+			defineOnly="true"
+			description="Create a Constraint"
+			id="blockdefinition.tool.constraint"
+			kind="tool"
+			label="Constraint"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.constraintblock -->
+		<entry
+			defineOnly="true"
+			description="Create a ConstraintBlock"
+			id="blockdefinition.tool.constraintblock"
+			kind="tool"
+			label="ConstraintBlock"
+			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintBlock.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintBlock.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.constraintproperty -->
+		<entry
+			defineOnly="true"
+			description="Create a ConstraintProperty"
+			id="blockdefinition.tool.constraintproperty"
+			kind="tool"
+			label="ConstraintProperty"
+			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintProperty.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintProperty.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.datatype -->
+		<entry
+			defineOnly="true"
+			description="Create a DataType"
+			id="blockdefinition.tool.datatype"
+			kind="tool"
+			label="DataType"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.dimension -->
+		<entry
+			defineOnly="true"
+			description="Create a Dimension"
+			id="blockdefinition.tool.dimension"
+			kind="tool"
+			label="Dimension"
+			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Dimension.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Dimension.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.enumeration -->
+		<entry
+			defineOnly="true"
+			description="Create a Enumeration"
+			id="blockdefinition.tool.enumeration"
+			kind="tool"
+			label="Enumeration"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.enumerationliteral -->
+		<entry
+			defineOnly="true"
+			description="Create a EnumerationLiteral"
+			id="blockdefinition.tool.enumerationliteral"
+			kind="tool"
+			label="EnumerationLiteral"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.flowport -->
+		<entry
+			defineOnly="true"
+			description="Create a FlowPort"
+			id="blockdefinition.tool.flowport"
+			kind="tool"
+			label="FlowPort"
+			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.flowproperty -->
+		<entry
+			defineOnly="true"
+			description="Create a FlowProperty"
+			id="blockdefinition.tool.flowproperty"
+			kind="tool"
+			label="FlowProperty"
+			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowProperty.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowProperty.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.flowspecification -->
+		<entry
+			defineOnly="true"
+			description="Create a FlowSpecification"
+			id="blockdefinition.tool.flowspecification"
+			kind="tool"
+			label="FlowSpecification"
+			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowSpecification.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowSpecification.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.interface -->
+		<entry
+			defineOnly="true"
+			description="Create a Interface"
+			id="blockdefinition.tool.interface"
+			kind="tool"
+			label="Interface"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.operation -->
+		<entry
+			defineOnly="true"
+			description="Create a Operation"
+			id="blockdefinition.tool.operation"
+			kind="tool"
+			label="Operation"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Operation.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Operation.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.part -->
+		<entry
+			defineOnly="true"
+			description="Create a Part"
+			id="blockdefinition.tool.part"
+			kind="tool"
+			label="Part"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.port -->
+		<entry
+			defineOnly="true"
+			description="Create a Port"
+			id="blockdefinition.tool.port"
+			kind="tool"
+			label="Port"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.primitivetype -->
+		<entry
+			defineOnly="true"
+			description="Create a PrimitiveType"
+			id="blockdefinition.tool.primitivetype"
+			kind="tool"
+			label="PrimitiveType"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.property -->
+		<entry
+			defineOnly="true"
+			description="Create a Property"
+			id="blockdefinition.tool.property"
+			kind="tool"
+			label="Property"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.reception -->
+		<entry
+			defineOnly="true"
+			description="Create a Reception"
+			id="blockdefinition.tool.reception"
+			kind="tool"
+			label="Reception"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.reference -->
+		<entry
+			defineOnly="true"
+			description="Create a Reference"
+			id="blockdefinition.tool.reference"
+			kind="tool"
+			label="Reference"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.signal -->
+		<entry
+			defineOnly="true"
+			description="Create a Signal"
+			id="blockdefinition.tool.signal"
+			kind="tool"
+			label="Signal"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.unit -->
+		<entry
+			defineOnly="true"
+			description="Create a Unit"
+			id="blockdefinition.tool.unit"
+			kind="tool"
+			label="Unit"
+			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Unit.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Unit.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.value -->
+		<entry
+			defineOnly="true"
+			description="Create a Value"
+			id="blockdefinition.tool.value"
+			kind="tool"
+			label="Value"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.valuetype -->
+		<entry
+			defineOnly="true"
+			description="Create a ValueType"
+			id="blockdefinition.tool.valuetype"
+			kind="tool"
+			label="ValueType"
+			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif">
+		</entry>
+		<!-- Start of user code Custom node button entry  -->
+
+		<entry
+			defineOnly="true"
+			description="Create a Model"
+			id="blockdefinition.tool.model"
+			kind="tool"
+			label="Model"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif">
+		</entry>
+
+		<entry
+			defineOnly="true"
+			description="Create a Package"
+			id="blockdefinition.tool.package"
+			kind="tool"
+			label="Package"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif">
+		</entry>
+		
+		<entry
+			defineOnly="true"
+			description="Create an InstanceSpecification"
+			id="blockdefinition.tool.instancespecification"
+			kind="tool"
+			label="InstanceSpecification"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif">
+		</entry>
+		
+		<entry
+			defineOnly="true"
+			description="Create a Slot"
+			id="blockdefinition.tool.slot"
+			kind="tool"
+			label="Slot"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif">
+		</entry>
+		
+		<entry
+			defineOnly="true"
+			description="Create a Comment"
+			id="blockdefinition.tool.comment"
+			kind="tool"
+			label="Comment"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
+		</entry>
+													
+		<!-- End of user code  -->
+		
+			
+		<!-- blockdefinition.tool.association -->
+		<entry
+			defineOnly="true"
+			description="Create a Association"
+			id="blockdefinition.tool.association"
+			kind="tool"
+			label="Association"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.dependency -->
+		<entry
+			defineOnly="true"
+			description="Create a Dependency"
+			id="blockdefinition.tool.dependency"
+			kind="tool"
+			label="Dependency"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.generalization -->
+		<entry
+			defineOnly="true"
+			description="Create a Generalization"
+			id="blockdefinition.tool.generalization"
+			kind="tool"
+			label="Generalization"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.interfacerealization -->
+		<entry
+			defineOnly="true"
+			description="Create a InterfaceRealization"
+			id="blockdefinition.tool.interfacerealization"
+			kind="tool"
+			label="InterfaceRealization"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif">
+		</entry>
+			
+		<!-- blockdefinition.tool.usage -->
+		<entry
+			defineOnly="true"
+			description="Create a Usage"
+			id="blockdefinition.tool.usage"
+			kind="tool"
+			label="Usage"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif">
+		</entry>
+		<!-- Start of user code Custom edge button entry  -->
+			
+		<!-- blockdefinition.tool.association -->
+		<entry
+			defineOnly="true"
+			description="Create an Association"
+			id="blockdefinition.tool.association_none"
+			kind="tool"
+			label="Association"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
+		</entry>
+		
+		<!-- blockdefinition.tool.directedassociation -->
+		<entry
+			defineOnly="true"
+			description="Create a DirectedAssociation"
+			id="blockdefinition.tool.association_none_directed"
+			kind="tool"
+			label="DirectedAssociation"
+			large_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_none_directed.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_none_directed.gif">
+		</entry>
+		
+		<!-- blockdefinition.tool.composition -->
+		<entry
+			defineOnly="true"
+			description="Create a Composition"
+			id="blockdefinition.tool.association_composite"
+			kind="tool"
+			label="Composition"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association_composite.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association_composite.gif">
+		</entry>
+		
+		<!-- blockdefinition.tool.directedcomposition -->
+		<entry
+			defineOnly="true"
+			description="Create a DirectedComposition"
+			id="blockdefinition.tool.association_composite_directed"
+			kind="tool"
+			label="DirectedComposition"
+			large_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_composite_directed.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_composite_directed.gif">
+		</entry>
+		
+		<!-- blockdefinition.tool.aggregation -->
+		<entry
+			defineOnly="true"
+			description="Create an Aggregation"
+			id="blockdefinition.tool.association_shared"
+			kind="tool"
+			label="Aggregation"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association_shared.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association_shared.gif">
+		</entry>
+		
+		<!-- blockdefinition.tool.directedaggregation -->
+		<entry
+			defineOnly="true"
+			description="Create a DirectedAggregation"
+			id="blockdefinition.tool.association_shared_directed"
+			kind="tool"
+			label="DirectedAggregation"
+			large_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_shared_directed.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_shared_directed.gif">
+		</entry>
+				
+		<entry
+			defineOnly="true"
+			description="Create a Comment / Constraint link"
+			id="blockdefinition.tool.comment_constraint_link"
+			kind="tool"
+			label="Comment / Constraint link"
+			large_icon="icons/obj16/Link.gif"
+			small_icon="icons/obj16/Link.gif">
+		</entry>
+						
+		<!-- End of user code  -->
+			
+	</contribution>
+	
+	<!-- Specify diagram this palette tools relate to -->				
+	<editor id="org.eclipse.papyrus.sysml.diagram.blockdefinition"/>
+	
+	</paletteProvider>	
+</extension>
+
+<!-- Diagram view providers declaration -->
+<extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
+	<!-- Diagram view provider -->
+	<viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramViewProvider">
+		<Priority name="Low"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="BlockDefinition"/>
+	</viewProvider>
+	
+	<!-- Custom graphical types view provider -->
+	<viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.CustomViewProvider">
+		<Priority name="Medium"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="SysML::ReferenceProperty, UML::EnumerationLiteral, SysML::ConstraintBlock, UML::Signal, UML::Operation, SysML::FlowProperty, UML::PrimitiveType, UML::Port, SysML::ConstraintProperty, SysML::ValueProperty, UML::Reception, UML::Interface, UML::Constraint, UML::DataType, SysML::Unit, UML::Enumeration, SysML::ValueType, UML::Actor, UML::Property, SysML::Dimension, SysML::FlowSpecification, SysML::PartProperty, SysML::Block, SysML::FlowPort"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="shape_sysml_block_as_classifier, shape_sysml_part_as_label, shape_uml_reception_as_label, shape_uml_port_as_label, shape_sysml_valuetype_as_classifier, shape_uml_enumerationliteral_as_label, shape_sysml_constraintproperty_as_label, shape_sysml_dimension_as_classifier, shape_sysml_flowspecification_as_classifier, shape_uml_operation_as_label, shape_sysml_reference_as_label, shape_sysml_unit_as_classifier, shape_sysml_flowport_as_affixed, shape_uml_port_as_affixed, shape_uml_property_as_label, shape_uml_signal_as_classifier, shape_uml_enumeration_as_classifier, shape_uml_primitivetype_as_classifier, shape_uml_datatype_as_classifier, shape_uml_interface_as_classifier, shape_sysml_flowproperty_as_label, shape_sysml_constraintblock_as_classifier, shape_sysml_value_as_label, shape_sysml_flowport_as_label, shape_uml_actor_as_classifier, shape_uml_constraint_as_label"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="SysML::AssociationNone, UML::Dependency, SysML::Association, UML::InterfaceRealization, UML::Generalization, SysML::AssociationSharedDirected, SysML::AssociationCompositeDirected, SysML::AssociationComposite, UML::Usage, SysML::AssociationNoneDirected, SysML::AssociationShared"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="link_uml_dependency, link_uml_usage, link_uml_interfacerealization, link_sysml_association, link_uml_generalization"/>
+		
+		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
+		
+		<!-- "uml.Actor" -->
+		<object id="uml.Actor" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Actor"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Actor"/>			
+		
+		<!-- "uml.Class" -->
+		<object id="uml.Class" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Class"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Class"/>			
+		
+		<!-- "uml.Constraint" -->
+		<object id="uml.Constraint" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Constraint"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Constraint"/>			
+		
+		<!-- "uml.DataType" -->
+		<object id="uml.DataType" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.DataType"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.DataType"/>			
+		
+		<!-- "uml.Enumeration" -->
+		<object id="uml.Enumeration" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Enumeration"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Enumeration"/>			
+		
+		<!-- "uml.EnumerationLiteral" -->
+		<object id="uml.EnumerationLiteral" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.EnumerationLiteral"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.EnumerationLiteral"/>			
+		
+		<!-- "uml.InstanceSpecification" -->
+		<object id="uml.InstanceSpecification" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.InstanceSpecification"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.InstanceSpecification"/>			
+		
+		<!-- "uml.Interface" -->
+		<object id="uml.Interface" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Interface"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Interface"/>			
+		
+		<!-- "uml.Operation" -->
+		<object id="uml.Operation" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Operation"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Operation"/>			
+		
+		<!-- "uml.Port" -->
+		<object id="uml.Port" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Port"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Port"/>			
+		
+		<!-- "uml.PrimitiveType" -->
+		<object id="uml.PrimitiveType" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.PrimitiveType"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.PrimitiveType"/>			
+		
+		<!-- "uml.Property" -->
+		<object id="uml.Property" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Property"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Property"/>			
+		
+		<!-- "uml.Reception" -->
+		<object id="uml.Reception" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Reception"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Reception"/>			
+		
+		<!-- "uml.Signal" -->
+		<object id="uml.Signal" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Signal"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Signal"/>			
+		
+		<!-- "uml.Association" -->
+		<object id="uml.Association" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Association"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Association"/>			
+		
+		<!-- "uml.Dependency" -->
+		<object id="uml.Dependency" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Dependency"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Dependency"/>			
+		
+		<!-- "uml.Generalization" -->
+		<object id="uml.Generalization" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Generalization"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Generalization"/>			
+		
+		<!-- "uml.InterfaceRealization" -->
+		<object id="uml.InterfaceRealization" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.InterfaceRealization"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.InterfaceRealization"/>			
+		
+		<!-- "uml.Usage" -->
+		<object id="uml.Usage" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Usage"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Usage"/>			
+		
+	</viewProvider>	
+
+	<!-- ViewProvider for inherited elements (from ClassDiagram ViewProvider) -->
+	<viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.InheritedClassDiagramViewProvider">
+		<Priority name="Low"/>
+		
+		<!-- 
+			"2005" = MODEL
+			"3024" = MODEL_CN
+			"2007" = PACKAGE
+			"3009" = PACKAGE_CN
+			"2001" = INSTANCE_SPECIFICATION
+			"3020" = INSTANCE_SPECIFICATION_CN
+			"2011" = CONSTRAINT
+			"3029" = CONSTRAINT_CN
+			"2012" = COMMENT
+			"3028" = COMMENT_CN
+		  -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2005, 3024, 2007, 3009, 2001, 3020, 2011, 3029, 2012, 3028"/>
+		
+		<!-- 
+			"3030" = INSTANCE_SPECIFICATION_SLOT_CLN
+		  -->	  
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="3030"/>
+		
+		<!-- 
+			"4013" = COMMENT_ANNOTATED_ELEMENT
+			"4014" = CONSTRAINT_CONSTRAINED_ELEMENT
+		  -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4013, 4014"/>
+		
+		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
+		
+		<!-- "uml.Model" -->
+		<object id="uml.Model" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Model"/>
+		</object>
+		
+		<!-- "uml.Package" -->
+		<object id="uml.Package" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Package"/>
+		</object>
+		
+		<!-- "uml.InstanceSpecification" -->
+		<object id="uml.InstanceSpecification" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.InstanceSpecification"/>
+		</object>
+		
+		<!-- "uml.Constraint" -->
+		<object id="uml.Constraint" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Constraint"/>
+		</object>
+		
+		<!-- "uml.Comment" -->
+		<object id="uml.Comment" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Comment"/>
+		</object>
+		
+		<!-- "uml.Slot" -->
+		<object id="uml.Slot" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Slot"/>
+		</object>
+		
+		<!-- Additional activation contexts for nodes semantic objects -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node"
+			elements="uml.Model, uml.Package, uml.InstanceSpecification, uml.Constraint, uml.Comment, uml.Slot"/>
+			
+	</viewProvider>	
+</extension>
+
+<!-- Diagram edit part providers declaration -->
+<extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">	
+	<!-- Diagram edit part provider -->
+	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramEditPartProvider">
+		<Priority name="Low"/>
+		<object 
+			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Diagram"
+			class="org.eclipse.gmf.runtime.notation.Diagram">
+			<method name="getType()" value="BlockDefinition"/>
+		</object>
+		<context views="org.eclipse.papyrus.sysml.diagram.blockdefinition.Diagram"/>	
+	</editpartProvider>
+	
+	<!-- Custom graphical types edit part provider -->
+	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.CustomEditPartProvider">
+		<Priority name="Medium"/>
+	
+		<object
+			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
+			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomNodeGraphicalTypes">
+			<method name="getType()" value="shape_sysml_block_as_classifier, shape_sysml_part_as_label, shape_uml_reception_as_label, shape_uml_port_as_label, shape_sysml_valuetype_as_classifier, shape_uml_enumerationliteral_as_label, shape_sysml_constraintproperty_as_label, shape_sysml_dimension_as_classifier, shape_sysml_flowspecification_as_classifier, shape_uml_operation_as_label, shape_sysml_reference_as_label, shape_sysml_unit_as_classifier, shape_sysml_flowport_as_affixed, shape_uml_port_as_affixed, shape_uml_property_as_label, shape_uml_signal_as_classifier, shape_uml_enumeration_as_classifier, shape_uml_primitivetype_as_classifier, shape_uml_datatype_as_classifier, shape_uml_interface_as_classifier, shape_sysml_flowproperty_as_label, shape_sysml_constraintblock_as_classifier, shape_sysml_value_as_label, shape_sysml_flowport_as_label, shape_uml_actor_as_classifier, shape_uml_constraint_as_label"/>
+		</object>
+		
+		<object
+			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
+			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomGraphicalTypes_Decorations">
+			<method name="getType()" value="linklabel_uml_association_target_role, compartment_sysml_value_as_list, label_sysml_block_name, compartment_sysml_flowproperty_as_list, linklabel_uml_association_source_multiplicity, label_sysml_dimension_name, linklabel_uml_appliedstereotype, linklabel_uml_association_source_role, linklabel_uml_association_target_multiplicity, compartment_sysml_constraint_as_list, label_sysml_valuetype_name, compartment_sysml_flowport_as_list, linklabel_uml_namedelement_name, compartment_sysml_reference_as_list, label_sysml_flowspecification_name, compartment_uml_property_as_list, label_sysml_unit_name, affixedlabel_uml_namedelement_name, compartment_uml_port_as_list, label_sysml_constraintblock_name, compartment_sysml_parameter_as_list, compartment_sysml_property_as_list, compartment_uml_enumerationliteral_as_list, compartment_uml_operation_as_list, compartment_sysml_part_as_list, label_uml_namedelement_name"/>
+		</object>
+		
+		<context views="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomNodeGraphicalTypes"/>
+		<context views="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomGraphicalTypes_Decorations"/>
+	
+		<object
+			class="org.eclipse.gmf.runtime.notation.Edge(org.eclipse.gmf.runtime.notation)"
+			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomEdgeGraphicalTypes">
+			<method name="getType()" value="link_uml_dependency, link_uml_usage, link_uml_interfacerealization, link_sysml_association, link_uml_generalization"/>
+		</object>
+		
+		<context views="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomEdgeGraphicalTypes"/>
+		
+	</editpartProvider>
+	
+	<!-- EditPartProvider for inherited elements (from ClassDiagram) -->
+	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.InheritedClassDiagramEditPartProvider">
+		<Priority name="Low"/>
+		<!-- 
+			The semantic hints given here are used in case the provider is not already loaded.
+			As soon as the provider is loaded its provides method is used.		
+			"2005" = MODEL
+			"5020" = MODEL_LABEL_NAME_TN_HINT
+			"7009" = MODEL_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
+			"3024" = MODEL_CN
+			"5052" = MODEL_CN_LABEL_NAME_HINT
+			"7030" = MODEL_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
+			"2007" = PACKAGE
+			"5026" = PACKAGE_LABEL_NAME_HINT
+			"7016" = PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
+			"3009" = PACKAGE_CN
+			"5017" = PACKAGE_CN_LABEL_NAME_HINT
+			"7010" = PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
+			"2001" = INSTANCE_SPECIFICATION
+			"5002" = INSTANCE_SPECIFICATION_LABEL_NAME_HINT
+			"7001" = INSTANCE_SPECIFICATION_COMPARTMENT_SLOT_HINT
+			"3020" = INSTANCE_SPECIFICATION_CN
+			"5040" = INSTANCE_SPECIFICATION_CN_LABEL_NAME_HINT
+			"7035" = INSTANCE_SPECIFICATION_CN_COMPARTMENT_SLOT_HINT
+			"2011" = CONSTRAINT
+			"5037" = CONSTRAINT_LABEL_NAME_HINT
+			"5159" = CONSTRAINT_LABEL_BODY_HINT
+			"3029" = CONSTRAINT_CN
+			"5064" = CONSTRAINT_CN_LABEL_NAME_HINT
+			"5160" = CONSTRAINT_CN_LABEL_BODY_HINT
+			"2012" = COMMENT
+			"5038" = COMMENT_LABEL_BODY_HINT
+			"3028" = COMMENT_CN
+			"5063" = COMMENT_CN_LABEL_BODY_HINT
+		  -->
+		<object
+			id="MODEL"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2005, 5020, 7009"/>
+		</object>
+		<object
+			id="MODEL_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3024, 5052, 7030"/>
+		</object>
+		<object
+			id="PACKAGE"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2007, 5026, 7016"/>
+		</object>
+		<object
+			id="PACKAGE_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3009, 5017, 7010"/>
+		</object>
+		<object
+			id="INSTANCE_SPECIFICATION"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2001, 5002, 7001"/>
+		</object>
+		<object
+			id="INSTANCE_SPECIFICATION_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3020, 5040, 7035"/>
+		</object>
+		<object
+			id="CONSTRAINT"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2011, 5037, 5159"/>
+		</object>
+		<object
+			id="CONSTRAINT_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3029, 5064, 5160"/>
+		</object>
+		<object
+			id="COMMENT"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2012, 5038"/>
+		</object>
+		<object
+			id="COMMENT_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3028, 5063"/>
+		</object>
+		
+		<!-- 	
+			"3030" = INSTANCE_SPECIFICATION_SLOT_CLN
+		  -->
+		<object
+			id="INSTANCE_SPECIFICATION_SLOT_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3030"/>
+		</object>
+		
+		<!-- 	
+			"4013" = COMMENT_ANNOTATED_ELEMENT
+			"4014" = CONSTRAINT_CONSTRAINED_ELEMENT
+		  -->
+		<object
+			id="COMMENT_ANNOTATED_ELEMENT"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4013"/>
+		</object>
+		<object
+			id="CONSTRAINT_CONSTRAINED_ELEMENT"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4014"/>
+		</object>
+		
+		<context views="MODEL, MODEL_CN, PACKAGE, PACKAGE_CN, INSTANCE_SPECIFICATION, INSTANCE_SPECIFICATION_CN, CONSTRAINT, CONSTRAINT_CN, COMMENT, COMMENT_CN"/>
+		<context views="INSTANCE_SPECIFICATION_SLOT_CLN"/>
+		<context views="COMMENT_ANNOTATED_ELEMENT, CONSTRAINT_CONSTRAINED_ELEMENT"/>
+		
+	</editpartProvider>
+</extension>
+
+<!-- Diagram edit policy provider -->	
+<extension
+	point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+	<editpolicyProvider
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.CustomEditPolicyProvider">
+		<Priority name="Low"/>
+	</editpolicyProvider>
+</extension>
+
+<!-- Preference pages declaration -->
+<extension point="org.eclipse.ui.preferencePages" id="prefpages">
+
+	<!-- Diagram Preference pages declaration -->
+	<page
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		name="BlockDefinition Diagram"
+		category="org.eclipse.papyrus.preferences.diagrams"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.BlockDefinitionDiagramGeneralPreferencePage">
+	</page>
+
+	<!-- Element Preference pages declaration -->
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ModelPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ModelPreferencePage"
+		name="Model">
+	</page>
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PackagePreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PackagePreferencePage"
+		name="Package">
+	</page>
+	
+
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InstanceSpecificationPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InstanceSpecificationPreferencePage"
+		name="InstanceSpecification">
+	</page>
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConstraintPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConstraintPreferencePage"
+		name="Constraint">
+	</page>
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.CommentPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.CommentPreferencePage"
+		name="Comment">
+	</page>
+	
+	
+	
+	
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.SlotPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.SlotPreferencePage"
+		name="Slot">
+	</page>
+			
+
+
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ActorPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ActorPreferencePage"
+		name="Actor">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.BlockPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.BlockPreferencePage"
+		name="Block">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConstraintPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConstraintPreferencePage"
+		name="Constraint">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConstraintBlockPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConstraintBlockPreferencePage"
+		name="ConstraintBlock">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConstraintPropertyPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConstraintPropertyPreferencePage"
+		name="ConstraintProperty">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DataTypePreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DataTypePreferencePage"
+		name="DataType">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DimensionPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DimensionPreferencePage"
+		name="Dimension">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.EnumerationPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.EnumerationPreferencePage"
+		name="Enumeration">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.EnumerationLiteralPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.EnumerationLiteralPreferencePage"
+		name="EnumerationLiteral">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.FlowPortPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.FlowPortPreferencePage"
+		name="FlowPort">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.FlowPropertyPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.FlowPropertyPreferencePage"
+		name="FlowProperty">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.FlowSpecificationPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.FlowSpecificationPreferencePage"
+		name="FlowSpecification">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InterfacePreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InterfacePreferencePage"
+		name="Interface">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.OperationPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.OperationPreferencePage"
+		name="Operation">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PartPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PartPreferencePage"
+		name="Part">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PortPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PortPreferencePage"
+		name="Port">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PrimitiveTypePreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PrimitiveTypePreferencePage"
+		name="PrimitiveType">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PropertyPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PropertyPreferencePage"
+		name="Property">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ReceptionPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ReceptionPreferencePage"
+		name="Reception">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ReferencePreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ReferencePreferencePage"
+		name="Reference">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.SignalPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.SignalPreferencePage"
+		name="Signal">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.UnitPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.UnitPreferencePage"
+		name="Unit">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ValuePreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ValuePreferencePage"
+		name="Value">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ValueTypePreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ValueTypePreferencePage"
+		name="ValueType">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.CustomAssociationPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationPreferencePage"
+		name="Association">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DependencyPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DependencyPreferencePage"
+		name="Dependency">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.GeneralizationPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.GeneralizationPreferencePage"
+		name="Generalization">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InterfaceRealizationPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InterfaceRealizationPreferencePage"
+		name="InterfaceRealization">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.UsagePreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.UsagePreferencePage"
+		name="Usage">
+	</page>
+		
+
+</extension>
+
+<!-- // Start of user code custom extensions 
+  -->
+
+<!-- Insert custom extensions here. -->
+
+<!-- Palette tool declaration (declares the real palette containment) -->
+<extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
+	name="SysML Constraints (BDD)">		
+	<paletteDefinition ID="SYSML_Constraints_BlockDefinition"
+		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+		name="SYSML_Constraints_BlockDefinition" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		path="palettes/blockdefinition.palette.constraints.xml"
+		provider="CEA LIST">
+		<Priority name="Low"/>
+
+		<!-- Specify diagram this palette tools relate to -->				
+		<editor id="org.eclipse.papyrus.sysml.diagram.blockdefinition"/>
+	</paletteDefinition>
+</extension>
+
+<!-- Palette tool declaration (declares the real palette containment) -->
+<extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
+	name="SysML DataTypes (BDD)">
+	<paletteDefinition ID="SYSML_DataTypes_BlockDefinition"
+		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+		name="SYSML_DataTypes_BlockDefinition" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		path="palettes/blockdefinition.palette.datatypes.xml"
+		provider="CEA LIST">
+		<Priority name="Low"/>
+
+		<!-- Specify diagram this palette tools relate to -->				
+		<editor id="org.eclipse.papyrus.sysml.diagram.blockdefinition"/>
+	</paletteDefinition>
+</extension>
+
+<!-- Palette tool declaration (declares the real palette containment) -->
+<extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
+	name="SysML Port and flows (BDD)">	
+	<paletteDefinition ID="SYSML_PortAndFlows_BlockDefinition"
+		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+		name="SYSML_PortAndFlows_BlockDefinition" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		path="palettes/blockdefinition.palette.portandflows.xml"
+		provider="CEA LIST">
+		<Priority name="Low"/>
+
+		<!-- Specify diagram this palette tools relate to -->				
+		<editor id="org.eclipse.papyrus.sysml.diagram.blockdefinition"/>
+	</paletteDefinition>	
+</extension>
+
+<!-- Palette tool declaration (declares the real palette containment) -->
+<extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
+	name="SysML ModelElements (BDD)">
+	<paletteDefinition ID="SYSML_ModelElements_BlockDefinition"
+		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+		name="SYSML_ModelElements_BlockDefinition" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		path="palettes/blockdefinition.palette.modelelements.xml"
+		provider="CEA LIST">
+		<Priority name="Low"/>
+
+		<!-- Specify diagram this palette tools relate to -->				
+		<editor id="org.eclipse.papyrus.sysml.diagram.blockdefinition"/>
+	</paletteDefinition>	
+</extension>
+
+<!-- Palette tool declaration (declares the real palette containment) -->
+<extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
+	name="SysML Associations (BDD)">		
+	<paletteDefinition ID="SYSML_Associations_BlockDefinition"
+		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+		name="SYSML_Associations_BlockDefinition" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		path="palettes/blockdefinition.palette.associations.xml"
+		provider="CEA LIST">
+		<Priority name="Low"/>
+
+		<!-- Specify diagram this palette tools relate to -->				
+		<editor id="org.eclipse.papyrus.sysml.diagram.blockdefinition"/>
+	</paletteDefinition>
+</extension>
+
+<!-- Parser provider declaration -->
+<extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders">
+	<ParserProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ParserProvider">
+		<Priority name="Low"/>
+	</ParserProvider>
+</extension>
+  
+<extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
+      <MarkerNavigationProvider class="org.eclipse.papyrus.gmf.diagram.common.provider.MarkerNavigationProvider">
+         <MarkerType name="org.eclipse.papyrus.sysml.diagram.blockdefinition.diagnostic"/>
+         <Priority name="Lowest"/>
+      </MarkerNavigationProvider>
+   </extension>
+
+<extension id="diagnostic" name="Block Definition Diagram (Incubation) problems" point="org.eclipse.core.resources.markers">
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+      <persistent value="true"/>
+</extension>
+
+<extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+	<decoratorProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ValidationDecoratorProvider">
+		<Priority name="Lowest"/>
+		<object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+		<context decoratorTargets="PRIMARY_VIEW"/>
+	</decoratorProvider>
+</extension>
+
+<!-- The Command to manages the Provided and Required Interfaces for a Port-->
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Allows to manage easily provided Interfaces for a Port"
+         id="org.eclipse.papyrus.sysml.diagram.blockdefinition.command.manage.interfaces"
+         name="Manage Provided Interfaces">
+   </command>
+</extension>
+<!-- The Handler to manages the Provided and Required Interfaces for a Port-->
+<extension
+      point="org.eclipse.ui.handlers">
+   <handler
+         class="org.eclipse.papyrus.sysml.diagram.blockdefinition.handler.ManageProvidedInterfacesHandler"
+         commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.command.manage.interfaces">
+      <activeWhen>
+         <and>
+            <with
+                  variable="selection">
+               <iterate>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.common.edit.part.DefaultChildLabelEditPart">
+                  </instanceof>
+               </iterate>
+            </with>
+            <with
+                  variable="activeEditor">
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.diagram.common.diagram.tester.diagramType"
+                     value="BlockDefinition">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+</extension>
+
+<!-- Add the Menu to manages the Provided and Required Interfaces for a Port-->
+<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         allPopups="false"
+         locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?endof=editMenu">
+      <command
+            commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.command.manage.interfaces"
+            icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.popup.manage.interface"
+            label="Manage Interfaces"
+            mnemonic="&amp;I"
+            style="push"
+            tooltip="The command to manage the interfaces provided and required by a Port">
+            <!-- The action is visible only if there is an active handler for it  -->
+         <visibleWhen
+               checkEnabled="true">
+         </visibleWhen>
+      </command>
+      </menuContribution>
+</extension>
+
+<!-- Diagram specific advices -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+
+	<!-- Delete moved views advice -->		
+	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringMoveHelperAdvice"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.advice.DeleteViewDuringMoveHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Element">
+	</adviceBinding>
+
+	<!-- Generalization specific advices (remove inconsistent views when a Generalization is deleted) -->		
+	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.blockdefinition.GeneralizationHelperAdvice"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.advice.GeneralizationHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Generalization">
+	</adviceBinding>
+
+	<!-- Part specific advices (remove inconsistent views when a Part aggregation kind changes) -->		
+	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringPartEditHelperAdvice"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.advice.DeleteViewDuringPartEditHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.sysml.PartProperty">
+	</adviceBinding>
+
+	<!-- Reference specific advices (remove inconsistent views when a reference aggregation kind changes) -->		
+	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringReferenceEditHelperAdvice"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.advice.DeleteViewDuringReferenceEditHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.sysml.ReferenceProperty">
+	</adviceBinding>
+	
+	<!-- Value specific advices (remove inconsistent views when a value aggregation or type changes) -->		
+	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringValueEditHelperAdvice"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.advice.DeleteViewDuringValueEditHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.sysml.ValueProperty">
+	</adviceBinding>
+	
+	<!-- Block specific advices (remove inconsistent Part or Ref views when a Block is deleted) 
+	
+		Not used (the property itself is supposed to be deleted during Block delete, no need to create a specific view deletion.
+		 		
+	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringBlockDeleteHelperAdvice"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.advice.DeleteViewDuringBlockDeleteHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.sysml.Block">
+	</adviceBinding>
+	
+	  -->
+		
+	<!-- DataType specific advices (remove inconsistent Value views when a DataType is deleted) -->		
+	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringDataTypeDeleteHelperAdvice"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.advice.DeleteViewDuringDataTypeDeleteHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.sysml.DataType">
+	</adviceBinding>
+	
+	</metamodel>
+</extension>
+	
+<!-- UML ElementType bindings to Papyrus shared IClientContext -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+
+	<!-- Bindings declaration to shared IClientContext -->
+	<binding context="org.eclipse.papyrus.service.edit.TypeContext">
+		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.GeneralizationHelperAdvice"/>	
+		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringMoveHelperAdvice"/>
+		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringPartEditHelperAdvice"/>
+		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringReferenceEditHelperAdvice"/>		
+		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringValueEditHelperAdvice"/>
+		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringDataTypeDeleteHelperAdvice"/>
+	</binding>
+		
+</extension>
+<!-- // End of user code 
+  -->
+
+</plugin>

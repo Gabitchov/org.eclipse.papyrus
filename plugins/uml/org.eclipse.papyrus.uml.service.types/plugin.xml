@@ -1,0 +1,1922 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<!-- UML ElementTypes declarations -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+	
+	<!-- Declaration of IElementTypes -->
+	
+	<!-- IMetamodelType for Abstraction -->
+	<metamodelType id="org.eclipse.papyrus.uml.Abstraction" name="UML::Abstraction"
+		eclass="Abstraction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Abstraction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for AcceptCallAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.AcceptCallAction" name="UML::AcceptCallAction"
+		eclass="AcceptCallAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::AcceptCallAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for AcceptEventAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.AcceptEventAction" name="UML::AcceptEventAction"
+		eclass="AcceptEventAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::AcceptEventAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Action -->
+	<metamodelType id="org.eclipse.papyrus.uml.Action" name="UML::Action"
+		eclass="Action"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Action"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ActionExecutionSpecification -->
+	<metamodelType id="org.eclipse.papyrus.uml.ActionExecutionSpecification" name="UML::ActionExecutionSpecification"
+		eclass="ActionExecutionSpecification"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ActionExecutionSpecification"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ActionInputPin -->
+	<metamodelType id="org.eclipse.papyrus.uml.ActionInputPin" name="UML::ActionInputPin"
+		eclass="ActionInputPin"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ActionInputPin"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Activity -->
+	<metamodelType id="org.eclipse.papyrus.uml.Activity" name="UML::Activity"
+		eclass="Activity"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Activity"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ActivityEdge -->
+	<metamodelType id="org.eclipse.papyrus.uml.ActivityEdge" name="UML::ActivityEdge"
+		eclass="ActivityEdge"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ActivityEdge"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ActivityFinalNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.ActivityFinalNode" name="UML::ActivityFinalNode"
+		eclass="ActivityFinalNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ActivityFinalNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ActivityGroup -->
+	<metamodelType id="org.eclipse.papyrus.uml.ActivityGroup" name="UML::ActivityGroup"
+		eclass="ActivityGroup"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ActivityGroup"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ActivityNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.ActivityNode" name="UML::ActivityNode"
+		eclass="ActivityNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ActivityNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ActivityParameterNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.ActivityParameterNode" name="UML::ActivityParameterNode"
+		eclass="ActivityParameterNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ActivityParameterNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ActivityPartition -->
+	<metamodelType id="org.eclipse.papyrus.uml.ActivityPartition" name="UML::ActivityPartition"
+		eclass="ActivityPartition"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ActivityPartition"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Actor -->
+	<metamodelType id="org.eclipse.papyrus.uml.Actor" name="UML::Actor"
+		eclass="Actor"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Actor"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for AddStructuralFeatureValueAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.AddStructuralFeatureValueAction" name="UML::AddStructuralFeatureValueAction"
+		eclass="AddStructuralFeatureValueAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::AddStructuralFeatureValueAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for AddVariableValueAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.AddVariableValueAction" name="UML::AddVariableValueAction"
+		eclass="AddVariableValueAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::AddVariableValueAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for AnyReceiveEvent -->
+	<metamodelType id="org.eclipse.papyrus.uml.AnyReceiveEvent" name="UML::AnyReceiveEvent"
+		eclass="AnyReceiveEvent"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::AnyReceiveEvent"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Artifact -->
+	<metamodelType id="org.eclipse.papyrus.uml.Artifact" name="UML::Artifact"
+		eclass="Artifact"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Artifact"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Association (Base IElementType) not directly used (use specializations) -->
+	<metamodelType id="org.eclipse.papyrus.uml.AssociationBase" name="UML::AssociationBase"
+		eclass="Association"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.AssociationBaseEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::AssociationBase"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for AssociationClass -->
+	<metamodelType id="org.eclipse.papyrus.uml.AssociationClass" name="UML::AssociationClass"
+		eclass="AssociationClass"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::AssociationClass"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Behavior -->
+	<metamodelType id="org.eclipse.papyrus.uml.Behavior" name="UML::Behavior"
+		eclass="Behavior"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Behavior"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for BehaviorExecutionSpecification -->
+	<metamodelType id="org.eclipse.papyrus.uml.BehaviorExecutionSpecification" name="UML::BehaviorExecutionSpecification"
+		eclass="BehaviorExecutionSpecification"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::BehaviorExecutionSpecification"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for BehavioralFeature -->
+	<metamodelType id="org.eclipse.papyrus.uml.BehavioralFeature" name="UML::BehavioralFeature"
+		eclass="BehavioralFeature"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::BehavioralFeature"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for BehavioredClassifier -->
+	<metamodelType id="org.eclipse.papyrus.uml.BehavioredClassifier" name="UML::BehavioredClassifier"
+		eclass="BehavioredClassifier"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.BehavioredClassifierEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::BehavioredClassifier"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for BroadcastSignalAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.BroadcastSignalAction" name="UML::BroadcastSignalAction"
+		eclass="BroadcastSignalAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::BroadcastSignalAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for CallAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.CallAction" name="UML::CallAction"
+		eclass="CallAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::CallAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for CallBehaviorAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.CallBehaviorAction" name="UML::CallBehaviorAction"
+		eclass="CallBehaviorAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::CallBehaviorAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for CallEvent -->
+	<metamodelType id="org.eclipse.papyrus.uml.CallEvent" name="UML::CallEvent"
+		eclass="CallEvent"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::CallEvent"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for CallOperationAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.CallOperationAction" name="UML::CallOperationAction"
+		eclass="CallOperationAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::CallOperationAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for CentralBufferNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.CentralBufferNode" name="UML::CentralBufferNode"
+		eclass="CentralBufferNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::CentralBufferNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ChangeEvent -->
+	<metamodelType id="org.eclipse.papyrus.uml.ChangeEvent" name="UML::ChangeEvent"
+		eclass="ChangeEvent"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ChangeEvent"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Class -->
+	<metamodelType id="org.eclipse.papyrus.uml.Class" name="UML::Class"
+		eclass="Class"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.ClassEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Class"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Classifier -->
+	<metamodelType id="org.eclipse.papyrus.uml.Classifier" name="UML::Classifier"
+		eclass="Classifier"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Classifier"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ClassifierTemplateParameter -->
+	<metamodelType id="org.eclipse.papyrus.uml.ClassifierTemplateParameter" name="UML::ClassifierTemplateParameter"
+		eclass="ClassifierTemplateParameter"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ClassifierTemplateParameter"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Clause -->
+	<metamodelType id="org.eclipse.papyrus.uml.Clause" name="UML::Clause"
+		eclass="Clause"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Clause"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ClearAssociationAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.ClearAssociationAction" name="UML::ClearAssociationAction"
+		eclass="ClearAssociationAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ClearAssociationAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ClearStructuralFeatureAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.ClearStructuralFeatureAction" name="UML::ClearStructuralFeatureAction"
+		eclass="ClearStructuralFeatureAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ClearStructuralFeatureAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ClearVariableAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.ClearVariableAction" name="UML::ClearVariableAction"
+		eclass="ClearVariableAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ClearVariableAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Collaboration -->
+	<metamodelType id="org.eclipse.papyrus.uml.Collaboration" name="UML::Collaboration"
+		eclass="Collaboration"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.CollaborationEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Collaboration"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for CollaborationUse -->
+	<metamodelType id="org.eclipse.papyrus.uml.CollaborationUse" name="UML::CollaborationUse"
+		eclass="CollaborationUse"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::CollaborationUse"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for CombinedFragment -->
+	<metamodelType id="org.eclipse.papyrus.uml.CombinedFragment" name="UML::CombinedFragment"
+		eclass="CombinedFragment"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::CombinedFragment"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Comment -->
+	<metamodelType id="org.eclipse.papyrus.uml.Comment" name="UML::Comment"
+		eclass="Comment"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Comment"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for CommunicationPath -->
+	<metamodelType id="org.eclipse.papyrus.uml.CommunicationPath" name="UML::CommunicationPath"
+		eclass="CommunicationPath"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::CommunicationPath"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Component -->
+	<metamodelType id="org.eclipse.papyrus.uml.Component" name="UML::Component"
+		eclass="Component"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Component"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ComponentRealization -->
+	<metamodelType id="org.eclipse.papyrus.uml.ComponentRealization" name="UML::ComponentRealization"
+		eclass="ComponentRealization"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.ComponentRealizationEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ComponentRealization"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ConditionalNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.ConditionalNode" name="UML::ConditionalNode"
+		eclass="ConditionalNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ConditionalNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ConnectableElement -->
+	<metamodelType id="org.eclipse.papyrus.uml.ConnectableElement" name="UML::ConnectableElement"
+		eclass="ConnectableElement"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ConnectableElement"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ConnectableElementTemplateParameter -->
+	<metamodelType id="org.eclipse.papyrus.uml.ConnectableElementTemplateParameter" name="UML::ConnectableElementTemplateParameter"
+		eclass="ConnectableElementTemplateParameter"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ConnectableElementTemplateParameter"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ConnectionPointReference -->
+	<metamodelType id="org.eclipse.papyrus.uml.ConnectionPointReference" name="UML::ConnectionPointReference"
+		eclass="ConnectionPointReference"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ConnectionPointReference"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Connector -->
+	<metamodelType id="org.eclipse.papyrus.uml.Connector" name="UML::Connector"
+		eclass="Connector"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.ConnectorEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Connector"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ConnectorEnd -->
+	<metamodelType id="org.eclipse.papyrus.uml.ConnectorEnd" name="UML::ConnectorEnd"
+		eclass="ConnectorEnd"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ConnectorEnd"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ConsiderIgnoreFragment -->
+	<metamodelType id="org.eclipse.papyrus.uml.ConsiderIgnoreFragment" name="UML::ConsiderIgnoreFragment"
+		eclass="ConsiderIgnoreFragment"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ConsiderIgnoreFragment"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Constraint -->
+	<metamodelType id="org.eclipse.papyrus.uml.Constraint" name="UML::Constraint"
+		eclass="Constraint"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.ConstraintEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Constraint"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Continuation -->
+	<metamodelType id="org.eclipse.papyrus.uml.Continuation" name="UML::Continuation"
+		eclass="Continuation"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Continuation"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ControlFlow -->
+	<metamodelType id="org.eclipse.papyrus.uml.ControlFlow" name="UML::ControlFlow"
+		eclass="ControlFlow"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ControlFlow"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ControlNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.ControlNode" name="UML::ControlNode"
+		eclass="ControlNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ControlNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for CreateLinkAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.CreateLinkAction" name="UML::CreateLinkAction"
+		eclass="CreateLinkAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::CreateLinkAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for CreateLinkObjectAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.CreateLinkObjectAction" name="UML::CreateLinkObjectAction"
+		eclass="CreateLinkObjectAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::CreateLinkObjectAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for CreateObjectAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.CreateObjectAction" name="UML::CreateObjectAction"
+		eclass="CreateObjectAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::CreateObjectAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for CreationEvent -->
+	<metamodelType id="org.eclipse.papyrus.uml.CreationEvent" name="UML::CreationEvent"
+		eclass="CreationEvent"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::CreationEvent"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for DataStoreNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.DataStoreNode" name="UML::DataStoreNode"
+		eclass="DataStoreNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::DataStoreNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for DataType -->
+	<metamodelType id="org.eclipse.papyrus.uml.DataType" name="UML::DataType"
+		eclass="DataType"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::DataType"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for DecisionNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.DecisionNode" name="UML::DecisionNode"
+		eclass="DecisionNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::DecisionNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Dependency -->
+	<metamodelType id="org.eclipse.papyrus.uml.Dependency" name="UML::Dependency"
+		eclass="Dependency"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DependencyEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Dependency"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for DeployedArtifact -->
+	<metamodelType id="org.eclipse.papyrus.uml.DeployedArtifact" name="UML::DeployedArtifact"
+		eclass="DeployedArtifact"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::DeployedArtifact"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Deployment -->
+	<metamodelType id="org.eclipse.papyrus.uml.Deployment" name="UML::Deployment"
+		eclass="Deployment"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Deployment"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for DeploymentSpecification -->
+	<metamodelType id="org.eclipse.papyrus.uml.DeploymentSpecification" name="UML::DeploymentSpecification"
+		eclass="DeploymentSpecification"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::DeploymentSpecification"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for DeploymentTarget -->
+	<metamodelType id="org.eclipse.papyrus.uml.DeploymentTarget" name="UML::DeploymentTarget"
+		eclass="DeploymentTarget"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::DeploymentTarget"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for DestroyLinkAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.DestroyLinkAction" name="UML::DestroyLinkAction"
+		eclass="DestroyLinkAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::DestroyLinkAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for DestroyObjectAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.DestroyObjectAction" name="UML::DestroyObjectAction"
+		eclass="DestroyObjectAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::DestroyObjectAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for DestructionEvent -->
+	<metamodelType id="org.eclipse.papyrus.uml.DestructionEvent" name="UML::DestructionEvent"
+		eclass="DestructionEvent"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::DestructionEvent"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Device -->
+	<metamodelType id="org.eclipse.papyrus.uml.Device" name="UML::Device"
+		eclass="Device"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Device"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for DirectedRelationship -->
+	<metamodelType id="org.eclipse.papyrus.uml.DirectedRelationship" name="UML::DirectedRelationship"
+		eclass="DirectedRelationship"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::DirectedRelationship"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Duration -->
+	<metamodelType id="org.eclipse.papyrus.uml.Duration" name="UML::Duration"
+		eclass="Duration"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Duration"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for DurationConstraint -->
+	<metamodelType id="org.eclipse.papyrus.uml.DurationConstraint" name="UML::DurationConstraint"
+		eclass="DurationConstraint"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::DurationConstraint"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for DurationInterval -->
+	<metamodelType id="org.eclipse.papyrus.uml.DurationInterval" name="UML::DurationInterval"
+		eclass="DurationInterval"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::DurationInterval"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for DurationObservation -->
+	<metamodelType id="org.eclipse.papyrus.uml.DurationObservation" name="UML::DurationObservation"
+		eclass="DurationObservation"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::DurationObservation"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Element -->
+	<metamodelType id="org.eclipse.papyrus.uml.Element" name="UML::Element"
+		eclass="Element"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Element"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ElementImport -->
+	<metamodelType id="org.eclipse.papyrus.uml.ElementImport" name="UML::ElementImport"
+		eclass="ElementImport"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ElementImport"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for EncapsulatedClassifier -->
+	<metamodelType id="org.eclipse.papyrus.uml.EncapsulatedClassifier" name="UML::EncapsulatedClassifier"
+		eclass="EncapsulatedClassifier"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::EncapsulatedClassifier"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Enumeration -->
+	<metamodelType id="org.eclipse.papyrus.uml.Enumeration" name="UML::Enumeration"
+		eclass="Enumeration"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Enumeration"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for EnumerationLiteral -->
+	<metamodelType id="org.eclipse.papyrus.uml.EnumerationLiteral" name="UML::EnumerationLiteral"
+		eclass="EnumerationLiteral"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::EnumerationLiteral"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Event -->
+	<metamodelType id="org.eclipse.papyrus.uml.Event" name="UML::Event"
+		eclass="Event"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Event"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ExceptionHandler -->
+	<metamodelType id="org.eclipse.papyrus.uml.ExceptionHandler" name="UML::ExceptionHandler"
+		eclass="ExceptionHandler"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ExceptionHandler"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ExecutableNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.ExecutableNode" name="UML::ExecutableNode"
+		eclass="ExecutableNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ExecutableNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ExecutionEnvironment -->
+	<metamodelType id="org.eclipse.papyrus.uml.ExecutionEnvironment" name="UML::ExecutionEnvironment"
+		eclass="ExecutionEnvironment"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ExecutionEnvironment"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ExecutionEvent -->
+	<metamodelType id="org.eclipse.papyrus.uml.ExecutionEvent" name="UML::ExecutionEvent"
+		eclass="ExecutionEvent"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ExecutionEvent"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ExecutionOccurrenceSpecification -->
+	<metamodelType id="org.eclipse.papyrus.uml.ExecutionOccurrenceSpecification" name="UML::ExecutionOccurrenceSpecification"
+		eclass="ExecutionOccurrenceSpecification"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ExecutionOccurrenceSpecification"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ExecutionSpecification -->
+	<metamodelType id="org.eclipse.papyrus.uml.ExecutionSpecification" name="UML::ExecutionSpecification"
+		eclass="ExecutionSpecification"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ExecutionSpecification"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ExpansionNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.ExpansionNode" name="UML::ExpansionNode"
+		eclass="ExpansionNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ExpansionNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ExpansionRegion -->
+	<metamodelType id="org.eclipse.papyrus.uml.ExpansionRegion" name="UML::ExpansionRegion"
+		eclass="ExpansionRegion"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ExpansionRegion"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Expression -->
+	<metamodelType id="org.eclipse.papyrus.uml.Expression" name="UML::Expression"
+		eclass="Expression"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Expression"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Extend -->
+	<metamodelType id="org.eclipse.papyrus.uml.Extend" name="UML::Extend"
+		eclass="Extend"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.ExtendEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Extend"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Extension -->
+	<metamodelType id="org.eclipse.papyrus.uml.Extension" name="UML::Extension"
+		eclass="Extension"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Extension"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ExtensionEnd -->
+	<metamodelType id="org.eclipse.papyrus.uml.ExtensionEnd" name="UML::ExtensionEnd"
+		eclass="ExtensionEnd"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ExtensionEnd"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ExtensionPoint -->
+	<metamodelType id="org.eclipse.papyrus.uml.ExtensionPoint" name="UML::ExtensionPoint"
+		eclass="ExtensionPoint"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ExtensionPoint"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Feature -->
+	<metamodelType id="org.eclipse.papyrus.uml.Feature" name="UML::Feature"
+		eclass="Feature"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Feature"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for FinalNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.FinalNode" name="UML::FinalNode"
+		eclass="FinalNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::FinalNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for FinalState -->
+	<metamodelType id="org.eclipse.papyrus.uml.FinalState" name="UML::FinalState"
+		eclass="FinalState"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::FinalState"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for FlowFinalNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.FlowFinalNode" name="UML::FlowFinalNode"
+		eclass="FlowFinalNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::FlowFinalNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ForkNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.ForkNode" name="UML::ForkNode"
+		eclass="ForkNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ForkNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for FunctionBehavior -->
+	<metamodelType id="org.eclipse.papyrus.uml.FunctionBehavior" name="UML::FunctionBehavior"
+		eclass="FunctionBehavior"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::FunctionBehavior"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Gate -->
+	<metamodelType id="org.eclipse.papyrus.uml.Gate" name="UML::Gate"
+		eclass="Gate"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Gate"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for GeneralOrdering -->
+	<metamodelType id="org.eclipse.papyrus.uml.GeneralOrdering" name="UML::GeneralOrdering"
+		eclass="GeneralOrdering"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::GeneralOrdering"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Generalization -->
+	<metamodelType id="org.eclipse.papyrus.uml.Generalization" name="UML::Generalization"
+		eclass="Generalization"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.GeneralizationEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Generalization"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for GeneralizationSet -->
+	<metamodelType id="org.eclipse.papyrus.uml.GeneralizationSet" name="UML::GeneralizationSet"
+		eclass="GeneralizationSet"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::GeneralizationSet"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Image -->
+	<metamodelType id="org.eclipse.papyrus.uml.Image" name="UML::Image"
+		eclass="Image"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Image"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Include -->
+	<metamodelType id="org.eclipse.papyrus.uml.Include" name="UML::Include"
+		eclass="Include"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.IncludeEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Include"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for InformationFlow -->
+	<metamodelType id="org.eclipse.papyrus.uml.InformationFlow" name="UML::InformationFlow"
+		eclass="InformationFlow"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.InformationFlowEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::InformationFlow"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for InformationItem -->
+	<metamodelType id="org.eclipse.papyrus.uml.InformationItem" name="UML::InformationItem"
+		eclass="InformationItem"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::InformationItem"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for InitialNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.InitialNode" name="UML::InitialNode"
+		eclass="InitialNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::InitialNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for InputPin -->
+	<metamodelType id="org.eclipse.papyrus.uml.InputPin" name="UML::InputPin"
+		eclass="InputPin"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::InputPin"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for InstanceSpecification -->
+	<metamodelType id="org.eclipse.papyrus.uml.InstanceSpecification" name="UML::InstanceSpecification"
+		eclass="InstanceSpecification"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::InstanceSpecification"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for InstanceValue -->
+	<metamodelType id="org.eclipse.papyrus.uml.InstanceValue" name="UML::InstanceValue"
+		eclass="InstanceValue"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::InstanceValue"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Interaction -->
+	<metamodelType id="org.eclipse.papyrus.uml.Interaction" name="UML::Interaction"
+		eclass="Interaction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Interaction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for InteractionConstraint -->
+	<metamodelType id="org.eclipse.papyrus.uml.InteractionConstraint" name="UML::InteractionConstraint"
+		eclass="InteractionConstraint"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::InteractionConstraint"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for InteractionFragment -->
+	<metamodelType id="org.eclipse.papyrus.uml.InteractionFragment" name="UML::InteractionFragment"
+		eclass="InteractionFragment"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::InteractionFragment"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for InteractionOperand -->
+	<metamodelType id="org.eclipse.papyrus.uml.InteractionOperand" name="UML::InteractionOperand"
+		eclass="InteractionOperand"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::InteractionOperand"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for InteractionUse -->
+	<metamodelType id="org.eclipse.papyrus.uml.InteractionUse" name="UML::InteractionUse"
+		eclass="InteractionUse"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::InteractionUse"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Interface -->
+	<metamodelType id="org.eclipse.papyrus.uml.Interface" name="UML::Interface"
+		eclass="Interface"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Interface"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for InterfaceRealization -->
+	<metamodelType id="org.eclipse.papyrus.uml.InterfaceRealization" name="UML::InterfaceRealization"
+		eclass="InterfaceRealization"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.InterfaceRealizationEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::InterfaceRealization"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for InterruptibleActivityRegion -->
+	<metamodelType id="org.eclipse.papyrus.uml.InterruptibleActivityRegion" name="UML::InterruptibleActivityRegion"
+		eclass="InterruptibleActivityRegion"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::InterruptibleActivityRegion"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Interval -->
+	<metamodelType id="org.eclipse.papyrus.uml.Interval" name="UML::Interval"
+		eclass="Interval"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Interval"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for IntervalConstraint -->
+	<metamodelType id="org.eclipse.papyrus.uml.IntervalConstraint" name="UML::IntervalConstraint"
+		eclass="IntervalConstraint"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::IntervalConstraint"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for InvocationAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.InvocationAction" name="UML::InvocationAction"
+		eclass="InvocationAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::InvocationAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for JoinNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.JoinNode" name="UML::JoinNode"
+		eclass="JoinNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::JoinNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Lifeline -->
+	<metamodelType id="org.eclipse.papyrus.uml.Lifeline" name="UML::Lifeline"
+		eclass="Lifeline"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Lifeline"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for LinkAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.LinkAction" name="UML::LinkAction"
+		eclass="LinkAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::LinkAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for LinkEndCreationData -->
+	<metamodelType id="org.eclipse.papyrus.uml.LinkEndCreationData" name="UML::LinkEndCreationData"
+		eclass="LinkEndCreationData"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::LinkEndCreationData"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for LinkEndData -->
+	<metamodelType id="org.eclipse.papyrus.uml.LinkEndData" name="UML::LinkEndData"
+		eclass="LinkEndData"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::LinkEndData"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for LinkEndDestructionData -->
+	<metamodelType id="org.eclipse.papyrus.uml.LinkEndDestructionData" name="UML::LinkEndDestructionData"
+		eclass="LinkEndDestructionData"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::LinkEndDestructionData"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for LiteralBoolean -->
+	<metamodelType id="org.eclipse.papyrus.uml.LiteralBoolean" name="UML::LiteralBoolean"
+		eclass="LiteralBoolean"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::LiteralBoolean"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for LiteralInteger -->
+	<metamodelType id="org.eclipse.papyrus.uml.LiteralInteger" name="UML::LiteralInteger"
+		eclass="LiteralInteger"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::LiteralInteger"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for LiteralNull -->
+	<metamodelType id="org.eclipse.papyrus.uml.LiteralNull" name="UML::LiteralNull"
+		eclass="LiteralNull"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::LiteralNull"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for LiteralSpecification -->
+	<metamodelType id="org.eclipse.papyrus.uml.LiteralSpecification" name="UML::LiteralSpecification"
+		eclass="LiteralSpecification"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::LiteralSpecification"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for LiteralString -->
+	<metamodelType id="org.eclipse.papyrus.uml.LiteralString" name="UML::LiteralString"
+		eclass="LiteralString"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::LiteralString"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for LiteralUnlimitedNatural -->
+	<metamodelType id="org.eclipse.papyrus.uml.LiteralUnlimitedNatural" name="UML::LiteralUnlimitedNatural"
+		eclass="LiteralUnlimitedNatural"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::LiteralUnlimitedNatural"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for LoopNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.LoopNode" name="UML::LoopNode"
+		eclass="LoopNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::LoopNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Manifestation -->
+	<metamodelType id="org.eclipse.papyrus.uml.Manifestation" name="UML::Manifestation"
+		eclass="Manifestation"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Manifestation"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for MergeNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.MergeNode" name="UML::MergeNode"
+		eclass="MergeNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::MergeNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Message -->
+	<metamodelType id="org.eclipse.papyrus.uml.Message" name="UML::Message"
+		eclass="Message"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.MessageEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Message"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for MessageEnd -->
+	<metamodelType id="org.eclipse.papyrus.uml.MessageEnd" name="UML::MessageEnd"
+		eclass="MessageEnd"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::MessageEnd"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for MessageEvent -->
+	<metamodelType id="org.eclipse.papyrus.uml.MessageEvent" name="UML::MessageEvent"
+		eclass="MessageEvent"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::MessageEvent"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for MessageOccurrenceSpecification -->
+	<metamodelType id="org.eclipse.papyrus.uml.MessageOccurrenceSpecification" name="UML::MessageOccurrenceSpecification"
+		eclass="MessageOccurrenceSpecification"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::MessageOccurrenceSpecification"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Model -->
+	<metamodelType id="org.eclipse.papyrus.uml.Model" name="UML::Model"
+		eclass="Model"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Model"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for MultiplicityElement -->
+	<metamodelType id="org.eclipse.papyrus.uml.MultiplicityElement" name="UML::MultiplicityElement"
+		eclass="MultiplicityElement"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::MultiplicityElement"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for NamedElement -->
+	<metamodelType id="org.eclipse.papyrus.uml.NamedElement" name="UML::NamedElement"
+		eclass="NamedElement"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::NamedElement"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Namespace -->
+	<metamodelType id="org.eclipse.papyrus.uml.Namespace" name="UML::Namespace"
+		eclass="Namespace"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Namespace"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Node -->
+	<metamodelType id="org.eclipse.papyrus.uml.Node" name="UML::Node"
+		eclass="Node"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Node"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ObjectFlow -->
+	<metamodelType id="org.eclipse.papyrus.uml.ObjectFlow" name="UML::ObjectFlow"
+		eclass="ObjectFlow"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ObjectFlow"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ObjectNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.ObjectNode" name="UML::ObjectNode"
+		eclass="ObjectNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ObjectNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Observation -->
+	<metamodelType id="org.eclipse.papyrus.uml.Observation" name="UML::Observation"
+		eclass="Observation"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Observation"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for OccurrenceSpecification -->
+	<metamodelType id="org.eclipse.papyrus.uml.OccurrenceSpecification" name="UML::OccurrenceSpecification"
+		eclass="OccurrenceSpecification"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::OccurrenceSpecification"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for OpaqueAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.OpaqueAction" name="UML::OpaqueAction"
+		eclass="OpaqueAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::OpaqueAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for OpaqueBehavior -->
+	<metamodelType id="org.eclipse.papyrus.uml.OpaqueBehavior" name="UML::OpaqueBehavior"
+		eclass="OpaqueBehavior"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::OpaqueBehavior"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for OpaqueExpression -->
+	<metamodelType id="org.eclipse.papyrus.uml.OpaqueExpression" name="UML::OpaqueExpression"
+		eclass="OpaqueExpression"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::OpaqueExpression"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Operation -->
+	<metamodelType id="org.eclipse.papyrus.uml.Operation" name="UML::Operation"
+		eclass="Operation"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Operation"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for OperationTemplateParameter -->
+	<metamodelType id="org.eclipse.papyrus.uml.OperationTemplateParameter" name="UML::OperationTemplateParameter"
+		eclass="OperationTemplateParameter"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::OperationTemplateParameter"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for OutputPin -->
+	<metamodelType id="org.eclipse.papyrus.uml.OutputPin" name="UML::OutputPin"
+		eclass="OutputPin"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::OutputPin"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Package -->
+	<metamodelType id="org.eclipse.papyrus.uml.Package" name="UML::Package"
+		eclass="Package"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Package"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for PackageImport -->
+	<metamodelType id="org.eclipse.papyrus.uml.PackageImport" name="UML::PackageImport"
+		eclass="PackageImport"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::PackageImport"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for PackageMerge -->
+	<metamodelType id="org.eclipse.papyrus.uml.PackageMerge" name="UML::PackageMerge"
+		eclass="PackageMerge"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::PackageMerge"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for PackageableElement -->
+	<metamodelType id="org.eclipse.papyrus.uml.PackageableElement" name="UML::PackageableElement"
+		eclass="PackageableElement"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::PackageableElement"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Parameter -->
+	<metamodelType id="org.eclipse.papyrus.uml.Parameter" name="UML::Parameter"
+		eclass="Parameter"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Parameter"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ParameterSet -->
+	<metamodelType id="org.eclipse.papyrus.uml.ParameterSet" name="UML::ParameterSet"
+		eclass="ParameterSet"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ParameterSet"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ParameterableElement -->
+	<metamodelType id="org.eclipse.papyrus.uml.ParameterableElement" name="UML::ParameterableElement"
+		eclass="ParameterableElement"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ParameterableElement"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for PartDecomposition -->
+	<metamodelType id="org.eclipse.papyrus.uml.PartDecomposition" name="UML::PartDecomposition"
+		eclass="PartDecomposition"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::PartDecomposition"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Pin -->
+	<metamodelType id="org.eclipse.papyrus.uml.Pin" name="UML::Pin"
+		eclass="Pin"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Pin"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Port -->
+	<metamodelType id="org.eclipse.papyrus.uml.Port" name="UML::Port"
+		eclass="Port"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.PortEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Port"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for PrimitiveType -->
+	<metamodelType id="org.eclipse.papyrus.uml.PrimitiveType" name="UML::PrimitiveType"
+		eclass="PrimitiveType"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::PrimitiveType"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Profile -->
+	<metamodelType id="org.eclipse.papyrus.uml.Profile" name="UML::Profile"
+		eclass="Profile"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Profile"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ProfileApplication -->
+	<metamodelType id="org.eclipse.papyrus.uml.ProfileApplication" name="UML::ProfileApplication"
+		eclass="ProfileApplication"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ProfileApplication"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Property -->
+	<metamodelType id="org.eclipse.papyrus.uml.Property" name="UML::Property"
+		eclass="Property"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Property"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ProtocolConformance -->
+	<metamodelType id="org.eclipse.papyrus.uml.ProtocolConformance" name="UML::ProtocolConformance"
+		eclass="ProtocolConformance"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.ProtocolConformanceEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ProtocolConformance"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ProtocolStateMachine -->
+	<metamodelType id="org.eclipse.papyrus.uml.ProtocolStateMachine" name="UML::ProtocolStateMachine"
+		eclass="ProtocolStateMachine"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.ProtocolStateMachineEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ProtocolStateMachine"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ProtocolTransition -->
+	<metamodelType id="org.eclipse.papyrus.uml.ProtocolTransition" name="UML::ProtocolTransition"
+		eclass="ProtocolTransition"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ProtocolTransition"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Pseudostate -->
+	<metamodelType id="org.eclipse.papyrus.uml.Pseudostate" name="UML::Pseudostate"
+		eclass="Pseudostate"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Pseudostate"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for QualifierValue -->
+	<metamodelType id="org.eclipse.papyrus.uml.QualifierValue" name="UML::QualifierValue"
+		eclass="QualifierValue"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::QualifierValue"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for RaiseExceptionAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.RaiseExceptionAction" name="UML::RaiseExceptionAction"
+		eclass="RaiseExceptionAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::RaiseExceptionAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ReadExtentAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.ReadExtentAction" name="UML::ReadExtentAction"
+		eclass="ReadExtentAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ReadExtentAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ReadIsClassifiedObjectAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.ReadIsClassifiedObjectAction" name="UML::ReadIsClassifiedObjectAction"
+		eclass="ReadIsClassifiedObjectAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ReadIsClassifiedObjectAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ReadLinkAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.ReadLinkAction" name="UML::ReadLinkAction"
+		eclass="ReadLinkAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ReadLinkAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ReadLinkObjectEndAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.ReadLinkObjectEndAction" name="UML::ReadLinkObjectEndAction"
+		eclass="ReadLinkObjectEndAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ReadLinkObjectEndAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ReadLinkObjectEndQualifierAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.ReadLinkObjectEndQualifierAction" name="UML::ReadLinkObjectEndQualifierAction"
+		eclass="ReadLinkObjectEndQualifierAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ReadLinkObjectEndQualifierAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ReadSelfAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.ReadSelfAction" name="UML::ReadSelfAction"
+		eclass="ReadSelfAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ReadSelfAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ReadStructuralFeatureAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.ReadStructuralFeatureAction" name="UML::ReadStructuralFeatureAction"
+		eclass="ReadStructuralFeatureAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ReadStructuralFeatureAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ReadVariableAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.ReadVariableAction" name="UML::ReadVariableAction"
+		eclass="ReadVariableAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ReadVariableAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Realization -->
+	<metamodelType id="org.eclipse.papyrus.uml.Realization" name="UML::Realization"
+		eclass="Realization"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Realization"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ReceiveOperationEvent -->
+	<metamodelType id="org.eclipse.papyrus.uml.ReceiveOperationEvent" name="UML::ReceiveOperationEvent"
+		eclass="ReceiveOperationEvent"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ReceiveOperationEvent"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ReceiveSignalEvent -->
+	<metamodelType id="org.eclipse.papyrus.uml.ReceiveSignalEvent" name="UML::ReceiveSignalEvent"
+		eclass="ReceiveSignalEvent"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ReceiveSignalEvent"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Reception -->
+	<metamodelType id="org.eclipse.papyrus.uml.Reception" name="UML::Reception"
+		eclass="Reception"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Reception"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ReclassifyObjectAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.ReclassifyObjectAction" name="UML::ReclassifyObjectAction"
+		eclass="ReclassifyObjectAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ReclassifyObjectAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for RedefinableElement -->
+	<metamodelType id="org.eclipse.papyrus.uml.RedefinableElement" name="UML::RedefinableElement"
+		eclass="RedefinableElement"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::RedefinableElement"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for RedefinableTemplateSignature -->
+	<metamodelType id="org.eclipse.papyrus.uml.RedefinableTemplateSignature" name="UML::RedefinableTemplateSignature"
+		eclass="RedefinableTemplateSignature"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::RedefinableTemplateSignature"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ReduceAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.ReduceAction" name="UML::ReduceAction"
+		eclass="ReduceAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ReduceAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Region -->
+	<metamodelType id="org.eclipse.papyrus.uml.Region" name="UML::Region"
+		eclass="Region"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Region"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Relationship -->
+	<metamodelType id="org.eclipse.papyrus.uml.Relationship" name="UML::Relationship"
+		eclass="Relationship"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Relationship"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for RemoveStructuralFeatureValueAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.RemoveStructuralFeatureValueAction" name="UML::RemoveStructuralFeatureValueAction"
+		eclass="RemoveStructuralFeatureValueAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::RemoveStructuralFeatureValueAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for RemoveVariableValueAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.RemoveVariableValueAction" name="UML::RemoveVariableValueAction"
+		eclass="RemoveVariableValueAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::RemoveVariableValueAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ReplyAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.ReplyAction" name="UML::ReplyAction"
+		eclass="ReplyAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ReplyAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for SendObjectAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.SendObjectAction" name="UML::SendObjectAction"
+		eclass="SendObjectAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::SendObjectAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for SendOperationEvent -->
+	<metamodelType id="org.eclipse.papyrus.uml.SendOperationEvent" name="UML::SendOperationEvent"
+		eclass="SendOperationEvent"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::SendOperationEvent"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for SendSignalAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.SendSignalAction" name="UML::SendSignalAction"
+		eclass="SendSignalAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::SendSignalAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for SendSignalEvent -->
+	<metamodelType id="org.eclipse.papyrus.uml.SendSignalEvent" name="UML::SendSignalEvent"
+		eclass="SendSignalEvent"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::SendSignalEvent"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for SequenceNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.SequenceNode" name="UML::SequenceNode"
+		eclass="SequenceNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::SequenceNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Signal -->
+	<metamodelType id="org.eclipse.papyrus.uml.Signal" name="UML::Signal"
+		eclass="Signal"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Signal"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for SignalEvent -->
+	<metamodelType id="org.eclipse.papyrus.uml.SignalEvent" name="UML::SignalEvent"
+		eclass="SignalEvent"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::SignalEvent"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Slot -->
+	<metamodelType id="org.eclipse.papyrus.uml.Slot" name="UML::Slot"
+		eclass="Slot"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Slot"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for StartClassifierBehaviorAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.StartClassifierBehaviorAction" name="UML::StartClassifierBehaviorAction"
+		eclass="StartClassifierBehaviorAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::StartClassifierBehaviorAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for StartObjectBehaviorAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.StartObjectBehaviorAction" name="UML::StartObjectBehaviorAction"
+		eclass="StartObjectBehaviorAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::StartObjectBehaviorAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for State -->
+	<metamodelType id="org.eclipse.papyrus.uml.State" name="UML::State"
+		eclass="State"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::State"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for StateInvariant -->
+	<metamodelType id="org.eclipse.papyrus.uml.StateInvariant" name="UML::StateInvariant"
+		eclass="StateInvariant"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::StateInvariant"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for StateMachine -->
+	<metamodelType id="org.eclipse.papyrus.uml.StateMachine" name="UML::StateMachine"
+		eclass="StateMachine"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::StateMachine"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Stereotype -->
+	<metamodelType id="org.eclipse.papyrus.uml.Stereotype" name="UML::Stereotype"
+		eclass="Stereotype"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Stereotype"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for StringExpression -->
+	<metamodelType id="org.eclipse.papyrus.uml.StringExpression" name="UML::StringExpression"
+		eclass="StringExpression"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::StringExpression"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for StructuralFeature -->
+	<metamodelType id="org.eclipse.papyrus.uml.StructuralFeature" name="UML::StructuralFeature"
+		eclass="StructuralFeature"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::StructuralFeature"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for StructuralFeatureAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.StructuralFeatureAction" name="UML::StructuralFeatureAction"
+		eclass="StructuralFeatureAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::StructuralFeatureAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for StructuredActivityNode -->
+	<metamodelType id="org.eclipse.papyrus.uml.StructuredActivityNode" name="UML::StructuredActivityNode"
+		eclass="StructuredActivityNode"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::StructuredActivityNode"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for StructuredClassifier -->
+	<metamodelType id="org.eclipse.papyrus.uml.StructuredClassifier" name="UML::StructuredClassifier"
+		eclass="StructuredClassifier"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::StructuredClassifier"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Substitution -->
+	<metamodelType id="org.eclipse.papyrus.uml.Substitution" name="UML::Substitution"
+		eclass="Substitution"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.SubstitutionEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Substitution"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for TemplateBinding -->
+	<metamodelType id="org.eclipse.papyrus.uml.TemplateBinding" name="UML::TemplateBinding"
+		eclass="TemplateBinding"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::TemplateBinding"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for TemplateParameter -->
+	<metamodelType id="org.eclipse.papyrus.uml.TemplateParameter" name="UML::TemplateParameter"
+		eclass="TemplateParameter"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::TemplateParameter"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for TemplateParameterSubstitution -->
+	<metamodelType id="org.eclipse.papyrus.uml.TemplateParameterSubstitution" name="UML::TemplateParameterSubstitution"
+		eclass="TemplateParameterSubstitution"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::TemplateParameterSubstitution"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for TemplateSignature -->
+	<metamodelType id="org.eclipse.papyrus.uml.TemplateSignature" name="UML::TemplateSignature"
+		eclass="TemplateSignature"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::TemplateSignature"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for TemplateableElement -->
+	<metamodelType id="org.eclipse.papyrus.uml.TemplateableElement" name="UML::TemplateableElement"
+		eclass="TemplateableElement"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::TemplateableElement"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for TestIdentityAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.TestIdentityAction" name="UML::TestIdentityAction"
+		eclass="TestIdentityAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::TestIdentityAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for TimeConstraint -->
+	<metamodelType id="org.eclipse.papyrus.uml.TimeConstraint" name="UML::TimeConstraint"
+		eclass="TimeConstraint"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::TimeConstraint"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for TimeEvent -->
+	<metamodelType id="org.eclipse.papyrus.uml.TimeEvent" name="UML::TimeEvent"
+		eclass="TimeEvent"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::TimeEvent"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for TimeExpression -->
+	<metamodelType id="org.eclipse.papyrus.uml.TimeExpression" name="UML::TimeExpression"
+		eclass="TimeExpression"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::TimeExpression"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for TimeInterval -->
+	<metamodelType id="org.eclipse.papyrus.uml.TimeInterval" name="UML::TimeInterval"
+		eclass="TimeInterval"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::TimeInterval"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for TimeObservation -->
+	<metamodelType id="org.eclipse.papyrus.uml.TimeObservation" name="UML::TimeObservation"
+		eclass="TimeObservation"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::TimeObservation"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Transition -->
+	<metamodelType id="org.eclipse.papyrus.uml.Transition" name="UML::Transition"
+		eclass="Transition"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Transition"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Trigger -->
+	<metamodelType id="org.eclipse.papyrus.uml.Trigger" name="UML::Trigger"
+		eclass="Trigger"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Trigger"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Type -->
+	<metamodelType id="org.eclipse.papyrus.uml.Type" name="UML::Type"
+		eclass="Type"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Type"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for TypedElement -->
+	<metamodelType id="org.eclipse.papyrus.uml.TypedElement" name="UML::TypedElement"
+		eclass="TypedElement"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::TypedElement"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for UnmarshallAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.UnmarshallAction" name="UML::UnmarshallAction"
+		eclass="UnmarshallAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::UnmarshallAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Usage -->
+	<metamodelType id="org.eclipse.papyrus.uml.Usage" name="UML::Usage"
+		eclass="Usage"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Usage"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for UseCase -->
+	<metamodelType id="org.eclipse.papyrus.uml.UseCase" name="UML::UseCase"
+		eclass="UseCase"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.UseCaseEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::UseCase"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ValuePin -->
+	<metamodelType id="org.eclipse.papyrus.uml.ValuePin" name="UML::ValuePin"
+		eclass="ValuePin"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ValuePin"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ValueSpecification -->
+	<metamodelType id="org.eclipse.papyrus.uml.ValueSpecification" name="UML::ValueSpecification"
+		eclass="ValueSpecification"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ValueSpecification"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ValueSpecificationAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.ValueSpecificationAction" name="UML::ValueSpecificationAction"
+		eclass="ValueSpecificationAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::ValueSpecificationAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Variable -->
+	<metamodelType id="org.eclipse.papyrus.uml.Variable" name="UML::Variable"
+		eclass="Variable"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Variable"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for VariableAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.VariableAction" name="UML::VariableAction"
+		eclass="VariableAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::VariableAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Vertex -->
+	<metamodelType id="org.eclipse.papyrus.uml.Vertex" name="UML::Vertex"
+		eclass="Vertex"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Vertex"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for WriteLinkAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.WriteLinkAction" name="UML::WriteLinkAction"
+		eclass="WriteLinkAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::WriteLinkAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for WriteStructuralFeatureAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.WriteStructuralFeatureAction" name="UML::WriteStructuralFeatureAction"
+		eclass="WriteStructuralFeatureAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::WriteStructuralFeatureAction"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for WriteVariableAction -->
+	<metamodelType id="org.eclipse.papyrus.uml.WriteVariableAction" name="UML::WriteVariableAction"
+		eclass="WriteVariableAction"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::WriteVariableAction"/>
+	</metamodelType>
+	
+	<!-- ISpecializationType Association of UML::AssociationBase -->
+	<specializationType id="org.eclipse.papyrus.uml.Association" name="UML::Association"
+		edithelperadvice="org.eclipse.papyrus.uml.service.types.helper.advice.AssociationEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Association"/>
+		<specializes id="org.eclipse.papyrus.uml.AssociationBase" />
+		<matcher class ="org.eclipse.papyrus.uml.service.types.matcher.AssociationMatcher" />
+	</specializationType>
+	
+	<!-- ISpecializationType Trace of UML::Abstraction (from Standard profile)-->
+	<specializationType id="org.eclipse.papyrus.uml.Trace" name="UML::Trace"
+		edithelperadvice="org.eclipse.papyrus.uml.service.types.helper.advice.TraceEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Trace"/>
+		<specializes id="org.eclipse.papyrus.uml.Abstraction" />
+		<matcher class ="org.eclipse.papyrus.uml.service.types.matcher.TraceMatcher" />
+	</specializationType>
+	
+	</metamodel>
+</extension>
+
+<!-- Helper advice declarations -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+	
+	<!-- Helper advice for Classifier -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.Classifier"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.ClassifierHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Classifier">
+	</adviceBinding>
+	
+	<!-- Helper advice for Collaboration -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.Collaboration"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.CollaborationHelperAdvice"
+		inheritance="none" typeId="org.eclipse.papyrus.uml.Collaboration">
+	</adviceBinding>
+	
+	<!-- Helper advice for CollaborationUse -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.CollaborationUse"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.CollaborationUseHelperAdvice"
+		inheritance="none" typeId="org.eclipse.papyrus.uml.CollaborationUse">
+	</adviceBinding>
+	
+	<!-- Helper advice for ConnectorEnd -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.ConnectorEnd"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.ConnectorEndHelperAdvice"
+		inheritance="none" typeId="org.eclipse.papyrus.uml.ConnectorEnd">
+	</adviceBinding>
+	
+	<!-- Helper advice for DestructionEvent -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.DestructionEvent"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.DestructionEventHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.DestructionEvent">
+	</adviceBinding>
+	
+	<!-- Helper advice for DirectedRelationship -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.DirectedRelationship"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.DirectedRelationshipHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.DirectedRelationship">
+	</adviceBinding>
+	
+	<!-- Helper advice for ExecutionSpecification -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.ExecutionSpecification"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.ExecutionSpecificationHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.ExecutionSpecification">
+	</adviceBinding>
+	
+	<!-- Helper advice for Feature name initialization -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.FeatureNameInitializer"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.FeatureNameInitializerHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Feature">
+	</adviceBinding>
+	
+	<!-- Helper advice for Lifeline -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.Lifeline"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.LifelineHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Lifeline">
+	</adviceBinding>
+	
+	<!-- Helper advice for Message -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.Message"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.MessageHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Message">
+	</adviceBinding>
+	
+	<!-- Helper advice for MessageEnd -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.MessageEnd"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.MessageEndHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.MessageEnd">
+	</adviceBinding>
+	
+	<!-- Helper advice for MultiplicityElement multiplicity initialization -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.MultiplicityElementMultiplicityInitializer"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.MultiplicityElementMultiplicityInitializerHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.MultiplicityElement">
+	</adviceBinding>
+	
+	<!-- Helper advice for NamedElement -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.NamedElement"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.NamedElementHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.NamedElement">
+	</adviceBinding>
+	
+	<!-- Helper advice for element name initialization -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.NamedElementNameInitializer"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.NamedElementInitializerHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.NamedElement">
+	</adviceBinding>
+	
+	<!-- Helper advice for OccurrenceSpecification -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.OccurrenceSpecification"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.OccurrenceSpecificationHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.OccurrenceSpecification">
+	</adviceBinding>
+	
+	<!-- Helper advice for PartDecomposition -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.PartDecomposition"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.PartDecompositionHelperAdvice"
+		inheritance="none" typeId="org.eclipse.papyrus.uml.PartDecomposition">
+	</adviceBinding>
+	
+	<!-- Helper advice for Property -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.Property"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.PropertyHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Property">
+	</adviceBinding>
+	
+	</metamodel>
+</extension>
+	
+<!-- UML ElementType bindings to Papyrus shared IClientContext -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+
+	<!-- Bindings declaration -->
+	<binding context="org.eclipse.papyrus.service.edit.TypeContext">
+	
+		<elementType pattern="org\.eclipse\.papyrus\.uml\..*" />
+		<advice ref="org.eclipse.papyrus.uml.advice.Classifier" />
+		<advice ref="org.eclipse.papyrus.uml.advice.Collaboration" />
+		<advice ref="org.eclipse.papyrus.uml.advice.CollaborationUse" />
+		<advice ref="org.eclipse.papyrus.uml.advice.ConnectorEnd" />
+		<advice ref="org.eclipse.papyrus.uml.advice.DestructionEvent" />
+		<advice ref="org.eclipse.papyrus.uml.advice.DirectedRelationship" />
+		<advice ref="org.eclipse.papyrus.uml.advice.ExecutionSpecification" />
+		<advice ref="org.eclipse.papyrus.uml.advice.FeatureNameInitializer" />
+		<advice ref="org.eclipse.papyrus.uml.advice.Lifeline" />
+		<advice ref="org.eclipse.papyrus.uml.advice.Message" />
+		<advice ref="org.eclipse.papyrus.uml.advice.MessageEnd" />
+		<advice ref="org.eclipse.papyrus.uml.advice.MultiplicityElementMultiplicityInitializer" />
+		<advice ref="org.eclipse.papyrus.uml.advice.NamedElement" />
+		<advice ref="org.eclipse.papyrus.uml.advice.NamedElementNameInitializer" />
+		<advice ref="org.eclipse.papyrus.uml.advice.OccurrenceSpecification" />
+		<advice ref="org.eclipse.papyrus.uml.advice.PartDecomposition" />
+		<advice ref="org.eclipse.papyrus.uml.advice.Property" />
+
+	</binding>
+	
+</extension>
+
+</plugin>
+
