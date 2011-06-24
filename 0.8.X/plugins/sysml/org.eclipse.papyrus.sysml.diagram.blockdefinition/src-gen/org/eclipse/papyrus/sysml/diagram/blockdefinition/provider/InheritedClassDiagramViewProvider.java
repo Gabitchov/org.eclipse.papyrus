@@ -74,7 +74,7 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 	@Override
 	protected boolean provides(CreateViewForKindOperation op) {
 
-		// This provider is registered for Internal Block Diagram only
+		// This provider is registered for BlockDefinition Diagram only
 		String diagramType = op.getContainerView().getDiagram().getType();
 		if(!ElementTypes.DIAGRAM_ID.equals(diagramType)) {
 			return false;
