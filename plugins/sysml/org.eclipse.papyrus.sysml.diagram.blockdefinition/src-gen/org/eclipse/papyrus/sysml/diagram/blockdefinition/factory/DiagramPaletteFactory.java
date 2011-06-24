@@ -21,9 +21,9 @@ import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeCreationTool;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
-import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 
 @SuppressWarnings("serial")
 public class DiagramPaletteFactory extends PaletteFactory.Adapter {
@@ -56,7 +56,7 @@ public class DiagramPaletteFactory extends PaletteFactory.Adapter {
 			put("blockdefinition.tool.value", new IElementType[]{ SysMLElementTypes.VALUE_PROPERTY });
 			put("blockdefinition.tool.valuetype", new IElementType[]{ SysMLElementTypes.VALUE_TYPE });
 			//Start of user code Custom nodes
-			
+
 			// Constraint button replacement
 			remove("blockdefinition.tool.constraint");
 			put("blockdefinition.tool.constraint", new IElementType[]{ UMLElementTypes.CONSTRAINT, ElementTypes.CONSTRAINT, ElementTypes.CONSTRAINT_CN });
@@ -86,7 +86,7 @@ public class DiagramPaletteFactory extends PaletteFactory.Adapter {
 			put("blockdefinition.tool.association_composite_directed", new IElementType[]{ SysMLElementTypes.ASSOCIATION_COMPOSITE_DIRECTED });
 			put("blockdefinition.tool.association_shared", new IElementType[]{ SysMLElementTypes.ASSOCIATION_SHARED });
 			put("blockdefinition.tool.association_shared_directed", new IElementType[]{ SysMLElementTypes.ASSOCIATION_SHARED_DIRECTED });
-			
+
 			put("blockdefinition.tool.comment_constraint_link", new IElementType[]{ ElementTypes.COMMENT_ANNOTATED_ELEMENT, ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT });
 
 			//End of user code

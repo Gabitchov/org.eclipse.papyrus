@@ -40,9 +40,9 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 	public GraphicalTypeRegistry() {
 
 		// Fill known edges set
-		knownEdges.add(ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint());
 		knownEdges.add(ElementTypes.COMMENT_ANNOTATED_ELEMENT.getSemanticHint());
-		
+		knownEdges.add(ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint());
+
 		// Fill known nodes set (primary nodes)
 		knownNodes.add(ElementTypes.MODEL.getSemanticHint());
 		knownNodes.add(ElementTypes.MODEL_CN.getSemanticHint());
@@ -228,13 +228,13 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 	 * {@inheritDoc}
 	 */
 	public String getNodeGraphicalType(String proposedType, String containerType) {
-		
+
 		// Explicitly forbid Comment or Constraint creation using ElementType defined in Class Diagram
 		// A better implementation should be provided, this one is not subtle but should have minimal side effect
 		// (see bug #348550)
-		
+
 		if((ElementTypes.COMMENT.getSemanticHint().equals(proposedType) || (ElementTypes.COMMENT_CN.getSemanticHint().equals(proposedType)))) {
-			
+
 			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Constraint TopNode
 				return proposedType;
 			}
@@ -250,12 +250,12 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
 				return proposedType;
 			}
-			
+
 			return UNDEFINED_TYPE;
 		}
 
 		if((ElementTypes.CONSTRAINT.getSemanticHint().equals(proposedType) || (ElementTypes.CONSTRAINT_CN.getSemanticHint().equals(proposedType)))) {
-			
+
 			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Constraint TopNode
 				return proposedType;
 			}
@@ -271,10 +271,10 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
 				return proposedType;
 			}
-			
+
 			return UNDEFINED_TYPE;
 		}
-		
+
 		// Initial implementation (to be improved - see : getNodeGraphicalType(EObject domainElement, String containerType))
 		if(isKnownNodeType(proposedType)) {
 			return proposedType;

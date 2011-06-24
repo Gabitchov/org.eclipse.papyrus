@@ -93,25 +93,25 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 	@Override
 	public String getNodeGraphicalType(EObject domainElement, String containerType) {
 		// Start of user code getNodeGraphicalType(EObject domainElement, String containerType)
-		
+
 		// For legacy reuse of Class Diagram Constraint in BDD (DnD especially)
 		if(UMLElementTypes.CONSTRAINT.getEClass().isInstance(domainElement)) {
-			
+
 			if(ElementTypes.DIAGRAM_ID.equals(containerType)) {
 				return super.getNodeGraphicalType(domainElement, containerType);
 			}
-			
+
 			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType) || ElementTypes.PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) {
 				return super.getNodeGraphicalType(domainElement, containerType);
 			}
-			
+
 			if(ElementTypes.MODEL_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType) || ElementTypes.MODEL_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) {
 				return super.getNodeGraphicalType(domainElement, containerType);
 			}
-			
+
 			// else : managed below...
-		} 
-		
+		}
+
 		// End of user code
 
 		if(UMLElementTypes.CONSTRAINT.getEClass().isInstance(domainElement)) {
