@@ -253,7 +253,8 @@
     -->
      <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/e4/downloads/drops/S-0.11M5-201101282000/repository">
+      <!--rm:uri format="{0}/e4/downloads/drops/S-0.11M5-201101282000/repository"-->
+      <rm:uri format="{0}/e4/updates/0.11/S-0.11RC5-201106141545"> 
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
