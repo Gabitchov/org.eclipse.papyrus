@@ -110,7 +110,7 @@
 					<sysproperties />
 				</properties>
 				<args>
-					<jvmarg value="-Xmx1024m" />
+					<jvmarg value="-Xmx4096m" />
 					<arg value="-data" />
 					<arg value="@{workspace}" />
 					<arg value="--loglevel" />
