@@ -52,6 +52,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.CreateObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
@@ -80,6 +81,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCreateObjectActionAsResultEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInValSpecActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionEditPart;
@@ -167,6 +169,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.ValuePin_3049);
 			types.add(UMLElementTypes.ActionInputPin_3050);
 			types.add(UMLElementTypes.InputPin_3051);
+			return types;
+		}
+		if(editPart instanceof CreateObjectActionEditPart) {
+			ArrayList types = new ArrayList(1);
+			types.add(UMLElementTypes.OutputPin_3087);
 			return types;
 		}
 		if(editPart instanceof SendSignalActionEditPart) {
@@ -389,6 +396,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof ReadSelfActionOutputPinEditPart) {
 			return ((ReadSelfActionOutputPinEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
+		if(sourceEditPart instanceof CreateObjectActionEditPart) {
+			return ((CreateObjectActionEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof OutputPinInCreateObjectActionAsResultEditPart) {
+			return ((OutputPinInCreateObjectActionAsResultEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -601,6 +614,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof ShapeNamedElementEditPart) {
 			return ((ShapeNamedElementEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
+		if(targetEditPart instanceof CreateObjectActionEditPart) {
+			return ((CreateObjectActionEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof OutputPinInCreateObjectActionAsResultEditPart) {
+			return ((OutputPinInCreateObjectActionAsResultEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -774,6 +793,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof ReadSelfActionOutputPinEditPart) {
 			return ((ReadSelfActionOutputPinEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof CreateObjectActionEditPart) {
+			return ((CreateObjectActionEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof OutputPinInCreateObjectActionAsResultEditPart) {
+			return ((OutputPinInCreateObjectActionAsResultEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -987,6 +1012,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof ShapeNamedElementEditPart) {
 			return ((ShapeNamedElementEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if(targetEditPart instanceof CreateObjectActionEditPart) {
+			return ((CreateObjectActionEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof OutputPinInCreateObjectActionAsResultEditPart) {
+			return ((OutputPinInCreateObjectActionAsResultEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -1159,6 +1190,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof ReadSelfActionOutputPinEditPart) {
 			return ((ReadSelfActionOutputPinEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof CreateObjectActionEditPart) {
+			return ((CreateObjectActionEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof OutputPinInCreateObjectActionAsResultEditPart) {
+			return ((OutputPinInCreateObjectActionAsResultEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

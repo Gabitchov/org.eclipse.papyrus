@@ -1052,6 +1052,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createCreateObjectAction43CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createCreateObjectAction43CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createControlFlow1CreationTool_title;
 
 	/**
@@ -1552,6 +1562,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_OutputPin_3087_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_OutputPin_3087_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_SendSignalAction_3052_outgoinglinks;
 
 	/**
@@ -1783,6 +1803,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_TimeConstraint_3037_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_CreateObjectAction_3086_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_CreateObjectAction_3086_incominglinks;
 
 	/**
 	 * @generated

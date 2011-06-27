@@ -49,6 +49,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		ActionInputPinPreferencePage.initDefaults(store);
 
 
+		CreateObjectActionPreferencePage.initDefaults(store);
+
+
 		CallOperationActionPreferencePage.initDefaults(store);
 
 
