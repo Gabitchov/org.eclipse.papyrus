@@ -63,6 +63,8 @@ import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallAction;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.CallOperationAction;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.CreateObjectAction;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.InvocationAction;
@@ -96,6 +98,10 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 
 	/** The constant to initialize request pin name */
 	private static final String REQUEST_PIN_INITIALIZATION_NAME = "request";
+
+	/** The constant to initialize result pin name */
+	private static final String RESULT_PIN_INITIALIZATION_NAME = "result";
+
 
 	/**
 	 * Validate modification and update associated elements if necessary
@@ -132,6 +138,12 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			} else if((EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType())) && ctx.getFeatureNewValue() instanceof SendObjectAction) {
 				// SendObjectAction created
 				CompoundCommand cmd = getResetPinsCmd((SendObjectAction)ctx.getFeatureNewValue());
+				if(!cmd.isEmpty() && cmd.canExecute()) {
+					cmd.execute();
+				}
+			} else if(EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType()) && ctx.getFeatureNewValue() instanceof CreateObjectAction) {
+				// CreateObject Action created
+				CompoundCommand cmd = getResetPinsCmd((CreateObjectAction)ctx.getFeatureNewValue());
 				if(!cmd.isEmpty() && cmd.canExecute()) {
 					cmd.execute();
 				}
@@ -1596,6 +1608,21 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	}
 
 	/**
+	 * Create a result input pin, eventually from a given operation
+	 * 
+	 * @param classifier
+	 *        the to set the output type
+	 */
+	private OutputPin createResultPin(Classifier classifier) {
+		OutputPin pin = UMLFactory.eINSTANCE.createOutputPin();
+		if(classifier != null) {
+			pin.setType(classifier);
+		}
+		pin.setName(RESULT_PIN_INITIALIZATION_NAME);
+		return pin;
+	}
+
+	/**
 	 * Create a request input pin
 	 * 
 	 * @param operation
@@ -1748,6 +1775,27 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			globalCmd.append(cmd);
 		}
 
+		return globalCmd;
+	}
+
+	/**
+	 * Get the command to reset all pins of the action.
+	 * 
+	 * @param action
+	 *        action to reinitialize pins (SendObjectAction)
+	 * @return command
+	 */
+	private CompoundCommand getResetPinsCmd(CreateObjectAction action) {
+		// Get the editing domain
+		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
+		CompoundCommand globalCmd = new CompoundCommand();
+
+		// add target pin
+		if(action.getResult() == null) {
+			OutputPin resultPin = createResultPin(null);
+			Command cmd = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getCreateObjectAction_Result(), resultPin);
+			globalCmd.append(cmd);
+		}
 		return globalCmd;
 	}
 

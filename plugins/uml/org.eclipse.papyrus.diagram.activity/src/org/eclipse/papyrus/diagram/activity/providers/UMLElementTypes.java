@@ -54,6 +54,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondE
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.CreateObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
@@ -84,6 +85,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCreateObjectActionAsResultEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInValSpecActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
@@ -419,6 +421,16 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType NamedElement_3085 = getElementType("org.eclipse.papyrus.diagram.activity.NamedElement_3085"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType CreateObjectAction_3086 = getElementType("org.eclipse.papyrus.diagram.activity.CreateObjectAction_3086"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OutputPin_3087 = getElementType("org.eclipse.papyrus.diagram.activity.OutputPin_3087"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -846,6 +858,12 @@ public class UMLElementTypes {
 
 			elements.put(NamedElement_3085, UMLPackage.eINSTANCE.getNamedElement());
 
+
+			elements.put(CreateObjectAction_3086, UMLPackage.eINSTANCE.getCreateObjectAction());
+
+
+			elements.put(OutputPin_3087, UMLPackage.eINSTANCE.getOutputPin());
+
 			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 
 			elements.put(ActionLocalPostcondition_4002, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
@@ -949,6 +967,8 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(OutputPin_3084);
 			KNOWN_ELEMENT_TYPES.add(Activity_3083);
 			KNOWN_ELEMENT_TYPES.add(NamedElement_3085);
+			KNOWN_ELEMENT_TYPES.add(CreateObjectAction_3086);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3087);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPrecondition_4001);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPostcondition_4002);
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
@@ -1108,6 +1128,10 @@ public class UMLElementTypes {
 			return Activity_3083;
 		case ShapeNamedElementEditPart.VISUAL_ID:
 			return NamedElement_3085;
+		case CreateObjectActionEditPart.VISUAL_ID:
+			return CreateObjectAction_3086;
+		case OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID:
+			return OutputPin_3087;
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return ActionLocalPrecondition_4001;
 		case ActionLocalPostconditionEditPart.VISUAL_ID:

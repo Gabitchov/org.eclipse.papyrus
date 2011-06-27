@@ -438,6 +438,12 @@ UMLNodeEditPart {
 		if(targetEditPart instanceof ReadSelfActionOutputPinEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof CreateObjectActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OutputPinInCreateObjectActionAsResultEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -600,6 +606,12 @@ UMLNodeEditPart {
 		if(targetEditPart instanceof ReadSelfActionOutputPinEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof CreateObjectActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OutputPinInCreateObjectActionAsResultEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		return types;
 	}
 
@@ -663,6 +675,8 @@ UMLNodeEditPart {
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.OutputPin_3084);
+			types.add(UMLElementTypes.CreateObjectAction_3086);
+			types.add(UMLElementTypes.OutputPin_3087);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -718,6 +732,8 @@ UMLNodeEditPart {
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.OutputPin_3084);
+			types.add(UMLElementTypes.CreateObjectAction_3086);
+			types.add(UMLElementTypes.OutputPin_3087);
 		}
 		return types;
 	}
@@ -793,6 +809,8 @@ UMLNodeEditPart {
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.OutputPin_3084);
+			types.add(UMLElementTypes.CreateObjectAction_3086);
+			types.add(UMLElementTypes.OutputPin_3087);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -848,6 +866,8 @@ UMLNodeEditPart {
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.OutputPin_3084);
+			types.add(UMLElementTypes.CreateObjectAction_3086);
+			types.add(UMLElementTypes.OutputPin_3087);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
 			types.add(UMLElementTypes.Comment_3080);
 		}

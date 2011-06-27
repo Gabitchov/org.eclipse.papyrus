@@ -636,6 +636,21 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ShapeNamedElementNameEditPart.VISUAL_ID:
 				return new ShapeNamedElementNameEditPart(view);
 
+			case CreateObjectActionEditPart.VISUAL_ID:
+				return new CreateObjectActionEditPart(view);
+
+			case CreateObjectActionNameEditPart.VISUAL_ID:
+				return new CreateObjectActionNameEditPart(view);
+
+			case OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID:
+				return new OutputPinInCreateObjectActionAsResultEditPart(view);
+
+			case OutputPinInCreateObjectActionAsResultLabelEditPart.VISUAL_ID:
+				return new OutputPinInCreateObjectActionAsResultLabelEditPart(view);
+
+			case OutputPinInCreateObjectActionAsResultAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new OutputPinInCreateObjectActionAsResultAppliedStereotypeWrappingLabelEditPart(view);
+
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);
 

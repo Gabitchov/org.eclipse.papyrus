@@ -20,6 +20,7 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityFinalNodeCreat
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallBehaviorActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallOperationActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ConditionalNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.CreateObjectActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.DataStoreNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.DecisionNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ExpansionRegionCreateCommand;
@@ -142,6 +143,9 @@ public class ExpansionRegionStructuredActivityNodeContentCompartmentItemSemantic
 		}
 		if(UMLElementTypes.StructuredActivityNode_3065 == req.getElementType()) {
 			return getGEFWrapper(new StructuredActivityNodeCreateCommand(req));
+		}
+		if(UMLElementTypes.CreateObjectAction_3086 == req.getElementType()) {
+			return getGEFWrapper(new CreateObjectActionCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}
