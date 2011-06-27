@@ -1607,6 +1607,53 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser createObjectActionName_5148Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCreateObjectActionName_5148Parser() {
+		if(createObjectActionName_5148Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			createObjectActionName_5148Parser = parser;
+		}
+		return createObjectActionName_5148Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser outputPinLabel_5146Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOutputPinLabel_5146Parser() {
+		if(outputPinLabel_5146Parser == null) {
+			outputPinLabel_5146Parser = new PinParser();
+		}
+		return outputPinLabel_5146Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser outputPinLabel_5147Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOutputPinLabel_5147Parser() {
+		if(outputPinLabel_5147Parser == null) {
+			outputPinLabel_5147Parser = new AppliedStereotypeParser();
+		}
+		return outputPinLabel_5147Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private CommentParser commentBody_5138Parser;
 
 	/**
@@ -2474,6 +2521,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getActivityIsSingleExecution_5143Parser();
 		case ShapeNamedElementNameEditPart.VISUAL_ID:
 			return getNamedElementName_5129Parser();
+		case CreateObjectActionNameEditPart.VISUAL_ID:
+			return getCreateObjectActionName_5148Parser();
+		case OutputPinInCreateObjectActionAsResultLabelEditPart.VISUAL_ID:
+			return getOutputPinLabel_5146Parser();
+		case OutputPinInCreateObjectActionAsResultAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+			return getOutputPinLabel_5147Parser();
 		case ObjectFlowNameEditPart.VISUAL_ID:
 			return getObjectFlowName_6001Parser();
 		case ObjectFlowWeightEditPart.VISUAL_ID:

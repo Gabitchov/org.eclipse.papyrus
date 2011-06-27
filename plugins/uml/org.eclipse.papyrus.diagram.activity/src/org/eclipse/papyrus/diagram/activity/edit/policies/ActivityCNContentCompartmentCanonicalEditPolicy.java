@@ -43,6 +43,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.CreateObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
@@ -170,6 +171,7 @@ public class ActivityCNContentCompartmentCanonicalEditPolicy extends CanonicalEd
 		case ReadSelfActionEditPart.VISUAL_ID:
 		case ActivityEditPartCN.VISUAL_ID:
 		case ActivityParameterNodeEditPart.VISUAL_ID:
+		case CreateObjectActionEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;

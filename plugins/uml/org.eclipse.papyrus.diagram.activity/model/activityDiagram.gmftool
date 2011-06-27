@@ -563,6 +563,19 @@
             path="icons/full/obj16/Activity.gif"
             bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
       </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Create Object Action"
+          description="Create a Create Object Action">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/CreateObjectAction.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/CreateObjectAction.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
     </tools>
     <tools
         xsi:type="gmftool:ToolGroup"

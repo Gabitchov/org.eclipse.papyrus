@@ -52,6 +52,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPa
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.CreateObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
@@ -171,6 +172,7 @@ public class StructuredActivityNodeStructuredActivityNodeContentCompartmentCanon
 		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
 		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
 		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case CreateObjectActionEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;

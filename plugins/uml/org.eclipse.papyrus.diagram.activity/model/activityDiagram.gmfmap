@@ -2870,6 +2870,78 @@
               href="activityDiagram.gmfgraph#StereotypedCustomizedNode"/>
         </ownedChild>
       </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3"
+          referencedChild="//@nodes.0/@ownedChild/@children.38/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreateObjectAction"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping">
+            <diagramLabel
+                href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNameDiagramLabel"/>
+            <features
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.42"/>
+          <diagramNode
+              href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNode"/>
+          <children
+              referencedChild="//@nodes.0/@ownedChild/@children.38/@ownedChild/@children.0/@ownedChild">
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreateObjectAction/result"/>
+            <childrenFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreateObjectAction/result"/>
+            <ownedChild
+                relatedDiagrams="//@diagram">
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OutputPin"/>
+              <domainInitializer
+                  xsi:type="gmfmap:FeatureSeqInitializer">
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+              </domainInitializer>
+              <labelMappings>
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#PinName"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
+              <diagramNode
+                  href="activityDiagram.gmfgraph#PinNode"/>
+            </ownedChild>
+          </children>
+        </ownedChild>
+      </children>
       <compartments
           children="//@nodes.0/@ownedChild/@children.0">
         <compartment
@@ -2886,7 +2958,7 @@
             href="ActivityFigure.gmfgraph#ActivityFigurePostCondtionCompartment"/>
       </compartments>
       <compartments
-          children="//@nodes.0/@ownedChild/@children.5 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.6 //@nodes.0/@ownedChild/@children.15 //@nodes.0/@ownedChild/@children.7 //@nodes.0/@ownedChild/@children.8 //@nodes.0/@ownedChild/@children.16 //@nodes.0/@ownedChild/@children.13 //@nodes.0/@ownedChild/@children.14 //@nodes.0/@ownedChild/@children.9 //@nodes.0/@ownedChild/@children.10 //@nodes.0/@ownedChild/@children.11 //@nodes.0/@ownedChild/@children.12 //@nodes.0/@ownedChild/@children.17 //@nodes.0/@ownedChild/@children.18 //@nodes.0/@ownedChild/@children.19 //@nodes.0/@ownedChild/@children.20 //@nodes.0/@ownedChild/@children.22 //@nodes.0/@ownedChild/@children.23 //@nodes.0/@ownedChild/@children.25 //@nodes.0/@ownedChild/@children.31 //@nodes.0/@ownedChild/@children.32 //@nodes.0/@ownedChild/@children.33 //@nodes.0/@ownedChild/@children.27 //@nodes.0/@ownedChild/@children.28 //@nodes.0/@ownedChild/@children.29 //@nodes.0/@ownedChild/@children.30 //@nodes.0/@ownedChild/@children.21 //@nodes.0/@ownedChild/@children.26 //@nodes.0/@ownedChild/@children.34 //@nodes.0/@ownedChild/@children.35 //@nodes.0/@ownedChild/@children.36">
+          children="//@nodes.0/@ownedChild/@children.5 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.6 //@nodes.0/@ownedChild/@children.15 //@nodes.0/@ownedChild/@children.7 //@nodes.0/@ownedChild/@children.8 //@nodes.0/@ownedChild/@children.16 //@nodes.0/@ownedChild/@children.13 //@nodes.0/@ownedChild/@children.14 //@nodes.0/@ownedChild/@children.9 //@nodes.0/@ownedChild/@children.10 //@nodes.0/@ownedChild/@children.11 //@nodes.0/@ownedChild/@children.12 //@nodes.0/@ownedChild/@children.17 //@nodes.0/@ownedChild/@children.18 //@nodes.0/@ownedChild/@children.19 //@nodes.0/@ownedChild/@children.20 //@nodes.0/@ownedChild/@children.22 //@nodes.0/@ownedChild/@children.23 //@nodes.0/@ownedChild/@children.25 //@nodes.0/@ownedChild/@children.31 //@nodes.0/@ownedChild/@children.32 //@nodes.0/@ownedChild/@children.33 //@nodes.0/@ownedChild/@children.27 //@nodes.0/@ownedChild/@children.28 //@nodes.0/@ownedChild/@children.29 //@nodes.0/@ownedChild/@children.30 //@nodes.0/@ownedChild/@children.21 //@nodes.0/@ownedChild/@children.26 //@nodes.0/@ownedChild/@children.34 //@nodes.0/@ownedChild/@children.35 //@nodes.0/@ownedChild/@children.36 //@nodes.0/@ownedChild/@children.38">
         <compartment
             href="ActivityFigure.gmfgraph#ActivityFigureContentCompartment"/>
       </compartments>
@@ -3793,6 +3865,39 @@
             xsi:type="gmfmap:DomainElementTarget">
           <element
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityParameterNode"/>
+        </target>
+      </audits>
+    </childContainers>
+    <childContainers
+        id="org.eclipse.uml2.uml.util.UMLValidator.validateCreateObjectActionClassifier"
+        name="validateCreateObjectActionClassifier"
+        description="Valide classifier for CreateObjectAction">
+      <audits
+          name="validateNotAbstract"
+          description="Check that the classifier is not abstract"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateCreateObjectActionClassifier_notAbstract"
+          useInLiveMode="true"
+          message="The classifier cannot be abstract.">
+        <rule
+            body="(not self.classifier.oclIsUndefined()) implies (self.classifier.isAbstract = false)"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreateObjectAction"/>
+        </target>
+      </audits>
+      <audits
+          name="valideNotAssociationClass"
+          description="Check that the classifier is not an association class"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateCreateObjectActionClassifier_notClassifier"
+          useInLiveMode="true"
+          message="The classifier cannot be an association class.">
+        <rule
+            body="(not self.classifier.oclIsUndefined()) implies (not self.classifier.oclIsKindOf(uml::AssociationClass))"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreateObjectAction"/>
         </target>
       </audits>
     </childContainers>

@@ -655,6 +655,13 @@
             outline="false"
             fill="false"
             lineWidth="0">
+          <layoutData
+              xsi:type="gmfgraph:CustomLayoutData"
+              qualifiedClassName="org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvancedConstraint">
+            <attributes
+                name="hasMinsize"
+                value="true"/>
+          </layoutData>
           <layout
               xsi:type="gmfgraph:CustomLayout"
               qualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.GravityConstrainedFlowLayout"/>
@@ -757,6 +764,13 @@
             name="CompartmentLabelActivityPartition"
             outline="false"
             lineWidth="0">
+          <layoutData
+              xsi:type="gmfgraph:CustomLayoutData"
+              qualifiedClassName="org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvancedConstraint">
+            <attributes
+                name="hasMinsize"
+                value="true"/>
+          </layoutData>
           <layout
               xsi:type="gmfgraph:FlowLayout"
               matchMinorSize="true"

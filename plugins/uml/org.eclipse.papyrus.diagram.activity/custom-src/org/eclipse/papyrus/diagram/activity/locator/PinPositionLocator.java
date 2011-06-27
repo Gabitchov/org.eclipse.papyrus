@@ -43,6 +43,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActEditP
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCreateObjectActionAsResultEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInValSpecActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionOutputPinEditPart;
@@ -447,7 +448,10 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 		} else if(child instanceof OutputPinInValSpecActEditPart.PinDescriptor) {
 			arrowIn = false;
 			arrow = ((OutputPinInValSpecActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		}			
+		} else if(child instanceof OutputPinInCreateObjectActionAsResultEditPart.PinDescriptor) {
+			arrowIn = false;
+			arrow = ((OutputPinInCreateObjectActionAsResultEditPart.PinDescriptor)child).getOptionalArrowFigure();
+		}
 		if(arrow != null && arrow.getPoints().size() > 0) {
 			int arrowDirection;
 			int side = getCurrentSideOfParent();

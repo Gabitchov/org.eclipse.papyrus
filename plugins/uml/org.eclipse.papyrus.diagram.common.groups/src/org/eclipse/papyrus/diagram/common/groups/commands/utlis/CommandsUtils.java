@@ -22,10 +22,12 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.Adaptable;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.EditPolicy;
@@ -37,6 +39,7 @@ import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdap
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SemanticCreateCommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
@@ -44,6 +47,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.groups.Messages;
 import org.eclipse.papyrus.diagram.common.groups.commands.ChangeGraphicalParentCommand;
 import org.eclipse.papyrus.diagram.common.groups.commands.ChangeGraphicalParentCommand.Mode;
 import org.eclipse.papyrus.diagram.common.groups.commands.ChangeModelParentCommand;
@@ -517,7 +521,7 @@ public class CommandsUtils {
 					/*
 					 * Update all graphical children references and model
 					 */
-					updateReferencesAndModelOfGraphicalChildren(request, editingDomain, parentAdapter, cc, directChildsToComplete, oldDirectChildsToComplete, handleChildrenLabel + ":" + updateCommandeLabel + " -> " + "update reference graphical child", getHost);
+					updateReferencesAndModelOfGraphicalChildren(request, editingDomain, parentAdapter, cc, directChildsToComplete, oldDirectChildsToComplete, handleChildrenLabel + ":" + updateCommandeLabel + " -> " + "update reference graphical child", getHost, descriptor);
 					/*
 					 * Command to update references of new child
 					 */
@@ -558,90 +562,247 @@ public class CommandsUtils {
 	}
 
 	/**
+	 * True if the request is just a movin request
+	 * 
 	 * @param request
-	 * @param editingDomain
-	 * @param parentAdapter
-	 * @param cc
-	 *        Composite command to complete with new commands
-	 * @param childList
-	 * @param updateCommandeLabel
-	 *        Label for the command
-	 * @param getHost
-	 *        {@link IGraphicalEditPart} hosting the {@link EditPart}
+	 * @return
 	 */
-	private static void updateReferencesAndModelOfGraphicalChildren(Request request, TransactionalEditingDomain editingDomain, IAdaptable parentAdapter, CompositeCommand cc, List<IGraphicalEditPart> childList, List<IGraphicalEditPart> oldChildsList, String updateCommandeLabel, IGraphicalEditPart getHost) {
+	private static boolean isMovingRequest(ChangeBoundsRequest request) {
+		return request.getSizeDelta() == null || request.getSizeDelta().equals(0, 0);
+	}
+
+
+	/***
+	 * Update all the graphical children from a model point of view and a reference poitn of view
+	 * note: It also update the the lists childlist and oldchildlist. It will withdraw the from those list all graphical children if the reques tis a
+	 * simple move. If the request is a resize then all the grazphical children has to be taken into accoutn for next changes
+	 * 
+	 * @param request
+	 *        {@link ChangeBoundsRequest}
+	 * @param editingDomain
+	 *        {@link TransactionalEditingDomain}
+	 * @param parentAdapter
+	 *        Parent adapter used to get the {@link IGraphicalEditPart} of the parent
+	 * @param cc
+	 *        {@link CompositeCommand} use to compose new commands
+	 * @param childList
+	 *        List of all the visual child after transformation
+	 * @param oldChildsList
+	 *        List of all the visual child before transformation
+	 * @param updateCommandeLabel
+	 *        Label used to compose command
+	 * @param getHost
+	 *        Host of the request
+	 */
+	private static void updateReferencesAndModelOfGraphicalChildren(Request request, TransactionalEditingDomain editingDomain, IAdaptable parentAdapter, CompositeCommand cc, List<IGraphicalEditPart> childList, List<IGraphicalEditPart> oldChildsList, String updateCommandeLabel, IGraphicalEditPart getHost, AbstractContainerNodeDescriptor descriptor) {
 		if(request instanceof ChangeBoundsRequest) {
 			Object _movingPart = parentAdapter.getAdapter(EditPart.class);
 			if(_movingPart instanceof IGraphicalEditPart) {
 				List<IGraphicalEditPart> graphicalChilds = new ArrayList<IGraphicalEditPart>();
 				IGraphicalEditPart movingEditPart = (IGraphicalEditPart)_movingPart;
+				//Look for all graphical children
 				graphicalChilds = getGraphicalChild(movingEditPart);
-				//withdraw all graphical child of the new child list
+				/*
+				 * For all graphical children
+				 * if request = moving request
+				 * -> Suppress old references
+				 * -> change model parent if needed
+				 * -> Add new references
+				 * if request = resizing
+				 * -> If the resizing is from west side
+				 * - Translate the node to unmodify the GMF comportment of resizing by west = node moving
+				 * -> If after resizing the node are no longer in the group
+				 * - Unset references
+				 * - Change graphical parent
+				 */
+				ChangeBoundsRequest changeBoundRequest = (ChangeBoundsRequest)request;
+				for(IGraphicalEditPart graphicalChild : graphicalChilds) {
+					/*
+					 * All groups that contains the node before transforming ( transforming = moving or resizing )
+					 */
+
+					List<IGraphicalEditPart> oldGroupContainer = Utils.createComputeListsOfAllGroupContainerVisually(graphicalChild, changeBoundRequest, false, movingEditPart);
+					/*
+					 * All groups that contains the node after transforming
+					 */
+					List<IGraphicalEditPart> newGroupContainer = Utils.createComputeListsOfAllGroupContainerVisually(graphicalChild, changeBoundRequest, true, movingEditPart);
+					IGraphicalEditPart compartmentEditPart = (IGraphicalEditPart)Utils.getCompartementEditPartFromMainEditPart(movingEditPart.getViewer().getEditPartRegistry(), movingEditPart);
+					/*
+					 * If is a moving request
+					 * => Then the node should move with the group
+					 */
+					if(isMovingRequest(changeBoundRequest))
+						handleMovingRequestForGraphicalChildren(editingDomain, cc, updateCommandeLabel, getHost, graphicalChild, oldGroupContainer, newGroupContainer, compartmentEditPart);
+					else {
+						cc = handleResizingRequestForGraphicalChildren(editingDomain, parentAdapter, cc, childList, getHost, descriptor, movingEditPart, graphicalChild, changeBoundRequest, newGroupContainer);
+					}
+				}
+				/*
+				 * Remove graphical children of the lists of node to handle
+				 */
 				childList.removeAll(graphicalChilds);
 				oldChildsList.removeAll(graphicalChilds);
-				for(IGraphicalEditPart graphicalChild : graphicalChilds) {
-					List<IGraphicalEditPart> oldGroupContainer = new ArrayList<IGraphicalEditPart>();
-					List<IGraphicalEditPart> newGroupContainer = new ArrayList<IGraphicalEditPart>();
-					oldGroupContainer = Utils.createComputeListsOfAllGroupContainerVisually(graphicalChild, (ChangeBoundsRequest)request, false);
-					newGroupContainer = Utils.createComputeListsOfAllGroupContainerVisually(graphicalChild, (ChangeBoundsRequest)request, true);
-					IGraphicalEditPart compartmentEditPart = (IGraphicalEditPart)Utils.getCompartementEditPartFromMainEditPart(movingEditPart.getViewer().getEditPartRegistry(), movingEditPart);
-					//Suppress old reference
-					for(IGraphicalEditPart parentGroup : oldGroupContainer) {
-						//						if(!newGroupContainer.contains(parentGroup) && !parentGroup.equals(compartmentEditPart)) {
-						if(!newGroupContainer.contains(parentGroup) && !parentGroup.equals(compartmentEditPart)) {
-							//Unset the reference
-							UpdateReferencesCommand cmd1 = new UpdateReferencesCommand(editingDomain, updateCommandeLabel, Collections.singletonList(graphicalChild), GroupContainmentRegistry.getContainerDescriptor(parentGroup), parentGroup, UpdateReferencesCommand.UNSET_MODE);
-							if(cmd1 != null) {
-								cc.compose(cmd1);
-							}
-						}
+			}
+		}
+
+	}
+
+	/**
+	 * Handle resizing request for all graphical children
+	 * - Erase the moving children after resize from WEST/NORT WHEST/WEST
+	 * - Handle children going out after resizing
+	 * 
+	 * @param editingDomain
+	 *        {@link TransactionalEditingDomain}
+	 * @param parentAdapter
+	 *        {@link Adaptable} use to get the {@link IGraphicalEditPart} of the parent at runtime
+	 * @param cc
+	 *        {@link CompositeCommand} Use to add new Command
+	 * @param childList
+	 *        List of all the visual child after transformation
+	 * @param getHost
+	 *        Host of the request
+	 * @param descriptor
+	 *        Descriptor of the group
+	 * @param movingEditPart
+	 *        {@link IGraphicalEditPart} of the moving Edit Part (TODO Use the adapter to erase one argument)
+	 * @param graphicalChild
+	 *        {@link IGraphicalEditPart} of the graphical child you want to handle
+	 * @param changeBoundRequest
+	 *        {@link ChangeBoundsRequest}
+	 * @param newGroupContainer
+	 *        All group which can contain the node after transforming
+	 * @return
+	 */
+	private static CompositeCommand handleResizingRequestForGraphicalChildren(TransactionalEditingDomain editingDomain, IAdaptable parentAdapter, CompositeCommand cc, List<IGraphicalEditPart> childList, IGraphicalEditPart getHost, AbstractContainerNodeDescriptor descriptor, IGraphicalEditPart movingEditPart, IGraphicalEditPart graphicalChild, ChangeBoundsRequest changeBoundRequest, List<IGraphicalEditPart> newGroupContainer) {
+		/*
+		 * If this is a resizing request.
+		 * Node should not move => Only case possible = Graphical child which go out from the group
+		 * -> Unmove node if resizing from west
+		 * -> Handle no coming out
+		 */
+
+		int direction = changeBoundRequest.getResizeDirection();
+		Point previousnLocation = graphicalChild.getFigure().getBounds().getLocation().getCopy();
+		Point negatedMoeDelta = changeBoundRequest.getMoveDelta().getNegated().getCopy();
+		boolean correctLocation = false;
+		switch(direction) {
+		case org.eclipse.draw2d.PositionConstants.WEST:
+			previousnLocation.translate(negatedMoeDelta.x, 0);
+			correctLocation = true;
+			break;
+		case org.eclipse.draw2d.PositionConstants.NORTH:
+			previousnLocation.translate(0, negatedMoeDelta.y);
+			correctLocation = true;
+			break;
+		case org.eclipse.draw2d.PositionConstants.NORTH_WEST:
+			previousnLocation.translate(negatedMoeDelta);
+			correctLocation = true;
+			break;
+		default:
+			break;
+		}
+
+		if(!childList.contains(graphicalChild)) {
+			if(correctLocation) {
+				newGroupContainer.remove(movingEditPart);
+				newGroupContainer.remove(Utils.getCompartementEditPartFromMainEditPart(movingEditPart.getViewer().getEditPartRegistry(), movingEditPart));
+				correctLocation = false;
+			}
+			cc = handleGraphicalChildrenMovingOut(editingDomain, parentAdapter, cc, getHost, descriptor, movingEditPart, graphicalChild, newGroupContainer);
+		}
+		if(correctLocation) {
+			SetBoundsCommand sbc = new SetBoundsCommand(editingDomain, "West or North resizing correcting relative coordiante", graphicalChild, previousnLocation);
+			if(sbc != null) {
+				cc.compose(sbc);
+			}
+		}
+		return cc;
+	}
+
+	/**
+	 * Handle all the graphical children of a group after a moving request
+	 * 
+	 * @param editingDomain
+	 *        {@link TransactionalEditingDomain}
+	 * @param cc
+	 *        {@link CommandProxy} to compose new commands
+	 * @param updateCommandeLabel
+	 *        Label Used for the command
+	 * @param getHost
+	 *        Host of the request
+	 * @param graphicalChild
+	 *        Graphical child to handle
+	 * @param oldGroupContainer
+	 *        All group that contained the node before transforming
+	 * @param newGroupContainer
+	 *        All group that contains the node after transforming
+	 * @param compartmentEditPart
+	 *        Compartment EditPart of the parent EditPart
+	 */
+	private static void handleMovingRequestForGraphicalChildren(TransactionalEditingDomain editingDomain, CompositeCommand cc, String updateCommandeLabel, IGraphicalEditPart getHost, IGraphicalEditPart graphicalChild, List<IGraphicalEditPart> oldGroupContainer, List<IGraphicalEditPart> newGroupContainer, IGraphicalEditPart compartmentEditPart) {
+		{
+			/*
+			 * Suppress old reference
+			 */
+			for(IGraphicalEditPart parentGroup : oldGroupContainer) {
+				if(!newGroupContainer.contains(parentGroup) && !parentGroup.equals(compartmentEditPart)) {
+					/*
+					 * Unset the reference
+					 */
+					UpdateReferencesCommand cmd1 = new UpdateReferencesCommand(editingDomain, updateCommandeLabel, Collections.singletonList(graphicalChild), GroupContainmentRegistry.getContainerDescriptor(parentGroup), parentGroup, UpdateReferencesCommand.UNSET_MODE);
+					if(cmd1 != null) {
+						cc.compose(cmd1);
 					}
-					//List of all model parent available (except the compoartment edit part)
-					List<IGraphicalEditPart> modelParents = new ArrayList<IGraphicalEditPart>();
-					EObject childEObject = ((IGraphicalEditPart)graphicalChild).resolveSemanticElement();
-					//Does the child have already a model parent valide
-					boolean alreadyHaveValideModelParent = false;
-					AbstractContainerNodeDescriptor containerDescriptor = GroupContainmentRegistry.getContainerDescriptor(compartmentEditPart);
-					//If compartmentEditPart refer to an a group which can be model parent then the child already have a model parent
-					if(containerDescriptor != null) {
-						alreadyHaveValideModelParent = containerDescriptor.canIBeModelParentOf(childEObject.eClass());
+				}
+			}
+			//List of all model parent available (except the compartment edit part)
+			List<IGraphicalEditPart> modelParents = new ArrayList<IGraphicalEditPart>();
+			EObject childEObject = ((IGraphicalEditPart)graphicalChild).resolveSemanticElement();
+			//Does the child have already a valid model parent
+			boolean alreadyHaveValideModelParent = false;
+			AbstractContainerNodeDescriptor containerDescriptor = GroupContainmentRegistry.getContainerDescriptor(compartmentEditPart);
+			//If compartmentEditPart refer to a group which can be model parent then the child already have a model parent
+			if(containerDescriptor != null) {
+				alreadyHaveValideModelParent = containerDescriptor.canIBeModelParentOf(childEObject.eClass());
+			}
+			//Add new reference and update model
+			for(IGraphicalEditPart newParentGroup : newGroupContainer) {
+				//set Reference
+				UpdateReferencesCommand cmd2 = new UpdateReferencesCommand(editingDomain, updateCommandeLabel, Collections.singletonList(graphicalChild), GroupContainmentRegistry.getContainerDescriptor(newParentGroup), newParentGroup, UpdateReferencesCommand.SET_MODE);
+				if(cmd2 != null) {
+					cc.compose(cmd2);
+				}
+				//Create a list of all model parent available. Set alreadyHaveValideModelParent to true if the child already have a model parent wich is on the new model parent
+				AbstractContainerNodeDescriptor desc = GroupContainmentRegistry.getContainerDescriptor(newParentGroup);
+				if(desc != null) {
+					if(desc.canIBeModelParentOf(childEObject.eClass())) {
+						modelParents.add(newParentGroup);
 					}
-					//Add new reference and update model
-					for(IGraphicalEditPart newParentGroup : newGroupContainer) {
-						//set Reference
-						UpdateReferencesCommand cmd2 = new UpdateReferencesCommand(editingDomain, updateCommandeLabel, Collections.singletonList(graphicalChild), GroupContainmentRegistry.getContainerDescriptor(newParentGroup), newParentGroup, UpdateReferencesCommand.SET_MODE);
-						if(cmd2 != null) {
-							cc.compose(cmd2);
-						}
-						//Create a list of all model parent available. Set alreadyHaveValideModelParent to true if the child already have a model parent wich is on the new model parent
-						AbstractContainerNodeDescriptor desc = GroupContainmentRegistry.getContainerDescriptor(newParentGroup);
-						if(desc != null) {
-							if(desc.canIBeModelParentOf(childEObject.eClass())) {
-								modelParents.add(newParentGroup);
-							}
-						}
+				}
+			}
+			/*
+			 * Do not have mode parent change it
+			 */
+			if(!alreadyHaveValideModelParent) {
+				Map<EObject, EReference> child = null;
+				IGraphicalEditPart newModelParent = null;
+				if(!modelParents.isEmpty()) {
+					newModelParent = modelParents.get(0);
+					AbstractContainerNodeDescriptor newDesc = GroupContainmentRegistry.getContainerDescriptor(newModelParent);
+					if(newDesc != null && newModelParent != null) {
+						EReference ref = newDesc.getContainmentReferenceFor(childEObject.eClass());
+						child = Collections.singletonMap(childEObject, ref);
 					}
-					if(!alreadyHaveValideModelParent) {
-						Map<EObject, EReference> child = null;
-						IGraphicalEditPart newModelParent = null;
-						if(!modelParents.isEmpty()) {
-							newModelParent = modelParents.get(0);
-							AbstractContainerNodeDescriptor newDesc = GroupContainmentRegistry.getContainerDescriptor(newModelParent);
-							if(newDesc != null && newModelParent != null) {
-								EReference ref = newDesc.getContainmentReferenceFor(childEObject.eClass());
-								child = Collections.singletonMap(childEObject, ref);
-							}
-						} else {
-							DefaultModelParent parent = Utils.getDefaultModelParent(childEObject.eClass(), getHost);
-							child = Collections.singletonMap(childEObject, parent.geteReference());
-							newModelParent = parent.getiGraphicalEditPart();
-						}
-						if(child != null && newModelParent != null) {
-							ChangeModelParentCommand changeModelParent = new ChangeModelParentCommand(editingDomain, newModelParent, child, newModelParent);
-							if(changeModelParent != null) {
-								cc.compose(changeModelParent);
-							}
-						}
+				} else {
+					DefaultModelParent parent = Utils.getDefaultModelParent(childEObject.eClass(), getHost);
+					child = Collections.singletonMap(childEObject, parent.geteReference());
+					newModelParent = parent.getiGraphicalEditPart();
+				}
+				if(child != null && newModelParent != null) {
+					ChangeModelParentCommand changeModelParent = new ChangeModelParentCommand(editingDomain, newModelParent, child, newModelParent);
+					if(changeModelParent != null) {
+						cc.compose(changeModelParent);
 					}
 				}
 			}
@@ -649,17 +810,54 @@ public class CommandsUtils {
 	}
 
 	/**
-	 * Debug use
+	 * Handle children movign out from a group after resizing
 	 * 
-	 * @param groupContainer
-	 * @param label
+	 * @param editingDomain
+	 *        {@link TransactionalEditingDomain}
+	 * @param parentAdapter
+	 *        Parent adapter to get the {@link IGraphicalEditPart} at runtime
+	 * @param cc
+	 *        {@link CompositeCommand} use to compose new commande
+	 * @param getHost
+	 *        Host of the request
+	 * @param descriptor
+	 *        AbstractContainerNodeDescriptor of the parent
+	 * @param movingEditPart
+	 *        {@link IGraphicalEditPart} of the parent
+	 * @param graphicalChild
+	 *        All graphical children of the group
+	 * @param newGroupContainer
+	 *        Group that containt the node after transforming
+	 * @return
 	 */
-	//	private static void printListIGraphical(List<IGraphicalEditPart> groupContainer, String label) {
-	//		System.out.println("Print list : " + label);
-	//		for(IGraphicalEditPart child : groupContainer) {
-	//			System.out.println(CreatorUtils.getLabel(child));
-	//		}
-	//	}
+	private static CompositeCommand handleGraphicalChildrenMovingOut(TransactionalEditingDomain editingDomain, IAdaptable parentAdapter, CompositeCommand cc, IGraphicalEditPart getHost, AbstractContainerNodeDescriptor descriptor, IGraphicalEditPart movingEditPart, IGraphicalEditPart graphicalChild, List<IGraphicalEditPart> newGroupContainer) {
+		String label = Messages.CommandsUtils_HandleGraphicalChildrenMovingOut_Label;
+		if(cc == null) {
+			cc = new CompositeCommand(label);
+		}
+		UpdateReferencesCommand updateRefCommand = new UpdateReferencesCommand(editingDomain, label, Collections.singletonList(graphicalChild), descriptor, parentAdapter, UpdateReferencesCommand.UNSET_MODE);
+		if(updateRefCommand != null) {
+			cc.compose(updateRefCommand);
+		}
+		IGraphicalEditPart newParent = null;
+		if(!newGroupContainer.isEmpty()) {
+			newParent = newGroupContainer.get(0);
+		} else {
+			newParent = (IGraphicalEditPart)movingEditPart.getParent(); //here add a default parent
+		}
+		/*
+		 * FIXME
+		 * Change
+		 * Test is it is a containing feature
+		 * Then change containing parent
+		 */
+		ChangeGraphicalParentCommand changeParentCmd = new ChangeGraphicalParentCommand(editingDomain, label + ": Changing graphical parent", newParent, graphicalChild, getHost);
+		if(changeParentCmd != null) {
+			cc.compose(changeParentCmd);
+		}
+		return cc;
+	}
+
 
 	/**
 	 * Get all {@link IGraphicalEditPart} which are graphical children from a {@link IGraphicalEditPart} parent
@@ -720,7 +918,8 @@ public class CommandsUtils {
 	}
 
 	/**
-	 * Withdraw all references of element which are no longer contained in the group
+	 * Withdraw all references of element which are no longer contained in the group.
+	 * With graphically all the children which are not visually contained in the group
 	 * 
 	 * @param editingDomain
 	 *        {@link TransactionalEditingDomain}
@@ -756,6 +955,7 @@ public class CommandsUtils {
 				if(updateRefCommand != null) {
 					cc.compose(updateRefCommand);
 				}
+
 			}
 			cc.reduce();
 			if(cc.isEmpty()) {

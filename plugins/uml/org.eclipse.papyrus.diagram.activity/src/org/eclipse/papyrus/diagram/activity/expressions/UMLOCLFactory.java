@@ -44,7 +44,7 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	protected UMLOCLFactory() {
-		this.expressions = new UMLAbstractExpression[61];
+		this.expressions = new UMLAbstractExpression[63];
 	}
 
 	/**
@@ -120,6 +120,8 @@ public class UMLOCLFactory {
 			"self.outgoing->size() = 1", //$NON-NLS-1$
 			"(self.incoming->select(e | e.oclIsKindOf(ObjectFlow))->notEmpty() implies\r\n self.outgoing->exists(e | e.oclIsKindOf(ObjectFlow))) and\r\n(self.incoming->select(e | e.oclIsKindOf(ObjectFlow))->isEmpty() implies\r\n self.outgoing->exists(e | e.oclIsKindOf(ControlFlow)))", //$NON-NLS-1$
 			"(self.incoming->notEmpty() implies self.outgoing->isEmpty()) and\r\n(self.outgoing->notEmpty() implies self.incoming->isEmpty())", //$NON-NLS-1$
+			"(not self.classifier.oclIsUndefined()) implies (\r\n self.classifier.isAbstract = false)", //$NON-NLS-1$
+			"(not self.classifier.oclIsUndefined()) implies (\r\n not self.classifier.oclIsKindOf(uml::AssociationClass))", //$NON-NLS-1$
 			};
 			cached.expressions[index] = getExpression(exprBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
 		}
