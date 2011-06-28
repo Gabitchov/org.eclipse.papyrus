@@ -1654,6 +1654,83 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser readStructuralFeatureActionName_5153Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getReadStructuralFeatureActionName_5153Parser() {
+		if(readStructuralFeatureActionName_5153Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			readStructuralFeatureActionName_5153Parser = parser;
+		}
+		return readStructuralFeatureActionName_5153Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser inputPinLabel_5149Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInputPinLabel_5149Parser() {
+		if(inputPinLabel_5149Parser == null) {
+			inputPinLabel_5149Parser = new PinParser();
+		}
+		return inputPinLabel_5149Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser inputPinLabel_5150Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInputPinLabel_5150Parser() {
+		if(inputPinLabel_5150Parser == null) {
+			inputPinLabel_5150Parser = new AppliedStereotypeParser();
+		}
+		return inputPinLabel_5150Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser outputPinLabel_5151Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOutputPinLabel_5151Parser() {
+		if(outputPinLabel_5151Parser == null) {
+			outputPinLabel_5151Parser = new PinParser();
+		}
+		return outputPinLabel_5151Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser outputPinLabel_5152Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOutputPinLabel_5152Parser() {
+		if(outputPinLabel_5152Parser == null) {
+			outputPinLabel_5152Parser = new AppliedStereotypeParser();
+		}
+		return outputPinLabel_5152Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private CommentParser commentBody_5138Parser;
 
 	/**
@@ -2527,6 +2604,16 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getOutputPinLabel_5146Parser();
 		case OutputPinInCreateObjectActionAsResultAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 			return getOutputPinLabel_5147Parser();
+		case ReadStructuralFeatureActionNameEditPart.VISUAL_ID:
+			return getReadStructuralFeatureActionName_5153Parser();
+		case InputPinInReadStructuralFeatureAsObjectLabelEditPart.VISUAL_ID:
+			return getInputPinLabel_5149Parser();
+		case InputPinInReadStructuralFeatureAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+			return getInputPinLabel_5150Parser();
+		case OutputPinInReadStructuralFeatureAsResultLabelEditPart.VISUAL_ID:
+			return getOutputPinLabel_5151Parser();
+		case InputPinInReadStructuralFeatureAsResultWrappingLabelEditPart.VISUAL_ID:
+			return getOutputPinLabel_5152Parser();
 		case ObjectFlowNameEditPart.VISUAL_ID:
 			return getObjectFlowName_6001Parser();
 		case ObjectFlowWeightEditPart.VISUAL_ID:

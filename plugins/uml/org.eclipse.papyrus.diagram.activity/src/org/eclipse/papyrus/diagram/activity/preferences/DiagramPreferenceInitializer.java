@@ -40,6 +40,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		ValuePinPreferencePage.initDefaults(store);
 
 
+		ReadStructuralFeatureActionPreferencePage.initDefaults(store);
+
+
 		LoopNodePreferencePage.initDefaults(store);
 
 

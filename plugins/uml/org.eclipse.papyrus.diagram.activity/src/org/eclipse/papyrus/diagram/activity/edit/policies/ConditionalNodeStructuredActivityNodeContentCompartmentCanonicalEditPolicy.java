@@ -68,6 +68,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ReadStructuralFeatureActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
@@ -173,6 +174,7 @@ public class ConditionalNodeStructuredActivityNodeContentCompartmentCanonicalEdi
 		case StructuredActivityNodeEditPart.VISUAL_ID:
 		case ReadSelfActionEditPart.VISUAL_ID:
 		case CreateObjectActionEditPart.VISUAL_ID:
+		case ReadStructuralFeatureActionEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;

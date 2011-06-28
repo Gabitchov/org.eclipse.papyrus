@@ -651,6 +651,30 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case OutputPinInCreateObjectActionAsResultAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return new OutputPinInCreateObjectActionAsResultAppliedStereotypeWrappingLabelEditPart(view);
 
+			case ReadStructuralFeatureActionEditPart.VISUAL_ID:
+				return new ReadStructuralFeatureActionEditPart(view);
+
+			case ReadStructuralFeatureActionNameEditPart.VISUAL_ID:
+				return new ReadStructuralFeatureActionNameEditPart(view);
+
+			case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
+				return new InputPinInReadStructuralFeatureAsObjectEditPart(view);
+
+			case InputPinInReadStructuralFeatureAsObjectLabelEditPart.VISUAL_ID:
+				return new InputPinInReadStructuralFeatureAsObjectLabelEditPart(view);
+
+			case InputPinInReadStructuralFeatureAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new InputPinInReadStructuralFeatureAsObjectAppliedStereotypeWrappingLabelEditPart(view);
+
+			case OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID:
+				return new OutputPinInReadStructuralFeatureAsResultEditPart(view);
+
+			case OutputPinInReadStructuralFeatureAsResultLabelEditPart.VISUAL_ID:
+				return new OutputPinInReadStructuralFeatureAsResultLabelEditPart(view);
+
+			case InputPinInReadStructuralFeatureAsResultWrappingLabelEditPart.VISUAL_ID:
+				return new InputPinInReadStructuralFeatureAsResultWrappingLabelEditPart(view);
+
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);
 

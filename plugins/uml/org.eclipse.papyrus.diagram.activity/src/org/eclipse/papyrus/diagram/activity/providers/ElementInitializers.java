@@ -37,6 +37,7 @@ import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ReadSelfAction;
+import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
 import org.eclipse.uml2.uml.SendObjectAction;
 import org.eclipse.uml2.uml.SendSignalAction;
 import org.eclipse.uml2.uml.SequenceNode;
@@ -954,6 +955,42 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_ReadStructuralFeatureAction_3088(ReadStructuralFeatureAction instance) {
+		try {
+			Object value_0 = name_ReadStructuralFeatureAction_3088(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_InputPin_3089(InputPin instance) {
+		try {
+			Object value_0 = name_InputPin_3089(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_OutputPin_3090(OutputPin instance) {
+		try {
+			Object value_0 = name_OutputPin_3090(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_ObjectFlow_4003(ObjectFlow instance) {
 		try {
 			Object value_0 = name_ObjectFlow_4003(instance);
@@ -1525,6 +1562,27 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_OutputPin_3087(OutputPin self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ReadStructuralFeatureAction_3088(ReadStructuralFeatureAction self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_3089(InputPin self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_3090(OutputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 

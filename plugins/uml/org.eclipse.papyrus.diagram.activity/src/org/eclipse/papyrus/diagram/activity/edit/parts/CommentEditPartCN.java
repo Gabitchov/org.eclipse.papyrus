@@ -510,6 +510,15 @@ AbstractCommentEditPart {
 		if(targetEditPart instanceof OutputPinInCreateObjectActionAsResultEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
 		}
+		if(targetEditPart instanceof ReadStructuralFeatureActionEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof InputPinInReadStructuralFeatureAsObjectEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof OutputPinInReadStructuralFeatureAsResultEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
 		return types;
 	}
 
@@ -589,6 +598,9 @@ AbstractCommentEditPart {
 			types.add(UMLElementTypes.NamedElement_3085);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
 			types.add(UMLElementTypes.OutputPin_3087);
+			types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
+			types.add(UMLElementTypes.InputPin_3089);
+			types.add(UMLElementTypes.OutputPin_3090);
 		}
 		return types;
 	}

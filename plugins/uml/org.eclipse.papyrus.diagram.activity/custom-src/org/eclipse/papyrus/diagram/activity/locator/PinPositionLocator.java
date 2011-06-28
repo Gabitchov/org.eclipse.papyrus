@@ -36,6 +36,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPa
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInOpaqueActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInReadStructuralFeatureAsObjectEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsReqEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActAsTargetEditPart;
@@ -45,6 +46,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditP
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCreateObjectActionAsResultEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInReadStructuralFeatureAsResultEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInValSpecActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionOutputPinEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallBeActEditPart;
@@ -451,6 +453,12 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 		} else if(child instanceof OutputPinInCreateObjectActionAsResultEditPart.PinDescriptor) {
 			arrowIn = false;
 			arrow = ((OutputPinInCreateObjectActionAsResultEditPart.PinDescriptor)child).getOptionalArrowFigure();
+		} else if(child instanceof OutputPinInReadStructuralFeatureAsResultEditPart.PinDescriptor) {
+			arrowIn = false;
+			arrow = ((OutputPinInReadStructuralFeatureAsResultEditPart.PinDescriptor)child).getOptionalArrowFigure();
+		} else if(child instanceof InputPinInReadStructuralFeatureAsObjectEditPart.PinDescriptor) {
+			arrowIn = true;
+			arrow = ((InputPinInReadStructuralFeatureAsObjectEditPart.PinDescriptor)child).getOptionalArrowFigure();
 		}
 		if(arrow != null && arrow.getPoints().size() > 0) {
 			int arrowDirection;

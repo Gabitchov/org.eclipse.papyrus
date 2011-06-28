@@ -75,6 +75,7 @@ import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Pin;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
 import org.eclipse.uml2.uml.SendObjectAction;
 import org.eclipse.uml2.uml.SendSignalAction;
 import org.eclipse.uml2.uml.Signal;
@@ -89,6 +90,10 @@ import org.eclipse.uml2.uml.ValueSpecification;
  * 
  */
 public class PinAndParameterSynchronizer extends AbstractModelConstraint {
+
+	private static final String RESULT_PIN_READ_SRTUCTURAL_ACTION = "result";
+
+	private static final String OBJECT_PIN_IN_READS_STRUCTURAL_ACTION = "object";
 
 	/** The label provider */
 	private static final ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
@@ -138,6 +143,12 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			} else if((EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType())) && ctx.getFeatureNewValue() instanceof SendObjectAction) {
 				// SendObjectAction created
 				CompoundCommand cmd = getResetPinsCmd((SendObjectAction)ctx.getFeatureNewValue());
+				if(!cmd.isEmpty() && cmd.canExecute()) {
+					cmd.execute();
+				}
+			} else if((EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType())) && ctx.getFeatureNewValue() instanceof ReadStructuralFeatureAction) {
+				// SendObjectAction created
+				CompoundCommand cmd = getResetPinsCmd((ReadStructuralFeatureAction)ctx.getFeatureNewValue());
 				if(!cmd.isEmpty() && cmd.canExecute()) {
 					cmd.execute();
 				}
@@ -1776,6 +1787,61 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		}
 
 		return globalCmd;
+	}
+
+	/**
+	 * Get the command to reset all pins of the action.
+	 * 
+	 * @param action
+	 *        action to reinitialize pins (ReadStructuralFeatureAction)
+	 * @return command
+	 */
+	private CompoundCommand getResetPinsCmd(ReadStructuralFeatureAction action) {
+		// Get the editing domain
+		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
+		CompoundCommand globalCmd = new CompoundCommand();
+
+		// add result pin
+		if(action.getResult() == null) {
+			OutputPin resultPin = createResultPinInReadStructuralAction(action);
+			Command cmd = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getReadStructuralFeatureAction_Result(), resultPin);
+			globalCmd.append(cmd);
+		}
+		// add object pin
+		if(action.getObject() == null) {
+			InputPin objectPin = createObjectPinInReadStructuralAction(action);
+			Command cmd = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getStructuralFeatureAction_Object(), objectPin);
+			globalCmd.append(cmd);
+		}
+		return globalCmd;
+	}
+
+	/**
+	 * Create the object pin of an ReadStructuralAction
+	 * 
+	 * @param action
+	 * @return
+	 */
+	private InputPin createObjectPinInReadStructuralAction(ReadStructuralFeatureAction action) {
+		InputPin pin = UMLFactory.eINSTANCE.createInputPin();
+		pin.setName(OBJECT_PIN_IN_READS_STRUCTURAL_ACTION);
+		return pin;
+	}
+
+	/**
+	 * Create a simple output pin for a ReadStructura feature
+	 * FIXME set type
+	 * 
+	 * @param action
+	 * @return
+	 */
+	private OutputPin createResultPinInReadStructuralAction(ReadStructuralFeatureAction action) {
+		OutputPin pin = UMLFactory.eINSTANCE.createOutputPin();
+		/*
+		 * FIXME Set the type of the output pin with the type of the Efeature
+		 */
+		pin.setName(RESULT_PIN_READ_SRTUCTURAL_ACTION);
+		return pin;
 	}
 
 	/**
