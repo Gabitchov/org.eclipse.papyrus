@@ -17,6 +17,7 @@ package org.eclipse.papyrus.diagram.common.util;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.runtime.Assert;
@@ -385,7 +386,7 @@ public class Util {
 						//Like in AppliedStereotypePropertyEditor
 						EObject newValue = ((NamedElement)element).getStereotypeApplication((Stereotype)property.getType());
 						if(newValue == null) {
-							EList subStereotypes = ((NamedElement)element).getAppliedSubstereotypes((Stereotype)property.getType());
+							List<?> subStereotypes = ((NamedElement)element).getAppliedSubstereotypes((Stereotype)property.getType());
 							if(!subStereotypes.isEmpty()) {
 								newValue = ((NamedElement)element).getStereotypeApplication((Stereotype)subStereotypes.get(0));
 							}
@@ -424,24 +425,13 @@ public class Util {
 	 * 
 	 */
 	public static Object retrievesEnumerationLiteralFromString(Property property, ArrayList<String> stringValues, org.eclipse.uml2.uml.Element packageContainer) {
+		Enumeration enume = null;
+		
+		Type type = property.getType();
+		Assert.isTrue(type instanceof Enumeration);
+		enume = (Enumeration) type;
 
 		ArrayList<Object> returnedValues = new ArrayList<Object>();
-		String typeName = property.getType().getName();
-
-		//get the enumerationLiteral
-		Enumeration enume = null;
-		String enumerationQN = property.getType().getQualifiedName();
-		String profileQN = enumerationQN.substring(0, enumerationQN.lastIndexOf(NamedElement.SEPARATOR));
-		Profile profile = null;
-
-		EList<Profile> profiles = ((org.eclipse.uml2.uml.Package)packageContainer).getAllAppliedProfiles();
-		for(Profile prof : profiles) {
-			if(prof.getQualifiedName().equals(profileQN)) {
-				profile = prof;
-				break;
-			}
-		}
-		enume = (Enumeration)profile.getPackagedElement(typeName);
 
 		//we research the enumerationLiteral
 		for(int i = 0; i < stringValues.size(); i++) {
