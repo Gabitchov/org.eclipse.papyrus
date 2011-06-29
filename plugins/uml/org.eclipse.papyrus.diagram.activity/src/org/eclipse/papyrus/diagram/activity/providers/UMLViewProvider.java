@@ -208,9 +208,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case InterruptibleActivityRegionEditPart.VISUAL_ID:
 				case CommentEditPartCN.VISUAL_ID:
 				case ReadSelfActionEditPart.VISUAL_ID:
-				case ShapeNamedElementEditPart.VISUAL_ID:
 				case CreateObjectActionEditPart.VISUAL_ID:
+				case ShapeNamedElementEditPart.VISUAL_ID:
 				case ReadStructuralFeatureActionEditPart.VISUAL_ID:
+				case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
 				case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
 				case ValuePinInCallBeActEditPart.VISUAL_ID:
 				case ActionInputPinInCallBeActEditPart.VISUAL_ID:
@@ -248,6 +249,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID:
 				case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
 				case OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID:
+				case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+				case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+				case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
 					if(domainElement == null || visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for domain element
 					}
@@ -257,7 +261,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return ActivityEditPart.VISUAL_ID == visualID || ParameterEditPart.VISUAL_ID == visualID || ConstraintInActivityAsPrecondEditPart.VISUAL_ID == visualID || ConstraintInActivityAsPostcondEditPart.VISUAL_ID == visualID || InitialNodeEditPart.VISUAL_ID == visualID || ActivityFinalNodeEditPart.VISUAL_ID == visualID || FlowFinalNodeEditPart.VISUAL_ID == visualID || OpaqueActionEditPart.VISUAL_ID == visualID || ValuePinInOpaqueActEditPart.VISUAL_ID == visualID || ActionInputPinInOpaqueActEditPart.VISUAL_ID == visualID || InputPinInOpaqueActEditPart.VISUAL_ID == visualID || OutputPinInOpaqueActEditPart.VISUAL_ID == visualID || CallBehaviorActionEditPart.VISUAL_ID == visualID || ValuePinInCallBeActEditPart.VISUAL_ID == visualID || ActionInputPinInCallBeActEditPart.VISUAL_ID == visualID || InputPinInCallBeActEditPart.VISUAL_ID == visualID || OutputPinInCallBeActEditPart.VISUAL_ID == visualID || CallOperationActionEditPart.VISUAL_ID == visualID || ActionInputPinInCallOpActEditPart.VISUAL_ID == visualID || ValuePinInCallOpActEditPart.VISUAL_ID == visualID || InputPinInCallOpActEditPart.VISUAL_ID == visualID || OutputPinInCallOpActEditPart.VISUAL_ID == visualID || ValuePinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || InputPinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || DurationConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || DurationConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || TimeConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || ConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || ConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || DecisionNodeEditPart.VISUAL_ID == visualID || MergeNodeEditPart.VISUAL_ID == visualID || ForkNodeEditPart.VISUAL_ID == visualID || JoinNodeEditPart.VISUAL_ID == visualID || DataStoreNodeEditPart.VISUAL_ID == visualID || SendObjectActionEditPart.VISUAL_ID == visualID || ValuePinInSendObjActAsReqEditPart.VISUAL_ID == visualID || ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID == visualID || InputPinInSendObjActAsReqEditPart.VISUAL_ID == visualID || ValuePinInSendObjActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID == visualID || InputPinInSendObjActAsTargetEditPart.VISUAL_ID == visualID || SendSignalActionEditPart.VISUAL_ID == visualID || ActionInputPinInSendSigActEditPart.VISUAL_ID == visualID || ValuePinInSendSigActEditPart.VISUAL_ID == visualID || InputPinInSendSigActEditPart.VISUAL_ID == visualID || ValuePinInSendSigActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID == visualID || InputPinInSendSigActAsTargetEditPart.VISUAL_ID == visualID || ActivityParameterNodeEditPart.VISUAL_ID == visualID || AcceptEventActionEditPart.VISUAL_ID == visualID || OutputPinInAcceptEventActionEditPart.VISUAL_ID == visualID || ValueSpecificationActionEditPart.VISUAL_ID == visualID || OutputPinInValSpecActEditPart.VISUAL_ID == visualID || ConditionalNodeEditPart.VISUAL_ID == visualID || ExpansionRegionEditPart.VISUAL_ID == visualID || ExpansionNodeAsInEditPart.VISUAL_ID == visualID || ExpansionNodeAsOutEditPart.VISUAL_ID == visualID || LoopNodeEditPart.VISUAL_ID == visualID || SequenceNodeEditPart.VISUAL_ID == visualID || StructuredActivityNodeEditPart.VISUAL_ID == visualID || ActivityPartitionEditPart.VISUAL_ID == visualID || InterruptibleActivityRegionEditPart.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID || ReadSelfActionEditPart.VISUAL_ID == visualID || ReadSelfActionOutputPinEditPart.VISUAL_ID == visualID || ActivityEditPartCN.VISUAL_ID == visualID || ShapeNamedElementEditPart.VISUAL_ID == visualID || CreateObjectActionEditPart.VISUAL_ID == visualID || OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID == visualID || ReadStructuralFeatureActionEditPart.VISUAL_ID == visualID || InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID == visualID || OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID == visualID;
+		return ActivityEditPart.VISUAL_ID == visualID || ParameterEditPart.VISUAL_ID == visualID || ConstraintInActivityAsPrecondEditPart.VISUAL_ID == visualID || ConstraintInActivityAsPostcondEditPart.VISUAL_ID == visualID || InitialNodeEditPart.VISUAL_ID == visualID || ActivityFinalNodeEditPart.VISUAL_ID == visualID || FlowFinalNodeEditPart.VISUAL_ID == visualID || OpaqueActionEditPart.VISUAL_ID == visualID || ValuePinInOpaqueActEditPart.VISUAL_ID == visualID || ActionInputPinInOpaqueActEditPart.VISUAL_ID == visualID || InputPinInOpaqueActEditPart.VISUAL_ID == visualID || OutputPinInOpaqueActEditPart.VISUAL_ID == visualID || CallBehaviorActionEditPart.VISUAL_ID == visualID || ValuePinInCallBeActEditPart.VISUAL_ID == visualID || ActionInputPinInCallBeActEditPart.VISUAL_ID == visualID || InputPinInCallBeActEditPart.VISUAL_ID == visualID || OutputPinInCallBeActEditPart.VISUAL_ID == visualID || CallOperationActionEditPart.VISUAL_ID == visualID || ActionInputPinInCallOpActEditPart.VISUAL_ID == visualID || ValuePinInCallOpActEditPart.VISUAL_ID == visualID || InputPinInCallOpActEditPart.VISUAL_ID == visualID || OutputPinInCallOpActEditPart.VISUAL_ID == visualID || ValuePinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || InputPinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || DurationConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || DurationConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || TimeConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || ConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || ConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || DecisionNodeEditPart.VISUAL_ID == visualID || MergeNodeEditPart.VISUAL_ID == visualID || ForkNodeEditPart.VISUAL_ID == visualID || JoinNodeEditPart.VISUAL_ID == visualID || DataStoreNodeEditPart.VISUAL_ID == visualID || SendObjectActionEditPart.VISUAL_ID == visualID || ValuePinInSendObjActAsReqEditPart.VISUAL_ID == visualID || ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID == visualID || InputPinInSendObjActAsReqEditPart.VISUAL_ID == visualID || ValuePinInSendObjActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID == visualID || InputPinInSendObjActAsTargetEditPart.VISUAL_ID == visualID || SendSignalActionEditPart.VISUAL_ID == visualID || ActionInputPinInSendSigActEditPart.VISUAL_ID == visualID || ValuePinInSendSigActEditPart.VISUAL_ID == visualID || InputPinInSendSigActEditPart.VISUAL_ID == visualID || ValuePinInSendSigActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID == visualID || InputPinInSendSigActAsTargetEditPart.VISUAL_ID == visualID || ActivityParameterNodeEditPart.VISUAL_ID == visualID || AcceptEventActionEditPart.VISUAL_ID == visualID || OutputPinInAcceptEventActionEditPart.VISUAL_ID == visualID || ValueSpecificationActionEditPart.VISUAL_ID == visualID || OutputPinInValSpecActEditPart.VISUAL_ID == visualID || ConditionalNodeEditPart.VISUAL_ID == visualID || ExpansionRegionEditPart.VISUAL_ID == visualID || ExpansionNodeAsInEditPart.VISUAL_ID == visualID || ExpansionNodeAsOutEditPart.VISUAL_ID == visualID || LoopNodeEditPart.VISUAL_ID == visualID || SequenceNodeEditPart.VISUAL_ID == visualID || StructuredActivityNodeEditPart.VISUAL_ID == visualID || ActivityPartitionEditPart.VISUAL_ID == visualID || InterruptibleActivityRegionEditPart.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID || ReadSelfActionEditPart.VISUAL_ID == visualID || ReadSelfActionOutputPinEditPart.VISUAL_ID == visualID || ActivityEditPartCN.VISUAL_ID == visualID || CreateObjectActionEditPart.VISUAL_ID == visualID || OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID == visualID || ShapeNamedElementEditPart.VISUAL_ID == visualID || ReadStructuralFeatureActionEditPart.VISUAL_ID == visualID || InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID == visualID || OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID == visualID || AddStructuralFeatureValueActionEditPart.VISUAL_ID == visualID || InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID == visualID || InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID == visualID || OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -444,18 +448,26 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createOutputPin_3084(domainElement, containerView, index, persisted, preferencesHint);
 		case ActivityEditPartCN.VISUAL_ID:
 			return createActivity_3083(domainElement, containerView, index, persisted, preferencesHint);
-		case ShapeNamedElementEditPart.VISUAL_ID:
-			return createNamedElement_3085(domainElement, containerView, index, persisted, preferencesHint);
 		case CreateObjectActionEditPart.VISUAL_ID:
 			return createCreateObjectAction_3086(domainElement, containerView, index, persisted, preferencesHint);
 		case OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID:
 			return createOutputPin_3087(domainElement, containerView, index, persisted, preferencesHint);
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			return createNamedElement_3085(domainElement, containerView, index, persisted, preferencesHint);
 		case ReadStructuralFeatureActionEditPart.VISUAL_ID:
 			return createReadStructuralFeatureAction_3088(domainElement, containerView, index, persisted, preferencesHint);
 		case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
 			return createInputPin_3089(domainElement, containerView, index, persisted, preferencesHint);
 		case OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID:
 			return createOutputPin_3090(domainElement, containerView, index, persisted, preferencesHint);
+		case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
+			return createAddStructuralFeatureValueAction_3091(domainElement, containerView, index, persisted, preferencesHint);
+		case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+			return createInputPin_3092(domainElement, containerView, index, persisted, preferencesHint);
+		case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+			return createInputPin_3093(domainElement, containerView, index, persisted, preferencesHint);
+		case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
+			return createOutputPin_3094(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -2822,6 +2834,155 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5152 = (Location)label5152.getLayoutConstraint();
 		location5152.setX(0);
 		location5152.setY(5);
+
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createAddStructuralFeatureValueAction_3091(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(AddStructuralFeatureValueActionEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "AddStructuralFeatureValueAction");
+
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "AddStructuralFeatureValueAction");
+
+
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "AddStructuralFeatureValueAction");
+
+		Node label5160 = createLabel(node, UMLVisualIDRegistry.getType(AddStructuralFeatureValueActionNameEditPart.VISUAL_ID));
+
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createInputPin_3092(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "InputPin");
+
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+
+
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "InputPin");
+
+		Node label5154 = createLabel(node, UMLVisualIDRegistry.getType(InputPinInAddStructuralFeatureValueActionAsObjectLabelEditPart.VISUAL_ID));
+		label5154.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5154 = (Location)label5154.getLayoutConstraint();
+		location5154.setX(0);
+		location5154.setY(5);
+		Node label5155 = createLabel(node, UMLVisualIDRegistry.getType(InputPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID));
+		label5155.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5155 = (Location)label5155.getLayoutConstraint();
+		location5155.setX(0);
+		location5155.setY(5);
+
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createInputPin_3093(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "InputPin");
+
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+
+
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "InputPin");
+
+		Node label5156 = createLabel(node, UMLVisualIDRegistry.getType(InputPinInAddStructuralFeatureValueActionAsValueLabel2EditPart.VISUAL_ID));
+		label5156.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5156 = (Location)label5156.getLayoutConstraint();
+		location5156.setX(0);
+		location5156.setY(5);
+		Node label5157 = createLabel(node, UMLVisualIDRegistry.getType(InputPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabel2EditPart.VISUAL_ID));
+		label5157.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5157 = (Location)label5157.getLayoutConstraint();
+		location5157.setX(0);
+		location5157.setY(5);
+
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createOutputPin_3094(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "OutputPin");
+
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+
+
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "OutputPin");
+
+		Node label5158 = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInAddStructuralFeatureValueActionAsResultLabel3EditPart.VISUAL_ID));
+		label5158.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5158 = (Location)label5158.getLayoutConstraint();
+		location5158.setX(0);
+		location5158.setY(5);
+		Node label5159 = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart.VISUAL_ID));
+		label5159.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5159 = (Location)label5159.getLayoutConstraint();
+		location5159.setX(0);
+		location5159.setY(5);
 
 
 		return node;

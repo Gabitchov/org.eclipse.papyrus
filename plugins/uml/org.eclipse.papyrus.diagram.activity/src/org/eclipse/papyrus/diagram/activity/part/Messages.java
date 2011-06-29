@@ -1072,6 +1072,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createAddStructuralFeatureValueAction45CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createAddStructuralFeatureValueAction45CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createControlFlow1CreationTool_title;
 
 	/**
@@ -1213,6 +1223,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ActivityFinalNode_3005_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputPin_3092_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputPin_3092_outgoinglinks;
 
 	/**
 	 * @generated
@@ -1452,6 +1472,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_OutputPin_3094_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_OutputPin_3094_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_Constraint_3011_incominglinks;
 
 	/**
@@ -1582,6 +1612,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_AddStructuralFeatureValueAction_3091_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_AddStructuralFeatureValueAction_3091_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_OutputPin_3087_incominglinks;
 
 	/**
@@ -1658,6 +1698,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ValuePin_3060_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputPin_3093_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputPin_3093_outgoinglinks;
 
 	/**
 	 * @generated

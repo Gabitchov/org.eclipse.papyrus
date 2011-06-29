@@ -37,6 +37,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPartCN;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.AddStructuralFeatureValueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CommentEditPartCN;
@@ -171,9 +172,10 @@ public class ActivityCNContentCompartmentCanonicalEditPolicy extends CanonicalEd
 		case CommentEditPartCN.VISUAL_ID:
 		case ReadSelfActionEditPart.VISUAL_ID:
 		case ActivityEditPartCN.VISUAL_ID:
-		case ActivityParameterNodeEditPart.VISUAL_ID:
 		case CreateObjectActionEditPart.VISUAL_ID:
 		case ReadStructuralFeatureActionEditPart.VISUAL_ID:
+		case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
+		case ActivityParameterNodeEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;

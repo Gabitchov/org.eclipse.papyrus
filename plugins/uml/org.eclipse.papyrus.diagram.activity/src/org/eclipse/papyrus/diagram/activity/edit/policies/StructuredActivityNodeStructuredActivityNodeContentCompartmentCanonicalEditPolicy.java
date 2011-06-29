@@ -47,6 +47,7 @@ import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.AddStructuralFeatureValueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
@@ -175,6 +176,7 @@ public class StructuredActivityNodeStructuredActivityNodeContentCompartmentCanon
 		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 		case CreateObjectActionEditPart.VISUAL_ID:
 		case ReadStructuralFeatureActionEditPart.VISUAL_ID:
+		case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;

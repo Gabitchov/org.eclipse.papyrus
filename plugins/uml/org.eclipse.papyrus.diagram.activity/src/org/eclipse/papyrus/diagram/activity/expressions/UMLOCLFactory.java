@@ -44,7 +44,7 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	protected UMLOCLFactory() {
-		this.expressions = new UMLAbstractExpression[64];
+		this.expressions = new UMLAbstractExpression[72];
 	}
 
 	/**
@@ -88,6 +88,8 @@ public class UMLOCLFactory {
 			"if self.owner.oclIsKindOf(ExpansionRegion)\r\nthen self.owner.oclAsType(ExpansionRegion).inputElement->includes(self)\r\nelse false endif", //$NON-NLS-1$
 			"if self.owner.oclIsKindOf(ExpansionRegion)\r\nthen self.owner.oclAsType(ExpansionRegion).outputElement->includes(self)\r\nelse false endif", //$NON-NLS-1$
 			"\' \'", //$NON-NLS-1$
+			"if self.owner.oclIsKindOf(AddStructuralFeatureValueAction)\r\nthen self.owner.oclAsType(AddStructuralFeatureValueAction).object->includes(self)\r\nelse false endif", //$NON-NLS-1$
+			"if self.owner.oclIsKindOf(AddStructuralFeatureValueAction)\r\nthen self.owner.oclAsType(AddStructuralFeatureValueAction).value->includes(self)\r\nelse false endif", //$NON-NLS-1$
 			"self.incoming->isEmpty()", //$NON-NLS-1$
 			"not self.source.oclIsKindOf(InitialNode)", //$NON-NLS-1$
 			"self.outgoing->isEmpty()", //$NON-NLS-1$
@@ -123,6 +125,12 @@ public class UMLOCLFactory {
 			"(not self.classifier.oclIsUndefined()) implies (self.classifier.isAbstract = false)", //$NON-NLS-1$
 			"(not self.classifier.oclIsUndefined()) implies (not self.classifier.oclIsKindOf(uml::AssociationClass))", //$NON-NLS-1$
 			"(not self.structuralFeature.oclIsUndefined()) implies (self.structuralFeature.isStatic = false)", //$NON-NLS-1$
+			"self.structuralFeature.featuringClassifier->size() = 1", //$NON-NLS-1$
+			"(not self.structuralFeature.oclIsUndefined()) implies (self.structuralFeature.isStatic = false)", //$NON-NLS-1$
+			"self.value->notEmpty() implies self.value.type = self.structuralFeature.type", //$NON-NLS-1$
+			"result->notEmpty() implies self.result.type = self.object.type", //$NON-NLS-1$
+			"self.value -> notEmpty()", //$NON-NLS-1$
+			"self.structuralFeature.featuringClassifier->size() = 1", //$NON-NLS-1$
 			};
 			cached.expressions[index] = getExpression(exprBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
 		}

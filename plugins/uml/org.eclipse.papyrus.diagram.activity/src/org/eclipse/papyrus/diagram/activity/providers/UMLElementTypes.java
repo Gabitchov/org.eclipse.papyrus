@@ -44,6 +44,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPartCN;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.AddStructuralFeatureValueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CommentEditPartCN;
@@ -66,6 +67,8 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddStructuralFeatureValueActionAsObjectEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddStructuralFeatureValueActionAsValueEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
@@ -84,6 +87,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAddStructuralFeatureValueActionAsResultEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCreateObjectActionAsResultEditPart;
@@ -449,6 +453,26 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType OutputPin_3090 = getElementType("org.eclipse.papyrus.diagram.activity.OutputPin_3090"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType AddStructuralFeatureValueAction_3091 = getElementType("org.eclipse.papyrus.diagram.activity.AddStructuralFeatureValueAction_3091"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3092 = getElementType("org.eclipse.papyrus.diagram.activity.InputPin_3092"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3093 = getElementType("org.eclipse.papyrus.diagram.activity.InputPin_3093"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OutputPin_3094 = getElementType("org.eclipse.papyrus.diagram.activity.OutputPin_3094"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -874,13 +898,13 @@ public class UMLElementTypes {
 			elements.put(Activity_3083, UMLPackage.eINSTANCE.getActivity());
 
 
-			elements.put(NamedElement_3085, UMLPackage.eINSTANCE.getNamedElement());
-
-
 			elements.put(CreateObjectAction_3086, UMLPackage.eINSTANCE.getCreateObjectAction());
 
 
 			elements.put(OutputPin_3087, UMLPackage.eINSTANCE.getOutputPin());
+
+
+			elements.put(NamedElement_3085, UMLPackage.eINSTANCE.getNamedElement());
 
 
 			elements.put(ReadStructuralFeatureAction_3088, UMLPackage.eINSTANCE.getReadStructuralFeatureAction());
@@ -890,6 +914,18 @@ public class UMLElementTypes {
 
 
 			elements.put(OutputPin_3090, UMLPackage.eINSTANCE.getOutputPin());
+
+
+			elements.put(AddStructuralFeatureValueAction_3091, UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction());
+
+
+			elements.put(InputPin_3092, UMLPackage.eINSTANCE.getInputPin());
+
+
+			elements.put(InputPin_3093, UMLPackage.eINSTANCE.getInputPin());
+
+
+			elements.put(OutputPin_3094, UMLPackage.eINSTANCE.getOutputPin());
 
 			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 
@@ -993,12 +1029,16 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(ReadSelfAction_3081);
 			KNOWN_ELEMENT_TYPES.add(OutputPin_3084);
 			KNOWN_ELEMENT_TYPES.add(Activity_3083);
-			KNOWN_ELEMENT_TYPES.add(NamedElement_3085);
 			KNOWN_ELEMENT_TYPES.add(CreateObjectAction_3086);
 			KNOWN_ELEMENT_TYPES.add(OutputPin_3087);
+			KNOWN_ELEMENT_TYPES.add(NamedElement_3085);
 			KNOWN_ELEMENT_TYPES.add(ReadStructuralFeatureAction_3088);
 			KNOWN_ELEMENT_TYPES.add(InputPin_3089);
 			KNOWN_ELEMENT_TYPES.add(OutputPin_3090);
+			KNOWN_ELEMENT_TYPES.add(AddStructuralFeatureValueAction_3091);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3092);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3093);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3094);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPrecondition_4001);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPostcondition_4002);
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
@@ -1156,18 +1196,26 @@ public class UMLElementTypes {
 			return OutputPin_3084;
 		case ActivityEditPartCN.VISUAL_ID:
 			return Activity_3083;
-		case ShapeNamedElementEditPart.VISUAL_ID:
-			return NamedElement_3085;
 		case CreateObjectActionEditPart.VISUAL_ID:
 			return CreateObjectAction_3086;
 		case OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID:
 			return OutputPin_3087;
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			return NamedElement_3085;
 		case ReadStructuralFeatureActionEditPart.VISUAL_ID:
 			return ReadStructuralFeatureAction_3088;
 		case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
 			return InputPin_3089;
 		case OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID:
 			return OutputPin_3090;
+		case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
+			return AddStructuralFeatureValueAction_3091;
+		case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+			return InputPin_3092;
+		case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+			return InputPin_3093;
+		case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
+			return OutputPin_3094;
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return ActionLocalPrecondition_4001;
 		case ActionLocalPostconditionEditPart.VISUAL_ID:

@@ -241,6 +241,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CREATEADDSTRUCTURALFEATUREVALUEACTION45CREATIONTOOL = "createAddStructuralFeatureValueAction45CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String CREATECONTROLFLOW1CREATIONTOOL = "createControlFlow1CreationTool"; //$NON-NLS-1$
 
 	/**
@@ -394,6 +399,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if(toolId.equals(CREATEREADSTRUCTURALFEATUREACTION44CREATIONTOOL)) {
 			return createReadStructuralFeatureAction44CreationTool();
+		}
+		if(toolId.equals(CREATEADDSTRUCTURALFEATUREVALUEACTION45CREATIONTOOL)) {
+			return createAddStructuralFeatureValueAction45CreationTool();
 		}
 		if(toolId.equals(CREATECONTROLFLOW1CREATIONTOOL)) {
 			return createControlFlow1CreationTool();
@@ -890,6 +898,17 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createReadStructuralFeatureAction44CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createAddStructuralFeatureValueAction45CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.AddStructuralFeatureValueAction_3091);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;

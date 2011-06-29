@@ -59,6 +59,7 @@ import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.common.util.CacheAdapter;
+import org.eclipse.uml2.uml.AddStructuralFeatureValueAction;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallAction;
 import org.eclipse.uml2.uml.CallBehaviorAction;
@@ -79,6 +80,8 @@ import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
 import org.eclipse.uml2.uml.SendObjectAction;
 import org.eclipse.uml2.uml.SendSignalAction;
 import org.eclipse.uml2.uml.Signal;
+import org.eclipse.uml2.uml.StructuralFeature;
+import org.eclipse.uml2.uml.StructuralFeatureAction;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -90,6 +93,8 @@ import org.eclipse.uml2.uml.ValueSpecification;
  * 
  */
 public class PinAndParameterSynchronizer extends AbstractModelConstraint {
+
+	private static final String VALUE_PIN_IN_STRUCTURAL_FEATURE_VALUE_ACTION = "value";
 
 	private static final String RESULT_PIN_READ_SRTUCTURAL_ACTION = "result";
 
@@ -143,6 +148,12 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			} else if((EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType())) && ctx.getFeatureNewValue() instanceof SendObjectAction) {
 				// SendObjectAction created
 				CompoundCommand cmd = getResetPinsCmd((SendObjectAction)ctx.getFeatureNewValue());
+				if(!cmd.isEmpty() && cmd.canExecute()) {
+					cmd.execute();
+				}
+			} else if((EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType())) && (ctx.getFeatureNewValue() instanceof AddStructuralFeatureValueAction)) {
+				// CreateObject Action created
+				CompoundCommand cmd = getResetPinsCmd((AddStructuralFeatureValueAction)ctx.getFeatureNewValue());
 				if(!cmd.isEmpty() && cmd.canExecute()) {
 					cmd.execute();
 				}
@@ -1765,6 +1776,60 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 * Get the command to reset all pins of the action.
 	 * 
 	 * @param action
+	 *        action to reinitialize pins (AddStructuralFeatureValueAction)
+	 * @return command
+	 */
+	private CompoundCommand getResetPinsCmd(AddStructuralFeatureValueAction action) {
+		// Get the editing domain
+		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
+		CompoundCommand globalCmd = new CompoundCommand();
+		if(action.getValue() == null) {
+			InputPin valuePin = createValuePinInAddStructuralFeatureAction(action);
+			Command cmdValuePin = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getWriteStructuralFeatureAction_Value(), valuePin);
+			globalCmd.append(cmdValuePin);
+		}
+		//		 add target pin
+		if(action.getObject() == null) {
+			InputPin objectPin = createObjectPinInStructuralFeatureAction(action);
+			Command cmd = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getStructuralFeatureAction_Object(), objectPin);
+			globalCmd.append(cmd);
+		}
+		if(action.getResult() == null) {
+			OutputPin resultPin = createResultPinInStructuralAction(action);
+			Command cmdResultPin = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getWriteStructuralFeatureAction_Result(), resultPin);
+			globalCmd.append(cmdResultPin);
+		}
+
+
+		return globalCmd;
+	}
+
+	/**
+	 * Create a Pin value for a Structural feature action
+	 * 
+	 * @param action
+	 * @return
+	 */
+	private InputPin createValuePinInAddStructuralFeatureAction(StructuralFeatureAction action) {
+		InputPin pin = UMLFactory.eINSTANCE.createInputPin();
+		if(action != null) {
+			StructuralFeature feature = action.getStructuralFeature();
+			if(feature != null && feature.getType() != null) {
+				Type owningType = feature.getType();
+				if(owningType instanceof Type) {
+					pin.setType((Type)owningType);
+				}
+			}
+		}
+
+		pin.setName(VALUE_PIN_IN_STRUCTURAL_FEATURE_VALUE_ACTION);
+		return pin;
+	}
+
+	/**
+	 * Get the command to reset all pins of the action.
+	 * 
+	 * @param action
 	 *        action to reinitialize pins (SendObjectAction)
 	 * @return command
 	 */
@@ -1803,13 +1868,13 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 
 		// add result pin
 		if(action.getResult() == null) {
-			OutputPin resultPin = createResultPinInReadStructuralAction(action);
+			OutputPin resultPin = createResultPinInStructuralAction(action);
 			Command cmd = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getReadStructuralFeatureAction_Result(), resultPin);
 			globalCmd.append(cmd);
 		}
 		// add object pin
 		if(action.getObject() == null) {
-			InputPin objectPin = createObjectPinInReadStructuralAction(action);
+			InputPin objectPin = createObjectPinInStructuralFeatureAction(action);
 			Command cmd = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getStructuralFeatureAction_Object(), objectPin);
 			globalCmd.append(cmd);
 		}
@@ -1822,10 +1887,32 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 * @param action
 	 * @return
 	 */
-	private InputPin createObjectPinInReadStructuralAction(ReadStructuralFeatureAction action) {
+	private InputPin createObjectPinInStructuralFeatureAction(StructuralFeatureAction action) {
 		InputPin pin = UMLFactory.eINSTANCE.createInputPin();
+		if(action != null) {
+			Type type = getTypeFromStructuralFeature(action);
+			if(type != null) {
+				pin.setType(type);
+			}
+		}
 		pin.setName(OBJECT_PIN_IN_READS_STRUCTURAL_ACTION);
 		return pin;
+	}
+
+
+
+	private Type getTypeFromStructuralFeature(StructuralFeatureAction action) {
+		Type type = null;
+		StructuralFeature feature = action.getStructuralFeature();
+		if(feature != null) {
+			Element owner = feature.getOwner();
+			if(owner != null) {
+				if(feature.getFeaturingClassifiers().contains(owner)) {
+					type = ((Type)owner);
+				}
+			}
+		}
+		return type;
 	}
 
 	/**
@@ -1835,11 +1922,12 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 * @param action
 	 * @return
 	 */
-	private OutputPin createResultPinInReadStructuralAction(ReadStructuralFeatureAction action) {
+	private OutputPin createResultPinInStructuralAction(StructuralFeatureAction action) {
 		OutputPin pin = UMLFactory.eINSTANCE.createOutputPin();
-		/*
-		 * FIXME Set the type of the output pin with the type of the Efeature
-		 */
+		Type type = getTypeFromStructuralFeature(action);
+		if(type != null) {
+			pin.setType(type);
+		}
 		pin.setName(RESULT_PIN_READ_SRTUCTURAL_ACTION);
 		return pin;
 	}

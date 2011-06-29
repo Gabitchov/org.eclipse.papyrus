@@ -19,6 +19,7 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.AcceptEventActionCreat
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityCreateCommandCN;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityFinalNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityPartitionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.AddStructuralFeatureValueActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallBehaviorActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallOperationActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CommentCreateCommand;
@@ -170,6 +171,9 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 		}
 		if(UMLElementTypes.ReadStructuralFeatureAction_3088 == req.getElementType()) {
 			return getGEFWrapper(new ReadStructuralFeatureActionCreateCommand(req));
+		}
+		if(UMLElementTypes.AddStructuralFeatureValueAction_3091 == req.getElementType()) {
+			return getGEFWrapper(new AddStructuralFeatureValueActionCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

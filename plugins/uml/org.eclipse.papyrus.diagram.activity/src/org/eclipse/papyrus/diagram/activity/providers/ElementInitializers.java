@@ -9,6 +9,7 @@ import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityFinalNode;
 import org.eclipse.uml2.uml.ActivityParameterNode;
 import org.eclipse.uml2.uml.ActivityPartition;
+import org.eclipse.uml2.uml.AddStructuralFeatureValueAction;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Comment;
@@ -991,6 +992,54 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_AddStructuralFeatureValueAction_3091(AddStructuralFeatureValueAction instance) {
+		try {
+			Object value_0 = name_AddStructuralFeatureValueAction_3091(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_InputPin_3092(InputPin instance) {
+		try {
+			Object value_0 = name_InputPin_3092(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_InputPin_3093(InputPin instance) {
+		try {
+			Object value_0 = name_InputPin_3093(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_OutputPin_3094(OutputPin instance) {
+		try {
+			Object value_0 = name_OutputPin_3094(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_ObjectFlow_4003(ObjectFlow instance) {
 		try {
 			Object value_0 = name_ObjectFlow_4003(instance);
@@ -1583,6 +1632,34 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_OutputPin_3090(OutputPin self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_AddStructuralFeatureValueAction_3091(AddStructuralFeatureValueAction self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_3092(InputPin self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_3093(InputPin self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_3094(OutputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 

@@ -24,104 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallBeActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActAsTargetEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInOpaqueActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendObjActAsReqEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendObjActAsTargetEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendSigActAsTargetEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendSigActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityContentCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityParametersCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityPostConditionsCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityPreConditionsCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityCNContentCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityCNParametersCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityCNPostConditionsCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityCNPreConditionsCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPartCN;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.CommentEditPartCN;
-import org.eclipse.papyrus.diagram.activity.edit.parts.CommentLinkEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeStructuredActivityNodeContentCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPostcondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPrecondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.CreateObjectActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ExceptionHandlerEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionNodeAsInEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionNodeAsOutEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionStructuredActivityNodeContentCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInOpaqueActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInReadStructuralFeatureAsObjectEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsReqEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsTargetEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActAsTargetEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeStructuredActivityNodeContentCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCreateObjectActionAsResultEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInReadStructuralFeatureAsResultEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInValSpecActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionOutputPinEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ReadStructuralFeatureActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeStructuredActivityNodeContentCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ShapeNamedElementEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallBeActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActAsTargetEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInOpaqueActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendObjActAsReqEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendObjActAsTargetEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActAsTargetEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.*;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.Action;
@@ -132,6 +35,7 @@ import org.eclipse.uml2.uml.ActivityGroup;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityParameterNode;
 import org.eclipse.uml2.uml.ActivityPartition;
+import org.eclipse.uml2.uml.AddStructuralFeatureValueAction;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.CallOperationAction;
@@ -214,6 +118,8 @@ public class UMLDiagramUpdater {
 			return getCreateObjectAction_3086SemanticChildren(view);
 		case ReadStructuralFeatureActionEditPart.VISUAL_ID:
 			return getReadStructuralFeatureAction_3088SemanticChildren(view);
+		case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
+			return getAddStructuralFeatureValueAction_3091SemanticChildren(view);
 		case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 			return getActivityActivityFigureParameterCompartment_7001SemanticChildren(view);
 		case ActivityActivityPreConditionsCompartmentEditPart.VISUAL_ID:
@@ -626,6 +532,39 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLNodeDescriptor> getAddStructuralFeatureValueAction_3091SemanticChildren(View view) {
+		if(!view.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		AddStructuralFeatureValueAction modelElement = (AddStructuralFeatureValueAction)view.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		{
+			InputPin childElement = modelElement.getObject();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+			}
+		}
+		{
+			InputPin childElement = modelElement.getValue();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+			}
+		}
+		{
+			OutputPin childElement = modelElement.getResult();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLNodeDescriptor> getActivityActivityFigureParameterCompartment_7001SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
@@ -766,6 +705,10 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == ReadStructuralFeatureActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == AddStructuralFeatureValueActionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -978,6 +921,10 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if(visualID == AddStructuralFeatureValueActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == SendSignalActionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -1103,6 +1050,10 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if(visualID == AddStructuralFeatureValueActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == SendSignalActionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -1218,6 +1169,10 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == ReadStructuralFeatureActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == AddStructuralFeatureValueActionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1339,6 +1294,10 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if(visualID == AddStructuralFeatureValueActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == SendSignalActionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -1454,6 +1413,10 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == ReadStructuralFeatureActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == AddStructuralFeatureValueActionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1575,6 +1538,10 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if(visualID == AddStructuralFeatureValueActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == SendSignalActionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -1690,6 +1657,10 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == ReadStructuralFeatureActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == AddStructuralFeatureValueActionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1812,6 +1783,10 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == ReadStructuralFeatureActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == AddStructuralFeatureValueActionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2000,6 +1975,10 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == ReadStructuralFeatureActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == AddStructuralFeatureValueActionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2353,18 +2332,26 @@ public class UMLDiagramUpdater {
 			return getOutputPin_3084ContainedLinks(view);
 		case ActivityEditPartCN.VISUAL_ID:
 			return getActivity_3083ContainedLinks(view);
-		case ShapeNamedElementEditPart.VISUAL_ID:
-			return getNamedElement_3085ContainedLinks(view);
 		case CreateObjectActionEditPart.VISUAL_ID:
 			return getCreateObjectAction_3086ContainedLinks(view);
 		case OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID:
 			return getOutputPin_3087ContainedLinks(view);
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			return getNamedElement_3085ContainedLinks(view);
 		case ReadStructuralFeatureActionEditPart.VISUAL_ID:
 			return getReadStructuralFeatureAction_3088ContainedLinks(view);
 		case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
 			return getInputPin_3089ContainedLinks(view);
 		case OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID:
 			return getOutputPin_3090ContainedLinks(view);
+		case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
+			return getAddStructuralFeatureValueAction_3091ContainedLinks(view);
+		case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+			return getInputPin_3092ContainedLinks(view);
+		case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+			return getInputPin_3093ContainedLinks(view);
+		case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
+			return getOutputPin_3094ContainedLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003ContainedLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -2520,18 +2507,26 @@ public class UMLDiagramUpdater {
 			return getOutputPin_3084IncomingLinks(view);
 		case ActivityEditPartCN.VISUAL_ID:
 			return getActivity_3083IncomingLinks(view);
-		case ShapeNamedElementEditPart.VISUAL_ID:
-			return getNamedElement_3085IncomingLinks(view);
 		case CreateObjectActionEditPart.VISUAL_ID:
 			return getCreateObjectAction_3086IncomingLinks(view);
 		case OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID:
 			return getOutputPin_3087IncomingLinks(view);
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			return getNamedElement_3085IncomingLinks(view);
 		case ReadStructuralFeatureActionEditPart.VISUAL_ID:
 			return getReadStructuralFeatureAction_3088IncomingLinks(view);
 		case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
 			return getInputPin_3089IncomingLinks(view);
 		case OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID:
 			return getOutputPin_3090IncomingLinks(view);
+		case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
+			return getAddStructuralFeatureValueAction_3091IncomingLinks(view);
+		case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+			return getInputPin_3092IncomingLinks(view);
+		case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+			return getInputPin_3093IncomingLinks(view);
+		case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
+			return getOutputPin_3094IncomingLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003IncomingLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -2687,18 +2682,26 @@ public class UMLDiagramUpdater {
 			return getOutputPin_3084OutgoingLinks(view);
 		case ActivityEditPartCN.VISUAL_ID:
 			return getActivity_3083OutgoingLinks(view);
-		case ShapeNamedElementEditPart.VISUAL_ID:
-			return getNamedElement_3085OutgoingLinks(view);
 		case CreateObjectActionEditPart.VISUAL_ID:
 			return getCreateObjectAction_3086OutgoingLinks(view);
 		case OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID:
 			return getOutputPin_3087OutgoingLinks(view);
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			return getNamedElement_3085OutgoingLinks(view);
 		case ReadStructuralFeatureActionEditPart.VISUAL_ID:
 			return getReadStructuralFeatureAction_3088OutgoingLinks(view);
 		case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
 			return getInputPin_3089OutgoingLinks(view);
 		case OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID:
 			return getOutputPin_3090OutgoingLinks(view);
+		case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
+			return getAddStructuralFeatureValueAction_3091OutgoingLinks(view);
+		case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+			return getInputPin_3092OutgoingLinks(view);
+		case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+			return getInputPin_3093OutgoingLinks(view);
+		case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
+			return getOutputPin_3094OutgoingLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003OutgoingLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -3201,6 +3204,39 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getOutputPin_3090ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getAddStructuralFeatureValueAction_3091ContainedLinks(View view) {
+		AddStructuralFeatureValueAction modelElement = (AddStructuralFeatureValueAction)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getInputPin_3092ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getInputPin_3093ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getOutputPin_3094ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
@@ -4154,6 +4190,61 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getAddStructuralFeatureValueAction_3091IncomingLinks(View view) {
+		AddStructuralFeatureValueAction modelElement = (AddStructuralFeatureValueAction)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getInputPin_3092IncomingLinks(View view) {
+		InputPin modelElement = (InputPin)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getInputPin_3093IncomingLinks(View view) {
+		InputPin modelElement = (InputPin)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getOutputPin_3094IncomingLinks(View view) {
+		OutputPin modelElement = (OutputPin)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getValueSpecificationAction_3076IncomingLinks(View view) {
 		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
@@ -5036,6 +5127,53 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getOutputPin_3090OutgoingLinks(View view) {
+		OutputPin modelElement = (OutputPin)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getAddStructuralFeatureValueAction_3091OutgoingLinks(View view) {
+		AddStructuralFeatureValueAction modelElement = (AddStructuralFeatureValueAction)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getInputPin_3092OutgoingLinks(View view) {
+		InputPin modelElement = (InputPin)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getInputPin_3093OutgoingLinks(View view) {
+		InputPin modelElement = (InputPin)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getOutputPin_3094OutgoingLinks(View view) {
 		OutputPin modelElement = (OutputPin)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));

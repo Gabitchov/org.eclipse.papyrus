@@ -184,7 +184,7 @@ AbstractBorderedShapeEditPart {
 
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof OutputPinInCreateObjectActionAsResultEditPart) {
-			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.SOUTH);
 			getBorderedFigure().getBorderItemContainer().add(((OutputPinInCreateObjectActionAsResultEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
@@ -576,6 +576,18 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof OutputPinInReadStructuralFeatureAsResultEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof AddStructuralFeatureValueActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInAddStructuralFeatureValueActionAsObjectEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInAddStructuralFeatureValueActionAsValueEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -753,6 +765,18 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof OutputPinInReadStructuralFeatureAsResultEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof AddStructuralFeatureValueActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInAddStructuralFeatureValueActionAsObjectEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInAddStructuralFeatureValueActionAsValueEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		if(targetEditPart instanceof ValuePinInOpaqueActEditPart) {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
@@ -864,6 +888,15 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof OutputPinInReadStructuralFeatureAsResultEditPart) {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
+		if(targetEditPart instanceof InputPinInAddStructuralFeatureValueActionAsObjectEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof InputPinInAddStructuralFeatureValueActionAsValueEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
 		return types;
 	}
 
@@ -950,6 +983,10 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
 			types.add(UMLElementTypes.InputPin_3089);
 			types.add(UMLElementTypes.OutputPin_3090);
+			types.add(UMLElementTypes.AddStructuralFeatureValueAction_3091);
+			types.add(UMLElementTypes.InputPin_3092);
+			types.add(UMLElementTypes.InputPin_3093);
+			types.add(UMLElementTypes.OutputPin_3094);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1010,6 +1047,10 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
 			types.add(UMLElementTypes.InputPin_3089);
 			types.add(UMLElementTypes.OutputPin_3090);
+			types.add(UMLElementTypes.AddStructuralFeatureValueAction_3091);
+			types.add(UMLElementTypes.InputPin_3092);
+			types.add(UMLElementTypes.InputPin_3093);
+			types.add(UMLElementTypes.OutputPin_3094);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.ValuePin_3015);
 			types.add(UMLElementTypes.ActionInputPin_3016);
@@ -1048,6 +1089,9 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.OutputPin_3087);
 			types.add(UMLElementTypes.InputPin_3089);
 			types.add(UMLElementTypes.OutputPin_3090);
+			types.add(UMLElementTypes.InputPin_3092);
+			types.add(UMLElementTypes.InputPin_3093);
+			types.add(UMLElementTypes.OutputPin_3094);
 		}
 		return types;
 	}
@@ -1128,6 +1172,10 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
 			types.add(UMLElementTypes.InputPin_3089);
 			types.add(UMLElementTypes.OutputPin_3090);
+			types.add(UMLElementTypes.AddStructuralFeatureValueAction_3091);
+			types.add(UMLElementTypes.InputPin_3092);
+			types.add(UMLElementTypes.InputPin_3093);
+			types.add(UMLElementTypes.OutputPin_3094);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1188,6 +1236,10 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
 			types.add(UMLElementTypes.InputPin_3089);
 			types.add(UMLElementTypes.OutputPin_3090);
+			types.add(UMLElementTypes.AddStructuralFeatureValueAction_3091);
+			types.add(UMLElementTypes.InputPin_3092);
+			types.add(UMLElementTypes.InputPin_3093);
+			types.add(UMLElementTypes.OutputPin_3094);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
 			types.add(UMLElementTypes.Comment_3080);
 		}
@@ -1234,7 +1286,7 @@ AbstractBorderedShapeEditPart {
 
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
-	 *      Change automatically the type of the outpin with the type of the classiier
+	 *      Change automatically the type of the output pin with the type of the classifier
 	 * @param notification
 	 */
 

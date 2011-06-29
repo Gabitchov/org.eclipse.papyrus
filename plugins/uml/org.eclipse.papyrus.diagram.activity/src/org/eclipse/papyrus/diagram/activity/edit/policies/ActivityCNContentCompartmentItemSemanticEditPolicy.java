@@ -7,6 +7,7 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityCreateCommandC
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityFinalNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityParameterNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityPartitionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.AddStructuralFeatureValueActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallBehaviorActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallOperationActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CommentCreateCommand;
@@ -155,14 +156,17 @@ public class ActivityCNContentCompartmentItemSemanticEditPolicy extends UMLBaseI
 		if(UMLElementTypes.Activity_3083 == req.getElementType()) {
 			return getGEFWrapper(new ActivityCreateCommandCN(req));
 		}
-		if(UMLElementTypes.ActivityParameterNode_3059 == req.getElementType()) {
-			return getGEFWrapper(new ActivityParameterNodeCreateCommand(req));
-		}
 		if(UMLElementTypes.CreateObjectAction_3086 == req.getElementType()) {
 			return getGEFWrapper(new CreateObjectActionCreateCommand(req));
 		}
 		if(UMLElementTypes.ReadStructuralFeatureAction_3088 == req.getElementType()) {
 			return getGEFWrapper(new ReadStructuralFeatureActionCreateCommand(req));
+		}
+		if(UMLElementTypes.AddStructuralFeatureValueAction_3091 == req.getElementType()) {
+			return getGEFWrapper(new AddStructuralFeatureValueActionCreateCommand(req));
+		}
+		if(UMLElementTypes.ActivityParameterNode_3059 == req.getElementType()) {
+			return getGEFWrapper(new ActivityParameterNodeCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

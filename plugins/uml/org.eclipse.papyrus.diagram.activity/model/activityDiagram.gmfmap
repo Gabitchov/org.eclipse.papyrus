@@ -2864,15 +2864,9 @@
         <childrenFeature
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier/ownedBehavior"/>
       </children>
-      <children>
-        <ownedChild>
-          <diagramNode
-              href="activityDiagram.gmfgraph#StereotypedCustomizedNode"/>
-        </ownedChild>
-      </children>
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.3"
-          referencedChild="//@nodes.0/@ownedChild/@children.38/@ownedChild">
+          referencedChild="//@nodes.0/@ownedChild/@children.37/@ownedChild">
         <containmentFeature
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
         <childrenFeature
@@ -2906,7 +2900,7 @@
           <diagramNode
               href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNode"/>
           <children
-              referencedChild="//@nodes.0/@ownedChild/@children.38/@ownedChild/@children.0/@ownedChild">
+              referencedChild="//@nodes.0/@ownedChild/@children.37/@ownedChild/@children.0/@ownedChild">
             <containmentFeature
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreateObjectAction/result"/>
             <childrenFeature
@@ -2940,6 +2934,12 @@
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
           </children>
+        </ownedChild>
+      </children>
+      <children>
+        <ownedChild>
+          <diagramNode
+              href="activityDiagram.gmfgraph#StereotypedCustomizedNode"/>
         </ownedChild>
       </children>
       <children
@@ -3091,6 +3091,8 @@
                 relatedDiagrams="//@diagram">
               <domainMetaElement
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InputPin"/>
+              <domainSpecialization
+                  body="if self.owner.oclIsKindOf(AddStructuralFeatureValueAction)&#xD;&#xA;then self.owner.oclAsType(AddStructuralFeatureValueAction).object->includes(self)&#xD;&#xA;else false endif"/>
               <domainInitializer
                   xsi:type="gmfmap:FeatureSeqInitializer">
                 <initializers
@@ -3125,6 +3127,8 @@
                 relatedDiagrams="//@diagram">
               <domainMetaElement
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InputPin"/>
+              <domainSpecialization
+                  body="if self.owner.oclIsKindOf(AddStructuralFeatureValueAction)&#xD;&#xA;then self.owner.oclAsType(AddStructuralFeatureValueAction).value->includes(self)&#xD;&#xA;else false endif"/>
               <domainInitializer
                   xsi:type="gmfmap:FeatureSeqInitializer">
                 <initializers
@@ -3202,7 +3206,7 @@
             href="ActivityFigure.gmfgraph#ActivityFigurePostCondtionCompartment"/>
       </compartments>
       <compartments
-          children="//@nodes.0/@ownedChild/@children.5 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.6 //@nodes.0/@ownedChild/@children.15 //@nodes.0/@ownedChild/@children.7 //@nodes.0/@ownedChild/@children.8 //@nodes.0/@ownedChild/@children.16 //@nodes.0/@ownedChild/@children.13 //@nodes.0/@ownedChild/@children.14 //@nodes.0/@ownedChild/@children.9 //@nodes.0/@ownedChild/@children.10 //@nodes.0/@ownedChild/@children.11 //@nodes.0/@ownedChild/@children.12 //@nodes.0/@ownedChild/@children.17 //@nodes.0/@ownedChild/@children.18 //@nodes.0/@ownedChild/@children.19 //@nodes.0/@ownedChild/@children.20 //@nodes.0/@ownedChild/@children.22 //@nodes.0/@ownedChild/@children.23 //@nodes.0/@ownedChild/@children.25 //@nodes.0/@ownedChild/@children.31 //@nodes.0/@ownedChild/@children.32 //@nodes.0/@ownedChild/@children.33 //@nodes.0/@ownedChild/@children.27 //@nodes.0/@ownedChild/@children.28 //@nodes.0/@ownedChild/@children.29 //@nodes.0/@ownedChild/@children.30 //@nodes.0/@ownedChild/@children.21 //@nodes.0/@ownedChild/@children.26 //@nodes.0/@ownedChild/@children.34 //@nodes.0/@ownedChild/@children.35 //@nodes.0/@ownedChild/@children.36 //@nodes.0/@ownedChild/@children.38 //@nodes.0/@ownedChild/@children.39 //@nodes.0/@ownedChild/@children.40">
+          children="//@nodes.0/@ownedChild/@children.5 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.6 //@nodes.0/@ownedChild/@children.15 //@nodes.0/@ownedChild/@children.7 //@nodes.0/@ownedChild/@children.8 //@nodes.0/@ownedChild/@children.16 //@nodes.0/@ownedChild/@children.13 //@nodes.0/@ownedChild/@children.14 //@nodes.0/@ownedChild/@children.9 //@nodes.0/@ownedChild/@children.10 //@nodes.0/@ownedChild/@children.11 //@nodes.0/@ownedChild/@children.12 //@nodes.0/@ownedChild/@children.17 //@nodes.0/@ownedChild/@children.18 //@nodes.0/@ownedChild/@children.19 //@nodes.0/@ownedChild/@children.20 //@nodes.0/@ownedChild/@children.22 //@nodes.0/@ownedChild/@children.23 //@nodes.0/@ownedChild/@children.25 //@nodes.0/@ownedChild/@children.31 //@nodes.0/@ownedChild/@children.32 //@nodes.0/@ownedChild/@children.33 //@nodes.0/@ownedChild/@children.27 //@nodes.0/@ownedChild/@children.28 //@nodes.0/@ownedChild/@children.29 //@nodes.0/@ownedChild/@children.30 //@nodes.0/@ownedChild/@children.21 //@nodes.0/@ownedChild/@children.26 //@nodes.0/@ownedChild/@children.34 //@nodes.0/@ownedChild/@children.35 //@nodes.0/@ownedChild/@children.36 //@nodes.0/@ownedChild/@children.37 //@nodes.0/@ownedChild/@children.39 //@nodes.0/@ownedChild/@children.40">
         <compartment
             href="ActivityFigure.gmfgraph#ActivityFigureContentCompartment"/>
       </compartments>
@@ -4209,38 +4213,12 @@
         </target>
       </audits>
       <audits
-          name="validateInputPinMultiplicity"
-          description="Check that the multiplicity of the input pin is 1..1."
-          id="org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction_checkInputPinMultiplicity"
-          message="The multiplicity of the input pin is 1..1.">
-        <rule
-            body="self.value.multiplicity.is(1,1)"/>
-        <target
-            xsi:type="gmfmap:DomainElementTarget">
-          <element
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddStructuralFeatureValueAction"/>
-        </target>
-      </audits>
-      <audits
           name="validateOutputPinType"
           description="Check that the type of the result output pin is the same as the type of the inherited object input pin."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction_validateOutputPinType"
           message="The type of the result output pin is the same as the type of the inherited object input pin.">
         <rule
             body="result->notEmpty() implies self.result.type = self.object.type"/>
-        <target
-            xsi:type="gmfmap:DomainElementTarget">
-          <element
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddStructuralFeatureValueAction"/>
-        </target>
-      </audits>
-      <audits
-          name="The multiplicity of the result output pin must be 1..1."
-          description="Check that the multiplicity of the result output pin must be 1..1."
-          id="org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction_validateOutputPinMultiplicity"
-          message="org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction">
-        <rule
-            body="result->notEmpty() implies self.result.multiplicity.is(1,1)"/>
         <target
             xsi:type="gmfmap:DomainElementTarget">
           <element

@@ -139,6 +139,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		AcceptEventActionPreferencePage.initDefaults(store);
 
 
+		AddStructuralFeatureValueActionPreferencePage.initDefaults(store);
+
+
 		ForkNodePreferencePage.initDefaults(store);
 
 
