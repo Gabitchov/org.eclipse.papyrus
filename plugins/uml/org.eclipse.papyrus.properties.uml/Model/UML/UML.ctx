@@ -1390,6 +1390,15 @@
     <sections name="SingleImage" sectionFile="ui/SingleImage.xwt">
       <widget href="ui/SingleImage.xwt#/"/>
     </sections>
+    <sections name="AsyncMessage" sectionFile="ui/AsyncMessage.xwt">
+      <widget href="ui/AsyncMessage.xwt#/"/>
+    </sections>
+    <sections name="SyncMessage" sectionFile="ui/SyncMessage.xwt">
+      <widget href="ui/SyncMessage.xwt#/"/>
+    </sections>
+    <sections name="ReplyMessage" sectionFile="ui/ReplyMessage.xwt">
+      <widget href="ui/ReplyMessage.xwt#/"/>
+    </sections>
   </tabs>
   <tabs label="Profile" id="profile" category="org.eclipse.papyrus" afterTab="//@tabs.0">
     <sections name="SinglePackageProfile" sectionFile="ui/SinglePackageProfile.xwt">
@@ -4178,9 +4187,48 @@
       <properties xsi:type="contexts:ValueProperty" name="umlClassName" value="Comment"/>
     </constraints>
   </views>
-  <views name="AsyncMessage"/>
-  <views name="SyncMessage"/>
-  <views name="ReplyMessage"/>
+  <views name="AsyncMessage" sections="//@tabs.0/@sections.463">
+    <constraints xsi:type="contexts:CompositeConstraint" name="isAsyncMessage" overriddenConstraints="//@views.232/@constraints.0">
+      <constraints name="isMessage">
+        <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+        <properties xsi:type="contexts:ValueProperty" name="umlClassName" value="Message"/>
+      </constraints>
+      <constraints name="isAsync">
+        <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.2"/>
+        <properties xsi:type="contexts:ReferenceProperty" name="query">
+          <value href="uml.querySet#isAsynchCall"/>
+        </properties>
+      </constraints>
+    </constraints>
+  </views>
+  <views name="SyncMessage" sections="//@tabs.0/@sections.464">
+    <constraints xsi:type="contexts:CompositeConstraint" name="isSyncMessage" overriddenConstraints="//@views.232/@constraints.0">
+      <constraints name="isMessage">
+        <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+        <properties xsi:type="contexts:ValueProperty" name="umlClassName" value="Message"/>
+      </constraints>
+      <constraints name="isSync">
+        <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.2"/>
+        <properties xsi:type="contexts:ReferenceProperty" name="query">
+          <value href="uml.querySet#isSynchCall"/>
+        </properties>
+      </constraints>
+    </constraints>
+  </views>
+  <views name="ReplyMessage" sections="//@tabs.0/@sections.465">
+    <constraints xsi:type="contexts:CompositeConstraint" name="isReplyMessage" overriddenConstraints="//@views.232/@constraints.0">
+      <constraints name="isMessage">
+        <constraintType href="Environment.xmi#//@constraintTypes.0"/>
+        <properties xsi:type="contexts:ValueProperty" name="umlClassName" value="Message"/>
+      </constraints>
+      <constraints name="isReply">
+        <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.2"/>
+        <properties xsi:type="contexts:ReferenceProperty" name="query">
+          <value href="uml.querySet#isReply"/>
+        </properties>
+      </constraints>
+    </constraints>
+  </views>
   <views name="SingleImage" sections="//@tabs.0/@sections.462">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleImage">
       <constraintType href="Environment.xmi#//@constraintTypes.0"/>

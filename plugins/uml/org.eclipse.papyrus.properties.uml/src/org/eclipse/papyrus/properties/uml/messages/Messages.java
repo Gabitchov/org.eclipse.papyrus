@@ -17,6 +17,8 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.properties.uml.messages.messages"; //$NON-NLS-1$
 
+	public static String SelectOrCreateDialog_NothingLabel;
+
 	public static String MultiplicityObservableValue_setMultiplicityCommand;
 
 	public static String ExpressionLanguageFactory_EditLanguage;
@@ -42,6 +44,16 @@ public class Messages extends NLS {
 	public static String ProfileApplicationEditor_WaitMessage;
 
 	public static String ProfileApplicationEditor_WaitMessageTitle;
+
+	public static String SelectOrCreateDialog_SelectLabel;
+
+	public static String SelectOrCreateDialog_CreateLabel;
+
+	public static String SelectOrCreateDialog_TypeLabel;
+
+	public static String SelectOrCreateDialog_NameLabel;
+
+	public static String SelectOrCreateDialog_OwnerLabel;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
