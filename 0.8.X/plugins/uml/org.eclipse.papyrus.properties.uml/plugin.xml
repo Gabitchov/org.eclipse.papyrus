@@ -8,7 +8,7 @@
       </propertyContributor>
    </extension>
    <extension point="org.eclipse.papyrus.properties.environment">
-      <environment environmentModel="Model/UML/Environment.xmi">
+      <environment environmentModel="Model/Environment.xmi">
       </environment>
    </extension>
    <extension point="org.eclipse.papyrus.properties.context">

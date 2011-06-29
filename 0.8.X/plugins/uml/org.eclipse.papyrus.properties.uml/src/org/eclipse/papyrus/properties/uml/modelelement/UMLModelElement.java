@@ -25,6 +25,9 @@ import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue;
+import org.eclipse.papyrus.properties.uml.databinding.SignatureObservableValue;
+import org.eclipse.papyrus.properties.uml.providers.SignatureContentProvider;
+import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.uml2.uml.UMLPackage;
 
 
@@ -42,6 +45,11 @@ public class UMLModelElement extends EMFModelElement {
 	public IObservable getObservable(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(propertyPath);
+
+		if(feature == UMLPackage.eINSTANCE.getMessage_Signature()) {
+			return new SignatureObservableValue(source, domain);
+		}
+
 		if(feature == null) {
 			return null;
 		}
@@ -53,6 +61,25 @@ public class UMLModelElement extends EMFModelElement {
 
 		IObservableValue value = domain == null ? EMFProperties.value(featurePath).observe(source) : new PapyrusObservableValue(getSource(featurePath), feature, domain);
 		return value;
+	}
+
+	@Override
+	public boolean isEditable(String propertyPath) {
+		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature == UMLPackage.eINSTANCE.getMessage_Signature()) {
+			return true;
+		}
+		return super.isEditable(propertyPath);
+	}
+
+	@Override
+	public IStaticContentProvider getContentProvider(String propertyPath) {
+		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature == UMLPackage.eINSTANCE.getMessage_Signature() || feature == UMLPackage.eINSTANCE.getSendOperationEvent_Operation() || feature == UMLPackage.eINSTANCE.getReceiveOperationEvent_Operation()) {
+			return new SignatureContentProvider(source);
+		}
+
+		return super.getContentProvider(propertyPath);
 	}
 
 	@Override
