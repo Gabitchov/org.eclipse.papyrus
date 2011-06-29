@@ -19,6 +19,7 @@ package org.eclipse.papyrus.gmf.diagram.common.edit.policy;
 import static org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry.UNDEFINED_TYPE;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -205,11 +206,8 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		CompositeCommand completeDropCommand = new CompositeCommand("CompleteDropEdge"); //$NON-NLS-1$
 
 		// Find views in current diagram representing source and target 
-		EReference[] refs = { NotationPackage.eINSTANCE.getView_Element() };
-		@SuppressWarnings("unchecked")
-		Collection<View> sourceViews = EMFCoreUtil.getReferencers(source, refs);
-		@SuppressWarnings("unchecked")
-		Collection<View> targetViews = EMFCoreUtil.getReferencers(target, refs);
+		Collection<View> sourceViews = getViews(source);
+		Collection<View> targetViews = getViews(target);
 
 		IAdaptable sourceViewAdapter = null;
 		IAdaptable targetViewAdapter = null;
@@ -312,4 +310,34 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		return ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint();
 	}
 
+	/**
+	 * This methods looks for views representing a given EObject in the host diagram.
+	 * 
+	 * @param eObject
+	 *        the {@link EObject} to look for.
+	 * @return the list of {@link View} representing the eObject.
+	 */
+	private Set<View> getViews(EObject eObject) {
+		Set<View> views = new HashSet<View>();
+
+		// Retrieve host diagram
+		View hostView = ((IGraphicalEditPart)getHost()).getNotationView();
+		View hostDiagram = (hostView instanceof Diagram) ? hostView : hostView.getDiagram();
+
+		// Retrieve all views for the eObject
+		EReference[] refs = { NotationPackage.eINSTANCE.getView_Element() };
+		@SuppressWarnings("unchecked")
+		Collection<View> relatedViews = EMFCoreUtil.getReferencers(eObject, refs);
+
+		// Parse and select views from host diagram only	
+		Iterator<View> it = relatedViews.iterator();
+		while(it.hasNext()) {
+			View currentView = it.next();
+			if(currentView.getDiagram() == hostDiagram) {
+				views.add(currentView);
+			}
+		}
+
+		return views;
+	}
 }
