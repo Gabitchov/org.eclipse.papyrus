@@ -16,24 +16,15 @@ package org.eclipse.papyrus.sysml.facets.query.value.getter;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.sysml.requirements.Requirement;
+import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Stereotype;
 
 /** Query to get the text of the requirement */
 public class GetRequirementTextQuery implements IJavaModelQuery<Class, String> {
 
 	public String evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		Stereotype ste = context.getAppliedStereotype(SysmlResource.REQUIREMENT_ID);
-		if(ste != null) {
-			Object value = context.getValue(ste, SysmlResource.REQUIREMENT_TEXT_ID);
-			if(value == null) {
-				return ""; //$NON-NLS-1$
-			}
-			if(value instanceof String) {
-				return (String)value;
-			}
-		}
-		return null;
+		Requirement requirement = ElementUtil.getStereotypeApplication(context, Requirement.class);
+		return (requirement != null) ?  requirement.getText() : null;
 	}
 }
