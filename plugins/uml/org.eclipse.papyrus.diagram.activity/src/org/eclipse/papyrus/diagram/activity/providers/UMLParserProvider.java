@@ -1838,6 +1838,53 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser destroyObjectActionName_5163Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDestroyObjectActionName_5163Parser() {
+		if(destroyObjectActionName_5163Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			destroyObjectActionName_5163Parser = parser;
+		}
+		return destroyObjectActionName_5163Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser inputPinLabel_5161Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInputPinLabel_5161Parser() {
+		if(inputPinLabel_5161Parser == null) {
+			inputPinLabel_5161Parser = new PinParser();
+		}
+		return inputPinLabel_5161Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser inputPinLabel_5162Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInputPinLabel_5162Parser() {
+		if(inputPinLabel_5162Parser == null) {
+			inputPinLabel_5162Parser = new AppliedStereotypeParser();
+		}
+		return inputPinLabel_5162Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private CommentParser commentBody_5138Parser;
 
 	/**
@@ -2735,6 +2782,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getOutputPinLabel_5158Parser();
 		case OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart.VISUAL_ID:
 			return getOutputPinLabel_5159Parser();
+		case DestroyObjectActionNameEditPart.VISUAL_ID:
+			return getDestroyObjectActionName_5163Parser();
+		case InputPinInDestroyObjectActionLabelEditPart.VISUAL_ID:
+			return getInputPinLabel_5161Parser();
+		case InputPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+			return getInputPinLabel_5162Parser();
 		case ObjectFlowNameEditPart.VISUAL_ID:
 			return getObjectFlowName_6001Parser();
 		case ObjectFlowWeightEditPart.VISUAL_ID:

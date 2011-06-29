@@ -19,6 +19,7 @@ import org.eclipse.uml2.uml.ControlFlow;
 import org.eclipse.uml2.uml.CreateObjectAction;
 import org.eclipse.uml2.uml.DataStoreNode;
 import org.eclipse.uml2.uml.DecisionNode;
+import org.eclipse.uml2.uml.DestroyObjectAction;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationInterval;
 import org.eclipse.uml2.uml.ExpansionNode;
@@ -1040,6 +1041,30 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_DestroyObjectAction_3095(DestroyObjectAction instance) {
+		try {
+			Object value_0 = name_DestroyObjectAction_3095(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_InputPin_3096(InputPin instance) {
+		try {
+			Object value_0 = name_InputPin_3096(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_ObjectFlow_4003(ObjectFlow instance) {
 		try {
 			Object value_0 = name_ObjectFlow_4003(instance);
@@ -1660,6 +1685,20 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_OutputPin_3094(OutputPin self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_DestroyObjectAction_3095(DestroyObjectAction self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_3096(InputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 

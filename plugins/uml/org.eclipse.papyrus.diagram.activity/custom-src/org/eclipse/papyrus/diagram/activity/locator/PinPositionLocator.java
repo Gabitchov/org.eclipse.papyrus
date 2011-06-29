@@ -37,6 +37,8 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddStructuralFe
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInDestroyObjectActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInDestroyObjectActionLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInOpaqueActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInReadStructuralFeatureAsObjectEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsReqEditPart;
@@ -471,6 +473,9 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 		} else if(child instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart.PinDescriptor) {
 			arrowIn = false;
 			arrow = ((OutputPinInAddStructuralFeatureValueActionAsResultEditPart.PinDescriptor)child).getOptionalArrowFigure();
+		} else if(child instanceof InputPinInDestroyObjectActionEditPart.PinDescriptor) {
+			arrowIn = true;
+			arrow = ((InputPinInDestroyObjectActionEditPart.PinDescriptor)child).getOptionalArrowFigure();
 		}
 		if(arrow != null && arrow.getPoints().size() > 0) {
 			int arrowDirection;

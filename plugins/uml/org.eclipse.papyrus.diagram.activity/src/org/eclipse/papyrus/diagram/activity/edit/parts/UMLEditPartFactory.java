@@ -708,6 +708,21 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart.VISUAL_ID:
 				return new OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart(view);
 
+			case DestroyObjectActionEditPart.VISUAL_ID:
+				return new DestroyObjectActionEditPart(view);
+
+			case DestroyObjectActionNameEditPart.VISUAL_ID:
+				return new DestroyObjectActionNameEditPart(view);
+
+			case InputPinInDestroyObjectActionEditPart.VISUAL_ID:
+				return new InputPinInDestroyObjectActionEditPart(view);
+
+			case InputPinInDestroyObjectActionLabelEditPart.VISUAL_ID:
+				return new InputPinInDestroyObjectActionLabelEditPart(view);
+
+			case InputPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new InputPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart(view);
+
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);
 

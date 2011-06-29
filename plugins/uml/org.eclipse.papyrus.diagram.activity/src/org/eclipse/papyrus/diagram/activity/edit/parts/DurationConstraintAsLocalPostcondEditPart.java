@@ -329,6 +329,7 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.CreateObjectAction_3086);
 			types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
 			types.add(UMLElementTypes.AddStructuralFeatureValueAction_3091);
+			types.add(UMLElementTypes.DestroyObjectAction_3095);
 		} else if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.OpaqueAction_3007);
 			types.add(UMLElementTypes.CallBehaviorAction_3008);
@@ -346,6 +347,7 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.CreateObjectAction_3086);
 			types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
 			types.add(UMLElementTypes.AddStructuralFeatureValueAction_3091);
+			types.add(UMLElementTypes.DestroyObjectAction_3095);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
 			types.add(UMLElementTypes.Comment_3080);
 		}

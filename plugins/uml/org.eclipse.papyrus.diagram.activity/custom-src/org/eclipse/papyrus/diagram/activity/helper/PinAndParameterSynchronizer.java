@@ -66,6 +66,7 @@ import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.CreateObjectAction;
+import org.eclipse.uml2.uml.DestroyObjectAction;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.InvocationAction;
@@ -93,6 +94,8 @@ import org.eclipse.uml2.uml.ValueSpecification;
  * 
  */
 public class PinAndParameterSynchronizer extends AbstractModelConstraint {
+
+	private static final String TARGET_IN_DESTROY_OBJECT_ACTION = "target";
 
 	private static final String VALUE_PIN_IN_STRUCTURAL_FEATURE_VALUE_ACTION = "value";
 
@@ -148,6 +151,12 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			} else if((EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType())) && ctx.getFeatureNewValue() instanceof SendObjectAction) {
 				// SendObjectAction created
 				CompoundCommand cmd = getResetPinsCmd((SendObjectAction)ctx.getFeatureNewValue());
+				if(!cmd.isEmpty() && cmd.canExecute()) {
+					cmd.execute();
+				}
+			} else if((EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType())) && ctx.getFeatureNewValue() instanceof DestroyObjectAction) {
+				// SendObjectAction created
+				CompoundCommand cmd = getResetPinsCmd((DestroyObjectAction)ctx.getFeatureNewValue());
 				if(!cmd.isEmpty() && cmd.canExecute()) {
 					cmd.execute();
 				}
@@ -1788,7 +1797,6 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			Command cmdValuePin = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getWriteStructuralFeatureAction_Value(), valuePin);
 			globalCmd.append(cmdValuePin);
 		}
-		//		 add target pin
 		if(action.getObject() == null) {
 			InputPin objectPin = createObjectPinInStructuralFeatureAction(action);
 			Command cmd = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getStructuralFeatureAction_Object(), objectPin);
@@ -1801,6 +1809,26 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		}
 
 
+		return globalCmd;
+	}
+
+	/**
+	 * Get the command to reset all pins of the action.
+	 * 
+	 * @param action
+	 *        action to reinitialize pins (AddStructuralFeatureValueAction)
+	 * @return command
+	 */
+	private CompoundCommand getResetPinsCmd(DestroyObjectAction action) {
+		// Get the editing domain
+		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
+		CompoundCommand globalCmd = new CompoundCommand();
+		if(action.getTarget() == null) {
+			InputPin targetPin = UMLFactory.eINSTANCE.createInputPin();
+			targetPin.setName(TARGET_IN_DESTROY_OBJECT_ACTION);
+			Command cmdTargetPin = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getDestroyObjectAction_Target(), targetPin);
+			globalCmd.append(cmdTargetPin);
+		}
 		return globalCmd;
 	}
 

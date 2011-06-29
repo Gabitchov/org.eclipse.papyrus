@@ -17,6 +17,7 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.ConstraintAsLocalPreco
 import org.eclipse.papyrus.diagram.activity.edit.commands.CreateObjectActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.DataStoreNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.DecisionNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.DestroyObjectActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.DurationConstraintAsLocalPostcondCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.DurationConstraintAsLocalPrecondCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ExpansionRegionCreateCommand;
@@ -167,6 +168,9 @@ public class ActivityCNContentCompartmentItemSemanticEditPolicy extends UMLBaseI
 		}
 		if(UMLElementTypes.ActivityParameterNode_3059 == req.getElementType()) {
 			return getGEFWrapper(new ActivityParameterNodeCreateCommand(req));
+		}
+		if(UMLElementTypes.DestroyObjectAction_3095 == req.getElementType()) {
+			return getGEFWrapper(new DestroyObjectActionCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

@@ -47,6 +47,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondE
 import org.eclipse.papyrus.diagram.activity.edit.parts.CreateObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DestroyObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionEditPart;
@@ -176,6 +177,7 @@ public class ActivityCNContentCompartmentCanonicalEditPolicy extends CanonicalEd
 		case ReadStructuralFeatureActionEditPart.VISUAL_ID:
 		case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
 		case ActivityParameterNodeEditPart.VISUAL_ID:
+		case DestroyObjectActionEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;

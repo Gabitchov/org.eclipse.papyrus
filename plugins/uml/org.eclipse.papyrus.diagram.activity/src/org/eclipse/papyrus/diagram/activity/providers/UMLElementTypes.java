@@ -58,6 +58,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CreateObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DestroyObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ExceptionHandlerEditPart;
@@ -72,6 +73,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddStructuralFe
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInDestroyObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInOpaqueActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInReadStructuralFeatureAsObjectEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsReqEditPart;
@@ -473,6 +475,16 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType OutputPin_3094 = getElementType("org.eclipse.papyrus.diagram.activity.OutputPin_3094"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DestroyObjectAction_3095 = getElementType("org.eclipse.papyrus.diagram.activity.DestroyObjectAction_3095"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3096 = getElementType("org.eclipse.papyrus.diagram.activity.InputPin_3096"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -927,6 +939,12 @@ public class UMLElementTypes {
 
 			elements.put(OutputPin_3094, UMLPackage.eINSTANCE.getOutputPin());
 
+
+			elements.put(DestroyObjectAction_3095, UMLPackage.eINSTANCE.getDestroyObjectAction());
+
+
+			elements.put(InputPin_3096, UMLPackage.eINSTANCE.getInputPin());
+
 			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 
 			elements.put(ActionLocalPostcondition_4002, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
@@ -1039,6 +1057,8 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(InputPin_3092);
 			KNOWN_ELEMENT_TYPES.add(InputPin_3093);
 			KNOWN_ELEMENT_TYPES.add(OutputPin_3094);
+			KNOWN_ELEMENT_TYPES.add(DestroyObjectAction_3095);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3096);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPrecondition_4001);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPostcondition_4002);
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
@@ -1216,6 +1236,10 @@ public class UMLElementTypes {
 			return InputPin_3093;
 		case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
 			return OutputPin_3094;
+		case DestroyObjectActionEditPart.VISUAL_ID:
+			return DestroyObjectAction_3095;
+		case InputPinInDestroyObjectActionEditPart.VISUAL_ID:
+			return InputPin_3096;
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return ActionLocalPrecondition_4001;
 		case ActionLocalPostconditionEditPart.VISUAL_ID:

@@ -1082,6 +1082,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createDestroyObjectAction46CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createDestroyObjectAction46CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createControlFlow1CreationTool_title;
 
 	/**
@@ -1487,6 +1497,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_InputPin_3096_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputPin_3096_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_Constraint_3012_incominglinks;
 
 	/**
@@ -1758,6 +1778,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_OutputPin_3064_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DestroyObjectAction_3095_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DestroyObjectAction_3095_incominglinks;
 
 	/**
 	 * @generated

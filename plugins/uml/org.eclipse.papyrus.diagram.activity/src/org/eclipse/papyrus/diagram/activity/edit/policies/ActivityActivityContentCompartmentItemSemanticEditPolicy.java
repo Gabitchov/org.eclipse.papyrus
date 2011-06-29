@@ -27,6 +27,7 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.ConditionalNodeCreateC
 import org.eclipse.papyrus.diagram.activity.edit.commands.CreateObjectActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.DataStoreNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.DecisionNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.DestroyObjectActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ExpansionRegionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.FlowFinalNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ForkNodeCreateCommand;
@@ -174,6 +175,9 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 		}
 		if(UMLElementTypes.AddStructuralFeatureValueAction_3091 == req.getElementType()) {
 			return getGEFWrapper(new AddStructuralFeatureValueActionCreateCommand(req));
+		}
+		if(UMLElementTypes.DestroyObjectAction_3095 == req.getElementType()) {
+			return getGEFWrapper(new DestroyObjectActionCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

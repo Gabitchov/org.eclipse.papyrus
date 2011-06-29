@@ -44,7 +44,7 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	protected UMLOCLFactory() {
-		this.expressions = new UMLAbstractExpression[72];
+		this.expressions = new UMLAbstractExpression[74];
 	}
 
 	/**
@@ -90,6 +90,7 @@ public class UMLOCLFactory {
 			"\' \'", //$NON-NLS-1$
 			"if self.owner.oclIsKindOf(AddStructuralFeatureValueAction)\r\nthen self.owner.oclAsType(AddStructuralFeatureValueAction).object->includes(self)\r\nelse false endif", //$NON-NLS-1$
 			"if self.owner.oclIsKindOf(AddStructuralFeatureValueAction)\r\nthen self.owner.oclAsType(AddStructuralFeatureValueAction).value->includes(self)\r\nelse false endif", //$NON-NLS-1$
+			"if self.owner.oclIsKindOf(DestroyObjectAction)\r\nthen self.owner.oclAsType(DestroyObjectAction).target->includes(self)\r\nelse false endif", //$NON-NLS-1$
 			"self.incoming->isEmpty()", //$NON-NLS-1$
 			"not self.source.oclIsKindOf(InitialNode)", //$NON-NLS-1$
 			"self.outgoing->isEmpty()", //$NON-NLS-1$
@@ -131,6 +132,7 @@ public class UMLOCLFactory {
 			"result->notEmpty() implies self.result.type = self.object.type", //$NON-NLS-1$
 			"self.value -> notEmpty()", //$NON-NLS-1$
 			"self.structuralFeature.featuringClassifier->size() = 1", //$NON-NLS-1$
+			"self.target.type->size() = 0", //$NON-NLS-1$
 			};
 			cached.expressions[index] = getExpression(exprBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
 		}

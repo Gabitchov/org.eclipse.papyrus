@@ -671,6 +671,12 @@ NamedElementEditPart {
 		if(targetEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof DestroyObjectActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInDestroyObjectActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -860,6 +866,12 @@ NamedElementEditPart {
 		if(targetEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof DestroyObjectActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInDestroyObjectActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		if(targetEditPart instanceof ValuePinInOpaqueActEditPart) {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
@@ -980,6 +992,9 @@ NamedElementEditPart {
 		if(targetEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart) {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
+		if(targetEditPart instanceof InputPinInDestroyObjectActionEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
 		return types;
 	}
 
@@ -1070,6 +1085,8 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InputPin_3092);
 			types.add(UMLElementTypes.InputPin_3093);
 			types.add(UMLElementTypes.OutputPin_3094);
+			types.add(UMLElementTypes.DestroyObjectAction_3095);
+			types.add(UMLElementTypes.InputPin_3096);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1134,6 +1151,8 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InputPin_3092);
 			types.add(UMLElementTypes.InputPin_3093);
 			types.add(UMLElementTypes.OutputPin_3094);
+			types.add(UMLElementTypes.DestroyObjectAction_3095);
+			types.add(UMLElementTypes.InputPin_3096);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.ValuePin_3015);
 			types.add(UMLElementTypes.ActionInputPin_3016);
@@ -1175,6 +1194,7 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InputPin_3092);
 			types.add(UMLElementTypes.InputPin_3093);
 			types.add(UMLElementTypes.OutputPin_3094);
+			types.add(UMLElementTypes.InputPin_3096);
 		}
 		return types;
 	}
@@ -1259,6 +1279,8 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InputPin_3092);
 			types.add(UMLElementTypes.InputPin_3093);
 			types.add(UMLElementTypes.OutputPin_3094);
+			types.add(UMLElementTypes.DestroyObjectAction_3095);
+			types.add(UMLElementTypes.InputPin_3096);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1323,6 +1345,8 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InputPin_3092);
 			types.add(UMLElementTypes.InputPin_3093);
 			types.add(UMLElementTypes.OutputPin_3094);
+			types.add(UMLElementTypes.DestroyObjectAction_3095);
+			types.add(UMLElementTypes.InputPin_3096);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
 			types.add(UMLElementTypes.Comment_3080);
 		}
