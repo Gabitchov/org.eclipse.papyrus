@@ -13,19 +13,29 @@ package org.eclipse.papyrus.properties.uml.util;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
 import org.eclipse.papyrus.properties.util.EMFHelper;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEvent;
+import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.Type;
 
 /**
  * A Helper class for UML
@@ -130,8 +140,9 @@ public class UMLUtil {
 	 */
 	public static Stereotype getAppliedStereotype(Element umlElement, String stereotypeName, boolean strict) {
 		Stereotype stereotype = umlElement.getAppliedStereotype(stereotypeName);
-		if(strict || stereotype != null)
+		if(strict || stereotype != null) {
 			return stereotype;
+		}
 
 		stereotype = umlElement.getApplicableStereotype(stereotypeName);
 		if(stereotype == null) {
@@ -149,8 +160,9 @@ public class UMLUtil {
 
 	public static Collection<Stereotype> getAllSuperStereotypes(Stereotype stereotype) {
 		Set<Stereotype> result = new HashSet<Stereotype>();
-		if(stereotype != null)
+		if(stereotype != null) {
 			getAllSuperStereotypes(stereotype, result);
+		}
 		return result;
 	}
 
@@ -161,6 +173,77 @@ public class UMLUtil {
 				getAllSuperStereotypes((Stereotype)superClassifier, result);
 			}
 		}
+	}
+
+	public static org.eclipse.uml2.uml.Class getContextClassForMessage(Message message) {
+		MessageOccurrenceSpecification receiveEvent = (MessageOccurrenceSpecification)message.getReceiveEvent();
+
+		if(receiveEvent == null) {
+			return null;
+		}
+
+		return getContextClassForMessageOccurrence(receiveEvent);
+	}
+
+	public static org.eclipse.uml2.uml.Class getContextClassForMessageOccurrence(MessageOccurrenceSpecification messageOccurrence) {
+		List<Lifeline> lifelines = messageOccurrence.getCovereds();
+		if(lifelines.isEmpty()) {
+			return null; //We can't find the context
+		} else if(lifelines.size() == 1) {
+			Lifeline lifeline = lifelines.get(0);
+			ConnectableElement element = lifeline.getRepresents();
+			if(element == null) {
+				return null;
+			}
+			Type type = element.getType();
+			if(type instanceof org.eclipse.uml2.uml.Class) {
+				org.eclipse.uml2.uml.Class clazz = (org.eclipse.uml2.uml.Class)type;
+				return clazz;
+			} else {
+				return null; //The type is not a Class
+			}
+		} else {
+			return null; //Too many contexts : which one should we choose ?
+		}
+	}
+
+	public static Class getContextClassForMessageEvent(MessageEvent event) {
+		Collection<EStructuralFeature.Setting> settings = PapyrusEcoreUtils.getUsages(event);
+		if(settings.isEmpty()) {
+			return null;
+		}
+
+		if(settings.size() == 1) {
+			EObject referer = settings.iterator().next().getEObject();
+			if(referer instanceof MessageOccurrenceSpecification) {
+				return UMLUtil.getContextClassForMessageOccurrence((MessageOccurrenceSpecification)referer);
+			} else {
+				return null;
+			}
+		}
+
+		MessageOccurrenceSpecification referer = null;
+		EObject newReferer = null;
+
+		for(EStructuralFeature.Setting setting : settings) {
+			newReferer = setting.getEObject();
+			if(!(newReferer instanceof MessageOccurrenceSpecification)) {
+				continue;
+			}
+
+			if(referer == null || referer == newReferer) {
+				referer = (MessageOccurrenceSpecification)newReferer;
+			} else {
+				referer = null;
+				break;
+			}
+		}
+
+		if(referer == null) {
+			return null;
+		}
+
+		return UMLUtil.getContextClassForMessageOccurrence(referer);
 	}
 
 	private static EPackage umlMetamodel = EPackage.Registry.INSTANCE.getEPackage("http://www.eclipse.org/uml2/3.0.0/UML"); //$NON-NLS-1$

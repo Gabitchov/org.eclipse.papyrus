@@ -193,9 +193,9 @@ public class ReferenceCombo extends AbstractValueEditor implements SelectionList
 
 	protected void unsetAction() {
 		viewer.setSelection(StructuredSelection.EMPTY);
-		//		if (modelProperty != null){
-		//			modelProperty.setValue(null);
-		//		}
+		if(modelProperty != null) {
+			modelProperty.setValue(null);
+		}
 	}
 
 	public void widgetSelected(SelectionEvent e) {

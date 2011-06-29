@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Camille Letavernier (camille.letavernier@cea.fr) - Loosen the MessageSortChange restriction
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.util;
@@ -46,7 +47,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
-import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -869,14 +869,22 @@ public class SequenceUtil {
 	}
 
 	public static void handleMessageSortChange(EditingDomain editingDomain, Notification notification, Message message, MessageSort expectedMessageSort) {
+		//This restriction isn't needed anymore, as the Property View offers a refactoring 
+		//facility for the MessageSort. The refactoring is only available for AsynchCall to 
+		//AsynchSignal and vice-versa.
+		//However, the modification of the MessageSort from the "Advanced" property view should still be forbidden.
+
 		Object feature = notification.getFeature();
 
 		if(UMLPackage.eINSTANCE.getMessage_MessageSort().equals(feature) && !expectedMessageSort.equals(notification.getNewValue())) {
 			Object oldValue = notification.getOldValue();
+			Object newValue = notification.getNewValue();
 			if(oldValue instanceof MessageSort) {
-				MessageDialog.openWarning(Display.getCurrent().getActiveShell(), BLOCK_SORT_MODIFICATION_TITLE, BLOCK_SORT_MODIFICATION_MSG);
-				CommandHelper.executeCommandWithoutHistory(editingDomain, SetCommand.create(editingDomain, message, feature, notification.getOldValue()));
-				return;
+				if(!((oldValue == MessageSort.ASYNCH_CALL_LITERAL && newValue == MessageSort.ASYNCH_SIGNAL_LITERAL) || (oldValue == MessageSort.ASYNCH_SIGNAL_LITERAL && newValue == MessageSort.ASYNCH_CALL_LITERAL))) {
+					MessageDialog.openWarning(Display.getCurrent().getActiveShell(), BLOCK_SORT_MODIFICATION_TITLE, BLOCK_SORT_MODIFICATION_MSG);
+					CommandHelper.executeCommandWithoutHistory(editingDomain, SetCommand.create(editingDomain, message, feature, notification.getOldValue()));
+					return;
+				}
 			}
 		}
 	}

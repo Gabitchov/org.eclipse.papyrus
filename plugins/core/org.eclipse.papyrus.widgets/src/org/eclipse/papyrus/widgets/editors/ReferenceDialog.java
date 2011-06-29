@@ -60,7 +60,7 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	/**
 	 * The Button used to browse the available values
 	 */
-	protected Button browseValuesButton; 
+	protected Button browseValuesButton;
 
 	/**
 	 * The Button used to create a new instance
@@ -172,8 +172,8 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	}
 
 	/**
-	 * The action executed when the "browse" button is selected Choose a value
-	 * from a selection of already created objects
+	 * The action executed when the "browse" button is selected
+	 * Choose a value from a selection of already created objects
 	 */
 	protected void browseAction() {
 		setInitialSelection(Collections.singletonList(getValue()));
@@ -213,7 +213,7 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 		if(currentValue != null && valueFactory != null && valueFactory.canEdit()) {
 			Object newValue = valueFactory.edit(editInstanceButton, modelProperty.getValue());
 			if(newValue != currentValue) {
-				modelProperty.setValue(value);
+				modelProperty.setValue(newValue);
 			}
 			updateLabel();
 		}
@@ -299,6 +299,9 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	 */
 	@Override
 	public Object getValue() {
+		if(modelProperty != null) {
+			return modelProperty.getValue();
+		}
 		return value;
 	}
 
