@@ -58,7 +58,7 @@ public class DiagramSemanticEditPolicy extends DefaultSemanticEditPolicy {
 	protected Command getReorientRefRelationshipTargetCommand(ReconnectRequest request) {
 		return UnexecutableCommand.INSTANCE;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
