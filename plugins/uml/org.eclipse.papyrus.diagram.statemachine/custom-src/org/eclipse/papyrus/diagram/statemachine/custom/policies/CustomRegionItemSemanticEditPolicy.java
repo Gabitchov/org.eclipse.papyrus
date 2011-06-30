@@ -62,7 +62,7 @@ public class CustomRegionItemSemanticEditPolicy extends RegionItemSemanticEditPo
 		View compartmentView = (View)view.eContainer();
 		// get and adaptable for it, to pass on to commands
 		IAdaptable adaptableForCompartmentView = (IAdaptable)new SemanticAdapter(null, compartmentView);
-		if(compartmentView.getChildren().size() == 1){
+		if(compartmentView.getChildren().size() == 1) {
 			SetPropertyCommand showCompartment = new SetPropertyCommand(getEditingDomain(), adaptableForCompartmentView, "notation.View.visible", "Visibility", false);
 			cmd.compose(showCompartment);
 		}

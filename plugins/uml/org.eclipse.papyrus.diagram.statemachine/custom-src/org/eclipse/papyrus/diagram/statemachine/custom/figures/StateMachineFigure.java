@@ -65,44 +65,41 @@ public class StateMachineFigure extends CompartmentFigure {
 		if(isUsingGradient()) {
 			applyTransparency(graphics);
 			boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
-			if(isVertical && rectangle.height>((3*arcwidth)/2)){
-				Rectangle rect1= new Rectangle(rectangle.getLocation(),new Dimension(rectangle.width,arcwidth));
-				Rectangle rect2= new Rectangle(rectangle.x,rectangle.y+rectangle.height-arcwidth,rectangle.width,arcwidth);;
+			if(isVertical && rectangle.height > ((3 * arcwidth) / 2)) {
+				Rectangle rect1 = new Rectangle(rectangle.getLocation(), new Dimension(rectangle.width, arcwidth));
+				Rectangle rect2 = new Rectangle(rectangle.x, rectangle.y + rectangle.height - arcwidth, rectangle.width, arcwidth);;
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-				graphics.fillRoundRectangle(rect1,arcwidth,arcwidth);
+				graphics.fillRoundRectangle(rect1, arcwidth, arcwidth);
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
-				graphics.fillRoundRectangle(rect2,arcwidth,arcwidth);
+				graphics.fillRoundRectangle(rect2, arcwidth, arcwidth);
 
 
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
 				graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-				Rectangle rect= new Rectangle(rectangle.x,rectangle.y+arcwidth/2,rectangle.width,rectangle.height-arcwidth);
+				Rectangle rect = new Rectangle(rectangle.x, rectangle.y + arcwidth / 2, rectangle.width, rectangle.height - arcwidth);
 				graphics.fillGradient(rect, true);
-			}
-			else if(!isVertical && rectangle.width>((3*arcwidth)/2)){
-				Rectangle rect1= new Rectangle(rectangle.getLocation(),new Dimension(arcwidth,rectangle.height));
-				Rectangle rect2= new Rectangle(rectangle.x+rectangle.width-arcwidth,rectangle.y,arcwidth,rectangle.height);
+			} else if(!isVertical && rectangle.width > ((3 * arcwidth) / 2)) {
+				Rectangle rect1 = new Rectangle(rectangle.getLocation(), new Dimension(arcwidth, rectangle.height));
+				Rectangle rect2 = new Rectangle(rectangle.x + rectangle.width - arcwidth, rectangle.y, arcwidth, rectangle.height);
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-				graphics.fillRoundRectangle(rect1,arcwidth,arcwidth);
+				graphics.fillRoundRectangle(rect1, arcwidth, arcwidth);
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
-				graphics.fillRoundRectangle(rect2,arcwidth,arcwidth);
+				graphics.fillRoundRectangle(rect2, arcwidth, arcwidth);
 
 
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
 				graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-				Rectangle rect= new Rectangle(rectangle.x+arcwidth/2, rectangle.y,rectangle.width-arcwidth,rectangle.height);
+				Rectangle rect = new Rectangle(rectangle.x + arcwidth / 2, rectangle.y, rectangle.width - arcwidth, rectangle.height);
 				graphics.fillGradient(rect, false);
-			}
-			else{
+			} else {
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
 				graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-				graphics.fillRoundRectangle(rectangle,arcwidth,arcwidth);
+				graphics.fillRoundRectangle(rectangle, arcwidth, arcwidth);
 			}
-		}
-		else {
+		} else {
 			graphics.setBackgroundColor(getBackgroundColor());
 			graphics.setForegroundColor(getForegroundColor());
-			graphics.fillRoundRectangle(rectangle,arcwidth,arcwidth);
+			graphics.fillRoundRectangle(rectangle, arcwidth, arcwidth);
 		}
 	}
 

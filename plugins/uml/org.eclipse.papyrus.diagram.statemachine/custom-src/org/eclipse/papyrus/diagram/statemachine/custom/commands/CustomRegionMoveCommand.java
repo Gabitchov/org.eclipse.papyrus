@@ -17,7 +17,7 @@ import org.eclipse.papyrus.diagram.statemachine.custom.helpers.Zone;
 
 public class CustomRegionMoveCommand extends AbstractTransactionalCommand {
 
-	
+
 	IAdaptable adaptableForTargetRegion;
 
 	IAdaptable adaptableForRegionToMove;
@@ -55,10 +55,10 @@ public class CustomRegionMoveCommand extends AbstractTransactionalCommand {
 		View targetRegion = (View)adaptableForTargetRegion.getAdapter(View.class);
 		// adapt the view of the dropped region
 		View regionToMove = (View)adaptableForRegionToMove.getAdapter(View.class);
-		
+
 		// manage the fake removal of regionToMove
 		View compartment = (View)regionToMove.eContainer();
-		if(compartment.getChildren().size() != 1){
+		if(compartment.getChildren().size() != 1) {
 			int regionWidth = Zone.getWidth(regionToMove);
 			int regionHeight = Zone.getHeight(regionToMove);
 
@@ -115,12 +115,12 @@ public class CustomRegionMoveCommand extends AbstractTransactionalCommand {
 					Zone.setHeight(view, height);
 				}
 			}
-			
+
 			// set the zone accordingly
 			// get its counterpart
 			Zone.resetRegionCounterpartZone(regionToMove);
 		}
-		
+
 		// now perform the move
 		// get targetRegion bounds (i.e. the space which needs to be divided)
 		int height = Zone.getHeight(targetRegion);
@@ -209,7 +209,7 @@ public class CustomRegionMoveCommand extends AbstractTransactionalCommand {
 			Zone.setY(regionToMove, y);
 		}
 		viewDescriptor.setView(regionToMove);
-		
+
 		return CommandResult.newOKCommandResult();
 	}
 }

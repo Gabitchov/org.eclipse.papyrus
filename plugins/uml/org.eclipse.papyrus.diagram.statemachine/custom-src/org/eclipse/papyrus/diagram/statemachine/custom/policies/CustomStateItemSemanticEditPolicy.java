@@ -10,15 +10,16 @@ import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
 
 
 public class CustomStateItemSemanticEditPolicy extends StateItemSemanticEditPolicy {
+
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Pseudostate_16000 == req.getElementType()) {
+		if(UMLElementTypes.Pseudostate_16000 == req.getElementType()) {
 			return getGEFWrapper(new CustomPseudostateEntryPointCreateCommand(req));
 		}
-		if (UMLElementTypes.Pseudostate_17000 == req.getElementType()) {
+		if(UMLElementTypes.Pseudostate_17000 == req.getElementType()) {
 			return getGEFWrapper(new CustomPseudostateExitPointCreateCommand(req));
 		}
-		if (UMLElementTypes.ConnectionPointReference_18000 == req.getElementType()) {
+		if(UMLElementTypes.ConnectionPointReference_18000 == req.getElementType()) {
 			return getGEFWrapper(new CustomConnectionPointReferenceCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

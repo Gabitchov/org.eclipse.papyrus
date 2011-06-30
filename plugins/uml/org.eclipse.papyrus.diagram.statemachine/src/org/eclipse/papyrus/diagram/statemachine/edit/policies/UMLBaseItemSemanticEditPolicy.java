@@ -35,9 +35,6 @@ import org.eclipse.papyrus.diagram.statemachine.edit.helpers.UMLBaseEditHelper;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
-import org.eclipse.papyrus.extendedtypes.types.IExtendedHintedElementType;
-import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
-import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Region;
@@ -99,6 +96,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
 
 	/**
+	 * Extended request data key to hold the edge view during a reconnect request.
+	 * 
+	 * @generated
+	 */
+	public static final String GRAPHICAL_RECONNECTED_EDGE = "graphical_edge"; //$NON-NLS-1$
+
+	/**
 	 * @generated
 	 */
 	public static LinkConstraints getLinkConstraints() {
@@ -154,12 +158,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * 
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public Command getCommand(Request request) {
 		if(request instanceof ReconnectRequest) {
 			Object view = ((ReconnectRequest)request).getConnectionEditPart().getModel();
 			if(view instanceof View) {
 				Integer id = new Integer(UMLVisualIDRegistry.getVisualID((View)view));
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
+				request.getExtendedData().put(GRAPHICAL_RECONNECTED_EDGE, (View)view);
 			}
 		}
 		return super.getCommand(request);
@@ -184,18 +190,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		// check if the type is an extended type, and then create directly the element...
-		IElementType type = req.getElementType();
-		if(type instanceof IExtendedHintedElementType) {
-			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getContainer());
-			if(provider == null) {
-				return UnexecutableCommand.INSTANCE;
-			}
-			// Retrieve create command from the Element Edit service
-			ICommand createGMFCommand = provider.getEditCommand(req);
-
-			return getGEFWrapper(createGMFCommand);
-		}
 		return null;
 	}
 

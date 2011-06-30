@@ -64,13 +64,28 @@ public class CustomFirstRegionInCompositeStateCreateElementCommand extends Abstr
 	@Override
 	public boolean canExecute() {
 		View compartment = (View)adaptable.getAdapter(View.class);
-		if(compartment.getChildren().isEmpty()){
+		if(compartment.getChildren().isEmpty()) {
 			View owner = (View)compartment.eContainer();
 			State state = (State)owner.getElement();
 			if(state.getSubmachine() == null)
 				return true;
 			return false;
 		}
+		// CHECK THIS		
+		//		else{
+		//			ENamedElement namedElement =  PackageUtil.getElement("notation.View.visible");
+		//			if(ViewUtil.getStructuralFeatureValue(compartment, (EStructuralFeature)namedElement).equals(new Boolean(false))){
+		//				SetPropertyCommand showCompartment = new SetPropertyCommand(getEditingDomain(), adaptable, "notation.View.visible", "Visibility", true);
+		//				showCompartment.setOptions(Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
+		//
+		//				try {
+		//					showCompartment.execute(null, null);
+		//				} catch (ExecutionException e) {
+		//				}				
+		//
+		//			}
+		//			return false;
+		//		}
 		return false;
 	}
 
@@ -94,6 +109,15 @@ public class CustomFirstRegionInCompositeStateCreateElementCommand extends Abstr
 		// get state bounds
 		int height = Zone.getHeight(ownerView);
 		int width = Zone.getWidth(ownerView);
+		if(height < Zone.defaultHeight) {
+			height = Zone.defaultHeight;
+			Zone.setHeight(ownerView, height);
+		}
+		if(width < Zone.defaultWidth) {
+			width = Zone.defaultWidth;
+			Zone.setWidth(ownerView, width);
+		}
+
 
 		if(adaptableForDropped == null) {
 			Region umlRegion = UMLFactory.eINSTANCE.createRegion();
@@ -129,8 +153,7 @@ public class CustomFirstRegionInCompositeStateCreateElementCommand extends Abstr
 			if(UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateNameEditPart.VISUAL_ID) {
 				Zone.setWidth(currentNode, width);
 				Zone.setHeight(currentNode, Zone.defaultHeader);
-			} 
-			else if(UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateCompartmentEditPart.VISUAL_ID) {
+			} else if(UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateCompartmentEditPart.VISUAL_ID) {
 				Zone.setY(currentNode, Zone.defaultHeader);
 				Zone.setWidth(currentNode, width);
 				Zone.setHeight(currentNode, height - Zone.defaultHeader);

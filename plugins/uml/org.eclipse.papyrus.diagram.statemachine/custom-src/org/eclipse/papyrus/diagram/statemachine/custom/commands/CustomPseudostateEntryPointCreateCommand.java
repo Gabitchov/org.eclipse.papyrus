@@ -31,13 +31,13 @@ public class CustomPseudostateEntryPointCreateCommand extends PseudostateEntryPo
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		Pseudostate newElement = UMLFactory.eINSTANCE.createPseudostate();
 
-		State owner = (State) getElementToEdit();
+		State owner = (State)getElementToEdit();
 		owner.getConnectionPoints().add(newElement);
 		ElementInitializers.getInstance().init_Pseudostate_16000(newElement);
 
 		doConfigure(newElement, monitor, info);
 
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 }

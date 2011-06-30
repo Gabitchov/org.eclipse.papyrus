@@ -25,10 +25,10 @@ public class ConnectionPointReferenceCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static ConnectionPointReferenceCreateCommand create(
-			CreateElementRequest req, EObject eObject) {
+	public static ConnectionPointReferenceCreateCommand create(CreateElementRequest req, EObject eObject) {
 		return new ConnectionPointReferenceCreateCommand(req, eObject);
 	}
+
 	/**
 	 * @generated
 	 */
@@ -49,8 +49,7 @@ public class ConnectionPointReferenceCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ConnectionPointReferenceCreateCommand(CreateElementRequest req,
-			EObject eObject) {
+	public ConnectionPointReferenceCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -68,19 +67,13 @@ public class ConnectionPointReferenceCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(ConnectionPointReference newElement,
-			IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest())
-				.getElementType();
-		ConfigureRequest configureRequest = new ConfigureRequest(
-				getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest())
-				.getClientContext());
+	protected void doConfigure(ConnectionPointReference newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		ICommand configureCommand = elementType
-				.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		ICommand configureCommand = elementType.getEditCommand(configureRequest);
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
@@ -88,36 +81,33 @@ public class ConnectionPointReferenceCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		ConnectionPointReference newElement = UMLFactory.eINSTANCE
-				.createConnectionPointReference();
+		ConnectionPointReference newElement = UMLFactory.eINSTANCE.createConnectionPointReference();
 
-		State owner = (State) getElementToEdit();
+		State owner = (State)getElementToEdit();
 		owner.getConnections().add(newElement);
 
-		ElementInitializers.getInstance().init_ConnectionPointReference_18000(
-				newElement);
+		ElementInitializers.getInstance().init_ConnectionPointReference_18000(newElement);
 
 		doConfigure(newElement, monitor, info);
 
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
 	/**
 	 * FIXME: replace with setElementToEdit()
+	 * 
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest())
-				.getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
+		EObject container = ((CreateElementRequest)getRequest()).getContainer();
+		if(container instanceof View) {
+			container = ((View)container).getElement();
 		}
-		if (container != null) {
+		if(container != null) {
 			return container;
 		}
 		return eObject;

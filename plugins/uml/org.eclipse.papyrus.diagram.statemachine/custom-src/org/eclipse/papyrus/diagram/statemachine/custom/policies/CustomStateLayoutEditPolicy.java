@@ -67,12 +67,10 @@ public class CustomStateLayoutEditPolicy extends LayoutEditPolicy {
 		if(request instanceof CreateViewAndElementRequest) {
 
 			CreateViewAndElementRequest req = (CreateViewAndElementRequest)request;
-			
-			if(req.getViewAndElementDescriptor().getSemanticHint().equals(((IHintedType)UMLElementTypes.Pseudostate_16000).getSemanticHint()) 
-				|| req.getViewAndElementDescriptor().getSemanticHint().equals(((IHintedType)UMLElementTypes.Pseudostate_17000).getSemanticHint())
-				|| req.getViewAndElementDescriptor().getSemanticHint().equals(((IHintedType)UMLElementTypes.ConnectionPointReference_18000).getSemanticHint())){
-						
-		
+
+			if(req.getViewAndElementDescriptor().getSemanticHint().equals(((IHintedType)UMLElementTypes.Pseudostate_16000).getSemanticHint()) || req.getViewAndElementDescriptor().getSemanticHint().equals(((IHintedType)UMLElementTypes.Pseudostate_17000).getSemanticHint()) || req.getViewAndElementDescriptor().getSemanticHint().equals(((IHintedType)UMLElementTypes.ConnectionPointReference_18000).getSemanticHint())) {
+
+
 				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 
 				CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain, DiagramUIMessages.AddCommand_Label);

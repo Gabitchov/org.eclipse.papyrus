@@ -87,7 +87,7 @@ public class ConnectionPointReferenceFigure extends AffixedNamedElementFigure {
 		r.shrink(1, 1);
 		graphics.fillOval(r);
 
-		if (kind == 0) {
+		if(kind == 0) {
 
 			r.x += r.width / 4;
 			r.y += r.height / 7;
@@ -104,11 +104,11 @@ public class ConnectionPointReferenceFigure extends AffixedNamedElementFigure {
 
 			r.x -= r.width / 4 - 1;
 			r.y += 0.75 * r.height;
-			r.width = Math.max((int) r.width / 2, 2);
-			r.height = Math.max((int) r.height / 2, 2);
+			r.width = Math.max((int)r.width / 2, 2);
+			r.height = Math.max((int)r.height / 2, 2);
 			graphics.fillOval(r);
-		} else{
-			if (kind == 2) {
+		} else {
+			if(kind == 2) {
 				// intersection coordinates.
 				int x = (int)(bounds.width / (2 * Math.sqrt(2)));
 				int y = (int)(bounds.height / (2 * Math.sqrt(2)));

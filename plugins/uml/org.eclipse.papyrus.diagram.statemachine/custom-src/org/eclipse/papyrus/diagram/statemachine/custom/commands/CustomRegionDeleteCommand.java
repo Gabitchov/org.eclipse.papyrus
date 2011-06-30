@@ -27,7 +27,7 @@ public class CustomRegionDeleteCommand extends DeleteCommand {
 	@Override
 	public boolean canExecute() {
 		View compartment = (View)getView().eContainer();
-		if(compartment.getElement() instanceof StateMachine){
+		if(compartment.getElement() instanceof StateMachine) {
 			if(compartment.getChildren().size() != 1)
 				return true;
 			return false;
@@ -45,7 +45,7 @@ public class CustomRegionDeleteCommand extends DeleteCommand {
 		// get the region to delete
 		View region = getView();
 		View compartment = (View)region.eContainer();
-		if(compartment.getChildren().size() != 1){
+		if(compartment.getChildren().size() != 1) {
 			int regionWidth = Zone.getWidth(region);
 			int regionHeight = Zone.getHeight(region);
 

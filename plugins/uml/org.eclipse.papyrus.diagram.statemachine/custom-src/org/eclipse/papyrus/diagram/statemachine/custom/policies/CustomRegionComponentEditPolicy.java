@@ -30,11 +30,11 @@ public class CustomRegionComponentEditPolicy extends ComponentEditPolicy {
 		List toDel = deleteRequest.getEditParts();
 		if(toDel == null || toDel.isEmpty()) {
 			cc.compose(new CustomRegionDeleteCommand(editingDomain, (View)getHost().getModel()));
-			
+
 			View compartmentView = (View)((View)getHost().getModel()).eContainer();
 			// get and adaptable for it, to pass on to commands
 			IAdaptable adaptableForCompartmentView = (IAdaptable)new SemanticAdapter(null, compartmentView);
-			if(compartmentView.getChildren().size() == 1){
+			if(compartmentView.getChildren().size() == 1) {
 				SetPropertyCommand showCompartment = new SetPropertyCommand(editingDomain, adaptableForCompartmentView, "notation.View.visible", "Visibility", false);
 				cc.compose(showCompartment);
 			}
@@ -45,7 +45,7 @@ public class CustomRegionComponentEditPolicy extends ComponentEditPolicy {
 				View compartmentView = (View)((View)getHost().getModel()).eContainer();
 				// get and adaptable for it, to pass on to commands
 				IAdaptable adaptableForCompartmentView = (IAdaptable)new SemanticAdapter(null, compartmentView);
-				if(compartmentView.getChildren().size() == toDel.size()){
+				if(compartmentView.getChildren().size() == toDel.size()) {
 					SetPropertyCommand showCompartment = new SetPropertyCommand(editingDomain, adaptableForCompartmentView, "notation.View.visible", "Visibility", false);
 					cc.compose(showCompartment);
 				}

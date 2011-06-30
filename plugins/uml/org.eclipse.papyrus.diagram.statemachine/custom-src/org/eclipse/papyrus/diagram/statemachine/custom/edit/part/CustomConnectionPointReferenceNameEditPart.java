@@ -23,33 +23,30 @@ public class CustomConnectionPointReferenceNameEditPart extends ConnectionPointR
 		refreshVisuals();
 	}
 
-	public String getLinks(ConnectionPointReference ref){
-		String label = "" ;
-		if (!ref.getEntries().isEmpty()) {
-			boolean first = true ;
-			for (Pseudostate p : ref.getEntries()) {
-				if (!first) {
-					label += ", " ;
+	public String getLinks(ConnectionPointReference ref) {
+		String label = "";
+		if(!ref.getEntries().isEmpty()) {
+			boolean first = true;
+			for(Pseudostate p : ref.getEntries()) {
+				if(!first) {
+					label += ", ";
+				} else {
+					first = false;
 				}
-				else {
-					first = false ;
+				label += p.getName();
+			}
+		} else if(!ref.getExits().isEmpty()) {
+			boolean first = true;
+			for(Pseudostate p : ref.getExits()) {
+				if(!first) {
+					label += ", ";
+				} else {
+					first = false;
 				}
-				label += p.getName() ;
+				label += p.getName();
 			}
 		}
-		else if (!ref.getExits().isEmpty()) {
-			boolean first = true ;
-			for (Pseudostate p : ref.getExits()) {
-				if (!first) {
-					label += ", " ;
-				}
-				else {
-					first = false ;
-				}
-				label += p.getName() ;
-			}
-		}
-		return label ;
+		return label;
 	}
 
 	@Override
@@ -60,15 +57,14 @@ public class CustomConnectionPointReferenceNameEditPart extends ConnectionPointR
 		ConnectionPointReferenceFigure connPtRefFigure = ((ConnectionPointReferenceEditPart)getParent()).getPrimaryShape();
 		ConnectionPointReference connPtRef = (ConnectionPointReference)((View)getModel()).getElement();
 
-		if (connPtRef.getEntries().isEmpty() && connPtRef.getExits().isEmpty())
+		if(connPtRef.getEntries().isEmpty() && connPtRef.getExits().isEmpty())
 			connPtRefFigure.setKind(0);
-		else{
+		else {
 			setLabelText(getLinks(connPtRef));
-			if (!connPtRef.getEntries().isEmpty()){
+			if(!connPtRef.getEntries().isEmpty()) {
 				connPtRefFigure.setKind(1);
 
-			}
-			else if (!connPtRef.getExits().isEmpty()){
+			} else if(!connPtRef.getExits().isEmpty()) {
 				connPtRefFigure.setKind(2);
 			}
 		}
