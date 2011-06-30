@@ -52,8 +52,8 @@ public class RegionFigure extends CompartmentFigure {
 		super(COMPARTMENT, tagLabel);
 		((AutomaticCompartmentLayoutManager)getLayoutManager()).setAddExtraHeight(false);
 		setBorder(null);
-		
-		
+
+
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class RegionFigure extends CompartmentFigure {
 			graphics.setLineWidth(SWT.BOLD);
 
 			graphics.drawLine(rect.x - 2, rect.y + rect.height - 1, rect.x - 2 + rect.width, rect.y + rect.height - 1);
-		}		
+		}
 	}
 
 	/**

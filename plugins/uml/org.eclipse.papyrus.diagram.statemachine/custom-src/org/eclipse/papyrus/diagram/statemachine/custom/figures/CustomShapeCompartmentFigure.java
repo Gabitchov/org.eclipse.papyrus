@@ -20,5 +20,7 @@ public class CustomShapeCompartmentFigure extends ShapeCompartmentFigure {
 		super.configureFigure(mm);
 		scrollPane.setScrollBarVisibility(ScrollPane.NEVER);
 		scrollPane.setBorder(null);
+		setBorder(null);
 	}
+
 }

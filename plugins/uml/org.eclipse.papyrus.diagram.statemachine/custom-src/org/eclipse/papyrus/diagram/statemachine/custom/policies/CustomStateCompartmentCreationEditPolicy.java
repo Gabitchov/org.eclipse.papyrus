@@ -110,84 +110,84 @@ public class CustomStateCompartmentCreationEditPolicy extends CreationEditPolicy
 
 		return super.getTargetEditPart(request);
 	}
-//	@Override
-//	public void eraseTargetFeedback(Request request) {
-//		if(sizeOnDropFeedback != null) {
-//			LayerManager.Helper.find(getHost()).getLayer(LayerConstants.FEEDBACK_LAYER).remove(sizeOnDropFeedback);
-//			sizeOnDropFeedback = null;
-//		}
-//	}
+	//	@Override
+	//	public void eraseTargetFeedback(Request request) {
+	//		if(sizeOnDropFeedback != null) {
+	//			LayerManager.Helper.find(getHost()).getLayer(LayerConstants.FEEDBACK_LAYER).remove(sizeOnDropFeedback);
+	//			sizeOnDropFeedback = null;
+	//		}
+	//	}
 
-//	protected IFigure getSizeOnDropFeedback() {
-//		if(sizeOnDropFeedback == null) {
-//			sizeOnDropFeedback = new RectangleFigure();
-//			FigureUtilities.makeGhostShape((Shape)sizeOnDropFeedback);
-//			((Shape)sizeOnDropFeedback).setLineStyle(Graphics.LINE_DASHDOT);
-//			sizeOnDropFeedback.setForegroundColor(ColorConstants.white);
-//			LayerManager.Helper.find(getHost()).getLayer(LayerConstants.FEEDBACK_LAYER).add(sizeOnDropFeedback);
-//		}
-//		return sizeOnDropFeedback;
-//	}
+	//	protected IFigure getSizeOnDropFeedback() {
+	//		if(sizeOnDropFeedback == null) {
+	//			sizeOnDropFeedback = new RectangleFigure();
+	//			FigureUtilities.makeGhostShape((Shape)sizeOnDropFeedback);
+	//			((Shape)sizeOnDropFeedback).setLineStyle(Graphics.LINE_DASHDOT);
+	//			sizeOnDropFeedback.setForegroundColor(ColorConstants.white);
+	//			LayerManager.Helper.find(getHost()).getLayer(LayerConstants.FEEDBACK_LAYER).add(sizeOnDropFeedback);
+	//		}
+	//		return sizeOnDropFeedback;
+	//	}
 
-//	@Override
-//	public EditPart getTargetEditPart(Request request) {
-//
-//		if(request instanceof CreateUnspecifiedTypeRequest) {
-//			CreateUnspecifiedTypeRequest createUnspecifiedTypeRequest = (CreateUnspecifiedTypeRequest)request;
-//
-//			if(understandsRequest(request)) {
-//				List<?> elementTypes = createUnspecifiedTypeRequest.getElementTypes();
-//				// Treat the case where only one element type is listed
-//				// Only take EntryPoint or ExitPoint element type into account
-//				if((elementTypes.size() == 1) && (((IElementType)(elementTypes.get(0)) == UMLElementTypes.Pseudostate_16000) || ((IElementType)(elementTypes.get(0)) == UMLElementTypes.Pseudostate_17000))) {
-//					// If the target is a compartment replace by its grand parent edit part
-//					if((getHost() instanceof ShapeCompartmentEditPart)) {
-//						return getHost().getParent().getParent().getParent();
-//					}
-//				}
-//			}
-//		}
-//
-//		return super.getTargetEditPart(request);
-//	}
-//
-//	@Override
-//	public void showTargetFeedback(Request request) {
-//		if(request instanceof CreateUnspecifiedTypeRequest) {
-//			CreateUnspecifiedTypeRequest unspecReq = (CreateUnspecifiedTypeRequest)request;
-//			for(Iterator iter = unspecReq.getElementTypes().iterator(); iter.hasNext();) {
-//				IElementType elementType = (IElementType)iter.next();
-//				if(elementType.equals(UMLElementTypes.Region_3000)) {
-//					RegionFigure targetFig = ((RegionEditPart)getHost().getParent()).getPrimaryShape();
-//
-//					// make a local copy
-//					Rectangle targetFigBounds = targetFig.getBounds().getCopy();
-//					// transform the coordinates to absolute
-//					targetFig.translateToAbsolute(targetFigBounds);
-//					// retrieve mouse location
-//					Point mouseLocation = unspecReq.getLocation();
-//
-//					// get the drop location, i.e. RIGHT, LEFT, TOP, BOTTOM
-//					dropLocation = Zone.getZoneFromLocationInRectangleWithAbsoluteCoordinates(mouseLocation, targetFigBounds);
-//
-//					// perform corresponding change (scaling, translation) on
-//					// targetFigBounds
-//					// and updates the graph node drop location property
-//					if(Zone.isTop(dropLocation)) {
-//						targetFigBounds.setSize(targetFigBounds.getSize().scale(1.0, 0.5));
-//					} else if(Zone.isLeft(dropLocation)) {
-//						targetFigBounds.setSize(targetFigBounds.getSize().scale(0.5, 1.0));
-//					} else if(Zone.isRight(dropLocation)) {
-//						targetFigBounds.setSize(targetFigBounds.getSize().scale(0.5, 1.0));
-//						targetFigBounds.translate(targetFigBounds.width, 0);
-//					} else if(Zone.isBottom(dropLocation)) {
-//						targetFigBounds.setSize(targetFigBounds.getSize().scale(1.0, 0.5));
-//						targetFigBounds.translate(0, targetFigBounds.height);
-//					}
-//
-//					getSizeOnDropFeedback().setBounds(new PrecisionRectangle(targetFigBounds));
-//				}
-//			}
-//		}
-//	}
+	//	@Override
+	//	public EditPart getTargetEditPart(Request request) {
+	//
+	//		if(request instanceof CreateUnspecifiedTypeRequest) {
+	//			CreateUnspecifiedTypeRequest createUnspecifiedTypeRequest = (CreateUnspecifiedTypeRequest)request;
+	//
+	//			if(understandsRequest(request)) {
+	//				List<?> elementTypes = createUnspecifiedTypeRequest.getElementTypes();
+	//				// Treat the case where only one element type is listed
+	//				// Only take EntryPoint or ExitPoint element type into account
+	//				if((elementTypes.size() == 1) && (((IElementType)(elementTypes.get(0)) == UMLElementTypes.Pseudostate_16000) || ((IElementType)(elementTypes.get(0)) == UMLElementTypes.Pseudostate_17000))) {
+	//					// If the target is a compartment replace by its grand parent edit part
+	//					if((getHost() instanceof ShapeCompartmentEditPart)) {
+	//						return getHost().getParent().getParent().getParent();
+	//					}
+	//				}
+	//			}
+	//		}
+	//
+	//		return super.getTargetEditPart(request);
+	//	}
+	//
+	//	@Override
+	//	public void showTargetFeedback(Request request) {
+	//		if(request instanceof CreateUnspecifiedTypeRequest) {
+	//			CreateUnspecifiedTypeRequest unspecReq = (CreateUnspecifiedTypeRequest)request;
+	//			for(Iterator iter = unspecReq.getElementTypes().iterator(); iter.hasNext();) {
+	//				IElementType elementType = (IElementType)iter.next();
+	//				if(elementType.equals(UMLElementTypes.Region_3000)) {
+	//					RegionFigure targetFig = ((RegionEditPart)getHost().getParent()).getPrimaryShape();
+	//
+	//					// make a local copy
+	//					Rectangle targetFigBounds = targetFig.getBounds().getCopy();
+	//					// transform the coordinates to absolute
+	//					targetFig.translateToAbsolute(targetFigBounds);
+	//					// retrieve mouse location
+	//					Point mouseLocation = unspecReq.getLocation();
+	//
+	//					// get the drop location, i.e. RIGHT, LEFT, TOP, BOTTOM
+	//					dropLocation = Zone.getZoneFromLocationInRectangleWithAbsoluteCoordinates(mouseLocation, targetFigBounds);
+	//
+	//					// perform corresponding change (scaling, translation) on
+	//					// targetFigBounds
+	//					// and updates the graph node drop location property
+	//					if(Zone.isTop(dropLocation)) {
+	//						targetFigBounds.setSize(targetFigBounds.getSize().scale(1.0, 0.5));
+	//					} else if(Zone.isLeft(dropLocation)) {
+	//						targetFigBounds.setSize(targetFigBounds.getSize().scale(0.5, 1.0));
+	//					} else if(Zone.isRight(dropLocation)) {
+	//						targetFigBounds.setSize(targetFigBounds.getSize().scale(0.5, 1.0));
+	//						targetFigBounds.translate(targetFigBounds.width, 0);
+	//					} else if(Zone.isBottom(dropLocation)) {
+	//						targetFigBounds.setSize(targetFigBounds.getSize().scale(1.0, 0.5));
+	//						targetFigBounds.translate(0, targetFigBounds.height);
+	//					}
+	//
+	//					getSizeOnDropFeedback().setBounds(new PrecisionRectangle(targetFigBounds));
+	//				}
+	//			}
+	//		}
+	//	}
 }

@@ -10,7 +10,7 @@ import org.eclipse.papyrus.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
-public class PseudostateJunctionFigure extends  PapyrusNodeFigure implements IPapyrusNodeUMLElementFigure{
+public class PseudostateJunctionFigure extends PapyrusNodeFigure implements IPapyrusNodeUMLElementFigure {
 
 	/**
 	 * {@inheritDoc}
@@ -18,12 +18,13 @@ public class PseudostateJunctionFigure extends  PapyrusNodeFigure implements IPa
 	protected Border getDefaultBorder(Color borderColor) {
 		return null;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Dimension getPreferredSize(int wHint, int hHint) {
-		return new Dimension(10,10);
+		return new Dimension(10, 10);
 	}
 
 	/**
@@ -32,21 +33,22 @@ public class PseudostateJunctionFigure extends  PapyrusNodeFigure implements IPa
 	public Label getStereotypesLabel() {
 		return new Label();
 	}
-//	public PseudostateJunctionFigure() {
-//		super();
-//		Dimension dim1 = new Dimension(22, 22);
-//		this.setPreferredSize(new Dimension(dim1));
-//		this.setMaximumSize(new Dimension(dim1));
-//		this.setMinimumSize(new Dimension(dim1));
-//		this.setSize(dim1);
-//	}
-//
-//	protected void fillShape(Graphics graphics) {
-//		graphics.pushState();
-//		graphics.setBackgroundColor(ColorConstants.black);
-//		graphics.fillOval(getBounds());
-//		graphics.popState();
-//	}
+
+	//	public PseudostateJunctionFigure() {
+	//		super();
+	//		Dimension dim1 = new Dimension(22, 22);
+	//		this.setPreferredSize(new Dimension(dim1));
+	//		this.setMaximumSize(new Dimension(dim1));
+	//		this.setMinimumSize(new Dimension(dim1));
+	//		this.setSize(dim1);
+	//	}
+	//
+	//	protected void fillShape(Graphics graphics) {
+	//		graphics.pushState();
+	//		graphics.setBackgroundColor(ColorConstants.black);
+	//		graphics.fillOval(getBounds());
+	//		graphics.popState();
+	//	}
 	/**
 	 * {@inheritDoc}
 	 */
@@ -55,6 +57,7 @@ public class PseudostateJunctionFigure extends  PapyrusNodeFigure implements IPa
 		graphics.setBackgroundColor(getForegroundColor());
 		graphics.fillOval(r);
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */

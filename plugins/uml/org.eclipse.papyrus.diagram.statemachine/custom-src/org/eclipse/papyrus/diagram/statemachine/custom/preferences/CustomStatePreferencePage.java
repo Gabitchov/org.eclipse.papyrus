@@ -10,15 +10,11 @@ public class CustomStatePreferencePage extends StatePreferencePage {
 	public static void initDefaults(IPreferenceStore store) {
 
 		String key = PackageEditPart.MODEL_ID + "_State";
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key,
-				PreferenceConstantHelper.WIDTH), 40);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key,
-				PreferenceConstantHelper.HEIGHT), 40);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
 
-		for (String name : compartments) {
-			String preferenceName = PreferenceConstantHelper
-					.getCompartmentElementConstant(key, name,
-							PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+		for(String name : compartments) {
+			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 			store.setDefault(preferenceName, false);
 		}
 	}

@@ -36,17 +36,19 @@ public class CustomPseudostateForkJoinResizeEditPolicy extends ResizableShapeEdi
 	@Override
 	protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
 		// adapt the request for a square resize
-		if(request.getType().equals(RequestConstants.REQ_RESIZE)&&getHost() instanceof UMLNodeEditPart){
-			Dimension dim= getHostFigure().getBounds().getSize();
-			Dimension preferedDim= ((UMLNodeEditPart)getHost()).getPrimaryShape().getPreferredSize();
+		if(request.getType().equals(RequestConstants.REQ_RESIZE) && getHost() instanceof UMLNodeEditPart) {
+			Dimension dim = getHostFigure().getBounds().getSize();
+			Dimension preferedDim = ((UMLNodeEditPart)getHost()).getPrimaryShape().getPreferredSize();
 			Dimension delta = request.getSizeDelta();
 			int dH = delta.height;
 			int dW = delta.width;
-			if(dH>dW){
-				dW=preferedDim.width-dim.width;
+			if(dH > dW) {
+				dW = preferedDim.width - dim.width;
+			} else {
+				dH = preferedDim.height - dim.height;
 			}
-			else{dH=preferedDim.height-dim.height;}
-			request.setSizeDelta(new Dimension(dW,dH));}
+			request.setSizeDelta(new Dimension(dW, dH));
+		}
 		super.showChangeBoundsFeedback(request);
 	}
 }

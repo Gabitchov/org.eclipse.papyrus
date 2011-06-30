@@ -9,8 +9,7 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 /**
  * @generated
  */
-public class StateMachinePreferencePage extends
-		AbstractPapyrusNodePreferencePage {
+public class StateMachinePreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * @generated
@@ -23,15 +22,11 @@ public class StateMachinePreferencePage extends
 	public static void initDefaults(IPreferenceStore store) {
 
 		String key = PackageEditPart.MODEL_ID + "_StateMachine";
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key,
-				PreferenceConstantHelper.WIDTH), 200);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key,
-				PreferenceConstantHelper.HEIGHT), 100);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 200);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 100);
 
-		for (String name : compartments) {
-			String preferenceName = PreferenceConstantHelper
-					.getCompartmentElementConstant(key, name,
-							PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+		for(String name : compartments) {
+			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 			store.setDefault(preferenceName, true);
 		}
 
@@ -68,7 +63,7 @@ public class StateMachinePreferencePage extends
 	 */
 	@Override
 	protected void initializeCompartmentsList() {
-		for (String name : compartments) {
+		for(String name : compartments) {
 			this.compartmentsList.add(name);
 		}
 	}
