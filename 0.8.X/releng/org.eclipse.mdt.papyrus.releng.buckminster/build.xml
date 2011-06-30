@@ -289,7 +289,7 @@
 		<mkdir dir="${result}/testresults/" />
 		<mkdir dir="${result}/testresults/xml" />
 		<mkdir dir="${result}/testresults/consolelogs" />
-		<buckminster command="junit">
+		<buckminster command="junit" workspace="${workspace}">
 			<cmdargs>
 				<arg value="-l" />
 				<arg value="org.eclipse.papyrus.tests/PapyrusALLtests.launch" />
