@@ -1092,6 +1092,26 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createReadVariableAction47CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createReadVariableAction47CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createAddVariableValueAction48CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createAddVariableValueAction48CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createControlFlow1CreationTool_title;
 
 	/**
@@ -1307,6 +1327,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_AddVariableValueAction_3099_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_AddVariableValueAction_3099_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_CallBehaviorAction_3008_outgoinglinks;
 
 	/**
@@ -1428,6 +1458,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_InputPin_3023_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_OutputPin_3098_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_OutputPin_3098_outgoinglinks;
 
 	/**
 	 * @generated
@@ -1588,6 +1628,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ActionInputPin_3047_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ReadVariableAction_3097_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ReadVariableAction_3097_incominglinks;
 
 	/**
 	 * @generated
@@ -1867,6 +1917,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_InputPin_3100_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputPin_3100_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_ExpansionNode_3075_incominglinks;
 
 	/**
@@ -2008,6 +2068,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ExceptionHandler_4005_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputPin_3101_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputPin_3101_outgoinglinks;
 
 	/**
 	 * @generated

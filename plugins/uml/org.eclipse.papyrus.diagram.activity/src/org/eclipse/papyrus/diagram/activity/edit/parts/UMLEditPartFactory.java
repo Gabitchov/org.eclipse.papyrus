@@ -723,6 +723,45 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InputPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return new InputPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart(view);
 
+			case ReadVariableActionEditPart.VISUAL_ID:
+				return new ReadVariableActionEditPart(view);
+
+			case ReadVariableActionNameEditPart.VISUAL_ID:
+				return new ReadVariableActionNameEditPart(view);
+
+			case OutputPinInReadVariableActionAsResultEditPart.VISUAL_ID:
+				return new OutputPinInReadVariableActionAsResultEditPart(view);
+
+			case OutputPinInReadVariableActionAsResultLabelEditPart.VISUAL_ID:
+				return new OutputPinInReadVariableActionAsResultLabelEditPart(view);
+
+			case OutputPinInReadVariableActionAsResultAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new OutputPinInReadVariableActionAsResultAppliedStereotypeWrappingLabelEditPart(view);
+
+			case AddVariableValueActionEditPart.VISUAL_ID:
+				return new AddVariableValueActionEditPart(view);
+
+			case AddVariableValueActionNameEditPart.VISUAL_ID:
+				return new AddVariableValueActionNameEditPart(view);
+
+			case InputPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID:
+				return new InputPinInAddVariableValueActionAsInsertAtEditPart(view);
+
+			case InputPinInAddVariableValueActionAsInsertAtLabelEditPart.VISUAL_ID:
+				return new InputPinInAddVariableValueActionAsInsertAtLabelEditPart(view);
+
+			case InputPinInAddVariableValueActionAsInsertAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new InputPinInAddVariableValueActionAsInsertAtAppliedStereotypeWrappingLabelEditPart(view);
+
+			case InputPinInAddVariableValueActionAsValueEditPart.VISUAL_ID:
+				return new InputPinInAddVariableValueActionAsValueEditPart(view);
+
+			case InputPinInAddVariableValueActionAsValueLabelEditPart.VISUAL_ID:
+				return new InputPinInAddVariableValueActionAsValueLabelEditPart(view);
+
+			case InputPinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new InputPinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart(view);
+
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);
 

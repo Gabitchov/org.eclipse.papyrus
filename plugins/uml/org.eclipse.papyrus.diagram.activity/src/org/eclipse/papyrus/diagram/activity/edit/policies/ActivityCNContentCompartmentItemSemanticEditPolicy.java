@@ -8,6 +8,7 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityFinalNodeCreat
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityParameterNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityPartitionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.AddStructuralFeatureValueActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.AddVariableValueActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallBehaviorActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallOperationActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CommentCreateCommand;
@@ -33,6 +34,7 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.MergeNodeCreateCommand
 import org.eclipse.papyrus.diagram.activity.edit.commands.OpaqueActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ReadSelfActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ReadStructuralFeatureActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ReadVariableActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SendObjectActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SendSignalActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SequenceNodeCreateCommand;
@@ -171,6 +173,12 @@ public class ActivityCNContentCompartmentItemSemanticEditPolicy extends UMLBaseI
 		}
 		if(UMLElementTypes.DestroyObjectAction_3095 == req.getElementType()) {
 			return getGEFWrapper(new DestroyObjectActionCreateCommand(req));
+		}
+		if(UMLElementTypes.ReadVariableAction_3097 == req.getElementType()) {
+			return getGEFWrapper(new ReadVariableActionCreateCommand(req));
+		}
+		if(UMLElementTypes.AddVariableValueAction_3099 == req.getElementType()) {
+			return getGEFWrapper(new AddVariableValueActionCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

@@ -76,6 +76,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		OutputPinPreferencePage.initDefaults(store);
 
 
+		AddVariableValueActionPreferencePage.initDefaults(store);
+
+
 		CommentPreferencePage.initDefaults(store);
 
 
@@ -128,6 +131,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 
 		ActivityFinalNodePreferencePage.initDefaults(store);
+
+
+		ReadVariableActionPreferencePage.initDefaults(store);
 
 
 		ParameterPreferencePage.initDefaults(store);

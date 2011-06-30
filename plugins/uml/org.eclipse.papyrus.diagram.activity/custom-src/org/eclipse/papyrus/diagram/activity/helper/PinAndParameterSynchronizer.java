@@ -60,6 +60,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.AddStructuralFeatureValueAction;
+import org.eclipse.uml2.uml.AddVariableValueAction;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallAction;
 import org.eclipse.uml2.uml.CallBehaviorAction;
@@ -78,6 +79,7 @@ import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Pin;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
+import org.eclipse.uml2.uml.ReadVariableAction;
 import org.eclipse.uml2.uml.SendObjectAction;
 import org.eclipse.uml2.uml.SendSignalAction;
 import org.eclipse.uml2.uml.Signal;
@@ -87,6 +89,7 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
+import org.eclipse.uml2.uml.Variable;
 
 /**
  * The PinAndParameterSynchronizer is a validator which ensure Pins and their corresponding (if a
@@ -95,9 +98,15 @@ import org.eclipse.uml2.uml.ValueSpecification;
  */
 public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 
+	private static final String RESULT_IN_READ_VARIABLE_ACTION = "result";
+
+	private static final String VALUE_IN_ADD_VARIABLE_VALUE_ACTION = "value";
+
+	private static final String INSERT_AT_IN_ADD_VARIABLE_VALUE_ACTION = "insertAt";
+
 	private static final String TARGET_IN_DESTROY_OBJECT_ACTION = "target";
 
-	private static final String VALUE_PIN_IN_STRUCTURAL_FEATURE_VALUE_ACTION = "value";
+	private static final String VALUE_PIN_IN_STRUCTURAL_FEATURE_VALUE_ACTION = VALUE_IN_ADD_VARIABLE_VALUE_ACTION;
 
 	private static final String RESULT_PIN_READ_SRTUCTURAL_ACTION = "result";
 
@@ -172,7 +181,19 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				if(!cmd.isEmpty() && cmd.canExecute()) {
 					cmd.execute();
 				}
-			} else if(EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType()) && ctx.getFeatureNewValue() instanceof CreateObjectAction) {
+			} else if((EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType())) && ctx.getFeatureNewValue() instanceof AddVariableValueAction) {
+				// SendObjectAction created
+				CompoundCommand cmd = getResetPinsCmd((AddVariableValueAction)ctx.getFeatureNewValue());
+				if(!cmd.isEmpty() && cmd.canExecute()) {
+					cmd.execute();
+				}
+			} else if((EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType())) && ctx.getFeatureNewValue() instanceof ReadVariableAction) {
+				// SendObjectAction created
+				CompoundCommand cmd = getResetPinsCmd((ReadVariableAction)ctx.getFeatureNewValue());
+				if(!cmd.isEmpty() && cmd.canExecute()) {
+					cmd.execute();
+				}
+			} else if((EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType())) && ctx.getFeatureNewValue() instanceof CreateObjectAction) {
 				// CreateObject Action created
 				CompoundCommand cmd = getResetPinsCmd((CreateObjectAction)ctx.getFeatureNewValue());
 				if(!cmd.isEmpty() && cmd.canExecute()) {
@@ -1654,6 +1675,21 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	}
 
 	/**
+	 * Create a result input pin, eventually from a given operation
+	 * 
+	 * @param var
+	 *        the to set the output type
+	 */
+	private OutputPin createResultPin(Variable var) {
+		OutputPin pin = UMLFactory.eINSTANCE.createOutputPin();
+		if(var != null) {
+			pin.setType(var.getType());
+		}
+		pin.setName(RESULT_IN_READ_VARIABLE_ACTION);
+		return pin;
+	}
+
+	/**
 	 * Create a request input pin
 	 * 
 	 * @param operation
@@ -1816,6 +1852,50 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 * Get the command to reset all pins of the action.
 	 * 
 	 * @param action
+	 *        action to reinitialize pins (ReadVariableAction)
+	 * @return command
+	 */
+	private CompoundCommand getResetPinsCmd(ReadVariableAction action) {
+		// Get the editing domain
+		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
+		CompoundCommand globalCmd = new CompoundCommand();
+		if(action.getResult() == null) {
+			OutputPin resultPin = createResultPin(action.getVariable());
+			Command cmdResultPin = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getReadVariableAction_Result(), resultPin);
+			globalCmd.append(cmdResultPin);
+		}
+		return globalCmd;
+	}
+
+	/**
+	 * Get the command to reset all pins of the action.
+	 * 
+	 * @param action
+	 *        action to reinitialize pins (AddVariableValueAction)
+	 * @return command
+	 */
+	private CompoundCommand getResetPinsCmd(AddVariableValueAction action) {
+		// Get the editing domain
+		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
+		CompoundCommand globalCmd = new CompoundCommand();
+		if(action.getValue() == null) {
+			InputPin valuePin = createValuePinInAddVariableValueAction(action.getVariable());
+			Command cmdValuePin = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getWriteVariableAction_Value(), valuePin);
+			globalCmd.append(cmdValuePin);
+		}
+		if(action.getInsertAt() == null) {
+			InputPin insertAtPin = UMLFactory.eINSTANCE.createInputPin();
+			insertAtPin.setName(INSERT_AT_IN_ADD_VARIABLE_VALUE_ACTION);
+			Command cmd = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getAddVariableValueAction_InsertAt(), insertAtPin);
+			globalCmd.append(cmd);
+		}
+		return globalCmd;
+	}
+
+	/**
+	 * Get the command to reset all pins of the action.
+	 * 
+	 * @param action
 	 *        action to reinitialize pins (AddStructuralFeatureValueAction)
 	 * @return command
 	 */
@@ -1851,6 +1931,26 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		}
 
 		pin.setName(VALUE_PIN_IN_STRUCTURAL_FEATURE_VALUE_ACTION);
+		return pin;
+	}
+
+	/**
+	 * Create a Pin value for a Structural feature action
+	 * 
+	 * @param action
+	 * @return
+	 */
+	private InputPin createValuePinInAddVariableValueAction(Variable var) {
+		InputPin pin = UMLFactory.eINSTANCE.createInputPin();
+		if(var != null) {
+			Type owningType = var.getType();
+			if(owningType instanceof Type) {
+				pin.setType((Type)owningType);
+
+			}
+		}
+
+		pin.setName(VALUE_IN_ADD_VARIABLE_VALUE_ACTION);
 		return pin;
 	}
 
@@ -1974,7 +2074,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 
 		// add target pin
 		if(action.getResult() == null) {
-			OutputPin resultPin = createResultPin(null);
+			OutputPin resultPin = createResultPin((Classifier)null);
 			Command cmd = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getCreateObjectAction_Result(), resultPin);
 			globalCmd.append(cmd);
 		}

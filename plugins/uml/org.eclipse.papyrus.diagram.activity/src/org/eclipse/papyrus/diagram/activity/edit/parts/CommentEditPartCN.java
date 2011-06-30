@@ -537,6 +537,21 @@ AbstractCommentEditPart {
 		if(targetEditPart instanceof InputPinInDestroyObjectActionEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
 		}
+		if(targetEditPart instanceof ReadVariableActionEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof OutputPinInReadVariableActionAsResultEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof AddVariableValueActionEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof InputPinInAddVariableValueActionAsInsertAtEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof InputPinInAddVariableValueActionAsValueEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
 		return types;
 	}
 
@@ -625,6 +640,11 @@ AbstractCommentEditPart {
 			types.add(UMLElementTypes.OutputPin_3094);
 			types.add(UMLElementTypes.DestroyObjectAction_3095);
 			types.add(UMLElementTypes.InputPin_3096);
+			types.add(UMLElementTypes.ReadVariableAction_3097);
+			types.add(UMLElementTypes.OutputPin_3098);
+			types.add(UMLElementTypes.AddVariableValueAction_3099);
+			types.add(UMLElementTypes.InputPin_3100);
+			types.add(UMLElementTypes.InputPin_3101);
 		}
 		return types;
 	}

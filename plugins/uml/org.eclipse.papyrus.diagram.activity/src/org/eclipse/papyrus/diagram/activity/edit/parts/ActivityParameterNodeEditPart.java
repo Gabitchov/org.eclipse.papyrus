@@ -510,6 +510,21 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 		if(targetEditPart instanceof InputPinInDestroyObjectActionEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof ReadVariableActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OutputPinInReadVariableActionAsResultEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof AddVariableValueActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInAddVariableValueActionAsInsertAtEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInAddVariableValueActionAsValueEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -705,6 +720,21 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 		if(targetEditPart instanceof InputPinInDestroyObjectActionEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof ReadVariableActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OutputPinInReadVariableActionAsResultEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof AddVariableValueActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInAddVariableValueActionAsInsertAtEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInAddVariableValueActionAsValueEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		return types;
 	}
 
@@ -779,6 +809,11 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.OutputPin_3094);
 			types.add(UMLElementTypes.DestroyObjectAction_3095);
 			types.add(UMLElementTypes.InputPin_3096);
+			types.add(UMLElementTypes.ReadVariableAction_3097);
+			types.add(UMLElementTypes.OutputPin_3098);
+			types.add(UMLElementTypes.AddVariableValueAction_3099);
+			types.add(UMLElementTypes.InputPin_3100);
+			types.add(UMLElementTypes.InputPin_3101);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -845,6 +880,11 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.OutputPin_3094);
 			types.add(UMLElementTypes.DestroyObjectAction_3095);
 			types.add(UMLElementTypes.InputPin_3096);
+			types.add(UMLElementTypes.ReadVariableAction_3097);
+			types.add(UMLElementTypes.OutputPin_3098);
+			types.add(UMLElementTypes.AddVariableValueAction_3099);
+			types.add(UMLElementTypes.InputPin_3100);
+			types.add(UMLElementTypes.InputPin_3101);
 		}
 		return types;
 	}
@@ -932,6 +972,11 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.OutputPin_3094);
 			types.add(UMLElementTypes.DestroyObjectAction_3095);
 			types.add(UMLElementTypes.InputPin_3096);
+			types.add(UMLElementTypes.ReadVariableAction_3097);
+			types.add(UMLElementTypes.OutputPin_3098);
+			types.add(UMLElementTypes.AddVariableValueAction_3099);
+			types.add(UMLElementTypes.InputPin_3100);
+			types.add(UMLElementTypes.InputPin_3101);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -998,6 +1043,11 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.OutputPin_3094);
 			types.add(UMLElementTypes.DestroyObjectAction_3095);
 			types.add(UMLElementTypes.InputPin_3096);
+			types.add(UMLElementTypes.ReadVariableAction_3097);
+			types.add(UMLElementTypes.OutputPin_3098);
+			types.add(UMLElementTypes.AddVariableValueAction_3099);
+			types.add(UMLElementTypes.InputPin_3100);
+			types.add(UMLElementTypes.InputPin_3101);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.OpaqueAction_3007);
 			types.add(UMLElementTypes.CallBehaviorAction_3008);
@@ -1016,6 +1066,8 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
 			types.add(UMLElementTypes.AddStructuralFeatureValueAction_3091);
 			types.add(UMLElementTypes.DestroyObjectAction_3095);
+			types.add(UMLElementTypes.ReadVariableAction_3097);
+			types.add(UMLElementTypes.AddVariableValueAction_3099);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
 			types.add(UMLElementTypes.Comment_3080);
 		}

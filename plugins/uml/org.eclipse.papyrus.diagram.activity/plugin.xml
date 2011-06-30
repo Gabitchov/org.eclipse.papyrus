@@ -229,7 +229,7 @@
       <viewProvider class="org.eclipse.papyrus.diagram.activity.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLActivityDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3080,3081,3084,3083,3086,3087,3085,3088,3089,3090,3091,3092,3093,3094,3095,3096"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3080,3081,3084,3083,3086,3087,3085,3088,3089,3090,3091,3092,3093,3094,3095,3096,3097,3098,3099,3100,3101"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004,4005,4006"/>
       </viewProvider>
    </extension>
@@ -242,13 +242,13 @@
             <method name="getType()" value="PapyrusUMLActivityDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3080,3081,3084,3083,3086,3087,3085,3088,3089,3090,3091,3092,3093,3094,3095,3096"/>
+            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3080,3081,3084,3083,3086,3087,3085,3088,3089,3090,3091,3092,3093,3094,3095,3096,3097,3098,3099,3100,3101"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4001,4002,4003,4004,4005,4006"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002,5080,5081,5082,5003,5011,5024,5083,5012,5025,5084,5009,5085,5010,5086,5004,5013,5026,5087,5014,5027,5088,5015,5089,5016,5090,5006,5017,5028,5091,5018,5029,5092,5019,5093,5020,5094,5021,5030,5095,5022,5031,5096,5023,5097,5038,5130,5039,5131,5040,5132,5041,5133,5036,5134,5037,5135,5007,5136,5008,5137,5043,5098,5099,5100,5042,5101,5127,5128,5059,5049,5050,5102,5051,5052,5103,5053,5104,5054,5055,5105,5056,5057,5106,5058,5107,5060,5061,5062,5108,5063,5064,5109,5065,5110,5072,5073,5111,5074,5075,5112,5076,5113,5071,5078,5079,5115,5077,5114,5126,5124,5125,5119,5120,5121,5123,5117,5118,5138,5139,5144,5145,5142,5143,5148,5146,5147,5129,5153,5149,5150,5151,5152,5160,5154,5155,5156,5157,5158,5159,5163,5161,5162"/>
+            <method name="getType()" value="5001,5002,5080,5081,5082,5003,5011,5024,5083,5012,5025,5084,5009,5085,5010,5086,5004,5013,5026,5087,5014,5027,5088,5015,5089,5016,5090,5006,5017,5028,5091,5018,5029,5092,5019,5093,5020,5094,5021,5030,5095,5022,5031,5096,5023,5097,5038,5130,5039,5131,5040,5132,5041,5133,5036,5134,5037,5135,5007,5136,5008,5137,5043,5098,5099,5100,5042,5101,5127,5128,5059,5049,5050,5102,5051,5052,5103,5053,5104,5054,5055,5105,5056,5057,5106,5058,5107,5060,5061,5062,5108,5063,5064,5109,5065,5110,5072,5073,5111,5074,5075,5112,5076,5113,5071,5078,5079,5115,5077,5114,5126,5124,5125,5119,5120,5121,5123,5117,5118,5138,5139,5144,5145,5142,5143,5148,5146,5147,5129,5153,5149,5150,5151,5152,5160,5154,5155,5156,5157,5158,5159,5163,5161,5162,5166,5164,5165,5171,5167,5168,5169,5170"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7002,7003,7004,7008,7009,7010,7012,7005,7006,7007,7014,7015,7016,7013"/>
@@ -1073,6 +1073,53 @@
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.ReadVariableAction_3097"
+               name="%metatype.name.ReadVariableAction_3097"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ReadVariableAction"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ReadVariableActionEditHelper">
+            <param name="semanticHint" value="3097"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.OutputPin_3098"
+               name="%metatype.name.OutputPin_3098"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.OutputPin_3014"/>
+            <param name="semanticHint" value="3098"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.AddVariableValueAction_3099"
+               name="%metatype.name.AddVariableValueAction_3099"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="AddVariableValueAction"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.AddVariableValueActionEditHelper">
+            <param name="semanticHint" value="3099"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.InputPin_3100"
+               name="%metatype.name.InputPin_3100"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.InputPin_3013"/>
+            <param name="semanticHint" value="3100"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.InputPin_3101"
+               name="%metatype.name.InputPin_3101"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.InputPin_3013"/>
+            <param name="semanticHint" value="3101"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.diagram.activity.ActionLocalPrecondition_4001"
                name="%metatype.name.ActionLocalPrecondition_4001"
@@ -1224,6 +1271,11 @@
          <elementType ref="org.eclipse.papyrus.diagram.activity.OutputPin_3094"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.DestroyObjectAction_3095"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.InputPin_3096"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ReadVariableAction_3097"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.OutputPin_3098"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.AddVariableValueAction_3099"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.InputPin_3100"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.InputPin_3101"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActionLocalPrecondition_4001"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActionLocalPostcondition_4002"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ObjectFlow_4003"/>
@@ -1493,7 +1545,7 @@
       <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateCreateObjectActionClassifier" mandatory="false" name="validateCreateObjectActionClassifier">
          <![CDATA[Valide classifier for CreateObjectAction]]>
       </category>
-      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction" mandatory="false" name="validateStructuralfeatureAction">
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validaterReadStructuralFeatureAction" mandatory="false" name="validateReadStructuralfeatureAction">
          <![CDATA[Constraints for Structural Feature Action]]>
       </category>
       <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction" mandatory="false" name="validateAddStructuralFeatureValueAction">
@@ -1501,6 +1553,21 @@
       </category>
       <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateDestroyObjectAction" mandatory="false" name="validateDestroyObjectAction">
          <![CDATA[Constraint for DestroyObjectAction]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction" mandatory="false" name="validateStructuralfeatureAction">
+         <![CDATA[Constraint for StructuralFeatureAction]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateAddVariableValueAction" mandatory="false" name="validateAddvariablevalueAction">
+         <![CDATA[Constraint for AddVariableValueAction]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateWriteVariableAction" mandatory="false" name="validateWriteVariableAction">
+         <![CDATA[Constraint for WriteVariableAction]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateVariableAction" mandatory="false" name="validateVariableAction">
+         <![CDATA[Constraint for VariableAction]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateReadVariableAction" mandatory="false" name="validateReadVariableAction">
+         <![CDATA[Constraint for ReadVariableAction]]>
       </category>
       <constraintProvider cache="true">
          <package namespaceUri="http://www.eclipse.org/uml2/3.0.0/UML"/>
@@ -2059,18 +2126,8 @@ and self.decisionInput.ownedParameter->select(
             <target class="uml.CreateObjectAction"/>
          </constraint>
                   </constraints>
-         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction">
-                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_notStatic"
-            lang="OCL"
-            name="validateNotStatic"
-            mode="Live"
-            severity="ERROR" statusCode="200">
-            <![CDATA[(not self.structuralFeature.oclIsUndefined()) implies (self.structuralFeature.isStatic = false)]]>
-            <description><![CDATA[Validate that the Strucutural Feature is not static]]></description>
-            <message><![CDATA[The structural feature can not be static]]></message>
-            <target class="uml.ReadStructuralFeatureAction"/>
-         </constraint>
-                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_onlyOneClassifier"
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validaterReadStructuralFeatureAction">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateReadStructuralFeatureAction_onlyOneClassifier"
             lang="OCL"
             name="validateOnlyOneClassifier"
             mode="Batch"
@@ -2082,16 +2139,6 @@ and self.decisionInput.ownedParameter->select(
          </constraint>
                   </constraints>
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction">
-                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction_notStatic"
-            lang="OCL"
-            name="validateNotStatic"
-            mode="Live"
-            severity="ERROR" statusCode="200">
-            <![CDATA[(not self.structuralFeature.oclIsUndefined()) implies (self.structuralFeature.isStatic = false)]]>
-            <description><![CDATA[Validate that the Strucutural Feature is not static]]></description>
-            <message><![CDATA[The structural feature can not be static]]></message>
-            <target class="uml.AddStructuralFeatureValueAction"/>
-         </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction_ValidInputPinType"
             lang="OCL"
             name="validateInputPinType"
@@ -2143,6 +2190,117 @@ and self.decisionInput.ownedParameter->select(
             <description><![CDATA[Check that the input pin has no type]]></description>
             <message><![CDATA[The input pin has no type]]></message>
             <target class="uml.DestroyObjectAction"/>
+         </constraint>
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_FeatureNotStatic"
+            lang="OCL"
+            name="validateFeatureNotStatic"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[(not self.structuralFeature.oclIsUndefined()) implies (self.structuralFeature.isStatic = false)]]>
+            <description><![CDATA[Check that the structural feature must not be static.]]></description>
+            <message><![CDATA[The structural feature must not be static.]]></message>
+            <target class="uml.StructuralFeatureAction"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_validateOwningFeteatringType"
+            lang="OCL"
+            name="validateValideTypeOwningFeature"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.structuralFeature.featuringClassifier.oclAsType(Type)->includes(self.object.type) or
+self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
+            <description><![CDATA[Check that the structural feature must either be owned by the type of the object input pin, or it must be an owned end of a binary]]></description>
+            <message><![CDATA[The structural feature must either be owned by the type of the object input pin, or it must be an owned end of a binary]]></message>
+            <target class="uml.StructuralFeatureAction"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_InputPinMulitplicity"
+            lang="OCL"
+            name="validateInputPinMultiplicity"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.object.lowerBound()=1 and self.object.upperBound()=1]]>
+            <description><![CDATA[Check that the multiplicity of the object input pin must be 1..1.]]></description>
+            <message><![CDATA[The multiplicity of the object input pin must be 1..1.]]></message>
+            <target class="uml.StructuralFeatureAction"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_OnlyOneFeaturingClassifier"
+            lang="OCL"
+            name="validateOnlyOneFeaturingClassifier"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.structuralFeature.featuringClassifier->size() = 1]]>
+            <description><![CDATA[Check that a structural feature has exactly one featuringClassifier.]]></description>
+            <message><![CDATA[A structural feature has exactly one featuringClassifier.]]></message>
+            <target class="uml.StructuralFeatureAction"/>
+         </constraint>
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateAddVariableValueAction">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateAddVariableValueAction_AsAtLeastOneInputPin"
+            lang="OCL"
+            name="validateInputPinAsValueAsAtLeastOneInputPin"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.value -> notEmpty()]]>
+            <description><![CDATA[Check that a value input pin is required.]]></description>
+            <message><![CDATA[A value input pin is required.]]></message>
+            <target class="uml.AddVariableValueAction"/>
+         </constraint>
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateWriteVariableAction">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateWriteVariableAction_InputPinValidePin"
+            lang="OCL"
+            name="valideInputPinType"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.value -> notEmpty() implies self.value.type = self.variable.type]]>
+            <description><![CDATA[Check that the type input pin is the same as the type of the variable.]]></description>
+            <message><![CDATA[The type input pin is the same as the type of the variable.]]></message>
+            <target class="uml.WriteVariableAction"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateWriteVariableAction_valideInputPinMultiplicity"
+            lang="OCL"
+            name="validateInputPinMultiplicity"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.value.lowerBound()=1 and self.value.upperBound()=1]]>
+            <description><![CDATA[Check that the multiplicity of the input pin is 1..1.]]></description>
+            <message><![CDATA[The multiplicity of the input pin is 1..1.]]></message>
+            <target class="uml.WriteVariableAction"/>
+         </constraint>
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateVariableAction">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateVariableAction_VariableScope"
+            lang="OCL"
+            name="validateVariableScope"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.variable.isAccessibleBy(self)]]>
+            <description><![CDATA[Check that the action must be in the scope of the variable.]]></description>
+            <message><![CDATA[The action must be in the scope of the variable.]]></message>
+            <target class="uml.VariableAction"/>
+         </constraint>
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateReadVariableAction">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateReadVariableAction_OutputPinType"
+            lang="OCL"
+            name="validateOutputPinType"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.result.type =self.variable.type and self.result.isOrdered = self.variable.isOrdered]]>
+            <description><![CDATA[Check that the type and ordering of the result output pin of a read-variable action are the same as the type and ordering of the]]></description>
+            <message><![CDATA[The type and ordering of the result output pin of a read-variable action are the same as the type and ordering of the]]></message>
+            <target class="uml.ReadVariableAction"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateReadVariableAction_OutputPinMultiplicity"
+            lang="OCL"
+            name="validateOutputPinMultiplicity"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[(self.result.lowerBound() <= self.variable.lowerBound())  and (self.result.upperBound() >= self.variable.lowerBound())]]>
+            <description><![CDATA[Check that the multiplicity of the variable must be compatible with the multiplicity of the output pin]]></description>
+            <message><![CDATA[The multiplicity of the variable must be compatible with the multiplicity of the output pin]]></message>
+            <target class="uml.ReadVariableAction"/>
          </constraint>
                   </constraints>
       </constraintProvider>
@@ -2199,14 +2357,22 @@ and self.decisionInput.ownedParameter->select(
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateActivityParameterNode_validateIncomingOrOutgoing"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateCreateObjectActionClassifier_notAbstract"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateCreateObjectActionClassifier_notClassifier"/>
-                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_notStatic"/>
-                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_onlyOneClassifier"/>
-                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction_notStatic"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateReadStructuralFeatureAction_onlyOneClassifier"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction_ValidInputPinType"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction_validateOutputPinType"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction_valideTheRequiredValuePin"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction_onlyOneClassifier"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateDestroyObjectAction_InputPinHasNotType"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_FeatureNotStatic"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_validateOwningFeteatringType"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_InputPinMulitplicity"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_OnlyOneFeaturingClassifier"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateAddVariableValueAction_AsAtLeastOneInputPin"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateWriteVariableAction_InputPinValidePin"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateWriteVariableAction_valideInputPinMultiplicity"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateVariableAction_VariableScope"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateReadVariableAction_OutputPinType"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateReadVariableAction_OutputPinMultiplicity"/>
                </binding>
 
    </extension>
@@ -2463,6 +2629,13 @@ and self.decisionInput.ownedParameter->select(
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.AddVariableValueActionPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.AddVariableValueActionPreferencePage"
+            name="AddVariableValueAction Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
 			class="org.eclipse.papyrus.diagram.activity.preferences.CommentPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.CommentPreferencePage"
             name="Comment Node" />
@@ -2585,6 +2758,13 @@ and self.decisionInput.ownedParameter->select(
 			class="org.eclipse.papyrus.diagram.activity.preferences.ActivityFinalNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ActivityFinalNodePreferencePage"
             name="ActivityFinalNode Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.ReadVariableActionPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ReadVariableActionPreferencePage"
+            name="ReadVariableAction Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -3120,6 +3300,26 @@ and self.decisionInput.ownedParameter->select(
  	</entry>
 	<entry
        defineOnly="true"
+       description="Create a Read Variable Action"
+       id="createReadVariableAction47CreationTool"
+       kind="tool"
+       label="Read Variable Action"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadVariableAction.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadVariableAction.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Add Variable Value Action"
+       id="createAddVariableValueAction48CreationTool"
+       kind="tool"
+       label="Add Variable Value Action"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddVariableValueAction.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddVariableValueAction.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
        description="Create a Control Flow"
        id="createControlFlow1CreationTool"
        kind="tool"
@@ -3372,6 +3572,14 @@ and self.decisionInput.ownedParameter->select(
     </predefinedEntry>
  	<predefinedEntry
           id="createDestroyObjectAction46CreationTool"
+          path="/createNodes1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createReadVariableAction47CreationTool"
+          path="/createNodes1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createAddVariableValueAction48CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
 

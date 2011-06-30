@@ -45,6 +45,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AddStructuralFeatureValueActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.AddVariableValueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CommentEditPartCN;
@@ -70,6 +71,8 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddStructuralFeatureValueActionAsObjectEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddStructuralFeatureValueActionAsValueEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddVariableValueActionAsInsertAtEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddVariableValueActionAsValueEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
@@ -95,11 +98,13 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditP
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCreateObjectActionAsResultEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInReadStructuralFeatureAsResultEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInReadVariableActionAsResultEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInValSpecActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionOutputPinEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ReadStructuralFeatureActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ReadVariableActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
@@ -485,6 +490,31 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType InputPin_3096 = getElementType("org.eclipse.papyrus.diagram.activity.InputPin_3096"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ReadVariableAction_3097 = getElementType("org.eclipse.papyrus.diagram.activity.ReadVariableAction_3097"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OutputPin_3098 = getElementType("org.eclipse.papyrus.diagram.activity.OutputPin_3098"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType AddVariableValueAction_3099 = getElementType("org.eclipse.papyrus.diagram.activity.AddVariableValueAction_3099"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3100 = getElementType("org.eclipse.papyrus.diagram.activity.InputPin_3100"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3101 = getElementType("org.eclipse.papyrus.diagram.activity.InputPin_3101"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -945,6 +975,21 @@ public class UMLElementTypes {
 
 			elements.put(InputPin_3096, UMLPackage.eINSTANCE.getInputPin());
 
+
+			elements.put(ReadVariableAction_3097, UMLPackage.eINSTANCE.getReadVariableAction());
+
+
+			elements.put(OutputPin_3098, UMLPackage.eINSTANCE.getOutputPin());
+
+
+			elements.put(AddVariableValueAction_3099, UMLPackage.eINSTANCE.getAddVariableValueAction());
+
+
+			elements.put(InputPin_3100, UMLPackage.eINSTANCE.getInputPin());
+
+
+			elements.put(InputPin_3101, UMLPackage.eINSTANCE.getInputPin());
+
 			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 
 			elements.put(ActionLocalPostcondition_4002, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
@@ -1059,6 +1104,11 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(OutputPin_3094);
 			KNOWN_ELEMENT_TYPES.add(DestroyObjectAction_3095);
 			KNOWN_ELEMENT_TYPES.add(InputPin_3096);
+			KNOWN_ELEMENT_TYPES.add(ReadVariableAction_3097);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3098);
+			KNOWN_ELEMENT_TYPES.add(AddVariableValueAction_3099);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3100);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3101);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPrecondition_4001);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPostcondition_4002);
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
@@ -1240,6 +1290,16 @@ public class UMLElementTypes {
 			return DestroyObjectAction_3095;
 		case InputPinInDestroyObjectActionEditPart.VISUAL_ID:
 			return InputPin_3096;
+		case ReadVariableActionEditPart.VISUAL_ID:
+			return ReadVariableAction_3097;
+		case OutputPinInReadVariableActionAsResultEditPart.VISUAL_ID:
+			return OutputPin_3098;
+		case AddVariableValueActionEditPart.VISUAL_ID:
+			return AddVariableValueAction_3099;
+		case InputPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID:
+			return InputPin_3100;
+		case InputPinInAddVariableValueActionAsValueEditPart.VISUAL_ID:
+			return InputPin_3101;
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return ActionLocalPrecondition_4001;
 		case ActionLocalPostconditionEditPart.VISUAL_ID:
