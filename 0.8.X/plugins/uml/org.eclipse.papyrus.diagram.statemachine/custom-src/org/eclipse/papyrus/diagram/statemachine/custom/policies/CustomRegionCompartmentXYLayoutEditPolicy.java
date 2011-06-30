@@ -13,6 +13,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
@@ -93,26 +94,16 @@ public class CustomRegionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolic
 		return super.createChildEditPolicy(child);
 	}
 
-//	@Override
-//	protected Command getCreateCommand(CreateRequest request) {
-//		CreateViewRequest req = (CreateViewRequest)request;
-//
-//		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-//
-//		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain, DiagramUIMessages.AddCommand_Label);
-//		Iterator iter = req.getViewDescriptors().iterator();
-//
-//		final Rectangle BOUNDS = (Rectangle)getConstraintFor(request);
-//
-//		while(iter.hasNext()) {
-//			CreateViewRequest.ViewDescriptor viewDescriptor = (CreateViewRequest.ViewDescriptor)iter.next();
-//			Rectangle rect = getBoundsOffest(req, BOUNDS, viewDescriptor);
-//			cc.compose(new CustomStateMachineSetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, rect));
-//		}
-//
-//		if(cc.reduce() == null)
-//			return null;
-//
-//		return chainGuideAttachmentCommands(request, new ICommandProxy(cc.reduce()));
-//	}
+	/**
+	 * 
+	 * {@inheritedDoc}
+	 */
+	public EditPart getTargetEditPart(Request request) {
+		//this enables to make links when pointing inside a region
+		if(request instanceof CreateUnspecifiedTypeConnectionRequest)
+			return getHost().getParent().getParent().getParent();
+		else
+			return super.getTargetEditPart(request);
+	}
+
 }

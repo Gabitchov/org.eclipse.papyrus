@@ -129,7 +129,7 @@ public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifier
 
 				Region region = null;
 				EList<Region> regions = stateMachine.getRegions();
-				if (regions.isEmpty()) {
+				if(regions.isEmpty()) {
 					region = UMLFactory.eINSTANCE.createRegion();
 					regions.add(region);
 					region.setName(NamedElementUtil.getDefaultNameWithIncrement(region, regions));

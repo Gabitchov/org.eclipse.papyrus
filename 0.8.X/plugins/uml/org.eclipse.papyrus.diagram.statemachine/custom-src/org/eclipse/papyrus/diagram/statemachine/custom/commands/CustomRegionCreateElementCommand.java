@@ -86,11 +86,10 @@ public class CustomRegionCreateElementCommand extends AbstractTransactionalComma
 			createElementRequest = new CreateElementRequest(getEditingDomain(), ownerView, UMLElementTypes.Region_3000);
 
 			// create a new UML region
-			if(ownerView.getElement() instanceof StateMachine){
+			if(ownerView.getElement() instanceof StateMachine) {
 				StateMachine umlStateMachine = (StateMachine)ownerView.getElement();
 				umlStateMachine.getRegions().add(umlRegion);
-			}
-			else if(ownerView.getElement() instanceof State){
+			} else if(ownerView.getElement() instanceof State) {
 				State umlState = (State)ownerView.getElement();
 				umlState.getRegions().add(umlRegion);
 			}

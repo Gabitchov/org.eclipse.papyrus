@@ -75,27 +75,27 @@ public class StateFigure extends CompartmentFigure {
 		informationLabel = new WrappingLabel();
 
 		informationLabel.setOpaque(false);
-		informationLabel.setAlignment(PositionConstants.LEFT);
+		informationLabel.setAlignment(PositionConstants.MIDDLE);
 		informationLabel.setVisible(false);
 		informationLabel.setTextWrap(true);
 		getInformationLabelContainer().add(informationLabel, getInformationLabelConstraint(), -1);
 	}
 
-	public void setSubmachineStateName(String text){
+	public void setSubmachineStateName(String text) {
 		submachineStateName = text;
 	}
 
-	public void setIsSubmachineState(boolean b){
+	public void setIsSubmachineState(boolean b) {
 		isSubmachineState = b;
 	}
 
 
-	protected void refreshName(){
-		if(isSubmachineState){
+	protected void refreshName() {
+		if(isSubmachineState) {
 			nameLabel.setText(submachineStateName);
 		}
 	}
-	
+
 	@Override
 	protected void createNameLabel() {
 		// TODO Auto-generated method stub
@@ -105,16 +105,15 @@ public class StateFigure extends CompartmentFigure {
 	}
 
 	public void fillInformation(String text) {
-		if(!informationLabel.getText().equals(text)){
+		if(!informationLabel.getText().equals(text)) {
 			informationLabel.setText(text);
 			informationHasChanged = true;
 			refreshInformationToShow();
-		}
-		else
+		} else
 			informationHasChanged = false;
 	}
 
-	public WrappingLabel getInformationLabel(){
+	public WrappingLabel getInformationLabel() {
 		return informationLabel;
 	}
 
@@ -151,7 +150,7 @@ public class StateFigure extends CompartmentFigure {
 		return getCompartment(STATE_COMPARTMENT);
 	}
 
-	public boolean hasInformationChanged(){
+	public boolean hasInformationChanged() {
 		return informationHasChanged;
 	}
 
@@ -160,44 +159,41 @@ public class StateFigure extends CompartmentFigure {
 		if(isUsingGradient()) {
 			applyTransparency(graphics);
 			boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
-			if(isVertical && rectangle.height>((3*arcwidth)/2)){
-				Rectangle rect1= new Rectangle(rectangle.getLocation(),new Dimension(rectangle.width,arcwidth));
-				Rectangle rect2= new Rectangle(rectangle.x,rectangle.y+rectangle.height-arcwidth,rectangle.width,arcwidth);;
+			if(isVertical && rectangle.height > ((3 * arcwidth) / 2)) {
+				Rectangle rect1 = new Rectangle(rectangle.getLocation(), new Dimension(rectangle.width, arcwidth));
+				Rectangle rect2 = new Rectangle(rectangle.x, rectangle.y + rectangle.height - arcwidth, rectangle.width, arcwidth);;
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-				graphics.fillRoundRectangle(rect1,arcwidth,arcwidth);
+				graphics.fillRoundRectangle(rect1, arcwidth, arcwidth);
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
-				graphics.fillRoundRectangle(rect2,arcwidth,arcwidth);
+				graphics.fillRoundRectangle(rect2, arcwidth, arcwidth);
 
 
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
 				graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-				Rectangle rect= new Rectangle(rectangle.x,rectangle.y+arcwidth/2,rectangle.width,rectangle.height-arcwidth);
+				Rectangle rect = new Rectangle(rectangle.x, rectangle.y + arcwidth / 2, rectangle.width, rectangle.height - arcwidth);
 				graphics.fillGradient(rect, true);
-			}
-			else if(!isVertical && rectangle.width>((3*arcwidth)/2)){
-				Rectangle rect1= new Rectangle(rectangle.getLocation(),new Dimension(arcwidth,rectangle.height));
-				Rectangle rect2= new Rectangle(rectangle.x+rectangle.width-arcwidth,rectangle.y,arcwidth,rectangle.height);
+			} else if(!isVertical && rectangle.width > ((3 * arcwidth) / 2)) {
+				Rectangle rect1 = new Rectangle(rectangle.getLocation(), new Dimension(arcwidth, rectangle.height));
+				Rectangle rect2 = new Rectangle(rectangle.x + rectangle.width - arcwidth, rectangle.y, arcwidth, rectangle.height);
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-				graphics.fillRoundRectangle(rect1,arcwidth,arcwidth);
+				graphics.fillRoundRectangle(rect1, arcwidth, arcwidth);
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
-				graphics.fillRoundRectangle(rect2,arcwidth,arcwidth);
+				graphics.fillRoundRectangle(rect2, arcwidth, arcwidth);
 
 
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
 				graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-				Rectangle rect= new Rectangle(rectangle.x+arcwidth/2, rectangle.y,rectangle.width-arcwidth,rectangle.height);
+				Rectangle rect = new Rectangle(rectangle.x + arcwidth / 2, rectangle.y, rectangle.width - arcwidth, rectangle.height);
 				graphics.fillGradient(rect, false);
-			}
-			else{
+			} else {
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
 				graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-				graphics.fillRoundRectangle(rectangle,arcwidth,arcwidth);
+				graphics.fillRoundRectangle(rectangle, arcwidth, arcwidth);
 			}
-		}
-		else {
+		} else {
 			graphics.setBackgroundColor(getBackgroundColor());
 			graphics.setForegroundColor(getForegroundColor());
-			graphics.fillRoundRectangle(rectangle,arcwidth,arcwidth);
+			graphics.fillRoundRectangle(rectangle, arcwidth, arcwidth);
 		}
 	}
 
@@ -206,7 +202,7 @@ public class StateFigure extends CompartmentFigure {
 		paintBackground(graphics, getBounds());
 
 		refreshInformationToShow();
-		
+
 		refreshName();
 
 		if(isInformationShown) {
@@ -217,7 +213,7 @@ public class StateFigure extends CompartmentFigure {
 			graphics.setLineStyle(SWT.BORDER_SOLID);
 			graphics.setLineWidth(SWT.BOLD);
 
-			graphics.drawLine(rect.x-2, rect.y, rect.x + rect.width - 1, rect.y);
+			graphics.drawLine(rect.x - 2, rect.y, rect.x + rect.width - 1, rect.y);
 
 		}
 	}

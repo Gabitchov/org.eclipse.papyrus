@@ -21,23 +21,23 @@ public class CustomRegionDestroyElementCommand extends DestroyElementCommand {
 	@Override
 	public boolean canExecute() {
 		if(super.canExecute()) {
-			if(getElementToEdit() instanceof StateMachine){
+			if(getElementToEdit() instanceof StateMachine) {
 				StateMachine stateMachine = (StateMachine)getElementToEdit();
 				if(stateMachine.getRegions().size() == 1)
 					return false;
 				return true;
 			}
 			return true;
-//			else if(getElementToEdit() instanceof State){
-//				State state = (State)getElementToEdit();
-//				if(state.getRegions().size() == 1)
-//					return false;
-//				return true;
-//			}
+			//			else if(getElementToEdit() instanceof State){
+			//				State state = (State)getElementToEdit();
+			//				if(state.getRegions().size() == 1)
+			//					return false;
+			//				return true;
+			//			}
 		}
 		return false;
 	}
-	
+
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// TODO Auto-generated method stub

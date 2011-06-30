@@ -957,23 +957,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		 * if (op.getViewKind() == Edge.class)
 		 * return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		 */
-		String modelID = UMLVisualIDRegistry.getModelID(op.getContainerView());
-		if(!getDiagramProvidedId().equals(modelID)) {
-			return false;
-		}
 		return true;
-	}
-
-	/**
-	 * Indicates for which diagram this provider works for.
-	 * <p>
-	 * This method can be overloaded when diagram editor inherits from another one
-	 * </p>
-	 * 
-	 * @return the unique identifier of the diagram for which views are provided.
-	 */
-	protected String getDiagramProvidedId() {
-		return PackageEditPart.MODEL_ID;
 	}
 
 	/**
