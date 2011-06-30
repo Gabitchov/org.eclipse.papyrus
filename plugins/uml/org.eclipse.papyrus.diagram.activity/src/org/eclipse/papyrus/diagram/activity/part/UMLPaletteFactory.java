@@ -261,6 +261,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CREATEBROADCASTSIGNALACTION49CREATIONTOOL = "createBroadcastSignalAction49CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String CREATECONTROLFLOW1CREATIONTOOL = "createControlFlow1CreationTool"; //$NON-NLS-1$
 
 	/**
@@ -426,6 +431,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if(toolId.equals(CREATEADDVARIABLEVALUEACTION48CREATIONTOOL)) {
 			return createAddVariableValueAction48CreationTool();
+		}
+		if(toolId.equals(CREATEBROADCASTSIGNALACTION49CREATIONTOOL)) {
+			return createBroadcastSignalAction49CreationTool();
 		}
 		if(toolId.equals(CREATECONTROLFLOW1CREATIONTOOL)) {
 			return createControlFlow1CreationTool();
@@ -966,6 +974,17 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createAddVariableValueAction48CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.AddVariableValueAction_3099);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createBroadcastSignalAction49CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.BroadcastSignalAction_3102);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;

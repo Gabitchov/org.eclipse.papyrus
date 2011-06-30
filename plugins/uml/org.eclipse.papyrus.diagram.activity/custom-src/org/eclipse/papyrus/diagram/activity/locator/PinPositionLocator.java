@@ -36,11 +36,11 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddStructuralFe
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddStructuralFeatureValueActionAsValueEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddVariableValueActionAsInsertAtEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddVariableValueActionAsValueEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInBroadcastSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInDestroyObjectActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInDestroyObjectActionLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInOpaqueActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInReadStructuralFeatureAsObjectEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsReqEditPart;
@@ -53,7 +53,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditP
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCreateObjectActionAsResultEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInReadSelfActionLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInReadStructuralFeatureAsResultEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInReadVariableActionAsResultEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInValSpecActEditPart;
@@ -489,6 +488,9 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 		} else if(child instanceof OutputPinInReadVariableActionAsResultEditPart.PinDescriptor) {
 			arrowIn = false;
 			arrow = ((OutputPinInReadVariableActionAsResultEditPart.PinDescriptor)child).getOptionalArrowFigure();
+		} else if(child instanceof InputPinInBroadcastSignalActionEditPart.PinDescriptor) {
+			arrowIn = true;
+			arrow = ((InputPinInBroadcastSignalActionEditPart.PinDescriptor)child).getOptionalArrowFigure();
 		}
 		if(arrow != null && arrow.getPoints().size() > 0) {
 			int arrowDirection;

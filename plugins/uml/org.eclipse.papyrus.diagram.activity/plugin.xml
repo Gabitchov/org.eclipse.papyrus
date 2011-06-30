@@ -229,7 +229,7 @@
       <viewProvider class="org.eclipse.papyrus.diagram.activity.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLActivityDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3080,3081,3084,3083,3086,3087,3085,3088,3089,3090,3091,3092,3093,3094,3095,3096,3097,3098,3099,3100,3101"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3080,3081,3084,3083,3086,3087,3085,3088,3089,3090,3091,3092,3093,3094,3095,3096,3097,3098,3099,3100,3101,3102,3103"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004,4005,4006"/>
       </viewProvider>
    </extension>
@@ -242,13 +242,13 @@
             <method name="getType()" value="PapyrusUMLActivityDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3080,3081,3084,3083,3086,3087,3085,3088,3089,3090,3091,3092,3093,3094,3095,3096,3097,3098,3099,3100,3101"/>
+            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3080,3081,3084,3083,3086,3087,3085,3088,3089,3090,3091,3092,3093,3094,3095,3096,3097,3098,3099,3100,3101,3102,3103"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4001,4002,4003,4004,4005,4006"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002,5080,5081,5082,5003,5011,5024,5083,5012,5025,5084,5009,5085,5010,5086,5004,5013,5026,5087,5014,5027,5088,5015,5089,5016,5090,5006,5017,5028,5091,5018,5029,5092,5019,5093,5020,5094,5021,5030,5095,5022,5031,5096,5023,5097,5038,5130,5039,5131,5040,5132,5041,5133,5036,5134,5037,5135,5007,5136,5008,5137,5043,5098,5099,5100,5042,5101,5127,5128,5059,5049,5050,5102,5051,5052,5103,5053,5104,5054,5055,5105,5056,5057,5106,5058,5107,5060,5061,5062,5108,5063,5064,5109,5065,5110,5072,5073,5111,5074,5075,5112,5076,5113,5071,5078,5079,5115,5077,5114,5126,5124,5125,5119,5120,5121,5123,5117,5118,5138,5139,5144,5145,5142,5143,5148,5146,5147,5129,5153,5149,5150,5151,5152,5160,5154,5155,5156,5157,5158,5159,5163,5161,5162,5166,5164,5165,5171,5167,5168,5169,5170"/>
+            <method name="getType()" value="5001,5002,5080,5081,5082,5003,5011,5024,5083,5012,5025,5084,5009,5085,5010,5086,5004,5013,5026,5087,5014,5027,5088,5015,5089,5016,5090,5006,5017,5028,5091,5018,5029,5092,5019,5093,5020,5094,5021,5030,5095,5022,5031,5096,5023,5097,5038,5130,5039,5131,5040,5132,5041,5133,5036,5134,5037,5135,5007,5136,5008,5137,5043,5098,5099,5100,5042,5101,5127,5128,5059,5049,5050,5102,5051,5052,5103,5053,5104,5054,5055,5105,5056,5057,5106,5058,5107,5060,5061,5062,5108,5063,5064,5109,5065,5110,5072,5073,5111,5074,5075,5112,5076,5113,5071,5078,5079,5115,5077,5114,5126,5124,5125,5119,5120,5121,5123,5117,5118,5138,5139,5144,5145,5142,5143,5148,5146,5147,5129,5153,5149,5150,5151,5152,5160,5154,5155,5156,5157,5158,5159,5163,5161,5162,5166,5164,5165,5171,5167,5168,5169,5170,5175,5172,5173,5174"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7002,7003,7004,7008,7009,7010,7012,7005,7006,7007,7014,7015,7016,7013"/>
@@ -1120,6 +1120,25 @@
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.BroadcastSignalAction_3102"
+               name="%metatype.name.BroadcastSignalAction_3102"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="BroadcastSignalAction"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.BroadcastSignalActionEditHelper">
+            <param name="semanticHint" value="3102"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.InputPin_3103"
+               name="%metatype.name.InputPin_3103"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.InputPin_3013"/>
+            <param name="semanticHint" value="3103"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.diagram.activity.ActionLocalPrecondition_4001"
                name="%metatype.name.ActionLocalPrecondition_4001"
@@ -1276,6 +1295,8 @@
          <elementType ref="org.eclipse.papyrus.diagram.activity.AddVariableValueAction_3099"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.InputPin_3100"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.InputPin_3101"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.BroadcastSignalAction_3102"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.InputPin_3103"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActionLocalPrecondition_4001"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActionLocalPostcondition_4002"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ObjectFlow_4003"/>
@@ -1568,6 +1589,9 @@
       </category>
       <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateReadVariableAction" mandatory="false" name="validateReadVariableAction">
          <![CDATA[Constraint for ReadVariableAction]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateBroacastSignalAction" mandatory="false" name="validateBroadcastSignalActionTODO">
+         <![CDATA[Constraint for BraodcastSignalAction]]>
       </category>
       <constraintProvider cache="true">
          <package namespaceUri="http://www.eclipse.org/uml2/3.0.0/UML"/>
@@ -2303,6 +2327,8 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
             <target class="uml.ReadVariableAction"/>
          </constraint>
                   </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateBroacastSignalAction">
+                  </constraints>
       </constraintProvider>
    </extension>
 
@@ -2404,6 +2430,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
             <target class="uml.SendSignalAction"/>
             <target class="uml.Signal"/>
             <target class="uml.SendObjectAction"/>
+            <target class="uml.BroadcastSignalAction"/>
          </constraint>
                   </constraints>
       </constraintProvider>
@@ -2590,6 +2617,13 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 			class="org.eclipse.papyrus.diagram.activity.preferences.CallBehaviorActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.CallBehaviorActionPreferencePage"
             name="CallBehaviorAction Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.BroadcastSignalActionPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.BroadcastSignalActionPreferencePage"
+            name="BroadcastSignalAction Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -3320,6 +3354,16 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	</entry>
 	<entry
        defineOnly="true"
+       description="Create a Broadcast Signal Action"
+       id="createBroadcastSignalAction49CreationTool"
+       kind="tool"
+       label="Broadcast Signal Action"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BroadcastSignalAction.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BroadcastSignalAction.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
        description="Create a Control Flow"
        id="createControlFlow1CreationTool"
        kind="tool"
@@ -3580,6 +3624,10 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
     </predefinedEntry>
  	<predefinedEntry
           id="createAddVariableValueAction48CreationTool"
+          path="/createNodes1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createBroadcastSignalAction49CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
 

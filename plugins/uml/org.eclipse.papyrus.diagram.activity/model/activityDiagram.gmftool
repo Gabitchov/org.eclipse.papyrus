@@ -641,6 +641,19 @@
             path="icons/full/obj16/AddVariableValueAction.gif"
             bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
       </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Broadcast Signal Action"
+          description="Create a Broadcast Signal Action">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/BroadcastSignalAction.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/BroadcastSignalAction.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
     </tools>
     <tools
         xsi:type="gmftool:ToolGroup"

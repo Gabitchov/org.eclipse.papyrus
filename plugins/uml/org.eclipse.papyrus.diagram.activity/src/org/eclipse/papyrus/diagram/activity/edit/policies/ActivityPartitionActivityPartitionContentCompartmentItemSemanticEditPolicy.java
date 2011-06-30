@@ -20,6 +20,7 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityFinalNodeCreat
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityPartitionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.AddStructuralFeatureValueActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.AddVariableValueActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.BroadcastSignalActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallBehaviorActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallOperationActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ConditionalNodeCreateCommand;
@@ -170,6 +171,9 @@ public class ActivityPartitionActivityPartitionContentCompartmentItemSemanticEdi
 		}
 		if(UMLElementTypes.ReadVariableAction_3097 == req.getElementType()) {
 			return getGEFWrapper(new ReadVariableActionCreateCommand(req));
+		}
+		if(UMLElementTypes.BroadcastSignalAction_3102 == req.getElementType()) {
+			return getGEFWrapper(new BroadcastSignalActionCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

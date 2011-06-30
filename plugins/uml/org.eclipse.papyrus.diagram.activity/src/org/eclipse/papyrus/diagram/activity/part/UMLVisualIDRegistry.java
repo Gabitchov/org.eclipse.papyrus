@@ -343,6 +343,11 @@ public class UMLVisualIDRegistry {
 				return InputPinInAddVariableValueActionAsValueEditPart.VISUAL_ID;
 			}
 			break;
+		case BroadcastSignalActionEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3103(containerView, (InputPin)domainElement)) {
+				return InputPinInBroadcastSignalActionEditPart.VISUAL_ID;
+			}
+			break;
 		case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
 
@@ -543,6 +548,11 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return AddVariableValueActionEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getBroadcastSignalAction().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return BroadcastSignalActionEditPart.VISUAL_ID;
 			}
 			break;
 		case ConditionalNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
@@ -1883,6 +1893,11 @@ public class UMLVisualIDRegistry {
 			) {
 				return AddVariableValueActionEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getBroadcastSignalAction().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return BroadcastSignalActionEditPart.VISUAL_ID;
+			}
 			break;
 		}
 		return -1;
@@ -2961,6 +2976,25 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case BroadcastSignalActionEditPart.VISUAL_ID:
+			if(BroadcastSignalActionNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(InputPinInBroadcastSignalActionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case InputPinInBroadcastSignalActionEditPart.VISUAL_ID:
+			if(InputPinInBroadcastSignalActionLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(InputPinInBroadcastSignalActionValueLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(InputPinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -3092,6 +3126,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(AddVariableValueActionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(BroadcastSignalActionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -3983,6 +4020,9 @@ public class UMLVisualIDRegistry {
 			if(AddVariableValueActionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(BroadcastSignalActionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ObjectFlowEditPart.VISUAL_ID:
 			if(ObjectFlowNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -4338,6 +4378,21 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isInputPin_3101(InputPin domainElement) {
 		Object result = UMLOCLFactory.getExpression(34, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
+	}
+
+	/**
+	 * @generated NOT (method generation is missing or generated calls are incorrect)
+	 */
+	private static boolean isInputPin_3103(View containerView, InputPin domainElement) {
+		return isInputPin_3103(domainElement);
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isInputPin_3103(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(35, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -5445,6 +5500,18 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(3101, ViewInfo.Node, "InputPin");
 
 		root.addNode(3099, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3102, ViewInfo.Node, "BroadcastSignalAction");
+
+		root.addNode(7013, viewInfo);
+
+		root.addNode(7004, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3103, ViewInfo.Node, "InputPin");
+
+		root.addNode(3102, viewInfo);
 
 		return root;
 	}

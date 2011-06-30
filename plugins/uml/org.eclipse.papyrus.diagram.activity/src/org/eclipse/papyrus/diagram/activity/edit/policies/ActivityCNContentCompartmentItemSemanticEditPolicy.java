@@ -9,6 +9,7 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityParameterNodeC
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityPartitionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.AddStructuralFeatureValueActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.AddVariableValueActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.BroadcastSignalActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallBehaviorActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallOperationActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CommentCreateCommand;
@@ -179,6 +180,9 @@ public class ActivityCNContentCompartmentItemSemanticEditPolicy extends UMLBaseI
 		}
 		if(UMLElementTypes.AddVariableValueAction_3099 == req.getElementType()) {
 			return getGEFWrapper(new AddVariableValueActionCreateCommand(req));
+		}
+		if(UMLElementTypes.BroadcastSignalAction_3102 == req.getElementType()) {
+			return getGEFWrapper(new BroadcastSignalActionCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

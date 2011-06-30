@@ -1112,6 +1112,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createBroadcastSignalAction49CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createBroadcastSignalAction49CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createControlFlow1CreationTool_title;
 
 	/**
@@ -1448,6 +1458,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ValuePin_3022_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputPin_3103_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputPin_3103_outgoinglinks;
 
 	/**
 	 * @generated
@@ -1933,6 +1953,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ExpansionNode_3075_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_BroadcastSignalAction_3102_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_BroadcastSignalAction_3102_incominglinks;
 
 	/**
 	 * @generated

@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.activity.helper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -28,6 +29,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -54,6 +56,7 @@ import org.eclipse.papyrus.diagram.activity.edit.dialogs.ConfirmPinAndParameterS
 import org.eclipse.papyrus.diagram.activity.edit.dialogs.WarningAndCreateAttributeDialog;
 import org.eclipse.papyrus.diagram.activity.edit.dialogs.WarningAndCreateParameterDialog;
 import org.eclipse.papyrus.diagram.activity.edit.dialogs.WarningAndLinkDialog;
+import org.eclipse.papyrus.diagram.activity.edit.parts.BroadcastSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
@@ -62,6 +65,7 @@ import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.AddStructuralFeatureValueAction;
 import org.eclipse.uml2.uml.AddVariableValueAction;
 import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.BroadcastSignalAction;
 import org.eclipse.uml2.uml.CallAction;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.CallOperationAction;
@@ -92,8 +96,8 @@ import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.Variable;
 
 /**
- * The PinAndParameterSynchronizer is a validator which ensure Pins and their corresponding (if a
- * correspondence can be established) Parameters are correctly synchronized
+ * The PinAndParameterSynchronizer is a validator (see corresponding extensions) which ensure Pins and their corresponding (if a
+ * correspondance can be established) Parameters are correctly synchronized
  * 
  */
 public class PinAndParameterSynchronizer extends AbstractModelConstraint {
@@ -193,6 +197,12 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				if(!cmd.isEmpty() && cmd.canExecute()) {
 					cmd.execute();
 				}
+			} else if((EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType())) && ctx.getFeatureNewValue() instanceof BroadcastSignalAction) {
+				// SendObjectAction created
+				CompoundCommand cmd = getResetPinsCmd((BroadcastSignalAction)ctx.getFeatureNewValue());
+				if(!cmd.isEmpty() && cmd.canExecute()) {
+					cmd.execute();
+				}
 			} else if((EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType())) && ctx.getFeatureNewValue() instanceof CreateObjectAction) {
 				// CreateObject Action created
 				CompoundCommand cmd = getResetPinsCmd((CreateObjectAction)ctx.getFeatureNewValue());
@@ -261,6 +271,9 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			} else if(eObject instanceof SendObjectAction) {
 				// action is modified, ensure deleted/added Pin are authorized
 				return handleSendObjectActionModification((SendObjectAction)eObject, ctx);
+			} else if(eObject instanceof BroadcastSignalAction) {
+				// action is modified, ensure deleted/added Pin impact a Property
+				return handleBroadcastSignalActionModification((BroadcastSignalAction)eObject, ctx);
 			}
 			return ctx.createSuccessStatus();
 		} catch (RuntimeException rte) {
@@ -446,7 +459,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			// explore referencing actions
 			List<InvocationAction> callingActions = getCallingActions(property.getOwner());
 			for(InvocationAction action : callingActions) {
-				if(action instanceof SendSignalAction) {
+				if(action instanceof SendSignalAction || action instanceof BroadcastSignalActionEditPart) {
 					int index = action.getArguments().size();
 					CompoundCommand cmd = getAddPinsCmd((SendSignalAction)action, Collections.singletonMap(index, property), preferredPinClass);
 					globalCmd.append(cmd);
@@ -869,6 +882,60 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	private boolean canCreateAttributesFromSendSignalAction(SendSignalAction action) {
 		return true;
+	}
+
+
+	/**
+	 * Ensure BroadcastSignalAction modification is reported on associated Signal
+	 * 
+	 * @param action
+	 *        modified action
+	 * @param ctx
+	 *        validation context
+	 * @return status
+	 */
+	private IStatus handleBroadcastSignalActionModification(BroadcastSignalAction action, IValidationContext ctx) {
+		if(testTransformPinCase(ctx)) {
+			return ctx.createSuccessStatus();
+		} else if(EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType())) {
+			if(testActionFeature(ctx.getFeature()) && action.getSignal() != null) {
+				if(action.getSignal() != null) {
+
+					Object pin = ctx.getFeatureNewValue();
+					boolean attributeCreated = proposeAttributeCreation(action.getSignal(), ((EObject)pin).eClass());
+					if(attributeCreated) {
+						// remove the user-created value
+						TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
+						Command cmd = RemoveCommand.create(editingdomain, ctx.getFeatureNewValue());
+						cmd.execute();
+						return ctx.createSuccessStatus();
+					}
+					return ctx.createFailureStatus();
+				}
+			}
+		} else if(EMFEventType.REMOVE.equals(ctx.getEventType()) || EMFEventType.REMOVE_MANY.equals(ctx.getEventType())) {
+			if(testActionFeature(ctx.getFeature()) && action.getSignal() != null) {
+				/*
+				 * Yet, no modification of attributes is allowed from the BroadcastSignalAction. This
+				 * means we can not remove Pins
+				 */
+				if(action.getSignal() != null) {
+					proposeNavigation(action.getSignal());
+					return ctx.createFailureStatus();
+				}
+			}
+		} else if(EMFEventType.SET.equals(ctx.getEventType()) || EMFEventType.UNSET.equals(ctx.getEventType())) {
+			if(UMLPackage.eINSTANCE.getBroadcastSignalAction_Signal().equals(ctx.getFeature())) {
+				/*
+				 * The signal changes, so must the pins
+				 */
+				CompoundCommand cmd = getResetPinsCmd(action);
+				if(!cmd.isEmpty() && cmd.canExecute()) {
+					cmd.execute();
+				}
+			}
+		}
+		return ctx.createSuccessStatus();
 	}
 
 	/**
@@ -1855,14 +1922,41 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 *        action to reinitialize pins (ReadVariableAction)
 	 * @return command
 	 */
+	// Get the editing domain
 	private CompoundCommand getResetPinsCmd(ReadVariableAction action) {
-		// Get the editing domain
 		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
 		CompoundCommand globalCmd = new CompoundCommand();
 		if(action.getResult() == null) {
 			OutputPin resultPin = createResultPin(action.getVariable());
 			Command cmdResultPin = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getReadVariableAction_Result(), resultPin);
 			globalCmd.append(cmdResultPin);
+		}
+		return globalCmd;
+	}
+
+	/**
+	 * Get the command to reset all pins of the action.
+	 * 
+	 * @param action
+	 *        action to reinitialize pins (BroadcastSignalAction)
+	 * @return command
+	 */
+	private CompoundCommand getResetPinsCmd(BroadcastSignalAction action) {
+		// Get the editing domain
+		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
+		CompoundCommand globalCmd = new CompoundCommand();
+		if(action.getSignal() != null) {
+			if(action.getArguments().isEmpty()) {
+				EList<Property> properties = action.getSignal().getAllAttributes();
+				for(Property argument : properties) {
+					InputPin argPin = UMLFactory.eINSTANCE.createInputPin();
+					argPin.setName(argument.getName());
+					argPin.setType(argument.getType());
+					Command cmdArg = AddCommand.create(editingdomain, action, UMLPackage.Literals.INVOCATION_ACTION__ARGUMENT, Arrays.asList(argPin));
+					globalCmd.append(cmdArg);
+				}
+
+			}
 		}
 		return globalCmd;
 	}

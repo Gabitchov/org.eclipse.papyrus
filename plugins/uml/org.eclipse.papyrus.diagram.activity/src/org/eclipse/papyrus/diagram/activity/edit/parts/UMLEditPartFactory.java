@@ -762,6 +762,24 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InputPinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return new InputPinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart(view);
 
+			case BroadcastSignalActionEditPart.VISUAL_ID:
+				return new BroadcastSignalActionEditPart(view);
+
+			case BroadcastSignalActionNameEditPart.VISUAL_ID:
+				return new BroadcastSignalActionNameEditPart(view);
+
+			case InputPinInBroadcastSignalActionEditPart.VISUAL_ID:
+				return new InputPinInBroadcastSignalActionEditPart(view);
+
+			case InputPinInBroadcastSignalActionLabelEditPart.VISUAL_ID:
+				return new InputPinInBroadcastSignalActionLabelEditPart(view);
+
+			case InputPinInBroadcastSignalActionValueLabelEditPart.VISUAL_ID:
+				return new InputPinInBroadcastSignalActionValueLabelEditPart(view);
+
+			case InputPinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new InputPinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart(view);
+
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);
 

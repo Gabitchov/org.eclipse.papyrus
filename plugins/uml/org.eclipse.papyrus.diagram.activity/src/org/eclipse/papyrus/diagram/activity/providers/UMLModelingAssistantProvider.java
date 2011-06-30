@@ -48,6 +48,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeEdit
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AddStructuralFeatureValueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AddVariableValueActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.BroadcastSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CommentEditPartCN;
@@ -70,6 +71,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddStructuralFe
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddStructuralFeatureValueActionAsValueEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddVariableValueActionAsInsertAtEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddVariableValueActionAsValueEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInBroadcastSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
@@ -458,6 +460,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof InputPinInAddVariableValueActionAsValueEditPart) {
 			return ((InputPinInAddVariableValueActionAsValueEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
+		if(sourceEditPart instanceof BroadcastSignalActionEditPart) {
+			return ((BroadcastSignalActionEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
+			return ((InputPinInBroadcastSignalActionEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -718,6 +726,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof InputPinInAddVariableValueActionAsValueEditPart) {
 			return ((InputPinInAddVariableValueActionAsValueEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
+		if(targetEditPart instanceof BroadcastSignalActionEditPart) {
+			return ((BroadcastSignalActionEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
+			return ((InputPinInBroadcastSignalActionEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -939,6 +953,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof InputPinInAddVariableValueActionAsValueEditPart) {
 			return ((InputPinInAddVariableValueActionAsValueEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof BroadcastSignalActionEditPart) {
+			return ((BroadcastSignalActionEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
+			return ((InputPinInBroadcastSignalActionEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -1200,6 +1220,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof InputPinInAddVariableValueActionAsValueEditPart) {
 			return ((InputPinInAddVariableValueActionAsValueEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if(targetEditPart instanceof BroadcastSignalActionEditPart) {
+			return ((BroadcastSignalActionEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
+			return ((InputPinInBroadcastSignalActionEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -1420,6 +1446,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof InputPinInAddVariableValueActionAsValueEditPart) {
 			return ((InputPinInAddVariableValueActionAsValueEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof BroadcastSignalActionEditPart) {
+			return ((BroadcastSignalActionEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
+			return ((InputPinInBroadcastSignalActionEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

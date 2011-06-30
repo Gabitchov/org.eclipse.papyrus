@@ -552,6 +552,12 @@ AbstractCommentEditPart {
 		if(targetEditPart instanceof InputPinInAddVariableValueActionAsValueEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
 		}
+		if(targetEditPart instanceof BroadcastSignalActionEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
 		return types;
 	}
 
@@ -645,6 +651,8 @@ AbstractCommentEditPart {
 			types.add(UMLElementTypes.AddVariableValueAction_3099);
 			types.add(UMLElementTypes.InputPin_3100);
 			types.add(UMLElementTypes.InputPin_3101);
+			types.add(UMLElementTypes.BroadcastSignalAction_3102);
+			types.add(UMLElementTypes.InputPin_3103);
 		}
 		return types;
 	}

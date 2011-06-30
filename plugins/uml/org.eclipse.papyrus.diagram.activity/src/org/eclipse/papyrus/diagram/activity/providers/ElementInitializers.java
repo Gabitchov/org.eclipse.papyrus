@@ -11,6 +11,7 @@ import org.eclipse.uml2.uml.ActivityParameterNode;
 import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.AddStructuralFeatureValueAction;
 import org.eclipse.uml2.uml.AddVariableValueAction;
+import org.eclipse.uml2.uml.BroadcastSignalAction;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Comment;
@@ -1127,6 +1128,30 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_BroadcastSignalAction_3102(BroadcastSignalAction instance) {
+		try {
+			Object value_0 = name_BroadcastSignalAction_3102(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_InputPin_3103(InputPin instance) {
+		try {
+			Object value_0 = name_InputPin_3103(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_ObjectFlow_4003(ObjectFlow instance) {
 		try {
 			Object value_0 = name_ObjectFlow_4003(instance);
@@ -1796,6 +1821,20 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_InputPin_3101(InputPin self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_BroadcastSignalAction_3102(BroadcastSignalAction self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_3103(InputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 

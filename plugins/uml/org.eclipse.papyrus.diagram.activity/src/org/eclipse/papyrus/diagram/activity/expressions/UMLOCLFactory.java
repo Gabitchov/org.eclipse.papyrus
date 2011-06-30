@@ -44,7 +44,7 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	protected UMLOCLFactory() {
-		this.expressions = new UMLAbstractExpression[85];
+		this.expressions = new UMLAbstractExpression[86];
 	}
 
 	/**
@@ -94,6 +94,7 @@ public class UMLOCLFactory {
 			"if self.owner.oclIsKindOf(ReadVariableAction)\r\nthen self.owner.oclAsType(ReadVariableAction).result->includes(self)\r\nelse false endif", //$NON-NLS-1$
 			"if self.owner.oclIsKindOf(AddVariableValueAction)\r\nthen self.owner.oclAsType(AddVariableValueAction).insertAt->includes(self)\r\nelse false endif", //$NON-NLS-1$
 			"if self.owner.oclIsKindOf(AddVariableValueAction)\r\nthen self.owner.oclAsType(AddVariableValueAction).value->includes(self)\r\nelse false endif", //$NON-NLS-1$
+			"if self.owner.oclIsKindOf(BroadcastSignalAction)\r\nthen self.owner.oclAsType(BroadcastSignalAction).argument->includes(self)\r\nelse false endif", //$NON-NLS-1$
 			"self.incoming->isEmpty()", //$NON-NLS-1$
 			"not self.source.oclIsKindOf(InitialNode)", //$NON-NLS-1$
 			"self.outgoing->isEmpty()", //$NON-NLS-1$

@@ -61,6 +61,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		CallBehaviorActionPreferencePage.initDefaults(store);
 
 
+		BroadcastSignalActionPreferencePage.initDefaults(store);
+
+
 		ActivityPartitionPreferencePage.initDefaults(store);
 
 

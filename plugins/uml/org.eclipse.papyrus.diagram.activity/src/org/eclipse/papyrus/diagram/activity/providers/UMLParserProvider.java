@@ -2009,6 +2009,68 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser broadcastSignalActionName_5175Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getBroadcastSignalActionName_5175Parser() {
+		if(broadcastSignalActionName_5175Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			broadcastSignalActionName_5175Parser = parser;
+		}
+		return broadcastSignalActionName_5175Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser inputPinLabel_5172Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInputPinLabel_5172Parser() {
+		if(inputPinLabel_5172Parser == null) {
+			inputPinLabel_5172Parser = new PinParser();
+		}
+		return inputPinLabel_5172Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinValueParser inputPinLabel_5173Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInputPinLabel_5173Parser() {
+		if(inputPinLabel_5173Parser == null) {
+			inputPinLabel_5173Parser = new PinValueParser();
+		}
+		return inputPinLabel_5173Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser inputPinLabel_5174Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInputPinLabel_5174Parser() {
+		if(inputPinLabel_5174Parser == null) {
+			inputPinLabel_5174Parser = new AppliedStereotypeParser();
+		}
+		return inputPinLabel_5174Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private CommentParser commentBody_5138Parser;
 
 	/**
@@ -2928,6 +2990,14 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getInputPinLabel_5169Parser();
 		case InputPinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 			return getInputPinLabel_5170Parser();
+		case BroadcastSignalActionNameEditPart.VISUAL_ID:
+			return getBroadcastSignalActionName_5175Parser();
+		case InputPinInBroadcastSignalActionLabelEditPart.VISUAL_ID:
+			return getInputPinLabel_5172Parser();
+		case InputPinInBroadcastSignalActionValueLabelEditPart.VISUAL_ID:
+			return getInputPinLabel_5173Parser();
+		case InputPinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+			return getInputPinLabel_5174Parser();
 		case ObjectFlowNameEditPart.VISUAL_ID:
 			return getObjectFlowName_6001Parser();
 		case ObjectFlowWeightEditPart.VISUAL_ID:

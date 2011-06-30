@@ -46,6 +46,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeEdit
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AddStructuralFeatureValueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AddVariableValueActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.BroadcastSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CommentEditPartCN;
@@ -73,6 +74,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddStructuralFe
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddStructuralFeatureValueActionAsValueEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddVariableValueActionAsInsertAtEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddVariableValueActionAsValueEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInBroadcastSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
@@ -515,6 +517,16 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType InputPin_3101 = getElementType("org.eclipse.papyrus.diagram.activity.InputPin_3101"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType BroadcastSignalAction_3102 = getElementType("org.eclipse.papyrus.diagram.activity.BroadcastSignalAction_3102"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3103 = getElementType("org.eclipse.papyrus.diagram.activity.InputPin_3103"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -990,6 +1002,12 @@ public class UMLElementTypes {
 
 			elements.put(InputPin_3101, UMLPackage.eINSTANCE.getInputPin());
 
+
+			elements.put(BroadcastSignalAction_3102, UMLPackage.eINSTANCE.getBroadcastSignalAction());
+
+
+			elements.put(InputPin_3103, UMLPackage.eINSTANCE.getInputPin());
+
 			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 
 			elements.put(ActionLocalPostcondition_4002, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
@@ -1109,6 +1127,8 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(AddVariableValueAction_3099);
 			KNOWN_ELEMENT_TYPES.add(InputPin_3100);
 			KNOWN_ELEMENT_TYPES.add(InputPin_3101);
+			KNOWN_ELEMENT_TYPES.add(BroadcastSignalAction_3102);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3103);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPrecondition_4001);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPostcondition_4002);
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
@@ -1300,6 +1320,10 @@ public class UMLElementTypes {
 			return InputPin_3100;
 		case InputPinInAddVariableValueActionAsValueEditPart.VISUAL_ID:
 			return InputPin_3101;
+		case BroadcastSignalActionEditPart.VISUAL_ID:
+			return BroadcastSignalAction_3102;
+		case InputPinInBroadcastSignalActionEditPart.VISUAL_ID:
+			return InputPin_3103;
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return ActionLocalPrecondition_4001;
 		case ActionLocalPostconditionEditPart.VISUAL_ID:

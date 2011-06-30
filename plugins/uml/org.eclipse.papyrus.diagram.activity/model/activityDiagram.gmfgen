@@ -211,11 +211,16 @@
           description="Constraint for ReadVariableAction"
           path="/0/@audits/@categories.0 /0/@audits/@categories.34"
           audits="/0/@audits/@rules.59 /0/@audits/@rules.60"/>
+      <categories
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateBroacastSignalAction"
+          name="validateBroadcastSignalActionTODO"
+          description="Constraint for BraodcastSignalAction"
+          path="/0/@audits/@categories.0 /0/@audits/@categories.35"/>
       <rules
           name="validateNoIncomingEdges"
           description="An initial node has no incoming edge"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateInitialNode_validateNoIncomingEdges"
-          rule="/0/@expressionProviders/@providers.1/@expressions.35"
+          rule="/0/@expressionProviders/@providers.1/@expressions.36"
           message="An initial node must have no incoming edge"
           useInLiveMode="true"
           category="/0/@audits/@categories.1">
@@ -230,7 +235,7 @@
           name="validateControlEdges"
           description="Only control edges can have initial nodes as source"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateInitialNode_validateControlEdges"
-          rule="/0/@expressionProviders/@providers.1/@expressions.36"
+          rule="/0/@expressionProviders/@providers.1/@expressions.37"
           message="Source of an object flow must not be an initial node"
           useInLiveMode="true"
           category="/0/@audits/@categories.1">
@@ -245,7 +250,7 @@
           name="validateNoOutgoingEdges"
           description="A fianl node has no outgoing edge"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateFinalNode_validateNoOutgoingEdges"
-          rule="/0/@expressionProviders/@providers.1/@expressions.37"
+          rule="/0/@expressionProviders/@providers.1/@expressions.38"
           message="A final node must have no outgoing edge"
           useInLiveMode="true"
           category="/0/@audits/@categories.2">
@@ -260,7 +265,7 @@
           name="validateNotUnique"
           description="Object nodes are not unique typed elements"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode_validateNotUnique"
-          rule="/0/@expressionProviders/@providers.1/@expressions.38"
+          rule="/0/@expressionProviders/@providers.1/@expressions.39"
           message="isUnique must be false for object nodes."
           useInLiveMode="true"
           category="/0/@audits/@categories.11">
@@ -275,7 +280,7 @@
           name="validateSelectionBehavior"
           description="If an object node has a selection behavior, then the ordering of the object node is ordered, and vice versa."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode_validateSelectionBehavior"
-          rule="/0/@expressionProviders/@providers.1/@expressions.39"
+          rule="/0/@expressionProviders/@providers.1/@expressions.40"
           message="isOrdered means there is a selection behavior for object nodes."
           category="/0/@audits/@categories.11">
         <target
@@ -289,7 +294,7 @@
           name="validateObjectFlowEdges"
           description="All edges coming into or going out of object nodes must be object flow edges."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode_validateObjectFlowEdges"
-          rule="/0/@expressionProviders/@providers.1/@expressions.40"
+          rule="/0/@expressionProviders/@providers.1/@expressions.41"
           message="All edges coming into or going out of object nodes must be object flow edges."
           category="/0/@audits/@categories.11">
         <target
@@ -303,7 +308,7 @@
           name="validateInputOutputParameter"
           description="A selection behavior has one input parameter and one output parameter. The input parameter must be a bag of elements of the same type as the object node or a supertype of the type of object node. The output parameter must be the same or a subtype of the type of object node. The behavior cannot have side effects."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode_validateInputOutputParameter"
-          rule="/0/@expressionProviders/@providers.0/@expressions.98"
+          rule="/0/@expressionProviders/@providers.0/@expressions.100"
           message="The selection behavior of an object node must have one input parameter and one output parameter. The parameters types must be compatible with the object node's type."
           category="/0/@audits/@categories.11">
         <target
@@ -317,7 +322,7 @@
           name="validateControlPins"
           description="Control pins have a control type"
           id="org.eclipse.uml2.uml.util.UMLValidator.validatePin_validateControlPins"
-          rule="/0/@expressionProviders/@providers.1/@expressions.41"
+          rule="/0/@expressionProviders/@providers.1/@expressions.42"
           message="isControl muts imply isControlType for pins."
           useInLiveMode="true"
           category="/0/@audits/@categories.13">
@@ -332,7 +337,7 @@
           name="validateOutgoingEdgesStructuredOnly"
           description="Input pins may have outgoing edges only when they are on actions that are structured nodes, and these edges must target a node contained by the structured node."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateInputPin_validateOutgoingEdgesStructuredOnly"
-          rule="/0/@expressionProviders/@providers.1/@expressions.42"
+          rule="/0/@expressionProviders/@providers.1/@expressions.43"
           message="Input pins may have outgoing edges only when they are on actions that are structured nodes, and these edges must target a node contained by the structured node."
           useInLiveMode="true"
           category="/0/@audits/@categories.14">
@@ -347,7 +352,7 @@
           name="validateOneOutputPin"
           description="The fromAction of an action input pin must have exactly one output pin."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateActionInputPin_validateOneOutputPin"
-          rule="/0/@expressionProviders/@providers.1/@expressions.43"
+          rule="/0/@expressionProviders/@providers.1/@expressions.44"
           message="The fromAction of an action input pin must have exactly one output pin."
           useInLiveMode="true"
           category="/0/@audits/@categories.15">
@@ -362,7 +367,7 @@
           name="validateInputPin"
           description="The fromAction of an action input pin must only have action input pins as input pins."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateActionInputPin_validateInputPin"
-          rule="/0/@expressionProviders/@providers.1/@expressions.44"
+          rule="/0/@expressionProviders/@providers.1/@expressions.45"
           message="The fromAction of an action input pin must only have action input pins as input pins."
           useInLiveMode="true"
           category="/0/@audits/@categories.15">
@@ -377,7 +382,7 @@
           name="validateNoControlOrDataFlow"
           description="The fromAction of an action input pin cannot have control or data flows coming into or out of it or its pins."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateActionInputPin_validateNoControlOrDataFlow"
-          rule="/0/@expressionProviders/@providers.1/@expressions.45"
+          rule="/0/@expressionProviders/@providers.1/@expressions.46"
           message="The fromAction of an action input pin cannot have control or data flows coming into or out of it or its pins."
           useInLiveMode="true"
           category="/0/@audits/@categories.15">
@@ -392,7 +397,7 @@
           name="validateCompatibleType"
           description="The type of value specification must be compatible with the type of the value pin."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateValuePin_validateCompatibleType"
-          rule="/0/@expressionProviders/@providers.0/@expressions.99"
+          rule="/0/@expressionProviders/@providers.0/@expressions.101"
           message="The type of value specification must be compatible with the type of the value pin."
           useInLiveMode="true"
           category="/0/@audits/@categories.16">
@@ -407,7 +412,7 @@
           name="validateNoIncomingEdges"
           description="Value pins have no incoming edges."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateValuePin_validateNoIncomingEdges"
-          rule="/0/@expressionProviders/@providers.1/@expressions.46"
+          rule="/0/@expressionProviders/@providers.1/@expressions.47"
           message="Value pins have no incoming edges."
           useInLiveMode="true"
           category="/0/@audits/@categories.16">
@@ -422,7 +427,7 @@
           name="validateIncomingEdgesStructuredOnly"
           description="Output pins may have incoming edges only when they are on actions that are structured nodes, and these edges may not target a node contained by the structured node."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateOutputPin_validateIncomingEdgesStructuredOnly"
-          rule="/0/@expressionProviders/@providers.1/@expressions.47"
+          rule="/0/@expressionProviders/@providers.1/@expressions.48"
           message="Output pins may have incoming edges only when they are on actions that are structured nodes, and these edges may not target a node contained by the structured node."
           useInLiveMode="true"
           category="/0/@audits/@categories.17">
@@ -437,7 +442,7 @@
           name="validateSourceAndTarget"
           description="The source and target of an edge must be in the same activity as the edge."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge_validateSourceAndTarget"
-          rule="/0/@expressionProviders/@providers.0/@expressions.100"
+          rule="/0/@expressionProviders/@providers.0/@expressions.102"
           message="The source and target of an edge must be in the same activity as the edge."
           useInLiveMode="true"
           category="/0/@audits/@categories.18">
@@ -452,7 +457,7 @@
           name="validateOwned"
           description="Activity edges may be owned only by activities or groups."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge_validateOwned"
-          rule="/0/@expressionProviders/@providers.1/@expressions.48"
+          rule="/0/@expressionProviders/@providers.1/@expressions.49"
           message="Activity edges may be owned only by activities or groups."
           useInLiveMode="true"
           category="/0/@audits/@categories.18">
@@ -467,7 +472,7 @@
           name="validateStructuredNode"
           description="Activity edges may be owned by at most one structured node."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge_validateStructuredNode"
-          rule="/0/@expressionProviders/@providers.1/@expressions.49"
+          rule="/0/@expressionProviders/@providers.1/@expressions.50"
           message="Activity edges may be owned by at most one structured node."
           useInLiveMode="true"
           category="/0/@audits/@categories.18">
@@ -482,7 +487,7 @@
           name="validateHasSourceAndTarget"
           description="The source and target of an edge must be defined."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge_validateHasSourceAndTarget"
-          rule="/0/@expressionProviders/@providers.1/@expressions.50"
+          rule="/0/@expressionProviders/@providers.1/@expressions.51"
           message="The source and target of an edge must be defined."
           category="/0/@audits/@categories.18">
         <target
@@ -496,7 +501,7 @@
           name="validateNoActions"
           description="Object flows may not have actions at either end."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateNoActions"
-          rule="/0/@expressionProviders/@providers.1/@expressions.51"
+          rule="/0/@expressionProviders/@providers.1/@expressions.52"
           message="You can not link an action with an object flow"
           useInLiveMode="true"
           category="/0/@audits/@categories.19">
@@ -511,7 +516,7 @@
           name="validateCompatibleTypes"
           description="Object nodes connected by an object flow, with optionally intervening control nodes, must have compatible types. In particular, the downstream object node type must be the same or a supertype of the upstream object node type"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateCompatibleTypes"
-          rule="/0/@expressionProviders/@providers.0/@expressions.101"
+          rule="/0/@expressionProviders/@providers.0/@expressions.103"
           message="The object flow must link object nodes with compatible types (target type must be a supertype of the source type)."
           useInLiveMode="true"
           category="/0/@audits/@categories.19">
@@ -526,7 +531,7 @@
           name="validateSameUpperBounds"
           description="Object nodes connected by an object flow, with optionally intervening control nodes, must have the same upper bounds."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateSameUpperBounds"
-          rule="/0/@expressionProviders/@providers.0/@expressions.102"
+          rule="/0/@expressionProviders/@providers.0/@expressions.104"
           message="The object flow must link object nodes with the same upper bounds."
           useInLiveMode="true"
           category="/0/@audits/@categories.19">
@@ -541,7 +546,7 @@
           name="validateTarget"
           description="An edge with constant weight may not target an object node, or lead to an object node downstream with no intervening actions, that has an upper bound less than the weight."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateTarget"
-          rule="/0/@expressionProviders/@providers.0/@expressions.103"
+          rule="/0/@expressionProviders/@providers.0/@expressions.105"
           message="The target object node's upper bounds must be less than the object flow weight"
           useInLiveMode="true"
           category="/0/@audits/@categories.19">
@@ -556,7 +561,7 @@
           name="validateTransformationBehaviour"
           description="A transformation behavior has one input parameter and one output parameter. The input parameter must be the same as or a supertype of the type of object token coming from the source end. The output parameter must be the same or a subtype of the type of object token expected downstream. The behavior cannot have side effects."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateTransformationBehaviour"
-          rule="/0/@expressionProviders/@providers.0/@expressions.104"
+          rule="/0/@expressionProviders/@providers.0/@expressions.106"
           message="A transformation behavior has one input parameter and one output parameter. The input parameter must be the same as or a supertype of the type of object token coming from the source end. The output parameter must be the same or a subtype of the type of object token expected downstream. The behavior cannot have side effects."
           useInLiveMode="true"
           category="/0/@audits/@categories.19">
@@ -571,7 +576,7 @@
           name="validateSelectionBehaviour"
           description="An object flow may have a selection behavior only if it has an object node as a source."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateSelectionBehaviour"
-          rule="/0/@expressionProviders/@providers.1/@expressions.52"
+          rule="/0/@expressionProviders/@providers.1/@expressions.53"
           message="Selection behavior is authorized only when the object flow's source is an object node."
           useInLiveMode="true"
           category="/0/@audits/@categories.19">
@@ -586,7 +591,7 @@
           name="validateInputAndOutputParameter"
           description="A selection behavior has one input parameter and one output parameter. The input parameter must be a bag of elements of the same as or a supertype of the type of source object node. The output parameter must be the same or a subtype of the type of source object node. The behavior cannot have side effects."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateInputAndOutputParameter"
-          rule="/0/@expressionProviders/@providers.0/@expressions.105"
+          rule="/0/@expressionProviders/@providers.0/@expressions.107"
           message="A selection behavior has one input parameter and one output parameter. The input parameter must be a bag of elements of the same as or a supertype of the type of source object node. The output parameter must be the same or a subtype of the type of source object node. The behavior cannot have side effects."
           useInLiveMode="true"
           category="/0/@audits/@categories.19">
@@ -601,7 +606,7 @@
           name="validateIsMulticastOrIsMultireceive"
           description="isMulticast and isMultireceive cannot both be true."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateIsMulticastOrIsMultireceive"
-          rule="/0/@expressionProviders/@providers.1/@expressions.53"
+          rule="/0/@expressionProviders/@providers.1/@expressions.54"
           message="isMulticast and isMultireceive cannot both be true."
           useInLiveMode="true"
           category="/0/@audits/@categories.19">
@@ -616,7 +621,7 @@
           name="validateObjectNodes"
           description="Control flows may not have object nodes at either end, except for object nodes with control type"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateControlFlow_validateObjectNodes"
-          rule="/0/@expressionProviders/@providers.1/@expressions.54"
+          rule="/0/@expressionProviders/@providers.1/@expressions.55"
           message="You can not link an object node with a control flow (except if its control type is true)."
           useInLiveMode="true"
           category="/0/@audits/@categories.20">
@@ -631,7 +636,7 @@
           name="validateIncomingOutgoingEdges"
           description="A decision node has one or two incoming edges and at least one outgoing edge."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateIncomingOutgoingEdges"
-          rule="/0/@expressionProviders/@providers.1/@expressions.55"
+          rule="/0/@expressionProviders/@providers.1/@expressions.56"
           message="A decision node has one or two incoming edges and at least one outgoing edge."
           category="/0/@audits/@categories.21">
         <target
@@ -645,7 +650,7 @@
           name="validateEdges"
           description="The edges coming into and out of a decision node, other than the decision input flow (if any), must be either all object flows or all control flows."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateEdges"
-          rule="/0/@expressionProviders/@providers.1/@expressions.56"
+          rule="/0/@expressionProviders/@providers.1/@expressions.57"
           message="Edges linking the decision node must have be of the same type (except decision input flow)."
           category="/0/@audits/@categories.21">
         <target
@@ -659,7 +664,7 @@
           name="validateDecisionInputFlowIncoming"
           description="The decisionInputFlow of a decision node must be an incoming edge of the decision node."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateDecisionInputFlowIncoming"
-          rule="/0/@expressionProviders/@providers.1/@expressions.57"
+          rule="/0/@expressionProviders/@providers.1/@expressions.58"
           message="The decisionInputFlow of a decision node must be an incoming edge of the decision node."
           useInLiveMode="true"
           category="/0/@audits/@categories.21">
@@ -674,7 +679,7 @@
           name="validateParameters"
           description="A decision input behavior has no output parameters, no in-out parameters and one return parameter."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateParameters"
-          rule="/0/@expressionProviders/@providers.1/@expressions.58"
+          rule="/0/@expressionProviders/@providers.1/@expressions.59"
           message="A decision input behavior has no output parameters, no in-out parameters and one return parameter."
           useInLiveMode="true"
           category="/0/@audits/@categories.21">
@@ -689,7 +694,7 @@
           name="validateZeroInputParameters"
           description="If the decision node has no decision input flow and an incoming control flow, then a decision input behavior has zero input parameters."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateZeroInputParameters"
-          rule="/0/@expressionProviders/@providers.1/@expressions.59"
+          rule="/0/@expressionProviders/@providers.1/@expressions.60"
           message="If the decision node has no decision input flow and an incoming control flow, then a decision input behavior has zero input parameters."
           category="/0/@audits/@categories.21">
         <target
@@ -703,7 +708,7 @@
           name="validateIncomingObjectOneInputParameter"
           description="If the decision node has no decision input flow and an incoming object flow, then a decision input behavior has one input parameter whose type is the same as or a supertype of the type of object tokens offered on the incoming edge."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateIncomingObjectOneInputParameter"
-          rule="/0/@expressionProviders/@providers.0/@expressions.106"
+          rule="/0/@expressionProviders/@providers.0/@expressions.108"
           message="If the decision node has no decision input flow and an incoming object flow, then a decision input behavior has one input parameter whose type is the same as or a supertype of the type of object tokens offered on the incoming edge."
           category="/0/@audits/@categories.21">
         <target
@@ -717,7 +722,7 @@
           name="validateIncomingControlOneInputParameter"
           description="If the decision node has a decision input flow and an incoming control flow, then a decision input behavior has one input parameter whose type is the same as or a supertype of the type of object tokens offered on the decision input flow."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateIncomingControlOneInputParameter"
-          rule="/0/@expressionProviders/@providers.0/@expressions.107"
+          rule="/0/@expressionProviders/@providers.0/@expressions.109"
           message="If the decision node has a decision input flow and an incoming control flow, then a decision input behavior has one input parameter whose type is the same as or a supertype of the type of object tokens offered on the decision input flow."
           category="/0/@audits/@categories.21">
         <target
@@ -731,7 +736,7 @@
           name="validateTwoInputParameters"
           description="If the decision node has a decision input flow and an second incoming object flow, then a decision input behavior has two input parameters, the first of which has a type that is the same as or a supertype of the type of the type of object tokens offered on the nondecision input flow and the second of which has a type that is the same as or a supertype of the type of object tokens offered on the decision input flow."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateTwoInputParameters"
-          rule="/0/@expressionProviders/@providers.0/@expressions.108"
+          rule="/0/@expressionProviders/@providers.0/@expressions.110"
           message="If the decision node has a decision input flow and an incoming control flow, then a decision input behavior has one input parameter whose type is the same as or a supertype of the type of object tokens offered on the decision input flow."
           category="/0/@audits/@categories.21">
         <target
@@ -745,7 +750,7 @@
           name="validateOneOutgoingEdge"
           description="A merge node has one outgoing edge."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateMergeNode_validateOneOutgoingEdge"
-          rule="/0/@expressionProviders/@providers.1/@expressions.60"
+          rule="/0/@expressionProviders/@providers.1/@expressions.61"
           message="A merge node has one outgoing edge."
           category="/0/@audits/@categories.22">
         <target
@@ -759,7 +764,7 @@
           name="validateEdges"
           description="The edges coming into and out of a merge node must be either all object flows or all control flows."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateMergeNode_validateEdges"
-          rule="/0/@expressionProviders/@providers.1/@expressions.61"
+          rule="/0/@expressionProviders/@providers.1/@expressions.62"
           message="The edges coming into and out of a merge node must be either all object flows or all control flows."
           category="/0/@audits/@categories.22">
         <target
@@ -773,7 +778,7 @@
           name="validateOneIncomingEdge"
           description="A fork node has one incoming edge."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateForkNode_validateOneIncomingEdge"
-          rule="/0/@expressionProviders/@providers.1/@expressions.62"
+          rule="/0/@expressionProviders/@providers.1/@expressions.63"
           message="A fork node has one incoming edge."
           category="/0/@audits/@categories.23">
         <target
@@ -787,7 +792,7 @@
           name="validateEdges"
           description="The edges coming into and out of a fork node must be either all object flows or all control flows."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateForkNode_validateEdges"
-          rule="/0/@expressionProviders/@providers.1/@expressions.63"
+          rule="/0/@expressionProviders/@providers.1/@expressions.64"
           message="The edges coming into and out of a fork node must be either all object flows or all control flows."
           category="/0/@audits/@categories.23">
         <target
@@ -801,7 +806,7 @@
           name="validateOneOutgoingEdge"
           description="A join node has one outgoing edge."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateJoinNode_validateOneOutgoingEdge"
-          rule="/0/@expressionProviders/@providers.1/@expressions.64"
+          rule="/0/@expressionProviders/@providers.1/@expressions.65"
           message="A join node has one outgoing edge."
           category="/0/@audits/@categories.24">
         <target
@@ -815,7 +820,7 @@
           name="validateIncomingObjectFlow"
           description="If a join node has an incoming object flow, it must have an outgoing object flow, otherwise, it must have an outgoing control flow."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateJoinNode_validateIncomingObjectFlow"
-          rule="/0/@expressionProviders/@providers.1/@expressions.65"
+          rule="/0/@expressionProviders/@providers.1/@expressions.66"
           message="If a join node has an incoming object flow, it must have an outgoing object flow, otherwise, it must have an outgoing control flow."
           category="/0/@audits/@categories.24">
         <target
@@ -829,7 +834,7 @@
           name="validateIncomingOrOutgoing"
           description="An activity parameter node must not have both incoming and outgoing edges."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateActivityParameterNode_validateIncomingOrOutgoing"
-          rule="/0/@expressionProviders/@providers.1/@expressions.66"
+          rule="/0/@expressionProviders/@providers.1/@expressions.67"
           message="An activity parameter node must not have both incoming and outgoing edges."
           useInLiveMode="true"
           category="/0/@audits/@categories.25">
@@ -844,7 +849,7 @@
           name="validateNotAbstract"
           description="Check that the classifier is not abstract"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateCreateObjectActionClassifier_notAbstract"
-          rule="/0/@expressionProviders/@providers.1/@expressions.67"
+          rule="/0/@expressionProviders/@providers.1/@expressions.68"
           message="The classifier cannot be abstract."
           useInLiveMode="true"
           category="/0/@audits/@categories.26">
@@ -859,7 +864,7 @@
           name="valideNotAssociationClass"
           description="Check that the classifier is not an association class"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateCreateObjectActionClassifier_notClassifier"
-          rule="/0/@expressionProviders/@providers.1/@expressions.68"
+          rule="/0/@expressionProviders/@providers.1/@expressions.69"
           message="The classifier cannot be an association class."
           useInLiveMode="true"
           category="/0/@audits/@categories.26">
@@ -874,7 +879,7 @@
           name="validateOnlyOneClassifier"
           description="Check that a structural feature has exactly one featuringClassifier."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateReadStructuralFeatureAction_onlyOneClassifier"
-          rule="/0/@expressionProviders/@providers.1/@expressions.69"
+          rule="/0/@expressionProviders/@providers.1/@expressions.70"
           message="A structural feature has exactly one featuringClassifier."
           category="/0/@audits/@categories.27">
         <target
@@ -888,7 +893,7 @@
           name="validateInputPinType"
           description="Check valide that the type of the input pin is the same than the one from the structural feature"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction_ValidInputPinType"
-          rule="/0/@expressionProviders/@providers.1/@expressions.70"
+          rule="/0/@expressionProviders/@providers.1/@expressions.71"
           message="The type of the value input pin is the same as the type of the structural feature."
           category="/0/@audits/@categories.28">
         <target
@@ -902,7 +907,7 @@
           name="validateOutputPinType"
           description="Check that the type of the result output pin is the same as the type of the inherited object input pin."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction_validateOutputPinType"
-          rule="/0/@expressionProviders/@providers.1/@expressions.71"
+          rule="/0/@expressionProviders/@providers.1/@expressions.72"
           message="The type of the result output pin is the same as the type of the inherited object input pin."
           category="/0/@audits/@categories.28">
         <target
@@ -916,7 +921,7 @@
           name="A value input pin is required"
           description="Check that a value input pin is required"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction_valideTheRequiredValuePin"
-          rule="/0/@expressionProviders/@providers.1/@expressions.72"
+          rule="/0/@expressionProviders/@providers.1/@expressions.73"
           message="org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction"
           category="/0/@audits/@categories.28">
         <target
@@ -930,7 +935,7 @@
           name="validateOnlyOneClassifier"
           description="Check that a structural feature has exactly one featuringClassifier."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction_onlyOneClassifier"
-          rule="/0/@expressionProviders/@providers.1/@expressions.73"
+          rule="/0/@expressionProviders/@providers.1/@expressions.74"
           message="A structural feature has exactly one featuringClassifier."
           category="/0/@audits/@categories.28">
         <target
@@ -944,7 +949,7 @@
           name="validateInputPinHasNoType"
           description="Check that the input pin has no type"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateDestroyObjectAction_InputPinHasNotType"
-          rule="/0/@expressionProviders/@providers.1/@expressions.74"
+          rule="/0/@expressionProviders/@providers.1/@expressions.75"
           message="The input pin has no type"
           useInLiveMode="true"
           category="/0/@audits/@categories.29">
@@ -959,7 +964,7 @@
           name="validateFeatureNotStatic"
           description="Check that the structural feature must not be static."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_FeatureNotStatic"
-          rule="/0/@expressionProviders/@providers.1/@expressions.75"
+          rule="/0/@expressionProviders/@providers.1/@expressions.76"
           message="The structural feature must not be static."
           useInLiveMode="true"
           category="/0/@audits/@categories.30">
@@ -974,7 +979,7 @@
           name="validateValideTypeOwningFeature"
           description="Check that the structural feature must either be owned by the type of the object input pin, or it must be an owned end of a binary"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_validateOwningFeteatringType"
-          rule="/0/@expressionProviders/@providers.1/@expressions.76"
+          rule="/0/@expressionProviders/@providers.1/@expressions.77"
           message="The structural feature must either be owned by the type of the object input pin, or it must be an owned end of a binary"
           category="/0/@audits/@categories.30">
         <target
@@ -988,7 +993,7 @@
           name="validateInputPinMultiplicity"
           description="Check that the multiplicity of the object input pin must be 1..1."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_InputPinMulitplicity"
-          rule="/0/@expressionProviders/@providers.1/@expressions.77"
+          rule="/0/@expressionProviders/@providers.1/@expressions.78"
           message="The multiplicity of the object input pin must be 1..1."
           category="/0/@audits/@categories.30">
         <target
@@ -1002,7 +1007,7 @@
           name="validateOnlyOneFeaturingClassifier"
           description="Check that a structural feature has exactly one featuringClassifier."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_OnlyOneFeaturingClassifier"
-          rule="/0/@expressionProviders/@providers.1/@expressions.78"
+          rule="/0/@expressionProviders/@providers.1/@expressions.79"
           message="A structural feature has exactly one featuringClassifier."
           category="/0/@audits/@categories.30">
         <target
@@ -1016,7 +1021,7 @@
           name="validateInputPinAsValueAsAtLeastOneInputPin"
           description="Check that a value input pin is required."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateAddVariableValueAction_AsAtLeastOneInputPin"
-          rule="/0/@expressionProviders/@providers.1/@expressions.79"
+          rule="/0/@expressionProviders/@providers.1/@expressions.80"
           message="A value input pin is required."
           category="/0/@audits/@categories.31">
         <target
@@ -1030,7 +1035,7 @@
           name="valideInputPinType"
           description="Check that the type input pin is the same as the type of the variable."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateWriteVariableAction_InputPinValidePin"
-          rule="/0/@expressionProviders/@providers.1/@expressions.80"
+          rule="/0/@expressionProviders/@providers.1/@expressions.81"
           message="The type input pin is the same as the type of the variable."
           category="/0/@audits/@categories.32">
         <target
@@ -1044,7 +1049,7 @@
           name="validateInputPinMultiplicity"
           description="Check that the multiplicity of the input pin is 1..1."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateWriteVariableAction_valideInputPinMultiplicity"
-          rule="/0/@expressionProviders/@providers.1/@expressions.81"
+          rule="/0/@expressionProviders/@providers.1/@expressions.82"
           message="The multiplicity of the input pin is 1..1."
           category="/0/@audits/@categories.32">
         <target
@@ -1058,7 +1063,7 @@
           name="validateVariableScope"
           description="Check that the action must be in the scope of the variable."
           id="org.eclipse.uml2.uml.util.UMLValidator.validateVariableAction_VariableScope"
-          rule="/0/@expressionProviders/@providers.1/@expressions.82"
+          rule="/0/@expressionProviders/@providers.1/@expressions.83"
           message="The action must be in the scope of the variable."
           category="/0/@audits/@categories.33">
         <target
@@ -1072,7 +1077,7 @@
           name="validateOutputPinType"
           description="Check that the type and ordering of the result output pin of a read-variable action are the same as the type and ordering of the"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateReadVariableAction_OutputPinType"
-          rule="/0/@expressionProviders/@providers.1/@expressions.83"
+          rule="/0/@expressionProviders/@providers.1/@expressions.84"
           message="The type and ordering of the result output pin of a read-variable action are the same as the type and ordering of the"
           category="/0/@audits/@categories.34">
         <target
@@ -1086,7 +1091,7 @@
           name="validateOutputPinMultiplicity"
           description="Check that the multiplicity of the variable must be compatible with the multiplicity of the output pin"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateReadVariableAction_OutputPinMultiplicity"
-          rule="/0/@expressionProviders/@providers.1/@expressions.84"
+          rule="/0/@expressionProviders/@providers.1/@expressions.85"
           message="The multiplicity of the variable must be compatible with the multiplicity of the output pin"
           category="/0/@audits/@categories.34">
         <target
@@ -7939,6 +7944,170 @@
               parser="/0/@labelParsers/@implementations.1"/>
         </labels>
       </childNodes>
+      <childNodes
+          visualID="3102"
+          editPartClassName="BroadcastSignalActionEditPart"
+          itemSemanticEditPolicyClassName="BroadcastSignalActionItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="BroadcastSignalActionCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.87"
+          graphicalNodeEditPolicyClassName="BroadcastSignalActionGraphicalNodeEditPolicy"
+          createCommandClassName="BroadcastSignalActionCreateCommand"
+          containers="/0/@diagram/@compartments.14 /0/@diagram/@compartments.3">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            editHelperClassName="BroadcastSignalActionEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PapyrusRoundedNodeFigure"/>
+        <behaviour
+            xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_CREATE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.CANONICAL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.BroadcastSignalActionCanonicalEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ActivityDiagramChangeStereotypedShapeEditpolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/BroadcastSignalAction"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Activity/node"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Activity/node"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.92">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="5175"
+            editPartClassName="BroadcastSignalActionNameEditPart"
+            itemSemanticEditPolicyClassName="BroadcastSignalActionNameItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getNameLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildSideAffixedNode"
+          visualID="3103"
+          editPartClassName="InputPinInBroadcastSignalActionEditPart"
+          itemSemanticEditPolicyClassName="InputPinInBroadcastSignalActionItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="InputPinInBroadcastSignalActionCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="InputPinInBroadcastSignalActionGraphicalNodeEditPolicy"
+          createCommandClassName="InputPinInBroadcastSignalActionCreateCommand"
+          containers="/0/@diagram/@childNodes.86"
+          preferredSideName="NORTH">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="PinDescriptor"
+            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="16"
+              height="16"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.35">
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InputPin"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InvocationAction/argument"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InvocationAction/argument"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.93">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5172"
+            editPartClassName="InputPinInBroadcastSignalActionLabelEditPart"
+            itemSemanticEditPolicyClassName="InputPinInBroadcastSignalActionLabelItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.6"/>
+        </labels>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5173"
+            editPartClassName="InputPinInBroadcastSignalActionValueLabelEditPart"
+            itemSemanticEditPolicyClassName="InputPinInBroadcastSignalActionValueLabelItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.7"/>
+        </labels>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5174"
+            editPartClassName="InputPinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart"
+            itemSemanticEditPolicyClassName="InputPinInBroadcastSignalActionAppliedStereotypeWrappingLabelItemSemanticEditPolicy"
+            readOnly="true"
+            elementIcon="true">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.1"/>
+        </labels>
+      </childNodes>
       <topLevelNodes
           visualID="2001"
           editPartClassName="ActivityEditPart"
@@ -8122,7 +8291,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.92">
+                value="/0/@expressionProviders/@providers.0/@expressions.94">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -8279,8 +8448,8 @@
               parser="/0/@labelParsers/@implementations.1"/>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.93"
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.94"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.95"
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.96"/>
       </links>
       <links
           visualID="4004"
@@ -8314,7 +8483,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.95">
+                value="/0/@expressionProviders/@providers.0/@expressions.97">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -8401,8 +8570,8 @@
               parser="/0/@labelParsers/@implementations.1"/>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.96"
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.97"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.98"
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.99"/>
       </links>
       <links
           visualID="4005"
@@ -9288,6 +9457,13 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddVariableValueAction.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddVariableValueAction.gif"
               genNodes="/0/@diagram/@childNodes.83"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Broadcast Signal Action"
+              description="Create a Broadcast Signal Action"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BroadcastSignalAction.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BroadcastSignalAction.gif"
+              genNodes="/0/@diagram/@childNodes.86"/>
         </groups>
         <groups
             title="Edges"
@@ -9729,6 +9905,12 @@
           parent="/0/@diagram/@childNodes.68"
           child="/0/@diagram/@childNodes.83"/>
       <childReferences
+          parent="/0/@diagram/@childNodes.86"
+          child="/0/@diagram/@childNodes.87"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.68"
+          child="/0/@diagram/@childNodes.86"/>
+      <childReferences
           parent="/0/@diagram/@topLevelNodes.0"
           child="/0/@diagram/@childNodes.68"/>
       <childReferences
@@ -9752,6 +9934,9 @@
       <childReferences
           parent="/0/@diagram/@topLevelNodes.0"
           child="/0/@diagram/@childNodes.83"/>
+      <childReferences
+          parent="/0/@diagram/@topLevelNodes.0"
+          child="/0/@diagram/@childNodes.86"/>
       <childReferences
           parent="/0/@diagram"
           child="/0/@diagram/@topLevelNodes.0"/>
@@ -10085,6 +10270,18 @@
           groupName="outgoing links"
           groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
       <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.86"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.86"
+          child="/0/@diagram/@links.0"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
           parent="/0/@diagram"
           child="/0/@diagram/@links.1"
           groupName="links"
@@ -10414,6 +10611,18 @@
           groupName="outgoing links"
           groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
       <childReferences
+          parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.86"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.86"
+          child="/0/@diagram/@links.1"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
           parent="/0/@diagram"
           child="/0/@diagram/@links.2"
           groupName="links"
@@ -11260,6 +11469,30 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.2"
+          child="/0/@diagram/@childNodes.86"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.86"
+          child="/0/@diagram/@links.2"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.2"
+          child="/0/@diagram/@childNodes.87"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.87"
+          child="/0/@diagram/@links.2"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.2"
           child="/0/@diagram/@childNodes.3"
           referenceType="in_source"
           groupName="source"
@@ -12094,6 +12327,30 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.85"
+          child="/0/@diagram/@links.2"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.2"
+          child="/0/@diagram/@childNodes.86"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.86"
+          child="/0/@diagram/@links.2"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.2"
+          child="/0/@diagram/@childNodes.87"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.87"
           child="/0/@diagram/@links.2"
           referenceType="out_target"
           groupName="outgoing links"
@@ -12945,6 +13202,30 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.3"
+          child="/0/@diagram/@childNodes.86"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.86"
+          child="/0/@diagram/@links.3"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.3"
+          child="/0/@diagram/@childNodes.87"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.87"
+          child="/0/@diagram/@links.3"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.3"
           child="/0/@diagram/@childNodes.3"
           referenceType="in_source"
           groupName="source"
@@ -13784,6 +14065,30 @@
           groupName="outgoing links"
           groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
       <childReferences
+          parent="/0/@diagram/@links.3"
+          child="/0/@diagram/@childNodes.86"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.86"
+          child="/0/@diagram/@links.3"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.3"
+          child="/0/@diagram/@childNodes.87"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.87"
+          child="/0/@diagram/@links.3"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
           parent="/0/@diagram"
           child="/0/@diagram/@links.4"
           groupName="links"
@@ -14318,6 +14623,18 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.4"
+          child="/0/@diagram/@childNodes.87"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.87"
+          child="/0/@diagram/@links.4"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.4"
           child="/0/@diagram/@childNodes.6"
           referenceType="in_source"
           groupName="source"
@@ -14540,6 +14857,18 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.83"
+          child="/0/@diagram/@links.4"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.4"
+          child="/0/@diagram/@childNodes.86"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.86"
           child="/0/@diagram/@links.4"
           referenceType="out_target"
           groupName="outgoing links"
@@ -15547,6 +15876,30 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.5"
+          child="/0/@diagram/@childNodes.86"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.86"
+          child="/0/@diagram/@links.5"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.5"
+          child="/0/@diagram/@childNodes.87"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.87"
+          child="/0/@diagram/@links.5"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.5"
           child="/0/@diagram/@links.2"
           referenceType="out_target"
           groupName="target"
@@ -15807,6 +16160,10 @@
         <expressions
             body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"/>
         <expressions
+            body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"/>
+        <expressions
+            body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"/>
+        <expressions
             xsi:type="gmfgen:GenConstraint"
             body="if(source instanceof Action) {&#xD;&#xA;&#x9;// rule validateObjectFlow_validateNoActions&#xD;&#xA;&#x9;// rule workaround by addition of pins in case of Action&#xD;&#xA;&#x9;if(!ObjectFlowEditHelper.canStartNewObjectFlow((Action)source)) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof InputPin) {&#xD;&#xA;&#x9;// rule validateInputPin_validateOutgoingEdgesStructuredOnly&#xD;&#xA;&#x9;if(source.getOwner() instanceof StructuredActivityNode) {&#xD;&#xA;&#x9;&#x9;if(target != null &amp;&amp; !source.getOwner().equals(target.getInStructuredNode())) {&#xD;&#xA;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof InitialNode) {&#xD;&#xA;&#x9;// rule validateInitialNode_validateControlEdges&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(source instanceof FinalNode) {&#xD;&#xA;&#x9;// rule validateFinalNode_validateNoOutgoingEdges&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(source instanceof JoinNode) {&#xD;&#xA;&#x9;// rule validateJoinNode_validateOneOutgoingEdge&#xD;&#xA;&#x9;if(!source.getOutgoings().isEmpty()) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/*&#xD;&#xA;&#x9; * rule validateJoinNode_validateIncomingObjectFlow :&#xD;&#xA;&#x9; * We do not prevent creation of an outgoing ObjectFlow even if there is no incoming ObjectFlow.&#xD;&#xA;&#x9; * We let the possibility that the user intends to add an incoming ObjectFlow later.&#xD;&#xA;&#x9; */&#xD;&#xA;}&#xD;&#xA;if(source instanceof ForkNode) {&#xD;&#xA;&#x9;// rule validateForkNode_validateEdges on source Fork node&#xD;&#xA;&#x9;ActivityEdge outgoingControlFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;ActivityEdge incomingControlFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;if(outgoingControlFlow != null || incomingControlFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is a ControlFlow which means there must be no ObjectFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof MergeNode) {&#xD;&#xA;&#x9;//rule validateMergeNode_validateOneOutgoingEdge&#xD;&#xA;&#x9;if(!source.getOutgoings().isEmpty()) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;// rule validateMergeNode_validateEdges on source Merge node&#xD;&#xA;&#x9;ActivityEdge outgoingControlFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;ActivityEdge incomingControlFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;if(outgoingControlFlow != null || incomingControlFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is a ControlFlow which means there must be no ObjectFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof DecisionNode) {&#xD;&#xA;&#x9;// rule validateDecisionNode_validateEdges on source Decision node&#xD;&#xA;&#x9;ActivityEdge outgoingControlFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;ActivityEdge incomingControlFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;if(outgoingControlFlow != null || incomingControlFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is a ControlFlow which means there must be no ObjectFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if (source instanceof ActivityParameterNode) {&#xD;&#xA;&#x9;// rule validateActivityParameterNode_validateIncomingOrOutgoing&#xD;&#xA;&#x9;EList&lt;ActivityEdge> incomings = source.getIncomings();&#xD;&#xA;&#x9;if (!incomings.isEmpty()) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;"/>
         <expressions
@@ -15960,6 +16317,9 @@
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="if self.owner.oclIsKindOf(AddVariableValueAction)&#xD;&#xA;then self.owner.oclAsType(AddVariableValueAction).value->includes(self)&#xD;&#xA;else false endif"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if self.owner.oclIsKindOf(BroadcastSignalAction)&#xD;&#xA;then self.owner.oclAsType(BroadcastSignalAction).argument->includes(self)&#xD;&#xA;else false endif"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="self.incoming->isEmpty()"/>
@@ -16116,14 +16476,14 @@
         extensibleViaService="true">
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.25/@labels.0/@modelFacet /0/@diagram/@childNodes.26/@labels.0/@modelFacet /0/@diagram/@childNodes.27/@labels.0/@modelFacet /0/@diagram/@childNodes.28/@labels.0/@modelFacet /0/@diagram/@childNodes.29/@labels.0/@modelFacet /0/@diagram/@childNodes.30/@labels.0/@modelFacet /0/@diagram/@childNodes.31/@labels.0/@modelFacet /0/@diagram/@childNodes.37/@labels.0/@modelFacet /0/@diagram/@childNodes.44/@labels.0/@modelFacet /0/@diagram/@childNodes.54/@labels.0/@modelFacet /0/@diagram/@childNodes.63/@labels.0/@modelFacet /0/@diagram/@childNodes.66/@labels.0/@modelFacet /0/@diagram/@childNodes.69/@labels.0/@modelFacet /0/@diagram/@childNodes.72/@labels.0/@modelFacet /0/@diagram/@childNodes.75/@labels.0/@modelFacet /0/@diagram/@childNodes.79/@labels.0/@modelFacet /0/@diagram/@childNodes.81/@labels.0/@modelFacet /0/@diagram/@childNodes.83/@labels.0/@modelFacet /0/@diagram/@childNodes.68/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet"/>
+          uses="/0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.25/@labels.0/@modelFacet /0/@diagram/@childNodes.26/@labels.0/@modelFacet /0/@diagram/@childNodes.27/@labels.0/@modelFacet /0/@diagram/@childNodes.28/@labels.0/@modelFacet /0/@diagram/@childNodes.29/@labels.0/@modelFacet /0/@diagram/@childNodes.30/@labels.0/@modelFacet /0/@diagram/@childNodes.31/@labels.0/@modelFacet /0/@diagram/@childNodes.37/@labels.0/@modelFacet /0/@diagram/@childNodes.44/@labels.0/@modelFacet /0/@diagram/@childNodes.54/@labels.0/@modelFacet /0/@diagram/@childNodes.63/@labels.0/@modelFacet /0/@diagram/@childNodes.66/@labels.0/@modelFacet /0/@diagram/@childNodes.69/@labels.0/@modelFacet /0/@diagram/@childNodes.72/@labels.0/@modelFacet /0/@diagram/@childNodes.75/@labels.0/@modelFacet /0/@diagram/@childNodes.79/@labels.0/@modelFacet /0/@diagram/@childNodes.81/@labels.0/@modelFacet /0/@diagram/@childNodes.83/@labels.0/@modelFacet /0/@diagram/@childNodes.86/@labels.0/@modelFacet /0/@diagram/@childNodes.68/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.19/@labels.1/@modelFacet /0/@diagram/@childNodes.80/@labels.1/@modelFacet /0/@diagram/@childNodes.40/@labels.1/@modelFacet /0/@diagram/@childNodes.74/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.2/@modelFacet /0/@diagram/@childNodes.21/@labels.2/@modelFacet /0/@diagram/@childNodes.76/@labels.1/@modelFacet /0/@diagram/@childNodes.41/@labels.2/@modelFacet /0/@diagram/@links.3/@labels.3/@modelFacet /0/@diagram/@childNodes.38/@labels.2/@modelFacet /0/@diagram/@childNodes.20/@labels.1/@modelFacet /0/@diagram/@childNodes.33/@labels.0/@modelFacet /0/@diagram/@childNodes.32/@labels.1/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.73/@labels.1/@modelFacet /0/@diagram/@childNodes.22/@labels.2/@modelFacet /0/@diagram/@childNodes.17/@labels.2/@modelFacet /0/@diagram/@childNodes.8/@labels.2/@modelFacet /0/@diagram/@childNodes.48/@labels.2/@modelFacet /0/@diagram/@childNodes.23/@labels.1/@modelFacet /0/@diagram/@childNodes.42/@labels.2/@modelFacet /0/@diagram/@childNodes.9/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.6/@modelFacet /0/@diagram/@childNodes.47/@labels.1/@modelFacet /0/@diagram/@childNodes.18/@labels.2/@modelFacet /0/@diagram/@childNodes.14/@labels.1/@modelFacet /0/@diagram/@childNodes.39/@labels.2/@modelFacet /0/@diagram/@childNodes.85/@labels.1/@modelFacet /0/@diagram/@childNodes.82/@labels.1/@modelFacet /0/@diagram/@childNodes.67/@labels.1/@modelFacet /0/@diagram/@childNodes.53/@labels.1/@modelFacet /0/@diagram/@childNodes.55/@labels.1/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.45/@labels.2/@modelFacet /0/@diagram/@childNodes.70/@labels.1/@modelFacet /0/@diagram/@childNodes.15/@labels.1/@modelFacet /0/@diagram/@childNodes.13/@labels.2/@modelFacet /0/@diagram/@childNodes.78/@labels.1/@modelFacet /0/@diagram/@childNodes.77/@labels.1/@modelFacet /0/@diagram/@childNodes.52/@labels.2/@modelFacet /0/@diagram/@childNodes.34/@labels.0/@modelFacet /0/@diagram/@childNodes.43/@labels.1/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.49/@labels.2/@modelFacet /0/@diagram/@childNodes.35/@labels.1/@modelFacet /0/@diagram/@childNodes.50/@labels.1/@modelFacet /0/@diagram/@childNodes.46/@labels.2/@modelFacet /0/@diagram/@childNodes.7/@labels.2/@modelFacet /0/@diagram/@childNodes.10/@labels.1/@modelFacet /0/@diagram/@childNodes.84/@labels.1/@modelFacet"
+          uses="/0/@diagram/@childNodes.50/@labels.1/@modelFacet /0/@diagram/@childNodes.84/@labels.1/@modelFacet /0/@diagram/@childNodes.73/@labels.1/@modelFacet /0/@diagram/@childNodes.40/@labels.1/@modelFacet /0/@diagram/@childNodes.55/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.3/@modelFacet /0/@diagram/@childNodes.10/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.2/@modelFacet /0/@diagram/@childNodes.43/@labels.1/@modelFacet /0/@diagram/@childNodes.34/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.6/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.85/@labels.1/@modelFacet /0/@diagram/@childNodes.19/@labels.1/@modelFacet /0/@diagram/@childNodes.47/@labels.1/@modelFacet /0/@diagram/@childNodes.82/@labels.1/@modelFacet /0/@diagram/@childNodes.39/@labels.2/@modelFacet /0/@diagram/@childNodes.67/@labels.1/@modelFacet /0/@diagram/@childNodes.23/@labels.1/@modelFacet /0/@diagram/@childNodes.74/@labels.1/@modelFacet /0/@diagram/@childNodes.15/@labels.1/@modelFacet /0/@diagram/@childNodes.9/@labels.1/@modelFacet /0/@diagram/@childNodes.48/@labels.2/@modelFacet /0/@diagram/@childNodes.49/@labels.2/@modelFacet /0/@diagram/@childNodes.70/@labels.1/@modelFacet /0/@diagram/@childNodes.21/@labels.2/@modelFacet /0/@diagram/@childNodes.53/@labels.1/@modelFacet /0/@diagram/@childNodes.52/@labels.2/@modelFacet /0/@diagram/@childNodes.38/@labels.2/@modelFacet /0/@diagram/@childNodes.78/@labels.1/@modelFacet /0/@diagram/@childNodes.77/@labels.1/@modelFacet /0/@diagram/@childNodes.46/@labels.2/@modelFacet /0/@diagram/@childNodes.17/@labels.2/@modelFacet /0/@diagram/@childNodes.80/@labels.1/@modelFacet /0/@diagram/@childNodes.32/@labels.1/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.41/@labels.2/@modelFacet /0/@diagram/@childNodes.14/@labels.1/@modelFacet /0/@diagram/@childNodes.35/@labels.1/@modelFacet /0/@diagram/@childNodes.22/@labels.2/@modelFacet /0/@diagram/@childNodes.18/@labels.2/@modelFacet /0/@diagram/@childNodes.76/@labels.1/@modelFacet /0/@diagram/@childNodes.45/@labels.2/@modelFacet /0/@diagram/@childNodes.13/@labels.2/@modelFacet /0/@diagram/@childNodes.7/@labels.2/@modelFacet /0/@diagram/@childNodes.20/@labels.1/@modelFacet /0/@diagram/@childNodes.42/@labels.2/@modelFacet /0/@diagram/@childNodes.8/@labels.2/@modelFacet /0/@diagram/@childNodes.33/@labels.0/@modelFacet /0/@diagram/@childNodes.87/@labels.2/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@topLevelNodes.0/@labels.1/@modelFacet /0/@diagram/@childNodes.68/@labels.1/@modelFacet"
+          uses="/0/@diagram/@childNodes.68/@labels.1/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.ActivitySingleExecutionParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -16139,11 +16499,11 @@
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.CallBehaviorActionParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.70/@labels.0/@modelFacet /0/@diagram/@childNodes.46/@labels.0/@modelFacet /0/@diagram/@childNodes.19/@labels.0/@modelFacet /0/@diagram/@childNodes.76/@labels.0/@modelFacet /0/@diagram/@childNodes.77/@labels.0/@modelFacet /0/@diagram/@childNodes.18/@labels.0/@modelFacet /0/@diagram/@childNodes.20/@labels.0/@modelFacet /0/@diagram/@childNodes.49/@labels.0/@modelFacet /0/@diagram/@childNodes.40/@labels.0/@modelFacet /0/@diagram/@childNodes.78/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@childNodes.85/@labels.0/@modelFacet /0/@diagram/@childNodes.84/@labels.0/@modelFacet /0/@diagram/@childNodes.53/@labels.0/@modelFacet /0/@diagram/@childNodes.42/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.47/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.21/@labels.0/@modelFacet /0/@diagram/@childNodes.39/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.22/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.80/@labels.0/@modelFacet /0/@diagram/@childNodes.43/@labels.0/@modelFacet /0/@diagram/@childNodes.41/@labels.0/@modelFacet /0/@diagram/@childNodes.45/@labels.0/@modelFacet /0/@diagram/@childNodes.73/@labels.0/@modelFacet /0/@diagram/@childNodes.50/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.67/@labels.0/@modelFacet /0/@diagram/@childNodes.74/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.38/@labels.0/@modelFacet /0/@diagram/@childNodes.48/@labels.0/@modelFacet /0/@diagram/@childNodes.82/@labels.0/@modelFacet /0/@diagram/@childNodes.55/@labels.0/@modelFacet"
+          uses="/0/@diagram/@childNodes.40/@labels.0/@modelFacet /0/@diagram/@childNodes.38/@labels.0/@modelFacet /0/@diagram/@childNodes.49/@labels.0/@modelFacet /0/@diagram/@childNodes.77/@labels.0/@modelFacet /0/@diagram/@childNodes.22/@labels.0/@modelFacet /0/@diagram/@childNodes.73/@labels.0/@modelFacet /0/@diagram/@childNodes.47/@labels.0/@modelFacet /0/@diagram/@childNodes.21/@labels.0/@modelFacet /0/@diagram/@childNodes.67/@labels.0/@modelFacet /0/@diagram/@childNodes.19/@labels.0/@modelFacet /0/@diagram/@childNodes.70/@labels.0/@modelFacet /0/@diagram/@childNodes.50/@labels.0/@modelFacet /0/@diagram/@childNodes.18/@labels.0/@modelFacet /0/@diagram/@childNodes.82/@labels.0/@modelFacet /0/@diagram/@childNodes.74/@labels.0/@modelFacet /0/@diagram/@childNodes.55/@labels.0/@modelFacet /0/@diagram/@childNodes.80/@labels.0/@modelFacet /0/@diagram/@childNodes.76/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.85/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.46/@labels.0/@modelFacet /0/@diagram/@childNodes.45/@labels.0/@modelFacet /0/@diagram/@childNodes.48/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.41/@labels.0/@modelFacet /0/@diagram/@childNodes.43/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@childNodes.53/@labels.0/@modelFacet /0/@diagram/@childNodes.42/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.78/@labels.0/@modelFacet /0/@diagram/@childNodes.20/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.0/@modelFacet /0/@diagram/@childNodes.84/@labels.0/@modelFacet /0/@diagram/@childNodes.39/@labels.0/@modelFacet /0/@diagram/@childNodes.87/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.PinParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.13/@labels.1/@modelFacet /0/@diagram/@childNodes.39/@labels.1/@modelFacet /0/@diagram/@childNodes.49/@labels.1/@modelFacet /0/@diagram/@childNodes.21/@labels.1/@modelFacet /0/@diagram/@childNodes.22/@labels.1/@modelFacet /0/@diagram/@childNodes.7/@labels.1/@modelFacet /0/@diagram/@childNodes.42/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.1/@modelFacet /0/@diagram/@childNodes.48/@labels.1/@modelFacet /0/@diagram/@childNodes.38/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.1/@modelFacet /0/@diagram/@childNodes.41/@labels.1/@modelFacet /0/@diagram/@childNodes.18/@labels.1/@modelFacet /0/@diagram/@childNodes.45/@labels.1/@modelFacet /0/@diagram/@childNodes.46/@labels.1/@modelFacet /0/@diagram/@childNodes.8/@labels.1/@modelFacet"
+          uses="/0/@diagram/@childNodes.18/@labels.1/@modelFacet /0/@diagram/@childNodes.8/@labels.1/@modelFacet /0/@diagram/@childNodes.46/@labels.1/@modelFacet /0/@diagram/@childNodes.7/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.1/@modelFacet /0/@diagram/@childNodes.49/@labels.1/@modelFacet /0/@diagram/@childNodes.48/@labels.1/@modelFacet /0/@diagram/@childNodes.45/@labels.1/@modelFacet /0/@diagram/@childNodes.38/@labels.1/@modelFacet /0/@diagram/@childNodes.22/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.1/@modelFacet /0/@diagram/@childNodes.41/@labels.1/@modelFacet /0/@diagram/@childNodes.39/@labels.1/@modelFacet /0/@diagram/@childNodes.21/@labels.1/@modelFacet /0/@diagram/@childNodes.42/@labels.1/@modelFacet /0/@diagram/@childNodes.13/@labels.1/@modelFacet /0/@diagram/@childNodes.87/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.PinValueParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -16171,7 +16531,7 @@
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.DecisionInputFlowParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.2/@labels.5/@modelFacet /0/@diagram/@links.3/@labels.2/@modelFacet"
+          uses="/0/@diagram/@links.3/@labels.2/@modelFacet /0/@diagram/@links.2/@labels.5/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.EdgeGuardParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -16187,7 +16547,7 @@
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.AcceptTimeEventActionParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.61/@labels.0/@modelFacet /0/@diagram/@childNodes.57/@labels.0/@modelFacet /0/@diagram/@childNodes.56/@labels.0/@modelFacet /0/@diagram/@childNodes.60/@labels.0/@modelFacet /0/@diagram/@childNodes.62/@labels.0/@modelFacet"
+          uses="/0/@diagram/@childNodes.62/@labels.0/@modelFacet /0/@diagram/@childNodes.60/@labels.0/@modelFacet /0/@diagram/@childNodes.57/@labels.0/@modelFacet /0/@diagram/@childNodes.56/@labels.0/@modelFacet /0/@diagram/@childNodes.61/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.StructuredActivityNodeKeywordParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -16203,7 +16563,7 @@
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.ObjectNodeSelectionParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.30/@labels.1/@modelFacet /0/@diagram/@childNodes.27/@labels.1/@modelFacet /0/@diagram/@childNodes.24/@labels.1/@modelFacet /0/@diagram/@childNodes.31/@labels.1/@modelFacet /0/@diagram/@childNodes.25/@labels.1/@modelFacet /0/@diagram/@childNodes.28/@labels.1/@modelFacet /0/@diagram/@childNodes.26/@labels.1/@modelFacet /0/@diagram/@childNodes.29/@labels.1/@modelFacet"
+          uses="/0/@diagram/@childNodes.29/@labels.1/@modelFacet /0/@diagram/@childNodes.27/@labels.1/@modelFacet /0/@diagram/@childNodes.30/@labels.1/@modelFacet /0/@diagram/@childNodes.28/@labels.1/@modelFacet /0/@diagram/@childNodes.31/@labels.1/@modelFacet /0/@diagram/@childNodes.26/@labels.1/@modelFacet /0/@diagram/@childNodes.25/@labels.1/@modelFacet /0/@diagram/@childNodes.24/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.ConstraintParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -16242,7 +16602,7 @@
         xsi:type="papyrusgmfgenextension:SpecificLocator"
         comment="Affixed Pin locator for Actions"
         classpath="org.eclipse.papyrus.diagram.activity.locator.PinPositionLocator"
-        genChildSideAffixedNode="/0/@diagram/@childNodes.38 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.43 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.48 /0/@diagram/@childNodes.49 /0/@diagram/@childNodes.50 /0/@diagram/@childNodes.53 /0/@diagram/@childNodes.55 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.70 /0/@diagram/@childNodes.73 /0/@diagram/@childNodes.74 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.77 /0/@diagram/@childNodes.78 /0/@diagram/@childNodes.80 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.84 /0/@diagram/@childNodes.85"/>
+        genChildSideAffixedNode="/0/@diagram/@childNodes.38 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.43 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.48 /0/@diagram/@childNodes.49 /0/@diagram/@childNodes.50 /0/@diagram/@childNodes.53 /0/@diagram/@childNodes.55 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.70 /0/@diagram/@childNodes.73 /0/@diagram/@childNodes.74 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.77 /0/@diagram/@childNodes.78 /0/@diagram/@childNodes.80 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.84 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.87"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocator"
         comment="Affixed Activity Parameter Node locator for Activity"
