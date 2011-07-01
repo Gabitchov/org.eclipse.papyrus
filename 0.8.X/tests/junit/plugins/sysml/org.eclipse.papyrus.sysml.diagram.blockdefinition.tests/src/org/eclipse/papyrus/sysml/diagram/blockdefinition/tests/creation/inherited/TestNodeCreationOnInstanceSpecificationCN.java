@@ -171,7 +171,9 @@ public class TestNodeCreationOnInstanceSpecificationCN extends AbstractTest {
 
 	@Test
 	public void createSlot() throws Exception {
-		createFromPalette("blockdefinition.tool.slot", containerView, false);
+		// Current implementation re-target the command creation to the compartment
+		// (when visible which is the case in default creation)
+		createFromPalette("blockdefinition.tool.slot", containerView, true);
 	}
 
 	@Test
