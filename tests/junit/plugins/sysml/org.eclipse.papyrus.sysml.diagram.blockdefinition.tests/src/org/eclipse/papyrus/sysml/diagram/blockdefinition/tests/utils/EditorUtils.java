@@ -90,6 +90,9 @@ public class EditorUtils {
 	
 		if(tool instanceof AspectUnspecifiedTypeCreationTool) {
 			AspectUnspecifiedTypeCreationTool creationTool = (AspectUnspecifiedTypeCreationTool)tool;
+			// Don't forget to set the diagram viewer (required for preferenceHints to mimic manual creation)
+			creationTool.setViewer(getDiagramEditor().getDiagramGraphicalViewer());
+			
 			return creationTool.createCreateRequest();
 	
 		} else if(tool instanceof AspectUnspecifiedTypeConnectionTool) {
