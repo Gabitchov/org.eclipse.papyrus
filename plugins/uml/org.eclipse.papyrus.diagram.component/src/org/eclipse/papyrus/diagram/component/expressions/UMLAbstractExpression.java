@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.component.expressions;
 
 import java.math.BigDecimal;
@@ -14,17 +26,23 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class UMLAbstractExpression.
+ *
  * @generated
  */
 public abstract class UMLAbstractExpression {
 
-	/**
-	 * @generated
-	 */
+	/** The status. @generated */
 	private IStatus status = Status.OK_STATUS;
 
 	/**
+	 * Sets the status.
+	 *
+	 * @param severity the severity
+	 * @param message the message
+	 * @param throwable the throwable
 	 * @generated
 	 */
 	protected void setStatus(int severity, String message, Throwable throwable) {
@@ -36,30 +54,35 @@ public abstract class UMLAbstractExpression {
 	}
 
 	/**
+	 * Gets the status.
+	 *
+	 * @return the status
 	 * @generated
 	 */
 	public IStatus getStatus() {
 		return status;
 	}
 
-	/**
-	 * @generated
-	 */
+	/** The my body. @generated */
 	private final String myBody;
 
 	/**
+	 * Body.
+	 *
+	 * @return the string
 	 * @generated
 	 */
 	public String body() {
 		return myBody;
 	}
 
-	/**
-	 * @generated
-	 */
+	/** The my context. @generated */
 	private final EClassifier myContext;
 
 	/**
+	 * Context.
+	 *
+	 * @return the e classifier
 	 * @generated
 	 */
 	public EClassifier context() {
@@ -68,6 +91,10 @@ public abstract class UMLAbstractExpression {
 
 
 	/**
+	 * Instantiates a new uML abstract expression.
+	 *
+	 * @param body the body
+	 * @param context the context
 	 * @generated
 	 */
 	protected UMLAbstractExpression(String body, EClassifier context) {
@@ -76,12 +103,21 @@ public abstract class UMLAbstractExpression {
 	}
 
 	/**
+	 * Do evaluate.
+	 *
+	 * @param context the context
+	 * @param env the env
+	 * @return the object
 	 * @generated
 	 */
 	@SuppressWarnings("rawtypes")
 	protected abstract Object doEvaluate(Object context, Map env);
 
 	/**
+	 * Evaluate.
+	 *
+	 * @param context the context
+	 * @return the object
 	 * @generated
 	 */
 	public Object evaluate(Object context) {
@@ -89,6 +125,11 @@ public abstract class UMLAbstractExpression {
 	}
 
 	/**
+	 * Evaluate.
+	 *
+	 * @param context the context
+	 * @param env the env
+	 * @return the object
 	 * @generated
 	 */
 	@SuppressWarnings("rawtypes")
@@ -105,6 +146,10 @@ public abstract class UMLAbstractExpression {
 
 	/**
 	 * Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer is expected), or EEnumLiteral meta-object when literal instance is expected
+	 *
+	 * @param value the value
+	 * @param targetType the target type
+	 * @return the object
 	 * @generated
 	 */
 	public static Object performCast(Object value, EDataType targetType) {

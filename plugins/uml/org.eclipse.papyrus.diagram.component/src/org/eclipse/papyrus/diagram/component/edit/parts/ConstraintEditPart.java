@@ -336,31 +336,10 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof ConstraintEditPartPCN) {
 			types.add(UMLElementTypes.Usage_4001);
 		}
-		if(targetEditPart instanceof ComponentEditPart) {
-			types.add(UMLElementTypes.InterfaceRealization_4006);
-		}
 		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.InterfaceRealization_4006);
 		}
-		if(targetEditPart instanceof PackageEditPart) {
-			types.add(UMLElementTypes.InterfaceRealization_4006);
-		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.component.edit.parts.ConstraintEditPart) {
-			types.add(UMLElementTypes.InterfaceRealization_4006);
-		}
-		if(targetEditPart instanceof PortEditPart) {
-			types.add(UMLElementTypes.InterfaceRealization_4006);
-		}
-		if(targetEditPart instanceof ComponentEditPartCN) {
-			types.add(UMLElementTypes.InterfaceRealization_4006);
-		}
-		if(targetEditPart instanceof ComponentEditPartPCN) {
-			types.add(UMLElementTypes.InterfaceRealization_4006);
-		}
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
-			types.add(UMLElementTypes.InterfaceRealization_4006);
-		}
-		if(targetEditPart instanceof ConstraintEditPartPCN) {
 			types.add(UMLElementTypes.InterfaceRealization_4006);
 		}
 		if(targetEditPart instanceof ComponentEditPart) {
@@ -550,15 +529,8 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Constraint_3075);
 		} else if(relationshipType == UMLElementTypes.InterfaceRealization_4006) {
-			types.add(UMLElementTypes.Component_2002);
 			types.add(UMLElementTypes.Interface_2003);
-			types.add(UMLElementTypes.Package_3200);
-			types.add(UMLElementTypes.Constraint_3199);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Component_3070);
-			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Interface_3072);
-			types.add(UMLElementTypes.Constraint_3075);
 		} else if(relationshipType == UMLElementTypes.Substitution_4012) {
 			types.add(UMLElementTypes.Component_2002);
 			types.add(UMLElementTypes.Interface_2003);
@@ -629,9 +601,8 @@ AbstractConstraintEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(9);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(8);
 		types.add(UMLElementTypes.Usage_4001);
-		types.add(UMLElementTypes.InterfaceRealization_4006);
 		types.add(UMLElementTypes.Substitution_4012);
 		types.add(UMLElementTypes.Manifestation_4014);
 		types.add(UMLElementTypes.ComponentRealization_4007);
@@ -648,16 +619,6 @@ AbstractConstraintEditPart {
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(relationshipType == UMLElementTypes.Usage_4001) {
-			types.add(UMLElementTypes.Component_2002);
-			types.add(UMLElementTypes.Interface_2003);
-			types.add(UMLElementTypes.Package_3200);
-			types.add(UMLElementTypes.Constraint_3199);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Component_3070);
-			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
-			types.add(UMLElementTypes.Constraint_3075);
-		} else if(relationshipType == UMLElementTypes.InterfaceRealization_4006) {
 			types.add(UMLElementTypes.Component_2002);
 			types.add(UMLElementTypes.Interface_2003);
 			types.add(UMLElementTypes.Package_3200);

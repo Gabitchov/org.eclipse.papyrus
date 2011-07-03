@@ -8,6 +8,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.component.edit.policies.UMLBaseItemSemanticEditPolicy;
+import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
@@ -65,10 +66,7 @@ public class InterfaceRealizationReorientCommand extends EditElementCommand {
 		if(!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
 			return false;
 		}
-		if(getLink().getSuppliers().size() != 1) {
-			return false;
-		}
-		NamedElement target = (NamedElement)getLink().getSuppliers().get(0);
+		Interface target = getLink().getContract();
 		if(!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
@@ -80,7 +78,7 @@ public class InterfaceRealizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if(!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
+		if(!(oldEnd instanceof Interface && newEnd instanceof Interface)) {
 			return false;
 		}
 		if(getLink().getClients().size() != 1) {
@@ -123,8 +121,7 @@ public class InterfaceRealizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getLink().getSuppliers().remove(getOldTarget());
-		getLink().getSuppliers().add(getNewTarget());
+		getLink().setContract(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
@@ -152,14 +149,14 @@ public class InterfaceRealizationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected NamedElement getOldTarget() {
-		return (NamedElement)oldEnd;
+	protected Interface getOldTarget() {
+		return (Interface)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected NamedElement getNewTarget() {
-		return (NamedElement)newEnd;
+	protected Interface getNewTarget() {
+		return (Interface)newEnd;
 	}
 }

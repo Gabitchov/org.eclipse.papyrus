@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.component.expressions;
 
 import java.util.Collections;
@@ -17,17 +29,20 @@ import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;
 
+// TODO: Auto-generated Javadoc
 /**
+ * A factory for creating UMLOCL objects.
+ *
  * @generated
  */
 public class UMLOCLFactory {
 
-	/**
-	 * @generated
-	 */
+	/** The expressions. @generated */
 	private final UMLAbstractExpression[] expressions;
 
 	/**
+	 * Instantiates a new uMLOCL factory.
+	 *
 	 * @generated
 	 */
 	protected UMLOCLFactory() {
@@ -35,6 +50,12 @@ public class UMLOCLFactory {
 	}
 
 	/**
+	 * Gets the expression.
+	 *
+	 * @param index the index
+	 * @param context the context
+	 * @param environment the environment
+	 * @return the expression
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(int index, EClassifier context, Map<String, EClassifier> environment) {
@@ -50,7 +71,7 @@ public class UMLOCLFactory {
 			"let base : String = \'Port\' in\r\nlet suffixes : Sequence(String) = Sequence {\'0\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\', \'9\', \'10\'} in \r\nlet space : Namespace = self.namespace in\r\nlet allMissed : Sequence(String) = suffixes->\r\n    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))\r\n    ) in\r\nlet firstMissed : String = allMissed->first() in \r\nlet noMisses : Boolean = firstMissed.oclIsUndefined() in\r\nlet allNames : Set(String) = \r\n    if noMisses \r\n    then \r\n    space.member->collect(e : NamedElement | \r\n         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) <> base\r\n         then \'\' \r\n         else e.name \r\n         endif)->asSet()->excluding(\'\') else Set{\'not in use\'} \r\n    endif in \r\nlet longestName : String = \r\n    if noMisses\r\n    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() \r\n    else \'not in use\' \r\n    endif in \r\nif noMisses then \r\n    if longestName.oclIsUndefined() \r\n    then base \r\n    else longestName.concat(\'1\') \r\n    endif \r\nelse \r\n    base.concat(firstMissed) \r\nendif ", //$NON-NLS-1$
 			"let base : String = \'Interface\' in\r\nlet suffixes : Sequence(String) = Sequence {\'0\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\', \'9\', \'10\'} in \r\nlet space : Namespace = self.namespace in\r\nlet allMissed : Sequence(String) = suffixes->\r\n    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))\r\n    ) in\r\nlet firstMissed : String = allMissed->first() in \r\nlet noMisses : Boolean = firstMissed.oclIsUndefined() in\r\nlet allNames : Set(String) = \r\n    if noMisses \r\n    then \r\n    space.member->collect(e : NamedElement | \r\n         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) <> base\r\n         then \'\' \r\n         else e.name \r\n         endif)->asSet()->excluding(\'\') else Set{\'not in use\'} \r\n    endif in \r\nlet longestName : String = \r\n    if noMisses\r\n    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() \r\n    else \'not in use\' \r\n    endif in \r\nif noMisses then \r\n    if longestName.oclIsUndefined() \r\n    then base \r\n    else longestName.concat(\'1\') \r\n    endif \r\nelse \r\n    base.concat(firstMissed) \r\nendif ", //$NON-NLS-1$
 			"let base : String = \'Usage\' in\r\nlet suffixes : Sequence(String) = Sequence {\'0\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\', \'9\', \'10\'} in \r\nlet space : Namespace = self.namespace in\r\nlet allMissed : Sequence(String) = suffixes->\r\n    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))\r\n    ) in\r\nlet firstMissed : String = allMissed->first() in \r\nlet noMisses : Boolean = firstMissed.oclIsUndefined() in\r\nlet allNames : Set(String) = \r\n    if noMisses \r\n    then \r\n    space.member->collect(e : NamedElement | \r\n         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) <> base\r\n         then \'\' \r\n         else e.name \r\n         endif)->asSet()->excluding(\'\') else Set{\'not in use\'} \r\n    endif in \r\nlet longestName : String = \r\n    if noMisses\r\n    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() \r\n    else \'not in use\' \r\n    endif in \r\nif noMisses then \r\n    if longestName.oclIsUndefined() \r\n    then base \r\n    else longestName.concat(\'1\') \r\n    endif \r\nelse \r\n    base.concat(firstMissed) \r\nendif ", //$NON-NLS-1$
-			"let base : String = \'InterfaceRealization\' in\r\nlet suffixes : Sequence(String) = Sequence {\'0\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\', \'9\', \'10\'} in \r\nlet space : Namespace = self.namespace in\r\nlet allMissed : Sequence(String) = suffixes->\r\n    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))\r\n    ) in\r\nlet firstMissed : String = allMissed->first() in \r\nlet noMisses : Boolean = firstMissed.oclIsUndefined() in\r\nlet allNames : Set(String) = \r\n    if noMisses \r\n    then \r\n    space.member->collect(e : NamedElement | \r\n         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) <> base\r\n         then \'\' \r\n         else e.name \r\n         endif)->asSet()->excluding(\'\') else Set{\'not in use\'} \r\n    endif in \r\nlet longestName : String = \r\n    if noMisses\r\n    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() \r\n    else \'not in use\' \r\n    endif in \r\nif noMisses then \r\n    if longestName.oclIsUndefined() \r\n    then base \r\n    else longestName.concat(\'1\') \r\n    endif \r\nelse \r\n    base.concat(firstMissed) \r\nendif ", //$NON-NLS-1$
+			"let base : String = \'Realization\' in\r\nlet suffixes : Sequence(String) = Sequence {\'0\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\', \'9\', \'10\'} in \r\nlet space : Namespace = self.namespace in\r\nlet allMissed : Sequence(String) = suffixes->\r\n    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))\r\n    ) in\r\nlet firstMissed : String = allMissed->first() in \r\nlet noMisses : Boolean = firstMissed.oclIsUndefined() in\r\nlet allNames : Set(String) = \r\n    if noMisses \r\n    then \r\n    space.member->collect(e : NamedElement | \r\n         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) <> base\r\n         then \'\' \r\n         else e.name \r\n         endif)->asSet()->excluding(\'\') else Set{\'not in use\'} \r\n    endif in \r\nlet longestName : String = \r\n    if noMisses\r\n    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() \r\n    else \'not in use\' \r\n    endif in \r\nif noMisses then \r\n    if longestName.oclIsUndefined() \r\n    then base \r\n    else longestName.concat(\'1\') \r\n    endif \r\nelse \r\n    base.concat(firstMissed) \r\nendif ", //$NON-NLS-1$
 			"let base : String = \'Package\' in\r\nlet suffixes : Sequence(String) = Sequence {\'\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\', \'9\', \'10\'} in \r\nlet space : Namespace = self.namespace in\r\nlet allMissed : Sequence(String) = suffixes->\r\n    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))\r\n    ) in\r\nlet firstMissed : String = allMissed->first() in \r\nlet noMisses : Boolean = firstMissed.oclIsUndefined() in\r\nlet allNames : Set(String) = \r\n    if noMisses \r\n    then \r\n    space.member->collect(e : NamedElement | \r\n         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) <> base\r\n         then \'\' \r\n         else e.name \r\n         endif)->asSet()->excluding(\'\') else Set{\'not in use\'} \r\n    endif in \r\nlet longestName : String = \r\n    if noMisses\r\n    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() \r\n    else \'not in use\' \r\n    endif in \r\nif noMisses then \r\n    if longestName.oclIsUndefined() \r\n    then base \r\n    else longestName.concat(\'1\') \r\n    endif \r\nelse \r\n    base.concat(firstMissed) \r\nendif ", //$NON-NLS-1$
 			"self.oclIsKindOf(uml::Interface)", //$NON-NLS-1$
 			"self.oclIsKindOf(uml::Component) or self.oclIsKindOf(uml::Port)", //$NON-NLS-1$
@@ -63,7 +84,12 @@ public class UMLOCLFactory {
 
 
 	/**
-	 * This is factory method, callers are responsible to keep reference to the return value if they want to reuse parsed expression
+	 * This is factory method, callers are responsible to keep reference to the return value if they want to reuse parsed expression.
+	 *
+	 * @param body the body
+	 * @param context the context
+	 * @param environment the environment
+	 * @return the expression
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(String body, EClassifier context, Map<String, EClassifier> environment) {
@@ -71,7 +97,11 @@ public class UMLOCLFactory {
 	}
 
 	/**
-	 * This method will become private in the next release
+	 * This method will become private in the next release.
+	 *
+	 * @param body the body
+	 * @param context the context
+	 * @return the expression
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(String body, EClassifier context) {
@@ -79,21 +109,24 @@ public class UMLOCLFactory {
 	}
 
 	/**
+	 * The Class Expression.
+	 *
 	 * @generated
 	 */
 	private static class Expression extends UMLAbstractExpression {
 
-		/**
-		 * @generated
-		 */
+		/** The ocl instance. @generated */
 		private final org.eclipse.ocl.ecore.OCL oclInstance;
 
-		/**
-		 * @generated
-		 */
+		/** The ocl expression. @generated */
 		private OCLExpression oclExpression;
 
 		/**
+		 * Instantiates a new expression.
+		 *
+		 * @param body the body
+		 * @param context the context
+		 * @param environment the environment
 		 * @generated
 		 */
 		public Expression(String body, EClassifier context, Map<String, EClassifier> environment) {
@@ -111,6 +144,11 @@ public class UMLOCLFactory {
 		}
 
 		/**
+		 * Do evaluate.
+		 *
+		 * @param context the context
+		 * @param env the env
+		 * @return the object
 		 * @generated
 		 */
 		@SuppressWarnings("rawtypes")
@@ -134,6 +172,10 @@ public class UMLOCLFactory {
 		}
 
 		/**
+		 * Inits the custom env.
+		 *
+		 * @param ecoreEnv the ecore env
+		 * @param environment the environment
 		 * @generated
 		 */
 		private static void initCustomEnv(Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv, Map<String, EClassifier> environment) {
@@ -146,6 +188,12 @@ public class UMLOCLFactory {
 		}
 
 		/**
+		 * Creates the var.
+		 *
+		 * @param ecoreEnv the ecore env
+		 * @param name the name
+		 * @param type the type
+		 * @return the variable
 		 * @generated
 		 */
 		private static Variable createVar(Environment<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> ecoreEnv, String name, EClassifier type) {
