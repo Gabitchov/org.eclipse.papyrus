@@ -19,19 +19,22 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
+// TODO: Auto-generated Javadoc
 /**
  * <pre>
- * This class provides a custom edit policy used to replace the SEMANTIC_ROLE 
+ * This class provides a custom edit policy used to replace the SEMANTIC_ROLE
  * generated for the Port element (when used in CompositeStructure Diagram)
- * </pre>
+ * </pre>.
  */
 public class PortItemSemanticEditPolicy extends org.eclipse.papyrus.diagram.component.edit.policies.PortItemSemanticEditPolicy {
 
 	/**
 	 * <pre>
 	 * Forbid direct destruction of Port in case the graphical parent is not
-	 * the semantic parent.  
-	 * 
+	 * the semantic parent.
+	 *
+	 * @param req the req
+	 * @return the destroy element command
 	 * {@inheritDoc}
 	 * </pre>
 	 */

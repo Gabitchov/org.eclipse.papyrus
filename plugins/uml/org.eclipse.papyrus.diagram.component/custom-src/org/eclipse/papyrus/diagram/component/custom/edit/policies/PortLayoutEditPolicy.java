@@ -26,6 +26,7 @@ import org.eclipse.papyrus.diagram.component.edit.parts.PortEditPart;
 import org.eclipse.papyrus.diagram.component.edit.parts.PortNameEditPart;
 import org.eclipse.papyrus.diagram.component.part.UMLVisualIDRegistry;
 
+// TODO: Auto-generated Javadoc
 /**
  * This edit policy replaces the GMF generated edit policy for Port.
  * In particular it installs {@link ExternalLabelPrimaryDragRoleEditPolicy} on
@@ -34,6 +35,14 @@ import org.eclipse.papyrus.diagram.component.part.UMLVisualIDRegistry;
  */
 public class PortLayoutEditPolicy extends LayoutEditPolicy {
 
+	/**
+	 * Creates the child edit policy.
+	 *
+	 * @param child the child
+	 * @return the edits the policy
+	 * @see org.eclipse.gef.editpolicies.LayoutEditPolicy#createChildEditPolicy(org.eclipse.gef.EditPart)
+	 */
+	
 	@Override
 	protected EditPolicy createChildEditPolicy(EditPart child) {
 		View childView = (View)child.getModel();
@@ -49,11 +58,27 @@ public class PortLayoutEditPolicy extends LayoutEditPolicy {
 		return result;
 	}
 
+	/**
+	 * Gets the move children command.
+	 *
+	 * @param request the request
+	 * @return the move children command
+	 * @see org.eclipse.gef.editpolicies.LayoutEditPolicy#getMoveChildrenCommand(org.eclipse.gef.Request)
+	 */
+	
 	@Override
 	protected Command getMoveChildrenCommand(Request request) {
 		return null;
 	}
 
+	/**
+	 * Gets the creates the command.
+	 *
+	 * @param request the request
+	 * @return the creates the command
+	 * @see org.eclipse.gef.editpolicies.LayoutEditPolicy#getCreateCommand(org.eclipse.gef.requests.CreateRequest)
+	 */
+	
 	@Override
 	protected Command getCreateCommand(CreateRequest request) {
 		return null;

@@ -33,20 +33,18 @@ import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Type;
 
+// TODO: Auto-generated Javadoc
 /**
- * This handler provides the action to manage the provided and required {@link Interface} for a {@link Port}
- * 
- * 
- * 
+ * This handler provides the action to manage the provided and required {@link Interface} for a {@link Port}.
  */
 public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 
 	/**
-	 * 
+	 * Gets the command.
+	 *
+	 * @return the command
+	 * @throws ExecutionException the execution exception
 	 * @see org.eclipse.papyrus.diagram.common.handlers.GraphicalCommandHandler#getCommand()
-	 * 
-	 * @return
-	 * @throws ExecutionException
 	 */
 	@Override
 	protected Command getCommand() throws ExecutionException {
@@ -62,17 +60,14 @@ public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 	}
 
 	/**
-	 * 
-	 * This class provides the action to manage the provided and required interfaces
-	 * 
-	 * 
+	 * This class provides the action to manage the provided and required interfaces.
 	 */
 	public class ManageProvidedInterfaceAction {
 
-		/** the {@link Port} */
+		/** the {@link Port}. */
 		private Port port;
 
-		/** the {@link Type} of the port */
+		/** the {@link Type} of the port. */
 		private Type type;
 
 		/**
@@ -90,10 +85,10 @@ public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 		}
 
 		/**
-		 * Returns the command to add/remove provided/required interfaces
-		 * 
-		 * @return
-		 *         the command to add/remove provided/required interfaces
+		 * Returns the command to add/remove provided/required interfaces.
+		 *
+		 * @return the command
+		 * the command to add/remove provided/required interfaces
 		 */
 		public Command getCommand() {
 			if(type != null && !(type instanceof Classifier)) {
@@ -112,10 +107,10 @@ public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 	}
 
 	/**
-	 * 
+	 * Checks if is enabled.
+	 *
+	 * @return true, if is enabled
 	 * @see org.eclipse.papyrus.diagram.common.handlers.GraphicalCommandHandler#isEnabled()
-	 * 
-	 * @return
 	 */
 	@Override
 	public boolean isEnabled() {

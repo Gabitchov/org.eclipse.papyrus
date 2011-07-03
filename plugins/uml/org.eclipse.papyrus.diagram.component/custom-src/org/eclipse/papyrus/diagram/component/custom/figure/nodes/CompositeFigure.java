@@ -29,6 +29,10 @@ import org.eclipse.swt.graphics.Image;
  */
 public class CompositeFigure extends CompartmentFigure {
 
+	/* to present the class as an active class */
+	/** The active. Default value is false */
+	private boolean active = false;
+
 	/** The Internal Structure Compartment. */
 	private final static String COMPOSITE_COMPARTMENT = "compositeCompartment";
 
@@ -45,7 +49,7 @@ public class CompositeFigure extends CompartmentFigure {
 	 * Default Constructor.
 	 */
 	public CompositeFigure() {
-		super(COMPARTMENT, "component");
+		this("component");
 		Image img = Activator.getPluginIconImage(UMLDiagramEditorPlugin.ID, "icons/obj16/ComponentIcon.gif");
 		setAppliedStereotypeIcon(img, PositionConstants.RIGHT);
 	}
@@ -69,6 +73,24 @@ public class CompositeFigure extends CompartmentFigure {
 		return getCompartment(COMPOSITE_COMPARTMENT);
 	}
 
+	/**
+	 * Checks if is active.
+	 * 
+	 * @return true, if is active
+	 */
+	// @unused
+	public boolean isActive() {
+		return active;
+	}
+
+	/**
+	 * Set the active
+	 * 
+	 * @param active
+	 */
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 
 
 }

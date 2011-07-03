@@ -22,23 +22,25 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
 import org.eclipse.uml2.uml.Element;
 
+// TODO: Auto-generated Javadoc
 /**
- * Edit policy for specific Label
+ * Edit policy for specific Label.
  */
 public abstract class AbstractCustomLabelEditPolicy extends GraphicalEditPolicy implements IPapyrusListener, NotificationListener {
 
-	/** constant for this edit policy role */
+	/** constant for this edit policy role. */
 	public final static String SPECIFIC_NAME_LABEL_POLICY = "SpecificNameLabelEditPolicy"; //$NON-NLS-1$
 
 	/**
-	 * Creates a new Specific Name display edit policy
+	 * Creates a new Specific Name display edit policy.
 	 */
 	public AbstractCustomLabelEditPolicy() {
 		super();
 	}
 
 	/**
-	 * 
+	 * Activate.
+	 *
 	 * {@inheritDoc}
 	 */
 	public void activate() {
@@ -60,14 +62,15 @@ public abstract class AbstractCustomLabelEditPolicy extends GraphicalEditPolicy 
 	}
 
 	/**
-	 * Adds more listeners upon activation
+	 * Adds more listeners upon activation.
 	 */
 	protected void addAdditionalListeners() {
 		// default implementation does nothing
 	}
 
 	/**
-	 * 
+	 * Deactivate.
+	 *
 	 * {@inheritDoc}
 	 */
 	public void deactivate() {
@@ -91,8 +94,7 @@ public abstract class AbstractCustomLabelEditPolicy extends GraphicalEditPolicy 
 	}
 
 	/**
-	 * Remove the others listeners
-	 * 
+	 * Remove the others listeners.
 	 */
 	protected void removeAdditionalListeners() {
 		// default implementation does nothing
@@ -112,8 +114,8 @@ public abstract class AbstractCustomLabelEditPolicy extends GraphicalEditPolicy 
 	}
 
 	/**
-	 * Returns the uml element controlled by the host edit part
-	 * 
+	 * Returns the uml element controlled by the host edit part.
+	 *
 	 * @return the uml element controlled by the host edit part
 	 */
 	protected Element getUMLElement() {
@@ -121,8 +123,8 @@ public abstract class AbstractCustomLabelEditPolicy extends GraphicalEditPolicy 
 	}
 
 	/**
-	 * Returns the view controlled by the host edit part
-	 * 
+	 * Returns the view controlled by the host edit part.
+	 *
 	 * @return the view controlled by the host edit part
 	 */
 	protected View getView() {
@@ -130,7 +132,7 @@ public abstract class AbstractCustomLabelEditPolicy extends GraphicalEditPolicy 
 	}
 
 	/**
-	 * Refreshes the display for the element controlled by the edit part with this edit policies
+	 * Refreshes the display for the element controlled by the edit part with this edit policies.
 	 */
 	public abstract void refreshDisplay();
 

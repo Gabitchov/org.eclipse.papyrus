@@ -28,6 +28,10 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ShowHideRelatedContentsAction.
+ */
 public class ShowHideRelatedContentsAction extends ShowHideContentsAction {
 
 	/**
@@ -40,9 +44,9 @@ public class ShowHideRelatedContentsAction extends ShowHideContentsAction {
 	}
 
 	/**
-	 * 
+	 * Inits the action.
+	 *
 	 * @see org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction#initAction()
-	 * 
 	 */
 	@Override
 	protected void initAction() {
@@ -65,14 +69,17 @@ public class ShowHideRelatedContentsAction extends ShowHideContentsAction {
 
 	}
 
+	/**
+	 * The Class CustomContentProvider.
+	 */
 	protected class CustomContentProvider extends ShowHideContentsAction.ContentProvider {
 
 		/**
-		 * 
+		 * Gets the parent.
+		 *
+		 * @param element the element
+		 * @return the parent
 		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getParent(java.lang.Object)
-		 * 
-		 * @param element
-		 * @return
 		 */
 		@Override
 		public Object getParent(Object element) {
