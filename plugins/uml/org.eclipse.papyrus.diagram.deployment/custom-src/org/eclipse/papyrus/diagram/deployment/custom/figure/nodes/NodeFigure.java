@@ -34,6 +34,10 @@ public class NodeFigure extends CompartmentFigure {
 	/** The effectborder. */
 	private final LineBorder effectborder;
 
+	/* to present the class as an active class */
+	/** The active. Default value is false */
+	private boolean active = false;
+
 	/** The List of Compartment. */
 	private final static List<String> COMPARTMENT = new ArrayList<String>() {
 
@@ -70,4 +74,24 @@ public class NodeFigure extends CompartmentFigure {
 	public IFigure getCompositeCompartmentFigure() {
 		return getCompartment(COMPOSITE_COMPARTMENT);
 	}
+
+	/**
+	 * Checks if is active.
+	 * 
+	 * @return true, if is active
+	 */
+	// @unused
+	public boolean isActive() {
+		return active;
+	}
+
+	/**
+	 * Set the active
+	 * 
+	 * @param active
+	 */
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 }

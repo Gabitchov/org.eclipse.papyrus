@@ -211,9 +211,9 @@
        id="deployment.tool.node"
        kind="tool"
        label="Node"
-       large_icon="icons/obj16/Node.gif"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif"
        path=""
-       small_icon="icons/obj16/Node.gif">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif">
  	</entry>
 	<entry
        defineOnly="true"
@@ -221,9 +221,9 @@
        id="deployment.tool.device"
        kind="tool"
        label="Device"
-       large_icon="icons/obj16/Device.gif"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif"
        path=""
-       small_icon="icons/obj16/Device.gif">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif">
  	</entry>
 	<entry
        defineOnly="true"
@@ -231,9 +231,9 @@
        id="deployment.tool.executionEnvironment"
        kind="tool"
        label="Execution Environment"
-       large_icon="icons/obj16/ExecutionEnvironment.gif"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif"
        path=""
-       small_icon="icons/obj16/ExecutionEnvironment.gif">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif">
  	</entry>
 	<entry
        defineOnly="true"
@@ -241,9 +241,9 @@
        id="deployment.tool.artifact"
        kind="tool"
        label="Artifact"
-       large_icon="icons/obj16/Artifact.gif"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif"
        path=""
-       small_icon="icons/obj16/Artifact.gif">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif">
  	</entry>
 	<entry
        defineOnly="true"
@@ -251,9 +251,9 @@
        id="deployment.tool.comment"
        kind="tool"
        label="Comment"
-       large_icon="icons/obj16/Comment.gif"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
        path=""
-       small_icon="icons/obj16/Comment.gif">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
  	</entry>
 	<entry
        defineOnly="true"
@@ -261,9 +261,9 @@
        id="deployment.tool.constraint"
        kind="tool"
        label="Constraint"
-       large_icon="icons/obj16/Constraint.gif"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
        path=""
-       small_icon="icons/obj16/Constraint.gif">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
  	</entry>
 	<entry
        defineOnly="true"
@@ -281,9 +281,9 @@
        id="deployment.tool.dependency"
        kind="tool"
        label="Dependency"
-       large_icon="icons/obj16/Dependency.gif"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
        path=""
-       small_icon="icons/obj16/Dependency.gif">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
  	</entry>
 	<entry
        defineOnly="true"
@@ -291,9 +291,9 @@
        id="deployment.tool.generalization"
        kind="tool"
        label="Generalization"
-       large_icon="icons/obj16/Generalization.gif"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
        path=""
-       small_icon="icons/obj16/Generalization.gif">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
  	</entry>
 	<entry
        defineOnly="true"
@@ -301,9 +301,9 @@
        id="deployment.tool.deployment"
        kind="tool"
        label="Deployment"
-       large_icon="icons/obj16/Deployment.gif"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif"
        path=""
-       small_icon="icons/obj16/Deployment.gif">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif">
  	</entry>
 	<entry
        defineOnly="true"
@@ -311,9 +311,9 @@
        id="deployment.tool.manifestation"
        kind="tool"
        label="Manifestation"
-       large_icon="icons/obj16/Manifestation.gif"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif"
        path=""
-       small_icon="icons/obj16/Manifestation.gif">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif">
  	</entry>
 
 			</contribution>

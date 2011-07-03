@@ -1,6 +1,5 @@
 package org.eclipse.papyrus.diagram.deployment.edit.parts;
 
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -12,7 +11,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -52,14 +50,6 @@ extends ShapeCompartmentEditPart
 		return Messages.ArtifactCompositeCompartmentEditPartCN_title;
 	}
 
-	/**
-	 * @generated
-	 */
-	public IFigure createFigure() {
-		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
-		result.setTitleVisibility(false);
-		return result;
-	}
 
 	/**
 	 * @generated
