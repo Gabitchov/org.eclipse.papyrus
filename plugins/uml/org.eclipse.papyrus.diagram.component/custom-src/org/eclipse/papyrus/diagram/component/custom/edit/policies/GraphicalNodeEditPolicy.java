@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * <pre>
  * This class provides a custom edit policy used to replace the GRAPHICAL_NODE_ROLE 
@@ -42,24 +43,16 @@ import org.eclipse.gmf.runtime.notation.View;
  */
 public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy {
 
-	/**
-	 * The ID for the additional parameter SOURCE_PARENT used in creation request
-	 */
+	/** The ID for the additional parameter SOURCE_PARENT used in creation request. */
 	public static final String CONNECTOR_CREATE_REQUEST_SOURCE_PARENT = "SOURCE_PARENT"; //$NON-NLS-1$
 
-	/**
-	 * The ID for the additional parameter TARGET_PARENT used in creation request
-	 */
+	/** The ID for the additional parameter TARGET_PARENT used in creation request. */
 	public static final String CONNECTOR_CREATE_REQUEST_TARGET_PARENT = "TARGET_PARENT"; //$NON-NLS-1$
 
-	/**
-	 * The ID for the additional parameter SOURCE_GRAPHICAL used in creation request
-	 */
+	/** The ID for the additional parameter SOURCE_GRAPHICAL used in creation request. */
 	public static final String CONNECTOR_CREATE_REQUEST_SOURCE_GRAPHICAL = "SOURCE_GRAPHICAL"; //$NON-NLS-1$
 
-	/**
-	 * The ID for the additional parameter TARGET_GRAPHICAL used in creation request
-	 */
+	/** The ID for the additional parameter TARGET_GRAPHICAL used in creation request. */
 	public static final String CONNECTOR_CREATE_REQUEST_TARGET_GRAPHICAL = "TARGET_GRAPHICAL"; //$NON-NLS-1$
 
 	/**
@@ -74,7 +67,9 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 	 * - &quot;TARGET_GRAPHICAL&quot; : GraphicalEditPart of the target
 	 * 
 	 * This method is used too to call the custom command for InformationFlow creation.
-	 * 
+	 *
+	 * @param request the request
+	 * @return the connection and relationship complete command
 	 * {@inheritDoc}
 	 * </pre>
 	 */

@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.component.edit.policies;
 
 import java.util.ArrayList;
@@ -57,20 +69,24 @@ import org.eclipse.papyrus.diagram.component.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.component.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.UMLPackage;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class ModelCanonicalEditPolicy.
+ *
  * @generated
  */
 public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 
 
 
-	/**
-	 * @generated
-	 */
+	/** The my features to synchronize. @generated */
 	private Set<EStructuralFeature> myFeaturesToSynchronize;
 
 
 	/**
+	 * Gets the features to synchronize.
+	 *
+	 * @return the features to synchronize
 	 * @generated
 	 */
 	protected Set getFeaturesToSynchronize() {
@@ -84,6 +100,9 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
+	 * Gets the semantic children list.
+	 *
+	 * @return the semantic children list
 	 * @generated
 	 */
 	@SuppressWarnings("rawtypes")
@@ -98,6 +117,11 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
+	 * Checks if is orphaned.
+	 *
+	 * @param semanticChildren the semantic children
+	 * @param view the view
+	 * @return true, if is orphaned
 	 * @generated
 	 */
 	protected boolean isOrphaned(Collection<EObject> semanticChildren, final View view) {
@@ -105,6 +129,10 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
+	 * Checks if is my diagram element.
+	 *
+	 * @param view the view
+	 * @return true, if is my diagram element
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
@@ -121,6 +149,8 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
+	 * Refresh semantic.
+	 *
 	 * @generated
 	 */
 	protected void refreshSemantic() {
@@ -204,6 +234,9 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
+	 * Refresh connections.
+	 *
+	 * @return the collection
 	 * @generated
 	 */
 	private Collection<IAdaptable> refreshConnections() {
@@ -236,6 +269,11 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
+	 * Collect all links.
+	 *
+	 * @param view the view
+	 * @param domain2NotationMap the domain2 notation map
+	 * @return the collection
 	 * @generated
 	 */
 	private Collection<UMLLinkDescriptor> collectAllLinks(View view, Map<EObject, View> domain2NotationMap) {
@@ -455,6 +493,11 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
+	 * Creates the connections.
+	 *
+	 * @param linkDescriptors the link descriptors
+	 * @param domain2NotationMap the domain2 notation map
+	 * @return the collection
 	 * @generated
 	 */
 	private Collection<IAdaptable> createConnections(Collection<UMLLinkDescriptor> linkDescriptors, Map<EObject, View> domain2NotationMap) {
@@ -485,6 +528,11 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
+	 * Gets the edits the part.
+	 *
+	 * @param domainModelElement the domain model element
+	 * @param domain2NotationMap the domain2 notation map
+	 * @return the edits the part
 	 * @generated
 	 */
 	private EditPart getEditPart(EObject domainModelElement, Map<EObject, View> domain2NotationMap) {
@@ -496,6 +544,9 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
+	 * Gets the diagram.
+	 *
+	 * @return the diagram
 	 * @generated
 	 */
 	private Diagram getDiagram() {

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,8 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.component.preferences;
 
@@ -20,19 +19,20 @@ import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
 
 // TODO: Auto-generated Javadoc
 /**
- * Preference page for ConstraintConstrainedElement notation element.
- * Currently not generated.
+ * The Class CommentAnnotatedElementPreferencePage.
+ *
+ * @generated
  */
-public class ConstraintConstrainedElementPreferencePage extends AbstractPapyrusLinkPreferencePage {
+public class CommentAnnotatedElementPreferencePage extends AbstractPapyrusLinkPreferencePage {
 
 	/**
-	 * Instantiates a new constraint constrained element preference page.
+	 * Instantiates a new comment annotated element preference page.
 	 *
 	 * @generated
 	 */
-	public ConstraintConstrainedElementPreferencePage() {
+	public CommentAnnotatedElementPreferencePage() {
 		super();
-		setPreferenceKey(ComponentDiagramEditPart.MODEL_ID + "_ConstraintConstrainedElement");
+		setPreferenceKey(ComponentDiagramEditPart.MODEL_ID + "_CommentAnnotatedElement");
 	}
 
 	/**

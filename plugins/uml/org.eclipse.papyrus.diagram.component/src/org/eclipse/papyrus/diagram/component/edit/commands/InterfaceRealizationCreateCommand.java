@@ -13,6 +13,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.component.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.component.providers.ElementInitializers;
+import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
@@ -59,7 +60,7 @@ public class InterfaceRealizationCreateCommand extends EditElementCommand {
 		if(source != null && false == source instanceof NamedElement) {
 			return false;
 		}
-		if(target != null && false == target instanceof NamedElement) {
+		if(target != null && false == target instanceof Interface) {
 			return false;
 		}
 		if(getSource() == null) {
@@ -84,7 +85,7 @@ public class InterfaceRealizationCreateCommand extends EditElementCommand {
 		InterfaceRealization newElement = UMLFactory.eINSTANCE.createInterfaceRealization();
 		getContainer().getPackagedElements().add(newElement);
 		newElement.getClients().add(getSource());
-		newElement.getSuppliers().add(getTarget());
+		newElement.setContract(getTarget());
 		ElementInitializers.getInstance().init_InterfaceRealization_4006(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
@@ -126,8 +127,8 @@ public class InterfaceRealizationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected NamedElement getTarget() {
-		return (NamedElement)target;
+	protected Interface getTarget() {
+		return (Interface)target;
 	}
 
 	/**

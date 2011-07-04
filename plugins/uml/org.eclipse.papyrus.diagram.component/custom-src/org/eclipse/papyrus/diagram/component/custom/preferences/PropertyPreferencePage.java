@@ -32,32 +32,38 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.uml2.uml.Property;
 
+// TODO: Auto-generated Javadoc
 /**
- * Specific {@link Property} preference page
+ * Specific {@link Property} preference page.
  */
 public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage {
 
-	/** Preference page identifier */
+	/** Preference page identifier. */
 	public static final String ID = "org.eclipse.papyrus.diagram.composite.custom.preferences.PropertyPreferencePage"; //$NON-NLS-1$
 
 	/**
-	 * Listeners for the check buttons that select the display of the {@link Property}
+	 * Listeners for the check buttons that select the display of the {@link Property}.
+	 *
+	 * @see AppearenceSelectionEvent
 	 */
 	private class AppearenceSelectionListener implements SelectionListener {
 
-		/** the constant which refers the element to display or not */
+		/** the constant which refers the element to display or not. */
 		final private int style;
 
 		/**
 		 * Default Constructor.
-		 * 
-		 * @param style
+		 *
+		 * @param style the style
 		 */
 		public AppearenceSelectionListener(int style) {
 			this.style = style;
 		}
 
 		/**
+		 * Widget default selected.
+		 *
+		 * @param e the e
 		 * {@inheritDoc}
 		 */
 		public void widgetDefaultSelected(SelectionEvent e) {
@@ -65,6 +71,9 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 		}
 
 		/**
+		 * Widget selected.
+		 *
+		 * @param e the e
 		 * {@inheritDoc}
 		 */
 		public void widgetSelected(SelectionEvent e) {
@@ -78,6 +87,8 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 
 	/**
 	 * Initialize preferences.
+	 *
+	 * @param store the store
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
@@ -95,10 +106,10 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 
 	}
 
-	/** buttons to select the display kind for the label of the {@link Property} */
+	/** buttons to select the display kind for the label of the {@link Property}. */
 	protected Button displVisibility, displDerive, displName, displType, displMutliplicity, displDfltValue, displModifiers;
 
-	/** current property display style */
+	/** current property display style. */
 	private int propertyValue = getPreferenceStore().getInt(IPapyrusPropertyPreferencesConstant.LABEL_DISPLAY_PREFERENCE);
 
 	/**
@@ -120,10 +131,9 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 	}
 
 	/**
-	 * Creates the group and check boxes to choose the kind of display
-	 * 
-	 * @param parent
-	 *        the parent composite that holds the group
+	 * Creates the group and check boxes to choose the kind of display.
+	 *
+	 * @param parent the parent composite that holds the group
 	 */
 	protected void createLabelPreferencesButtons(Composite parent) {
 		// create group that host the buttons
@@ -177,6 +187,9 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 	}
 
 	/**
+	 * Creates the page contents.
+	 *
+	 * @param parent the parent
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -190,6 +203,9 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 	}
 
 	/**
+	 * Gets the bundle id.
+	 *
+	 * @return the bundle id
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -198,7 +214,7 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 	}
 
 	/**
-	 * Load the default preferences of the fields contained in this page
+	 * Load the default preferences of the fields contained in this page.
 	 */
 	protected void loadDefaultPreferences() {
 		propertyValue = getPreferenceStore().getInt(IPapyrusPropertyPreferencesConstant.LABEL_DISPLAY_PREFERENCE);
@@ -206,6 +222,8 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 	}
 
 	/**
+	 * Perform defaults.
+	 *
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -215,6 +233,9 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 	}
 
 	/**
+	 * Perform ok.
+	 *
+	 * @return true, if successful
 	 * {@inheritDoc}
 	 */
 	@Override

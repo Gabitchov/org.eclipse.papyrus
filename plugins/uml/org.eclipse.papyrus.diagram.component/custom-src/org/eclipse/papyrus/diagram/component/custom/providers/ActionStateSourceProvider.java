@@ -17,6 +17,7 @@ import org.eclipse.papyrus.diagram.common.providers.AbstractActionStateSourcePro
 import org.eclipse.papyrus.diagram.component.custom.actions.ShowHideRelatedContentsHandler;
 import org.eclipse.ui.ISources;
 
+// TODO: Auto-generated Javadoc
 /**
  * This class provides the state of the actions. It's used to refresh
  * the status of these actions in the menu. (in toolbar and popup, it's not needed)
@@ -44,10 +45,10 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 
 
 	/**
-	 * 
+	 * Gets the provided source names.
+	 *
+	 * @return the provided source names
 	 * @see org.eclipse.ui.ISourceProvider#getProvidedSourceNames()
-	 * 
-	 * @return
 	 */
 	@Override
 	public String[] getProvidedSourceNames() {
@@ -56,7 +57,7 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 
 
 	/**
-	 * Refresh the state of the Delete Action
+	 * Refresh the state of the Delete Action.
 	 */
 	protected void refreshShowHideRelatedContentsAction() {
 		String oldState = currentState.get(SHOW_HIDE_RELATED_CONTENTS);
@@ -69,10 +70,10 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 	}
 
 	/**
-	 * Tests if the action DeleteFromDiagram (now called Delete Selected Element can be executed
-	 * 
-	 * @return
-	 *         <code>true</code> if the action DeleteFromDiagram (now called Delete Selected Element can be executed <code>false</code> if not
+	 * Tests if the action DeleteFromDiagram (now called Delete Selected Element can be executed.
+	 *
+	 * @return true, if successful
+	 * <code>true</code> if the action DeleteFromDiagram (now called Delete Selected Element can be executed <code>false</code> if not
 	 */
 	protected boolean testShowHideRelatedContents() {
 		ShowHideRelatedContentsHandler handler = new ShowHideRelatedContentsHandler();
@@ -80,9 +81,9 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 	}
 
 	/**
-	 * 
+	 * Refresh actions.
+	 *
 	 * @see org.eclipse.papyrus.diagram.common.providers.AbstractActionStateSourceProvider#refreshActions()
-	 * 
 	 */
 	@Override
 	protected void refreshActions() {

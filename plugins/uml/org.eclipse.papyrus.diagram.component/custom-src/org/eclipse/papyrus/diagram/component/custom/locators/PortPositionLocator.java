@@ -19,48 +19,54 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 
+// TODO: Auto-generated Javadoc
 /**
  * This class is used to constrain the position of Port when they are added on a Property or a
  * StructuredClassifier
  * 
  * <pre>
- * 	 +-------------------+
- * 	 |    [Class]        |
- * 	 +-------------------+
- * 	 |                   |
- * 	 |                   |
- * 	 |                  +-+ - Expected position of Port 
- * 	 |                  +-+
- * 	 |                   |
- * 	 +-------------------+
+ * +-------------------+
+ * |    [Class]        |
+ * +-------------------+
+ * |                   |
+ * |                   |
+ * |                  +-+ - Expected position of Port
+ * |                  +-+
+ * |                   |
+ * +-------------------+
  * 
  * </pre>
  * 
  * <pre>
  * TODO  : The port is not re-sizable
- * </pre>
+ * </pre>.
  */
 public class PortPositionLocator implements IBorderItemLocator {
 
-	/** the figure around which this border item appears */
+	/** the figure around which this border item appears. */
 	protected IFigure parentFigure = null;
 
-	/** the width of the area surrounding the parent figure where border item can be put */
+	/** the width of the area surrounding the parent figure where border item can be put. */
 	protected int borderItemOffset = 10;
 
 	/**
-	 * get the parent figure
-	 * 
+	 * get the parent figure.
+	 *
 	 * @return the parent figure
 	 */
 	public IFigure getParentFigure() {
 		return parentFigure;
 	}
 
-	/** the position constraint */
+	/** the position constraint. */
 	protected Rectangle constraint = new Rectangle(0, 0, 0, 0);
 
-	/** Constructor **/
+	/**
+	 * Constructor *.
+	 *
+	 * @param parentFigure the parent figure
+	 * @param preferredSide the preferred side
+	 */
 	public PortPositionLocator(IFigure parentFigure, int preferredSide) {
 		// The preferredSide parameter is not used, just kept here to ensure compatibility 
 		// with GMF generated code.
@@ -68,22 +74,22 @@ public class PortPositionLocator implements IBorderItemLocator {
 	}
 
 	/**
-	 * 
-	 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.IBorderItemLocator#getValidLocation(org.eclipse.draw2d.geometry.Rectangle,
-	 *      org.eclipse.draw2d.IFigure)
-	 * 
-	 * @param proposedLocation
-	 * @param borderItem
+	 * Gets the valid location.
+	 *
+	 * @param proposedLocation the proposed location
+	 * @param borderItem the border item
 	 * @return a valid location
+	 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.IBorderItemLocator#getValidLocation(org.eclipse.draw2d.geometry.Rectangle,
+	 * org.eclipse.draw2d.IFigure)
 	 */
 	public Rectangle getValidLocation(Rectangle proposedLocation, IFigure borderItem) {
 		return getPreferredLocation(proposedLocation);
 	}
 
 	/**
-	 * 
-	 * @param proposedLocation
-	 *        the proposed location
+	 * Gets the preferred location.
+	 *
+	 * @param proposedLocation the proposed location
 	 * @return a possible location on parent figure border
 	 */
 	public Rectangle getPreferredLocation(Rectangle proposedLocation) {
@@ -136,21 +142,21 @@ public class PortPositionLocator implements IBorderItemLocator {
 	}
 
 	/**
-	 * 
+	 * Gets the current side of parent.
+	 *
+	 * @return the current side of parent
 	 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.IBorderItemLocator#getCurrentSideOfParent()
-	 * 
-	 * @return
-	 *         the position of the port around its parent. This position can be
-	 *         <ul>
-	 *         <li>{@linkplain PositionConstants#NORTH}</li>
-	 *         <li> {@linkplain PositionConstants#SOUTH}</li>
-	 *         <li> {@linkplain PositionConstants#EAST}</li>
-	 *         <li> {@linkplain PositionConstants#WEST}</li>
-	 *         <li> {@linkplain PositionConstants#NORTH_EAST}</li>
-	 *         <li> {@linkplain PositionConstants#NORTH_WEST}</li>
-	 *         <li> {@linkplain PositionConstants#SOUTH_EAST}</li>
-	 *         <li> {@linkplain PositionConstants#SOUTH_WEST}</li>
-	 *         </ul>
+	 * the position of the port around its parent. This position can be
+	 * <ul>
+	 * <li>{@linkplain PositionConstants#NORTH}</li>
+	 * <li> {@linkplain PositionConstants#SOUTH}</li>
+	 * <li> {@linkplain PositionConstants#EAST}</li>
+	 * <li> {@linkplain PositionConstants#WEST}</li>
+	 * <li> {@linkplain PositionConstants#NORTH_EAST}</li>
+	 * <li> {@linkplain PositionConstants#NORTH_WEST}</li>
+	 * <li> {@linkplain PositionConstants#SOUTH_EAST}</li>
+	 * <li> {@linkplain PositionConstants#SOUTH_WEST}</li>
+	 * </ul>
 	 */
 	public int getCurrentSideOfParent() {
 		int position = PositionConstants.NONE;
@@ -192,10 +198,10 @@ public class PortPositionLocator implements IBorderItemLocator {
 	}
 
 	/**
-	 * 
+	 * Sets the constraint.
+	 *
+	 * @param constraint the new constraint
 	 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.IBorderItemLocator#setConstraint(org.eclipse.draw2d.geometry.Rectangle)
-	 * 
-	 * @param constraint
 	 */
 	public void setConstraint(Rectangle constraint) {
 		this.constraint = constraint;
@@ -203,10 +209,10 @@ public class PortPositionLocator implements IBorderItemLocator {
 	}
 
 	/**
-	 * 
+	 * Relocate.
+	 *
+	 * @param target the target
 	 * @see org.eclipse.draw2d.Locator#relocate(org.eclipse.draw2d.IFigure)
-	 * 
-	 * @param target
 	 */
 	public void relocate(IFigure target) {
 

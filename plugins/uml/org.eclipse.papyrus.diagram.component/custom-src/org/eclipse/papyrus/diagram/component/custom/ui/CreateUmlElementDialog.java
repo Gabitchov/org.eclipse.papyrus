@@ -60,6 +60,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * This dialog allows to create easily a new element in a UML Model.
  */
@@ -237,12 +238,11 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 	}
 
 	/**
-	 * Tests if the proposed name is not forbidden
-	 * 
-	 * @param name
-	 *        a name
-	 * @return
-	 *         <code>true</code> if the proposed name is not forbidden
+	 * Tests if the proposed name is not forbidden.
+	 *
+	 * @param name a name
+	 * @return true, if is correct name
+	 * <code>true</code> if the proposed name is not forbidden
 	 */
 	protected boolean isCorrectName(String name) {
 		if(forbiddenNames == null) {

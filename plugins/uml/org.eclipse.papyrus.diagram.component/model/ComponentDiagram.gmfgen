@@ -83,6 +83,14 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.component.custom.edit.policies.PortLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RESIZE_BORDER_ITEMS&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Port"/>
@@ -184,8 +192,8 @@
               fixedBackground="true"/>
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
-              width="100"
-              height="50"/>
+              width="150"
+              height="70"/>
         </viewmap>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -215,6 +223,14 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RESIZE_BORDER_ITEMS&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Component"/>
@@ -285,8 +301,8 @@
               fixedBackground="true"/>
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
-              width="100"
-              height="50"/>
+              width="150"
+              height="70"/>
         </viewmap>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -316,6 +332,14 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RESIZE_BORDER_ITEMS&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Component"/>
@@ -392,6 +416,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.component.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface"/>
@@ -608,7 +636,7 @@
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
               width="150"
-              height="100"/>
+              height="70"/>
         </viewmap>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -620,12 +648,12 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
@@ -638,6 +666,14 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RESIZE_BORDER_ITEMS&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Component"/>
@@ -709,6 +745,10 @@
               width="20"
               height="20"/>
         </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface"/>
@@ -781,6 +821,14 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RESIZE_BORDER_ITEMS&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
@@ -842,6 +890,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment"/>
@@ -902,6 +954,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
@@ -1077,6 +1133,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -1136,6 +1196,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeSubstitutionLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -1224,6 +1288,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeManifestationLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -1310,6 +1378,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -1399,6 +1471,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeAbstractionLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -1548,6 +1624,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -1624,7 +1704,6 @@
           canonicalEditPolicyClassName="ComponentCompositeCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.1"
           title="CompositeCompartment"
-          needsTitle="false"
           node="/0/@diagram/@topLevelNodes.0"
           listLayout="false">
         <diagramRunTimeClass
@@ -1646,7 +1725,6 @@
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.2"
           title="PackageableElementCompartment"
           canCollapse="false"
-          needsTitle="false"
           node="/0/@diagram/@topLevelNodes.2"
           listLayout="false">
         <diagramRunTimeClass
@@ -1663,7 +1741,6 @@
           canonicalEditPolicyClassName="ComponentCompositeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.1"
           title="CompositeCompartmentCN"
-          needsTitle="false"
           node="/0/@diagram/@childNodes.1"
           listLayout="false">
         <diagramRunTimeClass
@@ -1684,7 +1761,6 @@
           canonicalEditPolicyClassName="ComponentCompositeCompartmentCanonicalEditPolicyPCN"
           childNodes="/0/@diagram/@childNodes.1"
           title="CompositeCompartmentPCN"
-          needsTitle="false"
           node="/0/@diagram/@childNodes.2"
           listLayout="false">
         <diagramRunTimeClass
@@ -1712,8 +1788,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Package"
               description="Create a Package"
-              largeIconPath="icons/obj16/Package.gif"
-              smallIconPath="icons/obj16/Package.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
               createMethodName="createPackageCreationTool"
               id="&quot;component.tool.package&quot;"
               genNodes="/0/@diagram/@topLevelNodes.2"/>
@@ -1721,8 +1797,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Component"
               description="Create a Component"
-              largeIconPath="icons/obj16/Component.gif"
-              smallIconPath="icons/obj16/Component.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif"
               createMethodName="createComponentCreationTool"
               id="&quot;component.tool.component&quot;"
               genNodes="/0/@diagram/@topLevelNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.2"/>
@@ -1730,8 +1806,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Interface"
               description="Create an Interface"
-              largeIconPath="icons/obj16/InterfaceAsCercle.gif"
-              smallIconPath="icons/obj16/InterfaceAsCercle.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
               createMethodName="createInterfaceCreationTool"
               id="&quot;component.tool.interface&quot;"
               genNodes="/0/@diagram/@topLevelNodes.1 /0/@diagram/@childNodes.3"/>
@@ -1739,8 +1815,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Port"
               description="Create a Port"
-              largeIconPath="icons/obj16/Port.gif"
-              smallIconPath="icons/obj16/Port.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
               createMethodName="createPortCreationTool"
               id="&quot;component.tool.port&quot;"
               genNodes="/0/@diagram/@childNodes.0"/>
@@ -1748,8 +1824,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Comment"
               description="Create a Comment"
-              largeIconPath="icons/obj16/Comment.gif"
-              smallIconPath="icons/obj16/Comment.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
               createMethodName="createCommentCreationTool"
               id="&quot;component.tool.comment&quot;"
               qualifiedToolName=""
@@ -1758,8 +1834,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Constraint"
               description="Create a Constraint"
-              largeIconPath="icons/obj16/Constraint.gif"
-              smallIconPath="icons/obj16/Constraint.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
               createMethodName="createConstraintCreationTool"
               id="&quot;component.tool.constraint&quot;"
               genNodes="/0/@diagram/@topLevelNodes.4 /0/@diagram/@childNodes.5"/>
@@ -1786,8 +1862,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Dependency"
               description="Create a Dependency"
-              largeIconPath="icons/obj16/Dependency.gif"
-              smallIconPath="icons/obj16/Dependency.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
               createMethodName="createDependencyCreationTool"
               id="&quot;component.tool.dependency&quot;"
               genLinks="/0/@diagram/@links.10"/>
@@ -1795,8 +1871,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Abstraction"
               description="Create an Abstraction"
-              largeIconPath="icons/obj16/Abstraction.gif"
-              smallIconPath="icons/obj16/Abstraction.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
               createMethodName="createAbstractionCreationTool"
               id="&quot;component.tool.abstraction&quot;"
               genLinks="/0/@diagram/@links.6"/>
@@ -1804,8 +1880,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Manifestation"
               description="Create a Manifestation"
-              largeIconPath="icons/obj16/Manifestation.gif"
-              smallIconPath="icons/obj16/Manifestation.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif"
               createMethodName="createManifestationCreationTool"
               id="&quot;component.tool.manifestation&quot;"
               genLinks="/0/@diagram/@links.4"/>
@@ -1813,8 +1889,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Generalization"
               description="Create a Generalization link"
-              largeIconPath="icons/obj16/Generalization.gif"
-              smallIconPath="icons/obj16/Generalization.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
               createMethodName="createGeneralizationCreationTool"
               id="&quot;component.tool.generalization&quot;"
               genLinks="/0/@diagram/@links.2"/>
@@ -1822,8 +1898,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Usage"
               description="Create an Usage"
-              largeIconPath="icons/obj16/Usage.gif"
-              smallIconPath="icons/obj16/Usage.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
               createMethodName="createUsageCreationTool"
               id="&quot;component.tool.usage&quot;"
               genLinks="/0/@diagram/@links.0"/>
@@ -1831,8 +1907,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Substitution"
               description="Create a Substitution"
-              largeIconPath="icons/obj16/Substitution.gif"
-              smallIconPath="icons/obj16/Substitution.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif"
               createMethodName="createSubstitutionCreationTool"
               id="&quot;component.tool.substitution&quot;"
               genLinks="/0/@diagram/@links.3"/>
@@ -1840,8 +1916,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Interface Realization"
               description="Create an Interface Realization"
-              largeIconPath="icons/obj16/InterfaceRealization.gif"
-              smallIconPath="icons/obj16/InterfaceRealization.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif"
               createMethodName="createInterfaceRealizationCreationTool"
               id="&quot;component.tool.interfaceRealization&quot;"
               genLinks="/0/@diagram/@links.1"/>
@@ -1849,8 +1925,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Component Realization"
               description="Create a Component Realization"
-              largeIconPath="icons/obj16/ComponentRealization.gif"
-              smallIconPath="icons/obj16/ComponentRealization.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ComponentRealization.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ComponentRealization.gif"
               createMethodName="createComponentRealizationCreationTool"
               id="&quot;component.tool.componentRealization&quot;"
               genLinks="/0/@diagram/@links.5"/>
@@ -1991,10 +2067,28 @@
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractBorderEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Elements that inherits Composite"
+        genView="/0/@diagram/@topLevelNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.2"
+        name="Composite inheritance"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.CompositeEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="adding to manange otherNamedElement"
+        genView="/0/@diagram/@topLevelNodes.2 /0/@diagram"
+        name="OtherNamedElementEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Manages stereotype shown with External Label"
         genView="/0/@diagram/@links.4/@labels.1"
         name="EP_Stereotypes_EXT_NODE"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractLabelEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Label in charge to display applied stereotypes on links"
+        genView="/0/@diagram/@links.2 /0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6 /0/@diagram/@links.10"
+        name="ExtendedUMLLinks"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Add super class to a Comment edit parts"
@@ -2036,5 +2130,27 @@
         comment="Use the edit service for reorient command (All DirectedRelationship)"
         name="DirectedRelationship"
         genView="/0/@diagram/@links.2 /0/@diagram/@links.0 /0/@diagram/@links.1 /0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6 /0/@diagram/@links.10"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:CompartmentVisibilityPreference"
+        comment="Hidden Compartements"
+        visibleByDefault="false"
+        compartments="/0/@diagram/@compartments.0 /0/@diagram/@compartments.2 /0/@diagram/@compartments.3"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:CompartmentTitleVisibilityPreference"
+        comment="Hidden Compartments Title"
+        visibleByDefault="false"
+        compartments="/0/@diagram/@compartments.0 /0/@diagram/@compartments.2 /0/@diagram/@compartments.3"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Name"
+        role="Name"
+        linkLabels="/0/@diagram/@links.4/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.10/@labels.0 /0/@diagram/@links.3/@labels.0"
+        externalNodeLabels="/0/@diagram/@topLevelNodes.1/@labels.0 /0/@diagram/@childNodes.3/@labels.0 /0/@diagram/@childNodes.0/@labels.0"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Stereotype"
+        role="Stereotype"
+        linkLabels="/0/@diagram/@links.4/@labels.1 /0/@diagram/@links.2/@labels.0 /0/@diagram/@links.3/@labels.1 /0/@diagram/@links.5/@labels.1 /0/@diagram/@links.6/@labels.1 /0/@diagram/@links.10/@labels.1"
+        externalNodeLabels="/0/@diagram/@childNodes.0/@labels.1"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

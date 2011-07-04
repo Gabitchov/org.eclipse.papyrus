@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.component.edit.policies;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -14,12 +26,17 @@ import org.eclipse.papyrus.diagram.component.edit.commands.InterfaceCreateComman
 import org.eclipse.papyrus.diagram.component.edit.commands.PackageCreateCommand;
 import org.eclipse.papyrus.diagram.component.providers.UMLElementTypes;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class ComponentDiagramItemSemanticEditPolicy.
+ *
  * @generated
  */
 public class ComponentDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
+	 * Instantiates a new component diagram item semantic edit policy.
+	 *
 	 * @generated
 	 */
 	public ComponentDiagramItemSemanticEditPolicy() {
@@ -28,6 +45,10 @@ public class ComponentDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticE
 
 
 	/**
+	 * Gets the creates the command.
+	 *
+	 * @param req the req
+	 * @return the creates the command
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
@@ -50,6 +71,10 @@ public class ComponentDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	}
 
 	/**
+	 * Gets the duplicate command.
+	 *
+	 * @param req the req
+	 * @return the duplicate command
 	 * @generated
 	 */
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
@@ -62,16 +87,21 @@ public class ComponentDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	}
 
 	/**
+	 * The Class DuplicateAnythingCommand.
+	 *
 	 * @generated
 	 */
 	private static class DuplicateAnythingCommand extends DuplicateNamedElementCommand {
 
-		/**
-		 * @generated
-		 */
+		/** The diagram. @generated */
 		private Diagram diagram;
 
 		/**
+		 * Instantiates a new duplicate anything command.
+		 *
+		 * @param editingDomain the editing domain
+		 * @param req the req
+		 * @param currentDiagram the current diagram
 		 * @generated
 		 */
 		public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req, Diagram currentDiagram) {

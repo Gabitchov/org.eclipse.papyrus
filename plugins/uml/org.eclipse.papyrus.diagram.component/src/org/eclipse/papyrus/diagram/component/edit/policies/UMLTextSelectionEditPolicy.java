@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.component.edit.policies;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -11,28 +23,27 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.editpolicies.SelectionEditPolicy;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class UMLTextSelectionEditPolicy.
+ *
  * @generated
  */
 public class UMLTextSelectionEditPolicy extends SelectionEditPolicy {
 
 
-	/**
-	 * @generated
-	 */
+	/** The selection feedback figure. @generated */
 	private IFigure selectionFeedbackFigure;
 
-	/**
-	 * @generated
-	 */
+	/** The focus feedback figure. @generated */
 	private IFigure focusFeedbackFigure;
 
-	/**
-	 * @generated
-	 */
+	/** The host position listener. @generated */
 	private FigureListener hostPositionListener;
 
 	/**
+	 * Show primary selection.
+	 *
 	 * @generated
 	 */
 	protected void showPrimarySelection() {
@@ -46,6 +57,8 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy {
 	}
 
 	/**
+	 * Show selection.
+	 *
 	 * @generated
 	 */
 	protected void showSelection() {
@@ -62,6 +75,8 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy {
 	}
 
 	/**
+	 * Hide selection.
+	 *
 	 * @generated
 	 */
 	protected void hideSelection() {
@@ -79,6 +94,8 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy {
 	}
 
 	/**
+	 * Show focus.
+	 *
 	 * @generated
 	 */
 	protected void showFocus() {
@@ -92,6 +109,8 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy {
 	}
 
 	/**
+	 * Hide focus.
+	 *
 	 * @generated
 	 */
 	protected void hideFocus() {
@@ -106,6 +125,9 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy {
 	}
 
 	/**
+	 * Gets the feedback bounds.
+	 *
+	 * @return the feedback bounds
 	 * @generated
 	 */
 	protected Rectangle getFeedbackBounds() {
@@ -122,6 +144,9 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy {
 	}
 
 	/**
+	 * Creates the selection feedback figure.
+	 *
+	 * @return the i figure
 	 * @generated
 	 */
 	protected IFigure createSelectionFeedbackFigure() {
@@ -139,6 +164,9 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy {
 	}
 
 	/**
+	 * Creates the focus feedback figure.
+	 *
+	 * @return the i figure
 	 * @generated
 	 */
 	protected IFigure createFocusFeedbackFigure() {
@@ -151,6 +179,9 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy {
 	}
 
 	/**
+	 * Update label.
+	 *
+	 * @param target the target
 	 * @generated
 	 */
 	protected void updateLabel(Label target) {
@@ -161,6 +192,8 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy {
 	}
 
 	/**
+	 * Refresh selection feedback.
+	 *
 	 * @generated
 	 */
 	protected void refreshSelectionFeedback() {
@@ -175,6 +208,8 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy {
 	}
 
 	/**
+	 * Refresh focus feedback.
+	 *
 	 * @generated
 	 */
 	protected void refreshFocusFeedback() {
@@ -184,6 +219,8 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy {
 	}
 
 	/**
+	 * Refresh feedback.
+	 *
 	 * @generated
 	 */
 	public void refreshFeedback() {
@@ -192,6 +229,9 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy {
 	}
 
 	/**
+	 * Gets the host position listener.
+	 *
+	 * @return the host position listener
 	 * @generated
 	 */
 	private FigureListener getHostPositionListener() {

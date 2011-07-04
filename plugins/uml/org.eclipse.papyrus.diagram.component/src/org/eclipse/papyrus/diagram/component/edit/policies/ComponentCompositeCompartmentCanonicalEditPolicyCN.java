@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.component.edit.policies;
 
 import java.util.ArrayList;
@@ -25,13 +37,19 @@ import org.eclipse.papyrus.diagram.component.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.component.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.UMLPackage;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class ComponentCompositeCompartmentCanonicalEditPolicyCN.
+ *
  * @generated
  */
 public class ComponentCompositeCompartmentCanonicalEditPolicyCN extends CanonicalEditPolicy {
 
 
 	/**
+	 * Gets the feature to synchronize.
+	 *
+	 * @return the feature to synchronize
 	 * @generated
 	 */
 	protected EStructuralFeature getFeatureToSynchronize() {
@@ -39,6 +57,9 @@ public class ComponentCompositeCompartmentCanonicalEditPolicyCN extends Canonica
 	}
 
 	/**
+	 * Gets the semantic children list.
+	 *
+	 * @return the semantic children list
 	 * @generated
 	 */
 	@SuppressWarnings("rawtypes")
@@ -53,6 +74,11 @@ public class ComponentCompositeCompartmentCanonicalEditPolicyCN extends Canonica
 	}
 
 	/**
+	 * Checks if is orphaned.
+	 *
+	 * @param semanticChildren the semantic children
+	 * @param view the view
+	 * @return true, if is orphaned
 	 * @generated
 	 */
 	protected boolean isOrphaned(Collection<EObject> semanticChildren, final View view) {
@@ -60,6 +86,10 @@ public class ComponentCompositeCompartmentCanonicalEditPolicyCN extends Canonica
 	}
 
 	/**
+	 * Checks if is my diagram element.
+	 *
+	 * @param view the view
+	 * @return true, if is my diagram element
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
@@ -67,6 +97,8 @@ public class ComponentCompositeCompartmentCanonicalEditPolicyCN extends Canonica
 	}
 
 	/**
+	 * Refresh semantic.
+	 *
 	 * @generated
 	 */
 	protected void refreshSemantic() {
