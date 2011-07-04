@@ -1,6 +1,7 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.creation;
 
-import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.*;
+import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.getDiagramView;
+import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.TestUtils.createFromPalette;
 
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.AbstractTest;
 import org.junit.Test;

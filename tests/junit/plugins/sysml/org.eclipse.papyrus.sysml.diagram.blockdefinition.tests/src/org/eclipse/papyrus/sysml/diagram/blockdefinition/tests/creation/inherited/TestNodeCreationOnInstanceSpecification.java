@@ -1,11 +1,15 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.creation.inherited;
 
-import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.*;
+import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.getDiagramView;
+import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.TestPrepareUtils.createGraphicalNode;
+import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.TestUtils.createFromPalette;
 
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.AbstractTest;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -20,18 +24,15 @@ public class TestNodeCreationOnInstanceSpecification extends AbstractTest {
 	public static void prepareContainerForTest() throws Exception {
 		try {
 			// force inherited provider loading...
-			createFromPalette("blockdefinition.tool.block", getDiagramView(), true);
-			//
+			createGraphicalNode(SysMLElementTypes.BLOCK, SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_CLASSIFIER_ID, getDiagramView());
 
-			createFromPalette("blockdefinition.tool.instancespecification", getDiagramView(), true);
-			containerView = ViewUtil.getChildBySemanticHint(getDiagramView(), ElementTypes.INSTANCE_SPECIFICATION.getSemanticHint());
-
+			containerView = createGraphicalNode(UMLElementTypes.INSTANCE_SPECIFICATION, ElementTypes.INSTANCE_SPECIFICATION.getSemanticHint(), getDiagramView());
 			if(containerView == null) {
 				throw new Exception("Unable to prepare container for test.");
 			}
 
 		} catch (Exception e) {
-			throw new Exception("Unable to prepare container for test.");
+			throw new Exception("Unable to prepare container for test.", e);
 		}
 	}
 
@@ -162,9 +163,7 @@ public class TestNodeCreationOnInstanceSpecification extends AbstractTest {
 
 	@Test
 	public void createSlot() throws Exception {
-		// Current implementation re-target the command creation to the compartment
-		// (when visible which is the case in default creation)
-		createFromPalette("blockdefinition.tool.slot", containerView, true);
+		createFromPalette("blockdefinition.tool.slot", containerView, false);
 	}
 
 	@Test

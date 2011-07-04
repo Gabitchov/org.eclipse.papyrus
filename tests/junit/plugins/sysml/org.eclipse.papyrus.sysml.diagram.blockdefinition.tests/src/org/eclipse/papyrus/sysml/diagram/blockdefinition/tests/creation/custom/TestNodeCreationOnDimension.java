@@ -1,11 +1,15 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.creation.custom;
 
-import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.*;
+import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.getDiagramView;
+import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.TestPrepareUtils.createGraphicalNode;
+import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.TestUtils.createFromPalette;
 
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.AbstractTest;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -20,8 +24,7 @@ public class TestNodeCreationOnDimension extends AbstractTest {
 	public static void prepareContainerForTest() throws Exception {
 		try {
 			// force inherited provider loading...
-			createFromPalette("blockdefinition.tool.package", getDiagramView(), true);
-			//
+			createGraphicalNode(UMLElementTypes.PACKAGE, ElementTypes.PACKAGE.getSemanticHint(), getDiagramView());
 
 			createFromPalette("blockdefinition.tool.dimension", getDiagramView(), true);
 			containerView = ViewUtil.getChildBySemanticHint(getDiagramView(), SysMLGraphicalTypes.SHAPE_SYSML_DIMENSION_AS_CLASSIFIER_ID);
@@ -31,7 +34,7 @@ public class TestNodeCreationOnDimension extends AbstractTest {
 			}
 
 		} catch (Exception e) {
-			throw new Exception("Unable to prepare container for test.");
+			throw new Exception("Unable to prepare container for test.", e);
 		}
 	}
 
