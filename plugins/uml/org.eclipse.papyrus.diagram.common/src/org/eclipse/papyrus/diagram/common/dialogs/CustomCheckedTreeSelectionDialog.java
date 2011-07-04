@@ -65,7 +65,7 @@ public class CustomCheckedTreeSelectionDialog extends SelectionStatusDialog {
 
 	private ILabelProvider fLabelProvider;
 
-	private ITreeContentProvider fContentProvider;
+	protected ITreeContentProvider fContentProvider;
 
 	private ISelectionStatusValidator fValidator = null;
 
@@ -77,7 +77,7 @@ public class CustomCheckedTreeSelectionDialog extends SelectionStatusDialog {
 
 	private List fFilters;
 
-	private Object fInput;
+	protected Object fInput;
 
 	private boolean fIsEmpty;
 
