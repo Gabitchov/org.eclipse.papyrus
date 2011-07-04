@@ -1,3 +1,27 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
+ *****************************************************************************/
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.deployment.providers;
 
 import java.util.ArrayList;
@@ -389,7 +413,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ExecutionEnvironment");
 
 		Node label5 = createLabel(node, UMLVisualIDRegistry.getType(ExecutionEnvironmentNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID), false, false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID), false, true, false, false);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ExecutionEnvironment");
 
@@ -414,7 +438,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Device");
 
 		Node label6 = createLabel(node, UMLVisualIDRegistry.getType(DeviceNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(DeviceCompositeCompartmentEditPart.VISUAL_ID), false, false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(DeviceCompositeCompartmentEditPart.VISUAL_ID), false, true, false, false);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Device");
 
@@ -439,7 +463,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Artifact");
 
 		Node label8 = createLabel(node, UMLVisualIDRegistry.getType(ArtifactNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(ArtifactCompositeCompartmentEditPart.VISUAL_ID), true, false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(ArtifactCompositeCompartmentEditPart.VISUAL_ID), true, true, false, false);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Artifact");
 
@@ -464,7 +488,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Node");
 
 		Node label9 = createLabel(node, UMLVisualIDRegistry.getType(NodeNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(NodeCompositeCompartmentEditPart.VISUAL_ID), false, false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(NodeCompositeCompartmentEditPart.VISUAL_ID), false, true, false, false);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Node");
 
@@ -488,7 +512,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Node");
 
 		Node label24 = createLabel(node, UMLVisualIDRegistry.getType(NodeNameEditPartCN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(NodeCompositeCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(NodeCompositeCompartmentEditPartCN.VISUAL_ID), true, true, false, false);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Node");
 
@@ -512,7 +536,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Device");
 
 		Node label20 = createLabel(node, UMLVisualIDRegistry.getType(DeviceNameEditPartCN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(DeviceCompositeCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(DeviceCompositeCompartmentEditPartCN.VISUAL_ID), true, true, false, false);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Device");
 
@@ -536,7 +560,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ExecutionEnvironment");
 
 		Node label22 = createLabel(node, UMLVisualIDRegistry.getType(ExecutionEnvironmentNameEditPartCN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID), true, true, false, false);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ExecutionEnvironment");
 
@@ -560,7 +584,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Artifact");
 
 		Node label27 = createLabel(node, UMLVisualIDRegistry.getType(ArtifactNameEditPartCN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(ArtifactCompositeCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(ArtifactCompositeCompartmentEditPartCN.VISUAL_ID), true, true, false, false);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Artifact");
 
@@ -584,7 +608,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Artifact");
 
 		Node label29 = createLabel(node, UMLVisualIDRegistry.getType(ArtifactNameEditPartACN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(ArtifactCompositeCompartmentEditPartACN.VISUAL_ID), true, false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(ArtifactCompositeCompartmentEditPartACN.VISUAL_ID), true, true, false, false);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Artifact");
 

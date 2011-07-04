@@ -74,12 +74,20 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RESIZE_BORDER_ITEMS&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Node"/>
@@ -163,12 +171,20 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RESIZE_BORDER_ITEMS&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Device"/>
@@ -250,12 +266,20 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RESIZE_BORDER_ITEMS&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ExecutionEnvironment"/>
@@ -322,7 +346,7 @@
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
               width="150"
-              height="50"/>
+              height="70"/>
         </viewmap>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -419,7 +443,7 @@
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
               width="150"
-              height="50"/>
+              height="70"/>
         </viewmap>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -667,6 +691,22 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RESIZE_BORDER_ITEMS&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ExecutionEnvironment"/>
@@ -744,6 +784,22 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RESIZE_BORDER_ITEMS&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Device"/>
@@ -807,7 +863,7 @@
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
               width="150"
-              height="50"/>
+              height="70"/>
         </viewmap>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -911,6 +967,22 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RESIZE_BORDER_ITEMS&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Node"/>
@@ -1029,6 +1101,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeDeploymentLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -1115,6 +1191,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeManifestationLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -1201,6 +1281,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -1258,6 +1342,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
@@ -1335,7 +1423,6 @@
           childNodes="/0/@diagram/@childNodes.2"
           title="DeviceCompositeCompartment"
           canCollapse="false"
-          needsTitle="false"
           node="/0/@diagram/@topLevelNodes.3"
           listLayout="false">
         <diagramRunTimeClass
@@ -1357,7 +1444,6 @@
           childNodes="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.3"
           title="ExecutionEnvironmentCompositeCompartment"
           canCollapse="false"
-          needsTitle="false"
           node="/0/@diagram/@topLevelNodes.2"
           listLayout="false">
         <diagramRunTimeClass
@@ -1379,7 +1465,6 @@
           childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.0"
           title="CompositeCompartment"
           canCollapse="false"
-          needsTitle="false"
           node="/0/@diagram/@topLevelNodes.5"
           listLayout="false">
         <diagramRunTimeClass
@@ -1400,7 +1485,6 @@
           canonicalEditPolicyClassName="ArtifactCompositeCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.4"
           title="ArtifactCompositeCompartment"
-          needsTitle="false"
           node="/0/@diagram/@topLevelNodes.4"
           listLayout="false">
         <diagramRunTimeClass
@@ -1421,7 +1505,6 @@
           canonicalEditPolicyClassName="DeviceCompositeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.2"
           title="DeviceCompositeCompartment"
-          needsTitle="false"
           node="/0/@diagram/@childNodes.1"
           listLayout="false">
         <diagramRunTimeClass
@@ -1442,7 +1525,6 @@
           canonicalEditPolicyClassName="ExecutionEnvironmentCompositeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.2"
           title="ExecutionEnvironmentCompositeCompartment"
-          needsTitle="false"
           node="/0/@diagram/@childNodes.2"
           listLayout="false">
         <diagramRunTimeClass
@@ -1463,7 +1545,6 @@
           canonicalEditPolicyClassName="NodeCompositeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.3"
           title="CompositeCompartment"
-          needsTitle="false"
           node="/0/@diagram/@childNodes.0"
           listLayout="false">
         <diagramRunTimeClass
@@ -1484,7 +1565,6 @@
           canonicalEditPolicyClassName="ArtifactCompositeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.4"
           title="ArtifactCompositeCompartment"
-          needsTitle="false"
           node="/0/@diagram/@childNodes.3"
           listLayout="false">
         <diagramRunTimeClass
@@ -1505,7 +1585,6 @@
           canonicalEditPolicyClassName="ArtifactCompositeCompartmentCanonicalEditPolicyACN"
           childNodes="/0/@diagram/@childNodes.4"
           title="ArtifactCompositeCompartment"
-          needsTitle="false"
           node="/0/@diagram/@childNodes.4"
           listLayout="false">
         <diagramRunTimeClass
@@ -1761,6 +1840,24 @@
         name="EP_Constraint_NODE"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractConstraintEditPart"/>
     <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Elements that inherits Deployment Node"
+        genView="/0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.2 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.2"
+        name="Deployment Node inheritance"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.DeploymentNodeEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Elements that inherits Composite"
+        genView="/0/@diagram/@topLevelNodes.4 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4"
+        name="Composite inheritance"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.CompositeEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Label in charge to display applied stereotypes on links"
+        genView="/0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.6 /0/@diagram/@links.5"
+        name="ExtendedUMLLinks"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart"/>
+    <extensionNodes
         xsi:type="papyrusgmfgenextension:GenNodeConstraint"
         comment="Creation constraint for TopLevelNode in virtual canvas"
         genNode="/0/@diagram/@topLevelNodes.0 /0/@diagram/@topLevelNodes.1 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.5"
@@ -1779,5 +1876,25 @@
         comment="Use the edit service for reorient command (All DirectedRelationship)"
         name="DirectedRelationship"
         genView="/0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Name"
+        role="Name"
+        linkLabels="/0/@diagram/@links.3/@labels.0 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.6/@labels.0"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Stereotype"
+        role="Stereotype"
+        linkLabels="/0/@diagram/@links.5/@labels.0 /0/@diagram/@links.3/@labels.1 /0/@diagram/@links.4/@labels.1 /0/@diagram/@links.6/@labels.1"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:CompartmentTitleVisibilityPreference"
+        comment="Hidden Compartments Titles"
+        visibleByDefault="false"
+        compartments="/0/@diagram/@compartments.0 /0/@diagram/@compartments.1 /0/@diagram/@compartments.2 /0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.5 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:CompartmentVisibilityPreference"
+        comment="Hidden Compartments"
+        visibleByDefault="false"
+        compartments="/0/@diagram/@compartments.3 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>
