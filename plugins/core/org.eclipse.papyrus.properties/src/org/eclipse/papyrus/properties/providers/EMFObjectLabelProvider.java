@@ -20,12 +20,15 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.properties.util.EMFHelper;
+import org.eclipse.papyrus.widgets.providers.IDetailLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -33,7 +36,7 @@ import org.eclipse.swt.graphics.Image;
  * 
  * @author Jerome Benois
  */
-public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider {
+public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider implements IDetailLabelProvider {
 
 	/** item provider class */
 	private static final Class<?> IItemLabelProviderClass = IItemLabelProvider.class;
@@ -175,6 +178,20 @@ public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider {
 			}
 		}
 		return factory;
+	}
+
+	public String getDetail(Object object) {
+		object = getModel(object);
+		return getText(object) + " - " + getQualifiedClassName(object);
+	}
+
+	protected String getQualifiedClassName(Object object) {
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			EClass eClass = eObject.eClass();
+			return EMFHelper.getQualifiedName(eClass, "::");
+		}
+		return "";
 	}
 
 }

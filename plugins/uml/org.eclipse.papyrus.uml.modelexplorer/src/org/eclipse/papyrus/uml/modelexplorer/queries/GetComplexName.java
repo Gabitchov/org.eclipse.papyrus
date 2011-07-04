@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.eclipse.papyrus.uml.modelexplorer.queries;
 
 import java.util.List;

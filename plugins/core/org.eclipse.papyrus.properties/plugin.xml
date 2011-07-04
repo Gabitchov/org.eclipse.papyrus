@@ -59,4 +59,11 @@
             environmentModel="model/Environment.xmi">
       </environment>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecore.protocol_parser">
+      <parser
+            class="org.eclipse.papyrus.properties.catalog.PropertiesCatalog"
+            protocolName="ppe">
+      </parser>
+   </extension>
 </plugin>

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -34,7 +34,9 @@ import org.eclipse.swt.widgets.Shell;
 /**
  * this dialog box has the possibility to select by the user interface the kind of wanted meta-class.
  * 
+ * @deprecated You should now use the generic {@link org.eclipse.papyrus.widgets.editors.TreeSelectorDialog}
  */
+@Deprecated
 public class AdvancedMETreeDialog extends ModelExplorerBasedTreeSelectorDialog {
 
 	protected Label metaclassLabel = null;

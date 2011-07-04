@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.core.utils.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.properties.Activator;
+import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 
@@ -69,6 +70,11 @@ public class PapyrusObservableValue extends EObjectObservableValue {
 
 	@Override
 	protected void doSetValue(Object value) {
+		EObject eObjectValue = EMFHelper.getEObject(value);
+		if(eObjectValue != null) {
+			value = eObjectValue;
+		}
+
 		try {
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getObserved());
 

@@ -215,4 +215,8 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 	public String getCreationDialogTitle() {
 		return Messages.EcorePropertyEditorFactory_CreateANew + className;
 	}
+
+	public EClass getEClass() {
+		return eClass;
+	}
 }

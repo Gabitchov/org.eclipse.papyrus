@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.eclipse.papyrus.uml.modelexplorer.factory;
 
 import org.eclipse.core.runtime.IAdaptable;
