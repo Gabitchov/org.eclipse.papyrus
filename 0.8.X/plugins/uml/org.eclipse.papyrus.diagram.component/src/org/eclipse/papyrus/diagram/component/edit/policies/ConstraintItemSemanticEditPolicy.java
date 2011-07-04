@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.component.edit.policies;
 
 import org.eclipse.emf.ecore.EObject;
@@ -33,12 +45,17 @@ import org.eclipse.papyrus.diagram.component.providers.UMLElementTypes;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class ConstraintItemSemanticEditPolicy.
+ *
  * @generated
  */
 public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
+	 * Instantiates a new constraint item semantic edit policy.
+	 *
 	 * @generated
 	 */
 	public ConstraintItemSemanticEditPolicy() {
@@ -49,6 +66,10 @@ public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 
 
 	/**
+	 * Gets the destroy element command.
+	 *
+	 * @param req the req
+	 * @return the destroy element command
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
@@ -67,6 +88,10 @@ public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 
 
 	/**
+	 * Gets the creates the relationship command.
+	 *
+	 * @param req the req
+	 * @return the creates the relationship command
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
@@ -75,6 +100,10 @@ public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 	}
 
 	/**
+	 * Gets the start create relationship command.
+	 *
+	 * @param req the req
+	 * @return the start create relationship command
 	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
@@ -109,6 +138,10 @@ public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 	}
 
 	/**
+	 * Gets the complete create relationship command.
+	 *
+	 * @param req the req
+	 * @return the complete create relationship command
 	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
@@ -116,7 +149,7 @@ public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.InterfaceRealization_4006 == req.getElementType()) {
-			return getGEFWrapper(new InterfaceRealizationCreateCommand(req, req.getSource(), req.getTarget()));
+			return null;
 		}
 		if(UMLElementTypes.Substitution_4012 == req.getElementType()) {
 			return getGEFWrapper(new SubstitutionCreateCommand(req, req.getSource(), req.getTarget()));
@@ -145,7 +178,9 @@ public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 	/**
 	 * Returns command to reorient EClass based link. New link target or source
 	 * should be the domain model element associated with this node.
-	 * 
+	 *
+	 * @param req the req
+	 * @return the reorient relationship command
 	 * @generated
 	 */
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
@@ -174,7 +209,9 @@ public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 	/**
 	 * Returns command to reorient EReference based link. New link target or source
 	 * should be the domain model element associated with this node.
-	 * 
+	 *
+	 * @param req the req
+	 * @return the reorient reference relationship command
 	 * @generated
 	 */
 	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {

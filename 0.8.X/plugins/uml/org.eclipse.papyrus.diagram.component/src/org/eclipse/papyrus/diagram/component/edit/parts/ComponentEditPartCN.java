@@ -8,6 +8,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -16,7 +17,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
@@ -32,10 +32,12 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.editparts.CompositeEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
@@ -58,7 +60,8 @@ import org.eclipse.swt.graphics.Color;
  */
 public class ComponentEditPartCN extends
 
-AbstractBorderedShapeEditPart {
+
+CompositeEditPart {
 
 	/**
 	 * @generated
@@ -104,8 +107,21 @@ AbstractBorderedShapeEditPart {
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
+		installEditPolicy("RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+	}
+
+
+
+
+	/**
+	 *Papyrus codeGen
+	 *@generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
 	}
 
 
@@ -385,31 +401,10 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof ConstraintEditPartPCN) {
 			types.add(UMLElementTypes.Usage_4001);
 		}
-		if(targetEditPart instanceof ComponentEditPart) {
-			types.add(UMLElementTypes.InterfaceRealization_4006);
-		}
 		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.InterfaceRealization_4006);
 		}
-		if(targetEditPart instanceof PackageEditPart) {
-			types.add(UMLElementTypes.InterfaceRealization_4006);
-		}
-		if(targetEditPart instanceof ConstraintEditPart) {
-			types.add(UMLElementTypes.InterfaceRealization_4006);
-		}
-		if(targetEditPart instanceof PortEditPart) {
-			types.add(UMLElementTypes.InterfaceRealization_4006);
-		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.component.edit.parts.ComponentEditPartCN) {
-			types.add(UMLElementTypes.InterfaceRealization_4006);
-		}
-		if(targetEditPart instanceof ComponentEditPartPCN) {
-			types.add(UMLElementTypes.InterfaceRealization_4006);
-		}
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
-			types.add(UMLElementTypes.InterfaceRealization_4006);
-		}
-		if(targetEditPart instanceof ConstraintEditPartPCN) {
 			types.add(UMLElementTypes.InterfaceRealization_4006);
 		}
 		if(targetEditPart instanceof ComponentEditPart) {
@@ -581,15 +576,8 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Constraint_3075);
 		} else if(relationshipType == UMLElementTypes.InterfaceRealization_4006) {
-			types.add(UMLElementTypes.Component_2002);
 			types.add(UMLElementTypes.Interface_2003);
-			types.add(UMLElementTypes.Package_3200);
-			types.add(UMLElementTypes.Constraint_3199);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Component_3070);
-			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Interface_3072);
-			types.add(UMLElementTypes.Constraint_3075);
 		} else if(relationshipType == UMLElementTypes.Generalization_4003) {
 			types.add(UMLElementTypes.Component_2002);
 			types.add(UMLElementTypes.Interface_2003);
@@ -654,9 +642,8 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(10);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(9);
 		types.add(UMLElementTypes.Usage_4001);
-		types.add(UMLElementTypes.InterfaceRealization_4006);
 		types.add(UMLElementTypes.Generalization_4003);
 		types.add(UMLElementTypes.Substitution_4012);
 		types.add(UMLElementTypes.Manifestation_4014);
@@ -674,16 +661,6 @@ AbstractBorderedShapeEditPart {
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(relationshipType == UMLElementTypes.Usage_4001) {
-			types.add(UMLElementTypes.Component_2002);
-			types.add(UMLElementTypes.Interface_2003);
-			types.add(UMLElementTypes.Package_3200);
-			types.add(UMLElementTypes.Constraint_3199);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Component_3070);
-			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
-			types.add(UMLElementTypes.Constraint_3075);
-		} else if(relationshipType == UMLElementTypes.InterfaceRealization_4006) {
 			types.add(UMLElementTypes.Component_2002);
 			types.add(UMLElementTypes.Interface_2003);
 			types.add(UMLElementTypes.Package_3200);

@@ -541,10 +541,11 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	}
 
 	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy#getDropCommand(org.eclipse.gef.requests.ChangeBoundsRequest)
+	 * Gets the drop command.
 	 *
-	 * @param request
-	 * @return
+	 * @param request the request
+	 * @return the drop command
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy#getDropCommand(org.eclipse.gef.requests.ChangeBoundsRequest)
 	 */
 	
 	@Override

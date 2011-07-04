@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
 
+// TODO: Auto-generated Javadoc
 /**
  * <pre>
  * This policy is used to suppress orphan node view in GMF view.
@@ -31,11 +32,11 @@ import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
 public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 
 	/**
-	 * 
-	 * @see org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy#isOrphaned(org.eclipse.gmf.runtime.notation.View)
-	 * 
-	 * @param view
+	 * Checks if is orphaned.
+	 *
+	 * @param view the view
 	 * @return true is the view is Orphaned
+	 * @see org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy#isOrphaned(org.eclipse.gmf.runtime.notation.View)
 	 */
 	protected boolean isOrphaned(View view) {
 		// Always treat Compartment and Decoration as not orphaned nodes 

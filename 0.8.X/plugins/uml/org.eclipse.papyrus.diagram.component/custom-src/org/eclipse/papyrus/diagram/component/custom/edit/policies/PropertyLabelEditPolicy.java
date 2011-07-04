@@ -33,6 +33,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
+// TODO: Auto-generated Javadoc
 /**
  * Specific edit policy for label displaying stereotypes and their properties for edges representing
  * UML elements.
@@ -40,6 +41,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
+	 * Adds the additional listeners.
+	 *
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -61,6 +64,9 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
+	 * Gets the current display value.
+	 *
+	 * @return the current display value
 	 * {@inheritDoc}
 	 */
 	public int getCurrentDisplayValue() {
@@ -80,6 +86,9 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
+	 * Gets the default display value.
+	 *
+	 * @return the default display value
 	 * {@inheritDoc}
 	 */
 	public int getDefaultDisplayValue() {
@@ -87,6 +96,10 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
+	 * Gets the mask label.
+	 *
+	 * @param value the value
+	 * @return the mask label
 	 * {@inheritDoc}
 	 */
 	public String getMaskLabel(int value) {
@@ -94,6 +107,9 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
+	 * Gets the mask labels.
+	 *
+	 * @return the mask labels
 	 * {@inheritDoc}
 	 */
 	public Collection<String> getMaskLabels() {
@@ -101,6 +117,9 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
+	 * Gets the masks.
+	 *
+	 * @return the masks
 	 * {@inheritDoc}
 	 */
 	public Map<Integer, String> getMasks() {
@@ -108,17 +127,30 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
+	 * Gets the mask values.
+	 *
+	 * @return the mask values
 	 * {@inheritDoc}
 	 */
 	public Collection<Integer> getMaskValues() {
 		return PropertyLabelHelper.getInstance().getMaskValues();
 	}
 
+	/**
+	 * Gets the preference page id.
+	 *
+	 * @return the preference page id
+	 * @see org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy#getPreferencePageID()
+	 */
+	
 	public String getPreferencePageID() {
 		return PropertyPreferencePage.ID;
 	}
 
 	/**
+	 * Gets the uML element.
+	 *
+	 * @return the uML element
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -127,6 +159,9 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
+	 * Notify changed.
+	 *
+	 * @param notification the notification
 	 * {@inheritedDoc}
 	 */
 	@Override
@@ -269,7 +304,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
-	 * Refreshes the display of the edit part
+	 * Refreshes the display of the edit part.
 	 */
 	@Override
 	public void refreshDisplay() {
@@ -278,6 +313,8 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
+	 * Removes the additional listeners.
+	 *
 	 * {@inheritDoc}
 	 */
 	@Override

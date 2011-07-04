@@ -17,10 +17,9 @@ import org.eclipse.papyrus.diagram.common.actions.handlers.AbstractShowHideHandl
 import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideRelatedContentsEditPolicy;
 
 
+// TODO: Auto-generated Javadoc
 /**
- * 
- * Handler for the {@link ShowHideRelatedContentsAction}
- * 
+ * Handler for the {@link ShowHideRelatedContentsAction}.
  */
 public class ShowHideRelatedContentsHandler extends AbstractShowHideHandler {
 

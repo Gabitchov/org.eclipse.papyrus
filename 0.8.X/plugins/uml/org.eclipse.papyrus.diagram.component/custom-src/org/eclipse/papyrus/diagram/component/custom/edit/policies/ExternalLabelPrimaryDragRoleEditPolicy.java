@@ -31,6 +31,7 @@ import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 
+// TODO: Auto-generated Javadoc
 /**
  * This policy provides the selection handles, feedback and move command for
  * external node label.
@@ -39,6 +40,13 @@ import org.eclipse.gmf.runtime.notation.View;
  */
 public class ExternalLabelPrimaryDragRoleEditPolicy extends NonResizableLabelEditPolicy {
 
+	/**
+	 * Creates the selection handles.
+	 *
+	 * @return the list
+	 * @see org.eclipse.gef.editpolicies.NonResizableEditPolicy#createSelectionHandles()
+	 */
+	
 	@Override
 	protected List<?> createSelectionHandles() {
 		MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
@@ -46,6 +54,14 @@ public class ExternalLabelPrimaryDragRoleEditPolicy extends NonResizableLabelEdi
 		return Collections.singletonList(mh);
 	}
 
+	/**
+	 * Gets the move command.
+	 *
+	 * @param request the request
+	 * @return the move command
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy#getMoveCommand(org.eclipse.gef.requests.ChangeBoundsRequest)
+	 */
+	
 	@Override
 	protected Command getMoveCommand(ChangeBoundsRequest request) {
 		LabelEditPart editPart = (LabelEditPart)getHost();

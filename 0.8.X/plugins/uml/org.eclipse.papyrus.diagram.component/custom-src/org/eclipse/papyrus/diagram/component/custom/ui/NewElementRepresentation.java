@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.uml2.uml.NamedElement;
 
+// TODO: Auto-generated Javadoc
 /**
  * This class provides facilities to represent a New Element before its real creation.
  * We can store in this class :
@@ -34,19 +35,19 @@ import org.eclipse.uml2.uml.NamedElement;
  */
 public class NewElementRepresentation {
 
-	/** the name of the new element */
+	/** the name of the new element. */
 	private String name;
 
-	/** the parent of the new element */
+	/** the parent of the new element. */
 	private Object parent;
 
-	/** the created element itself */
+	/** the created element itself. */
 	private EObject createdElement;
 
-	/** the {@link IHintedType} of the new element */
+	/** the {@link IHintedType} of the new element. */
 	private IHintedType hintedType;
 
-	/** this field is used only when the element have an existing parent */
+	/** this field is used only when the element have an existing parent. */
 	private CreateElementRequest request;
 
 	/**
@@ -71,41 +72,41 @@ public class NewElementRepresentation {
 	}
 
 	/**
-	 * Getter for {@link #hintedType}
-	 * 
-	 * @return
-	 *         {@link #hintedType}
+	 * Getter for {@link #hintedType}.
+	 *
+	 * @return the hinted type
+	 * {@link #hintedType}
 	 */
 	public IHintedType getHintedType() {
 		return this.hintedType;
 	}
 
 	/**
-	 * Getter for {@link #name}
-	 * 
-	 * @return
-	 *         {@link #name}
+	 * Getter for {@link #name}.
+	 *
+	 * @return the name
+	 * {@link #name}
 	 */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 * Getter for {@link #parent}
-	 * 
-	 * @return
-	 *         {@link #parent}
+	 * Getter for {@link #parent}.
+	 *
+	 * @return the parent
+	 * {@link #parent}
 	 */
 	public Object getParent() {
 		return this.parent;
 	}
 
 	/**
-	 * Returns the parent of this element
-	 * 
-	 * @return
-	 *         the parent of this element or <code>null</code> if the parent is a {@link NewElementRepresentation} itself and if it has not been
-	 *         created
+	 * Returns the parent of this element.
+	 *
+	 * @return the e object parent
+	 * the parent of this element or <code>null</code> if the parent is a {@link NewElementRepresentation} itself and if it has not been
+	 * created
 	 */
 	public EObject getEObjectParent() {
 		if(parent instanceof EObject) {
@@ -117,10 +118,10 @@ public class NewElementRepresentation {
 	}
 
 	/**
-	 * Returns the created object
-	 * 
-	 * @return
-	 *         the created Object or <code>null</code> if the object has not been created
+	 * Returns the created object.
+	 *
+	 * @return the e object
+	 * the created Object or <code>null</code> if the object has not been created
 	 */
 	public EObject getEObject() {
 		if(this.request != null) {
@@ -130,36 +131,40 @@ public class NewElementRepresentation {
 	}
 
 	/**
-	 * Setter for {@link #createdElement}
-	 * 
-	 * @param newElement
-	 * 
+	 * Setter for {@link #createdElement}.
+	 *
+	 * @param newElement the new creates the element
 	 */
 	public void setCreateElement(EObject newElement) {
 		this.createdElement = newElement;
 	}
 
 	/**
-	 * Setter for {@link #request}
-	 * 
-	 * @return
-	 *         {@link #request}
+	 * Setter for {@link #request}.
+	 *
+	 * @return the creates the element request
+	 * {@link #request}
 	 */
 	public CreateElementRequest getCreateElementRequest() {
 		return this.request;
 	}
 
 	/**
-	 * 
+	 * To string.
+	 *
+	 * @return the string
 	 * @see java.lang.Object#toString()
-	 * 
-	 * @return
 	 */
 	@Override
 	public String toString() {
 		return "Name : " + this.name + ", parent : " + this.parent;
 	}
 
+	/**
+	 * Gets the qualified name.
+	 *
+	 * @return the qualified name
+	 */
 	public String getQualifiedName() {
 		String qualifiedName = "";
 		if(parent instanceof NewElementRepresentation) {

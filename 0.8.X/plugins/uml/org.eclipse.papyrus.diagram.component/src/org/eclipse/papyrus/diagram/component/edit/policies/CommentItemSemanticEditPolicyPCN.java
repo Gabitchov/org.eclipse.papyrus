@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.component.edit.policies;
 
 import org.eclipse.emf.ecore.EObject;
@@ -18,12 +30,17 @@ import org.eclipse.papyrus.diagram.component.providers.UMLElementTypes;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class CommentItemSemanticEditPolicyPCN.
+ *
  * @generated
  */
 public class CommentItemSemanticEditPolicyPCN extends UMLBaseItemSemanticEditPolicy {
 
 	/**
+	 * Instantiates a new comment item semantic edit policy pcn.
+	 *
 	 * @generated
 	 */
 	public CommentItemSemanticEditPolicyPCN() {
@@ -34,6 +51,10 @@ public class CommentItemSemanticEditPolicyPCN extends UMLBaseItemSemanticEditPol
 
 
 	/**
+	 * Gets the destroy element command.
+	 *
+	 * @param req the req
+	 * @return the destroy element command
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
@@ -52,6 +73,10 @@ public class CommentItemSemanticEditPolicyPCN extends UMLBaseItemSemanticEditPol
 
 
 	/**
+	 * Gets the creates the relationship command.
+	 *
+	 * @param req the req
+	 * @return the creates the relationship command
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
@@ -60,6 +85,10 @@ public class CommentItemSemanticEditPolicyPCN extends UMLBaseItemSemanticEditPol
 	}
 
 	/**
+	 * Gets the start create relationship command.
+	 *
+	 * @param req the req
+	 * @return the start create relationship command
 	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
@@ -73,6 +102,10 @@ public class CommentItemSemanticEditPolicyPCN extends UMLBaseItemSemanticEditPol
 	}
 
 	/**
+	 * Gets the complete create relationship command.
+	 *
+	 * @param req the req
+	 * @return the complete create relationship command
 	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
@@ -88,7 +121,9 @@ public class CommentItemSemanticEditPolicyPCN extends UMLBaseItemSemanticEditPol
 	/**
 	 * Returns command to reorient EReference based link. New link target or source
 	 * should be the domain model element associated with this node.
-	 * 
+	 *
+	 * @param req the req
+	 * @return the reorient reference relationship command
 	 * @generated
 	 */
 	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {

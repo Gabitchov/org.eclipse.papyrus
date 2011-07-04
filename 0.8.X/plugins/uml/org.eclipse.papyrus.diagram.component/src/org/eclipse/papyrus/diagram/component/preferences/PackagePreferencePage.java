@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.component.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -6,18 +18,21 @@ import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class PackagePreferencePage.
+ *
  * @generated
  */
 public class PackagePreferencePage extends AbstractPapyrusNodePreferencePage {
 
-	/**
-	 * @generated
-	 */
+	/** The Constant compartments. @generated */
 	public static final String compartments[] = { "PackageableElementCompartment" };
 
 
 	/**
+	 * Instantiates a new package preference page.
+	 *
 	 * @generated
 	 */
 	public PackagePreferencePage() {
@@ -26,6 +41,9 @@ public class PackagePreferencePage extends AbstractPapyrusNodePreferencePage {
 	}
 
 	/**
+	 * Gets the bundle id.
+	 *
+	 * @return the bundle id
 	 * @generated
 	 */
 	@Override
@@ -34,6 +52,9 @@ public class PackagePreferencePage extends AbstractPapyrusNodePreferencePage {
 	}
 
 	/**
+	 * Inits the defaults.
+	 *
+	 * @param store the store
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
@@ -60,6 +81,8 @@ public class PackagePreferencePage extends AbstractPapyrusNodePreferencePage {
 	}
 
 	/**
+	 * Initialize compartments list.
+	 *
 	 * @generated
 	 */
 	@Override

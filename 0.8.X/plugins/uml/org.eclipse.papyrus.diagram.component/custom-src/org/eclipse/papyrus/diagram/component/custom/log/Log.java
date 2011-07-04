@@ -17,23 +17,36 @@ import org.eclipse.core.runtime.Plugin;
 import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.log.LogHelper;
 
-/** Log singleton class for CSD */
+// TODO: Auto-generated Javadoc
+/**
+ * Log singleton class for CSD.
+ */
 public class Log extends LogHelper {
 
-	/** Singleton instance */
+	/** Singleton instance. */
 	private static Log instance;
 
-	/** Access restriction on constructors */
+	/**
+	 * Access restriction on constructors.
+	 *
+	 * @param activator the activator
+	 */
 	private Log(Plugin activator) {
 		super(activator);
 	}
 
-	/** Access restriction on constructors */
+	/**
+	 * Access restriction on constructors.
+	 */
 	private Log() {
 		super(UMLDiagramEditorPlugin.getInstance());
 	}
 
-	/** Singleton access */
+	/**
+	 * Singleton access.
+	 *
+	 * @return single instance of Log
+	 */
 	public static synchronized Log getInstance() {
 
 		if(instance == null) {

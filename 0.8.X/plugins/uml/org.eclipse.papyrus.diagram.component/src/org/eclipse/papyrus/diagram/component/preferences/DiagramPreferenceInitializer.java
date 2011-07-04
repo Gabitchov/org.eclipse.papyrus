@@ -1,15 +1,32 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.component.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class DiagramPreferenceInitializer.
+ *
  * @generated
  */
 public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer {
 
 	/**
+	 * Initialize default preferences.
+	 *
 	 * @generated
 	 */
 	public void initializeDefaultPreferences() {
@@ -69,6 +86,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	}
 
 	/**
+	 * Gets the preference store.
+	 *
+	 * @return the preference store
 	 * @generated
 	 */
 	protected IPreferenceStore getPreferenceStore() {
