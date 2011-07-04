@@ -34,6 +34,7 @@ Require-Bundle: com.ibm.icu,
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.papyrus.properties.Activator
 Export-Package: org.eclipse.papyrus.properties,
+ org.eclipse.papyrus.properties.catalog,
  org.eclipse.papyrus.properties.constraints,
  org.eclipse.papyrus.properties.creation,
  org.eclipse.papyrus.properties.databinding,

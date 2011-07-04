@@ -17,9 +17,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
@@ -133,8 +135,11 @@ public class EditorLabelProvider implements ILabelProvider {
 	 *         </ul>
 	 */
 	public Image getImage(Object element) {
-		if(element instanceof EditPart) {
-			element = ((View)((EditPart)element).getModel()).getElement();
+		if(!(element instanceof EObject) && element instanceof IAdaptable) {
+			EObject eObject = (EObject)((IAdaptable)element).getAdapter(EObject.class);
+			if(eObject != null) {
+				element = eObject;
+			}
 		}
 
 		//test for Metaclass
@@ -221,9 +226,17 @@ public class EditorLabelProvider implements ILabelProvider {
 	 *         </ul>
 	 */
 	public String getText(Object element) {
-		if(element instanceof EditPart) {
-			element = ((View)((EditPart)element).getModel()).getElement();
+
+		if(!(element instanceof EObject) && element instanceof IAdaptable) {
+			EObject eObject = (EObject)((IAdaptable)element).getAdapter(EObject.class);
+			if(eObject != null) {
+				element = eObject;
+			}
 		}
+
+		//		if(element instanceof EditPart) {
+		//			element = ((View)((EditPart)element).getModel()).getElement();
+		//		}
 
 		if(element instanceof EObject && UMLUtil.getBaseElement((EObject)element) != null) { //Stereotype Application
 			return getText(UMLUtil.getBaseElement((EObject)element));
@@ -249,6 +262,12 @@ public class EditorLabelProvider implements ILabelProvider {
 			if(dummyEP instanceof ResizableCompartmentEditPart) {
 				return ((ResizableCompartmentEditPart)dummyEP).getCompartmentName();
 			}
+		} else if(element instanceof EClass) {
+			return ((EClass)element).getName();
+		}
+
+		if(element != null) {
+			return element.toString();
 		}
 
 		return Messages.EditorLabelProvider_No_name;

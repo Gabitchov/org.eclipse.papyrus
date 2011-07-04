@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,7 +24,7 @@ import org.eclipse.swt.widgets.Text;
  * A Property Editor representing a single-line or multi-line String value
  * as a Text.
  * This editor's content is validated when the focus is lost,
- * or when the Carriage Return is pressed.
+ * or, if the editor is single-line, when the Carriage Return is pressed.
  * 
  * @see SWT#MULTI
  * 
@@ -118,6 +118,7 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		if((e.keyCode == SWT.CR || e.keyCode == SWT.KEYPAD_CR) && e.stateMask == SWT.NONE) {
 			notifyChange();
+			e.doit = false; //Stops the propagation of the event
 		}
 	}
 
@@ -156,5 +157,14 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 	public void setToolTipText(String tooltip) {
 		text.setToolTipText(tooltip);
 		super.setLabelToolTipText(tooltip);
+	}
+
+	/**
+	 * Sets the current text value for this editor
+	 * 
+	 * @param value
+	 */
+	public void setValue(String value) {
+		this.text.setText(value);
 	}
 }

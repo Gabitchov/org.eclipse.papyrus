@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.properties.util.EMFHelper;
 
 /**
  * An Observable value to edit EMF values through EMF commands.
@@ -63,7 +64,12 @@ public class EMFObservableValue extends EObjectObservableValue {
 	}
 
 	@Override
-	public void doSetValue(Object value) {
+	protected void doSetValue(Object value) {
+		EObject eObject = EMFHelper.getEObject(value);
+		if(eObject != null) {
+			value = eObject;
+		}
+
 		SetCommand command = getSetCommand(value);
 		domain.getCommandStack().execute(command);
 	}

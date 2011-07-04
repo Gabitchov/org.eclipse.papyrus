@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.eclipse.papyrus.uml.modelexplorer.queries;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;

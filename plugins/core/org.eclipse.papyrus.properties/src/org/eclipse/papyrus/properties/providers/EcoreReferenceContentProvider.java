@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.properties.Activator;
+import org.eclipse.papyrus.widgets.providers.AbstractFilteredContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
 /**
@@ -30,7 +30,7 @@ import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
  * 
  * @author Camille Letavernier
  */
-public class EcoreReferenceContentProvider implements IStaticContentProvider {
+public class EcoreReferenceContentProvider extends AbstractFilteredContentProvider implements IStaticContentProvider {
 
 	private EObject eObject;
 
@@ -49,14 +49,6 @@ public class EcoreReferenceContentProvider implements IStaticContentProvider {
 	public EcoreReferenceContentProvider(EStructuralFeature feature, EObject eObject) {
 		this.feature = feature;
 		this.eObject = eObject;
-	}
-
-	public void dispose() {
-		//Nothing
-	}
-
-	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		//Nothing
 	}
 
 	public Object[] getElements() {

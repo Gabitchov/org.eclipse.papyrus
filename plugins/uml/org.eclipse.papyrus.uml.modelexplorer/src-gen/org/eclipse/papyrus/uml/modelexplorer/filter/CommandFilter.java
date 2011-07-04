@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.eclipse.papyrus.uml.modelexplorer.filter;
 
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -31,10 +31,12 @@ import org.eclipse.swt.widgets.Shell;
 /**
  * create a tree dialog box,with a specific researched meta-class. you can also specify the instance of the top element of your tree
  * 
+ * @deprecated You should now use the generic {@link TreeSelectorDialog}, with an {@link EclassModelExplorerBasedContentProvider}
  */
+@Deprecated
 public class ModelExplorerBasedTreeSelectorDialog extends TreeSelectorDialog {
 
-	protected EclassModelExplorerBasedContentProvider contentProvider;
+	protected GraphicalModelExplorerBasedContentProvider contentProvider;
 
 	protected EObject root = null;
 
@@ -62,13 +64,14 @@ public class ModelExplorerBasedTreeSelectorDialog extends TreeSelectorDialog {
 	/**
 	 * {@inheritDoc}
 	 */
-	
+
+	@Override
 	protected void setResult(@SuppressWarnings("rawtypes") List newResult) {
 		ArrayList<Object> list= new ArrayList<Object>();
 		SemanticFromModelExplorer bridge= new SemanticFromModelExplorer();
 		Iterator<?> iterator=newResult.iterator();
 		while (iterator.hasNext()) {
-			Object wrappedObject = (Object) iterator.next();
+			Object wrappedObject = iterator.next();
 			Object semantic=bridge.getSemanticElement(wrappedObject);
 			if( semantic!=null){
 				list.add(semantic);
@@ -119,7 +122,7 @@ public class ModelExplorerBasedTreeSelectorDialog extends TreeSelectorDialog {
 	 */
 	public void init(EObject root, Object wantedEClass, List<Object> metaClassNotWanted) {
 		this.root = root;
-		contentProvider = new EclassModelExplorerBasedContentProvider(root);
+		contentProvider = new GraphicalModelExplorerBasedContentProvider(root, ""); //$NON-NLS-1$
 		contentProvider.setMetaClassWanted(wantedEClass);
 		contentProvider.setMetaClassNotWanted(metaClassNotWanted);
 		this.setContentProvider(contentProvider);

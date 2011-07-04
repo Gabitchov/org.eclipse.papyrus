@@ -102,7 +102,8 @@ public class DefaultConstraintEngine implements ConstraintEngine {
 
 		//		logValue = "Filtered Constraints : "; //$NON-NLS-1$
 		//		for(Constraint constraint : matchedConstraints) {
-		//			logValue += constraint.getDescriptor().getName() + ", ";
+		//			Context context = ((View)constraint.getDescriptor().getDisplay()).getContext();
+		//			logValue += context.getName() + "::" + constraint.getDescriptor().getName() + ", ";
 		//		}
 		//		Activator.log.warn(logValue);
 
@@ -110,7 +111,8 @@ public class DefaultConstraintEngine implements ConstraintEngine {
 
 		//		logValue = "Filtered Constraints : "; //$NON-NLS-1$
 		//		for(Constraint constraint : matchedConstraints) {
-		//			logValue += constraint.getDescriptor().getName() + ", ";
+		//			Context context = ((View)constraint.getDescriptor().getDisplay()).getContext();
+		//			logValue += context.getName() + "::" + constraint.getDescriptor().getName() + ", ";
 		//		}
 		//		Activator.log.warn(logValue);
 

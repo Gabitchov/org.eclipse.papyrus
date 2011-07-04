@@ -37,7 +37,8 @@ public class ContextExtensionPoint {
 
 		for(IConfigurationElement e : config) {
 			final String contextResource = e.getAttribute("contextModel"); //$NON-NLS-1$
-			URI uri = URI.createPlatformPluginURI(e.getContributor().getName() + "/" + contextResource, true); //$NON-NLS-1$
+			URI uri = URI.createURI("ppe:/context/" + e.getContributor().getName() + "/" + contextResource);
+			//URI uri = URI.createPlatformPluginURI(e.getContributor().getName() + "/" + contextResource, true); //$NON-NLS-1$
 			try {
 				ConfigurationManager.instance.addContext(uri);
 			} catch (IOException ex) {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="SysML">
-  <dependencies href="pathmap://UML_CONTEXT/UML.ctx#/"/>
+  <dependencies href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#/"/>
   <tabs label="SysML" id="basicTabSysML" category="org.eclipse.papyrus">
-    <afterTab href="pathmap://UML_CONTEXT/UML.ctx#//@tabs.0"/>
+    <afterTab href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@tabs.0"/>
     <sections name="SingleConform" sectionFile="ui/SingleConform.xwt">
       <widget href="ui/SingleConform.xwt#/"/>
     </sections>
@@ -204,397 +204,397 @@
   </tabs>
   <views name="SingleConform" sections="//@tabs.0/@sections.0" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleConform">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::ModelElements::Conform"/>
     </constraints>
   </views>
   <views name="MultipleConform" sections="//@tabs.0/@sections.1" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleConform">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::ModelElements::Conform"/>
     </constraints>
   </views>
   <views name="SingleView" sections="//@tabs.0/@sections.2" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleView">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::ModelElements::View"/>
     </constraints>
   </views>
   <views name="MultipleView" sections="//@tabs.0/@sections.3" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleView">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::ModelElements::View"/>
     </constraints>
   </views>
   <views name="SingleViewPoint" sections="//@tabs.0/@sections.4" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleViewPoint">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::ModelElements::ViewPoint"/>
     </constraints>
   </views>
   <views name="MultipleViewPoint" sections="//@tabs.0/@sections.5" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleViewPoint">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::ModelElements::ViewPoint"/>
     </constraints>
   </views>
   <views name="SingleBlock" sections="//@tabs.0/@sections.6" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleBlock">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::Block"/>
     </constraints>
   </views>
   <views name="MultipleBlock" sections="//@tabs.0/@sections.7" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleBlock">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::Block"/>
     </constraints>
   </views>
   <views name="SingleDistributedProperty" sections="//@tabs.0/@sections.8" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDistributedProperty">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::DistributedProperty"/>
     </constraints>
   </views>
   <views name="MultipleDistributedProperty" sections="//@tabs.0/@sections.9" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDistributedProperty">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::DistributedProperty"/>
     </constraints>
   </views>
   <views name="SingleDimension" sections="//@tabs.0/@sections.10" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDimension">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::Dimension"/>
     </constraints>
   </views>
   <views name="MultipleDimension" sections="//@tabs.0/@sections.11" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDimension">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::Dimension"/>
     </constraints>
   </views>
   <views name="SingleUnit" sections="//@tabs.0/@sections.12" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleUnit">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::Unit"/>
     </constraints>
   </views>
   <views name="MultipleUnit" sections="//@tabs.0/@sections.13" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleUnit">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::Unit"/>
     </constraints>
   </views>
   <views name="SingleValueType" sections="//@tabs.0/@sections.14" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleValueType">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::ValueType"/>
     </constraints>
   </views>
   <views name="MultipleValueType" sections="//@tabs.0/@sections.15" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleValueType">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::ValueType"/>
     </constraints>
   </views>
   <views name="SingleNestedConnectorEnd" sections="//@tabs.0/@sections.16" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleNestedConnectorEnd">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::NestedConnectorEnd"/>
     </constraints>
   </views>
   <views name="MultipleNestedConnectorEnd" sections="//@tabs.0/@sections.17" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleNestedConnectorEnd">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::NestedConnectorEnd"/>
     </constraints>
   </views>
   <views name="SingleParticipantProperty" sections="//@tabs.0/@sections.18" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleParticipantProperty">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::ParticipantProperty"/>
     </constraints>
   </views>
   <views name="MultipleParticipantProperty" sections="//@tabs.0/@sections.19" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleParticipantProperty">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::ParticipantProperty"/>
     </constraints>
   </views>
   <views name="SingleConnectorProperty" sections="//@tabs.0/@sections.20" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleConnectorProperty">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::ConnectorProperty"/>
     </constraints>
   </views>
   <views name="MultipleConnectorProperty" sections="//@tabs.0/@sections.21" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleConnectorProperty">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::ConnectorProperty"/>
     </constraints>
   </views>
   <views name="SingleBindingConnector" sections="//@tabs.0/@sections.22" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleBindingConnector">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::BindingConnector"/>
     </constraints>
   </views>
   <views name="MultipleBindingConnector" sections="//@tabs.0/@sections.23" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleBindingConnector">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::BindingConnector"/>
     </constraints>
   </views>
   <views name="SinglePropertySpecificType" sections="//@tabs.0/@sections.24" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSinglePropertySpecificType">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::PropertySpecificType"/>
     </constraints>
   </views>
   <views name="MultiplePropertySpecificType" sections="//@tabs.0/@sections.25" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultiplePropertySpecificType">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Blocks::PropertySpecificType"/>
     </constraints>
   </views>
   <views name="SingleFlowPort" sections="//@tabs.0/@sections.26" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleFlowPort">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::PortAndFlows::FlowPort"/>
     </constraints>
   </views>
   <views name="MultipleFlowPort" sections="//@tabs.0/@sections.27" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleFlowPort">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::PortAndFlows::FlowPort"/>
     </constraints>
   </views>
   <views name="SingleFlowProperty" sections="//@tabs.0/@sections.28" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleFlowProperty">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::PortAndFlows::FlowProperty"/>
     </constraints>
   </views>
   <views name="MultipleFlowProperty" sections="//@tabs.0/@sections.29" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleFlowProperty">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::PortAndFlows::FlowProperty"/>
     </constraints>
   </views>
   <views name="SingleFlowSpecification" sections="//@tabs.0/@sections.30" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleFlowSpecification">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::PortAndFlows::FlowSpecification"/>
     </constraints>
   </views>
   <views name="MultipleFlowSpecification" sections="//@tabs.0/@sections.31" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleFlowSpecification">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::PortAndFlows::FlowSpecification"/>
     </constraints>
   </views>
   <views name="SingleItemFlow" sections="//@tabs.0/@sections.32" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleItemFlow">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::PortAndFlows::ItemFlow"/>
     </constraints>
   </views>
   <views name="MultipleItemFlow" sections="//@tabs.0/@sections.33" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleItemFlow">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::PortAndFlows::ItemFlow"/>
     </constraints>
   </views>
   <views name="SingleConstraintBlock" sections="//@tabs.0/@sections.34" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleConstraintBlock">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Constraints::ConstraintBlock"/>
     </constraints>
   </views>
   <views name="MultipleConstraintBlock" sections="//@tabs.0/@sections.35" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleConstraintBlock">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Constraints::ConstraintBlock"/>
     </constraints>
   </views>
   <views name="SingleConstraintProperty" sections="//@tabs.0/@sections.36" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleConstraintProperty">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Constraints::ConstraintProperty"/>
     </constraints>
   </views>
   <views name="MultipleConstraintProperty" sections="//@tabs.0/@sections.37" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleConstraintProperty">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Constraints::ConstraintProperty"/>
     </constraints>
   </views>
   <views name="SingleOptional" sections="//@tabs.0/@sections.38" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleOptional">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Optional"/>
     </constraints>
   </views>
   <views name="MultipleOptional" sections="//@tabs.0/@sections.39" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleOptional">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Optional"/>
     </constraints>
   </views>
   <views name="SingleRate" sections="//@tabs.0/@sections.40" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleRate">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Rate"/>
     </constraints>
   </views>
   <views name="MultipleRate" sections="//@tabs.0/@sections.41" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleRate">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Rate"/>
     </constraints>
   </views>
   <views name="SingleProbability" sections="//@tabs.0/@sections.42" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleProbability">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Probability"/>
     </constraints>
   </views>
   <views name="MultipleProbability" sections="//@tabs.0/@sections.43" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleProbability">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Probability"/>
     </constraints>
   </views>
   <views name="SingleContinuous" sections="//@tabs.0/@sections.44" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleContinuous">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Continuous"/>
     </constraints>
   </views>
   <views name="MultipleContinuous" sections="//@tabs.0/@sections.45" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleContinuous">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Continuous"/>
     </constraints>
   </views>
   <views name="SingleDiscrete" sections="//@tabs.0/@sections.46" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDiscrete">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Discrete"/>
     </constraints>
   </views>
   <views name="MultipleDiscrete" sections="//@tabs.0/@sections.47" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDiscrete">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Discrete"/>
     </constraints>
   </views>
   <views name="SingleControlOperator" sections="//@tabs.0/@sections.48" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleControlOperator">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::ControlOperator"/>
     </constraints>
   </views>
   <views name="MultipleControlOperator" sections="//@tabs.0/@sections.49" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleControlOperator">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::ControlOperator"/>
     </constraints>
   </views>
   <views name="SingleNoBuffer" sections="//@tabs.0/@sections.50" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleNoBuffer">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::NoBuffer"/>
     </constraints>
   </views>
   <views name="MultipleNoBuffer" sections="//@tabs.0/@sections.51" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleNoBuffer">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::NoBuffer"/>
     </constraints>
   </views>
   <views name="SingleOverwrite" sections="//@tabs.0/@sections.52" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleOverwrite">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Overwrite"/>
     </constraints>
   </views>
   <views name="MultipleOverwrite" sections="//@tabs.0/@sections.53" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleOverwrite">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Activities::Overwrite"/>
     </constraints>
   </views>
   <views name="SingleAllocate" sections="//@tabs.0/@sections.54" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleAllocate">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Allocations::Allocate"/>
     </constraints>
   </views>
   <views name="MultipleAllocate" sections="//@tabs.0/@sections.55" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleAllocate">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Allocations::Allocate"/>
     </constraints>
   </views>
   <views name="SingleAllocated" sections="//@tabs.0/@sections.56" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleAllocated">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Allocations::Allocated"/>
     </constraints>
   </views>
   <views name="MultipleAllocated" sections="//@tabs.0/@sections.57" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleAllocated">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Allocations::Allocated"/>
     </constraints>
   </views>
   <views name="SingleAllocateActivityPartition" sections="//@tabs.0/@sections.58" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleAllocateActivityPartition">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Allocations::AllocateActivityPartition"/>
     </constraints>
   </views>
   <views name="MultipleAllocateActivityPartition" sections="//@tabs.0/@sections.59" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleAllocateActivityPartition">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Allocations::AllocateActivityPartition"/>
     </constraints>
   </views>
   <views name="SingleTestCase" sections="//@tabs.0/@sections.60" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleTestCase">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Requirements::TestCase"/>
     </constraints>
   </views>
   <views name="MultipleTestCase" sections="//@tabs.0/@sections.61" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleTestCase">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Requirements::TestCase"/>
     </constraints>
   </views>
   <views name="SingleRequirement" sections="//@tabs.0/@sections.62" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleRequirement">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Requirements::Requirement"/>
     </constraints>
   </views>
   <views name="MultipleRequirement" sections="//@tabs.0/@sections.63" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleRequirement">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Requirements::Requirement"/>
     </constraints>
   </views>
   <views name="SingleRequirementRelated" sections="//@tabs.0/@sections.64" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleRequirementRelated">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Requirements::RequirementRelated"/>
     </constraints>
   </views>
   <views name="MultipleRequirementRelated" sections="//@tabs.0/@sections.65" elementMultiplicity="-1" automaticContext="true">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleRequirementRelated">
-      <constraintType href="pathmap://UML_CONTEXT/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="SysML::Requirements::RequirementRelated"/>
     </constraints>
   </views>
@@ -603,85 +603,85 @@
       <elements name="Continuous" supertypes="//@dataContexts.0/@elements.0/@elements.5"/>
       <elements name="Discrete" supertypes="//@dataContexts.0/@elements.0/@elements.5"/>
       <elements name="NoBuffer">
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.116"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.116"/>
       </elements>
       <elements name="Overwrite">
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.116"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.116"/>
       </elements>
       <elements name="Probability">
         <properties name="probability" type="Reference"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.112"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.72"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.112"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.72"/>
       </elements>
       <elements name="Rate">
         <properties name="rate" type="Reference"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.112"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.31"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.112"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.31"/>
       </elements>
       <elements name="ControlOperator">
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.42"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.44"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.42"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.44"/>
       </elements>
       <elements name="Optional">
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.31"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.31"/>
       </elements>
     </elements>
     <elements xsi:type="contexts:DataContextPackage" name="PortAndFlows">
       <elements name="FlowSpecification">
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.48"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.48"/>
       </elements>
       <elements name="FlowProperty">
         <properties name="direction" type="Enumeration"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.35"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.35"/>
       </elements>
       <elements name="FlowPort">
         <properties name="isAtomic" type="Boolean"/>
         <properties name="direction" type="Enumeration"/>
         <properties name="isConjugated" type="Boolean"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.58"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.58"/>
       </elements>
       <elements name="ItemFlow">
         <properties name="itemProperty" type="Reference"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.224"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.224"/>
       </elements>
     </elements>
     <elements xsi:type="contexts:DataContextPackage" name="Blocks">
       <elements name="Dimension">
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.92"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.92"/>
       </elements>
       <elements name="Unit">
         <properties name="dimension" type="Reference"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.92"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.92"/>
       </elements>
       <elements name="DistributedProperty">
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.35"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.35"/>
       </elements>
       <elements name="Block">
         <properties name="isEncapsulated" type="Boolean"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.45"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.45"/>
       </elements>
       <elements name="ValueType">
         <properties name="dimension" type="Reference"/>
         <properties name="unit" type="Reference"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.73"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.73"/>
       </elements>
       <elements name="ParticipantProperty">
         <properties name="end" type="Reference"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.35"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.35"/>
       </elements>
       <elements name="NestedConnectorEnd">
         <properties name="propertyPath" type="Reference"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.34"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.34"/>
       </elements>
       <elements name="PropertySpecificType">
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.16"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.16"/>
       </elements>
       <elements name="ConnectorProperty">
         <properties name="connector" type="Reference"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.35"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.35"/>
       </elements>
       <elements name="BindingConnector">
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.65"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.65"/>
       </elements>
     </elements>
     <elements xsi:type="contexts:DataContextPackage" name="Requirements">
@@ -695,25 +695,25 @@
         <properties name="master" type="Reference"/>
         <properties name="derived" type="Reference"/>
         <properties name="id"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.45"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.45"/>
       </elements>
       <elements name="RequirementRelated">
         <properties name="refines" type="Reference"/>
         <properties name="verifies" type="Reference"/>
         <properties name="satisfies" type="Reference"/>
         <properties name="tracedFrom" type="Reference"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.4"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.4"/>
       </elements>
       <elements name="TestCase">
         <properties name="verifies" type="Reference"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.42"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.44"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.42"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.44"/>
       </elements>
     </elements>
     <elements xsi:type="contexts:DataContextPackage" name="ModelElements">
       <elements name="View">
         <properties name="viewPoint" type="Reference"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.2"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.2"/>
       </elements>
       <elements name="ViewPoint">
         <properties name="concerns"/>
@@ -721,16 +721,16 @@
         <properties name="methods"/>
         <properties name="purpose"/>
         <properties name="stakeHolders"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.45"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.45"/>
       </elements>
       <elements name="Conform">
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.5"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.5"/>
       </elements>
       <elements name="Problem">
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.0"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.0"/>
       </elements>
       <elements name="Rationale">
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.0"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.0"/>
       </elements>
     </elements>
     <elements xsi:type="contexts:DataContextPackage" name="Interactions"/>
@@ -738,23 +738,23 @@
     <elements xsi:type="contexts:DataContextPackage" name="Constraints">
       <elements name="ConstraintBlock" supertypes="//@dataContexts.0/@elements.2/@elements.3"/>
       <elements name="ConstraintProperty">
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.35"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.35"/>
       </elements>
     </elements>
     <elements xsi:type="contexts:DataContextPackage" name="Allocations">
       <elements name="Allocate">
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.29"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.29"/>
       </elements>
       <elements name="Allocated">
         <properties name="allocatedFrom" type="Reference"/>
         <properties name="allocatedTo" type="Reference"/>
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.4"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.4"/>
       </elements>
       <elements name="AllocateActivityPartition">
-        <supertypes href="pathmap://UML_CONTEXT/UML.ctx#//@dataContexts.0/@elements.113"/>
+        <supertypes href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@dataContexts.0/@elements.113"/>
       </elements>
     </elements>
     <elements xsi:type="contexts:DataContextPackage" name="StateMachines"/>
-    <modelElementFactory href="pathmap://UML_CONTEXT/Environment.xmi#//@modelElementFactories.2"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@modelElementFactories.2"/>
   </dataContexts>
 </contexts:Context>
