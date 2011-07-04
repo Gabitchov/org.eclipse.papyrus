@@ -32,6 +32,7 @@ import org.eclipse.papyrus.properties.customization.providers.TabContentProvider
 import org.eclipse.papyrus.properties.environment.EnvironmentPackage;
 import org.eclipse.papyrus.properties.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.properties.modelelement.EMFModelElement;
+import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
@@ -49,9 +50,6 @@ import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
  * @author Camille Letavernier
  */
 public class CustomizationModelElement extends AbstractModelElement {
-
-	//TODO : Support for ConstraintDescriptor content provider
-	//The provider relies on EMF, which loads the whole model (including XWT files) 
 
 	private EMFModelElement delegate;
 
@@ -106,8 +104,8 @@ public class CustomizationModelElement extends AbstractModelElement {
 			//Sections can only be moved to tabs from non-plugin contexts
 			boolean editableTabsOnly = delegate.getSource() instanceof Section;
 			return new TabContentProvider(delegate.getSource(), editableTabsOnly);
-		} else if(classifier == ContextsPackage.eINSTANCE.getConstraintDescriptor()) {
-			return new ConstraintDescriptorContentProvider(delegate.getSource());
+		} else if(classifier instanceof EClass && EMFHelper.isSubclass((EClass)classifier, ContextsPackage.eINSTANCE.getConstraintDescriptor())) {
+			return new ConstraintDescriptorContentProvider(delegate.getSource(), (EClass)classifier);
 		} else if(isDataContextElement(classifier)) {
 			return new DataContextElementContentProvider((DataContextElement)delegate.getSource());
 		} else {

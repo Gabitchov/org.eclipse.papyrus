@@ -27,7 +27,6 @@ public class UMLHierarchicViewerFilter extends HierarchicViewerFilter {
 
 	public UMLHierarchicViewerFilter(IHierarchicContentProvider contentProvider) {
 		super(contentProvider);
-		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,6 +18,9 @@ import java.util.Set;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.widgets.editors.AbstractEditor;
+import org.eclipse.papyrus.widgets.editors.ICommitListener;
+import org.eclipse.swt.widgets.Composite;
 
 /**
  * A ContentProvider to adapt an IStaticContentProvider to an
@@ -29,7 +32,7 @@ import org.eclipse.jface.viewers.Viewer;
  * @author Camille Letavernier
  * 
  */
-public class EncapsulatedContentProvider implements IHierarchicContentProvider {
+public class EncapsulatedContentProvider implements IHierarchicContentProvider, IGraphicalContentProvider, ICommitListener, IAdaptableContentProvider {
 
 	/**
 	 * The encapsulated static content provider
@@ -159,6 +162,44 @@ public class EncapsulatedContentProvider implements IHierarchicContentProvider {
 		} else {
 			return true;
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void createBefore(Composite parent) {
+		if(encapsulated instanceof IGraphicalContentProvider) {
+			((IGraphicalContentProvider)encapsulated).createBefore(parent);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void createAfter(Composite parent) {
+		if(encapsulated instanceof IGraphicalContentProvider) {
+			((IGraphicalContentProvider)encapsulated).createAfter(parent);
+		}
+	}
+
+	public void commit(AbstractEditor editor) {
+		if(encapsulated instanceof ICommitListener) {
+			((ICommitListener)encapsulated).commit(editor);
+		}
+	}
+
+	public Object getAdaptedValue(Object selection) {
+		if(encapsulated instanceof IAdaptableContentProvider) {
+			return ((IAdaptableContentProvider)encapsulated).getAdaptedValue(selection);
+		}
+		return selection;
+	}
+
+	public Object getContainerValue(Object selection) {
+		if(encapsulated instanceof IAdaptableContentProvider) {
+			return ((IAdaptableContentProvider)encapsulated).getContainerValue(selection);
+		}
+		return selection;
 	}
 
 }

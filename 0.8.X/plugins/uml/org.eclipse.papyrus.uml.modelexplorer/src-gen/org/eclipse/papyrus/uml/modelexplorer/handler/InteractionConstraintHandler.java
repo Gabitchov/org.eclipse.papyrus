@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.eclipse.papyrus.uml.modelexplorer.handler;
 
 import org.eclipse.core.commands.IHandler;

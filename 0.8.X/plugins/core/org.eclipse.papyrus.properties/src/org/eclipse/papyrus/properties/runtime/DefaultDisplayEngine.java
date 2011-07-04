@@ -26,6 +26,7 @@ import org.eclipse.e4.xwt.XWT;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.properties.Activator;
+import org.eclipse.papyrus.properties.catalog.PropertiesURIHandler;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.contexts.Section;
 import org.eclipse.papyrus.properties.contexts.Tab;
@@ -189,7 +190,12 @@ public class DefaultDisplayEngine implements DisplayEngine {
 		}
 
 		URI sectionURI = URI.createURI(section.getSectionFile());
-		sectionURI = sectionURI.resolve(context.eResource().getURI());
+		URI baseURI = context.eResource().getURI();
+		if(PropertiesURIHandler.PROPERTIES_SCHEME.equals(baseURI.scheme())) {
+			PropertiesURIHandler handler = new PropertiesURIHandler();
+			baseURI = handler.getConvertedURI(baseURI);
+		}
+		sectionURI = sectionURI.resolve(baseURI);
 
 		try {
 			URL url = new URL(sectionURI.toString());

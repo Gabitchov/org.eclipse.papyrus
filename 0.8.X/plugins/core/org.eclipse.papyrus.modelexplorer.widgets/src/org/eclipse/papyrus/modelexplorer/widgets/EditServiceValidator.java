@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.eclipse.papyrus.modelexplorer.widgets;
 
 import org.eclipse.core.runtime.IAdaptable;

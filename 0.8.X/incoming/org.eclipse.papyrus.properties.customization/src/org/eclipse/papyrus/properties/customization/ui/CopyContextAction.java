@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.properties.Activator;
+import org.eclipse.papyrus.properties.catalog.PropertiesURIHandler;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.customization.messages.Messages;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
@@ -158,7 +159,12 @@ public class CopyContextAction {
 	}
 
 	protected void copy(Resource resource, File target) throws IOException {
-		copy(new URL(resource.getURI().toString()).openStream(), target);
+		PropertiesURIHandler uriHandler = new PropertiesURIHandler();
+		URI uri = resource.getURI();
+		if(uriHandler.canHandle(uri)) {
+			uri = uriHandler.getConvertedURI(uri);
+		}
+		copy(new URL(uri.toString()).openStream(), target);
 	}
 
 	private void copy(Resource resource, File directory, EObject source, String targetName) throws IOException {

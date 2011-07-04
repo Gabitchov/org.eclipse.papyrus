@@ -39,7 +39,8 @@ public class EnvironmentExtensionPoint {
 
 		for(IConfigurationElement e : config) {
 			final String environmentResource = e.getAttribute("environmentModel"); //$NON-NLS-1$
-			URI uri = URI.createPlatformPluginURI(e.getContributor().getName() + "/" + environmentResource, true); //$NON-NLS-1$
+			URI uri = URI.createURI("ppe:/environment/" + e.getContributor().getName() + "/" + environmentResource); //$NON-NLS-1$ //$NON-NLS-2$
+			//URI uri = URI.createPlatformPluginURI(e.getContributor().getName() + "/" + environmentResource, true); //$NON-NLS-1$
 			try {
 				ConfigurationManager.instance.addEnvironment(uri);
 			} catch (IOException ex) {

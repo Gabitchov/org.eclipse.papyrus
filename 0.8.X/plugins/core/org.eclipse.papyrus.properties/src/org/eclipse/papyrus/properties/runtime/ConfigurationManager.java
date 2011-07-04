@@ -183,6 +183,10 @@ public class ConfigurationManager {
 	public void refresh(File contextFile) {
 		URI contextURI = URI.createFileURI(contextFile.getAbsolutePath());
 
+		//TODO : get the right URI from the context file :
+		//ppe:/context/<plugin>/<path> if it is in the workspace, 
+		//ppe:/context/<preferences>/<path> if it is registered through preferences
+
 		if(contexts.containsKey(contextURI)) {
 			//Unloads the previous objects corresponding to this context
 			Context previousContext = contexts.get(contextURI);

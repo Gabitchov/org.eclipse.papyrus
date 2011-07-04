@@ -82,6 +82,8 @@ public class CompoundConstraint extends AbstractConstraint {
 		} else { //At least one of our constraints must override or be equal to the other constraint
 			for(Constraint c : constraints) {
 				if(c.overrides(constraint) || c.equals(constraint)) {
+					//TODO : The equals() method is not defined for most constraint implementations.
+					//We may actually need an "isEquivalent" method, defined in the Constraint Interface
 					return true;
 				}
 			}

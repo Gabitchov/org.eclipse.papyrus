@@ -26,7 +26,6 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.contexts.Section;
 import org.eclipse.papyrus.properties.customization.Activator;
-import org.eclipse.papyrus.properties.customization.ui.CopyContextAction;
 
 /**
  * The Eclipse Editors can only handle files from the workspace. However, when
@@ -86,7 +85,7 @@ public class ProjectUtil {
 			custom.open(null);
 		}
 
-		custom.setHidden(false);
+		custom.setHidden(true);
 		workspace.getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
 
 		return custom;

@@ -14,9 +14,11 @@ package org.eclipse.papyrus.properties.customization.providers;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
 import org.eclipse.papyrus.properties.contexts.Context;
+import org.eclipse.papyrus.properties.contexts.DisplayUnit;
 import org.eclipse.papyrus.properties.contexts.Section;
 import org.eclipse.papyrus.properties.contexts.Tab;
 import org.eclipse.papyrus.properties.contexts.View;
@@ -29,6 +31,8 @@ import org.eclipse.papyrus.properties.contexts.View;
  */
 public class ConstraintDescriptorContentProvider extends AbstractContextualContentProvider {
 
+	private EClass type;
+
 	/**
 	 * 
 	 * Constructor.
@@ -36,23 +40,34 @@ public class ConstraintDescriptorContentProvider extends AbstractContextualConte
 	 * @param source
 	 *        The source Object used to retrieve the available ConstraintDescriptors
 	 */
-	public ConstraintDescriptorContentProvider(EObject source) {
+	public ConstraintDescriptorContentProvider(EObject source, EClass type) {
 		super(source);
+		this.type = type;
 	}
 
 	public Object[] getElements() {
 		List<ConstraintDescriptor> result = new LinkedList<ConstraintDescriptor>();
 		for(Context context : contexts) {
 			for(View view : context.getViews()) {
-				result.addAll(view.getConstraints());
+				result.addAll(getFilteredConstraintsFromDisplayUnit(view));
 			}
 			for(Tab tab : context.getTabs()) {
 				for(Section section : tab.getSections()) {
-					result.addAll(section.getConstraints());
+					result.addAll(getFilteredConstraintsFromDisplayUnit(section));
 				}
 			}
 		}
 		return result.toArray();
+	}
+
+	private List<ConstraintDescriptor> getFilteredConstraintsFromDisplayUnit(DisplayUnit unit) {
+		List<ConstraintDescriptor> result = new LinkedList<ConstraintDescriptor>();
+		for(ConstraintDescriptor constraint : unit.getConstraints()) {
+			if(type.isInstance(constraint)) {
+				result.add(constraint);
+			}
+		}
+		return result;
 	}
 
 }

@@ -63,7 +63,7 @@ public class EMFQueryConstraint extends AbstractConstraint {
 				AbstractModelQuery abstractQuery = catalog.getModelQueryImpl(query);
 				ModelQueryResult result = abstractQuery.evaluate(selectedItem);
 				Object value = result.getValue();
-				return (Boolean)value;
+				return value == null ? false : (Boolean)value;
 			} catch (Exception ex) {
 				Activator.log.error(ex);
 			}

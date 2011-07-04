@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -29,7 +29,6 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.modelexplorer.widgets.AdvancedMETreeDialog;
 import org.eclipse.papyrus.modelexplorer.widgets.EclassComparator;
-import org.eclipse.papyrus.modelexplorer.widgets.HierarchicViewerFilter;
 import org.eclipse.papyrus.modelexplorer.widgets.MetaclassLabelProvider;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.ModelUtils;
@@ -50,7 +49,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * this dialog box display a Tree dialog by using the model explorer and propose to filter by taking in account metaclasses of UML, or
  * stereotypes of applied profiles
  * 
+ * @deprecated you should now use the generic {@link org.eclipse.papyrus.widgets.editors.TreeSelectorDialog}
  */
+@Deprecated
 public class UMLTreeSelectorDialog extends AdvancedMETreeDialog {
 
 	//display of UML domain model
@@ -157,7 +158,7 @@ public class UMLTreeSelectorDialog extends AdvancedMETreeDialog {
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		});
-		
+
 		ViewerFilter[] filters = { new UMLHierarchicViewerFilter(contentProvider) };
 		getViewer().setFilters(filters);
 		getShell().pack();

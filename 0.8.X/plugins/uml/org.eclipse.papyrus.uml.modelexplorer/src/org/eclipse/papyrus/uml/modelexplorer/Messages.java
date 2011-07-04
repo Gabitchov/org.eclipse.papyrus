@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.eclipse.papyrus.uml.modelexplorer;
 
 import org.eclipse.osgi.util.NLS;
