@@ -10,6 +10,8 @@ import org.junit.Test;
 public class TestNodeCreationOnActorOperationCompartment extends AbstractTest {
 
 	@Ignore("Actor should not have operations compartment.")
-	@Test public void warning() {};
-	
+	@Test
+	public void warning() {
+	};
+
 }

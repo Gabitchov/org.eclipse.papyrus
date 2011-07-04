@@ -10,6 +10,8 @@ import org.junit.Test;
 public class TestNodeCreationOnSignalOperationCompartment extends AbstractTest {
 
 	@Ignore("Signal should not have operations compartment.")
-	@Test public void warning() {};
-	
+	@Test
+	public void warning() {
+	};
+
 }

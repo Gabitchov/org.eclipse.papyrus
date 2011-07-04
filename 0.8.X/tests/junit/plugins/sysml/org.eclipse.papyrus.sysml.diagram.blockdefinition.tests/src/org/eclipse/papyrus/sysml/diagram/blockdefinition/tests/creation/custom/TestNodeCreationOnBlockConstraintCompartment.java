@@ -1,6 +1,8 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.creation.custom;
 
-import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.*;
+import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.getDiagramView;
+import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.TestPrepareUtils.changeVisibility;
+import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.TestUtils.createFromPalette;
 
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.View;
@@ -33,7 +35,7 @@ public class TestNodeCreationOnBlockConstraintCompartment extends AbstractTest {
 			}
 
 		} catch (Exception e) {
-			throw new Exception("Unable to prepare container for test.");
+			throw new Exception("Unable to prepare container for test.", e);
 		}
 	}
 

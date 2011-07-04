@@ -10,6 +10,8 @@ import org.junit.Test;
 public class TestNodeCreationOnActorPropertyCompartment extends AbstractTest {
 
 	@Ignore("Actor should not have properties compartment.")
-	@Test public void warning() {};
-	
+	@Test
+	public void warning() {
+	};
+
 }
