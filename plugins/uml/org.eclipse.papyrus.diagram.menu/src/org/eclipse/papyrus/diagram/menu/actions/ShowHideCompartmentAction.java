@@ -15,15 +15,23 @@
 package org.eclipse.papyrus.diagram.menu.actions;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.ui.util.DisplayUtils;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Style;
+import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -258,7 +266,23 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 					completeCmd.add(tmp);
 				}
 			} else if(current instanceof CompartmentTitleRepresentation) {
-				ShowHideTitleOfCompartmentCommand tmp = new ShowHideTitleOfCompartmentCommand(this.domain, (View)((CompartmentTitleRepresentation)current).getRealObject(), true);
+				CompartmentTitleRepresentation compartmentTitleRep = (CompartmentTitleRepresentation) current;
+				final View view = (View) compartmentTitleRep.getRealObject();
+				Style style = view.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
+				if(style == null) {
+					// style is not existing yet (true for models created with Papyrus 0.7.x) => create now
+					// See bug 351084
+					completeCmd.add(new ICommandProxy(
+							new AbstractTransactionalCommand(domain, "Create title style", Collections.EMPTY_LIST) {  //$NON-NLS-1$
+
+						public CommandResult doExecuteWithResult(IProgressMonitor dummy, IAdaptable info) {
+							TitleStyle style = (TitleStyle)view.createStyle(NotationPackage.eINSTANCE.getTitleStyle());
+							style.setShowTitle(false);
+							return CommandResult.newOKCommandResult();
+                        }
+                  }));
+				}
+				ShowHideTitleOfCompartmentCommand tmp = new ShowHideTitleOfCompartmentCommand(this.domain, view, true);
 				if(tmp != null && tmp.canExecute()) {
 					completeCmd.add(new ICommandProxy(tmp));
 				}

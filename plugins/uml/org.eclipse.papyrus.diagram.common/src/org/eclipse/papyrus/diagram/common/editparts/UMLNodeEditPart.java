@@ -20,8 +20,11 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.FontDescriptor;
 import org.eclipse.papyrus.diagram.common.editpolicies.ApplyStereotypeEditPolicy;
@@ -78,6 +81,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	public void refresh() {
 		super.refresh();
 		changeLayoutCompartment();
+		fixCompartmentTitleVisibility();
 	}
 
 	/**
@@ -130,6 +134,29 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 		}
 	}
 
+	/**
+	 * Models created with Papyrus 0.7.x do not have a TitleStyle in the compartment views.
+	 * In this case, the GMF code does not touch the visibility of the title, i.e. it
+	 * remains true by default. This does not correspond to the diagrams in Papyrus
+	 * 0.7.x having no title visible.
+	 * See bug 351084
+	 */
+	public void fixCompartmentTitleVisibility() {
+		for (Object currentEditPart : getChildren()) {
+			if(currentEditPart instanceof ResizableCompartmentEditPart) {
+				ResizableCompartmentEditPart rcep = (ResizableCompartmentEditPart) currentEditPart;
+				View compartmentView = (View) rcep.getModel();
+				Style titleStyle = compartmentView.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
+				if (titleStyle == null) {
+					if  (rcep.getFigure() instanceof ResizableCompartmentFigure) {
+						ResizableCompartmentFigure rcf = (ResizableCompartmentFigure) rcep.getFigure();
+						rcf.setTitleVisibility(false);
+					}
+				}
+			}
+		}		
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */
