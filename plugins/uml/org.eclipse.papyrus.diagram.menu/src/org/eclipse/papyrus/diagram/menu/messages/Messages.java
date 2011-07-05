@@ -26,6 +26,8 @@ public class Messages extends NLS
 
     public static String ShowHideCompartmentAction_Title;
 
+    public static String ShowHideCompartmentAction_PropagateToSameType;
+
     public static String ShowHideConnectionLabelsAction_LabelsManager;
 
     public static String ShowHideConnectionLabelsAction_SelectTheLabelToDisplay;
