@@ -69,9 +69,6 @@ public class PartActivationListener implements IPartListener {
 		// don't use (part == editor.getSite().getPart()), since different views (e.g. model explorer or property)
 		// of an active editor may actually be selected
 		IMultiDiagramEditor activeEditor = EditorUtils.getMultiDiagramEditor();
-		if(editor == activeEditor) {
-			System.out.println("activate: " + editor.getTitle());
-		}
 		if((editor == activeEditor) && modifiedMainResource) {
 
 			switch(delta.getKind()) {

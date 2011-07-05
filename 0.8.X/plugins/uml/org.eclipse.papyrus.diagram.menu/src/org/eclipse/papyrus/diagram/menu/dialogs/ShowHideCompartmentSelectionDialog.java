@@ -20,8 +20,6 @@ import java.util.List;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CellLabelProvider;
@@ -168,12 +166,9 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 		@Override
 		protected CellEditor getCellEditor(Object element) {
 			if(element instanceof View) {
-				TitleStyle style = (TitleStyle)((View)element).getStyle(NotationPackage.eINSTANCE.getTitleStyle());
-				if(style != null) {
-					CheckboxCellEditor editor = new CheckboxCellEditor();
-					editor.setValue(getValue(element));
-					return editor;
-				}
+				CheckboxCellEditor editor = new CheckboxCellEditor();
+				editor.setValue(getValue(element));
+				return editor;
 			}
 			return null;
 		}
@@ -210,7 +205,6 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 				}
 			}
 			return false;
-
 		}
 
 		/**
@@ -317,13 +311,7 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 		 *         the text to display for this element
 		 */
 		private String getText(Object element) {
-			if(element instanceof View) {
-				TitleStyle style = (TitleStyle)((View)element).getStyle(NotationPackage.eINSTANCE.getTitleStyle());
-				if(style == null) {
-					return "No title to display";
-				}
-			}
-			return null;
+			return "";
 		}
 
 		/**
@@ -335,17 +323,12 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 		 */
 		private Image getImage(Object element) {
 			if(element instanceof View) {
-				TitleStyle style = (TitleStyle)((View)element).getStyle(NotationPackage.eINSTANCE.getTitleStyle());
-				if(style != null) {
-					CompartmentTitleRepresentation representation = CompartmentUtils.getCompartmentTitleRepresentation(titleRepresentations, (View)element);
-					if(representation != null) {
-						if(selectedTitles.contains(representation)) {
-							return Activator.getPluginIconImage(Activator.ID, ICON_CHECKED);
-						}
-						return Activator.getPluginIconImage(Activator.ID, ICON_UNCHECKED);
+				CompartmentTitleRepresentation representation = CompartmentUtils.getCompartmentTitleRepresentation(titleRepresentations, (View)element);
+				if(representation != null) {
+					if(selectedTitles.contains(representation)) {
+						return Activator.getPluginIconImage(Activator.ID, ICON_CHECKED);
 					}
-				} else {
-					//nothing to do
+					return Activator.getPluginIconImage(Activator.ID, ICON_UNCHECKED);
 				}
 			}
 			return null;
