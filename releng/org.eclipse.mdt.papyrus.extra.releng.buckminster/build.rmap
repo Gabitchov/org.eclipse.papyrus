@@ -201,7 +201,7 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/tmf/xtext/updates/milestones">
+      <rm:uri format="{0}/modeling/tmf/xtext/updates/releases/R201106070531">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
