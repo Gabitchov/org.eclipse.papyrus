@@ -101,7 +101,7 @@
   </rm:searchPath>
   <rm:searchPath name="platform.binaries">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/modeling/mdt/papyrus/updates/nightly/helios/">
+      <rm:uri format="{0}/modeling/mdt/papyrus/updates/nightly/indigo/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -161,7 +161,7 @@
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/tools/mylyn/update/helios/">
+      <rm:uri format="{0}/tools/mylyn/update/indigo/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -206,12 +206,12 @@
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false" resolutionFilter="(|(build.type=N)(build.type=I))">
-      <rm:uri format="{0}/releases/helios">
+      <rm:uri format="{0}/releases/indigo">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false" resolutionFilter="(|(build.type=M)(build.type=S)(build.type=R))">
-      <rm:uri format="{0}/releases/helios">
+      <rm:uri format="{0}/releases/indigo">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
