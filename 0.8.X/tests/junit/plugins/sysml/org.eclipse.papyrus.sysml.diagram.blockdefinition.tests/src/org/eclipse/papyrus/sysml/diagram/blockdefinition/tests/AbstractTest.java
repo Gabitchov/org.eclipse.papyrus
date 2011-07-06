@@ -51,6 +51,7 @@ public abstract class AbstractTest {
 		// Open the EmptyModel.di file with Papyrus (assumed to be the default editor for "di" files here).
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		editor = page.openEditor(new FileEditorInput(emptyModel_di), editorID);
+
 	}
 
 	@AfterClass

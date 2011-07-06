@@ -2,11 +2,14 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.util.EditPartUtilities;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramEditDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.services.ServiceException;
@@ -64,12 +67,22 @@ public class EditorUtils {
 		@SuppressWarnings("unchecked")
 		Iterator<EditPart> it = EditPartUtilities.getAllChildren(getDiagramEditPart()).iterator();
 		while(it.hasNext()) {
-			EditPart editPart = (EditPart)it.next();
+			EditPart editPart = it.next();
 			if(editPart.getModel() == view) {
 				return editPart;
 			}
 		}
 
+		// Test diagram nested connections and look for the view
+		@SuppressWarnings("unchecked")
+		Iterator<EditPart> itLinks = EditPartUtilities.getAllNestedConnectionEditParts(getDiagramEditPart()).iterator();
+		while(itLinks.hasNext()) {
+			EditPart editPart = itLinks.next();
+			if(editPart.getModel() == view) {
+				return editPart;
+			}
+		}
+		
 		throw new Exception("Unable to find edit part for the given view.");
 	}
 
@@ -78,6 +91,18 @@ public class EditorUtils {
 		return factory.createTool(toolId);
 	}
 
+	public static IDiagramEditDomain getDiagramEditingDomain() throws Exception {
+		return getDiagramEditor().getDiagramEditDomain();
+	}
+
+	public static DiagramCommandStack getDiagramCommandStack() throws Exception {
+		return getDiagramEditingDomain().getDiagramCommandStack();
+	}
+	
+	public static CommandStack getCommandStack() throws Exception {
+		return getTransactionalEditingDomain().getCommandStack();
+	}
+	
 	public static TransactionalEditingDomain getTransactionalEditingDomain() throws Exception {
 
 		ServicesRegistry serviceRegistry = (ServicesRegistry)getEditor().getAdapter(ServicesRegistry.class);
@@ -88,7 +113,7 @@ public class EditorUtils {
 			throw new Exception("Unable to retrieve service.", e);
 		}
 	}
-
+	
 	public static IEditorPart getEditor() throws Exception {
 		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 	}

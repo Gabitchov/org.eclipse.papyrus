@@ -11,7 +11,11 @@ import org.junit.runners.Suite.SuiteClasses;
 	AllCreationInheritedTests.class, 
 	AllDiagramTests.class, 
 	AllDnDCustomTests.class, 
-	AllDnDInheritedTests.class })
+	AllDnDInheritedTests.class,
+	AllCreationLinkTests.class,
+	AllCreationAssociationTests.class,
+	AllDnDLinkTests.class,
+	AllDeletionTests.class })
 public class AllTests {
 
 }
