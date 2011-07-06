@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,14 +25,15 @@ import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.contexts.DataContextPackage;
 import org.eclipse.papyrus.properties.contexts.DataContextRoot;
-import org.eclipse.papyrus.widgets.providers.AbstractStaticContentProvider;
+import org.eclipse.papyrus.widgets.providers.AbstractFilteredContentProvider;
+import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
 /**
  * A ContentProvider for retrieving the available DataContextElements
  * 
  * @author Camille Letavernier
  */
-public class DataContextElementContentProvider extends AbstractStaticContentProvider {
+public class DataContextElementContentProvider extends AbstractFilteredContentProvider implements IStaticContentProvider {
 
 	private List<DataContextElement> elements;
 
@@ -75,6 +76,8 @@ public class DataContextElementContentProvider extends AbstractStaticContentProv
 			}
 
 		});
+
+		showIfHasVisibleParent = true;
 	}
 
 	private void getAllElements(DataContextElement fromElement, Collection<DataContextElement> result) {

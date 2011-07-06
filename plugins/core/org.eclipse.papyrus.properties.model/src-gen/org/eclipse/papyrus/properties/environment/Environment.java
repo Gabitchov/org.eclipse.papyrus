@@ -13,6 +13,7 @@ package org.eclipse.papyrus.properties.environment;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.papyrus.properties.contexts.Context;
@@ -40,7 +41,7 @@ import org.eclipse.papyrus.properties.contexts.Context;
  * @model
  * @generated
  */
-public interface Environment extends EObject {
+public interface Environment extends EModelElement {
 	/**
 	 * Returns the value of the '<em><b>Model Element Factories</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.properties.environment.ModelElementFactoryDescriptor}.

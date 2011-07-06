@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="notation">
-  <dependencies href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#/"/>
-  <tabs label="Appearance" id="appearance" category="org.eclipse.papyrus">
-    <afterTab href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@tabs.1"/>
+  <tabs label="Appearance" id="appearance" category="org.eclipse.papyrus" priority="75">
     <sections name="Single Edge" sectionFile="ui/SingleEdge.xwt">
       <widget href="ui/SingleEdge.xwt#/"/>
     </sections>

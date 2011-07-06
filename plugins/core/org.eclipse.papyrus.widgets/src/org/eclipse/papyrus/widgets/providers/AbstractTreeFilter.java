@@ -165,4 +165,8 @@ public abstract class AbstractTreeFilter extends ViewerFilter {
 
 	public abstract boolean isVisible(Viewer viewer, Object parentElement, Object element);
 
+	public void setShowIfHasVisibleParent(boolean showIfHasVisibleParent) {
+		this.showIfHasVisibleParent = showIfHasVisibleParent;
+	}
+
 }

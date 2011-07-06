@@ -1,14 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.properties.contexts.provider;
 
 import java.util.ArrayList;
@@ -104,29 +99,6 @@ public class ContextsItemProviderAdapterFactory extends ContextsAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.properties.contexts.View} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ViewItemProvider viewItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.properties.contexts.View}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createViewAdapter() {
-		if (viewItemProvider == null) {
-			viewItemProvider = new ViewItemProvider(this);
-		}
-
-		return viewItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.properties.contexts.Tab} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -147,6 +119,29 @@ public class ContextsItemProviderAdapterFactory extends ContextsAdapterFactory i
 		}
 
 		return tabItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.properties.contexts.View} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ViewItemProvider viewItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.properties.contexts.View}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createViewAdapter() {
+		if (viewItemProvider == null) {
+			viewItemProvider = new ViewItemProvider(this);
+		}
+
+		return viewItemProvider;
 	}
 
 	/**

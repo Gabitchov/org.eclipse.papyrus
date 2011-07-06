@@ -47,6 +47,11 @@
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
+    <references referenceName="eAnnotations">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
   </types>
   <types metaclassName="contexts.ConfigProperty">
     <customizedFeatures customizedFeature="metaclassVisible">

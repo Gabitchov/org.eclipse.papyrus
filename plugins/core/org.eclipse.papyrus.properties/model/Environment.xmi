@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <environment:Environment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:environment="http://www.eclipse.org/papyrus/properties/environment">
   <modelElementFactories name="EMF Factory" factoryClass="org.eclipse.papyrus.properties.modelelement.EMFModelElementFactory"/>
+  <modelElementFactories name="Annotation Factory" factoryClass="org.eclipse.papyrus.properties.modelelement.AnnotationModelElementFactory"/>
   <constraintTypes label="EMF Instance Of" constraintClass="org.eclipse.papyrus.properties.constraints.EMFInstanceOfConstraint"/>
   <constraintTypes label="True Constraint" constraintClass="org.eclipse.papyrus.properties.constraints.TrueConstraint"/>
   <constraintTypes label="EMF Query" constraintClass="org.eclipse.papyrus.properties.constraints.EMFQueryConstraint"/>

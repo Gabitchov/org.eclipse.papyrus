@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="UMLNotation">
   <dependencies href="ppe:/context/org.eclipse.papyrus.properties.notation/model/notation.ctx#/"/>
-  <tabs label="Appearance" id="appearance" category="org.eclipse.papyrus">
+  <tabs label="Appearance" id="appearance" category="org.eclipse.papyrus" priority="75">
     <afterTab href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@tabs.1"/>
     <sections name="Label" sectionFile="ui/Label.xwt">
       <widget href="ui/Label.xwt#/"/>

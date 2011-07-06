@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -99,7 +99,7 @@ public class DefaultConstraintEngine implements ConstraintEngine {
 		}
 
 		//		String logValue;
-
+		//
 		//		logValue = "Filtered Constraints : "; //$NON-NLS-1$
 		//		for(Constraint constraint : matchedConstraints) {
 		//			Context context = ((View)constraint.getDescriptor().getDisplay()).getContext();

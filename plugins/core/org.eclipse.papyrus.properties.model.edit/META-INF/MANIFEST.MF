@@ -13,5 +13,6 @@ Export-Package: org.eclipse.papyrus.properties.contexts.provider,
  org.eclipse.papyrus.properties.ui.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.properties.model;visibility:=reexport,
- org.eclipse.emf.edit;visibility:=reexport
+ org.eclipse.emf.edit;visibility:=reexport,
+ org.eclipse.emf.ecore.edit;bundle-version="2.7.0"
 Bundle-ActivationPolicy: lazy

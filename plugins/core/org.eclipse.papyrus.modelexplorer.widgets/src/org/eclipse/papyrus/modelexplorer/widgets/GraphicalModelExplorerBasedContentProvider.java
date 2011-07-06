@@ -116,7 +116,6 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 	public GraphicalModelExplorerBasedContentProvider(EObject semanticRoot, String historyId) {
 		super(semanticRoot);
 		this.historyId = historyId;
-		initSelectionHistory();
 	}
 
 	/**
@@ -231,6 +230,8 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 	 *        The composite in which the widget will be created
 	 */
 	protected void createHistory(Composite parent) {
+		initSelectionHistory();
+
 		Group historyGroup = new Group(parent, SWT.NONE);
 		historyGroup.setText("Recent selections");
 		historyGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));

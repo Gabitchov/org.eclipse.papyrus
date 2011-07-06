@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -59,7 +60,7 @@ import org.eclipse.papyrus.properties.environment.StandardWidgetType;
  *
  * @generated
  */
-public class EnvironmentImpl extends EObjectImpl implements Environment {
+public class EnvironmentImpl extends EModelElementImpl implements Environment {
 	/**
 	 * The cached value of the '{@link #getModelElementFactories() <em>Model Element Factories</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

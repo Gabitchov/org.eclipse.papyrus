@@ -5,7 +5,7 @@
     nsURI="http://www.eclipse.org/papyrus/properties" nsPrefix="properties">
   <eSubpackages name="environment" nsURI="http://www.eclipse.org/papyrus/properties/environment"
       nsPrefix="environment">
-    <eClassifiers xsi:type="ecore:EClass" name="Environment">
+    <eClassifiers xsi:type="ecore:EClass" name="Environment" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementFactories"
           upperBound="-1" eType="#//environment/ModelElementFactoryDescriptor" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="constraintTypes" upperBound="-1"
@@ -73,7 +73,7 @@
   </eSubpackages>
   <eSubpackages name="contexts" nsURI="http://www.eclipse.org/papyrus/properties/contexts"
       nsPrefix="contexts">
-    <eClassifiers xsi:type="ecore:EClass" name="Context">
+    <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" ordered="false"
@@ -101,6 +101,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="indented" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="false"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="#//contexts/DisplayUnit">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
