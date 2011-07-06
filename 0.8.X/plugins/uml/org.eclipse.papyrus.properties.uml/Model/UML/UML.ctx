@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="UML">
-  <tabs label="UML" id="uml" category="org.eclipse.papyrus" image="">
+  <tabs label="UML" id="uml" category="org.eclipse.papyrus" image="" priority="10">
     <sections name="SinglePackage" sectionFile="ui/SinglePackage.xwt">
       <widget href="ui/SinglePackage.xwt#/"/>
     </sections>
@@ -1400,7 +1400,7 @@
       <widget href="ui/ReplyMessage.xwt#/"/>
     </sections>
   </tabs>
-  <tabs label="Profile" id="profile" category="org.eclipse.papyrus" afterTab="//@tabs.0">
+  <tabs label="Profile" id="profile" category="org.eclipse.papyrus" priority="50">
     <sections name="SinglePackageProfile" sectionFile="ui/SinglePackageProfile.xwt">
       <widget href="ui/SinglePackageProfile.xwt#/"/>
     </sections>

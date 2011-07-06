@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,6 +13,7 @@ package org.eclipse.papyrus.properties.xwt;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.Collator;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -104,6 +105,7 @@ public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 	 *        tab descriptor list to order
 	 */
 	protected void orderTabDescriptors(final List<ITabDescriptor> descriptors) {
+
 		Collections.sort(descriptors, new Comparator<ITabDescriptor>() {
 
 			/**
@@ -113,29 +115,39 @@ public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 			 *        first tab to compare
 			 * @param tabDescriptor2
 			 *        second tab to compare
-			 * @return an integer greater than 1 if the first tab should be placed before the second tab
+			 * @return an integer lesser than -1 if the first tab should be placed before the second tab
 			 */
 			public int compare(ITabDescriptor tabDescriptor1, ITabDescriptor tabDescriptor2) {
-				int delta = 0;
-				ITabDescriptor previousTab0 = getPreviousTab(tabDescriptor1);
-				while(previousTab0 != null) {
-					delta++;
-					if(tabDescriptor2.equals(previousTab0)) {
-						return delta;
-					}
-					previousTab0 = getPreviousTab(previousTab0);
-				}
-				delta = 0;
-				ITabDescriptor previousTab1 = getPreviousTab(tabDescriptor2);
-				while(previousTab1 != null) {
-					delta--;
-					if(tabDescriptor1.equals(previousTab1)) {
-						return delta;
-					}
-					previousTab1 = getPreviousTab(previousTab1);
+				int priority1 = getPriority(tabDescriptor1);
+				int priority2 = getPriority(tabDescriptor2);
 
+				if(priority1 < priority2) {
+					return -1;
 				}
-				return 0;
+
+				if(priority1 > priority2) {
+					return 1;
+				}
+
+				//p1 == p2
+
+				priority1 = getXWTTabPriority(tabDescriptor1);
+				priority2 = getXWTTabPriority(tabDescriptor2);
+
+				if(priority1 < priority2) {
+					return -1;
+				}
+
+				if(priority1 > priority2) {
+					return 1;
+				}
+
+				//p1 == p2
+
+				String label1 = tabDescriptor1.getLabel();
+				String label2 = tabDescriptor2.getLabel();
+
+				return Collator.getInstance().compare(label1, label2);
 			}
 
 			/**
@@ -145,7 +157,7 @@ public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 			 *        the tab to test
 			 * @return the tab descriptor before tab
 			 */
-			public ITabDescriptor getPreviousTab(ITabDescriptor tab) {
+			private ITabDescriptor getPreviousTab(ITabDescriptor tab) {
 				String afterId = tab.getAfterTab();
 				if(!(ITabDescriptor.TOP.equals(afterId))) {
 					for(ITabDescriptor descriptor : descriptors) {
@@ -160,6 +172,23 @@ public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 				return null;
 			}
 
+			private int getPriority(ITabDescriptor tab) {
+				ITabDescriptor previousTab = getPreviousTab(tab);
+				if(previousTab != null) {
+					return getPriority(previousTab) + 1;
+				}
+
+				return getXWTTabPriority(tab);
+			}
+
+			private int getXWTTabPriority(ITabDescriptor tab) {
+				if(tab instanceof XWTTabDescriptor) {
+					XWTTabDescriptor xwtTab = (XWTTabDescriptor)tab;
+					return xwtTab.getPriority();
+				} else {
+					return 100; //This tab is not handled by our framework
+				}
+			}
 
 		});
 	}

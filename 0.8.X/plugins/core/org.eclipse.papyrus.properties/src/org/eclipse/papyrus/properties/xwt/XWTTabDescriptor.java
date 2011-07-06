@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -71,8 +71,9 @@ public class XWTTabDescriptor extends AbstractTabDescriptor {
 	public Image getImage() {
 		String imagePath = tab.getImage();
 
-		if(imagePath == null || imagePath.trim().equals("")) //$NON-NLS-1$
+		if(imagePath == null || imagePath.trim().equals("")) {
 			return null;
+		}
 
 		return Activator.getDefault().getImageFromPlugin(imagePath);
 	}
@@ -93,6 +94,10 @@ public class XWTTabDescriptor extends AbstractTabDescriptor {
 	@Override
 	public String toString() {
 		return "Tab " + getLabel() + " => " + getSectionDescriptors(); //$NON-NLS-1$ //$NON-NLS-2$
+	}
+
+	public int getPriority() {
+		return tab.getPriority();
 	}
 
 }

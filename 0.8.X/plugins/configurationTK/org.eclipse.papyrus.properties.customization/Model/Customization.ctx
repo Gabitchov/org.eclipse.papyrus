@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="Customization">
-  <tabs label="Context" id="context" category="">
+  <tabs label="Context" id="context" category="" priority="10">
     <sections name="Single Environment" sectionFile="ui/SingleEnvironment.xwt">
       <widget href="ui/SingleEnvironment.xwt#/"/>
     </sections>
@@ -828,6 +828,7 @@
         <properties name="afterTab" label="" type="Reference" description="The tab after which this tab will be displayed. The afterTab's category should be the same as this tab's category"/>
         <properties name="sections" type="Reference" multiplicity="-1" description="The list of sections that can be displayed in this tab"/>
         <properties name="indented" label="" type="Boolean" description="Indicates if this tab should be indented. The preview isn't available for indentation"/>
+        <properties name="priority" type="Integer" description="Indicates the priority for this tab. A lower priority means the tab will be placed before the other tabs. 0 is the highest priority, 100 is a very low priority."/>
       </elements>
       <elements name="Section" supertypes="//@dataContexts.0/@elements.1/@elements.1">
         <properties name="name" description="The section's name. It should be unique within this Configuration"/>

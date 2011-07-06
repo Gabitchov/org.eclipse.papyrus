@@ -14,12 +14,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer.widgets;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.facet.infra.facet.FacetReference;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.modelexplorer.SemanticFromModelExplorer;
@@ -53,11 +56,11 @@ public class HierarchicViewerFilter extends AbstractTreeFilter {
 			return false;
 		}
 
-		SemanticFromModelExplorer brige = new SemanticFromModelExplorer();
+		SemanticFromModelExplorer bridge = new SemanticFromModelExplorer();
 
 		EObject semanticObject = null;
 		if(element instanceof IAdaptable) {
-			semanticObject = (EObject)brige.getSemanticElement(element);
+			semanticObject = (EObject)bridge.getSemanticElement(element);
 		}
 		if(element instanceof EObject) {
 			semanticObject = (EObject)element;
@@ -66,34 +69,49 @@ public class HierarchicViewerFilter extends AbstractTreeFilter {
 		if(semanticObject != null) {//it contains nothing
 			if(semanticObject instanceof EReference) {
 				//Do not display references that are not containment kind
-				if(!((EReference)semanticObject).isContainment()) {
-					return false;
-				}
-
-				//this an ereference maybe it references something that is interesting
-				boolean result = false;
-				Object[] children = contentProvider.getChildren(element);
-				for(int i = 0; i < children.length; i++) {
-					boolean contains = hasOneVisibleChild(viewer, children[i], contentProvider, visitedElements);
-					result = result || contains;
-				}
-				return result;
-			}
-
-			if(semanticObject.eContents().size() == 0) {
-				return false;
-			} else { //it contains something so we have to test children before
-				Iterator<EObject> iter = semanticObject.eAllContents();
-				while(iter.hasNext()) {
-					EObject subEObject = iter.next();
-					if(isVisible(viewer, semanticObject, subEObject) || hasOneVisibleChild(viewer, subEObject, contentProvider, visitedElements)) {
-						return true;
+				EReference eReference = (EReference)semanticObject;
+				if(isValidReference(eReference)) {
+					//this an ereference maybe it references something that is interesting
+					Object[] children = contentProvider.getChildren(element);
+					for(Object child : children) {
+						if(isVisible(viewer, element, child) || hasOneVisibleChild(viewer, child, contentProvider, visitedElements)) {
+							return true;
+						}
 					}
 				}
 				return false;
 			}
+
+			//it contains something so we have to test children before
+			Iterator<EObject> iter = semanticObject.eAllContents();
+			while(iter.hasNext()) {
+				EObject subEObject = iter.next();
+				if(isVisible(viewer, semanticObject, subEObject) || hasOneVisibleChild(viewer, subEObject, contentProvider, visitedElements)) {
+					return true;
+				}
+			}
+			for(EReference eReference : getReferencesToBrowse(semanticObject)) {
+				Object values = semanticObject.eGet(eReference);
+				if(values instanceof EList) {
+					for(Object value : (EList<?>)values) {
+						if(isVisible(viewer, semanticObject, value) || hasOneVisibleChild(viewer, value, contentProvider, visitedElements)) {
+							return true;
+						}
+					}
+				} else if(isVisible(viewer, semanticObject, values) || hasOneVisibleChild(viewer, values, contentProvider, visitedElements)) {
+					return true;
+				}
+			}
 		}
 		return false;
+	}
+
+	protected Set<EReference> getReferencesToBrowse(EObject element) {
+		return new HashSet<EReference>();
+	}
+
+	protected boolean isValidReference(EReference eReference) {
+		return eReference.isContainment() || eReference instanceof FacetReference || getReferencesToBrowse(null).contains(eReference);
 	}
 
 	@Override

@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.contexts.util;
 
+import org.eclipse.emf.ecore.EModelElement;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
@@ -80,6 +81,7 @@ public class ContextsSwitch<T> extends Switch<T> {
 			case ContextsPackage.CONTEXT: {
 				Context context = (Context)theEObject;
 				T result = caseContext(context);
+				if (result == null) result = caseEModelElement(context);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -424,6 +426,21 @@ public class ContextsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseReferenceProperty(ReferenceProperty object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEModelElement(EModelElement object) {
 		return null;
 	}
 

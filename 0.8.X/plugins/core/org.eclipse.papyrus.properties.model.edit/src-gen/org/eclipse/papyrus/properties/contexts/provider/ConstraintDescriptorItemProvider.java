@@ -1,14 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.properties.contexts.provider;
 
 
@@ -19,8 +14,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -34,7 +27,6 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
-import org.eclipse.papyrus.properties.contexts.ContextsFactory;
 import org.eclipse.papyrus.properties.contexts.ContextsPackage;
 
 import org.eclipse.papyrus.properties.environment.provider.PropertiesEditPlugin;
@@ -104,28 +96,6 @@ public class ConstraintDescriptorItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Overridden Constraints feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addOverriddenConstraintsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ConstraintDescriptor_overriddenConstraints_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConstraintDescriptor_overriddenConstraints_feature", "_UI_ConstraintDescriptor_type"),
-				 ContextsPackage.Literals.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Overrideable feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -143,6 +113,28 @@ public class ConstraintDescriptorItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Overridden Constraints feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOverriddenConstraintsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConstraintDescriptor_overriddenConstraints_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConstraintDescriptor_overriddenConstraints_feature", "_UI_ConstraintDescriptor_type"),
+				 ContextsPackage.Literals.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
