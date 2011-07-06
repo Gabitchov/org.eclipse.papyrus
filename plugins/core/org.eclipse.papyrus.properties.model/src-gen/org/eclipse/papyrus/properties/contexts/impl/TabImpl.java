@@ -40,6 +40,7 @@ import org.eclipse.papyrus.properties.contexts.Tab;
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.TabImpl#getAfterTab <em>After Tab</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.TabImpl#getSections <em>Sections</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.TabImpl#isIndented <em>Indented</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.TabImpl#getPriority <em>Priority</em>}</li>
  * </ul>
  * </p>
  *
@@ -166,6 +167,26 @@ public class TabImpl extends EObjectImpl implements Tab {
 	 * @ordered
 	 */
 	protected boolean indented = INDENTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getPriority() <em>Priority</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPriority()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int PRIORITY_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPriority()
+	 * @generated
+	 * @ordered
+	 */
+	protected int priority = PRIORITY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -346,6 +367,27 @@ public class TabImpl extends EObjectImpl implements Tab {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getPriority() {
+		return priority;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPriority(int newPriority) {
+		int oldPriority = priority;
+		priority = newPriority;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.TAB__PRIORITY, oldPriority, priority));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -393,6 +435,8 @@ public class TabImpl extends EObjectImpl implements Tab {
 				return getSections();
 			case ContextsPackage.TAB__INDENTED:
 				return isIndented();
+			case ContextsPackage.TAB__PRIORITY:
+				return getPriority();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -428,6 +472,9 @@ public class TabImpl extends EObjectImpl implements Tab {
 			case ContextsPackage.TAB__INDENTED:
 				setIndented((Boolean)newValue);
 				return;
+			case ContextsPackage.TAB__PRIORITY:
+				setPriority((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -461,6 +508,9 @@ public class TabImpl extends EObjectImpl implements Tab {
 			case ContextsPackage.TAB__INDENTED:
 				setIndented(INDENTED_EDEFAULT);
 				return;
+			case ContextsPackage.TAB__PRIORITY:
+				setPriority(PRIORITY_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -487,6 +537,8 @@ public class TabImpl extends EObjectImpl implements Tab {
 				return sections != null && !sections.isEmpty();
 			case ContextsPackage.TAB__INDENTED:
 				return indented != INDENTED_EDEFAULT;
+			case ContextsPackage.TAB__PRIORITY:
+				return priority != PRIORITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -511,6 +563,8 @@ public class TabImpl extends EObjectImpl implements Tab {
 		result.append(image);
 		result.append(", indented: ");
 		result.append(indented);
+		result.append(", priority: ");
+		result.append(priority);
 		result.append(')');
 		return result.toString();
 	}

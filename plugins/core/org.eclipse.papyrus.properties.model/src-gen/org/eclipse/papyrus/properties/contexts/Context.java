@@ -13,6 +13,7 @@ package org.eclipse.papyrus.properties.contexts;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -28,6 +29,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.properties.contexts.Context#getTabs <em>Tabs</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.Context#getViews <em>Views</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.Context#getDataContexts <em>Data Contexts</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.Context#getAuthor <em>Author</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.Context#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.Context#getVersion <em>Version</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,7 +39,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Context extends EObject {
+public interface Context extends EModelElement {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -111,6 +115,84 @@ public interface Context extends EObject {
 	 * @generated
 	 */
 	EList<DataContextRoot> getDataContexts();
+
+	/**
+	 * Returns the value of the '<em><b>Author</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Author</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Author</em>' attribute.
+	 * @see #setAuthor(String)
+	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getContext_Author()
+	 * @model
+	 * @generated
+	 */
+	String getAuthor();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.properties.contexts.Context#getAuthor <em>Author</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Author</em>' attribute.
+	 * @see #getAuthor()
+	 * @generated
+	 */
+	void setAuthor(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getContext_Description()
+	 * @model
+	 * @generated
+	 */
+	String getDescription();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.properties.contexts.Context#getDescription <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
+	 * @generated
+	 */
+	void setDescription(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Version</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Version</em>' attribute.
+	 * @see #setVersion(String)
+	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getContext_Version()
+	 * @model
+	 * @generated
+	 */
+	String getVersion();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.properties.contexts.Context#getVersion <em>Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Version</em>' attribute.
+	 * @see #getVersion()
+	 * @generated
+	 */
+	void setVersion(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Dependencies</b></em>' reference list.

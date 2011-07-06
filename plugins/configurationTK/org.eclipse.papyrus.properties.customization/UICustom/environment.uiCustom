@@ -4,6 +4,11 @@
     <customizedFeatures customizedFeature="metaclassVisible">
       <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
     </customizedFeatures>
+    <references referenceName="eAnnotations">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
   </types>
   <types metaclassName="environment.ConstraintType">
     <customizedFeatures customizedFeature="bold">

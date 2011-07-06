@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,14 +17,15 @@ import java.util.List;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.properties.environment.Environment;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.widgets.providers.AbstractStaticContentProvider;
+import org.eclipse.papyrus.widgets.providers.AbstractFilteredContentProvider;
+import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
 /**
  * A Content provider for returning objects for the registered environments
  * 
  * @author Camille Letavernier
  */
-public class EnvironmentContentProvider extends AbstractStaticContentProvider {
+public class EnvironmentContentProvider extends AbstractFilteredContentProvider implements IStaticContentProvider {
 
 	private Object[] contents;
 
@@ -41,6 +42,7 @@ public class EnvironmentContentProvider extends AbstractStaticContentProvider {
 			allObjects.addAll((List<?>)environment.eGet(feature));
 		}
 		contents = allObjects.toArray();
+		showIfHasVisibleParent = true;
 	}
 
 	public Object[] getElements() {

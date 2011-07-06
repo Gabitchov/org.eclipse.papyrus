@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,9 +17,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.util.Util;
+import org.eclipse.papyrus.widgets.providers.AbstractFilteredContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
 /**
@@ -30,7 +30,7 @@ import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
  * @author Camille Letavernier
  * 
  */
-public abstract class AbstractContextualContentProvider implements IStaticContentProvider {
+public abstract class AbstractContextualContentProvider extends AbstractFilteredContentProvider implements IStaticContentProvider {
 
 	/**
 	 * The list of available contexts in the current model
@@ -52,6 +52,7 @@ public abstract class AbstractContextualContentProvider implements IStaticConten
 	protected AbstractContextualContentProvider(EObject source) {
 		contexts = findContexts(source);
 		this.source = source;
+		showIfHasVisibleParent = true;
 	}
 
 	private List<Context> findContexts(EObject source) {
@@ -70,13 +71,4 @@ public abstract class AbstractContextualContentProvider implements IStaticConten
 
 		return Util.getDependencies(rootContext);
 	}
-
-	public void dispose() {
-		//Nothing
-	}
-
-	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		//Nothing
-	}
-
 }

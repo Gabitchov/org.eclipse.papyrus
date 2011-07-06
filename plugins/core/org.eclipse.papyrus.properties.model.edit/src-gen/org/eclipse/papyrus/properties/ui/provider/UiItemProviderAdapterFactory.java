@@ -1,14 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.properties.ui.provider;
 
 import java.util.ArrayList;
@@ -173,6 +168,29 @@ public class UiItemProviderAdapterFactory extends UiAdapterFactory implements Co
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.properties.ui.UnknownComponent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UnknownComponentItemProvider unknownComponentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.properties.ui.UnknownComponent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createUnknownComponentAdapter() {
+		if (unknownComponentItemProvider == null) {
+			unknownComponentItemProvider = new UnknownComponentItemProvider(this);
+		}
+
+		return unknownComponentItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.properties.ui.Layout} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -239,29 +257,6 @@ public class UiItemProviderAdapterFactory extends UiAdapterFactory implements Co
 		}
 
 		return referenceAttributeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.properties.ui.UnknownComponent} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected UnknownComponentItemProvider unknownComponentItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.properties.ui.UnknownComponent}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createUnknownComponentAdapter() {
-		if (unknownComponentItemProvider == null) {
-			unknownComponentItemProvider = new UnknownComponentItemProvider(this);
-		}
-
-		return unknownComponentItemProvider;
 	}
 
 	/**

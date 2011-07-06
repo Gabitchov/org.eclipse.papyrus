@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="SysML">
   <dependencies href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#/"/>
-  <tabs label="SysML" id="basicTabSysML" category="org.eclipse.papyrus">
-    <afterTab href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@tabs.0"/>
+  <tabs label="SysML" id="basicTabSysML" category="org.eclipse.papyrus" priority="20">
     <sections name="SingleConform" sectionFile="ui/SingleConform.xwt">
       <widget href="ui/SingleConform.xwt#/"/>
     </sections>

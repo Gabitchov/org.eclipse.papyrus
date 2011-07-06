@@ -50,6 +50,8 @@ public abstract class AbstractFilteredContentProvider implements IGraphicalConte
 
 	public static final String BASE_PATTERN = "*"; //$NON-NLS-1$
 
+	protected boolean showIfHasVisibleParent = false;
+
 	public void dispose() {
 		// Nothing
 	}
@@ -74,10 +76,8 @@ public abstract class AbstractFilteredContentProvider implements IGraphicalConte
 		filterPattern.addCommitListener(new ICommitListener() {
 
 			public void commit(AbstractEditor editor) {
-				System.out.println("Start");
 				filter.setPattern((String)filterPattern.getValue());
 				viewer.refresh();
-				System.out.println("Finish");
 			}
 
 		});
@@ -92,6 +92,7 @@ public abstract class AbstractFilteredContentProvider implements IGraphicalConte
 		PatternViewerFilter filter = new PatternViewerFilter();
 		filter.setStrict(false);
 		filter.setPattern(BASE_PATTERN);
+		filter.setShowIfHasVisibleParent(showIfHasVisibleParent);
 		return filter;
 	}
 

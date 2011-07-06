@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -184,7 +184,7 @@ public class ConfigurationManager {
 		URI contextURI = URI.createFileURI(contextFile.getAbsolutePath());
 
 		//TODO : get the right URI from the context file :
-		//ppe:/context/<plugin>/<path> if it is in the workspace, 
+		//ppe:/context/<plugin>/<path> if it is in the workspace,
 		//ppe:/context/<preferences>/<path> if it is registered through preferences
 
 		if(contexts.containsKey(contextURI)) {
@@ -413,7 +413,7 @@ public class ConfigurationManager {
 	 *         The context corresponding to the given name
 	 */
 	public Context getContext(String contextName) {
-		for(Context context : contexts.values()) {
+		for(Context context : getContexts()) {
 			if(context.getName().equals(contextName)) {
 				return context;
 			}

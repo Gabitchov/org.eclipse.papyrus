@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,13 +76,22 @@ public interface ContextsPackage extends EPackage {
 	int CONTEXT = 0;
 
 	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT__NAME = 0;
+	int CONTEXT__NAME = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
@@ -90,7 +100,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT__DEPENDENCIES = 1;
+	int CONTEXT__DEPENDENCIES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Tabs</b></em>' containment reference list.
@@ -99,7 +109,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT__TABS = 2;
+	int CONTEXT__TABS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Views</b></em>' containment reference list.
@@ -108,7 +118,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT__VIEWS = 3;
+	int CONTEXT__VIEWS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Data Contexts</b></em>' containment reference list.
@@ -117,7 +127,34 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT__DATA_CONTEXTS = 4;
+	int CONTEXT__DATA_CONTEXTS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Author</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT__AUTHOR = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT__DESCRIPTION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT__VERSION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>Context</em>' class.
@@ -126,7 +163,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_FEATURE_COUNT = 5;
+	int CONTEXT_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.properties.contexts.impl.DisplayUnitImpl <em>Display Unit</em>}' class.
@@ -240,13 +277,22 @@ public interface ContextsPackage extends EPackage {
 	int TAB__INDENTED = 6;
 
 	/**
+	 * The feature id for the '<em><b>Priority</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAB__PRIORITY = 7;
+
+	/**
 	 * The number of structural features of the '<em>Tab</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TAB_FEATURE_COUNT = 7;
+	int TAB_FEATURE_COUNT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -1081,6 +1127,39 @@ public interface ContextsPackage extends EPackage {
 	EReference getContext_DataContexts();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.properties.contexts.Context#getAuthor <em>Author</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Author</em>'.
+	 * @see org.eclipse.papyrus.properties.contexts.Context#getAuthor()
+	 * @see #getContext()
+	 * @generated
+	 */
+	EAttribute getContext_Author();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.properties.contexts.Context#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.eclipse.papyrus.properties.contexts.Context#getDescription()
+	 * @see #getContext()
+	 * @generated
+	 */
+	EAttribute getContext_Description();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.properties.contexts.Context#getVersion <em>Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Version</em>'.
+	 * @see org.eclipse.papyrus.properties.contexts.Context#getVersion()
+	 * @see #getContext()
+	 * @generated
+	 */
+	EAttribute getContext_Version();
+
+	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.properties.contexts.Context#getDependencies <em>Dependencies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1274,6 +1353,17 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTab_Indented();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.properties.contexts.Tab#getPriority <em>Priority</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Priority</em>'.
+	 * @see org.eclipse.papyrus.properties.contexts.Tab#getPriority()
+	 * @see #getTab()
+	 * @generated
+	 */
+	EAttribute getTab_Priority();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.properties.contexts.Section <em>Section</em>}'.
@@ -1757,6 +1847,30 @@ public interface ContextsPackage extends EPackage {
 		EReference CONTEXT__DATA_CONTEXTS = eINSTANCE.getContext_DataContexts();
 
 		/**
+		 * The meta object literal for the '<em><b>Author</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONTEXT__AUTHOR = eINSTANCE.getContext_Author();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONTEXT__DESCRIPTION = eINSTANCE.getContext_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONTEXT__VERSION = eINSTANCE.getContext_Version();
+
+		/**
 		 * The meta object literal for the '<em><b>Dependencies</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1905,6 +2019,14 @@ public interface ContextsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TAB__INDENTED = eINSTANCE.getTab_Indented();
+
+		/**
+		 * The meta object literal for the '<em><b>Priority</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TAB__PRIORITY = eINSTANCE.getTab_Priority();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.properties.contexts.impl.SectionImpl <em>Section</em>}' class.

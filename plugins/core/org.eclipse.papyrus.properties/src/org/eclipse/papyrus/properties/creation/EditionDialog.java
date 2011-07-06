@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,8 +11,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.creation;
 
+import java.text.Collator;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -116,27 +122,99 @@ public class EditionDialog extends SelectionDialog {
 		parent.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
 		getShell().setSize(600, 400);
 
-		Map<Tab, Composite> tabs = new LinkedHashMap<Tab, Composite>();
+		final Set<Tab> tabsList = new LinkedHashSet<Tab>();
 
 		for(View view : views) {
 			for(Section section : view.getSections()) {
-				tabs.put(section.getTab(), null);
+				tabsList.add(section.getTab());
 			}
 		}
 
-		if(tabs.size() > 1) {
-			//TODO : order tabs
+		List<Tab> allTabs = new LinkedList<Tab>(tabsList);
+
+		Collections.sort(allTabs, new Comparator<Tab>() {
+
+			/**
+			 * compares two tabs each other
+			 * 
+			 * @param tab1
+			 *        first tab to compare
+			 * @param tab2
+			 *        second tab to compare
+			 * @return a negative integer if the first tab should be placed before the second tab
+			 */
+			public int compare(Tab tab1, Tab tab2) {
+				int priority1 = getPriority(tab1);
+				int priority2 = getPriority(tab2);
+
+				if(priority1 < priority2) {
+					return -1;
+				}
+
+				if(priority1 > priority2) {
+					return 1;
+				}
+
+				//p1 == p2
+
+				priority1 = getXWTTabPriority(tab1);
+				priority2 = getXWTTabPriority(tab2);
+
+				if(priority1 < priority2) {
+					return -1;
+				}
+
+				if(priority1 > priority2) {
+					return 1;
+				}
+
+				//p1 == p2
+
+				String label1 = tab1.getLabel();
+				String label2 = tab2.getLabel();
+
+				return Collator.getInstance().compare(label1, label2);
+			}
+
+			private Tab getPreviousTab(Tab tab) {
+				Tab afterTab = tab.getAfterTab();
+				if(tabsList.contains(afterTab)) {
+					return afterTab;
+				}
+
+				// not found. Return null
+				return null;
+			}
+
+			private int getPriority(Tab tab) {
+				Tab previousTab = getPreviousTab(tab);
+				if(previousTab != null) {
+					return getPriority(previousTab) + 1;
+				}
+
+				return getXWTTabPriority(tab);
+			}
+
+			private int getXWTTabPriority(Tab tab) {
+				return tab.getPriority();
+			}
+
+		});
+
+		Map<Tab, Composite> tabs = new LinkedHashMap<Tab, Composite>();
+
+		if(allTabs.size() > 1) {
 			CTabFolder tabFolder = new CTabFolder(parent, SWT.BOTTOM);
 			tabFolder.setLayout(new FillLayout());
-			for(Tab tab : tabs.keySet()) {
+			for(Tab tab : allTabs) {
 				CTabItem item = new CTabItem(tabFolder, SWT.NONE);
 				Composite tabControl = new Composite(tabFolder, SWT.NONE);
 				item.setControl(tabControl);
 				item.setText(tab.getLabel());
 				tabs.put(tab, tabControl);
 			}
-		} else {
-			Tab tab = tabs.keySet().iterator().next();
+		} else if(!allTabs.isEmpty()) {
+			Tab tab = allTabs.get(0);
 			tabs.put(tab, parent);
 		}
 

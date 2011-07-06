@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -62,7 +62,11 @@ public class ContextLabelProvider extends CustomizableModelLabelProvider {
 				Activator.log.error(ex);
 			}
 		}
-		return super.getText(element);
+		if(element != null) {
+			return super.getText(element);
+		} else {
+			return "";
+		}
 	}
 
 	@Override
