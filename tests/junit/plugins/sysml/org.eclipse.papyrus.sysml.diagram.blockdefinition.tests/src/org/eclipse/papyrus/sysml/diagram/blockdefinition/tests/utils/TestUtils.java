@@ -1,5 +1,6 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils;
 
+import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.getDiagramCommandStack;
 import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.getDiagramEditor;
 import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.getDiagramView;
 import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.getEditPart;
@@ -23,9 +24,10 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
+import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeCreationTool;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
 
 
 public class TestUtils {
@@ -56,12 +58,11 @@ public class TestUtils {
 				fail("The command should be executable.");
 			} else {
 				// Ok the command can be executed.
-				getTransactionalEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+				getDiagramCommandStack().execute(command);
 
-				// Test undo
-				getTransactionalEditingDomain().getCommandStack().execute(getTransactionalEditingDomain().getCommandStack().getUndoCommand());
-				// Test redo
-				getTransactionalEditingDomain().getCommandStack().execute(getTransactionalEditingDomain().getCommandStack().getRedoCommand());
+				// Test undo - redo
+				getDiagramCommandStack().undo();
+				getDiagramCommandStack().redo();
 
 				// Test the results then
 				// fail("Result tests not implemented.");
@@ -98,12 +99,11 @@ public class TestUtils {
 				fail("The command should be executable.");
 			} else {
 				// Ok the command can be executed.
-				getTransactionalEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+				getDiagramCommandStack().execute(command);
 
-				// Test undo
-				getTransactionalEditingDomain().getCommandStack().execute(getTransactionalEditingDomain().getCommandStack().getUndoCommand());
-				// Test redo
-				getTransactionalEditingDomain().getCommandStack().execute(getTransactionalEditingDomain().getCommandStack().getRedoCommand());
+				// Test undo - redo
+				getDiagramCommandStack().undo();
+				getDiagramCommandStack().redo();
 
 				// Test the results then
 				// fail("Result tests not implemented.");
@@ -126,7 +126,7 @@ public class TestUtils {
 		ArrayList<EObject> list = new ArrayList<EObject>();
 		list.add(eObject);
 		dropRequest.setObjects(list);
-		dropRequest.setLocation(new Point(20, 20));
+		dropRequest.setLocation(new Point(200, 200));
 
 		// Get drop command
 		Command command = containerEditPart.getCommand(dropRequest);
@@ -144,12 +144,11 @@ public class TestUtils {
 				fail("The command should be executable.");
 			} else {
 				// Ok the command can be executed.
-				getTransactionalEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+				getDiagramCommandStack().execute(command);
 
-				// Test undo
-				getTransactionalEditingDomain().getCommandStack().execute(getTransactionalEditingDomain().getCommandStack().getUndoCommand());
-				// Test redo
-				getTransactionalEditingDomain().getCommandStack().execute(getTransactionalEditingDomain().getCommandStack().getRedoCommand());
+				// Test undo - redo
+				getDiagramCommandStack().undo();
+				getDiagramCommandStack().redo();
 
 				// Test the results then
 				// fail("Result tests not implemented.");
@@ -157,17 +156,17 @@ public class TestUtils {
 		}
 	}
 
-	public static void createFromPalette(String toolId, View containerView, boolean isAllowed) throws Exception {
+	public static void createNodeFromPalette(String toolId, View containerView, boolean isAllowed) throws Exception {
 
 		if(isAllowed) {
-			createFromPalette(toolId, containerView, isAllowed, true);
+			createNodeFromPalette(toolId, containerView, isAllowed, true);
 		} else {
-			createFromPalette(toolId, containerView, isAllowed, false);
+			createNodeFromPalette(toolId, containerView, isAllowed, false);
 		}
 
 	}
 
-	public static void createFromPalette(String toolId, View containerView, boolean isAllowed, boolean execute) throws Exception {
+	public static void createNodeFromPalette(String toolId, View containerView, boolean isAllowed, boolean execute) throws Exception {
 
 		// Find container EditPart (for command creation)
 		EditPart containerEditPart = getEditPart(containerView);
@@ -193,13 +192,13 @@ public class TestUtils {
 			} else {
 				// Ok the command can be executed.
 				if(execute) {
-					getTransactionalEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+					getDiagramCommandStack().execute(command);
 
-					// Test undo
-					getTransactionalEditingDomain().getCommandStack().execute(getTransactionalEditingDomain().getCommandStack().getUndoCommand());
-					// Test redo
-					getTransactionalEditingDomain().getCommandStack().execute(getTransactionalEditingDomain().getCommandStack().getRedoCommand());
+					// Test undo - redo
+					getDiagramCommandStack().undo();
+					getDiagramCommandStack().redo();
 				}
+				
 				// Test the results then
 				// fail("Result tests not implemented.");
 			}
@@ -217,9 +216,96 @@ public class TestUtils {
 			return creationTool.createCreateRequest();
 
 		} else if(tool instanceof AspectUnspecifiedTypeConnectionTool) {
-			throw new Exception("Test support not implemented for this kind of tool.");
+			AspectUnspecifiedTypeConnectionTool connectionTool = (AspectUnspecifiedTypeConnectionTool)tool;
+			// Don't forget to set the diagram viewer (required for preferenceHints to mimic manual creation)
+			connectionTool.setViewer(getDiagramEditor().getDiagramGraphicalViewer());
+			
+			return  connectionTool.new CreateAspectUnspecifiedTypeConnectionRequest(connectionTool.getElementTypes(), false, Activator.DIAGRAM_PREFERENCES_HINT);
 		}
 
 		throw new Exception("Unexpected kind of creation tool.");
+	}
+
+	public static void createEdgeFromPalette(String toolId, View sourceView, View targetView, boolean isAllowed) throws Exception {
+	
+		if(isAllowed) {
+			createEdgeFromPalette(toolId, sourceView, targetView, isAllowed, true);
+		} else {
+			createEdgeFromPalette(toolId, sourceView, targetView, isAllowed, false);
+		}
+	
+	}
+
+	public static void createEdgeFromPalette(String toolId, View sourceView, View targetView, boolean isAllowed, boolean execute) throws Exception {
+	
+		// Find palette tool to simulate element creation and prepare request
+		Tool tool = getPaletteTool(toolId);
+		CreateAspectUnspecifiedTypeConnectionRequest createRequest = (CreateAspectUnspecifiedTypeConnectionRequest) getCreateRequest(tool);
+		
+		// Test source creation command
+		createRequest.setSourceEditPart(getEditPart(sourceView));	
+		createRequest.setType(RequestConstants.REQ_CONNECTION_START);	
+		Command srcCommand = getEditPart(sourceView).getCommand(createRequest);
+		
+		// Test source command
+		if ((srcCommand == null) || !(srcCommand.canExecute())) { // Non-executable command
+			if (targetView == null) { // Only test behavior on source
+				if (!isAllowed) { 
+					// Current behavior matches the expected results
+					return;
+				} else {
+					fail("The command should be executable.");
+				}
+				
+			} else { // Test complete creation, the command should necessary be executable
+				fail("The command should be executable.");
+			}
+
+		} else { // Executable command
+			if (targetView == null) { // Only test behavior on source
+				if (!isAllowed) { 
+					fail("The command should not be executable.");
+				} else {
+					// Current behavior matches the expected results - no execution test.
+					return;
+				}
+				
+			} else { // The command is executable and a target is provided - continue the test
+				
+				// Get target command (complete link creation)
+				createRequest.setSourceEditPart(getEditPart(sourceView));
+				createRequest.setTargetEditPart(getEditPart(targetView));
+				createRequest.setType(RequestConstants.REQ_CONNECTION_END);
+				Command tgtCommand = getEditPart(targetView).getCommand(createRequest);
+				
+				// Test the target command
+				if ((tgtCommand == null) || !(tgtCommand.canExecute())) { // Non-executable command
+						if (!isAllowed) { 
+							// Current behavior matches the expected results
+							return;
+						} else {
+							fail("The command should be executable.");
+						}
+				
+				} else { // Executable command
+					if (!isAllowed) {
+						fail("The command should not be executable.");
+					} else {
+						// Current behavior matches the expected results
+						if(execute) { // Test command execution
+							getDiagramCommandStack().execute(tgtCommand);
+			
+							// Test undo - redo
+							getDiagramCommandStack().undo();
+							getDiagramCommandStack().redo();
+						}
+						
+						// Test the results then
+						// fail("Result tests not implemented.");
+					}
+				}
+			}			
+			
+		}
 	}
 }
