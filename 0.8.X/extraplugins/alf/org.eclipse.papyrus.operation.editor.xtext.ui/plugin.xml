@@ -190,13 +190,4 @@
          </popupeditor>
       </DirectEditor>
    </extension>
-   <extension
-         point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
-      <DirectEditor
-            contributor="CEA LIST"
-            language="ALF"
-            objectToEdit="org.eclipse.uml2.uml.Operation">
-      </DirectEditor>
-   </extension>
-
 </plugin>

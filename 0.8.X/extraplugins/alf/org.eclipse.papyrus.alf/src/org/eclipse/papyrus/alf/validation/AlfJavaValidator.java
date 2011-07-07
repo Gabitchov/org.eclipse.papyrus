@@ -124,7 +124,8 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 			for (PackageImport pImport : contextClassifier.getModel().getPackageImports()) {
 				Package p = pImport.getImportedPackage() ;
 				if (p.getQualifiedName().equals("Alf")) {
-					alfStandardLibrary = (Package)p.getOwnedMembers().get(0) ;
+					//alfStandardLibrary = (Package)p.getOwnedMembers().get(0) ;
+					alfStandardLibrary = (Package)p ;
 				}
 			}
 		//}
@@ -1091,6 +1092,10 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 				(statement.getTypePart_OR_assignedPart_OR_invocationPart().getPrefixOp()!=null) ||
 				(statement.getTypePart_OR_assignedPart_OR_invocationPart().getPostfixOp()!=null) ||
 				(statement.getTypePart_OR_assignedPart_OR_invocationPart().getSequenceConstructionCompletion() != null)) {
+			if (statement.getTypePart_OR_assignedPart_OR_invocationPart().getSequenceConstructionCompletion() != null) {
+				if (statement.getTypePart_OR_assignedPart_OR_invocationPart().getSequenceConstructionCompletion().getAccessCompletion() != null)
+					return ;
+			}
 			error("The left part of the assignment must resolve to an assignable property, parameter or local variable", 
 					AlfPackage.eINSTANCE.getInvocationOrAssignementOrDeclarationStatement_TypePart_OR_assignedPart_OR_invocationPart()) ; 
 			// NOTE: this an approximation. Cf. => rule 1.d It resolves to an association end TODO: Not supported yet

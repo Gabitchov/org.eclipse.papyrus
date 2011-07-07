@@ -69,6 +69,7 @@ import org.eclipse.papyrus.alf.validation.AlfJavaValidator;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.PrimitiveType;
 
 public class TypeUtils {
 	
@@ -808,7 +809,7 @@ public class TypeUtils {
 					ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
 							errorMessage, 
 							exp, 
-							AlfPackage.eINSTANCE.getOperationCallExpression_OperationName()) ;
+							AlfPackage.eINSTANCE.getNameExpression_Id()) ;
 					return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
 				}
 				else {
@@ -864,7 +865,8 @@ public class TypeUtils {
 				}
 				else {
 					// need to change the multiplicity of typeOfPrefix
-					typeOfPrefix.setMultiplicity(MultiplicityFacadeFactory.eInstance.createMultiplicityFacade(0, 1, false, false)) ;
+					//typeOfPrefix.setMultiplicity(MultiplicityFacadeFactory.eInstance.createMultiplicityFacade(0, 1, false, false)) ;
+					typeOfPrefix.setMultiplicity(MultiplicityFacadeFactory.eInstance.createMultiplicityFacade(1, 1, false, false)) ; // TODO: 1..1 is temporary
 				}
 			}
 		}
@@ -929,7 +931,6 @@ public class TypeUtils {
 			return getTypeOfSequenceExpansionExpression((SequenceExpansionExpression) exp, typeOfPrefix) ;
 		}
 		else if (exp instanceof SequenceOperationExpression) {
-			// TODO
 			String errorMessage = "Sequence operation expressions are not supported in this version of the Alf editor" ;
 			ErrorTypeFacade unsupportedCase = 
 				TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containtFeature) ;
@@ -940,6 +941,10 @@ public class TypeUtils {
 		}
 	}
 
+	public TypeExpression getTypeOfSequenceOperationExpression(SequenceOperationExpression exp, TypeExpression typeOfPrefix) {
+		return typeOfPrefix ; // TODO
+	}
+	
 	public TypeExpression getTypeOfSequenceReductionExpression(SequenceReductionExpression exp, TypeExpression typeOfPrefix) {
 		int upperBoundOfPrefix = typeOfPrefix.getMultiplicityFacade().getUpperBound() ;
 		// first check if the prefix is a collection
@@ -1309,11 +1314,11 @@ public class TypeUtils {
 	public TypeExpression getTypeOfOperationCallExpression(OperationCallExpression exp, TypeExpression typeOfPrefix) {
 		Classifier type = typeOfPrefix.getTypeFacade().extractActualType(typeOfPrefix.getTypeFacade()) ;
 		EObject source = exp.eContainer() ;
-		EStructuralFeature containtFeature = exp.eContainingFeature() ;
+		EStructuralFeature containingFeature = exp.eContainingFeature() ;
 		if (type == null) {
 			String errorMessage = "Type of prefix is \"any\". Could not validate suffix." ;
 			ErrorTypeFacade error = 
-				TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containtFeature) ;
+				TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containingFeature) ;
 			return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
 		}
 		List<TypeExpression> arguments = new ArrayList<TypeExpression>() ;
@@ -1326,9 +1331,21 @@ public class TypeUtils {
 		List<EObject> matchingOperations = AlfScopeProvider.scopingTool.getVisibleOperationsOrBehaviors(type).resolveByName(exp.getOperationName()) ;
 		TypeExpression typeOfSuffix ;
 		if (matchingOperations.size() == 0) {
-			String errorMessage = "Could not resolve operation " + exp.getOperationName() + " for classifier " + type.getName() ;
-			ErrorTypeFacade error = 
-				TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containtFeature) ;
+			String errorMessage = "" ;
+			ErrorTypeFacade error = null ;
+			if (exp.getOperationName().equals("destroy")) {// This is the case of the default destructor
+				if (typeOfPrefix.getType().extractActualType(typeOfPrefix.getType()) instanceof PrimitiveType)
+					errorMessage += "Primitive types do not have destructors." ;					
+				else if (arguments.size() > 0)
+					errorMessage += "Default destructor has not parameters" ;
+				if (! errorMessage.isEmpty()) {
+					error = TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containingFeature) ;
+					return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+				}
+				return TypeExpressionFactory.eInstance.createTypeExpression(_undefined) ;
+			}
+			errorMessage = "Could not resolve operation " + exp.getOperationName() + " for classifier " + type.getName() ;
+			error = TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containingFeature) ;
 			return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
 		}
 		else if (matchingOperations.size() > 1) {

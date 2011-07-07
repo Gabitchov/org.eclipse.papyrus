@@ -49,15 +49,15 @@ public class DefaultConstructorFacade extends SignatureFacade {
 
 	@Override
 	public String getLabel() {
-		String errorMessage = classToBeConstructed != null ? classToBeConstructed.getName() : datatypeToBeConstructed.getName() ;
-		errorMessage += "(" ;
+		String label = classToBeConstructed != null ? classToBeConstructed.getName() : datatypeToBeConstructed.getName() ;
+		label += "(" ;
 		boolean first = true ;
 		for (TypeExpression t : parameters) {
-			if (first) first = false ; else errorMessage += ", " ;
-			errorMessage += t.getLabel() ;
+			if (first) first = false ; else label += ", " ;
+			label += t.getLabel() ;
 		}
-		errorMessage += ") : " + this.getReturnType().getLabel() ;
-		return errorMessage ;
+		label += ") : " + this.getReturnType().getLabel() ;
+		return label ;
 	}
 
 	@Override
@@ -65,4 +65,8 @@ public class DefaultConstructorFacade extends SignatureFacade {
 		return true;
 	}
 	
+	@Override
+	public boolean isADestructor(){
+		return false ;
+	}
 }
