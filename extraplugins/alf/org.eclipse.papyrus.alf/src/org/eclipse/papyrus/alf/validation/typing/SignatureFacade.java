@@ -31,6 +31,10 @@ public class SignatureFacade {
 	private TypeExpression returnType = TypeExpressionFactory.eInstance.createTypeExpression(TypeUtils._undefined, 0, 0, false, false) ;
 	private EObject actualSignatureObject = null ;
 	
+	public SignatureFacade() {
+		
+	}
+	
 	public SignatureFacade(EObject o) {
 		if (o instanceof Operation) {
 			Operation operation = (Operation)o ;
@@ -209,5 +213,16 @@ public class SignatureFacade {
 		if (signature == null)
 			return false ;
 		return signature.getAppliedStereotype("Standard::Create") != null ; 
+	}
+	
+	public boolean isADestructor() {
+		Element signature = null ;
+		if (actualSignatureObject instanceof Operation || actualSignatureObject instanceof Behavior)
+			signature = (Element)actualSignatureObject ;
+		else if (actualSignatureObject instanceof ElementImport)
+			signature = (Element)((ElementImport)actualSignatureObject).getImportedElement() ;
+		if (signature == null)
+			return false ;
+		return signature.getAppliedStereotype("Standard::Destroy") != null ;
 	}
 }
