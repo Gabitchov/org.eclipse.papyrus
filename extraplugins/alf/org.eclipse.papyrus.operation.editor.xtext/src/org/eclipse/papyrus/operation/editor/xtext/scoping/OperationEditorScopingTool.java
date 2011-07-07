@@ -14,7 +14,9 @@
 package org.eclipse.papyrus.operation.editor.xtext.scoping;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.alf.alf.AcceptBlock;
@@ -68,6 +70,68 @@ public class OperationEditorScopingTool extends AbstractScopingTool{
 	private AlfPartialScope behaviorScope ;
 	private AlfPartialScope classifierScope ;
 	private AlfPartialScope packageScope ;
+	
+	private static List<EObject> removeDuplicateClassifiers(List<EObject> list) {
+		List<EObject> intermediateFilteredList = new ArrayList<EObject>() ;
+		
+		HashMap<String, Classifier> classifiers = new HashMap<String, Classifier>() ;
+		HashMap<String, Classifier> elementImports = new HashMap<String, Classifier>() ;
+		for (EObject o : list) {
+			if (o instanceof Classifier) {
+				Classifier c = (Classifier) o ;
+				if (classifiers.get(c.getQualifiedName()) == null) {
+					classifiers.put(c.getQualifiedName(), c) ;
+					intermediateFilteredList.add(c) ;
+				}
+				// else => nothing to be done, this is a duplicate
+			}
+			else if (o instanceof ElementImport) {
+				ElementImport e = (ElementImport)o ;
+				Classifier c = (Classifier)e.getImportedElement() ;
+				if (elementImports.get(e.getAlias()) == null) {
+					elementImports.put(e.getAlias(), c) ;
+					intermediateFilteredList.add(e) ;
+				}
+				else {// need to check if element import aliases the same thing.
+					Classifier alreadyInTheList = elementImports.get(e.getAlias()) ;
+					if (! alreadyInTheList.getQualifiedName().equals(c.getQualifiedName())) {
+						// The model is ill-formed, and there's no need to filter
+						intermediateFilteredList.add(e) ;
+					}
+					// else => nothing to be done, this is a duplicate
+				}
+			}
+		}
+		
+		// needs to make a second pass on the filtered list, to remove cases where aliases and names are the same, and represent the same element
+		List<EObject> filteredList = new ArrayList<EObject>() ;
+		for (int i = 0 ; i < intermediateFilteredList.size() ; i++) {
+			String classifierName = (intermediateFilteredList.get(i) instanceof Classifier) ? 
+										((Classifier)intermediateFilteredList.get(i)).getName() :
+										((ElementImport)intermediateFilteredList.get(i)).getAlias()	;
+			String classifierQualifiedName = (intermediateFilteredList.get(i) instanceof Classifier) ? 
+												((Classifier)intermediateFilteredList.get(i)).getQualifiedName() :
+												((Classifier)((ElementImport)intermediateFilteredList.get(i)).getImportedElement()).getQualifiedName() ;
+			boolean duplicateFound = false ;
+			for (int j = i + 1 ; j < intermediateFilteredList.size() && !duplicateFound ; j++) {
+				String cddDuplicateClassifierName = (intermediateFilteredList.get(j) instanceof Classifier) ? 
+						((Classifier)intermediateFilteredList.get(j)).getName() :
+						((ElementImport)intermediateFilteredList.get(j)).getAlias()	;
+				if (cddDuplicateClassifierName.equals(classifierName)) {
+					String cddDuplicateClassifierQualifiedName = (intermediateFilteredList.get(j) instanceof Classifier) ? 
+							((Classifier)intermediateFilteredList.get(j)).getQualifiedName() :
+							((Classifier)((ElementImport)intermediateFilteredList.get(j)).getImportedElement()).getQualifiedName() ;
+					if (cddDuplicateClassifierQualifiedName.equals(classifierQualifiedName)) {
+						duplicateFound = true ;
+					}
+				}
+			}
+			if (!duplicateFound)
+				filteredList.add(intermediateFilteredList.get(i)) ;
+		}
+		
+		return filteredList ;
+	}
 	
 	@Override
 	public AlfPartialScope getVisibleVariablesOrParametersOrProperties(EObject context) {
@@ -606,7 +670,9 @@ public class OperationEditorScopingTool extends AbstractScopingTool{
 							potentialContextPackage = (Package)eImport.getImportedElement() ;
 					}
 					if (potentialContextPackage != null) {
-						nestedScopes.add(processPublicallyImportedClassifiers(potentialContextPackage)) ;
+						List<EObject> importedClassifiers = processPublicallyImportedClassifiers(potentialContextPackage) ;
+						importedClassifiers = removeDuplicateClassifiers(importedClassifiers) ;
+						nestedScopes.add(importedClassifiers) ;
 						return nestedScopes ;
 					}
 					
@@ -632,7 +698,18 @@ public class OperationEditorScopingTool extends AbstractScopingTool{
 								nestedList.add(e) ;
 						}
 					}
+					nestedList = removeDuplicateClassifiers(nestedList) ;
 					nestedScopes.add(nestedList) ;
+					
+					// Then process the implicit import of alf library
+					nestedList = new ArrayList<EObject>() ;
+					if (AlfJavaValidator.getAlfStandardLibrary() != null) {
+						List<EObject> importedClassifiers = processPublicallyImportedClassifiers(AlfJavaValidator.getAlfStandardLibrary()) ;
+						importedClassifiers = removeDuplicateClassifiers(importedClassifiers) ;
+						nestedList.addAll(importedClassifiers) ;
+						nestedScopes.add(nestedList) ;
+					}
+					
 					return nestedScopes ;
 				}
 				
@@ -640,17 +717,23 @@ public class OperationEditorScopingTool extends AbstractScopingTool{
 					List<EObject> importedClassifiers = new ArrayList<EObject>() ;
 					for (NamedElement n : p.getOwnedMembers()) {
 						if (n instanceof Classifier)
-							if (((Classifier)n).getVisibility() != VisibilityKind.PRIVATE_LITERAL)
-								importedClassifiers.add(n) ;
+							if (((Classifier)n).getVisibility() != VisibilityKind.PRIVATE_LITERAL) {
+								
+									importedClassifiers.add(n) ;
+							}
 					}
 					for (ElementImport eImport : p.getElementImports()) {
 						if (eImport.getVisibility()!= VisibilityKind.PRIVATE_LITERAL) {
 							PackageableElement element = eImport.getImportedElement() ;
 							if (element instanceof Classifier) {
-								if (eImport.getAlias() != null)
-									importedClassifiers.add(eImport) ;
-								else
-									importedClassifiers.add(element) ;
+								
+									if (eImport.getAlias() != null) {
+										importedClassifiers.add(eImport) ;
+									}
+									else {
+										importedClassifiers.add(element) ;
+									}
+								
 							}
 						}
 					}
@@ -701,9 +784,10 @@ public class OperationEditorScopingTool extends AbstractScopingTool{
 					nestedList.addAll(processPublicallyImportedPackages(contextClassifier)) ;
 					nestedScopes.add(nestedList) ;
 					
-					// Then process the implicit import of alf::library
+					// Then process the implicit import of alf library
 					nestedList = new ArrayList<EObject>() ;
 					if (AlfJavaValidator.getAlfStandardLibrary() != null) {
+						nestedList.add(AlfJavaValidator.getAlfStandardLibrary()) ;
 						nestedList.addAll(processPublicallyImportedPackages(AlfJavaValidator.getAlfStandardLibrary())) ;
 						nestedScopes.add(nestedList) ;
 					}
@@ -803,16 +887,31 @@ public class OperationEditorScopingTool extends AbstractScopingTool{
 								nestedList.add(e) ;
 						}
 					}
+					nestedList = removeDuplicateClassifiers(nestedList) ;
 					nestedScopes.add(nestedList) ;
+					
+					// Then process the implicit import of alf library
+					nestedList = new ArrayList<EObject>() ;
+					if (AlfJavaValidator.getAlfStandardLibrary() != null) {
+						List<EObject> importedClassifiers = processPublicallyImportedBehaviors(AlfJavaValidator.getAlfStandardLibrary()) ;
+						importedClassifiers = removeDuplicateClassifiers(importedClassifiers) ;
+						nestedList.addAll(importedClassifiers) ;
+						nestedScopes.add(nestedList) ;
+					}
+					
 					return nestedScopes ;
 				}
 				
 				private List<EObject> processPublicallyImportedBehaviors (Package p){
 					List<EObject> importedBehaviors = new ArrayList<EObject>() ;
 					for (NamedElement n : p.getOwnedMembers()) {
-						if (n instanceof Behavior)
+						if (n instanceof Behavior) {
 							if (((Behavior)n).getVisibility() != VisibilityKind.PRIVATE_LITERAL)
 								importedBehaviors.add(n) ;
+						}
+						else if (n instanceof Package) {
+							importedBehaviors.addAll(processPublicallyImportedBehaviors((Package)n)) ;
+						}
 					}
 					for (ElementImport eImport : p.getElementImports()) {
 						if (eImport.getVisibility()!= VisibilityKind.PRIVATE_LITERAL) {
