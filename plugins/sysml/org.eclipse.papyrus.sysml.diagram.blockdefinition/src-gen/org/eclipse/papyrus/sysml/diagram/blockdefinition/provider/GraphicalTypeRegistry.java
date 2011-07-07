@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 
 /**
  * <pre>
@@ -44,6 +45,12 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		knownEdges.add(ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint());
 
 		// Fill known nodes set (primary nodes)
+		knownNodes.add(UMLElementTypes.MODEL.getSemanticHint());
+		knownNodes.add(UMLElementTypes.PACKAGE.getSemanticHint());
+		knownNodes.add(UMLElementTypes.INSTANCE_SPECIFICATION.getSemanticHint());
+		knownNodes.add(UMLElementTypes.CONSTRAINT.getSemanticHint());
+		knownNodes.add(UMLElementTypes.COMMENT.getSemanticHint());
+		
 		knownNodes.add(ElementTypes.MODEL.getSemanticHint());
 		knownNodes.add(ElementTypes.MODEL_CN.getSemanticHint());
 		knownNodes.add(ElementTypes.PACKAGE.getSemanticHint());
@@ -56,6 +63,7 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		knownNodes.add(ElementTypes.COMMENT_CN.getSemanticHint());
 
 		// Fill known nodes set (child label nodes)
+		knownNodes.add(UMLElementTypes.SLOT.getSemanticHint());
 		knownNodes.add(ElementTypes.INSTANCE_SPECIFICATION_SLOT_CLN.getSemanticHint());
 	}
 
@@ -233,48 +241,122 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		// A better implementation should be provided, this one is not subtle but should have minimal side effect
 		// (see bug #348550)
 
-		if((ElementTypes.COMMENT.getSemanticHint().equals(proposedType) || (ElementTypes.COMMENT_CN.getSemanticHint().equals(proposedType)))) {
+		if(UMLElementTypes.MODEL.getSemanticHint().equals(proposedType)) {
 
 			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Constraint TopNode
-				return proposedType;
+				return ElementTypes.MODEL.getSemanticHint();
 			}
 			if(ElementTypes.PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
-				return proposedType;
+				return ElementTypes.MODEL_CN.getSemanticHint();
 			}
 			if(ElementTypes.MODEL_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
-				return proposedType;
+				return ElementTypes.MODEL_CN.getSemanticHint();
 			}
 			if(ElementTypes.MODEL_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
-				return proposedType;
+				return ElementTypes.MODEL_CN.getSemanticHint();
 			}
 			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
-				return proposedType;
+				return ElementTypes.MODEL_CN.getSemanticHint();
+			}
+
+			return UNDEFINED_TYPE;
+		}
+		
+		if(UMLElementTypes.PACKAGE.getSemanticHint().equals(proposedType)) {
+
+			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Constraint TopNode
+				return ElementTypes.PACKAGE.getSemanticHint();
+			}
+			if(ElementTypes.PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return ElementTypes.PACKAGE_CN.getSemanticHint();
+			}
+			if(ElementTypes.MODEL_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return ElementTypes.PACKAGE_CN.getSemanticHint();
+			}
+			if(ElementTypes.MODEL_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return ElementTypes.PACKAGE_CN.getSemanticHint();
+			}
+			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return ElementTypes.PACKAGE_CN.getSemanticHint();
+			}
+
+			return UNDEFINED_TYPE;
+		}
+		
+		if((UMLElementTypes.COMMENT.getSemanticHint().equals(proposedType))) {
+
+			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Constraint TopNode
+				return ElementTypes.COMMENT.getSemanticHint();
+			}
+			if(ElementTypes.PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return ElementTypes.COMMENT_CN.getSemanticHint();
+			}
+			if(ElementTypes.MODEL_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return ElementTypes.COMMENT_CN.getSemanticHint();
+			}
+			if(ElementTypes.MODEL_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return ElementTypes.COMMENT_CN.getSemanticHint();
+			}
+			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return ElementTypes.COMMENT_CN.getSemanticHint();
 			}
 
 			return UNDEFINED_TYPE;
 		}
 
-		if((ElementTypes.CONSTRAINT.getSemanticHint().equals(proposedType) || (ElementTypes.CONSTRAINT_CN.getSemanticHint().equals(proposedType)))) {
+		if(UMLElementTypes.CONSTRAINT.getSemanticHint().equals(proposedType)) {
 
 			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Constraint TopNode
-				return proposedType;
+				return ElementTypes.CONSTRAINT.getSemanticHint();
 			}
 			if(ElementTypes.PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
-				return proposedType;
+				return ElementTypes.CONSTRAINT_CN.getSemanticHint();
 			}
 			if(ElementTypes.MODEL_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
-				return proposedType;
+				return ElementTypes.CONSTRAINT_CN.getSemanticHint();
 			}
 			if(ElementTypes.MODEL_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
-				return proposedType;
+				return ElementTypes.CONSTRAINT_CN.getSemanticHint();
 			}
 			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
-				return proposedType;
+				return ElementTypes.CONSTRAINT_CN.getSemanticHint();
 			}
 
 			return UNDEFINED_TYPE;
 		}
 
+		if(UMLElementTypes.INSTANCE_SPECIFICATION.getSemanticHint().equals(proposedType)) {
+
+			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Constraint TopNode
+				return ElementTypes.INSTANCE_SPECIFICATION.getSemanticHint();
+			}
+			if(ElementTypes.PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return ElementTypes.INSTANCE_SPECIFICATION_CN.getSemanticHint();
+			}
+			if(ElementTypes.MODEL_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return ElementTypes.INSTANCE_SPECIFICATION_CN.getSemanticHint();
+			}
+			if(ElementTypes.MODEL_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return ElementTypes.INSTANCE_SPECIFICATION_CN.getSemanticHint();
+			}
+			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				return ElementTypes.INSTANCE_SPECIFICATION_CN.getSemanticHint();
+			}
+
+			return UNDEFINED_TYPE;
+		}
+		
+		if(UMLElementTypes.SLOT.getSemanticHint().equals(proposedType)) {
+
+			if(ElementTypes.INSTANCE_SPECIFICATION_CN_COMPARTMENT_SLOT_HINT.equals(containerType)) { // Constraint ChildNode
+				return ElementTypes.INSTANCE_SPECIFICATION_SLOT_CLN.getSemanticHint();
+			}
+			if(ElementTypes.INSTANCE_SPECIFICATION_COMPARTMENT_SLOT_HINT.equals(containerType)) { // Constraint ChildNode
+				return ElementTypes.INSTANCE_SPECIFICATION_SLOT_CLN.getSemanticHint();
+			}
+
+			return UNDEFINED_TYPE;
+		}
 		// Initial implementation (to be improved - see : getNodeGraphicalType(EObject domainElement, String containerType))
 		if(isKnownNodeType(proposedType)) {
 			return proposedType;
