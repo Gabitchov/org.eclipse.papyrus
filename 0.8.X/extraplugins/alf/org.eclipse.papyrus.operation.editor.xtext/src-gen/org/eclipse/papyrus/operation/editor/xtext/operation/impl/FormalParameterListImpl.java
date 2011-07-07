@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
-
+ * $Id$
  */
 package org.eclipse.papyrus.operation.editor.xtext.operation.impl;
 
@@ -37,135 +37,120 @@ import org.eclipse.papyrus.operation.editor.xtext.operation.OperationPackage;
  *
  * @generated
  */
-public class FormalParameterListImpl extends MinimalEObjectImpl.Container implements FormalParameterList
-{
-  /**
-   * The cached value of the '{@link #getFormalParameter() <em>Formal Parameter</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getFormalParameter()
-   * @generated
-   * @ordered
-   */
-  protected EList<FormalParameter> formalParameter;
+public class FormalParameterListImpl extends MinimalEObjectImpl.Container implements FormalParameterList {
+	/**
+	 * The cached value of the '{@link #getFormalParameter() <em>Formal Parameter</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFormalParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<FormalParameter> formalParameter;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected FormalParameterListImpl()
-  {
-    super();
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FormalParameterListImpl() {
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return OperationPackage.Literals.FORMAL_PARAMETER_LIST;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return OperationPackage.Literals.FORMAL_PARAMETER_LIST;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<FormalParameter> getFormalParameter()
-  {
-    if (formalParameter == null)
-    {
-      formalParameter = new EObjectContainmentEList<FormalParameter>(FormalParameter.class, this, OperationPackage.FORMAL_PARAMETER_LIST__FORMAL_PARAMETER);
-    }
-    return formalParameter;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<FormalParameter> getFormalParameter() {
+		if (formalParameter == null) {
+			formalParameter = new EObjectContainmentEList<FormalParameter>(FormalParameter.class, this, OperationPackage.FORMAL_PARAMETER_LIST__FORMAL_PARAMETER);
+		}
+		return formalParameter;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case OperationPackage.FORMAL_PARAMETER_LIST__FORMAL_PARAMETER:
-        return ((InternalEList<?>)getFormalParameter()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case OperationPackage.FORMAL_PARAMETER_LIST__FORMAL_PARAMETER:
+				return ((InternalEList<?>)getFormalParameter()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case OperationPackage.FORMAL_PARAMETER_LIST__FORMAL_PARAMETER:
-        return getFormalParameter();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case OperationPackage.FORMAL_PARAMETER_LIST__FORMAL_PARAMETER:
+				return getFormalParameter();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case OperationPackage.FORMAL_PARAMETER_LIST__FORMAL_PARAMETER:
-        getFormalParameter().clear();
-        getFormalParameter().addAll((Collection<? extends FormalParameter>)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case OperationPackage.FORMAL_PARAMETER_LIST__FORMAL_PARAMETER:
+				getFormalParameter().clear();
+				getFormalParameter().addAll((Collection<? extends FormalParameter>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case OperationPackage.FORMAL_PARAMETER_LIST__FORMAL_PARAMETER:
-        getFormalParameter().clear();
-        return;
-    }
-    super.eUnset(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case OperationPackage.FORMAL_PARAMETER_LIST__FORMAL_PARAMETER:
+				getFormalParameter().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case OperationPackage.FORMAL_PARAMETER_LIST__FORMAL_PARAMETER:
-        return formalParameter != null && !formalParameter.isEmpty();
-    }
-    return super.eIsSet(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case OperationPackage.FORMAL_PARAMETER_LIST__FORMAL_PARAMETER:
+				return formalParameter != null && !formalParameter.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //FormalParameterListImpl

@@ -14701,7 +14701,7 @@ public class InternalOperationParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLocalNameDeclarationStatement"
-    // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:5748:1: ruleLocalNameDeclarationStatement returns [EObject current=null] : (otherlv_0= 'let' ( (lv_varName_1_0= RULE_ID ) ) otherlv_2= ':' ( (lv_type_3_0= ruleQualifiedNameWithBinding ) ) ( ( (lv_multiplicityIndicator_4_0= '[' ) ) otherlv_5= ']' )? otherlv_6= '=' ( (lv_init_7_0= ruleExpression ) ) otherlv_8= ';' ) ;
+    // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:5748:1: ruleLocalNameDeclarationStatement returns [EObject current=null] : (otherlv_0= 'let' ( (lv_varName_1_0= RULE_ID ) ) otherlv_2= ':' ( (lv_type_3_0= ruleQualifiedNameWithBinding ) ) ( ( (lv_multiplicityIndicator_4_0= '[' ) ) otherlv_5= ']' )? otherlv_6= '=' ( (lv_init_7_0= ruleSequenceElement ) ) otherlv_8= ';' ) ;
     public final EObject ruleLocalNameDeclarationStatement() throws RecognitionException {
         EObject current = null;
 
@@ -14720,11 +14720,11 @@ public class InternalOperationParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:5751:28: ( (otherlv_0= 'let' ( (lv_varName_1_0= RULE_ID ) ) otherlv_2= ':' ( (lv_type_3_0= ruleQualifiedNameWithBinding ) ) ( ( (lv_multiplicityIndicator_4_0= '[' ) ) otherlv_5= ']' )? otherlv_6= '=' ( (lv_init_7_0= ruleExpression ) ) otherlv_8= ';' ) )
-            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:5752:1: (otherlv_0= 'let' ( (lv_varName_1_0= RULE_ID ) ) otherlv_2= ':' ( (lv_type_3_0= ruleQualifiedNameWithBinding ) ) ( ( (lv_multiplicityIndicator_4_0= '[' ) ) otherlv_5= ']' )? otherlv_6= '=' ( (lv_init_7_0= ruleExpression ) ) otherlv_8= ';' )
+            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:5751:28: ( (otherlv_0= 'let' ( (lv_varName_1_0= RULE_ID ) ) otherlv_2= ':' ( (lv_type_3_0= ruleQualifiedNameWithBinding ) ) ( ( (lv_multiplicityIndicator_4_0= '[' ) ) otherlv_5= ']' )? otherlv_6= '=' ( (lv_init_7_0= ruleSequenceElement ) ) otherlv_8= ';' ) )
+            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:5752:1: (otherlv_0= 'let' ( (lv_varName_1_0= RULE_ID ) ) otherlv_2= ':' ( (lv_type_3_0= ruleQualifiedNameWithBinding ) ) ( ( (lv_multiplicityIndicator_4_0= '[' ) ) otherlv_5= ']' )? otherlv_6= '=' ( (lv_init_7_0= ruleSequenceElement ) ) otherlv_8= ';' )
             {
-            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:5752:1: (otherlv_0= 'let' ( (lv_varName_1_0= RULE_ID ) ) otherlv_2= ':' ( (lv_type_3_0= ruleQualifiedNameWithBinding ) ) ( ( (lv_multiplicityIndicator_4_0= '[' ) ) otherlv_5= ']' )? otherlv_6= '=' ( (lv_init_7_0= ruleExpression ) ) otherlv_8= ';' )
-            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:5752:3: otherlv_0= 'let' ( (lv_varName_1_0= RULE_ID ) ) otherlv_2= ':' ( (lv_type_3_0= ruleQualifiedNameWithBinding ) ) ( ( (lv_multiplicityIndicator_4_0= '[' ) ) otherlv_5= ']' )? otherlv_6= '=' ( (lv_init_7_0= ruleExpression ) ) otherlv_8= ';'
+            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:5752:1: (otherlv_0= 'let' ( (lv_varName_1_0= RULE_ID ) ) otherlv_2= ':' ( (lv_type_3_0= ruleQualifiedNameWithBinding ) ) ( ( (lv_multiplicityIndicator_4_0= '[' ) ) otherlv_5= ']' )? otherlv_6= '=' ( (lv_init_7_0= ruleSequenceElement ) ) otherlv_8= ';' )
+            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:5752:3: otherlv_0= 'let' ( (lv_varName_1_0= RULE_ID ) ) otherlv_2= ':' ( (lv_type_3_0= ruleQualifiedNameWithBinding ) ) ( ( (lv_multiplicityIndicator_4_0= '[' ) ) otherlv_5= ']' )? otherlv_6= '=' ( (lv_init_7_0= ruleSequenceElement ) ) otherlv_8= ';'
             {
             otherlv_0=(Token)match(input,70,FOLLOW_70_in_ruleLocalNameDeclarationStatement12526); 
 
@@ -14838,17 +14838,17 @@ public class InternalOperationParser extends AbstractInternalAntlrParser {
 
                 	newLeafNode(otherlv_6, grammarAccess.getLocalNameDeclarationStatementAccess().getEqualsSignKeyword_5());
                 
-            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:5819:1: ( (lv_init_7_0= ruleExpression ) )
-            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:5820:1: (lv_init_7_0= ruleExpression )
+            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:5819:1: ( (lv_init_7_0= ruleSequenceElement ) )
+            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:5820:1: (lv_init_7_0= ruleSequenceElement )
             {
-            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:5820:1: (lv_init_7_0= ruleExpression )
-            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:5821:3: lv_init_7_0= ruleExpression
+            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:5820:1: (lv_init_7_0= ruleSequenceElement )
+            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:5821:3: lv_init_7_0= ruleSequenceElement
             {
              
-            	        newCompositeNode(grammarAccess.getLocalNameDeclarationStatementAccess().getInitExpressionParserRuleCall_6_0()); 
+            	        newCompositeNode(grammarAccess.getLocalNameDeclarationStatementAccess().getInitSequenceElementParserRuleCall_6_0()); 
             	    
-            pushFollow(FOLLOW_ruleExpression_in_ruleLocalNameDeclarationStatement12660);
-            lv_init_7_0=ruleExpression();
+            pushFollow(FOLLOW_ruleSequenceElement_in_ruleLocalNameDeclarationStatement12660);
+            lv_init_7_0=ruleSequenceElement();
 
             state._fsp--;
 
@@ -14860,7 +14860,7 @@ public class InternalOperationParser extends AbstractInternalAntlrParser {
                    			current, 
                    			"init",
                     		lv_init_7_0, 
-                    		"Expression");
+                    		"SequenceElement");
             	        afterParserOrEnumRuleCall();
             	    
 
@@ -20034,7 +20034,7 @@ public class InternalOperationParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAssignmentCompletion"
-    // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7902:1: ruleAssignmentCompletion returns [EObject current=null] : ( ( (lv_op_0_0= ruleAssignmentOperator ) ) ( (lv_rightHandSide_1_0= ruleExpression ) ) ) ;
+    // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7902:1: ruleAssignmentCompletion returns [EObject current=null] : ( ( (lv_op_0_0= ruleAssignmentOperator ) ) ( (lv_rightHandSide_1_0= ruleSequenceElement ) ) ) ;
     public final EObject ruleAssignmentCompletion() throws RecognitionException {
         EObject current = null;
 
@@ -20046,11 +20046,11 @@ public class InternalOperationParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7905:28: ( ( ( (lv_op_0_0= ruleAssignmentOperator ) ) ( (lv_rightHandSide_1_0= ruleExpression ) ) ) )
-            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7906:1: ( ( (lv_op_0_0= ruleAssignmentOperator ) ) ( (lv_rightHandSide_1_0= ruleExpression ) ) )
+            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7905:28: ( ( ( (lv_op_0_0= ruleAssignmentOperator ) ) ( (lv_rightHandSide_1_0= ruleSequenceElement ) ) ) )
+            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7906:1: ( ( (lv_op_0_0= ruleAssignmentOperator ) ) ( (lv_rightHandSide_1_0= ruleSequenceElement ) ) )
             {
-            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7906:1: ( ( (lv_op_0_0= ruleAssignmentOperator ) ) ( (lv_rightHandSide_1_0= ruleExpression ) ) )
-            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7906:2: ( (lv_op_0_0= ruleAssignmentOperator ) ) ( (lv_rightHandSide_1_0= ruleExpression ) )
+            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7906:1: ( ( (lv_op_0_0= ruleAssignmentOperator ) ) ( (lv_rightHandSide_1_0= ruleSequenceElement ) ) )
+            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7906:2: ( (lv_op_0_0= ruleAssignmentOperator ) ) ( (lv_rightHandSide_1_0= ruleSequenceElement ) )
             {
             // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7906:2: ( (lv_op_0_0= ruleAssignmentOperator ) )
             // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7907:1: (lv_op_0_0= ruleAssignmentOperator )
@@ -20083,17 +20083,17 @@ public class InternalOperationParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7924:2: ( (lv_rightHandSide_1_0= ruleExpression ) )
-            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7925:1: (lv_rightHandSide_1_0= ruleExpression )
+            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7924:2: ( (lv_rightHandSide_1_0= ruleSequenceElement ) )
+            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7925:1: (lv_rightHandSide_1_0= ruleSequenceElement )
             {
-            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7925:1: (lv_rightHandSide_1_0= ruleExpression )
-            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7926:3: lv_rightHandSide_1_0= ruleExpression
+            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7925:1: (lv_rightHandSide_1_0= ruleSequenceElement )
+            // ../org.eclipse.papyrus.operation.editor.xtext/src-gen/org/eclipse/papyrus/operation/editor/xtext/parser/antlr/internal/InternalOperation.g:7926:3: lv_rightHandSide_1_0= ruleSequenceElement
             {
              
-            	        newCompositeNode(grammarAccess.getAssignmentCompletionAccess().getRightHandSideExpressionParserRuleCall_1_0()); 
+            	        newCompositeNode(grammarAccess.getAssignmentCompletionAccess().getRightHandSideSequenceElementParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleExpression_in_ruleAssignmentCompletion17186);
-            lv_rightHandSide_1_0=ruleExpression();
+            pushFollow(FOLLOW_ruleSequenceElement_in_ruleAssignmentCompletion17186);
+            lv_rightHandSide_1_0=ruleSequenceElement();
 
             state._fsp--;
 
@@ -20105,7 +20105,7 @@ public class InternalOperationParser extends AbstractInternalAntlrParser {
                    			current, 
                    			"rightHandSide",
                     		lv_rightHandSide_1_0, 
-                    		"Expression");
+                    		"SequenceElement");
             	        afterParserOrEnumRuleCall();
             	    
 
@@ -21828,8 +21828,8 @@ public class InternalOperationParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleQualifiedNameWithBinding_in_ruleLocalNameDeclarationStatement12581 = new BitSet(new long[]{0x0000000000040000L,0x0000000000000080L});
     public static final BitSet FOLLOW_18_in_ruleLocalNameDeclarationStatement12600 = new BitSet(new long[]{0x0000000000080000L});
     public static final BitSet FOLLOW_19_in_ruleLocalNameDeclarationStatement12625 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_71_in_ruleLocalNameDeclarationStatement12639 = new BitSet(new long[]{0x7873000019008070L,0x0000000060000000L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleLocalNameDeclarationStatement12660 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_71_in_ruleLocalNameDeclarationStatement12639 = new BitSet(new long[]{0xF873000019048070L,0x0000000060000000L});
+    public static final BitSet FOLLOW_ruleSequenceElement_in_ruleLocalNameDeclarationStatement12660 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_12_in_ruleLocalNameDeclarationStatement12672 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIfStatement_in_entryRuleIfStatement12708 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIfStatement12718 = new BitSet(new long[]{0x0000000000000002L});
@@ -22015,8 +22015,8 @@ public class InternalOperationParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleAssignmentCompletion_in_ruleVariableDeclarationCompletion17073 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAssignmentCompletion_in_entryRuleAssignmentCompletion17109 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAssignmentCompletion17119 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAssignmentOperator_in_ruleAssignmentCompletion17165 = new BitSet(new long[]{0x7873000019008070L,0x0000000060000000L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleAssignmentCompletion17186 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAssignmentOperator_in_ruleAssignmentCompletion17165 = new BitSet(new long[]{0xF873000019048070L,0x0000000060000000L});
+    public static final BitSet FOLLOW_ruleSequenceElement_in_ruleAssignmentCompletion17186 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_88_in_ruleVisibilityIndicator17236 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_89_in_ruleVisibilityIndicator17253 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_90_in_ruleVisibilityIndicator17270 = new BitSet(new long[]{0x0000000000000002L});

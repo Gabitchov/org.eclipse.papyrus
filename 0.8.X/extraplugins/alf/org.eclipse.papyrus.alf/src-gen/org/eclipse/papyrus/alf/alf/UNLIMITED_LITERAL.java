@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
-
+ * $Id$
  */
 package org.eclipse.papyrus.alf.alf;
 
@@ -17,6 +17,5 @@ package org.eclipse.papyrus.alf.alf;
  * @model
  * @generated
  */
-public interface UNLIMITED_LITERAL extends NUMBER_LITERAL
-{
+public interface UNLIMITED_LITERAL extends NUMBER_LITERAL {
 } // UNLIMITED_LITERAL

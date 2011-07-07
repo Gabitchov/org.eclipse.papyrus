@@ -2789,14 +2789,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
 		private final Keyword cEqualsSignKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Assignment cInitAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cInitExpressionParserRuleCall_6_0 = (RuleCall)cInitAssignment_6.eContents().get(0);
+		private final RuleCall cInitSequenceElementParserRuleCall_6_0 = (RuleCall)cInitAssignment_6.eContents().get(0);
 		private final Keyword cSemicolonKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//LocalNameDeclarationStatement:
-		//	"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? "=" init=Expression ";";
+		//	"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? //'=' init = Expression ';'
+		//	"=" init=SequenceElement ";";
 		public ParserRule getRule() { return rule; }
 
-		//"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? "=" init=Expression ";"
+		//"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? //'=' init = Expression ';'
+		//"=" init=SequenceElement ";"
 		public Group getGroup() { return cGroup; }
 
 		//"let"
@@ -2829,14 +2831,15 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//"]"
 		public Keyword getRightSquareBracketKeyword_4_1() { return cRightSquareBracketKeyword_4_1; }
 
+		////'=' init = Expression ';'
 		//"="
 		public Keyword getEqualsSignKeyword_5() { return cEqualsSignKeyword_5; }
 
-		//init=Expression
+		//init=SequenceElement
 		public Assignment getInitAssignment_6() { return cInitAssignment_6; }
 
-		//Expression
-		public RuleCall getInitExpressionParserRuleCall_6_0() { return cInitExpressionParserRuleCall_6_0; }
+		//SequenceElement
+		public RuleCall getInitSequenceElementParserRuleCall_6_0() { return cInitSequenceElementParserRuleCall_6_0; }
 
 		//";"
 		public Keyword getSemicolonKeyword_7() { return cSemicolonKeyword_7; }
@@ -4038,15 +4041,15 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOpAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cOpAssignmentOperatorEnumRuleCall_0_0 = (RuleCall)cOpAssignment_0.eContents().get(0);
 		private final Assignment cRightHandSideAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cRightHandSideExpressionParserRuleCall_1_0 = (RuleCall)cRightHandSideAssignment_1.eContents().get(0);
+		private final RuleCall cRightHandSideSequenceElementParserRuleCall_1_0 = (RuleCall)cRightHandSideAssignment_1.eContents().get(0);
 		
 		////op=('=' | '+=' | '-=' | '*=' | '%=' | '/=' | '&=' |
 		////	'|=' | '^=' | '<<=' | '>>=' | '>>>=') rightHandSide = Expression
 		//AssignmentCompletion:
-		//	op=AssignmentOperator rightHandSide=Expression;
+		//	op=AssignmentOperator rightHandSide=SequenceElement;
 		public ParserRule getRule() { return rule; }
 
-		//op=AssignmentOperator rightHandSide=Expression
+		//op=AssignmentOperator rightHandSide=SequenceElement
 		public Group getGroup() { return cGroup; }
 
 		//op=AssignmentOperator
@@ -4055,11 +4058,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//AssignmentOperator
 		public RuleCall getOpAssignmentOperatorEnumRuleCall_0_0() { return cOpAssignmentOperatorEnumRuleCall_0_0; }
 
-		//rightHandSide=Expression
+		//rightHandSide=SequenceElement
 		public Assignment getRightHandSideAssignment_1() { return cRightHandSideAssignment_1; }
 
-		//Expression
-		public RuleCall getRightHandSideExpressionParserRuleCall_1_0() { return cRightHandSideExpressionParserRuleCall_1_0; }
+		//SequenceElement
+		public RuleCall getRightHandSideSequenceElementParserRuleCall_1_0() { return cRightHandSideSequenceElementParserRuleCall_1_0; }
 	}
 	
 	
@@ -5303,7 +5306,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LocalNameDeclarationStatement:
-	//	"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? "=" init=Expression ";";
+	//	"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? //'=' init = Expression ';'
+	//	"=" init=SequenceElement ";";
 	public LocalNameDeclarationStatementElements getLocalNameDeclarationStatementAccess() {
 		return (pLocalNameDeclarationStatement != null) ? pLocalNameDeclarationStatement : (pLocalNameDeclarationStatement = new LocalNameDeclarationStatementElements());
 	}
@@ -5653,7 +5657,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	////op=('=' | '+=' | '-=' | '*=' | '%=' | '/=' | '&=' |
 	////	'|=' | '^=' | '<<=' | '>>=' | '>>>=') rightHandSide = Expression
 	//AssignmentCompletion:
-	//	op=AssignmentOperator rightHandSide=Expression;
+	//	op=AssignmentOperator rightHandSide=SequenceElement;
 	public AssignmentCompletionElements getAssignmentCompletionAccess() {
 		return (pAssignmentCompletion != null) ? pAssignmentCompletion : (pAssignmentCompletion = new AssignmentCompletionElements());
 	}

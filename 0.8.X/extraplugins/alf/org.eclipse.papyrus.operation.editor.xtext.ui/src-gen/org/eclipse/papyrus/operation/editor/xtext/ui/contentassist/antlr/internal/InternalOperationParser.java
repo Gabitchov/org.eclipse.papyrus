@@ -54627,25 +54627,25 @@ public class InternalOperationParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__LocalNameDeclarationStatement__InitAssignment_6"
-    // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:20149:1: rule__LocalNameDeclarationStatement__InitAssignment_6 : ( ruleExpression ) ;
+    // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:20149:1: rule__LocalNameDeclarationStatement__InitAssignment_6 : ( ruleSequenceElement ) ;
     public final void rule__LocalNameDeclarationStatement__InitAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:20153:1: ( ( ruleExpression ) )
-            // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:20154:1: ( ruleExpression )
+            // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:20153:1: ( ( ruleSequenceElement ) )
+            // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:20154:1: ( ruleSequenceElement )
             {
-            // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:20154:1: ( ruleExpression )
-            // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:20155:1: ruleExpression
+            // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:20154:1: ( ruleSequenceElement )
+            // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:20155:1: ruleSequenceElement
             {
-             before(grammarAccess.getLocalNameDeclarationStatementAccess().getInitExpressionParserRuleCall_6_0()); 
-            pushFollow(FOLLOW_ruleExpression_in_rule__LocalNameDeclarationStatement__InitAssignment_641001);
-            ruleExpression();
+             before(grammarAccess.getLocalNameDeclarationStatementAccess().getInitSequenceElementParserRuleCall_6_0()); 
+            pushFollow(FOLLOW_ruleSequenceElement_in_rule__LocalNameDeclarationStatement__InitAssignment_641001);
+            ruleSequenceElement();
 
             state._fsp--;
 
-             after(grammarAccess.getLocalNameDeclarationStatementAccess().getInitExpressionParserRuleCall_6_0()); 
+             after(grammarAccess.getLocalNameDeclarationStatementAccess().getInitSequenceElementParserRuleCall_6_0()); 
 
             }
 
@@ -57239,25 +57239,25 @@ public class InternalOperationParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__AssignmentCompletion__RightHandSideAssignment_1"
-    // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:21117:1: rule__AssignmentCompletion__RightHandSideAssignment_1 : ( ruleExpression ) ;
+    // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:21117:1: rule__AssignmentCompletion__RightHandSideAssignment_1 : ( ruleSequenceElement ) ;
     public final void rule__AssignmentCompletion__RightHandSideAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:21121:1: ( ( ruleExpression ) )
-            // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:21122:1: ( ruleExpression )
+            // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:21121:1: ( ( ruleSequenceElement ) )
+            // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:21122:1: ( ruleSequenceElement )
             {
-            // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:21122:1: ( ruleExpression )
-            // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:21123:1: ruleExpression
+            // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:21122:1: ( ruleSequenceElement )
+            // ../org.eclipse.papyrus.operation.editor.xtext.ui/src-gen/org/eclipse/papyrus/operation/editor/xtext/ui/contentassist/antlr/internal/InternalOperation.g:21123:1: ruleSequenceElement
             {
-             before(grammarAccess.getAssignmentCompletionAccess().getRightHandSideExpressionParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleExpression_in_rule__AssignmentCompletion__RightHandSideAssignment_142998);
-            ruleExpression();
+             before(grammarAccess.getAssignmentCompletionAccess().getRightHandSideSequenceElementParserRuleCall_1_0()); 
+            pushFollow(FOLLOW_ruleSequenceElement_in_rule__AssignmentCompletion__RightHandSideAssignment_142998);
+            ruleSequenceElement();
 
             state._fsp--;
 
-             after(grammarAccess.getAssignmentCompletionAccess().getRightHandSideExpressionParserRuleCall_1_0()); 
+             after(grammarAccess.getAssignmentCompletionAccess().getRightHandSideSequenceElementParserRuleCall_1_0()); 
 
             }
 
@@ -58558,7 +58558,7 @@ public class InternalOperationParser extends AbstractInternalContentAssistParser
     public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group__4__Impl_in_rule__LocalNameDeclarationStatement__Group__427479 = new BitSet(new long[]{0x0200000000000000L,0x0000000000000200L});
     public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group__5_in_rule__LocalNameDeclarationStatement__Group__427482 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group_4__0_in_rule__LocalNameDeclarationStatement__Group__4__Impl27509 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group__5__Impl_in_rule__LocalNameDeclarationStatement__Group__527540 = new BitSet(new long[]{0x000006073800D1F0L,0x0003F9393E000040L});
+    public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group__5__Impl_in_rule__LocalNameDeclarationStatement__Group__527540 = new BitSet(new long[]{0x000006073800D1F0L,0x0003F9393E000240L});
     public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group__6_in_rule__LocalNameDeclarationStatement__Group__527543 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_57_in_rule__LocalNameDeclarationStatement__Group__5__Impl27571 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group__6__Impl_in_rule__LocalNameDeclarationStatement__Group__627602 = new BitSet(new long[]{0x0000000000001000L});
@@ -58898,7 +58898,7 @@ public class InternalOperationParser extends AbstractInternalContentAssistParser
     public static final BitSet FOLLOW_rule__VariableDeclarationCompletion__MultiplicityIndicatorAssignment_0_0_in_rule__VariableDeclarationCompletion__Group_0__0__Impl35456 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__VariableDeclarationCompletion__Group_0__1__Impl_in_rule__VariableDeclarationCompletion__Group_0__135486 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_74_in_rule__VariableDeclarationCompletion__Group_0__1__Impl35514 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AssignmentCompletion__Group__0__Impl_in_rule__AssignmentCompletion__Group__035549 = new BitSet(new long[]{0x000006073800D1F0L,0x0003F9393E000040L});
+    public static final BitSet FOLLOW_rule__AssignmentCompletion__Group__0__Impl_in_rule__AssignmentCompletion__Group__035549 = new BitSet(new long[]{0x000006073800D1F0L,0x0003F9393E000240L});
     public static final BitSet FOLLOW_rule__AssignmentCompletion__Group__1_in_rule__AssignmentCompletion__Group__035552 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AssignmentCompletion__OpAssignment_0_in_rule__AssignmentCompletion__Group__0__Impl35579 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AssignmentCompletion__Group__1__Impl_in_rule__AssignmentCompletion__Group__135609 = new BitSet(new long[]{0x0000000000000002L});
@@ -59069,7 +59069,7 @@ public class InternalOperationParser extends AbstractInternalContentAssistParser
     public static final BitSet FOLLOW_RULE_ID_in_rule__LocalNameDeclarationStatement__VarNameAssignment_140895 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedNameWithBinding_in_rule__LocalNameDeclarationStatement__TypeAssignment_340926 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_73_in_rule__LocalNameDeclarationStatement__MultiplicityIndicatorAssignment_4_040962 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__LocalNameDeclarationStatement__InitAssignment_641001 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSequenceElement_in_rule__LocalNameDeclarationStatement__InitAssignment_641001 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSequentialClauses_in_rule__IfStatement__SequentialClaussesAssignment_141032 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFinalClause_in_rule__IfStatement__FinalClauseAssignment_241063 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleConcurrentClauses_in_rule__SequentialClauses__ConccurentClausesAssignment_041094 = new BitSet(new long[]{0x0000000000000002L});
@@ -59133,6 +59133,6 @@ public class InternalOperationParser extends AbstractInternalContentAssistParser
     public static final BitSet FOLLOW_RULE_ID_in_rule__VariableDeclarationCompletion__VariableNameAssignment_142905 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAssignmentCompletion_in_rule__VariableDeclarationCompletion__InitValueAssignment_242936 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAssignmentOperator_in_rule__AssignmentCompletion__OpAssignment_042967 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__AssignmentCompletion__RightHandSideAssignment_142998 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSequenceElement_in_rule__AssignmentCompletion__RightHandSideAssignment_142998 = new BitSet(new long[]{0x0000000000000002L});
 
 }

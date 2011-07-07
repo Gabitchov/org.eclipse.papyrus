@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
-
+ * $Id$
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -45,279 +45,255 @@ import org.eclipse.papyrus.alf.alf.Test;
  *
  * @generated
  */
-public class TestImpl extends MinimalEObjectImpl.Container implements Test
-{
-  /**
-   * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getExpression()
-   * @generated
-   * @ordered
-   */
-  protected EList<Expression> expression;
+public class TestImpl extends MinimalEObjectImpl.Container implements Test {
+	/**
+	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Expression> expression;
 
-  /**
-   * The cached value of the '{@link #getAssignExpression() <em>Assign Expression</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAssignExpression()
-   * @generated
-   * @ordered
-   */
-  protected EList<AssignmentCompletion> assignExpression;
+	/**
+	 * The cached value of the '{@link #getAssignExpression() <em>Assign Expression</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssignExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AssignmentCompletion> assignExpression;
 
-  /**
-   * The cached value of the '{@link #getStatements() <em>Statements</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getStatements()
-   * @generated
-   * @ordered
-   */
-  protected EList<Statement> statements;
+	/**
+	 * The cached value of the '{@link #getStatements() <em>Statements</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStatements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Statement> statements;
 
-  /**
-   * The cached value of the '{@link #getBlock() <em>Block</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getBlock()
-   * @generated
-   * @ordered
-   */
-  protected Block block;
+	/**
+	 * The cached value of the '{@link #getBlock() <em>Block</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBlock()
+	 * @generated
+	 * @ordered
+	 */
+	protected Block block;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected TestImpl()
-  {
-    super();
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TestImpl() {
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return AlfPackage.Literals.TEST;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return AlfPackage.Literals.TEST;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Expression> getExpression()
-  {
-    if (expression == null)
-    {
-      expression = new EObjectContainmentEList<Expression>(Expression.class, this, AlfPackage.TEST__EXPRESSION);
-    }
-    return expression;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Expression> getExpression() {
+		if (expression == null) {
+			expression = new EObjectContainmentEList<Expression>(Expression.class, this, AlfPackage.TEST__EXPRESSION);
+		}
+		return expression;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<AssignmentCompletion> getAssignExpression()
-  {
-    if (assignExpression == null)
-    {
-      assignExpression = new EObjectContainmentEList<AssignmentCompletion>(AssignmentCompletion.class, this, AlfPackage.TEST__ASSIGN_EXPRESSION);
-    }
-    return assignExpression;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<AssignmentCompletion> getAssignExpression() {
+		if (assignExpression == null) {
+			assignExpression = new EObjectContainmentEList<AssignmentCompletion>(AssignmentCompletion.class, this, AlfPackage.TEST__ASSIGN_EXPRESSION);
+		}
+		return assignExpression;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Statement> getStatements()
-  {
-    if (statements == null)
-    {
-      statements = new EObjectContainmentEList<Statement>(Statement.class, this, AlfPackage.TEST__STATEMENTS);
-    }
-    return statements;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Statement> getStatements() {
+		if (statements == null) {
+			statements = new EObjectContainmentEList<Statement>(Statement.class, this, AlfPackage.TEST__STATEMENTS);
+		}
+		return statements;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Block getBlock()
-  {
-    return block;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Block getBlock() {
+		return block;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetBlock(Block newBlock, NotificationChain msgs)
-  {
-    Block oldBlock = block;
-    block = newBlock;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AlfPackage.TEST__BLOCK, oldBlock, newBlock);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetBlock(Block newBlock, NotificationChain msgs) {
+		Block oldBlock = block;
+		block = newBlock;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AlfPackage.TEST__BLOCK, oldBlock, newBlock);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setBlock(Block newBlock)
-  {
-    if (newBlock != block)
-    {
-      NotificationChain msgs = null;
-      if (block != null)
-        msgs = ((InternalEObject)block).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AlfPackage.TEST__BLOCK, null, msgs);
-      if (newBlock != null)
-        msgs = ((InternalEObject)newBlock).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AlfPackage.TEST__BLOCK, null, msgs);
-      msgs = basicSetBlock(newBlock, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AlfPackage.TEST__BLOCK, newBlock, newBlock));
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBlock(Block newBlock) {
+		if (newBlock != block) {
+			NotificationChain msgs = null;
+			if (block != null)
+				msgs = ((InternalEObject)block).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AlfPackage.TEST__BLOCK, null, msgs);
+			if (newBlock != null)
+				msgs = ((InternalEObject)newBlock).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AlfPackage.TEST__BLOCK, null, msgs);
+			msgs = basicSetBlock(newBlock, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AlfPackage.TEST__BLOCK, newBlock, newBlock));
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.TEST__EXPRESSION:
-        return ((InternalEList<?>)getExpression()).basicRemove(otherEnd, msgs);
-      case AlfPackage.TEST__ASSIGN_EXPRESSION:
-        return ((InternalEList<?>)getAssignExpression()).basicRemove(otherEnd, msgs);
-      case AlfPackage.TEST__STATEMENTS:
-        return ((InternalEList<?>)getStatements()).basicRemove(otherEnd, msgs);
-      case AlfPackage.TEST__BLOCK:
-        return basicSetBlock(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case AlfPackage.TEST__EXPRESSION:
+				return ((InternalEList<?>)getExpression()).basicRemove(otherEnd, msgs);
+			case AlfPackage.TEST__ASSIGN_EXPRESSION:
+				return ((InternalEList<?>)getAssignExpression()).basicRemove(otherEnd, msgs);
+			case AlfPackage.TEST__STATEMENTS:
+				return ((InternalEList<?>)getStatements()).basicRemove(otherEnd, msgs);
+			case AlfPackage.TEST__BLOCK:
+				return basicSetBlock(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.TEST__EXPRESSION:
-        return getExpression();
-      case AlfPackage.TEST__ASSIGN_EXPRESSION:
-        return getAssignExpression();
-      case AlfPackage.TEST__STATEMENTS:
-        return getStatements();
-      case AlfPackage.TEST__BLOCK:
-        return getBlock();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case AlfPackage.TEST__EXPRESSION:
+				return getExpression();
+			case AlfPackage.TEST__ASSIGN_EXPRESSION:
+				return getAssignExpression();
+			case AlfPackage.TEST__STATEMENTS:
+				return getStatements();
+			case AlfPackage.TEST__BLOCK:
+				return getBlock();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.TEST__EXPRESSION:
-        getExpression().clear();
-        getExpression().addAll((Collection<? extends Expression>)newValue);
-        return;
-      case AlfPackage.TEST__ASSIGN_EXPRESSION:
-        getAssignExpression().clear();
-        getAssignExpression().addAll((Collection<? extends AssignmentCompletion>)newValue);
-        return;
-      case AlfPackage.TEST__STATEMENTS:
-        getStatements().clear();
-        getStatements().addAll((Collection<? extends Statement>)newValue);
-        return;
-      case AlfPackage.TEST__BLOCK:
-        setBlock((Block)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case AlfPackage.TEST__EXPRESSION:
+				getExpression().clear();
+				getExpression().addAll((Collection<? extends Expression>)newValue);
+				return;
+			case AlfPackage.TEST__ASSIGN_EXPRESSION:
+				getAssignExpression().clear();
+				getAssignExpression().addAll((Collection<? extends AssignmentCompletion>)newValue);
+				return;
+			case AlfPackage.TEST__STATEMENTS:
+				getStatements().clear();
+				getStatements().addAll((Collection<? extends Statement>)newValue);
+				return;
+			case AlfPackage.TEST__BLOCK:
+				setBlock((Block)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.TEST__EXPRESSION:
-        getExpression().clear();
-        return;
-      case AlfPackage.TEST__ASSIGN_EXPRESSION:
-        getAssignExpression().clear();
-        return;
-      case AlfPackage.TEST__STATEMENTS:
-        getStatements().clear();
-        return;
-      case AlfPackage.TEST__BLOCK:
-        setBlock((Block)null);
-        return;
-    }
-    super.eUnset(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case AlfPackage.TEST__EXPRESSION:
+				getExpression().clear();
+				return;
+			case AlfPackage.TEST__ASSIGN_EXPRESSION:
+				getAssignExpression().clear();
+				return;
+			case AlfPackage.TEST__STATEMENTS:
+				getStatements().clear();
+				return;
+			case AlfPackage.TEST__BLOCK:
+				setBlock((Block)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.TEST__EXPRESSION:
-        return expression != null && !expression.isEmpty();
-      case AlfPackage.TEST__ASSIGN_EXPRESSION:
-        return assignExpression != null && !assignExpression.isEmpty();
-      case AlfPackage.TEST__STATEMENTS:
-        return statements != null && !statements.isEmpty();
-      case AlfPackage.TEST__BLOCK:
-        return block != null;
-    }
-    return super.eIsSet(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case AlfPackage.TEST__EXPRESSION:
+				return expression != null && !expression.isEmpty();
+			case AlfPackage.TEST__ASSIGN_EXPRESSION:
+				return assignExpression != null && !assignExpression.isEmpty();
+			case AlfPackage.TEST__STATEMENTS:
+				return statements != null && !statements.isEmpty();
+			case AlfPackage.TEST__BLOCK:
+				return block != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //TestImpl

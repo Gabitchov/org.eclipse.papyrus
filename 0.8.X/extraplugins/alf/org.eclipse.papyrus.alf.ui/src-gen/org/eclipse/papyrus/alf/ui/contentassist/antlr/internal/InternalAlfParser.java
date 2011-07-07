@@ -49580,25 +49580,25 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LocalNameDeclarationStatement__InitAssignment_6"
-    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:18283:1: rule__LocalNameDeclarationStatement__InitAssignment_6 : ( ruleExpression ) ;
+    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:18283:1: rule__LocalNameDeclarationStatement__InitAssignment_6 : ( ruleSequenceElement ) ;
     public final void rule__LocalNameDeclarationStatement__InitAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:18287:1: ( ( ruleExpression ) )
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:18288:1: ( ruleExpression )
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:18287:1: ( ( ruleSequenceElement ) )
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:18288:1: ( ruleSequenceElement )
             {
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:18288:1: ( ruleExpression )
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:18289:1: ruleExpression
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:18288:1: ( ruleSequenceElement )
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:18289:1: ruleSequenceElement
             {
-             before(grammarAccess.getLocalNameDeclarationStatementAccess().getInitExpressionParserRuleCall_6_0()); 
-            pushFollow(FOLLOW_ruleExpression_in_rule__LocalNameDeclarationStatement__InitAssignment_637193);
-            ruleExpression();
+             before(grammarAccess.getLocalNameDeclarationStatementAccess().getInitSequenceElementParserRuleCall_6_0()); 
+            pushFollow(FOLLOW_ruleSequenceElement_in_rule__LocalNameDeclarationStatement__InitAssignment_637193);
+            ruleSequenceElement();
 
             state._fsp--;
 
-             after(grammarAccess.getLocalNameDeclarationStatementAccess().getInitExpressionParserRuleCall_6_0()); 
+             after(grammarAccess.getLocalNameDeclarationStatementAccess().getInitSequenceElementParserRuleCall_6_0()); 
 
             }
 
@@ -52192,25 +52192,25 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AssignmentCompletion__RightHandSideAssignment_1"
-    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19251:1: rule__AssignmentCompletion__RightHandSideAssignment_1 : ( ruleExpression ) ;
+    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19251:1: rule__AssignmentCompletion__RightHandSideAssignment_1 : ( ruleSequenceElement ) ;
     public final void rule__AssignmentCompletion__RightHandSideAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19255:1: ( ( ruleExpression ) )
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19256:1: ( ruleExpression )
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19255:1: ( ( ruleSequenceElement ) )
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19256:1: ( ruleSequenceElement )
             {
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19256:1: ( ruleExpression )
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19257:1: ruleExpression
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19256:1: ( ruleSequenceElement )
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19257:1: ruleSequenceElement
             {
-             before(grammarAccess.getAssignmentCompletionAccess().getRightHandSideExpressionParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleExpression_in_rule__AssignmentCompletion__RightHandSideAssignment_139190);
-            ruleExpression();
+             before(grammarAccess.getAssignmentCompletionAccess().getRightHandSideSequenceElementParserRuleCall_1_0()); 
+            pushFollow(FOLLOW_ruleSequenceElement_in_rule__AssignmentCompletion__RightHandSideAssignment_139190);
+            ruleSequenceElement();
 
             state._fsp--;
 
-             after(grammarAccess.getAssignmentCompletionAccess().getRightHandSideExpressionParserRuleCall_1_0()); 
+             after(grammarAccess.getAssignmentCompletionAccess().getRightHandSideSequenceElementParserRuleCall_1_0()); 
 
             }
 
@@ -53384,7 +53384,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group__4__Impl_in_rule__LocalNameDeclarationStatement__Group__424510 = new BitSet(new long[]{0x0002000000000000L,0x0000000000004000L});
     public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group__5_in_rule__LocalNameDeclarationStatement__Group__424513 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group_4__0_in_rule__LocalNameDeclarationStatement__Group__4__Impl24540 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group__5__Impl_in_rule__LocalNameDeclarationStatement__Group__524571 = new BitSet(new long[]{0x00000007CE0031F0L,0x00007B93C8F80010L});
+    public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group__5__Impl_in_rule__LocalNameDeclarationStatement__Group__524571 = new BitSet(new long[]{0x00000007CE0031F0L,0x00007B93C8F84010L});
     public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group__6_in_rule__LocalNameDeclarationStatement__Group__524574 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_49_in_rule__LocalNameDeclarationStatement__Group__5__Impl24602 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group__6__Impl_in_rule__LocalNameDeclarationStatement__Group__624633 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
@@ -53724,7 +53724,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__VariableDeclarationCompletion__MultiplicityIndicatorAssignment_0_0_in_rule__VariableDeclarationCompletion__Group_0__0__Impl32487 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__VariableDeclarationCompletion__Group_0__1__Impl_in_rule__VariableDeclarationCompletion__Group_0__132517 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_79_in_rule__VariableDeclarationCompletion__Group_0__1__Impl32545 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AssignmentCompletion__Group__0__Impl_in_rule__AssignmentCompletion__Group__032580 = new BitSet(new long[]{0x00000007CE0031F0L,0x00007B93C8F80010L});
+    public static final BitSet FOLLOW_rule__AssignmentCompletion__Group__0__Impl_in_rule__AssignmentCompletion__Group__032580 = new BitSet(new long[]{0x00000007CE0031F0L,0x00007B93C8F84010L});
     public static final BitSet FOLLOW_rule__AssignmentCompletion__Group__1_in_rule__AssignmentCompletion__Group__032583 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AssignmentCompletion__OpAssignment_0_in_rule__AssignmentCompletion__Group__0__Impl32610 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AssignmentCompletion__Group__1__Impl_in_rule__AssignmentCompletion__Group__132640 = new BitSet(new long[]{0x0000000000000002L});
@@ -53871,7 +53871,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_RULE_ID_in_rule__LocalNameDeclarationStatement__VarNameAssignment_137087 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedNameWithBinding_in_rule__LocalNameDeclarationStatement__TypeAssignment_337118 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_78_in_rule__LocalNameDeclarationStatement__MultiplicityIndicatorAssignment_4_037154 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__LocalNameDeclarationStatement__InitAssignment_637193 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSequenceElement_in_rule__LocalNameDeclarationStatement__InitAssignment_637193 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSequentialClauses_in_rule__IfStatement__SequentialClaussesAssignment_137224 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFinalClause_in_rule__IfStatement__FinalClauseAssignment_237255 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleConcurrentClauses_in_rule__SequentialClauses__ConccurentClausesAssignment_037286 = new BitSet(new long[]{0x0000000000000002L});
@@ -53935,6 +53935,6 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_RULE_ID_in_rule__VariableDeclarationCompletion__VariableNameAssignment_139097 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAssignmentCompletion_in_rule__VariableDeclarationCompletion__InitValueAssignment_239128 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAssignmentOperator_in_rule__AssignmentCompletion__OpAssignment_039159 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__AssignmentCompletion__RightHandSideAssignment_139190 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSequenceElement_in_rule__AssignmentCompletion__RightHandSideAssignment_139190 = new BitSet(new long[]{0x0000000000000002L});
 
 }

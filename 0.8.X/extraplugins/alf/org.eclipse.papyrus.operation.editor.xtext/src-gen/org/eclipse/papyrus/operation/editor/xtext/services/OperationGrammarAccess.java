@@ -1551,7 +1551,8 @@ public class OperationGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LocalNameDeclarationStatement:
-	//	"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? "=" init=Expression ";";
+	//	"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? //'=' init = Expression ';'
+	//	"=" init=SequenceElement ";";
 	public AlfGrammarAccess.LocalNameDeclarationStatementElements getLocalNameDeclarationStatementAccess() {
 		return gaAlf.getLocalNameDeclarationStatementAccess();
 	}
@@ -1901,7 +1902,7 @@ public class OperationGrammarAccess extends AbstractGrammarElementFinder {
 	////op=('=' | '+=' | '-=' | '*=' | '%=' | '/=' | '&=' |
 	////	'|=' | '^=' | '<<=' | '>>=' | '>>>=') rightHandSide = Expression
 	//AssignmentCompletion:
-	//	op=AssignmentOperator rightHandSide=Expression;
+	//	op=AssignmentOperator rightHandSide=SequenceElement;
 	public AlfGrammarAccess.AssignmentCompletionElements getAssignmentCompletionAccess() {
 		return gaAlf.getAssignmentCompletionAccess();
 	}

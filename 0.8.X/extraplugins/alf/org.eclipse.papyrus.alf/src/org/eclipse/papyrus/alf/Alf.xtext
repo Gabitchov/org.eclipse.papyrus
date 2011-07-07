@@ -429,7 +429,8 @@ LocalNameDeclarationStatement :
 	'let' varName = ID ':' 
 		type = QualifiedNameWithBinding  
 		(multiplicityIndicator?='[' ']')?
-		'=' init = Expression ';'
+		//'=' init = Expression ';'
+		'=' init = SequenceElement ';'
 ;
 
 IfStatement : 
@@ -562,7 +563,7 @@ VariableDeclarationCompletion :
 ;
 
 AssignmentCompletion :
-	op=AssignmentOperator rightHandSide = Expression
+	op=AssignmentOperator rightHandSide = SequenceElement
 	//op=('=' | '+=' | '-=' | '*=' | '%=' | '/=' | '&=' |
 	//	'|=' | '^=' | '<<=' | '>>=' | '>>>=') rightHandSide = Expression
 ;

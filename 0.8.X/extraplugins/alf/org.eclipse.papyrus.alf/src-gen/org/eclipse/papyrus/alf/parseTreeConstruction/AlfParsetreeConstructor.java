@@ -13344,11 +13344,13 @@ protected class EmptyStatement_SemicolonKeyword_1 extends KeywordToken  {
 /************ begin Rule LocalNameDeclarationStatement ****************
  *
  * LocalNameDeclarationStatement:
- * 	"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? "=" init=Expression ";";
+ * 	"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? //'=' init = Expression ';'
+ * 	"=" init=SequenceElement ";";
  *
  **/
 
-// "let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? "=" init=Expression ";"
+// "let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? //'=' init = Expression ';'
+// "=" init=SequenceElement ";"
 protected class LocalNameDeclarationStatement_Group extends GroupToken {
 	
 	public LocalNameDeclarationStatement_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -13579,6 +13581,7 @@ protected class LocalNameDeclarationStatement_RightSquareBracketKeyword_4_1 exte
 }
 
 
+// //'=' init = Expression ';'
 // "="
 protected class LocalNameDeclarationStatement_EqualsSignKeyword_5 extends KeywordToken  {
 	
@@ -13602,7 +13605,7 @@ protected class LocalNameDeclarationStatement_EqualsSignKeyword_5 extends Keywor
 
 }
 
-// init=Expression
+// init=SequenceElement
 protected class LocalNameDeclarationStatement_InitAssignment_6 extends AssignmentToken  {
 	
 	public LocalNameDeclarationStatement_InitAssignment_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -13617,7 +13620,7 @@ protected class LocalNameDeclarationStatement_InitAssignment_6 extends Assignmen
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Expression_ConditionalTestExpressionParserRuleCall(this, this, 0, inst);
+			case 0: return new SequenceElement_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -13628,9 +13631,9 @@ protected class LocalNameDeclarationStatement_InitAssignment_6 extends Assignmen
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("init");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getExpressionRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getSequenceElementRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getLocalNameDeclarationStatementAccess().getInitExpressionParserRuleCall_6_0(); 
+				element = grammarAccess.getLocalNameDeclarationStatementAccess().getInitSequenceElementParserRuleCall_6_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -19362,11 +19365,11 @@ protected class VariableDeclarationCompletion_InitValueAssignment_2 extends Assi
  * //op=('=' | '+=' | '-=' | '*=' | '%=' | '/=' | '&=' |
  * //	'|=' | '^=' | '<<=' | '>>=' | '>>>=') rightHandSide = Expression
  * AssignmentCompletion:
- * 	op=AssignmentOperator rightHandSide=Expression;
+ * 	op=AssignmentOperator rightHandSide=SequenceElement;
  *
  **/
 
-// op=AssignmentOperator rightHandSide=Expression
+// op=AssignmentOperator rightHandSide=SequenceElement
 protected class AssignmentCompletion_Group extends GroupToken {
 	
 	public AssignmentCompletion_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -19428,7 +19431,7 @@ protected class AssignmentCompletion_OpAssignment_0 extends AssignmentToken  {
 
 }
 
-// rightHandSide=Expression
+// rightHandSide=SequenceElement
 protected class AssignmentCompletion_RightHandSideAssignment_1 extends AssignmentToken  {
 	
 	public AssignmentCompletion_RightHandSideAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -19443,7 +19446,7 @@ protected class AssignmentCompletion_RightHandSideAssignment_1 extends Assignmen
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Expression_ConditionalTestExpressionParserRuleCall(this, this, 0, inst);
+			case 0: return new SequenceElement_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -19454,9 +19457,9 @@ protected class AssignmentCompletion_RightHandSideAssignment_1 extends Assignmen
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("rightHandSide");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getExpressionRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getSequenceElementRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getAssignmentCompletionAccess().getRightHandSideExpressionParserRuleCall_1_0(); 
+				element = grammarAccess.getAssignmentCompletionAccess().getRightHandSideSequenceElementParserRuleCall_1_0(); 
 				consumed = obj;
 				return param;
 			}
