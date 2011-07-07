@@ -262,17 +262,17 @@
     <genClasses ecoreClass="Alf.ecore#//StatementSequence">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//StatementSequence/statements"/>
     </genClasses>
+    <genClasses ecoreClass="Alf.ecore#//DocumentedStatement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alf.ecore#//DocumentedStatement/comment"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//DocumentedStatement/statement"/>
+    </genClasses>
     <genClasses ecoreClass="Alf.ecore#//InlineStatement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alf.ecore#//InlineStatement/langageName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alf.ecore#//InlineStatement/body"/>
     </genClasses>
     <genClasses ecoreClass="Alf.ecore#//AnnotatedStatement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//AnnotatedStatement/annotation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//AnnotatedStatement/block"/>
-    </genClasses>
-    <genClasses ecoreClass="Alf.ecore#//DocumentedStatement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alf.ecore#//DocumentedStatement/comment"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//DocumentedStatement/statement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//AnnotatedStatement/statement"/>
     </genClasses>
     <genClasses ecoreClass="Alf.ecore#//Statement"/>
     <genClasses ecoreClass="Alf.ecore#//Annotation">

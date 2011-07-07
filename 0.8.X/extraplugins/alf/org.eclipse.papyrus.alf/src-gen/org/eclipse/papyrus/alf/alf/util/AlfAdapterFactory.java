@@ -312,16 +312,16 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 				return createStatementSequenceAdapter();
 			}
 			@Override
+			public Adapter caseDocumentedStatement(DocumentedStatement object) {
+				return createDocumentedStatementAdapter();
+			}
+			@Override
 			public Adapter caseInlineStatement(InlineStatement object) {
 				return createInlineStatementAdapter();
 			}
 			@Override
 			public Adapter caseAnnotatedStatement(AnnotatedStatement object) {
 				return createAnnotatedStatementAdapter();
-			}
-			@Override
-			public Adapter caseDocumentedStatement(DocumentedStatement object) {
-				return createDocumentedStatementAdapter();
 			}
 			@Override
 			public Adapter caseStatement(Statement object) {
@@ -1340,6 +1340,20 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.alf.alf.DocumentedStatement <em>Documented Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.alf.alf.DocumentedStatement
+	 * @generated
+	 */
+	public Adapter createDocumentedStatementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.alf.alf.InlineStatement <em>Inline Statement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1364,20 +1378,6 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAnnotatedStatementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.alf.alf.DocumentedStatement <em>Documented Statement</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.alf.alf.DocumentedStatement
-	 * @generated
-	 */
-	public Adapter createDocumentedStatementAdapter() {
 		return null;
 	}
 

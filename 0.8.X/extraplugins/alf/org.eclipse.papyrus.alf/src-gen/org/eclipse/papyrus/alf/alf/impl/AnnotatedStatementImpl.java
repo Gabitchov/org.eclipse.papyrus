@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.papyrus.alf.alf.AlfPackage;
 import org.eclipse.papyrus.alf.alf.AnnotatedStatement;
 import org.eclipse.papyrus.alf.alf.Annotation;
-import org.eclipse.papyrus.alf.alf.Block;
+import org.eclipse.papyrus.alf.alf.Statement;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +27,7 @@ import org.eclipse.papyrus.alf.alf.Block;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.alf.alf.impl.AnnotatedStatementImpl#getAnnotation <em>Annotation</em>}</li>
- *   <li>{@link org.eclipse.papyrus.alf.alf.impl.AnnotatedStatementImpl#getBlock <em>Block</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.alf.alf.impl.AnnotatedStatementImpl#getStatement <em>Statement</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,14 +45,14 @@ public class AnnotatedStatementImpl extends StatementImpl implements AnnotatedSt
 	protected Annotation annotation;
 
 	/**
-	 * The cached value of the '{@link #getBlock() <em>Block</em>}' containment reference.
+	 * The cached value of the '{@link #getStatement() <em>Statement</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBlock()
+	 * @see #getStatement()
 	 * @generated
 	 * @ordered
 	 */
-	protected Block block;
+	protected Statement statement;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -121,8 +121,8 @@ public class AnnotatedStatementImpl extends StatementImpl implements AnnotatedSt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Block getBlock() {
-		return block;
+	public Statement getStatement() {
+		return statement;
 	}
 
 	/**
@@ -130,11 +130,11 @@ public class AnnotatedStatementImpl extends StatementImpl implements AnnotatedSt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBlock(Block newBlock, NotificationChain msgs) {
-		Block oldBlock = block;
-		block = newBlock;
+	public NotificationChain basicSetStatement(Statement newStatement, NotificationChain msgs) {
+		Statement oldStatement = statement;
+		statement = newStatement;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AlfPackage.ANNOTATED_STATEMENT__BLOCK, oldBlock, newBlock);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AlfPackage.ANNOTATED_STATEMENT__STATEMENT, oldStatement, newStatement);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -145,18 +145,18 @@ public class AnnotatedStatementImpl extends StatementImpl implements AnnotatedSt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBlock(Block newBlock) {
-		if (newBlock != block) {
+	public void setStatement(Statement newStatement) {
+		if (newStatement != statement) {
 			NotificationChain msgs = null;
-			if (block != null)
-				msgs = ((InternalEObject)block).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AlfPackage.ANNOTATED_STATEMENT__BLOCK, null, msgs);
-			if (newBlock != null)
-				msgs = ((InternalEObject)newBlock).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AlfPackage.ANNOTATED_STATEMENT__BLOCK, null, msgs);
-			msgs = basicSetBlock(newBlock, msgs);
+			if (statement != null)
+				msgs = ((InternalEObject)statement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AlfPackage.ANNOTATED_STATEMENT__STATEMENT, null, msgs);
+			if (newStatement != null)
+				msgs = ((InternalEObject)newStatement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AlfPackage.ANNOTATED_STATEMENT__STATEMENT, null, msgs);
+			msgs = basicSetStatement(newStatement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AlfPackage.ANNOTATED_STATEMENT__BLOCK, newBlock, newBlock));
+			eNotify(new ENotificationImpl(this, Notification.SET, AlfPackage.ANNOTATED_STATEMENT__STATEMENT, newStatement, newStatement));
 	}
 
 	/**
@@ -169,8 +169,8 @@ public class AnnotatedStatementImpl extends StatementImpl implements AnnotatedSt
 		switch (featureID) {
 			case AlfPackage.ANNOTATED_STATEMENT__ANNOTATION:
 				return basicSetAnnotation(null, msgs);
-			case AlfPackage.ANNOTATED_STATEMENT__BLOCK:
-				return basicSetBlock(null, msgs);
+			case AlfPackage.ANNOTATED_STATEMENT__STATEMENT:
+				return basicSetStatement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -185,8 +185,8 @@ public class AnnotatedStatementImpl extends StatementImpl implements AnnotatedSt
 		switch (featureID) {
 			case AlfPackage.ANNOTATED_STATEMENT__ANNOTATION:
 				return getAnnotation();
-			case AlfPackage.ANNOTATED_STATEMENT__BLOCK:
-				return getBlock();
+			case AlfPackage.ANNOTATED_STATEMENT__STATEMENT:
+				return getStatement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -202,8 +202,8 @@ public class AnnotatedStatementImpl extends StatementImpl implements AnnotatedSt
 			case AlfPackage.ANNOTATED_STATEMENT__ANNOTATION:
 				setAnnotation((Annotation)newValue);
 				return;
-			case AlfPackage.ANNOTATED_STATEMENT__BLOCK:
-				setBlock((Block)newValue);
+			case AlfPackage.ANNOTATED_STATEMENT__STATEMENT:
+				setStatement((Statement)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -220,8 +220,8 @@ public class AnnotatedStatementImpl extends StatementImpl implements AnnotatedSt
 			case AlfPackage.ANNOTATED_STATEMENT__ANNOTATION:
 				setAnnotation((Annotation)null);
 				return;
-			case AlfPackage.ANNOTATED_STATEMENT__BLOCK:
-				setBlock((Block)null);
+			case AlfPackage.ANNOTATED_STATEMENT__STATEMENT:
+				setStatement((Statement)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -237,8 +237,8 @@ public class AnnotatedStatementImpl extends StatementImpl implements AnnotatedSt
 		switch (featureID) {
 			case AlfPackage.ANNOTATED_STATEMENT__ANNOTATION:
 				return annotation != null;
-			case AlfPackage.ANNOTATED_STATEMENT__BLOCK:
-				return block != null;
+			case AlfPackage.ANNOTATED_STATEMENT__STATEMENT:
+				return statement != null;
 		}
 		return super.eIsSet(featureID);
 	}

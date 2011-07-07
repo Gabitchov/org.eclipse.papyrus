@@ -552,6 +552,13 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass documentedStatementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass inlineStatementEClass = null;
 
 	/**
@@ -560,13 +567,6 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * @generated
 	 */
 	private EClass annotatedStatementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass documentedStatementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2405,6 +2405,33 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDocumentedStatement() {
+		return documentedStatementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDocumentedStatement_Comment() {
+		return (EAttribute)documentedStatementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDocumentedStatement_Statement() {
+		return (EReference)documentedStatementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInlineStatement() {
 		return inlineStatementEClass;
 	}
@@ -2450,35 +2477,8 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAnnotatedStatement_Block() {
+	public EReference getAnnotatedStatement_Statement() {
 		return (EReference)annotatedStatementEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getDocumentedStatement() {
-		return documentedStatementEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDocumentedStatement_Comment() {
-		return (EAttribute)documentedStatementEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDocumentedStatement_Statement() {
-		return (EReference)documentedStatementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3720,17 +3720,17 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 		statementSequenceEClass = createEClass(STATEMENT_SEQUENCE);
 		createEReference(statementSequenceEClass, STATEMENT_SEQUENCE__STATEMENTS);
 
+		documentedStatementEClass = createEClass(DOCUMENTED_STATEMENT);
+		createEAttribute(documentedStatementEClass, DOCUMENTED_STATEMENT__COMMENT);
+		createEReference(documentedStatementEClass, DOCUMENTED_STATEMENT__STATEMENT);
+
 		inlineStatementEClass = createEClass(INLINE_STATEMENT);
 		createEAttribute(inlineStatementEClass, INLINE_STATEMENT__LANGAGE_NAME);
 		createEAttribute(inlineStatementEClass, INLINE_STATEMENT__BODY);
 
 		annotatedStatementEClass = createEClass(ANNOTATED_STATEMENT);
 		createEReference(annotatedStatementEClass, ANNOTATED_STATEMENT__ANNOTATION);
-		createEReference(annotatedStatementEClass, ANNOTATED_STATEMENT__BLOCK);
-
-		documentedStatementEClass = createEClass(DOCUMENTED_STATEMENT);
-		createEAttribute(documentedStatementEClass, DOCUMENTED_STATEMENT__COMMENT);
-		createEReference(documentedStatementEClass, DOCUMENTED_STATEMENT__STATEMENT);
+		createEReference(annotatedStatementEClass, ANNOTATED_STATEMENT__STATEMENT);
 
 		statementEClass = createEClass(STATEMENT);
 
@@ -4184,17 +4184,17 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 		initEClass(statementSequenceEClass, StatementSequence.class, "StatementSequence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStatementSequence_Statements(), this.getDocumentedStatement(), null, "statements", null, 0, -1, StatementSequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(documentedStatementEClass, DocumentedStatement.class, "DocumentedStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDocumentedStatement_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, DocumentedStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDocumentedStatement_Statement(), this.getStatement(), null, "statement", null, 0, 1, DocumentedStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(inlineStatementEClass, InlineStatement.class, "InlineStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getInlineStatement_LangageName(), ecorePackage.getEString(), "langageName", null, 0, 1, InlineStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getInlineStatement_Body(), ecorePackage.getEString(), "body", null, 0, 1, InlineStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(annotatedStatementEClass, AnnotatedStatement.class, "AnnotatedStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAnnotatedStatement_Annotation(), this.getAnnotation(), null, "annotation", null, 0, 1, AnnotatedStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAnnotatedStatement_Block(), this.getBlock(), null, "block", null, 0, 1, AnnotatedStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(documentedStatementEClass, DocumentedStatement.class, "DocumentedStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDocumentedStatement_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, DocumentedStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDocumentedStatement_Statement(), this.getStatement(), null, "statement", null, 0, 1, DocumentedStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnnotatedStatement_Statement(), this.getStatement(), null, "statement", null, 0, 1, AnnotatedStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(statementEClass, Statement.class, "Statement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

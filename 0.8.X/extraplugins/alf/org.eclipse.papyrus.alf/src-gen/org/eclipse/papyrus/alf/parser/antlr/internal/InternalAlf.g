@@ -4439,136 +4439,6 @@ ruleStatementSequence returns [EObject current=null]
 
 
 
-// Entry rule entryRuleInlineStatement
-entryRuleInlineStatement returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getInlineStatementRule()); }
-	 iv_ruleInlineStatement=ruleInlineStatement 
-	 { $current=$iv_ruleInlineStatement.current; } 
-	 EOF 
-;
-
-// Rule InlineStatement
-ruleInlineStatement returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(	otherlv_0='/*@' 
-    {
-    	newLeafNode(otherlv_0, grammarAccess.getInlineStatementAccess().getSolidusAsteriskCommercialAtKeyword_0());
-    }
-	otherlv_1='inline' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getInlineStatementAccess().getInlineKeyword_1());
-    }
-(
-(
-		lv_langageName_2_0=RULE_ID
-		{
-			newLeafNode(lv_langageName_2_0, grammarAccess.getInlineStatementAccess().getLangageNameIDTerminalRuleCall_2_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getInlineStatementRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"langageName",
-        		lv_langageName_2_0, 
-        		"ID");
-	    }
-
-)
-)(
-(
-		lv_body_3_0=RULE_STRING
-		{
-			newLeafNode(lv_body_3_0, grammarAccess.getInlineStatementAccess().getBodySTRINGTerminalRuleCall_3_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getInlineStatementRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"body",
-        		lv_body_3_0, 
-        		"STRING");
-	    }
-
-)
-)	otherlv_4='*/' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getInlineStatementAccess().getAsteriskSolidusKeyword_4());
-    }
-)
-;
-
-
-
-
-
-// Entry rule entryRuleAnnotatedStatement
-entryRuleAnnotatedStatement returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getAnnotatedStatementRule()); }
-	 iv_ruleAnnotatedStatement=ruleAnnotatedStatement 
-	 { $current=$iv_ruleAnnotatedStatement.current; } 
-	 EOF 
-;
-
-// Rule AnnotatedStatement
-ruleAnnotatedStatement returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(	otherlv_0='//@' 
-    {
-    	newLeafNode(otherlv_0, grammarAccess.getAnnotatedStatementAccess().getSolidusSolidusCommercialAtKeyword_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getAnnotatedStatementAccess().getAnnotationAnnotationParserRuleCall_1_0()); 
-	    }
-		lv_annotation_1_0=ruleAnnotation		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getAnnotatedStatementRule());
-	        }
-       		set(
-       			$current, 
-       			"annotation",
-        		lv_annotation_1_0, 
-        		"Annotation");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getAnnotatedStatementAccess().getBlockBlockParserRuleCall_2_0()); 
-	    }
-		lv_block_2_0=ruleBlock		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getAnnotatedStatementRule());
-	        }
-       		set(
-       			$current, 
-       			"block",
-        		lv_block_2_0, 
-        		"Block");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
-;
-
-
-
-
-
 // Entry rule entryRuleDocumentedStatement
 entryRuleDocumentedStatement returns [EObject current=null] 
 	:
@@ -4632,6 +4502,144 @@ ruleDocumentedStatement returns [EObject current=null]
        			$current, 
        			"statement",
         		lv_statement_1_0, 
+        		"Statement");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleInlineStatement
+entryRuleInlineStatement returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getInlineStatementRule()); }
+	 iv_ruleInlineStatement=ruleInlineStatement 
+	 { $current=$iv_ruleInlineStatement.current; } 
+	 EOF 
+;
+
+// Rule InlineStatement
+ruleInlineStatement returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='/*@' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getInlineStatementAccess().getSolidusAsteriskCommercialAtKeyword_0());
+    }
+	otherlv_1='inline' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getInlineStatementAccess().getInlineKeyword_1());
+    }
+	otherlv_2='(' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getInlineStatementAccess().getLeftParenthesisKeyword_2());
+    }
+(
+(
+		lv_langageName_3_0=RULE_ID
+		{
+			newLeafNode(lv_langageName_3_0, grammarAccess.getInlineStatementAccess().getLangageNameIDTerminalRuleCall_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getInlineStatementRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"langageName",
+        		lv_langageName_3_0, 
+        		"ID");
+	    }
+
+)
+)	otherlv_4=')' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getInlineStatementAccess().getRightParenthesisKeyword_4());
+    }
+(
+(
+		lv_body_5_0=RULE_STRING
+		{
+			newLeafNode(lv_body_5_0, grammarAccess.getInlineStatementAccess().getBodySTRINGTerminalRuleCall_5_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getInlineStatementRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"body",
+        		lv_body_5_0, 
+        		"STRING");
+	    }
+
+)
+)	otherlv_6='*/' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getInlineStatementAccess().getAsteriskSolidusKeyword_6());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleAnnotatedStatement
+entryRuleAnnotatedStatement returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getAnnotatedStatementRule()); }
+	 iv_ruleAnnotatedStatement=ruleAnnotatedStatement 
+	 { $current=$iv_ruleAnnotatedStatement.current; } 
+	 EOF 
+;
+
+// Rule AnnotatedStatement
+ruleAnnotatedStatement returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='//@' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getAnnotatedStatementAccess().getSolidusSolidusCommercialAtKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getAnnotatedStatementAccess().getAnnotationAnnotationParserRuleCall_1_0()); 
+	    }
+		lv_annotation_1_0=ruleAnnotation		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getAnnotatedStatementRule());
+	        }
+       		set(
+       			$current, 
+       			"annotation",
+        		lv_annotation_1_0, 
+        		"Annotation");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getAnnotatedStatementAccess().getStatementStatementParserRuleCall_2_0()); 
+	    }
+		lv_statement_2_0=ruleStatement		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getAnnotatedStatementRule());
+	        }
+       		set(
+       			$current, 
+       			"statement",
+        		lv_statement_2_0, 
         		"Statement");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -7435,7 +7443,7 @@ RULE_ID : (('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*|'\'' ( opti
 
 RULE_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
 
-RULE_ML_COMMENT : '/*' ~('@')* '*/';
+RULE_ML_COMMENT : '/*' ~('@') ( options {greedy=false;} : . )*'*/';
 
 RULE_SL_COMMENT : '//' ~(('\n'|'\r'|'@'))* ('\r'? '\n')?;
 

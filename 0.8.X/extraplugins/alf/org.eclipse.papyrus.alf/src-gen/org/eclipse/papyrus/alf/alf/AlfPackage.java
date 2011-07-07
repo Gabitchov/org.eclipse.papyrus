@@ -2281,6 +2281,43 @@ public interface AlfPackage extends EPackage {
 	int STATEMENT_SEQUENCE_FEATURE_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.alf.alf.impl.DocumentedStatementImpl <em>Documented Statement</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.alf.alf.impl.DocumentedStatementImpl
+	 * @see org.eclipse.papyrus.alf.alf.impl.AlfPackageImpl#getDocumentedStatement()
+	 * @generated
+	 */
+	int DOCUMENTED_STATEMENT = 60;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTED_STATEMENT__COMMENT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Statement</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTED_STATEMENT__STATEMENT = 1;
+
+	/**
+	 * The number of structural features of the '<em>Documented Statement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTED_STATEMENT_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.alf.alf.impl.StatementImpl <em>Statement</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2307,7 +2344,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.alf.alf.impl.AlfPackageImpl#getInlineStatement()
 	 * @generated
 	 */
-	int INLINE_STATEMENT = 60;
+	int INLINE_STATEMENT = 61;
 
 	/**
 	 * The feature id for the '<em><b>Langage Name</b></em>' attribute.
@@ -2344,7 +2381,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.alf.alf.impl.AlfPackageImpl#getAnnotatedStatement()
 	 * @generated
 	 */
-	int ANNOTATED_STATEMENT = 61;
+	int ANNOTATED_STATEMENT = 62;
 
 	/**
 	 * The feature id for the '<em><b>Annotation</b></em>' containment reference.
@@ -2356,13 +2393,13 @@ public interface AlfPackage extends EPackage {
 	int ANNOTATED_STATEMENT__ANNOTATION = STATEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Block</b></em>' containment reference.
+	 * The feature id for the '<em><b>Statement</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATED_STATEMENT__BLOCK = STATEMENT_FEATURE_COUNT + 1;
+	int ANNOTATED_STATEMENT__STATEMENT = STATEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Annotated Statement</em>' class.
@@ -2372,43 +2409,6 @@ public interface AlfPackage extends EPackage {
 	 * @ordered
 	 */
 	int ANNOTATED_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.alf.alf.impl.DocumentedStatementImpl <em>Documented Statement</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.alf.alf.impl.DocumentedStatementImpl
-	 * @see org.eclipse.papyrus.alf.alf.impl.AlfPackageImpl#getDocumentedStatement()
-	 * @generated
-	 */
-	int DOCUMENTED_STATEMENT = 62;
-
-	/**
-	 * The feature id for the '<em><b>Comment</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENTED_STATEMENT__COMMENT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Statement</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENTED_STATEMENT__STATEMENT = 1;
-
-	/**
-	 * The number of structural features of the '<em>Documented Statement</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENTED_STATEMENT_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.alf.alf.impl.AnnotationImpl <em>Annotation</em>}' class.
@@ -5491,6 +5491,38 @@ public interface AlfPackage extends EPackage {
 	EReference getStatementSequence_Statements();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.alf.alf.DocumentedStatement <em>Documented Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Documented Statement</em>'.
+	 * @see org.eclipse.papyrus.alf.alf.DocumentedStatement
+	 * @generated
+	 */
+	EClass getDocumentedStatement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.alf.alf.DocumentedStatement#getComment <em>Comment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Comment</em>'.
+	 * @see org.eclipse.papyrus.alf.alf.DocumentedStatement#getComment()
+	 * @see #getDocumentedStatement()
+	 * @generated
+	 */
+	EAttribute getDocumentedStatement_Comment();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.alf.alf.DocumentedStatement#getStatement <em>Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Statement</em>'.
+	 * @see org.eclipse.papyrus.alf.alf.DocumentedStatement#getStatement()
+	 * @see #getDocumentedStatement()
+	 * @generated
+	 */
+	EReference getDocumentedStatement_Statement();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.alf.alf.InlineStatement <em>Inline Statement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5544,47 +5576,15 @@ public interface AlfPackage extends EPackage {
 	EReference getAnnotatedStatement_Annotation();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.alf.alf.AnnotatedStatement#getBlock <em>Block</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Block</em>'.
-	 * @see org.eclipse.papyrus.alf.alf.AnnotatedStatement#getBlock()
-	 * @see #getAnnotatedStatement()
-	 * @generated
-	 */
-	EReference getAnnotatedStatement_Block();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.alf.alf.DocumentedStatement <em>Documented Statement</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Documented Statement</em>'.
-	 * @see org.eclipse.papyrus.alf.alf.DocumentedStatement
-	 * @generated
-	 */
-	EClass getDocumentedStatement();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.alf.alf.DocumentedStatement#getComment <em>Comment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Comment</em>'.
-	 * @see org.eclipse.papyrus.alf.alf.DocumentedStatement#getComment()
-	 * @see #getDocumentedStatement()
-	 * @generated
-	 */
-	EAttribute getDocumentedStatement_Comment();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.alf.alf.DocumentedStatement#getStatement <em>Statement</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.alf.alf.AnnotatedStatement#getStatement <em>Statement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Statement</em>'.
-	 * @see org.eclipse.papyrus.alf.alf.DocumentedStatement#getStatement()
-	 * @see #getDocumentedStatement()
+	 * @see org.eclipse.papyrus.alf.alf.AnnotatedStatement#getStatement()
+	 * @see #getAnnotatedStatement()
 	 * @generated
 	 */
-	EReference getDocumentedStatement_Statement();
+	EReference getAnnotatedStatement_Statement();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.alf.alf.Statement <em>Statement</em>}'.
@@ -8181,6 +8181,32 @@ public interface AlfPackage extends EPackage {
 		EReference STATEMENT_SEQUENCE__STATEMENTS = eINSTANCE.getStatementSequence_Statements();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.alf.alf.impl.DocumentedStatementImpl <em>Documented Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.alf.alf.impl.DocumentedStatementImpl
+		 * @see org.eclipse.papyrus.alf.alf.impl.AlfPackageImpl#getDocumentedStatement()
+		 * @generated
+		 */
+		EClass DOCUMENTED_STATEMENT = eINSTANCE.getDocumentedStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENTED_STATEMENT__COMMENT = eINSTANCE.getDocumentedStatement_Comment();
+
+		/**
+		 * The meta object literal for the '<em><b>Statement</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DOCUMENTED_STATEMENT__STATEMENT = eINSTANCE.getDocumentedStatement_Statement();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.alf.alf.impl.InlineStatementImpl <em>Inline Statement</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -8225,38 +8251,12 @@ public interface AlfPackage extends EPackage {
 		EReference ANNOTATED_STATEMENT__ANNOTATION = eINSTANCE.getAnnotatedStatement_Annotation();
 
 		/**
-		 * The meta object literal for the '<em><b>Block</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ANNOTATED_STATEMENT__BLOCK = eINSTANCE.getAnnotatedStatement_Block();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.alf.alf.impl.DocumentedStatementImpl <em>Documented Statement</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.alf.alf.impl.DocumentedStatementImpl
-		 * @see org.eclipse.papyrus.alf.alf.impl.AlfPackageImpl#getDocumentedStatement()
-		 * @generated
-		 */
-		EClass DOCUMENTED_STATEMENT = eINSTANCE.getDocumentedStatement();
-
-		/**
-		 * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DOCUMENTED_STATEMENT__COMMENT = eINSTANCE.getDocumentedStatement_Comment();
-
-		/**
 		 * The meta object literal for the '<em><b>Statement</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DOCUMENTED_STATEMENT__STATEMENT = eINSTANCE.getDocumentedStatement_Statement();
+		EReference ANNOTATED_STATEMENT__STATEMENT = eINSTANCE.getAnnotatedStatement_Statement();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.alf.alf.impl.StatementImpl <em>Statement</em>}' class.

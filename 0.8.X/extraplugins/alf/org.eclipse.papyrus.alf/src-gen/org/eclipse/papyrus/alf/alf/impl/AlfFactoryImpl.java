@@ -121,9 +121,9 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 			case AlfPackage.CLASS_EXTENT_EXPRESSION: return createClassExtentExpression();
 			case AlfPackage.BLOCK: return createBlock();
 			case AlfPackage.STATEMENT_SEQUENCE: return createStatementSequence();
+			case AlfPackage.DOCUMENTED_STATEMENT: return createDocumentedStatement();
 			case AlfPackage.INLINE_STATEMENT: return createInlineStatement();
 			case AlfPackage.ANNOTATED_STATEMENT: return createAnnotatedStatement();
-			case AlfPackage.DOCUMENTED_STATEMENT: return createDocumentedStatement();
 			case AlfPackage.STATEMENT: return createStatement();
 			case AlfPackage.ANNOTATION: return createAnnotation();
 			case AlfPackage.BLOCK_STATEMENT: return createBlockStatement();
@@ -827,6 +827,16 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DocumentedStatement createDocumentedStatement() {
+		DocumentedStatementImpl documentedStatement = new DocumentedStatementImpl();
+		return documentedStatement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public InlineStatement createInlineStatement() {
 		InlineStatementImpl inlineStatement = new InlineStatementImpl();
 		return inlineStatement;
@@ -840,16 +850,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	public AnnotatedStatement createAnnotatedStatement() {
 		AnnotatedStatementImpl annotatedStatement = new AnnotatedStatementImpl();
 		return annotatedStatement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DocumentedStatement createDocumentedStatement() {
-		DocumentedStatementImpl documentedStatement = new DocumentedStatementImpl();
-		return documentedStatement;
 	}
 
 	/**

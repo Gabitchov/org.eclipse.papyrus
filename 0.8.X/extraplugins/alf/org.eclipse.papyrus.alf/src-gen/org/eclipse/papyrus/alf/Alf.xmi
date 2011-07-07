@@ -1209,37 +1209,7 @@
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/alf/Alf#//StatementSequence"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" cardinality="+" feature="statements" operator="+=">
-        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.68"/>
-      </alternatives>
-    </rules>
-    <rules xsi:type="xtext:ParserRule" name="InlineStatement">
-      <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/alf/Alf#//InlineStatement"/>
-      </type>
-      <alternatives xsi:type="xtext:Group">
-        <elements xsi:type="xtext:Keyword" value="/*@"/>
-        <elements xsi:type="xtext:Keyword" value="inline"/>
-        <elements xsi:type="xtext:Assignment" feature="langageName" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.110"/>
-        </elements>
-        <elements xsi:type="xtext:Assignment" feature="body" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.111"/>
-        </elements>
-        <elements xsi:type="xtext:Keyword" value="*/"/>
-      </alternatives>
-    </rules>
-    <rules xsi:type="xtext:ParserRule" name="AnnotatedStatement">
-      <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/alf/Alf#//AnnotatedStatement"/>
-      </type>
-      <alternatives xsi:type="xtext:Group">
-        <elements xsi:type="xtext:Keyword" value="//@"/>
-        <elements xsi:type="xtext:Assignment" feature="annotation" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.70"/>
-        </elements>
-        <elements xsi:type="xtext:Assignment" feature="block" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.64"/>
-        </elements>
+        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.66"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="DocumentedStatement">
@@ -1258,13 +1228,45 @@
         </elements>
       </alternatives>
     </rules>
+    <rules xsi:type="xtext:ParserRule" name="InlineStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/alf/Alf#//InlineStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="/*@"/>
+        <elements xsi:type="xtext:Keyword" value="inline"/>
+        <elements xsi:type="xtext:Keyword" value="("/>
+        <elements xsi:type="xtext:Assignment" feature="langageName" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.110"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=")"/>
+        <elements xsi:type="xtext:Assignment" feature="body" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.111"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="*/"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="AnnotatedStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/alf/Alf#//AnnotatedStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="//@"/>
+        <elements xsi:type="xtext:Assignment" feature="annotation" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.70"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="statement" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.69"/>
+        </elements>
+      </alternatives>
+    </rules>
     <rules xsi:type="xtext:ParserRule" name="Statement">
       <type metamodel="/0/@metamodelDeclarations.0">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/alf/Alf#//Statement"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.68"/>
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.67"/>
-        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.66"/>
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.72"/>
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.73"/>
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.74"/>
@@ -1516,7 +1518,7 @@
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/alf/Alf#//NonEmptyStatementSequence"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" cardinality="+" feature="statement" operator="+=">
-        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.68"/>
+        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.66"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="WhileStatement">
@@ -2033,10 +2035,12 @@
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="/*"/>
-        <elements xsi:type="xtext:NegatedToken" cardinality="*">
+        <elements xsi:type="xtext:NegatedToken">
           <terminal xsi:type="xtext:Keyword" value="@"/>
         </elements>
-        <elements xsi:type="xtext:Keyword" value="*/"/>
+        <elements xsi:type="xtext:UntilToken">
+          <terminal xsi:type="xtext:Keyword" value="*/"/>
+        </elements>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="SL_COMMENT">
