@@ -16,7 +16,7 @@ package org.eclipse.papyrus.alf.alf;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.alf.alf.AnnotatedStatement#getAnnotation <em>Annotation</em>}</li>
- *   <li>{@link org.eclipse.papyrus.alf.alf.AnnotatedStatement#getBlock <em>Block</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.alf.alf.AnnotatedStatement#getStatement <em>Statement</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,29 +52,29 @@ public interface AnnotatedStatement extends Statement {
 	void setAnnotation(Annotation value);
 
 	/**
-	 * Returns the value of the '<em><b>Block</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Statement</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Block</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Statement</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Block</em>' containment reference.
-	 * @see #setBlock(Block)
-	 * @see org.eclipse.papyrus.alf.alf.AlfPackage#getAnnotatedStatement_Block()
+	 * @return the value of the '<em>Statement</em>' containment reference.
+	 * @see #setStatement(Statement)
+	 * @see org.eclipse.papyrus.alf.alf.AlfPackage#getAnnotatedStatement_Statement()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Block getBlock();
+	Statement getStatement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.AnnotatedStatement#getBlock <em>Block</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.AnnotatedStatement#getStatement <em>Statement</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Block</em>' containment reference.
-	 * @see #getBlock()
+	 * @param value the new value of the '<em>Statement</em>' containment reference.
+	 * @see #getStatement()
 	 * @generated
 	 */
-	void setBlock(Block value);
+	void setStatement(Statement value);
 
 } // AnnotatedStatement

@@ -371,16 +371,17 @@ StatementSequence :
 	(statements += DocumentedStatement)+
 ;
 
+DocumentedStatement :
+	(comment = (ML_COMMENT | SL_COMMENT))? statement = Statement 
+;
+
 InlineStatement :
-	'/*@' 'inline' langageName = ID body = STRING '*/'
+	'/*@' 'inline' '('langageName = ID')' body = STRING '*/'
 ;
 
 AnnotatedStatement :
-	'//@' annotation = Annotation block = Block 
-;
-
-DocumentedStatement :
-	(comment = (ML_COMMENT | SL_COMMENT))? statement = Statement 
+	'//@' annotation = Annotation //block = Block
+	statement = Statement 
 ;
 
 Statement :
@@ -591,7 +592,7 @@ enum AssignmentOperator :
 
 terminal ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*  | ('\'' -> '\'')  ;
 terminal STRING	: '"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* '"' ;
-terminal ML_COMMENT	: '/*' !('@')* '*/';
+terminal ML_COMMENT	: '/*' !('@') -> '*/';
 terminal SL_COMMENT : '//' !('\n'|'\r'|'@')* ('\r'? '\n')?;
 
 //terminal IDENTIFIER : ID  ;

@@ -566,6 +566,15 @@ public interface AlfFactory extends EFactory {
 	StatementSequence createStatementSequence();
 
 	/**
+	 * Returns a new object of class '<em>Documented Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Documented Statement</em>'.
+	 * @generated
+	 */
+	DocumentedStatement createDocumentedStatement();
+
+	/**
 	 * Returns a new object of class '<em>Inline Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -582,15 +591,6 @@ public interface AlfFactory extends EFactory {
 	 * @generated
 	 */
 	AnnotatedStatement createAnnotatedStatement();
-
-	/**
-	 * Returns a new object of class '<em>Documented Statement</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Documented Statement</em>'.
-	 * @generated
-	 */
-	DocumentedStatement createDocumentedStatement();
 
 	/**
 	 * Returns a new object of class '<em>Statement</em>'.
