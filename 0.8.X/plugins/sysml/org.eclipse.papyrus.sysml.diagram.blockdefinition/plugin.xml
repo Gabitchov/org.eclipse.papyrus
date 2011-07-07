@@ -691,6 +691,9 @@
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.InheritedClassDiagramViewProvider">
 		<Priority name="Low"/>
 		
+		<!-- Load the ViewProvider on following SemanticHint related to IElementType(s) used in the palette (also used for legacy elements) -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="UML::Model, UML::Package, UML::InstanceSpecification, UML::Comment, UML::Constraint, UML::Slot"/>
+		
 		<!-- 
 			"2005" = MODEL
 			"3024" = MODEL_CN

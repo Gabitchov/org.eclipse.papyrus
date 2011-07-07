@@ -31,6 +31,7 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.editparts.AbstractBorderEditPart;
 import org.eclipse.papyrus.diagram.common.figure.node.AffixedNamedElementFigure;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
@@ -52,6 +53,7 @@ public abstract class AbstractElementBorderEditPart extends AbstractBorderEditPa
 
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());		
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 	}
 
