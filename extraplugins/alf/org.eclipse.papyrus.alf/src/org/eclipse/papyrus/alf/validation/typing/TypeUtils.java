@@ -51,7 +51,9 @@ import org.eclipse.papyrus.alf.alf.PropertyCallExpression;
 import org.eclipse.papyrus.alf.alf.RelationalExpression;
 import org.eclipse.papyrus.alf.alf.STRING_LITERAL;
 import org.eclipse.papyrus.alf.alf.SelectOrRejectOperation;
+import org.eclipse.papyrus.alf.alf.SequenceConstructionExpression;
 import org.eclipse.papyrus.alf.alf.SequenceConstructionOrAccessCompletion;
+import org.eclipse.papyrus.alf.alf.SequenceElement;
 import org.eclipse.papyrus.alf.alf.SequenceExpansionExpression;
 import org.eclipse.papyrus.alf.alf.SequenceOperationExpression;
 import org.eclipse.papyrus.alf.alf.SequenceReductionExpression;
@@ -66,6 +68,7 @@ import org.eclipse.papyrus.alf.alf.UnqualifiedName;
 import org.eclipse.papyrus.alf.alf.ValueSpecification;
 import org.eclipse.papyrus.alf.scoping.AlfScopeProvider;
 import org.eclipse.papyrus.alf.validation.AlfJavaValidator;
+import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Parameter;
@@ -1488,6 +1491,80 @@ public class TypeUtils {
 			return getTypeOfSuffixExpression(exp.getSuffix(), typeOfSuffix) ;
 		else
 			return typeOfSuffix ;
+	}
+	
+	public TypeExpression getTypeOfSequenceElement (SequenceElement s) {
+		if (s instanceof Expression)
+			return getTypeOfExpression((Expression)s) ;
+		else // instanceof SequenceConstructionExpression
+			return getTypeOfSequenceConstructionExpression((SequenceConstructionExpression)s) ;
+	}
+	
+	public TypeExpression getTypeOfSequenceConstructionExpression (SequenceConstructionExpression s) {
+		String errorMessage = "";
+		ErrorTypeFacade error = null ;
+		if (s.getSequenceElement() == null || s.getSequenceElement().isEmpty()) {
+			errorMessage = "Invalid sequence construction expression." ;
+			error = TypeFacadeFactory.eInstance
+						.createErrorTypeFacade(errorMessage, s, AlfPackage.eINSTANCE.getSequenceConstructionExpression_SequenceElement()) ;
+			return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+		}
+		TypeExpression baseType = this.getTypeOfSequenceElement(s.getSequenceElement().get(0)) ;
+		if (baseType.getType() instanceof ErrorTypeFacade)
+			return baseType ;
+		if (s.getRangeUpper() != null) { // Sequence is specified as a range
+			TypeExpression upperType = this.getTypeOfExpression(s.getRangeUpper()) ;
+			if (upperType.getType() instanceof ErrorTypeFacade)
+				return upperType ;
+			if (upperType.isCompatibleWithMe(baseType) != 0)
+				return TypeExpressionFactory.eInstance.createTypeExpression(upperType.getType(), 0, -1, false, true) ;
+			else if (baseType.isCompatibleWithMe(upperType) != 0)
+				return TypeExpressionFactory.eInstance.createTypeExpression(baseType.getType(), 0, -1, false, true) ;
+			else {
+				errorMessage += "All the elements in the sequence must be type compatible." ;
+				error = TypeFacadeFactory.eInstance
+							.createErrorTypeFacade(errorMessage, s, AlfPackage.eINSTANCE.getSequenceConstructionExpression_SequenceElement()) ;
+				return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+			}
+		}
+		else {// Values contained in the sequence are enumerated
+			List<TypeExpression> typeOfSequenceElements = new ArrayList<TypeExpression>() ;
+			typeOfSequenceElements.add(baseType) ;
+			for (int i = 1 ; i < s.getSequenceElement().size() ; i ++) {
+				TypeExpression t = this.getTypeOfSequenceElement(s.getSequenceElement().get(i)) ;
+				if (t.getType() instanceof ErrorTypeFacade)
+					return t ;
+				else
+					typeOfSequenceElements.add(t) ;
+			}
+			TypeExpression commonSuperType = this.findCommonSuperType(typeOfSequenceElements) ;
+			if (commonSuperType == null) {
+				errorMessage = "All the elements in the sequence must be type compatible." ;
+				error = TypeFacadeFactory.eInstance
+						.createErrorTypeFacade(errorMessage, s, AlfPackage.eINSTANCE.getSequenceConstructionExpression_SequenceElement()) ;
+				commonSuperType = TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+			}
+			else {
+				commonSuperType.setMultiplicity(MultiplicityFacadeFactory.eInstance.createMultiplicityFacade(-1)) ;
+			}
+			return commonSuperType ;
+		}
+	}
+	
+	private TypeExpression findCommonSuperType(List<TypeExpression> l) {
+		TypeExpression mostGeneral = l.get(0) ;
+		for (int i = 1 ; i < l.size() && mostGeneral != null ; i ++) {
+			TypeExpression current = l.get(i) ;
+			if (mostGeneral == current)
+				;
+			else if (current.isCompatibleWithMe(mostGeneral) != 0)
+				;
+			else if (mostGeneral.isCompatibleWithMe(current) != 0)
+				mostGeneral = current ;
+			else
+				mostGeneral = null ;
+		}
+		return mostGeneral ;
 	}
 }
 

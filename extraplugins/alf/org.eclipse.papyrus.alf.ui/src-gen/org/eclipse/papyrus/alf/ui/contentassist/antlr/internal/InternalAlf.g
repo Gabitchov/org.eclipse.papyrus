@@ -18286,8 +18286,8 @@ rule__LocalNameDeclarationStatement__InitAssignment_6
     }
 :
 (
-{ before(grammarAccess.getLocalNameDeclarationStatementAccess().getInitExpressionParserRuleCall_6_0()); }
-	ruleExpression{ after(grammarAccess.getLocalNameDeclarationStatementAccess().getInitExpressionParserRuleCall_6_0()); }
+{ before(grammarAccess.getLocalNameDeclarationStatementAccess().getInitSequenceElementParserRuleCall_6_0()); }
+	ruleSequenceElement{ after(grammarAccess.getLocalNameDeclarationStatementAccess().getInitSequenceElementParserRuleCall_6_0()); }
 )
 
 ;
@@ -19254,8 +19254,8 @@ rule__AssignmentCompletion__RightHandSideAssignment_1
     }
 :
 (
-{ before(grammarAccess.getAssignmentCompletionAccess().getRightHandSideExpressionParserRuleCall_1_0()); }
-	ruleExpression{ after(grammarAccess.getAssignmentCompletionAccess().getRightHandSideExpressionParserRuleCall_1_0()); }
+{ before(grammarAccess.getAssignmentCompletionAccess().getRightHandSideSequenceElementParserRuleCall_1_0()); }
+	ruleSequenceElement{ after(grammarAccess.getAssignmentCompletionAccess().getRightHandSideSequenceElementParserRuleCall_1_0()); }
 )
 
 ;

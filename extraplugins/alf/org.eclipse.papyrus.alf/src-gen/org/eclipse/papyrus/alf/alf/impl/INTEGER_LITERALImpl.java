@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
-
+ * $Id$
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -20,27 +20,24 @@ import org.eclipse.papyrus.alf.alf.INTEGER_LITERAL;
  *
  * @generated
  */
-public class INTEGER_LITERALImpl extends NUMBER_LITERALImpl implements INTEGER_LITERAL
-{
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected INTEGER_LITERALImpl()
-  {
-    super();
-  }
+public class INTEGER_LITERALImpl extends NUMBER_LITERALImpl implements INTEGER_LITERAL {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected INTEGER_LITERALImpl() {
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return AlfPackage.Literals.INTEGER_LITERAL;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return AlfPackage.Literals.INTEGER_LITERAL;
+	}
 
 } //INTEGER_LITERALImpl

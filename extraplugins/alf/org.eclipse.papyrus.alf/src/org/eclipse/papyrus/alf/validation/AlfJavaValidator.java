@@ -261,7 +261,7 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 		
 		// 3. checks the init expression
 		if (statement.getInit() != null) {
-			TypeExpression typeOfInit = new TypeUtils().getTypeOfExpression(statement.getInit()) ;
+			TypeExpression typeOfInit = new TypeUtils().getTypeOfSequenceElement(statement.getInit()) ;
 			// first checks that init expression is valid
 			if (typeOfInit.getTypeFacade() instanceof ErrorTypeFacade) {
 				ErrorTypeFacade error = (ErrorTypeFacade)typeOfInit.getTypeFacade() ;
@@ -1016,7 +1016,7 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 		
 		//3. initValue must respect the following sub-rules:
 		if (declaration.getInitValue() != null && declaration.getInitValue().getRightHandSide() != null) {
-			TypeExpression typeOfInit = new TypeUtils().getTypeOfExpression(declaration.getInitValue().getRightHandSide()) ;
+			TypeExpression typeOfInit = new TypeUtils().getTypeOfSequenceElement(declaration.getInitValue().getRightHandSide()) ;
 			if (typeOfInit == null) {
 				String errorMessage = "Init value is missing" ;
 				error(errorMessage, AlfPackage.eINSTANCE.getInvocationOrAssignementOrDeclarationStatement_VariableDeclarationCompletion()) ;
@@ -1075,7 +1075,7 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 		// then infer type of the right part
 		TypeExpression typeOfRight = null ;
 		if (statement.getAssignmentCompletion().getRightHandSide() != null) {
-			typeOfRight = new TypeUtils().getTypeOfExpression(statement.getAssignmentCompletion().getRightHandSide()) ;
+			typeOfRight = new TypeUtils().getTypeOfSequenceElement(statement.getAssignmentCompletion().getRightHandSide()) ;
 			if (typeOfRight == null || typeOfRight.getType() instanceof ErrorTypeFacade) {
 				ErrorTypeFacade error = (ErrorTypeFacade)typeOfRight.getType() ;
 				error(error.getLabel(), error.getErrorSource(), error.getStructuralFeature(), INSIGNIFICANT_INDEX) ;
@@ -1272,7 +1272,7 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 			if (statement.getAssignmentCompletion().getRightHandSide() == null)
 				return ;
 			else {
-				typeOfAssignment = new TypeUtils().getTypeOfExpression(statement.getAssignmentCompletion().getRightHandSide()) ;
+				typeOfAssignment = new TypeUtils().getTypeOfSequenceElement(statement.getAssignmentCompletion().getRightHandSide()) ;
 				if (typeOfAssignment.getType() instanceof ErrorTypeFacade) {
 					ErrorTypeFacade error = (ErrorTypeFacade)typeOfAssignment.getType() ;
 					error(error.getLabel(), error.getErrorSource(), error.getStructuralFeature(), INSIGNIFICANT_INDEX) ;

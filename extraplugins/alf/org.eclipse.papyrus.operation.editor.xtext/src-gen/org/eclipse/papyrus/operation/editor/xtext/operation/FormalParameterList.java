@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
-
+ * $Id$
  */
 package org.eclipse.papyrus.operation.editor.xtext.operation;
 
@@ -26,22 +26,21 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface FormalParameterList extends EObject
-{
-  /**
-   * Returns the value of the '<em><b>Formal Parameter</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.papyrus.operation.editor.xtext.operation.FormalParameter}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Formal Parameter</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Formal Parameter</em>' containment reference list.
-   * @see org.eclipse.papyrus.operation.editor.xtext.operation.OperationPackage#getFormalParameterList_FormalParameter()
-   * @model containment="true"
-   * @generated
-   */
-  EList<FormalParameter> getFormalParameter();
+public interface FormalParameterList extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Formal Parameter</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.operation.editor.xtext.operation.FormalParameter}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Formal Parameter</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Formal Parameter</em>' containment reference list.
+	 * @see org.eclipse.papyrus.operation.editor.xtext.operation.OperationPackage#getFormalParameterList_FormalParameter()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<FormalParameter> getFormalParameter();
 
 } // FormalParameterList

@@ -5819,9 +5819,9 @@ ruleLocalNameDeclarationStatement returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLocalNameDeclarationStatementAccess().getInitExpressionParserRuleCall_6_0()); 
+	        newCompositeNode(grammarAccess.getLocalNameDeclarationStatementAccess().getInitSequenceElementParserRuleCall_6_0()); 
 	    }
-		lv_init_7_0=ruleExpression		{
+		lv_init_7_0=ruleSequenceElement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLocalNameDeclarationStatementRule());
 	        }
@@ -5829,7 +5829,7 @@ ruleLocalNameDeclarationStatement returns [EObject current=null]
        			$current, 
        			"init",
         		lv_init_7_0, 
-        		"Expression");
+        		"SequenceElement");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7924,9 +7924,9 @@ ruleAssignmentCompletion returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAssignmentCompletionAccess().getRightHandSideExpressionParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getAssignmentCompletionAccess().getRightHandSideSequenceElementParserRuleCall_1_0()); 
 	    }
-		lv_rightHandSide_1_0=ruleExpression		{
+		lv_rightHandSide_1_0=ruleSequenceElement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAssignmentCompletionRule());
 	        }
@@ -7934,7 +7934,7 @@ ruleAssignmentCompletion returns [EObject current=null]
        			$current, 
        			"rightHandSide",
         		lv_rightHandSide_1_0, 
-        		"Expression");
+        		"SequenceElement");
 	        afterParserOrEnumRuleCall();
 	    }
 
