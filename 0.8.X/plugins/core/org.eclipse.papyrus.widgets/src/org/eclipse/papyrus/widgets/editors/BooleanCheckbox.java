@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -56,7 +56,6 @@ public class BooleanCheckbox extends AbstractValueEditor {
 	public BooleanCheckbox(Composite parent, int style, String label) {
 		super(parent);
 		checkbox = factory.createButton(this, label, SWT.CHECK | style);
-		//checkbox = new Button(this, SWT.CHECK | style);
 
 		setWidgetObservable(WidgetProperties.selection().observe(checkbox), true);
 
@@ -93,5 +92,10 @@ public class BooleanCheckbox extends AbstractValueEditor {
 	public void setToolTipText(String text) {
 		checkbox.setToolTipText(text);
 		super.setLabelToolTipText(text);
+	}
+
+	@Override
+	public void setLabel(String label) {
+		checkbox.setText(label);
 	}
 }
