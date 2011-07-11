@@ -1,0 +1,156 @@
+modeltype facetset uses "http://www.eclipse.org/EmfFacet/infra/facet/0.8.incubation";
+modeltype uml uses "http://www.eclipse.org/uml2/3.0.0/UML";
+modeltype queryset uses "http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation";
+modeltype Ecore uses "http://www.eclipse.org/emf/2002/Ecore";
+
+transformation ProfileToFacetSet(in profile : uml, in umlEcore : Ecore, in ecore : Ecore, out facets : facetset, out queries : queryset);
+
+/**
+*	Package for queries implementation
+*/
+configuration property packageName : String; //For example : org.eclipse.papyrus.myProject
+
+main() {
+	log("Begin QVT Transformation");
+	profile.rootObjects()[Package]->map toFacetSet();
+	var querySet := profile.rootObjects()[Package]->any(e | true).map toQuerySet();
+	querySet.queries := queries.objectsOfType(ModelQuery);
+	log("End QVT Transformation");
+}
+
+query String::firstToLower() : String {
+	return  self.substring(1, 1).toLower()+self.substring(2, self.length());
+}
+
+mapping Package::toFacetSet() : FacetSet {
+	result.eClassifiers := self.ownedElement->select(e | e.oclIsKindOf(Stereotype)).oclAsType(Stereotype)->map toFacet();
+	result.eSubpackages := self.ownedElement->select(e | e.oclIsKindOf(Package)).oclAsType(Package)->map toFacetSet();
+	
+	result.extendedPackage := umlEcore.rootObjects()[EPackage]->any(e | true);
+	result.name := self.name.firstToLower()+'Facets';
+	result.nsPrefix := self.getQualifiedName().replace(":", "")+'FacetSet';
+	result.nsURI := 'http://www.eclipse.org/papyrus/'+self.getQualifiedName().toLower().replace("::", "/")+"/"+nsPrefix+'.facetSet';
+}
+
+mapping Package::toQuerySet() : ModelQuerySet {
+	result.associatedMetamodels := umlEcore.rootObjects()[EPackage];
+	result.name := self.name.firstToLower()+'QuerySet';
+	result.description := 'Set of queries for '+self.getQualifiedName();
+}
+
+query Package::findAllStereotypes() : Collection(Stereotype) {
+	var stereotypes := self.ownedElement->select(e | e.oclIsKindOf(Stereotype)).oclAsType(Stereotype);
+	stereotypes := stereotypes->union(self.ownedElement->select(e | e.oclIsKindOf(Package)).oclAsType(Package).findAllStereotypes());
+	return stereotypes;
+}
+
+mapping Stereotype::toFacet() : Facet {
+	name := self.name;
+	conditionQuery := self.map toQuery();
+	result.eSuperTypes := self.attribute->select(e | e.name.startsWith("base_")).getMetaClass(); -- UML Metaclass
+	result.eSuperTypes := result.eSuperTypes->union( -- Stereotype inheritance
+		self.generalization.target->select(e | e.oclIsKindOf(Stereotype)).oclAsType(Stereotype)->map toFacet()
+	);
+	
+	result.eStructuralFeatures := self.ownedAttribute->map toEStructuralFeature();
+}
+
+mapping Property::toEStructuralFeature() : EStructuralFeature disjuncts Property::toEAttribute, Property::toEReference{
+	//Nothing (Disjuncts)
+}
+
+abstract mapping Property::toFeature() : EStructuralFeature {
+	name := if self.isDerived then '/' else '' endif + self.name;
+	eType := self.type.getEClassifier();
+	lowerBound := self.lower;
+	upperBound := self.upper;
+	_ordered := self.isOrdered;
+	unique := self.isUnique;
+}
+
+abstract mapping Property::toFacetFeature() : FacetStructuralFeature {
+	valueQuery := self.map toGetQuery();
+	valueQuery := self.map toSetQuery();
+}
+
+mapping Property::toEAttribute() : FacetAttribute inherits Property::toFeature, Property::toFacetFeature 
+	when { self.type.oclIsKindOf(PrimitiveType) } {
+	//Nothing (Inherited)
+}
+
+mapping Property::toEReference() : FacetReference inherits Property::toFeature, Property::toFacetFeature {
+	//Nothing (Inherited)
+}
+
+mapping Property::toSetQuery() : JavaModelQuery {
+	name := 'Set'+self.owner.oclAsType(NamedElement).name +self.name.firstToUpper();
+	returnType := ecore.objectsOfType(EClass)->any(e | e.name = 'EObject');
+	scope := self.findScope();
+	implementationClassName := packageName+'.queries.setters.Set'+self.owner.oclAsType(NamedElement).name+self.name.firstToUpper();
+}
+
+mapping Property::toGetQuery() : JavaModelQuery {
+	name := 'Get'+self.owner.oclAsType(NamedElement).name +self.name.firstToUpper();
+	if self.type.oclIsKindOf(Enumeration) then{
+		returnType := umlEcore.objectsOfType(EClass)->any(e | e.name = 'EnumerationLiteral');
+		log('Enumeration return type'); 
+	}else
+		returnType := self.type.getEClassifier()
+	endif;
+	
+	if returnType.oclIsUndefined() then {
+		log('Cannot find a returnType for property '+self.getQualifiedName());
+		log('Type : '+self.type.name);
+		log('TypeClassifier : '+self.type.getEClassifier().name);
+	} endif;
+	
+	dump(returnType);
+	
+	scope := self.findScope();
+	implementationClassName := packageName+'.queries.getters.Get'+self.owner.oclAsType(NamedElement).name+self.name.firstToUpper();
+}
+
+query Property::findScope() : Collection(EClass){
+	var stereotype := self.owner.oclAsType(Stereotype);
+	var scope := stereotype.attribute->select(e | e.name.startsWith('base_')).getMetaClass();
+	
+	if scope->isEmpty() then 
+		log('Cannot find Scope for property '+self.getQualifiedName())
+	endif;
+	
+	return scope;
+}
+
+query Type::getEClassifier() : EClassifier {
+	return if self.oclIsKindOf(Stereotype) then
+		self.oclAsType(Stereotype).map toFacet()
+	else
+		umlEcore.objectsOfType(EClassifier)->any(e | e.name = self.name)
+	endif;
+}
+
+mapping Stereotype::toQuery() : JavaModelQuery {
+	name := 'is'+self.name;
+	description := 'Tests if the UML Element has the '+self.getQualifiedName()+' Stereotype';
+	returnType := ecore.objectsOfType(EClassifier)->any(e | e.name = 'EBoolean');
+	
+	if returnType.oclIsUndefined() then 
+		log('Cannot find EClassifier EBoolean')
+	endif;
+	
+	scope := umlEcore.objectsOfType(EClass)->any(e | e.name = 'Element');
+	upperBound := 1;
+	lowerBound := 1;
+	implementationClassName := packageName+'.queries.facets.Has'+self.getQualifiedName().replace(':', '')+'Query';
+}
+
+/**
+*	Return the metaclass corresponding to a stereotype extension
+*	Input : property p | p.name = "base_x"
+*	Ouput : EClass c | c.name = "x"
+*/
+query Property::getMetaClass() : EClass {
+	var metaclassName := self.name.substring(self.name.indexOf("_")+1, self.name.length());
+	return umlEcore.objectsOfType(EClass)->any(e | e.name = metaclassName); 
+}
+

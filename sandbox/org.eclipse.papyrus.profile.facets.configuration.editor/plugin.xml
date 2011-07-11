@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.profile.facets.configuration.profileToFacetsConfiguration.presentation.ProfileToFacetsConfigurationModelWizardID"
+            name="%_UI_ProfileToFacetsConfigurationModelWizard_label"
+            class="org.eclipse.papyrus.profile.facets.configuration.profileToFacetsConfiguration.presentation.ProfileToFacetsConfigurationModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/profileToFacets.png">
+         <description>%_UI_ProfileToFacetsConfigurationModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.papyrus.profile.facets.configuration.profileToFacetsConfiguration.presentation.ProfileToFacetsConfigurationEditorID"
+            name="%_UI_ProfileToFacetsConfigurationEditor_label"
+            icon="icons/profileToFacets.png"
+            extensions="profiletofacetsconfiguration"
+            class="org.eclipse.papyrus.profile.facets.configuration.profileToFacetsConfiguration.presentation.ProfileToFacetsConfigurationEditor"
+            contributorClass="org.eclipse.papyrus.profile.facets.configuration.profileToFacetsConfiguration.presentation.ProfileToFacetsConfigurationActionBarContributor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.eclipse.papyrus.wizards.category"
+            class="org.eclipse.papyrus.profile.facets.configuration.profileToFacetsConfiguration.presentation.ProfileToFacetsConfigurationModelWizard"
+            icon="icons/profileToFacets.png"
+            id="org.eclipse.papyrus.profile.facets.configuration.profileToFacetsConfiguration.presentation.ProfileToFacetsConfigurationModelWizardID"
+            name="%_UI_ProfileToFacetsConfigurationModelWizard_label">
+         <description>
+            %_UI_ProfileToFacetsConfigurationModelWizard_description
+         </description>
+         <selection
+               class="org.eclipse.core.resources.IResource">
+         </selection>
+      </wizard>
+   </extension>
+
+</plugin>

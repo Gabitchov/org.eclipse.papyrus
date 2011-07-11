@@ -1,0 +1,265 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+         This file will only be created once by Acceleo, it will not be modified after that by Acceleo.
+         If you want Acceleo to recreate this file, delete it and rebuild your project.
+    -->
+
+    <groupId>acceleo</groupId>
+    <artifactId>org.eclipse.papyrus.profile.facets.generation.acceleo</artifactId>
+    <version>1.0.0.SNAPSHOT</version>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>  
+                    <groupId>org.codehaus.mojo</groupId>  
+                    <artifactId>exec-maven-plugin</artifactId>  
+                    <version>1.1.1</version>  
+                    <executions>  
+                        <execution>  
+                            <phase>compile</phase>
+                            <goals>
+                                <goal>java</goal>
+                            </goals>
+                            <configuration>
+                                <!--
+                                    Calls the AcceleoMainCompiler to launch the compilation.
+                                -->
+                                <mainClass>org.eclipse.acceleo.parser.compiler.AcceleoMainCompiler</mainClass>  
+                                <arguments>  
+                                    <argument>${basedir}/src/main/java</argument>   <!-- input folder -->
+                                    <argument>${basedir}/target/classes/</argument> <!-- output folder -->
+                                    <argument>true</argument>   <!-- use binary resources -->
+                                    <argument></argument>  <!-- dependencies with other projects -->
+                                </arguments>  
+                            </configuration>  
+                        </execution>  
+                    </executions>  
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+    <profiles>
+        <profile>
+            <id>acceleo-compilation</id>
+            <build>
+                <plugins>
+                    <plugin>  
+                        <groupId>org.codehaus.mojo</groupId>  
+                        <artifactId>exec-maven-plugin</artifactId>  
+                        <version>1.1.1</version>  
+                        <executions>  
+                            <execution>  
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>java</goal>
+                                </goals>
+                                <configuration>
+                                    <!--
+                                        Calls the AcceleoMainCompiler to launch the compilation.
+                                    -->
+                                    <mainClass>org.eclipse.acceleo.parser.compiler.AcceleoMainCompiler</mainClass>  
+                                    <arguments>  
+                                        <argument>${basedir}/src/main/java</argument>  <!-- input folder -->
+                                        <argument>${basedir}/target/classes/</argument>  <!-- output folder -->
+                                        <argument>true</argument> <!-- use binary resources -->
+                                        <argument></argument> <!-- dependencies with other projects -->  
+                                    </arguments>  
+                                </configuration>  
+                            </execution>  
+                        </executions>  
+                    </plugin>
+                </plugins>
+            </build>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+    <dependencies>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.core.runtime</artifactId>
+            <version>3.7.0.v20110110</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.core.runtime_3.7.0.v20110110.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.osgi</artifactId>
+            <version>3.7.0.v20110427</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.osgi_3.7.0.v20110427.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.equinox.common</artifactId>
+            <version>3.6.0.v20110427</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.equinox.common_3.6.0.v20110427.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.core.jobs</artifactId>
+            <version>3.5.100.v20110404</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.core.jobs_3.5.100.v20110404.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.core.runtime.compatibility.registry</artifactId>
+            <version>3.3.100.v20110420/runtime_registry_compatibility</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.core.runtime.compatibility.registry_3.3.100.v20110420/runtime_registry_compatibility.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.equinox.registry</artifactId>
+            <version>3.5.100.v20110321</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.equinox.registry_3.5.100.v20110321.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.equinox.preferences</artifactId>
+            <version>3.4.0.v20110328</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.equinox.preferences_3.4.0.v20110328.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.core.contenttype</artifactId>
+            <version>3.4.100.v20110423-0524</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.core.contenttype_3.4.100.v20110423-0524.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.equinox.app</artifactId>
+            <version>1.3.100.v20110321</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.equinox.app_1.3.100.v20110321.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.emf.ecore</artifactId>
+            <version>2.7.0.v20110429-2014</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.emf.ecore_2.7.0.v20110429-2014.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.emf.common</artifactId>
+            <version>2.7.0.v20110429-2014</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.emf.common_2.7.0.v20110429-2014.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+            <version>2.7.0.v20110411-2239</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.emf.ecore.xmi_2.7.0.v20110411-2239.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.ocl</artifactId>
+            <version>3.1.0.v20110502-1445</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.ocl_3.1.0.v20110502-1445.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>lpg.runtime.java</artifactId>
+            <version>2.0.17.v201004271640</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/lpg.runtime.java_2.0.17.v201004271640.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.ocl.ecore</artifactId>
+            <version>3.1.0.v20110501-2031</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.ocl.ecore_3.1.0.v20110501-2031.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.acceleo.model</artifactId>
+            <version>3.1.0.v20110503-0405</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.acceleo.model_3.1.0.v20110503-0405.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.acceleo.engine</artifactId>
+            <version>3.1.0.v20110503-0405</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.acceleo.engine_3.1.0.v20110503-0405.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.acceleo.common</artifactId>
+            <version>3.1.0.v20110503-0405</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.acceleo.common_3.1.0.v20110503-0405.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.acceleo.profiler</artifactId>
+            <version>3.1.0.v20110503-0405</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.acceleo.profiler_3.1.0.v20110503-0405.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.emf.codegen.ecore</artifactId>
+            <version>2.7.0.v20110502-1136</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.emf.codegen.ecore_2.7.0.v20110502-1136.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.emf.codegen</artifactId>
+            <version>2.6.0.v20110502-1136</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.emf.codegen_2.6.0.v20110502-1136.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.uml2.uml</artifactId>
+            <version>3.2.0.v201101271655</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.uml2.uml_3.2.0.v201101271655.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.uml2.common</artifactId>
+            <version>1.5.0.v201005031530</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.uml2.common_1.5.0.v201005031530.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.emf.facet.infra.query.core</artifactId>
+            <version>0.1.0.v201105031513</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.emf.facet.infra.query.core_0.1.0.v201105031513.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.emf.facet.infra.query</artifactId>
+            <version>0.1.0.v201105031513</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.emf.facet.infra.query_0.1.0.v201105031513.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>eclipse</groupId>
+            <artifactId>org.eclipse.core.resources</artifactId>
+            <version>3.7.100.v20110427-0856</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../../../../../eclipses/Indigo M6/plugins/org.eclipse.core.resources_3.7.100.v20110427-0856.jar</systemPath>
+        </dependency>
+    </dependencies>
+</project>
