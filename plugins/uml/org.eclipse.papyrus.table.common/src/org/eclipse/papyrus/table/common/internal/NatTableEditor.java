@@ -197,8 +197,8 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		this.menuMgr.setRemoveAllWhenShown(true);
 
 		final Composite editorComposite = createCompositeCompositeWthTableBorder(parent);
-		createFirstLine(editorComposite);
-		createDescription(editorComposite);
+//		createFirstLine(editorComposite);
+//		createDescription(editorComposite);
 
 		// the composite owning the table
 		final Composite tableComposite = new Composite(editorComposite, SWT.NONE);
