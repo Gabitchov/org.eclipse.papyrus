@@ -6,7 +6,7 @@
          <meta.schema plugin="org.eclipse.papyrus.diagram.common.palette.wizards" id="AspectPredefinedTool" name="Aspect Predefined Tool"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         This extension point make possible to add some custom actions to the custom palette
       </documentation>
    </annotation>
 
@@ -74,9 +74,9 @@
          <attribute name="description" type="string" use="required">
             <annotation>
                <documentation>
-                  The description of the tool must use &lt;form&gt; tags
+                  The description of the tool must use form tags
 &lt;form&gt;
-	&lt;p&gt; Your Descrption &lt;/p&gt;
+ &lt;p&gt; Your Descrption &lt;/p&gt;
 &lt;/form&gt;
                </documentation>
             </annotation>
@@ -94,14 +94,6 @@
       </complexType>
    </element>
 
-   <annotation>
-      <appinfo>
-         <meta.section type="since"/>
-      </appinfo>
-      <documentation>
-         [Enter the first release in which this extension point appears.]
-      </documentation>
-   </annotation>
 
    <annotation>
       <appinfo>
@@ -130,5 +122,23 @@
       </documentation>
    </annotation>
 
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         /*****************************************************************************
+ * Copyright (c) 2011 Atos.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Tristan FAURE (Atos) tristan.faure@atos.net - Initial API and implementation
+ *****************************************************************************/
+      </documentation>
+   </annotation>
 
 </schema>
