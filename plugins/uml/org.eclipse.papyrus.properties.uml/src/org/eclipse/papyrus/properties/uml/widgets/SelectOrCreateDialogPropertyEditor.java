@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -79,8 +79,11 @@ public class SelectOrCreateDialogPropertyEditor extends AbstractPropertyEditor {
 
 			Class parentClass = findParentClass(sourceElement);
 
-			editor.setCreateAs(UMLPackage.eINSTANCE.getOperation(), parentClass, UMLPackage.eINSTANCE.getClass_OwnedOperation());
-			editor.setCreateAs(UMLPackage.eINSTANCE.getSignal(), parentClass.getNearestPackage(), UMLPackage.eINSTANCE.getPackage_PackagedElement());
+			if(parentClass != null) {
+				editor.setCreateAs(UMLPackage.eINSTANCE.getOperation(), parentClass, UMLPackage.eINSTANCE.getClass_OwnedOperation());
+				editor.setCreateAs(UMLPackage.eINSTANCE.getSignal(), parentClass.getNearestPackage(), UMLPackage.eINSTANCE.getPackage_PackagedElement());
+			}
+
 			editor.setEditingDomain(umlModelElement.getDomain());
 		}
 	}

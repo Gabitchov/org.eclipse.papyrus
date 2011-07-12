@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -371,12 +371,23 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 
 		java.util.List<Object> resultElements = new LinkedList<Object>();
 		for(Object r : result) {
-			resultElements.add(r);
+			resultElements.add(adaptResult(r));
 		}
 
 		modelProperty.addAll(resultElements);
 
 		commit();
+	}
+
+	/**
+	 * Transforms the selected result object to the actual
+	 * semantic object, if needed
+	 * 
+	 * @param result
+	 * @return
+	 */
+	protected Object adaptResult(Object result) {
+		return result;
 	}
 
 	@Override

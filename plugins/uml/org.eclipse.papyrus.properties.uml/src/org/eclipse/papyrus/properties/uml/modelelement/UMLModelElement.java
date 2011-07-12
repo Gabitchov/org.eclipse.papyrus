@@ -11,7 +11,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.uml.modelelement;
 
+import static org.eclipse.uml2.uml.ParameterDirectionKind.INOUT_LITERAL;
+import static org.eclipse.uml2.uml.ParameterDirectionKind.IN_LITERAL;
+import static org.eclipse.uml2.uml.ParameterDirectionKind.OUT_LITERAL;
+import static org.eclipse.uml2.uml.ParameterDirectionKind.RETURN_LITERAL;
+
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.list.IObservableList;
@@ -25,16 +32,22 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.properties.modelelement.EMFModelElement;
+import org.eclipse.papyrus.properties.uml.creation.MessageValueSpecificationFactory;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.properties.uml.databinding.SignatureObservableValue;
+import org.eclipse.papyrus.properties.uml.providers.InstanceValueContentProvider;
 import org.eclipse.papyrus.properties.uml.providers.SignatureContentProvider;
 import org.eclipse.papyrus.properties.uml.providers.UMLLabelProvider;
 import org.eclipse.papyrus.uml.modelexplorer.widgets.ServiceEditFilteredUMLContentProvider;
 import org.eclipse.papyrus.umlutils.PackageUtil;
+import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.InstanceValue;
+import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.UMLPackage;
 
 
@@ -92,8 +105,14 @@ public class UMLModelElement extends EMFModelElement {
 				root = PackageUtil.getRootPackage((Element)source);
 			}
 
-			ServiceEditFilteredUMLContentProvider contentProvider = new ServiceEditFilteredUMLContentProvider(source, feature, root);
-			//		contentProvider = new UMLElementMEBContentProvider(root);
+			ServiceEditFilteredUMLContentProvider contentProvider;
+
+			if(feature == UMLPackage.eINSTANCE.getInstanceValue_Instance()) {
+				contentProvider = new InstanceValueContentProvider((InstanceValue)source, feature, root);
+			} else {
+				contentProvider = new ServiceEditFilteredUMLContentProvider(source, feature, root);
+			}
+
 			contentProvider.setMetaClassWanted(feature.getEType());
 			contentProvider.setMetaClassNotWanted(Collections.EMPTY_LIST);
 
@@ -119,6 +138,31 @@ public class UMLModelElement extends EMFModelElement {
 			return true;
 		}
 		return super.isOrdered(propertyPath);
+	}
+
+	@Override
+	public ReferenceValueFactory getValueFactory(String propertyPath) {
+		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature == UMLPackage.eINSTANCE.getMessage_Argument()) {
+			if(source instanceof Message) {
+				Set<ParameterDirectionKind> directions = new HashSet<ParameterDirectionKind>();
+				switch(((Message)source).getMessageSort()) {
+				case REPLY_LITERAL:
+					directions.add(OUT_LITERAL);
+					directions.add(INOUT_LITERAL);
+					directions.add(RETURN_LITERAL);
+					return new MessageValueSpecificationFactory(((EReference)feature).getEReferenceType(), (Message)source, directions);
+				case SYNCH_CALL_LITERAL:
+				case ASYNCH_CALL_LITERAL:
+				case ASYNCH_SIGNAL_LITERAL:
+					directions.add(IN_LITERAL);
+					directions.add(INOUT_LITERAL);
+					return new MessageValueSpecificationFactory(((EReference)feature).getEReferenceType(), (Message)source, directions);
+				}
+			}
+		}
+
+		return super.getValueFactory(propertyPath);
 	}
 
 }
