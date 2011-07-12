@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.newchild/src-gen"
+    editDirectory="/org.eclipse.papyrus.newchild.edit/src-gen" editorDirectory="/org.eclipse.papyrus.newchild.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.newchild" modelName="NewChild" testsDirectory="/org.eclipse.papyrus.newchild.tests/src-gen"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    usedGenPackages="platform:/plugin/org.eclipse.papyrus.core.queries.configuration/model/Configuration.genmodel#//configuration ../../org.eclipse.papyrus.constraints/Model/Constraints.genmodel#//constraints platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.papyrus.extendedtypes/model/ExtendedTypes.genmodel#//extendedtypes platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+  <foreignModel>NewChild.ecore</foreignModel>
+  <genPackages prefix="Newchild" basePackage="org.eclipse.papyrus" resource="XML"
+      disposableProviderFactory="true" ecorePackage="NewChild.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="NewChild.ecore#//ElementPosition">
+      <genEnumLiterals ecoreEnumLiteral="NewChild.ecore#//ElementPosition/child"/>
+      <genEnumLiterals ecoreEnumLiteral="NewChild.ecore#//ElementPosition/sibling"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="NewChild.ecore#//MenuPosition">
+      <genEnumLiterals ecoreEnumLiteral="NewChild.ecore#//MenuPosition/top"/>
+      <genEnumLiterals ecoreEnumLiteral="NewChild.ecore#//MenuPosition/bottom"/>
+    </genEnums>
+    <genClasses ecoreClass="NewChild.ecore#//MenuRoot">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference NewChild.ecore#//MenuRoot/groups"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="NewChild.ecore#//MenuItem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute NewChild.ecore#//MenuItem/id"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="NewChild.ecore#//MenuContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference NewChild.ecore#//MenuContainer/submenus"/>
+    </genClasses>
+    <genClasses ecoreClass="NewChild.ecore#//Menu">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute NewChild.ecore#//Menu/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute NewChild.ecore#//Menu/icon"/>
+    </genClasses>
+    <genClasses ecoreClass="NewChild.ecore#//MenuAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference NewChild.ecore#//MenuAction/elementType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute NewChild.ecore#//MenuAction/position"/>
+    </genClasses>
+    <genClasses ecoreClass="NewChild.ecore#//NewChildMenu"/>
+    <genClasses ecoreClass="NewChild.ecore#//NewSiblingMenu"/>
+    <genClasses ecoreClass="NewChild.ecore#//Separator"/>
+    <genClasses ecoreClass="NewChild.ecore#//MenuGroup">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute NewChild.ecore#//MenuGroup/before"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute NewChild.ecore#//MenuGroup/after"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute NewChild.ecore#//MenuGroup/absolutePosition"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

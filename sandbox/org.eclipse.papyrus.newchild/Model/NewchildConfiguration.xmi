@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ASCII"?>
+<newchild:NewchildConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints" xmlns:newchild="http://www.eclipse.org/papyrus/newchild" xsi:schemaLocation="http://www.eclipse.org/papyrus/constraints ../../org.eclipse.papyrus.constraints/Model/Constraints.ecore http://www.eclipse.org/papyrus/newchild NewChild.ecore">
+  <roots elementMultiplicity="1">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isEObject">
+      <constraintType href="../../org.eclipse.papyrus.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/emf/2002/Ecore"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="EObject"/>
+    </constraints>
+    <groups>
+      <submenus xsi:type="newchild:NewChildMenu" id="newChild" name="New child" icon="/org.eclipse.papyrus.properties.model.edit/icons/full/obj16/Customization.gif"/>
+      <submenus xsi:type="newchild:NewSiblingMenu" id="newSibling" name="New sibling" icon="/org.eclipse.papyrus.properties.model.edit/icons/full/obj16/Customization.gif"/>
+    </groups>
+  </roots>
+  <roots elementMultiplicity="1">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isUMLClass">
+      <constraintType href="../../org.eclipse.papyrus.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/uml2/3.0.0/UML"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Class"/>
+    </constraints>
+    <groups>
+      <submenus xsi:type="newchild:NewChildMenu" id="newChild" name="New child" icon="/org.eclipse.papyrus.properties.model.edit/icons/full/obj16/Customization.gif"/>
+    </groups>
+  </roots>
+</newchild:NewchildConfiguration>

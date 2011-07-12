@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="newchild"
+    nsURI="http://www.eclipse.org/papyrus/newchild" nsPrefix="newchild">
+  <eClassifiers xsi:type="ecore:EClass" name="NewchildConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roots" upperBound="-1"
+        eType="#//MenuRoot" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MenuRoot" eSuperTypes="#//MenuContainer ../../org.eclipse.papyrus.constraints/Model/Constraints.ecore#//DisplayUnit">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
+        eType="#//MenuGroup" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MenuItem" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MenuContainer" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="submenus" upperBound="-1"
+        eType="#//MenuItem" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Menu" eSuperTypes="#//MenuContainer #//MenuItem">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="icon" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MenuAction" eSuperTypes="#//MenuItem">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementType" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.papyrus.extendedtypes/model/ExtendedTypes.ecore#//ExtendedElementTypeConfiguration"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" lowerBound="1"
+        eType="#//ElementPosition" defaultValueLiteral="child"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ElementPosition">
+    <eLiterals name="child"/>
+    <eLiterals name="sibling" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NewChildMenu" eSuperTypes="#//Menu"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NewSiblingMenu" eSuperTypes="#//Menu"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Separator" eSuperTypes="#//MenuItem"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MenuGroup" eSuperTypes="#//MenuContainer">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="before" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="after" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="absolutePosition" eType="#//MenuPosition"
+        defaultValueLiteral="top"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="MenuPosition">
+    <eLiterals name="top"/>
+    <eLiterals name="bottom" value="1"/>
+  </eClassifiers>
+</ecore:EPackage>
