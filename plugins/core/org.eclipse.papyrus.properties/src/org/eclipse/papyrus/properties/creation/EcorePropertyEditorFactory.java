@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -40,13 +40,13 @@ import org.eclipse.swt.widgets.MenuItem;
  */
 public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 
-	private EClass type;
+	protected EClass type;
 
-	private EClass eClass;
+	protected EClass eClass;
 
-	private String nsUri;
+	protected String nsUri;
 
-	private String className;
+	protected String className;
 
 	/**
 	 * 
@@ -151,12 +151,12 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 		return super.createObject(widget, instance);
 	}
 
-	private EClass chooseEClass(Control widget) {
+	protected EClass chooseEClass(Control widget) {
 		if(eClass != null) {
 			return eClass;
 		}
 
-		List<EClass> availableClasses = EMFHelper.getSubclassesOf(type, true);
+		List<EClass> availableClasses = getAvailableEClasses();
 		if(availableClasses.isEmpty()) {
 			return null;
 		}
@@ -204,6 +204,10 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 		this.eClass = null;
 
 		return eClass;
+	}
+
+	protected List<EClass> getAvailableEClasses() {
+		return EMFHelper.getSubclassesOf(type, true);
 	}
 
 	@Override

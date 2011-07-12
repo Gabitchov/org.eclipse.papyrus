@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,6 +14,7 @@ package org.eclipse.papyrus.widgets.editors;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
+import org.eclipse.papyrus.widgets.providers.IAdaptableContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.widgets.providers.WrappedLabelProvider;
 import org.eclipse.papyrus.widgets.selectors.ReferenceSelector;
@@ -33,6 +34,8 @@ public class MultipleReferenceEditor extends MultipleValueEditor {
 	 * The element selector for the available values
 	 */
 	protected ReferenceSelector selector;
+
+	protected IStaticContentProvider contentProvider;
 
 	/**
 	 * 
@@ -93,8 +96,9 @@ public class MultipleReferenceEditor extends MultipleValueEditor {
 	 *        The label provider for the elements
 	 */
 	public void setProviders(IStaticContentProvider contentProvider, ILabelProvider labelProvider) {
-
 		Assert.isNotNull(contentProvider, "The content provider should be defined"); //$NON-NLS-1$
+
+		this.contentProvider = contentProvider;
 
 		selector.setContentProvider(contentProvider);
 
@@ -108,5 +112,13 @@ public class MultipleReferenceEditor extends MultipleValueEditor {
 	public void setUnique(boolean unique) {
 		selector.setUnique(unique);
 		super.setUnique(unique);
+	}
+
+	@Override
+	protected Object adaptResult(Object result) {
+		if(contentProvider instanceof IAdaptableContentProvider) {
+			return ((IAdaptableContentProvider)contentProvider).getAdaptedValue(result);
+		}
+		return result;
 	}
 }

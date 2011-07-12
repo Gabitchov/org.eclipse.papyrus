@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,6 +23,7 @@ import org.eclipse.papyrus.widgets.Activator;
 import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.messages.Messages;
 import org.eclipse.papyrus.widgets.providers.EncapsulatedContentProvider;
+import org.eclipse.papyrus.widgets.providers.IAdaptableContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
@@ -123,8 +124,8 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 
 			public void mouseDoubleClick(MouseEvent e) {
 				editAction(); // TODO : Try to determine whether the double
-								// click should call the edit, create or browse
-								// action
+				// click should call the edit, create or browse
+				// action
 				// e.g. if the value is null, try to browse. If we cannot
 				// browse, try to create an instance.
 			}
@@ -183,7 +184,11 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 			if(newValue.length == 0) {
 				modelProperty.setValue(null);
 			} else {
-				modelProperty.setValue(newValue[0]);
+				Object value = newValue[0];
+				if(contentProvider instanceof IAdaptableContentProvider) {
+					value = ((IAdaptableContentProvider)contentProvider).getAdaptedValue(value);
+				}
+				modelProperty.setValue(value);
 			}
 			updateLabel();
 		}

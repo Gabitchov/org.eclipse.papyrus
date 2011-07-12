@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -76,6 +76,9 @@ public class SignatureContentProvider extends AbstractStaticContentProvider {
 	}
 
 	protected Object[] getElementsFromContext(org.eclipse.uml2.uml.Class clazz) {
+		if(clazz == null) {
+			return new Object[0];
+		}
 		List<EObject> result = new LinkedList<EObject>();
 		result.addAll(clazz.getOwnedOperations());
 		if(message != null && (message.getMessageSort() == MessageSort.ASYNCH_CALL_LITERAL || message.getMessageSort() == MessageSort.ASYNCH_SIGNAL_LITERAL)) {
