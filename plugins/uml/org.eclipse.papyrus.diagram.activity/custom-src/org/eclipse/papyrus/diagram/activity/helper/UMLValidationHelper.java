@@ -13,24 +13,33 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.helper;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.ControlNode;
 import org.eclipse.uml2.uml.DecisionNode;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.ObjectFlow;
 import org.eclipse.uml2.uml.ObjectNode;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
+import org.eclipse.uml2.uml.Pin;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValuePin;
@@ -763,5 +772,117 @@ public class UMLValidationHelper {
 			}
 		}
 		return result;
+	}
+	
+	enum Direction {IN,OUT} ;
+	
+	/**
+	 * Validate Call Operation Action,
+	 * the validity of the parameters with pins
+	 * @param action
+	 * @param ctx
+	 * @return OK_STATUS if paramters and pins are synchronised
+	 */
+	@PinAndParameterSynchronizeValidator
+	public static IStatus validateCallOperation(CallOperationAction action, IValidationContext ctx) {
+		if (action.getOperation() == null)
+		{
+			return ctx.createFailureStatus(String.format("%s does not have operation", action.getName()));
+		}
+		// in check
+		List<Parameter> ins = getParameters(action.getOperation(),Direction.IN);
+		EList<InputPin> inputs = action.getArguments();
+		if (ins.size() != inputs.size())
+		{
+			return ctx.createFailureStatus(String.format("pins of %s does not have the same number of input pins as input parameters of the operation %s", action.getName(), action.getOperation().getName()));
+		}
+		int index = 0 ;
+		for (Parameter p : ins)
+		{
+			IStatus status = validatePin(index, p, inputs,ctx);
+			if (!status.isOK())
+			{
+				return status ;
+			}
+			index ++ ;
+		}
+		// out check
+		List<Parameter> outs = getParameters(action.getOperation(),Direction.OUT);
+		int indexOuts = 0 ;
+		for (Parameter p : outs)
+		{
+			IStatus status = validatePin(indexOuts, p, action.getOutputs(),ctx);
+			if (!status.isOK())
+			{
+				return status ;
+			}
+			indexOuts ++ ;
+		}
+		// chic type check
+		
+		return Status.OK_STATUS;
+	}
+
+	private static IStatus validatePin(int index, Parameter p,
+			EList<? extends Pin> inputs, IValidationContext ctx) {
+		Pin pin = inputs.get(index);
+		for (EStructuralFeature a : pin.eClass().getEAllStructuralFeatures())
+		{
+			EStructuralFeature feature = getFeature(a.getName(), p.eClass());
+			if (!a.isDerived() && a.isChangeable() && feature != null)
+			{
+				if (!pin.eGet(a).equals(p.eGet(feature)))
+				{
+					return ctx.createFailureStatus(String.format("attribute %s and attribute %s are different for pin %s", a.getName(), feature.getName(),pin.getName()));
+				}
+			}
+		}
+		// check type
+		if ((pin.getType() == null || p.getType() == null) && p.getType() != pin.getType())
+		{
+			return ctx.createFailureStatus(String.format("type of pin %s is different the parameter %s", pin.getName(), p.getName()));
+		}
+		if (pin.getType() != null && !pin.getType().conformsTo(p.getType()))
+		{
+			return ctx.createFailureStatus(String.format("type of pin %s is not compatible with the parameter %s", pin.getName(), p.getName()));
+		}
+		return Status.OK_STATUS;
+	}
+	
+	private static EStructuralFeature getFeature (String name, EClass eclass)
+	{
+		for (EStructuralFeature a : eclass.getEAllAttributes())
+		{
+			if (a.getName() != null && a.getName().equals(name))
+			{
+				return a ;
+			}
+		}
+		return null ;
+	}
+
+	private static List<Parameter> getParameters(Operation operation,Direction theDirection) {
+		List<Parameter> parameters = new ArrayList<Parameter>(operation.getOwnedParameters().size());
+		for (Parameter p : operation.getOwnedParameters())
+		{
+			if (theDirection == Direction.IN)
+			{
+				if (p.getDirection() == ParameterDirectionKind.IN_LITERAL
+						|| p.getDirection() == ParameterDirectionKind.INOUT_LITERAL)
+				{
+					parameters.add(p);
+				}
+			}
+			else if (theDirection == Direction.OUT)
+			{
+				if (p.getDirection() == ParameterDirectionKind.OUT_LITERAL
+						|| p.getDirection() == ParameterDirectionKind.INOUT_LITERAL
+						|| p.getDirection() == ParameterDirectionKind.RETURN_LITERAL)
+				{
+					parameters.add(p);
+				}
+			}
+		}
+		return parameters;
 	}
 }
