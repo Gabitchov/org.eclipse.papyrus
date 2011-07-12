@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/papyrus/constraints"
+            class="org.eclipse.papyrus.constraints.ConstraintsPackage"
+            genModel="Model/Constraints.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/papyrus/constraints/environment"
+            class="org.eclipse.papyrus.constraints.environment.EnvironmentPackage"
+            genModel="Model/Constraints.genmodel"/>
+   </extension>
+
+</plugin>
