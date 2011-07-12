@@ -21,6 +21,7 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.diagram.common.palette.customaction.providers.Tool;
 import org.eclipse.papyrus.diagram.common.palette.customaction.providers.ToolAspectAction;
+import org.eclipse.papyrus.diagram.common.palette.customaction.swt.SWTResourceManager;
 import org.eclipse.papyrus.diagram.common.palette.customaction.utils.ICallback;
 import org.eclipse.papyrus.diagram.common.service.palette.IPaletteEntryProxy;
 import org.eclipse.swt.SWT;
@@ -30,6 +31,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.w3c.dom.Node;
+import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.forms.widgets.FormText;
 
 /**
  * The composite for the selection of the wizard tool
@@ -38,10 +42,10 @@ import org.w3c.dom.Node;
  * 
  */
 public class ToolSelectionComposite extends Composite {
-
-	private Label label;
 	private ComboViewer viewer;
 	private final ICallback<Tool> callBack;
+	private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
+	FormText label = null ;
 
 	public ToolSelectionComposite(Composite parent,
 			IPaletteEntryProxy entryProxy, int style, ICallback<Tool> call) {
@@ -50,8 +54,7 @@ public class ToolSelectionComposite extends Composite {
 		GridLayout layout = new GridLayout(1, true);
 		this.setLayout(layout);
 		viewer = new ComboViewer(this);
-		GridData data = new GridData(SWT.FILL, SWT.BEGINNING, true, false);
-		viewer.getCombo().setLayoutData(data);
+		viewer.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
 		viewer.setContentProvider(new ArrayContentProvider());
 		viewer.setLabelProvider(new LabelProvider());
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -63,20 +66,26 @@ public class ToolSelectionComposite extends Composite {
 							.getFirstElement();
 					if (firstElement != null)
 					{
-						label.setText(firstElement.getDescription());
+						String description = firstElement.getDescription();
+						if (description != null && description.length() > 0)
+						{
+							label.setText(description,true,true);
+						}
 						callBack.callBack(firstElement);
 					}
 				}
 			}
 		});
 		Group group = new Group(this, SWT.SHADOW_ETCHED_IN);
-		group.setLayout(new GridLayout(1, true));
 		group.setText("Description");
-		GridData data2 = new GridData(SWT.FILL, SWT.FILL, true, true);
-		group.setLayoutData(data2);
-		label = new Label(group, SWT.NONE);
-		label.setText("");
-		label.setLayoutData(GridDataFactory.copyData(data));
+		group.setLayout(new GridLayout(1, false));
+		group.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		
+		label = formToolkit.createFormText(group, false);
+		label.setBackground(SWTResourceManager.getColor(SWT.COLOR_WIDGET_BACKGROUND));
+		label.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+		formToolkit.paintBordersFor(label);
+		label.setText("", false, true);
 		viewer.setInput(ToolAspectAction.getFiltered(entryProxy,
 				ToolAspectAction.getAllExtensions()));
 	}

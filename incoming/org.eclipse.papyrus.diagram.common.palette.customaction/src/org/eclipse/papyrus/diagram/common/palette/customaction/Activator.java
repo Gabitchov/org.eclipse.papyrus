@@ -21,7 +21,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.diagram.common.palette.wizards"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.diagram.common.palette.customaction"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

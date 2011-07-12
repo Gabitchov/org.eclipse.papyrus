@@ -48,11 +48,16 @@
    </element>
 
    <element name="Tool">
+      <annotation>
+         <documentation>
+            A Tool is a custom action triggered at element creation using the custom palette
+         </documentation>
+      </annotation>
       <complexType>
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The id of the tool used for preference serialization
                </documentation>
                <appinfo>
                   <meta.attribute kind="identifier"/>
@@ -62,14 +67,17 @@
          <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The name displayed in the custom palette editor
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="description" type="string">
+         <attribute name="description" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The description of the tool must use &lt;form&gt; tags
+&lt;form&gt;
+	&lt;p&gt; Your Descrption &lt;/p&gt;
+&lt;/form&gt;
                </documentation>
             </annotation>
          </attribute>
