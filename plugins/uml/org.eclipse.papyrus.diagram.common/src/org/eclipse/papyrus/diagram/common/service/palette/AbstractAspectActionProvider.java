@@ -31,9 +31,12 @@ public abstract class AbstractAspectActionProvider extends AbstractProvider impl
 
 	/** field for identifier */
 	protected static final String ID = "id";
-
+	
 	/** field for description */
 	protected static final String DESCRIPTION = "description";
+
+	/** field for Activator ID */
+	protected String bundleId ;
 
 	/** name for the factory */
 	protected String name;
@@ -65,7 +68,7 @@ public abstract class AbstractAspectActionProvider extends AbstractProvider impl
 	 * @{inheritDoc
 	 */
 	public Image getImage() {
-		return Activator.getPluginIconImage(Activator.ID, iconPath);
+		return Activator.getPluginIconImage(bundleId, iconPath);
 	}
 
 	/**
@@ -84,5 +87,6 @@ public abstract class AbstractAspectActionProvider extends AbstractProvider impl
 		id = configElement.getAttribute(ID);
 		iconPath = configElement.getAttribute(ICON);
 		description = configElement.getAttribute(DESCRIPTION);
+		bundleId = configElement.getContributor().getName();
 	}
 }
