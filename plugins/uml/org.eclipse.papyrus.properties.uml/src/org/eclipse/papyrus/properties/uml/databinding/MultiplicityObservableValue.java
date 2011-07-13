@@ -122,7 +122,7 @@ public class MultiplicityObservableValue extends AbstractObservableValue {
 		} else if(lower == 1 && upper == 1) {
 			return ONE;
 		} else {
-			return lower + SEPARATOR + upper;
+			return lower + SEPARATOR + (upper < 0 ? STAR : upper);
 		}
 	}
 
@@ -164,8 +164,8 @@ public class MultiplicityObservableValue extends AbstractObservableValue {
 				return; //Invalid multiplicity
 			}
 		}
-		
-		if (upper > 0 && upper < lower){
+
+		if((upper > 0 && upper < lower) || upper == 0) {
 			return;
 		}
 
