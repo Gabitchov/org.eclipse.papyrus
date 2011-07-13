@@ -143,8 +143,8 @@ public class CustomWrappingLabel extends WrappingLabel
 
 		if(hasIcons()) {
 			CustomPaintIcons(graphics);
-			//call repaint to refresh
-			repaint();
+			//call repaint to refresh (This repaint is no more needed, it consumes a lot of CPU resource)
+			//repaint();
 		}
 	}
 
