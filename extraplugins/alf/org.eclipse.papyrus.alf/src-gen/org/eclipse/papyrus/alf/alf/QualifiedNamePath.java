@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
-
+ * $Id$
  */
 package org.eclipse.papyrus.alf.alf;
 
@@ -26,22 +26,21 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface QualifiedNamePath extends EObject
-{
-  /**
-   * Returns the value of the '<em><b>Namespace</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.papyrus.alf.alf.UnqualifiedName}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Namespace</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Namespace</em>' containment reference list.
-   * @see org.eclipse.papyrus.alf.alf.AlfPackage#getQualifiedNamePath_Namespace()
-   * @model containment="true"
-   * @generated
-   */
-  EList<UnqualifiedName> getNamespace();
+public interface QualifiedNamePath extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Namespace</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.alf.alf.UnqualifiedName}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Namespace</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Namespace</em>' containment reference list.
+	 * @see org.eclipse.papyrus.alf.alf.AlfPackage#getQualifiedNamePath_Namespace()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<UnqualifiedName> getNamespace();
 
 } // QualifiedNamePath

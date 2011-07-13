@@ -1467,8 +1467,18 @@ public class OperationGrammarAccess extends AbstractGrammarElementFinder {
 		return getStatementSequenceAccess().getRule();
 	}
 
+	//DocumentedStatement:
+	//	comment=(ML_COMMENT | SL_COMMENT)? statement=Statement;
+	public AlfGrammarAccess.DocumentedStatementElements getDocumentedStatementAccess() {
+		return gaAlf.getDocumentedStatementAccess();
+	}
+	
+	public ParserRule getDocumentedStatementRule() {
+		return getDocumentedStatementAccess().getRule();
+	}
+
 	//InlineStatement:
-	//	"/ *@" "inline" langageName=ID body=STRING "* /";
+	//	"/ *@" "inline" "(" langageName=ID ")" body=STRING "* /";
 	public AlfGrammarAccess.InlineStatementElements getInlineStatementAccess() {
 		return gaAlf.getInlineStatementAccess();
 	}
@@ -1478,23 +1488,14 @@ public class OperationGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AnnotatedStatement:
-	//	"//@" annotation=Annotation block=Block;
+	//	"//@" annotation= //block = Block
+	//	Annotation statement=Statement;
 	public AlfGrammarAccess.AnnotatedStatementElements getAnnotatedStatementAccess() {
 		return gaAlf.getAnnotatedStatementAccess();
 	}
 	
 	public ParserRule getAnnotatedStatementRule() {
 		return getAnnotatedStatementAccess().getRule();
-	}
-
-	//DocumentedStatement:
-	//	comment=(ML_COMMENT | SL_COMMENT)? statement=Statement;
-	public AlfGrammarAccess.DocumentedStatementElements getDocumentedStatementAccess() {
-		return gaAlf.getDocumentedStatementAccess();
-	}
-	
-	public ParserRule getDocumentedStatementRule() {
-		return getDocumentedStatementAccess().getRule();
 	}
 
 	//Statement:
@@ -1551,7 +1552,8 @@ public class OperationGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LocalNameDeclarationStatement:
-	//	"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? "=" init=Expression ";";
+	//	"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? //'=' init = Expression ';'
+	//	"=" init=SequenceElement ";";
 	public AlfGrammarAccess.LocalNameDeclarationStatementElements getLocalNameDeclarationStatementAccess() {
 		return gaAlf.getLocalNameDeclarationStatementAccess();
 	}
@@ -1901,7 +1903,7 @@ public class OperationGrammarAccess extends AbstractGrammarElementFinder {
 	////op=('=' | '+=' | '-=' | '*=' | '%=' | '/=' | '&=' |
 	////	'|=' | '^=' | '<<=' | '>>=' | '>>>=') rightHandSide = Expression
 	//AssignmentCompletion:
-	//	op=AssignmentOperator rightHandSide=Expression;
+	//	op=AssignmentOperator rightHandSide=SequenceElement;
 	public AlfGrammarAccess.AssignmentCompletionElements getAssignmentCompletionAccess() {
 		return gaAlf.getAssignmentCompletionAccess();
 	}
@@ -1937,7 +1939,7 @@ public class OperationGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal ML_COMMENT:
-	//	"/ *" !"@"* "* /";
+	//	"/ *" !"@"->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return gaAlf.getML_COMMENTRule();
 	} 

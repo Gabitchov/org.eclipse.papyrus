@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
-
+ * $Id$
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -29,153 +29,139 @@ import org.eclipse.papyrus.alf.alf.ForAllOrExistsOrOneOperator;
  *
  * @generated
  */
-public class ForAllOrExistsOrOneOperationImpl extends SequenceExpansionExpressionImpl implements ForAllOrExistsOrOneOperation
-{
-  /**
-   * The default value of the '{@link #getOp() <em>Op</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOp()
-   * @generated
-   * @ordered
-   */
-  protected static final ForAllOrExistsOrOneOperator OP_EDEFAULT = ForAllOrExistsOrOneOperator.FORALL;
+public class ForAllOrExistsOrOneOperationImpl extends SequenceExpansionExpressionImpl implements ForAllOrExistsOrOneOperation {
+	/**
+	 * The default value of the '{@link #getOp() <em>Op</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOp()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ForAllOrExistsOrOneOperator OP_EDEFAULT = ForAllOrExistsOrOneOperator.FORALL;
 
-  /**
-   * The cached value of the '{@link #getOp() <em>Op</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOp()
-   * @generated
-   * @ordered
-   */
-  protected ForAllOrExistsOrOneOperator op = OP_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getOp() <em>Op</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOp()
+	 * @generated
+	 * @ordered
+	 */
+	protected ForAllOrExistsOrOneOperator op = OP_EDEFAULT;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected ForAllOrExistsOrOneOperationImpl()
-  {
-    super();
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ForAllOrExistsOrOneOperationImpl() {
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return AlfPackage.Literals.FOR_ALL_OR_EXISTS_OR_ONE_OPERATION;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return AlfPackage.Literals.FOR_ALL_OR_EXISTS_OR_ONE_OPERATION;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ForAllOrExistsOrOneOperator getOp()
-  {
-    return op;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ForAllOrExistsOrOneOperator getOp() {
+		return op;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setOp(ForAllOrExistsOrOneOperator newOp)
-  {
-    ForAllOrExistsOrOneOperator oldOp = op;
-    op = newOp == null ? OP_EDEFAULT : newOp;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AlfPackage.FOR_ALL_OR_EXISTS_OR_ONE_OPERATION__OP, oldOp, op));
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOp(ForAllOrExistsOrOneOperator newOp) {
+		ForAllOrExistsOrOneOperator oldOp = op;
+		op = newOp == null ? OP_EDEFAULT : newOp;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AlfPackage.FOR_ALL_OR_EXISTS_OR_ONE_OPERATION__OP, oldOp, op));
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.FOR_ALL_OR_EXISTS_OR_ONE_OPERATION__OP:
-        return getOp();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case AlfPackage.FOR_ALL_OR_EXISTS_OR_ONE_OPERATION__OP:
+				return getOp();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.FOR_ALL_OR_EXISTS_OR_ONE_OPERATION__OP:
-        setOp((ForAllOrExistsOrOneOperator)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case AlfPackage.FOR_ALL_OR_EXISTS_OR_ONE_OPERATION__OP:
+				setOp((ForAllOrExistsOrOneOperator)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.FOR_ALL_OR_EXISTS_OR_ONE_OPERATION__OP:
-        setOp(OP_EDEFAULT);
-        return;
-    }
-    super.eUnset(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case AlfPackage.FOR_ALL_OR_EXISTS_OR_ONE_OPERATION__OP:
+				setOp(OP_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.FOR_ALL_OR_EXISTS_OR_ONE_OPERATION__OP:
-        return op != OP_EDEFAULT;
-    }
-    return super.eIsSet(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case AlfPackage.FOR_ALL_OR_EXISTS_OR_ONE_OPERATION__OP:
+				return op != OP_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (op: ");
-    result.append(op);
-    result.append(')');
-    return result.toString();
-  }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (op: ");
+		result.append(op);
+		result.append(')');
+		return result.toString();
+	}
 
 } //ForAllOrExistsOrOneOperationImpl

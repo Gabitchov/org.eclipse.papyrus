@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
-
+ * $Id$
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -37,135 +37,120 @@ import org.eclipse.papyrus.alf.alf.NonEmptyStatementSequence;
  *
  * @generated
  */
-public class NonEmptyStatementSequenceImpl extends MinimalEObjectImpl.Container implements NonEmptyStatementSequence
-{
-  /**
-   * The cached value of the '{@link #getStatement() <em>Statement</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getStatement()
-   * @generated
-   * @ordered
-   */
-  protected EList<DocumentedStatement> statement;
+public class NonEmptyStatementSequenceImpl extends MinimalEObjectImpl.Container implements NonEmptyStatementSequence {
+	/**
+	 * The cached value of the '{@link #getStatement() <em>Statement</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStatement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<DocumentedStatement> statement;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected NonEmptyStatementSequenceImpl()
-  {
-    super();
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NonEmptyStatementSequenceImpl() {
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return AlfPackage.Literals.NON_EMPTY_STATEMENT_SEQUENCE;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return AlfPackage.Literals.NON_EMPTY_STATEMENT_SEQUENCE;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<DocumentedStatement> getStatement()
-  {
-    if (statement == null)
-    {
-      statement = new EObjectContainmentEList<DocumentedStatement>(DocumentedStatement.class, this, AlfPackage.NON_EMPTY_STATEMENT_SEQUENCE__STATEMENT);
-    }
-    return statement;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<DocumentedStatement> getStatement() {
+		if (statement == null) {
+			statement = new EObjectContainmentEList<DocumentedStatement>(DocumentedStatement.class, this, AlfPackage.NON_EMPTY_STATEMENT_SEQUENCE__STATEMENT);
+		}
+		return statement;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.NON_EMPTY_STATEMENT_SEQUENCE__STATEMENT:
-        return ((InternalEList<?>)getStatement()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case AlfPackage.NON_EMPTY_STATEMENT_SEQUENCE__STATEMENT:
+				return ((InternalEList<?>)getStatement()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.NON_EMPTY_STATEMENT_SEQUENCE__STATEMENT:
-        return getStatement();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case AlfPackage.NON_EMPTY_STATEMENT_SEQUENCE__STATEMENT:
+				return getStatement();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.NON_EMPTY_STATEMENT_SEQUENCE__STATEMENT:
-        getStatement().clear();
-        getStatement().addAll((Collection<? extends DocumentedStatement>)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case AlfPackage.NON_EMPTY_STATEMENT_SEQUENCE__STATEMENT:
+				getStatement().clear();
+				getStatement().addAll((Collection<? extends DocumentedStatement>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.NON_EMPTY_STATEMENT_SEQUENCE__STATEMENT:
-        getStatement().clear();
-        return;
-    }
-    super.eUnset(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case AlfPackage.NON_EMPTY_STATEMENT_SEQUENCE__STATEMENT:
+				getStatement().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.NON_EMPTY_STATEMENT_SEQUENCE__STATEMENT:
-        return statement != null && !statement.isEmpty();
-    }
-    return super.eIsSet(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case AlfPackage.NON_EMPTY_STATEMENT_SEQUENCE__STATEMENT:
+				return statement != null && !statement.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //NonEmptyStatementSequenceImpl

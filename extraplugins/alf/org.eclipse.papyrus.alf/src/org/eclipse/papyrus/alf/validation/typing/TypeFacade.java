@@ -27,12 +27,14 @@ import org.eclipse.uml2.uml.TypedElement;
 public class TypeFacade {
 
 	protected EObject typeObject ;
+	protected TemplateBindingFacade templateBindingFacade ;
 	
 	public void setTypeObject(EObject typeObject) {
 		this.typeObject = typeObject ;
+		//TODO this.templateBindingFacade = TemplateBindingFacadeFactory.eInstance.createTemplateBindingFacade(typeObject) ;
 	}
 	
-	public String getLabel() {
+	public String getLabelWithoutBinding() {
 		if (typeObject == null)
 			return "<Undefined>" ;
 		return "" ;
@@ -93,7 +95,7 @@ public class TypeFacade {
 		return hisType.getGenerals().contains(myType) ;
 	}
 	
-	public Classifier extractActualType(TypeFacade t) {
+	public static Classifier extractActualType(TypeFacade t) {
 		Classifier actualType = null ;
 		if (t.typeObject instanceof Classifier)
 			actualType = (Classifier)t.typeObject ;
@@ -120,8 +122,43 @@ public class TypeFacade {
 		return actualType ;
 	}
 	
+	public Classifier extractActualType() {
+		return extractActualType(this) ;
+	}
+	
+	public boolean isAbstract() {
+		Classifier myType = extractActualType() ;
+		return myType != null ? myType.isAbstract() : false ;  
+	}
+	
+	public boolean isATemplate() {
+		Classifier myType = extractActualType() ;
+		return myType != null ? myType.isTemplate() : false ;  
+	}
+	
 	public boolean equals(Classifier c) {
 		return this.typeObject == c ;
+	}
+
+	public boolean isACollection() {
+		return 
+			this.isCompatibleWithMe(TypeUtils._Collection) > 0 
+			|| this.isCompatibleWithMe(TypeUtils._Set) > 0 
+			|| this.isCompatibleWithMe(TypeUtils._Bag) > 0 
+			|| this.isCompatibleWithMe(TypeUtils._Queue) > 0 
+			|| this.isCompatibleWithMe(TypeUtils._OrderedSet) > 0 
+			|| this.isCompatibleWithMe(TypeUtils._List) > 0 
+			|| this.isCompatibleWithMe(TypeUtils._Deque) > 0 
+			|| this.isCompatibleWithMe(TypeUtils._Map) > 0 ;
+	}
+
+	public boolean isOrdered() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public String getLabel() {
+		return "" + this.templateBindingFacade.getLabel() ;
 	}
 	
 }

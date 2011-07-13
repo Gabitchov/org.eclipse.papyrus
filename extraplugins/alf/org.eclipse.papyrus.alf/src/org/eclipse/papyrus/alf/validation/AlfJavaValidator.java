@@ -261,7 +261,7 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 		
 		// 3. checks the init expression
 		if (statement.getInit() != null) {
-			TypeExpression typeOfInit = new TypeUtils().getTypeOfExpression(statement.getInit()) ;
+			TypeExpression typeOfInit = new TypeUtils().getTypeOfSequenceElement(statement.getInit()) ;
 			// first checks that init expression is valid
 			if (typeOfInit.getTypeFacade() instanceof ErrorTypeFacade) {
 				ErrorTypeFacade error = (ErrorTypeFacade)typeOfInit.getTypeFacade() ;
@@ -616,7 +616,7 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 					error(error.getLabel(), error.getErrorSource(), error.getStructuralFeature(), INSIGNIFICANT_INDEX) ;
 				}
 				else {
-					Classifier actualReferencedClassifier = type.extractActualType(type) ;
+					Classifier actualReferencedClassifier = type.extractActualType() ;
 					List<QualifiedNameWithBinding> existingReferences = allReferencedSignals.get(actualReferencedClassifier) ;
 					if (existingReferences == null) {
 						existingReferences = new ArrayList<QualifiedNameWithBinding>() ;
@@ -678,7 +678,7 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 			errorFound = true  ;
 		}
 		else {
-			actualStaticType = staticType.getTypeFacade().extractActualType(staticType.getTypeFacade()) ;
+			actualStaticType = staticType.getTypeFacade().extractActualType() ;
 		}
 		if (actualStaticType == null || !(actualStaticType instanceof Class)) {
 			String errorMessage = "The type of the target expression must be a class" ;
@@ -871,8 +871,8 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 			// 2.a The name must resolve to a Variable, a Parameter, a Property, a Behavior or an Operation (TODO: can also be an association)
 			NameExpression varOrParamOrPropOrOpOrBehav = statement.getTypePart_OR_assignedPart_OR_invocationPart() ;
 			TypeExpression typeOfPrefix = new TypeUtils().getTypeOfNameExpression(varOrParamOrPropOrOpOrBehav) ;
-			if (typeOfPrefix.getType() != null && typeOfPrefix.getType() instanceof ErrorTypeFacade) {
-				ErrorTypeFacade error = (ErrorTypeFacade)typeOfPrefix.getType() ;
+			if (typeOfPrefix.getTypeFacade() != null && typeOfPrefix.getTypeFacade() instanceof ErrorTypeFacade) {
+				ErrorTypeFacade error = (ErrorTypeFacade)typeOfPrefix.getTypeFacade() ;
 				error(error.getLabel(), error.getErrorSource(), error.getStructuralFeature(), INSIGNIFICANT_INDEX) ;
 				return ;
 			}
@@ -905,8 +905,8 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 		// 3. if it is a prefixOp: or // 4. if it is a postfixOp:
 		else if (isAPrefixExpression || isAPostfixExpression) {
 			TypeExpression typeOfAssignedElement = new TypeUtils().getTypeOfNameExpression(statement.getTypePart_OR_assignedPart_OR_invocationPart()) ;
-			if (typeOfAssignedElement.getType() instanceof ErrorTypeFacade) {
-				ErrorTypeFacade error = (ErrorTypeFacade)typeOfAssignedElement.getType() ;
+			if (typeOfAssignedElement.getTypeFacade() instanceof ErrorTypeFacade) {
+				ErrorTypeFacade error = (ErrorTypeFacade)typeOfAssignedElement.getTypeFacade() ;
 				error(error.getLabel(), error.getErrorSource(), error.getStructuralFeature(), INSIGNIFICANT_INDEX) ;
 				return ;
 			}
@@ -1016,7 +1016,7 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 		
 		//3. initValue must respect the following sub-rules:
 		if (declaration.getInitValue() != null && declaration.getInitValue().getRightHandSide() != null) {
-			TypeExpression typeOfInit = new TypeUtils().getTypeOfExpression(declaration.getInitValue().getRightHandSide()) ;
+			TypeExpression typeOfInit = new TypeUtils().getTypeOfSequenceElement(declaration.getInitValue().getRightHandSide()) ;
 			if (typeOfInit == null) {
 				String errorMessage = "Init value is missing" ;
 				error(errorMessage, AlfPackage.eINSTANCE.getInvocationOrAssignementOrDeclarationStatement_VariableDeclarationCompletion()) ;
@@ -1067,17 +1067,17 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 		boolean errorInExpressions = false ;
 		// first infer type of the left part
 		TypeExpression typeOfLeft = new TypeUtils().getTypeOfNameExpression(statement.getTypePart_OR_assignedPart_OR_invocationPart()) ;
-		if (typeOfLeft.getType() == null || typeOfLeft.getType() instanceof ErrorTypeFacade) {
-			ErrorTypeFacade error = (ErrorTypeFacade)typeOfLeft.getType() ;
+		if (typeOfLeft.getTypeFacade() == null || typeOfLeft.getTypeFacade() instanceof ErrorTypeFacade) {
+			ErrorTypeFacade error = (ErrorTypeFacade)typeOfLeft.getTypeFacade() ;
 			error(error.getLabel(), error.getErrorSource(), error.getStructuralFeature(), INSIGNIFICANT_INDEX) ;
 			errorInExpressions = true ;
 		}
 		// then infer type of the right part
 		TypeExpression typeOfRight = null ;
 		if (statement.getAssignmentCompletion().getRightHandSide() != null) {
-			typeOfRight = new TypeUtils().getTypeOfExpression(statement.getAssignmentCompletion().getRightHandSide()) ;
-			if (typeOfRight == null || typeOfRight.getType() instanceof ErrorTypeFacade) {
-				ErrorTypeFacade error = (ErrorTypeFacade)typeOfRight.getType() ;
+			typeOfRight = new TypeUtils().getTypeOfSequenceElement(statement.getAssignmentCompletion().getRightHandSide()) ;
+			if (typeOfRight == null || typeOfRight.getTypeFacade() instanceof ErrorTypeFacade) {
+				ErrorTypeFacade error = (ErrorTypeFacade)typeOfRight.getTypeFacade() ;
 				error(error.getLabel(), error.getErrorSource(), error.getStructuralFeature(), INSIGNIFICANT_INDEX) ;
 				errorInExpressions = true ;
 			}
@@ -1138,7 +1138,7 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 		
 		// 2. If the assignment operator is "=", the right part must be type compatible with the left part
 		if (statement.getAssignmentCompletion().getOp() == AssignmentOperator.ASSIGN) {
-			if (typeOfRight.getType() == TypeUtils._undefined) {
+			if (typeOfRight.getTypeFacade() == TypeUtils._undefined) {
 				String errorMessage = "Right part is untyped" ;
 				error(errorMessage, AlfPackage.eINSTANCE.getInvocationOrAssignementOrDeclarationStatement_AssignmentCompletion()) ;
 			}
@@ -1180,8 +1180,8 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 	@Check
 	public void checkSuperInvocationStatement(SuperInvocationStatement statement) {
 		TypeExpression typeOfSuperInvocationExp = new TypeUtils().getTypeOfSuperInvocationExpression(statement.get_super()) ;
-		if (typeOfSuperInvocationExp.getType() instanceof ErrorTypeFacade) {
-			ErrorTypeFacade error = (ErrorTypeFacade)typeOfSuperInvocationExp.getType() ;
+		if (typeOfSuperInvocationExp.getTypeFacade() instanceof ErrorTypeFacade) {
+			ErrorTypeFacade error = (ErrorTypeFacade)typeOfSuperInvocationExp.getTypeFacade() ;
 			error(error.getLabel(), error.getErrorSource(), error.getStructuralFeature(), INSIGNIFICANT_INDEX) ;
 			return ;
 		}
@@ -1229,8 +1229,8 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 	public void checkThisInvocationStatement(ThisInvocationStatement statement) {
 		// 1. The associated ThisExpression must be valid
 		TypeExpression typeOfThisExpression = new TypeUtils().getTypeOfThisExpression(statement.get_this()) ;
-		if (typeOfThisExpression.getType() instanceof ErrorTypeFacade) {
-			ErrorTypeFacade error = (ErrorTypeFacade)typeOfThisExpression.getType() ;
+		if (typeOfThisExpression.getTypeFacade() instanceof ErrorTypeFacade) {
+			ErrorTypeFacade error = (ErrorTypeFacade)typeOfThisExpression.getTypeFacade() ;
 			error(error.getLabel(), error.getErrorSource(), error.getStructuralFeature(), INSIGNIFICANT_INDEX) ;
 			// return ;
 		}
@@ -1272,19 +1272,19 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 			if (statement.getAssignmentCompletion().getRightHandSide() == null)
 				return ;
 			else {
-				typeOfAssignment = new TypeUtils().getTypeOfExpression(statement.getAssignmentCompletion().getRightHandSide()) ;
-				if (typeOfAssignment.getType() instanceof ErrorTypeFacade) {
-					ErrorTypeFacade error = (ErrorTypeFacade)typeOfAssignment.getType() ;
+				typeOfAssignment = new TypeUtils().getTypeOfSequenceElement(statement.getAssignmentCompletion().getRightHandSide()) ;
+				if (typeOfAssignment.getTypeFacade() instanceof ErrorTypeFacade) {
+					ErrorTypeFacade error = (ErrorTypeFacade)typeOfAssignment.getTypeFacade() ;
 					error(error.getLabel(), error.getErrorSource(), error.getStructuralFeature(), INSIGNIFICANT_INDEX) ;
 					return ;
 				}
-				if (typeOfThisExpression.getType() instanceof ErrorTypeFacade)
+				if (typeOfThisExpression.getTypeFacade() instanceof ErrorTypeFacade)
 					return ;
 			}
 			
 			// 2.b If the assignment operator is "=", the right part must be type compatible with the left part
 			if (statement.getAssignmentCompletion().getOp() == AssignmentOperator.ASSIGN) {
-				if (typeOfAssignment.getType() == TypeUtils._undefined) {
+				if (typeOfAssignment.getTypeFacade() == TypeUtils._undefined) {
 					String errorMessage = "Right part is untyped" ;
 					error(errorMessage, AlfPackage.eINSTANCE.getInvocationOrAssignementOrDeclarationStatement_AssignmentCompletion()) ;
 				}
@@ -1358,8 +1358,8 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 	public void checkInstanceCreationInvocationStatement(InstanceCreationInvocationStatement statement) {
 		// 1. The InstanceCreationExpression must be valid
 		TypeExpression typeOfInstanceCreationExpression = new TypeUtils().getTypeOfInstanceCreationExpression(statement.get_new()) ;
-		if (typeOfInstanceCreationExpression.getType() instanceof ErrorTypeFacade) {
-			ErrorTypeFacade error = (ErrorTypeFacade)typeOfInstanceCreationExpression.getType() ;
+		if (typeOfInstanceCreationExpression.getTypeFacade() instanceof ErrorTypeFacade) {
+			ErrorTypeFacade error = (ErrorTypeFacade)typeOfInstanceCreationExpression.getTypeFacade() ;
 			error(error.getLabel(), error.getErrorSource(), error.getStructuralFeature(), INSIGNIFICANT_INDEX) ;
 			return ;
 		}

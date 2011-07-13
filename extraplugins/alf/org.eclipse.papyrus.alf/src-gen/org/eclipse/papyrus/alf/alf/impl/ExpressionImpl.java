@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
-
+ * $Id$
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -20,27 +20,24 @@ import org.eclipse.papyrus.alf.alf.Expression;
  *
  * @generated
  */
-public class ExpressionImpl extends SequenceElementImpl implements Expression
-{
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected ExpressionImpl()
-  {
-    super();
-  }
+public class ExpressionImpl extends SequenceElementImpl implements Expression {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExpressionImpl() {
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return AlfPackage.Literals.EXPRESSION;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return AlfPackage.Literals.EXPRESSION;
+	}
 
 } //ExpressionImpl

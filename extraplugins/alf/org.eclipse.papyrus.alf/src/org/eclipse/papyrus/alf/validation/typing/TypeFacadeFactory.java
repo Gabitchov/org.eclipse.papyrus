@@ -43,7 +43,7 @@ public class TypeFacadeFactory {
 	public TypeFacade createTypeFacade(EObject typeObject) {
 		TypeFacade result = new TypeFacade() {
 			@Override
-			public String getLabel() {
+			public String getLabelWithoutBinding() {
 				try {
 					if (typeObject instanceof Classifier)
 						return ((Classifier)typeObject).getName() ;
@@ -62,7 +62,36 @@ public class TypeFacadeFactory {
 					}
 					if (typeObject instanceof SequenceExpansionExpression) {
 						TypeFacade t = TypeFacadeFactory.eInstance.createTypeFacade(typeObject) ;
-						return t.extractActualType(t).getName() ;
+						return t.extractActualType().getName() ;
+					}
+				}
+				catch (NullPointerException e) { // occurs when no type can be derived from typeObject (i.e., typeObject.getType() == null)
+					return "any" ;
+				}
+				return super.getLabel() ;
+			}
+			
+			@Override
+			public String getLabel() {
+				try {
+					if (typeObject instanceof Classifier)
+						return ((Classifier)typeObject).getName() + super.getLabel() ;
+					if (typeObject instanceof ElementImport) {
+						ElementImport eImport = (ElementImport)typeObject ;
+						if (eImport.getAlias()!=null )
+							return eImport.getAlias() + super.getLabel() ;
+						else
+							return ((Classifier)eImport.getImportedElement()).getName() + super.getLabel() ;
+					}
+					if (typeObject instanceof Parameter) {
+						return ((Parameter)typeObject).getType().getName() + super.getLabel() ;
+					}
+					if (typeObject instanceof TypedElement) {
+						return ((TypedElement)typeObject).getType().getName() + super.getLabel() ;
+					}
+					if (typeObject instanceof SequenceExpansionExpression) {
+						TypeFacade t = TypeFacadeFactory.eInstance.createTypeFacade(typeObject) ;
+						return t.extractActualType().getName() + super.getLabel() ;
 					}
 				}
 				catch (NullPointerException e) { // occurs when no type can be derived from typeObject (i.e., typeObject.getType() == null)

@@ -297,7 +297,7 @@ public class OperationPopupEditorConfigurationContribution extends
 				if (p.getName().startsWith("\'")) {
 					newParamName = newParamName.substring(1, newParamName.length() - 1 ) ;
 				}
-				Parameter newParam = operation.createOwnedParameter(newParamName, typeExpression.getType() != null ? typeExpression.getType().extractActualType(typeExpression.getType()) : null) ;
+				Parameter newParam = operation.createOwnedParameter(newParamName, typeExpression.getTypeFacade() != null ? typeExpression.getTypeFacade().extractActualType() : null) ;
 				switch (p.getDirection()) {
 				case IN:
 					newParam.setDirection(ParameterDirectionKind.IN_LITERAL) ;
@@ -338,7 +338,7 @@ public class OperationPopupEditorConfigurationContribution extends
 					returnMultiplicity = MultiplicityFacadeFactory.eInstance.createMultiplicityFacade(newReturnType.getMultiplicity()) ;
 				else
 					returnMultiplicity = MultiplicityFacadeFactory.eInstance.createMultiplicityFacade() ;
-				operation.setType(returnType != null ? returnType.extractActualType(returnType) : null) ;
+				operation.setType(returnType != null ? returnType.extractActualType() : null) ;
 				operation.setLower(returnMultiplicity.getLowerBound()) ;
 				operation.setUpper(returnMultiplicity.getUpperBound()) ;
 			}

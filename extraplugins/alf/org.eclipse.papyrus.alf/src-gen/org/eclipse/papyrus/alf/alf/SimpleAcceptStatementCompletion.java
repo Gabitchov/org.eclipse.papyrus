@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
-
+ * $Id$
  */
 package org.eclipse.papyrus.alf.alf;
 
@@ -18,6 +18,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface SimpleAcceptStatementCompletion extends EObject
-{
+public interface SimpleAcceptStatementCompletion extends EObject {
 } // SimpleAcceptStatementCompletion

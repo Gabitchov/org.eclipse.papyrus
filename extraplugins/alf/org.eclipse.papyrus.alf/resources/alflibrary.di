@@ -34,6 +34,9 @@
     <availablePage>
       <emfPageIdentifier href="alflibrary.notation#_Qe_mAH-kEeCO_pg6CtXdNg"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="alflibrary.notation#_M7lF4KiyEeCw3MW-Flzemw"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
@@ -70,6 +73,9 @@
         </children>
         <children>
           <emfPageIdentifier href="alflibrary.notation#_Qe_mAH-kEeCO_pg6CtXdNg"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="alflibrary.notation#_M7lF4KiyEeCw3MW-Flzemw"/>
         </children>
       </children>
     </windows>

@@ -51,7 +51,9 @@ import org.eclipse.papyrus.alf.alf.PropertyCallExpression;
 import org.eclipse.papyrus.alf.alf.RelationalExpression;
 import org.eclipse.papyrus.alf.alf.STRING_LITERAL;
 import org.eclipse.papyrus.alf.alf.SelectOrRejectOperation;
+import org.eclipse.papyrus.alf.alf.SequenceConstructionExpression;
 import org.eclipse.papyrus.alf.alf.SequenceConstructionOrAccessCompletion;
+import org.eclipse.papyrus.alf.alf.SequenceElement;
 import org.eclipse.papyrus.alf.alf.SequenceExpansionExpression;
 import org.eclipse.papyrus.alf.alf.SequenceOperationExpression;
 import org.eclipse.papyrus.alf.alf.SequenceReductionExpression;
@@ -66,6 +68,7 @@ import org.eclipse.papyrus.alf.alf.UnqualifiedName;
 import org.eclipse.papyrus.alf.alf.ValueSpecification;
 import org.eclipse.papyrus.alf.scoping.AlfScopeProvider;
 import org.eclipse.papyrus.alf.validation.AlfJavaValidator;
+import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Parameter;
@@ -81,6 +84,16 @@ public class TypeUtils {
 	public static TypeFacade _string ; 
 	public static TypeFacade _bitString ; 
 	public static TypeExpression _nullExpression ;
+	public static TypeFacade _Collection ;
+	public static TypeFacade _Set ;
+	public static TypeFacade _Bag ;
+	public static TypeFacade _Queue ;
+	public static TypeFacade _OrderedSet ;
+	public static TypeFacade _List ;
+	public static TypeFacade _Deque ;
+	public static TypeFacade _Map ;
+	public static TypeFacade _Entry ;
+	
 	
 	private SuffixExpression suffixToBeIgnored = null ;
 	
@@ -428,7 +441,7 @@ public class TypeUtils {
 	
 	public TypeExpression getTypeOfUnaryExpression(UnaryExpression exp) {
 		TypeExpression typeOfExp = getTypeOfPrimaryExpression(exp.getExp()) ;
-		if (typeOfExp.getType() instanceof ErrorTypeFacade)
+		if (typeOfExp.getTypeFacade() instanceof ErrorTypeFacade)
 			return typeOfExp ;
 		if (exp.getOp() != null) {
 			// '!'|'-'|'+'|'$'|'~'
@@ -557,7 +570,7 @@ public class TypeUtils {
 			for (Iterator<Classifier> i = AlfJavaValidator.getContextClassifier().getGenerals().iterator() ; i.hasNext() && found <= 1; ) {
 				TypeExpression contextType = TypeExpressionFactory.eInstance.createTypeExpression(i.next()) ;
 				typeOfOperationCall = getTypeOfOperationCallExpression(exp.getOperationCall(), contextType) ;
-				if (! (typeOfOperationCall.getType() instanceof ErrorTypeFacade)) {
+				if (! (typeOfOperationCall.getTypeFacade() instanceof ErrorTypeFacade)) {
 					found++ ;
 				}
 			}
@@ -655,7 +668,7 @@ public class TypeUtils {
 		if (exp.getCasted() != null) // && exp.getSuffix() == null)
 			return getTypeOfCastExpression(exp) ;
 		TypeExpression typeOfParenthesizedExpression = getTypeOfExpression((Expression)exp.getExpOrTypeCast()) ;
-		if (typeOfParenthesizedExpression.getType() instanceof ErrorTypeFacade) {
+		if (typeOfParenthesizedExpression.getTypeFacade() instanceof ErrorTypeFacade) {
 			return typeOfParenthesizedExpression ;
 		}
 		if (exp.getSuffix() != null && exp.getSuffix() != suffixToBeIgnored)
@@ -665,7 +678,7 @@ public class TypeUtils {
 	
 	protected TypeExpression getTypeOfCastExpression(ParenthesizedExpression exp) {
 		TypeExpression typeOfCastedPart = getTypeOfNonLiteralValueSpecification(exp.getCasted()) ;
-		if (typeOfCastedPart.getType() instanceof ErrorTypeFacade)
+		if (typeOfCastedPart.getTypeFacade() instanceof ErrorTypeFacade)
 			return typeOfCastedPart ;
 		TypeFacade castingTypeFacade = TypeFacadeFactory.eInstance.createVoidFacade(exp.getExpOrTypeCast()) ;
 		TypeExpression result = new TypeExpression() ;
@@ -770,7 +783,7 @@ public class TypeUtils {
 			List<TypeExpression> arguments = new ArrayList<TypeExpression>() ;
 			for (TupleElement e : exp.getInvocationCompletion().getTupleElements()) {
 				TypeExpression type = getTypeOfExpression(e.getArgument()) ;
-				if (type.getType() != null && type.getType() instanceof ErrorTypeFacade)
+				if (type.getTypeFacade() != null && type.getTypeFacade() instanceof ErrorTypeFacade)
 					return type ;
 				arguments.add(type) ;
 			}
@@ -852,10 +865,10 @@ public class TypeUtils {
 					return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
 				}
 				TypeExpression typeOfIndex = getTypeOfExpression(sequenceAccessOrConstruction.getAccessCompletion().getAccessIndex()) ;
-				if (typeOfIndex.getType() instanceof ErrorTypeFacade) {
+				if (typeOfIndex.getTypeFacade() instanceof ErrorTypeFacade) {
 					return typeOfIndex ;
 				}
-				else if (! (_integer.isCompatibleWithMe(typeOfIndex.getType())== 3 || _natural.isCompatibleWithMe(typeOfIndex.getType())==3)) {
+				else if (! (_integer.isCompatibleWithMe(typeOfIndex.getTypeFacade())== 3 || _natural.isCompatibleWithMe(typeOfIndex.getTypeFacade())==3)) {
 					String errorMessage = "Expecting an expression of type Integer. Found an expression of type " + typeOfIndex.getLabel() ;
 					ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
 							errorMessage, 
@@ -879,7 +892,7 @@ public class TypeUtils {
 	
 	public TypeExpression getTypeOfThisExpression(ThisExpression exp) {
 		TypeExpression typeOfPrefix = TypeExpressionFactory.eInstance.createTypeExpression(AlfJavaValidator.getContextClassifier()) ;
-		if (typeOfPrefix.getType() instanceof ErrorTypeFacade)
+		if (typeOfPrefix.getTypeFacade() instanceof ErrorTypeFacade)
 			return typeOfPrefix ;
 		if (exp.getSuffix() != null && exp.getSuffix() != suffixToBeIgnored) {
 			return getTypeOfSuffixExpression(exp.getSuffix(), typeOfPrefix) ;
@@ -899,7 +912,7 @@ public class TypeUtils {
 				TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containtFeature) ;
 			return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
 		}
-		else if (typeOfPrefix.getType() == TypeUtils._undefined) {
+		else if (typeOfPrefix.getTypeFacade() == TypeUtils._undefined) {
 			String errorMessage = "The invocation prefix has no return parameter." ;
 			ErrorTypeFacade error = 
 				TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containtFeature) ;
@@ -969,7 +982,7 @@ public class TypeUtils {
 		if (cddBehaviorFacade instanceof ErrorTypeFacade)
 			return TypeExpressionFactory.eInstance.createTypeExpression(cddBehaviorFacade) ;
 		
-		Classifier cddBehavior = cddBehaviorFacade.extractActualType(cddBehaviorFacade) ;
+		Classifier cddBehavior = cddBehaviorFacade.extractActualType() ;
 		if (! (cddBehavior instanceof Behavior)) {
 			String errorMessage = cddBehavior.getName() + " does not resolve to a Behavior" ;
 			ErrorTypeFacade unsupportedCase = 
@@ -1038,14 +1051,14 @@ public class TypeUtils {
 		}
 		
 		// The signature is valid. Finally needs to determine if the type of the elements in the collection is compatible with the type of the parameters
-		if (TypeFacadeFactory.eInstance.createTypeFacade(paramsType).isCompatibleWithMe(typeOfPrefix.getType()) == 0) {
-			String errorMessage = behaviorFacade.getLabel() + " does not apply to arguments of type " + typeOfPrefix.getType().getLabel() ;
+		if (TypeFacadeFactory.eInstance.createTypeFacade(paramsType).isCompatibleWithMe(typeOfPrefix.getTypeFacade()) == 0) {
+			String errorMessage = behaviorFacade.getLabel() + " does not apply to arguments of type " + typeOfPrefix.getTypeFacade().getLabel() ;
 			ErrorTypeFacade unsupportedCase = 
 				TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, exp, AlfPackage.eINSTANCE.getSequenceReductionExpression_Behavior()) ;
 			return TypeExpressionFactory.eInstance.createTypeExpression(unsupportedCase) ;
 		}
 		
-		TypeExpression typeOfExpression = TypeExpressionFactory.eInstance.createTypeExpression(typeOfPrefix.getType()) ;
+		TypeExpression typeOfExpression = TypeExpressionFactory.eInstance.createTypeExpression(typeOfPrefix.getTypeFacade()) ;
 		
 		if (exp.getSuffix() != null && exp.getSuffix() != suffixToBeIgnored)
 			return getTypeOfSuffixExpression(exp.getSuffix(), typeOfExpression) ;
@@ -1086,7 +1099,7 @@ public class TypeUtils {
 		}
 		
 		TypeExpression typeOfCondition = getTypeOfExpression(exp.getExpr()) ;
-		if (typeOfCondition.getType() instanceof ErrorTypeFacade)
+		if (typeOfCondition.getTypeFacade() instanceof ErrorTypeFacade)
 			return typeOfCondition ;
 		
 		int upperBound = typeOfCondition.getMultiplicity().getUpperBound() ;
@@ -1126,7 +1139,7 @@ public class TypeUtils {
 		}
 		
 		TypeExpression typeOfCondition = getTypeOfExpression(exp.getExpr()) ;
-		if (typeOfCondition.getType() instanceof ErrorTypeFacade)
+		if (typeOfCondition.getTypeFacade() instanceof ErrorTypeFacade)
 			return typeOfCondition ;
 		
 		if (TypeExpressionFactory.eInstance.createTypeExpression(TypeUtils._boolean).isCompatibleWithMe(typeOfCondition) == 0) {
@@ -1164,7 +1177,7 @@ public class TypeUtils {
 		}
 		
 		TypeExpression typeOfCondition = getTypeOfExpression(exp.getExpr()) ;
-		if (typeOfCondition.getType() instanceof ErrorTypeFacade)
+		if (typeOfCondition.getTypeFacade() instanceof ErrorTypeFacade)
 			return typeOfCondition ;
 		
 		int lowerBound = typeOfPrefix.getMultiplicity().getLowerBound() * typeOfCondition.getMultiplicity().getLowerBound() ;
@@ -1180,7 +1193,7 @@ public class TypeUtils {
 			return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
 		}
 		
-		TypeExpression typeOfExpression = TypeExpressionFactory.eInstance.createTypeExpression(typeOfCondition.getType()) ;
+		TypeExpression typeOfExpression = TypeExpressionFactory.eInstance.createTypeExpression(typeOfCondition.getTypeFacade()) ;
 		typeOfExpression.setMultiplicity(
 				MultiplicityFacadeFactory.eInstance.createMultiplicityFacade(
 						lowerBound, // Lower bound
@@ -1213,7 +1226,7 @@ public class TypeUtils {
 		}
 		
 		TypeExpression typeOfCondition = getTypeOfExpression(exp.getExpr()) ;
-		if (typeOfCondition.getType() instanceof ErrorTypeFacade)
+		if (typeOfCondition.getTypeFacade() instanceof ErrorTypeFacade)
 			return typeOfCondition ;
 		
 		if (TypeExpressionFactory.eInstance.createTypeExpression(TypeUtils._boolean).isCompatibleWithMe(typeOfCondition) == 0) {
@@ -1224,7 +1237,7 @@ public class TypeUtils {
 			return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
 		}
 		
-		TypeExpression typeOfExpression = TypeExpressionFactory.eInstance.createTypeExpression(typeOfPrefix.getType()) ;
+		TypeExpression typeOfExpression = TypeExpressionFactory.eInstance.createTypeExpression(typeOfPrefix.getTypeFacade()) ;
 		typeOfExpression.setMultiplicity(
 				MultiplicityFacadeFactory.eInstance.createMultiplicityFacade(
 						0, // Lower bound
@@ -1239,7 +1252,7 @@ public class TypeUtils {
 	}
 
 	public TypeExpression getTypeOfPropertyCallExpression(PropertyCallExpression exp, TypeExpression typeOfPrefix) {
-		Classifier type = typeOfPrefix.getTypeFacade().extractActualType(typeOfPrefix.getTypeFacade()) ;
+		Classifier type = typeOfPrefix.getTypeFacade().extractActualType() ;
 		EObject source = exp.eContainer() ;
 		EStructuralFeature containtFeature = exp.eContainingFeature() ;
 		if (type == null) {
@@ -1280,7 +1293,7 @@ public class TypeUtils {
 						if (typeOfIndex.getTypeFacade() instanceof ErrorTypeFacade) {
 							return typeOfIndex ;
 						}
-						else if (typeOfIndex.isACollection() || typeOfIndex.getType() != TypeUtils._integer) {
+						else if (typeOfIndex.isACollection() || typeOfIndex.getTypeFacade() != TypeUtils._integer) {
 							String errorMessage = "Expecting an expression of type Integer. Found an expression of type " + typeOfIndex.getLabel() ;
 							ErrorTypeFacade error = 
 								TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, exp, AlfPackage.eINSTANCE.getPropertyCallExpression_Index()) ;
@@ -1293,7 +1306,7 @@ public class TypeUtils {
 							return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
 						}
 						else {
-							typeOfSuffix = TypeExpressionFactory.eInstance.createTypeExpression(typeOfSuffix.getType()) ;
+							typeOfSuffix = TypeExpressionFactory.eInstance.createTypeExpression(typeOfSuffix.getTypeFacade()) ;
 						}
 					}
 					else {
@@ -1312,7 +1325,7 @@ public class TypeUtils {
 	}
 	
 	public TypeExpression getTypeOfOperationCallExpression(OperationCallExpression exp, TypeExpression typeOfPrefix) {
-		Classifier type = typeOfPrefix.getTypeFacade().extractActualType(typeOfPrefix.getTypeFacade()) ;
+		Classifier type = typeOfPrefix.getTypeFacade().extractActualType() ;
 		EObject source = exp.eContainer() ;
 		EStructuralFeature containingFeature = exp.eContainingFeature() ;
 		if (type == null) {
@@ -1324,7 +1337,7 @@ public class TypeUtils {
 		List<TypeExpression> arguments = new ArrayList<TypeExpression>() ;
 		for (TupleElement e : exp.getTuple().getTupleElements()) {
 			TypeExpression argType = getTypeOfExpression(e.getArgument()) ;
-			if (argType.getType() != null && argType.getType() instanceof ErrorTypeFacade)
+			if (argType.getTypeFacade() != null && argType.getTypeFacade() instanceof ErrorTypeFacade)
 				return argType ;
 			arguments.add(argType) ;
 		}
@@ -1334,7 +1347,7 @@ public class TypeUtils {
 			String errorMessage = "" ;
 			ErrorTypeFacade error = null ;
 			if (exp.getOperationName().equals("destroy")) {// This is the case of the default destructor
-				if (typeOfPrefix.getType().extractActualType(typeOfPrefix.getType()) instanceof PrimitiveType)
+				if (typeOfPrefix.getTypeFacade().extractActualType() instanceof PrimitiveType)
 					errorMessage += "Primitive types do not have destructors." ;					
 				else if (arguments.size() > 0)
 					errorMessage += "Default destructor has not parameters" ;
@@ -1416,7 +1429,7 @@ public class TypeUtils {
 		List<TypeExpression> arguments = new ArrayList<TypeExpression>() ;
 		for (TupleElement e : exp.getTuple().getTupleElements()) {
 			TypeExpression argType = getTypeOfExpression(e.getArgument()) ;
-			if (argType.getType() != null && argType.getType() instanceof ErrorTypeFacade)
+			if (argType.getTypeFacade() != null && argType.getTypeFacade() instanceof ErrorTypeFacade)
 				return argType ;
 			arguments.add(argType) ;
 		}
@@ -1488,6 +1501,80 @@ public class TypeUtils {
 			return getTypeOfSuffixExpression(exp.getSuffix(), typeOfSuffix) ;
 		else
 			return typeOfSuffix ;
+	}
+	
+	public TypeExpression getTypeOfSequenceElement (SequenceElement s) {
+		if (s instanceof Expression)
+			return getTypeOfExpression((Expression)s) ;
+		else // instanceof SequenceConstructionExpression
+			return getTypeOfSequenceConstructionExpression((SequenceConstructionExpression)s) ;
+	}
+	
+	public TypeExpression getTypeOfSequenceConstructionExpression (SequenceConstructionExpression s) {
+		String errorMessage = "";
+		ErrorTypeFacade error = null ;
+		if (s.getSequenceElement() == null || s.getSequenceElement().isEmpty()) {
+			errorMessage = "Invalid sequence construction expression." ;
+			error = TypeFacadeFactory.eInstance
+						.createErrorTypeFacade(errorMessage, s, AlfPackage.eINSTANCE.getSequenceConstructionExpression_SequenceElement()) ;
+			return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+		}
+		TypeExpression baseType = this.getTypeOfSequenceElement(s.getSequenceElement().get(0)) ;
+		if (baseType.getTypeFacade() instanceof ErrorTypeFacade)
+			return baseType ;
+		if (s.getRangeUpper() != null) { // Sequence is specified as a range
+			TypeExpression upperType = this.getTypeOfExpression(s.getRangeUpper()) ;
+			if (upperType.getTypeFacade() instanceof ErrorTypeFacade)
+				return upperType ;
+			if (upperType.isCompatibleWithMe(baseType) != 0)
+				return TypeExpressionFactory.eInstance.createTypeExpression(upperType.getTypeFacade(), 0, -1, false, true) ;
+			else if (baseType.isCompatibleWithMe(upperType) != 0)
+				return TypeExpressionFactory.eInstance.createTypeExpression(baseType.getTypeFacade(), 0, -1, false, true) ;
+			else {
+				errorMessage += "All the elements in the sequence must be type compatible." ;
+				error = TypeFacadeFactory.eInstance
+							.createErrorTypeFacade(errorMessage, s, AlfPackage.eINSTANCE.getSequenceConstructionExpression_SequenceElement()) ;
+				return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+			}
+		}
+		else {// Values contained in the sequence are enumerated
+			List<TypeExpression> typeOfSequenceElements = new ArrayList<TypeExpression>() ;
+			typeOfSequenceElements.add(baseType) ;
+			for (int i = 1 ; i < s.getSequenceElement().size() ; i ++) {
+				TypeExpression t = this.getTypeOfSequenceElement(s.getSequenceElement().get(i)) ;
+				if (t.getTypeFacade() instanceof ErrorTypeFacade)
+					return t ;
+				else
+					typeOfSequenceElements.add(t) ;
+			}
+			TypeExpression commonSuperType = this.findCommonSuperType(typeOfSequenceElements) ;
+			if (commonSuperType == null) {
+				errorMessage = "All the elements in the sequence must be type compatible." ;
+				error = TypeFacadeFactory.eInstance
+						.createErrorTypeFacade(errorMessage, s, AlfPackage.eINSTANCE.getSequenceConstructionExpression_SequenceElement()) ;
+				commonSuperType = TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+			}
+			else {
+				commonSuperType.setMultiplicity(MultiplicityFacadeFactory.eInstance.createMultiplicityFacade(-1)) ;
+			}
+			return commonSuperType ;
+		}
+	}
+	
+	private TypeExpression findCommonSuperType(List<TypeExpression> l) {
+		TypeExpression mostGeneral = l.get(0) ;
+		for (int i = 1 ; i < l.size() && mostGeneral != null ; i ++) {
+			TypeExpression current = l.get(i) ;
+			if (mostGeneral == current)
+				;
+			else if (current.isCompatibleWithMe(mostGeneral) != 0)
+				;
+			else if (mostGeneral.isCompatibleWithMe(current) != 0)
+				mostGeneral = current ;
+			else
+				mostGeneral = null ;
+		}
+		return mostGeneral ;
 	}
 }
 

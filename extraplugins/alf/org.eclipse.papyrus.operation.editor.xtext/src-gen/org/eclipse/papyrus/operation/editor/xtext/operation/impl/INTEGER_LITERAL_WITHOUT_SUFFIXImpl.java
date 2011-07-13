@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
-
+ * $Id$
  */
 package org.eclipse.papyrus.operation.editor.xtext.operation.impl;
 
@@ -20,27 +20,24 @@ import org.eclipse.papyrus.operation.editor.xtext.operation.OperationPackage;
  *
  * @generated
  */
-public class INTEGER_LITERAL_WITHOUT_SUFFIXImpl extends NUMBER_LITERAL_WITHOUT_SUFFIXImpl implements INTEGER_LITERAL_WITHOUT_SUFFIX
-{
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected INTEGER_LITERAL_WITHOUT_SUFFIXImpl()
-  {
-    super();
-  }
+public class INTEGER_LITERAL_WITHOUT_SUFFIXImpl extends NUMBER_LITERAL_WITHOUT_SUFFIXImpl implements INTEGER_LITERAL_WITHOUT_SUFFIX {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected INTEGER_LITERAL_WITHOUT_SUFFIXImpl() {
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return OperationPackage.Literals.INTEGER_LITERAL_WITHOUT_SUFFIX;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return OperationPackage.Literals.INTEGER_LITERAL_WITHOUT_SUFFIX;
+	}
 
 } //INTEGER_LITERAL_WITHOUT_SUFFIXImpl

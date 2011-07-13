@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
-
+ * $Id$
  */
 package org.eclipse.papyrus.alf.alf;
 
@@ -23,35 +23,34 @@ package org.eclipse.papyrus.alf.alf;
  * @model
  * @generated
  */
-public interface SelectOrRejectOperation extends SequenceExpansionExpression
-{
-  /**
-   * Returns the value of the '<em><b>Op</b></em>' attribute.
-   * The literals are from the enumeration {@link org.eclipse.papyrus.alf.alf.SelectOrRejectOperator}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Op</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Op</em>' attribute.
-   * @see org.eclipse.papyrus.alf.alf.SelectOrRejectOperator
-   * @see #setOp(SelectOrRejectOperator)
-   * @see org.eclipse.papyrus.alf.alf.AlfPackage#getSelectOrRejectOperation_Op()
-   * @model
-   * @generated
-   */
-  SelectOrRejectOperator getOp();
+public interface SelectOrRejectOperation extends SequenceExpansionExpression {
+	/**
+	 * Returns the value of the '<em><b>Op</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipse.papyrus.alf.alf.SelectOrRejectOperator}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Op</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Op</em>' attribute.
+	 * @see org.eclipse.papyrus.alf.alf.SelectOrRejectOperator
+	 * @see #setOp(SelectOrRejectOperator)
+	 * @see org.eclipse.papyrus.alf.alf.AlfPackage#getSelectOrRejectOperation_Op()
+	 * @model
+	 * @generated
+	 */
+	SelectOrRejectOperator getOp();
 
-  /**
-   * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.SelectOrRejectOperation#getOp <em>Op</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Op</em>' attribute.
-   * @see org.eclipse.papyrus.alf.alf.SelectOrRejectOperator
-   * @see #getOp()
-   * @generated
-   */
-  void setOp(SelectOrRejectOperator value);
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.SelectOrRejectOperation#getOp <em>Op</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Op</em>' attribute.
+	 * @see org.eclipse.papyrus.alf.alf.SelectOrRejectOperator
+	 * @see #getOp()
+	 * @generated
+	 */
+	void setOp(SelectOrRejectOperator value);
 
 } // SelectOrRejectOperation

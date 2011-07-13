@@ -153,9 +153,9 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSequenceConstructionExpressionAccess().getGroup_2_1(), "rule__SequenceConstructionExpression__Group_2_1__0");
 					put(grammarAccess.getClassExtentExpressionAccess().getGroup(), "rule__ClassExtentExpression__Group__0");
 					put(grammarAccess.getBlockAccess().getGroup(), "rule__Block__Group__0");
+					put(grammarAccess.getDocumentedStatementAccess().getGroup(), "rule__DocumentedStatement__Group__0");
 					put(grammarAccess.getInlineStatementAccess().getGroup(), "rule__InlineStatement__Group__0");
 					put(grammarAccess.getAnnotatedStatementAccess().getGroup(), "rule__AnnotatedStatement__Group__0");
-					put(grammarAccess.getDocumentedStatementAccess().getGroup(), "rule__DocumentedStatement__Group__0");
 					put(grammarAccess.getAnnotationAccess().getGroup(), "rule__Annotation__Group__0");
 					put(grammarAccess.getAnnotationAccess().getGroup_1(), "rule__Annotation__Group_1__0");
 					put(grammarAccess.getAnnotationAccess().getGroup_1_2(), "rule__Annotation__Group_1_2__0");
@@ -334,12 +334,12 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSequenceConstructionExpressionAccess().getRangeUpperAssignment_2_1_1(), "rule__SequenceConstructionExpression__RangeUpperAssignment_2_1_1");
 					put(grammarAccess.getBlockAccess().getSequenceAssignment_2(), "rule__Block__SequenceAssignment_2");
 					put(grammarAccess.getStatementSequenceAccess().getStatementsAssignment(), "rule__StatementSequence__StatementsAssignment");
-					put(grammarAccess.getInlineStatementAccess().getLangageNameAssignment_2(), "rule__InlineStatement__LangageNameAssignment_2");
-					put(grammarAccess.getInlineStatementAccess().getBodyAssignment_3(), "rule__InlineStatement__BodyAssignment_3");
-					put(grammarAccess.getAnnotatedStatementAccess().getAnnotationAssignment_1(), "rule__AnnotatedStatement__AnnotationAssignment_1");
-					put(grammarAccess.getAnnotatedStatementAccess().getBlockAssignment_2(), "rule__AnnotatedStatement__BlockAssignment_2");
 					put(grammarAccess.getDocumentedStatementAccess().getCommentAssignment_0(), "rule__DocumentedStatement__CommentAssignment_0");
 					put(grammarAccess.getDocumentedStatementAccess().getStatementAssignment_1(), "rule__DocumentedStatement__StatementAssignment_1");
+					put(grammarAccess.getInlineStatementAccess().getLangageNameAssignment_3(), "rule__InlineStatement__LangageNameAssignment_3");
+					put(grammarAccess.getInlineStatementAccess().getBodyAssignment_5(), "rule__InlineStatement__BodyAssignment_5");
+					put(grammarAccess.getAnnotatedStatementAccess().getAnnotationAssignment_1(), "rule__AnnotatedStatement__AnnotationAssignment_1");
+					put(grammarAccess.getAnnotatedStatementAccess().getStatementAssignment_2(), "rule__AnnotatedStatement__StatementAssignment_2");
 					put(grammarAccess.getAnnotationAccess().getKindAssignment_0(), "rule__Annotation__KindAssignment_0");
 					put(grammarAccess.getAnnotationAccess().getArgsAssignment_1_1(), "rule__Annotation__ArgsAssignment_1_1");
 					put(grammarAccess.getAnnotationAccess().getArgsAssignment_1_2_1(), "rule__Annotation__ArgsAssignment_1_2_1");

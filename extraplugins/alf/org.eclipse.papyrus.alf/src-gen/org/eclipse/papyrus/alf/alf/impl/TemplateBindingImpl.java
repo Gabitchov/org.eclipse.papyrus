@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
-
+ * $Id$
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -37,135 +37,120 @@ import org.eclipse.papyrus.alf.alf.TemplateBinding;
  *
  * @generated
  */
-public class TemplateBindingImpl extends MinimalEObjectImpl.Container implements TemplateBinding
-{
-  /**
-   * The cached value of the '{@link #getBindings() <em>Bindings</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getBindings()
-   * @generated
-   * @ordered
-   */
-  protected EList<NamedTemplateBinding> bindings;
+public class TemplateBindingImpl extends MinimalEObjectImpl.Container implements TemplateBinding {
+	/**
+	 * The cached value of the '{@link #getBindings() <em>Bindings</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBindings()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<NamedTemplateBinding> bindings;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected TemplateBindingImpl()
-  {
-    super();
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TemplateBindingImpl() {
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return AlfPackage.Literals.TEMPLATE_BINDING;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return AlfPackage.Literals.TEMPLATE_BINDING;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<NamedTemplateBinding> getBindings()
-  {
-    if (bindings == null)
-    {
-      bindings = new EObjectContainmentEList<NamedTemplateBinding>(NamedTemplateBinding.class, this, AlfPackage.TEMPLATE_BINDING__BINDINGS);
-    }
-    return bindings;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<NamedTemplateBinding> getBindings() {
+		if (bindings == null) {
+			bindings = new EObjectContainmentEList<NamedTemplateBinding>(NamedTemplateBinding.class, this, AlfPackage.TEMPLATE_BINDING__BINDINGS);
+		}
+		return bindings;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.TEMPLATE_BINDING__BINDINGS:
-        return ((InternalEList<?>)getBindings()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case AlfPackage.TEMPLATE_BINDING__BINDINGS:
+				return ((InternalEList<?>)getBindings()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.TEMPLATE_BINDING__BINDINGS:
-        return getBindings();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case AlfPackage.TEMPLATE_BINDING__BINDINGS:
+				return getBindings();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.TEMPLATE_BINDING__BINDINGS:
-        getBindings().clear();
-        getBindings().addAll((Collection<? extends NamedTemplateBinding>)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case AlfPackage.TEMPLATE_BINDING__BINDINGS:
+				getBindings().clear();
+				getBindings().addAll((Collection<? extends NamedTemplateBinding>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.TEMPLATE_BINDING__BINDINGS:
-        getBindings().clear();
-        return;
-    }
-    super.eUnset(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case AlfPackage.TEMPLATE_BINDING__BINDINGS:
+				getBindings().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case AlfPackage.TEMPLATE_BINDING__BINDINGS:
-        return bindings != null && !bindings.isEmpty();
-    }
-    return super.eIsSet(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case AlfPackage.TEMPLATE_BINDING__BINDINGS:
+				return bindings != null && !bindings.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //TemplateBindingImpl

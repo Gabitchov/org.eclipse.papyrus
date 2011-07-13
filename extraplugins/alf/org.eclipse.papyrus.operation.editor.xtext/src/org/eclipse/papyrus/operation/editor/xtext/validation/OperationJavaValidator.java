@@ -135,8 +135,8 @@ public class OperationJavaValidator extends AbstractOperationJavaValidator {
 		valid_return_parameter = true ;
 		if (OperationScopeProvider.scopingTool.isAReturnStatementExpected(declaration)) {
 			TypeExpression expectedType = OperationScopeProvider.scopingTool.getExpectedReturnType(declaration) ;
-			if (expectedType.getType() instanceof ErrorTypeFacade) {
-				ErrorTypeFacade error = (ErrorTypeFacade)expectedType.getType() ;
+			if (expectedType.getTypeFacade() instanceof ErrorTypeFacade) {
+				ErrorTypeFacade error = (ErrorTypeFacade)expectedType.getTypeFacade() ;
 				error (error.getLabel(), error.getErrorSource(), error.getStructuralFeature(), INSIGNIFICANT_INDEX) ;
 				valid_return_parameter = true ;
 			}

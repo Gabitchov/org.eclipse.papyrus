@@ -15,6 +15,7 @@ package org.eclipse.papyrus.alf.scoping;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.alf.validation.typing.TypeExpression;
+import org.eclipse.papyrus.alf.validation.typing.TypeFacade;
 
 public abstract class AbstractScopingTool {
 	
@@ -33,4 +34,6 @@ public abstract class AbstractScopingTool {
 	public abstract TypeExpression getExpectedReturnType(EObject context) ;
 	
 	public abstract AlfPartialScope getVisibleSignalReceptions(EObject context) ;
+
+	public abstract AlfPartialScope getVisibleFormalParameters(TypeFacade context) ;
 }

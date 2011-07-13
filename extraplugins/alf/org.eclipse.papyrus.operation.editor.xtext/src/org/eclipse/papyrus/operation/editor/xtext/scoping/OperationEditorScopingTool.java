@@ -46,6 +46,7 @@ import org.eclipse.papyrus.alf.validation.typing.TypeExpression;
 import org.eclipse.papyrus.alf.validation.typing.TypeExpressionFactory;
 import org.eclipse.papyrus.alf.validation.typing.TypeFacade;
 import org.eclipse.papyrus.alf.validation.typing.TypeFacadeFactory;
+import org.eclipse.papyrus.alf.validation.typing.TypeUtils;
 import org.eclipse.papyrus.operation.editor.xtext.operation.FormalParameter;
 import org.eclipse.papyrus.operation.editor.xtext.operation.Multiplicity;
 import org.eclipse.papyrus.operation.editor.xtext.operation.OperationDeclaration;
@@ -63,6 +64,7 @@ import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Reception;
 import org.eclipse.uml2.uml.Signal;
+import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.VisibilityKind;
 
 public class OperationEditorScopingTool extends AbstractScopingTool{
@@ -700,13 +702,30 @@ public class OperationEditorScopingTool extends AbstractScopingTool{
 					}
 					nestedList = removeDuplicateClassifiers(nestedList) ;
 					nestedScopes.add(nestedList) ;
-					
+	
 					// Then process the implicit import of alf library
 					nestedList = new ArrayList<EObject>() ;
 					if (AlfJavaValidator.getAlfStandardLibrary() != null) {
 						List<EObject> importedClassifiers = processPublicallyImportedClassifiers(AlfJavaValidator.getAlfStandardLibrary()) ;
 						importedClassifiers = removeDuplicateClassifiers(importedClassifiers) ;
 						nestedList.addAll(importedClassifiers) ;
+						nestedScopes.add(nestedList) ;
+					}
+					
+					// Then process the implicit import of alf library
+					nestedList = new ArrayList<EObject>() ;
+					if (AlfJavaValidator.getAlfStandardLibrary() != null) {
+						List<EObject> importedClassifiers = processPublicallyImportedClassifiers(AlfJavaValidator.getAlfStandardLibrary()) ;
+						importedClassifiers.add(TypeUtils._Collection.extractActualType()) ;
+						importedClassifiers.add(TypeUtils._Set.extractActualType()) ;
+						importedClassifiers.add(TypeUtils._Bag.extractActualType()) ;
+						importedClassifiers.add(TypeUtils._Queue.extractActualType()) ;
+						importedClassifiers.add(TypeUtils._OrderedSet.extractActualType()) ;
+						importedClassifiers.add(TypeUtils._List.extractActualType()) ;
+						importedClassifiers.add(TypeUtils._Deque.extractActualType()) ;
+						importedClassifiers.add(TypeUtils._Map.extractActualType()) ;
+						importedClassifiers.add(TypeUtils._Entry.extractActualType()) ;
+						nestedList.addAll(removeDuplicateClassifiers(importedClassifiers)) ;
 						nestedScopes.add(nestedList) ;
 					}
 					
@@ -827,8 +846,6 @@ public class OperationEditorScopingTool extends AbstractScopingTool{
 					return importedPackages ;
 				}
 			}
-			
-			
 		}
 	
 		/*
@@ -933,6 +950,76 @@ public class OperationEditorScopingTool extends AbstractScopingTool{
 				}
 			};
 		}
+		
+		/*
+		 * Strategies for Template Parameters
+		 */
+		protected class TemplateParameterStrategies {
+			protected class NameStrategy implements AlfPartialScope.IGetNameStrategy {
+				public String getName(EObject element) {
+					if (element instanceof TemplateParameter) {
+						TemplateParameter param = (TemplateParameter)element ;
+						Classifier classifierParam = (Classifier)param.getParameteredElement() ;
+						if (classifierParam != null)
+							return classifierParam.getName() ;
+					}
+					return "Unexpected element kind..." ;
+				}
+			}
+			
+			protected class BuildScopeStrategy implements AlfPartialScope.IBuildScopeStrategy {
+				public List<List<EObject>> buildScope(EObject contextElement) {
+					
+					List<List<EObject>> nestedScopes = new ArrayList<List<EObject>>() ;
+					List<EObject> nestedList = new ArrayList<EObject>() ;
+					
+					if (contextElement instanceof Classifier) {
+						Classifier classifierParam = (Classifier)contextElement ;
+						// TODO classifierParam.get
+						return nestedScopes ;
+					}
+					// else
+					nestedScopes.add(nestedList) ;
+					return nestedScopes ;
+				}
+				
+				private List<EObject> processPublicallyImportedPackages (Namespace namespace) {
+					List<EObject> importedPackages = new ArrayList<EObject>() ;
+					
+					for (NamedElement ownedMember : namespace.getOwnedMembers()) {
+						if (ownedMember.getVisibility() != VisibilityKind.PRIVATE_LITERAL && ownedMember instanceof Package)
+							importedPackages.add(ownedMember) ;
+					}
+					for (ElementImport eImport : namespace.getElementImports()) {
+						if (eImport.getVisibility() != VisibilityKind.PRIVATE_LITERAL ) {
+							PackageableElement importedElement = eImport.getImportedElement() ;
+							if (importedElement instanceof Package) {
+								if (eImport.getAlias() != null)
+									importedPackages.add(eImport) ;
+								else
+									importedPackages.add(importedElement) ;
+							}
+						}
+					}
+					for (PackageImport pImport : namespace.getPackageImports()) {
+						if (pImport.getVisibility() != VisibilityKind.PRIVATE_LITERAL) {
+							importedPackages.addAll(processPublicallyImportedPackages(pImport.getImportedPackage())) ;
+						}
+					}
+					
+					return importedPackages ;
+				}
+			}
+		}
+		
+	}
+
+	
+
+	@Override
+	public AlfPartialScope getVisibleFormalParameters(TypeFacade context) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

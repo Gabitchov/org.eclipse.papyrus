@@ -2484,78 +2484,6 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getStatementsDocumentedStatementParserRuleCall_0() { return cStatementsDocumentedStatementParserRuleCall_0; }
 	}
 
-	public class InlineStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "InlineStatement");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cSolidusAsteriskCommercialAtKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cInlineKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cLangageNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cLangageNameIDTerminalRuleCall_2_0 = (RuleCall)cLangageNameAssignment_2.eContents().get(0);
-		private final Assignment cBodyAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cBodySTRINGTerminalRuleCall_3_0 = (RuleCall)cBodyAssignment_3.eContents().get(0);
-		private final Keyword cAsteriskSolidusKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		
-		//InlineStatement:
-		//	"/ *@" "inline" langageName=ID body=STRING "* /";
-		public ParserRule getRule() { return rule; }
-
-		//"/ *@" "inline" langageName=ID body=STRING "* /"
-		public Group getGroup() { return cGroup; }
-
-		//"/ *@"
-		public Keyword getSolidusAsteriskCommercialAtKeyword_0() { return cSolidusAsteriskCommercialAtKeyword_0; }
-
-		//"inline"
-		public Keyword getInlineKeyword_1() { return cInlineKeyword_1; }
-
-		//langageName=ID
-		public Assignment getLangageNameAssignment_2() { return cLangageNameAssignment_2; }
-
-		//ID
-		public RuleCall getLangageNameIDTerminalRuleCall_2_0() { return cLangageNameIDTerminalRuleCall_2_0; }
-
-		//body=STRING
-		public Assignment getBodyAssignment_3() { return cBodyAssignment_3; }
-
-		//STRING
-		public RuleCall getBodySTRINGTerminalRuleCall_3_0() { return cBodySTRINGTerminalRuleCall_3_0; }
-
-		//"* /"
-		public Keyword getAsteriskSolidusKeyword_4() { return cAsteriskSolidusKeyword_4; }
-	}
-
-	public class AnnotatedStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AnnotatedStatement");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cSolidusSolidusCommercialAtKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cAnnotationAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cAnnotationAnnotationParserRuleCall_1_0 = (RuleCall)cAnnotationAssignment_1.eContents().get(0);
-		private final Assignment cBlockAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cBlockBlockParserRuleCall_2_0 = (RuleCall)cBlockAssignment_2.eContents().get(0);
-		
-		//AnnotatedStatement:
-		//	"//@" annotation=Annotation block=Block;
-		public ParserRule getRule() { return rule; }
-
-		//"//@" annotation=Annotation block=Block
-		public Group getGroup() { return cGroup; }
-
-		//"//@"
-		public Keyword getSolidusSolidusCommercialAtKeyword_0() { return cSolidusSolidusCommercialAtKeyword_0; }
-
-		//annotation=Annotation
-		public Assignment getAnnotationAssignment_1() { return cAnnotationAssignment_1; }
-
-		//Annotation
-		public RuleCall getAnnotationAnnotationParserRuleCall_1_0() { return cAnnotationAnnotationParserRuleCall_1_0; }
-
-		//block=Block
-		public Assignment getBlockAssignment_2() { return cBlockAssignment_2; }
-
-		//Block
-		public RuleCall getBlockBlockParserRuleCall_2_0() { return cBlockBlockParserRuleCall_2_0; }
-	}
-
 	public class DocumentedStatementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DocumentedStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -2590,6 +2518,90 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Statement
 		public RuleCall getStatementStatementParserRuleCall_1_0() { return cStatementStatementParserRuleCall_1_0; }
+	}
+
+	public class InlineStatementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "InlineStatement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cSolidusAsteriskCommercialAtKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cInlineKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cLangageNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cLangageNameIDTerminalRuleCall_3_0 = (RuleCall)cLangageNameAssignment_3.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cBodyAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cBodySTRINGTerminalRuleCall_5_0 = (RuleCall)cBodyAssignment_5.eContents().get(0);
+		private final Keyword cAsteriskSolidusKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		
+		//InlineStatement:
+		//	"/ *@" "inline" "(" langageName=ID ")" body=STRING "* /";
+		public ParserRule getRule() { return rule; }
+
+		//"/ *@" "inline" "(" langageName=ID ")" body=STRING "* /"
+		public Group getGroup() { return cGroup; }
+
+		//"/ *@"
+		public Keyword getSolidusAsteriskCommercialAtKeyword_0() { return cSolidusAsteriskCommercialAtKeyword_0; }
+
+		//"inline"
+		public Keyword getInlineKeyword_1() { return cInlineKeyword_1; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+
+		//langageName=ID
+		public Assignment getLangageNameAssignment_3() { return cLangageNameAssignment_3; }
+
+		//ID
+		public RuleCall getLangageNameIDTerminalRuleCall_3_0() { return cLangageNameIDTerminalRuleCall_3_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
+
+		//body=STRING
+		public Assignment getBodyAssignment_5() { return cBodyAssignment_5; }
+
+		//STRING
+		public RuleCall getBodySTRINGTerminalRuleCall_5_0() { return cBodySTRINGTerminalRuleCall_5_0; }
+
+		//"* /"
+		public Keyword getAsteriskSolidusKeyword_6() { return cAsteriskSolidusKeyword_6; }
+	}
+
+	public class AnnotatedStatementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AnnotatedStatement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cSolidusSolidusCommercialAtKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cAnnotationAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cAnnotationAnnotationParserRuleCall_1_0 = (RuleCall)cAnnotationAssignment_1.eContents().get(0);
+		private final Assignment cStatementAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cStatementStatementParserRuleCall_2_0 = (RuleCall)cStatementAssignment_2.eContents().get(0);
+		
+		//AnnotatedStatement:
+		//	"//@" annotation= //block = Block
+		//	Annotation statement=Statement;
+		public ParserRule getRule() { return rule; }
+
+		//"//@" annotation= //block = Block
+		//Annotation statement=Statement
+		public Group getGroup() { return cGroup; }
+
+		//"//@"
+		public Keyword getSolidusSolidusCommercialAtKeyword_0() { return cSolidusSolidusCommercialAtKeyword_0; }
+
+		//annotation= //block = Block
+		//Annotation
+		public Assignment getAnnotationAssignment_1() { return cAnnotationAssignment_1; }
+
+		////block = Block
+		//Annotation
+		public RuleCall getAnnotationAnnotationParserRuleCall_1_0() { return cAnnotationAnnotationParserRuleCall_1_0; }
+
+		//statement=Statement
+		public Assignment getStatementAssignment_2() { return cStatementAssignment_2; }
+
+		//Statement
+		public RuleCall getStatementStatementParserRuleCall_2_0() { return cStatementStatementParserRuleCall_2_0; }
 	}
 
 	public class StatementElements extends AbstractParserRuleElementFinder {
@@ -2789,14 +2801,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
 		private final Keyword cEqualsSignKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Assignment cInitAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cInitExpressionParserRuleCall_6_0 = (RuleCall)cInitAssignment_6.eContents().get(0);
+		private final RuleCall cInitSequenceElementParserRuleCall_6_0 = (RuleCall)cInitAssignment_6.eContents().get(0);
 		private final Keyword cSemicolonKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//LocalNameDeclarationStatement:
-		//	"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? "=" init=Expression ";";
+		//	"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? //'=' init = Expression ';'
+		//	"=" init=SequenceElement ";";
 		public ParserRule getRule() { return rule; }
 
-		//"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? "=" init=Expression ";"
+		//"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? //'=' init = Expression ';'
+		//"=" init=SequenceElement ";"
 		public Group getGroup() { return cGroup; }
 
 		//"let"
@@ -2829,14 +2843,15 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//"]"
 		public Keyword getRightSquareBracketKeyword_4_1() { return cRightSquareBracketKeyword_4_1; }
 
+		////'=' init = Expression ';'
 		//"="
 		public Keyword getEqualsSignKeyword_5() { return cEqualsSignKeyword_5; }
 
-		//init=Expression
+		//init=SequenceElement
 		public Assignment getInitAssignment_6() { return cInitAssignment_6; }
 
-		//Expression
-		public RuleCall getInitExpressionParserRuleCall_6_0() { return cInitExpressionParserRuleCall_6_0; }
+		//SequenceElement
+		public RuleCall getInitSequenceElementParserRuleCall_6_0() { return cInitSequenceElementParserRuleCall_6_0; }
 
 		//";"
 		public Keyword getSemicolonKeyword_7() { return cSemicolonKeyword_7; }
@@ -4038,15 +4053,15 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOpAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cOpAssignmentOperatorEnumRuleCall_0_0 = (RuleCall)cOpAssignment_0.eContents().get(0);
 		private final Assignment cRightHandSideAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cRightHandSideExpressionParserRuleCall_1_0 = (RuleCall)cRightHandSideAssignment_1.eContents().get(0);
+		private final RuleCall cRightHandSideSequenceElementParserRuleCall_1_0 = (RuleCall)cRightHandSideAssignment_1.eContents().get(0);
 		
 		////op=('=' | '+=' | '-=' | '*=' | '%=' | '/=' | '&=' |
 		////	'|=' | '^=' | '<<=' | '>>=' | '>>>=') rightHandSide = Expression
 		//AssignmentCompletion:
-		//	op=AssignmentOperator rightHandSide=Expression;
+		//	op=AssignmentOperator rightHandSide=SequenceElement;
 		public ParserRule getRule() { return rule; }
 
-		//op=AssignmentOperator rightHandSide=Expression
+		//op=AssignmentOperator rightHandSide=SequenceElement
 		public Group getGroup() { return cGroup; }
 
 		//op=AssignmentOperator
@@ -4055,11 +4070,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//AssignmentOperator
 		public RuleCall getOpAssignmentOperatorEnumRuleCall_0_0() { return cOpAssignmentOperatorEnumRuleCall_0_0; }
 
-		//rightHandSide=Expression
+		//rightHandSide=SequenceElement
 		public Assignment getRightHandSideAssignment_1() { return cRightHandSideAssignment_1; }
 
-		//Expression
-		public RuleCall getRightHandSideExpressionParserRuleCall_1_0() { return cRightHandSideExpressionParserRuleCall_1_0; }
+		//SequenceElement
+		public RuleCall getRightHandSideSequenceElementParserRuleCall_1_0() { return cRightHandSideSequenceElementParserRuleCall_1_0; }
 	}
 	
 	
@@ -4439,9 +4454,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private ClassExtentExpressionElements pClassExtentExpression;
 	private BlockElements pBlock;
 	private StatementSequenceElements pStatementSequence;
+	private DocumentedStatementElements pDocumentedStatement;
 	private InlineStatementElements pInlineStatement;
 	private AnnotatedStatementElements pAnnotatedStatement;
-	private DocumentedStatementElements pDocumentedStatement;
 	private StatementElements pStatement;
 	private AnnotationElements pAnnotation;
 	private AnnotationKindElements unknownRuleAnnotationKind;
@@ -5219,8 +5234,18 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getStatementSequenceAccess().getRule();
 	}
 
+	//DocumentedStatement:
+	//	comment=(ML_COMMENT | SL_COMMENT)? statement=Statement;
+	public DocumentedStatementElements getDocumentedStatementAccess() {
+		return (pDocumentedStatement != null) ? pDocumentedStatement : (pDocumentedStatement = new DocumentedStatementElements());
+	}
+	
+	public ParserRule getDocumentedStatementRule() {
+		return getDocumentedStatementAccess().getRule();
+	}
+
 	//InlineStatement:
-	//	"/ *@" "inline" langageName=ID body=STRING "* /";
+	//	"/ *@" "inline" "(" langageName=ID ")" body=STRING "* /";
 	public InlineStatementElements getInlineStatementAccess() {
 		return (pInlineStatement != null) ? pInlineStatement : (pInlineStatement = new InlineStatementElements());
 	}
@@ -5230,23 +5255,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AnnotatedStatement:
-	//	"//@" annotation=Annotation block=Block;
+	//	"//@" annotation= //block = Block
+	//	Annotation statement=Statement;
 	public AnnotatedStatementElements getAnnotatedStatementAccess() {
 		return (pAnnotatedStatement != null) ? pAnnotatedStatement : (pAnnotatedStatement = new AnnotatedStatementElements());
 	}
 	
 	public ParserRule getAnnotatedStatementRule() {
 		return getAnnotatedStatementAccess().getRule();
-	}
-
-	//DocumentedStatement:
-	//	comment=(ML_COMMENT | SL_COMMENT)? statement=Statement;
-	public DocumentedStatementElements getDocumentedStatementAccess() {
-		return (pDocumentedStatement != null) ? pDocumentedStatement : (pDocumentedStatement = new DocumentedStatementElements());
-	}
-	
-	public ParserRule getDocumentedStatementRule() {
-		return getDocumentedStatementAccess().getRule();
 	}
 
 	//Statement:
@@ -5303,7 +5319,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LocalNameDeclarationStatement:
-	//	"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? "=" init=Expression ";";
+	//	"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? //'=' init = Expression ';'
+	//	"=" init=SequenceElement ";";
 	public LocalNameDeclarationStatementElements getLocalNameDeclarationStatementAccess() {
 		return (pLocalNameDeclarationStatement != null) ? pLocalNameDeclarationStatement : (pLocalNameDeclarationStatement = new LocalNameDeclarationStatementElements());
 	}
@@ -5653,7 +5670,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	////op=('=' | '+=' | '-=' | '*=' | '%=' | '/=' | '&=' |
 	////	'|=' | '^=' | '<<=' | '>>=' | '>>>=') rightHandSide = Expression
 	//AssignmentCompletion:
-	//	op=AssignmentOperator rightHandSide=Expression;
+	//	op=AssignmentOperator rightHandSide=SequenceElement;
 	public AssignmentCompletionElements getAssignmentCompletionAccess() {
 		return (pAssignmentCompletion != null) ? pAssignmentCompletion : (pAssignmentCompletion = new AssignmentCompletionElements());
 	}
@@ -5689,7 +5706,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal ML_COMMENT:
-	//	"/ *" !"@"* "* /";
+	//	"/ *" !"@"->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return (tML_COMMENT != null) ? tML_COMMENT : (tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT"));
 	} 

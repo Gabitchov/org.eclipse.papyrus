@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
-
+ * $Id$
  */
 package org.eclipse.papyrus.alf.alf;
 
@@ -26,22 +26,21 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface TemplateBinding extends EObject
-{
-  /**
-   * Returns the value of the '<em><b>Bindings</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.papyrus.alf.alf.NamedTemplateBinding}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Bindings</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Bindings</em>' containment reference list.
-   * @see org.eclipse.papyrus.alf.alf.AlfPackage#getTemplateBinding_Bindings()
-   * @model containment="true"
-   * @generated
-   */
-  EList<NamedTemplateBinding> getBindings();
+public interface TemplateBinding extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Bindings</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.alf.alf.NamedTemplateBinding}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bindings</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bindings</em>' containment reference list.
+	 * @see org.eclipse.papyrus.alf.alf.AlfPackage#getTemplateBinding_Bindings()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<NamedTemplateBinding> getBindings();
 
 } // TemplateBinding

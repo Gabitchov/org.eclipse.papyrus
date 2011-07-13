@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
-
+ * $Id$
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -20,27 +20,24 @@ import org.eclipse.papyrus.alf.alf.IsUniqueOperation;
  *
  * @generated
  */
-public class IsUniqueOperationImpl extends SequenceExpansionExpressionImpl implements IsUniqueOperation
-{
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected IsUniqueOperationImpl()
-  {
-    super();
-  }
+public class IsUniqueOperationImpl extends SequenceExpansionExpressionImpl implements IsUniqueOperation {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IsUniqueOperationImpl() {
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return AlfPackage.Literals.IS_UNIQUE_OPERATION;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return AlfPackage.Literals.IS_UNIQUE_OPERATION;
+	}
 
 } //IsUniqueOperationImpl

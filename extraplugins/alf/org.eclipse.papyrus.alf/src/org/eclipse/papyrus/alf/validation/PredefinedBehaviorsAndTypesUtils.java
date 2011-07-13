@@ -73,6 +73,15 @@ public class PredefinedBehaviorsAndTypesUtils {
 		TypeUtils._undefined =  new TypeFacade();
 		TypeUtils._unlimited = typeMap.get("UnlimitedNatural") ;
 		TypeUtils._nullExpression = TypeExpressionFactory.eInstance.createTypeExpression(TypeUtils._undefined) ;
+		TypeUtils._Collection = typeMap.get("Collection") ;
+		TypeUtils._Set = typeMap.get("Set");
+		TypeUtils._Bag = typeMap.get("Bag") ;
+		TypeUtils._Queue = typeMap.get("Queue") ;
+		TypeUtils._OrderedSet = typeMap.get("OrderedSet") ;
+		TypeUtils._List = typeMap.get("List") ;
+		TypeUtils._Deque = typeMap.get("Deque") ;
+		TypeUtils._Map = typeMap.get("Map") ;
+		TypeUtils._Entry = typeMap.get("Entry") ;
 	}
 	
 	public List<SignatureFacade> getSignatures(String name) {
