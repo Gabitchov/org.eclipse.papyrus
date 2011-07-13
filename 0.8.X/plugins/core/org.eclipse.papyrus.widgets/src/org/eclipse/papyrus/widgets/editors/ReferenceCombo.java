@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -43,14 +43,14 @@ public class ReferenceCombo extends AbstractValueEditor implements SelectionList
 	/**
 	 * The viewer displaying the available values from the model
 	 */
-	private ComboViewer viewer;
+	protected ComboViewer viewer;
 
 	/**
 	 * The combo used to select the reference
 	 */
-	private CCombo combo;
+	protected CCombo combo;
 
-	private boolean unsettable;
+	protected boolean unsettable;
 
 	protected Button unset;
 
