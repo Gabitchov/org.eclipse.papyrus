@@ -956,7 +956,7 @@
         </node>
         <node xmi:type="uml:ActivityParameterNode" xmi:id="_BdadoXy5EeCKy5kSqd4eVw" name="Parameter1" type="_sADskHyqEeCAIan9YGu1mA" parameter="_BdadoHy5EeCKy5kSqd4eVw"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Activity" xmi:id="_Kh-OYHy5EeCKy5kSqd4eVw" name="Activity0">
+      <packagedElement xmi:type="uml:Activity" xmi:id="_Kh-OYHy5EeCKy5kSqd4eVw" name="WriteLine">
         <ownedParameter xmi:id="_MBVvYHy5EeCKy5kSqd4eVw" name="value" visibility="public" effect="create">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_N26J4Hy5EeCKy5kSqd4eVw" value="1"/>

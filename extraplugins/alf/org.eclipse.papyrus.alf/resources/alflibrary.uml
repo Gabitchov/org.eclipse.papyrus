@@ -323,7 +323,69 @@
         </packageImport>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_Y9GH0H1AEeCKy5kSqd4eVw" name="CollectionFunctions"/>
-      <packagedElement xmi:type="uml:Package" xmi:id="_dfOPMH1AEeCKy5kSqd4eVw" name="CollectionClasses"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_dfOPMH1AEeCKy5kSqd4eVw" name="CollectionClasses">
+        <packagedElement xmi:type="uml:Class" xmi:id="_VRDjEKiyEeCw3MW-Flzemw" name="Collection" isAbstract="true">
+          <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_dBkSAKiyEeCw3MW-Flzemw" name="CollectionTemplateSignature" parameter="_gdEIgKiyEeCw3MW-Flzemw">
+            <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_gdEIgKiyEeCw3MW-Flzemw" parameteredElement="_io1cgKiyEeCw3MW-Flzemw" allowSubstitutable="false">
+              <ownedParameteredElement xmi:type="uml:Class" xmi:id="_io1cgKiyEeCw3MW-Flzemw" name="T" templateParameter="_gdEIgKiyEeCw3MW-Flzemw"/>
+            </ownedParameter>
+          </ownedTemplateSignature>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_sv_5wKiyEeCw3MW-Flzemw" name="Set">
+          <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_F_i18Ki0EeCw3MW-Flzemw" name="SetTemplateSignature" parameter="_gdEIgKiyEeCw3MW-Flzemw"/>
+          <generalization xmi:id="_FpjNQKizEeCw3MW-Flzemw" general="_VRDjEKiyEeCw3MW-Flzemw"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_2lSj4KiyEeCw3MW-Flzemw" name="Bag">
+          <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_MufaMKi0EeCw3MW-Flzemw" name="BagTemplateSignature" parameter="_gdEIgKiyEeCw3MW-Flzemw"/>
+          <generalization xmi:id="_GkRJEKizEeCw3MW-Flzemw" general="_VRDjEKiyEeCw3MW-Flzemw"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_3o7yMKiyEeCw3MW-Flzemw" name="Queue">
+          <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_Oa0ZIKi0EeCw3MW-Flzemw" name="QueueTemplateSignature" parameter="_gdEIgKiyEeCw3MW-Flzemw"/>
+          <generalization xmi:id="_HPU4QKizEeCw3MW-Flzemw" general="_VRDjEKiyEeCw3MW-Flzemw"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_8ReqoKiyEeCw3MW-Flzemw" name="OrderedSet">
+          <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_PhJvEKi0EeCw3MW-Flzemw" name="OrderedSetTemplateSignature" parameter="_gdEIgKiyEeCw3MW-Flzemw"/>
+          <generalization xmi:id="_ImNLoKizEeCw3MW-Flzemw" general="_sv_5wKiyEeCw3MW-Flzemw"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="__fQ1QKiyEeCw3MW-Flzemw" name="List">
+          <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_QfltQKi0EeCw3MW-Flzemw" name="ListTemplateSignature" parameter="_gdEIgKiyEeCw3MW-Flzemw"/>
+          <generalization xmi:id="_Jp3BAKizEeCw3MW-Flzemw" general="_2lSj4KiyEeCw3MW-Flzemw"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_BBdn0KizEeCw3MW-Flzemw" name="Deque">
+          <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_RTmkIKi0EeCw3MW-Flzemw" name="DequeTemplateSignature" parameter="_gdEIgKiyEeCw3MW-Flzemw"/>
+          <generalization xmi:id="_KdHp8KizEeCw3MW-Flzemw" general="_3o7yMKiyEeCw3MW-Flzemw"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_slMQkKi1EeCw3MW-Flzemw" name="Map">
+          <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_JEimEKi2EeCw3MW-Flzemw" name="MapTemplateSignature" parameter="_LzL9oKi2EeCw3MW-Flzemw _WO68sKi2EeCw3MW-Flzemw">
+            <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_LzL9oKi2EeCw3MW-Flzemw" parameteredElement="_XzzP0Ki2EeCw3MW-Flzemw" allowSubstitutable="false">
+              <ownedParameteredElement xmi:type="uml:Class" xmi:id="_XzzP0Ki2EeCw3MW-Flzemw" name="Key" templateParameter="_LzL9oKi2EeCw3MW-Flzemw"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_WO68sKi2EeCw3MW-Flzemw" parameteredElement="_lEJEgKi2EeCw3MW-Flzemw" allowSubstitutable="false">
+              <ownedParameteredElement xmi:type="uml:Class" xmi:id="_lEJEgKi2EeCw3MW-Flzemw" name="Value" templateParameter="_WO68sKi2EeCw3MW-Flzemw"/>
+            </ownedParameter>
+          </ownedTemplateSignature>
+        </packagedElement>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_ysLAcKi2EeCw3MW-Flzemw" name="TEntry">
+          <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_It_R0Ki3EeCw3MW-Flzemw" name="EntryTemplateSignature" parameter="_q3twMKi3EeCw3MW-Flzemw _rsUc8Ki3EeCw3MW-Flzemw">
+            <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_q3twMKi3EeCw3MW-Flzemw" parameteredElement="_uDH8QKi3EeCw3MW-Flzemw" allowSubstitutable="false">
+              <ownedParameteredElement xmi:type="uml:Class" xmi:id="_uDH8QKi3EeCw3MW-Flzemw" name="EntryKey" templateParameter="_q3twMKi3EeCw3MW-Flzemw"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_rsUc8Ki3EeCw3MW-Flzemw" parameteredElement="_5ku-QKi3EeCw3MW-Flzemw" allowSubstitutable="false">
+              <ownedParameteredElement xmi:type="uml:Class" xmi:id="_5ku-QKi3EeCw3MW-Flzemw" name="EntryValue" templateParameter="_rsUc8Ki3EeCw3MW-Flzemw"/>
+            </ownedParameter>
+          </ownedTemplateSignature>
+          <ownedAttribute xmi:id="_7rqD8Ki2EeCw3MW-Flzemw" name="key" type="_uDH8QKi3EeCw3MW-Flzemw"/>
+          <ownedAttribute xmi:id="_FyrXQKi3EeCw3MW-Flzemw" name="value" type="_5ku-QKi3EeCw3MW-Flzemw">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EcoU4Ki4EeCw3MW-Flzemw" value="1"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Ecej4Ki4EeCw3MW-Flzemw"/>
+          </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_Qqpw8Ki4EeCw3MW-Flzemw" name="Entry">
+          <templateBinding xmi:id="_WT3cMKi4EeCw3MW-Flzemw" signature="_It_R0Ki3EeCw3MW-Flzemw">
+            <parameterSubstitution xmi:id="_ZRjVUKi4EeCw3MW-Flzemw"/>
+          </templateBinding>
+        </packagedElement>
+      </packagedElement>
     </packagedElement>
     <profileApplication xmi:id="_-SwMIH0_EeCKy5kSqd4eVw">
       <eAnnotations xmi:id="_-Ui74H0_EeCKy5kSqd4eVw" source="http://www.eclipse.org/uml2/2.0.0/UML">
