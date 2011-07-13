@@ -66,18 +66,23 @@ public class UmlInstanceOfConstraint extends AbstractConstraint {
 
 	@Override
 	protected boolean equivalent(Constraint constraint) {
-		if(this == constraint)
+		if(this == constraint) {
 			return true;
-		if(constraint == null)
+		}
+		if(constraint == null) {
 			return false;
-		if(!(constraint instanceof UmlInstanceOfConstraint))
+		}
+		if(!(constraint instanceof UmlInstanceOfConstraint)) {
 			return false;
+		}
 		UmlInstanceOfConstraint other = (UmlInstanceOfConstraint)constraint;
 		if(umlClassName == null) {
-			if(other.umlClassName != null)
+			if(other.umlClassName != null) {
 				return false;
-		} else if(!umlClassName.equals(other.umlClassName))
+			}
+		} else if(!umlClassName.equals(other.umlClassName)) {
 			return false;
+		}
 		return true;
 	}
 

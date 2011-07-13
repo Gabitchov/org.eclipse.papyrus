@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -39,6 +39,37 @@ import org.eclipse.papyrus.service.edit.service.IElementEditService;
  */
 public class MultiplicityObservableValue extends AbstractObservableValue {
 
+	/**
+	 * The 0..* multiplicity (Any)
+	 */
+	public static String ANY = "0..*"; //$NON-NLS-1$
+
+	/**
+	 * The * multiplicity (Any)
+	 * Equivalent to 0..*
+	 */
+	public static String STAR = "*"; //$NON-NLS-1$
+
+	/***
+	 * The 1 multiplicity (One)
+	 */
+	public static String ONE = "1"; //$NON-NLS-1$
+
+	/**
+	 * The 0..1 multiplicity (Optional)
+	 */
+	public static String OPTIONAL = "0..1"; //$NON-NLS-1$
+
+	/**
+	 * The 1..* multiplicity (One or more)
+	 */
+	public static String ONE_OR_MORE = "1..*"; //$NON-NLS-1$
+
+	/**
+	 * The multiplicity separator (..)
+	 */
+	public static String SEPARATOR = ".."; //$NON-NLS-1$
+
 	private IObservableValue lowerBound, upperBound;
 
 	private EStructuralFeature lowerFeature, upperFeature;
@@ -56,15 +87,16 @@ public class MultiplicityObservableValue extends AbstractObservableValue {
 	 *        The Editing Domain on which the commands will be executed
 	 */
 	public MultiplicityObservableValue(EObject eObject, EditingDomain domain) {
-
 		this.eObject = eObject;
 		this.domain = domain;
+
+		//Several eClasses have the lower/upper features, we can't access them statically
 
 		lowerFeature = eObject.eClass().getEStructuralFeature("lower"); //$NON-NLS-1$
 		upperFeature = eObject.eClass().getEStructuralFeature("upper"); //$NON-NLS-1$
 
-		lowerBound = EMFProperties.value(lowerFeature).observe(eObject);
-		upperBound = EMFProperties.value(upperFeature).observe(eObject);
+		lowerBound = domain == null ? EMFProperties.value(lowerFeature).observe(eObject) : new PapyrusObservableValue(eObject, lowerFeature, domain);
+		upperBound = domain == null ? EMFProperties.value(upperFeature).observe(eObject) : new PapyrusObservableValue(eObject, upperFeature, domain);;
 	}
 
 	public Object getValueType() {
@@ -81,16 +113,16 @@ public class MultiplicityObservableValue extends AbstractObservableValue {
 		lower = (Integer)lowerValue;
 		upper = (Integer)upperValue;
 
-		if(lower == 0 && upper != 1) {
-			return "0..*"; //$NON-NLS-1$
+		if(lower == 0 && upper == -1) {
+			return ANY;
 		} else if(lower == 0 && upper == 1) {
-			return "0..1"; //$NON-NLS-1$
-		} else if(lower == 1 && upper != 1) {
-			return "1..*"; //$NON-NLS-1$
+			return OPTIONAL;
+		} else if(lower == 1 && upper == -1) {
+			return ONE_OR_MORE;
 		} else if(lower == 1 && upper == 1) {
-			return "1"; //$NON-NLS-1$
+			return ONE;
 		} else {
-			return "0..*"; //Default value for non-standard multiplicity //$NON-NLS-1$
+			return lower + SEPARATOR + upper;
 		}
 	}
 
@@ -98,18 +130,43 @@ public class MultiplicityObservableValue extends AbstractObservableValue {
 	protected void doSetValue(Object value) {
 		int lower, upper;
 		String val = (String)value;
-		if(val.equals("0..*")) { //$NON-NLS-1$
+		if(val.equals(ANY) || val.equals(STAR)) {
 			lower = 0;
 			upper = -1;
-		} else if(val.equals("0..1")) { //$NON-NLS-1$
+		} else if(val.equals(OPTIONAL)) {
 			lower = 0;
 			upper = 1;
-		} else if(val.equals("1..*")) { //$NON-NLS-1$
+		} else if(val.equals(ONE_OR_MORE)) {
 			lower = 1;
 			upper = -1;
-		} else { //if(val.equals("1")) { //Default
+		} else if(val.equals(ONE)) {
 			lower = 1;
 			upper = 1;
+		} else {
+			if(val.matches("^[0-9]+(..[0-9*]+)?$")) { //$NON-NLS-1$
+				try {
+					if (val.contains(SEPARATOR)){
+						lower = Integer.parseInt(val.substring(0, val.indexOf(SEPARATOR)));
+						String upperString = val.substring(val.indexOf(SEPARATOR) + SEPARATOR.length(), val.length());
+						if (STAR.equals(upperString)){
+							upper = -1;
+						} else {
+							upper = Integer.parseInt(upperString);
+						}
+					} else {
+						lower = Integer.parseInt(val);
+						upper = Integer.parseInt(val);
+					}
+				} catch (NumberFormatException ex) {
+					return; //Invalid multiplicity
+				}
+			} else {
+				return; //Invalid multiplicity
+			}
+		}
+		
+		if (upper > 0 && upper < lower){
+			return;
 		}
 
 		try {

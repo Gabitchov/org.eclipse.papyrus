@@ -5280,12 +5280,12 @@
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
   <dataContexts name="Multiplicity" label="Multiplicity">
-    <properties name="multiplicity" label="Multiplicity" type="Enumeration"/>
+    <properties name="multiplicity" label="Multiplicity"/>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
   <dataContexts name="StereotypeApplication" label="Stereotype application">
-    <properties name="stereotypeApplication" label="" type="Reference" multiplicity="-1"/>
-    <properties name="profileApplication" type="Reference" multiplicity="-1"/>
+    <properties name="stereotypeApplication" label="Stereotype application" type="Reference" multiplicity="-1"/>
+    <properties name="profileApplication" label="Profile application" type="Reference" multiplicity="-1"/>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@modelElementFactories.3"/>
   </dataContexts>
   <dataContexts name="CustomImage" label="Custom Image">

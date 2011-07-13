@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,13 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
 package org.eclipse.papyrus.properties.uml.modelelement;
+
+import static org.eclipse.papyrus.properties.uml.databinding.MultiplicityObservableValue.ANY;
+import static org.eclipse.papyrus.properties.uml.databinding.MultiplicityObservableValue.ONE;
+import static org.eclipse.papyrus.properties.uml.databinding.MultiplicityObservableValue.ONE_OR_MORE;
+import static org.eclipse.papyrus.properties.uml.databinding.MultiplicityObservableValue.OPTIONAL;
+import static org.eclipse.papyrus.properties.uml.databinding.OwnerObservableValue.ASSOCIATION;
+import static org.eclipse.papyrus.properties.uml.databinding.OwnerObservableValue.CLASSIFIER;
 
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.ecore.EObject;
@@ -35,6 +42,21 @@ public class MemberEndModelElement extends AbstractModelElement {
 	private EditingDomain domain;
 
 	/**
+	 * The "multiplicity" virtual property
+	 */
+	public static String MULTIPLICITY = "multiplicity"; //$NON-NLS-1$
+
+	/**
+	 * The "owner" virtual property
+	 */
+	public static String OWNER = "owner"; //$NON-NLS-1$
+
+	/**
+	 * The "navigable" virtual property
+	 */
+	public static String NAVIGABLE = "navigable"; //$NON-NLS-1$
+
+	/**
 	 * 
 	 * Constructor.
 	 * 
@@ -49,11 +71,11 @@ public class MemberEndModelElement extends AbstractModelElement {
 	}
 
 	public IObservable getObservable(String propertyPath) {
-		if(propertyPath.equals("multiplicity")) { //$NON-NLS-1$
+		if(propertyPath.equals(MULTIPLICITY)) {
 			return new MultiplicityObservableValue(source, domain);
-		} else if(propertyPath.equals("owner")) { //$NON-NLS-1$
+		} else if(propertyPath.equals(OWNER)) {
 			return new OwnerObservableValue(source, domain);
-		} else if(propertyPath.equals("navigable")) { //$NON-NLS-1$
+		} else if(propertyPath.equals(NAVIGABLE)) {
 			return new NavigationObservableValue(source, domain);
 		}
 		Activator.log.warn("The property " + propertyPath + " doesn't exist"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -62,11 +84,12 @@ public class MemberEndModelElement extends AbstractModelElement {
 
 	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
-		if(propertyPath.equals("multiplicity")) { //$NON-NLS-1$
-			return new StaticContentProvider(new String[]{ "0..*", "1..*", "0..1", "1" }); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-		} else {
-			return new StaticContentProvider(new String[]{ "Association", "Classifier" }); //$NON-NLS-1$ //$NON-NLS-2$
+		if(propertyPath.equals(MULTIPLICITY)) {
+			return new StaticContentProvider(new String[]{ ANY, ONE_OR_MORE, OPTIONAL, ONE });
+		} else if(propertyPath.equals(OWNER)) {
+			return new StaticContentProvider(new String[]{ ASSOCIATION, CLASSIFIER });
 		}
+		return super.getContentProvider(propertyPath);
 	}
 
 	@Override
@@ -76,7 +99,7 @@ public class MemberEndModelElement extends AbstractModelElement {
 
 	@Override
 	public boolean isEditable(String propertyPath) {
-		if(propertyPath.equals("owner")) { //$NON-NLS-1$
+		if(propertyPath.equals(OWNER)) {
 			return ((Property)source).getAssociation().getMemberEnds().size() <= 2;
 		}
 		return true;
@@ -84,6 +107,6 @@ public class MemberEndModelElement extends AbstractModelElement {
 
 	@Override
 	public boolean forceRefresh(String propertyPath) {
-		return propertyPath.equals("navigable") || propertyPath.equals("owner"); //$NON-NLS-1$ //$NON-NLS-2$
+		return propertyPath.equals(NAVIGABLE) || propertyPath.equals(OWNER);
 	}
 }
