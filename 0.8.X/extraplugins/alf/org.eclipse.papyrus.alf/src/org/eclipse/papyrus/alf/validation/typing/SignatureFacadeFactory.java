@@ -40,8 +40,8 @@ public class SignatureFacadeFactory {
 		if (exp.getTuple().getTupleElements() != null) {
 			for (TupleElement tupleElement : exp.getTuple().getTupleElements()) {
 				TypeExpression typeOfArgument = new TypeUtils().getTypeOfExpression(tupleElement.getArgument()) ;
-				if (typeOfArgument.getType() instanceof ErrorTypeFacade)
-					throw new Exception(typeOfArgument.getType().getLabel()) ;
+				if (typeOfArgument.getTypeFacade() instanceof ErrorTypeFacade)
+					throw new Exception(typeOfArgument.getTypeFacade().getLabel()) ;
 				arguments.add(typeOfArgument) ;
 			}
 		}
@@ -53,12 +53,15 @@ public class SignatureFacadeFactory {
 			errorInResolutionOfClassifier = true ;
 		}
 		else {
-			Classifier referencedType = cddClassifier.extractActualType(cddClassifier) ;
+			Classifier referencedType = cddClassifier.extractActualType() ;
 			if (referencedType instanceof PrimitiveType) {
 				throw new Exception("Constructor invocations do not apply to primitive types") ;
 			}
 			if (referencedType instanceof Enumeration) {
 				throw new Exception("Constructor invocations do not apply to enumerations") ;
+			}
+			if (referencedType.isAbstract()) {
+				throw new Exception("Abstract classifiers cannot be instantiated") ;
 			}
 
 			// The classifier has been resolved. Must determine if arguments match with possible constructors

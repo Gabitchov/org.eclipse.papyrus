@@ -23,7 +23,6 @@ public class TypeExpressionFactory {
 		TypeExpression result = new TypeExpression() ;
 		result.setType(TypeFacadeFactory.eInstance.createTypeFacade(typeExpressionSource)) ;
 		result.setMultiplicity(MultiplicityFacadeFactory.eInstance.createMultiplicityFacade(typeExpressionSource)) ;
-		result.setBinding(TemplateBindingFacadeFactory.eInstance.createTemplateBindingFacade(typeExpressionSource)) ;
 		return result ;
 	}
 	

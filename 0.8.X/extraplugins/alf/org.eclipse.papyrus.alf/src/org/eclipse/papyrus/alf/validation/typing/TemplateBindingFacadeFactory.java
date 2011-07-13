@@ -13,19 +13,23 @@
  *****************************************************************************/
 package org.eclipse.papyrus.alf.validation.typing;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.alf.alf.TemplateBinding;
+import org.eclipse.uml2.uml.Classifier;
 
 public class TemplateBindingFacadeFactory {
+	
+	// TODO: store bound classifiers to avoid useless recomputing
 
 	public static TemplateBindingFacadeFactory eInstance = new TemplateBindingFacadeFactory() ;
 	
 	public TemplateBindingFacade createTemplateBindingFacade() {
-		// TODO
 		return new TemplateBindingFacade() ;
 	}
 	
-	public TemplateBindingFacade createTemplateBindingFacade(EObject templateBinding) {
-		// TODO
-		return createTemplateBindingFacade() ;
+	public TemplateBindingFacade createTemplateBindingFacade(TemplateBinding templateBinding, Classifier boundTemplate) throws Exception {
+		TemplateBindingFacade bindingFacade = new TemplateBindingFacade() ;
+		templateBinding.getBindings().get(0).getActual() ;
+		return bindingFacade ;
 	}
+	
 }

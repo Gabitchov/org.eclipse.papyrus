@@ -17,13 +17,10 @@ public class TypeExpression {
 
 	private TypeFacade type ;
 	private MultiplicityFacade multiplicity ;
-	private TemplateBindingFacade binding ;
 	
 	public String getLabel() {
 		String label = "" ;
 		label += type.getLabel() ;
-		if (binding != null)
-			label += binding.getLabel() ;
 		label += multiplicity.getLabel() ;
 		return label ;
 	}
@@ -36,10 +33,6 @@ public class TypeExpression {
 		return multiplicity ;
 	}
 	
-	public TemplateBindingFacade getTemplateBindingFacade() {
-		return binding ;
-	}
-	
 	public int isCompatibleWithMe(TypeExpression t) {
 		if (t == TypeUtils._nullExpression)
 			return 3 ;
@@ -47,16 +40,10 @@ public class TypeExpression {
 		if (typeCompatibilityLevel == 0)
 			return 0 ;
 		boolean isCompatible = multiplicity.isCompatibleWithMe(t.multiplicity) ;
-		isCompatible &= 
-				(binding != null ? binding.isCompatibleWithMe(t.binding) : true);
 		if (isCompatible)
 			return typeCompatibilityLevel ;
 		else
 			return 0 ;
-	}
-
-	public TypeFacade getType() {
-		return type;
 	}
 
 	public void setType(TypeFacade type) {
@@ -71,20 +58,17 @@ public class TypeExpression {
 		this.multiplicity = multiplicity;
 	}
 
-	public TemplateBindingFacade getBinding() {
-		return binding;
-	}
-
-	public void setBinding(TemplateBindingFacade binding) {
-		this.binding = binding;
-	}
-
 	public boolean isACollection() {
-		return this.multiplicity.getUpperBound() == -1 || this.multiplicity.getUpperBound() > 1 ;
+		boolean isACollection = 
+			this.multiplicity.getUpperBound() == -1 || this.multiplicity.getUpperBound() > 1 ||
+			this.type.isACollection();
+			
+		return isACollection ;
 	}
 	
 	public boolean isOrdered() {
-		return this.multiplicity.isOrdered() ;
+		return this.multiplicity.isOrdered() || this.type.isOrdered() ;
+		// To be completed with collection classes
 	}
 	
 }
