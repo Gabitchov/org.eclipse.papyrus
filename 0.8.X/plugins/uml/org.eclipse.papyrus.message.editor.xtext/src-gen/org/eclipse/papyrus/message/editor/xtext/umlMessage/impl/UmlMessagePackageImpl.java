@@ -18,8 +18,6 @@ import org.eclipse.papyrus.message.editor.xtext.umlMessage.SequenceTermRule;
 import org.eclipse.papyrus.message.editor.xtext.umlMessage.UmlMessageFactory;
 import org.eclipse.papyrus.message.editor.xtext.umlMessage.UmlMessagePackage;
 
-import org.eclipse.uml2.uml.UMLPackage;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
@@ -89,9 +87,6 @@ public class UmlMessagePackageImpl extends EPackageImpl implements UmlMessagePac
     UmlMessagePackageImpl theUmlMessagePackage = (UmlMessagePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof UmlMessagePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new UmlMessagePackageImpl());
 
     isInited = true;
-
-    // Initialize simple dependencies
-    UMLPackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theUmlMessagePackage.createPackageContents();
