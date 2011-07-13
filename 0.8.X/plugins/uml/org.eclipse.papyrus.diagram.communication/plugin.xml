@@ -808,17 +808,30 @@
             ref="org.eclipse.papyrus.uml.diagram.communication.MessageHelperAdvice">
       </elementType>
    </binding>
+   <binding
+         context="org.eclipse.papyrus.service.edit.TypeContext">
+      <elementType
+            ref="org.eclipse.papyrus.uml.diagram.communication.DestroyMessageAdvice">
+      </elementType>
+   </binding>
 </extension>
 <extension
       point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
    <metamodel
          nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
       <adviceBinding
-            class="org.eclipse.papyrus.diagram.communication.custom.helper.advice.MessageHelperAdvice"
+            class="org.eclipse.papyrus.diagram.communication.custom.advices.DestroyMessageAdvice"
+            id="org.eclipse.papyrus.uml.diagram.communication.DestroyMessageAdvice"
+            inheritance="all"
+            typeId="org.eclipse.papyrus.uml.Message">
+      </adviceBinding>
+      <adviceBinding
+            class="org.eclipse.papyrus.diagram.communication.custom.advices.MessageHelperAdvice"
             id="org.eclipse.papyrus.uml.diagram.communication.MessageHelperAdvice"
             inheritance="all"
             typeId="org.eclipse.papyrus.uml.Message">
       </adviceBinding>
+     
    </metamodel>
 </extension>
 <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
