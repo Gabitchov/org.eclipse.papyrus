@@ -7,6 +7,8 @@
   <rm:locator pattern="^org\.eclipse\.papyrus\.constraintwithvsl.*" searchPathRef="sources"/>
   <rm:locator pattern="^org\.eclipse\.papyrus\.properties\.tabbed\.marte" searchPathRef="sources"/>
   <rm:locator pattern="^org\.eclipse\.papyrus\.stereotypeapplicationwithvsl.*" searchPathRef="sources"/>
+  <rm:locator pattern="^org\.eclipse\.papyrus\.alf.*" searchPathRef="sources"/>
+  <rm:locator pattern="^org\.eclipse\.papyrus\.operation.*" searchPathRef="sources"/>
   <rm:locator pattern="^org\.eclipse\.papyrus\.conversion.*" searchPathRef="sources"/>  
   <rm:locator searchPathRef="orbit" failOnError="false"/>
   <rm:locator searchPathRef="platform.binaries"/>
