@@ -135,7 +135,7 @@ public class UmlMessageGrammarAccess extends AbstractGrammarElementFinder {
 		//sequenceTerm1 = SequenceTermRule
 		//('.' sequenceTerm2 = SequenceTermRule )* 
 		//
-		// * /RecurrenceRule:
+		// * / RecurrenceRule:
 		//	"*" "[" STRING "]" | "[" STRING "]";
 		public ParserRule getRule() { return rule; }
 
@@ -222,7 +222,7 @@ public class UmlMessageGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal nameRule:
-	//	("a".."z" | "A".."Z") ("a".."z" | "A".."Z" | "_" | "-" | "0".."9")*;
+	//	("a".."z" | "A".."Z") ("a".."z" | "A".."Z" | "_" | "-" | "0".."9" | "(" | ")")*;
 	public TerminalRule getNameRuleRule() {
 		return (tNameRule != null) ? tNameRule : (tNameRule = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "nameRule"));
 	} 
@@ -240,7 +240,7 @@ public class UmlMessageGrammarAccess extends AbstractGrammarElementFinder {
 	//sequenceTerm1 = SequenceTermRule
 	//('.' sequenceTerm2 = SequenceTermRule )* 
 	//
-	// * /RecurrenceRule:
+	// * / RecurrenceRule:
 	//	"*" "[" STRING "]" | "[" STRING "]";
 	public RecurrenceRuleElements getRecurrenceRuleAccess() {
 		return (pRecurrenceRule != null) ? pRecurrenceRule : (pRecurrenceRule = new RecurrenceRuleElements());

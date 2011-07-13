@@ -19,7 +19,7 @@ sequencialOrder = INT //represents the sequential order of the Message within th
 ;
 
 terminal nameRule:
-('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'_'|'-'|'0'..'9')*;
+('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'_'|'-'|'0'..'9'|'('|')')*;
 
 RecurrenceRule : 
 ('*' '[' STRING ']')|('[' STRING ']') ;
