@@ -37,7 +37,7 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:EnumRadio input="{Binding}" property="Multiplicity:multiplicity"></ppe:EnumRadio>
+		<ppe:StringCombo input="{Binding}" property="Multiplicity:multiplicity"></ppe:StringCombo>
 		<ppe:ReferenceDialog input="{Binding}"
 			property="UML:ObjectNode:selection"></ppe:ReferenceDialog>
 		<ppe:ReferenceDialog property="UML:TypedElement:type"

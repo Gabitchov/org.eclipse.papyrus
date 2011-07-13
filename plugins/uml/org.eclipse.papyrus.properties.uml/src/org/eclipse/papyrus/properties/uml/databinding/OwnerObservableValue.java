@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -56,6 +56,10 @@ public class OwnerObservableValue extends AbstractObservableValue {
 
 	private String currentValue;
 
+	public static String CLASSIFIER = "Classifier"; //$NON-NLS-1$
+
+	public static String ASSOCIATION = "Association"; //$NON-NLS-1$
+
 	/**
 	 * Constructor.
 	 * 
@@ -90,7 +94,7 @@ public class OwnerObservableValue extends AbstractObservableValue {
 	protected void doSetValue(Object value) {
 		if(value instanceof String) {
 			String owner = (String)value;
-			boolean isOwnedByAssociation = "Association".equals(owner); //$NON-NLS-1$
+			boolean isOwnedByAssociation = ASSOCIATION.equals(owner);
 
 			Association association = memberEnd.getAssociation();
 

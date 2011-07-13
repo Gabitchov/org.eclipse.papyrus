@@ -119,7 +119,6 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 		if((e.keyCode == SWT.CR || e.keyCode == SWT.KEYPAD_CR) && e.stateMask == SWT.NONE) {
 			notifyChange();
 			e.doit = false; //Stops the propagation of the event
-			System.out.println("Stop event");
 		}
 	}
 
