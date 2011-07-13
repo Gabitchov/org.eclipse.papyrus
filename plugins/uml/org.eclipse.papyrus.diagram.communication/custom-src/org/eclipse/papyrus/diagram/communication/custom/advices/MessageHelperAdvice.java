@@ -11,7 +11,7 @@
  *  Saadia Dhouib saadia.dhouib@cea.fr  - adapted from composite structure diagram (DestroyGeneralizationAdvice class)
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.communication.custom.helper.advice;
+package org.eclipse.papyrus.diagram.communication.custom.advices;
 
 import java.util.HashSet;
 import java.util.Iterator;
