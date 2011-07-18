@@ -14,7 +14,7 @@
     <package 
        uri = "http://www.eclipse.org/uml2/schemas/Standard/1" 
        class = "org.eclipse.papyrus.uml.standard.StandardPackage"
-       genModel = "model/Standard.genmodel" /> 
+       genModel = "model/standard.genmodel" /> 
   </extension>
 
   <extension point="org.eclipse.emf.ecore.extension_parser">
