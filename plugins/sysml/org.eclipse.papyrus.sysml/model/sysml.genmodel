@@ -143,9 +143,9 @@
     <nestedGenPackages prefix="Activities" basePackage="org.eclipse.papyrus.sysml"
         resource="XML" disposableProviderFactory="true" generateExampleClass="false"
         ecorePackage="sysml.ecore#//activities">
-      <genClasses ecoreClass="sysml.ecore#//activities/Optionnal">
+      <genClasses ecoreClass="sysml.ecore#//activities/Optional">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference sysml.ecore#//activities/Optionnal/base_Parameter"/>
+            ecoreFeature="ecore:EReference sysml.ecore#//activities/Optional/base_Parameter"/>
       </genClasses>
       <genClasses ecoreClass="sysml.ecore#//activities/Rate">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

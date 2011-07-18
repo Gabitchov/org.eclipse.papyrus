@@ -188,7 +188,7 @@ public interface Requirement extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Verified By</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.sysml.requirements.TestCase}.
+	 * The list contents are of type {@link org.eclipse.uml2.uml.NamedElement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Verified By</em>' reference list isn't clear, there really should be more of a description here...
@@ -200,7 +200,7 @@ public interface Requirement extends EObject {
 	 * @model transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
-	EList<TestCase> getVerifiedBy();
+	EList<NamedElement> getVerifiedBy();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.requirements.Requirement#getBase_Class <em>Base Class</em>}' reference.

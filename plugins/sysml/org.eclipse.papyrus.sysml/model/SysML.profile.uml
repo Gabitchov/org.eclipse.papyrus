@@ -779,7 +779,8 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_PHumALXrEduHWpAaWjM62w" name="verifiedBy" visibility="public" type="_Sb6wELXqEduHWpAaWjM62w" isUnique="false" isReadOnly="true" isDerived="true">
+        <ownedAttribute xmi:id="_PHumALXrEduHWpAaWjM62w" name="verifiedBy" visibility="public" isUnique="false" isReadOnly="true" isDerived="true">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aFIHsLXrEduHWpAaWjM62w" value="*"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aFCoILXrEduHWpAaWjM62w"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_R1wSgLXrEduHWpAaWjM62w">

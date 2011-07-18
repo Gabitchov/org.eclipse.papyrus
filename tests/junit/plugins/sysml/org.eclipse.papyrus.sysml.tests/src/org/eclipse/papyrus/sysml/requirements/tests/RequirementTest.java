@@ -30,6 +30,7 @@ import org.eclipse.papyrus.uml.standard.util.StandardResource;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -141,6 +142,8 @@ public class RequirementTest extends TestCase {
 	protected Requirement verified_req = null;
 
 	protected org.eclipse.papyrus.sysml.requirements.TestCase testCase1 = null;
+
+	protected NamedElement verifierNamedElement = null;
 
 	// ////////////////////////////////////////////////////////////////////
 
@@ -360,6 +363,8 @@ public class RequirementTest extends TestCase {
 		// Prepare getVerifiedBy test elements
 		// ////////////////////////////////////////////////////////////////////
 
+		verifierNamedElement = model.createOwnedClass("verifierNamedElement", false);
+
 		Class verified = model.createOwnedClass("verified", false);
 		verified_req = (Requirement)verified.applyStereotype(verified.getApplicableStereotype(SysmlResource.REQUIREMENT_ID));
 
@@ -385,6 +390,15 @@ public class RequirementTest extends TestCase {
 		model.getPackagedElements().add(t2_v);
 		@SuppressWarnings("unused")
 		Verify v_t2_v = (Verify)t2_v.applyStereotype(t2_v.getApplicableStereotype(SysmlResource.VERIFY_ID));
+
+		// Add "Verify" (Abstraction)
+		// verifierNamedElement -> verified
+		Abstraction t3_v = UMLFactory.eINSTANCE.createAbstraction();
+		t3_v.getClients().add(verifierNamedElement);
+		t3_v.getSuppliers().add(verified);
+		model.getPackagedElements().add(t3_v);
+		@SuppressWarnings("unused")
+		Verify v_t3_v = (Verify)t3_v.applyStereotype(t3_v.getApplicableStereotype(SysmlResource.VERIFY_ID));
 
 		// ////////////////////////////////////////////////////////////////////
 	}
@@ -584,11 +598,14 @@ public class RequirementTest extends TestCase {
 		}
 
 		// Test getVerifiedBy getter for
-		// [testCase1, testCase2] -> verified_req
-		if(!verified_req.getVerifiedBy().contains(testCase1)) {
+		// [testCase1, testCase2, verifierNamedElement] -> verified_req
+		if(!verified_req.getVerifiedBy().contains(testCase1.getBase_Operation())) {
 			fail();
 		}
-		if(!verified_req.getVerifiedBy().contains(testCase2)) {
+		if(!verified_req.getVerifiedBy().contains(testCase2.getBase_Operation())) {
+			fail();
+		}
+		if(!verified_req.getVerifiedBy().contains(verifierNamedElement)) {
 			fail();
 		}
 	}

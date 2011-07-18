@@ -50,7 +50,7 @@ public class ElementUtil {
 
 		return stereotypeApplication;
 	}
-	
+
 	/**
 	 * Convenient method to retrieve the StereotypeApplication by passing an element of the static profile.
 	 * 

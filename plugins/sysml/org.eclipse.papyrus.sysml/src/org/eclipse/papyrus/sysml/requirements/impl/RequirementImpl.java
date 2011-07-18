@@ -28,7 +28,6 @@ import org.eclipse.papyrus.sysml.requirements.DeriveReqt;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.requirements.Satisfy;
-import org.eclipse.papyrus.sysml.requirements.TestCase;
 import org.eclipse.papyrus.sysml.requirements.Verify;
 import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.papyrus.uml.standard.Refine;
@@ -489,9 +488,9 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	 * 
 	 * @generated NOT
 	 */
-	public EList<TestCase> getVerifiedBy() {
-		// This should return the TestCase verifying current Requirement
-		EList<TestCase> verifiedBy = new BasicEList<TestCase>();
+	public EList<NamedElement> getVerifiedBy() {
+		// This should return the list of NamedElement verifying current Requirement
+		EList<NamedElement> verifiedBy = new BasicEList<NamedElement>();
 		Verify currentVerify = null;
 
 		if(getBase_Class() != null) {
@@ -503,19 +502,12 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 				currentVerify = (Verify)ElementUtil.hasStereotype(currentDRelationship, RequirementsPackage.eINSTANCE.getVerify());
 
 				if(currentVerify != null) {
-					EList<NamedElement> clients = currentVerify.getBase_Abstraction().getClients();
-					Iterator<NamedElement> it = clients.iterator();
-					while(it.hasNext()) {
-						TestCase currentRequirement = (TestCase)ElementUtil.hasStereotype(it.next(), RequirementsPackage.eINSTANCE.getTestCase());
-						if(currentRequirement != null) {
-							verifiedBy.add(currentRequirement);
-						}
-					}
+					verifiedBy.addAll(currentVerify.getBase_Abstraction().getClients());
 				}
 			}
 		}
 		// Convert to InternalEList<?>
-		return new BasicInternalEList<TestCase>(TestCase.class, verifiedBy.size(), verifiedBy.toArray());
+		return new BasicInternalEList<NamedElement>(NamedElement.class, verifiedBy.size(), verifiedBy.toArray());
 	}
 
 	/**
