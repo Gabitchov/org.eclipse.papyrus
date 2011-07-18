@@ -1776,6 +1776,15 @@
 		<matcher class ="org.eclipse.papyrus.uml.service.types.matcher.TraceMatcher" />
 	</specializationType>
 	
+	<!-- ISpecializationType Refine of UML::Abstraction (from Standard profile)-->
+	<specializationType id="org.eclipse.papyrus.uml.Refine" name="UML::Refine"
+		edithelperadvice="org.eclipse.papyrus.uml.service.types.helper.advice.RefineEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Refine"/>
+		<specializes id="org.eclipse.papyrus.uml.Abstraction" />
+		<matcher class ="org.eclipse.papyrus.uml.service.types.matcher.RefineMatcher" />
+	</specializationType>
+		
 	</metamodel>
 </extension>
 
