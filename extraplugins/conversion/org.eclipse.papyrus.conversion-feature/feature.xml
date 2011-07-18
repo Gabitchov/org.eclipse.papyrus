@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.papyrus.diagconv"
+      id="org.eclipse.papyrus.conversion"
       label="%featureName"
       version="0.8.1.qualifier"
       provider-name="%providerName">
