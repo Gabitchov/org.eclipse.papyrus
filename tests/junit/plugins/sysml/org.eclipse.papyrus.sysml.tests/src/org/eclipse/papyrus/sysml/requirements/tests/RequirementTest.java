@@ -144,7 +144,7 @@ public class RequirementTest extends TestCase {
 	protected org.eclipse.papyrus.sysml.requirements.TestCase testCase1 = null;
 
 	protected NamedElement verifierNamedElement = null;
-	
+
 	// ////////////////////////////////////////////////////////////////////
 
 	protected org.eclipse.papyrus.sysml.requirements.TestCase testCase2 = null;
@@ -364,7 +364,7 @@ public class RequirementTest extends TestCase {
 		// ////////////////////////////////////////////////////////////////////
 
 		verifierNamedElement = model.createOwnedClass("verifierNamedElement", false);
-		
+
 		Class verified = model.createOwnedClass("verified", false);
 		verified_req = (Requirement)verified.applyStereotype(verified.getApplicableStereotype(SysmlResource.REQUIREMENT_ID));
 
@@ -399,7 +399,7 @@ public class RequirementTest extends TestCase {
 		model.getPackagedElements().add(t3_v);
 		@SuppressWarnings("unused")
 		Verify v_t3_v = (Verify)t3_v.applyStereotype(t3_v.getApplicableStereotype(SysmlResource.VERIFY_ID));
-		
+
 		// ////////////////////////////////////////////////////////////////////
 	}
 
@@ -599,10 +599,10 @@ public class RequirementTest extends TestCase {
 
 		// Test getVerifiedBy getter for
 		// [testCase1, testCase2, verifierNamedElement] -> verified_req
-		if(!verified_req.getVerifiedBy().contains(testCase1)) {
+		if(!verified_req.getVerifiedBy().contains(testCase1.getBase_Operation())) {
 			fail();
 		}
-		if(!verified_req.getVerifiedBy().contains(testCase2)) {
+		if(!verified_req.getVerifiedBy().contains(testCase2.getBase_Operation())) {
 			fail();
 		}
 		if(!verified_req.getVerifiedBy().contains(verifierNamedElement)) {
