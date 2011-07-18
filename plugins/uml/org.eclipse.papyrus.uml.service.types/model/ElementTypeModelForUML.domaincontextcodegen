@@ -745,6 +745,7 @@
     </types>
     <types xsi:type="domaincontextcodegen:SpecializationType" name="Association" helper="org.eclipse.papyrus.uml.service.types.helper.advice.AssociationEditHelperAdvice" ref="//@elementTypes/@types.18" matcher="org.eclipse.papyrus.uml.service.types.matcher.AssociationMatcher"/>
     <types xsi:type="domaincontextcodegen:SpecializationType" name="Trace" helper="org.eclipse.papyrus.uml.service.types.helper.advice.TraceEditHelperAdvice" ref="//@elementTypes/@types.0" matcher="org.eclipse.papyrus.uml.service.types.matcher.TraceMatcher"/>
+    <types xsi:type="domaincontextcodegen:SpecializationType" name="Refine" helper="org.eclipse.papyrus.uml.service.types.helper.advice.RefineEditHelperAdvice" ref="//@elementTypes/@types.0" matcher="org.eclipse.papyrus.uml.service.types.matcher.RefineMatcher"/>
   </elementTypes>
   <advices adviceID="org.eclipse.papyrus.uml.advice.Classifier" ref="//@elementTypes/@types.32" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.ClassifierHelperAdvice" inheritance="all"/>
   <advices adviceID="org.eclipse.papyrus.uml.advice.Collaboration" ref="//@elementTypes/@types.38" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.CollaborationHelperAdvice"/>
