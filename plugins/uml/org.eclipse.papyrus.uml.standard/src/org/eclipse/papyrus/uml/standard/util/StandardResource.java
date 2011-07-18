@@ -15,6 +15,8 @@ package org.eclipse.papyrus.uml.standard.util;
 
 public class StandardResource {
 
+	public static String STANDARD_ID = "Standard";
+
 	public static String AUXILIARY_ID = "Standard::Auxiliary";
 
 	public static String BUILD_COMPONENT_ID = "Standard::BuildComponent";

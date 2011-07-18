@@ -29,7 +29,7 @@ public class TraceEditHelperAdvice extends AbstractStereotypedElementEditHelperA
 
 	/** Default constructor */
 	public TraceEditHelperAdvice() {
-		requiredProfileIDs.add("standard"); // //$NON-NLS-1$
+		requiredProfileIDs.add(StandardResource.STANDARD_ID);
 	}
 
 	/** Complete creation process by applying the expected stereotype */
