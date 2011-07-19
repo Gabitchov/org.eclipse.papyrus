@@ -11,43 +11,37 @@
  *    Ansgar Radermacher (CEA LIST) - added support for EMF validation
  *    	bug fix and re-factoring (separating common class)
  *      specific version for Papyrus
+ *      Amine EL KOUHEN (CEA LIST) - Added decoration Service
  */
- package org.eclipse.papyrus.diagram.common.providers;
+package org.eclipse.papyrus.diagram.common.providers;
 
 import static org.eclipse.papyrus.core.Activator.log;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IMarker;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.draw2d.Label;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
-import org.eclipse.gmf.runtime.common.ui.resources.FileChangeManager;
-import org.eclipse.gmf.runtime.common.ui.resources.IFileObserver;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.AbstractDecorator;
+import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoration;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecorator;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.util.CrossReferencerUtil;
-import org.eclipse.papyrus.validation.ValidationUtils;
-import org.eclipse.swt.graphics.Image;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.decoration.DecorationService;
+import org.eclipse.papyrus.diagram.common.util.ServiceUtilsForGMF;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
@@ -56,32 +50,24 @@ import org.eclipse.ui.PlatformUI;
  */
 public abstract class ValidationDecoratorProvider extends AbstractProvider implements IDecoratorProvider {
 
-	protected static final String KEY = "validationStatus";  //$NON-NLS-1$
-	
-	/**
-	 * generic marker for GMF validation (currently not used)
-	 */
-	private static final String MARKER_TYPE = "org.eclipse.papyrus.diagram.common.diagnostic"; //$NON-NLS-1$
+	protected static final String KEY = "validationStatus"; //$NON-NLS-1$
 
-	/**
-	 * global map of fileObserver par editing domain
-	 */
-	private static Map<TransactionalEditingDomain, MarkerObserver> fileObservers = new HashMap<TransactionalEditingDomain, MarkerObserver>();
-
-	private static Map<String, IDecorator> allDecorators = new HashMap<String, IDecorator> ();
+	private static Map<String, IDecorator> allDecorators = new HashMap<String, IDecorator>();
 
 	/**
 	 * Refined by generated class
+	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorProvider#createDecorators(org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget)
-	 *
+	 * 
 	 * @param decoratorTarget
 	 */
-	public abstract void createDecorators (IDecoratorTarget decoratorTarget);
+	public abstract void createDecorators(IDecoratorTarget decoratorTarget);
 
 	/**
 	 * Refined by generated class
+	 * 
 	 * @see org.eclipse.gmf.runtime.common.core.service.IProvider#provides(org.eclipse.gmf.runtime.common.core.service.IOperation)
-	 *
+	 * 
 	 * @param operation
 	 * @return
 	 */
@@ -89,6 +75,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 
 	/**
 	 * Refresh the decorators of a specific view
+	 * 
 	 * @param view
 	 */
 	public static void refreshDecorators(View view) {
@@ -100,7 +87,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 	 */
 	private static void refreshDecorators(String viewId, final TransactionalEditingDomain domain) {
 		final IDecorator decorator = viewId != null ? allDecorators.get(viewId) : null;
-		if (decorator == null || domain == null) {
+		if(decorator == null || domain == null) {
 			return;
 		}
 		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
@@ -120,7 +107,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		});
 	}
 
-	public static class StatusDecorator extends AbstractDecorator {
+	public static class StatusDecorator extends AbstractDecorator implements Observer {
 
 		/**
 		 * The ID of the view
@@ -133,12 +120,29 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		private TransactionalEditingDomain editingDomain;
 
 		/**
+		 * Decoration Service
+		 */
+		private DecorationService decorationService;
+
+		/**
+		 * Diagram Decorator
+		 */
+		private final DiagramDecorationAdapter diagramDecorationAdapter;
+
+		/**
 		 * @generated
 		 */
 		public StatusDecorator(IDecoratorTarget decoratorTarget) {
 			super(decoratorTarget);
+			diagramDecorationAdapter = new DiagramDecorationAdapter(decoratorTarget);
 			try {
 				final View view = (View)getDecoratorTarget().getAdapter(View.class);
+				EditPart editPart = (EditPart)getDecoratorTarget().getAdapter(EditPart.class);
+				IDiagramEditDomain domain = (IDiagramEditDomain)editPart.getViewer().getEditDomain();
+				ServicesRegistry serviceRegistry = ServiceUtilsForGMF.getInstance().getServiceRegistry(domain);
+				decorationService = serviceRegistry.getService(DecorationService.class);
+				//Register As an Decoration service customer
+				decorationService.addListener(this);
 				TransactionUtil.getEditingDomain(view).runExclusive(new Runnable() {
 
 					public void run() {
@@ -157,6 +161,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		 * @see org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecorator#refresh()
 		 */
 		public void refresh() {
+
 			removeDecoration();
 			View view = (View)getDecoratorTarget().getAdapter(View.class);
 			if(view == null || view.eResource() == null) {
@@ -166,114 +171,47 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 			if(editPart == null || editPart.getViewer() == null) {
 				return;
 			}
-
-			// query for all the validation markers of the current resource
-			String elementId = ViewUtil.getIdStr(view);
-			if(elementId == null) {
-				return;
-			}
-			int severity = IMarker.SEVERITY_INFO;
-			IMarker foundMarker = null;
-			IResource gmfResource = WorkspaceSynchronizer.getFile(view.eResource());
-			if(gmfResource == null || !gmfResource.exists()) {
-				return;
-			}
-			IResource emfResource = null;
-			if(view.getElement() != null) {
-				emfResource = WorkspaceSynchronizer.getFile(view.getElement().eResource());
-				// allow emfResource being empty, since there might be gmf views without an EObject behind;
-			}
-
-			IMarker[] gmfMarkers = null;
-			IMarker[] emfMarkers = new IMarker[0];
-			try {
-				gmfMarkers = gmfResource.findMarkers(MARKER_TYPE, true, IResource.DEPTH_INFINITE);
-				if(emfResource != null) {
-					emfMarkers = emfResource.findMarkers(IMarker.PROBLEM, true, IResource.DEPTH_INFINITE);
-				}
-			} catch (CoreException e) {
-				log.error("Validation markers refresh failure", e); //$NON-NLS-1$
-			}
-			if(gmfMarkers == null) {
-				// indicates an exception, findMarkers returns an empty array, if there are no markers
-				return;
-			}
-			Label toolTip = null;
-			// look for GMF markers
-			for(int i = 0; i < gmfMarkers.length + emfMarkers.length; i++) {
-				IMarker marker;
-				boolean markerIsForMe = false;
-				if(i < gmfMarkers.length) {
-					// get marker from GMF list
-					marker = gmfMarkers[i];
-					String attribute = marker.getAttribute(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID, ""); //$NON-NLS-1$
-					markerIsForMe = attribute.equals(elementId);
-				} else {
-					// get marker from EMF list
-					marker = emfMarkers[i - gmfMarkers.length];
-					EObject eObjectOfMarker = ValidationUtils.eObjectFromMarkerOrMap(marker, null, editingDomain);
-					markerIsForMe = (eObjectOfMarker == view.getElement());
-				}
-				if(markerIsForMe) {
-					int nextSeverity = marker.getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);
-					Image nextImage = getImage(nextSeverity);
-					if(foundMarker == null) {
-						foundMarker = marker;
-						toolTip = new Label(marker.getAttribute(IMarker.MESSAGE, ""), //$NON-NLS-1$
-						nextImage);
-					} else {
-						if(toolTip.getChildren().isEmpty()) {
-							Label comositeLabel = new Label();
-							FlowLayout fl = new FlowLayout(false);
-							fl.setMinorSpacing(0);
-							comositeLabel.setLayoutManager(fl);
-							comositeLabel.add(toolTip);
-							toolTip = comositeLabel;
-						}
-						toolTip.add(new Label(marker.getAttribute(IMarker.MESSAGE, ""), //$NON-NLS-1$
-						nextImage));
-					}
-					severity = (nextSeverity > severity) ? nextSeverity : severity;
-				}
-			}
-			if(foundMarker == null) {
-				return;
-			}
-
 			// add decoration
+			IDecoration deco = null;
+			org.eclipse.papyrus.decoration.util.IDecoration decoration = null;
 			if(editPart instanceof org.eclipse.gef.GraphicalEditPart) {
+				decoration = decorationService.getDecoration(view.getElement(), false);
+				decoration.setDecorationImage(getImageDescriptor(decoration.getSeverity()));
 				if(view instanceof Edge) {
-					setDecoration(getDecoratorTarget().addConnectionDecoration(getImage(severity), 50, true));
+					/* Test *///decoration.setDecorationImage(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/obj16/Device.gif"));
+					deco = diagramDecorationAdapter.setDecoration(decoration, 50, 0, true);
 				} else {
 					int margin = -1;
 					if(editPart instanceof org.eclipse.gef.GraphicalEditPart) {
 						margin = MapModeUtil.getMapMode(((org.eclipse.gef.GraphicalEditPart)editPart).getFigure()).DPtoLP(margin);
 					}
-					setDecoration(getDecoratorTarget().addShapeDecoration(getImage(severity), IDecoratorTarget.Direction.NORTH_EAST, margin, true));
+					deco = diagramDecorationAdapter.setDecoration(decoration, 0, margin, true);
 				}
+			}
+
+
+			if(deco != null) {
+				setDecoration(deco);
+				String message = decoration.getMessage();
+				Label toolTip = diagramDecorationAdapter.getToolTip(message);
 				getDecoration().setToolTip(toolTip);
 			}
 		}
 
-		
-		/**
-		 * Get the image for a given severity
-		 * @param severity
-		 * @return
-		 */
-		private Image getImage(int severity) {
-			String imageName = ISharedImages.IMG_OBJS_ERROR_TSK;
+		private ImageDescriptor getImageDescriptor(int severity) {
+
+			ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
+			ImageDescriptor overlay = null;
 			switch(severity) {
-			case IMarker.SEVERITY_ERROR:
-				imageName = ISharedImages.IMG_OBJS_ERROR_TSK;
+			case 2://Error
+				overlay = sharedImages.getImageDescriptor(ISharedImages.IMG_OBJS_ERROR_TSK);
 				break;
-			case IMarker.SEVERITY_WARNING:
-				imageName = ISharedImages.IMG_OBJS_WARN_TSK;
+			case 1://Warning
+				overlay = sharedImages.getImageDescriptor(ISharedImages.IMG_OBJS_WARN_TSK);
 				break;
-			default:
-				imageName = ISharedImages.IMG_OBJS_INFO_TSK;
 			}
-			return PlatformUI.getWorkbench().getSharedImages().getImage(imageName);
+
+			return overlay;
 		}
 
 		/**
@@ -287,29 +225,15 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 
 			// add self to global decorators registry
 			IDecorator decorator = allDecorators.get(viewId);
-			if (decorator == null) {
+			if(decorator == null) {
 				allDecorators.put(viewId, this);
-			}
-		
-			// stop listening to changes in resources if there are no more decorators
-			MarkerObserver fileObserver = fileObservers.get(editingDomain);
-			if (fileObserver == null) {
-				fileObserver = new MarkerObserver(editingDomain);
-				fileObservers.put(editingDomain, fileObserver);
-				FileChangeManager.getInstance().addFileObserver(fileObserver);
-			}
-			// start listening to changes in resources
-			View view = (View) getDecoratorTarget().getAdapter(View.class);
-			if(view != null) {
-				if (!fileObserver.views.contains(view)) {
-					fileObserver.views.add(view); 
-				}
 			}
 		}
 
 		/**
 		 * deactivate the decorators of this view
 		 */
+		@Override
 		public void deactivate() {
 			if(viewId == null) {
 				return;
@@ -317,129 +241,20 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 
 			// remove self from global decorators registry
 			allDecorators.remove(viewId);
-			
+
 			View view = (View)getDecoratorTarget().getAdapter(View.class);
-			if ((view == null) || (editingDomain == null)) {
+			if((view == null) || (editingDomain == null)) {
 				// should not happen
 				super.deactivate();
 				return;
 			}
-
-			// stop listening to changes in resources if there are no more decorators
-			MarkerObserver fileObserver = fileObservers.get(editingDomain);
-			if (fileObserver != null) {
-				fileObserver.views.remove(view);
-				if (fileObserver.views.isEmpty()) {
-					// no more views registered for the listener => remove observer
-					FileChangeManager.getInstance().removeFileObserver(fileObserver);
-					fileObservers.remove(editingDomain);
-				}
-			}
-
 			super.deactivate();
 		}
-	}
 
-	/**
-	 * @generated
-	 */
-	static class MarkerObserver implements IFileObserver {
-
-		/**
-		 * store editing domain
-		 */
-		private TransactionalEditingDomain domain;
-
-		/**
-		 * store a list of all views for which the observer is responsible
-		 */
-		private EList<View> views = new BasicEList<View>();
-	
-		/**
-		 * Constructor.
-		 *
-		 * @param domain
-		 */
-		private MarkerObserver(TransactionalEditingDomain domain) {
-			this.domain = domain;
-		}
-
-		/**
-		 * handle changes of file name
-		 */
-		public void handleFileRenamed(IFile oldFile, IFile file) {
-		}
-
-		public void handleFileMoved(IFile oldFile, IFile file) {
-		}
-
-		public void handleFileDeleted(IFile file) {
-		}
-
-		public void handleFileChanged(IFile file) {
-		}
-
-		/**
-		 * A marker has been added, treat as change
-		 */
-		public void handleMarkerAdded(IMarker marker) {
-			handleMarkerChanged(marker);
-		}
-
-		/**
-		 * A marker has been deleted. Need to treat separately from change, since old values are not stored in
-		 * marker, but in attribute map
-		 */
-		public void handleMarkerDeleted(IMarker marker, @SuppressWarnings("rawtypes") Map attributes) {
-			String viewId = (String)attributes.get(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID);
-			if(viewId != null) {
-				refreshDecorators(viewId, domain);
-			} else {
-				// no viewID => assume EMF validation marker
-				EObject eObjectFromMarker = ValidationUtils.eObjectFromMarkerOrMap(null, attributes, domain);
-
-				if(eObjectFromMarker != null) {
-					// loop over all views that reference the eObject from the marker
-					for(View view : CrossReferencerUtil.getCrossReferencingViews(eObjectFromMarker, null)) {
-						refreshDecorators(view);
-					}
-				}
-			}
-		}
-
-		/**
-		 * A marker has changed
-		 */
-		public void handleMarkerChanged(IMarker marker) {
-			try {
-				if(getType(marker).equals(MARKER_TYPE)) {
-					String viewId = marker.getAttribute(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID, ""); //$NON-NLS-1$
-					refreshDecorators(viewId, domain);
-				} else if(marker.isSubtypeOf((EValidator.MARKER))) {
-					EObject eObjectFromMarker = ValidationUtils.eObjectFromMarkerOrMap(marker, null, domain);
-
-					if(eObjectFromMarker != null) {
-						// loop over all views that reference the eObject from the marker
-						for(View view : CrossReferencerUtil.getCrossReferencingViews(eObjectFromMarker, null)) {
-							refreshDecorators(view);
-						}
-					}
-				}
-			} catch (CoreException e) {
-				// only reason: marker does not exist (ignore, should not happen)
-			}
-		}
-
-		/**
-		 * Return the type of a marker
-		 */
-		private String getType(IMarker marker) {
-			try {
-				return marker.getType();
-			} catch (CoreException e) {
-				log.error("Validation marker refresh failure", e); //$NON-NLS-1$
-				return ""; //$NON-NLS-1$
-			}
+		//Refresh when the decoration service add a decoration
+		public void update(Observable o, Object arg) {
+			refresh();
 		}
 	}
+
 }
