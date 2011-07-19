@@ -17,4 +17,103 @@
             class="org.eclipse.papyrus.validation.preferences.Initializer">
       </initializer>
    </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup">
+         <menu
+               icon="icons/etool16/validate.gif"
+               id="org.eclipse.papyrus.modelexplorer.popup.validation"
+               label="Validation">
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.papyrus.modelexplorer.popup.validation">
+         <command
+               commandId="org.eclipse.papyrus.validation.ValidateModelCommand"
+               icon="icons/etool16/validate.gif"
+               id="org.eclipse.papyrus.validation.ValidateModel"
+               label="Validate model">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.validation.ValidateSubtreeCommand"
+               icon="icons/etool16/validate.gif"
+               id="org.eclipse.papyrus.validation.ValidateSubtree"
+               label="Validate subtree">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.validation.SelectAndValidateModelCommand"
+               icon="icons/etool16/validateSel.gif"
+               id="org.eclipse.papyrus.validation.SelectAndValidateModel"
+               label="Select constraints and Validate model">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.validation.SelectAndValidateSubtreeCommand"
+               icon="icons/etool16/validateSel.gif"
+               id="org.eclipse.papyrus.validation.SelectAndValidateSubtree"
+               label="Select constraints and Validate subtree">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.validation.ValidateDelMarkersFromModelCommand"
+               disabledIcon="IMG_TOOL_DELETE_DISABLED"
+               icon="IMG_TOOL_DELETE"
+               id="org.eclipse.papyrus.validation.DeleteMarkersFromModel"
+               label="Remove markers from model">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.validation.ValidateDelMarkersFromSubtreeCommand"
+               disabledIcon="IMG_TOOL_DELETE_DISABLED"
+               icon="IMG_TOOL_DELETE"
+               id="org.eclipse.papyrus.validation.DelMarkersFromSubtree"
+               label="Remove markers from subtree">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.validation.handler.ValidateModelHandler"
+            description="ValidateModel"
+            id="org.eclipse.papyrus.validation.ValidateModelCommand"
+            name="ValidateModel">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.validation.handler.ValidateSubtreeHandler"
+            description="ValidateSubtree"
+            id="org.eclipse.papyrus.validation.ValidateSubtreeCommand"
+            name="ValidateSubtree">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.validation.handler.SelectAndValidateSubtreeHandler"
+            description="SelectAndValidate"
+            id="org.eclipse.papyrus.validation.SelectAndValidateSubtreeCommand"
+            name="SelectAndValidate">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.validation.handler.SelectAndValidateModelHandler"
+            description="SelectAndValidate"
+            id="org.eclipse.papyrus.validation.SelectAndValidateModelCommand"
+            name="SelectAndValidate">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.validation.handler.ValidateDelMarkersFromModelHandler"
+            description="ValidateDelMarkersFromModel"
+            id="org.eclipse.papyrus.validation.ValidateDelMarkersFromModelCommand"
+            name="ValidateDelMarkersFromModel">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.validation.handler.ValidateDelMarkersFromSubtreeHandler"
+            description="ValidateDelMarkersFromSubtree"
+            id="org.eclipse.papyrus.validation.ValidateDelMarkersFromSubtreeCommand"
+            name="ValidateDelMarkersFromSubtree">
+      </command>
+   </extension>
 </plugin>
