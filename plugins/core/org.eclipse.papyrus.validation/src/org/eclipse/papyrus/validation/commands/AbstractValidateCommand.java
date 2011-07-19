@@ -11,7 +11,7 @@
  *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.validation;
+package org.eclipse.papyrus.validation.commands;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
@@ -36,14 +36,13 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.papyrus.validation.ValidationTool;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * An abstract validation command that needs to be refined, in particular the doExecuteWithResult operation
- * (which will typically delegate to the runValidation operation).
- * 
- * Contains partly elements that are copied from @see emf.edit.ui.action.ValidateAction.
+ * Action used for pasting either a model element or a shape (i.e. the model element represented
+ * by the shape). Delegates to PasteShapeOrElementCommand
  * 
  * @author Ansgar Radermacher (CEA LIST)
  */
@@ -103,49 +102,47 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 	}
 	
 	protected void runValidation (final EObject validateElement) {
-		final Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		IRunnableWithProgress runnableWithProgress = new IRunnableWithProgress()
-		{
-			public void run(final IProgressMonitor progressMonitor) throws InvocationTargetException, InterruptedException
-			{
-				try {
-					final Diagnostic diagnostic = validate(progressMonitor, validateElement);
-					shell.getDisplay().asyncExec (new Runnable() {
-						public void run()
-						{
-							if (progressMonitor.isCanceled()) {
-								handleDiagnostic(Diagnostic.CANCEL_INSTANCE);
-							}
-							else {
-								handleDiagnostic(diagnostic);
-							}
-						}
-					});
-				}
-				finally {
-					progressMonitor.done();
-				}    
-			}
-		};
+		 final Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		 IRunnableWithProgress runnableWithProgress = new IRunnableWithProgress()
+		 {
+			 public void run(final IProgressMonitor progressMonitor) throws InvocationTargetException, InterruptedException
+		     {
+				 try {
+					 final Diagnostic diagnostic = validate(progressMonitor, validateElement);
+					 shell.getDisplay().asyncExec (new Runnable() {
+						 public void run()
+						 {
+							 if (progressMonitor.isCanceled()) {
+								 handleDiagnostic(Diagnostic.CANCEL_INSTANCE);
+							 }
+							 else {
+								 handleDiagnostic(diagnostic);
+							 }
+						 }
+					 });
+				 }
+				 finally {
+					 progressMonitor.done();
+				 }    
+		      }
+		 };
 		    
-		if (eclipseResourcesUtil != null) {
-			runnableWithProgress = eclipseResourcesUtil.getWorkspaceModifyOperation(runnableWithProgress);
-		}
+		 if (eclipseResourcesUtil != null) {
+			 runnableWithProgress = eclipseResourcesUtil.getWorkspaceModifyOperation(runnableWithProgress);
+		 }
 
-		try {
-			// This runs the operation, and shows progress.
-			// (It appears to be a bad thing to fork this onto another thread, since we are
-			// running a transaction in the UI thread and would prevent a validation rule
-			// from opening a transaction))
-			new ProgressMonitorDialog(shell).run(false, true, runnableWithProgress);
-		}
-		catch (Exception exception) {
-			EMFEditUIPlugin.INSTANCE.log(exception);
-		}
+		 try {
+		     // This runs the operation, and shows progress.
+		     // (It appears to be a bad thing to fork this onto another thread.)
+		     new ProgressMonitorDialog(shell).run(true, true, runnableWithProgress);
+		 }
+		 catch (Exception exception) {
+		      EMFEditUIPlugin.INSTANCE.log(exception);
+		 }
 	}
 
 	/**
-	 * This simply executes the command.
+	 * This simply execute the command.
 	 */
 	protected Diagnostic validate(IProgressMonitor progressMonitor, EObject validateElement)
 	{
