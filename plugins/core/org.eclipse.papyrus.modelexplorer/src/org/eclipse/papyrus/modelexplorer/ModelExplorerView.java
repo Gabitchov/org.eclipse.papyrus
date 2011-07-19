@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Vincent Lorenzo (CEA LIST) Vincent.lorenzo@cea.fr - 343950: [Model Explorer] [TableEditor] Function "Link with Editor"
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer;
 
@@ -161,15 +161,12 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					Iterator<?> selectionIterator=((IStructuredSelection)selection).iterator();
 					ArrayList<Object> semanticElementList= new ArrayList<Object>();
 					while(selectionIterator.hasNext()) {
-						Object currentSelection = selectionIterator.next();
+						Object currentSelection = (Object)selectionIterator.next();
 						if( currentSelection instanceof IAdaptable){
 							Object semanticElement=((IAdaptable)currentSelection).getAdapter(EObject.class);
 							if( semanticElement!=null){
 								semanticElementList.add(semanticElement);
 							}
-							//when we are in a table, the selected element are EObject
-						}else if(currentSelection instanceof EObject){
-							semanticElementList.add(currentSelection);
 						}
 
 					}
