@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -23,12 +23,15 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.modelexplorer.CommandContext;
+import org.eclipse.papyrus.modelexplorer.ICommandContext;
 import org.eclipse.papyrus.uml.modelexplorer.Activator;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
@@ -56,7 +59,7 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	 * 
 	 * </pre>
 	 */
-	protected abstract ICommand getCommand();
+	protected abstract Command getCommand();
 
 	/**
 	 * <pre>
@@ -66,7 +69,9 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	 * @return selected {@link EObject} or null
 	 * </pre>
 	 * 
+	 * @deprecated
 	 */
+	@Deprecated
 	protected EObject getSelectedElement() {
 		EObject eObject = null;
 
@@ -92,6 +97,7 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 			if(businessObject instanceof EObject) {
 				eObject = (EObject)businessObject;
 			}
+
 		}
 		return eObject;
 	}
@@ -107,7 +113,9 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	 * @return a list of currently selected {@link EObject}
 	 * </pre>
 	 * 
+	 * @deprecated
 	 */
+	@Deprecated
 	protected List<EObject> getSelectedElements() {
 
 		List<EObject> selectedEObjects = new ArrayList<EObject>();
@@ -134,8 +142,69 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 				}
 			}
 		}
+
 		return selectedEObjects;
 	}
+
+	/**
+	 * <pre>
+	 * Parse current selection and extract the command context (can be null).
+	 * 
+	 * @return the command context based on current selection
+	 * </pre>
+	 */
+	protected ICommandContext getCommandContext() {
+
+		// Get current selection from workbench
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		Object selection = (activeWorkbenchWindow != null) ? activeWorkbenchWindow.getSelectionService().getSelection() : null;
+
+		// If the selection is null, return null command context.
+		if(selection == null) {
+			return null;
+		}
+
+		// Get first element if the selection is an IStructuredSelection
+		if(selection instanceof IStructuredSelection) {
+			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+			selection = structuredSelection.getFirstElement();
+		}
+
+		// Treat non-null selected object (try to adapt and return EObject or EReference)
+		EObject container = null;
+		EReference reference = null;
+
+		if(selection instanceof IAdaptable) {
+
+			container = (EObject)((IAdaptable)selection).getAdapter(EObject.class);
+
+			if(container == null) {
+				reference = (EReference)((IAdaptable)selection).getAdapter(EReference.class);
+
+				// The following part introduce a dependency to EMF Facet.
+				// Although the selection can be adapted to EReference, the link parent is required but
+				// no API allows to get this element except LinkItem or ITreeElement.
+				if((reference != null) && (selection instanceof LinkItem)) {
+					container = ((LinkItem)selection).getParent();
+				}
+			}
+		}
+
+		// Prepare the command context
+		ICommandContext context = null;
+		if(container != null) {
+			if(reference != null) {
+				context = new CommandContext(container, reference);
+			} else {
+				context = new CommandContext(container);
+			}
+		}
+
+		// Return the context	
+		return context;
+	}
+
+
 
 	/**
 	 * 
@@ -147,14 +216,16 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
+		Command creationcommand = null;
+
 		try {
 
-			ServiceUtilsForActionHandlers util = ServiceUtilsForActionHandlers.getInstance();
-			Command emfCommand = new GMFtoEMFCommandWrapper(getCommand());
+			ServiceUtilsForActionHandlers util = new ServiceUtilsForActionHandlers();
+			creationcommand = getCommand();
 
-			util.getTransactionalEditingDomain().getCommandStack().execute(emfCommand);
+			util.getTransactionalEditingDomain().getCommandStack().execute(creationcommand);
 
-			return emfCommand.getResult();
+			return creationcommand.getResult();
 
 		} catch (ServiceException e) {
 
