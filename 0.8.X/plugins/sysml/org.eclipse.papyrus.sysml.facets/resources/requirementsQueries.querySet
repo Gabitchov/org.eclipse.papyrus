@@ -30,7 +30,7 @@
     <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
   </queries>
   <queries xsi:type="query:JavaModelQuery" name="GetRequirementVerifiedByQuery" description="Query to get the reference &quot;verified by&quot; of the requirement" upperBound="-1" implementationClassName="org.eclipse.papyrus.sysml.facets.query.value.getter.GetRequirementVerifiedByQuery">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Operation"/>
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement"/>
     <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
   </queries>
   <queries xsi:type="query:JavaModelQuery" name="GetRequirementMasterQuery" description="Query to get the field reference &quot;master&quot; of the requirement" implementationClassName="org.eclipse.papyrus.sysml.facets.query.value.getter.GetRequirementMasterQuery">
