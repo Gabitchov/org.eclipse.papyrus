@@ -33,7 +33,7 @@ public class GetRequirementVerifiedByQuery implements IJavaModelQuery<Class, Col
 	public Collection<NamedElement> evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 
 		Requirement requirement = ElementUtil.getStereotypeApplication(context, Requirement.class);
-		if (requirement != null) {
+		if(requirement != null) {
 			return requirement.getVerifiedBy();
 		}
 		return null;

@@ -25,6 +25,6 @@ public class GetRequirementTextQuery implements IJavaModelQuery<Class, String> {
 
 	public String evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		Requirement requirement = ElementUtil.getStereotypeApplication(context, Requirement.class);
-		return (requirement != null) ?  requirement.getText() : null;
+		return (requirement != null) ? requirement.getText() : null;
 	}
 }
