@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="ASCII"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="newchild">
+  <dependencies href="ppe:/context/org.eclipse.papyrus.constraints.customization/Model/Constraints.ctx#/"/>
+  <tabs label="Default" id="default" category="default">
+    <sections name="Single NewchildConfiguration" sectionFile="ui/SingleNewchildConfiguration.xwt">
+      <widget href="ui/SingleNewchildConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Single MenuRoot" sectionFile="ui/SingleMenuRoot.xwt">
+      <widget href="ui/SingleMenuRoot.xwt#/"/>
+    </sections>
+    <sections name="Single MenuItem" sectionFile="ui/SingleMenuItem.xwt">
+      <widget href="ui/SingleMenuItem.xwt#/"/>
+    </sections>
+    <sections name="Single MenuContainer" sectionFile="ui/SingleMenuContainer.xwt">
+      <widget href="ui/SingleMenuContainer.xwt#/"/>
+    </sections>
+    <sections name="Single Menu" sectionFile="ui/SingleMenu.xwt">
+      <widget href="ui/SingleMenu.xwt#/"/>
+    </sections>
+    <sections name="Single MenuAction" sectionFile="ui/SingleMenuAction.xwt">
+      <widget href="ui/SingleMenuAction.xwt#/"/>
+    </sections>
+    <sections name="Single NewChildMenu" sectionFile="ui/SingleNewChildMenu.xwt">
+      <widget href="ui/SingleNewChildMenu.xwt#/"/>
+    </sections>
+    <sections name="Single Separator" sectionFile="ui/SingleSeparator.xwt">
+      <widget href="ui/SingleSeparator.xwt#/"/>
+    </sections>
+    <sections name="Single MenuGroup" sectionFile="ui/SingleMenuGroup.xwt">
+      <widget href="ui/SingleMenuGroup.xwt#/"/>
+    </sections>
+    <sections name="Single CustomFiller" sectionFile="ui/SingleCustomFiller.xwt">
+      <widget href="ui/SingleCustomFiller.xwt#/"/>
+    </sections>
+    <sections name="Multiple NewchildConfiguration" sectionFile="ui/MultipleNewchildConfiguration.xwt">
+      <widget href="ui/MultipleNewchildConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Multiple MenuRoot" sectionFile="ui/MultipleMenuRoot.xwt">
+      <widget href="ui/MultipleMenuRoot.xwt#/"/>
+    </sections>
+    <sections name="Multiple MenuItem" sectionFile="ui/MultipleMenuItem.xwt">
+      <widget href="ui/MultipleMenuItem.xwt#/"/>
+    </sections>
+    <sections name="Multiple MenuContainer" sectionFile="ui/MultipleMenuContainer.xwt">
+      <widget href="ui/MultipleMenuContainer.xwt#/"/>
+    </sections>
+    <sections name="Multiple Menu" sectionFile="ui/MultipleMenu.xwt">
+      <widget href="ui/MultipleMenu.xwt#/"/>
+    </sections>
+    <sections name="Multiple MenuAction" sectionFile="ui/MultipleMenuAction.xwt">
+      <widget href="ui/MultipleMenuAction.xwt#/"/>
+    </sections>
+    <sections name="Multiple NewChildMenu" sectionFile="ui/MultipleNewChildMenu.xwt">
+      <widget href="ui/MultipleNewChildMenu.xwt#/"/>
+    </sections>
+    <sections name="Multiple Separator" sectionFile="ui/MultipleSeparator.xwt">
+      <widget href="ui/MultipleSeparator.xwt#/"/>
+    </sections>
+    <sections name="Multiple MenuGroup" sectionFile="ui/MultipleMenuGroup.xwt">
+      <widget href="ui/MultipleMenuGroup.xwt#/"/>
+    </sections>
+    <sections name="Multiple CustomFiller" sectionFile="ui/MultipleCustomFiller.xwt">
+      <widget href="ui/MultipleCustomFiller.xwt#/"/>
+    </sections>
+  </tabs>
+  <views name="Single NewchildConfiguration" sections="//@tabs.0/@sections.0" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleNewchildConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="NewchildConfiguration"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+    </constraints>
+  </views>
+  <views name="Single MenuRoot" sections="//@tabs.0/@sections.1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleMenuRoot">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="MenuRoot"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+    </constraints>
+  </views>
+  <views name="Single MenuItem" sections="//@tabs.0/@sections.2" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleMenuItem">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="MenuItem"/>
+    </constraints>
+  </views>
+  <views name="Single MenuContainer" sections="//@tabs.0/@sections.3" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleMenuContainer">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="MenuContainer"/>
+    </constraints>
+  </views>
+  <views name="Single Menu" sections="//@tabs.0/@sections.4" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleMenu">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Menu"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+    </constraints>
+  </views>
+  <views name="Single MenuAction" sections="//@tabs.0/@sections.5" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleMenuAction">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="MenuAction"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+    </constraints>
+  </views>
+  <views name="Single NewChildMenu" sections="//@tabs.0/@sections.6" automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleNewChildMenu">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="NewChildMenu"/>
+    </constraints>
+  </views>
+  <views name="Single Separator" sections="//@tabs.0/@sections.7" automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleSeparator">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Separator"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+    </constraints>
+  </views>
+  <views name="Single MenuGroup" sections="//@tabs.0/@sections.8" automaticContext="true" datacontexts="//@dataContexts.0/@elements.8">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleMenuGroup">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="MenuGroup"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+    </constraints>
+  </views>
+  <views name="Single CustomFiller" sections="//@tabs.0/@sections.9" automaticContext="true" datacontexts="//@dataContexts.0/@elements.9">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleCustomFiller">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="CustomFiller"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+    </constraints>
+  </views>
+  <views name="Multiple NewchildConfiguration" sections="//@tabs.0/@sections.10" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleNewchildConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="NewchildConfiguration"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+    </constraints>
+  </views>
+  <views name="Multiple MenuRoot" sections="//@tabs.0/@sections.11" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleMenuRoot">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="MenuRoot"/>
+    </constraints>
+  </views>
+  <views name="Multiple MenuItem" sections="//@tabs.0/@sections.12" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleMenuItem">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="MenuItem"/>
+    </constraints>
+  </views>
+  <views name="Multiple MenuContainer" sections="//@tabs.0/@sections.13" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleMenuContainer">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="MenuContainer"/>
+    </constraints>
+  </views>
+  <views name="Multiple Menu" sections="//@tabs.0/@sections.14" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleMenu">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Menu"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+    </constraints>
+  </views>
+  <views name="Multiple MenuAction" sections="//@tabs.0/@sections.15" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleMenuAction">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="MenuAction"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+    </constraints>
+  </views>
+  <views name="Multiple NewChildMenu" sections="//@tabs.0/@sections.16" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleNewChildMenu">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="NewChildMenu"/>
+    </constraints>
+  </views>
+  <views name="Multiple Separator" sections="//@tabs.0/@sections.17" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleSeparator">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Separator"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+    </constraints>
+  </views>
+  <views name="Multiple MenuGroup" sections="//@tabs.0/@sections.18" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.8">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleMenuGroup">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="MenuGroup"/>
+    </constraints>
+  </views>
+  <views name="Multiple CustomFiller" sections="//@tabs.0/@sections.19" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.9">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleCustomFiller">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/newchild"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="CustomFiller"/>
+    </constraints>
+  </views>
+  <dataContexts name="newchild" label="newchild">
+    <elements name="NewchildConfiguration">
+      <properties name="roots" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="MenuRoot">
+      <properties name="groups" type="Reference" multiplicity="-1"/>
+      <supertypes href="#//@dataContexts.0/@elements.3"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.constraints.customization/Model/Constraints.ctx#//@dataContexts.0/@elements.0"/>
+    </elements>
+    <elements name="MenuItem">
+      <properties name="id"/>
+    </elements>
+    <elements name="MenuContainer">
+      <properties name="submenus" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="Menu" supertypes="//@dataContexts.0/@elements.3 //@dataContexts.0/@elements.2">
+      <properties name="name"/>
+      <properties name="icon"/>
+    </elements>
+    <elements name="MenuAction" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="elementType" type="Reference"/>
+      <properties name="position" type="Enumeration"/>
+    </elements>
+    <elements name="NewChildMenu" supertypes="//@dataContexts.0/@elements.4">
+      <properties name="position" type="Enumeration"/>
+      <properties name="kind" type="Enumeration"/>
+    </elements>
+    <elements name="Separator" supertypes="//@dataContexts.0/@elements.2"/>
+    <elements name="MenuGroup" supertypes="//@dataContexts.0/@elements.3">
+      <properties name="before"/>
+      <properties name="after"/>
+      <properties name="absolutePosition" type="Enumeration"/>
+    </elements>
+    <elements name="CustomFiller" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="className"/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+</contexts:Context>
