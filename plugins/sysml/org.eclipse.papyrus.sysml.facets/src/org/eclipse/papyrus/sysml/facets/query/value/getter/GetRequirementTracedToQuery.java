@@ -30,6 +30,6 @@ public class GetRequirementTracedToQuery implements IJavaModelQuery<Class, Colle
 
 	public Collection<NamedElement> evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		Requirement requirement = ElementUtil.getStereotypeApplication(context, Requirement.class);
-		return (requirement != null) ?  requirement.getTracedTo() : null;
+		return (requirement != null) ? requirement.getTracedTo() : null;
 	}
 }

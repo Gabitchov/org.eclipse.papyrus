@@ -28,6 +28,6 @@ public class GetRequirementRefinedByQuery implements IJavaModelQuery<Class, Coll
 
 	public Collection<NamedElement> evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		Requirement requirement = ElementUtil.getStereotypeApplication(context, Requirement.class);
-		return (requirement != null) ?  requirement.getRefinedBy() : null;
+		return (requirement != null) ? requirement.getRefinedBy() : null;
 	}
 }

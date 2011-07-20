@@ -21,10 +21,14 @@ import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQueryWithEditingDom
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.utils.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.gmf.diagram.common.commands.IdentityCommandWithNotification;
+import org.eclipse.papyrus.sysml.facets.messages.Messages;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.util.ElementUtil;
+import org.eclipse.papyrus.ui.toolbox.notification.Type;
 import org.eclipse.uml2.uml.Class;
 
 /** Query to set the attribute "text" of the requirement */
@@ -41,7 +45,7 @@ public class SetRequirementTextQuery implements IJavaModelQueryWithEditingDomain
 	 * @throws ModelQueryExecutionException
 	 */
 	public EObject evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return null;
 	}
 
@@ -58,29 +62,31 @@ public class SetRequirementTextQuery implements IJavaModelQueryWithEditingDomain
 	 */
 	public EObject evaluate(final Class context, final ParameterValueList parameter, final EditingDomain editingDomain) throws ModelQueryExecutionException {
 		Requirement requirement = ElementUtil.getStereotypeApplication(context, Requirement.class);
-		
-		if ((requirement == null) || (parameter.isEmpty()) || (parameter.get(0) == null)) {
-			return context; // Abort.
-		}
-		
-		// Retrieve new value from parameter and update if the property value has changed.
-		String newValue = (parameter.get(0).getValue() instanceof String) ? (String) parameter.get(0).getValue() : null;
-		if (newValue != requirement.getId()) {
-			
-			try {
-				
-				TransactionalEditingDomain domain = ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
-				SetCommand command = new SetCommand(domain, requirement, RequirementsPackage.eINSTANCE.getRequirement_Text(), newValue);
-				if (command.canExecute()) {
-					domain.getCommandStack().execute(command);
+
+		if(requirement != null) {
+			if(!((parameter.isEmpty()) || (parameter.get(0) == null))) {
+
+				// Retrieve new value from parameter and update if the property value has changed.
+				String newValue = (parameter.get(0).getValue() instanceof String) ? (String)parameter.get(0).getValue() : null;
+				if(newValue != requirement.getId()) {
+
+					try {
+
+						TransactionalEditingDomain domain = ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
+						SetCommand command = new SetCommand(domain, requirement, RequirementsPackage.eINSTANCE.getRequirement_Text(), newValue);
+						if(command.canExecute()) {
+							domain.getCommandStack().execute(command);
+						}
+
+					} catch (ServiceException e) {
+						throw new ModelQueryExecutionException(e);
+					}
+
 				}
-				
-			} catch (ServiceException e) {
-				throw new ModelQueryExecutionException(e);
 			}
-			
+		} else {
+			editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(new IdentityCommandWithNotification(Messages.SetRequirementTextQuery_AssignmentCantBeDone, Messages.SetRequirementTextQuery_NotASysMLRequirement, Type.ERROR)));
 		}
-		
 		return context;
 	}
 }

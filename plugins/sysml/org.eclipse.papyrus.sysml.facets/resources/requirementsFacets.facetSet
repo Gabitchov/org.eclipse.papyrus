@@ -15,32 +15,39 @@
     <eStructuralFeatures xsi:type="facet:FacetReference" name="/derived" upperBound="-1" volatile="true" unsettable="true">
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
       <valueQuery xsi:type="query:JavaModelQuery" href="requirementsQueries.querySet#GetRequirementDerivedQuery"/>
+      <setQuery xsi:type="query:JavaModelQuery" href="requirementsQueries.querySet#SetRequirementDerivedQuery"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="facet:FacetReference" name="/derivedFrom" upperBound="-1" volatile="true" unsettable="true">
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
       <valueQuery xsi:type="query:JavaModelQuery" href="requirementsQueries.querySet#GetRequirementDerivedFromQuery"/>
+      <setQuery xsi:type="query:JavaModelQuery" href="requirementsQueries.querySet#SetRequirementDerivedFromQuery"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="facet:FacetReference" name="/satisfiedBy" upperBound="-1" volatile="true" unsettable="true">
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement"/>
       <valueQuery xsi:type="query:JavaModelQuery" href="requirementsQueries.querySet#GetRequirementSatisfiedByQuery"/>
+      <setQuery xsi:type="query:JavaModelQuery" href="requirementsQueries.querySet#SetRequirementSatisfiedByQuery"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="facet:FacetReference" name="/refinedBy" upperBound="-1" volatile="true" unsettable="true">
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement"/>
       <valueQuery xsi:type="query:JavaModelQuery" href="requirementsQueries.querySet#GetRequirementRefinedByQuery"/>
+      <setQuery xsi:type="query:JavaModelQuery" href="requirementsQueries.querySet#SetRequirementRefinedByQuery"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="facet:FacetReference" name="/tracedTo" upperBound="-1" volatile="true" unsettable="true">
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement"/>
       <valueQuery xsi:type="query:JavaModelQuery" href="requirementsQueries.querySet#GetRequirementTracedToQuery"/>
+      <setQuery xsi:type="query:JavaModelQuery" href="requirementsQueries.querySet#SetRequirementTracedToQuery"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="facet:FacetReference" name="/verifiedBy" upperBound="-1" volatile="true" unsettable="true">
-      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Operation"/>
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement"/>
       <valueQuery xsi:type="query:JavaModelQuery" href="requirementsQueries.querySet#GetRequirementVerifiedByQuery"/>
+      <setQuery xsi:type="query:JavaModelQuery" href="requirementsQueries.querySet#SetRequirementVerifiedByQuery"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="facet:FacetReference" name="/master" volatile="true" unsettable="true">
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
       <valueQuery xsi:type="query:JavaModelQuery" href="requirementsQueries.querySet#GetRequirementMasterQuery"/>
+      <setQuery xsi:type="query:JavaModelQuery" href="requirementsQueries.querySet#SetRequirementMasterQuery"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="facet:FacetReference" name="base_Class" lowerBound="1" volatile="true" unsettable="true">
+    <eStructuralFeatures xsi:type="facet:FacetReference" name="base_Class" lowerBound="1" changeable="false" volatile="true" unsettable="true">
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
       <valueQuery xsi:type="query:JavaModelQuery" href="requirementsQueries.querySet#GetRequirementBase_ClassQuery"/>
     </eStructuralFeatures>
