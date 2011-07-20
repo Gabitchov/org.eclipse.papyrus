@@ -1,27 +1,7 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
- *****************************************************************************/
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
- *****************************************************************************/
+/*
+ * 
+ */
+
 package org.eclipse.papyrus.diagram.deployment.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -42,28 +22,30 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class DependencyCreateCommand.
+ *
  * @generated
  */
 public class DependencyCreateCommand extends EditElementCommand {
 
-	/**
-	 * @generated
-	 */
+	/** The source. @generated */
 	protected final EObject source;
 
-	/**
-	 * @generated
-	 */
+	/** The target. @generated */
 	protected final EObject target;
 
 
-	/**
-	 * @generated
-	 */
+	/** The container. @generated */
 	protected Package container;
 
 	/**
+	 * Instantiates a new dependency create command.
+	 *
+	 * @param request the request
+	 * @param source the source
+	 * @param target the target
 	 * @generated
 	 */
 	public DependencyCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
@@ -74,6 +56,9 @@ public class DependencyCreateCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Can execute.
+	 *
+	 * @return true, if successful
 	 * @generated
 	 */
 	public boolean canExecute() {
@@ -98,6 +83,12 @@ public class DependencyCreateCommand extends EditElementCommand {
 
 
 	/**
+	 * Do execute with result.
+	 *
+	 * @param monitor the monitor
+	 * @param info the info
+	 * @return the command result
+	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -118,6 +109,12 @@ public class DependencyCreateCommand extends EditElementCommand {
 
 
 	/**
+	 * Do configure.
+	 *
+	 * @param newElement the new element
+	 * @param monitor the monitor
+	 * @param info the info
+	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected void doConfigure(Dependency newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -134,6 +131,9 @@ public class DependencyCreateCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Sets the element to edit.
+	 *
+	 * @param element the new element to edit
 	 * @generated
 	 */
 	protected void setElementToEdit(EObject element) {
@@ -141,6 +141,9 @@ public class DependencyCreateCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Gets the source.
+	 *
+	 * @return the source
 	 * @generated
 	 */
 	protected NamedElement getSource() {
@@ -148,6 +151,9 @@ public class DependencyCreateCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Gets the target.
+	 *
+	 * @return the target
 	 * @generated
 	 */
 	protected NamedElement getTarget() {
@@ -155,6 +161,9 @@ public class DependencyCreateCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Gets the container.
+	 *
+	 * @return the container
 	 * @generated
 	 */
 	public Package getContainer() {
@@ -164,6 +173,10 @@ public class DependencyCreateCommand extends EditElementCommand {
 	/**
 	 * Default approach is to traverse ancestors of the source to find instance of container.
 	 * Modify with appropriate logic.
+	 *
+	 * @param source the source
+	 * @param target the target
+	 * @return the package
 	 * @generated
 	 */
 	protected Package deduceContainer(EObject source, EObject target) {

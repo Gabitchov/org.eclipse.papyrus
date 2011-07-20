@@ -1,27 +1,7 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
- *****************************************************************************/
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
- *****************************************************************************/
+/*
+ * 
+ */
+
 package org.eclipse.papyrus.diagram.deployment.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -42,22 +22,25 @@ import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class ConstraintCreateCommand.
+ *
  * @generated
  */
 public class ConstraintCreateCommand extends EditElementCommand {
 
-	/**
-	 * @generated
-	 */
+	/** The e class. @generated */
 	private EClass eClass = null;
 
-	/**
-	 * @generated
-	 */
+	/** The e object. @generated */
 	private EObject eObject = null;
 
 	/**
+	 * Instantiates a new constraint create command.
+	 *
+	 * @param req the req
+	 * @param eObject the e object
 	 * @generated
 	 */
 	public ConstraintCreateCommand(CreateElementRequest req, EObject eObject) {
@@ -67,6 +50,11 @@ public class ConstraintCreateCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Creates the.
+	 *
+	 * @param req the req
+	 * @param eObject the e object
+	 * @return the constraint create command
 	 * @generated
 	 */
 	public static ConstraintCreateCommand create(CreateElementRequest req, EObject eObject) {
@@ -74,6 +62,9 @@ public class ConstraintCreateCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Instantiates a new constraint create command.
+	 *
+	 * @param req the req
 	 * @generated
 	 */
 	public ConstraintCreateCommand(CreateElementRequest req) {
@@ -81,7 +72,9 @@ public class ConstraintCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * FIXME: replace with setElementToEdit()
+	 * FIXME: replace with setElementToEdit().
+	 *
+	 * @return the element to edit
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
@@ -98,6 +91,9 @@ public class ConstraintCreateCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Can execute.
+	 *
+	 * @return true, if successful
 	 * @generated
 	 */
 	public boolean canExecute() {
@@ -112,6 +108,12 @@ public class ConstraintCreateCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Do execute with result.
+	 *
+	 * @param monitor the monitor
+	 * @param info the info
+	 * @return the command result
+	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -136,6 +138,12 @@ public class ConstraintCreateCommand extends EditElementCommand {
 
 
 	/**
+	 * Do configure.
+	 *
+	 * @param newElement the new element
+	 * @param monitor the monitor
+	 * @param info the info
+	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected void doConfigure(Constraint newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {

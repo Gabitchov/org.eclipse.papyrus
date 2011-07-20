@@ -1,27 +1,7 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
- *****************************************************************************/
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
- *****************************************************************************/
+/*
+ * 
+ */
+
 package org.eclipse.papyrus.diagram.deployment.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -36,27 +16,27 @@ import org.eclipse.uml2.uml.Artifact;
 import org.eclipse.uml2.uml.Manifestation;
 import org.eclipse.uml2.uml.NamedElement;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class ManifestationReorientCommand.
+ *
  * @generated
  */
 public class ManifestationReorientCommand extends EditElementCommand {
 
-	/**
-	 * @generated
-	 */
+	/** The reorient direction. @generated */
 	private final int reorientDirection;
 
-	/**
-	 * @generated
-	 */
+	/** The old end. @generated */
 	private final EObject oldEnd;
 
-	/**
-	 * @generated
-	 */
+	/** The new end. @generated */
 	private final EObject newEnd;
 
 	/**
+	 * Instantiates a new manifestation reorient command.
+	 *
+	 * @param request the request
 	 * @generated
 	 */
 	public ManifestationReorientCommand(ReorientRelationshipRequest request) {
@@ -67,6 +47,9 @@ public class ManifestationReorientCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Can execute.
+	 *
+	 * @return true, if successful
 	 * @generated
 	 */
 	public boolean canExecute() {
@@ -83,6 +66,9 @@ public class ManifestationReorientCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Can reorient source.
+	 *
+	 * @return true, if successful
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
@@ -101,6 +87,9 @@ public class ManifestationReorientCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Can reorient target.
+	 *
+	 * @return true, if successful
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
@@ -119,6 +108,12 @@ public class ManifestationReorientCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Do execute with result.
+	 *
+	 * @param monitor the monitor
+	 * @param info the info
+	 * @return the command result
+	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -135,6 +130,10 @@ public class ManifestationReorientCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Reorient source.
+	 *
+	 * @return the command result
+	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
@@ -144,6 +143,10 @@ public class ManifestationReorientCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Reorient target.
+	 *
+	 * @return the command result
+	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
@@ -153,6 +156,9 @@ public class ManifestationReorientCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Gets the link.
+	 *
+	 * @return the link
 	 * @generated
 	 */
 	protected Manifestation getLink() {
@@ -160,6 +166,9 @@ public class ManifestationReorientCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Gets the old source.
+	 *
+	 * @return the old source
 	 * @generated
 	 */
 	protected NamedElement getOldSource() {
@@ -167,6 +176,9 @@ public class ManifestationReorientCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Gets the new source.
+	 *
+	 * @return the new source
 	 * @generated
 	 */
 	protected NamedElement getNewSource() {
@@ -174,6 +186,9 @@ public class ManifestationReorientCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Gets the old target.
+	 *
+	 * @return the old target
 	 * @generated
 	 */
 	protected NamedElement getOldTarget() {
@@ -181,6 +196,9 @@ public class ManifestationReorientCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Gets the new target.
+	 *
+	 * @return the new target
 	 * @generated
 	 */
 	protected NamedElement getNewTarget() {

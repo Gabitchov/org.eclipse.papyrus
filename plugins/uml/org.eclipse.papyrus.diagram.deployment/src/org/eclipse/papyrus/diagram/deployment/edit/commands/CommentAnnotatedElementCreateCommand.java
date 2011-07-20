@@ -1,27 +1,7 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
- *****************************************************************************/
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
- *****************************************************************************/
+/*
+ * 
+ */
+
 package org.eclipse.papyrus.diagram.deployment.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -35,22 +15,26 @@ import org.eclipse.papyrus.diagram.deployment.edit.policies.UMLBaseItemSemanticE
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class CommentAnnotatedElementCreateCommand.
+ *
  * @generated
  */
 public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 
-	/**
-	 * @generated
-	 */
+	/** The source. @generated */
 	protected final EObject source;
 
-	/**
-	 * @generated
-	 */
+	/** The target. @generated */
 	protected final EObject target;
 
 	/**
+	 * Instantiates a new comment annotated element create command.
+	 *
+	 * @param request the request
+	 * @param source the source
+	 * @param target the target
 	 * @generated
 	 */
 	public CommentAnnotatedElementCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
@@ -60,6 +44,9 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Can execute.
+	 *
+	 * @return true, if successful
 	 * @generated
 	 */
 	public boolean canExecute() {
@@ -81,6 +68,12 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 
 
 	/**
+	 * Do execute with result.
+	 *
+	 * @param monitor the monitor
+	 * @param info the info
+	 * @return the command result
+	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -98,6 +91,9 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 
 
 	/**
+	 * Sets the element to edit.
+	 *
+	 * @param element the new element to edit
 	 * @generated
 	 */
 	protected void setElementToEdit(EObject element) {
@@ -105,6 +101,9 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Gets the source.
+	 *
+	 * @return the source
 	 * @generated
 	 */
 	protected Comment getSource() {
@@ -112,6 +111,9 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Gets the target.
+	 *
+	 * @return the target
 	 * @generated
 	 */
 	protected Element getTarget() {
