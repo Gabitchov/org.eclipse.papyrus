@@ -28,12 +28,12 @@ public class GetRequirementDerivedQuery implements IJavaModelQuery<Class, Collec
 
 	public Collection<Class> evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		Collection<Class> result = new ArrayList<Class>();
-		
+
 		Requirement requirement = ElementUtil.getStereotypeApplication(context, Requirement.class);
-		if (requirement != null) {
+		if(requirement != null) {
 			for(Requirement current : requirement.getDerived()) {
 				result.add(current.getBase_Class());
-			}	
+			}
 		}
 		return result;
 	}

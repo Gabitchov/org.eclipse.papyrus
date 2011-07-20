@@ -28,6 +28,6 @@ public class GetRequirementSatifiedByQuery implements IJavaModelQuery<Class, Col
 
 	public Collection<NamedElement> evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		Requirement requirement = ElementUtil.getStereotypeApplication(context, Requirement.class);
-		return (requirement != null) ?  requirement.getSatisfiedBy() : null;
+		return (requirement != null) ? requirement.getSatisfiedBy() : null;
 	}
 }

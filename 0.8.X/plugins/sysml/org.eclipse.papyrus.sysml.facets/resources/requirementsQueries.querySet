@@ -49,4 +49,32 @@
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
   </queries>
+  <queries xsi:type="query:JavaModelQuery" name="SetRequirementDerivedFromQuery" description="Query to set the derived attribute &quot;derived From&quot; of the requirement" implementationClassName="org.eclipse.papyrus.sysml.facets.query.value.setter.SetRequirementDerivedFromQuery">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
+  </queries>
+  <queries xsi:type="query:JavaModelQuery" name="SetRequirementDerivedQuery" description="Query to set the derived attribute &quot;derived&quot; of the requirement" implementationClassName="org.eclipse.papyrus.sysml.facets.query.value.setter.SetRequirementDerivedQuery">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
+  </queries>
+  <queries xsi:type="query:JavaModelQuery" name="SetRequirementMasterQuery" description="Query to set the derived attribute &quot;master&quot; of the requirement" implementationClassName="org.eclipse.papyrus.sysml.facets.query.value.setter.SetRequirementMasterQuery">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
+  </queries>
+  <queries xsi:type="query:JavaModelQuery" name="SetRequirementSatisfiedByQuery" description="Query to set the derived attribute &quot;satisfiedBy&quot; of the requirement" implementationClassName="org.eclipse.papyrus.sysml.facets.query.value.setter.SetRequirementSatisfiedByQuery">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement"/>
+  </queries>
+  <queries xsi:type="query:JavaModelQuery" name="SetRequirementVerifiedByQuery" description="Query to set the derived attribute &quot;verifiedBy&quot; of the requirement" implementationClassName="org.eclipse.papyrus.sysml.facets.query.value.setter.SetRequirementVerifiedByQuery">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement"/>
+  </queries>
+  <queries xsi:type="query:JavaModelQuery" name="SetRequirementTracedToQuery" description="Query to set the derived attribute &quot;tracedTo&quot; of the requirement" implementationClassName="org.eclipse.papyrus.sysml.facets.query.value.setter.SetRequirementTracedToQuery">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement"/>
+  </queries>
+  <queries xsi:type="query:JavaModelQuery" name="SetRequirementRefinedByQuery" description="Query to set the derived attribute &quot;refinedBy&quot; of the requirement" implementationClassName="org.eclipse.papyrus.sysml.facets.query.value.setter.SetRequirementRefinedByQuery">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement"/>
+  </queries>
 </query:ModelQuerySet>

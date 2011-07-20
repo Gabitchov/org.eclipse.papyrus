@@ -23,8 +23,8 @@ import org.eclipse.uml2.uml.Class;
 /** Query to get the text of the requirement */
 public class GetRequirementBase_ClassQuery implements IJavaModelQuery<Class, Class> {
 
-	public Class evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {	
+	public Class evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		Requirement requirement = ElementUtil.getStereotypeApplication(context, Requirement.class);
-		return (requirement != null) ?  requirement.getBase_Class() : null;
+		return (requirement != null) ? requirement.getBase_Class() : null;
 	}
 }
