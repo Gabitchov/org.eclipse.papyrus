@@ -42,7 +42,7 @@
           compartments="/0/@diagram/@compartments.6"
           graphicalNodeEditPolicyClassName="NodeGraphicalNodeEditPolicyCN"
           createCommandClassName="NodeCreateCommandCN"
-          containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.6">
+          containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.6 /0/@diagram/@compartments.0 /0/@diagram/@compartments.4">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -136,7 +136,7 @@
           compartments="/0/@diagram/@compartments.4"
           graphicalNodeEditPolicyClassName="DeviceGraphicalNodeEditPolicyCN"
           createCommandClassName="DeviceCreateCommandCN"
-          containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.6">
+          containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.6 /0/@diagram/@compartments.0 /0/@diagram/@compartments.4">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1420,7 +1420,7 @@
           editPartClassName="DeviceCompositeCompartmentEditPart"
           itemSemanticEditPolicyClassName="DeviceCompositeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="DeviceCompositeCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.2"
+          childNodes="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.0"
           title="DeviceCompositeCompartment"
           canCollapse="false"
           node="/0/@diagram/@topLevelNodes.3"
@@ -1503,7 +1503,7 @@
           editPartClassName="DeviceCompositeCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="DeviceCompositeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="DeviceCompositeCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.2"
+          childNodes="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.0"
           title="DeviceCompositeCompartment"
           node="/0/@diagram/@childNodes.1"
           listLayout="false">

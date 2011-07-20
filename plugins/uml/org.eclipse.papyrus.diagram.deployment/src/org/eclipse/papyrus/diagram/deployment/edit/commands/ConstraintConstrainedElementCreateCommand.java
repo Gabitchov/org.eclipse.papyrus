@@ -1,7 +1,6 @@
 /*
  * 
  */
-
 package org.eclipse.papyrus.diagram.deployment.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -15,26 +14,22 @@ import org.eclipse.papyrus.diagram.deployment.edit.policies.UMLBaseItemSemanticE
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ConstraintConstrainedElementCreateCommand.
- *
  * @generated
  */
 public class ConstraintConstrainedElementCreateCommand extends EditElementCommand {
 
-	/** The source. @generated */
+	/**
+	 * @generated
+	 */
 	protected final EObject source;
 
-	/** The target. @generated */
+	/**
+	 * @generated
+	 */
 	protected final EObject target;
 
 	/**
-	 * Instantiates a new constraint constrained element create command.
-	 *
-	 * @param request the request
-	 * @param source the source
-	 * @param target the target
 	 * @generated
 	 */
 	public ConstraintConstrainedElementCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
@@ -44,9 +39,6 @@ public class ConstraintConstrainedElementCreateCommand extends EditElementComman
 	}
 
 	/**
-	 * Can execute.
-	 *
-	 * @return true, if successful
 	 * @generated
 	 */
 	public boolean canExecute() {
@@ -68,12 +60,6 @@ public class ConstraintConstrainedElementCreateCommand extends EditElementComman
 
 
 	/**
-	 * Do execute with result.
-	 *
-	 * @param monitor the monitor
-	 * @param info the info
-	 * @return the command result
-	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -91,9 +77,6 @@ public class ConstraintConstrainedElementCreateCommand extends EditElementComman
 
 
 	/**
-	 * Sets the element to edit.
-	 *
-	 * @param element the new element to edit
 	 * @generated
 	 */
 	protected void setElementToEdit(EObject element) {
@@ -101,9 +84,6 @@ public class ConstraintConstrainedElementCreateCommand extends EditElementComman
 	}
 
 	/**
-	 * Gets the source.
-	 *
-	 * @return the source
 	 * @generated
 	 */
 	protected Constraint getSource() {
@@ -111,9 +91,6 @@ public class ConstraintConstrainedElementCreateCommand extends EditElementComman
 	}
 
 	/**
-	 * Gets the target.
-	 *
-	 * @return the target
 	 * @generated
 	 */
 	protected Element getTarget() {

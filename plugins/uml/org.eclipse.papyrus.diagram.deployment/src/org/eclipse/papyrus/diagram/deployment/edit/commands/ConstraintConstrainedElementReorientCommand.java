@@ -1,7 +1,6 @@
 /*
  * 
  */
-
 package org.eclipse.papyrus.diagram.deployment.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -16,30 +15,32 @@ import org.eclipse.papyrus.diagram.deployment.edit.policies.UMLBaseItemSemanticE
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ConstraintConstrainedElementReorientCommand.
- *
  * @generated
  */
 public class ConstraintConstrainedElementReorientCommand extends EditElementCommand {
 
-	/** The reorient direction. @generated */
+	/**
+	 * @generated
+	 */
 	private final int reorientDirection;
 
-	/** The reference owner. @generated */
+	/**
+	 * @generated
+	 */
 	private final EObject referenceOwner;
 
-	/** The old end. @generated */
+	/**
+	 * @generated
+	 */
 	private final EObject oldEnd;
 
-	/** The new end. @generated */
+	/**
+	 * @generated
+	 */
 	private final EObject newEnd;
 
 	/**
-	 * Instantiates a new constraint constrained element reorient command.
-	 *
-	 * @param request the request
 	 * @generated
 	 */
 	public ConstraintConstrainedElementReorientCommand(ReorientReferenceRelationshipRequest request) {
@@ -51,9 +52,6 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	}
 
 	/**
-	 * Can execute.
-	 *
-	 * @return true, if successful
 	 * @generated
 	 */
 	public boolean canExecute() {
@@ -70,9 +68,6 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	}
 
 	/**
-	 * Can reorient source.
-	 *
-	 * @return true, if successful
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
@@ -83,9 +78,6 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	}
 
 	/**
-	 * Can reorient target.
-	 *
-	 * @return true, if successful
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
@@ -96,12 +88,6 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	}
 
 	/**
-	 * Do execute with result.
-	 *
-	 * @param monitor the monitor
-	 * @param info the info
-	 * @return the command result
-	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -118,10 +104,6 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	}
 
 	/**
-	 * Reorient source.
-	 *
-	 * @return the command result
-	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
@@ -131,10 +113,6 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	}
 
 	/**
-	 * Reorient target.
-	 *
-	 * @return the command result
-	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
@@ -144,9 +122,6 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	}
 
 	/**
-	 * Gets the old source.
-	 *
-	 * @return the old source
 	 * @generated
 	 */
 	protected Constraint getOldSource() {
@@ -154,9 +129,6 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	}
 
 	/**
-	 * Gets the new source.
-	 *
-	 * @return the new source
 	 * @generated
 	 */
 	protected Constraint getNewSource() {
@@ -164,9 +136,6 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	}
 
 	/**
-	 * Gets the old target.
-	 *
-	 * @return the old target
 	 * @generated
 	 */
 	protected Element getOldTarget() {
@@ -174,9 +143,6 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	}
 
 	/**
-	 * Gets the new target.
-	 *
-	 * @return the new target
 	 * @generated
 	 */
 	protected Element getNewTarget() {

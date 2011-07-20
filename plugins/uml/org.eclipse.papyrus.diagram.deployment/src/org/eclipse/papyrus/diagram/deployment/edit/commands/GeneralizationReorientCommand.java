@@ -1,7 +1,6 @@
 /*
  * 
  */
-
 package org.eclipse.papyrus.diagram.deployment.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -15,27 +14,27 @@ import org.eclipse.papyrus.diagram.deployment.edit.policies.UMLBaseItemSemanticE
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Generalization;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class GeneralizationReorientCommand.
- *
  * @generated
  */
 public class GeneralizationReorientCommand extends EditElementCommand {
 
-	/** The reorient direction. @generated */
+	/**
+	 * @generated
+	 */
 	private final int reorientDirection;
 
-	/** The old end. @generated */
+	/**
+	 * @generated
+	 */
 	private final EObject oldEnd;
 
-	/** The new end. @generated */
+	/**
+	 * @generated
+	 */
 	private final EObject newEnd;
 
 	/**
-	 * Instantiates a new generalization reorient command.
-	 *
-	 * @param request the request
 	 * @generated
 	 */
 	public GeneralizationReorientCommand(ReorientRelationshipRequest request) {
@@ -46,9 +45,6 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Can execute.
-	 *
-	 * @return true, if successful
 	 * @generated
 	 */
 	public boolean canExecute() {
@@ -65,9 +61,6 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Can reorient source.
-	 *
-	 * @return true, if successful
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
@@ -83,9 +76,6 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Can reorient target.
-	 *
-	 * @return true, if successful
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
@@ -101,12 +91,6 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Do execute with result.
-	 *
-	 * @param monitor the monitor
-	 * @param info the info
-	 * @return the command result
-	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -123,10 +107,6 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Reorient source.
-	 *
-	 * @return the command result
-	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
@@ -135,10 +115,6 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Reorient target.
-	 *
-	 * @return the command result
-	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
@@ -147,9 +123,6 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Gets the link.
-	 *
-	 * @return the link
 	 * @generated
 	 */
 	protected Generalization getLink() {
@@ -157,9 +130,6 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Gets the old source.
-	 *
-	 * @return the old source
 	 * @generated
 	 */
 	protected Classifier getOldSource() {
@@ -167,9 +137,6 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Gets the new source.
-	 *
-	 * @return the new source
 	 * @generated
 	 */
 	protected Classifier getNewSource() {
@@ -177,9 +144,6 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Gets the old target.
-	 *
-	 * @return the old target
 	 * @generated
 	 */
 	protected Classifier getOldTarget() {
@@ -187,9 +151,6 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Gets the new target.
-	 *
-	 * @return the new target
 	 * @generated
 	 */
 	protected Classifier getNewTarget() {

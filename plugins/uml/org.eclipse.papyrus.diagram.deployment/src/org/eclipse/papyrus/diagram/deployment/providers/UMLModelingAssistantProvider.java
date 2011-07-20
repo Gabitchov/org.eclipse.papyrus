@@ -1,27 +1,6 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
- *****************************************************************************/
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
- *****************************************************************************/
+/*
+ * 
+ */
 package org.eclipse.papyrus.diagram.deployment.providers;
 
 import java.util.ArrayList;
@@ -89,8 +68,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof DeviceCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 			types.add(UMLElementTypes.ExecutionEnvironment_21);
+			types.add(UMLElementTypes.Device_16);
+			types.add(UMLElementTypes.Node_23);
 			return types;
 		}
 		if(editPart instanceof ExecutionEnvironmentCompositeCompartmentEditPart) {
@@ -113,8 +94,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof DeviceCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 			types.add(UMLElementTypes.ExecutionEnvironment_21);
+			types.add(UMLElementTypes.Device_16);
+			types.add(UMLElementTypes.Node_23);
 			return types;
 		}
 		if(editPart instanceof ExecutionEnvironmentCompositeCompartmentEditPartCN) {

@@ -1,7 +1,6 @@
 /*
  * 
  */
-
 package org.eclipse.papyrus.diagram.deployment.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -22,30 +21,28 @@ import org.eclipse.uml2.uml.DeploymentTarget;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLFactory;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class DeploymentCreateCommand.
- *
  * @generated
  */
 public class DeploymentCreateCommand extends EditElementCommand {
 
-	/** The source. @generated */
+	/**
+	 * @generated
+	 */
 	protected final EObject source;
 
-	/** The target. @generated */
+	/**
+	 * @generated
+	 */
 	protected final EObject target;
 
 
-	/** The container. @generated */
+	/**
+	 * @generated
+	 */
 	protected DeploymentTarget container;
 
 	/**
-	 * Instantiates a new deployment create command.
-	 *
-	 * @param request the request
-	 * @param source the source
-	 * @param target the target
 	 * @generated
 	 */
 	public DeploymentCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
@@ -56,9 +53,6 @@ public class DeploymentCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Can execute.
-	 *
-	 * @return true, if successful
 	 * @generated
 	 */
 	public boolean canExecute() {
@@ -83,12 +77,6 @@ public class DeploymentCreateCommand extends EditElementCommand {
 
 
 	/**
-	 * Do execute with result.
-	 *
-	 * @param monitor the monitor
-	 * @param info the info
-	 * @return the command result
-	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -109,12 +97,6 @@ public class DeploymentCreateCommand extends EditElementCommand {
 
 
 	/**
-	 * Do configure.
-	 *
-	 * @param newElement the new element
-	 * @param monitor the monitor
-	 * @param info the info
-	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected void doConfigure(Deployment newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -131,9 +113,6 @@ public class DeploymentCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Sets the element to edit.
-	 *
-	 * @param element the new element to edit
 	 * @generated
 	 */
 	protected void setElementToEdit(EObject element) {
@@ -141,9 +120,6 @@ public class DeploymentCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Gets the source.
-	 *
-	 * @return the source
 	 * @generated
 	 */
 	protected NamedElement getSource() {
@@ -151,9 +127,6 @@ public class DeploymentCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Gets the target.
-	 *
-	 * @return the target
 	 * @generated
 	 */
 	protected NamedElement getTarget() {
@@ -161,9 +134,6 @@ public class DeploymentCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Gets the container.
-	 *
-	 * @return the container
 	 * @generated
 	 */
 	public DeploymentTarget getContainer() {
@@ -173,10 +143,6 @@ public class DeploymentCreateCommand extends EditElementCommand {
 	/**
 	 * Default approach is to traverse ancestors of the source to find instance of container.
 	 * Modify with appropriate logic.
-	 *
-	 * @param source the source
-	 * @param target the target
-	 * @return the deployment target
 	 * @generated
 	 */
 	protected DeploymentTarget deduceContainer(EObject source, EObject target) {

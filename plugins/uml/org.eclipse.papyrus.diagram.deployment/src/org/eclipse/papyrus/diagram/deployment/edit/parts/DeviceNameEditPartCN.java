@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.eclipse.papyrus.diagram.deployment.edit.parts;
 
 import java.util.Collections;

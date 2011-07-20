@@ -1,7 +1,6 @@
 /*
  * 
  */
-
 package org.eclipse.papyrus.diagram.deployment.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -16,27 +15,27 @@ import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class DependencyReorientCommand.
- *
  * @generated
  */
 public class DependencyReorientCommand extends EditElementCommand {
 
-	/** The reorient direction. @generated */
+	/**
+	 * @generated
+	 */
 	private final int reorientDirection;
 
-	/** The old end. @generated */
+	/**
+	 * @generated
+	 */
 	private final EObject oldEnd;
 
-	/** The new end. @generated */
+	/**
+	 * @generated
+	 */
 	private final EObject newEnd;
 
 	/**
-	 * Instantiates a new dependency reorient command.
-	 *
-	 * @param request the request
 	 * @generated
 	 */
 	public DependencyReorientCommand(ReorientRelationshipRequest request) {
@@ -47,9 +46,6 @@ public class DependencyReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Can execute.
-	 *
-	 * @return true, if successful
 	 * @generated
 	 */
 	public boolean canExecute() {
@@ -66,9 +62,6 @@ public class DependencyReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Can reorient source.
-	 *
-	 * @return true, if successful
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
@@ -87,9 +80,6 @@ public class DependencyReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Can reorient target.
-	 *
-	 * @return true, if successful
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
@@ -108,12 +98,6 @@ public class DependencyReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Do execute with result.
-	 *
-	 * @param monitor the monitor
-	 * @param info the info
-	 * @return the command result
-	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -130,10 +114,6 @@ public class DependencyReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Reorient source.
-	 *
-	 * @return the command result
-	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
@@ -143,10 +123,6 @@ public class DependencyReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Reorient target.
-	 *
-	 * @return the command result
-	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
@@ -156,9 +132,6 @@ public class DependencyReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Gets the link.
-	 *
-	 * @return the link
 	 * @generated
 	 */
 	protected Dependency getLink() {
@@ -166,9 +139,6 @@ public class DependencyReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Gets the old source.
-	 *
-	 * @return the old source
 	 * @generated
 	 */
 	protected NamedElement getOldSource() {
@@ -176,9 +146,6 @@ public class DependencyReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Gets the new source.
-	 *
-	 * @return the new source
 	 * @generated
 	 */
 	protected NamedElement getNewSource() {
@@ -186,9 +153,6 @@ public class DependencyReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Gets the old target.
-	 *
-	 * @return the old target
 	 * @generated
 	 */
 	protected NamedElement getOldTarget() {
@@ -196,9 +160,6 @@ public class DependencyReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Gets the new target.
-	 *
-	 * @return the new target
 	 * @generated
 	 */
 	protected NamedElement getNewTarget() {

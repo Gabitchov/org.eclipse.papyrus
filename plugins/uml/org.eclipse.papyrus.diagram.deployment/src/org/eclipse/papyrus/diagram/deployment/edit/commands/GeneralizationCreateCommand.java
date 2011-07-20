@@ -1,7 +1,6 @@
 /*
  * 
  */
-
 package org.eclipse.papyrus.diagram.deployment.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -20,30 +19,28 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.UMLFactory;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class GeneralizationCreateCommand.
- *
  * @generated
  */
 public class GeneralizationCreateCommand extends EditElementCommand {
 
-	/** The source. @generated */
+	/**
+	 * @generated
+	 */
 	protected final EObject source;
 
-	/** The target. @generated */
+	/**
+	 * @generated
+	 */
 	protected final EObject target;
 
 
-	/** The container. @generated */
+	/**
+	 * @generated
+	 */
 	protected Classifier container;
 
 	/**
-	 * Instantiates a new generalization create command.
-	 *
-	 * @param request the request
-	 * @param source the source
-	 * @param target the target
 	 * @generated
 	 */
 	public GeneralizationCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
@@ -54,9 +51,6 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Can execute.
-	 *
-	 * @return true, if successful
 	 * @generated
 	 */
 	public boolean canExecute() {
@@ -81,12 +75,6 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 
 
 	/**
-	 * Do execute with result.
-	 *
-	 * @param monitor the monitor
-	 * @param info the info
-	 * @return the command result
-	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -106,12 +94,6 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 
 
 	/**
-	 * Do configure.
-	 *
-	 * @param newElement the new element
-	 * @param monitor the monitor
-	 * @param info the info
-	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected void doConfigure(Generalization newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -128,9 +110,6 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Sets the element to edit.
-	 *
-	 * @param element the new element to edit
 	 * @generated
 	 */
 	protected void setElementToEdit(EObject element) {
@@ -138,9 +117,6 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Gets the source.
-	 *
-	 * @return the source
 	 * @generated
 	 */
 	protected Classifier getSource() {
@@ -148,9 +124,6 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Gets the target.
-	 *
-	 * @return the target
 	 * @generated
 	 */
 	protected Classifier getTarget() {
@@ -158,9 +131,6 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Gets the container.
-	 *
-	 * @return the container
 	 * @generated
 	 */
 	public Classifier getContainer() {
@@ -170,10 +140,6 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	/**
 	 * Default approach is to traverse ancestors of the source to find instance of container.
 	 * Modify with appropriate logic.
-	 *
-	 * @param source the source
-	 * @param target the target
-	 * @return the classifier
 	 * @generated
 	 */
 	protected Classifier deduceContainer(EObject source, EObject target) {

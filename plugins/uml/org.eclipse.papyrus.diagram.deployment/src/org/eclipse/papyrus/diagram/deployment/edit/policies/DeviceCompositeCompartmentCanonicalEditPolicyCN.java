@@ -1,27 +1,6 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
- *****************************************************************************/
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
- *****************************************************************************/
+/*
+ * 
+ */
 package org.eclipse.papyrus.diagram.deployment.edit.policies;
 
 import java.util.ArrayList;
@@ -43,7 +22,9 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.deployment.edit.parts.DeviceEditPartCN;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ExecutionEnvironmentEditPartCN;
+import org.eclipse.papyrus.diagram.deployment.edit.parts.NodeEditPartCN;
 import org.eclipse.papyrus.diagram.deployment.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.deployment.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.deployment.part.UMLVisualIDRegistry;
@@ -87,7 +68,8 @@ public class DeviceCompositeCompartmentCanonicalEditPolicyCN extends CanonicalEd
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		return ExecutionEnvironmentEditPartCN.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
+		int visualID = UMLVisualIDRegistry.getVisualID(view);
+		return visualID == ExecutionEnvironmentEditPartCN.VISUAL_ID || visualID == DeviceEditPartCN.VISUAL_ID || visualID == NodeEditPartCN.VISUAL_ID;
 	}
 
 	/**

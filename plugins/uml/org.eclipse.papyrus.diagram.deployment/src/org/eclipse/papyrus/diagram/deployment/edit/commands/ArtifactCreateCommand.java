@@ -1,7 +1,6 @@
 /*
  * 
  */
-
 package org.eclipse.papyrus.diagram.deployment.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -21,25 +20,22 @@ import org.eclipse.uml2.uml.Artifact;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ArtifactCreateCommand.
- *
  * @generated
  */
 public class ArtifactCreateCommand extends EditElementCommand {
 
-	/** The e class. @generated */
+	/**
+	 * @generated
+	 */
 	private EClass eClass = null;
 
-	/** The e object. @generated */
+	/**
+	 * @generated
+	 */
 	private EObject eObject = null;
 
 	/**
-	 * Instantiates a new artifact create command.
-	 *
-	 * @param req the req
-	 * @param eObject the e object
 	 * @generated
 	 */
 	public ArtifactCreateCommand(CreateElementRequest req, EObject eObject) {
@@ -49,11 +45,6 @@ public class ArtifactCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Creates the.
-	 *
-	 * @param req the req
-	 * @param eObject the e object
-	 * @return the artifact create command
 	 * @generated
 	 */
 	public static ArtifactCreateCommand create(CreateElementRequest req, EObject eObject) {
@@ -61,9 +52,6 @@ public class ArtifactCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Instantiates a new artifact create command.
-	 *
-	 * @param req the req
 	 * @generated
 	 */
 	public ArtifactCreateCommand(CreateElementRequest req) {
@@ -71,9 +59,7 @@ public class ArtifactCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * FIXME: replace with setElementToEdit().
-	 *
-	 * @return the element to edit
+	 * FIXME: replace with setElementToEdit()
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
@@ -90,9 +76,6 @@ public class ArtifactCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Can execute.
-	 *
-	 * @return true, if successful
 	 * @generated
 	 */
 	public boolean canExecute() {
@@ -107,12 +90,6 @@ public class ArtifactCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Do execute with result.
-	 *
-	 * @param monitor the monitor
-	 * @param info the info
-	 * @return the command result
-	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -137,12 +114,6 @@ public class ArtifactCreateCommand extends EditElementCommand {
 
 
 	/**
-	 * Do configure.
-	 *
-	 * @param newElement the new element
-	 * @param monitor the monitor
-	 * @param info the info
-	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected void doConfigure(Artifact newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {

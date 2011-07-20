@@ -1,27 +1,6 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
- *****************************************************************************/
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
- *****************************************************************************/
+/*
+ * 
+ */
 package org.eclipse.papyrus.diagram.deployment.part;
 
 import org.eclipse.core.runtime.Platform;
@@ -216,6 +195,16 @@ public class UMLVisualIDRegistry {
 			) {
 				return ExecutionEnvironmentEditPartCN.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return DeviceEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NodeEditPartCN.VISUAL_ID;
+			}
 			break;
 		case ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
@@ -263,6 +252,16 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return ExecutionEnvironmentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return DeviceEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NodeEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID:
@@ -445,6 +444,12 @@ public class UMLVisualIDRegistry {
 			if(ExecutionEnvironmentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(DeviceEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NodeEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID:
 			if(ExecutionEnvironmentEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -475,6 +480,12 @@ public class UMLVisualIDRegistry {
 			break;
 		case DeviceCompositeCompartmentEditPartCN.VISUAL_ID:
 			if(ExecutionEnvironmentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DeviceEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NodeEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -699,12 +710,20 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(32, viewInfo);
 
+		root.addNode(17, viewInfo);
+
+		root.addNode(30, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(16, ViewInfo.Node, "Device");
 
 		root.addNode(19, viewInfo);
 
 		root.addNode(32, viewInfo);
+
+		root.addNode(17, viewInfo);
+
+		root.addNode(30, viewInfo);
 
 
 		viewInfo = new BaseViewInfo(21, ViewInfo.Node, "ExecutionEnvironment");

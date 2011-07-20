@@ -1,7 +1,6 @@
 /*
  * 
  */
-
 package org.eclipse.papyrus.diagram.deployment.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -22,25 +21,22 @@ import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ConstraintCreateCommand.
- *
  * @generated
  */
 public class ConstraintCreateCommand extends EditElementCommand {
 
-	/** The e class. @generated */
+	/**
+	 * @generated
+	 */
 	private EClass eClass = null;
 
-	/** The e object. @generated */
+	/**
+	 * @generated
+	 */
 	private EObject eObject = null;
 
 	/**
-	 * Instantiates a new constraint create command.
-	 *
-	 * @param req the req
-	 * @param eObject the e object
 	 * @generated
 	 */
 	public ConstraintCreateCommand(CreateElementRequest req, EObject eObject) {
@@ -50,11 +46,6 @@ public class ConstraintCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Creates the.
-	 *
-	 * @param req the req
-	 * @param eObject the e object
-	 * @return the constraint create command
 	 * @generated
 	 */
 	public static ConstraintCreateCommand create(CreateElementRequest req, EObject eObject) {
@@ -62,9 +53,6 @@ public class ConstraintCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Instantiates a new constraint create command.
-	 *
-	 * @param req the req
 	 * @generated
 	 */
 	public ConstraintCreateCommand(CreateElementRequest req) {
@@ -72,9 +60,7 @@ public class ConstraintCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * FIXME: replace with setElementToEdit().
-	 *
-	 * @return the element to edit
+	 * FIXME: replace with setElementToEdit()
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
@@ -91,9 +77,6 @@ public class ConstraintCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Can execute.
-	 *
-	 * @return true, if successful
 	 * @generated
 	 */
 	public boolean canExecute() {
@@ -108,12 +91,6 @@ public class ConstraintCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Do execute with result.
-	 *
-	 * @param monitor the monitor
-	 * @param info the info
-	 * @return the command result
-	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -138,12 +115,6 @@ public class ConstraintCreateCommand extends EditElementCommand {
 
 
 	/**
-	 * Do configure.
-	 *
-	 * @param newElement the new element
-	 * @param monitor the monitor
-	 * @param info the info
-	 * @throws ExecutionException the execution exception
 	 * @generated
 	 */
 	protected void doConfigure(Constraint newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
