@@ -6,10 +6,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="NewchildConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="roots" upperBound="-1"
         eType="#//MenuRoot" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MenuRoot" eSuperTypes="#//MenuContainer ../../org.eclipse.papyrus.constraints/Model/Constraints.ecore#//DisplayUnit">
     <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
         eType="#//MenuGroup" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MenuItem" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
@@ -32,8 +34,12 @@
     <eLiterals name="child"/>
     <eLiterals name="sibling" value="1"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NewChildMenu" eSuperTypes="#//Menu"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NewSiblingMenu" eSuperTypes="#//Menu"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NewChildMenu" eSuperTypes="#//Menu">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" lowerBound="1"
+        eType="#//ElementPosition" defaultValueLiteral="child"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" lowerBound="1" eType="#//NewChildKind"
+        defaultValueLiteral="hierarchical"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Separator" eSuperTypes="#//MenuItem"/>
   <eClassifiers xsi:type="ecore:EClass" name="MenuGroup" eSuperTypes="#//MenuContainer">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="before" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
@@ -44,5 +50,14 @@
   <eClassifiers xsi:type="ecore:EEnum" name="MenuPosition">
     <eLiterals name="top"/>
     <eLiterals name="bottom" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="NewChildKind">
+    <eLiterals name="hierarchical"/>
+    <eLiterals name="flat" value="1"/>
+    <eLiterals name="auto" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CustomFiller" eSuperTypes="#//MenuItem">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" lowerBound="1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -25,4 +25,9 @@ public class CustomizableContentProvider extends CustomizableModelContentProvide
 		return new Object[0];
 	}
 
+	@Override
+	public boolean hasChildren(Object parentElement) {
+		return getChildren(parentElement).length > 0;
+	}
+
 }

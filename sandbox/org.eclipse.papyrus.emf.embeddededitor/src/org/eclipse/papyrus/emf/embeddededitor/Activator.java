@@ -4,17 +4,10 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
 import org.eclipse.emf.facet.infra.browser.custom.core.CustomizationsCatalog;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
-import org.eclipse.papyrus.emf.embeddededitor.editor.EmbeddedEditor;
 import org.eclipse.papyrus.log.LogHelper;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -48,27 +41,6 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(this);
-
-		//		if(true) {
-		//			return;
-		//		}
-
-		Shell shell = new Shell(Display.getCurrent());
-		shell.setLayout(new FillLayout());
-		shell.setSize(400, 300);
-
-		try {
-			ResourceSet resourceSet = new ResourceSetImpl();
-			resourceSet.getResource(URI.createPlatformResourceURI("Test/seq_diagram2.uml", true), true);
-
-			EmbeddedEditor editor = new EmbeddedEditor(resourceSet);
-			editor.createWidget(shell);
-		} catch (Exception ex) {
-			log.error(ex);
-		}
-
-		shell.open();
-
 	}
 
 	/*

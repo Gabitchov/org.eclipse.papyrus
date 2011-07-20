@@ -275,13 +275,18 @@ public class EMFHelper {
 
 	public static boolean isReadOnly(EObject eObject) {
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
+		return isReadOnly(eObject, domain);
+	}
 
+	public static boolean isReadOnly(EObject eObject, EditingDomain domain) {
+		return isReadOnly(eObject.eResource(), domain);
+	}
+
+	public static boolean isReadOnly(Resource resource, EditingDomain domain) {
 		if(domain instanceof AdapterFactoryEditingDomain) {
-			return ((AdapterFactoryEditingDomain)domain).isReadOnly(eObject.eResource());
+			return ((AdapterFactoryEditingDomain)domain).isReadOnly(resource);
 		}
 
-
-		Resource resource = eObject.eResource();
 		if(resource == null) {
 			return false;
 		}

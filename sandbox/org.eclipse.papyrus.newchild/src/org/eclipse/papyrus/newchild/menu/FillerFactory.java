@@ -1,12 +1,13 @@
 package org.eclipse.papyrus.newchild.menu;
 
+import org.eclipse.papyrus.extendedtypes.Activator;
+import org.eclipse.papyrus.newchild.CustomFiller;
 import org.eclipse.papyrus.newchild.Menu;
 import org.eclipse.papyrus.newchild.MenuContainer;
 import org.eclipse.papyrus.newchild.MenuGroup;
 import org.eclipse.papyrus.newchild.MenuItem;
 import org.eclipse.papyrus.newchild.MenuRoot;
 import org.eclipse.papyrus.newchild.NewChildMenu;
-import org.eclipse.papyrus.newchild.NewSiblingMenu;
 import org.eclipse.papyrus.newchild.Separator;
 
 
@@ -16,11 +17,7 @@ public class FillerFactory {
 
 	public FillElement getFiller(MenuGroup parentGroup, MenuItem menuItem, Object selectedObject) {
 		if(menuItem instanceof NewChildMenu) {
-			return new FillNewChild(parentGroup, (Menu)menuItem, selectedObject);
-		}
-
-		if(menuItem instanceof NewSiblingMenu) {
-			return new FillNewSibling(parentGroup, (Menu)menuItem, selectedObject);
+			return new FillNewChild(parentGroup, (NewChildMenu)menuItem, selectedObject);
 		}
 
 		if(menuItem instanceof Separator) {
@@ -29,6 +26,29 @@ public class FillerFactory {
 
 		if(menuItem instanceof Menu) {
 			return new FillMenu(parentGroup, (Menu)menuItem, selectedObject);
+		}
+
+		if(menuItem instanceof CustomFiller) {
+			String className = ((CustomFiller)menuItem).getClassName();
+			if (className != null){
+				try {
+					Class<? extends CustomFillElement> clazz = Class.forName(className).asSubclass(CustomFillElement.class);
+					CustomFillElement filler = clazz.newInstance();
+					filler.setParentGroup(parentGroup);
+					filler.setMenuItem((CustomFiller)menuItem);
+					return filler;
+				} catch (ClassNotFoundException ex) {
+					Activator.log.error(ex);
+				} catch (InstantiationException ex) {
+					Activator.log.error(ex);
+				} catch (IllegalAccessException ex) {
+					Activator.log.error(ex);
+				} catch (ClassCastException ex) {
+					String message = "The CustomFiller must implement " + CustomFillElement.class.getName() + ". ";
+					message += "Class : " + className;
+					Activator.log.error(message, ex);
+				}
+			}
 		}
 
 		return null;

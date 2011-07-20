@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uicustom:MetamodelView xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uicustom="http://www.eclipse.org/EmfFacet/infra/browser/custom/0.8" metamodelURI="http://www.eclipse.org/papyrus/constraints">
+  <types metaclassName="constraints.CompositeConstraint">
+    <references referenceName="constraints">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+  </types>
+  <types metaclassName="constraints.SimpleConstraint">
+    <references referenceName="constraintType">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+    <references referenceName="properties">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+  </types>
+  <types metaclassName="constraints.ConstraintDescriptor">
+    <references referenceName="display">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+    <references referenceName="overriddenConstraints">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+  </types>
+  <types metaclassName="constraints.DisplayUnit">
+    <references referenceName="constraints">
+      <customizedFeatures customizedFeature="collapseLink">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      </customizedFeatures>
+    </references>
+  </types>
+  <types metaclassName="constraints.environment.ConstraintEnvironment">
+    <references referenceName="constraintTypes">
+      <customizedFeatures customizedFeature="collapseLink">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      </customizedFeatures>
+    </references>
+  </types>
+  <types metaclassName="constraints.ReferenceProperty">
+    <references referenceName="value">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+  </types>
+</uicustom:MetamodelView>

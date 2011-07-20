@@ -13,10 +13,16 @@ public class DisabledContributionItem extends ContributionItem {
 
 	protected ImageDescriptor image;
 
+	protected boolean menuStyle = false;
+
 	public DisabledContributionItem(String text, ImageDescriptor image, String id) {
 		this.text = text;
 		this.image = image;
 		setId(id);
+	}
+
+	public void setMenuStyle(boolean menuStyle) {
+		this.menuStyle = menuStyle;
 	}
 
 	@Override
@@ -28,9 +34,14 @@ public class DisabledContributionItem extends ContributionItem {
 	public void fill(Menu parent, int index) {
 		MenuItem item = new MenuItem(parent, SWT.CASCADE, index);
 		item.setText(text);
-		item.setImage(image.createImage());
 		item.setEnabled(false);
 
-		item.setMenu(new Menu(item));
+		if(image != null) {
+			item.setImage(image.createImage());
+		}
+
+		if(menuStyle) {
+			item.setMenu(new Menu(item));
+		}
 	}
 }

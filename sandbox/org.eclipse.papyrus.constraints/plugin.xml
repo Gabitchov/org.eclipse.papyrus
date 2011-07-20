@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?eclipse version="3.0"?>
 
 <!--
@@ -7,21 +7,21 @@
 
  $Id$
 -->
-
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http://www.eclipse.org/papyrus/constraints"
-            class="org.eclipse.papyrus.constraints.ConstraintsPackage"
-            genModel="Model/Constraints.genmodel"/>
+      <package class="org.eclipse.papyrus.constraints.ConstraintsPackage" genModel="Model/Constraints.genmodel" uri="http://www.eclipse.org/papyrus/constraints"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http://www.eclipse.org/papyrus/constraints/environment"
-            class="org.eclipse.papyrus.constraints.environment.EnvironmentPackage"
-            genModel="Model/Constraints.genmodel"/>
+      <package class="org.eclipse.papyrus.constraints.environment.EnvironmentPackage" genModel="Model/Constraints.genmodel" uri="http://www.eclipse.org/papyrus/constraints/environment"/>
+   </extension>
+   <extension
+         point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization
+            file="custom/constraints.uiCustom"
+            loadByDefault="true">
+      </browserCustomization>
    </extension>
 
 </plugin>

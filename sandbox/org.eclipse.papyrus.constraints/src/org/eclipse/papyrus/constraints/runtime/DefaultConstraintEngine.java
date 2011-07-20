@@ -18,7 +18,6 @@ import java.util.Set;
 
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.constraints.Activator;
 import org.eclipse.papyrus.constraints.ConstraintDescriptor;
 import org.eclipse.papyrus.constraints.DisplayUnit;
 import org.eclipse.papyrus.constraints.constraints.Constraint;
@@ -84,22 +83,22 @@ public abstract class DefaultConstraintEngine<E extends DisplayUnit> implements 
 			}
 		}
 
-		String logValue;
-
-		logValue = "Filtered Constraints : "; //$NON-NLS-1$
-		for(Constraint constraint : matchedConstraints) {
-			logValue += constraint.getDescriptor().getName() + ", ";
-		}
-		Activator.log.warn(logValue);
+		//		String logValue;
+		//
+		//		logValue = "Filtered Constraints : "; //$NON-NLS-1$
+		//		for(Constraint constraint : matchedConstraints) {
+		//			logValue += constraint.getDescriptor().getName() + ", ";
+		//		}
+		//		Activator.log.warn(logValue);
 
 		resolveConstraintConflicts(matchedConstraints);
 
-		logValue = "Filtered Constraints : "; //$NON-NLS-1$
-		for(Constraint constraint : matchedConstraints) {
-			logValue += constraint.getDescriptor().getName() + ", ";
-		}
-
-		Activator.log.warn(logValue);
+		//		logValue = "Filtered Constraints : "; //$NON-NLS-1$
+		//		for(Constraint constraint : matchedConstraints) {
+		//			logValue += constraint.getDescriptor().getName() + ", ";
+		//		}
+		//
+		//		Activator.log.warn(logValue);
 
 		return matchedConstraints;
 	}

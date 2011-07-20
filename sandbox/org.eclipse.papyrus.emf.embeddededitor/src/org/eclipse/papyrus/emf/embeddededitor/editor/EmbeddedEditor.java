@@ -25,7 +25,10 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
@@ -47,6 +50,7 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.emf.embeddededitor.Activator;
 import org.eclipse.papyrus.emf.embeddededitor.providers.CustomizableContentProvider;
 import org.eclipse.papyrus.emf.embeddededitor.providers.EditingDomainProviderAdapter;
+import org.eclipse.papyrus.newchild.util.EMFHelper;
 import org.eclipse.papyrus.properties.widgets.layout.GridData;
 import org.eclipse.papyrus.properties.widgets.layout.PropertiesLayout;
 import org.eclipse.papyrus.widgets.editors.AbstractEditor;
@@ -136,7 +140,7 @@ public class EmbeddedEditor implements CommandStackListener, IMenuListener {
 
 			});
 
-			Tree tree = new Tree(container, SWT.BORDER | SWT.MULTI);
+			Tree tree = new Tree(container, SWT.NONE | SWT.MULTI);
 			tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 			treeViewer = new TreeViewer(tree);
@@ -230,15 +234,31 @@ public class EmbeddedEditor implements CommandStackListener, IMenuListener {
 			return;
 		}
 
+		IEditingDomainProvider domainProvider = (IEditingDomainProvider)EcoreUtil.getAdapter(resourceSet.eAdapters(), IEditingDomainProvider.class);
+		if(domainProvider == null) {
+			return;
+		}
+
+		EditingDomain domain = domainProvider.getEditingDomain();
+		if(domain == null) {
+			return;
+		}
+
 		for(Resource resource : resourceSet.getResources()) {
 			try {
-				resource.save(Collections.EMPTY_MAP);
+				if(!EMFHelper.isReadOnly(resource, domain)) {
+					resource.save(Collections.EMPTY_MAP);
+				}
 			} catch (IOException ex) {
 				Activator.log.error(ex);
 			}
 		}
 
 		((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
+	}
+
+	public boolean isSaveNeeded() {
+		return ((BasicCommandStack)editingDomain.getCommandStack()).isSaveNeeded();
 	}
 
 	public void saveAs(URI saveAsURI) {
@@ -251,5 +271,13 @@ public class EmbeddedEditor implements CommandStackListener, IMenuListener {
 
 	public void menuAboutToShow(IMenuManager menuManager) {
 		actionBarContributor.menuAboutToShow(menuManager);
+	}
+
+	public TreeViewer getViewer() {
+		return treeViewer;
+	}
+
+	public void addCommandStackListener(CommandStackListener listener) {
+		editingDomain.getCommandStack().addCommandStackListener(listener);
 	}
 }

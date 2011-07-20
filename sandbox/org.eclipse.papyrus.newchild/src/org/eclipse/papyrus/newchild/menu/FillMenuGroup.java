@@ -18,7 +18,9 @@ public class FillMenuGroup extends FillMenuContainer {
 	public void fill(IMenuManager menuManager) {
 		for(MenuItem menuItem : container.getSubmenus()) {
 			FillElement filler = FillerFactory.instance.getFiller(group, menuItem, selectedObject);
-			filler.fill(menuManager);
+			if(filler != null) {
+				filler.fill(menuManager);
+			}
 		}
 	}
 

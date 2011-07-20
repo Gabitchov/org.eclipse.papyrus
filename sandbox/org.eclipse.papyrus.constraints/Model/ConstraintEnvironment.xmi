@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<environment:ConstraintEnvironment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:environment="http://www.eclipse.org/papyrus/constraints/environment" xsi:schemaLocation="http://www.eclipse.org/papyrus/constraints/environment Constraints.ecore#//environment">
+<environment:ConstraintEnvironment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:environment="http://www.eclipse.org/papyrus/constraints/environment">
   <constraintTypes label="EMF Instance Of" constraintClass="org.eclipse.papyrus.constraints.constraints.EMFInstanceOfConstraint"/>
   <constraintTypes label="True Constraint" constraintClass="org.eclipse.papyrus.constraints.constraints.TrueConstraint"/>
   <constraintTypes label="EMF Query" constraintClass="org.eclipse.papyrus.constraints.constraints.EMFQueryConstraint"/>
