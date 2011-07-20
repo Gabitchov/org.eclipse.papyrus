@@ -23,21 +23,19 @@ import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.TestCase;
 import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 
 /** Query to get the text of the requirement */
 
-public class GetRequirementVerifiedByQuery implements IJavaModelQuery<Class, Collection<Operation>> {
+public class GetRequirementVerifiedByQuery implements IJavaModelQuery<Class, Collection<NamedElement>> {
 
-	public Collection<Operation> evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		Collection<Operation> result = new ArrayList<Operation>();
-		
+	public Collection<NamedElement> evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
+
 		Requirement requirement = ElementUtil.getStereotypeApplication(context, Requirement.class);
 		if (requirement != null) {
-			for(TestCase current : requirement.getVerifiedBy()) {
-				result.add(current.getBase_Operation());
-			}	
+			return requirement.getVerifiedBy();
 		}
-		return result;
+		return null;
 	}
 }
