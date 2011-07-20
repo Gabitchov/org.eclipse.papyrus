@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010-2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -20,11 +20,15 @@ import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.modelexplorer.ICommandContext;
+import org.eclipse.papyrus.modelexplorer.ICommandFilter;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerView;
 import org.eclipse.papyrus.modelexplorer.NavigatorUtils;
@@ -40,8 +44,10 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 
 	protected abstract IElementType getElementTypeToCreate();
 
+	protected ICommandFilter filter = new CommandFilter();
+
 	/** Current createCommand for selection (updated in {@link CreateCommandHandler#isEnabled()}) */
-	private ICommand createCommand;
+	private Command createCommand;
 
 	/**
 	 * <pre>
@@ -54,27 +60,33 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 	 * 
 	 * </pre>
 	 */
-	protected ICommand buildCommand() {
+	protected Command buildCommand() {
 
-		if(getSelectedElements().size() != 1) {
+		ICommandContext commandContext = getCommandContext();
+		if(commandContext == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		EObject container = getSelectedElements().get(0);
-		if (container == null) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		
+		EObject container = commandContext.getContainer();
+		EReference reference = commandContext.getReference();
+
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(container);
 		if(provider == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
 		// Retrieve create command from the Element Edit service
-		CreateElementRequest createRequest = new CreateElementRequest(container, getElementTypeToCreate());
+		CreateElementRequest createRequest = null;
+		if(reference == null) {
+			createRequest = new CreateElementRequest(container, getElementTypeToCreate());
+		} else {
+			createRequest = new CreateElementRequest(container, getElementTypeToCreate(), reference);
+		}
+
 		ICommand createGMFCommand = provider.getEditCommand(createRequest);
 
-		return createGMFCommand;
+		Command emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
+		return emfCommand;
 	}
 
 	/**
@@ -83,7 +95,7 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 	 * 
 	 * @return current command (only built here when the stored command is null)
 	 */
-	protected ICommand getCommand() {
+	protected Command getCommand() {
 
 		// Build the command in case it is not initialized.
 		if(createCommand == null) {
@@ -92,12 +104,12 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 
 		return createCommand;
 	}
-	
+
 	/**
 	 * Add selection on new element after creation.
 	 * 
 	 * @see org.listerel.papyrus.sysml.modelexplorer.common.handler.AbstractCommandHandler#execute(org.eclipse.core.commands.ExecutionEvent)
-	 *
+	 * 
 	 * @param event
 	 * @return
 	 * @throws ExecutionException
@@ -105,32 +117,32 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		Object result = super.execute(event);
-		
+
 		// Find newly created element
 		EObject newElement = null;
-		
-		if (result instanceof Collection<?>) {
-			Collection<?> results = (Collection<?>) result;
-			if ((!results.isEmpty()) && (results.toArray()[0] instanceof EObject)) {
-				newElement = (EObject) results.toArray()[0];
+
+		if(result instanceof Collection<?>) {
+			Collection<?> results = (Collection<?>)result;
+			if((!results.isEmpty()) && (results.toArray()[0] instanceof EObject)) {
+				newElement = (EObject)results.toArray()[0];
 			}
 		}
-		
+
 		// Retrieve model explorer
 		ModelExplorerView modelExplorerView = null;
-		
-		ModelExplorerPageBookView bookViewPart = (ModelExplorerPageBookView) NavigatorUtils.findViewPart("org.eclipse.papyrus.modelexplorer.modelexplorer"); //$NON-NLS-0$
-		if (bookViewPart != null) {
-			modelExplorerView = (ModelExplorerView)((ModelExplorerPageBookView) bookViewPart).getActiveView();
+
+		ModelExplorerPageBookView bookViewPart = (ModelExplorerPageBookView)NavigatorUtils.findViewPart("org.eclipse.papyrus.modelexplorer.modelexplorer"); //$NON-NLS-0$
+		if(bookViewPart != null) {
+			modelExplorerView = (ModelExplorerView)((ModelExplorerPageBookView)bookViewPart).getActiveView();
 		}
-		
+
 		// Set selection on new element in the model explorer
-		if ((modelExplorerView != null) && (newElement != null)) {
-			List<EObject> semanticElementList= new ArrayList<EObject>();
+		if((modelExplorerView != null) && (newElement != null)) {
+			List<EObject> semanticElementList = new ArrayList<EObject>();
 			semanticElementList.add(newElement);
 			modelExplorerView.revealSemanticElement(semanticElementList);
-		}			
-		
+		}
+
 		return result;
 	}
 
@@ -145,7 +157,7 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 
 		// Temporary (customizable implementation to be provided) filter to avoid all
 		// creation command to be visible (avoid to large set of possible children).
-		if(!CommandFilter.getVisibleCommands().contains(getElementTypeToCreate())) {
+		if(!filter.getVisibleCommands().contains(getElementTypeToCreate())) {
 			return false;
 		}
 
@@ -169,7 +181,7 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 
 		// Temporary (customizable implementation to be provided) filter to avoid all
 		// creation command to be visible (avoid to large set of possible children).
-		if(!CommandFilter.getVisibleCommands().contains(getElementTypeToCreate())) {
+		if(!filter.getVisibleCommands().contains(getElementTypeToCreate())) {
 			return false;
 		}
 
