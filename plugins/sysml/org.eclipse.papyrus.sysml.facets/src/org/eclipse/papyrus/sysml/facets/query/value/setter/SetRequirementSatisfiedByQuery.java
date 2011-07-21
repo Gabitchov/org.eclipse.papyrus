@@ -54,7 +54,6 @@ public class SetRequirementSatisfiedByQuery implements IJavaModelQueryWithEditin
 	 * @return
 	 * @throws ModelQueryExecutionException
 	 */
-	@Override
 	public EObject evaluate(final NamedElement context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		// nothing to do
 		return null;
@@ -71,7 +70,6 @@ public class SetRequirementSatisfiedByQuery implements IJavaModelQueryWithEditin
 	 * @return
 	 * @throws ModelQueryExecutionException
 	 */
-	@Override
 	public EObject evaluate(NamedElement context, ParameterValueList parameterValues, EditingDomain editingDomain) throws ModelQueryExecutionException {
 		CompositeCommand cmd = new CompositeCommand("Edit the derived attribute /SatisfiedBy"); //$NON-NLS-1$
 		if(ElementUtil.getStereotypeApplication(context, Requirement.class) != null) {

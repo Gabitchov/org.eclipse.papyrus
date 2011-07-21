@@ -44,7 +44,6 @@ public class SetRequirementIdQuery implements IJavaModelQueryWithEditingDomain<C
 	 * @return
 	 * @throws ModelQueryExecutionException
 	 */
-	@Override
 	public EObject evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		//nothing to do
 		return null;
@@ -61,7 +60,6 @@ public class SetRequirementIdQuery implements IJavaModelQueryWithEditingDomain<C
 	 * @return
 	 * @throws ModelQueryExecutionException
 	 */
-	@Override
 	public EObject evaluate(final Class context, final ParameterValueList parameter, final EditingDomain editingDomain) throws ModelQueryExecutionException {
 		Requirement requirement = ElementUtil.getStereotypeApplication(context, Requirement.class);
 

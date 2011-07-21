@@ -55,13 +55,22 @@ public class SetRequirementRefinedByQuery implements IJavaModelQueryWithEditingD
 	 * @return
 	 * @throws ModelQueryExecutionException
 	 */
-	@Override
 	public EObject evaluate(final NamedElement context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		//nothing to do
 		return null;
 	}
 
-	@Override
+	/**
+	 * 
+	 * @see org.eclipse.emf.facet.infra.query.core.java.IJavaModelQueryWithEditingDomain#evaluate(org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.emf.facet.infra.query.core.java.ParameterValueList, org.eclipse.emf.edit.domain.EditingDomain)
+	 * 
+	 * @param context
+	 * @param parameterValues
+	 * @param editingDomain
+	 * @return
+	 * @throws ModelQueryExecutionException
+	 */
 	public EObject evaluate(NamedElement context, ParameterValueList parameterValues, EditingDomain editingDomain) throws ModelQueryExecutionException {
 		CompositeCommand cmd = new CompositeCommand("Edit the feature /refinedBy"); //$NON-NLS-1$
 		if(ElementUtil.getStereotypeApplication(context, Requirement.class) != null) {

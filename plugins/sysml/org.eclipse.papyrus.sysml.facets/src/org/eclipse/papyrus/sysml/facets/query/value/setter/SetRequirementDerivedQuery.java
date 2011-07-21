@@ -58,7 +58,6 @@ public class SetRequirementDerivedQuery implements IJavaModelQueryWithEditingDom
 	 * @return
 	 * @throws ModelQueryExecutionException
 	 */
-	@Override
 	public EObject evaluate(Class context, ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		//nothing to do
 		return null;
@@ -75,7 +74,6 @@ public class SetRequirementDerivedQuery implements IJavaModelQueryWithEditingDom
 	 * @return
 	 * @throws ModelQueryExecutionException
 	 */
-	@Override
 	public EObject evaluate(Class context, ParameterValueList parameter, EditingDomain editingDomain) throws ModelQueryExecutionException {
 		CompositeCommand cmd = new CompositeCommand("Edit the feature /Derived"); //$NON-NLS-1$
 		if(ElementUtil.getStereotypeApplication(context, Requirement.class) != null) {

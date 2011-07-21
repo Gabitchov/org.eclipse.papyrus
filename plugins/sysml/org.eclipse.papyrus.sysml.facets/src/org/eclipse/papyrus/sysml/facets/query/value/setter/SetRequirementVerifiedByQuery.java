@@ -44,13 +44,32 @@ import org.eclipse.uml2.uml.NamedElement;
 /** Query to set the derived attribute "verifiedBy" of the requirement */
 public class SetRequirementVerifiedByQuery implements IJavaModelQueryWithEditingDomain<NamedElement, EObject> {
 
-	@Override
+	/**
+	 * 
+	 * @see org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery#evaluate(org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.emf.facet.infra.query.core.java.ParameterValueList)
+	 * 
+	 * @param context
+	 * @param parameterValues
+	 * @return
+	 * @throws ModelQueryExecutionException
+	 */
 	public EObject evaluate(final NamedElement context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	/**
+	 * 
+	 * @see org.eclipse.emf.facet.infra.query.core.java.IJavaModelQueryWithEditingDomain#evaluate(org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.emf.facet.infra.query.core.java.ParameterValueList, org.eclipse.emf.edit.domain.EditingDomain)
+	 * 
+	 * @param context
+	 * @param parameterValues
+	 * @param editingDomain
+	 * @return
+	 * @throws ModelQueryExecutionException
+	 */
 	public EObject evaluate(NamedElement context, ParameterValueList parameterValues, EditingDomain editingDomain) throws ModelQueryExecutionException {
 		CompositeCommand cmd = new CompositeCommand("Edit the feature /VerifiedBy"); //$NON-NLS-1$
 		if(ElementUtil.getStereotypeApplication(context, Requirement.class) != null) {
