@@ -37,33 +37,11 @@ public class PredefinedBehaviorsAndTypesUtils {
 	private List<Classifier> classifierInsertedAsElementImport = new ArrayList<Classifier>();
 	
 	public void init(org.eclipse.uml2.uml.Package library) {
-		for (NamedElement n : library.getOwnedMembers()) {
-			if (n instanceof Behavior) {
-				insertSignatureFacade(new SignatureFacade((Behavior)n)) ;
-			}
-			else if (n instanceof Classifier) {
-				insertTypeFacade(TypeFacadeFactory.eInstance.createTypeFacade(n)) ;
-			}
-			else if (n instanceof org.eclipse.uml2.uml.Package) {
-				init((org.eclipse.uml2.uml.Package)n) ;
-			}
-		}
-		for (ElementImport eImport : library.getElementImports()) {
-			if (eImport.getImportedElement() instanceof Behavior) {
-				insertSignatureFacade(new SignatureFacade(eImport)) ;
-				behaviorInsertedAsElementImport.add((Behavior)eImport.getImportedElement()) ;
-			}
-			else if (eImport.getImportedElement() instanceof Classifier) {
-				insertTypeFacade(TypeFacadeFactory.eInstance.createTypeFacade(eImport)) ;
-				classifierInsertedAsElementImport.add((Classifier)eImport.getImportedElement()) ;
-			}
-			else if (eImport.getImportedElement() instanceof org.eclipse.uml2.uml.Package) {
-				init((org.eclipse.uml2.uml.Package)eImport.getImportedElement()) ;
-			}
-		}
-		for (PackageImport pImport : library.getPackageImports()) {
-			init(pImport.getImportedPackage()) ;
-		}
+		behaviorMap = new HashMap<String, List<SignatureFacade>>();
+		typeMap = new HashMap<String, TypeFacade>() ;
+		behaviorInsertedAsElementImport = new ArrayList<Behavior>() ;
+		classifierInsertedAsElementImport = new ArrayList<Classifier>() ;
+		localInit(library) ;
 		// initializes predefined type facades from TypeUtils
 		TypeUtils._bitString = typeMap.get("BitString") ;
 		TypeUtils._boolean = typeMap.get("Boolean") ;
@@ -82,6 +60,36 @@ public class PredefinedBehaviorsAndTypesUtils {
 		TypeUtils._Deque = typeMap.get("Deque") ;
 		TypeUtils._Map = typeMap.get("Map") ;
 		TypeUtils._Entry = typeMap.get("Entry") ;
+	}
+	
+	private void localInit(org.eclipse.uml2.uml.Package library) {
+		for (NamedElement n : library.getOwnedMembers()) {
+			if (n instanceof Behavior) {
+				insertSignatureFacade(new SignatureFacade((Behavior)n)) ;
+			}
+			else if (n instanceof Classifier) {
+				insertTypeFacade(TypeFacadeFactory.eInstance.createTypeFacade(n)) ;
+			}
+			else if (n instanceof org.eclipse.uml2.uml.Package) {
+				localInit((org.eclipse.uml2.uml.Package)n) ;
+			}
+		}
+		for (ElementImport eImport : library.getElementImports()) {
+			if (eImport.getImportedElement() instanceof Behavior) {
+				insertSignatureFacade(new SignatureFacade(eImport)) ;
+				behaviorInsertedAsElementImport.add((Behavior)eImport.getImportedElement()) ;
+			}
+			else if (eImport.getImportedElement() instanceof Classifier) {
+				insertTypeFacade(TypeFacadeFactory.eInstance.createTypeFacade(eImport)) ;
+				classifierInsertedAsElementImport.add((Classifier)eImport.getImportedElement()) ;
+			}
+			else if (eImport.getImportedElement() instanceof org.eclipse.uml2.uml.Package) {
+				localInit((org.eclipse.uml2.uml.Package)eImport.getImportedElement()) ;
+			}
+		}
+		for (PackageImport pImport : library.getPackageImports()) {
+			localInit(pImport.getImportedPackage()) ;
+		}
 	}
 	
 	public List<SignatureFacade> getSignatures(String name) {

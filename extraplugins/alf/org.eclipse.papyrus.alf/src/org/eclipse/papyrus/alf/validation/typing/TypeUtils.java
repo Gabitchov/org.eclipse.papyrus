@@ -592,7 +592,7 @@ public class TypeUtils {
 				return typeOfOperationCall ;
 		}
 		else if (exp.getOperationCallWithoutDot() != null) {
-			if (exp.getClassName() == null || exp.getClassName().isEmpty()) {
+			if (exp.getClassName() == null || exp.getClassName().length() == 0) {
 				ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
 						"Classifier name is missing", 
 						exp, 
@@ -832,7 +832,7 @@ public class TypeUtils {
 			else {
 				SignatureFacade operationOrBehaviorSignature = new SignatureFacade(visibleOperationOrBehaviors.get(0)) ;
 				String argumentsAreCompatible = operationOrBehaviorSignature.isCompatibleWithMe(arguments, true) ;
-				if (! argumentsAreCompatible.isEmpty()) {
+				if (! (argumentsAreCompatible.length() == 0)) {
 					ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
 							argumentsAreCompatible, 
 							exp, 
@@ -1351,7 +1351,7 @@ public class TypeUtils {
 					errorMessage += "Primitive types do not have destructors." ;					
 				else if (arguments.size() > 0)
 					errorMessage += "Default destructor has not parameters" ;
-				if (! errorMessage.isEmpty()) {
+				if (! (errorMessage.length() == 0)) {
 					error = TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containingFeature) ;
 					return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
 				}
@@ -1394,7 +1394,7 @@ public class TypeUtils {
 			else {
 				SignatureFacade operationSignature = selectedSignatures.get(0) ;
 				String argumentsAreCompatible = operationSignature.isCompatibleWithMe(arguments, true) ;
-				if (! argumentsAreCompatible.isEmpty()) {
+				if (! (argumentsAreCompatible.length() == 0)) {
 					ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
 							argumentsAreCompatible, 
 							exp, 
@@ -1408,7 +1408,7 @@ public class TypeUtils {
 			typeOfSuffix = TypeExpressionFactory.eInstance.createTypeExpression(matchingOperations.get(0)) ;
 			SignatureFacade operationSignature = new SignatureFacade(matchingOperations.get(0)) ;
 			String argumentsAreCompatible = operationSignature.isCompatibleWithMe(arguments, true) ;
-			if (! argumentsAreCompatible.isEmpty()) {
+			if (! (argumentsAreCompatible.length() == 0)) {
 				ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
 						argumentsAreCompatible, 
 						exp, 
@@ -1474,7 +1474,7 @@ public class TypeUtils {
 			else {
 				SignatureFacade operationSignature = selectedSignatures.get(0) ;
 				String argumentsAreCompatible = operationSignature.isCompatibleWithMe(arguments, true) ;
-				if (! argumentsAreCompatible.isEmpty()) {
+				if (! (argumentsAreCompatible.length() == 0)) {
 					ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
 							argumentsAreCompatible, 
 							exp, 
@@ -1488,7 +1488,7 @@ public class TypeUtils {
 			typeOfSuffix = TypeExpressionFactory.eInstance.createTypeExpression(matchingOperations.get(0)) ;
 			SignatureFacade operationSignature = new SignatureFacade(matchingOperations.get(0)) ;
 			String argumentsAreCompatible = operationSignature.isCompatibleWithMe(arguments, true) ;
-			if (! argumentsAreCompatible.isEmpty()) {
+			if (! (argumentsAreCompatible.length() == 0)) {
 				ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
 						argumentsAreCompatible, 
 						exp, 

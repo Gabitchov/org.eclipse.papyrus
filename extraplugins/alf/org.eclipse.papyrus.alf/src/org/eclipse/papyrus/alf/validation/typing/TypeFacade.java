@@ -158,7 +158,7 @@ public class TypeFacade {
 	}
 
 	public String getLabel() {
-		return "" + this.templateBindingFacade.getLabel() ;
+		return "" ; // TODO: uncomment when template bindings are supported + this.templateBindingFacade.getLabel() ;
 	}
 	
 }

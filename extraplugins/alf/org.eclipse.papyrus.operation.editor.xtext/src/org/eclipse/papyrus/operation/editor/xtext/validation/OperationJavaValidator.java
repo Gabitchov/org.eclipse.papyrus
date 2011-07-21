@@ -152,7 +152,7 @@ public class OperationJavaValidator extends AbstractOperationJavaValidator {
 						lower += range.getLower().getValue() ;
 					if (range.getUpper() != null)
 						upper += range.getUpper().getValue() ;
-					if (! upper.isEmpty()) {
+					if (! (upper.length() == 0)) {
 						if (upper.equals("*"))
 							upperValue = -1 ; // multiplicity is valid
 						else {
@@ -165,7 +165,7 @@ public class OperationJavaValidator extends AbstractOperationJavaValidator {
 							}
 						}
 					}
-					if (! lower.isEmpty()) {
+					if (! (lower.length() == 0)) {
 						if (lower.equals("*")) {
 							error("Invalid lower bound", range, OperationPackage.eINSTANCE.getMultiplicityRange_Lower(), INSIGNIFICANT_INDEX) ;
 							valid_return_parameter = true ;
@@ -244,7 +244,7 @@ public class OperationJavaValidator extends AbstractOperationJavaValidator {
 						lower += range.getLower().getValue() ;
 					if (range.getUpper() != null)
 						upper += range.getUpper().getValue() ;
-					if (! upper.isEmpty()) {
+					if (! (upper.length() == 0)) {
 						if (upper.equals("*"))
 							upperValue = -1 ; // multiplicity is valid
 						else {
@@ -257,7 +257,7 @@ public class OperationJavaValidator extends AbstractOperationJavaValidator {
 							}
 						}
 					}
-					if (! lower.isEmpty()) {
+					if (! (lower.length() == 0)) {
 						if (lower.equals("*")) {
 							error("Invalid lower bound", range, OperationPackage.eINSTANCE.getMultiplicityRange_Lower(), INSIGNIFICANT_INDEX) ;
 							valid_formal_parameters = false ;
