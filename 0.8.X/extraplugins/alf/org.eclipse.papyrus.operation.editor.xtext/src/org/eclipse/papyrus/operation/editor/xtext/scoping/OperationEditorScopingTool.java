@@ -707,6 +707,7 @@ public class OperationEditorScopingTool extends AbstractScopingTool{
 					nestedList = new ArrayList<EObject>() ;
 					if (AlfJavaValidator.getAlfStandardLibrary() != null) {
 						List<EObject> importedClassifiers = processPublicallyImportedClassifiers(AlfJavaValidator.getAlfStandardLibrary()) ;
+						/** to be uncommented when templates are supported
 						importedClassifiers.add(TypeUtils._Collection.extractActualType()) ;
 						importedClassifiers.add(TypeUtils._Set.extractActualType()) ;
 						importedClassifiers.add(TypeUtils._Bag.extractActualType()) ;
@@ -715,7 +716,7 @@ public class OperationEditorScopingTool extends AbstractScopingTool{
 						importedClassifiers.add(TypeUtils._List.extractActualType()) ;
 						importedClassifiers.add(TypeUtils._Deque.extractActualType()) ;
 						importedClassifiers.add(TypeUtils._Map.extractActualType()) ;
-						importedClassifiers.add(TypeUtils._Entry.extractActualType()) ;
+						importedClassifiers.add(TypeUtils._Entry.extractActualType()) ; */
 						nestedList.addAll(removeDuplicateClassifiers(importedClassifiers)) ;
 						nestedScopes.add(nestedList) ;
 					}

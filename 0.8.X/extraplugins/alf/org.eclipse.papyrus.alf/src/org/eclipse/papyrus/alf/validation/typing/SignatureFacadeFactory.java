@@ -130,7 +130,7 @@ public class SignatureFacadeFactory {
 						throw new Exception(errorMessage) ;
 					}
 					String potentialErrorMessage = constructor.isCompatibleWithMe(arguments, true) ;
-					if (potentialErrorMessage.isEmpty())
+					if (potentialErrorMessage.length() == 0)
 						return constructor ;
 					else
 						throw new Exception(potentialErrorMessage) ;
@@ -140,7 +140,7 @@ public class SignatureFacadeFactory {
 				//must match arguments with visible properties of the data type
 				SignatureFacade defaultDataTypeConstructor = new DefaultConstructorFacade((DataType)referencedType) ;
 				String errorMessage = defaultDataTypeConstructor.isCompatibleWithMe(arguments, true) ;
-				if (!errorMessage.isEmpty())
+				if (!(errorMessage.length() == 0))
 					throw new Exception(errorMessage) ;
 				else
 					return defaultDataTypeConstructor ;
@@ -269,7 +269,7 @@ public class SignatureFacadeFactory {
 					throw new Exception(errorMessage) ;
 				}
 				String potentialErrorMessage = constructor.isCompatibleWithMe(arguments, true) ;
-				if (potentialErrorMessage.isEmpty())
+				if (potentialErrorMessage.length() == 0)
 					return constructor ;
 				else
 					throw new Exception(potentialErrorMessage) ;

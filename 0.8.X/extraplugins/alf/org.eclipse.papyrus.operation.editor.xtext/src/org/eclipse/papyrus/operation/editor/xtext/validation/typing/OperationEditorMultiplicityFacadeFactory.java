@@ -47,7 +47,7 @@ public class OperationEditorMultiplicityFacadeFactory extends MultiplicityFacade
 				}
 				int lowerValue = 1 ;
 				int upperValue = 1 ;
-				if (!lower.isEmpty()) {
+				if (!(lower.length() == 0)) {
 					if (lower.equals("*"))
 						lowerValue = -1 ;
 					else {
@@ -57,7 +57,7 @@ public class OperationEditorMultiplicityFacadeFactory extends MultiplicityFacade
 						catch (Exception e) {}
 					}
 				}
-				if (!upper.isEmpty()) {
+				if (!(upper.length() == 0)) {
 					if (upper.equals("*")) {
 						upperValue = -1 ;
 					}
@@ -67,7 +67,7 @@ public class OperationEditorMultiplicityFacadeFactory extends MultiplicityFacade
 						}
 						catch (Exception e) {}
 					}
-					if (lower.isEmpty())
+					if (lower.length() == 0)
 						lowerValue = upperValue ;
 				}
 				boolean isOrdered ;
@@ -99,7 +99,7 @@ public class OperationEditorMultiplicityFacadeFactory extends MultiplicityFacade
 				}
 				int lowerValue = 1 ;
 				int upperValue = 1 ;
-				if (!lower.isEmpty()) {
+				if (!(lower.length() == 0)) {
 					if (lower.equals("*"))
 						lowerValue = -1 ;
 					else {
@@ -109,7 +109,7 @@ public class OperationEditorMultiplicityFacadeFactory extends MultiplicityFacade
 						catch (Exception e) {}
 					}
 				}
-				if (!upper.isEmpty()) {
+				if (!(upper.length() == 0)) {
 					if (upper.equals("*")) {
 						upperValue = -1 ;
 					}
@@ -119,7 +119,7 @@ public class OperationEditorMultiplicityFacadeFactory extends MultiplicityFacade
 						}
 						catch (Exception e) {}
 					}
-					if (lower.isEmpty())
+					if (lower.length() == 0)
 						lowerValue = upperValue ;
 				}
 				boolean isUnique ;

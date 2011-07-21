@@ -445,7 +445,7 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 						if (upperBoundExpression1 > 1 || upperBoundExpression1 == -1)
 							errorMessageForExpression1 += "A scalar value is expected" ;
 					}
-					if (!errorMessageForExpression1.isEmpty()) {
+					if (!(errorMessageForExpression1.length() == 0)) {
 						error(errorMessageForExpression1, loopVariable, AlfPackage.eINSTANCE.getLoopVariableDefinition_Expression1(), INSIGNIFICANT_INDEX) ;
 					}
 					TypeFacade typeFacadeOfExpression2 = typeOfExpression2.getTypeFacade() ;
@@ -461,7 +461,7 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 						if (upperBoundExpression2 > 1 || upperBoundExpression2 == -1)
 							errorMessageForExpression2 += "A scalar value is expected" ;
 					}
-					if (!errorMessageForExpression2.isEmpty()) {
+					if (!(errorMessageForExpression2.length() == 0)) {
 						error(errorMessageForExpression2, loopVariable, AlfPackage.eINSTANCE.getLoopVariableDefinition_Expression2(), INSIGNIFICANT_INDEX) ;
 					}
 				}
@@ -916,7 +916,7 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 					 && statement.getTypePart_OR_assignedPart_OR_invocationPart().getSuffix() == null) ||
 					(statement.getTypePart_OR_assignedPart_OR_invocationPart().getSequenceConstructionCompletion() != null) ||
 					(statement.getTypePart_OR_assignedPart_OR_invocationPart().getId()==null) ||
-					(statement.getTypePart_OR_assignedPart_OR_invocationPart().getId().isEmpty())) {
+					(statement.getTypePart_OR_assignedPart_OR_invocationPart().getId().length() == 0)) {
 				error("The assigned part must resolve to an assignable property, parameter or local variable", 
 						AlfPackage.eINSTANCE.getInvocationOrAssignementOrDeclarationStatement_TypePart_OR_assignedPart_OR_invocationPart()) ; 
 				return ;
@@ -928,7 +928,7 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 				AlfPartialScope varParamPropScope = AlfScopeProvider.scopingTool.getVisibleVariablesOrParametersOrProperties(statement) ;
 				EObject resolved = varParamPropScope.resolveByName(statement.getTypePart_OR_assignedPart_OR_invocationPart().getId()).get(0) ;
 				String potentialAssignmentError = AssignmentPolicy.eInstance.isAssignable(resolved) ;
-				if (!potentialAssignmentError.isEmpty()) {
+				if (!(potentialAssignmentError.length() == 0)) {
 					error(potentialAssignmentError, AlfPackage.eINSTANCE.getInvocationOrAssignementOrDeclarationStatement_TypePart_OR_assignedPart_OR_invocationPart()) ;
 					return ;
 				}
@@ -1108,7 +1108,7 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 			AlfPartialScope varParamPropScope = AlfScopeProvider.scopingTool.getVisibleVariablesOrParametersOrProperties(statement) ;
 			EObject resolved = varParamPropScope.resolveByName(statement.getTypePart_OR_assignedPart_OR_invocationPart().getId()).get(0) ;
 			String potentialAssignmentError = AssignmentPolicy.eInstance.isAssignable(resolved) ;
-			if (!potentialAssignmentError.isEmpty()) {
+			if (!(potentialAssignmentError.length() == 0)) {
 				error(potentialAssignmentError, AlfPackage.eINSTANCE.getInvocationOrAssignementOrDeclarationStatement_TypePart_OR_assignedPart_OR_invocationPart()) ;
 			}
 		}

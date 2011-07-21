@@ -12,7 +12,7 @@ public class NamingUtils {
 	 * @return true if the name is Java-compliant, false otherwise
 	 */
 	public static boolean isJavaCompliant(String name) {
-		if (name.isEmpty())
+		if (name.length() == 0)
 			return false ;
 		int firstChar = 0 ;
 		char[] dst = new char[name.length()] ;
