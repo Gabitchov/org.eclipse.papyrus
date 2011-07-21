@@ -45,13 +45,32 @@ import org.eclipse.uml2.uml.NamedElement;
 /** Query to set the derived attribute "master" of the requirement */
 public class SetRequirementMasterQuery implements IJavaModelQueryWithEditingDomain<Class, EObject> {
 
-	@Override
+	/**
+	 * 
+	 * @see org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery#evaluate(org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.emf.facet.infra.query.core.java.ParameterValueList)
+	 * 
+	 * @param context
+	 * @param parameterValues
+	 * @return
+	 * @throws ModelQueryExecutionException
+	 */
 	public EObject evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		// nothing to do
 		return null;
 	}
 
-	@Override
+	/**
+	 * 
+	 * @see org.eclipse.emf.facet.infra.query.core.java.IJavaModelQueryWithEditingDomain#evaluate(org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.emf.facet.infra.query.core.java.ParameterValueList, org.eclipse.emf.edit.domain.EditingDomain)
+	 * 
+	 * @param context
+	 * @param parameterValues
+	 * @param editingDomain
+	 * @return
+	 * @throws ModelQueryExecutionException
+	 */
 	public EObject evaluate(Class context, ParameterValueList parameterValues, EditingDomain editingDomain) throws ModelQueryExecutionException {
 		CompositeCommand cmd = new CompositeCommand("Edit the derived attribute /master"); //$NON-NLS-1$
 		ModelQueryParameterValue object = parameterValues.get(0);

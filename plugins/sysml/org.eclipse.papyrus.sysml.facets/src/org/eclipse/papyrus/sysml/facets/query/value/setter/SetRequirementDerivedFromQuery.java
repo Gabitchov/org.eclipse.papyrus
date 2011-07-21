@@ -55,7 +55,6 @@ public class SetRequirementDerivedFromQuery implements IJavaModelQueryWithEditin
 	 * @return
 	 * @throws ModelQueryExecutionException
 	 */
-	@Override
 	public EObject evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		//nothing to do
 		return null;
@@ -72,7 +71,6 @@ public class SetRequirementDerivedFromQuery implements IJavaModelQueryWithEditin
 	 * @return
 	 * @throws ModelQueryExecutionException
 	 */
-	@Override
 	public EObject evaluate(final Class context, final ParameterValueList parameter, final EditingDomain editingDomain) throws ModelQueryExecutionException {
 		CompositeCommand cmd = new CompositeCommand("Edit the feature /DerivedFrom"); //$NON-NLS-1$
 		/*
