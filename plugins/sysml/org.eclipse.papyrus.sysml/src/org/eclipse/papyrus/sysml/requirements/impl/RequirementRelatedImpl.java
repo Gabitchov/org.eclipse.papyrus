@@ -258,25 +258,28 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 	 * @generated NOT
 	 */
 	public EList<Requirement> getTracedFrom() {
-		// This should return the Requirement clients of any Trace link targeting current
-		// RequirementRelated
+
+		// Derived from all requirements that are supplier of a "trace" relationship for 
+		// which this element is a client.
+		// "trace" subtypes are not included (see bug #352563).
 		EList<Requirement> tracedFrom = new BasicEList<Requirement>();
 		Trace currentTrace = null;
 
 		if(getBase_NamedElement() != null) {
 			// Find Trace link
-			EList<DirectedRelationship> relationships = getBase_NamedElement().getTargetDirectedRelationships();
+			EList<DirectedRelationship> relationships = getBase_NamedElement().getSourceDirectedRelationships();
 			Iterator<DirectedRelationship> itDep = relationships.iterator();
 
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
-				currentTrace = (Trace)ElementUtil.hasStereotype(currentDRelationship, StandardPackage.eINSTANCE.getTrace());
+				currentTrace = ElementUtil.getStereotypeApplication(currentDRelationship, Trace.class);
 
-				if(currentTrace != null) {
-					EList<NamedElement> clients = currentTrace.getBase_Abstraction().getClients();
+				// Must be a Trace not a subtype (see bug #352563).
+				if((currentTrace != null) && (currentTrace.eClass() == StandardPackage.eINSTANCE.getTrace())) {
+					EList<NamedElement> clients = currentTrace.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = clients.iterator();
 					while(it.hasNext()) {
-						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(), RequirementsPackage.eINSTANCE.getRequirement());
+						Requirement currentRequirement = ElementUtil.getStereotypeApplication(it.next(), Requirement.class);
 						if(currentRequirement != null) {
 							tracedFrom.add(currentRequirement);
 						}

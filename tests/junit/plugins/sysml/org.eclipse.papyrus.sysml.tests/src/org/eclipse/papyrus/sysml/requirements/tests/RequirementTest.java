@@ -552,25 +552,25 @@ public class RequirementTest extends TestCase {
 		}
 
 		// DeriveReqt / Verify / Copy inherits from Trace
-		// Test getter through Copy
-		if(!master_req.getTracedTo().contains(copy)) {
+		// Test getter through Copy (should not be taken into account see bug #352563)
+		if(master_req.getTracedTo().contains(copy)) {
 			fail();
 		}
 
 		// Test getter through DeriveReqt (tracedTo = Clients)
-		// derived1 -> [derive1_req, derive2_req]
-		// derived2 -> [derive2_req]
-		if(!derive1_req.getTracedTo().contains(derived1)) {
+		// derived1 -> [derive1_req, derive2_req] (should not be taken into account see bug #352563)
+		// derived2 -> [derive2_req] (should not be taken into account see bug #352563)
+		if(derive1_req.getTracedTo().contains(derived1)) {
 			fail();
 		}
-		if(!derive2_req.getTracedTo().contains(derived1)) {
+		if(derive2_req.getTracedTo().contains(derived1)) {
 			fail();
 		}
-		if(!derive2_req.getTracedTo().contains(derived2)) {
+		if(derive2_req.getTracedTo().contains(derived2)) {
 			fail();
 		}
 
-		// Test getter through Verify
+		// Test getter through Verify (should not be taken into account see bug #352563)
 		// Should not happen...
 
 		// Direct test

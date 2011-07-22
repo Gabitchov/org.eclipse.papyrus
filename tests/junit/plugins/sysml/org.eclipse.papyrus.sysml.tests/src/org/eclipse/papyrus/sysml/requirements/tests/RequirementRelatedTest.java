@@ -16,6 +16,7 @@ package org.eclipse.papyrus.sysml.requirements.tests;
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
+import org.eclipse.papyrus.sysml.requirements.Copy;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementRelated;
 import org.eclipse.papyrus.sysml.requirements.RequirementsFactory;
@@ -65,6 +66,17 @@ public class RequirementRelatedTest extends TestCase {
 	protected Model model = null;
 
 	// ////////////////////////////////////////////////////////////////////
+
+	protected Class copy = null;
+
+	protected Class master = null;
+
+	protected Requirement copy_req = null;
+
+	protected Requirement master_req = null;
+
+	protected RequirementRelated copy_reqR = null;
+
 	protected Requirement trace1_req = null;
 
 	protected Requirement trace2_req = null;
@@ -171,18 +183,35 @@ public class RequirementRelatedTest extends TestCase {
 		// Add "Trace" (Abstraction)
 		// trace1, trace2 -> traced
 		Abstraction t11 = UMLFactory.eINSTANCE.createAbstraction();
-		t11.getClients().add(trace1);
-		t11.getSuppliers().add(traced);
+		t11.getClients().add(traced);
+		t11.getSuppliers().add(trace1);
 		model.getPackagedElements().add(t11);
 		@SuppressWarnings("unused")
 		Trace t_t11 = (Trace)t11.applyStereotype(t11.getApplicableStereotype(StandardResource.TRACE_ID));
 
 		Abstraction t12 = UMLFactory.eINSTANCE.createAbstraction();
-		t12.getClients().add(trace2);
-		t12.getSuppliers().add(traced);
+		t12.getClients().add(traced);
+		t12.getSuppliers().add(trace2);
 		model.getPackagedElements().add(t12);
 		@SuppressWarnings("unused")
 		Trace t_t12 = (Trace)t12.applyStereotype(t12.getApplicableStereotype(StandardResource.TRACE_ID));
+
+		master = model.createOwnedClass("master", false);
+		master_req = (Requirement)master.applyStereotype(master.getApplicableStereotype(SysmlResource.REQUIREMENT_ID));
+
+		copy = model.createOwnedClass("copy", false);
+		copy_req = (Requirement)copy.applyStereotype(copy.getApplicableStereotype(SysmlResource.REQUIREMENT_ID));
+		copy_reqR = (RequirementRelated)copy.applyStereotype(copy.getApplicableStereotype(SysmlResource.REQUIREMENT_RELATED_ID));
+
+		// Add "copy" (Abstraction) between master and copy
+		// copy -> master
+		Abstraction c_m = UMLFactory.eINSTANCE.createAbstraction();
+		c_m.getClients().add(copy);
+		c_m.getSuppliers().add(master);
+		model.getPackagedElements().add(c_m);
+		@SuppressWarnings("unused")
+		Copy copy_c_m = (Copy)c_m.applyStereotype(c_m.getApplicableStereotype(SysmlResource.COPY_ID));
+
 
 		// ////////////////////////////////////////////////////////////////////
 
@@ -353,6 +382,12 @@ public class RequirementRelatedTest extends TestCase {
 			fail();
 		}
 		if(!traced_reqR.getTracedFrom().contains(trace2_req)) {
+			fail();
+		}
+
+		// Should not include Trace subtypes clients
+		// Test getter through Copy (should not be taken into account see bug #352563)
+		if(copy_reqR.getTracedFrom().contains(master)) {
 			fail();
 		}
 	}
