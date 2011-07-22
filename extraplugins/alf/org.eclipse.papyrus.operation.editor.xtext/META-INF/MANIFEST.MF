@@ -29,7 +29,9 @@ Export-Package: org.eclipse.papyrus.operation.editor.xtext,
  org.eclipse.papyrus.operation.editor.xtext.parseTreeConstruction,
  org.eclipse.papyrus.operation.editor.xtext.parser.antlr,
  org.eclipse.papyrus.operation.editor.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.operation.editor.xtext.scoping,
  org.eclipse.papyrus.operation.editor.xtext.services,
  org.eclipse.papyrus.operation.editor.xtext.utils,
- org.eclipse.papyrus.operation.editor.xtext.validation
+ org.eclipse.papyrus.operation.editor.xtext.validation,
+ org.eclipse.papyrus.operation.editor.xtext.validation.typing
 
