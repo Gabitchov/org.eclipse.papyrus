@@ -38,7 +38,6 @@ public class Messages extends NLS
 
     public static String SelectTypeAction_SelectionActionTooltype;
 
-   
     static
     {
         // initialize resource bundle
