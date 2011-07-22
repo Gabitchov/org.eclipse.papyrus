@@ -68,6 +68,9 @@
          <toolbar
                toolbarID="org.eclipse.emf.facet.widgets.nattable.workbench.editor.NatTableEditor.toolbar">
          </toolbar>
+         <category
+               categoryID="org.eclipse.emf.facet.widgets.nattable.command.category">
+         </category>
       </configuration>
    </extension>
 
