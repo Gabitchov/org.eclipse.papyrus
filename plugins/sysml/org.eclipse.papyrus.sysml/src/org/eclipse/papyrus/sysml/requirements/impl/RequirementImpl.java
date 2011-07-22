@@ -471,9 +471,10 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 			// Find Trace link
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDR = itDep.next();
-				currentTrace = (Trace)ElementUtil.hasStereotype(currentDR, StandardPackage.eINSTANCE.getTrace());
+				currentTrace = ElementUtil.getStereotypeApplication(currentDR, Trace.class);
 
-				if(currentTrace != null) {
+				// Must be a Trace not a subtype (see bug #352563).
+				if((currentTrace != null) && (currentTrace.eClass() == StandardPackage.eINSTANCE.getTrace())) {
 					EList<NamedElement> suppliers = currentTrace.getBase_Abstraction().getClients();
 					tracedTo.addAll(suppliers);
 				}
