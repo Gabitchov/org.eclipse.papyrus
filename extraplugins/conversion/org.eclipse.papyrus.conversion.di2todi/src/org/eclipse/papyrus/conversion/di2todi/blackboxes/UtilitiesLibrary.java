@@ -191,7 +191,7 @@ public class UtilitiesLibrary {
 			return getElement (semanticModel);
 		}
 		else {
-			System.err.println("no bridge found for di2Node" + di2Element);
+			// System.err.println("no bridge found for di2Node: " + di2Element);
 		}
 		return null;
 	}
@@ -219,7 +219,7 @@ public class UtilitiesLibrary {
 			}
 		}
 		else {
-			System.err.println("no element found");
+			// System.err.println("no element found");
 		}
 		return element;
 	}
