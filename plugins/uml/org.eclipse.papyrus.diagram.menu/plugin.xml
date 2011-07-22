@@ -3134,6 +3134,7 @@
       </state>
    </command>
    <command
+         categoryId="org.eclipse.papyrus.editor.category"
          description="The command to recalculate the Page Breaks"
          id="org.eclipse.papyrus.diagram.menu.commands.RecalculatePageBreaksCommand"
          name="Recalculate Page Breaks Command">
