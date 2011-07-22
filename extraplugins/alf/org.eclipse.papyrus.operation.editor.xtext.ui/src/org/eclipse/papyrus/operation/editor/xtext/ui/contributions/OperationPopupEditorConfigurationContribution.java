@@ -165,7 +165,7 @@ public class OperationPopupEditorConfigurationContribution extends
 				break ;
 			}
 		}
-		if (label.isEmpty()) {
+		if (label.length() == 0) {
 			label += generateLabel(operation) ;
 		}
 		return label ;
