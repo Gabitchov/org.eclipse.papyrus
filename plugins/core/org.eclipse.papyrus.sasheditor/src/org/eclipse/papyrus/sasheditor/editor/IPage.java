@@ -30,7 +30,7 @@ public interface IPage {
 	 * @return
 	 */
 	public Image getPageIcon();
-
+	
 	/**
 	 * Get the raw model corresponding to this node.
 	 * This is the object provided to {@link ITabFolderModel.getChildren()}

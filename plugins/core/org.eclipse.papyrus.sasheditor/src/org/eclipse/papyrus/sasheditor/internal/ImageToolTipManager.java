@@ -15,6 +15,10 @@ package org.eclipse.papyrus.sasheditor.internal;
 
 import java.util.logging.Logger;
 
+import org.eclipse.papyrus.sasheditor.controlimage.SimpleDynamicImageCache;
+import org.eclipse.papyrus.sasheditor.editor.IPageImageUtils;
+import org.eclipse.papyrus.sasheditor.internal.preferences.ITabTooltipPreferences;
+import org.eclipse.papyrus.sasheditor.internal.preferences.TabTooltipPreferences;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.graphics.GC;
@@ -38,6 +42,8 @@ public class ImageToolTipManager {
 	/** Log object */
 	Logger log = Logger.getLogger(getClass().getName());
 
+	protected ITabTooltipPreferences settings = new TabTooltipPreferences();
+	
 	/** */
 	private Control toolTipedControl;
 
@@ -59,6 +65,11 @@ public class ImageToolTipManager {
 	 * 
 	 */
 	private Shell tip = null;
+	
+	/**
+	 * Cached value of the image. Use to do dispose when closing.
+	 */
+	private Image image = null;
 
 	/**
 	 * Constructor.
@@ -67,6 +78,12 @@ public class ImageToolTipManager {
 		// TODO Auto-generated constructor stub
 	}
 
+	private void resetTimer() {
+		if( settings.getTooltipAutoCloseDelay() == -1)
+			return;
+		
+		// do reset timer
+	}
 	/**
 	 * Close the tooltip and dispose it.
 	 */
@@ -74,6 +91,10 @@ public class ImageToolTipManager {
 		if(tip != null) {
 			tip.dispose();
 			tip = null;
+		}
+		if(image != null) {
+			image.dispose();
+			image = null;
 		}
 		toolTipedControl = null;
 
@@ -92,6 +113,10 @@ public class ImageToolTipManager {
 			tip.dispose();
 			tip = null;
 		}
+		if(image != null) {
+			image.dispose();
+			image = null;
+		}
 		// Keep the control for future checking.
 	}
 
@@ -104,74 +129,66 @@ public class ImageToolTipManager {
 			tip.dispose();
 			tip = null;
 		}
+		if(image != null) {
+			image.dispose();
+			image = null;
+		}
 		toolTipedControl = null;
 	}
 
 	/**
-	 * Show the tooltip for the part. Check if the tooltip should be reopen, or use the
-	 * previously open one.
+	 * Ask to show the tooltip.
+	 * First check if preferences allows to show tooltip.
 	 * 
-	 * @param relatedControlBounds
-	 *        Bounds of the control for which the tooltip should be shown.
-	 * @param part
-	 *        The part for which a tooltip should be shown.
+	 * @param pagePart The PagePart for which a ToolTip should be opened.
+	 * @param flyedControl The control that trigger the tooltip opening
 	 * @param mousePos
-	 *        Position of the mouse.
 	 */
-	public void showToolTip(Rectangle relatedControlBounds, Control control, Point mousePos) {
-		if(toolTipedControl == control) {
-			// resetTimer()
+	public void showToolTip(PagePart pagePart, Rectangle flyedControlBounds, Point mousePos) {
+		
+		// If tooltip is already showing for this control, skip.
+		if(toolTipedControl ==  pagePart.getControl()) {
+			resetTimer();
 			return;
 		}
 
-		openToolTip(relatedControlBounds, control, mousePos);
-
+		if( ! settings.isTooltipEnable() )
+			return;
+		
+		// Check if we are showing the tooltip for current tab.
+		if( ! settings.isTooltipForCurrentTabShown() && pagePart.getParent().getVisiblePagePart() == pagePart ) {
+			// close current tooltip if any
+			closeToolTip();
+			return;
+		}
+		
+		doShowToolTip(pagePart, flyedControlBounds, mousePos);
 	}
 
 	/**
-	 * Show the tooltip for the part. Check if the tooltip should be reopen, or use the
-	 * previously open one.
-	 * 
-	 * @param relatedControlBounds
-	 *        Bounds of the control for which the tooltip should be shown.
-	 * @param toolTipImage
-	 *        The image used as tooltip.
+	 * Do show th tooltip, unless we can't get an image for the part.
+	 * @param pagePart
+	 * @param flyedControlBounds
 	 * @param mousePos
-	 *        Position of the mouse.
 	 */
-	public void showToolTip(Rectangle relatedControlBounds, Image toolTipImage, Point mousePos) {
-		throw new UnsupportedOperationException("Not yet implemented");
-		//		if(toolTipedControl == control)
-		//		{
-		//			// resetTimer()
-		//			return;
-		//		}
-		//		
-		//		openToolTip(relatedControlBounds, control, mousePos);
-
-	}
-
-	/**
-	 * Open the toolTip at the specified position.
-	 * 
-	 * @param part
-	 * @param atPoint
-	 */
-	private void openToolTip(Rectangle relatedControlBounds, Control control, Point atPoint) {
-		toolTipedControl = control;
-		float scaleFactor = .5f;
-
-		Image image = createControlImage(control);
+	private void doShowToolTip(PagePart pagePart, Rectangle flyedControlBounds, Point mousePos) {
+		Image image = getPageImage(pagePart);
 		if(image == null)
 			return;
 
-		Image scaledImage = scaledImage(control.getDisplay(), image, scaleFactor);
+		toolTipedControl = pagePart.getControl();
+		// Change image scale
+		float scaleFactor = settings.getScaledFactor(); //.5f;
+		Image scaledImage = scaledImage(pagePart.getControl().getDisplay(), image, scaleFactor);
 		image.dispose();
 
-		Point pos = computeToolTipPosition(relatedControlBounds, atPoint, scaledImage.getBounds());
-		openToolTip(control, scaledImage, pos);
+		// Remember the image to be able to dispose it.
+		this.image = scaledImage;
+		
+		Point pos = computeToolTipPosition(flyedControlBounds, mousePos, scaledImage.getBounds());
+		openToolTip(pagePart.getControl(), scaledImage, pos);
 	}
-
+	
 	/**
 	 * Compute the tooltip position.
 	 * 
@@ -312,8 +329,19 @@ public class ImageToolTipManager {
 		tr.scale(factor, factor);
 		gc.setTransform(tr);
 		gc.drawImage(image, 0, 0);
+		gc.dispose();
 		tr.dispose();
 		return scaledImage;
 	}
 
+	/**
+	 * get the Image for the page.
+	 * @param pagePart
+	 * @return
+	 */
+	private Image getPageImage( PagePart pagePart ) {
+		
+		return IPageImageUtils.getPageImage(pagePart);
+	}
+	
 }

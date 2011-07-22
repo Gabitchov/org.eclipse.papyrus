@@ -302,6 +302,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 
 		deactivate();
 		
+		
 //		getControl().dispose();
 		pTabFolder.dispose();
 	}
@@ -1133,13 +1134,15 @@ public class TabFolderPart extends AbstractTabFolderPart {
 				}
 
 				PagePart part = currentTabItems.get(index).getChildPart();
-				//				System.out.println("MouseHover(" + e.widget 
-				//						+ ", part=" + part.getPartTitle()
-				//						+ ", item=" + item
-				//						+ ") - " + count++);
+//								System.out.println("MouseHover(" + e.widget 
+//										+ ", part=" + part.getPageTitle()
+//										+ ", item=" + item
+//										+ ") - " + count++);
 				// TODO move it away 
-				toolTipManager.showToolTip(item.getBounds(), part.getControl(), pt);
+				//toolTipManager.showToolTip(item.getBounds(), part.getControl(), pt);
+				toolTipManager.showToolTip(part, item.getBounds(), pt);
 			}
+			
 
 		};
 
@@ -1183,6 +1186,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 			control.removeListener(SWT.MouseUp, mouseClickedListener);
 			toolTipManager.dispose();
 		}
+		
+
 	}
 
 }
