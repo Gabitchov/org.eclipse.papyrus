@@ -15,52 +15,51 @@ package org.eclipse.papyrus.widget.celleditors.uml.editors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.facet.widgets.celleditors.IListener;
 import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditHandler;
-import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditor;
-import org.eclipse.papyrus.widget.celleditors.uml.composite.EnumerationComposite;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.uml2.uml.EnumerationLiteral;
 
-/**
- * A cell editor for String
- */
-public class EnumerationLiteralCellEditor implements IModelCellEditor {
 
-	/** the composite */
-	private EnumerationComposite composite = null;
+public class LiteralUnlimitedNaturalCellEditor extends IntCellEditor {
+
+	/** the original value */
+	private Object originalValue;
 
 	/**
 	 * 
-	 * @see org.eclipse.emf.facet.widgets.celleditors.IModelCellEditor#activateCell(org.eclipse.swt.widgets.Composite, java.lang.Object,
+	 * @see org.eclipse.papyrus.widget.celleditors.uml.editors.IntCellEditor#activateCell(org.eclipse.swt.widgets.Composite, java.lang.Object,
 	 *      org.eclipse.emf.facet.widgets.celleditors.IModelCellEditHandler, org.eclipse.emf.ecore.EStructuralFeature, org.eclipse.emf.ecore.EObject)
 	 * 
-	 *      {@inheritDoc}
+	 * @param parent
+	 * @param originalValue
+	 * @param editHandler
+	 * @param feature
+	 * @param source
+	 * @return
 	 */
-	public Control activateCell(final Composite parent, final Object originalValue, final IModelCellEditHandler editHandler, final EStructuralFeature feature, final EObject source) {
-		this.composite = new EnumerationComposite(parent);
-		this.composite.setEnumeration(((EnumerationLiteral)originalValue).getEnumeration());
-		this.composite.setValue((EnumerationLiteral)originalValue);
-		this.composite.addCommitListener(new IListener() {
-
-			public void handleEvent() {
-				editHandler.commit();
-			}
-		});
-		return this.composite;
+	@Override
+	public Control activateCell(Composite parent, Object originalValue, IModelCellEditHandler editHandler, EStructuralFeature feature, EObject source) {
+		this.originalValue = originalValue;
+		return super.activateCell(parent, originalValue, editHandler, feature, source);
 	}
-
 	/**
 	 * 
 	 * @see org.eclipse.emf.facet.widgets.celleditors.IModelCellEditor#getValue()
 	 * 
-	 *      {@inheritDoc}
+	 * @return
 	 */
+	@Override
 	public Object getValue() {
 		if(this.composite != null) {
-			return this.composite.getValue();
+			Object value = this.composite.getValue();
+			if(value instanceof Integer) {
+				Integer integer = (Integer)value;
+				if(integer.intValue() >= -1) {
+					return integer;
+				}
+			}
 		}
-		return null;
+		return this.originalValue;
 	}
+
 }

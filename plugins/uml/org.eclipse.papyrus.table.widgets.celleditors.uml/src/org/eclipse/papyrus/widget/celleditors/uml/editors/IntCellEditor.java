@@ -20,7 +20,7 @@ public class IntCellEditor implements IModelCellEditor {
 	/**
 	 * The boolean composite
 	 */
-	private AbstractCellEditorComposite<Integer> composite = null;
+	protected AbstractCellEditorComposite<Integer> composite = null;
 
 	/**
 	 * 
