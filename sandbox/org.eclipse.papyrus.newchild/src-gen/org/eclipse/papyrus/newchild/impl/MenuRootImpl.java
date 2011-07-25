@@ -65,7 +65,7 @@ public class MenuRootImpl extends MenuContainerImpl implements MenuRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int ELEMENT_MULTIPLICITY_EDEFAULT = 0;
+	protected static final int ELEMENT_MULTIPLICITY_EDEFAULT = 1;
 
 	/**
 	 * The cached value of the '{@link #getElementMultiplicity() <em>Element Multiplicity</em>}' attribute.

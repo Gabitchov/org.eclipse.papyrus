@@ -1,23 +1,35 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.newchild.menu;
 
 import org.eclipse.papyrus.extendedtypes.Activator;
 import org.eclipse.papyrus.newchild.CustomFiller;
 import org.eclipse.papyrus.newchild.Menu;
+import org.eclipse.papyrus.newchild.MenuAction;
 import org.eclipse.papyrus.newchild.MenuContainer;
 import org.eclipse.papyrus.newchild.MenuGroup;
 import org.eclipse.papyrus.newchild.MenuItem;
 import org.eclipse.papyrus.newchild.MenuRoot;
-import org.eclipse.papyrus.newchild.NewChildMenu;
 import org.eclipse.papyrus.newchild.Separator;
+import org.eclipse.papyrus.newchild.ncpolicy.NewEMFChildMenu;
 
 
 public class FillerFactory {
 
 	public static FillerFactory instance = new FillerFactory();
 
-	public FillElement getFiller(MenuGroup parentGroup, MenuItem menuItem, Object selectedObject) {
-		if(menuItem instanceof NewChildMenu) {
-			return new FillNewChild(parentGroup, (NewChildMenu)menuItem, selectedObject);
+	public FillElement getFiller(FillMenuGroup parentGroup, MenuItem menuItem, Object selectedObject) {
+		if(menuItem instanceof NewEMFChildMenu) {
+			return new FillNewChild(parentGroup, (NewEMFChildMenu)menuItem, selectedObject);
 		}
 
 		if(menuItem instanceof Separator) {
@@ -26,6 +38,10 @@ public class FillerFactory {
 
 		if(menuItem instanceof Menu) {
 			return new FillMenu(parentGroup, (Menu)menuItem, selectedObject);
+		}
+
+		if(menuItem instanceof MenuAction) {
+			return new FillMenuAction(parentGroup, (MenuAction)menuItem, selectedObject);
 		}
 
 		if(menuItem instanceof CustomFiller) {
@@ -51,6 +67,7 @@ public class FillerFactory {
 			}
 		}
 
+		Activator.log.warn("Unknown MenuItem type : " + menuItem.eClass().getName());
 		return null;
 	}
 

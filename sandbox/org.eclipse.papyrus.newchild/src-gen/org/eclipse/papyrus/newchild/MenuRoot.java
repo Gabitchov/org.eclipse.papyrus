@@ -7,8 +7,8 @@
 package org.eclipse.papyrus.newchild;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.papyrus.constraints.DisplayUnit;
 
+import org.eclipse.papyrus.constraints.DisplayUnit;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +28,6 @@ import org.eclipse.papyrus.constraints.DisplayUnit;
  * @generated
  */
 public interface MenuRoot extends MenuContainer, DisplayUnit {
-
 	/**
 	 * Returns the value of the '<em><b>Groups</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.newchild.MenuGroup}.
@@ -70,4 +69,5 @@ public interface MenuRoot extends MenuContainer, DisplayUnit {
 	 * @generated
 	 */
 	void setName(String value);
+
 } // MenuRoot

@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.newchild.MenuRoot;
 import org.eclipse.papyrus.newchild.NewchildConfiguration;
 import org.eclipse.papyrus.newchild.NewchildPackage;
+import org.eclipse.papyrus.newchild.ncpolicy.NewChildPolicySet;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,6 +36,7 @@ import org.eclipse.papyrus.newchild.NewchildPackage;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.newchild.impl.NewchildConfigurationImpl#getRoots <em>Roots</em>}</li>
  *   <li>{@link org.eclipse.papyrus.newchild.impl.NewchildConfigurationImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.newchild.impl.NewchildConfigurationImpl#getNewChildPolicies <em>New Child Policies</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,6 +62,7 @@ public class NewchildConfigurationImpl extends EObjectImpl implements NewchildCo
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -69,6 +72,16 @@ public class NewchildConfigurationImpl extends EObjectImpl implements NewchildCo
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getNewChildPolicies() <em>New Child Policies</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNewChildPolicies()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<NewChildPolicySet> newChildPolicies;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -127,11 +140,25 @@ public class NewchildConfigurationImpl extends EObjectImpl implements NewchildCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<NewChildPolicySet> getNewChildPolicies() {
+		if (newChildPolicies == null) {
+			newChildPolicies = new EObjectContainmentEList<NewChildPolicySet>(NewChildPolicySet.class, this, NewchildPackage.NEWCHILD_CONFIGURATION__NEW_CHILD_POLICIES);
+		}
+		return newChildPolicies;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case NewchildPackage.NEWCHILD_CONFIGURATION__ROOTS:
 				return ((InternalEList<?>)getRoots()).basicRemove(otherEnd, msgs);
+			case NewchildPackage.NEWCHILD_CONFIGURATION__NEW_CHILD_POLICIES:
+				return ((InternalEList<?>)getNewChildPolicies()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -148,6 +175,8 @@ public class NewchildConfigurationImpl extends EObjectImpl implements NewchildCo
 				return getRoots();
 			case NewchildPackage.NEWCHILD_CONFIGURATION__NAME:
 				return getName();
+			case NewchildPackage.NEWCHILD_CONFIGURATION__NEW_CHILD_POLICIES:
+				return getNewChildPolicies();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -168,6 +197,10 @@ public class NewchildConfigurationImpl extends EObjectImpl implements NewchildCo
 			case NewchildPackage.NEWCHILD_CONFIGURATION__NAME:
 				setName((String)newValue);
 				return;
+			case NewchildPackage.NEWCHILD_CONFIGURATION__NEW_CHILD_POLICIES:
+				getNewChildPolicies().clear();
+				getNewChildPolicies().addAll((Collection<? extends NewChildPolicySet>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -186,6 +219,9 @@ public class NewchildConfigurationImpl extends EObjectImpl implements NewchildCo
 			case NewchildPackage.NEWCHILD_CONFIGURATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case NewchildPackage.NEWCHILD_CONFIGURATION__NEW_CHILD_POLICIES:
+				getNewChildPolicies().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -202,6 +238,8 @@ public class NewchildConfigurationImpl extends EObjectImpl implements NewchildCo
 				return roots != null && !roots.isEmpty();
 			case NewchildPackage.NEWCHILD_CONFIGURATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case NewchildPackage.NEWCHILD_CONFIGURATION__NEW_CHILD_POLICIES:
+				return newChildPolicies != null && !newChildPolicies.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -1,35 +1,35 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.newchild.util;
 
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.papyrus.newchild.MenuGroup;
-import org.eclipse.papyrus.newchild.runtime.NewchildManager;
+import org.eclipse.papyrus.newchild.menu.FillMenuGroup;
 
 
 public class MenuHelper {
 
-	public static void add(MenuGroup group, IMenuManager manager, IContributionItem item) {
+	public static void add(FillMenuGroup group, IMenuManager manager, IContributionItem item) {
 		if(group == null) {
 			manager.add(item);
-		} else if(manager.find(group.getBefore()) != null) {
-			manager.insertBefore(group.getBefore(), item);
-		} else if(manager.find(group.getAfter()) != null) {
-			manager.insertAfter(group.getAfter(), item);
-		} else if(group.getAbsolutePosition() != null) {
-			switch(group.getAbsolutePosition()) {
-			case TOP:
-				if(manager.find(NewchildManager.TOP) != null) {
-					manager.insertBefore(NewchildManager.TOP, item);
-					break;
-				}
-			case BOTTOM:
-			default:
-				manager.add(item);
-				break;
-			}
 		} else {
-			manager.add(item);
+			manager.appendToGroup(group.getGroupId(), item);
 		}
+	}
+
+	public static void add(FillMenuGroup group, IMenuManager manager, Action action) {
+		add(group, manager, new ActionContributionItem(action));
 	}
 
 }

@@ -48,6 +48,7 @@ public interface DisplayUnit extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Element Multiplicity</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Element Multiplicity</em>' attribute isn't clear,
@@ -57,7 +58,7 @@ public interface DisplayUnit extends EObject {
 	 * @return the value of the '<em>Element Multiplicity</em>' attribute.
 	 * @see #setElementMultiplicity(int)
 	 * @see org.eclipse.papyrus.constraints.ConstraintsPackage#getDisplayUnit_ElementMultiplicity()
-	 * @model
+	 * @model default="1"
 	 * @generated
 	 */
 	int getElementMultiplicity();

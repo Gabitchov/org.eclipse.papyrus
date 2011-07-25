@@ -62,15 +62,6 @@ public interface NewchildFactory extends EFactory {
 	MenuAction createMenuAction();
 
 	/**
-	 * Returns a new object of class '<em>New Child Menu</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>New Child Menu</em>'.
-	 * @generated
-	 */
-	NewChildMenu createNewChildMenu();
-
-	/**
 	 * Returns a new object of class '<em>Separator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

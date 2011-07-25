@@ -9,6 +9,7 @@ package org.eclipse.papyrus.newchild;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.newchild.ncpolicy.NewChildPolicySet;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.newchild.NewchildConfiguration#getRoots <em>Roots</em>}</li>
  *   <li>{@link org.eclipse.papyrus.newchild.NewchildConfiguration#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.newchild.NewchildConfiguration#getNewChildPolicies <em>New Child Policies</em>}</li>
  * </ul>
  * </p>
  *
@@ -69,5 +71,21 @@ public interface NewchildConfiguration extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>New Child Policies</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.newchild.ncpolicy.NewChildPolicySet}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>New Child Policies</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>New Child Policies</em>' containment reference list.
+	 * @see org.eclipse.papyrus.newchild.NewchildPackage#getNewchildConfiguration_NewChildPolicies()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<NewChildPolicySet> getNewChildPolicies();
 
 } // NewchildConfiguration

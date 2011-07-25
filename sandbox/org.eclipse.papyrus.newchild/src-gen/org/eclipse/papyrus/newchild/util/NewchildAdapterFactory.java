@@ -98,10 +98,6 @@ public class NewchildAdapterFactory extends AdapterFactoryImpl {
 				return createMenuActionAdapter();
 			}
 			@Override
-			public Adapter caseNewChildMenu(NewChildMenu object) {
-				return createNewChildMenuAdapter();
-			}
-			@Override
 			public Adapter caseSeparator(Separator object) {
 				return createSeparatorAdapter();
 			}
@@ -218,20 +214,6 @@ public class NewchildAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMenuActionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.newchild.NewChildMenu <em>New Child Menu</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.newchild.NewChildMenu
-	 * @generated
-	 */
-	public Adapter createNewChildMenuAdapter() {
 		return null;
 	}
 

@@ -1,9 +1,23 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.newchild.menu;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -15,11 +29,17 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.papyrus.newchild.ElementPosition;
+import org.eclipse.papyrus.newchild.Activator;
 import org.eclipse.papyrus.newchild.MenuGroup;
-import org.eclipse.papyrus.newchild.NewChildKind;
-import org.eclipse.papyrus.newchild.NewChildMenu;
+import org.eclipse.papyrus.newchild.NewchildConfiguration;
 import org.eclipse.papyrus.newchild.action.CreateChildAction;
+import org.eclipse.papyrus.newchild.ncpolicy.CreateIn;
+import org.eclipse.papyrus.newchild.ncpolicy.Layout;
+import org.eclipse.papyrus.newchild.ncpolicy.NewChildPolicySet;
+import org.eclipse.papyrus.newchild.ncpolicy.NewEMFChildMenu;
+import org.eclipse.papyrus.newchild.policies.NewChildFillPolicy;
+import org.eclipse.papyrus.newchild.policies.PolicyManager;
+import org.eclipse.papyrus.newchild.policies.PolicyMatcher;
 import org.eclipse.papyrus.newchild.runtime.DisabledContributionItem;
 import org.eclipse.papyrus.newchild.util.EMFHelper;
 import org.eclipse.papyrus.newchild.util.MenuHelper;
@@ -31,19 +51,31 @@ public class FillNewChild extends FillMenu implements FillElement {
 
 	protected EObject selectedEObject;
 
-	protected NewChildMenu menu;
+	protected NewEMFChildMenu menu;
 
-	public FillNewChild(MenuGroup parentGroup, NewChildMenu menu, Object selectedObject) {
+	//private static PolicyManager policyManager;
+
+	private PolicyManager policyManager;
+
+	public FillNewChild(FillMenuGroup parentGroup, NewEMFChildMenu menu, Object selectedObject) {
 		super(parentGroup, menu, selectedObject);
 		this.menu = menu;
 		this.selectedEObject = EMFHelper.getEObject(selectedObject);
+
+		//TODO : Extract that to a static instance, and load with extension point
+		policyManager = new PolicyManager();
+		try {
+			NewchildConfiguration configuration = (NewchildConfiguration)EMFHelper.loadEMFModel(null, URI.createPlatformResourceURI("org.eclipse.papyrus.newchild/Model/NewchildConfiguration.xmi", true));
+			policyManager.addConfiguration(configuration);
+		} catch (IOException ex) {
+			Activator.log.error(ex);
+		}
 	}
 
 	@Override
 	public void fill(IMenuManager menuManager) {
-
 		EObject parentEObject = selectedEObject;
-		if(menu.getPosition() == ElementPosition.SIBLING) {
+		if(menu.getCreateIn() == CreateIn.PARENT) {
 			if(selectedEObject != null) {
 				parentEObject = selectedEObject.eContainer();
 			}
@@ -60,8 +92,7 @@ public class FillNewChild extends FillMenu implements FillElement {
 			return;
 		}
 
-		MenuManager createChildMenu = new MenuManager(menu.getName(), Util.getImage(menu), menu.getId());
-		MenuHelper.add(parentGroup, menuManager, createChildMenu);
+		IMenuManager createChildMenu = getSubMenu(menuManager);
 
 		Map<EStructuralFeature, List<EClass>> instantiableClasses = new HashMap<EStructuralFeature, List<EClass>>();
 
@@ -72,12 +103,16 @@ public class FillNewChild extends FillMenu implements FillElement {
 			}
 		}
 
-		NewChildKind kind = getKind(instantiableClasses);
+		Layout layout = getLayout(instantiableClasses);
 
-		if(kind == NewChildKind.FLAT) {
+		Set<NewChildPolicySet> policySets = policyManager.getDisplayUnits(new StructuredSelection(parentEObject));
+		PolicyMatcher matcher = new PolicyMatcher();
+		matcher.setPolicies(policySets);
+
+		if(layout == Layout.FLAT) {
 			for(EStructuralFeature feature : instantiableClasses.keySet()) {
 				for(EClass eClass : instantiableClasses.get(feature)) {
-					addCreateActionToMenu(createChildMenu, parentEObject, eClass, (EReference)feature);
+					addActionToMenu(matcher, createChildMenu, parentEObject, eClass, feature);
 				}
 			}
 		} else { //Hierarchical
@@ -86,32 +121,56 @@ public class FillNewChild extends FillMenu implements FillElement {
 				createChildMenu.add(subMenu);
 
 				for(EClass eClass : instantiableClasses.get(feature)) {
-					addCreateActionToMenu(subMenu, parentEObject, eClass, (EReference)feature);
+					addActionToMenu(matcher, subMenu, parentEObject, eClass, feature);
 				}
+			}
+		}
+
+		super.fill(menuManager);
+
+		for(MenuGroup group : menu.getGroups()) {
+			FillerFactory.instance.getFiller(group, selectedObject).fill(createChildMenu);
+		}
+	}
+
+	protected void addActionToMenu(PolicyMatcher matcher, IMenuManager menu, EObject parentEObject, EClass eClass, EStructuralFeature feature) {
+		eClass = (EClass)eClass.getEPackage().getEClassifier(eClass.getName()); //Loads the EClass from the static resourceSet
+
+		List<NewChildFillPolicy> matchingPolicies = matcher.getMatchingPolicies(eClass, feature);
+		if(matchingPolicies.isEmpty()) {
+			addCreateActionToMenu(menu, parentEObject, eClass, (EReference)feature);
+		} else {
+			for(NewChildFillPolicy policy : matchingPolicies) {
+				policy.fill(menu, parentEObject, eClass, feature, parentEObject);
 			}
 		}
 	}
 
-	private NewChildKind getKind(Map<EStructuralFeature, List<EClass>> instantiableClasses) {
-		if(menu.getKind() != NewChildKind.AUTO) {
-			return menu.getKind();
+	@Override
+	protected IMenuManager getSubMenu(IMenuManager menuManager) {
+		return super.getSubMenu(menuManager);
+	}
+
+	private Layout getLayout(Map<EStructuralFeature, List<EClass>> instantiableClasses) {
+		if(menu.getLayout() != Layout.AUTO) {
+			return menu.getLayout();
 		}
 
 		if(instantiableClasses.size() < 2) {
-			return NewChildKind.FLAT;
+			return Layout.FLAT;
 		}
 
 		if(instantiableClasses.size() > 5) {
-			return NewChildKind.HIERARCHICAL;
+			return Layout.HIERARCHICAL;
 		}
 
 		for(List<EClass> eClasses : instantiableClasses.values()) {
 			if(eClasses.size() > 5) {
-				return NewChildKind.HIERARCHICAL;
+				return Layout.HIERARCHICAL;
 			}
 		}
 
-		return NewChildKind.FLAT;
+		return Layout.FLAT;
 	}
 
 	private void addCreateActionToMenu(IMenuManager menuManager, EObject parent, EClass createAs, EReference createIn) {
@@ -123,6 +182,7 @@ public class FillNewChild extends FillMenu implements FillElement {
 		CreateChildAction action = new CreateChildAction(domain, parent, createIn, createAs);
 		IStructuredSelection selection = new StructuredSelection(parent);
 		action.configureAction(selection);
+		action.setId(createIn.getName() + "#" + createAs.getName());
 		return action;
 	}
 

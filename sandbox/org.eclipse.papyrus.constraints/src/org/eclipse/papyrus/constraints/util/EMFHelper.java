@@ -117,12 +117,6 @@ public class EMFHelper {
 		List<EClass> superTypes = eClass.getEAllSuperTypes();
 		if(superTypes.contains(fromClass)) {
 			return true;
-		} else {
-			for(EClass superClass : superTypes) {
-				if(isSubclass(superClass, fromClass)) {
-					return true;
-				}
-			}
 		}
 		return false;
 	}

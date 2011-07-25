@@ -113,15 +113,6 @@ public class NewchildSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NewchildPackage.NEW_CHILD_MENU: {
-				NewChildMenu newChildMenu = (NewChildMenu)theEObject;
-				T result = caseNewChildMenu(newChildMenu);
-				if (result == null) result = caseMenu(newChildMenu);
-				if (result == null) result = caseMenuContainer(newChildMenu);
-				if (result == null) result = caseMenuItem(newChildMenu);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case NewchildPackage.SEPARATOR: {
 				Separator separator = (Separator)theEObject;
 				T result = caseSeparator(separator);
@@ -234,21 +225,6 @@ public class NewchildSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMenuAction(MenuAction object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>New Child Menu</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>New Child Menu</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNewChildMenu(NewChildMenu object) {
 		return null;
 	}
 

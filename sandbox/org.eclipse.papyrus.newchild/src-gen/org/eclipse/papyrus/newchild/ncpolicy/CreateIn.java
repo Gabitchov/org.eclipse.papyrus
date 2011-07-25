@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipse.papyrus.newchild;
+package org.eclipse.papyrus.newchild.ncpolicy;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,119 +14,93 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>New Child Kind</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Create In</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.newchild.NewchildPackage#getNewChildKind()
+ * @see org.eclipse.papyrus.newchild.ncpolicy.NcpolicyPackage#getCreateIn()
  * @model
  * @generated
  */
-public enum NewChildKind implements Enumerator {
+public enum CreateIn implements Enumerator {
 	/**
-	 * The '<em><b>Hierarchical</b></em>' literal object.
+	 * The '<em><b>Self</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HIERARCHICAL_VALUE
+	 * @see #SELF_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HIERARCHICAL(0, "hierarchical", "hierarchical"),
+	SELF(0, "self", "self"),
 
 	/**
-	 * The '<em><b>Flat</b></em>' literal object.
+	 * The '<em><b>Parent</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FLAT_VALUE
+	 * @see #PARENT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FLAT(1, "flat", "flat"),
+	PARENT(1, "parent", "parent");
 
 	/**
-	 * The '<em><b>Auto</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AUTO_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AUTO(2, "auto", "auto");
-
-	/**
-	 * The '<em><b>Hierarchical</b></em>' literal value.
+	 * The '<em><b>Self</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Hierarchical</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Self</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HIERARCHICAL
-	 * @model name="hierarchical"
+	 * @see #SELF
+	 * @model name="self"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HIERARCHICAL_VALUE = 0;
+	public static final int SELF_VALUE = 0;
 
 	/**
-	 * The '<em><b>Flat</b></em>' literal value.
+	 * The '<em><b>Parent</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Flat</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Parent</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FLAT
-	 * @model name="flat"
+	 * @see #PARENT
+	 * @model name="parent"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLAT_VALUE = 1;
+	public static final int PARENT_VALUE = 1;
 
 	/**
-	 * The '<em><b>Auto</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Auto</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #AUTO
-	 * @model name="auto"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int AUTO_VALUE = 2;
-
-	/**
-	 * An array of all the '<em><b>New Child Kind</b></em>' enumerators.
+	 * An array of all the '<em><b>Create In</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final NewChildKind[] VALUES_ARRAY =
-		new NewChildKind[] {
-			HIERARCHICAL,
-			FLAT,
-			AUTO,
+	private static final CreateIn[] VALUES_ARRAY =
+		new CreateIn[] {
+			SELF,
+			PARENT,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>New Child Kind</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Create In</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<NewChildKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<CreateIn> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>New Child Kind</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Create In</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static NewChildKind get(String literal) {
+	public static CreateIn get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			NewChildKind result = VALUES_ARRAY[i];
+			CreateIn result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -135,14 +109,14 @@ public enum NewChildKind implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>New Child Kind</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Create In</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static NewChildKind getByName(String name) {
+	public static CreateIn getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			NewChildKind result = VALUES_ARRAY[i];
+			CreateIn result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -151,16 +125,15 @@ public enum NewChildKind implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>New Child Kind</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Create In</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static NewChildKind get(int value) {
+	public static CreateIn get(int value) {
 		switch (value) {
-			case HIERARCHICAL_VALUE: return HIERARCHICAL;
-			case FLAT_VALUE: return FLAT;
-			case AUTO_VALUE: return AUTO;
+			case SELF_VALUE: return SELF;
+			case PARENT_VALUE: return PARENT;
 		}
 		return null;
 	}
@@ -192,7 +165,7 @@ public enum NewChildKind implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private NewChildKind(int value, String name, String literal) {
+	private CreateIn(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -236,4 +209,4 @@ public enum NewChildKind implements Enumerator {
 		return literal;
 	}
 	
-} //NewChildKind
+} //CreateIn

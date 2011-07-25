@@ -6,6 +6,11 @@
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
       </customizedFeatures>
     </references>
+    <references referenceName="newChildPolicies">
+      <customizedFeatures customizedFeature="collapseLink">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      </customizedFeatures>
+    </references>
   </types>
   <types metaclassName="newchild.MenuAction">
     <references referenceName="elementType">
@@ -28,6 +33,44 @@
       </customizedFeatures>
     </references>
     <references referenceName="constraints">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+  </types>
+  <types metaclassName="newchild.ncpolicy.ReplacePolicy">
+    <references referenceName="replaceWith">
+      <customizedFeatures customizedFeature="collapseLink">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      </customizedFeatures>
+    </references>
+    <references referenceName="eClasses">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+  </types>
+  <types metaclassName="newchild.ncpolicy.NewChildPolicySet">
+    <references referenceName="constraints">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+    <references referenceName="policies">
+      <customizedFeatures customizedFeature="collapseLink">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      </customizedFeatures>
+    </references>
+  </types>
+  <types metaclassName="newchild.ncpolicy.NewChildPolicy">
+    <references referenceName="eClasses">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+  </types>
+  <types metaclassName="newchild.ncpolicy.NewEMFChildMenu">
+    <references referenceName="groups">
       <customizedFeatures customizedFeature="collapseLink">
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
       </customizedFeatures>

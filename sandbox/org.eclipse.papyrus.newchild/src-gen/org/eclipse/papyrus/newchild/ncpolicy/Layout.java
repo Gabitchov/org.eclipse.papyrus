@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipse.papyrus.newchild;
+package org.eclipse.papyrus.newchild.ncpolicy;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,93 +14,119 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Element Position</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Layout</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.newchild.NewchildPackage#getElementPosition()
+ * @see org.eclipse.papyrus.newchild.ncpolicy.NcpolicyPackage#getLayout()
  * @model
  * @generated
  */
-public enum ElementPosition implements Enumerator {
+public enum Layout implements Enumerator {
 	/**
-	 * The '<em><b>Child</b></em>' literal object.
+	 * The '<em><b>Hierarchical</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CHILD_VALUE
+	 * @see #HIERARCHICAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CHILD(0, "child", "child"),
+	HIERARCHICAL(0, "hierarchical", "hierarchical"),
 
 	/**
-	 * The '<em><b>Sibling</b></em>' literal object.
+	 * The '<em><b>Flat</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SIBLING_VALUE
+	 * @see #FLAT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SIBLING(1, "sibling", "sibling");
+	FLAT(1, "flat", "flat"),
 
 	/**
-	 * The '<em><b>Child</b></em>' literal value.
+	 * The '<em><b>Auto</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #AUTO_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	AUTO(2, "auto", "auto");
+
+	/**
+	 * The '<em><b>Hierarchical</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Child</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Hierarchical</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CHILD
-	 * @model name="child"
+	 * @see #HIERARCHICAL
+	 * @model name="hierarchical"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CHILD_VALUE = 0;
+	public static final int HIERARCHICAL_VALUE = 0;
 
 	/**
-	 * The '<em><b>Sibling</b></em>' literal value.
+	 * The '<em><b>Flat</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Sibling</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Flat</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SIBLING
-	 * @model name="sibling"
+	 * @see #FLAT
+	 * @model name="flat"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SIBLING_VALUE = 1;
+	public static final int FLAT_VALUE = 1;
 
 	/**
-	 * An array of all the '<em><b>Element Position</b></em>' enumerators.
+	 * The '<em><b>Auto</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Auto</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #AUTO
+	 * @model name="auto"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int AUTO_VALUE = 2;
+
+	/**
+	 * An array of all the '<em><b>Layout</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ElementPosition[] VALUES_ARRAY =
-		new ElementPosition[] {
-			CHILD,
-			SIBLING,
+	private static final Layout[] VALUES_ARRAY =
+		new Layout[] {
+			HIERARCHICAL,
+			FLAT,
+			AUTO,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Element Position</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Layout</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ElementPosition> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<Layout> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Element Position</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Layout</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ElementPosition get(String literal) {
+	public static Layout get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ElementPosition result = VALUES_ARRAY[i];
+			Layout result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -109,14 +135,14 @@ public enum ElementPosition implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Element Position</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Layout</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ElementPosition getByName(String name) {
+	public static Layout getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ElementPosition result = VALUES_ARRAY[i];
+			Layout result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -125,15 +151,16 @@ public enum ElementPosition implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Element Position</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Layout</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ElementPosition get(int value) {
+	public static Layout get(int value) {
 		switch (value) {
-			case CHILD_VALUE: return CHILD;
-			case SIBLING_VALUE: return SIBLING;
+			case HIERARCHICAL_VALUE: return HIERARCHICAL;
+			case FLAT_VALUE: return FLAT;
+			case AUTO_VALUE: return AUTO;
 		}
 		return null;
 	}
@@ -165,7 +192,7 @@ public enum ElementPosition implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ElementPosition(int value, String name, String literal) {
+	private Layout(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -209,4 +236,4 @@ public enum ElementPosition implements Enumerator {
 		return literal;
 	}
 	
-} //ElementPosition
+} //Layout

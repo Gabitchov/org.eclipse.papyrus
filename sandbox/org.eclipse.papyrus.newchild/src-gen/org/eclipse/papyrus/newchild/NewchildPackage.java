@@ -89,13 +89,22 @@ public interface NewchildPackage extends EPackage {
 	int NEWCHILD_CONFIGURATION__NAME = 1;
 
 	/**
+	 * The feature id for the '<em><b>New Child Policies</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEWCHILD_CONFIGURATION__NEW_CHILD_POLICIES = 2;
+
+	/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NEWCHILD_CONFIGURATION_FEATURE_COUNT = 2;
+	int NEWCHILD_CONFIGURATION_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.newchild.impl.MenuContainerImpl <em>Menu Container</em>}' class.
@@ -301,95 +310,13 @@ public interface NewchildPackage extends EPackage {
 	int MENU_ACTION__ELEMENT_TYPE = MENU_ITEM_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MENU_ACTION__POSITION = MENU_ITEM_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Menu Action</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MENU_ACTION_FEATURE_COUNT = MENU_ITEM_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.newchild.impl.NewChildMenuImpl <em>New Child Menu</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.newchild.impl.NewChildMenuImpl
-	 * @see org.eclipse.papyrus.newchild.impl.NewchildPackageImpl#getNewChildMenu()
-	 * @generated
-	 */
-	int NEW_CHILD_MENU = 6;
-
-	/**
-	 * The feature id for the '<em><b>Submenus</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NEW_CHILD_MENU__SUBMENUS = MENU__SUBMENUS;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NEW_CHILD_MENU__ID = MENU__ID;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NEW_CHILD_MENU__NAME = MENU__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Icon</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NEW_CHILD_MENU__ICON = MENU__ICON;
-
-	/**
-	 * The feature id for the '<em><b>Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NEW_CHILD_MENU__POSITION = MENU_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Kind</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NEW_CHILD_MENU__KIND = MENU_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>New Child Menu</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NEW_CHILD_MENU_FEATURE_COUNT = MENU_FEATURE_COUNT + 2;
+	int MENU_ACTION_FEATURE_COUNT = MENU_ITEM_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.newchild.impl.SeparatorImpl <em>Separator</em>}' class.
@@ -399,7 +326,7 @@ public interface NewchildPackage extends EPackage {
 	 * @see org.eclipse.papyrus.newchild.impl.NewchildPackageImpl#getSeparator()
 	 * @generated
 	 */
-	int SEPARATOR = 7;
+	int SEPARATOR = 6;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -427,7 +354,7 @@ public interface NewchildPackage extends EPackage {
 	 * @see org.eclipse.papyrus.newchild.impl.NewchildPackageImpl#getMenuGroup()
 	 * @generated
 	 */
-	int MENU_GROUP = 8;
+	int MENU_GROUP = 7;
 
 	/**
 	 * The feature id for the '<em><b>Submenus</b></em>' containment reference list.
@@ -482,7 +409,7 @@ public interface NewchildPackage extends EPackage {
 	 * @see org.eclipse.papyrus.newchild.impl.NewchildPackageImpl#getCustomFiller()
 	 * @generated
 	 */
-	int CUSTOM_FILLER = 9;
+	int CUSTOM_FILLER = 8;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -512,16 +439,6 @@ public interface NewchildPackage extends EPackage {
 	int CUSTOM_FILLER_FEATURE_COUNT = MENU_ITEM_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.newchild.ElementPosition <em>Element Position</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.newchild.ElementPosition
-	 * @see org.eclipse.papyrus.newchild.impl.NewchildPackageImpl#getElementPosition()
-	 * @generated
-	 */
-	int ELEMENT_POSITION = 10;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.newchild.MenuPosition <em>Menu Position</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -529,17 +446,7 @@ public interface NewchildPackage extends EPackage {
 	 * @see org.eclipse.papyrus.newchild.impl.NewchildPackageImpl#getMenuPosition()
 	 * @generated
 	 */
-	int MENU_POSITION = 11;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.newchild.NewChildKind <em>New Child Kind</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.newchild.NewChildKind
-	 * @see org.eclipse.papyrus.newchild.impl.NewchildPackageImpl#getNewChildKind()
-	 * @generated
-	 */
-	int NEW_CHILD_KIND = 12;
+	int MENU_POSITION = 9;
 
 
 	/**
@@ -573,6 +480,17 @@ public interface NewchildPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNewchildConfiguration_Name();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.newchild.NewchildConfiguration#getNewChildPolicies <em>New Child Policies</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>New Child Policies</em>'.
+	 * @see org.eclipse.papyrus.newchild.NewchildConfiguration#getNewChildPolicies()
+	 * @see #getNewchildConfiguration()
+	 * @generated
+	 */
+	EReference getNewchildConfiguration_NewChildPolicies();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.newchild.MenuRoot <em>Menu Root</em>}'.
@@ -702,49 +620,6 @@ public interface NewchildPackage extends EPackage {
 	EReference getMenuAction_ElementType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.newchild.MenuAction#getPosition <em>Position</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Position</em>'.
-	 * @see org.eclipse.papyrus.newchild.MenuAction#getPosition()
-	 * @see #getMenuAction()
-	 * @generated
-	 */
-	EAttribute getMenuAction_Position();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.newchild.NewChildMenu <em>New Child Menu</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>New Child Menu</em>'.
-	 * @see org.eclipse.papyrus.newchild.NewChildMenu
-	 * @generated
-	 */
-	EClass getNewChildMenu();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.newchild.NewChildMenu#getPosition <em>Position</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Position</em>'.
-	 * @see org.eclipse.papyrus.newchild.NewChildMenu#getPosition()
-	 * @see #getNewChildMenu()
-	 * @generated
-	 */
-	EAttribute getNewChildMenu_Position();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.newchild.NewChildMenu#getKind <em>Kind</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Kind</em>'.
-	 * @see org.eclipse.papyrus.newchild.NewChildMenu#getKind()
-	 * @see #getNewChildMenu()
-	 * @generated
-	 */
-	EAttribute getNewChildMenu_Kind();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.newchild.Separator <em>Separator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -819,16 +694,6 @@ public interface NewchildPackage extends EPackage {
 	EAttribute getCustomFiller_ClassName();
 
 	/**
-	 * Returns the meta object for enum '{@link org.eclipse.papyrus.newchild.ElementPosition <em>Element Position</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Element Position</em>'.
-	 * @see org.eclipse.papyrus.newchild.ElementPosition
-	 * @generated
-	 */
-	EEnum getElementPosition();
-
-	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.newchild.MenuPosition <em>Menu Position</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -837,16 +702,6 @@ public interface NewchildPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getMenuPosition();
-
-	/**
-	 * Returns the meta object for enum '{@link org.eclipse.papyrus.newchild.NewChildKind <em>New Child Kind</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>New Child Kind</em>'.
-	 * @see org.eclipse.papyrus.newchild.NewChildKind
-	 * @generated
-	 */
-	EEnum getNewChildKind();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -895,6 +750,14 @@ public interface NewchildPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NEWCHILD_CONFIGURATION__NAME = eINSTANCE.getNewchildConfiguration_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>New Child Policies</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NEWCHILD_CONFIGURATION__NEW_CHILD_POLICIES = eINSTANCE.getNewchildConfiguration_NewChildPolicies();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.newchild.impl.MenuRootImpl <em>Menu Root</em>}' class.
@@ -1003,40 +866,6 @@ public interface NewchildPackage extends EPackage {
 		EReference MENU_ACTION__ELEMENT_TYPE = eINSTANCE.getMenuAction_ElementType();
 
 		/**
-		 * The meta object literal for the '<em><b>Position</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MENU_ACTION__POSITION = eINSTANCE.getMenuAction_Position();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.newchild.impl.NewChildMenuImpl <em>New Child Menu</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.newchild.impl.NewChildMenuImpl
-		 * @see org.eclipse.papyrus.newchild.impl.NewchildPackageImpl#getNewChildMenu()
-		 * @generated
-		 */
-		EClass NEW_CHILD_MENU = eINSTANCE.getNewChildMenu();
-
-		/**
-		 * The meta object literal for the '<em><b>Position</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NEW_CHILD_MENU__POSITION = eINSTANCE.getNewChildMenu_Position();
-
-		/**
-		 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NEW_CHILD_MENU__KIND = eINSTANCE.getNewChildMenu_Kind();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.newchild.impl.SeparatorImpl <em>Separator</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1099,16 +928,6 @@ public interface NewchildPackage extends EPackage {
 		EAttribute CUSTOM_FILLER__CLASS_NAME = eINSTANCE.getCustomFiller_ClassName();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.newchild.ElementPosition <em>Element Position</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.newchild.ElementPosition
-		 * @see org.eclipse.papyrus.newchild.impl.NewchildPackageImpl#getElementPosition()
-		 * @generated
-		 */
-		EEnum ELEMENT_POSITION = eINSTANCE.getElementPosition();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.newchild.MenuPosition <em>Menu Position</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1117,16 +936,6 @@ public interface NewchildPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum MENU_POSITION = eINSTANCE.getMenuPosition();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.newchild.NewChildKind <em>New Child Kind</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.newchild.NewChildKind
-		 * @see org.eclipse.papyrus.newchild.impl.NewchildPackageImpl#getNewChildKind()
-		 * @generated
-		 */
-		EEnum NEW_CHILD_KIND = eINSTANCE.getNewChildKind();
 
 	}
 

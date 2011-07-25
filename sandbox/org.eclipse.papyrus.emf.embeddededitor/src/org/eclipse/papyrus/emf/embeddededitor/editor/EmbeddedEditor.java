@@ -85,7 +85,7 @@ public class EmbeddedEditor implements CommandStackListener, IMenuListener {
 
 	protected ResourceSet resourceSet;
 
-	protected AdapterFactoryEditingDomain editingDomain;
+	protected EditingDomain editingDomain;
 
 	protected AdapterFactory adapterFactory;
 
@@ -99,10 +99,22 @@ public class EmbeddedEditor implements CommandStackListener, IMenuListener {
 		}
 
 		CommandStack commandStack = new BasicCommandStack();
-		adapterFactory = createAdapterFactory();
+		AdapterFactory adapterFactory = createAdapterFactory();
 		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, resourceSet);
+		AdapterFactoryEditingDomain editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, resourceSet);
 		editingDomain.setResourceToReadOnlyMap(new HashMap<Resource, Boolean>());
+
+		configure(resourceSet, adapterFactory, editingDomain);
+	}
+
+	public EmbeddedEditor(ResourceSet resourceSet, AdapterFactory adapterFactory, EditingDomain editingDomain) {
+		configure(resourceSet, adapterFactory, editingDomain);
+	}
+
+	protected void configure(ResourceSet resourceSet, AdapterFactory adapterFactory, EditingDomain editingDomain) {
 		this.resourceSet = resourceSet;
+		this.adapterFactory = adapterFactory;
+		this.editingDomain = editingDomain;
 		editingDomainAdapter = new EditingDomainProviderAdapter(editingDomain);
 		resourceSet.eAdapters().add(editingDomainAdapter);
 	}

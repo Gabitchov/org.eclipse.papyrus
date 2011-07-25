@@ -20,7 +20,6 @@ import org.eclipse.papyrus.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.extendedtypes.ExtendedtypesPackage;
 
 import org.eclipse.papyrus.newchild.CustomFiller;
-import org.eclipse.papyrus.newchild.ElementPosition;
 import org.eclipse.papyrus.newchild.Menu;
 import org.eclipse.papyrus.newchild.MenuAction;
 import org.eclipse.papyrus.newchild.MenuContainer;
@@ -28,12 +27,14 @@ import org.eclipse.papyrus.newchild.MenuGroup;
 import org.eclipse.papyrus.newchild.MenuItem;
 import org.eclipse.papyrus.newchild.MenuPosition;
 import org.eclipse.papyrus.newchild.MenuRoot;
-import org.eclipse.papyrus.newchild.NewChildKind;
-import org.eclipse.papyrus.newchild.NewChildMenu;
 import org.eclipse.papyrus.newchild.NewchildConfiguration;
 import org.eclipse.papyrus.newchild.NewchildFactory;
 import org.eclipse.papyrus.newchild.NewchildPackage;
 import org.eclipse.papyrus.newchild.Separator;
+
+import org.eclipse.papyrus.newchild.ncpolicy.NcpolicyPackage;
+
+import org.eclipse.papyrus.newchild.ncpolicy.impl.NcpolicyPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -89,13 +90,6 @@ public class NewchildPackageImpl extends EPackageImpl implements NewchildPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass newChildMenuEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass separatorEClass = null;
 
 	/**
@@ -117,21 +111,7 @@ public class NewchildPackageImpl extends EPackageImpl implements NewchildPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum elementPositionEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EEnum menuPositionEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum newChildKindEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -183,11 +163,16 @@ public class NewchildPackageImpl extends EPackageImpl implements NewchildPackage
 		ConstraintsPackage.eINSTANCE.eClass();
 		ExtendedtypesPackage.eINSTANCE.eClass();
 
+		// Obtain or create and register interdependencies
+		NcpolicyPackageImpl theNcpolicyPackage = (NcpolicyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NcpolicyPackage.eNS_URI) instanceof NcpolicyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NcpolicyPackage.eNS_URI) : NcpolicyPackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theNewchildPackage.createPackageContents();
+		theNcpolicyPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theNewchildPackage.initializePackageContents();
+		theNcpolicyPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theNewchildPackage.freeze();
@@ -223,6 +208,15 @@ public class NewchildPackageImpl extends EPackageImpl implements NewchildPackage
 	 */
 	public EAttribute getNewchildConfiguration_Name() {
 		return (EAttribute)newchildConfigurationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNewchildConfiguration_NewChildPolicies() {
+		return (EReference)newchildConfigurationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -338,42 +332,6 @@ public class NewchildPackageImpl extends EPackageImpl implements NewchildPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMenuAction_Position() {
-		return (EAttribute)menuActionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getNewChildMenu() {
-		return newChildMenuEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getNewChildMenu_Position() {
-		return (EAttribute)newChildMenuEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getNewChildMenu_Kind() {
-		return (EAttribute)newChildMenuEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getSeparator() {
 		return separatorEClass;
 	}
@@ -437,26 +395,8 @@ public class NewchildPackageImpl extends EPackageImpl implements NewchildPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getElementPosition() {
-		return elementPositionEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EEnum getMenuPosition() {
 		return menuPositionEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getNewChildKind() {
-		return newChildKindEEnum;
 	}
 
 	/**
@@ -490,6 +430,7 @@ public class NewchildPackageImpl extends EPackageImpl implements NewchildPackage
 		newchildConfigurationEClass = createEClass(NEWCHILD_CONFIGURATION);
 		createEReference(newchildConfigurationEClass, NEWCHILD_CONFIGURATION__ROOTS);
 		createEAttribute(newchildConfigurationEClass, NEWCHILD_CONFIGURATION__NAME);
+		createEReference(newchildConfigurationEClass, NEWCHILD_CONFIGURATION__NEW_CHILD_POLICIES);
 
 		menuRootEClass = createEClass(MENU_ROOT);
 		createEReference(menuRootEClass, MENU_ROOT__GROUPS);
@@ -507,11 +448,6 @@ public class NewchildPackageImpl extends EPackageImpl implements NewchildPackage
 
 		menuActionEClass = createEClass(MENU_ACTION);
 		createEReference(menuActionEClass, MENU_ACTION__ELEMENT_TYPE);
-		createEAttribute(menuActionEClass, MENU_ACTION__POSITION);
-
-		newChildMenuEClass = createEClass(NEW_CHILD_MENU);
-		createEAttribute(newChildMenuEClass, NEW_CHILD_MENU__POSITION);
-		createEAttribute(newChildMenuEClass, NEW_CHILD_MENU__KIND);
 
 		separatorEClass = createEClass(SEPARATOR);
 
@@ -524,9 +460,7 @@ public class NewchildPackageImpl extends EPackageImpl implements NewchildPackage
 		createEAttribute(customFillerEClass, CUSTOM_FILLER__CLASS_NAME);
 
 		// Create enums
-		elementPositionEEnum = createEEnum(ELEMENT_POSITION);
 		menuPositionEEnum = createEEnum(MENU_POSITION);
-		newChildKindEEnum = createEEnum(NEW_CHILD_KIND);
 	}
 
 	/**
@@ -553,9 +487,13 @@ public class NewchildPackageImpl extends EPackageImpl implements NewchildPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		NcpolicyPackage theNcpolicyPackage = (NcpolicyPackage)EPackage.Registry.INSTANCE.getEPackage(NcpolicyPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		ConstraintsPackage theConstraintsPackage = (ConstraintsPackage)EPackage.Registry.INSTANCE.getEPackage(ConstraintsPackage.eNS_URI);
 		ExtendedtypesPackage theExtendedtypesPackage = (ExtendedtypesPackage)EPackage.Registry.INSTANCE.getEPackage(ExtendedtypesPackage.eNS_URI);
+
+		// Add subpackages
+		getESubpackages().add(theNcpolicyPackage);
 
 		// Create type parameters
 
@@ -567,7 +505,6 @@ public class NewchildPackageImpl extends EPackageImpl implements NewchildPackage
 		menuEClass.getESuperTypes().add(this.getMenuContainer());
 		menuEClass.getESuperTypes().add(this.getMenuItem());
 		menuActionEClass.getESuperTypes().add(this.getMenuItem());
-		newChildMenuEClass.getESuperTypes().add(this.getMenu());
 		separatorEClass.getESuperTypes().add(this.getMenuItem());
 		menuGroupEClass.getESuperTypes().add(this.getMenuContainer());
 		customFillerEClass.getESuperTypes().add(this.getMenuItem());
@@ -576,6 +513,7 @@ public class NewchildPackageImpl extends EPackageImpl implements NewchildPackage
 		initEClass(newchildConfigurationEClass, NewchildConfiguration.class, "NewchildConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNewchildConfiguration_Roots(), this.getMenuRoot(), null, "roots", null, 0, -1, NewchildConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNewchildConfiguration_Name(), theEcorePackage.getEString(), "name", null, 1, 1, NewchildConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNewchildConfiguration_NewChildPolicies(), theNcpolicyPackage.getNewChildPolicySet(), null, "newChildPolicies", null, 0, -1, NewchildConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(menuRootEClass, MenuRoot.class, "MenuRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMenuRoot_Groups(), this.getMenuGroup(), null, "groups", null, 0, -1, MenuRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -593,11 +531,6 @@ public class NewchildPackageImpl extends EPackageImpl implements NewchildPackage
 
 		initEClass(menuActionEClass, MenuAction.class, "MenuAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMenuAction_ElementType(), theExtendedtypesPackage.getExtendedElementTypeConfiguration(), null, "elementType", null, 1, 1, MenuAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMenuAction_Position(), this.getElementPosition(), "position", "child", 1, 1, MenuAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(newChildMenuEClass, NewChildMenu.class, "NewChildMenu", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNewChildMenu_Position(), this.getElementPosition(), "position", "child", 1, 1, NewChildMenu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNewChildMenu_Kind(), this.getNewChildKind(), "kind", "hierarchical", 1, 1, NewChildMenu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(separatorEClass, Separator.class, "Separator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -610,18 +543,9 @@ public class NewchildPackageImpl extends EPackageImpl implements NewchildPackage
 		initEAttribute(getCustomFiller_ClassName(), theEcorePackage.getEString(), "className", null, 1, 1, CustomFiller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
-		initEEnum(elementPositionEEnum, ElementPosition.class, "ElementPosition");
-		addEEnumLiteral(elementPositionEEnum, ElementPosition.CHILD);
-		addEEnumLiteral(elementPositionEEnum, ElementPosition.SIBLING);
-
 		initEEnum(menuPositionEEnum, MenuPosition.class, "MenuPosition");
 		addEEnumLiteral(menuPositionEEnum, MenuPosition.TOP);
 		addEEnumLiteral(menuPositionEEnum, MenuPosition.BOTTOM);
-
-		initEEnum(newChildKindEEnum, NewChildKind.class, "NewChildKind");
-		addEEnumLiteral(newChildKindEEnum, NewChildKind.HIERARCHICAL);
-		addEEnumLiteral(newChildKindEEnum, NewChildKind.FLAT);
-		addEEnumLiteral(newChildKindEEnum, NewChildKind.AUTO);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -8,6 +8,8 @@ package org.eclipse.papyrus.newchild;
 
 import org.eclipse.papyrus.extendedtypes.ExtendedElementTypeConfiguration;
 
+import org.eclipse.papyrus.newchild.ncpolicy.CreateIn;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Menu Action</b></em>'.
@@ -17,7 +19,6 @@ import org.eclipse.papyrus.extendedtypes.ExtendedElementTypeConfiguration;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.newchild.MenuAction#getElementType <em>Element Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.newchild.MenuAction#getPosition <em>Position</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,35 +52,5 @@ public interface MenuAction extends MenuItem {
 	 * @generated
 	 */
 	void setElementType(ExtendedElementTypeConfiguration value);
-
-	/**
-	 * Returns the value of the '<em><b>Position</b></em>' attribute.
-	 * The default value is <code>"child"</code>.
-	 * The literals are from the enumeration {@link org.eclipse.papyrus.newchild.ElementPosition}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Position</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Position</em>' attribute.
-	 * @see org.eclipse.papyrus.newchild.ElementPosition
-	 * @see #setPosition(ElementPosition)
-	 * @see org.eclipse.papyrus.newchild.NewchildPackage#getMenuAction_Position()
-	 * @model default="child" required="true"
-	 * @generated
-	 */
-	ElementPosition getPosition();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.newchild.MenuAction#getPosition <em>Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Position</em>' attribute.
-	 * @see org.eclipse.papyrus.newchild.ElementPosition
-	 * @see #getPosition()
-	 * @generated
-	 */
-	void setPosition(ElementPosition value);
 
 } // MenuAction

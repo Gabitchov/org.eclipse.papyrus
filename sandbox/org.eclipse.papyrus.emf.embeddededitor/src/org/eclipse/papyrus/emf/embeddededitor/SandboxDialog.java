@@ -4,9 +4,17 @@ import java.util.EventObject;
 import java.util.Set;
 
 import org.eclipse.emf.common.command.CommandStackListener;
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+import org.eclipse.emf.transaction.TransactionalCommandStack;
+import org.eclipse.emf.transaction.impl.TransactionalCommandStackImpl;
+import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TrayDialog;
@@ -177,11 +185,7 @@ public class SandboxDialog extends TrayDialog {
 			editorPart.setLayout(fillLayout);
 			editorPart.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-			ResourceSet resourceSet = new ResourceSetImpl();
-			resourceSet.getResource(URI.createPlatformResourceURI("/Test/NewChildConfig/NewchildConfig.xmi", true), true);
-
-			editor = new EmbeddedEditor(resourceSet);
-			editor.createWidget(editorPart);
+			editor = createEditor(editorPart);
 
 			editor.addCommandStackListener(new CommandStackListener() {
 
@@ -193,6 +197,35 @@ public class SandboxDialog extends TrayDialog {
 		} catch (Exception ex) {
 			Activator.log.error(ex);
 		}
+	}
+
+	private EmbeddedEditor createEditor(Composite parent) {
+		ResourceSet resourceSet = new ResourceSetImpl();
+
+		//Simple editor
+		//			resourceSet.getResource(URI.createPlatformResourceURI("org.eclipse.papyrus.newchild/Model/NewchildConfiguration.xmi", true), true);
+
+		//UML Editor with ExtendedType support
+		resourceSet.getResource(URI.createPlatformResourceURI("Test/elementType.uml", true), true);
+		TransactionalCommandStack commandStack = new TransactionalCommandStackImpl();
+		AdapterFactory adapterFactory = createAdapterFactory();
+		TransactionalEditingDomainImpl editingDomain = new TransactionalEditingDomainImpl(adapterFactory, commandStack, resourceSet);
+
+
+		editor = new EmbeddedEditor(resourceSet, adapterFactory, editingDomain);
+		editor.createWidget(parent);
+
+		return editor;
+	}
+
+	private AdapterFactory createAdapterFactory() {
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+
+		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+
+		return adapterFactory;
 	}
 
 	private void createPropertiesPart(Composite bottomPart) {

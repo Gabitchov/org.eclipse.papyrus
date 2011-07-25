@@ -65,7 +65,6 @@ public class NewchildFactoryImpl extends EFactoryImpl implements NewchildFactory
 			case NewchildPackage.MENU_ROOT: return createMenuRoot();
 			case NewchildPackage.MENU: return createMenu();
 			case NewchildPackage.MENU_ACTION: return createMenuAction();
-			case NewchildPackage.NEW_CHILD_MENU: return createNewChildMenu();
 			case NewchildPackage.SEPARATOR: return createSeparator();
 			case NewchildPackage.MENU_GROUP: return createMenuGroup();
 			case NewchildPackage.CUSTOM_FILLER: return createCustomFiller();
@@ -82,12 +81,8 @@ public class NewchildFactoryImpl extends EFactoryImpl implements NewchildFactory
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case NewchildPackage.ELEMENT_POSITION:
-				return createElementPositionFromString(eDataType, initialValue);
 			case NewchildPackage.MENU_POSITION:
 				return createMenuPositionFromString(eDataType, initialValue);
-			case NewchildPackage.NEW_CHILD_KIND:
-				return createNewChildKindFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -101,12 +96,8 @@ public class NewchildFactoryImpl extends EFactoryImpl implements NewchildFactory
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case NewchildPackage.ELEMENT_POSITION:
-				return convertElementPositionToString(eDataType, instanceValue);
 			case NewchildPackage.MENU_POSITION:
 				return convertMenuPositionToString(eDataType, instanceValue);
-			case NewchildPackage.NEW_CHILD_KIND:
-				return convertNewChildKindToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -157,16 +148,6 @@ public class NewchildFactoryImpl extends EFactoryImpl implements NewchildFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NewChildMenu createNewChildMenu() {
-		NewChildMenuImpl newChildMenu = new NewChildMenuImpl();
-		return newChildMenu;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Separator createSeparator() {
 		SeparatorImpl separator = new SeparatorImpl();
 		return separator;
@@ -197,26 +178,6 @@ public class NewchildFactoryImpl extends EFactoryImpl implements NewchildFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ElementPosition createElementPositionFromString(EDataType eDataType, String initialValue) {
-		ElementPosition result = ElementPosition.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertElementPositionToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public MenuPosition createMenuPositionFromString(EDataType eDataType, String initialValue) {
 		MenuPosition result = MenuPosition.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -229,26 +190,6 @@ public class NewchildFactoryImpl extends EFactoryImpl implements NewchildFactory
 	 * @generated
 	 */
 	public String convertMenuPositionToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NewChildKind createNewChildKindFromString(EDataType eDataType, String initialValue) {
-		NewChildKind result = NewChildKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertNewChildKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
