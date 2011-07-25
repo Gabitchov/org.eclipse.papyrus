@@ -79,8 +79,8 @@ public class EnumerationEditPart extends AbstractElementEditPart {
 
 	protected boolean addFixedChild(EditPart childEditPart) {
 
-		if(childEditPart instanceof NamedElementLabelNameEditPart) {
-			((NamedElementLabelNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof NamedElementNodeLabelNameEditPart) {
+			((NamedElementNodeLabelNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 
@@ -97,7 +97,7 @@ public class EnumerationEditPart extends AbstractElementEditPart {
 
 	protected boolean removeFixedChild(EditPart childEditPart) {
 
-		if(childEditPart instanceof NamedElementLabelNameEditPart) {
+		if(childEditPart instanceof NamedElementNodeLabelNameEditPart) {
 			return true;
 		}
 

@@ -19,11 +19,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.edit.part.NamedElementLabelNameEditPart;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.NamedElementNodeLabelNameEditPart;
 import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
 import org.eclipse.swt.graphics.Image;
 
-public class UnitLabelNameEditPart extends NamedElementLabelNameEditPart {
+public class UnitLabelNameEditPart extends NamedElementNodeLabelNameEditPart {
 
 	/** Constructor */
 	public UnitLabelNameEditPart(View view) {

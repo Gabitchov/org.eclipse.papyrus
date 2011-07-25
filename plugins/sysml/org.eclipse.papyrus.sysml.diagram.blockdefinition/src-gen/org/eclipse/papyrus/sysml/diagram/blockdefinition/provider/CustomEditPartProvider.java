@@ -63,8 +63,8 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.GeneralizationEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.InterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.InterfaceRealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.NamedElementAffixedLabelNameEditPart;
-import org.eclipse.papyrus.uml.diagram.common.edit.part.NamedElementLabelNameEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.NamedElementLinkLabelNameEditPart;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.NamedElementNodeLabelNameEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.OperationCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PortCompartmentEditPart;
@@ -133,7 +133,7 @@ public class CustomEditPartProvider extends CustomAbstractEditPartProvider {
 		nodeMap.put(SysMLGraphicalTypes.COMPARTMENT_SYSML_VALUE_AS_LIST_ID, ValuePropertyCompartmentEditPart.class);
 		nodeMap.put(SysMLGraphicalTypes.COMPARTMENT_SYSML_PROPERTY_AS_LIST_ID, BlockPropertyCompartmentEditPart.class);
 		nodeMap.put(UMLGraphicalTypes.AFFIXEDLABEL_UML_NAMEDELEMENT_NAME_ID, NamedElementAffixedLabelNameEditPart.class);
-		nodeMap.put(UMLGraphicalTypes.LABEL_UML_NAMEDELEMENT_NAME_ID, NamedElementLabelNameEditPart.class);
+		nodeMap.put(UMLGraphicalTypes.LABEL_UML_NAMEDELEMENT_NAME_ID, NamedElementNodeLabelNameEditPart.class);
 		nodeMap.put(UMLGraphicalTypes.LINKLABEL_UML_APPLIEDSTEREOTYPE_ID, AppliedStereotypeLinkLabelEditPart.class);
 		nodeMap.put(UMLGraphicalTypes.LINKLABEL_UML_NAMEDELEMENT_NAME_ID, NamedElementLinkLabelNameEditPart.class);
 		nodeMap.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_SOURCE_MULTIPLICITY_ID, AssociationLinkLabelSourceMultiplicityEditPart.class);
