@@ -1,9 +1,18 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.creation;
 
 import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.getDiagramView;
+import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.getEditPart;
+import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.TestPrepareUtils.changeVisibility;
 import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.TestUtils.createNodeFromPalette;
 
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.AbstractTest;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.TestPrepareUtils;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.junit.Test;
 
 /**
@@ -11,6 +20,39 @@ import org.junit.Test;
  */
 public class TestNodeCreationOnDiagram extends AbstractTest {
 
+	@Test // https://bugs.eclipse.org/bugs/show_bug.cgi?id=348549
+	public void dropExceptionToFix_bug348549() throws Exception {
+		
+		View propertyView;
+		View containerView;
+		
+		try {
+			View elementView = TestPrepareUtils.createGraphicalNode(SysMLElementTypes.BLOCK, SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_CLASSIFIER_ID, getDiagramView());
+			containerView = ViewUtil.getChildBySemanticHint(elementView, SysMLGraphicalTypes.COMPARTMENT_SYSML_PROPERTY_AS_LIST_ID);
+			if(containerView == null) {
+				throw new Exception("Unable to prepare container for test.");
+			}
+
+			// Ensure the compartment is visible (required for EditPart to be found)
+			if(!containerView.isVisible()) {
+				changeVisibility(containerView);
+			}
+			
+			propertyView = TestPrepareUtils.createGraphicalNode(UMLElementTypes.PROPERTY, UMLGraphicalTypes.SHAPE_UML_PROPERTY_AS_LABEL_ID, containerView);
+			
+		} catch (Exception e) {
+			throw new Exception("Failure during test preparation.", e);
+		}
+		
+		getEditPart(getDiagramView()).setFocus(true);
+		getEditPart(propertyView).setFocus(true); // This should not throw the following exception
+//		getEditPart(containerView).setFocus(true); // This should throw the following exception (assuming the owner does not have the focus).
+//		java.lang.IllegalArgumentException: An EditPart has to be selectable (isSelectable() == true) in order to obtain focus.
+//		at org.eclipse.core.runtime.Assert.isLegal(Assert.java:63)
+//		at org.eclipse.gef.editparts.AbstractEditPart.setFocus(AbstractEditPart.java:1005)
+//		at org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.dnd.link.TestLinkDropOnModel.dropDependency(TestLinkDropOnModel.java:71)
+	}
+	
 	@Test
 	public void testCreationActorInDiagram() throws Exception {
 		createNodeFromPalette("blockdefinition.tool.actor", getDiagramView(), true);
