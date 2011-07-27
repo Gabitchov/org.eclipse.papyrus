@@ -38,7 +38,7 @@ public class ModelPreferencePage extends BlockDefinitionDiagramNodePreferencePag
 		compartmentDefaultVisibilityMap.put("PackageableElementCompartment", Boolean.TRUE); //$NON-NLS-1$	
 
 		compartmentTitleDefaultVisibilityMap = new LinkedHashMap<String, Boolean>();
-		compartmentTitleDefaultVisibilityMap.put("PackageableElementCompartment", Boolean.TRUE); //$NON-NLS-1$
+		compartmentTitleDefaultVisibilityMap.put("PackageableElementCompartment", Boolean.FALSE); //$NON-NLS-1$
 
 
 		// Start of user code custom static initializations
