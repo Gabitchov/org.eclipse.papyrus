@@ -59,22 +59,24 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 	 */
 	@Override
 	protected boolean provides(CreateViewForKindOperation op) {
+		
+		// This method should generally not be called (https://bugs.eclipse.org/bugs/show_bug.cgi?id=346739).
 
 		if((diagramType == null) || (!diagramType.equals(op.getContainerView().getDiagram().getType()))) {
 			return false;
 		}
 
-		if(op.getViewKind() == Node.class) {
-			String graphicalType = getNodeGraphicalType(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint());
-			return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), graphicalType) != null;
-		}
+//		if(op.getViewKind() == Node.class) {
+//			String graphicalType = getNodeGraphicalType(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint());
+//			return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), graphicalType) != null;
+//		}
+//
+//		if(op.getViewKind() == Edge.class) {
+//			String graphicalType = getEdgeGraphicalType(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint());
+//			return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), graphicalType) != null;
+//		}
 
-		if(op.getViewKind() == Edge.class) {
-			String graphicalType = getEdgeGraphicalType(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint());
-			return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), graphicalType) != null;
-		}
-
-		return true;
+		throw new UnsupportedOperationException("Should never be called by the "+diagramType+" diagram.");
 	}
 
 	/**
