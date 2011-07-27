@@ -44,6 +44,7 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.OperationCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PortCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.common.edit.policy.StructuredClassifierCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
 public class BlockEditPart extends AbstractElementEditPart {
@@ -64,6 +65,7 @@ public class BlockEditPart extends AbstractElementEditPart {
 		installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AffixedNodeAlignmentEditPolicy());
 		// Start of user code custom policies
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new StructuredClassifierCreationEditPolicy());
 		// End of user code
 	}
 
