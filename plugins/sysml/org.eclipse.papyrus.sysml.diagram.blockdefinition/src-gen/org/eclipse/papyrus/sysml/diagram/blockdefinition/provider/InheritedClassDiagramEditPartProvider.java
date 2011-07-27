@@ -15,10 +15,12 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.provider;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLEditPartProvider;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.SlotChildLabelEditPart;
 
 public class InheritedClassDiagramEditPartProvider extends UMLEditPartProvider {
 
@@ -75,5 +77,16 @@ public class InheritedClassDiagramEditPartProvider extends UMLEditPartProvider {
 
 		}
 		return false;
+	}
+
+	/**
+	 * EditPart replacement for ChildLabelNodes from inherited diagram.
+	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=351433
+	 */
+	protected IGraphicalEditPart createEditPart(View view) {
+		if(ElementTypes.INSTANCE_SPECIFICATION_SLOT_CLN.getSemanticHint().equals(view.getType())) {
+			return new SlotChildLabelEditPart(view);
+		}
+		return super.createEditPart(view);
 	}
 }

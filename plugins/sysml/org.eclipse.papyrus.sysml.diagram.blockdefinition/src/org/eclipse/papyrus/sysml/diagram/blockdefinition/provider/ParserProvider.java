@@ -33,6 +33,7 @@ import org.eclipse.papyrus.uml.diagram.common.parser.NamedElementLabelParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.OperationLabelParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.PropertyLabelParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.ReceptionLabelParser;
+import org.eclipse.papyrus.uml.diagram.common.parser.SlotLabelParser;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
 /**
@@ -66,13 +67,14 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 		graphicalHintToParser.put(SysMLGraphicalTypes.LABEL_SYSML_VALUETYPE_NAME_ID, new NamedElementLabelParser());
 
 		graphicalHintToParser.put(SysMLGraphicalTypes.LABEL_SYSML_UNIT_NAME_ID, new UnitLabelParser());
-		
+
 		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_NAMEDELEMENT_NAME_ID, new NamedElementLabelParser());
 		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_SOURCE_ROLE_ID, new AssociationEndLabelParser());
 		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_SOURCE_MULTIPLICITY_ID, new AssociationEndLabelParser());
 		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_TARGET_ROLE_ID, new AssociationEndLabelParser());
 		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_TARGET_MULTIPLICITY_ID, new AssociationEndLabelParser());
 
+		graphicalHintToParser.put(ElementTypes.INSTANCE_SPECIFICATION_SLOT_CLN.getSemanticHint(), new SlotLabelParser());
 	}
 
 	/**
