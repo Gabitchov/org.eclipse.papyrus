@@ -327,8 +327,12 @@ public class OperationEditorScopingTool extends AbstractScopingTool{
 						while (cddOperationDefinitionOrStub != null && !(cddOperationDefinitionOrStub instanceof OperationDefinitionOrStub)) {
 							cddOperationDefinitionOrStub = cddOperationDefinitionOrStub.eContainer() ;
 						}
-						OperationDeclaration declaration = ((OperationDefinitionOrStub)cddOperationDefinitionOrStub).getDeclaration();
-						nestedList.add(declaration) ;
+						if (cddOperationDefinitionOrStub != null ) {
+							OperationDeclaration declaration = ((OperationDefinitionOrStub)cddOperationDefinitionOrStub).getDeclaration();
+							nestedList.add(declaration) ;
+						}
+						else
+							nestedList.add(contextOperation) ;
 					}
 					nestedScopes.add(nestedList) ;
 					// then builds other scoping levels based on context classifier inheritance hierarchy 
