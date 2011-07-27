@@ -47,13 +47,6 @@
       </package>
    </extension>
    <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.util.NFPsResourceFactoryImpl"
-            type="MARTE">
-      </parser>
-   </extension>
-   <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
             location="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_U_GAoAPMEdyuUt-4qHuVvQ"
@@ -69,25 +62,11 @@
       </package>
    </extension>
    <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.util.TimeResourceFactoryImpl"
-            type="MARTE">
-      </parser>
-   </extension>
-   <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
             location="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_WStkoAPMEdyuUt-4qHuVvQ"
             uri="http://www.eclipse.org/papyrus/Time/1">
       </profile>
-   </extension>
-   <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.util.GRMResourceFactoryImpl"
-            type="MARTE">
-      </parser>
    </extension>
    <extension
          point="org.eclipse.emf.ecore.generated_package">
@@ -113,13 +92,6 @@
       </package>
    </extension>
    <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.util.AllocResourceFactoryImpl"
-            type="MARTE">
-      </parser>
-   </extension>
-   <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
             location="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_ar8OsAPMEdyuUt-4qHuVvQ"
@@ -135,13 +107,6 @@
       </package>
    </extension>
    <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.util.CoreElementsResourceFactoryImpl"
-            type="MARTE">
-      </parser>
-   </extension>
-   <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
             location="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_-wEewECLEd6UTJZnztgOLw"
@@ -155,13 +120,6 @@
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/HLAM/1">
       </package>
-   </extension>
-   <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.util.HLAMResourceFactoryImpl"
-            type="MARTE">
-      </parser>
    </extension>
    <extension
          point="org.eclipse.uml2.uml.generated_package">
@@ -193,13 +151,6 @@
       </profile>
    </extension>
    <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwComputing.util.HwComputingResourceFactoryImpl"
-            type="MARTE">
-      </parser>
-   </extension>
-   <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
             location="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_aMhZsBJwEdygQ5HMNSpiZw"
@@ -213,13 +164,6 @@
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/HwCommunication/1">
       </package>
-   </extension>
-   <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwCommunication.util.HwCommunicationResourceFactoryImpl"
-            type="MARTE">
-      </parser>
    </extension>
    <extension
          point="org.eclipse.uml2.uml.generated_package">
@@ -237,13 +181,6 @@
       </package>
    </extension>
    <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwTiming.util.HwTimingResourceFactoryImpl"
-            type="MARTE">
-      </parser>
-   </extension>
-   <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
             location="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_dG2c0BJwEdygQ5HMNSpiZw"
@@ -257,13 +194,6 @@
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/HwDevice/1">
       </package>
-   </extension>
-   <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwDevice.util.HwDeviceResourceFactoryImpl"
-            type="MARTE">
-      </parser>
    </extension>
    <extension
          point="org.eclipse.uml2.uml.generated_package">
@@ -288,13 +218,6 @@
       </package>
    </extension>
    <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwStorage.HwMemory.util.HwMemoryResourceFactoryImpl"
-            type="MARTE">
-      </parser>
-   </extension>
-   <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
             location="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_gHI-ABJwEdygQ5HMNSpiZw"
@@ -308,13 +231,6 @@
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/HwStorageManager/1">
       </package>
-   </extension>
-   <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwStorage.HwStorageManager.util.HwStorageManagerResourceFactoryImpl"
-            type="MARTE">
-      </parser>
    </extension>
    <extension
          point="org.eclipse.uml2.uml.generated_package">
@@ -339,13 +255,6 @@
       </package>
    </extension>
    <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwPhysical.HwLayout.util.HwLayoutResourceFactoryImpl"
-            type="MARTE">
-      </parser>
-   </extension>
-   <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
             location="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_uAf6gBJwEdygQ5HMNSpiZw"
@@ -361,13 +270,6 @@
       </package>
    </extension>
    <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwPhysical.HwPower.util.HwPowerResourceFactoryImpl"
-            type="MARTE">
-      </parser>
-   </extension>
-   <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
             location="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_vrbyUBJwEdygQ5HMNSpiZw"
@@ -381,13 +283,6 @@
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/HwGeneral/1">
       </package>
-   </extension>
-   <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.util.HwGeneralResourceFactoryImpl"
-            type="MARTE">
-      </parser>
    </extension>
    <extension
          point="org.eclipse.uml2.uml.generated_package">
@@ -412,13 +307,6 @@
       </package>
    </extension>
    <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_ResourceCore.util.SW_ResourceCoreResourceFactoryImpl"
-            type="MARTE">
-      </parser>
-   </extension>
-   <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
             location="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_-1fcUBJdEdy3Td9UhuLFPg"
@@ -432,13 +320,6 @@
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/SW_Concurrency/1">
       </package>
-   </extension>
-   <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.util.SW_ConcurrencyResourceFactoryImpl"
-            type="MARTE">
-      </parser>
    </extension>
    <extension
          point="org.eclipse.uml2.uml.generated_package">
@@ -456,13 +337,6 @@
       </package>
    </extension>
    <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Brokering.util.SW_BrokeringResourceFactoryImpl"
-            type="MARTE">
-      </parser>
-   </extension>
-   <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
             location="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_Cf874BJeEdy3Td9UhuLFPg"
@@ -476,13 +350,6 @@
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/SW_Interaction/1">
       </package>
-   </extension>
-   <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Interaction.util.SW_InteractionResourceFactoryImpl"
-            type="MARTE">
-      </parser>
    </extension>
    <extension
          point="org.eclipse.uml2.uml.generated_package">
@@ -500,13 +367,6 @@
       </package>
    </extension>
    <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.util.GCMResourceFactoryImpl"
-            type="MARTE">
-      </parser>
-   </extension>
-   <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
             location="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_YgAioAPMEdyuUt-4qHuVvQ"
@@ -520,13 +380,6 @@
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/GQAM/1">
       </package>
-   </extension>
-   <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.util.GQAMResourceFactoryImpl"
-            type="MARTE">
-      </parser>
    </extension>
    <extension
          point="org.eclipse.uml2.uml.generated_package">
@@ -544,13 +397,6 @@
       </package>
    </extension>
    <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.util.SAMResourceFactoryImpl"
-            type="MARTE">
-      </parser>
-   </extension>
-   <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
             location="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_5ZCOIAPMEdyuUt-4qHuVvQ"
@@ -566,13 +412,6 @@
       </package>
    </extension>
    <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.util.PAMResourceFactoryImpl"
-            type="MARTE">
-      </parser>
-   </extension>
-   <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
             location="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_6c2bkAPMEdyuUt-4qHuVvQ"
@@ -586,13 +425,6 @@
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/RSM/1">
       </package>
-   </extension>
-   <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.util.RSMResourceFactoryImpl"
-            type="MARTE">
-      </parser>
    </extension>
    <extension
          point="org.eclipse.uml2.uml.generated_package">
@@ -617,25 +449,11 @@
       </package>
    </extension>
    <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.util.DataTypesResourceFactoryImpl"
-            type="MARTE">
-      </parser>
-   </extension>
-   <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
             location="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_9FdqwA-MEdyLh7muGbCqMw"
             uri="http://www.eclipse.org/papyrus/DataTypes/1">
       </profile>
-   </extension>
-   <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.util.VariablesResourceFactoryImpl"
-            type="MARTE">
-      </parser>
    </extension>
    <extension
          point="org.eclipse.uml2.uml.generated_package">
@@ -1097,13 +915,6 @@
                id="org.eclipse.papyrus.diagram.statemachine">
          </editor>
       </paletteDefinition>
-   </extension>
-   <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.util.OperatorsResourceFactoryImpl"
-            type="MARTE">
-      </parser>
    </extension>
    <extension
          point="org.eclipse.uml2.uml.generated_package">
