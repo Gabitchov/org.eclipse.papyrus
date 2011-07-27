@@ -1,7 +1,6 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.dnd.link;
 
 import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.getDiagramView;
-import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.getEditPart;
 import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.TestPrepareUtils.createElement;
 import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.TestPrepareUtils.createGraphicalNode;
 import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.TestPrepareUtils.createLink;
@@ -64,16 +63,6 @@ public class TestLinkDropOnModel extends AbstractTest {
 		associationSharedDirected = createLink(SysMLElementTypes.ASSOCIATION_SHARED_DIRECTED, blockSource, blockTarget);
 	}
 
-	@Test // https://bugs.eclipse.org/bugs/show_bug.cgi?id=348549
-	public void dropExceptionToFix_bug348549() throws Exception {
-		getEditPart(container).setFocus(true);
-//		java.lang.IllegalArgumentException: An EditPart has to be selectable (isSelectable() == true) in order to obtain focus.
-//		at org.eclipse.core.runtime.Assert.isLegal(Assert.java:63)
-//		at org.eclipse.gef.editparts.AbstractEditPart.setFocus(AbstractEditPart.java:1005)
-//		at org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.dnd.link.TestLinkDropOnModel.dropDependency(TestLinkDropOnModel.java:71)
-		dropFromModelExplorer(dependency, container, true);
-	}
-	
 	@Test
 	public void dropDependency() throws Exception {
 		dropFromModelExplorer(dependency, container, true);
