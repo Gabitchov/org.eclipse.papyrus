@@ -59,13 +59,13 @@ public class DiagramPaletteFactory extends PaletteFactory.Adapter {
 
 			// Constraint button replacement
 			remove("blockdefinition.tool.constraint");
-			put("blockdefinition.tool.constraint", new IElementType[]{ UMLElementTypes.CONSTRAINT, ElementTypes.CONSTRAINT, ElementTypes.CONSTRAINT_CN });
+			put("blockdefinition.tool.constraint", new IElementType[]{ UMLElementTypes.CONSTRAINT });
 
-			put("blockdefinition.tool.model", new IElementType[]{ ElementTypes.MODEL, ElementTypes.MODEL_CN });
-			put("blockdefinition.tool.package", new IElementType[]{ ElementTypes.PACKAGE, ElementTypes.PACKAGE_CN });
-			put("blockdefinition.tool.instancespecification", new IElementType[]{ ElementTypes.INSTANCE_SPECIFICATION, ElementTypes.INSTANCE_SPECIFICATION_CN });
-			put("blockdefinition.tool.slot", new IElementType[]{ ElementTypes.INSTANCE_SPECIFICATION_SLOT_CLN });
-			put("blockdefinition.tool.comment", new IElementType[]{ ElementTypes.COMMENT, ElementTypes.COMMENT_CN });
+			put("blockdefinition.tool.model", new IElementType[]{ UMLElementTypes.MODEL });
+			put("blockdefinition.tool.package", new IElementType[]{ UMLElementTypes.PACKAGE });
+			put("blockdefinition.tool.instancespecification", new IElementType[]{ UMLElementTypes.INSTANCE_SPECIFICATION });
+			put("blockdefinition.tool.slot", new IElementType[]{ UMLElementTypes.SLOT });
+			put("blockdefinition.tool.comment", new IElementType[]{ UMLElementTypes.COMMENT });
 
 			//End of user code
 		}
