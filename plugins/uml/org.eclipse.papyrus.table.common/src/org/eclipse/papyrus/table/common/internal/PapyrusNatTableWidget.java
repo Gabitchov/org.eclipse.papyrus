@@ -48,20 +48,29 @@ import org.eclipse.swt.widgets.Composite;
 
 /**
  * 
- * The Papyrus Nattable Widget. This widget provides 2 interesting methods for the synchronized table : 
+ * The Papyrus Nattable Widget. This widget provides 2 interesting methods for the synchronized table :
  * <ul>
- * <li> a method to add rows without execute the command in the command stack</li>
- * <li> a method to remove rows without execute the command in the command stack</li>
+ * <li>a method to add rows without execute the command in the command stack</li>
+ * <li>a method to remove rows without execute the command in the command stack</li>
  * </ul>
- *
- *The synchronization of the table is done using listener on the context.
+ * 
+ * The synchronization of the table is done using listener on the context.
  * We can't use the commadStack to add/remove element in the table, because in this case we add a command in the CommandStack :
- * 		-> 2 Commands for the Undo
- * 		-> moreover we add a new command executing the undo (thanks to the listener...)
+ * -> 2 Commands for the Undo
+ * -> moreover we add a new command executing the undo (thanks to the listener...)
  * 
  * Another idea : maybe, we should use something like the ServiceEdit, which provides commands for each action,
  * to chain the commands to execute.
  * 
+ * -> the new solution : TriggerListener of the ResourceSet!!!
+ * 
+ */
+@Deprecated
+/**
+ * 
+ * This class is now deprecated thanks to the TriggerListener. Nevertheless, I'm not sure it is useful to delete it for the moment, 
+ * but the interface can be deleted!
+ *
  */
 public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNatTableWidget{
 
@@ -84,6 +93,7 @@ public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNat
 	 *
 	 *  {@inheritDoc}
 	 */
+	@Deprecated
 	public void addRowsOutOfCommandStack(final List<EObject> newElements) {
 		ICommandFactory commandFactory = ICommandFactoriesRegistry.INSTANCE
 			.getCommandFactoryFor(getEditingDomain());
@@ -168,6 +178,7 @@ public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNat
 	 *
 	 *  {@inheritDoc}
 	 */
+	@Deprecated
 	public void removeRowsOutOfCommandStack(final List<EObject> elementsToDelete) {
 		//		this.natTable.setRedraw(false);
 		try {
