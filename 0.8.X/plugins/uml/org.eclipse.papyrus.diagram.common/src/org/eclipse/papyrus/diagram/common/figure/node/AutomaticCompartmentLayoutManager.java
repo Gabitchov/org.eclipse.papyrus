@@ -16,15 +16,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.AbstractLayout;
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 
 /**
- * this is the layout manager in charge to place element in compartment element
+ * this is the layout manager in charge to place element in compartment element.
+ * A modification of the code has been done in order to manage none visible compartment.
+ * if a compartment becomes invisible, its size and its height are equal to 1.
  * 
  */
 
@@ -76,7 +80,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 			minimumHeight += 7;
 		return new Dimension(minimumWith, minimumHeight);
 	}
-	
+
 	@Override
 	public Dimension getMinimumSize(IFigure container, int wHint, int hHint) {
 		return new Dimension(20,20);
@@ -123,35 +127,6 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	 * {@inheritDoc}
 	 */
 	public void layout(IFigure container) {
-		//----------------OLD VERSION-------------
-		//		collectInformationOnChildren(container);
-		//
-		//		// choose the good layout by taking in account if it exist GMF compartment
-		//		if(compartmentList.size() != 0) {
-		//			List childrenList = container.getChildren();
-		//			for(int i = 0; i < container.getChildren().size(); i++) {
-		//				Rectangle bound = new Rectangle(((IFigure)childrenList.get(i)).getBounds());
-		//				bound.setSize(getPreferedSize(((IFigure)childrenList.get(i))));
-		//				if(i > 0) {
-		//					bound.y = ((IFigure)childrenList.get(i - 1)).getBounds().getBottomLeft().y + 1;
-		//					bound.x = container.getBounds().x + 3;
-		//					bound.width = container.getBounds().width;
-		//				} else {
-		//					bound.x = container.getBounds().x + 3;
-		//					bound.y = container.getBounds().y + 3;
-		//					bound.width = container.getBounds().width;
-		//
-		//				}
-		//				((IFigure)childrenList.get(i)).setBounds(bound);
-		//
-		//			}
-		//			optimizeCompartmentSize(container);
-		//		} else {
-		//			layoutCenterForLabel(container);
-		//		}
-
-
-		//-----------------NEW VERSION
 		collectInformationOnChildren(container);
 
 		// this list contains the visible compartments (that is to say :  notCompartmentList + compartmentsList
@@ -162,20 +137,31 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 
 		// choose the good layout by taking in account if it exist GMF compartment
 		if(compartmentList.size() != 0) {
-
-			for(int i = 0; i < visibleCompartments.size(); i++) {
-				Rectangle bound = new Rectangle((visibleCompartments.get(i)).getBounds());
-				bound.setSize(getPreferedSize((visibleCompartments.get(i))));
-				if(i > 0) {
-					bound.y = (visibleCompartments.get(i - 1)).getBounds().getBottomLeft().y + 1;
-					bound.x = container.getBounds().x + 3;
-					bound.width = container.getBounds().width;
-				} else {
-					bound.x = container.getBounds().x + 3;
-					bound.y = container.getBounds().y + 3;
-					bound.width = container.getBounds().width;
+			// visit all compartment
+			for(int i = 0; i < container.getChildren().size(); i++) {
+				IFigure currentCompartment= (IFigure) container.getChildren().get(i);
+				// this is a visible compartment
+				if( visibleCompartments.contains(currentCompartment)){
+					
+					Rectangle bound = new Rectangle(currentCompartment.getBounds());
+					bound.setSize(getPreferedSize(currentCompartment));
+					if(visibleCompartments.indexOf(currentCompartment) > 0) {
+						bound.y = (visibleCompartments.get(visibleCompartments.indexOf(currentCompartment) - 1)).getBounds().getBottomLeft().y + 1;
+						bound.x = container.getBounds().x + 3;
+						bound.width = container.getBounds().width;
+					} else {
+						bound.x = container.getBounds().x + 3;
+						bound.y = container.getBounds().y + 3;
+						bound.width = container.getBounds().width;
+					}
+					currentCompartment.setBounds(bound);
 				}
-				(visibleCompartments.get(i)).setBounds(bound);
+				else{
+					//this is a none visible compartment
+					Rectangle bound = new Rectangle(currentCompartment.getBounds());
+					bound.setSize(1,1);
+					currentCompartment.setBounds(bound);
+				}
 			}
 			optimizeCompartmentSize(container);
 		} else {
