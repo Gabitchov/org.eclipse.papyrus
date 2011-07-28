@@ -91,13 +91,15 @@ public abstract class AbstractViewActionDelegate implements IViewActionDelegate 
 	 *        the new selected element
 	 */
 	protected void setSelectedElement(Object selectedElement) {
-		this.selectedElement = (Element)selectedElement;
+		if( selectedElement instanceof Element){
+			this.selectedElement = (Element)selectedElement;
+		}
 	}
 
 	/**
 	 * Returns current selected element
 	 * 
-	 * @return current selected element
+	 * @return current selected element may be null
 	 */
 	protected Element getSelectedElement() {
 		return selectedElement;
